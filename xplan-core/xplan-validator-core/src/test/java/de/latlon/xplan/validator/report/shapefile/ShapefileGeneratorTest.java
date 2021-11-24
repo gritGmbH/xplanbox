@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -55,79 +55,76 @@ import static org.junit.Assert.assertTrue;
  */
 public class ShapefileGeneratorTest {
 
-    @Rule
-    public TemporaryFolder tempDir = new TemporaryFolder();
+	@Rule
+	public TemporaryFolder tempDir = new TemporaryFolder();
 
-    @Test
-    public void testShapeGeneration()
-                    throws Exception {
-        ValidatorReport validatorReport = createArchive();
-        File directoryToCreateShapes = tempDir.newFolder();
+	@Test
+	public void testShapeGeneration() throws Exception {
+		ValidatorReport validatorReport = createArchive();
+		File directoryToCreateShapes = tempDir.newFolder();
 
-        ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
-        shapefileGenerator.generateReport( validatorReport, "testShapeGenerator", directoryToCreateShapes );
+		ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
+		shapefileGenerator.generateReport(validatorReport, "testShapeGenerator", directoryToCreateShapes);
 
-        assertThat( directoryToCreateShapes, containsFile( ".shp", 4 ) );
-        assertThat( directoryToCreateShapes, containsFile( ".shx", 4 ) );
-        assertThat( directoryToCreateShapes, containsFile( ".dbf", 4 ) );
-    }
+		assertThat(directoryToCreateShapes, containsFile(".shp", 4));
+		assertThat(directoryToCreateShapes, containsFile(".shx", 4));
+		assertThat(directoryToCreateShapes, containsFile(".dbf", 4));
+	}
 
-    @Test
-    public void testGeneratorHasBadGeometry()
-                    throws Exception {
+	@Test
+	public void testGeneratorHasBadGeometry() throws Exception {
 
-        ValidatorReport validatorReport = createArchive();
-        ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
-        assertTrue( shapefileGenerator.hasBadGeometry( validatorReport ) );
-    }
+		ValidatorReport validatorReport = createArchive();
+		ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
+		assertTrue(shapefileGenerator.hasBadGeometry(validatorReport));
+	}
 
-    private BaseMatcher<File> containsFile( final String fileEnding, final int numberOfOccurences ) {
-        return new BaseMatcher<File>() {
-            @Override
-            public boolean matches( Object item ) {
-                File directory = (File) item;
-                File[] files = directory.listFiles();
-                int countOccurences = 0;
-                if ( files == null )
-                    return false;
-                for ( File file : files ) {
-                    if ( file.getName().endsWith( fileEnding ) )
-                        countOccurences++;
-                }
-                return numberOfOccurences == countOccurences;
-            }
+	private BaseMatcher<File> containsFile(final String fileEnding, final int numberOfOccurences) {
+		return new BaseMatcher<File>() {
+			@Override
+			public boolean matches(Object item) {
+				File directory = (File) item;
+				File[] files = directory.listFiles();
+				int countOccurences = 0;
+				if (files == null)
+					return false;
+				for (File file : files) {
+					if (file.getName().endsWith(fileEnding))
+						countOccurences++;
+				}
+				return numberOfOccurences == countOccurences;
+			}
 
-            @Override
-            public void describeTo( Description description ) {
-                String text = format( "Directory must contain exactly %s files with ending %s.", numberOfOccurences,
-                                      fileEnding );
-                description.appendText( text );
-            }
-        };
-    }
+			@Override
+			public void describeTo(Description description) {
+				String text = format("Directory must contain exactly %s files with ending %s.", numberOfOccurences,
+						fileEnding);
+				description.appendText(text);
+			}
+		};
+	}
 
-    private ValidatorReport createArchive()
-                    throws Exception {
-        XPlanArchive archive = getTestArchive( "xplan41/FPlan.zip" );
-        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, SKIP_OPTIONS );
-        ValidatorReport validatorReport = new ValidatorReport();
-        validatorReport.setGeometricValidatorResult( result );
-        return validatorReport;
-    }
+	private ValidatorReport createArchive() throws Exception {
+		XPlanArchive archive = getTestArchive("xplan41/FPlan.zip");
+		GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport(archive,
+				SKIP_OPTIONS);
+		ValidatorReport validatorReport = new ValidatorReport();
+		validatorReport.setGeometricValidatorResult(result);
+		return validatorReport;
+	}
 
-    private XPlanArchive getTestArchive( String name )
-                    throws IOException {
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
-    }
+	private XPlanArchive getTestArchive(String name) throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
+	}
 
-    private ValidatorResult validateGeometryAndReturnReport( XPlanArchive archive, List<ValidationOption> voOptions )
-                    throws ValidatorException {
-        XPlanVersion version = archive.getVersion();
-        XPlanAde ade = archive.getAde();
-        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, ade );
-        return ( new GeometricValidatorImpl() ).validateGeometry( archive, archive.getCrs(), schema, true,
-                                                                  voOptions ).getValidatorResult();
-    }
+	private ValidatorResult validateGeometryAndReturnReport(XPlanArchive archive, List<ValidationOption> voOptions)
+			throws ValidatorException {
+		XPlanVersion version = archive.getVersion();
+		XPlanAde ade = archive.getAde();
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
+		return (new GeometricValidatorImpl()).validateGeometry(archive, archive.getCrs(), schema, true, voOptions)
+				.getValidatorResult();
+	}
 
 }

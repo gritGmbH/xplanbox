@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -50,70 +50,71 @@ import static java.util.Calendar.MINUTE;
  */
 public class GmlDeleteJob implements Job {
 
-    private static final Logger LOG = LoggerFactory.getLogger( GmlDeleteJob.class );
+	private static final Logger LOG = LoggerFactory.getLogger(GmlDeleteJob.class);
 
-    public static final String DELETE_AFTER_KEY = "DELETEAFTERINMINUTES";
+	public static final String DELETE_AFTER_KEY = "DELETEAFTERINMINUTES";
 
-    public static final int DEFAULT_DELETE_AFTER_IN_MINUTES = 5;
+	public static final int DEFAULT_DELETE_AFTER_IN_MINUTES = 5;
 
-    @Override
-    public void execute( JobExecutionContext jobExecutionContext )
-                            throws JobExecutionException {
-        int deleteAfter = getDeleteAfter( jobExecutionContext );
-        DeegreeWorkspace workspace = OGCFrontController.getServiceWorkspace();
-        if ( workspace == null ) {
-            return;
-        }
-        try {
-            SchedulerContext context = jobExecutionContext.getScheduler().getContext();
-            List<InsertedFids> insertedFids = (List<InsertedFids>) context.get( INSERTED_FIDS_KEY );
-            Calendar deleteBeforeThis = Calendar.getInstance();
-            deleteBeforeThis.add( MINUTE, -deleteAfter );
-            if ( insertedFids != null ) {
-                List<InsertedFids> deleteCandidates = insertedFids.stream().filter(
-                                        f -> f.getInsertTime().before( deleteBeforeThis ) ).collect(
-                                        Collectors.toList() );
+	@Override
+	public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+		int deleteAfter = getDeleteAfter(jobExecutionContext);
+		DeegreeWorkspace workspace = OGCFrontController.getServiceWorkspace();
+		if (workspace == null) {
+			return;
+		}
+		try {
+			SchedulerContext context = jobExecutionContext.getScheduler().getContext();
+			List<InsertedFids> insertedFids = (List<InsertedFids>) context.get(INSERTED_FIDS_KEY);
+			Calendar deleteBeforeThis = Calendar.getInstance();
+			deleteBeforeThis.add(MINUTE, -deleteAfter);
+			if (insertedFids != null) {
+				List<InsertedFids> deleteCandidates = insertedFids.stream()
+						.filter(f -> f.getInsertTime().before(deleteBeforeThis)).collect(Collectors.toList());
 
-                deleteCandidates.forEach( f -> deleteGml( f.getFids(), workspace ) );
-                insertedFids.removeAll( deleteCandidates );
-                context.put( INSERTED_FIDS_KEY, insertedFids );
-            }
-        } catch ( SchedulerException e ) {
-            LOG.warn( "Could not retrieve scheduler context", e );
-        }
+				deleteCandidates.forEach(f -> deleteGml(f.getFids(), workspace));
+				insertedFids.removeAll(deleteCandidates);
+				context.put(INSERTED_FIDS_KEY, insertedFids);
+			}
+		}
+		catch (SchedulerException e) {
+			LOG.warn("Could not retrieve scheduler context", e);
+		}
 
-    }
+	}
 
-    private void deleteGml( List<String> fidsToDelete, DeegreeWorkspace workspace ) {
-        LOG.info( "Delete {}", fidsToDelete );
-        FeatureStore fs = workspace.getNewWorkspace().getResource( FeatureStoreProvider.class, MEMORY_FEATURESTORE );
-        FeatureStoreTransaction ta = null;
-        try {
-            ta = fs.acquireTransaction();
-            IdFilter idFilter = new IdFilter( fidsToDelete );
-            ta.performDelete( idFilter, null );
-            LOG.info( "Deleted " + fidsToDelete.size() + " features in memory." );
-            ta.commit();
-        } catch ( Exception e ) {
-            LOG.warn( "Could not delete featureCollection", e );
-            rollbackQuietly( ta );
-        }
-    }
+	private void deleteGml(List<String> fidsToDelete, DeegreeWorkspace workspace) {
+		LOG.info("Delete {}", fidsToDelete);
+		FeatureStore fs = workspace.getNewWorkspace().getResource(FeatureStoreProvider.class, MEMORY_FEATURESTORE);
+		FeatureStoreTransaction ta = null;
+		try {
+			ta = fs.acquireTransaction();
+			IdFilter idFilter = new IdFilter(fidsToDelete);
+			ta.performDelete(idFilter, null);
+			LOG.info("Deleted " + fidsToDelete.size() + " features in memory.");
+			ta.commit();
+		}
+		catch (Exception e) {
+			LOG.warn("Could not delete featureCollection", e);
+			rollbackQuietly(ta);
+		}
+	}
 
-    private int getDeleteAfter( JobExecutionContext jobExecutionContext ) {
-        JobDataMap jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();
-        if ( jobDataMap.get( DELETE_AFTER_KEY ) != null )
-            return jobDataMap.getInt( DELETE_AFTER_KEY );
-        return DEFAULT_DELETE_AFTER_IN_MINUTES;
-    }
+	private int getDeleteAfter(JobExecutionContext jobExecutionContext) {
+		JobDataMap jobDataMap = jobExecutionContext.getJobDetail().getJobDataMap();
+		if (jobDataMap.get(DELETE_AFTER_KEY) != null)
+			return jobDataMap.getInt(DELETE_AFTER_KEY);
+		return DEFAULT_DELETE_AFTER_IN_MINUTES;
+	}
 
-    private void rollbackQuietly( FeatureStoreTransaction ta ) {
-        if ( ta != null ) {
-            try {
-                ta.rollback();
-            } catch ( FeatureStoreException ex ) {
-            }
-        }
-    }
+	private void rollbackQuietly(FeatureStoreTransaction ta) {
+		if (ta != null) {
+			try {
+				ta.rollback();
+			}
+			catch (FeatureStoreException ex) {
+			}
+		}
+	}
 
 }

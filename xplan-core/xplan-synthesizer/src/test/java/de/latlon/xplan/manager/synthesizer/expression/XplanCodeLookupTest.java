@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -35,31 +35,31 @@ import static org.junit.Assert.assertEquals;
 
 public class XplanCodeLookupTest {
 
-    @Test
-    public void testEvaluateXplan3() {
-        FeatureCollection features = getTestFeatures( XPLAN_3 );
-        Feature feature = getTestFeature( features, "BP_Plan_1" );
-        XplanCodeLookup expr = new XplanCodeLookup( new Xpath( "xplan:planArt" ), "BP_PlanArt" );
-        PrimitiveValue value = expr.evaluate( feature, features );
-        assertEquals( "BPlan", value + "" );
-    }
+	@Test
+	public void testEvaluateXplan3() {
+		FeatureCollection features = getTestFeatures(XPLAN_3);
+		Feature feature = getTestFeature(features, "BP_Plan_1");
+		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals("BPlan", value + "");
+	}
 
-    @Test
-    public void testEvaluateXplan40() {
-        FeatureCollection features = getTestFeatures( XPLAN_40 );
-        Feature feature = getTestFeature( features, "BP_Plan_1" );
-        XplanCodeLookup expr = new XplanCodeLookup( new Xpath( "xplan:planArt" ), "BP_PlanArt" );
-        PrimitiveValue value = expr.evaluate( feature, features );
-        assertEquals( "BPlan", value + "" );
-    }
+	@Test
+	public void testEvaluateXplan40() {
+		FeatureCollection features = getTestFeatures(XPLAN_40);
+		Feature feature = getTestFeature(features, "BP_Plan_1");
+		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals("BPlan", value + "");
+	}
 
-    @Test
-    public void testEvaluateXplan41() {
-        FeatureCollection features = getTestFeatures( XPLAN_41 );
-        Feature feature = getTestFeature( features, "BP_Plan_1" );
-        XplanCodeLookup expr = new XplanCodeLookup( new Xpath( "xplan:planArt" ), "BP_PlanArt" );
-        PrimitiveValue value = expr.evaluate( feature, features );
-        assertEquals( "BPlan", value + "" );
-    }
+	@Test
+	public void testEvaluateXplan41() {
+		FeatureCollection features = getTestFeatures(XPLAN_41);
+		Feature feature = getTestFeature(features, "BP_Plan_1");
+		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals("BPlan", value + "");
+	}
 
 }

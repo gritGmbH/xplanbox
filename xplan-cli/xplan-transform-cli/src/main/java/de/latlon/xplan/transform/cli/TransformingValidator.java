@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -48,57 +48,61 @@ import java.io.InputStream;
  */
 public class TransformingValidator {
 
-    private static final Logger LOG = LoggerFactory.getLogger( TransformingValidator.class );
+	private static final Logger LOG = LoggerFactory.getLogger(TransformingValidator.class);
 
-    private final XPlanDao xPlanDao;
+	private final XPlanDao xPlanDao;
 
-    private final XPlanGmlTransformer xPlanGmlTransformer;
+	private final XPlanGmlTransformer xPlanGmlTransformer;
 
-    public TransformingValidator( XPlanDao xPlanDao, XPlanGmlTransformer xPlanGmlTransformer ) {
-        this.xPlanDao = xPlanDao;
-        this.xPlanGmlTransformer = xPlanGmlTransformer;
-    }
+	public TransformingValidator(XPlanDao xPlanDao, XPlanGmlTransformer xPlanGmlTransformer) {
+		this.xPlanDao = xPlanDao;
+		this.xPlanGmlTransformer = xPlanGmlTransformer;
+	}
 
-    public TransformingValidationResult validate( XPlan plan, TransformationResultWriter transformationResultWriter )
-                    throws SynchronizationException {
-        String id = plan.getId();
-        LOG.info( "Transform plan with id {}", id );
-        XPlanType type = XPlanType.valueOf( plan.getType() );
-        XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf( plan.getAde() ) : null;
-        try {
-            FeatureCollection features = xPlanDao.retrieveFeatureCollection( plan );
-            if ( features.isEmpty() ) {
-                throw new SynchronizationException( "FeatureCollection retrieved from database is empty" );
-            }
-            XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder( features, type ).build();
+	public TransformingValidationResult validate(XPlan plan, TransformationResultWriter transformationResultWriter)
+			throws SynchronizationException {
+		String id = plan.getId();
+		LOG.info("Transform plan with id {}", id);
+		XPlanType type = XPlanType.valueOf(plan.getType());
+		XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf(plan.getAde()) : null;
+		try {
+			FeatureCollection features = xPlanDao.retrieveFeatureCollection(plan);
+			if (features.isEmpty()) {
+				throw new SynchronizationException("FeatureCollection retrieved from database is empty");
+			}
+			XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder(features, type).build();
 
-            TransformationResult transformationResult = xPlanGmlTransformer.transform( xPlanFeatureCollection );
-            if ( transformationResult != null ) {
-                SyntacticValidatorResult validatorResult = validateSyntactically( transformationResult, ade );
-                if ( validatorResult.isValid() ) {
-                    LOG.info( "Plan with id {} is valid.", id );
-                } else {
-                    LOG.warn( "Transformation of the XPlanGML 4.1 plan with id {} to XPlanGml 5.1 results in syntactically invalid GML: {}",
-                              id, validatorResult );
-                }
-                transformationResultWriter.writeResult( id, plan.getName(), validatorResult, transformationResult );
-                return new TransformingValidationResult( plan, transformationResult, validatorResult );
-            }
-        } catch ( SynchronizationException e ) {
-            throw e;
-        } catch ( Exception e ) {
-            throw new SynchronizationException( "Plan with id " + id + " could not be converted", e );
-        }
-        return null;
-    }
+			TransformationResult transformationResult = xPlanGmlTransformer.transform(xPlanFeatureCollection);
+			if (transformationResult != null) {
+				SyntacticValidatorResult validatorResult = validateSyntactically(transformationResult, ade);
+				if (validatorResult.isValid()) {
+					LOG.info("Plan with id {} is valid.", id);
+				}
+				else {
+					LOG.warn(
+							"Transformation of the XPlanGML 4.1 plan with id {} to XPlanGml 5.1 results in syntactically invalid GML: {}",
+							id, validatorResult);
+				}
+				transformationResultWriter.writeResult(id, plan.getName(), validatorResult, transformationResult);
+				return new TransformingValidationResult(plan, transformationResult, validatorResult);
+			}
+		}
+		catch (SynchronizationException e) {
+			throw e;
+		}
+		catch (Exception e) {
+			throw new SynchronizationException("Plan with id " + id + " could not be converted", e);
+		}
+		return null;
+	}
 
-    private SyntacticValidatorResult validateSyntactically( TransformationResult transformationResult, XPlanAde ade )
-                    throws IOException {
-        byte[] transformedPlan = transformationResult.getTransformationResult();
-        try ( InputStream is = new ByteArrayInputStream( transformedPlan ) ) {
-            XPlanVersion version = transformationResult.getVersionOfTheResult();
-            return (SyntacticValidatorResult) new SyntacticValidatorImpl().validateSyntax( is, version, ade );
-        }
-    }
+	private SyntacticValidatorResult validateSyntactically(TransformationResult transformationResult, XPlanAde ade)
+			throws IOException {
+		byte[] transformedPlan = transformationResult.getTransformationResult();
+		try (InputStream is = new ByteArrayInputStream(transformedPlan)) {
+			XPlanVersion version = transformationResult.getVersionOfTheResult();
+			return (SyntacticValidatorResult) new SyntacticValidatorImpl().validateSyntax(is, version, ade);
+		}
+	}
 
 }

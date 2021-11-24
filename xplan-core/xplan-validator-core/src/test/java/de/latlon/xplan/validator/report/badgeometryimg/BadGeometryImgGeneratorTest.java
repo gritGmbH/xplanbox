@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -59,104 +59,99 @@ import static org.mockito.Mockito.mock;
  */
 public class BadGeometryImgGeneratorTest {
 
-    @Test
-    public void testImageGeneration()
-                    throws Exception {
-        ValidatorReport validatorReport = createReportFromSampleArchive();
-        BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
+	@Test
+	public void testImageGeneration() throws Exception {
+		ValidatorReport validatorReport = createReportFromSampleArchive();
+		BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        badGeometryImgGenerator.generateReport( validatorReport, byteArrayOutputStream );
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		badGeometryImgGenerator.generateReport(validatorReport, byteArrayOutputStream);
 
-        assertTrue( byteArrayOutputStream.size() > 0 );
+		assertTrue(byteArrayOutputStream.size() > 0);
 
-        InputStream byteArrayInputStream = new ByteArrayInputStream( byteArrayOutputStream.toByteArray() );
-        BufferedImage image = javax.imageio.ImageIO.read( byteArrayInputStream );
-        assertNotNull( image );
+		InputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+		BufferedImage image = javax.imageio.ImageIO.read(byteArrayInputStream);
+		assertNotNull(image);
 
-        byteArrayOutputStream.close();
-        byteArrayInputStream.close();
-    }
+		byteArrayOutputStream.close();
+		byteArrayInputStream.close();
+	}
 
-    @Test
-    public void testHasBadGeometryFromSampleArchiveSingleResult()
-                    throws Exception {
-        ValidatorReport report = createReportFromSampleArchive();
-        BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
-        boolean hasBadGeometry = badGeometryImgGenerator.hasBadGeometry( report );
+	@Test
+	public void testHasBadGeometryFromSampleArchiveSingleResult() throws Exception {
+		ValidatorReport report = createReportFromSampleArchive();
+		BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
+		boolean hasBadGeometry = badGeometryImgGenerator.hasBadGeometry(report);
 
-        assertThat( hasBadGeometry, is( true ) );
-    }
+		assertThat(hasBadGeometry, is(true));
+	}
 
-    @Test
-    public void testHasBadGeometryWithBadGeometry()
-                    throws Exception {
-        ValidatorReport report = createReportWithBadGeometries();
-        BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
-        boolean hasBadGeometry = badGeometryImgGenerator.hasBadGeometry( report );
+	@Test
+	public void testHasBadGeometryWithBadGeometry() throws Exception {
+		ValidatorReport report = createReportWithBadGeometries();
+		BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
+		boolean hasBadGeometry = badGeometryImgGenerator.hasBadGeometry(report);
 
-        assertThat( hasBadGeometry, is( true ) );
-    }
+		assertThat(hasBadGeometry, is(true));
+	}
 
-    @Test
-    public void testHasBadGeometryWithoutBadGeometry()
-                    throws Exception {
-        ValidatorReport report = createReportWithoutBadGeometries();
-        BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
-        boolean hasBadGeometry = badGeometryImgGenerator.hasBadGeometry( report );
+	@Test
+	public void testHasBadGeometryWithoutBadGeometry() throws Exception {
+		ValidatorReport report = createReportWithoutBadGeometries();
+		BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
+		boolean hasBadGeometry = badGeometryImgGenerator.hasBadGeometry(report);
 
-        assertThat( hasBadGeometry, is( false ) );
-    }
+		assertThat(hasBadGeometry, is(false));
+	}
 
-    private ValidatorReport createReportFromSampleArchive()
-                    throws Exception {
-        XPlanArchive archive = getTestArchive( "xplan41/FPlan.zip" );
-        GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport( archive, SKIP_OPTIONS );
-        ValidatorReport validatorReport = new ValidatorReport();
-        validatorReport.setGeometricValidatorResult( result );
-        return validatorReport;
-    }
+	private ValidatorReport createReportFromSampleArchive() throws Exception {
+		XPlanArchive archive = getTestArchive("xplan41/FPlan.zip");
+		GeometricValidatorResult result = (GeometricValidatorResult) validateGeometryAndReturnReport(archive,
+				SKIP_OPTIONS);
+		ValidatorReport validatorReport = new ValidatorReport();
+		validatorReport.setGeometricValidatorResult(result);
+		return validatorReport;
+	}
 
-    private ValidatorReport createReportWithoutBadGeometries() {
-        return createReport( mockResultWithoutBadGeometry(), mockResultWithoutBadGeometry() );
-    }
+	private ValidatorReport createReportWithoutBadGeometries() {
+		return createReport(mockResultWithoutBadGeometry(), mockResultWithoutBadGeometry());
+	}
 
-    private ValidatorReport createReportWithBadGeometries() {
-        return createReport( mockResultWithBadGeometry(), mockResultWithoutBadGeometry() );
-    }
+	private ValidatorReport createReportWithBadGeometries() {
+		return createReport(mockResultWithBadGeometry(), mockResultWithoutBadGeometry());
+	}
 
-    private ValidatorReport createReport( GeometricValidatorResult... result ) {
-        ValidatorReport validatorReport = new ValidatorReport();
-        validatorReport.setGeometricValidatorResult( result[0] );
-        return validatorReport;
-    }
+	private ValidatorReport createReport(GeometricValidatorResult... result) {
+		ValidatorReport validatorReport = new ValidatorReport();
+		validatorReport.setGeometricValidatorResult(result[0]);
+		return validatorReport;
+	}
 
-    private GeometricValidatorResult mockResultWithBadGeometry() {
-        GeometricValidatorResult resultMock = mock( GeometricValidatorResult.class );
-        BadGeometry badGeometry = new BadGeometry();
-        Mockito.when( resultMock.getBadGeometries() ).thenReturn( Collections.singletonList( badGeometry ) );
-        return resultMock;
-    }
+	private GeometricValidatorResult mockResultWithBadGeometry() {
+		GeometricValidatorResult resultMock = mock(GeometricValidatorResult.class);
+		BadGeometry badGeometry = new BadGeometry();
+		Mockito.when(resultMock.getBadGeometries()).thenReturn(Collections.singletonList(badGeometry));
+		return resultMock;
+	}
 
-    private GeometricValidatorResult mockResultWithoutBadGeometry() {
-        GeometricValidatorResult resultMock = mock( GeometricValidatorResult.class );
-        Mockito.when( resultMock.getBadGeometries() ).thenReturn( Collections.<BadGeometry>emptyList() );
-        return resultMock;
-    }
+	private GeometricValidatorResult mockResultWithoutBadGeometry() {
+		GeometricValidatorResult resultMock = mock(GeometricValidatorResult.class);
+		Mockito.when(resultMock.getBadGeometries()).thenReturn(Collections.<BadGeometry>emptyList());
+		return resultMock;
+	}
 
-    private XPlanArchive getTestArchive( String name )
-                    throws IOException {
-        XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-        return archiveCreator.createXPlanArchiveFromZip( name, ResourceAccessor.readResourceStream( name ) );
-    }
+	private XPlanArchive getTestArchive(String name) throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
+	}
 
-    private ValidatorResult validateGeometryAndReturnReport( XPlanArchive archive, List<ValidationOption> voOptions )
-                    throws ValidatorException {
-        XPlanVersion version = archive.getVersion();
-        XPlanAde ade = archive.getAde();
-        AppSchema schema = XPlanSchemas.getInstance().getAppSchema( version, ade );
-        return ( new GeometricValidatorImpl() ).validateGeometry( archive, archive.getCrs(), schema, true,
-                                                                  voOptions ).getValidatorResult();
-    }
+	private ValidatorResult validateGeometryAndReturnReport(XPlanArchive archive, List<ValidationOption> voOptions)
+			throws ValidatorException {
+		XPlanVersion version = archive.getVersion();
+		XPlanAde ade = archive.getAde();
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
+		return (new GeometricValidatorImpl()).validateGeometry(archive, archive.getCrs(), schema, true, voOptions)
+				.getValidatorResult();
+	}
 
 }

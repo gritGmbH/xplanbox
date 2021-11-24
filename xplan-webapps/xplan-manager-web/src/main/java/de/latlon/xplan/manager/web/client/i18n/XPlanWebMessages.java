@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -29,418 +29,426 @@ import com.google.gwt.safehtml.shared.SafeHtml;
  */
 public interface XPlanWebMessages extends Messages {
 
-    String loadingConfigurationFailed();
+	String loadingConfigurationFailed();
 
-    String loadingAuthorizationInfoFailed();
+	String loadingAuthorizationInfoFailed();
 
-    String addPlan();
+	String addPlan();
 
-    String uploadButtonTitle();
+	String uploadButtonTitle();
 
-    String uploadingFile();
+	String uploadingFile();
 
-    String uploadFailed();
+	String uploadFailed();
 
-    String nameColumn();
+	String nameColumn();
 
-    String idColumn();
+	String idColumn();
 
-    String numberColumn();
+	String numberColumn();
 
-    String versionColumn();
+	String versionColumn();
 
-    String planArt();
+	String planArt();
 
-    String sonstPlanArt();
+	String sonstPlanArt();
 
-    String load();
+	String load();
 
-    String loadSuccessful();
+	String loadSuccessful();
 
-    String loadFailed();
+	String loadFailed();
 
-    String loadNotPossible();
+	String loadNotPossible();
 
-    String validate();
+	String validate();
 
-    String validated();
+	String validated();
 
-    String validationNoteNotValidated();
+	String validationNoteNotValidated();
 
-    String validationNoteValid();
+	String validationNoteValid();
 
-    String validationNoteInvalid();
+	String validationNoteInvalid();
 
-    String validationNoteMultipleXPlanElements();
+	String validationNoteMultipleXPlanElements();
 
-    String validationTitle();
+	String validationTitle();
 
-    String mapPreview();
+	String mapPreview();
 
-    String actions();
+	String actions();
 
-    String reallyDiscardPlan( String name );
+	String reallyDiscardPlan(String name);
 
-    String help();
+	String help();
 
-    String helpContent();
+	String helpContent();
 
-    String close();
+	String close();
 
-    String fileNameMustEndWithZip();
+	String fileNameMustEndWithZip();
 
-    String fileNameInvalidCharacters();
+	String fileNameInvalidCharacters();
 
-    String getPlansFailed();
+	String getPlansFailed();
 
-    String downloadPlan();
+	String downloadPlan();
 
-    String downloadPlanFailed();
+	String downloadPlanFailed();
 
-    String deletePlan();
+	String deletePlan();
 
-    String deleteSuccessful();
+	String deleteSuccessful();
 
-    String deleteFailed();
+	String deleteFailed();
 
-    String editPlanFailed();
+	String editPlanFailed();
 
-    String editPlanAbortedAsNoPlanMatchedId();
+	String editPlanAbortedAsNoPlanMatchedId();
 
-    String getPlanToEditFailed();
+	String getPlanToEditFailed();
 
-    String getPlanToEditAbortedAsNoPlanMatchedId();
+	String getPlanToEditAbortedAsNoPlanMatchedId();
 
-    String mapPreviewDialogTitle( String planName );
+	String mapPreviewDialogTitle(String planName);
 
-    String errorTitle();
+	String errorTitle();
 
-    String urlButton();
+	String urlButton();
 
-    String capabilitiesButton();
+	String capabilitiesButton();
 
-    String closeButton();
+	String closeButton();
 
-    String cancelButton();
+	String cancelButton();
 
-    String nextButton();
+	String nextButton();
 
-    String configurationException( String message );
+	String configurationException(String message);
 
-    String missingFileName();
+	String missingFileName();
 
-    String loadedPlan( String p0, String p1 );
+	String loadedPlan(String p0, String p1);
 
-    String reportCloseButtonTitle();
+	String reportCloseButtonTitle();
 
-    String reportNextButtonTitle();
+	String reportNextButtonTitle();
 
-    String loadingFile();
+	String loadingFile();
 
-    String deletingPlan();
+	String deletingPlan();
 
-    String editingStarted();
+	String editingStarted();
 
-    String editingUploading();
+	String editingUploading();
 
-    String editingSaving();
+	String editingSaving();
 
-    String retrieveMatchingInternalIdsFailed();
+	String retrieveMatchingInternalIdsFailed();
 
-    String noMatchingInternalIdFound();
+	String noMatchingInternalIdFound();
 
-    String noInternalIdSelected();
+	String noInternalIdSelected();
 
-    String internalIdDialogBoxTitle();
+	String internalIdDialogBoxTitle();
 
-    String checkingIfCrsIsSetFailed();
+	String checkingIfCrsIsSetFailed();
 
-    String crsDialogHeader();
+	String crsDialogHeader();
 
-    String crsDialogDescription();
+	String crsDialogDescription();
 
-    String crsDialogDefaultCrs();
+	String crsDialogDefaultCrs();
 
-    String crsDialogSelectCrs();
+	String crsDialogSelectCrs();
 
-    String crsDialogNoCrsChosen();
+	String crsDialogNoCrsChosen();
 
-    String legislationStatusDialogTitle();
+	String legislationStatusDialogTitle();
 
-    String legislationStatusDialogButtonText();
+	String legislationStatusDialogButtonText();
 
-    String legislationStatusDialogText( String translatedLegislationStatus );
+	String legislationStatusDialogText(String translatedLegislationStatus);
 
-    String legislationStatusDialogTextWithoutLegislationStatus();
+	String legislationStatusDialogTextWithoutLegislationStatus();
 
-    String legislationStatusDialogFestgestelltOption();
+	String legislationStatusDialogFestgestelltOption();
 
-    String legislationStatusDialogFestgestelltSelectedOption();
+	String legislationStatusDialogFestgestelltSelectedOption();
 
-    String legislationStatusDialogInAufstellungOption();
+	String legislationStatusDialogInAufstellungOption();
 
-    String legislationStatusDialogInAufstellungSelectedOption();
+	String legislationStatusDialogInAufstellungSelectedOption();
 
-    String legislationStatusDialogArchiviertOption();
+	String legislationStatusDialogArchiviertOption();
 
-    String legislationStatusDialogArchiviertSelectedOption();
+	String legislationStatusDialogArchiviertSelectedOption();
 
-    String validityPeriodDialogTitle();
+	String validityPeriodDialogTitle();
 
-    String validityPeriodDialogDescription();
+	String validityPeriodDialogDescription();
 
-    String validityPeriodDialogTimeTooltip();
+	String validityPeriodDialogTimeTooltip();
 
-    String validityPeriodDialogStartDateTime();
+	String validityPeriodDialogStartDateTime();
 
-    String validityPeriodDialogEndDateTime();
+	String validityPeriodDialogEndDateTime();
 
-    String validityPeriodDialogTypeStart();
+	String validityPeriodDialogTypeStart();
 
-    String validityPeriodDialogTypeEnd();
+	String validityPeriodDialogTypeEnd();
 
-    String validityPeriodDialogStartNotBeforeEnd();
+	String validityPeriodDialogStartNotBeforeEnd();
 
-    String validityPeriodDialogValidationFailures();
+	String validityPeriodDialogValidationFailures();
 
-    String legislationStatus();
+	String legislationStatus();
 
-    String releaseDate();
+	String releaseDate();
 
-    String importDate();
+	String importDate();
 
-    String ade();
+	String ade();
 
-    String planStatus();
+	String planStatus();
 
-    String validityStatus();
+	String validityStatus();
 
-    String validityTooltip( String startDateTime, String endDateTime );
+	String validityTooltip(String startDateTime, String endDateTime);
 
-    String validityTooltipLimitByStartDate( String startDateTime );
+	String validityTooltipLimitByStartDate(String startDateTime);
 
-    String validityTooltipLimitByEndDate( String startDateTime );
+	String validityTooltipLimitByEndDate(String startDateTime);
 
-    String validityTooltipUnlimited();
+	String validityTooltipUnlimited();
 
-    String filterPlanStatusLabel();
+	String filterPlanStatusLabel();
 
-    String filterPlanStatusTooltip();
+	String filterPlanStatusTooltip();
 
-    String filterPlanStatusSelectionAll();
+	String filterPlanStatusSelectionAll();
 
-    String categoryTab();
+	String categoryTab();
 
-    String searchTab();
+	String searchTab();
 
-    String searchButton();
+	String searchButton();
 
-    String searchLabel();
+	String searchLabel();
 
-    String filterFreeTextTooltip();
+	String filterFreeTextTooltip();
 
-    String searchOnAllColumns();
+	String searchOnAllColumns();
 
-    SafeHtml filterReset();
+	SafeHtml filterReset();
 
-    String erroneousRasterDataHeader();
+	String erroneousRasterDataHeader();
 
-    String erroneousRasterDataQuestionForCriticalErrors1();
+	String erroneousRasterDataQuestionForCriticalErrors1();
 
-    String erroneousRasterDataQuestionForCriticalErrors2();
+	String erroneousRasterDataQuestionForCriticalErrors2();
 
-    String erroneousRasterDataQuestionForCrsNotSetErrors1();
+	String erroneousRasterDataQuestionForCrsNotSetErrors1();
 
-    String erroneousRasterDataQuestionForCrsNotSetErrors2( String rasterConfigurationCrs );
+	String erroneousRasterDataQuestionForCrsNotSetErrors2(String rasterConfigurationCrs);
 
-    String erroneousRasterDataQuestionForCrsNotSetErrors3();
+	String erroneousRasterDataQuestionForCrsNotSetErrors3();
 
-    String erroneousRasterDataTableName();
+	String erroneousRasterDataTableName();
 
-    String erroneousRasterDataTableCrs();
+	String erroneousRasterDataTableCrs();
 
-    String erroneousRasterDataTableImageFormat();
+	String erroneousRasterDataTableImageFormat();
 
-    String erroneousRasterDataButtonForceImport();
+	String erroneousRasterDataButtonForceImport();
 
-    String erroneousRasterDataButtonImportWithoutRaster();
+	String erroneousRasterDataButtonImportWithoutRaster();
 
-    String rasterTooltipCrsNotSet();
+	String rasterTooltipCrsNotSet();
 
-    String rasterTooltipIsConfiguredCrs( String rasterConfigurationCrs );
+	String rasterTooltipIsConfiguredCrs(String rasterConfigurationCrs);
 
-    String rasterTooltipNotConfiguredCrs( String rasterCrs, String rasterConfigurationCrs );
+	String rasterTooltipNotConfiguredCrs(String rasterCrs, String rasterConfigurationCrs);
 
-    String rasterTooltipIsSupportedImageFormat();
+	String rasterTooltipIsSupportedImageFormat();
 
-    String rasterTooltipNotSupportedImageFormat();
+	String rasterTooltipNotSupportedImageFormat();
 
-    String rasterNameAndGeoreferencNameNotSame();
+	String rasterNameAndGeoreferencNameNotSame();
 
-    String rasterAndGeoreferencNotChanged();
+	String rasterAndGeoreferencNotChanged();
 
-    String editButtonTooltip();
+	String editButtonTooltip();
 
-    String editButtonTooltipPermissionDenied();
+	String editButtonTooltipPermissionDenied();
 
-    String editButtonTooltipIncorrectPlanType();
+	String editButtonTooltipIncorrectPlanType();
 
-    String editButtonTooltipIncorrectVersion();
+	String editButtonTooltipIncorrectVersion();
 
-    String editSaveButton();
+	String editSaveButton();
 
-    String editCancelButton();
+	String editCancelButton();
 
-    String editInvalidInput();
+	String editInvalidInput();
 
-    String editInputRequired();
+	String editInputRequired();
 
-    String editInvalidDate();
+	String editInvalidDate();
 
-    String editCaptionBasedata();
+	String editCaptionBasedata();
 
-    String editCaptionBasedataName();
+	String editCaptionBasedataName();
 
-    String editCaptionBasedataDescription();
+	String editCaptionBasedataDescription();
 
-    String editCaptionBasedataCreationDate();
+	String editCaptionBasedataCreationDate();
 
-    String editCaptionBasedataLossDate();
+	String editCaptionBasedataLossDate();
 
-    String editCaptionBasedataPlanType();
+	String editCaptionBasedataPlanType();
 
-    String editCaptionBasedataOtherPlanType();
+	String editCaptionBasedataOtherPlanType();
 
-    String editCaptionBasedataMethod();
+	String editCaptionBasedataMethod();
 
-    String editCaptionBasedataLegislationStatus();
+	String editCaptionBasedataLegislationStatus();
 
-    String editCaptionBasedataRegulationDate();
+	String editCaptionBasedataRegulationDate();
 
-    String editCaptionValidityPeriod();
+	String editCaptionValidityPeriod();
 
-    String editCaptionChanges();
+	String editCaptionChanges();
 
-    String editCaptionChangesText();
+	String editCaptionChangesText();
 
-    String editCaptionChangesPlanName();
+	String editCaptionChangesPlanName();
 
-    String editCaptionChangesLegalNature();
+	String editCaptionChangesLegalNature();
 
-    String editCaptionChangesNumber();
+	String editCaptionChangesNumber();
 
-    String editCaptionChangesType();
+	String editCaptionChangesType();
 
-    String editCaptionNewChange();
+	String editCaptionNewChange();
 
-    String editCaptionTexts();
+	String editCaptionTexts();
 
-    String editCaptionTextsKey();
+	String editCaptionTextsKey();
 
-    String editCaptionTextsBasis();
+	String editCaptionTextsBasis();
 
-    String editCaptionTextsText();
+	String editCaptionTextsText();
 
-    String editCaptionTextsReference();
+	String editCaptionTextsReference();
 
-    String editCaptionTextsRechtscharakter();
+	String editCaptionTextsReferenceLink();
 
-    String editCaptionTextsGeoReference();
+	String editCaptionTextsRechtscharakter();
 
-    String editCaptionNewText();
+	String editCaptionTextsGeoReference();
 
-    String editCaptionReferences();
+	String editCaptionNewText();
 
-    String editCaptionReferencesReference();
+	String editCaptionReferences();
 
-    String editCaptionReferencesGeoReference();
+	String editCaptionReferencesReference();
 
-    String editCaptionReferencesType();
+	String editCaptionReferencesReferenceLink();
 
-    String editCaptionNewReference();
+	String editCaptionReferencesGeoReference();
 
-    String editCaptionRasterBasis();
+	String editCaptionReferencesType();
 
-    String editCaptionRasterBasisReference();
+	String editCaptionNewReference();
 
-    String editCaptionRasterBasisGeoReference();
+	String editCaptionRasterBasis();
 
-    String editCaptionRasterBasisType();
+	String editCaptionRasterBasisReference();
 
-    String editCaptionRasterBasisGeorefMimeType();
+	String editCaptionRasterBasisReferenceLink();
 
-    String editCaptionRasterBasisArt();
+	String editCaptionRasterBasisGeoReference();
 
-    String  editCaptionRasterBasisInformationssystemURL();
+	String editCaptionRasterBasisGeoReferenceLink();
 
-    String editCaptionRasterBasisReferenzName();
+	String editCaptionRasterBasisType();
 
-    String editCaptionRasterBasisReferenzMimeType();
+	String editHintRasterBasisType();
 
-    String editCaptionRasterBasisBeschreibung();
+	String editCaptionRasterBasisGeorefMimeType();
 
-    String editCaptionRasterBasisDatum();
+	String editCaptionRasterBasisArt();
 
-    String editCaptionRasterBasisInvalid();
+	String editCaptionRasterBasisInformationssystemURL();
 
-    String editCaptionNewRasterBasis();
+	String editCaptionRasterBasisReferenzName();
 
-    String editCaptionRasterBasisReferenceNameOrUrl();
+	String editCaptionRasterBasisReferenzMimeType();
 
-    String editCaptionRasterBasisGeoReferenceNotAllowed();
+	String editCaptionRasterBasisBeschreibung();
 
-    String editCaptionRasterBasisGeoReferenceMimeTypeNotAllowed();
+	String editCaptionRasterBasisDatum();
 
-    String editCaptionRasterBasisDisabled();
+	String editCaptionRasterBasisInvalid();
 
-    String editCaptionChangesDialogEdit();
+	String editCaptionNewRasterBasis();
 
-    String editCaptionChangesDialogNew();
+	String editCaptionRasterBasisReferenceNameOrUrl();
 
-    String editCaptionTextsDialogEdit();
+	String editCaptionRasterBasisGeoReferenceNotAllowed();
 
-    String editCaptionTextsDialogNew();
+	String editCaptionRasterBasisGeoReferenceMimeTypeNotAllowed();
 
-    String editCaptionReferencesDialogNew();
+	String editCaptionRasterBasisDisabled();
 
-    String editCaptionReferencesGreenStructursReferenceAlreadyExists();
+	String editCaptionChangesDialogEdit();
 
-    String editCaptionReferencesReasonReferenceAlreadyExists();
-    
-    String editCaptionRasterBasisDialogEdit();
+	String editCaptionChangesDialogNew();
 
-    String editCaptionRasterBasisDialogNew();
+	String editCaptionTextsDialogEdit();
 
-    String editCaptionReferencesCurrentFile();
+	String editCaptionTextsDialogNew();
 
-    String editCaptionReferencesRemoveFileTooltip();
+	String editCaptionReferencesDialogNew();
 
-    String editUnsupportedPropertyRefType();
+	String editCaptionReferencesGreenStructursReferenceAlreadyExists();
 
-    String publishPlu();
+	String editCaptionReferencesReasonReferenceAlreadyExists();
 
-    String publishingPlu();
+	String editCaptionRasterBasisDialogEdit();
 
-    String publishingPluSuccessful();
+	String editCaptionRasterBasisDialogNew();
 
-    String publishingPluFailed();
+	String editCaptionReferencesCurrentFile();
 
-    String publishingPluButtonTooltip();
+	String editCaptionReferencesRemoveFileTooltip();
 
-    String publishingPluButtonTooltipPermissionDenied();
+	String editCaptionReferenceUrlOrFile();
 
-    String publishingPluButtonTooltipIncorrectPlanType();
+	String editUnsupportedPropertyRefType();
 
-    String publishingPluButtonTooltipIncorrectVersion();
+	String publishPlu();
 
-    String publishingPluButtonTooltipAlreadyPublished();
+	String publishingPlu();
 
-    String patternMissmatch( String pattern );
+	String publishingPluSuccessful();
 
-    String planNameMismatch();
+	String publishingPluFailed();
 
-    String planNameAndStatusDialogHeader();
+	String publishingPluButtonTooltip();
 
-    String duplicatePlanName( String planName, String planStatus );
+	String publishingPluButtonTooltipPermissionDenied();
+
+	String publishingPluButtonTooltipIncorrectPlanType();
+
+	String publishingPluButtonTooltipIncorrectVersion();
+
+	String publishingPluButtonTooltipAlreadyPublished();
+
+	String planNameAndStatusDialogHeader();
+
+	String duplicatePlanName(String planName, String planStatus);
 
 }

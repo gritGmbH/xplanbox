@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -29,100 +29,100 @@ import com.google.gwt.i18n.client.Messages;
  */
 public interface ValidatorWebCommonsMessages extends Messages {
 
-    String validationPopupCancel();
+	String validationPopupCancel();
 
-    String validationPopupSave();
+	String validationPopupSave();
 
-    String validationPopupClose();
+	String validationPopupClose();
 
-    String validationOptionsOpen();
+	String validationOptionsOpen();
 
-    String validationSettingsTitle();
+	String validationSettingsTitle();
 
-    String uploadLabel();
+	String uploadLabel();
 
-    String uploadHint();
+	String uploadHint();
 
-    String errorTitle();
+	String errorTitle();
 
-    String fileNameMustEndWithZip();
+	String fileNameMustEndWithZip();
 
-    String uploadingFile();
+	String uploadingFile();
 
-    String uploadFailed();
+	String uploadFailed();
 
-    String uploadSucessTitle();
+	String uploadSucessTitle();
 
-    String validationOptionTitle();
+	String validationOptionTitle();
 
-    String fieldLabelRunName();
+	String fieldLabelRunName();
 
-    String defaultRunName();
+	String defaultRunName();
 
-    String selectionValidationTypeLabel();
+	String selectionValidationTypeLabel();
 
-    String selectionValidationTypeSem();
+	String selectionValidationTypeSem();
 
-    String selectionValidationTypeSyn();
+	String selectionValidationTypeSyn();
 
-    String selectionValidationTypeGeom();
+	String selectionValidationTypeGeom();
 
-    String ignoreSelfIntersection();
+	String ignoreSelfIntersection();
 
-    String ignoreOrientation();
+	String ignoreOrientation();
 
-    String skipFlaechenschluss();
+	String skipFlaechenschluss();
 
-    String skipGeltungsbereich();
+	String skipGeltungsbereich();
 
-    String startValidationButton();
+	String startValidationButton();
 
-    String cancelValidationButton();
+	String cancelValidationButton();
 
-    String uploadFinishedNextButton();
+	String uploadFinishedNextButton();
 
-    String uploadFinishedCancelButton();
+	String uploadFinishedCancelButton();
 
-    String loadedPlan();
+	String loadedPlan();
 
-    String planIsValid();
+	String planIsValid();
 
-    String planIsNotValid();
+	String planIsNotValid();
 
-    String correctInputText();
+	String correctInputText();
 
-    String correctValidationType();
+	String correctValidationType();
 
-    String reportButtonCloseTitle();
+	String reportButtonCloseTitle();
 
-    String reportButtonNextTitle();
+	String reportButtonNextTitle();
 
-    String reportDownloadBoxTitle();
+	String reportDownloadBoxTitle();
 
-    String reportDownloadHtml();
+	String reportDownloadHtml();
 
-    String reportDownloadXml();
+	String reportDownloadXml();
 
-    String reportDownloadPdf();
+	String reportDownloadPdf();
 
-    String reportDownloadShp();
+	String reportDownloadShp();
 
-    String reportDownloadPng();
+	String reportDownloadPng();
 
-    String reportDownloadGeometryErrors();
+	String reportDownloadGeometryErrors();
 
-    String reportDownloadButtonTitle();
+	String reportDownloadButtonTitle();
 
-    String reportDialogTitle();
+	String reportDialogTitle();
 
-    String reportDownloadNoArtefactsSelected();
+	String reportDownloadNoArtefactsSelected();
 
-    String validatingStatus();
+	String validatingStatus();
 
-    String mapPreviewOpenButton();
+	String mapPreviewOpenButton();
 
-    String mapPreviewNotAvailableButton();
+	String mapPreviewNotAvailableButton();
 
-    String mapPreviewDialogTitle( String planName );
+	String mapPreviewDialogTitle(String planName);
 
 }

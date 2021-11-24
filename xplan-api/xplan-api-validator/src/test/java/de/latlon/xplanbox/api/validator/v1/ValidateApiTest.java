@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -51,68 +51,70 @@ import static org.junit.Assert.assertThat;
 
 public class ValidateApiTest extends JerseyTest {
 
-    @Override
-    protected Application configure() {
-        enable( TestProperties.LOG_TRAFFIC );
-        final ResourceConfig resourceConfig = new ResourceConfig( ValidateApi.class );
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext( ApplicationContext.class,
-                TestContext.class );
-        resourceConfig.property("contextConfig", context );
-        return resourceConfig;
-    }
+	@Override
+	protected Application configure() {
+		enable(TestProperties.LOG_TRAFFIC);
+		final ResourceConfig resourceConfig = new ResourceConfig(ValidateApi.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
+				TestContext.class);
+		resourceConfig.property("contextConfig", context);
+		return resourceConfig;
+	}
 
-    @Test
-    public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() throws IOException, URISyntaxException {
-        final String data = new String( Files.readAllBytes( Paths.get(
-                ValidateApiTest.class.getResource( "/xplan.gml" ).toURI() ) ) );
-        final Response response = target( "/validate" ).request().
-                accept( APPLICATION_JSON ).post( Entity.entity( data, TEXT_XML ) );
+	@Test
+	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() throws IOException, URISyntaxException {
+		final String data = new String(
+				Files.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/xplan.gml").toURI())));
+		final Response response = target("/validate").request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, TEXT_XML));
 
-        assertThat( response.getStatus(), is( Response.Status.OK.getStatusCode() ) );
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_JSON ) );
-    }
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
 
-    @Test
-    public void verifyThat_validationOctetStream_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
-        final byte[] data = Files.readAllBytes(
-                                Paths.get( ValidateApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
-        final Response response  = target( "/validate" ).request().accept( APPLICATION_XML ).
-                post( Entity.entity( data, APPLICATION_OCTET_STREAM ) );
+	@Test
+	public void verifyThat_validationOctetStream_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").request().accept(APPLICATION_XML)
+				.post(Entity.entity(data, APPLICATION_OCTET_STREAM));
 
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_XML ) );
-        assertThat( response.readEntity( String.class ), containsString( "valid" ) );
-    }
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
+		assertThat(response.readEntity(String.class), containsString("valid"));
+	}
 
-    @Test
-    public void verifyThat_validationZip_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
-        final byte[] data = Files.readAllBytes(
-                                Paths.get( ValidateApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
-        final Response response  = target( "/validate" ).request().accept( APPLICATION_XML ).
-                                post( Entity.entity( data, APPLICATION_ZIP ) );
+	@Test
+	public void verifyThat_validationZip_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").request().accept(APPLICATION_XML)
+				.post(Entity.entity(data, APPLICATION_ZIP));
 
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_XML ) );
-        assertThat( response.readEntity( String.class ), containsString( "valid" ) );
-    }
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
+		assertThat(response.readEntity(String.class), containsString("valid"));
+	}
 
-    @Test
-    public void verifyThat_validationXZip_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
-        final byte[] data = Files.readAllBytes(
-                                Paths.get( ValidateApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
-        final Response response  = target( "/validate" ).request().accept( APPLICATION_XML ).
-                                post( Entity.entity( data, APPLICATION_X_ZIP ) );
+	@Test
+	public void verifyThat_validationXZip_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").request().accept(APPLICATION_XML)
+				.post(Entity.entity(data, APPLICATION_X_ZIP));
 
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_XML ) );
-        assertThat( response.readEntity( String.class ), containsString( "valid" ) );
-    }
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
+		assertThat(response.readEntity(String.class), containsString("valid"));
+	}
 
-    @Test
-    public void verifyThat_validationXZipCompressed_Response_ContainsXmlEncoding() throws URISyntaxException, IOException {
-        final byte[] data = Files.readAllBytes(
-                                Paths.get( ValidateApiTest.class.getResource( "/bplan_valid_41.zip" ).toURI() ) );
-        final Response response  = target( "/validate" ).request().accept( APPLICATION_XML ).
-                                post( Entity.entity( data, APPLICATION_X_ZIP_COMPRESSED ) );
+	@Test
+	public void verifyThat_validationXZipCompressed_Response_ContainsXmlEncoding()
+			throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").request().accept(APPLICATION_XML)
+				.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 
-        assertThat( response.getHeaderString( HttpHeaders.CONTENT_TYPE ), is( APPLICATION_XML ) );
-        assertThat( response.readEntity( String.class ), containsString( "valid" ) );
-    }
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
+		assertThat(response.readEntity(String.class), containsString("valid"));
+	}
+
 }

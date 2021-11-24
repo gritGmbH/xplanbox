@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -30,56 +30,51 @@ import java.sql.SQLException;
  */
 public class DatabaseUtils {
 
-    /**
-     * Creates a Postgres JDBC Url
-     *
-     * @param host
-     *                 never <code>null</code>
-     * @param port
-     *                 may be<code>null</code>
-     * @param database
-     *                 never <code>null</code>
-     * @return the jdbc url, never <code>null</code>
-     */
-    public static String createJdbcUrl( String host, String port, String database ) {
-        StringBuffer jdbcUrl = new StringBuffer();
-        jdbcUrl.append( "jdbc:postgresql://" );
-        jdbcUrl.append( host );
-        if ( port != null )
-            jdbcUrl.append( ":" ).append( port );
-        jdbcUrl.append( "/" );
-        jdbcUrl.append( database );
-        return jdbcUrl.toString();
-    }
+	/**
+	 * Creates a Postgres JDBC Url
+	 * @param host never <code>null</code>
+	 * @param port may be<code>null</code>
+	 * @param database never <code>null</code>
+	 * @return the jdbc url, never <code>null</code>
+	 */
+	public static String createJdbcUrl(String host, String port, String database) {
+		StringBuffer jdbcUrl = new StringBuffer();
+		jdbcUrl.append("jdbc:postgresql://");
+		jdbcUrl.append(host);
+		if (port != null)
+			jdbcUrl.append(":").append(port);
+		jdbcUrl.append("/");
+		jdbcUrl.append(database);
+		return jdbcUrl.toString();
+	}
 
-    /**
-     * @param ps
-     *                 to close, may be <code>null</code>
-     * @param rs
-     *                 to close, may be <code>null</code>
-     */
-    public static void closeQuietly( PreparedStatement ps, ResultSet rs ) {
-        closeQuietly( ps );
-        if ( rs != null ) {
-            try {
-                rs.close();
-            } catch ( SQLException e ) {
-                e.printStackTrace();
-            }
-        }
-    }
+	/**
+	 * @param ps to close, may be <code>null</code>
+	 * @param rs to close, may be <code>null</code>
+	 */
+	public static void closeQuietly(PreparedStatement ps, ResultSet rs) {
+		closeQuietly(ps);
+		if (rs != null) {
+			try {
+				rs.close();
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-    /**
-     * @param ps
-     *                 to close, may be <code>null</code>
-     */
-    public static void closeQuietly( PreparedStatement ps ) {
-        if ( ps != null ) {
-            try {
-                ps.close();
-            } catch ( SQLException e ) {
-            }
-        }
-    }
+	/**
+	 * @param ps to close, may be <code>null</code>
+	 */
+	public static void closeQuietly(PreparedStatement ps) {
+		if (ps != null) {
+			try {
+				ps.close();
+			}
+			catch (SQLException e) {
+			}
+		}
+	}
 
 }

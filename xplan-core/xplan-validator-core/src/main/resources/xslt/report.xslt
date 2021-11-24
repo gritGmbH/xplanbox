@@ -166,52 +166,85 @@
                         <th>GML Ids</th>
                     </tr>
                     <xsl:for-each select="*">
-                        <xsl:element name="tr">
-                            <xsl:if test="current()/isValid='true'" >
-                                <xsl:attribute name="class">validSemanticRule</xsl:attribute>
-                                <xsl:attribute name="style">display:none</xsl:attribute>
-                            </xsl:if>
-                            <td>
-                                <xsl:value-of select="current()/name"/>
-                            </td>
-                            <xsl:choose>
-                                <xsl:when test="current()/isValid='true'">
-                                    <td>
-                                        <font color="#00C000">erfüllt</font>
-                                    </td>
-                                </xsl:when>
-                                <xsl:when test="current()/isValid='false'">
-                                    <td>
-                                        <font color="#FF0000">nicht erfüllt</font>
-                                    </td>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <td></td>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                            <td>
-                                <xsl:value-of select="current()/message"/>
-                            </td>
-                            <td>
-                                <xsl:choose>
-                                    <xsl:when test="current()/isValid='true'">
-                                            -
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:for-each select="current()/InvalidFeatures/gmlid">
-                                            <xsl:if test="position() != 1">
-                                                <xsl:text>, </xsl:text>
-                                            </xsl:if>
-                                            <xsl:value-of select="."/>
-                                        </xsl:for-each>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </td>
-                        </xsl:element>
+                        <xsl:choose>
+                            <xsl:when test="not(current()/WarnedFeatures or current()/ErroredFeatures)">
+                                <xsl:element name="tr">
+                                    <xsl:attribute name="class">validSemanticRule</xsl:attribute>
+                                    <xsl:attribute name="style">display:none</xsl:attribute>
+                                  <td>
+                                    <xsl:value-of select="current()/name"/>
+                                  </td>
+                                  <td>
+                                    <font color="#00C000">erfüllt</font>
+                                  </td>
+                                  <td>
+                                    <xsl:value-of select="current()/message"/>
+                                  </td>
+                                  <td>-</td>
+                                </xsl:element>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:for-each select="current()/WarnedFeatures">
+                              <xsl:call-template name="WarnedOrErroredFeature">
+                                <xsl:with-param name="type" >WARNING</xsl:with-param>
+                                <xsl:with-param name="warnedOrErroredFeature" select="."/>
+                              </xsl:call-template>
+                            </xsl:for-each>
+                            <xsl:for-each select="current()/ErroredFeatures">
+                              <xsl:call-template name="WarnedOrErroredFeature">
+                                <xsl:with-param name="type" >ERROR</xsl:with-param>
+                                <xsl:with-param name="warnedOrErroredFeature" select="."/>
+                              </xsl:call-template>
+                            </xsl:for-each>
+                          </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:for-each>
                 </table>
             </p>
         </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="WarnedOrErroredFeature">
+      <xsl:param name="type" />
+      <xsl:param name="warnedOrErroredFeature" />
+        <tr>
+          <td>
+            <xsl:value-of select="../name"/>
+          </td>
+          <xsl:choose>
+            <xsl:when test="$type='WARNING'">
+              <td>
+                <font color="#FFC300">Warnung</font>
+              </td>
+            </xsl:when>
+            <xsl:when test="$type='ERROR'">
+              <td>
+                <font color="#FF0000">nicht erfüllt</font>
+              </td>
+            </xsl:when>
+            <xsl:otherwise>
+              <td></td>
+            </xsl:otherwise>
+          </xsl:choose>
+          <td>
+            <xsl:value-of select="$warnedOrErroredFeature/message"/>
+          </td>
+          <td>
+            <xsl:choose>
+              <xsl:when test="not($warnedOrErroredFeature/gmlid)">
+                -
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:for-each select="$warnedOrErroredFeature/gmlid">
+                  <xsl:if test="position() != 1">
+                    <xsl:text>, </xsl:text>
+                  </xsl:if>
+                  <xsl:value-of select="."/>
+                </xsl:for-each>
+              </xsl:otherwise>
+            </xsl:choose>
+          </td>
+        </tr>
     </xsl:template>
 
     <xsl:template match="Messages | Warnings | Errors">

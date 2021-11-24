@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -31,65 +31,58 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 @Ignore
 public class XplanSynthesizerXplan3Test extends AbstractXplanSynthesizerTest {
 
-    @Override
-    XPlanVersion getXPlanVersion() {
-        return XPLAN_3;
-    }
+	@Override
+	XPlanVersion getXPlanVersion() {
+		return XPLAN_3;
+	}
 
-    @Test
-    public void testBp2070()
-                    throws Exception {
-        FeatureCollection expected = readSynFeatures( "BP2070_XPLAN3.gml" );
-        FeatureCollection actual = createSynFeatures( "xplan3/BP2070.zip" );
-        assertEqualContent( expected, actual );
-    }
+	@Test
+	public void testBp2070() throws Exception {
+		FeatureCollection expected = readSynFeatures("BP2070_XPLAN3.gml");
+		FeatureCollection actual = createSynFeatures("xplan3/BP2070.zip");
+		assertEqualContent(expected, actual);
+	}
 
-    @Test
-    public void testBp2135()
-                    throws Exception {
-        FeatureCollection expected = readSynFeatures( "BP2135_XPLAN3.gml" );
-        FeatureCollection actual = createSynFeatures( "xplan3/BP2135.zip" );
-        assertEqualContent( expected, actual );
-    }
+	@Test
+	public void testBp2135() throws Exception {
+		FeatureCollection expected = readSynFeatures("BP2135_XPLAN3.gml");
+		FeatureCollection actual = createSynFeatures("xplan3/BP2135.zip");
+		assertEqualContent(expected, actual);
+	}
 
-    @Test
-    public void testDemo()
-                    throws Exception {
-        FeatureCollection expected = readSynFeatures( "Demo_XPLAN3.gml" );
-        FeatureCollection actual = createSynFeatures( "xplan3/Demo.zip" );
-        assertEqualContent( expected, actual );
-    }
+	@Test
+	public void testDemo() throws Exception {
+		FeatureCollection expected = readSynFeatures("Demo_XPLAN3.gml");
+		FeatureCollection actual = createSynFeatures("xplan3/Demo.zip");
+		assertEqualContent(expected, actual);
+	}
 
-    @Test
-    public void testFplan()
-                    throws Exception {
-        FeatureCollection expected = readSynFeatures( "FPlan_XPLAN3.gml" );
-        FeatureCollection actual = createSynFeatures( "xplan3/FPlan.zip" );
-        assertEqualContent( expected, actual );
-    }
+	@Test
+	public void testFplan() throws Exception {
+		FeatureCollection expected = readSynFeatures("FPlan_XPLAN3.gml");
+		FeatureCollection actual = createSynFeatures("xplan3/FPlan.zip");
+		assertEqualContent(expected, actual);
+	}
 
-    @Test
-    public void testHc7()
-                    throws Exception {
-        FeatureCollection expected = readSynFeatures( "hc7_XPLAN3.gml" );
-        FeatureCollection actual = createSynFeatures( "xplan3/hc7.zip" );
-        assertEqualContent( expected, actual );
-    }
+	@Test
+	public void testHc7() throws Exception {
+		FeatureCollection expected = readSynFeatures("hc7_XPLAN3.gml");
+		FeatureCollection actual = createSynFeatures("xplan3/hc7.zip");
+		assertEqualContent(expected, actual);
+	}
 
-    @Test
-    public void testLa22()
-                    throws Exception {
-        FeatureCollection expected = readSynFeatures( "LA22_XPLAN3.gml" );
-        FeatureCollection actual = createSynFeatures( "xplan3/LA22.zip" );
-        assertEqualContent( expected, actual );
-    }
+	@Test
+	public void testLa22() throws Exception {
+		FeatureCollection expected = readSynFeatures("LA22_XPLAN3.gml");
+		FeatureCollection actual = createSynFeatures("xplan3/LA22.zip");
+		assertEqualContent(expected, actual);
+	}
 
-    @Test
-    public void testLa67()
-                    throws Exception {
-        FeatureCollection expected = readSynFeatures( "LA67_XPLAN3.gml" );
-        FeatureCollection actual = createSynFeatures( "xplan3/LA67.zip" );
-        assertEqualContent( expected, actual );
-    }
+	@Test
+	public void testLa67() throws Exception {
+		FeatureCollection expected = readSynFeatures("LA67_XPLAN3.gml");
+		FeatureCollection actual = createSynFeatures("xplan3/LA67.zip");
+		assertEqualContent(expected, actual);
+	}
 
 }

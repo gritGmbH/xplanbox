@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -50,66 +50,63 @@ import static java.nio.file.Paths.get;
 
 /**
  * Defines the application context for the validator CLI
- * 
+ *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  */
 @Configuration
 public class XPlanValidatorCliSpringConfig {
 
-    @Bean
-    @Lazy
-    @Scope("prototype")
-    public SemanticValidator semanticValidator( Path rulesPath )
-                            throws ValidatorException {
-        return new XQuerySemanticValidator( new XQuerySemanticValidatorConfigurationRetriever( rulesPath ) );
-    }
+	@Bean
+	@Lazy
+	@Scope("prototype")
+	public SemanticValidator semanticValidator(Path rulesPath) throws ValidatorException {
+		return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath));
+	}
 
-    @Bean
-    public GeometricValidator geometricValidator() {
-        return new GeometricValidatorImpl();
-    }
+	@Bean
+	public GeometricValidator geometricValidator() {
+		return new GeometricValidatorImpl();
+	}
 
-    @Bean
-    public SyntacticValidator syntacticValidator() {
-        return new SyntacticValidatorImpl();
-    }
+	@Bean
+	public SyntacticValidator syntacticValidator() {
+		return new SyntacticValidatorImpl();
+	}
 
-    @Bean
-    public XPlanValidator xplanValidator( GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-                                          SemanticValidator semanticValidator,
-                                          ReportArchiveGenerator reportArchiveGenerator ) {
-        return new XPlanValidator( geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator );
-    }
+	@Bean
+	public XPlanValidator xplanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
+			SemanticValidator semanticValidator, ReportArchiveGenerator reportArchiveGenerator) {
+		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator);
+	}
 
-    @Bean
-    public ReportArchiveGenerator reportArchiveGenerator( ValidatorConfiguration validatorConfiguration ) {
-        return new ReportArchiveGenerator( validatorConfiguration );
-    }
+	@Bean
+	public ReportArchiveGenerator reportArchiveGenerator(ValidatorConfiguration validatorConfiguration) {
+		return new ReportArchiveGenerator(validatorConfiguration);
+	}
 
-    @Bean
-    public Path rulesPath( ValidatorConfiguration validatorConfiguration )
-                            throws URISyntaxException {
-        Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
-        if ( validationRulesDirectory != null )
-            return validationRulesDirectory;
-        URL pathToRules = XPlanValidatorCliSpringConfig.class.getProtectionDomain().getCodeSource().getLocation();
-        return get( pathToRules.toURI() ).getParent().resolve( "etc/rules" );
-    }
+	@Bean
+	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException {
+		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
+		if (validationRulesDirectory != null)
+			return validationRulesDirectory;
+		URL pathToRules = XPlanValidatorCliSpringConfig.class.getProtectionDomain().getCodeSource().getLocation();
+		return get(pathToRules.toURI()).getParent().resolve("etc/rules");
+	}
 
-    @Bean
-    public ValidatorConfiguration validatorConfiguration()
-                    throws IOException, ConfigurationException, URISyntaxException {
-        ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
-        return validatorConfigurationParser.parse( validatorPropertiesLoader() );
-    }
+	@Bean
+	public ValidatorConfiguration validatorConfiguration()
+			throws IOException, ConfigurationException, URISyntaxException {
+		ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
+		return validatorConfigurationParser.parse(validatorPropertiesLoader());
+	}
 
-    private PropertiesLoader validatorPropertiesLoader() throws URISyntaxException {
-        return new ConfigurationDirectoryPropertiesLoader( retrieveEtcPath(), ValidatorConfiguration.class );
-    }
+	private PropertiesLoader validatorPropertiesLoader() throws URISyntaxException {
+		return new ConfigurationDirectoryPropertiesLoader(retrieveEtcPath(), ValidatorConfiguration.class);
+	}
 
-    private Path retrieveEtcPath() throws URISyntaxException {
-        URL jarPath = XPlanValidatorCliSpringConfig.class.getProtectionDomain().getCodeSource().getLocation();
-        return get( jarPath.toURI() ).getParent().resolve( "etc" );
-    }
+	private Path retrieveEtcPath() throws URISyntaxException {
+		URL jarPath = XPlanValidatorCliSpringConfig.class.getProtectionDomain().getCodeSource().getLocation();
+		return get(jarPath.toURI()).getParent().resolve("etc");
+	}
 
 }

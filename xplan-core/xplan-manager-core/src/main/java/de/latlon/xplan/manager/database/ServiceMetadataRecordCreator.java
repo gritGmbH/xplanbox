@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -47,85 +47,80 @@ import static org.deegree.cs.persistence.CRSManager.lookup;
  */
 public class ServiceMetadataRecordCreator {
 
-    private static final Logger LOG = LoggerFactory.getLogger( ServiceMetadataRecordCreator.class );
+	private static final Logger LOG = LoggerFactory.getLogger(ServiceMetadataRecordCreator.class);
 
-    private final XPlanDao xPlanDao;
+	private final XPlanDao xPlanDao;
 
-    private final ManagerConfiguration managerConfiguration;
+	private final ManagerConfiguration managerConfiguration;
 
-    private final MetadataCouplingHandler metadataCouplingHandler;
+	private final MetadataCouplingHandler metadataCouplingHandler;
 
-    /**
-     * @param xPlanDao
-     *                 used to access the database, never <code>null</code>
-     * @param managerConfiguration
-     *                 configuration of the manager, never <code>null</code>
-     */
-    public ServiceMetadataRecordCreator( XPlanDao xPlanDao, ManagerConfiguration managerConfiguration )
-                    throws DataServiceCouplingException {
-        this.xPlanDao = xPlanDao;
-        this.managerConfiguration = managerConfiguration;
-        if ( managerConfiguration == null )
-            throw new IllegalArgumentException(
-                            "The configuration of the feature is invalid. Service metadata records could not be created." );
-        this.metadataCouplingHandler = new MetadataCouplingHandler( xPlanDao,
-                                                                    managerConfiguration.getCoupledResourceConfiguration() );
-    }
+	/**
+	 * @param xPlanDao used to access the database, never <code>null</code>
+	 * @param managerConfiguration configuration of the manager, never <code>null</code>
+	 */
+	public ServiceMetadataRecordCreator(XPlanDao xPlanDao, ManagerConfiguration managerConfiguration)
+			throws DataServiceCouplingException {
+		this.xPlanDao = xPlanDao;
+		this.managerConfiguration = managerConfiguration;
+		if (managerConfiguration == null)
+			throw new IllegalArgumentException(
+					"The configuration of the feature is invalid. Service metadata records could not be created.");
+		this.metadataCouplingHandler = new MetadataCouplingHandler(xPlanDao,
+				managerConfiguration.getCoupledResourceConfiguration());
+	}
 
-    /**
-     * Creates service metadata records for all plans and stores additional information written to the XPlanWerkWMS capabilities document.
-     */
-    public void createServiceMetadataRecords()
-                    throws Exception {
-        List<XPlan> plans = xPlanDao.getXPlanList( false );
-        for ( XPlan plan : plans ) {
-            try {
-                createServiceMetadataRecords( plan );
-            } catch ( Exception e ) {
-                LOG.warn( "Plan with id {} and name {} could not be processed: {}", plan.getId(), plan.getName(),
-                          e.getMessage() );
-                LOG.trace( "Plan could not be processed", e );
-            }
-        }
-    }
+	/**
+	 * Creates service metadata records for all plans and stores additional information
+	 * written to the XPlanWerkWMS capabilities document.
+	 */
+	public void createServiceMetadataRecords() throws Exception {
+		List<XPlan> plans = xPlanDao.getXPlanList(false);
+		for (XPlan plan : plans) {
+			try {
+				createServiceMetadataRecords(plan);
+			}
+			catch (Exception e) {
+				LOG.warn("Plan with id {} and name {} could not be processed: {}", plan.getId(), plan.getName(),
+						e.getMessage());
+				LOG.trace("Plan could not be processed", e);
+			}
+		}
+	}
 
-    /**
-     * Creates service metadata records the plan with the passed and stores additional information written to the XPlanWerkWMS capabilities document
-     *
-     * @param mgrId
-     *                 the id of the plan to synthesize
-     * @throws IllegalArgumentException
-     *                 if a plan with the passed id is not available
-     */
-    public void createServiceMetadataRecords( int mgrId )
-                    throws Exception {
-        XPlan xPlanById = xPlanDao.getXPlanById( mgrId );
-        if ( xPlanById == null )
-            throw new IllegalArgumentException( "A plan with the id '" + mgrId + "' is not available" );
-        createServiceMetadataRecords( xPlanById );
-    }
+	/**
+	 * Creates service metadata records the plan with the passed and stores additional
+	 * information written to the XPlanWerkWMS capabilities document
+	 * @param mgrId the id of the plan to synthesize
+	 * @throws IllegalArgumentException if a plan with the passed id is not available
+	 */
+	public void createServiceMetadataRecords(int mgrId) throws Exception {
+		XPlan xPlanById = xPlanDao.getXPlanById(mgrId);
+		if (xPlanById == null)
+			throw new IllegalArgumentException("A plan with the id '" + mgrId + "' is not available");
+		createServiceMetadataRecords(xPlanById);
+	}
 
-    private void createServiceMetadataRecords( XPlan plan )
-                    throws Exception {
-        int id = Integer.parseInt( plan.getId() );
-        String name = plan.getName();
-        LOG.debug( "Process plan with id {} and name {}", id, name );
+	private void createServiceMetadataRecords(XPlan plan) throws Exception {
+		int id = Integer.parseInt(plan.getId());
+		String name = plan.getName();
+		LOG.debug("Process plan with id {} and name {}", id, name);
 
-        XPlanType type = XPlanType.valueOf( plan.getType() );
-        FeatureCollection features = xPlanDao.retrieveFeatureCollection( plan );
-        XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder( features, type ).build();
+		XPlanType type = XPlanType.valueOf(plan.getType());
+		FeatureCollection features = xPlanDao.retrieveFeatureCollection(plan);
+		XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder(features, type).build();
 
-        String planName = retrievePlanName( features, type );
-        String description = retrieveDescription( features, type );
-        Envelope envelope = xPlanFeatureCollection.getBboxIn4326();
+		String planName = retrievePlanName(features, type);
+		String description = retrieveDescription(features, type);
+		Envelope envelope = xPlanFeatureCollection.getBboxIn4326();
 
-        CoupledResourceConfiguration coupledResourceConfiguration = managerConfiguration.getCoupledResourceConfiguration();
-        PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder( type, planName, description,
-                                                                                     envelope,
-                                                                                     coupledResourceConfiguration );
-        PlanwerkServiceMetadata planwerkServiceMetadata = builder.build(
-                        lookup( managerConfiguration.getRasterConfigurationCrs() ) );
-        metadataCouplingHandler.processMetadataCoupling( id, name, planwerkServiceMetadata );
-    }
+		CoupledResourceConfiguration coupledResourceConfiguration = managerConfiguration
+				.getCoupledResourceConfiguration();
+		PlanwerkServiceMetadataBuilder builder = new PlanwerkServiceMetadataBuilder(type, planName, description,
+				envelope, coupledResourceConfiguration);
+		PlanwerkServiceMetadata planwerkServiceMetadata = builder
+				.build(lookup(managerConfiguration.getRasterConfigurationCrs()));
+		metadataCouplingHandler.processMetadataCoupling(id, name, planwerkServiceMetadata);
+	}
 
 }

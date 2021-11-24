@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -75,97 +75,88 @@ import org.junit.Test;
  */
 public class DeegreeWorkspaceWrapperTest {
 
-    private static final String VAR_WORKSPACE_ROOT = "DEEGREE_WORKSPACE_ROOT";
+	private static final String VAR_WORKSPACE_ROOT = "DEEGREE_WORKSPACE_ROOT";
 
-    private static String oldWorkspaceRoot;
+	private static String oldWorkspaceRoot;
 
-    private File workspaceDirectory;
+	private File workspaceDirectory;
 
-    private String workspaceName;
+	private String workspaceName;
 
-    @BeforeClass
-    public static void storeWorkspaceProperty()
-                    throws IOException {
-        oldWorkspaceRoot = System.getProperty( VAR_WORKSPACE_ROOT );
-    }
+	@BeforeClass
+	public static void storeWorkspaceProperty() throws IOException {
+		oldWorkspaceRoot = System.getProperty(VAR_WORKSPACE_ROOT);
+	}
 
-    @AfterClass
-    public static void resetWorkspaceRoot() {
-        if ( oldWorkspaceRoot != null )
-            System.setProperty( VAR_WORKSPACE_ROOT, oldWorkspaceRoot );
-        else
-            System.getProperties().remove( VAR_WORKSPACE_ROOT );
-    }
+	@AfterClass
+	public static void resetWorkspaceRoot() {
+		if (oldWorkspaceRoot != null)
+			System.setProperty(VAR_WORKSPACE_ROOT, oldWorkspaceRoot);
+		else
+			System.getProperties().remove(VAR_WORKSPACE_ROOT);
+	}
 
-    @Before
-    public void createTestWorkspaceFrame()
-                    throws IOException {
-        Path workspaceRoot = createWorkspaceRoot();
-        Path workspaceDir = createTmpWorkspace( workspaceRoot );
+	@Before
+	public void createTestWorkspaceFrame() throws IOException {
+		Path workspaceRoot = createWorkspaceRoot();
+		Path workspaceDir = createTmpWorkspace(workspaceRoot);
 
-        workspaceName = workspaceDir.getFileName().toString();
-        workspaceDirectory = workspaceDir.toFile();
+		workspaceName = workspaceDir.getFileName().toString();
+		workspaceDirectory = workspaceDir.toFile();
 
-        System.setProperty( VAR_WORKSPACE_ROOT, workspaceRoot.toFile().getAbsolutePath() );
-    }
+		System.setProperty(VAR_WORKSPACE_ROOT, workspaceRoot.toFile().getAbsolutePath());
+	}
 
-    @Test
-    public void testGetWorkspaceInstanceByDirectory()
-                    throws Exception {
-        DeegreeWorkspace workspace = new DeegreeWorkspaceWrapper( workspaceDirectory ).getWorkspaceInstance();
+	@Test
+	public void testGetWorkspaceInstanceByDirectory() throws Exception {
+		DeegreeWorkspace workspace = new DeegreeWorkspaceWrapper(workspaceDirectory).getWorkspaceInstance();
 
-        assertThat( workspace, is( notNullValue() ) );
-    }
+		assertThat(workspace, is(notNullValue()));
+	}
 
-    @Test
-    public void testGetWorkspaceInstanceByName()
-                    throws Exception {
-        DeegreeWorkspace workspace = new DeegreeWorkspaceWrapper( workspaceName ).getWorkspaceInstance();
+	@Test
+	public void testGetWorkspaceInstanceByName() throws Exception {
+		DeegreeWorkspace workspace = new DeegreeWorkspaceWrapper(workspaceName).getWorkspaceInstance();
 
-        assertThat( workspace, is( notNullValue() ) );
-    }
+		assertThat(workspace, is(notNullValue()));
+	}
 
-    @Test
-    public void testGetWorkspaceInstanceByNameAndDirectory()
-                    throws Exception {
-        DeegreeWorkspace workspace = new DeegreeWorkspaceWrapper( workspaceName, workspaceDirectory ).getWorkspaceInstance();
+	@Test
+	public void testGetWorkspaceInstanceByNameAndDirectory() throws Exception {
+		DeegreeWorkspace workspace = new DeegreeWorkspaceWrapper(workspaceName, workspaceDirectory)
+				.getWorkspaceInstance();
 
-        assertThat( workspace, is( notNullValue() ) );
-    }
+		assertThat(workspace, is(notNullValue()));
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testDeegreeWorkspaceWrapperStringWithNullWorkspaceName()
-                    throws Exception {
-        String workspaceName = null;
-        new DeegreeWorkspaceWrapper( workspaceName );
-    }
+	@Test(expected = IllegalArgumentException.class)
+	public void testDeegreeWorkspaceWrapperStringWithNullWorkspaceName() throws Exception {
+		String workspaceName = null;
+		new DeegreeWorkspaceWrapper(workspaceName);
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testDeegreeWorkspaceWrapperStringWithNullWorkspaceDir()
-                    throws Exception {
-        File workspaceDir = null;
-        new DeegreeWorkspaceWrapper( workspaceDir );
-    }
+	@Test(expected = IllegalArgumentException.class)
+	public void testDeegreeWorkspaceWrapperStringWithNullWorkspaceDir() throws Exception {
+		File workspaceDir = null;
+		new DeegreeWorkspaceWrapper(workspaceDir);
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testDeegreeWorkspaceWrapperStringWithNullWorkspaceNameAndDir()
-                    throws Exception {
-        new DeegreeWorkspaceWrapper( null, null );
-    }
+	@Test(expected = IllegalArgumentException.class)
+	public void testDeegreeWorkspaceWrapperStringWithNullWorkspaceNameAndDir() throws Exception {
+		new DeegreeWorkspaceWrapper(null, null);
+	}
 
-    private Path createWorkspaceRoot()
-                    throws IOException {
-        return Files.createTempDirectory( "deegreeWorkspace-ROOT-WMS-WorkspaceManager-IT" );
-    }
+	private Path createWorkspaceRoot() throws IOException {
+		return Files.createTempDirectory("deegreeWorkspace-ROOT-WMS-WorkspaceManager-IT");
+	}
 
-    private Path createTmpWorkspace( Path workspaceRootDirectory )
-                    throws IOException {
-        Path tmpWorkspaceDirectory = Files.createTempDirectory( workspaceRootDirectory,
-                                                                "deegreeWorkspace-WMS-WorkspaceManager-IT" );
-        Files.createDirectory( tmpWorkspaceDirectory.resolve( "themes" ) );
-        Files.createDirectory( tmpWorkspaceDirectory.resolve( "layers" ) );
-        Files.createDirectory( tmpWorkspaceDirectory.resolve( "services" ) );
-        return tmpWorkspaceDirectory;
-    }
+	private Path createTmpWorkspace(Path workspaceRootDirectory) throws IOException {
+		Path tmpWorkspaceDirectory = Files.createTempDirectory(workspaceRootDirectory,
+				"deegreeWorkspace-WMS-WorkspaceManager-IT");
+		Files.createDirectory(tmpWorkspaceDirectory.resolve("themes"));
+		Files.createDirectory(tmpWorkspaceDirectory.resolve("layers"));
+		Files.createDirectory(tmpWorkspaceDirectory.resolve("services"));
+		return tmpWorkspaceDirectory;
+	}
 
 }

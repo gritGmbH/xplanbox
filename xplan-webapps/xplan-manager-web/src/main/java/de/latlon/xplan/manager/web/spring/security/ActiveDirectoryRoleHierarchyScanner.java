@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -51,138 +51,125 @@ import org.springframework.ldap.core.support.DefaultDirObjectFactory;
  */
 public class ActiveDirectoryRoleHierarchyScanner {
 
-    private final String roleHierarchy;
+	private final String roleHierarchy;
 
-    /**
-     * @param providerUrl
-     *            provider url, never <code>null</code>
-     * @param domain
-     *            domain, never <code>null</code>
-     * @param username
-     *            username, never <code>null</code>
-     * @param password
-     *            passowrd, never <code>null</code>
-     * @param searchNode
-     *            search node, never <code>null</code>
-     * @param superUserGroups
-     *            super user groups, never <code>null</code>
-     * @param editorGroups
-     *            editor groups, never <code>null</code>
-     * @param groupToPlanDistricts
-     *            group to plan districts, never <code>null</code>
-     * @throws NamingException
-     */
-    public ActiveDirectoryRoleHierarchyScanner( String providerUrl, String domain, String username,
-                                                String password, String searchNode,
-                                                List<String> superUserGroups, List<String> editorGroups,
-                                                Map<String, List<String>> groupToPlanDistricts ) throws NamingException {
-        DirContext context = createContext( providerUrl, domain, username, password );
-        Set<String> groups = collectGroups( superUserGroups, editorGroups, groupToPlanDistricts );
-        roleHierarchy = doScan( context, searchNode, groups );
-    }
+	/**
+	 * @param providerUrl provider url, never <code>null</code>
+	 * @param domain domain, never <code>null</code>
+	 * @param username username, never <code>null</code>
+	 * @param password passowrd, never <code>null</code>
+	 * @param searchNode search node, never <code>null</code>
+	 * @param superUserGroups super user groups, never <code>null</code>
+	 * @param editorGroups editor groups, never <code>null</code>
+	 * @param groupToPlanDistricts group to plan districts, never <code>null</code>
+	 * @throws NamingException
+	 */
+	public ActiveDirectoryRoleHierarchyScanner(String providerUrl, String domain, String username, String password,
+			String searchNode, List<String> superUserGroups, List<String> editorGroups,
+			Map<String, List<String>> groupToPlanDistricts) throws NamingException {
+		DirContext context = createContext(providerUrl, domain, username, password);
+		Set<String> groups = collectGroups(superUserGroups, editorGroups, groupToPlanDistricts);
+		roleHierarchy = doScan(context, searchNode, groups);
+	}
 
-    /**
-     * Retrieve role hierarchy.
-     * 
-     * @return role hierarchy, never <code>null</code>
-     */
-    public String retrieveRoleHierarchy() {
-        return roleHierarchy;
-    }
+	/**
+	 * Retrieve role hierarchy.
+	 * @return role hierarchy, never <code>null</code>
+	 */
+	public String retrieveRoleHierarchy() {
+		return roleHierarchy;
+	}
 
-    private DirContext createContext( String providerUrl, String domain, String username, String password )
-                    throws NamingException {
-        Hashtable<String, String> env = new Hashtable<>();
-        env.put( Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory" );
-        env.put( Context.PROVIDER_URL, providerUrl );
-        String securityPrincipal = username + "@" + domain;
-        env.put( Context.SECURITY_PRINCIPAL, securityPrincipal );
-        env.put( Context.SECURITY_CREDENTIALS, password );
-        env.put( Context.SECURITY_AUTHENTICATION, "simple" );
-        env.put( Context.OBJECT_FACTORIES, DefaultDirObjectFactory.class.getName() );
-        return new InitialDirContext( env );
-    }
+	private DirContext createContext(String providerUrl, String domain, String username, String password)
+			throws NamingException {
+		Hashtable<String, String> env = new Hashtable<>();
+		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+		env.put(Context.PROVIDER_URL, providerUrl);
+		String securityPrincipal = username + "@" + domain;
+		env.put(Context.SECURITY_PRINCIPAL, securityPrincipal);
+		env.put(Context.SECURITY_CREDENTIALS, password);
+		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		env.put(Context.OBJECT_FACTORIES, DefaultDirObjectFactory.class.getName());
+		return new InitialDirContext(env);
+	}
 
-    private Set<String> collectGroups( List<String> superUserGroups, List<String> editorGroups,
-                                       Map<String, List<String>> groupToPlanDistricts ) {
-        Set<String> groups = new HashSet<>();
-        groups.addAll( superUserGroups );
-        groups.addAll( editorGroups );
-        groups.addAll( groupToPlanDistricts.keySet() );
-        return groups;
-    }
+	private Set<String> collectGroups(List<String> superUserGroups, List<String> editorGroups,
+			Map<String, List<String>> groupToPlanDistricts) {
+		Set<String> groups = new HashSet<>();
+		groups.addAll(superUserGroups);
+		groups.addAll(editorGroups);
+		groups.addAll(groupToPlanDistricts.keySet());
+		return groups;
+	}
 
-    private String doScan( DirContext context, String searchNode, Set<String> groups )
-                    throws NamingException {
-        List<List<String>> roleHierarchies = new ArrayList<>();
-        for ( String group : groups ) {
-            String role = "CN=" + group;
-            String searchBase = role + "," + searchNode;
-            List<String> roleHierarchy = new ArrayList<>();
-            search( context, searchBase, roleHierarchy );
-            roleHierarchies.add( roleHierarchy );
-        }
-        return printRoleHierarchies( roleHierarchies );
-    }
+	private String doScan(DirContext context, String searchNode, Set<String> groups) throws NamingException {
+		List<List<String>> roleHierarchies = new ArrayList<>();
+		for (String group : groups) {
+			String role = "CN=" + group;
+			String searchBase = role + "," + searchNode;
+			List<String> roleHierarchy = new ArrayList<>();
+			search(context, searchBase, roleHierarchy);
+			roleHierarchies.add(roleHierarchy);
+		}
+		return printRoleHierarchies(roleHierarchies);
+	}
 
-    private void search( DirContext context, String searchBase, List<String> roleHierarchy )
-                    throws NamingException {
-        Enumeration<SearchResult> result = searchGroups( context, searchBase );
-        while ( result.hasMoreElements() ) {
-            SearchResult nextResult = result.nextElement();
-            Attributes attributes = nextResult.getAttributes();
-            Attribute cn = attributes.get( "cn" );
-            String groupName = cn.toString().substring( 4 );
-            roleHierarchy.add( groupName );
-            Attribute memberAttribute = attributes.get( "member" );
-            if ( memberAttribute != null ) {
-                List<String> subSearchBases = parseMembers( memberAttribute );
-                for ( String subSearchBase : subSearchBases ) {
-                    search( context, subSearchBase, roleHierarchy );
-                }
-            }
-        }
-    }
+	private void search(DirContext context, String searchBase, List<String> roleHierarchy) throws NamingException {
+		Enumeration<SearchResult> result = searchGroups(context, searchBase);
+		while (result.hasMoreElements()) {
+			SearchResult nextResult = result.nextElement();
+			Attributes attributes = nextResult.getAttributes();
+			Attribute cn = attributes.get("cn");
+			String groupName = cn.toString().substring(4);
+			roleHierarchy.add(groupName);
+			Attribute memberAttribute = attributes.get("member");
+			if (memberAttribute != null) {
+				List<String> subSearchBases = parseMembers(memberAttribute);
+				for (String subSearchBase : subSearchBases) {
+					search(context, subSearchBase, roleHierarchy);
+				}
+			}
+		}
+	}
 
-    private List<String> parseMembers( Attribute memberAttribute )
-                    throws NamingException {
-        List<String> groupMembers = new ArrayList<>();
-        Enumeration<?> members = memberAttribute.getAll();
-        while ( members.hasMoreElements() ) {
-            groupMembers.add( members.nextElement().toString() );
-        }
-        return groupMembers;
-    }
+	private List<String> parseMembers(Attribute memberAttribute) throws NamingException {
+		List<String> groupMembers = new ArrayList<>();
+		Enumeration<?> members = memberAttribute.getAll();
+		while (members.hasMoreElements()) {
+			groupMembers.add(members.nextElement().toString());
+		}
+		return groupMembers;
+	}
 
-    private String printRoleHierarchies( List<List<String>> roleHierarchies ) {
-        StringBuilder hierarchies = new StringBuilder();
-        for ( List<String> roleHierarchy : roleHierarchies ) {
-            Collections.reverse( roleHierarchy );
-            boolean isFirst = true;
-            for ( String role : roleHierarchy ) {
-                if ( !isFirst )
-                    hierarchies.append( " > " );
-                hierarchies.append( role );
-                isFirst = false;
-            }
-            hierarchies.append( "\n" );
-        }
-        return hierarchies.toString();
-    }
+	private String printRoleHierarchies(List<List<String>> roleHierarchies) {
+		StringBuilder hierarchies = new StringBuilder();
+		for (List<String> roleHierarchy : roleHierarchies) {
+			Collections.reverse(roleHierarchy);
+			boolean isFirst = true;
+			for (String role : roleHierarchy) {
+				if (!isFirst)
+					hierarchies.append(" > ");
+				hierarchies.append(role);
+				isFirst = false;
+			}
+			hierarchies.append("\n");
+		}
+		return hierarchies.toString();
+	}
 
-    private Enumeration<SearchResult> searchGroups( DirContext context, String searchBase )
-                    throws NamingException {
-        try {
-            return context.search( searchBase, "(objectclass=group)", searchControls() );
-        } catch ( NameNotFoundException e ) {
-            return Collections.emptyEnumeration();
-        }
-    }
+	private Enumeration<SearchResult> searchGroups(DirContext context, String searchBase) throws NamingException {
+		try {
+			return context.search(searchBase, "(objectclass=group)", searchControls());
+		}
+		catch (NameNotFoundException e) {
+			return Collections.emptyEnumeration();
+		}
+	}
 
-    private SearchControls searchControls() {
-        SearchControls searchControls = new SearchControls();
-        searchControls.setSearchScope( SearchControls.SUBTREE_SCOPE );
-        return searchControls;
-    }
+	private SearchControls searchControls() {
+		SearchControls searchControls = new SearchControls();
+		searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+		return searchControls;
+	}
 
 }

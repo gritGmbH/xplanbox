@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -33,33 +33,30 @@ import java.util.zip.ZipEntry;
  */
 public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithContent {
 
-    private final byte[] content;
+	private final byte[] content;
 
-    /**
-     * Create entry with content.
-     *
-     * @param entry
-     *                 the encapsulated entry, never <code>null</code>
-     * @param content
-     *                 of the entry, never <code>null</code>
-     */
-    public ArtefactEntry( ZipEntry entry, byte[] content ) {
-        super( entry );
-        this.content = content;
-    }
+	/**
+	 * Create entry with content.
+	 * @param entry the encapsulated entry, never <code>null</code>
+	 * @param content of the entry, never <code>null</code>
+	 */
+	public ArtefactEntry(ZipEntry entry, byte[] content) {
+		super(entry);
+		this.content = content;
+	}
 
-    /**
-     * @return of the entry, never <code>null</code>
-     */
-    public byte[] getContent() {
-        return content;
-    }
+	/**
+	 * @return of the entry, never <code>null</code>
+	 */
+	public byte[] getContent() {
+		return content;
+	}
 
-    /**
-     * @return of the entry, never <code>null</code>
-     */
-    public InputStream retrieveContentAsStream() {
-        return new ByteArrayInputStream( content );
-    }
+	/**
+	 * @return of the entry, never <code>null</code>
+	 */
+	public InputStream retrieveContentAsStream() {
+		return new ByteArrayInputStream(content);
+	}
 
 }

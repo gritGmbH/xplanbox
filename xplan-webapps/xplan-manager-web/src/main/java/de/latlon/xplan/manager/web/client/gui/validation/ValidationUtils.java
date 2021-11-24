@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -59,25 +59,24 @@ import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 
 /**
  * Containts useful methods for validation.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 public class ValidationUtils {
 
-    /**
-     * Validates a list of {@link Validable}s
-     * 
-     * @param validables
-     *            a list of {@link Validable}s to validate, may be empty but never <code>null</code>
-     * @return <code>true</code> if all passed {@link Validable}s are valid (or the kist is empty), <code>false</code>
-     *         otherwise
-     */
-    public static boolean areComponentsValid( Validable... validables ) {
-        for ( Validable validable : validables ) {
-            if ( !validable.isValid() )
-                return false;
-        }
-        return true;
-    }
+	/**
+	 * Validates a list of {@link Validable}s
+	 * @param validables a list of {@link Validable}s to validate, may be empty but never
+	 * <code>null</code>
+	 * @return <code>true</code> if all passed {@link Validable}s are valid (or the kist
+	 * is empty), <code>false</code> otherwise
+	 */
+	public static boolean areComponentsValid(Validable... validables) {
+		for (Validable validable : validables) {
+			if (!validable.isValid())
+				return false;
+		}
+		return true;
+	}
 
 }

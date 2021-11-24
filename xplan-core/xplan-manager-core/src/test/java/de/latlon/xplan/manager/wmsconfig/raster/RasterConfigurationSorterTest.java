@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -81,102 +81,102 @@ import org.junit.Test;
  */
 public class RasterConfigurationSorterTest {
 
-    private final DateFormat FORMATTER = new SimpleDateFormat( "yyyy-MM-dd" );
-    
-    private final RasterConfigurationSorter rasterConfigurationSorter = new RasterConfigurationSorter(); 
+	private final DateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
 
-    @Test
-    public void testSortByDateInDeegreeOrder()
-                    throws Exception {
-        Map<String, Date> unsortedMap = new HashMap<String, Date>();
-        unsortedMap.put( "4", date( "2015-03-01" ) );
-        unsortedMap.put( "1", null );
-        unsortedMap.put( "6", date( "2015-04-01" ) );
-        unsortedMap.put( "2", null );
-        unsortedMap.put( "5", date( "2015-03-01" ) );
-        unsortedMap.put( "3", date( "1999-01-01" ) );
-        List<String> sortedStrings = rasterConfigurationSorter.sortByDateInDeegreeOrder( unsortedMap );
+	private final RasterConfigurationSorter rasterConfigurationSorter = new RasterConfigurationSorter();
 
-        assertThat( sortedStrings, hasIdsInOrder() );
-    }
+	@Test
+	public void testSortByDateInDeegreeOrder() throws Exception {
+		Map<String, Date> unsortedMap = new HashMap<String, Date>();
+		unsortedMap.put("4", date("2015-03-01"));
+		unsortedMap.put("1", null);
+		unsortedMap.put("6", date("2015-04-01"));
+		unsortedMap.put("2", null);
+		unsortedMap.put("5", date("2015-03-01"));
+		unsortedMap.put("3", date("1999-01-01"));
+		List<String> sortedStrings = rasterConfigurationSorter.sortByDateInDeegreeOrder(unsortedMap);
 
-    @Test
-    public void testSortLayers() {
-        List<Layer> layers = new ArrayList<Layer>();
-        layers.add( mockLayer( "5" ) );
-        layers.add( mockLayer( "7" ) );
-        layers.add( mockLayer( "2" ) );
-        layers.add( mockLayer( "3" ) );
-        List<String> sortedPlanIds = asList( new String[] { "1", "2", "3", "4", "5", "6", "7" } );
-        rasterConfigurationSorter.sortLayers( layers, sortedPlanIds );
+		assertThat(sortedStrings, hasIdsInOrder());
+	}
 
-        assertThat( layers, hasLayersInOrder() );
-    }
+	@Test
+	public void testSortLayers() {
+		List<Layer> layers = new ArrayList<Layer>();
+		layers.add(mockLayer("5"));
+		layers.add(mockLayer("7"));
+		layers.add(mockLayer("2"));
+		layers.add(mockLayer("3"));
+		List<String> sortedPlanIds = asList(new String[] { "1", "2", "3", "4", "5", "6", "7" });
+		rasterConfigurationSorter.sortLayers(layers, sortedPlanIds);
 
-    @Test
-    public void testSortLayers_MissingEntryInSortedList() {
-        List<Layer> layers = new ArrayList<Layer>();
-        layers.add( mockLayer( "7" ) );
-        layers.add( mockLayer( "6" ) );
-        layers.add( mockLayer( "1" ) );
-        layers.add( mockLayer( "3" ) );
-        List<String> sortedPlanIds = asList( new String[] { "2", "3", "4", "5", "6", "7" } );
-        rasterConfigurationSorter.sortLayers( layers, sortedPlanIds );
+		assertThat(layers, hasLayersInOrder());
+	}
 
-        assertThat( layers, hasLayersInOrder() );
-    }
-    private Layer mockLayer( String id ) {
-        Layer layer = mock( Layer.class );
-        when( layer.getValue() ).thenReturn( id + "_testLayer" );
-        when( layer.toString() ).thenReturn( id );
-        return layer;
-    }
+	@Test
+	public void testSortLayers_MissingEntryInSortedList() {
+		List<Layer> layers = new ArrayList<Layer>();
+		layers.add(mockLayer("7"));
+		layers.add(mockLayer("6"));
+		layers.add(mockLayer("1"));
+		layers.add(mockLayer("3"));
+		List<String> sortedPlanIds = asList(new String[] { "2", "3", "4", "5", "6", "7" });
+		rasterConfigurationSorter.sortLayers(layers, sortedPlanIds);
 
-    private Matcher<? super List<String>> hasIdsInOrder() {
-        return new TypeSafeMatcher<List<String>>() {
+		assertThat(layers, hasLayersInOrder());
+	}
 
-            @Override
-            public void describeTo( Description description ) {
-                description.appendText( "assert items in order" );
-            }
+	private Layer mockLayer(String id) {
+		Layer layer = mock(Layer.class);
+		when(layer.getValue()).thenReturn(id + "_testLayer");
+		when(layer.toString()).thenReturn(id);
+		return layer;
+	}
 
-            @Override
-            protected boolean matchesSafely( List<String> sortedList ) {
-                ArrayList<String> copy = new ArrayList<String>( sortedList );
-                sort( copy );
-                return sortedList.equals( copy );
-            }
-        };
-    }
+	private Matcher<? super List<String>> hasIdsInOrder() {
+		return new TypeSafeMatcher<List<String>>() {
 
-    private Matcher<? super List<Layer>> hasLayersInOrder() {
-        return new TypeSafeMatcher<List<Layer>>() {
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("assert items in order");
+			}
 
-            @Override
-            public void describeTo( Description description ) {
-                description.appendText( "assert items in order" );
-            }
+			@Override
+			protected boolean matchesSafely(List<String> sortedList) {
+				ArrayList<String> copy = new ArrayList<String>(sortedList);
+				sort(copy);
+				return sortedList.equals(copy);
+			}
+		};
+	}
 
-            @Override
-            protected boolean matchesSafely( List<Layer> sortedList ) {
-                ArrayList<String> values = extractValues( sortedList );
-                ArrayList<String> copy = new ArrayList<String>( values );
-                sort( copy );
-                return values.equals( copy );
-            }
+	private Matcher<? super List<Layer>> hasLayersInOrder() {
+		return new TypeSafeMatcher<List<Layer>>() {
 
-            private ArrayList<String> extractValues( List<Layer> sortedList ) {
-                ArrayList<String> copy = new ArrayList<String>();
-                for ( Layer layer : sortedList ) {
-                    copy.add( layer.getValue() );
-                }
-                return copy;
-            }
-        };
-    }
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("assert items in order");
+			}
 
-    private Date date( String date )
-                    throws ParseException {
-        return FORMATTER.parse( date );
-    }
+			@Override
+			protected boolean matchesSafely(List<Layer> sortedList) {
+				ArrayList<String> values = extractValues(sortedList);
+				ArrayList<String> copy = new ArrayList<String>(values);
+				sort(copy);
+				return values.equals(copy);
+			}
+
+			private ArrayList<String> extractValues(List<Layer> sortedList) {
+				ArrayList<String> copy = new ArrayList<String>();
+				for (Layer layer : sortedList) {
+					copy.add(layer.getValue());
+				}
+				return copy;
+			}
+		};
+	}
+
+	private Date date(String date) throws ParseException {
+		return FORMATTER.parse(date);
+	}
+
 }

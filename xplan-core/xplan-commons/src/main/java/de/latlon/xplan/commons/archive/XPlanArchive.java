@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -48,187 +48,182 @@ import de.latlon.xplan.commons.XPlanVersion;
  * <li><code>*</code> (optional, other artifacts referenced by the main file)</li>
  * </ul>
  * </p>
- * 
+ *
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
  * @since 1.0
  */
 public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidableXPlanArchive {
 
-    private final List<ZipEntryWithContent> zipFileEntries;
+	private final List<ZipEntryWithContent> zipFileEntries;
 
-    private final MainZipEntry mainEntry;
+	private final MainZipEntry mainEntry;
 
-    private final String name;
+	private final String name;
 
-    private final XPlanVersion version;
+	private final XPlanVersion version;
 
-    private final XPlanAde ade;
+	private final XPlanAde ade;
 
-    private final XPlanType type;
+	private final XPlanType type;
 
-    private final ICRS crs;
+	private final ICRS crs;
 
-    private final String district;
+	private final String district;
 
-    private final boolean hasMultipleXPlanElements;
+	private final boolean hasMultipleXPlanElements;
 
-    XPlanArchive( List<ZipEntryWithContent> zipEntries, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
-                  ICRS crs, String district, boolean hasMultipleXPlanElements ) {
-        this( zipEntries, null, name, version, ade, type, crs, district, hasMultipleXPlanElements );
-    }
+	XPlanArchive(List<ZipEntryWithContent> zipEntries, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
+			ICRS crs, String district, boolean hasMultipleXPlanElements) {
+		this(zipEntries, null, name, version, ade, type, crs, district, hasMultipleXPlanElements);
+	}
 
-    public XPlanArchive( MainZipEntry mainEntry, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
-                         ICRS crs, String district, boolean hasMultipleXPlanElements ) {
-        this( Collections.emptyList(), mainEntry, name, version, ade, type, crs, district, hasMultipleXPlanElements );
-    }
+	public XPlanArchive(MainZipEntry mainEntry, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
+			ICRS crs, String district, boolean hasMultipleXPlanElements) {
+		this(Collections.emptyList(), mainEntry, name, version, ade, type, crs, district, hasMultipleXPlanElements);
+	}
 
-    private XPlanArchive( List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String name,
-                          XPlanVersion version, XPlanAde ade, XPlanType type, ICRS crs, String district,
-                          boolean hasMultipleXPlanElements ) {
-        this.zipFileEntries = zipEntries;
-        this.mainEntry = mainEntry;
-        this.name = name;
-        this.version = version;
-        this.ade = ade;
-        this.type = type;
-        this.crs = crs;
-        this.district = district;
-        this.hasMultipleXPlanElements = hasMultipleXPlanElements;
-    }
+	private XPlanArchive(List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String name,
+			XPlanVersion version, XPlanAde ade, XPlanType type, ICRS crs, String district,
+			boolean hasMultipleXPlanElements) {
+		this.zipFileEntries = zipEntries;
+		this.mainEntry = mainEntry;
+		this.name = name;
+		this.version = version;
+		this.ade = ade;
+		this.type = type;
+		this.crs = crs;
+		this.district = district;
+		this.hasMultipleXPlanElements = hasMultipleXPlanElements;
+	}
 
-    /**
-     * Returns the XPlan name.
-     * 
-     * @return name, never <code>null</code>
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Returns the XPlan name.
+	 * @return name, never <code>null</code>
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Returns the XPlan version.
-     * 
-     * @return version, never <code>null</code>
-     */
-    @Override
-    public XPlanVersion getVersion() {
-        return version;
-    }
+	/**
+	 * Returns the XPlan version.
+	 * @return version, never <code>null</code>
+	 */
+	@Override
+	public XPlanVersion getVersion() {
+		return version;
+	}
 
-    /**
-     * Returns the XPlan ADE.
-     * 
-     * @return ade, may be <code>null</code>
-     */
-    public XPlanAde getAde() {
-        return ade;
-    }
+	/**
+	 * Returns the XPlan ADE.
+	 * @return ade, may be <code>null</code>
+	 */
+	public XPlanAde getAde() {
+		return ade;
+	}
 
-    /**
-     * Returns the XPlan type.
-     * 
-     * @return type, never <code>null</code>
-     */
-    public XPlanType getType() {
-        return type;
-    }
+	/**
+	 * Returns the XPlan type.
+	 * @return type, never <code>null</code>
+	 */
+	public XPlanType getType() {
+		return type;
+	}
 
-    /**
-     * Returns the CRS.
-     * 
-     * @return crs, can be <code>null</code> (unspecified)
-     */
-    public ICRS getCrs() {
-        return crs;
-    }
+	/**
+	 * Returns the CRS.
+	 * @return crs, can be <code>null</code> (unspecified)
+	 */
+	public ICRS getCrs() {
+		return crs;
+	}
 
-    /**
-     * Returns the district
-     * 
-     * @return district, can be <code>null</code>
-     */
-    public String getDistrict() {
-        return district;
-    }
+	/**
+	 * Returns the district
+	 * @return district, can be <code>null</code>
+	 */
+	public String getDistrict() {
+		return district;
+	}
 
-    /**
-     * @return <code>true</code> if the XPLanArchive contains multiple XPlanElements, <code>false</code> otherwise
-     */
-    public boolean hasMultipleXPlanElements() {
-        return hasMultipleXPlanElements;
-    }
+	/**
+	 * @return <code>true</code> if the XPLanArchive contains multiple XPlanElements,
+	 * <code>false</code> otherwise
+	 */
+	public boolean hasMultipleXPlanElements() {
+		return hasMultipleXPlanElements;
+	}
 
-    @Override
-    public List<? extends ArchiveEntry> getZipFileEntries() {
-        return zipFileEntries;
-    }
+	@Override
+	public List<? extends ArchiveEntry> getZipFileEntries() {
+		return zipFileEntries;
+	}
 
-    /**
-     * Retrieve a <link>InputStream</link> returning the main file of this archive
-     *
-     * @return the main file as <link>InputStream</link>
-     */
-    @Override
-    public InputStream getMainFileInputStream() {
-        return new ByteArrayInputStream( getMainFile().getContent() );
-    }
+	/**
+	 * Retrieve a <link>InputStream</link> returning the main file of this archive
+	 * @return the main file as <link>InputStream</link>
+	 */
+	@Override
+	public InputStream getMainFileInputStream() {
+		return new ByteArrayInputStream(getMainFile().getContent());
+	}
 
-    /**
-     * Returns a reader for the XML of the main file. Start document is skipped.
-     *
-     * @return reader, never <code>null</code>
-     */
-    @Override
-    public XMLStreamReader getMainFileXmlReader() {
-        try {
-            XMLStreamReader xmlReader = XMLInputFactory.newInstance().createXMLStreamReader( getMainFileInputStream() );
-            skipStartDocument( xmlReader );
-            return xmlReader;
-        } catch ( Exception e ) {
-            String message = format( "Kann Datei '%s' aus '%s' nicht lesen. Fehlermeldung: %s", MAIN_FILE, this.name,
-                                     e.getLocalizedMessage() );
-            throw new IllegalArgumentException( message, e );
-        }
-    }
+	/**
+	 * Returns a reader for the XML of the main file. Start document is skipped.
+	 * @return reader, never <code>null</code>
+	 */
+	@Override
+	public XMLStreamReader getMainFileXmlReader() {
+		try {
+			XMLStreamReader xmlReader = XMLInputFactory.newInstance().createXMLStreamReader(getMainFileInputStream());
+			skipStartDocument(xmlReader);
+			return xmlReader;
+		}
+		catch (Exception e) {
+			String message = format("Kann Datei '%s' aus '%s' nicht lesen. Fehlermeldung: %s", MAIN_FILE, this.name,
+					e.getLocalizedMessage());
+			throw new IllegalArgumentException(message, e);
+		}
+	}
 
-    @Override
-    public ZipEntryWithContent getEntry( String name ) {
-        checkNameParameter( name );
-        for ( ZipEntryWithContent zipEntry : zipFileEntries ) {
-            if ( name.equals( zipEntry.getName() ) )
-                return zipEntry;
-        }
-        return null;
-    }
+	@Override
+	public ZipEntryWithContent getEntry(String name) {
+		checkNameParameter(name);
+		for (ZipEntryWithContent zipEntry : zipFileEntries) {
+			if (name.equals(zipEntry.getName()))
+				return zipEntry;
+		}
+		return null;
+	}
 
-    @Override
-    public InputStream retrieveInputStreamFor( String name ) {
-        ZipEntryWithContent entry = getEntry( name );
-        if ( entry != null )
-            return entry.retrieveContentAsStream();
-        String message = format( "Zip entry with the name%scould not be found in archive%s", name, this.name );
-        throw new IllegalArgumentException( message );
-    }
+	@Override
+	public InputStream retrieveInputStreamFor(String name) {
+		ZipEntryWithContent entry = getEntry(name);
+		if (entry != null)
+			return entry.retrieveContentAsStream();
+		String message = format("Zip entry with the name%scould not be found in archive%s", name, this.name);
+		throw new IllegalArgumentException(message);
+	}
 
-    @Override
-    public String toString() {
-        return format( "[%s, %s, %s]", version, type, crs != null ? crs.getName() : "undefiniertes Bezugssystem" );
-    }
+	@Override
+	public String toString() {
+		return format("[%s, %s, %s]", version, type, crs != null ? crs.getName() : "undefiniertes Bezugssystem");
+	}
 
-    private ZipEntryWithContent getMainFile() {
-        if ( mainEntry != null )
-            return mainEntry;
-        for ( ZipEntryWithContent zipEntry : zipFileEntries ) {
-            if ( MAIN_FILE.equals( zipEntry.getName() ) )
-                return zipEntry;
-        }
-        String msg = format( "%s ist kein gültiges XPlanArchiv (enthält keine Datei mit Namen '%s').", this.name,
-                             MAIN_FILE );
-        throw new IllegalArgumentException( msg );
-    }
+	private ZipEntryWithContent getMainFile() {
+		if (mainEntry != null)
+			return mainEntry;
+		for (ZipEntryWithContent zipEntry : zipFileEntries) {
+			if (MAIN_FILE.equals(zipEntry.getName()))
+				return zipEntry;
+		}
+		String msg = format("%s ist kein gültiges XPlanArchiv (enthält keine Datei mit Namen '%s').", this.name,
+				MAIN_FILE);
+		throw new IllegalArgumentException(msg);
+	}
 
-    private void checkNameParameter( String name ) {
-        if ( name == null )
-            throw new IllegalArgumentException( "Name to detect the zip entry must not be null." );
-    }
+	private void checkNameParameter(String name) {
+		if (name == null)
+			throw new IllegalArgumentException("Name to detect the zip entry must not be null.");
+	}
+
 }

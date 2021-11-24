@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -76,53 +76,51 @@ import org.deegree.workspace.Workspace;
 
 /**
  * Provides a simple function retuning the current date and time.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class Now implements FunctionProvider {
 
-    static final String NAME = "Now";
+	static final String NAME = "Now";
 
-    static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSS" );
+	static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 
-    @Override
-    public String getName() {
-        return NAME;
-    }
+	@Override
+	public String getName() {
+		return NAME;
+	}
 
-    @Override
-    public List<ParameterType> getArgs() {
-        return Collections.emptyList();
-    }
+	@Override
+	public List<ParameterType> getArgs() {
+		return Collections.emptyList();
+	}
 
-    @Override
-    public Function create( List<Expression> params ) {
-        return new Function( NAME, params ) {
-            @Override
-            public TypedObjectNode[] evaluate( List<TypedObjectNode[]> args )
-                            throws FilterEvaluationException {
-                Date now = new Date();
-                TypedObjectNode date = new PrimitiveValue( DATE_FORMAT.format( now ), new PrimitiveType( DATE_TIME ) );
-                return new TypedObjectNode[] { date };
-            }
-        };
-    }
+	@Override
+	public Function create(List<Expression> params) {
+		return new Function(NAME, params) {
+			@Override
+			public TypedObjectNode[] evaluate(List<TypedObjectNode[]> args) throws FilterEvaluationException {
+				Date now = new Date();
+				TypedObjectNode date = new PrimitiveValue(DATE_FORMAT.format(now), new PrimitiveType(DATE_TIME));
+				return new TypedObjectNode[] { date };
+			}
+		};
+	}
 
-    @Override
-    public ParameterType getReturnType() {
-        return ANYTYPE;
-    }
+	@Override
+	public ParameterType getReturnType() {
+		return ANYTYPE;
+	}
 
-    @Override
-    public void init( Workspace arg0 )
-                    throws ResourceInitException {
-        // nothing to do
-    }
+	@Override
+	public void init(Workspace arg0) throws ResourceInitException {
+		// nothing to do
+	}
 
-    @Override
-    public void destroy() {
-        // nothing to do
-    }
+	@Override
+	public void destroy() {
+		// nothing to do
+	}
 
 }

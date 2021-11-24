@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -39,31 +39,31 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistri
  */
 public class DistrictUpdater {
 
-    private static final Logger LOG = LoggerFactory.getLogger( DistrictUpdater.class );
+	private static final Logger LOG = LoggerFactory.getLogger(DistrictUpdater.class);
 
-    private XPlanDao dao;
+	private XPlanDao dao;
 
-    /**
-     * @param dao
-     *                 used to access the database, never <code>null</code>
-     */
-    public DistrictUpdater( XPlanDao dao ) {
-        this.dao = dao;
-    }
+	/**
+	 * @param dao used to access the database, never <code>null</code>
+	 */
+	public DistrictUpdater(XPlanDao dao) {
+		this.dao = dao;
+	}
 
-    /**
-     * Retrieves all plans from the manager store, parses the district from the plan and updates the district column in the table xplanmgr.plans.
-     */
-    public void updateDistricts()
-                    throws Exception {
-        List<XPlan> plans = dao.getXPlanList( false );
-        for ( XPlan plan : plans ) {
-            LOG.debug( "Update district of plan with id {}", plan.getId() );
-            FeatureCollection featureCollection = dao.retrieveFeatureCollection( plan );
-            XPlanType planType = XPlanType.valueOf( plan.getType() );
-            XPlanVersion version = XPlanVersion.valueOf( plan.getVersion() );
-            String district = retrieveDistrict( featureCollection, planType, version );
-            dao.updateDistrict( plan, district );
-        }
-    }
+	/**
+	 * Retrieves all plans from the manager store, parses the district from the plan and
+	 * updates the district column in the table xplanmgr.plans.
+	 */
+	public void updateDistricts() throws Exception {
+		List<XPlan> plans = dao.getXPlanList(false);
+		for (XPlan plan : plans) {
+			LOG.debug("Update district of plan with id {}", plan.getId());
+			FeatureCollection featureCollection = dao.retrieveFeatureCollection(plan);
+			XPlanType planType = XPlanType.valueOf(plan.getType());
+			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
+			String district = retrieveDistrict(featureCollection, planType, version);
+			dao.updateDistrict(plan, district);
+		}
+	}
+
 }

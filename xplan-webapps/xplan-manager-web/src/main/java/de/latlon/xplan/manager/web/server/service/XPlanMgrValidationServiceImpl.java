@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -51,73 +51,73 @@ import de.latlon.xplan.validator.web.shared.ValidationSummary;
 
 /**
  * Executes validation runs
- * 
+ *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
 public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implements ValidationService {
 
-    private static final long serialVersionUID = -8136082144921716747L;
+	private static final long serialVersionUID = -8136082144921716747L;
 
-    private static final Logger LOG = LoggerFactory.getLogger( XPlanMgrValidationServiceImpl.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XPlanMgrValidationServiceImpl.class);
 
-    private final ManagerPlanArchiveManager archiveManager = new ManagerPlanArchiveManager();
+	private final ManagerPlanArchiveManager archiveManager = new ManagerPlanArchiveManager();
 
-    protected HttpSession session;
+	protected HttpSession session;
 
-    @Autowired
-    private XPlanValidator xPlanValidator;
+	@Autowired
+	private XPlanValidator xPlanValidator;
 
-    @Autowired
-    private ReportWriter reportWriter;
+	@Autowired
+	private ReportWriter reportWriter;
 
-    @Override
-    public void init( ServletConfig config )
-                    throws ServletException {
-        super.init( config );
-        processInjectionBasedOnServletContext( this, config.getServletContext() );
-    }
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
 
-    @Override
-    public void service( final HttpServletRequest request, HttpServletResponse response )
-                    throws ServletException, IOException {
-        session = request.getSession( true );
-        super.service( request, response );
-    }
+	@Override
+	public void service(final HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		session = request.getSession(true);
+		super.service(request, response);
+	}
 
-    @Override
-    public ValidationSummary validate( ValidationSettings validationSettings )
-                    throws ValidationException, IllegalArgumentException {
-        try {
-            XPlan planToVerify = archiveManager.retrieveRequiredPlanFromSession( session );
-            File archive = archiveManager.readArchiveFromFilesystem( planToVerify );
+	@Override
+	public ValidationSummary validate(ValidationSettings validationSettings)
+			throws ValidationException, IllegalArgumentException {
+		try {
+			XPlan planToVerify = archiveManager.retrieveRequiredPlanFromSession(session);
+			File archive = archiveManager.readArchiveFromFilesystem(planToVerify);
 
-            ValidatorReport report = xPlanValidator.validateNotWriteReport( validationSettings, archive,
-                                                                            planToVerify.getName() );
+			ValidatorReport report = xPlanValidator.validateNotWriteReport(validationSettings, archive,
+					planToVerify.getName());
 
-            writeArtifacts( planToVerify, report );
+			writeArtifacts(planToVerify, report);
 
-            updatePlanStatus( planToVerify, report );
-            return new ValidationSummary( planToVerify.getId(), validationSettings.getValidationName() );
-        } catch ( IOException | ReportGenerationException | ValidatorException e ) {
-            LOG.error( "An exception occurred during validation", e );
-            throw new ValidationException( e.getMessage() );
-        } catch ( IllegalArgumentException e ) {
-            LOG.error( "An exception occurred during validation", e );
-            throw e;
-        }
-    }
+			updatePlanStatus(planToVerify, report);
+			return new ValidationSummary(planToVerify.getId(), validationSettings.getValidationName());
+		}
+		catch (IOException | ReportGenerationException | ValidatorException e) {
+			LOG.error("An exception occurred during validation", e);
+			throw new ValidationException(e.getMessage());
+		}
+		catch (IllegalArgumentException e) {
+			LOG.error("An exception occurred during validation", e);
+			throw e;
+		}
+	}
 
-    private void writeArtifacts( XPlan planToVerify, ValidatorReport report )
-                    throws ReportGenerationException {
-        File targetDirectory = archiveManager.createReportDirectory( planToVerify.getId() );
-        reportWriter.writeArtefacts( report, targetDirectory );
-    }
+	private void writeArtifacts(XPlan planToVerify, ValidatorReport report) throws ReportGenerationException {
+		File targetDirectory = archiveManager.createReportDirectory(planToVerify.getId());
+		reportWriter.writeArtefacts(report, targetDirectory);
+	}
 
-    private void updatePlanStatus( XPlan planToVerify, ValidatorReport report ) {
-        planToVerify.setValidated( true );
-        planToVerify.setValid( report.isReportValid() );
-        planToVerify.setHasMultipleXPlanElements( report.hasMultipleXPlanElements() );
-    }
+	private void updatePlanStatus(XPlan planToVerify, ValidatorReport report) {
+		planToVerify.setValidated(true);
+		planToVerify.setValid(report.isReportValid());
+		planToVerify.setHasMultipleXPlanElements(report.hasMultipleXPlanElements());
+	}
 
 }

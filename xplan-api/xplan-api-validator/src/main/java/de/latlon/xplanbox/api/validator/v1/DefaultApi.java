@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -39,25 +39,22 @@ import javax.ws.rs.core.UriInfo;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
+		date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
 public class DefaultApi extends BaseOpenApiResource {
 
-    @Context
-    private ServletConfig config;
+	@Context
+	private ServletConfig config;
 
-    @Context
-    private Application app;
+	@Context
+	private Application app;
 
-    @GET
-    @Produces({ "application/json" })
-    @Operation(summary = "OpenAPI document", description = "API documentation", responses = {
-                            @ApiResponse(responseCode = "200", description = "successful operation") })
-    public Response openApi(
-                            @Context
-                                                    HttpHeaders headers,
-                            @Context
-                                                    UriInfo uriInfo )
-                            throws Exception {
-        return super.getOpenApi( headers, this.config, this.app, uriInfo, APPLICATION_JSON );
-    }
+	@GET
+	@Produces({ "application/json" })
+	@Operation(summary = "OpenAPI document", description = "API documentation",
+			responses = { @ApiResponse(responseCode = "200", description = "successful operation") })
+	public Response openApi(@Context HttpHeaders headers, @Context UriInfo uriInfo) throws Exception {
+		return super.getOpenApi(headers, this.config, this.app, uriInfo, APPLICATION_JSON);
+	}
+
 }

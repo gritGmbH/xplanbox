@@ -3,14 +3,12 @@
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
-kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer ein XPlanGML-Instanzdokumente
-in die Datenhaltung laden, editieren, löschen sowie bereits importiere XPlanArchive in einer Liste anzeigen.
+kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer XPlanGML-Instanzdokumente in die Datenhaltung laden, diese editieren, löschen sowie bereits importiere XPlanArchive wieder exportieren und in einer Liste anzeigen.
 
 [[xplanmanager-web-benutzungsanleitung]]
 ==== Einstiegsseite
 
-Die Webanwendung XPlanManagerWeb dient der Verwaltung von XPlanGML
-konformen Plänen und ist unter:
+Die Webanwendung XPlanManagerWeb dient der Verwaltung von <<xplanarchiv, XPlanArchiven>> und ist unter:
 
 ----
 http://<host>:<port>/xplan-manager/
@@ -130,8 +128,8 @@ unbeabsichtigt eine Zustandsänderung vorgenommen werden kann!
 *Gültigkeitszeitraum*
 
 * Der Zeitraum in dem ein Plan gültig ist. Für dieses Feld gibt es keine
-Entsprechung im XPlanGML. Die Einschränkung, wie sie beim Import
-erfolgt ist, wird überschrieben.
+Entsprechung im XPlanGML. Die Angabe des Zeitraums, wie sie beim Import
+erfolgt ist, wird beim Ändern des Zeitraums überschrieben.
 
 *Änderungen*
 
@@ -142,9 +140,9 @@ erfolgt ist, wird überschrieben.
 
 * texte
 
-*Referenzen*
+*Dokumente*
 
-Abhängig von der XPlanGML Version können folgende Referenzen editiert werden:
+Abhängig von der XPlanGML Version können folgende Dokumente editiert werden:
 
 XPlanGML 3.0:
 
@@ -158,13 +156,15 @@ XPlanGML 4.1:
 
 XPlanGML 5.x:
 
- * alle verfügbaren Typen (Element `<typ/>`) von XP_SpezExterneReferenz
+ * alle verfügbaren Typen aus `XP_ExterneReferenzTyp` (Enumeration)
+
+Dabei kann der Benutzer wählen, ob er eine Datei über einen vollqualifizierten Link (URL) referenziert oder zum XPlanArchiv hinzugefügt und dann relativ verlinkt.
 
 *Rasterbasis*
 
 * rasterbasis
 
-Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP_Bereich besitzt. Ist dies nicht der Fall, wird ein entsprechender Hinweis in der Editieroberfläche angegeben. Die Angabe einer Rasterbasis kann in diesem Fall nicht erfolgen.
+Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP_Bereich besitzt. Ist dies nicht der Fall, wird ein entsprechender Hinweis in der Oberfläche angegeben. Die Angabe einer Rasterbasis kann in diesem Fall nicht erfolgen.
 
 Werden Referenzen entfernt oder verändert, so werden die nicht mehr
 referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu
@@ -174,7 +174,9 @@ vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine
 Entscheidungsoption wie mit diesen Daten umgegangen werden soll.
 Anschließend erfolgt die Aktualisierung der Daten.
 
-Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2 und 5.3 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über den Feature Type XP_Rasterdarstellung unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
+Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2 und 5.3 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
+
+Die ebenfalls in diesem Abschnitt editierbaren Referenzen auf Texte (refText) und Legenden (refLegende) müssen in den Versionen 5.1, 5.2 und 5.3 über die Abschnitte `Texte` und `Dokumente` editiert werden.
 
 NOTE: Die Editierfunktion steht nur für BPläne in den XPlanGML Versionen
 3.0, 4.1, 5.0, 5.1, 5.2 und 5.3 zur Verfügung.

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -40,79 +40,76 @@ import org.springframework.security.core.GrantedAuthority;
 
 /**
  * Maps AD groups to the XPlan user with district authorities.
- * 
+ *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
 public class ActiveDirectoryGrantedAuthoritiesMapper extends RoleHierarchyAuthoritiesMapper {
 
-    private final List<String> superUserGroups;
+	private final List<String> superUserGroups;
 
-    private final List<String> editorGroups;
+	private final List<String> editorGroups;
 
-    private final Map<String, List<String>> groupToPlanDistricts;
+	private final Map<String, List<String>> groupToPlanDistricts;
 
-    /**
-     * 
-     * Instantiates a {@link ActiveDirectoryGrantedAuthoritiesMapper} without hierarchical roles.
-     * 
-     * @param superUserGroups
-     *            list of all groups giving super user permissions, if <code>null</code>, an empty map is used.
-     * @param editorGroups
-     *            list of all groups giving editor permissions, if <code>null</code>, an empty map is used.
-     * @param groupToPlanDistricts
-     *            Maps groups to plan districts, if <code>null</code>, an empty map is used.
-     */
-    public ActiveDirectoryGrantedAuthoritiesMapper( List<String> superUserGroups, List<String> editorGroups,
-                                                    Map<String, List<String>> groupToPlanDistricts ) {
-        this( superUserGroups, editorGroups, groupToPlanDistricts, new NullRoleHierarchy() );
-    }
+	/**
+	 *
+	 * Instantiates a {@link ActiveDirectoryGrantedAuthoritiesMapper} without hierarchical
+	 * roles.
+	 * @param superUserGroups list of all groups giving super user permissions, if
+	 * <code>null</code>, an empty map is used.
+	 * @param editorGroups list of all groups giving editor permissions, if
+	 * <code>null</code>, an empty map is used.
+	 * @param groupToPlanDistricts Maps groups to plan districts, if <code>null</code>, an
+	 * empty map is used.
+	 */
+	public ActiveDirectoryGrantedAuthoritiesMapper(List<String> superUserGroups, List<String> editorGroups,
+			Map<String, List<String>> groupToPlanDistricts) {
+		this(superUserGroups, editorGroups, groupToPlanDistricts, new NullRoleHierarchy());
+	}
 
-    /**
-     * @param superUserGroups
-     *            list of all groups giving super user permissions, if <code>null</code>, an empty map is used.
-     * @param editorGroups
-     *            list of all groups giving editor permissions, if <code>null</code>, an empty map is used.
-     * @param groupToPlanDistricts
-     *            Maps groups to plan districts, if <code>null</code>, an empty map is used.
-     * @param roleHierarchy
-     *            role hierarchy, never <code>null</code>
-     */
-    public ActiveDirectoryGrantedAuthoritiesMapper( List<String> superUserGroups, List<String> editorGroups,
-                                                    Map<String, List<String>> groupToPlanDistricts,
-                                                    RoleHierarchy roleHierarchy ) {
-        super( roleHierarchy );
-        if ( superUserGroups != null )
-            this.superUserGroups = superUserGroups;
-        else
-            this.superUserGroups = new ArrayList<>();
-        if ( editorGroups != null )
-            this.editorGroups = editorGroups;
-        else
-            this.editorGroups = new ArrayList<>();
-        if ( groupToPlanDistricts != null )
-            this.groupToPlanDistricts = groupToPlanDistricts;
-        else
-            this.groupToPlanDistricts = new HashMap<>();
-    }
+	/**
+	 * @param superUserGroups list of all groups giving super user permissions, if
+	 * <code>null</code>, an empty map is used.
+	 * @param editorGroups list of all groups giving editor permissions, if
+	 * <code>null</code>, an empty map is used.
+	 * @param groupToPlanDistricts Maps groups to plan districts, if <code>null</code>, an
+	 * empty map is used.
+	 * @param roleHierarchy role hierarchy, never <code>null</code>
+	 */
+	public ActiveDirectoryGrantedAuthoritiesMapper(List<String> superUserGroups, List<String> editorGroups,
+			Map<String, List<String>> groupToPlanDistricts, RoleHierarchy roleHierarchy) {
+		super(roleHierarchy);
+		if (superUserGroups != null)
+			this.superUserGroups = superUserGroups;
+		else
+			this.superUserGroups = new ArrayList<>();
+		if (editorGroups != null)
+			this.editorGroups = editorGroups;
+		else
+			this.editorGroups = new ArrayList<>();
+		if (groupToPlanDistricts != null)
+			this.groupToPlanDistricts = groupToPlanDistricts;
+		else
+			this.groupToPlanDistricts = new HashMap<>();
+	}
 
-    @Override
-    public Collection<? extends GrantedAuthority> mapAuthorities( Collection<? extends GrantedAuthority> authorities ) {
-        Collection<? extends GrantedAuthority> hierarchicalAuthorities = super.mapAuthorities( authorities );
-        Set<GrantedAuthority> roles = new HashSet<>();
-        for ( GrantedAuthority grantedAuthority : hierarchicalAuthorities ) {
-            String authority = grantedAuthority.getAuthority();
-            if ( authority != null ) {
-                if ( superUserGroups.contains( authority ) )
-                    roles.add( new DistrictGrantedAuthority( ROLE_SUPERUSER.toString() ) );
-                if ( editorGroups.contains( authority ) )
-                    roles.add( new DistrictGrantedAuthority( ROLE_EDITOR.toString() ) );
-                if ( groupToPlanDistricts.keySet().contains( authority ) )
-                    roles.add( new DistrictGrantedAuthority( ROLE_USER.toString(),
-                                    groupToPlanDistricts.get( authority ) ) );
-            }
-        }
-        return roles;
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> mapAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		Collection<? extends GrantedAuthority> hierarchicalAuthorities = super.mapAuthorities(authorities);
+		Set<GrantedAuthority> roles = new HashSet<>();
+		for (GrantedAuthority grantedAuthority : hierarchicalAuthorities) {
+			String authority = grantedAuthority.getAuthority();
+			if (authority != null) {
+				if (superUserGroups.contains(authority))
+					roles.add(new DistrictGrantedAuthority(ROLE_SUPERUSER.toString()));
+				if (editorGroups.contains(authority))
+					roles.add(new DistrictGrantedAuthority(ROLE_EDITOR.toString()));
+				if (groupToPlanDistricts.keySet().contains(authority))
+					roles.add(new DistrictGrantedAuthority(ROLE_USER.toString(), groupToPlanDistricts.get(authority)));
+			}
+		}
+		return roles;
+	}
 
 }

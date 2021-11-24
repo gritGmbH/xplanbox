@@ -28,20 +28,20 @@ image::Architektur_xPlanBox_komplex.png[Komplexe Darstellung]
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator der xPlanBox ermöglicht,
-die Datenhaltung <<XPlanDB>> über einen Browser zu kontrollieren.
+die Datenhaltung <<XPlanDB>> über einen Browser zu verwalten.
 
 [[xplanmanager-api]]
 === XPlanManagerAPI
 
 Die Komponente XPlanManagerAPI stellt eine REST-Schnittstelle bereit, über die
-die Datenhaltung <<XPlanDB>> kontrolliert werden kann.
+die Datenhaltung <<XPlanDB>> verwaltet werden kann.
 
 [[xplanmanager-cli]]
 === XPlanManagerCLI
 
 Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
 dem Fachadministrator der xPlanBox ermöglicht,
-die Datenhaltung <<XPlanDB>> über das Terminal zu kontrollieren.
+die Datenhaltung <<XPlanDB>> über das Terminal zu verwalten.
 
 [[xplanvalidator-web]]
 === XPlanValidatorWeb
@@ -53,14 +53,13 @@ XPlanGML-Instanzdokumente über den Browser zu validieren.
 [[xplanvalidator-wms]]
 ==== XPlanValidatorWMS
 
-Bei der Komponente XPlanValidatorWMS handelt es sich um eine interne Komponente
-die vom XPlanValidatorWeb verwendet wird. Validierte Plänen können über den
-XPlanValidatorWMS in der Kartenvorschau angezeigt werden. Dieser Dienst nutzt keine persistente Datenhaltung.
+Bei der Komponente XPlanValidatorWMS handelt es sich um eine Subkomponente
+des XPlanValidatorWeb. Validierte Plänen können über den XPlanValidatorWMS in der Kartenvorschau angezeigt werden, ohne das ein Plan in die Datenhaltung importiert wird. Dieser Dienst nutzt keine persistente Datenhaltung.
 
 [[xplanvalidator-api]]
 === XPlanValidatorAPI
 
-Die Komponente XPlanValidatorAPI stellt eine REST-Schnittstelle bereit, über die XPlanGML-Instanzdokumente validiert werden kann.
+Die Komponente XPlanValidatorAPI stellt eine REST-Schnittstelle bereit, über die XPlanGML-Instanzdokumente validiert werden können.
 
 [[xplanvalidator-cli]]
 === XPlanValidatorCLI

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -35,35 +35,36 @@ import java.util.List;
  */
 public class CliOptions {
 
-    private final String validationName;
+	private final String validationName;
 
-    private final List<ValidationOption> voOptions;
+	private final List<ValidationOption> voOptions;
 
-    private final List<ValidationType> validationTypes;
+	private final List<ValidationType> validationTypes;
 
-    private final File archive;
+	private final File archive;
 
-    public CliOptions( String validationName, List<ValidationOption> voOptions,
-                       File archive, List<ValidationType> validationTypes ) {
-        this.validationName = validationName;
-        this.voOptions = voOptions;
-        this.archive = archive;
-        this.validationTypes = validationTypes;
-    }
+	public CliOptions(String validationName, List<ValidationOption> voOptions, File archive,
+			List<ValidationType> validationTypes) {
+		this.validationName = validationName;
+		this.voOptions = voOptions;
+		this.archive = archive;
+		this.validationTypes = validationTypes;
+	}
 
-    public String getValidationName() {
-        return validationName;
-    }
+	public String getValidationName() {
+		return validationName;
+	}
 
-    public List<ValidationOption> getVoOptions() {
-        return voOptions;
-    }
+	public List<ValidationOption> getVoOptions() {
+		return voOptions;
+	}
 
-    public File getArchive() {
-        return archive;
-    }
+	public File getArchive() {
+		return archive;
+	}
 
-    public List<ValidationType> getValidationTypes() {
-        return validationTypes;
-    }
+	public List<ValidationType> getValidationTypes() {
+		return validationTypes;
+	}
+
 }

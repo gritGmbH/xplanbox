@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -36,178 +36,163 @@ import static org.junit.Assert.assertThat;
  */
 public class FreeTextFilterTest {
 
-    @Test
-    public void testIsMatchingWithNullStringShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( null );
+	@Test
+	public void testIsMatchingWithNullStringShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter(null);
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithEmptyStringShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "" );
+	@Test
+	public void testIsMatchingWithEmptyStringShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithWhiteSpaceStringShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( " " );
+	@Test
+	public void testIsMatchingWithWhiteSpaceStringShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter(" ");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithExactCategoryShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "name" );
+	@Test
+	public void testIsMatchingWithExactCategoryShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("name");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithLowerUpperCaseLegislationStatusShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "legislaTionsTAtus" );
+	@Test
+	public void testIsMatchingWithLowerUpperCaseLegislationStatusShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("legislaTionsTAtus");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithParAdditionaltypeShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "itio" );
+	@Test
+	public void testIsMatchingWithParAdditionaltypeShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("itio");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithWildcardShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "legis*STATUS" );
+	@Test
+	public void testIsMatchingWithWildcardShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("legis*STATUS");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithWildcardInBeginningShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "*isla" );
+	@Test
+	public void testIsMatchingWithWildcardInBeginningShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("*isla");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithWildcardOnlyShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "leg*STA*US" );
+	@Test
+	public void testIsMatchingWithWildcardOnlyShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("leg*STA*US");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingWithMultipleWildcardsShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "*" );
+	@Test
+	public void testIsMatchingWithMultipleWildcardsShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("*");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    public void testIsMatchingWithWildcardShoudReturnFalse()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "legislation*ion" );
+	public void testIsMatchingWithWildcardShoudReturnFalse() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("legislation*ion");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( false ) );
-    }
+		assertThat(matching, is(false));
+	}
 
-    @Ignore("Test currently fails as a gwt client class (here DateTimeFormat) cannot be used.")
-    @Test
-    public void testIsMatchingWithUnavailableStringShouldReturnFalse()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "SeArch" );
+	@Ignore("Test currently fails as a gwt client class (here DateTimeFormat) cannot be used.")
+	@Test
+	public void testIsMatchingWithUnavailableStringShouldReturnFalse() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("SeArch");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( false ) );
-    }
+		assertThat(matching, is(false));
+	}
 
-    @Ignore("Test currently fails as a gwt client class (here DateTimeFormat) cannot be used.")
-    @Test
-    public void testIsMatchingWithUnsearchableColumnShouldReturnFalse()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( "category" );
+	@Ignore("Test currently fails as a gwt client class (here DateTimeFormat) cannot be used.")
+	@Test
+	public void testIsMatchingWithUnsearchableColumnShouldReturnFalse() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter("category");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( false ) );
-    }
+		assertThat(matching, is(false));
+	}
 
-    @Test
-    public void testIsMatchingInColumnlegislationShouldReturnTrue()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( LEGISLATIONSTATUS, "leg*StaT" );
+	@Test
+	public void testIsMatchingInColumnlegislationShouldReturnTrue() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter(LEGISLATIONSTATUS, "leg*StaT");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( true ) );
-    }
+		assertThat(matching, is(true));
+	}
 
-    @Test
-    public void testIsMatchingInColumnIdShouldReturnFalse()
-                            throws Exception {
-        FreeTextFilter freeTextFilter = new FreeTextFilter( ID, "leg*StaT" );
+	@Test
+	public void testIsMatchingInColumnIdShouldReturnFalse() throws Exception {
+		FreeTextFilter freeTextFilter = new FreeTextFilter(ID, "leg*StaT");
 
-        XPlan plan = createPlan();
-        boolean matching = freeTextFilter.isMatching( plan );
+		XPlan plan = createPlan();
+		boolean matching = freeTextFilter.isMatching(plan);
 
-        assertThat( matching, is( false ) );
-    }
+		assertThat(matching, is(false));
+	}
 
-    private XPlan createPlan() {
-        XPlan xPlan = new XPlan( "name", "id", "type" );
-        xPlan.setDistrict( "category" );
-        xPlan.setLegislationStatus( "legislationStatus" );
-        xPlan.setAdditionalType( "additionalType" );
-        return xPlan;
-    }
+	private XPlan createPlan() {
+		XPlan xPlan = new XPlan("name", "id", "type");
+		xPlan.setDistrict("category");
+		xPlan.setLegislationStatus("legislationStatus");
+		xPlan.setAdditionalType("additionalType");
+		return xPlan;
+	}
 
 }

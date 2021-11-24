@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -70,28 +70,25 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
  */
 public class ConfigWriterUtilsTest {
 
-    @Test
-    public void testDetectType()
-                    throws Exception {
-        String type = ConfigWriterUtils.detectType( BP_Plan, null );
+	@Test
+	public void testDetectType() throws Exception {
+		String type = ConfigWriterUtils.detectType(BP_Plan, null);
 
-        assertThat( type, is( "bplan" ) );
-    }
+		assertThat(type, is("bplan"));
+	}
 
-    @Test
-    public void testDetectTypeWithPlanStatusFestgestellt()
-                    throws Exception {
-        String type = ConfigWriterUtils.detectType( BP_Plan, FESTGESTELLT );
+	@Test
+	public void testDetectTypeWithPlanStatusFestgestellt() throws Exception {
+		String type = ConfigWriterUtils.detectType(BP_Plan, FESTGESTELLT);
 
-        assertThat( type, is( "bplan" ) );
-    }
+		assertThat(type, is("bplan"));
+	}
 
-    @Test
-    public void testDetectTypeWithPlanStatusInAufstellung()
-                    throws Exception {
-        String type = ConfigWriterUtils.detectType( BP_Plan, PlanStatus.IN_AUFSTELLUNG );
+	@Test
+	public void testDetectTypeWithPlanStatusInAufstellung() throws Exception {
+		String type = ConfigWriterUtils.detectType(BP_Plan, PlanStatus.IN_AUFSTELLUNG);
 
-        assertThat( type, is( "bplanpre" ) );
-    }
+		assertThat(type, is("bplanpre"));
+	}
 
 }

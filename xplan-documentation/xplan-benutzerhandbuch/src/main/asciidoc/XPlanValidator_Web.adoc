@@ -22,13 +22,15 @@ image::validator/Hochladen.png[Hochladen]
 ====
 Bitte beachten Sie die Anforderungen an den Dateinamen. Der Dateiname darf nur folgende Zeichen enthalten:
 
- * Kleinbuchstaben von a-z
- * Großbuchstaben von A-Z
- * Zahlen von 0-9
- * einen Bindestrich (-)
- * einen Unterstrich (_)
+ * Kleinbuchstaben von `a-z`
+ * Großbuchstaben von `A-Z`
+ * Zahlen von `0-9`
+ * Bindestriche `-`
+ * Unterstriche `_`
+ * Klammern `(` und `)`
+ * Punkte `.`
 
-Sonderzeichen wie Umlaute, Sonderzeichen oder Leerzeichen sind nicht erlaubt.
+Sonderzeichen wie z.B. Umlaute, Zeilenumbrüche und Leerzeichen sind nicht erlaubt.
 ====
 
 [NOTE]
@@ -153,7 +155,7 @@ Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die formalen
 [.bordered]
 image::validator/Validierungsbericht_2.png[Validierungsbericht]
 
-Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG und PGW Dateien vorhanden sind.
+Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG- und PGW-Dateien vorhanden sind.
 
 *2) Semantische Validierung – valide*
 

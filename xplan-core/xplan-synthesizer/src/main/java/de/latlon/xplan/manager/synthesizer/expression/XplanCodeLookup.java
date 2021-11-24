@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -30,24 +30,23 @@ import de.latlon.xplan.manager.codelists.XPlanCodeLists;
 import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 
 /**
- * {@link Expression} for translating codes from internal codelists (aka key enumerations) to their textual
- * representation.
- * 
+ * {@link Expression} for translating codes from internal codelists (aka key enumerations)
+ * to their textual representation.
+ *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
- * 
  * @since 1.0
  */
 public class XplanCodeLookup extends AbstractXplanCodeLookup {
 
-    public XplanCodeLookup( Expression exp, String codeListName ) {
-        super( exp, codeListName );
-    }
+	public XplanCodeLookup(Expression exp, String codeListName) {
+		super(exp, codeListName);
+	}
 
-    @Override
-    protected XPlanCodeLists getXplanCodeLists( Feature feature ) {
-        XPlanVersion version = determineBaseVersion( feature.getName() );
-        return XPlanCodeListsFactory.get( version );
-    }
+	@Override
+	protected XPlanCodeLists getXplanCodeLists(Feature feature) {
+		XPlanVersion version = determineBaseVersion(feature.getName());
+		return XPlanCodeListsFactory.get(version);
+	}
 
 }

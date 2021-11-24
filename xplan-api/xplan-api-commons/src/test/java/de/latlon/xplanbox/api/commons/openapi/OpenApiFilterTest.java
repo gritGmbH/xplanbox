@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -35,16 +35,16 @@ import static org.junit.Assert.assertThat;
  */
 public class OpenApiFilterTest {
 
-    @Test
-    public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected() {
-        OpenApiFilter openApiFilter = new OpenApiFilter();
-        OpenAPI openApi = new OpenAPI();
-        openApi.setPaths( new Paths() );
-        openApi.getPaths().addPathItem( "/xmanager/api/v1/plans", new PathItem() );
-        openApiFilter.filterOpenAPI( openApi, null, null, null );
+	@Test
+	public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected() {
+		OpenApiFilter openApiFilter = new OpenApiFilter();
+		OpenAPI openApi = new OpenAPI();
+		openApi.setPaths(new Paths());
+		openApi.getPaths().addPathItem("/xmanager/api/v1/plans", new PathItem());
+		openApiFilter.filterOpenAPI(openApi, null, null, null);
 
-        assertThat( openApi.getPaths().get( "/plans" ), is( notNullValue() ) );
-        assertThat( openApi.getPaths().get( "/" ), is( notNullValue() ) );
-    }
+		assertThat(openApi.getPaths().get("/plans"), is(notNullValue()));
+		assertThat(openApi.getPaths().get("/"), is(notNullValue()));
+	}
 
 }

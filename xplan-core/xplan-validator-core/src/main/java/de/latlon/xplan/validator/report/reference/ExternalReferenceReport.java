@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -31,28 +31,29 @@ import java.util.List;
  */
 public class ExternalReferenceReport {
 
-    private SkipCode skipCode;
+	private SkipCode skipCode;
 
-    private List<String> references;
+	private List<String> references;
 
-    public ExternalReferenceReport( SkipCode skipCode ) {
-        this( skipCode, Collections.emptyList() );
-    }
+	public ExternalReferenceReport(SkipCode skipCode) {
+		this(skipCode, Collections.emptyList());
+	}
 
-    public ExternalReferenceReport( List<String> references ) {
-        this( null, references );
-    }
+	public ExternalReferenceReport(List<String> references) {
+		this(null, references);
+	}
 
-    private ExternalReferenceReport( SkipCode skipCode, List<String> references ) {
-        this.skipCode = skipCode;
-        this.references = references;
-    }
+	private ExternalReferenceReport(SkipCode skipCode, List<String> references) {
+		this.skipCode = skipCode;
+		this.references = references;
+	}
 
-    public SkipCode getSkipCode() {
-        return skipCode;
-    }
+	public SkipCode getSkipCode() {
+		return skipCode;
+	}
 
-    public List<String> getReferences() {
-        return references;
-    }
+	public List<String> getReferences() {
+		return references;
+	}
+
 }

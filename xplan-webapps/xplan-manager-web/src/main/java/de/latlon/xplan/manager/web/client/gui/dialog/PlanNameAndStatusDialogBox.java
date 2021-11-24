@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -33,26 +33,24 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
  */
 public class PlanNameAndStatusDialogBox extends WizardDialogBox {
 
-    private static final XPlanWebMessages MESSAGES = GWT.create( XPlanWebMessages.class );
+	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
-    /**
-     * @param planName
-     *                 the name of the plan, never <code>null</code>
-     * @param planStatus
-     *                 the status of the plan, never <code>null</code>
-     */
-    public PlanNameAndStatusDialogBox( String planName, PlanStatus planStatus ) {
-        super( MESSAGES.planNameAndStatusDialogHeader() );
-        setContent( createMessageContent( planName, planStatus ) );
-    }
+	/**
+	 * @param planName the name of the plan, never <code>null</code>
+	 * @param planStatus the status of the plan, never <code>null</code>
+	 */
+	public PlanNameAndStatusDialogBox(String planName, PlanStatus planStatus) {
+		super(MESSAGES.planNameAndStatusDialogHeader());
+		setContent(createMessageContent(planName, planStatus));
+	}
 
-    private Panel createMessageContent( String planName, PlanStatus planStatus ) {
-        VerticalPanel mainPanel = new VerticalPanel();
-        mainPanel.setSpacing( 20 );
-        Label label = new Label( MESSAGES.duplicatePlanName( planName, planStatus.getMessage() ) );
-        label.setWordWrap( true );
-        mainPanel.add( label );
-        return mainPanel;
-    }
+	private Panel createMessageContent(String planName, PlanStatus planStatus) {
+		VerticalPanel mainPanel = new VerticalPanel();
+		mainPanel.setSpacing(20);
+		Label label = new Label(MESSAGES.duplicatePlanName(planName, planStatus.getMessage()));
+		label.setWordWrap(true);
+		mainPanel.add(label);
+		return mainPanel;
+	}
 
 }

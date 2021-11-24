@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -33,54 +33,50 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 
 /**
  * Maps a part to the category.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class CategoryMapper implements LocalCenterToDistrictMapper {
 
-    private static final Logger LOG = LoggerFactory.getLogger( CategoryMapper.class );
+	private static final Logger LOG = LoggerFactory.getLogger(CategoryMapper.class);
 
-    private final Map<String, List<String>> categoryMapping;
+	private final Map<String, List<String>> categoryMapping;
 
-    /**
-     * @param managerConfiguration
-     *            provides access to the mapping, never <code>null</code>
-     * @throws NullPointerException
-     *             - managerConfiguration is <code>null</code>
-     */
-    public CategoryMapper( ManagerConfiguration managerConfiguration ) {
-        this.categoryMapping = managerConfiguration.getCategoryMapping();
-    }
+	/**
+	 * @param managerConfiguration provides access to the mapping, never <code>null</code>
+	 * @throws NullPointerException - managerConfiguration is <code>null</code>
+	 */
+	public CategoryMapper(ManagerConfiguration managerConfiguration) {
+		this.categoryMapping = managerConfiguration.getCategoryMapping();
+	}
 
-    /**
-     * Does not check if a part is assigned to more than one category (first one is returned)!
-     * 
-     * @param part
-     *            may be <code>null</code>
-     * @return the category the part is assigned to, code>null</code> if no category could be found or part is
-     *         <code>null</code>
-     * @throws NullPointerException
-     *             - part is <code>null</code>
-     */
-    public String mapToCategory( String part ) {
-        LOG.debug( "Map part {} to category.", part );
-        if ( part != null )
-            for ( Entry<String, List<String>> category : categoryMapping.entrySet() ) {
-                for ( String categoryPart : category.getValue() ) {
-                    if ( part.equals( categoryPart ) ) {
-                        LOG.info( "Found category: {}", category.getKey() );
-                        return category.getKey();
-                    }
-                }
-            }
-        LOG.debug( "No category found." );
-        return null;
-    }
+	/**
+	 * Does not check if a part is assigned to more than one category (first one is
+	 * returned)!
+	 * @param part may be <code>null</code>
+	 * @return the category the part is assigned to, code>null</code> if no category could
+	 * be found or part is <code>null</code>
+	 * @throws NullPointerException - part is <code>null</code>
+	 */
+	public String mapToCategory(String part) {
+		LOG.debug("Map part {} to category.", part);
+		if (part != null)
+			for (Entry<String, List<String>> category : categoryMapping.entrySet()) {
+				for (String categoryPart : category.getValue()) {
+					if (part.equals(categoryPart)) {
+						LOG.info("Found category: {}", category.getKey());
+						return category.getKey();
+					}
+				}
+			}
+		LOG.debug("No category found.");
+		return null;
+	}
 
-    @Override
-    public String mapToDistrict( String localCenter ) {
-        return mapToCategory( localCenter );
-    }
+	@Override
+	public String mapToDistrict(String localCenter) {
+		return mapToCategory(localCenter);
+	}
 
 }

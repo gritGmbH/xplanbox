@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -59,8 +59,8 @@ import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToA
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
 
 /**
- * {@link Expression} that returns a "flat" textual representation for properties that have a "complex" value (
- * {@link Feature} or {@link ElementNode}).
+ * {@link Expression} that returns a "flat" textual representation for properties that
+ * have a "complex" value ( {@link Feature} or {@link ElementNode}).
  *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
@@ -69,121 +69,128 @@ import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimi
  */
 public class XplanFlattenProperty implements Expression {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XplanFlattenProperty.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XplanFlattenProperty.class);
 
-    private final Expression exp;
+	private final Expression exp;
 
-    private final List<Flattener> customFlatteners = new ArrayList<Flattener>();
+	private final List<Flattener> customFlatteners = new ArrayList<Flattener>();
 
-    /**
-     * @param exp
-     *            an expression that targets a property node
-     */
-    public XplanFlattenProperty( Expression exp ) {
-        this.exp = exp;
-        customFlatteners.add( new XpBegruendungAbschnittFlattener() );
-        customFlatteners.add( new XpGemeindeFlattener() );
-        customFlatteners.add( new XpGenerAttributFlattener() );
-        customFlatteners.add( new XpHoehenangabeFlattener() );
-        customFlatteners.add( new XpRasterplanFlattener() );
-        customFlatteners.add( new XpTextAbschnittFlattener() );
-        customFlatteners.add( new XpVerfahrensMerkmalFlattener() );
-        customFlatteners.add( new XpVerbundenerPlanFlattener() );
-        customFlatteners.add( new BpDachgestaltungFlattener() );
-        customFlatteners.add( new XpSPEMassnahmenDatenFlattener() );
-        customFlatteners.add( new BpRichtungssektorFlattener() );
-        customFlatteners.add( new BP_EmissionskontingentLaermFlattener() );
-        customFlatteners.add( new BP_EmissionskontingentLaermGebietFlattener() );
-    }
+	/**
+	 * @param exp an expression that targets a property node
+	 */
+	public XplanFlattenProperty(Expression exp) {
+		this.exp = exp;
+		customFlatteners.add(new XpBegruendungAbschnittFlattener());
+		customFlatteners.add(new XpGemeindeFlattener());
+		customFlatteners.add(new XpGenerAttributFlattener());
+		customFlatteners.add(new XpHoehenangabeFlattener());
+		customFlatteners.add(new XpRasterplanFlattener());
+		customFlatteners.add(new XpTextAbschnittFlattener());
+		customFlatteners.add(new XpVerfahrensMerkmalFlattener());
+		customFlatteners.add(new XpVerbundenerPlanFlattener());
+		customFlatteners.add(new BpDachgestaltungFlattener());
+		customFlatteners.add(new XpSPEMassnahmenDatenFlattener());
+		customFlatteners.add(new BpRichtungssektorFlattener());
+		customFlatteners.add(new BP_EmissionskontingentLaermFlattener());
+		customFlatteners.add(new BP_EmissionskontingentLaermGebietFlattener());
+	}
 
-    @Override
-    public PrimitiveValue evaluate( Feature feature, FeatureCollection features ) {
-        String s = null;
-        XpExterneReferenzFlattener extRefFlattener = new XpExterneReferenzFlattener( feature );
-        try {
-            TypedObjectNodeArray<TypedObjectNode> props = castToArray( exp.evaluate( feature, features ) );
-            if ( props != null && props.getElements().length > 0 ) {
-                s = "";
-                for ( TypedObjectNode o : props.getElements() ) {
-                    if ( !( o instanceof Property ) ) {
-                        String msg = "Trying to flatten  '" + o.getClass() + "', but it can only flatten properties.";
-                        throw new IllegalArgumentException( msg );
-                    }
-                    s += flatten( (Property) o, extRefFlattener, features );
-                }
-            }
-        } catch ( Exception e ) {
-            String msg = "Error flattening property '" + exp + "' of feature '" + feature.getId() + " : "
-                         + e.getMessage();
-            LOG.error( msg, e );
-            return null;
-        }
-        return toPrimitiveValue( s );
-    }
+	@Override
+	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
+		String s = null;
+		XpExterneReferenzFlattener extRefFlattener = new XpExterneReferenzFlattener(feature);
+		try {
+			TypedObjectNodeArray<TypedObjectNode> props = castToArray(exp.evaluate(feature, features));
+			if (props != null && props.getElements().length > 0) {
+				s = "";
+				for (TypedObjectNode o : props.getElements()) {
+					if (!(o instanceof Property)) {
+						String msg = "Trying to flatten  '" + o.getClass() + "', but it can only flatten properties.";
+						throw new IllegalArgumentException(msg);
+					}
+					s += flatten((Property) o, extRefFlattener, features);
+				}
+			}
+		}
+		catch (Exception e) {
+			String msg = "Error flattening property '" + exp + "' of feature '" + feature.getId() + " : "
+					+ e.getMessage();
+			LOG.error(msg, e);
+			return null;
+		}
+		return toPrimitiveValue(s);
+	}
 
-    private String flatten( Property prop, XpExterneReferenzFlattener extRefFlattener, FeatureCollection features ) {
-        TypedObjectNode value = prop.getValue();
-        if ( value instanceof ElementNode ) {
-            try {
-                value = getFirstChild( (ElementNode) value );
-            } catch ( Exception e ) {
-                return new DefaultFlattener().flatten( value );
-            }
-        } else if ( value instanceof Reference ) {
-            Reference<?> reference = (Reference<?>) value;
-            if ( reference.isLocal() ) {
-                String id = reference.getId();
-                try {
-                    FeatureCollection members = features.getMembers( new IdFilter( id ),
-                                                                     new TypedObjectNodeXPathEvaluator() );
-                    if ( members.size() == 1 ) {
-                        value = members.iterator().next();
-                    } else {
-                        LOG.warn( "FeatureReference could not be resolved (URI: " + id + ")" );
-                        return flatten( ( (Reference<?>) value ) );
-                    }
-                } catch ( FilterEvaluationException e ) {
-                    LOG.warn( "FeatureReference could not be resolved (URI: " + id + ")" );
-                    return flatten( ( (Reference<?>) value ) );
-                }
-            } else {
-                return flatten( ( (Reference<?>) value ) );
-            }
-        } else if ( value != null ) {
-            LOG.error( "Only feature- or element-valued properties can be flattened. " );
-            throw new IllegalArgumentException();
-        }
-        if ( value == null ) {
-            return "";
-        }
-        for ( Flattener flattener : customFlatteners ) {
-            if ( flattener.accepts( value ) ) {
-                return flattener.flatten( value );
-            }
-        }
-        if ( extRefFlattener.accepts( value ) ) {
-            return extRefFlattener.flatten( value );
-        }
-        return new DefaultFlattener().flatten( value );
-    }
+	private String flatten(Property prop, XpExterneReferenzFlattener extRefFlattener, FeatureCollection features) {
+		TypedObjectNode value = prop.getValue();
+		if (value instanceof ElementNode) {
+			try {
+				value = getFirstChild((ElementNode) value);
+			}
+			catch (Exception e) {
+				return new DefaultFlattener().flatten(value);
+			}
+		}
+		else if (value instanceof Reference) {
+			Reference<?> reference = (Reference<?>) value;
+			if (reference.isLocal()) {
+				String id = reference.getId();
+				try {
+					FeatureCollection members = features.getMembers(new IdFilter(id),
+							new TypedObjectNodeXPathEvaluator());
+					if (members.size() == 1) {
+						value = members.iterator().next();
+					}
+					else {
+						LOG.warn("FeatureReference could not be resolved (URI: " + id + ")");
+						return flatten(((Reference<?>) value));
+					}
+				}
+				catch (FilterEvaluationException e) {
+					LOG.warn("FeatureReference could not be resolved (URI: " + id + ")");
+					return flatten(((Reference<?>) value));
+				}
+			}
+			else {
+				return flatten(((Reference<?>) value));
+			}
+		}
+		else if (value != null) {
+			LOG.error("Only feature- or element-valued properties can be flattened. ");
+			throw new IllegalArgumentException();
+		}
+		if (value == null) {
+			return "";
+		}
+		for (Flattener flattener : customFlatteners) {
+			if (flattener.accepts(value)) {
+				return flattener.flatten(value);
+			}
+		}
+		if (extRefFlattener.accepts(value)) {
+			return extRefFlattener.flatten(value);
+		}
+		return new DefaultFlattener().flatten(value);
+	}
 
-    private TypedObjectNode getFirstChild( ElementNode elNode ) {
-        if ( elNode.getChildren().size() > 0 && elNode.getChildren().get( 0 ) instanceof ElementNode ) {
-            return elNode.getChildren().get( 0 );
-        }
-        throw new IllegalArgumentException();
-    }
+	private TypedObjectNode getFirstChild(ElementNode elNode) {
+		if (elNode.getChildren().size() > 0 && elNode.getChildren().get(0) instanceof ElementNode) {
+			return elNode.getChildren().get(0);
+		}
+		throw new IllegalArgumentException();
+	}
 
-    private String flatten( Reference<?> externalRef ) {
-        return "[" + escape( externalRef.getURI() ) + "]";
-    }
+	private String flatten(Reference<?> externalRef) {
+		return "[" + escape(externalRef.getURI()) + "]";
+	}
 
-    private String escape( String desc ) {
-        String result = desc;
-        if ( result.startsWith( "[" ) && result.endsWith( "]" ) ) {
-            result = result.substring( 1, result.length() - 1 );
-        }
-        result = result.replace( "][", "][][" );
-        return result;
-    }
+	private String escape(String desc) {
+		String result = desc;
+		if (result.startsWith("[") && result.endsWith("]")) {
+			result = result.substring(1, result.length() - 1);
+		}
+		result = result.replace("][", "][][");
+		return result;
+	}
+
 }

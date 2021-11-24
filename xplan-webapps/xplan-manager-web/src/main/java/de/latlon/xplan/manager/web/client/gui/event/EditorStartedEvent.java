@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -62,63 +62,60 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
 /**
  * Indicates that the editing was started by the user.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class EditorStartedEvent extends GwtEvent<EditorStartedEventHandler> {
 
-    public static Type<EditorStartedEventHandler> TYPE = new Type<EditorStartedEventHandler>();
+	public static Type<EditorStartedEventHandler> TYPE = new Type<EditorStartedEventHandler>();
 
-    private final String planId;
+	private final String planId;
 
-    private final EditVersion version;
+	private final EditVersion version;
 
-    private final XPlanToEdit xPlantoEdit;
+	private final XPlanToEdit xPlantoEdit;
 
-    /**
-     * @param planId
-     *            of the plan to edit
-     * @param version
-     *            of the plan to edit, never <code>null</code>
-     * @param xPlantoEdit
-     *            never <code>null</code>
-     */
-    public EditorStartedEvent( String planId, EditVersion version, XPlanToEdit xPlantoEdit ) {
-        this.planId = planId;
-        this.version = version;
-        this.xPlantoEdit = xPlantoEdit;
-    }
+	/**
+	 * @param planId of the plan to edit
+	 * @param version of the plan to edit, never <code>null</code>
+	 * @param xPlantoEdit never <code>null</code>
+	 */
+	public EditorStartedEvent(String planId, EditVersion version, XPlanToEdit xPlantoEdit) {
+		this.planId = planId;
+		this.version = version;
+		this.xPlantoEdit = xPlantoEdit;
+	}
 
-    @Override
-    public Type<EditorStartedEventHandler> getAssociatedType() {
-        return TYPE;
-    }
+	@Override
+	public Type<EditorStartedEventHandler> getAssociatedType() {
+		return TYPE;
+	}
 
-    @Override
-    protected void dispatch( EditorStartedEventHandler handler ) {
-        handler.onEditorStarted( this );
-    }
+	@Override
+	protected void dispatch(EditorStartedEventHandler handler) {
+		handler.onEditorStarted(this);
+	}
 
-    /**
-     * @return the id of the plan to edit
-     */
-    public String getPlanId() {
-        return planId;
-    }
+	/**
+	 * @return the id of the plan to edit
+	 */
+	public String getPlanId() {
+		return planId;
+	}
 
-    /**
-     * @return the version of the plan to edit, never <code>null</code>
-     */
-    public EditVersion getVersion() {
-        return version;
-    }
+	/**
+	 * @return the version of the plan to edit, never <code>null</code>
+	 */
+	public EditVersion getVersion() {
+		return version;
+	}
 
-    /**
-     * @return the plan to edit, never <code>null</code>
-     */
-    public XPlanToEdit getxPlantoEdit() {
-        return xPlantoEdit;
-    }
+	/**
+	 * @return the plan to edit, never <code>null</code>
+	 */
+	public XPlanToEdit getxPlantoEdit() {
+		return xPlantoEdit;
+	}
 
 }

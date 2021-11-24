@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -28,46 +28,48 @@ import org.deegree.feature.Feature;
 
 public class XpVerfahrensMerkmalFlattener extends AbstractFlattener {
 
-    @Override
-    public boolean accepts( TypedObjectNode node ) {
-        String elName = null;
-        if ( node instanceof Feature ) {
-            elName = ( (Feature) node ).getName().getLocalPart();
-        } else if ( node instanceof ElementNode ) {
-            elName = ( (ElementNode) node ).getName().getLocalPart();
-        }
-        return "XP_VerfahrensMerkmal".equals( elName );
-    }
+	@Override
+	public boolean accepts(TypedObjectNode node) {
+		String elName = null;
+		if (node instanceof Feature) {
+			elName = ((Feature) node).getName().getLocalPart();
+		}
+		else if (node instanceof ElementNode) {
+			elName = ((ElementNode) node).getName().getLocalPart();
+		}
+		return "XP_VerfahrensMerkmal".equals(elName);
+	}
 
-    @Override
-    public String flatten( TypedObjectNode xpVerfahrensmerkmal ) {
-        PrimitiveValue datum = (PrimitiveValue) getPropertyValue( xpVerfahrensmerkmal, "datum" );
-        PrimitiveValue vermerk = (PrimitiveValue) getPropertyValue( xpVerfahrensmerkmal, "vermerk" );
-        PrimitiveValue signatur = (PrimitiveValue) getPropertyValue( xpVerfahrensmerkmal, "signatur" );
-        PrimitiveValue signiert = (PrimitiveValue) getPropertyValue( xpVerfahrensmerkmal, "signiert" );
-        return encode( datum, vermerk, signatur, signiert );
-    }
+	@Override
+	public String flatten(TypedObjectNode xpVerfahrensmerkmal) {
+		PrimitiveValue datum = (PrimitiveValue) getPropertyValue(xpVerfahrensmerkmal, "datum");
+		PrimitiveValue vermerk = (PrimitiveValue) getPropertyValue(xpVerfahrensmerkmal, "vermerk");
+		PrimitiveValue signatur = (PrimitiveValue) getPropertyValue(xpVerfahrensmerkmal, "signatur");
+		PrimitiveValue signiert = (PrimitiveValue) getPropertyValue(xpVerfahrensmerkmal, "signiert");
+		return encode(datum, vermerk, signatur, signiert);
+	}
 
-    private String encode( PrimitiveValue datum, PrimitiveValue vermerk, PrimitiveValue signatur,
-                           PrimitiveValue signiert ) {
-        String s = "[";
-        if ( datum != null ) {
-            s += datum + ": ";
-        }
-        if ( vermerk != null ) {
-            s += "\"" + vermerk + "\"";
-        }
-        s += " (";
-        if ( signatur != null && !signatur.toString().isEmpty() ) {
-            s += signatur + ", ";
-        }
-        if ( signiert != null && "true".equalsIgnoreCase( signiert.toString() ) ) {
-            s += "signiert";
-        } else {
-            s += "nicht signiert";
-        }
-        s += ")]";
-        return s;
-    }
+	private String encode(PrimitiveValue datum, PrimitiveValue vermerk, PrimitiveValue signatur,
+			PrimitiveValue signiert) {
+		String s = "[";
+		if (datum != null) {
+			s += datum + ": ";
+		}
+		if (vermerk != null) {
+			s += "\"" + vermerk + "\"";
+		}
+		s += " (";
+		if (signatur != null && !signatur.toString().isEmpty()) {
+			s += signatur + ", ";
+		}
+		if (signiert != null && "true".equalsIgnoreCase(signiert.toString())) {
+			s += "signiert";
+		}
+		else {
+			s += "nicht signiert";
+		}
+		s += ")]";
+		return s;
+	}
 
 }

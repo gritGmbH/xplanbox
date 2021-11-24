@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -26,7 +26,8 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
 /**
- * Base interface for all expressions that can be used for deriving property values in XPlanSyn features.
+ * Base interface for all expressions that can be used for deriving property values in
+ * XPlanSyn features.
  *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
@@ -34,14 +35,14 @@ import org.deegree.feature.FeatureCollection;
  */
 public interface Expression {
 
-    /**
-     * Evaluates this expression on the given {@link Feature}.
-     *
-     * @param feature
-     *                         feature to operate on, must not be <code>null</code>
-     * @param features
-     *                         the feature collection the feature is part of, must not be <code>null</code>
-     * @return expression value, suitable as property value, can be <code>null</code> (no value, omit property)
-     */
-    TypedObjectNode evaluate( Feature feature, FeatureCollection features );
+	/**
+	 * Evaluates this expression on the given {@link Feature}.
+	 * @param feature feature to operate on, must not be <code>null</code>
+	 * @param features the feature collection the feature is part of, must not be
+	 * <code>null</code>
+	 * @return expression value, suitable as property value, can be <code>null</code> (no
+	 * value, omit property)
+	 */
+	TypedObjectNode evaluate(Feature feature, FeatureCollection features);
+
 }

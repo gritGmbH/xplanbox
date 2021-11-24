@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -34,36 +34,33 @@ import static org.junit.Assert.assertThat;
  */
 public class CswClientIT {
 
-    private static final String CSW_GET_CAPABILITIESURL = "https://metaver.de/csw?SERVICE=CSW&REQUEST=GetCapabilities";
+	private static final String CSW_GET_CAPABILITIESURL = "https://metaver.de/csw?SERVICE=CSW&REQUEST=GetCapabilities";
 
-    @Test
-    public void testRequestMetadataRecord()
-                    throws DataServiceCouplingException {
-        CswClient cswClient = new CswClient( CSW_GET_CAPABILITIESURL );
-        PlanRecordMetadata planRecordMetadata = cswClient.requestMetadataRecord( "Alsterdorf20" );
+	@Test
+	public void testRequestMetadataRecord() throws DataServiceCouplingException {
+		CswClient cswClient = new CswClient(CSW_GET_CAPABILITIESURL);
+		PlanRecordMetadata planRecordMetadata = cswClient.requestMetadataRecord("Alsterdorf20");
 
-        assertThat( planRecordMetadata.getRecordId(), is( "CC9E9E0D-07AD-4C77-ADAB-AFDA37585633" ) );
-        assertThat( planRecordMetadata.getResourceIdentifier(),
-                    is( "https://registry.gdi-de.org/id/de.hh/1ad52a0e-9e8b-4a91-b4b3-cf60703cb91b" ) );
-    }
+		assertThat(planRecordMetadata.getRecordId(), is("CC9E9E0D-07AD-4C77-ADAB-AFDA37585633"));
+		assertThat(planRecordMetadata.getResourceIdentifier(),
+				is("https://registry.gdi-de.org/id/de.hh/1ad52a0e-9e8b-4a91-b4b3-cf60703cb91b"));
+	}
 
-    @Test
-    public void testRequestMetadataRecord_Unknown()
-                    throws DataServiceCouplingException {
-        CswClient cswClient = new CswClient( CSW_GET_CAPABILITIESURL );
-        PlanRecordMetadata planRecordMetadata = cswClient.requestMetadataRecord( "GIBT ES NICHT" );
+	@Test
+	public void testRequestMetadataRecord_Unknown() throws DataServiceCouplingException {
+		CswClient cswClient = new CswClient(CSW_GET_CAPABILITIESURL);
+		PlanRecordMetadata planRecordMetadata = cswClient.requestMetadataRecord("GIBT ES NICHT");
 
-        assertThat( planRecordMetadata, is( CoreMatchers.nullValue() ) );
-    }
+		assertThat(planRecordMetadata, is(CoreMatchers.nullValue()));
+	}
 
-    @Test
-    public void testCreateGetRecordByIdRequest()
-                    throws DataServiceCouplingException {
-        CswClient cswClient = new CswClient( CSW_GET_CAPABILITIESURL );
-        String recordId = "CC9E9E0D-07AD-4C77-ADAB-AFDA37585633";
-        String getRecordByIdRequest = cswClient.createGetRecordByIdRequest( recordId );
+	@Test
+	public void testCreateGetRecordByIdRequest() throws DataServiceCouplingException {
+		CswClient cswClient = new CswClient(CSW_GET_CAPABILITIESURL);
+		String recordId = "CC9E9E0D-07AD-4C77-ADAB-AFDA37585633";
+		String getRecordByIdRequest = cswClient.createGetRecordByIdRequest(recordId);
 
-        assertThat( getRecordByIdRequest, containsString( "ID=" + recordId ) );
-    }
+		assertThat(getRecordByIdRequest, containsString("ID=" + recordId));
+	}
 
 }

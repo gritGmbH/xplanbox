@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -68,51 +68,53 @@ import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 
 /**
  * Dialog to set the validity period of a plan.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class ValidityPeriodDialog extends WizardDialogBox implements Validable {
 
-    private static final XPlanWebMessages MESSAGES = GWT.create( XPlanWebMessages.class );
+	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
-    private final ValidityPeriodInput validityPeriodInput = new ValidityPeriodInput();
+	private final ValidityPeriodInput validityPeriodInput = new ValidityPeriodInput();
 
-    /**
-     * Instantiates a new {@link ValidityPeriodDialog}.
-     */
-    public ValidityPeriodDialog() {
-        super( MESSAGES.validityPeriodDialogTitle() );
-        setContent( createMainPanel() );
-    }
+	/**
+	 * Instantiates a new {@link ValidityPeriodDialog}.
+	 */
+	public ValidityPeriodDialog() {
+		super(MESSAGES.validityPeriodDialogTitle());
+		setContent(createMainPanel());
+	}
 
-    @Override
-    public boolean isValid() {
-        return validityPeriodInput.isValid();
-    }
+	@Override
+	public boolean isValid() {
+		return validityPeriodInput.isValid();
+	}
 
-    /**
-     * @return the start date and time selected by the user, may be <code>null</code> if no date was selected
-     */
-    public Date retrieveStartDateTime() {
-        return validityPeriodInput.retrieveStartDateTime();
+	/**
+	 * @return the start date and time selected by the user, may be <code>null</code> if
+	 * no date was selected
+	 */
+	public Date retrieveStartDateTime() {
+		return validityPeriodInput.retrieveStartDateTime();
 
-    }
+	}
 
-    /**
-     * @return the end date and time selected by the user, may be <code>null</code> if no date was selected
-     */
-    public Date retrieveEndDateTime() {
-        return validityPeriodInput.retrieveEndDateTime();
-    }
+	/**
+	 * @return the end date and time selected by the user, may be <code>null</code> if no
+	 * date was selected
+	 */
+	public Date retrieveEndDateTime() {
+		return validityPeriodInput.retrieveEndDateTime();
+	}
 
-    private Panel createMainPanel() {
-        VerticalPanel mainPanel = new VerticalPanel();
-        Label description = new Label( MESSAGES.validityPeriodDialogDescription() );
-        description.setWordWrap( true );
-        mainPanel.add( description );
-        mainPanel.add( validityPeriodInput );
-        return mainPanel;
-    }
+	private Panel createMainPanel() {
+		VerticalPanel mainPanel = new VerticalPanel();
+		Label description = new Label(MESSAGES.validityPeriodDialogDescription());
+		description.setWordWrap(true);
+		mainPanel.add(description);
+		mainPanel.add(validityPeriodInput);
+		return mainPanel;
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -42,39 +42,39 @@ import static org.deegree.protocol.wms.WMSConstants.VERSION_130;
  */
 public class PlanwerkProvider extends OWSProvider {
 
-    public static final String NAMESPACE = "http://www.lat-lon.de/services/planwerk";
+	public static final String NAMESPACE = "http://www.lat-lon.de/services/planwerk";
 
-    protected static final ImplementationMetadata<WMSConstants.WMSRequestType> IMPLEMENTATION_METADATA = new ImplementationMetadata<WMSConstants.WMSRequestType>() {
-        {
-            supportedVersions = new Version[] { VERSION_111, VERSION_130 };
-            handledNamespaces = new String[] { "" }; // WMS uses null namespace for SLD GetMap Post requests
-            handledRequests = WMSConstants.WMSRequestType.class;
-            supportedConfigVersions = new Version[] { Version.parseVersion( "3.0.0" ), Version.parseVersion( "3.1.0" ),
-                                                      Version.parseVersion( "3.2.0" ),
-                                                      Version.parseVersion( "3.4.0" ) };
-            serviceName = new String[] { "WMS" };
-        }
-    };
+	protected static final ImplementationMetadata<WMSConstants.WMSRequestType> IMPLEMENTATION_METADATA = new ImplementationMetadata<WMSConstants.WMSRequestType>() {
+		{
+			supportedVersions = new Version[] { VERSION_111, VERSION_130 };
+			handledNamespaces = new String[] { "" }; // WMS uses null namespace for SLD
+														// GetMap Post requests
+			handledRequests = WMSConstants.WMSRequestType.class;
+			supportedConfigVersions = new Version[] { Version.parseVersion("3.0.0"), Version.parseVersion("3.1.0"),
+					Version.parseVersion("3.2.0"), Version.parseVersion("3.4.0") };
+			serviceName = new String[] { "WMS" };
+		}
+	};
 
-    @Override
-    public String getNamespace() {
-        return NAMESPACE;
-    }
+	@Override
+	public String getNamespace() {
+		return NAMESPACE;
+	}
 
-    @Override
-    public URL getSchema() {
-        return PlanwerkProvider.class.getResource(
-                        "/META-INF/schemas/services/planwerkwms/1.0/planwerk_configuration.xsd" );
-    }
+	@Override
+	public URL getSchema() {
+		return PlanwerkProvider.class
+				.getResource("/META-INF/schemas/services/planwerkwms/1.0/planwerk_configuration.xsd");
+	}
 
-    @Override
-    public ImplementationMetadata<WMSConstants.WMSRequestType> getImplementationMetadata() {
-        return IMPLEMENTATION_METADATA;
-    }
+	@Override
+	public ImplementationMetadata<WMSConstants.WMSRequestType> getImplementationMetadata() {
+		return IMPLEMENTATION_METADATA;
+	}
 
-    @Override
-    public ResourceMetadata<OWS> createFromLocation( Workspace workspace, ResourceLocation<OWS> location ) {
-        return new PlanwerkMetadata( workspace, location, this );
-    }
+	@Override
+	public ResourceMetadata<OWS> createFromLocation(Workspace workspace, ResourceLocation<OWS> location) {
+		return new PlanwerkMetadata(workspace, location, this);
+	}
 
 }

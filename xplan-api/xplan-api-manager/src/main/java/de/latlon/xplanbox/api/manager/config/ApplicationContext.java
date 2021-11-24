@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -62,11 +62,9 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -81,195 +79,197 @@ import static java.nio.file.Paths.get;
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager" })
 public class ApplicationContext {
 
-    private static final String RULES_DIRECTORY = "/rules";
+	private static final String RULES_DIRECTORY = "/rules";
 
-    @Bean
-    public SystemConfigHandler systemConfigHandler(
-                            XQuerySemanticValidatorConfigurationRetriever configurationRetriever ) {
-        return new SystemConfigHandler( configurationRetriever );
-    }
+	@Bean
+	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
+			InspirePluTransformator inspirePluTransformator, XPlanGmlTransformer xPlanGmlTransformer,
+			WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
+				inspirePluTransformator, xPlanGmlTransformer, wmsWorkspaceWrapper);
+	}
 
-    @Bean
-    public SyntacticValidator syntacticValidator() {
-        return new SyntacticValidatorImpl();
-    }
+	@Bean
+	public SystemConfigHandler systemConfigHandler(
+			XQuerySemanticValidatorConfigurationRetriever configurationRetriever) {
+		return new SystemConfigHandler(configurationRetriever);
+	}
 
-    @Bean
-    public GeometricValidator geometricValidator() {
-        return new GeometricValidatorImpl();
-    }
+	@Bean
+	public SyntacticValidator syntacticValidator() {
+		return new SyntacticValidatorImpl();
+	}
 
-    @Bean
-    public SemanticValidator semanticValidator( ManagerConfiguration managerConfiguration,
-                                                XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever )
-                            throws URISyntaxException, ValidatorException {
-        return new XQuerySemanticValidator( xQuerySemanticValidatorConfigurationRetriever,
-                                            managerConfiguration.getSemanticConformityLinkConfiguration() );
-    }
+	@Bean
+	public GeometricValidator geometricValidator() {
+		return new GeometricValidatorImpl();
+	}
 
-    @Bean
-    public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(
-                            Path rulesPath ) {
-        return new XQuerySemanticValidatorConfigurationRetriever( rulesPath );
-    }
+	@Bean
+	public SemanticValidator semanticValidator(ManagerConfiguration managerConfiguration,
+			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever)
+			throws URISyntaxException, ValidatorException {
+		return new XQuerySemanticValidator(xQuerySemanticValidatorConfigurationRetriever,
+				managerConfiguration.getSemanticConformityLinkConfiguration());
+	}
 
-    @Bean
-    public XPlanValidator xplanValidator( GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-                                          SemanticValidator semanticValidator,
-                                          ReportArchiveGenerator reportArchiveGenerator ) {
-        return new XPlanValidator( geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator );
-    }
+	@Bean
+	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
+		return new XQuerySemanticValidatorConfigurationRetriever(rulesPath);
+	}
 
-    @Bean
-    public XPlanDao xPlanDao( CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-                              ManagerConfiguration managerConfiguration ) {
-        return new XPlanDao( managerWorkspaceWrapper, categoryMapper, managerConfiguration );
-    }
+	@Bean
+	public XPlanValidator xplanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
+			SemanticValidator semanticValidator, ReportArchiveGenerator reportArchiveGenerator) {
+		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator);
+	}
 
-    @Bean
-    public ManagerWorkspaceWrapper managerWorkspaceWrapper( ManagerConfiguration managerConfiguration )
-                            throws WorkspaceException {
-        DeegreeWorkspace managerWorkspace = instantiateWorkspace( DEFAULT_XPLAN_MANAGER_WORKSPACE );
-        ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(
-                                managerWorkspace.getNewWorkspace(), managerConfiguration );
-        return managerWorkspaceWrapper;
-    }
+	@Bean
+	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration) {
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+	}
 
-    @Bean
-    public XPlanRasterManager xPlanRasterManager( ManagerConfiguration managerConfiguration )
-                            throws WorkspaceException {
-        DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper( DEFAULT_XPLANSYN_WMS_WORKSPACE );
-        WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper( wmsWorkspace.getWorkspaceInstance() );
-        return new XPlanRasterManager( wmsWorkspaceWrapper, managerConfiguration );
-    }
+	@Bean
+	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
+			throws WorkspaceException {
+		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
+		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(managerWorkspace,
+				managerConfiguration);
+		return managerWorkspaceWrapper;
+	}
 
-    @Bean
-    public XPlanInsertManager xPlanInsertManager( XPlanDao xPlanDao, XPlanExporter xPlanExporter,
-                                                  ManagerWorkspaceWrapper managerWorkspaceWrapper,
-                                                  XPlanRasterManager xPlanRasterManager,
-                                                  ManagerConfiguration managerConfiguration,
-                                                  WorkspaceReloader workspaceReloader,
-                                                  XPlanGmlTransformer xPlanGmlTransformer )
-                            throws Exception {
-        SortConfiguration sortConfiguration = createSortConfiguration( managerConfiguration );
-        SortPropertyReader sortPropertyReader = new SortPropertyReader( sortConfiguration );
+	@Bean
+	public WmsWorkspaceWrapper wmsWorkspaceWrapper() throws WorkspaceException {
+		DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper(DEFAULT_XPLANSYN_WMS_WORKSPACE);
+		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
+		return wmsWorkspaceWrapper;
+	}
 
-        return new XPlanInsertManager( xPlanSynthesizer( managerConfiguration ), xPlanGmlTransformer, xPlanDao,
-                                       xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration,
-                                       managerWorkspaceWrapper, sortPropertyReader );
-    }
+	@Bean
+	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration) throws WorkspaceException {
+		return new XPlanRasterManager(wmsWorkspaceWrapper, managerConfiguration);
+	}
 
-    @Bean
-    public XPlanExporter xPlanExporter( ManagerConfiguration managerConfiguration ) {
-        return new XPlanExporter( managerConfiguration );
-    }
+	@Bean
+	public XPlanInsertManager xPlanInsertManager(XPlanDao xPlanDao, XPlanExporter xPlanExporter,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanRasterManager xPlanRasterManager,
+			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
+			XPlanGmlTransformer xPlanGmlTransformer) throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration(managerConfiguration);
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 
-    @Bean
-    public XPlanDeleteManager xPlanDeleteManager( XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
-                                                  XPlanRasterManager xPlanRasterManager,
-                                                  ManagerConfiguration managerConfiguration ) {
-        return new XPlanDeleteManager( xPlanDao, xPlanRasterManager, workspaceReloader, managerConfiguration );
-    }
+		return new XPlanInsertManager(xPlanSynthesizer(managerConfiguration), xPlanGmlTransformer, xPlanDao,
+				xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
+				sortPropertyReader);
+	}
 
-    @Bean
-    public InternalIdRetriever internalIdRetriever( ManagerConfiguration managerConfiguration )
-                            throws Exception {
-        return new InternalIdRetriever( managerConfiguration.getInternalIdRetrieverConfiguration() );
-    }
+	@Bean
+	public XPlanExporter xPlanExporter(ManagerConfiguration managerConfiguration) {
+		return new XPlanExporter(managerConfiguration);
+	}
 
-    @Bean
-    public ReportArchiveGenerator reportArchiveGenerator()
-                            throws IOException, ConfigurationException {
-        return new ReportArchiveGenerator( validatorConfiguration() );
-    }
+	@Bean
+	public XPlanDeleteManager xPlanDeleteManager(XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
+			XPlanRasterManager xPlanRasterManager, ManagerConfiguration managerConfiguration) {
+		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, workspaceReloader, managerConfiguration);
+	}
 
-    @Bean
-    public ReportWriter reportWriter() {
-        return new ReportWriter();
-    }
+	@Bean
+	public InternalIdRetriever internalIdRetriever(ManagerConfiguration managerConfiguration) throws Exception {
+		return new InternalIdRetriever(managerConfiguration.getInternalIdRetrieverConfiguration());
+	}
 
-    @Bean
-    public XPlanArchiveCreator archiveCreator( CategoryMapper categoryMapper )
-                            throws ConfigurationException {
-        return new XPlanArchiveCreator( categoryMapper );
-    }
+	@Bean
+	public ReportArchiveGenerator reportArchiveGenerator() throws IOException, ConfigurationException {
+		return new ReportArchiveGenerator(validatorConfiguration());
+	}
 
-    @Bean
-    public CategoryMapper categoryMapper( ManagerConfiguration managerConfiguration )
-                            throws ConfigurationException {
-        return new CategoryMapper( managerConfiguration );
-    }
+	@Bean
+	public ReportWriter reportWriter() {
+		return new ReportWriter();
+	}
 
-    @Bean
-    public ManagerConfiguration managerConfiguration( PropertiesLoader managerPropertiesLoader )
-                            throws ConfigurationException {
-        return new ManagerConfiguration( managerPropertiesLoader );
-    }
+	@Bean
+	public XPlanArchiveCreator archiveCreator(CategoryMapper categoryMapper) throws ConfigurationException {
+		return new XPlanArchiveCreator(categoryMapper);
+	}
 
-    @Bean
-    public ManagerApiConfiguration managerApiConfiguration( PropertiesLoader managerPropertiesLoader )
-                            throws ConfigurationException {
-        return new ManagerApiConfiguration( managerPropertiesLoader );
-    }
+	@Bean
+	public CategoryMapper categoryMapper(ManagerConfiguration managerConfiguration) throws ConfigurationException {
+		return new CategoryMapper(managerConfiguration);
+	}
 
-    @Bean
-    public WorkspaceReloader workspaceReloader() {
-        return new WorkspaceReloader();
-    }
+	@Bean
+	public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
+			throws ConfigurationException {
+		return new ManagerConfiguration(managerPropertiesLoader);
+	}
 
-    @Bean
-    public InspirePluTransformator inspirePluTransformator( ManagerConfiguration managerConfiguration ) {
-        String pathToHaleCli = managerConfiguration.getPathToHaleCli();
-        Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
-        if ( pathToHaleCli != null && pathToHaleProjectDirectory != null )
-            return new HaleCliInspirePluTransformator( pathToHaleCli, pathToHaleProjectDirectory );
-        return null;
-    }
+	@Bean
+	public ManagerApiConfiguration managerApiConfiguration(PropertiesLoader managerPropertiesLoader)
+			throws ConfigurationException {
+		return new ManagerApiConfiguration(managerPropertiesLoader);
+	}
 
-    @Bean
-    public XPlanGmlTransformer xPlanGmlTransformer( ManagerConfiguration managerConfiguration ) {
-        String pathToHaleCli = managerConfiguration.getPathToHaleCli();
-        Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
-        if ( pathToHaleCli != null && pathToHaleProjectDirectory != null ) {
-            HaleXplan41ToXplan51Transformer haleXplan41ToXplan51Transformer = new HaleXplan41ToXplan51Transformer(
-                                    pathToHaleCli, pathToHaleProjectDirectory );
-            return new XPlanGmlTransformer( haleXplan41ToXplan51Transformer );
-        }
-        return null;
-    }
+	@Bean
+	public WorkspaceReloader workspaceReloader() {
+		return new WorkspaceReloader();
+	}
 
-    @Bean
-    public ValidatorConfiguration validatorConfiguration()
-                            throws IOException, ConfigurationException {
-        ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
-        return validatorConfigurationParser.parse( new SystemPropertyPropertiesLoader( ValidatorConfiguration.class ) );
-    }
+	@Bean
+	public InspirePluTransformator inspirePluTransformator(ManagerConfiguration managerConfiguration) {
+		String pathToHaleCli = managerConfiguration.getPathToHaleCli();
+		Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
+		if (pathToHaleCli != null && pathToHaleProjectDirectory != null)
+			return new HaleCliInspirePluTransformator(pathToHaleCli, pathToHaleProjectDirectory);
+		return null;
+	}
 
-    @Bean
-    public PropertiesLoader managerPropertiesLoader() {
-        return new SystemPropertyPropertiesLoader( ManagerConfiguration.class );
-    }
+	@Bean
+	public XPlanGmlTransformer xPlanGmlTransformer(ManagerConfiguration managerConfiguration) {
+		String pathToHaleCli = managerConfiguration.getPathToHaleCli();
+		Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
+		if (pathToHaleCli != null && pathToHaleProjectDirectory != null) {
+			HaleXplan41ToXplan51Transformer haleXplan41ToXplan51Transformer = new HaleXplan41ToXplan51Transformer(
+					pathToHaleCli, pathToHaleProjectDirectory);
+			return new XPlanGmlTransformer(haleXplan41ToXplan51Transformer);
+		}
+		return null;
+	}
 
-    @Bean
-    public Path rulesPath( ValidatorConfiguration validatorConfiguration )
-                            throws URISyntaxException {
-        Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
-        if ( validationRulesDirectory != null )
-            return validationRulesDirectory;
-        URI rulesPath = getClass().getResource( RULES_DIRECTORY ).toURI();
-        return get( rulesPath );
-    }
+	@Bean
+	public ValidatorConfiguration validatorConfiguration() throws IOException, ConfigurationException {
+		ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
+		return validatorConfigurationParser.parse(new SystemPropertyPropertiesLoader(ValidatorConfiguration.class));
+	}
 
-    private SortConfiguration createSortConfiguration( ManagerConfiguration managerConfiguration ) {
-        if ( managerConfiguration != null )
-            return managerConfiguration.getSortConfiguration();
-        return new SortConfiguration();
-    }
+	@Bean
+	public PropertiesLoader managerPropertiesLoader() {
+		return new SystemPropertyPropertiesLoader(ManagerConfiguration.class);
+	}
 
-    private XPlanSynthesizer xPlanSynthesizer( ManagerConfiguration managerConfiguration ) {
-        if ( managerConfiguration != null )
-            return new XPlanSynthesizer( managerConfiguration.getSynthesizerConfigurationDirectory() );
-        return new XPlanSynthesizer();
-    }
+	@Bean
+	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException {
+		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
+		if (validationRulesDirectory != null)
+			return validationRulesDirectory;
+		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
+		return get(rulesPath);
+	}
+
+	private SortConfiguration createSortConfiguration(ManagerConfiguration managerConfiguration) {
+		if (managerConfiguration != null)
+			return managerConfiguration.getSortConfiguration();
+		return new SortConfiguration();
+	}
+
+	private XPlanSynthesizer xPlanSynthesizer(ManagerConfiguration managerConfiguration) {
+		if (managerConfiguration != null)
+			return new XPlanSynthesizer(managerConfiguration.getSynthesizerConfigurationDirectory());
+		return new XPlanSynthesizer();
+	}
 
 }

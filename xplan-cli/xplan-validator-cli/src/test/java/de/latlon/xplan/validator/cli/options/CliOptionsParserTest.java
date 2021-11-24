@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -51,131 +51,123 @@ import static org.junit.Assert.assertThat;
  */
 public class CliOptionsParserTest {
 
-  @Test
-  public void testParseValidationOptions() throws ParseException {
-    CliOptionsParser parser = new CliOptionsParser();
-    String[] optionsToParse = new String[] { "-validate", ".",
-                                             "-name", "validation",
-                                             "-vo", "skip-flaechenschluss" };
-    CliOptions options = parser.parse( optionsToParse );
-    List<ValidationOption> parsedOptions = options.getVoOptions();
-    assertThat( parsedOptions.size(), is( 1 ) );
-    assertThat( parsedOptions, containsOption( "skip-flaechenschluss", null ) );
-  }
+	@Test
+	public void testParseValidationOptions() throws ParseException {
+		CliOptionsParser parser = new CliOptionsParser();
+		String[] optionsToParse = new String[] { "-validate", ".", "-name", "validation", "-vo",
+				"skip-flaechenschluss" };
+		CliOptions options = parser.parse(optionsToParse);
+		List<ValidationOption> parsedOptions = options.getVoOptions();
+		assertThat(parsedOptions.size(), is(1));
+		assertThat(parsedOptions, containsOption("skip-flaechenschluss", null));
+	}
 
-  @Test
-  public void testParseValidationOptionsWithNullArgumentShouldReturnEmptyList() {
-    List<ValidationOption> parsedOptions = new CliOptionsParser().parseValidationOptions( null );
-    assertThat( parsedOptions.size(), is( 0 ) );
-  }
+	@Test
+	public void testParseValidationOptionsWithNullArgumentShouldReturnEmptyList() {
+		List<ValidationOption> parsedOptions = new CliOptionsParser().parseValidationOptions(null);
+		assertThat(parsedOptions.size(), is(0));
+	}
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testParseValidationOptionsWithEmptyNameShouldFail() {
-    new CliOptionsParser().parseValidationOptions( new String[] { "" } );
-  }
+	@Test(expected = IllegalArgumentException.class)
+	public void testParseValidationOptionsWithEmptyNameShouldFail() {
+		new CliOptionsParser().parseValidationOptions(new String[] { "" });
+	}
 
-  @Test(expected = ParseException.class)
-  public void testInvalidInputIllegalArgument()
-      throws Exception {
-    String[] invalidArgs = new String[] { "-invalid", "name", "-validate", "validation" };
-    new CliOptionsParser().parse( invalidArgs );
-  }
+	@Test(expected = ParseException.class)
+	public void testInvalidInputIllegalArgument() throws Exception {
+		String[] invalidArgs = new String[] { "-invalid", "name", "-validate", "validation" };
+		new CliOptionsParser().parse(invalidArgs);
+	}
 
-  @Test(expected = ParseException.class)
-  public void testInvalidInputWrongArgumentNumber()
-      throws Exception {
-    String[] invalidArgs = new String[] {};
-    new CliOptionsParser().parse( invalidArgs );
-  }
+	@Test(expected = ParseException.class)
+	public void testInvalidInputWrongArgumentNumber() throws Exception {
+		String[] invalidArgs = new String[] {};
+		new CliOptionsParser().parse(invalidArgs);
+	}
 
-  @Test(expected = ParseException.class)
-  public void testInvalidInputNoArgs()
-      throws Exception {
-    new CliOptionsParser().parse( new String[0] );
-  }
+	@Test(expected = ParseException.class)
+	public void testInvalidInputNoArgs() throws Exception {
+		new CliOptionsParser().parse(new String[0]);
+	}
 
-  @Test
-  public void testValidateWithVoOptionsExpectCorrectOptions() throws Exception {
-    String[] args = new String[] { "-validate", "path",
-                                   "-name", "validation",
-                                   "-vo", "skip-flaechenschluss",
-                                   "-vo", "skip-geltungsbereich"};
-    CliOptions options = new CliOptionsParser().parse( args );
-    List<ValidationOption> voOptions = options.getVoOptions();
-    assertThat( voOptions, allOf(
-        hasCorrectArgument( "skip-flaechenschluss", null ),
-        hasCorrectArgument( "skip-geltungsbereich", null ) ) );
-  }
+	@Test
+	public void testValidateWithVoOptionsExpectCorrectOptions() throws Exception {
+		String[] args = new String[] { "-validate", "path", "-name", "validation", "-vo", "skip-flaechenschluss", "-vo",
+				"skip-geltungsbereich" };
+		CliOptions options = new CliOptionsParser().parse(args);
+		List<ValidationOption> voOptions = options.getVoOptions();
+		assertThat(voOptions, allOf(hasCorrectArgument("skip-flaechenschluss", null),
+				hasCorrectArgument("skip-geltungsbereich", null)));
+	}
 
-  @Test
-  public void testNoVtypeShouldDefaultToSemantic() throws Exception {
-    String[] args = new String[] { "-validate", "path", "-name", "validation" };
-    CliOptions options = new CliOptionsParser().parse( args );
-    assertThat( options.getValidationTypes(), hasItems( SEMANTIC, SYNTACTIC, GEOMETRIC ) );
-  }
+	@Test
+	public void testNoVtypeShouldDefaultToSemantic() throws Exception {
+		String[] args = new String[] { "-validate", "path", "-name", "validation" };
+		CliOptions options = new CliOptionsParser().parse(args);
+		assertThat(options.getValidationTypes(), hasItems(SEMANTIC, SYNTACTIC, GEOMETRIC));
+	}
 
-  @Test
-  public void testVtype() throws Exception {
-    String[] args = new String[] { "-validate", "path", "-name", "validation" };
-    CliOptions options = new CliOptionsParser().parse( args );
-    assertThat( options.getValidationTypes(), hasItems( SEMANTIC, SYNTACTIC, GEOMETRIC ) );
-  }
+	@Test
+	public void testVtype() throws Exception {
+		String[] args = new String[] { "-validate", "path", "-name", "validation" };
+		CliOptions options = new CliOptionsParser().parse(args);
+		assertThat(options.getValidationTypes(), hasItems(SEMANTIC, SYNTACTIC, GEOMETRIC));
+	}
 
-  @Test
-  public void testVoShouldNotBeRequired()
-                          throws Exception {
-    String[] args = new String[] { "-validate", "path", "-name", "validation", "-vtype", "syntax,semantic" };
-    CliOptions options = new CliOptionsParser().parse( args );
-    assertThat( options.getValidationTypes(), hasItems( SYNTACTIC, SEMANTIC ) );
-    assertThat( options.getValidationTypes(), not( hasItem( GEOMETRIC ) ) );
-  }
+	@Test
+	public void testVoShouldNotBeRequired() throws Exception {
+		String[] args = new String[] { "-validate", "path", "-name", "validation", "-vtype", "syntax,semantic" };
+		CliOptions options = new CliOptionsParser().parse(args);
+		assertThat(options.getValidationTypes(), hasItems(SYNTACTIC, SEMANTIC));
+		assertThat(options.getValidationTypes(), not(hasItem(GEOMETRIC)));
+	}
 
-  private BaseMatcher<List<ValidationOption>> hasCorrectArgument( final String parameter, final String value ) {
-    return new BaseMatcher<List<ValidationOption>>() {
+	private BaseMatcher<List<ValidationOption>> hasCorrectArgument(final String parameter, final String value) {
+		return new BaseMatcher<List<ValidationOption>>() {
 
-      @Override
-      public boolean matches( Object item ) {
-        //noinspection unchecked
-        for ( ValidationOption validationOption : (List<ValidationOption>) item ) {
-          if ( validationOption.getName().equals( parameter ) )
-            if ( validationOption.getArgument() != null )
-              return validationOption.getArgument().equals( value );
-            else
-              return value == null;
-        }
-        return false;
-      }
+			@Override
+			public boolean matches(Object item) {
+				// noinspection unchecked
+				for (ValidationOption validationOption : (List<ValidationOption>) item) {
+					if (validationOption.getName().equals(parameter))
+						if (validationOption.getArgument() != null)
+							return validationOption.getArgument().equals(value);
+						else
+							return value == null;
+				}
+				return false;
+			}
 
-      @Override
-      public void describeTo( Description description ) {
-        description.appendText( "ValidationOptions should contain " + parameter );
-      }
-    };
-  }
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("ValidationOptions should contain " + parameter);
+			}
+		};
+	}
 
-  private Matcher<? super List<ValidationOption>> containsOption( final String name, final String argument ) {
-    return new BaseMatcher<List<ValidationOption>>() {
+	private Matcher<? super List<ValidationOption>> containsOption(final String name, final String argument) {
+		return new BaseMatcher<List<ValidationOption>>() {
 
-      @Override
-      public boolean matches( Object item ) {
-        @SuppressWarnings("unchecked")
-        List<ValidationOption> validationOptions = (List<ValidationOption>) item;
-        for ( ValidationOption validationOption : validationOptions ) {
-          String optName = validationOption.getName();
-          String optArgument = validationOption.getArgument();
-          if ( optName.equals( name )
-               && ( optArgument == null && argument == null || optArgument != null && optArgument.equals(
-              argument ) ) ) {
-            return true;
-          }
-        }
-        return false;
-      }
+			@Override
+			public boolean matches(Object item) {
+				@SuppressWarnings("unchecked")
+				List<ValidationOption> validationOptions = (List<ValidationOption>) item;
+				for (ValidationOption validationOption : validationOptions) {
+					String optName = validationOption.getName();
+					String optArgument = validationOption.getArgument();
+					if (optName.equals(name) && (optArgument == null && argument == null
+							|| optArgument != null && optArgument.equals(argument))) {
+						return true;
+					}
+				}
+				return false;
+			}
 
-      @Override
-      public void describeTo( Description description ) {
-        description.appendText( "Expected is an option with name " + name + "and argument " + argument );
-      }
-    };
-  }
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("Expected is an option with name " + name + "and argument " + argument);
+			}
+		};
+	}
+
 }

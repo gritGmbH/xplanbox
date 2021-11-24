@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -60,126 +60,120 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.findWorkspaceDire
  */
 public class XPlanInsertManager extends XPlanTransactionManager {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XPlanInsertManager.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XPlanInsertManager.class);
 
-    public XPlanInsertManager( XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
-                               XPlanDao xplanDao, XPlanExporter xPlanExporter, XPlanRasterManager xPlanRasterManager,
-                               WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-                               ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader )
-                    throws DataServiceCouplingException {
-        super( xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
-               managerConfiguration, managerWorkspaceWrapper, sortPropertyReader );
-    }
+	public XPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
+			XPlanDao xplanDao, XPlanExporter xPlanExporter, XPlanRasterManager xPlanRasterManager,
+			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
+		super(xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
+				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
+	}
 
-    /**
-     * @param archive
-     *                 to import, never <code>null</code>
-     * @param defaultCRS
-     *                 the default crs, may be <code>null</code> if no default crs should be set
-     * @param force
-     *                 should import be forced?
-     * @param makeWMSConfig
-     *                 <code>true</code> if the WMS configuration for the plan to import should be created,
-     *                 <code>false</code> otherwise. To use this option it is required, that makeRasterConfig is
-     *                 <code>true</code>
-     * @param makeRasterConfig
-     *                 <code>true</code> if the configuration of raster files should be created, <code>false</code> otherwise
-     * @param workspaceFolder
-     *                 workspace folder, may be <code>null</code> if default path should be used.
-     * @param internalId
-     *                 is added to the feature collection of the plan, if <code>null</code>, internalId property is not added
-     *                 to the feature collection
-     * @param xPlanMetadata
-     *                 containing some metadata about the xplan, never <code>null</code>
-     * @throws Exception
-     * @return the id of the plan, never <code>null</code>
-     */
-    public int importPlan( XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
-                           boolean makeRasterConfig, File workspaceFolder, String internalId,
-                           AdditionalPlanData xPlanMetadata )
-                    throws Exception {
-        LOG.info( "- Importiere Plan " + archive );
-        ICRS crs = CrsUtils.determineActiveCrs( defaultCRS, archive, LOG );
-        PlanStatus planStatus = xPlanMetadata.getPlanStatus();
-        XPlanFeatureCollection fc = readAndValidateMainDocument( archive, crs, force, internalId, planStatus );
-        FeatureCollection synFc = createSynFeatures( fc, archive.getVersion() );
-        if ( internalId != null ) {
-            AppSchema synSchema = managerWorkspaceWrapper.lookupStore( XPLAN_SYN, null, planStatus ).getSchema();
-            featureCollectionManipulator.addInternalId( synFc, synSchema, internalId );
-        }
-        Date sortDate = sortPropertyReader.readSortDate( archive.getType(), archive.getVersion(), fc.getFeatures() );
-        int planId = xplanDao.insert( archive, fc, synFc, xPlanMetadata, sortDate, internalId );
-        createRasterConfigurations( archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
-                                    sortDate );
-        startCreationOfDataServicesCoupling( planId, fc, crs );
-        reloadWorkspace();
-        LOG.info( "XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId );
-        LOG.info( "OK." );
-        return planId;
-    }
+	/**
+	 * @param archive to import, never <code>null</code>
+	 * @param defaultCRS the default crs, may be <code>null</code> if no default crs
+	 * should be set
+	 * @param force should import be forced?
+	 * @param makeWMSConfig <code>true</code> if the WMS configuration for the plan to
+	 * import should be created, <code>false</code> otherwise. To use this option it is
+	 * required, that makeRasterConfig is <code>true</code>
+	 * @param makeRasterConfig <code>true</code> if the configuration of raster files
+	 * should be created, <code>false</code> otherwise
+	 * @param workspaceFolder workspace folder, may be <code>null</code> if default path
+	 * should be used.
+	 * @param internalId is added to the feature collection of the plan, if
+	 * <code>null</code>, internalId property is not added to the feature collection
+	 * @param xPlanMetadata containing some metadata about the xplan, never
+	 * <code>null</code>
+	 * @throws Exception
+	 * @return the id of the plan, never <code>null</code>
+	 */
+	public int importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
+			boolean makeRasterConfig, File workspaceFolder, String internalId, AdditionalPlanData xPlanMetadata)
+			throws Exception {
+		LOG.info("- Importiere Plan " + archive);
+		ICRS crs = CrsUtils.determineActiveCrs(defaultCRS, archive, LOG);
+		PlanStatus planStatus = xPlanMetadata.getPlanStatus();
+		XPlanFeatureCollection fc = readAndValidateMainDocument(archive, crs, force, internalId, planStatus);
+		FeatureCollection synFc = createSynFeatures(fc, archive.getVersion());
+		if (internalId != null) {
+			AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, planStatus).getSchema();
+			featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
+		}
+		Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(), fc.getFeatures());
+		int planId = xplanDao.insert(archive, fc, synFc, xPlanMetadata, sortDate, internalId);
+		createRasterConfigurations(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
+				sortDate);
+		startCreationOfDataServicesCoupling(planId, fc, crs);
+		reloadWorkspace();
+		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
+		LOG.info("OK.");
+		return planId;
+	}
 
-    private XPlanFeatureCollection readAndValidateMainDocument( XPlanArchive archive, ICRS crs, boolean force,
-                                                                String internalId, PlanStatus planStatus )
-                    throws Exception {
-        performSchemaValidation( archive );
-        try {
-            GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl();
-            AppSchema appSchema = managerWorkspaceWrapper.lookupStore( archive.getVersion(), archive.getAde(),
-                                                                       planStatus ).getSchema();
-            XPlanFeatureCollection fc = geometricValidator.retrieveGeometricallyValidXPlanFeatures( archive, crs,
-                                                                                                    appSchema, force,
-                                                                                                    internalId );
-            reassignFids( fc );
-            long begin = System.currentTimeMillis();
-            new SyntacticValidatorImpl().validateReferences( archive, fc.getExternalReferenceInfo(), force );
-            LOG.info( "- Überprüfung der externen Referenzen..." );
-            long elapsed = System.currentTimeMillis() - begin;
-            LOG.info( "OK [" + elapsed + " ms]" );
-            return fc;
-        } catch ( XMLStreamException | UnknownCRSException e ) {
-            LOG.error( "Could not read and validate xplan gml", e );
-            return null;
-        }
-    }
+	private XPlanFeatureCollection readAndValidateMainDocument(XPlanArchive archive, ICRS crs, boolean force,
+			String internalId, PlanStatus planStatus) throws Exception {
+		performSchemaValidation(archive);
+		try {
+			GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl();
+			AppSchema appSchema = managerWorkspaceWrapper
+					.lookupStore(archive.getVersion(), archive.getAde(), planStatus).getSchema();
+			XPlanFeatureCollection fc = geometricValidator.retrieveGeometricallyValidXPlanFeatures(archive, crs,
+					appSchema, force, internalId);
+			reassignFids(fc);
+			long begin = System.currentTimeMillis();
+			new SyntacticValidatorImpl().validateReferences(archive, fc.getExternalReferenceInfo(), force);
+			LOG.info("- Überprüfung der externen Referenzen...");
+			long elapsed = System.currentTimeMillis() - begin;
+			LOG.info("OK [" + elapsed + " ms]");
+			return fc;
+		}
+		catch (XMLStreamException | UnknownCRSException e) {
+			LOG.error("Could not read and validate xplan gml", e);
+			return null;
+		}
+	}
 
-    private void createRasterConfigurations( XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig,
-                                             File workspaceFolder, XPlanFeatureCollection fc, int planId,
-                                             PlanStatus planStatus, Date sortDate )
-                    throws Exception {
-        if ( makeRasterConfig ) {
-            List<String> rasterIds = createRasterConfiguration( archive, fc, planId, archive.getType(), planStatus,
-                                                                null, sortDate );
-            if ( makeWMSConfig ) {
-                WmsWorkspaceManager wmsWorkspaceManager = new WmsWorkspaceManager(
-                                findWorkspaceDirectory( workspaceFolder ) );
-                wmsWorkspaceManager.updateWmsWorkspace( archive, planId, rasterIds, planStatus, fc.getBboxIn4326(),
-                                                        managerConfiguration.getDefaultBboxIn4326() );
-            }
-        }
-    }
+	private void createRasterConfigurations(XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig,
+			File workspaceFolder, XPlanFeatureCollection fc, int planId, PlanStatus planStatus, Date sortDate)
+			throws Exception {
+		if (makeRasterConfig) {
+			List<String> rasterIds = createRasterConfiguration(archive, fc, planId, archive.getType(), planStatus, null,
+					sortDate);
+			if (makeWMSConfig) {
+				WmsWorkspaceManager wmsWorkspaceManager = new WmsWorkspaceManager(
+						findWorkspaceDirectory(workspaceFolder));
+				wmsWorkspaceManager.updateWmsWorkspace(archive, planId, rasterIds, planStatus, fc.getBboxIn4326(),
+						managerConfiguration.getDefaultBboxIn4326());
+			}
+		}
+	}
 
-    private void performSchemaValidation( XPlanArchive archive )
-                    throws Exception {
-        long begin = System.currentTimeMillis();
-        LOG.info( "- Schema-Validierung (Hauptdokument)..." );
-        SyntacticValidatorResult result;
-        try {
-            result = (SyntacticValidatorResult) new SyntacticValidatorImpl().validateSyntax( archive );
-        } catch ( Exception e ) {
-            throw new Exception( e.getMessage() );
-        }
+	private void performSchemaValidation(XPlanArchive archive) throws Exception {
+		long begin = System.currentTimeMillis();
+		LOG.info("- Schema-Validierung (Hauptdokument)...");
+		SyntacticValidatorResult result;
+		try {
+			result = (SyntacticValidatorResult) new SyntacticValidatorImpl().validateSyntax(archive);
+		}
+		catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
 
-        long elapsed = System.currentTimeMillis() - begin;
-        if ( result.isValid() ) {
-            LOG.info( "OK [" + elapsed + " ms]." );
-        } else {
-            List<String> messages = result.getMessages();
-            LOG.info( messages.size() + " Problem(e) gefunden [" + elapsed + " ms]" );
-            for ( String message : messages ) {
-                LOG.info( message );
-            }
-            throw new Exception( "Das Hauptdokument ist nicht schema-valide." );
-        }
-    }
+		long elapsed = System.currentTimeMillis() - begin;
+		if (result.isValid()) {
+			LOG.info("OK [" + elapsed + " ms].");
+		}
+		else {
+			List<String> messages = result.getMessages();
+			LOG.info(messages.size() + " Problem(e) gefunden [" + elapsed + " ms]");
+			for (String message : messages) {
+				LOG.info(message);
+			}
+			throw new Exception("Das Hauptdokument ist nicht schema-valide.");
+		}
+	}
 
 }

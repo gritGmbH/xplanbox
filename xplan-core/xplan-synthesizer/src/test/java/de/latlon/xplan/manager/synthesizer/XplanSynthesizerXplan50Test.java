@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -41,29 +41,27 @@ import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 @RunWith(JUnitParamsRunner.class)
 public class XplanSynthesizerXplan50Test extends AbstractXplanSynthesizerTest {
 
-    // Contains broken geometrieS: "xplan50/FPlan.zip",
-    @Parameters({ "xplan50/BP2070.zip", "xplan50/BP2135.zip", "xplan50/LA22.zip", "xplan50/LA67.zip" })
-    @Test
-    public void testCreateSynFeatures( String archiveName )
-                    throws Exception {
-        XPlanArchive archive = getTestArchive( archiveName );
-        XPlanFeatureCollection originalFeatureCollection = readFeatures( archive );
-        FeatureCollection synFeatureCollection = createSynFeatures( archive.getVersion(), originalFeatureCollection );
+	// Contains broken geometrieS: "xplan50/FPlan.zip",
+	@Parameters({ "xplan50/BP2070.zip", "xplan50/BP2135.zip", "xplan50/LA22.zip", "xplan50/LA67.zip" })
+	@Test
+	public void testCreateSynFeatures(String archiveName) throws Exception {
+		XPlanArchive archive = getTestArchive(archiveName);
+		XPlanFeatureCollection originalFeatureCollection = readFeatures(archive);
+		FeatureCollection synFeatureCollection = createSynFeatures(archive.getVersion(), originalFeatureCollection);
 
-        int numberOfOriginalFeatures = originalFeatureCollection.getFeatures().size();
-        int numberOfSynFeatures = synFeatureCollection.size();
+		int numberOfOriginalFeatures = originalFeatureCollection.getFeatures().size();
+		int numberOfSynFeatures = synFeatureCollection.size();
 
-        assertThat( numberOfSynFeatures, is( numberOfOriginalFeatures ) );
-        String synGml = writeSynFeatureCollection( synFeatureCollection);
+		assertThat(numberOfSynFeatures, is(numberOfOriginalFeatures));
+		String synGml = writeSynFeatureCollection(synFeatureCollection);
 
-        assertThat( synGml,
-                    hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", is( "0" ) ).withNamespaceContext(
-                                    nsContext() ) );
-    }
+		assertThat(synGml,
+				hasXPath("count(//xplansyn:rechtscharakter[text() = ''])", is("0")).withNamespaceContext(nsContext()));
+	}
 
-    @Override
-    XPlanVersion getXPlanVersion() {
-        return XPLAN_50;
-    }
+	@Override
+	XPlanVersion getXPlanVersion() {
+		return XPLAN_50;
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -48,43 +48,41 @@ import de.latlon.xplan.manager.configuration.InternalIdRetrieverConfiguration;
  */
 public class InternalIdRetrieverTest {
 
-    private InternalIdRetriever internalIdRetriever;
+	private InternalIdRetriever internalIdRetriever;
 
-    @Before
-    public void setup()
-                    throws Exception {
-        InternalIdRetrieverConfiguration configuration = new InternalIdRetrieverConfiguration();
-        internalIdRetriever = spy( new InternalIdRetriever( configuration ) );
-        Connection conn = mock( Connection.class );
-        PreparedStatement ps = mock( PreparedStatement.class );
-        ResultSet rs = createResultSet();
-        doReturn( conn ).when( internalIdRetriever ).createConnectionFromWorkspace();
-        doReturn( ps ).when( internalIdRetriever ).retrievePreparedStatement( anyString(), anyString(), eq( conn ) );
-        doReturn( rs ).when( internalIdRetriever ).retrieveResultSet( eq( ps ) );
-    }
+	@Before
+	public void setup() throws Exception {
+		InternalIdRetrieverConfiguration configuration = new InternalIdRetrieverConfiguration();
+		internalIdRetriever = spy(new InternalIdRetriever(configuration));
+		Connection conn = mock(Connection.class);
+		PreparedStatement ps = mock(PreparedStatement.class);
+		ResultSet rs = createResultSet();
+		doReturn(conn).when(internalIdRetriever).createConnectionFromWorkspace();
+		doReturn(ps).when(internalIdRetriever).retrievePreparedStatement(anyString(), anyString(), eq(conn));
+		doReturn(rs).when(internalIdRetriever).retrieveResultSet(eq(ps));
+	}
 
-    @Test
-    public void testGetMatchingInternalIds()
-                    throws Exception {
-        Map<String, String> internalIds = internalIdRetriever.getMatchingInternalIds( "test" );
+	@Test
+	public void testGetMatchingInternalIds() throws Exception {
+		Map<String, String> internalIds = internalIdRetriever.getMatchingInternalIds("test");
 
-        assertThat( internalIds.size(), is( 3 ) );
-        assertThat( internalIds.containsKey( "id1" ), is( true ) );
-        assertThat( internalIds.containsKey( "id2" ), is( true ) );
-        assertThat( internalIds.containsKey( "id3" ), is( true ) );
-        assertThat( internalIds.containsValue( "name1" ), is( true ) );
-        assertThat( internalIds.containsValue( "name2" ), is( true ) );
-        assertThat( internalIds.containsValue( "name3" ), is( true ) );
-    }
+		assertThat(internalIds.size(), is(3));
+		assertThat(internalIds.containsKey("id1"), is(true));
+		assertThat(internalIds.containsKey("id2"), is(true));
+		assertThat(internalIds.containsKey("id3"), is(true));
+		assertThat(internalIds.containsValue("name1"), is(true));
+		assertThat(internalIds.containsValue("name2"), is(true));
+		assertThat(internalIds.containsValue("name3"), is(true));
+	}
 
-    private SimpleResultSet createResultSet() {
-        SimpleResultSet rs = new SimpleResultSet();
-        rs.addColumn( "verfahrensid", 0, 0, 0 );
-        rs.addColumn( "verfahrensname", 0, 0, 0 );
-        rs.addRow( "id1", "name1" );
-        rs.addRow( "id2", "name2" );
-        rs.addRow( "id3", "name3" );
-        return rs;
-    }
+	private SimpleResultSet createResultSet() {
+		SimpleResultSet rs = new SimpleResultSet();
+		rs.addColumn("verfahrensid", 0, 0, 0);
+		rs.addColumn("verfahrensname", 0, 0, 0);
+		rs.addRow("id1", "name1");
+		rs.addRow("id2", "name2");
+		rs.addRow("id3", "name3");
+		return rs;
+	}
 
 }

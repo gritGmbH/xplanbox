@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -47,58 +47,56 @@ import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 public class XplanGeometryTest {
 
-    @Test
-    public void testEvaluate() {
-        FeatureCollection features = getTestFeatures( XPLAN_41 );
-        Feature feature = getTestFeature( features, "BP_Plan_1" );
-        XPlanGeometry expr = new XPlanGeometry( new Xpath( "xplan:raeumlicherGeltungsbereich" ) );
-        Geometry value = expr.evaluate( feature, features );
-        assertNotNull( value );
-    }
+	@Test
+	public void testEvaluate() {
+		FeatureCollection features = getTestFeatures(XPLAN_41);
+		Feature feature = getTestFeature(features, "BP_Plan_1");
+		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:raeumlicherGeltungsbereich"));
+		Geometry value = expr.evaluate(feature, features);
+		assertNotNull(value);
+	}
 
-    @Test
-    public void testEvaluateEmptyProperty() {
-        FeatureCollection features = getTestFeatures( XPLAN_41 );
-        Feature feature = getTestFeature( features, "XP_PPO_3" );
-        XPlanGeometry expr = new XPlanGeometry( new Xpath( "xplan:position" ) );
-        Geometry value = expr.evaluate( feature, features );
-        assertNull( value );
-    }
+	@Test
+	public void testEvaluateEmptyProperty() {
+		FeatureCollection features = getTestFeatures(XPLAN_41);
+		Feature feature = getTestFeature(features, "XP_PPO_3");
+		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:position"));
+		Geometry value = expr.evaluate(feature, features);
+		assertNull(value);
+	}
 
-    @Test
-    public void testEvaluateCurve()
-                            throws Exception {
-        FeatureCollection features = getTestFeatures( XPLAN_41, "FeatureWithCurve.xml" );
-        Feature feature = getTestFeature( features, "BP_BaugebietsTeilFlaeche" );
+	@Test
+	public void testEvaluateCurve() throws Exception {
+		FeatureCollection features = getTestFeatures(XPLAN_41, "FeatureWithCurve.xml");
+		Feature feature = getTestFeature(features, "BP_BaugebietsTeilFlaeche");
 
-        XPlanGeometry expr = new XPlanGeometry( new Xpath( "xplan:position" ) );
-        Geometry value = expr.evaluate( feature, features );
-        assertNotNull( value );
+		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:position"));
+		Geometry value = expr.evaluate(feature, features);
+		assertNotNull(value);
 
-        String geom = writeGMLGeometry( value );
+		String geom = writeGMLGeometry(value);
 
-        String xPath = "count(/gml:Polygon/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment[@interpolation='linear'])";
-        assertThat( geom, hasXPath( xPath, is( "6" ) ).withNamespaceContext( nsContext() ) );
+		String xPath = "count(/gml:Polygon/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment[@interpolation='linear'])";
+		assertThat(geom, hasXPath(xPath, is("6")).withNamespaceContext(nsContext()));
 
-    }
+	}
 
-    private Map<String, String> nsContext() {
-        Map<String, String> nsContext = new HashMap<>();
-        nsContext.put( "gml", GMLVersion.GML_32.getNamespace() );
-        return nsContext;
-    }
+	private Map<String, String> nsContext() {
+		Map<String, String> nsContext = new HashMap<>();
+		nsContext.put("gml", GMLVersion.GML_32.getNamespace());
+		return nsContext;
+	}
 
-    private String writeGMLGeometry( Geometry value )
-                            throws Exception {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        XMLStreamWriter xmlStreamWriter = new IndentingXMLStreamWriter(
-                                XMLOutputFactory.newInstance().createXMLStreamWriter( bos ) );
-        GMLStreamWriter gmlWriter = GMLOutputFactory.createGMLStreamWriter( GMLVersion.GML_32, xmlStreamWriter );
-        gmlWriter.write( value );
-        gmlWriter.close();
-        xmlStreamWriter.close();
-        bos.close();
-        return bos.toString();
-    }
+	private String writeGMLGeometry(Geometry value) throws Exception {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		XMLStreamWriter xmlStreamWriter = new IndentingXMLStreamWriter(
+				XMLOutputFactory.newInstance().createXMLStreamWriter(bos));
+		GMLStreamWriter gmlWriter = GMLOutputFactory.createGMLStreamWriter(GMLVersion.GML_32, xmlStreamWriter);
+		gmlWriter.write(value);
+		gmlWriter.close();
+		xmlStreamWriter.close();
+		bos.close();
+		return bos.toString();
+	}
 
 }

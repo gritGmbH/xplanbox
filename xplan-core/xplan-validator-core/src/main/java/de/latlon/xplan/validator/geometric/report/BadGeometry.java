@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -36,51 +36,51 @@ import org.deegree.geometry.Geometry;
 
 public class BadGeometry {
 
-    private Geometry originalGeometry;
+	private Geometry originalGeometry;
 
-    private final List<String> errors = new ArrayList<>();
+	private final List<String> errors = new ArrayList<>();
 
-    private final Map<String, Geometry> markerGeometries = new HashMap<>();
+	private final Map<String, Geometry> markerGeometries = new HashMap<>();
 
-    public BadGeometry() {
-    }
+	public BadGeometry() {
+	}
 
-    public BadGeometry( Geometry originalGeometry, String error ) {
-        this.originalGeometry = originalGeometry;
-        addError( error );
-    }
+	public BadGeometry(Geometry originalGeometry, String error) {
+		this.originalGeometry = originalGeometry;
+		addError(error);
+	}
 
-    public void setOriginalGeometry( Geometry originalGeometry ) {
-        this.originalGeometry = originalGeometry;
-    }
+	public void setOriginalGeometry(Geometry originalGeometry) {
+		this.originalGeometry = originalGeometry;
+	}
 
-    public Geometry getOriginalGeometry() {
-        return originalGeometry;
-    }
+	public Geometry getOriginalGeometry() {
+		return originalGeometry;
+	}
 
-    public List<String> getErrors() {
-        return errors;
-    }
+	public List<String> getErrors() {
+		return errors;
+	}
 
-    public String getErrorsSingleString() {
-        StringBuilder allErrors = new StringBuilder();
-        for ( String error : errors ) {
-            allErrors.append( error );
-            allErrors.append( "; " );
-        }
-        return allErrors.toString();
-    }
+	public String getErrorsSingleString() {
+		StringBuilder allErrors = new StringBuilder();
+		for (String error : errors) {
+			allErrors.append(error);
+			allErrors.append("; ");
+		}
+		return allErrors.toString();
+	}
 
-    public void addError( String err ) {
-        errors.add( err );
-    }
+	public void addError(String err) {
+		errors.add(err);
+	}
 
-    public Map<String, Geometry> getMarkerGeometries() {
-        return markerGeometries;
-    }
+	public Map<String, Geometry> getMarkerGeometries() {
+		return markerGeometries;
+	}
 
-    public void addMarkerGeometry( String error, Geometry markerGeometry ) {
-        markerGeometries.put( error, markerGeometry );
-    }
+	public void addMarkerGeometry(String error, Geometry markerGeometry) {
+		markerGeometries.put(error, markerGeometry);
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -43,116 +43,111 @@ import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
  */
 public class CliOptionsParser {
 
-  private static final boolean HAS_ARG = true;
+	private static final boolean HAS_ARG = true;
 
-  /**
-   * Parse command line options for the XPlanValidator CLI
-   *
-   * @param args
-   *     never <code>null</code>, may contain the following name: the name of the validation run validate: path to the
-   *     archive to validate vo: validation options vtype[semantic, geometric, syntactic]: type of validation, defaults
-   *     to semantic
-   * @return CliOptions parsed from the arguments
-   * @throws ParseException
-   */
-  public CliOptions parse( String[] args ) throws ParseException {
-    CommandLine commandLine = ( new BasicParser() ).parse( createOptions(), args );
-    File archive = parseArchive( commandLine );
-    String validationName = parseValidationName( commandLine, archive );
-    List<ValidationOption> voOptions = parseValidationOptions( commandLine.getOptionValues( is( VO ) ) );
-    List<ValidationType> validationTypes = parseValidationTypeSemanticIfNone(
-        commandLine.getOptionValue( is( CLIParams.VALIDATE_TYPE ) ) );
-    return new CliOptions( validationName, voOptions, archive, validationTypes );
-  }
+	/**
+	 * Parse command line options for the XPlanValidator CLI
+	 * @param args never <code>null</code>, may contain the following name: the name of
+	 * the validation run validate: path to the archive to validate vo: validation options
+	 * vtype[semantic, geometric, syntactic]: type of validation, defaults to semantic
+	 * @return CliOptions parsed from the arguments
+	 * @throws ParseException
+	 */
+	public CliOptions parse(String[] args) throws ParseException {
+		CommandLine commandLine = (new BasicParser()).parse(createOptions(), args);
+		File archive = parseArchive(commandLine);
+		String validationName = parseValidationName(commandLine, archive);
+		List<ValidationOption> voOptions = parseValidationOptions(commandLine.getOptionValues(is(VO)));
+		List<ValidationType> validationTypes = parseValidationTypeSemanticIfNone(
+				commandLine.getOptionValue(is(CLIParams.VALIDATE_TYPE)));
+		return new CliOptions(validationName, voOptions, archive, validationTypes);
+	}
 
-  private File parseArchive( CommandLine commandLine ) {
-    return new File( commandLine.getOptionValue( is( VALIDATE ) ) );
-  }
+	private File parseArchive(CommandLine commandLine) {
+		return new File(commandLine.getOptionValue(is(VALIDATE)));
+	}
 
-  private String parseValidationName( CommandLine commandLine, File defaultValue ) {
-    String name = commandLine.getOptionValue( is( NAME ) );
-    if ( name != null )
-      return name;
-    String fileName = defaultValue.getName();
-    return fileName.substring( 0, fileName.indexOf( "." ) );
-  }
+	private String parseValidationName(CommandLine commandLine, File defaultValue) {
+		String name = commandLine.getOptionValue(is(NAME));
+		if (name != null)
+			return name;
+		String fileName = defaultValue.getName();
+		return fileName.substring(0, fileName.indexOf("."));
+	}
 
-  private Options createOptions() {
-    Options options = new Options();
-    Option zipFileNameOption = new Option( is( VALIDATE ), HAS_ARG, "zip file path" );
-    Option nameOption = new Option( is( NAME ), HAS_ARG, "name of the validation" );
-    Option voOption = new Option( is( VO ), HAS_ARG, "validation options" );
-    Option xqOption = new Option( is( XQUERY ), HAS_ARG, "xquery file path" );
-    Option vTypeOption = new Option( is( VALIDATE_TYPE ), HAS_ARG, "values: syntax, geometric, semantic. multiple types must be comma separated" );
-    nameOption.setRequired( false );
-    zipFileNameOption.setRequired( true );
-    voOption.setRequired( false );
-    xqOption.setRequired( false );
-    vTypeOption.setRequired( false );
-    options.addOption( zipFileNameOption ).addOption( nameOption ).addOption( xqOption )
-        .addOption( vTypeOption )
-        .addOption( voOption );
-    return options;
-  }
+	private Options createOptions() {
+		Options options = new Options();
+		Option zipFileNameOption = new Option(is(VALIDATE), HAS_ARG, "zip file path");
+		Option nameOption = new Option(is(NAME), HAS_ARG, "name of the validation");
+		Option voOption = new Option(is(VO), HAS_ARG, "validation options");
+		Option xqOption = new Option(is(XQUERY), HAS_ARG, "xquery file path");
+		Option vTypeOption = new Option(is(VALIDATE_TYPE), HAS_ARG,
+				"values: syntax, geometric, semantic. multiple types must be comma separated");
+		nameOption.setRequired(false);
+		zipFileNameOption.setRequired(true);
+		voOption.setRequired(false);
+		xqOption.setRequired(false);
+		vTypeOption.setRequired(false);
+		options.addOption(zipFileNameOption).addOption(nameOption).addOption(xqOption).addOption(vTypeOption)
+				.addOption(voOption);
+		return options;
+	}
 
-  private List<ValidationType> parseValidationTypeSemanticIfNone( String s ) {
-    if ( s == null ) {
-      return Arrays.asList( ValidationType.values() );
-    }
-    List<ValidationType> validationTypes = new ArrayList<>();
-    if ( s.contains( "syntax" ) )
-      validationTypes.add( SYNTACTIC );
-    if ( s.contains( "geometric" ) )
-      validationTypes.add( GEOMETRIC );
-    if ( s.contains( "semantic" ) )
-      validationTypes.add( SEMANTIC );
-    return validationTypes;
-  }
+	private List<ValidationType> parseValidationTypeSemanticIfNone(String s) {
+		if (s == null) {
+			return Arrays.asList(ValidationType.values());
+		}
+		List<ValidationType> validationTypes = new ArrayList<>();
+		if (s.contains("syntax"))
+			validationTypes.add(SYNTACTIC);
+		if (s.contains("geometric"))
+			validationTypes.add(GEOMETRIC);
+		if (s.contains("semantic"))
+			validationTypes.add(SEMANTIC);
+		return validationTypes;
+	}
 
+	/**
+	 * Parses validation related CLI options
+	 * @param optionValues the cli options, never <code>null</code>
+	 * @return List of validation options, never <code>null</code>
+	 */
+	List<ValidationOption> parseValidationOptions(String[] optionValues) {
+		List<ValidationOption> validationOptions = new ArrayList<>();
+		if (optionValues != null)
+			for (String optionValue : optionValues) {
+				if (optionValue.contains("=")) {
+					String[] nameAndArgument = optionValue.split("=", 2);
+					validationOptions.add(new ValidationOption(nameAndArgument[0], nameAndArgument[1]));
+				}
+				else {
+					validationOptions.add(new ValidationOption(optionValue));
+				}
+			}
+		return validationOptions;
+	}
 
-  /**
-   * Parses validation related CLI options
-   *
-   * @param optionValues
-   *     the cli options, never <code>null</code>
-   * @return List of validation options, never <code>null</code>
-   */
-  List<ValidationOption> parseValidationOptions( String[] optionValues ) {
-    List<ValidationOption> validationOptions = new ArrayList<>();
-    if ( optionValues != null )
-      for ( String optionValue : optionValues ) {
-        if ( optionValue.contains( "=" ) ) {
-          String[] nameAndArgument = optionValue.split( "=", 2 );
-          validationOptions.add( new ValidationOption( nameAndArgument[0], nameAndArgument[1] ) );
-        } else {
-          validationOptions.add( new ValidationOption( optionValue ) );
-        }
-      }
-    return validationOptions;
-  }
+	/**
+	 * Discriminates CLI params
+	 */
+	enum CLIParams {
 
-  /**
-   * Discriminates CLI params
-   */
-  enum CLIParams {
-    NAME( "name" ),
-    VALIDATE( "validate" ),
-    VO( "vo" ),
-    XQUERY( "xq" ), VALIDATE_TYPE( "vtype" );
+		NAME("name"), VALIDATE("validate"), VO("vo"), XQUERY("xq"), VALIDATE_TYPE("vtype");
 
-    private final String option;
+		private final String option;
 
-    CLIParams( String option ) {
-      this.option = option;
-    }
+		CLIParams(String option) {
+			this.option = option;
+		}
 
-    public String option() {
-      return option;
-    }
+		public String option() {
+			return option;
+		}
 
-    static String is( CLIParams param ) {
-      return param.option();
-    }
+		static String is(CLIParams param) {
+			return param.option();
+		}
 
-  }
+	}
+
 }

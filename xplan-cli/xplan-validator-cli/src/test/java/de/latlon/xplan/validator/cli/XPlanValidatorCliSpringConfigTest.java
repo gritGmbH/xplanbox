@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -31,46 +31,45 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * Tests the application context - sees if it loads
- * 
+ *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  * @version $Revision: $, $Date: $
  */
 
 public class XPlanValidatorCliSpringConfigTest {
 
-    @Before
-    public void createMissingDirectory()
-                            throws URISyntaxException {
-        URL path = XPlanValidatorCliSpringConfigTest.class.getProtectionDomain().getCodeSource().getLocation();
-        File parentFile = new File( path.toURI() ).getParentFile();
-        createSubDirectories( parentFile );
-    }
+	@Before
+	public void createMissingDirectory() throws URISyntaxException {
+		URL path = XPlanValidatorCliSpringConfigTest.class.getProtectionDomain().getCodeSource().getLocation();
+		File parentFile = new File(path.toURI()).getParentFile();
+		createSubDirectories(parentFile);
+	}
 
-    @Test
-    public void testLoadApplicationContextAndInitializeBeans() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.register( XPlanValidatorCliSpringConfig.class );
-        context.refresh();
-        context.close();
-    }
+	@Test
+	public void testLoadApplicationContextAndInitializeBeans() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.register(XPlanValidatorCliSpringConfig.class);
+		context.refresh();
+		context.close();
+	}
 
-    private void createSubDirectories( File parent ) {
-        File etc = createEtcDirectory( parent );
-        createRulesDirectory( etc );
-    }
+	private void createSubDirectories(File parent) {
+		File etc = createEtcDirectory(parent);
+		createRulesDirectory(etc);
+	}
 
-    private File createEtcDirectory( File parent ) {
-        File newEtc = new File( parent, "etc" );
-        if ( !newEtc.exists() )
-            newEtc.mkdir();
-        return newEtc;
-    }
+	private File createEtcDirectory(File parent) {
+		File newEtc = new File(parent, "etc");
+		if (!newEtc.exists())
+			newEtc.mkdir();
+		return newEtc;
+	}
 
-    private void createRulesDirectory( File etc ) {
-        File rules = new File( etc, "rules" );
-        if ( !rules.exists() ) {
-            rules.mkdir();
-        }
-    }
+	private void createRulesDirectory(File etc) {
+		File rules = new File(etc, "rules");
+		if (!rules.exists()) {
+			rules.mkdir();
+		}
+	}
 
 }

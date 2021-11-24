@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -48,81 +48,79 @@ import java.io.IOException;
  */
 public class MapPreviewManager {
 
-    private static final Logger LOG = LoggerFactory.getLogger( MapPreviewManager.class );
+	private static final Logger LOG = LoggerFactory.getLogger(MapPreviewManager.class);
 
-    private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
-    private final ValidatorWmsManager validatorWmsManager;
+	private final ValidatorWmsManager validatorWmsManager;
 
-    private final MasterportalConfigWriter configWriter;
+	private final MasterportalConfigWriter configWriter;
 
-    private final GeometricValidator geometricValidator;
+	private final GeometricValidator geometricValidator;
 
-    private final XPlanSchemas schemas;
+	private final XPlanSchemas schemas;
 
-    /**
-     * @param validatorWmsManager
-     *                         used to create wms configuration, never <code>null</code>
-     * @param geometricValidator
-     *                         used to parse the gml, never <code>null</code>
-     * @param validatorWmsEndpoint
-     *                         the base URL of the XPlanValidatorWMS, never <code>null</code>
-     * @throws MapPreviewCreationException
-     *                         if instantiation failed
-     */
-    public MapPreviewManager( ValidatorWmsManager validatorWmsManager, GeometricValidator geometricValidator,
-                              String validatorWmsEndpoint )
-                            throws MapPreviewCreationException {
-        this.geometricValidator = geometricValidator;
-        this.validatorWmsManager = validatorWmsManager;
-        this.configWriter = new MasterportalConfigWriter( validatorWmsEndpoint );
-        this.schemas = XPlanSchemas.getInstance();
+	/**
+	 * @param validatorWmsManager used to create wms configuration, never
+	 * <code>null</code>
+	 * @param geometricValidator used to parse the gml, never <code>null</code>
+	 * @param validatorWmsEndpoint the base URL of the XPlanValidatorWMS, never
+	 * <code>null</code>
+	 * @throws MapPreviewCreationException if instantiation failed
+	 */
+	public MapPreviewManager(ValidatorWmsManager validatorWmsManager, GeometricValidator geometricValidator,
+			String validatorWmsEndpoint) throws MapPreviewCreationException {
+		this.geometricValidator = geometricValidator;
+		this.validatorWmsManager = validatorWmsManager;
+		this.configWriter = new MasterportalConfigWriter(validatorWmsEndpoint);
+		this.schemas = XPlanSchemas.getInstance();
 
-    }
+	}
 
-    public MapPreviewMetadata createConfigurations( File xPlan )
-                            throws MapPreviewCreationException {
-        try {
-            XPlanArchive archive = archiveCreator.createXPlanArchive( xPlan );
-            XPlanFeatureCollection featureCollection = parseFeatures( archive );
-            int managerId = this.validatorWmsManager.insert( featureCollection );
-            String configFileName = this.configWriter.createMasterportalConfig( managerId, archive.getType() );
+	public MapPreviewMetadata createConfigurations(File xPlan) throws MapPreviewCreationException {
+		try {
+			XPlanArchive archive = archiveCreator.createXPlanArchive(xPlan);
+			XPlanFeatureCollection featureCollection = parseFeatures(archive);
+			int managerId = this.validatorWmsManager.insert(featureCollection);
+			String configFileName = this.configWriter.createMasterportalConfig(managerId, archive.getType());
 
-            Envelope envelope = transformBboxTo25832( featureCollection.getBboxIn4326() );
-            XPlanEnvelope xPlanEnvelope = new XPlanEnvelope( envelope.getMin().get0(), envelope.getMin().get1(),
-                                                             envelope.getMax().get0(), envelope.getMax().get1(),
-                                                             "EPSG:4326" );
-            return new MapPreviewMetadata( configFileName, featureCollection.getPlanName(), xPlanEnvelope );
-        } catch ( Exception e ) {
-            LOG.error( "An exception occurred during creation of the map preview configuration", e );
-            throw new MapPreviewCreationException( e.getMessage() );
-        }
-    }
+			Envelope envelope = transformBboxTo25832(featureCollection.getBboxIn4326());
+			XPlanEnvelope xPlanEnvelope = new XPlanEnvelope(envelope.getMin().get0(), envelope.getMin().get1(),
+					envelope.getMax().get0(), envelope.getMax().get1(), "EPSG:4326");
+			return new MapPreviewMetadata(configFileName, featureCollection.getPlanName(), xPlanEnvelope);
+		}
+		catch (Exception e) {
+			LOG.error("An exception occurred during creation of the map preview configuration", e);
+			throw new MapPreviewCreationException(e.getMessage());
+		}
+	}
 
-    private XPlanFeatureCollection parseFeatures( XPlanArchive archive ) {
-        try {
-            AppSchema appSchema = schemas.getAppSchema( archive.getVersion(), archive.getAde() );
-            XPlanFeatureCollection xPlanFeatureCollection = geometricValidator.retrieveGeometricallyValidXPlanFeatures(
-                                    archive, archive.getCrs(), appSchema, true, null );
-            return xPlanFeatureCollection;
-        } catch ( XMLStreamException | UnknownCRSException | ValidatorException e ) {
-            LOG.warn( "Parsing of external references failed", e );
-            return null;
-        }
-    }
+	private XPlanFeatureCollection parseFeatures(XPlanArchive archive) {
+		try {
+			AppSchema appSchema = schemas.getAppSchema(archive.getVersion(), archive.getAde());
+			XPlanFeatureCollection xPlanFeatureCollection = geometricValidator
+					.retrieveGeometricallyValidXPlanFeatures(archive, archive.getCrs(), appSchema, true, null);
+			return xPlanFeatureCollection;
+		}
+		catch (XMLStreamException | UnknownCRSException | ValidatorException e) {
+			LOG.warn("Parsing of external references failed", e);
+			return null;
+		}
+	}
 
-    // TODO
-    private Envelope transformBboxTo25832( Envelope envelopeIn4326 ) {
-        try {
-            if ( envelopeIn4326 != null ) {
-                ICRS targetCrs = CRSManager.lookup( "EPSG:25832" );
-                GeometryTransformer geometryTransformer = new GeometryTransformer( targetCrs );
-                return geometryTransformer.transform( envelopeIn4326 );
-            }
-        } catch ( IllegalArgumentException | UnknownCRSException | TransformationException e ) {
-            LOG.error( "Could not transform envelope: " + e.getMessage() );
-        }
-        return envelopeIn4326;
-    }
+	// TODO
+	private Envelope transformBboxTo25832(Envelope envelopeIn4326) {
+		try {
+			if (envelopeIn4326 != null) {
+				ICRS targetCrs = CRSManager.lookup("EPSG:25832");
+				GeometryTransformer geometryTransformer = new GeometryTransformer(targetCrs);
+				return geometryTransformer.transform(envelopeIn4326);
+			}
+		}
+		catch (IllegalArgumentException | UnknownCRSException | TransformationException e) {
+			LOG.error("Could not transform envelope: " + e.getMessage());
+		}
+		return envelopeIn4326;
+	}
 
 }

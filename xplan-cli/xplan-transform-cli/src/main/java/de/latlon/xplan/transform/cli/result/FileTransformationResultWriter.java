@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -41,41 +41,38 @@ import static org.apache.commons.io.IOUtils.write;
  */
 public class FileTransformationResultWriter implements TransformationResultWriter {
 
-    private static final Logger LOG = LoggerFactory.getLogger( FileTransformationResultWriter.class );
+	private static final Logger LOG = LoggerFactory.getLogger(FileTransformationResultWriter.class);
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern( "yyyy-MM-dd-HH-mm" );
+	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm");
 
-    private Path outDir;
+	private Path outDir;
 
-    public FileTransformationResultWriter( Path outDir )
-                    throws IOException {
-        this.outDir = outDir;
-    }
+	public FileTransformationResultWriter(Path outDir) throws IOException {
+		this.outDir = outDir;
+	}
 
-    @Override
-    public void writeResult( String id, String name, SyntacticValidatorResult validatorResult,
-                             TransformationResult transformationResult ) {
-        String fileNameGml = id + "_transformedGml_" + dateTimeFormatter.format( LocalDateTime.now() ) + ".xml";
-        String fileNameValidationResult =
-                        id + "_validationResult_" + dateTimeFormatter.format( LocalDateTime.now() ) + ".xml";
-        Path gmlFile = outDir.resolve( fileNameGml );
-        Path validationResultFile = outDir.resolve( fileNameValidationResult );
-        try (
-                        OutputStream gmlOutputStream = newOutputStream( gmlFile );
-                        OutputStream validationResultOutputStream = newOutputStream( validationResultFile ) ) {
-            write( transformationResult.getTransformationResult(), gmlOutputStream );
-            String validationResult = validatorResult.isValid() ?
-                                      "valid" :
-                                      validatorResult.getMessages().stream().collect( Collectors.joining( "," ) );
-            write( validationResult, validationResultOutputStream );
-        } catch ( IOException e ) {
-            LOG.warn( "Could not write results to file" );
-        }
-    }
+	@Override
+	public void writeResult(String id, String name, SyntacticValidatorResult validatorResult,
+			TransformationResult transformationResult) {
+		String fileNameGml = id + "_transformedGml_" + dateTimeFormatter.format(LocalDateTime.now()) + ".xml";
+		String fileNameValidationResult = id + "_validationResult_" + dateTimeFormatter.format(LocalDateTime.now())
+				+ ".xml";
+		Path gmlFile = outDir.resolve(fileNameGml);
+		Path validationResultFile = outDir.resolve(fileNameValidationResult);
+		try (OutputStream gmlOutputStream = newOutputStream(gmlFile);
+				OutputStream validationResultOutputStream = newOutputStream(validationResultFile)) {
+			write(transformationResult.getTransformationResult(), gmlOutputStream);
+			String validationResult = validatorResult.isValid() ? "valid"
+					: validatorResult.getMessages().stream().collect(Collectors.joining(","));
+			write(validationResult, validationResultOutputStream);
+		}
+		catch (IOException e) {
+			LOG.warn("Could not write results to file");
+		}
+	}
 
-    @Override
-    public void close()
-                    throws IOException {
-    }
+	@Override
+	public void close() throws IOException {
+	}
 
 }

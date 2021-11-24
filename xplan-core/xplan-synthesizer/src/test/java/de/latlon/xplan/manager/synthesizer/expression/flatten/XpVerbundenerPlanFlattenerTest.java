@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -38,24 +38,26 @@ import static org.junit.Assert.assertEquals;
  */
 public class XpVerbundenerPlanFlattenerTest {
 
-    @Test
-    public void testFlattenAendert() {
-        FeatureCollection features = getTestFeatures( XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml" );
-        Feature feature = getTestFeature( features, "BP_PLAN" );
-        XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:aendert" ) );
-        PrimitiveValue value = expr.evaluate( feature, features );
-        assertEquals( "[Verbundener Plan: Heideweg1|Rechtscharakter Planänderung: Ergaenzung|Nummer verbundener Plan: 42]",
-                      value.toString() );
-    }
+	@Test
+	public void testFlattenAendert() {
+		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
+		Feature feature = getTestFeature(features, "BP_PLAN");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:aendert"));
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals(
+				"[Verbundener Plan: Heideweg1|Rechtscharakter Planänderung: Ergaenzung|Nummer verbundener Plan: 42]",
+				value.toString());
+	}
 
-    @Test
-    public void testFlattenWurdeGeaendertVon() {
-        FeatureCollection features = getTestFeatures( XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml" );
-        Feature feature = getTestFeature( features, "BP_PLAN" );
-        XplanFlattenProperty expr = new XplanFlattenProperty( new Xpath( "xplan:wurdeGeaendertVon" ) );
-        PrimitiveValue value = expr.evaluate( feature, features );
-        assertEquals( "[Verbundener Plan: Heideweg8|Rechtscharakter Planänderung: Aufhebung|Nummer verbundener Plan: 88]",
-                      value.toString() );
-    }
+	@Test
+	public void testFlattenWurdeGeaendertVon() {
+		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
+		Feature feature = getTestFeature(features, "BP_PLAN");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:wurdeGeaendertVon"));
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals(
+				"[Verbundener Plan: Heideweg8|Rechtscharakter Planänderung: Aufhebung|Nummer verbundener Plan: 88]",
+				value.toString());
+	}
 
 }

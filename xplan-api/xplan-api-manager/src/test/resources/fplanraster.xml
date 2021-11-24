@@ -1,0 +1,15 @@
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description"
+        xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
+  <!--<LayerStoreId>dummyrasterlayer</LayerStoreId>-->
+  <Theme>
+    <Identifier>FP_Planraster</Identifier>
+    <d:Title>FPlan Raster</d:Title>
+    <d:Abstract>Rasterdaten FPlan</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <Theme>
+      <Identifier>fplanraster_sortiert</Identifier>
+      <d:Title>FPlan Raster Theme</d:Title>
+      <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
+    </Theme>
+  </Theme>
+</Themes>

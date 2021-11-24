@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -27,41 +27,40 @@ import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 
 /**
  * Checks if the plan is assigned to the plan status or not.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class PlanStatusFilter implements PlanFilter {
 
-    private final String planStatus;
+	private final String planStatus;
 
-    /**
-     * Instantiates a positive filter: a plan matches if the status of the plan is the same (ignoring case) as the given
-     * status.
-     * 
-     * @param planStatus
-     *            the expected category, <code>null</code> if the filter is disabled
-     */
-    public PlanStatusFilter( String planStatus ) {
-        this.planStatus = planStatus;
-    }
+	/**
+	 * Instantiates a positive filter: a plan matches if the status of the plan is the
+	 * same (ignoring case) as the given status.
+	 * @param planStatus the expected category, <code>null</code> if the filter is
+	 * disabled
+	 */
+	public PlanStatusFilter(String planStatus) {
+		this.planStatus = planStatus;
+	}
 
-    @Override
-    public boolean isMatching( XPlan plan ) {
-        if ( planStatus == null || planStatus.isEmpty() )
-            return true;
-        String planStatusFromPlan = retrievePlanStatusFromPlan( plan );
-        return planStatus.equalsIgnoreCase( planStatusFromPlan );
-    }
+	@Override
+	public boolean isMatching(XPlan plan) {
+		if (planStatus == null || planStatus.isEmpty())
+			return true;
+		String planStatusFromPlan = retrievePlanStatusFromPlan(plan);
+		return planStatus.equalsIgnoreCase(planStatusFromPlan);
+	}
 
-    private String retrievePlanStatusFromPlan( XPlan plan ) {
-        AdditionalPlanData xplanMetadata = plan.getXplanMetadata();
-        if ( xplanMetadata == null )
-            return null;
-        PlanStatus planStatusFromPlan = xplanMetadata.getPlanStatus();
-        if ( planStatusFromPlan == null )
-            return null;
-        return planStatusFromPlan.getMessage();
-    }
+	private String retrievePlanStatusFromPlan(XPlan plan) {
+		AdditionalPlanData xplanMetadata = plan.getXplanMetadata();
+		if (xplanMetadata == null)
+			return null;
+		PlanStatus planStatusFromPlan = xplanMetadata.getPlanStatus();
+		if (planStatusFromPlan == null)
+			return null;
+		return planStatusFromPlan.getMessage();
+	}
 
 }

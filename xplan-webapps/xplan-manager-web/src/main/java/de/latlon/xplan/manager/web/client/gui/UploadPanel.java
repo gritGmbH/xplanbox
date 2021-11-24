@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -68,386 +68,390 @@ import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListene
 
 /**
  * Files system panel of the xplan manager web gui.
- * 
+ *
  * @author <a href="mailto:wanhoff@lat-lon.de">Jeronimo Wanhoff</a>
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
 public class UploadPanel extends DecoratorPanel {
 
-    private final XPlanWebMessages messages = GWT.create( XPlanWebMessages.class );
+	private final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);
 
-    private final CellTable<XPlan> uploadedPlanTable = new CellTable<XPlan>();
+	private final CellTable<XPlan> uploadedPlanTable = new CellTable<XPlan>();
 
-    private final ListDataProvider<XPlan> dataProviderFileSystem = new ListDataProvider<XPlan>();
+	private final ListDataProvider<XPlan> dataProviderFileSystem = new ListDataProvider<XPlan>();
 
-    private final ImportWizardCreator importWizardCreator;
+	private final ImportWizardCreator importWizardCreator;
 
-    private DialogBox uploading;
+	private DialogBox uploading;
 
-    private final FileUpload upload = new FileUpload();
+	private final FileUpload upload = new FileUpload();
 
-    public UploadPanel( ManagerWebConfiguration configuration, PlanListPanel planListPanel ) {
-        this.importWizardCreator = new ImportWizardCreator( configuration, planListPanel );
-        createUi();
-    }
+	public UploadPanel(ManagerWebConfiguration configuration, PlanListPanel planListPanel) {
+		this.importWizardCreator = new ImportWizardCreator(configuration, planListPanel);
+		createUi();
+	}
 
-    private void createUi() {
-        HorizontalPanel uploadPanel = createUploadPanel();
-        initUploadedPlanTable();
-        FlexTable layout = createLayout( uploadPanel );
-        this.setWidget( layout );
-    }
+	private void createUi() {
+		HorizontalPanel uploadPanel = createUploadPanel();
+		initUploadedPlanTable();
+		FlexTable layout = createLayout(uploadPanel);
+		this.setWidget(layout);
+	}
 
-    private HorizontalPanel createUploadPanel() {
-        HorizontalPanel xPlanTableFileSystemHeader = new HorizontalPanel();
-        xPlanTableFileSystemHeader.setSpacing( 10 );
-        xPlanTableFileSystemHeader.add( createUploadWidget() );
-        xPlanTableFileSystemHeader.add( createHelpButton() );
-        return xPlanTableFileSystemHeader;
-    }
+	private HorizontalPanel createUploadPanel() {
+		HorizontalPanel xPlanTableFileSystemHeader = new HorizontalPanel();
+		xPlanTableFileSystemHeader.setSpacing(10);
+		xPlanTableFileSystemHeader.add(createUploadWidget());
+		xPlanTableFileSystemHeader.add(createHelpButton());
+		return xPlanTableFileSystemHeader;
+	}
 
-    private FlexTable createLayout( HorizontalPanel uploadPanel ) {
-        FlexTable layout = new FlexTable();
-        FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
-        formatter.setHorizontalAlignment( 1, 1, ALIGN_CENTER );
-        formatter.setHorizontalAlignment( 2, 1, ALIGN_CENTER );
-        layout.setWidget( 1, 1, uploadPanel );
-        layout.setWidget( 2, 1, uploadedPlanTable );
-        return layout;
-    }
+	private FlexTable createLayout(HorizontalPanel uploadPanel) {
+		FlexTable layout = new FlexTable();
+		FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
+		formatter.setHorizontalAlignment(1, 1, ALIGN_CENTER);
+		formatter.setHorizontalAlignment(2, 1, ALIGN_CENTER);
+		layout.setWidget(1, 1, uploadPanel);
+		layout.setWidget(2, 1, uploadedPlanTable);
+		return layout;
+	}
 
-    private void initUploadedPlanTable() {
-        uploadedPlanTable.setKeyboardSelectionPolicy( HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED );
-        uploadedPlanTable.setPageSize( 1 );
-        initUploadedPlanTableColumns();
-        dataProviderFileSystem.addDataDisplay( uploadedPlanTable );
-        uploadedPlanTable.setVisible( false );
-    }
+	private void initUploadedPlanTable() {
+		uploadedPlanTable.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
+		uploadedPlanTable.setPageSize(1);
+		initUploadedPlanTableColumns();
+		dataProviderFileSystem.addDataDisplay(uploadedPlanTable);
+		uploadedPlanTable.setVisible(false);
+	}
 
-    private void initUploadedPlanTableColumns() {
-        addNameColumn( uploadedPlanTable );
-        addValidationStatusColumn( uploadedPlanTable );
-        addValidationNoteColumn( uploadedPlanTable );
-        addValidationColumn( uploadedPlanTable );
-        addImportColumn( uploadedPlanTable );
-        addRemoveColumn( uploadedPlanTable );
-    }
+	private void initUploadedPlanTableColumns() {
+		addNameColumn(uploadedPlanTable);
+		addValidationStatusColumn(uploadedPlanTable);
+		addValidationNoteColumn(uploadedPlanTable);
+		addValidationColumn(uploadedPlanTable);
+		addImportColumn(uploadedPlanTable);
+		addRemoveColumn(uploadedPlanTable);
+	}
 
-    private void addNameColumn( CellTable<XPlan> xPlanTable ) {
-        TextColumn<XPlan> nameColumn = new TextColumn<XPlan>() {
-            @Override
-            public String getValue( XPlan object ) {
-                return object.getName();
-            }
-        };
-        nameColumn.setSortable( true );
-        xPlanTable.addColumn( nameColumn, messages.nameColumn() );
-    }
+	private void addNameColumn(CellTable<XPlan> xPlanTable) {
+		TextColumn<XPlan> nameColumn = new TextColumn<XPlan>() {
+			@Override
+			public String getValue(XPlan object) {
+				return object.getName();
+			}
+		};
+		nameColumn.setSortable(true);
+		xPlanTable.addColumn(nameColumn, messages.nameColumn());
+	}
 
-    private void addValidationColumn( CellTable<XPlan> xPlanTable ) {
-        ButtonCell validatedButtonCell = new ButtonCell();
-        Column<XPlan, String> validatedColumn = new Column<XPlan, String>( validatedButtonCell ) {
-            @Override
-            public String getValue( XPlan object ) {
-                return messages.validate();
-            }
-        };
-        validatedColumn.setFieldUpdater( new FieldUpdater<XPlan, String>() {
-            public void update( int index, XPlan object, String value ) {
-                final DialogBox dialog = new DialogBox( );
-                dialog.setText( messages.validationTitle() );
-                ValidatorOptionsDialog validatorOptions = createValidatorOptions( dialog );
-                dialog.add( validatorOptions );
-                dialog.show();
-            }
+	private void addValidationColumn(CellTable<XPlan> xPlanTable) {
+		ButtonCell validatedButtonCell = new ButtonCell();
+		Column<XPlan, String> validatedColumn = new Column<XPlan, String>(validatedButtonCell) {
+			@Override
+			public String getValue(XPlan object) {
+				return messages.validate();
+			}
+		};
+		validatedColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
+			public void update(int index, XPlan object, String value) {
+				final DialogBox dialog = new DialogBox();
+				dialog.setText(messages.validationTitle());
+				ValidatorOptionsDialog validatorOptions = createValidatorOptions(dialog);
+				dialog.add(validatorOptions);
+				dialog.show();
+			}
 
-        } );
-        validatedColumn.setSortable( true );
-        xPlanTable.addColumn( validatedColumn );
-    }
+		});
+		validatedColumn.setSortable(true);
+		xPlanTable.addColumn(validatedColumn);
+	}
 
-    private void addValidationStatusColumn( CellTable<XPlan> xPlanTable ) {
-        TextCell validatedButtonCell = new TextCell();
-        Column<XPlan, String> validatedColumn = new Column<XPlan, String>( validatedButtonCell ) {
-            @Override
-            public String getValue( XPlan object ) {
-                return " ";
-            }
+	private void addValidationStatusColumn(CellTable<XPlan> xPlanTable) {
+		TextCell validatedButtonCell = new TextCell();
+		Column<XPlan, String> validatedColumn = new Column<XPlan, String>(validatedButtonCell) {
+			@Override
+			public String getValue(XPlan object) {
+				return " ";
+			}
 
-            @Override
-            public String getCellStyleNames( Cell.Context context, XPlan object ) {
-                if ( object.isHasMultipleXPlanElements() )
-                    return "cellButton buttonNotValid";
-                else if ( object.isValidated() )
-                    return "cellButton " + ( object.isValid() ? "buttonValid" : "buttonNotValid" );
-                else
-                    return "cellButton buttonNotValidated";
-            }
-        };
-        xPlanTable.addColumn( validatedColumn, messages.validated() );
-    }
+			@Override
+			public String getCellStyleNames(Cell.Context context, XPlan object) {
+				if (object.isHasMultipleXPlanElements())
+					return "cellButton buttonNotValid";
+				else if (object.isValidated())
+					return "cellButton " + (object.isValid() ? "buttonValid" : "buttonNotValid");
+				else
+					return "cellButton buttonNotValidated";
+			}
+		};
+		xPlanTable.addColumn(validatedColumn, messages.validated());
+	}
 
-    private void addValidationNoteColumn( CellTable<XPlan> xPlanTable ) {
-        TextCell validatedNoteCell = new TextCell();
-        Column<XPlan, String> validatedColumn = new Column<XPlan, String>( validatedNoteCell ) {
-            @Override
-            public String getValue( XPlan object ) {
-                if ( object.isHasMultipleXPlanElements() )
-                    return messages.validationNoteMultipleXPlanElements();
-                else if ( !object.isValidated() )
-                    return messages.validationNoteNotValidated();
-                else if ( object.isValid() )
-                    return messages.validationNoteValid();
-                else
-                    return messages.validationNoteInvalid();
-            }
-        };
-        xPlanTable.addColumn( validatedColumn );
-    }
+	private void addValidationNoteColumn(CellTable<XPlan> xPlanTable) {
+		TextCell validatedNoteCell = new TextCell();
+		Column<XPlan, String> validatedColumn = new Column<XPlan, String>(validatedNoteCell) {
+			@Override
+			public String getValue(XPlan object) {
+				if (object.isHasMultipleXPlanElements())
+					return messages.validationNoteMultipleXPlanElements();
+				else if (!object.isValidated())
+					return messages.validationNoteNotValidated();
+				else if (object.isValid())
+					return messages.validationNoteValid();
+				else
+					return messages.validationNoteInvalid();
+			}
+		};
+		xPlanTable.addColumn(validatedColumn);
+	}
 
-    private void addImportColumn( CellTable<XPlan> xPlanTable ) {
-        final DisengageableButtonCell importButtonCell = new DisengageableButtonCell();
-        importButtonCell.setDisabled();
-        Column<XPlan, String> importButtonColumn = new Column<XPlan, String>( importButtonCell ) {
-            @Override
-            public String getValue( XPlan object ) {
-                if ( object.isValid() && !object.isHasMultipleXPlanElements() )
-                    importButtonCell.setEnabled();
-                else
-                    importButtonCell.setDisabled();
-                return messages.load();
-            }
-        };
-        importButtonColumn.setFieldUpdater( new FieldUpdater<XPlan, String>() {
-            public void update( int index, XPlan object, String value ) {
-                if ( object.isValid() ) {
-                    importWizardCreator.importPlan( object.getId() );
-                } else {
-                    Window.alert( messages.loadNotPossible() );
-                }
-            }
-        } );
-        xPlanTable.addColumn( importButtonColumn );
-    }
+	private void addImportColumn(CellTable<XPlan> xPlanTable) {
+		final DisengageableButtonCell importButtonCell = new DisengageableButtonCell();
+		importButtonCell.setDisabled();
+		Column<XPlan, String> importButtonColumn = new Column<XPlan, String>(importButtonCell) {
+			@Override
+			public String getValue(XPlan object) {
+				if (object.isValid() && !object.isHasMultipleXPlanElements())
+					importButtonCell.setEnabled();
+				else
+					importButtonCell.setDisabled();
+				return messages.load();
+			}
+		};
+		importButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
+			public void update(int index, XPlan object, String value) {
+				if (object.isValid()) {
+					importWizardCreator.importPlan(object.getId());
+				}
+				else {
+					Window.alert(messages.loadNotPossible());
+				}
+			}
+		});
+		xPlanTable.addColumn(importButtonColumn);
+	}
 
-    private void addRemoveColumn( final CellTable<XPlan> xPlanTable ) {
-        ButtonCell removeButtonCell = new ButtonCell();
-        final Column<XPlan, String> removeButtonColumn = new Column<XPlan, String>( removeButtonCell ) {
-            @Override
-            public String getValue( XPlan object ) {
-                return "";
-            }
-        };
-        removeButtonColumn.setFieldUpdater( new FieldUpdater<XPlan, String>() {
-            public void update( int index, XPlan object, String value ) {
-                if ( Window.confirm( messages.reallyDiscardPlan( object.getName() ) ) )
-                    removePlan( object.getId() );
-            }
-        } );
-        removeButtonColumn.setCellStyleNames( "removeButtonColumn" );
-        xPlanTable.addCellPreviewHandler( new Handler<XPlan>() {
-            @Override
-            public void onCellPreview( CellPreviewEvent<XPlan> event ) {
-                int columnIndex = event.getColumn();
-                if ( xPlanTable.getColumnIndex( removeButtonColumn ) == columnIndex
-                     && "mouseover".equals( event.getNativeEvent().getType() ) ) {
-                    int index = event.getIndex();
-                    xPlanTable.getRowElement( index ).getCells().getItem( columnIndex ).setTitle( messages.deletePlan() );
-                }
-            }
-        } );
-        xPlanTable.addColumn( removeButtonColumn );
-    }
+	private void addRemoveColumn(final CellTable<XPlan> xPlanTable) {
+		ButtonCell removeButtonCell = new ButtonCell();
+		final Column<XPlan, String> removeButtonColumn = new Column<XPlan, String>(removeButtonCell) {
+			@Override
+			public String getValue(XPlan object) {
+				return "";
+			}
+		};
+		removeButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
+			public void update(int index, XPlan object, String value) {
+				if (Window.confirm(messages.reallyDiscardPlan(object.getName())))
+					removePlan(object.getId());
+			}
+		});
+		removeButtonColumn.setCellStyleNames("removeButtonColumn");
+		xPlanTable.addCellPreviewHandler(new Handler<XPlan>() {
+			@Override
+			public void onCellPreview(CellPreviewEvent<XPlan> event) {
+				int columnIndex = event.getColumn();
+				if (xPlanTable.getColumnIndex(removeButtonColumn) == columnIndex
+						&& "mouseover".equals(event.getNativeEvent().getType())) {
+					int index = event.getIndex();
+					xPlanTable.getRowElement(index).getCells().getItem(columnIndex).setTitle(messages.deletePlan());
+				}
+			}
+		});
+		xPlanTable.addColumn(removeButtonColumn);
+	}
 
-    private ValidatorOptionsDialog createValidatorOptions( final DialogBox dialog ) {
-        ReportDownloadFinishedListener reportDownloadFinishedListener = new ReportDownloadFinishedListener() {
-            @Override
-            public void downloadFinished( FinishStatus finishStatus ) {
-                reload();
-                if ( NEXT.equals( finishStatus ) )
-                    dialog.hide();
-            }
-        };
-        ClickHandler cancelHandler = new ClickHandler() {
-            @Override
-            public void onClick( ClickEvent clickEvent ) {
-                dialog.hide();
-            }
-        };
-        return new ValidatorOptionsDialog( reportDownloadFinishedListener, messages.reportCloseButtonTitle(),
-                        messages.reportNextButtonTitle(), getFilename( upload ), cancelHandler, false );
-    }
+	private ValidatorOptionsDialog createValidatorOptions(final DialogBox dialog) {
+		ReportDownloadFinishedListener reportDownloadFinishedListener = new ReportDownloadFinishedListener() {
+			@Override
+			public void downloadFinished(FinishStatus finishStatus) {
+				reload();
+				if (NEXT.equals(finishStatus))
+					dialog.hide();
+			}
+		};
+		ClickHandler cancelHandler = new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent clickEvent) {
+				dialog.hide();
+			}
+		};
+		return new ValidatorOptionsDialog(reportDownloadFinishedListener, messages.reportCloseButtonTitle(),
+				messages.reportNextButtonTitle(), getFilename(upload), cancelHandler, false);
+	}
 
-    private Widget createUploadWidget() {
-        HorizontalPanel vPanel = new HorizontalPanel();
-        vPanel.setVerticalAlignment( HasVerticalAlignment.ALIGN_MIDDLE );
-        vPanel.getElement().setId( "fileUploadPanel" );
-        final FormPanel form = new FormPanel();
-        form.setAction( GWT.getHostPageBaseURL() + GWT.getModuleName() + "/rest/manager/plan/" );
-        form.setEncoding( FormPanel.ENCODING_MULTIPART );
-        form.setMethod( FormPanel.METHOD_POST );
+	private Widget createUploadWidget() {
+		HorizontalPanel vPanel = new HorizontalPanel();
+		vPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		vPanel.getElement().setId("fileUploadPanel");
+		final FormPanel form = new FormPanel();
+		form.setAction(GWT.getHostPageBaseURL() + GWT.getModuleName() + "/rest/manager/plan/");
+		form.setEncoding(FormPanel.ENCODING_MULTIPART);
+		form.setMethod(FormPanel.METHOD_POST);
 
-        form.setWidget( vPanel );
-        Label l = new Label( messages.addPlan() );
-        l.setStylePrimaryName( "stdFont" );
-        vPanel.add( l );
+		form.setWidget(vPanel);
+		Label l = new Label(messages.addPlan());
+		l.setStylePrimaryName("stdFont");
+		vPanel.add(l);
 
-        upload.setName( "planZipFile" );
-        upload.setStylePrimaryName( "stdFont" );
-        vPanel.add( upload );
+		upload.setName("planZipFile");
+		upload.setStylePrimaryName("stdFont");
+		vPanel.add(upload);
 
-        Button uploadButton = createUploadButton( form, upload );
-        uploadButton.setStylePrimaryName( "stdFont" );
-        vPanel.add( uploadButton );
+		Button uploadButton = createUploadButton(form, upload);
+		uploadButton.setStylePrimaryName("stdFont");
+		vPanel.add(uploadButton);
 
-        form.addSubmitHandler( new FormPanel.SubmitHandler() {
-            @Override
-            public void onSubmit( FormPanel.SubmitEvent event ) {
-                if ( upload.getFilename().length() == 0 ) {
-                    uploading.hide();
-                    Window.alert( messages.uploadFailed() );
-                    event.cancel();
-                }
-            }
-        } );
-        form.addSubmitCompleteHandler( new FormPanel.SubmitCompleteHandler() {
-            @Override
-            public void onSubmitComplete( FormPanel.SubmitCompleteEvent event ) {
-                uploading.hide();
-                reload();
-                Window.alert( event.getResults() );
-            }
-        } );
+		form.addSubmitHandler(new FormPanel.SubmitHandler() {
+			@Override
+			public void onSubmit(FormPanel.SubmitEvent event) {
+				if (upload.getFilename().length() == 0) {
+					uploading.hide();
+					Window.alert(messages.uploadFailed());
+					event.cancel();
+				}
+			}
+		});
+		form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
+			@Override
+			public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
+				uploading.hide();
+				reload();
+				Window.alert(event.getResults());
+			}
+		});
 
-        return form;
-    }
+		return form;
+	}
 
-    private Button createUploadButton( final FormPanel form, final FileUpload upload ) {
-        return new Button( messages.uploadButtonTitle(), new ClickHandler() {
-            @Override
-            public void onClick( ClickEvent event ) {
-                if ( !isSupportedType( upload ) )
-                    showInvalidFileDialog( messages.fileNameMustEndWithZip() );
-                else if ( !isValidFileName( upload ) )
-                    showInvalidFileDialog( messages.fileNameInvalidCharacters() );
-                else {
-                    form.submit();
-                    showUploadDialogBox();
-                }
-            }
+	private Button createUploadButton(final FormPanel form, final FileUpload upload) {
+		return new Button(messages.uploadButtonTitle(), new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				if (!isSupportedType(upload))
+					showInvalidFileDialog(messages.fileNameMustEndWithZip());
+				else if (!isValidFileName(upload))
+					showInvalidFileDialog(messages.fileNameInvalidCharacters());
+				else {
+					form.submit();
+					showUploadDialogBox();
+				}
+			}
 
-            private boolean isSupportedType( final FileUpload upload ) {
-                String filename = upload.getFilename().toLowerCase();
-                return filename.endsWith( ".zip" );
-            }
+			private boolean isSupportedType(final FileUpload upload) {
+				String filename = upload.getFilename().toLowerCase();
+				return filename.endsWith(".zip");
+			}
 
-            private boolean isValidFileName( final FileUpload upload ) {
-                String fileName = getFilename( upload );
-                return fileName.matches( "[a-zA-Z0-9_-]*" );
-            }
+			private boolean isValidFileName(final FileUpload upload) {
+				String fileName = getFilename(upload);
+				return fileName.matches("[a-zA-Z0-9.()_-]*");
+			}
 
-            private void showInvalidFileDialog( String message ) {
-                final DialogBox errorUpload = new DialogBox( false, true );
-                Button closeButton = new Button( messages.close(), new ClickHandler() {
-                    public void onClick( ClickEvent event ) {
-                        errorUpload.hide();
-                    }
-                } );
-                errorUpload.setText( message );
-                errorUpload.add( closeButton );
-                errorUpload.center();
-                errorUpload.show();
-            }
+			private void showInvalidFileDialog(String message) {
+				final DialogBox errorUpload = new DialogBox(false, true);
+				Button closeButton = new Button(messages.close(), new ClickHandler() {
+					public void onClick(ClickEvent event) {
+						errorUpload.hide();
+					}
+				});
+				errorUpload.setText(message);
+				errorUpload.add(closeButton);
+				errorUpload.center();
+				errorUpload.show();
+			}
 
-            private void showUploadDialogBox() {
-                uploading = new DialogBox( false, true );
-                uploading.setText( messages.uploadingFile() );
-                uploading.center();
-                uploading.show();
-            }
-        } );
-    }
+			private void showUploadDialogBox() {
+				uploading = new DialogBox(false, true);
+				uploading.setText(messages.uploadingFile());
+				uploading.center();
+				uploading.show();
+			}
+		});
+	}
 
-    private Button createHelpButton() {
-        Button help = new Button( messages.help() );
-        help.setStylePrimaryName( "stdFont" );
-        help.addClickHandler( new ClickHandler() {
-            public void onClick( ClickEvent event ) {
-                final DialogBox helpDialog = new DialogBox( false, true );
-                Button closeButton = new Button( messages.close(), new ClickHandler() {
-                    @Override
-                    public void onClick( ClickEvent event ) {
-                        helpDialog.hide();
-                    }
-                } );
-                VerticalPanel vPanel = new VerticalPanel();
-                HTML html = new HTML( messages.helpContent() );
-                vPanel.add( html );
-                vPanel.add( closeButton );
-                helpDialog.add( vPanel );
-                helpDialog.setWidth( "400px" );
-                helpDialog.center();
-                helpDialog.show();
-            }
-        } );
-        return help;
-    }
+	private Button createHelpButton() {
+		Button help = new Button(messages.help());
+		help.setStylePrimaryName("stdFont");
+		help.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				final DialogBox helpDialog = new DialogBox(false, true);
+				Button closeButton = new Button(messages.close(), new ClickHandler() {
+					@Override
+					public void onClick(ClickEvent event) {
+						helpDialog.hide();
+					}
+				});
+				VerticalPanel vPanel = new VerticalPanel();
+				HTML html = new HTML(messages.helpContent());
+				vPanel.add(html);
+				vPanel.add(closeButton);
+				helpDialog.add(vPanel);
+				helpDialog.setWidth("400px");
+				helpDialog.center();
+				helpDialog.show();
+			}
+		});
+		return help;
+	}
 
-    private void removePlan( String id ) {
-        getService().removePlanFromFileSystem( id, new MethodCallback<Void>() {
-            @Override
-            public void onFailure( Method method, Throwable caught ) {
-                reload();
-                Window.alert( method.getResponse().getText() );
-            }
+	private void removePlan(String id) {
+		getService().removePlanFromFileSystem(id, new MethodCallback<Void>() {
+			@Override
+			public void onFailure(Method method, Throwable caught) {
+				reload();
+				Window.alert(method.getResponse().getText());
+			}
 
-            @Override
-            public void onSuccess( Method method, Void result ) {
-                reload();
-                Window.alert( messages.deleteSuccessful() );
-            }
-        } );
-    }
+			@Override
+			public void onSuccess(Method method, Void result) {
+				reload();
+				Window.alert(messages.deleteSuccessful());
+			}
+		});
+	}
 
-    private void reload() {
-        getService().getPlanFromLocal( new MethodCallback<XPlan>() {
-            @Override
-            public void onFailure( Method method, Throwable caught ) {
-                uploadedPlanTable.setRowCount( 0, true );
-                Window.alert( method.getResponse().getText() );
-            }
+	private void reload() {
+		getService().getPlanFromLocal(new MethodCallback<XPlan>() {
+			@Override
+			public void onFailure(Method method, Throwable caught) {
+				uploadedPlanTable.setRowCount(0, true);
+				Window.alert(method.getResponse().getText());
+			}
 
-            @Override
-            public void onSuccess( Method method, XPlan plan ) {
-                List<XPlan> list = dataProviderFileSystem.getList();
-                list.clear();
-                int newRowCount = plan != null ? 1 : 0;
-                uploadedPlanTable.setRowCount( newRowCount, true );
-                if ( plan != null ) {
-                    list.add( plan );
-                    uploadedPlanTable.setVisible( true );
-                } else {
-                    uploadedPlanTable.setVisible( false );
-                }
-                ColumnSortEvent.fire( uploadedPlanTable, uploadedPlanTable.getColumnSortList() );
+			@Override
+			public void onSuccess(Method method, XPlan plan) {
+				List<XPlan> list = dataProviderFileSystem.getList();
+				list.clear();
+				int newRowCount = plan != null ? 1 : 0;
+				uploadedPlanTable.setRowCount(newRowCount, true);
+				if (plan != null) {
+					list.add(plan);
+					uploadedPlanTable.setVisible(true);
+				}
+				else {
+					uploadedPlanTable.setVisible(false);
+				}
+				ColumnSortEvent.fire(uploadedPlanTable, uploadedPlanTable.getColumnSortList());
 
-            }
-        } );
-    }
+			}
+		});
+	}
 
-    private String getFilename( FileUpload upload ) {
-        if ( upload != null ) {
-            try {
-                String filename = upload.getFilename();
-                int indexOfSep = filename.lastIndexOf( "\\" ) + 1;
-                filename = filename.substring( indexOfSep );
-                int indexOfPref = filename.lastIndexOf( "." );
-                filename = filename.substring( 0, indexOfPref );
-                return filename;
-            } catch ( Exception e ) {
-            }
-        }
-        return null;
-    }
+	private String getFilename(FileUpload upload) {
+		if (upload != null) {
+			try {
+				String filename = upload.getFilename();
+				int indexOfSep = filename.lastIndexOf("\\") + 1;
+				filename = filename.substring(indexOfSep);
+				int indexOfPref = filename.lastIndexOf(".");
+				filename = filename.substring(0, indexOfPref);
+				return filename;
+			}
+			catch (Exception e) {
+			}
+		}
+		return null;
+	}
+
 }

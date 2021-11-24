@@ -41,27 +41,26 @@ import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 @RunWith(JUnitParamsRunner.class)
 public class XplanSynthesizerXplan52Test extends AbstractXplanSynthesizerTest {
 
-    @Parameters({ "xplan52/BP2070.zip", "xplan52/BP2135.zip", "xplan52/LA22.zip", "xplan52/LA67.zip" })
-    @Test
-    public void testCreateSynFeatures( String archiveName )
-                    throws Exception {
-        XPlanArchive archive = getTestArchive( archiveName );
-        XPlanFeatureCollection originalFeatureCollection = readFeatures( archive );
-        FeatureCollection synFeatureCollection = createSynFeatures( archive.getVersion(), originalFeatureCollection );
+	@Parameters({ "xplan52/BP2070.zip", "xplan52/BP2135.zip", "xplan52/LA22.zip", "xplan52/LA67.zip" })
+	@Test
+	public void testCreateSynFeatures(String archiveName) throws Exception {
+		XPlanArchive archive = getTestArchive(archiveName);
+		XPlanFeatureCollection originalFeatureCollection = readFeatures(archive);
+		FeatureCollection synFeatureCollection = createSynFeatures(archive.getVersion(), originalFeatureCollection);
 
-        int numberOfOriginalFeatures = originalFeatureCollection.getFeatures().size();
-        int numberOfSynFeatures = synFeatureCollection.size();
+		int numberOfOriginalFeatures = originalFeatureCollection.getFeatures().size();
+		int numberOfSynFeatures = synFeatureCollection.size();
 
-        assertThat( numberOfSynFeatures, is( numberOfOriginalFeatures ) );
-        String synGml = writeSynFeatureCollection( synFeatureCollection );
+		assertThat(numberOfSynFeatures, is(numberOfOriginalFeatures));
+		String synGml = writeSynFeatureCollection(synFeatureCollection);
 
-        assertThat( synGml,
-                    hasXPath( "count(//xplansyn:rechtscharakter[text() = ''])", is( "0" ) ).withNamespaceContext(
-                                    nsContext() ) );
-    }
+		assertThat(synGml,
+				hasXPath("count(//xplansyn:rechtscharakter[text() = ''])", is("0")).withNamespaceContext(nsContext()));
+	}
 
-    @Override
-    XPlanVersion getXPlanVersion() {
-        return XPLAN_52;
-    }
+	@Override
+	XPlanVersion getXPlanVersion() {
+		return XPLAN_52;
+	}
+
 }

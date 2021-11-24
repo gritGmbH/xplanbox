@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -32,21 +32,22 @@ import java.util.TimeZone;
  */
 public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper> {
 
-    private final ObjectMapper mapper;
+	private final ObjectMapper mapper;
 
-    public ObjectMapperContextResolver() {
-        this.mapper = createObjectMapper();
-    }
+	public ObjectMapperContextResolver() {
+		this.mapper = createObjectMapper();
+	}
 
-    @Override
-    public ObjectMapper getContext( Class<?> type ) {
-        return mapper;
-    }
+	@Override
+	public ObjectMapper getContext(Class<?> type) {
+		return mapper;
+	}
 
-    private ObjectMapper createObjectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setDateFormat( new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSSZ" ) );
-        mapper.setTimeZone( TimeZone.getDefault() );
-        return mapper;
-    }
+	private ObjectMapper createObjectMapper() {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+		mapper.setTimeZone(TimeZone.getDefault());
+		return mapper;
+	}
+
 }

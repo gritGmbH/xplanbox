@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -67,69 +67,68 @@ import com.google.gwt.user.client.ui.TextBox;
 
 /**
  * {@link TextBox} input for times.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 public class TimeBox extends TextBox implements Validable {
 
-    private final DateTimeFormat format;
+	private final DateTimeFormat format;
 
-    /**
-     * @param format
-     *            used to format the time, never <code>null</code>
-     */
-    public TimeBox( DateTimeFormat format ) {
-        this.format = format;
-        addValueChangeHandler( new ValueChangeHandler<String>() {
-            @Override
-            public void onValueChange( ValueChangeEvent<String> event ) {
-                reset();
-                parse();
-            }
+	/**
+	 * @param format used to format the time, never <code>null</code>
+	 */
+	public TimeBox(DateTimeFormat format) {
+		this.format = format;
+		addValueChangeHandler(new ValueChangeHandler<String>() {
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				reset();
+				parse();
+			}
 
-            private void reset() {
-                removeStyleName( EDITOR_VALIDATION_ERROR );
-            }
-        } );
-    }
+			private void reset() {
+				removeStyleName(EDITOR_VALIDATION_ERROR);
+			}
+		});
+	}
 
-    /**
-     * Sets the time.
-     * 
-     * @param value
-     *            to set, may be <code>null</code>
-     */
-    public void setValue( Date value ) {
-        if ( value != null )
-            super.setValue( format.format( value ) );
-        else
-            super.setValue( null );
-    }
+	/**
+	 * Sets the time.
+	 * @param value to set, may be <code>null</code>
+	 */
+	public void setValue(Date value) {
+		if (value != null)
+			super.setValue(format.format(value));
+		else
+			super.setValue(null);
+	}
 
-    /**
-     * @return the time, may be <code>null</code> if not parseable
-     */
-    public Date getTimeValue() {
-        return parse();
-    }
+	/**
+	 * @return the time, may be <code>null</code> if not parseable
+	 */
+	public Date getTimeValue() {
+		return parse();
+	}
 
-    @Override
-    public boolean isValid() {
-        try {
-            parseTime( this );
-            return true;
-        } catch ( Exception e ) {
-            return false;
-        }
-    }
+	@Override
+	public boolean isValid() {
+		try {
+			parseTime(this);
+			return true;
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
 
-    private Date parse() {
-        try {
-            return parseTime( this );
-        } catch ( Exception e ) {
-            addStyleName( EDITOR_VALIDATION_ERROR );
-        }
-        return null;
-    }
+	private Date parse() {
+		try {
+			return parseTime(this);
+		}
+		catch (Exception e) {
+			addStyleName(EDITOR_VALIDATION_ERROR);
+		}
+		return null;
+	}
 
 }

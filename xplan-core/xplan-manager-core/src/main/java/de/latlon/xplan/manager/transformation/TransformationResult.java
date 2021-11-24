@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -30,33 +30,32 @@ import de.latlon.xplan.commons.XPlanVersion;
  */
 public class TransformationResult {
 
-    private final byte[] transformationResult;
+	private final byte[] transformationResult;
 
-    private final XPlanVersion versionOfTheResult;
+	private final XPlanVersion versionOfTheResult;
 
-    /**
-     * @param transformationResult
-     *                 the transformed XPlanGML, never <code>null</code>
-     * @param versionOfTheResult
-     *                 the version of the transformed XPlanGML, never <code>null</code>
-     */
-    public TransformationResult( byte[] transformationResult, XPlanVersion versionOfTheResult ) {
-        this.transformationResult = transformationResult;
-        this.versionOfTheResult = versionOfTheResult;
-    }
+	/**
+	 * @param transformationResult the transformed XPlanGML, never <code>null</code>
+	 * @param versionOfTheResult the version of the transformed XPlanGML, never
+	 * <code>null</code>
+	 */
+	public TransformationResult(byte[] transformationResult, XPlanVersion versionOfTheResult) {
+		this.transformationResult = transformationResult;
+		this.versionOfTheResult = versionOfTheResult;
+	}
 
-    /**
-     * @return the transformed XPlanGML, never <code>null</code>
-     */
-    public byte[] getTransformationResult() {
-        return transformationResult;
-    }
+	/**
+	 * @return the transformed XPlanGML, never <code>null</code>
+	 */
+	public byte[] getTransformationResult() {
+		return transformationResult;
+	}
 
-    /**
-     * @return the version of the transformed XPlanGML, never <code>null</code>
-     */
-    public XPlanVersion getVersionOfTheResult() {
-        return versionOfTheResult;
-    }
+	/**
+	 * @return the version of the transformed XPlanGML, never <code>null</code>
+	 */
+	public XPlanVersion getVersionOfTheResult() {
+		return versionOfTheResult;
+	}
 
 }

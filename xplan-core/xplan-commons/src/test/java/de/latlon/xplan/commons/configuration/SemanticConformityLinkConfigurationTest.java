@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -69,20 +69,20 @@ import org.junit.Test;
  */
 public class SemanticConformityLinkConfigurationTest {
 
-    @Test
-    public void testRetrieveLink() {
-        SemanticConformityLinkConfiguration linkConfiguration = new SemanticConformityLinkConfiguration();
-        linkConfiguration.addLink( XPLAN_40, "link1" );
-        linkConfiguration.addLink( XPLAN_41, "link2" );
-        linkConfiguration.addLink( XPLAN_41, "link3" );
+	@Test
+	public void testRetrieveLink() {
+		SemanticConformityLinkConfiguration linkConfiguration = new SemanticConformityLinkConfiguration();
+		linkConfiguration.addLink(XPLAN_40, "link1");
+		linkConfiguration.addLink(XPLAN_41, "link2");
+		linkConfiguration.addLink(XPLAN_41, "link3");
 
-        String firstLink = linkConfiguration.retrieveLink( XPLAN_40 );
-        String overwrittenLink = linkConfiguration.retrieveLink( XPLAN_41 );
-        String unconfiguredLink = linkConfiguration.retrieveLink( XPLAN_3 );
+		String firstLink = linkConfiguration.retrieveLink(XPLAN_40);
+		String overwrittenLink = linkConfiguration.retrieveLink(XPLAN_41);
+		String unconfiguredLink = linkConfiguration.retrieveLink(XPLAN_3);
 
-        assertThat( firstLink, is( "link1" ) );
-        assertThat( overwrittenLink, is( "link3" ) );
-        assertThat( unconfiguredLink, nullValue() );
-    }
+		assertThat(firstLink, is("link1"));
+		assertThat(overwrittenLink, is("link3"));
+		assertThat(unconfiguredLink, nullValue());
+	}
 
 }

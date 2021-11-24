@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -86,108 +86,104 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
  */
 public class ExternalReferenceUtilsTest {
 
-    @Test
-    public void testCreateExternalRefAddedOrUpdated_ExternalReferenceInfo()
-                    throws Exception {
-        ExternalReferenceInfo externalRefsOriginalPlan = createExternalReferenceInfo( "A.tif", "C.png", "D.png" );
-        List<File> uploadedArtefacts = createUploadedFileList( "A.tif", "B.jpg", "C.png" );
+	@Test
+	public void testCreateExternalRefAddedOrUpdated_ExternalReferenceInfo() throws Exception {
+		ExternalReferenceInfo externalRefsOriginalPlan = createExternalReferenceInfo("A.tif", "C.png", "D.png");
+		List<File> uploadedArtefacts = createUploadedFileList("A.tif", "B.jpg", "C.png");
 
-        ExternalReferenceInfo externalReferenceInfo = createExternalRefAddedOrUpdated( externalRefsOriginalPlan,
-                                                                                       uploadedArtefacts );
+		ExternalReferenceInfo externalReferenceInfo = createExternalRefAddedOrUpdated(externalRefsOriginalPlan,
+				uploadedArtefacts);
 
-        List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferenceInfo.getRasterPlanBaseAndUpdateScans();
-        assertThat( rasterPlanBaseAndUpdateScans.size(), is( 2 ) );
-        assertThat( rasterPlanBaseAndUpdateScans, hasExternalReference( "A.tif" ) );
-        assertThat( rasterPlanBaseAndUpdateScans, hasExternalReference( "C.png" ) );
-    }
+		List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferenceInfo.getRasterPlanBaseAndUpdateScans();
+		assertThat(rasterPlanBaseAndUpdateScans.size(), is(2));
+		assertThat(rasterPlanBaseAndUpdateScans, hasExternalReference("A.tif"));
+		assertThat(rasterPlanBaseAndUpdateScans, hasExternalReference("C.png"));
+	}
 
-    @Test
-    public void testCreateExternalRefAddedOrUpdated_XPlanToEdit()
-                    throws Exception {
-        XPlanToEdit planToEdit = new XPlanToEdit();
-        RasterBasis rasterBasis = new RasterBasis();
-        RasterReference rasterReference1 = new RasterReference( "G.tif", null, LEGEND, null, null, null, null, null,
-                                                                null, null );
-        RasterReference rasterReference2 = new RasterReference( "A.tif", null, SCAN, null, null, null, null, null, null,
-                                                                null );
-        rasterBasis.addRasterReference( rasterReference1 );
-        rasterBasis.addRasterReference( rasterReference2 );
-        planToEdit.setRasterBasis( rasterBasis );
+	@Test
+	public void testCreateExternalRefAddedOrUpdated_XPlanToEdit() throws Exception {
+		XPlanToEdit planToEdit = new XPlanToEdit();
+		RasterBasis rasterBasis = new RasterBasis();
+		RasterReference rasterReference1 = new RasterReference("G.tif", null, LEGEND, null, null, null, null, null,
+				null, null);
+		RasterReference rasterReference2 = new RasterReference("A.tif", null, SCAN, null, null, null, null, null, null,
+				null);
+		rasterBasis.addRasterReference(rasterReference1);
+		rasterBasis.addRasterReference(rasterReference2);
+		planToEdit.setRasterBasis(rasterBasis);
 
-        List<File> uploadedArtefacts = createUploadedFileList( "A.tif", "B.jpg", "C.png" );
+		List<File> uploadedArtefacts = createUploadedFileList("A.tif", "B.jpg", "C.png");
 
-        ExternalReferenceInfo externalReferenceInfo = createExternalRefAddedOrUpdated( planToEdit, uploadedArtefacts );
+		ExternalReferenceInfo externalReferenceInfo = createExternalRefAddedOrUpdated(planToEdit, uploadedArtefacts);
 
-        List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferenceInfo.getRasterPlanBaseAndUpdateScans();
-        assertThat( rasterPlanBaseAndUpdateScans.size(), is( 1 ) );
-        assertThat( rasterPlanBaseAndUpdateScans, hasExternalReference( "A.tif" ) );
-    }
+		List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferenceInfo.getRasterPlanBaseAndUpdateScans();
+		assertThat(rasterPlanBaseAndUpdateScans.size(), is(1));
+		assertThat(rasterPlanBaseAndUpdateScans, hasExternalReference("A.tif"));
+	}
 
-    @Test
-    public void testCreateExternalRefRemovedOrUpdated()
-                    throws Exception {
-        ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo( "A.tif", "C.png", "D.png" );
-        List<File> uploadedArtefacts = createUploadedFileList( "A.tif", "B.jpg", "C.png" );
-        ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo( "A.tif", "D.png", "F.png" );
+	@Test
+	public void testCreateExternalRefRemovedOrUpdated() throws Exception {
+		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo("A.tif", "C.png", "D.png");
+		List<File> uploadedArtefacts = createUploadedFileList("A.tif", "B.jpg", "C.png");
+		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo("A.tif", "D.png", "F.png");
 
-        ExternalReferenceInfo externalReferences = createExternalRefRemovedOrUpdated( externalRefsModified,
-                                                                                      uploadedArtefacts,
-                                                                                      externalRefsOriginal );
+		ExternalReferenceInfo externalReferences = createExternalRefRemovedOrUpdated(externalRefsModified,
+				uploadedArtefacts, externalRefsOriginal);
 
-        List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferences.getRasterPlanBaseAndUpdateScans();
-        assertThat( rasterPlanBaseAndUpdateScans.size(), is( 2 ) );
-        assertThat( rasterPlanBaseAndUpdateScans, hasExternalReference( "A.tif" ) );
-        assertThat( rasterPlanBaseAndUpdateScans, hasExternalReference( "F.png" ) );
-    }
+		List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferences.getRasterPlanBaseAndUpdateScans();
+		assertThat(rasterPlanBaseAndUpdateScans.size(), is(2));
+		assertThat(rasterPlanBaseAndUpdateScans, hasExternalReference("A.tif"));
+		assertThat(rasterPlanBaseAndUpdateScans, hasExternalReference("F.png"));
+	}
 
-    @Test
-    public void testCollectRemovedRefs()
-                    throws Exception {
-        ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo( "A.tif", "C.png", "D.png" );
-        ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo( "A.tif", "D.png", "F.png" );
+	@Test
+	public void testCollectRemovedRefs() throws Exception {
+		ExternalReferenceInfo externalRefsModified = createExternalReferenceInfo("A.tif", "C.png", "D.png");
+		ExternalReferenceInfo externalRefsOriginal = createExternalReferenceInfo("A.tif", "D.png", "F.png");
 
-        Set<String> removedRefs = collectRemovedRefs( externalRefsModified, externalRefsOriginal );
+		Set<String> removedRefs = collectRemovedRefs(externalRefsModified, externalRefsOriginal);
 
-        assertThat( removedRefs.size(), is( 1 ) );
-        assertThat( removedRefs, hasItems( "F.png" ) );
-    }
+		assertThat(removedRefs.size(), is(1));
+		assertThat(removedRefs, hasItems("F.png"));
+	}
 
-    private ExternalReferenceInfo createExternalReferenceInfo( String rasterPlanBaseScan, String... rasterUploads ) {
-        ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceInfo();
-        externalReferenceInfo.addRasterPlanBaseScan( new ExternalReference( rasterPlanBaseScan ) );
-        for ( String rasterUpload : rasterUploads ) {
-            externalReferenceInfo.addRasterPlanUpdateScan( new ExternalReference( rasterUpload ) );
-        }
-        externalReferenceInfo.addExternalRefs( externalReferenceInfo.getRasterPlanBaseAndUpdateScans() );
-        return externalReferenceInfo;
-    }
+	private ExternalReferenceInfo createExternalReferenceInfo(String rasterPlanBaseScan, String... rasterUploads) {
+		ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceInfo();
+		externalReferenceInfo.addRasterPlanBaseScan(new ExternalReference(rasterPlanBaseScan));
+		for (String rasterUpload : rasterUploads) {
+			externalReferenceInfo.addRasterPlanUpdateScan(new ExternalReference(rasterUpload));
+		}
+		externalReferenceInfo.addExternalRefs(externalReferenceInfo.getRasterPlanBaseAndUpdateScans());
+		return externalReferenceInfo;
+	}
 
-    private List<File> createUploadedFileList( String... fileNames ) {
-        List<File> uploadedArtifacts = new ArrayList<>();
-        for ( String fileName : fileNames ) {
-            uploadedArtifacts.add( new File( fileName ) );
-        }
-        return uploadedArtifacts;
-    }
+	private List<File> createUploadedFileList(String... fileNames) {
+		List<File> uploadedArtifacts = new ArrayList<>();
+		for (String fileName : fileNames) {
+			uploadedArtifacts.add(new File(fileName));
+		}
+		return uploadedArtifacts;
+	}
 
-    private Matcher<List<ExternalReference>> hasExternalReference( final String referenceUrl ) {
-        return new TypeSafeMatcher<List<ExternalReference>>() {
-            @Override
-            protected boolean matchesSafely( List<ExternalReference> externalReferences ) {
-                for ( ExternalReference externalReference : externalReferences ) {
-                    if ( referenceUrl.equals( externalReference.getReferenzUrl() ) )
-                        return true;
-                }
-                return false;
-            }
+	private Matcher<List<ExternalReference>> hasExternalReference(final String referenceUrl) {
+		return new TypeSafeMatcher<List<ExternalReference>>() {
+			@Override
+			protected boolean matchesSafely(List<ExternalReference> externalReferences) {
+				for (ExternalReference externalReference : externalReferences) {
+					if (referenceUrl.equals(externalReference.getReferenzUrl()))
+						return true;
+				}
+				return false;
+			}
 
-            @Override
-            public void describeTo( Description description ) {
-                description.appendText( "ExternalReference list shall contain at least one ExternalReference with referenceURL " );
-                description.appendValue( referenceUrl );
-            }
+			@Override
+			public void describeTo(Description description) {
+				description.appendText(
+						"ExternalReference list shall contain at least one ExternalReference with referenceURL ");
+				description.appendValue(referenceUrl);
+			}
 
-        };
-    }
+		};
+	}
 
 }

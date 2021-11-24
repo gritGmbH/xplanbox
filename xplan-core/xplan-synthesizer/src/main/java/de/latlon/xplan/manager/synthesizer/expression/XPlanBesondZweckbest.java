@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -37,26 +37,27 @@ import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToA
  */
 public class XPlanBesondZweckbest implements Expression {
 
-    private Expression besondZweckbest;
+	private Expression besondZweckbest;
 
-    public XPlanBesondZweckbest( Expression zweckbest, Expression besondZweckbest, String zweckbestCodeList ) {
-        this.besondZweckbest = besondZweckbest;
-    }
+	public XPlanBesondZweckbest(Expression zweckbest, Expression besondZweckbest, String zweckbestCodeList) {
+		this.besondZweckbest = besondZweckbest;
+	}
 
-    @Override
-    public TypedObjectNodeArray<PrimitiveValue> evaluate( Feature feature, FeatureCollection features ) {
-        PrimitiveValue[] normalizedCodes = null;
+	@Override
+	public TypedObjectNodeArray<PrimitiveValue> evaluate(Feature feature, FeatureCollection features) {
+		PrimitiveValue[] normalizedCodes = null;
 
-        // XPlan 3: always use value from besondereZweckbestimmung property
-        TypedObjectNodeArray<TypedObjectNode> codes = castToArray( besondZweckbest.evaluate( feature, features ) );
-        if ( codes != null && codes.getElements().length > 0 ) {
-            // property has maxOccurs="1", so accessing the first value is fine
-            normalizedCodes = new PrimitiveValue[] { new PrimitiveValue( codes.getElements()[0].toString() ) };
-        }
+		// XPlan 3: always use value from besondereZweckbestimmung property
+		TypedObjectNodeArray<TypedObjectNode> codes = castToArray(besondZweckbest.evaluate(feature, features));
+		if (codes != null && codes.getElements().length > 0) {
+			// property has maxOccurs="1", so accessing the first value is fine
+			normalizedCodes = new PrimitiveValue[] { new PrimitiveValue(codes.getElements()[0].toString()) };
+		}
 
-        if ( normalizedCodes == null ) {
-            return null;
-        }
-        return new TypedObjectNodeArray<PrimitiveValue>( normalizedCodes );
-    }
+		if (normalizedCodes == null) {
+			return null;
+		}
+		return new TypedObjectNodeArray<PrimitiveValue>(normalizedCodes);
+	}
+
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -44,211 +44,206 @@ import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.commons.web.CloseableDialogBox;
 
 /**
- * Entry point of the validation, containing the file upload and a button to navigate to the options view.
- * 
+ * Entry point of the validation, containing the file upload and a button to navigate to
+ * the options view.
+ *
  * @author <a href="mailto:wilden@lat-lon.de">Johannes Wilden</a>
  * @version $Revision: $, $Date: $
  */
 public class XPlanValidatorWeb implements EntryPoint {
 
-    private final XPlanValidatorWebMessages messages = GWT.create( XPlanValidatorWebMessages.class );
+	private final XPlanValidatorWebMessages messages = GWT.create(XPlanValidatorWebMessages.class);
 
-    private DialogBox uploading;
+	private DialogBox uploading;
 
-    @Override
-    public void onModuleLoad() {
-        resetPanelToUpload();
-    }
+	@Override
+	public void onModuleLoad() {
+		resetPanelToUpload();
+	}
 
-    /**
-     * replaces the current content with the passed panel
-     * 
-     * @param panel
-     *            never <code>null</code>
-     */
-    public void setPanel( Panel panel ) {
-        RootPanel rootPanel = detectContentPanel();
-        rootPanel.clear();
-        Panel panelWithHelp = createPanelWithHelp( panel );
-        rootPanel.add( panelWithHelp );
-    }
+	/**
+	 * replaces the current content with the passed panel
+	 * @param panel never <code>null</code>
+	 */
+	public void setPanel(Panel panel) {
+		RootPanel rootPanel = detectContentPanel();
+		rootPanel.clear();
+		Panel panelWithHelp = createPanelWithHelp(panel);
+		rootPanel.add(panelWithHelp);
+	}
 
+	private RootPanel detectContentPanel() {
+		RootPanel contentPanel = RootPanel.get("content");
+		if (contentPanel != null)
+			return contentPanel;
+		return RootPanel.get();
+	}
 
-    private RootPanel detectContentPanel(  ) {
-        RootPanel contentPanel = RootPanel.get( "content" );
-        if ( contentPanel != null )
-            return contentPanel;
-        return RootPanel.get();
-    }
+	/**
+	 * Shows the upload panel
+	 */
+	public void resetPanelToUpload() {
+		FormPanel formPanel = createFormPanel();
+		setPanel(formPanel);
+	}
 
+	private FormPanel createFormPanel() {
+		FormPanel form = new FormPanel();
+		form.setAction(GWT.getModuleBaseURL() + "upload");
+		form.setEncoding(FormPanel.ENCODING_MULTIPART);
+		form.setMethod(FormPanel.METHOD_POST);
 
-    /**
-     * Shows the upload panel
-     */
-    public void resetPanelToUpload() {
-        FormPanel formPanel = createFormPanel();
-        setPanel( formPanel );
-    }
+		FileUpload uploadItem = createUploadItem();
+		Panel uploadPanel = createUploadPanel(uploadItem);
+		Panel openButtonPanel = createOpenButtonPanel(form, uploadItem);
 
-    private FormPanel createFormPanel() {
-        FormPanel form = new FormPanel();
-        form.setAction( GWT.getModuleBaseURL() + "upload" );
-        form.setEncoding( FormPanel.ENCODING_MULTIPART );
-        form.setMethod( FormPanel.METHOD_POST );
+		addFormSubmitHandler(form, uploadItem);
+		addFormSubmitCompleteHandler(form, uploadItem);
 
-        FileUpload uploadItem = createUploadItem();
-        Panel uploadPanel = createUploadPanel( uploadItem );
-        Panel openButtonPanel = createOpenButtonPanel( form, uploadItem );
+		VerticalPanel mainPanel = createMainPanel(uploadPanel, openButtonPanel);
+		form.add(mainPanel);
+		return form;
+	}
 
-        addFormSubmitHandler( form, uploadItem );
-        addFormSubmitCompleteHandler( form, uploadItem );
+	private VerticalPanel createPanelWithHelp(Panel panel) {
+		VerticalPanel mainPanel = new VerticalPanel();
+		mainPanel.setWidth("100%");
+		mainPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
+		Button helpLink = new Button(messages.openUserManual());
+		helpLink.setStyleName("helpBt");
+		helpLink.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent clickEvent) {
+				Window.open("../XPlanValidatorWeb-Benutzerhandbuch/index-xPlanValidator.html", "_blank", "");
+			}
+		});
+		mainPanel.add(helpLink);
+		mainPanel.add(panel);
+		return mainPanel;
+	}
 
-        VerticalPanel mainPanel = createMainPanel( uploadPanel, openButtonPanel );
-        form.add( mainPanel );
-        return form;
-    }
+	private VerticalPanel createMainPanel(Panel uploadPanel, Panel openButtonPanel) {
+		VerticalPanel mainPanel = new VerticalPanel();
+		mainPanel.setHorizontalAlignment(VerticalPanel.ALIGN_CENTER);
+		mainPanel.setWidth("100%");
+		mainPanel.add(uploadPanel);
+		mainPanel.add(openButtonPanel);
+		return mainPanel;
+	}
 
-    private VerticalPanel createPanelWithHelp( Panel panel ) {
-        VerticalPanel mainPanel = new VerticalPanel();
-        mainPanel.setWidth( "100%" );
-        mainPanel.setHorizontalAlignment( VerticalPanel.ALIGN_RIGHT );
-        Button helpLink = new Button( messages.openUserManual() );
-        helpLink.setStyleName( "helpBt" );
-        helpLink.addClickHandler( new ClickHandler() {
-            @Override
-            public void onClick( ClickEvent clickEvent ) {
-                Window.open( "../XPlanValidatorWeb-Benutzerhandbuch/index-xPlanValidator.html","_blank","" );
-            }
-        } );
-        mainPanel.add( helpLink );
-        mainPanel.add( panel );
-        return mainPanel;
-    }
+	private Panel createUploadPanel(FileUpload uploadItem) {
+		Label uploadLabel = new Label(messages.uploadLabel());
 
-    private VerticalPanel createMainPanel( Panel uploadPanel, Panel openButtonPanel ) {
-        VerticalPanel mainPanel = new VerticalPanel();
-        mainPanel.setHorizontalAlignment( VerticalPanel.ALIGN_CENTER );
-        mainPanel.setWidth( "100%" );
-        mainPanel.add( uploadPanel );
-        mainPanel.add( openButtonPanel );
-        return mainPanel;
-    }
+		HorizontalPanel uploadPanel = new HorizontalPanel();
+		layoutPanel(uploadPanel);
+		uploadPanel.add(uploadLabel);
+		uploadPanel.add(uploadItem);
 
-    private Panel createUploadPanel( FileUpload uploadItem ) {
-        Label uploadLabel = new Label( messages.uploadLabel() );
+		return uploadPanel;
+	}
 
-        HorizontalPanel uploadPanel = new HorizontalPanel();
-        layoutPanel( uploadPanel );
-        uploadPanel.add( uploadLabel );
-        uploadPanel.add( uploadItem );
+	private FileUpload createUploadItem() {
+		FileUpload upload = new FileUpload();
+		upload.setName("uploadPlanItem");
+		return upload;
+	}
 
-        return uploadPanel;
-    }
+	private Panel createOpenButtonPanel(final FormPanel form, final FileUpload upload) {
+		SimplePanel buttonPanel = new SimplePanel();
+		layoutPanel(buttonPanel);
 
-    private FileUpload createUploadItem() {
-        FileUpload upload = new FileUpload();
-        upload.setName( "uploadPlanItem" );
-        return upload;
-    }
+		Button openOptionsButton = new Button(messages.validationOptionsOpen(), new ClickHandler() {
 
-    private Panel createOpenButtonPanel( final FormPanel form, final FileUpload upload ) {
-        SimplePanel buttonPanel = new SimplePanel();
-        layoutPanel( buttonPanel );
+			@Override
+			public void onClick(ClickEvent event) {
+				if (!isSupportedFileType())
+					showInvalidFile(messages.fileNameMustEndWithZip());
+				else if (!isValidFileName())
+					showInvalidFile(messages.fileNameInvalidCharacters());
+				else {
+					form.submit();
+					showUploadDialogBox();
+				}
+			}
 
-        Button openOptionsButton = new Button( messages.validationOptionsOpen(), new ClickHandler() {
+			private boolean isSupportedFileType() {
+				String fileName = upload.getFilename().toLowerCase();
+				return fileName.endsWith(".zip") || fileName.endsWith(".xml") || fileName.endsWith(".gml");
+			}
 
-            @Override
-            public void onClick( ClickEvent event ) {
-                if ( !isSupportedFileType() )
-                    showInvalidFile( messages.fileNameMustEndWithZip() );
-                else if (!isValidFileName())
-                    showInvalidFile( messages.fileNameInvalidCharacters() );
-                else {
-                    form.submit();
-                    showUploadDialogBox();
-                }
-            }
+			private boolean isValidFileName() {
+				String fileName = getFilename(upload);
+				return fileName.matches("[a-zA-Z0-9.()_-]*");
+			}
 
-            private boolean isSupportedFileType() {
-                String fileName = upload.getFilename().toLowerCase();
-                return fileName.endsWith( ".zip" ) || fileName.endsWith( ".xml" ) || fileName.endsWith( ".gml" );
-            }
+			private void showInvalidFile(String message) {
+				DialogBox errorUpload = new CloseableDialogBox(messages.errorTitle(), message);
+				errorUpload.center();
+				errorUpload.show();
+			}
 
-            private boolean isValidFileName() {
-                String fileName = getFilename( upload );
-                return fileName.matches( "[a-zA-Z0-9_-]*" );
-            }
+			private void showUploadDialogBox() {
+				uploading = new DialogBox(false, true);
+				uploading.setText(messages.uploadingFile());
+				uploading.center();
+				uploading.show();
+			}
 
-            private void showInvalidFile( String message ) {
-                DialogBox errorUpload = new CloseableDialogBox( messages.errorTitle(), message );
-                errorUpload.center();
-                errorUpload.show();
-            }
+		});
 
-            private void showUploadDialogBox() {
-                uploading = new DialogBox( false, true );
-                uploading.setText( messages.uploadingFile() );
-                uploading.center();
-                uploading.show();
-            }
+		buttonPanel.add(openOptionsButton);
+		return buttonPanel;
 
-        } );
+	}
 
-        buttonPanel.add( openOptionsButton );
-        return buttonPanel;
+	private void layoutPanel(Panel panel) {
+		panel.setHeight("50px");
+	}
 
-    }
+	private void addFormSubmitHandler(FormPanel form, final FileUpload uploadItem) {
+		form.addSubmitHandler(new FormPanel.SubmitHandler() {
+			@Override
+			public void onSubmit(SubmitEvent event) {
+				if (uploadItem.getFilename().length() == 0) {
+					uploading.hide();
+					Window.alert(messages.uploadFailed());
+					event.cancel();
+				}
+			}
+		});
+	}
 
-    private void layoutPanel( Panel panel ) {
-        panel.setHeight( "50px" );
-    }
+	private void addFormSubmitCompleteHandler(FormPanel form, final FileUpload uploadItem) {
+		form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
+			@Override
+			public void onSubmitComplete(SubmitCompleteEvent event) {
+				uploading.hide();
+				showSucessfulUploadedDialog(event);
+			}
 
-    private void addFormSubmitHandler( FormPanel form, final FileUpload uploadItem ) {
-        form.addSubmitHandler( new FormPanel.SubmitHandler() {
-            @Override
-            public void onSubmit( SubmitEvent event ) {
-                if ( uploadItem.getFilename().length() == 0 ) {
-                    uploading.hide();
-                    Window.alert( messages.uploadFailed() );
-                    event.cancel();
-                }
-            }
-        } );
-    }
+			private void showSucessfulUploadedDialog(SubmitCompleteEvent event) {
+				String filename = getFilename(uploadItem);
+				UploadFinishedDialogBox dialogBox = new UploadFinishedDialogBox(XPlanValidatorWeb.this,
+						event.getResults(), filename);
+				dialogBox.center();
+				dialogBox.show();
+			}
 
-    private void addFormSubmitCompleteHandler( FormPanel form, final FileUpload uploadItem ) {
-        form.addSubmitCompleteHandler( new FormPanel.SubmitCompleteHandler() {
-            @Override
-            public void onSubmitComplete( SubmitCompleteEvent event ) {
-                uploading.hide();
-                showSucessfulUploadedDialog( event );
-            }
+		});
+	}
 
-            private void showSucessfulUploadedDialog( SubmitCompleteEvent event ) {
-                String filename = getFilename( uploadItem );
-                UploadFinishedDialogBox dialogBox = new UploadFinishedDialogBox( XPlanValidatorWeb.this,
-                                                                                 event.getResults(),
-                                                                                 filename );
-                dialogBox.center();
-                dialogBox.show();
-            }
-
-
-
-        } );
-    }
-
-    private String getFilename( FileUpload uploadItem  ) {
-        try {
-            String filename = uploadItem.getFilename();
-            int indexOfSep = filename.lastIndexOf( "\\" ) + 1;
-            filename = filename.substring( indexOfSep );
-            int indexOfPref = filename.lastIndexOf( "." );
-            filename = filename.substring( 0, indexOfPref );
-            return filename;
-        } catch ( Exception e ) {
-            return null;
-        }
-    }
+	private String getFilename(FileUpload uploadItem) {
+		try {
+			String filename = uploadItem.getFilename();
+			int indexOfSep = filename.lastIndexOf("\\") + 1;
+			filename = filename.substring(indexOfSep);
+			int indexOfPref = filename.lastIndexOf(".");
+			filename = filename.substring(0, indexOfPref);
+			return filename;
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
 
 }

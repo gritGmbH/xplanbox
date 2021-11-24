@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -47,83 +47,75 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
  */
 public class ReSynthesizer {
 
-    private static final Logger LOG = LoggerFactory.getLogger( ReSynthesizer.class );
+	private static final Logger LOG = LoggerFactory.getLogger(ReSynthesizer.class);
 
-    private final XPlanDao xPlanDao;
+	private final XPlanDao xPlanDao;
 
-    private final XPlanSynthesizer xPlanSynthesizer;
+	private final XPlanSynthesizer xPlanSynthesizer;
 
-    private final SortPropertyReader sortPropertyReader;
+	private final SortPropertyReader sortPropertyReader;
 
-    private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
-    /**
-     * @param dao
-     *                 used to access the database, never <code>null</code>
-     * @param xPlanSynthesizer
-     *                 used to synthesize the plans, never <code>null</code>
-     * @param sortPropertyReader
-     *                 used to to retrieve the configured sort property, never <code>null</code>
-     */
-    public ReSynthesizer( XPlanDao dao, XPlanSynthesizer xPlanSynthesizer, SortPropertyReader sortPropertyReader ) {
-        this.xPlanDao = dao;
-        this.xPlanSynthesizer = xPlanSynthesizer;
-        this.sortPropertyReader = sortPropertyReader;
-    }
+	/**
+	 * @param dao used to access the database, never <code>null</code>
+	 * @param xPlanSynthesizer used to synthesize the plans, never <code>null</code>
+	 * @param sortPropertyReader used to to retrieve the configured sort property, never
+	 * <code>null</code>
+	 */
+	public ReSynthesizer(XPlanDao dao, XPlanSynthesizer xPlanSynthesizer, SortPropertyReader sortPropertyReader) {
+		this.xPlanDao = dao;
+		this.xPlanSynthesizer = xPlanSynthesizer;
+		this.sortPropertyReader = sortPropertyReader;
+	}
 
-    /**
-     * re-synthesizes all available plans.
-     */
-    public void reSynthesize()
-                    throws Exception {
-        List<XPlan> plans = xPlanDao.getXPlanList( false );
-        for ( XPlan plan : plans ) {
-            reSynthesize( plan );
-        }
-    }
+	/**
+	 * re-synthesizes all available plans.
+	 */
+	public void reSynthesize() throws Exception {
+		List<XPlan> plans = xPlanDao.getXPlanList(false);
+		for (XPlan plan : plans) {
+			reSynthesize(plan);
+		}
+	}
 
-    /**
-     * re-synthesizes the plan with the passed id.
-     *
-     * @param mgrId
-     *                 the id of the plan to synthesize
-     * @throws IllegalArgumentException
-     *                 if a plan with the passed id is not available
-     */
-    public void reSynthesize( int mgrId )
-                    throws Exception {
-        XPlan xPlanById = xPlanDao.getXPlanById( mgrId );
-        if ( xPlanById == null )
-            throw new IllegalArgumentException( "A plan with the id '" + mgrId + "' is not available" );
-        reSynthesize( xPlanById );
-    }
+	/**
+	 * re-synthesizes the plan with the passed id.
+	 * @param mgrId the id of the plan to synthesize
+	 * @throws IllegalArgumentException if a plan with the passed id is not available
+	 */
+	public void reSynthesize(int mgrId) throws Exception {
+		XPlan xPlanById = xPlanDao.getXPlanById(mgrId);
+		if (xPlanById == null)
+			throw new IllegalArgumentException("A plan with the id '" + mgrId + "' is not available");
+		reSynthesize(xPlanById);
+	}
 
-    private void reSynthesize( XPlan plan )
-                    throws Exception {
-        LOG.debug( "Synthesize plan with id {}, version {}", plan.getId(), plan.getVersion() );
-        XPlanType planType = XPlanType.valueOf( plan.getType() );
-        XPlanVersion version = XPlanVersion.valueOf( plan.getVersion() );
+	private void reSynthesize(XPlan plan) throws Exception {
+		LOG.debug("Synthesize plan with id {}, version {}", plan.getId(), plan.getVersion());
+		XPlanType planType = XPlanType.valueOf(plan.getType());
+		XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 
-        FeatureCollection featureCollection = xPlanDao.retrieveFeatureCollection( plan );
-        if ( featureCollection.isEmpty() ) {
-            LOG.warn( "FeatureCollection is not available! Plan with id {} is skipped", plan.getId() );
-        }
-        XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder( featureCollection,
-                                                                                           planType ).build();
-        Date sortDate = sortPropertyReader.readSortDate( planType, version, xPlanFeatureCollection.getFeatures() );
+		FeatureCollection featureCollection = xPlanDao.retrieveFeatureCollection(plan);
+		if (featureCollection.isEmpty()) {
+			LOG.warn("FeatureCollection is not available! Plan with id {} is skipped", plan.getId());
+		}
+		XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder(featureCollection, planType)
+				.build();
+		Date sortDate = sortPropertyReader.readSortDate(planType, version, xPlanFeatureCollection.getFeatures());
 
-        FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize( version, xPlanFeatureCollection );
-        addInternalId( plan, synthesizedFeatureCollection );
+		FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(version, xPlanFeatureCollection);
+		addInternalId(plan, synthesizedFeatureCollection);
 
-        xPlanDao.updateXPlanSynFeatureCollection( plan, synthesizedFeatureCollection, sortDate );
-    }
+		xPlanDao.updateXPlanSynFeatureCollection(plan, synthesizedFeatureCollection, sortDate);
+	}
 
-    private void addInternalId( XPlan plan, FeatureCollection synthesizedFeatureCollection ) {
-        String internalId = plan.getInternalId();
-        if ( internalId != null ) {
-            AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema( XPLAN_SYN, null );
-            featureCollectionManipulator.addInternalId( synthesizedFeatureCollection, synSchema, internalId );
-        }
-    }
+	private void addInternalId(XPlan plan, FeatureCollection synthesizedFeatureCollection) {
+		String internalId = plan.getInternalId();
+		if (internalId != null) {
+			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN, null);
+			featureCollectionManipulator.addInternalId(synthesizedFeatureCollection, synSchema, internalId);
+		}
+	}
 
 }

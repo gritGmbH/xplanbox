@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -39,39 +39,39 @@ import static org.deegree.commons.xml.stax.XMLStreamUtils.copy;
  */
 public class ServiceMetadataDocumentWriter {
 
-    private final byte[] template;
+	private final byte[] template;
 
-    public ServiceMetadataDocumentWriter( byte[] template ) {
-        this.template = template;
-    }
+	public ServiceMetadataDocumentWriter(byte[] template) {
+		this.template = template;
+	}
 
-    public void writeServiceMetadataDocument( Properties properties, OutputStream out )
-                    throws XMLStreamException {
-        XMLStreamWriter xmlStreamWriter = null;
-        XMLStreamReader xmlStreamReader = null;
-        try {
-            xmlStreamWriter = XMLOutputFactory.newInstance().createXMLStreamWriter( out );
-            xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(
-                            new ByteArrayInputStream( template ) );
+	public void writeServiceMetadataDocument(Properties properties, OutputStream out) throws XMLStreamException {
+		XMLStreamWriter xmlStreamWriter = null;
+		XMLStreamReader xmlStreamReader = null;
+		try {
+			xmlStreamWriter = XMLOutputFactory.newInstance().createXMLStreamWriter(out);
+			xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(new ByteArrayInputStream(template));
 
-            TemplateXmlStreamWriterFilter templateWriterFilter = new TemplateXmlStreamWriterFilter( properties );
-            templateWriterFilter.setDelegate( xmlStreamWriter );
-            copy( templateWriterFilter, xmlStreamReader );
-        } finally {
-            closeQuietly( xmlStreamReader, xmlStreamWriter );
-        }
+			TemplateXmlStreamWriterFilter templateWriterFilter = new TemplateXmlStreamWriterFilter(properties);
+			templateWriterFilter.setDelegate(xmlStreamWriter);
+			copy(templateWriterFilter, xmlStreamReader);
+		}
+		finally {
+			closeQuietly(xmlStreamReader, xmlStreamWriter);
+		}
 
-    }
+	}
 
-    private void closeQuietly( XMLStreamReader xmlStreamReader, XMLStreamWriter xmlStreamWriter ) {
-        XMLStreamUtils.closeQuietly( xmlStreamReader );
-        if ( xmlStreamWriter != null ) {
-            try {
-                xmlStreamWriter.close();
-            } catch ( XMLStreamException e ) {
-                // quiet...
-            }
-        }
-    }
+	private void closeQuietly(XMLStreamReader xmlStreamReader, XMLStreamWriter xmlStreamWriter) {
+		XMLStreamUtils.closeQuietly(xmlStreamReader);
+		if (xmlStreamWriter != null) {
+			try {
+				xmlStreamWriter.close();
+			}
+			catch (XMLStreamException e) {
+				// quiet...
+			}
+		}
+	}
 
 }

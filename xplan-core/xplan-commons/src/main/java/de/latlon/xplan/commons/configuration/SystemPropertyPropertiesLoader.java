@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -32,90 +32,89 @@ import java.nio.file.Paths;
 
 /**
  * Retrieves a configuration from a path specified with a system property or classpath.
- * 
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 public class SystemPropertyPropertiesLoader extends AbstractPropertiesLoader {
 
-    private static final Logger LOG = LoggerFactory.getLogger( SystemPropertyPropertiesLoader.class );
+	private static final Logger LOG = LoggerFactory.getLogger(SystemPropertyPropertiesLoader.class);
 
-    public static final String CONFIG_SYSTEM_PROPERTY = "XPLANBOX_CONFIG";
+	public static final String CONFIG_SYSTEM_PROPERTY = "XPLANBOX_CONFIG";
 
-    private static final String OLD_CONFIG_SYSTEM_PROPERTY = "MANAGER_WEB";
+	private static final String OLD_CONFIG_SYSTEM_PROPERTY = "MANAGER_WEB";
 
-    private final Path configurationDirectory;
+	private final Path configurationDirectory;
 
-    private final Class<?> defaultBaseClass;
+	private final Class<?> defaultBaseClass;
 
-    /**
-     * Instantiates a {@link SystemPropertyPropertiesLoader} loading properties from files specified by a
-     * system property.
-     *
-     * @param defaultBaseClass
-     *                         fallback to retrieve properties file from, if system property is not available, may be
-     *                         <code>null</code> (this class is used then)
-     */
-    public SystemPropertyPropertiesLoader( Class<?> defaultBaseClass ) {
-        this.configurationDirectory = findConfigDirectory();
-        if ( defaultBaseClass != null )
-            this.defaultBaseClass = defaultBaseClass;
-        else
-            this.defaultBaseClass = this.getClass();
-    }
+	/**
+	 * Instantiates a {@link SystemPropertyPropertiesLoader} loading properties from files
+	 * specified by a system property.
+	 * @param defaultBaseClass fallback to retrieve properties file from, if system
+	 * property is not available, may be <code>null</code> (this class is used then)
+	 */
+	public SystemPropertyPropertiesLoader(Class<?> defaultBaseClass) {
+		this.configurationDirectory = findConfigDirectory();
+		if (defaultBaseClass != null)
+			this.defaultBaseClass = defaultBaseClass;
+		else
+			this.defaultBaseClass = this.getClass();
+	}
 
-    /**
-     * Instantiates a {@link SystemPropertyPropertiesLoader} loading properties from files specified with by a
-     * system property.
-     */
-    public SystemPropertyPropertiesLoader() {
-        this.configurationDirectory = findConfigDirectory();
-        this.defaultBaseClass = this.getClass();
-    }
+	/**
+	 * Instantiates a {@link SystemPropertyPropertiesLoader} loading properties from files
+	 * specified with by a system property.
+	 */
+	public SystemPropertyPropertiesLoader() {
+		this.configurationDirectory = findConfigDirectory();
+		this.defaultBaseClass = this.getClass();
+	}
 
-    @Override
-    InputStream retrieveAsStream( String configurationFileName ) {
-        if ( configurationDirectory != null ) {
-            Path pathToConfigFile = configurationDirectory.resolve( configurationFileName );
-            LOG.info( "Configuration {} is read from file {}", configurationFileName, pathToConfigFile );
-            try {
-                return Files.newInputStream( pathToConfigFile );
-            } catch ( IOException e ) {
-                LOG.info( "Configuration does not exist: {}", e.getMessage() );
-                LOG.info( "Internal {} configuration is used.", configurationFileName );
-                return defaultBaseClass.getResourceAsStream( configurationFileName );
-            }
-        }
-        LOG.info( "Internal {} configuration is used.", configurationFileName );
-        return defaultBaseClass.getResourceAsStream( configurationFileName );
-    }
+	@Override
+	InputStream retrieveAsStream(String configurationFileName) {
+		if (configurationDirectory != null) {
+			Path pathToConfigFile = configurationDirectory.resolve(configurationFileName);
+			LOG.info("Configuration {} is read from file {}", configurationFileName, pathToConfigFile);
+			try {
+				return Files.newInputStream(pathToConfigFile);
+			}
+			catch (IOException e) {
+				LOG.info("Configuration does not exist: {}", e.getMessage());
+				LOG.info("Internal {} configuration is used.", configurationFileName);
+				return defaultBaseClass.getResourceAsStream(configurationFileName);
+			}
+		}
+		LOG.info("Internal {} configuration is used.", configurationFileName);
+		return defaultBaseClass.getResourceAsStream(configurationFileName);
+	}
 
-    @Override
-    public Path getConfigDirectory() {
-        return configurationDirectory;
-    }
+	@Override
+	public Path getConfigDirectory() {
+		return configurationDirectory;
+	}
 
-    private Path findConfigDirectory() {
-        LOG.info( "Try to receive configuration set with system property {}", CONFIG_SYSTEM_PROPERTY );
-        String configFilePath = System.getProperty( CONFIG_SYSTEM_PROPERTY );
-        if ( configFilePath != null )
-            return findConfigDirectory( configFilePath );
-        LOG.info( "Fallback: Try to receive configuration set with system property {}", OLD_CONFIG_SYSTEM_PROPERTY );
-        String oldConfigFilePath = System.getProperty( OLD_CONFIG_SYSTEM_PROPERTY );
-        if ( oldConfigFilePath != null )
-            return findConfigDirectory( oldConfigFilePath );
-        return null;
-    }
+	private Path findConfigDirectory() {
+		LOG.info("Try to receive configuration set with system property {}", CONFIG_SYSTEM_PROPERTY);
+		String configFilePath = System.getProperty(CONFIG_SYSTEM_PROPERTY);
+		if (configFilePath != null)
+			return findConfigDirectory(configFilePath);
+		LOG.info("Fallback: Try to receive configuration set with system property {}", OLD_CONFIG_SYSTEM_PROPERTY);
+		String oldConfigFilePath = System.getProperty(OLD_CONFIG_SYSTEM_PROPERTY);
+		if (oldConfigFilePath != null)
+			return findConfigDirectory(oldConfigFilePath);
+		return null;
+	}
 
-    private Path findConfigDirectory( String configFilePath ) {
-        LOG.info( "Configuration directory is {}", configFilePath );
-        if ( configFilePath != null ) {
-            Path configDirectory = Paths.get( configFilePath );
-            if ( Files.isDirectory( configDirectory ) && Files.exists( configDirectory ) )
-                return configDirectory;
-            else
-                LOG.info( "Configuration directory {} does not exist or is not a directory.", configFilePath );
-        }
-        return null;
-    }
+	private Path findConfigDirectory(String configFilePath) {
+		LOG.info("Configuration directory is {}", configFilePath);
+		if (configFilePath != null) {
+			Path configDirectory = Paths.get(configFilePath);
+			if (Files.isDirectory(configDirectory) && Files.exists(configDirectory))
+				return configDirectory;
+			else
+				LOG.info("Configuration directory {} does not exist or is not a directory.", configFilePath);
+		}
+		return null;
+	}
 
 }

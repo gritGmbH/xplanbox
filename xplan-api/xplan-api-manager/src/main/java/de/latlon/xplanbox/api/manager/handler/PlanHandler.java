@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -71,139 +71,135 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Singleton
 public class PlanHandler {
 
-    private static final Logger LOG = getLogger( PlanHandler.class );
+	private static final Logger LOG = getLogger(PlanHandler.class);
 
-    private static final String DELETE_MSG = "Plan mit ID %s entfernt.";
+	private static final String DELETE_MSG = "Plan mit ID %s entfernt.";
 
-    @Autowired
-    private XPlanArchiveCreator archiveCreator;
+	@Autowired
+	private XPlanArchiveCreator archiveCreator;
 
-    @Autowired
-    private XPlanValidator xPlanValidator;
+	@Autowired
+	private XPlanValidator xPlanValidator;
 
-    @Autowired
-    private XPlanInsertManager xPlanInsertManager;
+	@Autowired
+	private XPlanInsertManager xPlanInsertManager;
 
-    @Autowired
-    private XPlanDeleteManager xPlanDeleteManager;
+	@Autowired
+	private XPlanDeleteManager xPlanDeleteManager;
 
-    @Autowired
-    private XPlanDao xPlanDao;
+	@Autowired
+	private XPlanDao xPlanDao;
 
-    @Autowired
-    private XPlanExporter xPlanExporter;
+	@Autowired
+	private XPlanExporter xPlanExporter;
 
-    public XPlan importPlan( File uploadedPlan, String xFileName, ValidationSettings validationSettings,
-                             String internalId, String planStatus )
-                            throws Exception {
-        LOG.info( "Importing plan using validation settings '{}'", validationSettings );
-        String validationName = validationSettings.getValidationName();
-        XPlanArchive xPlanArchive = createArchive( uploadedPlan );
-        ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport( validationSettings, validationName,
-                                                                                 xPlanArchive );
-        if ( !validatorReport.isReportValid() ) {
-            throw new InvalidPlan( validatorReport, xFileName );
-        }
-        LOG.info( "Plan is valid. Importing plan into storage for '{}'", planStatus );
-        AdditionalPlanData metadata = createAdditionalPlanData( xPlanArchive, planStatus );
-        int planId = xPlanInsertManager.importPlan( xPlanArchive, null, false, false, true, null, internalId,
-                                                    metadata );
+	public XPlan importPlan(File uploadedPlan, String xFileName, ValidationSettings validationSettings,
+			String internalId, String planStatus) throws Exception {
+		LOG.info("Importing plan using validation settings '{}'", validationSettings);
+		String validationName = validationSettings.getValidationName();
+		XPlanArchive xPlanArchive = createArchive(uploadedPlan);
+		ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport(validationSettings, validationName,
+				xPlanArchive);
+		if (!validatorReport.isReportValid()) {
+			throw new InvalidPlan(validatorReport, xFileName);
+		}
+		LOG.info("Plan is valid. Importing plan into storage for '{}'", planStatus);
+		AdditionalPlanData metadata = createAdditionalPlanData(xPlanArchive, planStatus);
+		int planId = xPlanInsertManager.importPlan(xPlanArchive, null, false, false, true, null, internalId, metadata);
 
-        XPlan planById = findPlanById( planId );
-        LOG.info( "Plan with Id {} successfully imported", planById );
-        return planById;
-    }
+		XPlan planById = findPlanById(planId);
+		LOG.info("Plan with Id {} successfully imported", planById);
+		return planById;
+	}
 
-    private XPlanArchive createArchive( File uploadedPlan )
-                            throws InvalidXPlanGmlOrArchive {
-        try {
-            return archiveCreator.createXPlanArchiveFromZip( uploadedPlan );
-        } catch ( Exception e ) {
-            throw new InvalidXPlanGmlOrArchive( "Could not read attached file as XPlanArchive", e );
-        }
-    }
+	private XPlanArchive createArchive(File uploadedPlan) throws InvalidXPlanGmlOrArchive {
+		try {
+			return archiveCreator.createXPlanArchiveFromZip(uploadedPlan);
+		}
+		catch (Exception e) {
+			throw new InvalidXPlanGmlOrArchive("Could not read attached file as XPlanArchive", e);
+		}
+	}
 
-    public StatusMessage deletePlan( String planId )
-                            throws Exception {
-        LOG.info( "Deleting plan with Id {}", planId );
-        xPlanDeleteManager.delete( planId );
-        return new StatusMessage().message( String.format( DELETE_MSG, planId ) );
-    }
+	public StatusMessage deletePlan(String planId) throws Exception {
+		LOG.info("Deleting plan with Id {}", planId);
+		xPlanDeleteManager.delete(planId);
+		return new StatusMessage().message(String.format(DELETE_MSG, planId));
+	}
 
-    public StreamingOutput exportPlan( String planId )
-                            throws Exception {
-        try {
-            LOG.info( "Exporting plan with Id '{}'", planId );
-            XPlanArchiveContent archiveContent = xPlanDao.retrieveAllXPlanArtefacts( planId );
-            return outputStream -> xPlanExporter.export( outputStream, archiveContent );
-        } catch ( PlanNotFoundException e ) {
-            throw new InvalidPlanId( planId );
-        }
-    }
+	public StreamingOutput exportPlan(String planId) throws Exception {
+		try {
+			LOG.info("Exporting plan with Id '{}'", planId);
+			XPlanArchiveContent archiveContent = xPlanDao.retrieveAllXPlanArtefacts(planId);
+			return outputStream -> xPlanExporter.export(outputStream, archiveContent);
+		}
+		catch (PlanNotFoundException e) {
+			throw new InvalidPlanId(planId);
+		}
+	}
 
-    public XPlan findPlanById( String planId )
-                            throws Exception {
-        LOG.info( "Find plan by Id '{}'", planId );
-        int id = Integer.parseInt( planId );
-        return findPlanById( id );
-    }
+	public XPlan findPlanById(String planId) throws Exception {
+		LOG.info("Find plan by Id '{}'", planId);
+		int id = Integer.parseInt(planId);
+		return findPlanById(id);
+	}
 
-    public List<XPlan> findPlansByName( String planName )
-                            throws Exception {
-        LOG.info( "Find plan by name '{}'", planName );
-        return xPlanDao.getXPlanByName( planName );
-    }
+	public List<XPlan> findPlansByName(String planName) throws Exception {
+		LOG.info("Find plan by name '{}'", planName);
+		return xPlanDao.getXPlanByName(planName);
+	}
 
-    public List<XPlan> findPlans( String planName )
-                            throws Exception {
-        LOG.info( "Search plan by name '{}'", planName );
-        if ( planName != null )
-            return xPlanDao.getXPlansLikeName( planName );
-        return xPlanDao.getXPlanList( false );
-    }
+	public List<XPlan> findPlans(String planName) throws Exception {
+		LOG.info("Search plan by name '{}'", planName);
+		if (planName != null)
+			return xPlanDao.getXPlansLikeName(planName);
+		return xPlanDao.getXPlanList(false);
+	}
 
-    private XPlan findPlanById( int id )
-                            throws Exception {
-        XPlan xPlanById = xPlanDao.getXPlanById( id );
-        if ( xPlanById == null ) {
-            throw new InvalidPlanId( id );
-        }
-        return xPlanById;
-    }
+	private XPlan findPlanById(int id) throws Exception {
+		XPlan xPlanById = xPlanDao.getXPlanById(id);
+		if (xPlanById == null) {
+			throw new InvalidPlanId(id);
+		}
+		return xPlanById;
+	}
 
-    private AdditionalPlanData createAdditionalPlanData( XPlanArchive xPlanArchive, String requestedPlanStatus )
-                            throws UnsupportedParameterValue, XMLStreamException, UnknownCRSException {
-        AdditionalPlanData metadata = new AdditionalPlanData();
-        PlanStatus planStatus;
-        if ( requestedPlanStatus == null ) {
-            PlanStatus planStatusFromPlan = determinePlanStatusByRechtsstand( xPlanArchive );
-            planStatus = PlanStatus.valueOf( planStatusFromPlan.name() );
-        } else {
-            try {
-                planStatus = PlanStatus.valueOf( requestedPlanStatus );
-            } catch ( IllegalArgumentException e ) {
-                throw new UnsupportedParameterValue( "planStatus", requestedPlanStatus );
-            }
-        }
-        metadata.setPlanStatus( planStatus );
-        return metadata;
-    }
+	private AdditionalPlanData createAdditionalPlanData(XPlanArchive xPlanArchive, String requestedPlanStatus)
+			throws UnsupportedParameterValue, XMLStreamException, UnknownCRSException {
+		AdditionalPlanData metadata = new AdditionalPlanData();
+		PlanStatus planStatus;
+		if (requestedPlanStatus == null) {
+			PlanStatus planStatusFromPlan = determinePlanStatusByRechtsstand(xPlanArchive);
+			planStatus = PlanStatus.valueOf(planStatusFromPlan.name());
+		}
+		else {
+			try {
+				planStatus = PlanStatus.valueOf(requestedPlanStatus);
+			}
+			catch (IllegalArgumentException e) {
+				throw new UnsupportedParameterValue("planStatus", requestedPlanStatus);
+			}
+		}
+		metadata.setPlanStatus(planStatus);
+		return metadata;
+	}
 
-    private PlanStatus determinePlanStatusByRechtsstand( XPlanArchive xPlanArchive )
-                            throws XMLStreamException, UnknownCRSException {
-        XPlanFeatureCollection fc = parseXPlanFeatureCollection( xPlanArchive );
-        removeAllFeaturesExceptOfPlanFeature( fc );
+	private PlanStatus determinePlanStatusByRechtsstand(XPlanArchive xPlanArchive)
+			throws XMLStreamException, UnknownCRSException {
+		XPlanFeatureCollection fc = parseXPlanFeatureCollection(xPlanArchive);
+		removeAllFeaturesExceptOfPlanFeature(fc);
 
-        String legislationStatus = retrieveLegislationStatus( fc.getFeatures(), fc.getType() );
-        if ( legislationStatus != null && !legislationStatus.isEmpty() ) {
-            try {
-                int rechtsstand = parseInt( legislationStatus );
-                return PlanStatus.findByLegislationStatusCode( rechtsstand );
-            } catch ( NumberFormatException e ) {
-                LOG.info( "Rechtsstand '{}' could not be parsed as integer.", legislationStatus );
-            }
-        }
-        return IN_AUFSTELLUNG;
-    }
+		String legislationStatus = retrieveLegislationStatus(fc.getFeatures(), fc.getType());
+		if (legislationStatus != null && !legislationStatus.isEmpty()) {
+			try {
+				int rechtsstand = parseInt(legislationStatus);
+				return PlanStatus.findByLegislationStatusCode(rechtsstand);
+			}
+			catch (NumberFormatException e) {
+				LOG.info("Rechtsstand '{}' could not be parsed as integer.", legislationStatus);
+			}
+		}
+		return IN_AUFSTELLUNG;
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -39,7 +39,7 @@ import de.latlon.xplan.manager.web.shared.ConfigurationException;
 
 /**
  * REST-Interface for security functions.
- * 
+ *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
@@ -47,31 +47,31 @@ import de.latlon.xplan.manager.web.shared.ConfigurationException;
 @RequestMapping(value = "/security")
 public class SecurityController {
 
-    private static final Logger LOG = LoggerFactory.getLogger( SecurityController.class );
+	private static final Logger LOG = LoggerFactory.getLogger(SecurityController.class);
 
-    private final AuthorizationManager securityManager;
+	private final AuthorizationManager securityManager;
 
-    /**
-     * Used to create a SecurityController.
-     * @param securityManager the authorization manager to use.
-     */
-    @Autowired
-    public SecurityController( AuthorizationManager securityManager ) {
-        this.securityManager = securityManager;
-    }
+	/**
+	 * Used to create a SecurityController.
+	 * @param securityManager the authorization manager to use.
+	 */
+	@Autowired
+	public SecurityController(AuthorizationManager securityManager) {
+		this.securityManager = securityManager;
+	}
 
-    @RequestMapping(value = "/authorizationInfo", method = GET)
-    @ResponseBody
-    public AuthorizationInfo retrieveAuthorizationInfo( @Context HttpServletResponse response )
-                    throws ConfigurationException {
-        response.addHeader( "Expires", "-1" );
-        LOG.info( "Retrieve authorization information." );
-        if ( !securityManager.isSecurityEnabled() ) {
-            LOG.info( "Authentication is disabled." );
-            return new AuthorizationInfo( true );
-        }
-        LOG.info( "Authentication is enabled." );
-        return securityManager.createAuthorizationInfoFromAuthentication();
-    }
+	@RequestMapping(value = "/authorizationInfo", method = GET)
+	@ResponseBody
+	public AuthorizationInfo retrieveAuthorizationInfo(@Context HttpServletResponse response)
+			throws ConfigurationException {
+		response.addHeader("Expires", "-1");
+		LOG.info("Retrieve authorization information.");
+		if (!securityManager.isSecurityEnabled()) {
+			LOG.info("Authentication is disabled.");
+			return new AuthorizationInfo(true);
+		}
+		LOG.info("Authentication is enabled.");
+		return securityManager.createAuthorizationInfoFromAuthentication();
+	}
 
 }

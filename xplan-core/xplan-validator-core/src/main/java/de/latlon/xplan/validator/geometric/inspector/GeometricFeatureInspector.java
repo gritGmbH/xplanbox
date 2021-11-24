@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -31,19 +31,19 @@ import java.util.List;
  */
 public interface GeometricFeatureInspector extends FeatureInspector {
 
-    /**
-     * @return <code>true</code> if no errors was found, <code>false</code> otherwise
-     */
-    boolean checkGeometricRule();
+	/**
+	 * @return <code>true</code> if no errors was found, <code>false</code> otherwise
+	 */
+	boolean checkGeometricRule();
 
-    /**
-     * @return all errors found, max be empty but never <code>null</code>
-     */
-    List<String> getErrors();
+	/**
+	 * @return all errors found, max be empty but never <code>null</code>
+	 */
+	List<String> getErrors();
 
-    /**
-     * @return the BadGeoemtries, max be empty but never <code>null</code>
-     */
-    List<BadGeometry> getBadGeometries();
+	/**
+	 * @return the BadGeoemtries, max be empty but never <code>null</code>
+	 */
+	List<BadGeometry> getBadGeometries();
 
 }

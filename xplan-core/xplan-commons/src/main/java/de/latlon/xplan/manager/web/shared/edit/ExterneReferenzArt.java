@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -29,26 +29,26 @@ package de.latlon.xplan.manager.web.shared.edit;
  */
 public enum ExterneReferenzArt {
 
-    DOKUMENT( "Dokument" ), PLANMITGEOREFERENZ( "PlanMitGeoreferenz" );
+	DOKUMENT("Dokument"), PLANMITGEOREFERENZ("PlanMitGeoreferenz");
 
-    private String code;
+	private String code;
 
-    ExterneReferenzArt( String code ) {
-        this.code = code;
-    }
+	ExterneReferenzArt(String code) {
+		this.code = code;
+	}
 
-    public String getCode() {
-        return code;
-    }
+	public String getCode() {
+		return code;
+	}
 
-    public static ExterneReferenzArt getByCode( String code ) {
-        if ( code == null )
-            return null;
-        for ( ExterneReferenzArt value : values() ) {
-            if ( value.code.equals( code.trim() ) )
-                return value;
-        }
-        return null;
-    }
+	public static ExterneReferenzArt getByCode(String code) {
+		if (code == null)
+			return null;
+		for (ExterneReferenzArt value : values()) {
+			if (value.code.equals(code.trim()))
+				return value;
+		}
+		return null;
+	}
 
 }

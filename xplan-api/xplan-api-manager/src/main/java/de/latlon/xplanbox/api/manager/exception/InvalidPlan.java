@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -34,26 +34,26 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
  */
 public class InvalidPlan extends XPlanApiException {
 
-    private static final String EXCEPTION_MESSAGE = "Invalid plan";
+	private static final String EXCEPTION_MESSAGE = "Invalid plan";
 
-    private final ValidatorReport validatorReport;
+	private final ValidatorReport validatorReport;
 
-    private final String xFileName;
+	private final String xFileName;
 
-    public InvalidPlan( ValidatorReport validatorReport, String xFileName ) {
-        super( EXCEPTION_MESSAGE );
-        this.validatorReport = validatorReport;
-        this.xFileName = xFileName;
-    }
+	public InvalidPlan(ValidatorReport validatorReport, String xFileName) {
+		super(EXCEPTION_MESSAGE);
+		this.validatorReport = validatorReport;
+		this.xFileName = xFileName;
+	}
 
-    @Override
-    public int getStatusCode() {
-        return BAD_REQUEST.getStatusCode();
-    }
+	@Override
+	public int getStatusCode() {
+		return BAD_REQUEST.getStatusCode();
+	}
 
-    @Override
-    public Object getResponseEntity() {
-        return new ValidationReportBuilder().validatorReport( validatorReport ).filename( xFileName ).build();
-    }
+	@Override
+	public Object getResponseEntity() {
+		return new ValidationReportBuilder().validatorReport(validatorReport).filename(xFileName).build();
+	}
 
 }

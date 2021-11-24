@@ -7,10 +7,21 @@
   
   <body>
     <script>
+        var WMS_URL = "http://localhost:8080/xplan-wms";
+
         window.onload = function () {
           var complexProperties = document.getElementsByClassName('complexProperty');
           for(var i = 0; i < complexProperties.length; i++) {
             complexProperties[i].innerHTML = complexProperties[i].innerHTML.replace(/\|/g, '<br/>');
+          }
+          var links = document.getElementsByClassName('link');
+          for(var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if(link.href.startsWith('http')){
+                link.href = link;
+              } else {
+                link.href = WMS_URL + link;
+              }
           }
         }
       </script>
@@ -47,7 +58,7 @@
 <?template makeitalink>
 <tr>
   <td <?odd:maybegray>><?name:map propname></td>
-  <td <?odd:maybegray>><a target="_blank" href="http://localhost:8080/xplan-wms<?value>">Dokument herunterladen</a></td>
+  <td <?odd:maybegray>><a target="_blank" href="<?value>" class="link">Dokument herunterladen</a></td>
 </tr>
 
 <?template property>

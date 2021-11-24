@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -68,91 +68,83 @@ import org.junit.Test;
  */
 public class DateTimeUtilsTest {
 
-    @Test
-    public void testIsCurrentDateTimeBetween()
-                    throws Exception {
-        long currentTimeMillis = System.currentTimeMillis();
-        Date startDateTime = new Date( currentTimeMillis - 1000 );
-        Date endDateTime = new Date( currentTimeMillis + 1000000000 );
-        boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween( startDateTime, endDateTime );
+	@Test
+	public void testIsCurrentDateTimeBetween() throws Exception {
+		long currentTimeMillis = System.currentTimeMillis();
+		Date startDateTime = new Date(currentTimeMillis - 1000);
+		Date endDateTime = new Date(currentTimeMillis + 1000000000);
+		boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween(startDateTime, endDateTime);
 
-        assertThat( isCurrentDateTimeBetween, is( true ) );
-    }
+		assertThat(isCurrentDateTimeBetween, is(true));
+	}
 
-    @Test
-    public void testIsCurrentDateTimeBetweenStartAndEndIsNull()
-                    throws Exception {
-        Date startDateTime = null;
-        Date endDateTime = null;
-        boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween( startDateTime, endDateTime );
+	@Test
+	public void testIsCurrentDateTimeBetweenStartAndEndIsNull() throws Exception {
+		Date startDateTime = null;
+		Date endDateTime = null;
+		boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween(startDateTime, endDateTime);
 
-        assertThat( isCurrentDateTimeBetween, is( true ) );
-    }
+		assertThat(isCurrentDateTimeBetween, is(true));
+	}
 
-    @Test
-    public void testIsCurrentDateTimeBetweenStartIsNull()
-                    throws Exception {
-        long currentTimeMillis = System.currentTimeMillis();
-        Date startDateTime = null;
-        Date endDateTime = new Date( currentTimeMillis + 1000000000 );
-        boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween( startDateTime, endDateTime );
+	@Test
+	public void testIsCurrentDateTimeBetweenStartIsNull() throws Exception {
+		long currentTimeMillis = System.currentTimeMillis();
+		Date startDateTime = null;
+		Date endDateTime = new Date(currentTimeMillis + 1000000000);
+		boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween(startDateTime, endDateTime);
 
-        assertThat( isCurrentDateTimeBetween, is( true ) );
-    }
+		assertThat(isCurrentDateTimeBetween, is(true));
+	}
 
-    @Test
-    public void testIsCurrentDateTimeBetweenStartIsNullCurrentIsAfterEnd()
-                    throws Exception {
-        long currentTimeMillis = System.currentTimeMillis();
-        Date startDateTime = null;
-        Date endDateTime = new Date( currentTimeMillis - 1000 );
-        boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween( startDateTime, endDateTime );
+	@Test
+	public void testIsCurrentDateTimeBetweenStartIsNullCurrentIsAfterEnd() throws Exception {
+		long currentTimeMillis = System.currentTimeMillis();
+		Date startDateTime = null;
+		Date endDateTime = new Date(currentTimeMillis - 1000);
+		boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween(startDateTime, endDateTime);
 
-        assertThat( isCurrentDateTimeBetween, is( false ) );
-    }
+		assertThat(isCurrentDateTimeBetween, is(false));
+	}
 
-    @Test
-    public void testIsCurrentDateTimeBetweenEndIsNull()
-                    throws Exception {
-        long currentTimeMillis = System.currentTimeMillis();
-        Date startDateTime = new Date( currentTimeMillis - 1000 );
-        Date endDateTime = null;
-        boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween( startDateTime, endDateTime );
+	@Test
+	public void testIsCurrentDateTimeBetweenEndIsNull() throws Exception {
+		long currentTimeMillis = System.currentTimeMillis();
+		Date startDateTime = new Date(currentTimeMillis - 1000);
+		Date endDateTime = null;
+		boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween(startDateTime, endDateTime);
 
-        assertThat( isCurrentDateTimeBetween, is( true ) );
-    }
+		assertThat(isCurrentDateTimeBetween, is(true));
+	}
 
-    @Test
-    public void testIsCurrentDateTimeBetweenEndIsNullCurrentIsBeforeStart()
-                    throws Exception {
-        long currentTimeMillis = System.currentTimeMillis();
-        Date startDateTime = new Date( currentTimeMillis + 1000000000 );
-        Date endDateTime = null;
-        boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween( startDateTime, endDateTime );
+	@Test
+	public void testIsCurrentDateTimeBetweenEndIsNullCurrentIsBeforeStart() throws Exception {
+		long currentTimeMillis = System.currentTimeMillis();
+		Date startDateTime = new Date(currentTimeMillis + 1000000000);
+		Date endDateTime = null;
+		boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween(startDateTime, endDateTime);
 
-        assertThat( isCurrentDateTimeBetween, is( false ) );
-    }
+		assertThat(isCurrentDateTimeBetween, is(false));
+	}
 
-    @Test
-    public void testIsCurrentDateTimeBetweenCurrentIsAfter()
-                    throws Exception {
-        long currentTimeMillis = System.currentTimeMillis();
-        Date startDateTime = new Date( currentTimeMillis - 10000 );
-        Date endDateTime = new Date( currentTimeMillis - 1000 );
-        boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween( startDateTime, endDateTime );
+	@Test
+	public void testIsCurrentDateTimeBetweenCurrentIsAfter() throws Exception {
+		long currentTimeMillis = System.currentTimeMillis();
+		Date startDateTime = new Date(currentTimeMillis - 10000);
+		Date endDateTime = new Date(currentTimeMillis - 1000);
+		boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween(startDateTime, endDateTime);
 
-        assertThat( isCurrentDateTimeBetween, is( false ) );
-    }
+		assertThat(isCurrentDateTimeBetween, is(false));
+	}
 
-    @Test
-    public void testIsCurrentDateTimeBetweenCurrentIsBefore()
-                    throws Exception {
-        long currentTimeMillis = System.currentTimeMillis();
-        Date startDateTime = new Date( currentTimeMillis + 100000000 );
-        Date endDateTime = new Date( currentTimeMillis + 1000000000 );
-        boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween( startDateTime, endDateTime );
+	@Test
+	public void testIsCurrentDateTimeBetweenCurrentIsBefore() throws Exception {
+		long currentTimeMillis = System.currentTimeMillis();
+		Date startDateTime = new Date(currentTimeMillis + 100000000);
+		Date endDateTime = new Date(currentTimeMillis + 1000000000);
+		boolean isCurrentDateTimeBetween = DateTimeUtils.isCurrentDateTimeBetween(startDateTime, endDateTime);
 
-        assertThat( isCurrentDateTimeBetween, is( false ) );
-    }
+		assertThat(isCurrentDateTimeBetween, is(false));
+	}
 
 }

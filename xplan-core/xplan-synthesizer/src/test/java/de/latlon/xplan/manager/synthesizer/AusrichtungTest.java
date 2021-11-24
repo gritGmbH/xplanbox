@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -39,37 +39,37 @@ import static org.junit.Assert.assertThat;
  */
 public class AusrichtungTest {
 
-    @Test
-    public void testEvaluate_Empty() {
-        FeatureCollection features = (FeatureCollection) TestFeaturesUtils.getTestFeatures( XPLAN_51,
-                                                                                            "Praesentationsobjekte.gml" );
-        Feature feature = TestFeaturesUtils.getTestFeature( features, "XP_PTO_EMPTY" );
-        Ausrichtung horzontaleAusrichtung = new Ausrichtung( new Xpath( "xplan:horizontaleAusrichtung" ) );
-        TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate( feature, features );
-        assertThat( asDouble( horizontaleValue ), is( 0.0 ) );
+	@Test
+	public void testEvaluate_Empty() {
+		FeatureCollection features = (FeatureCollection) TestFeaturesUtils.getTestFeatures(XPLAN_51,
+				"Praesentationsobjekte.gml");
+		Feature feature = TestFeaturesUtils.getTestFeature(features, "XP_PTO_EMPTY");
+		Ausrichtung horzontaleAusrichtung = new Ausrichtung(new Xpath("xplan:horizontaleAusrichtung"));
+		TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate(feature, features);
+		assertThat(asDouble(horizontaleValue), is(0.0));
 
-        Ausrichtung vertikaleAusrichtung = new Ausrichtung( new Xpath( "xplan:vertikaleAusrichtung" ) );
-        TypedObjectNode vertikaleValue = vertikaleAusrichtung.evaluate( feature, features );
-        assertThat( asDouble( vertikaleValue ), is( 0.0 ) );
-    }
+		Ausrichtung vertikaleAusrichtung = new Ausrichtung(new Xpath("xplan:vertikaleAusrichtung"));
+		TypedObjectNode vertikaleValue = vertikaleAusrichtung.evaluate(feature, features);
+		assertThat(asDouble(vertikaleValue), is(0.0));
+	}
 
-    @Test
-    public void testEvaluate() {
-        FeatureCollection features = (FeatureCollection) TestFeaturesUtils.getTestFeatures( XPLAN_51,
-                                                                                            "Praesentationsobjekte.gml" );
-        Feature feature = TestFeaturesUtils.getTestFeature( features, "XP_PTO" );
-        Ausrichtung horzontaleAusrichtung = new Ausrichtung( new Xpath( "xplan:horizontaleAusrichtung" ) );
-        TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate( feature, features );
-        assertThat( asDouble( horizontaleValue ), is( 0.0 ) );
+	@Test
+	public void testEvaluate() {
+		FeatureCollection features = (FeatureCollection) TestFeaturesUtils.getTestFeatures(XPLAN_51,
+				"Praesentationsobjekte.gml");
+		Feature feature = TestFeaturesUtils.getTestFeature(features, "XP_PTO");
+		Ausrichtung horzontaleAusrichtung = new Ausrichtung(new Xpath("xplan:horizontaleAusrichtung"));
+		TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate(feature, features);
+		assertThat(asDouble(horizontaleValue), is(0.0));
 
-        Ausrichtung vertikaleAusrichtung = new Ausrichtung( new Xpath( "xplan:vertikaleAusrichtung" ) );
-        TypedObjectNode vertikaleValue = vertikaleAusrichtung.evaluate( feature, features );
-        assertThat( asDouble( vertikaleValue ), is( 1.0 ) );
-    }
+		Ausrichtung vertikaleAusrichtung = new Ausrichtung(new Xpath("xplan:vertikaleAusrichtung"));
+		TypedObjectNode vertikaleValue = vertikaleAusrichtung.evaluate(feature, features);
+		assertThat(asDouble(vertikaleValue), is(1.0));
+	}
 
-    private double asDouble( TypedObjectNode value ) {
-        PrimitiveValue primitiveValue = (PrimitiveValue) value;
-        return (double) primitiveValue.getValue();
-    }
+	private double asDouble(TypedObjectNode value) {
+		PrimitiveValue primitiveValue = (PrimitiveValue) value;
+		return (double) primitiveValue.getValue();
+	}
 
 }

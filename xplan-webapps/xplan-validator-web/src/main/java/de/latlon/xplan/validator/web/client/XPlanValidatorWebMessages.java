@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -29,73 +29,74 @@ import com.google.gwt.i18n.client.Messages;
  */
 interface XPlanValidatorWebMessages extends Messages {
 
-    String validationPopupCancel();
+	String validationPopupCancel();
 
-    String validationPopupSave();
+	String validationPopupSave();
 
-    String validationOptionsOpen();
+	String validationOptionsOpen();
 
-    String validationSettingsTitle();
+	String validationSettingsTitle();
 
-    String uploadLabel();
+	String uploadLabel();
 
-    String uploadHint();
+	String uploadHint();
 
-    String errorTitle();
+	String errorTitle();
 
-    String fileNameMustEndWithZip();
+	String fileNameMustEndWithZip();
 
-    String fileNameInvalidCharacters();
+	String fileNameInvalidCharacters();
 
-    String uploadingFile();
+	String uploadingFile();
 
-    String uploadFailed();
+	String uploadFailed();
 
-    String uploadSucessTitle();
+	String uploadSucessTitle();
 
-    String fieldLabelRunName();
+	String fieldLabelRunName();
 
-    String defaultRunName();
+	String defaultRunName();
 
-    String selectionValidationTypeHint();
+	String selectionValidationTypeHint();
 
-    String selectionValidationTypeSem();
+	String selectionValidationTypeSem();
 
-    String selectionValidationTypeSyn();
+	String selectionValidationTypeSyn();
 
-    String selectionValidationTypeGeom();
+	String selectionValidationTypeGeom();
 
-    String moreOptions();
+	String moreOptions();
 
-    String extendedOptionsDialogTitle();
+	String extendedOptionsDialogTitle();
 
-    String ignoreSelfIntersection();
+	String ignoreSelfIntersection();
 
-    String ignoreOrientation();
+	String ignoreOrientation();
 
-    String ignorePresentation();
+	String ignorePresentation();
 
-    String ignoreOther();
+	String ignoreOther();
 
-    String nodeTolerance();
+	String nodeTolerance();
 
-    String nodeToleranceUnit();
+	String nodeToleranceUnit();
 
-    String startValidationButton();
+	String startValidationButton();
 
-    String uploadFinishedNextButton();
+	String uploadFinishedNextButton();
 
-    String uploadFinishedCancelButton();
+	String uploadFinishedCancelButton();
 
-    String loadedPlan();
+	String loadedPlan();
 
-    String planIsValid();
+	String planIsValid();
 
-    String planIsNotValid();
+	String planIsNotValid();
 
-    String correctInputText();
+	String correctInputText();
 
-    String correctValidationType();
+	String correctValidationType();
 
-    String openUserManual();
+	String openUserManual();
+
 }

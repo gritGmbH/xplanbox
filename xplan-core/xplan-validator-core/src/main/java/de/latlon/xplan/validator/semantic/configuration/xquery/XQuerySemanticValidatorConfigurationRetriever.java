@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -57,150 +57,153 @@ import static java.nio.file.Files.newInputStream;
  */
 public class XQuerySemanticValidatorConfigurationRetriever implements SemanticValidatorConfigurationRetriever {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XQuerySemanticValidatorConfigurationRetriever.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XQuerySemanticValidatorConfigurationRetriever.class);
 
-    private static final XPlanVersion UNKNOWN_VERSION = null;
+	private static final XPlanVersion UNKNOWN_VERSION = null;
 
-    private static final SemanticValidationOptions UNKNOWN_OPTION = NONE;
+	private static final SemanticValidationOptions UNKNOWN_OPTION = NONE;
 
-    private final Path rulesPath;
+	private final Path rulesPath;
 
-    private final RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
+	private final RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
 
-    public XQuerySemanticValidatorConfigurationRetriever( Path rulesPath ) {
-        this.rulesPath = rulesPath;
-    }
+	public XQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
+		this.rulesPath = rulesPath;
+	}
 
-    @Override
-    public SemanticValidatorConfiguration retrieveConfiguration()
-                            throws IOException {
-        SemanticValidatorConfiguration config = new SemanticValidatorConfiguration();
+	@Override
+	public SemanticValidatorConfiguration retrieveConfiguration() throws IOException {
+		SemanticValidatorConfiguration config = new SemanticValidatorConfiguration();
 
-        if ( rulesPath != null && isDirectory( rulesPath ) ) {
-            RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata( rulesPath );
-            config.setRulesMetadata( rulesMetadata );
-            try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules( rulesPath )) {
-                for ( Path path : directoryStream ) {
-                    if ( isDirectory( path ) ) {
-                        XPlanVersion planVersion = parseXPlanVersion( path );
-                        SemanticValidationOptions validationOption = parseSemanticValidationOption( path );
-                        boolean isVersionDirectory = isVersionDirectory( planVersion );
-                        boolean isIgnoreOptionDirectory = isIgnoreOptionDirectory( validationOption );
-                        if ( isVersionDirectory ) {
-                            collectAllRulesFromVersionDirectory( config, path, planVersion );
-                        } else if ( isIgnoreOptionDirectory ) {
-                            collectAllRulesFromDirectory( config, path, UNKNOWN_VERSION, validationOption );
-                        } else {
-                            collectAllRulesFromDirectory( config, path, UNKNOWN_VERSION, UNKNOWN_OPTION );
-                        }
-                    } else {
-                        createAndAddRule( config, path, UNKNOWN_VERSION, UNKNOWN_OPTION );
-                    }
-                }
-            }
-        } else {
-            createAndAddRule( config, rulesPath, UNKNOWN_VERSION, UNKNOWN_OPTION );
-        }
+		if (rulesPath != null && isDirectory(rulesPath)) {
+			RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata(rulesPath);
+			config.setRulesMetadata(rulesMetadata);
+			try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules(rulesPath)) {
+				for (Path path : directoryStream) {
+					if (isDirectory(path)) {
+						XPlanVersion planVersion = parseXPlanVersion(path);
+						SemanticValidationOptions validationOption = parseSemanticValidationOption(path);
+						boolean isVersionDirectory = isVersionDirectory(planVersion);
+						boolean isIgnoreOptionDirectory = isIgnoreOptionDirectory(validationOption);
+						if (isVersionDirectory) {
+							collectAllRulesFromVersionDirectory(config, path, planVersion);
+						}
+						else if (isIgnoreOptionDirectory) {
+							collectAllRulesFromDirectory(config, path, UNKNOWN_VERSION, validationOption);
+						}
+						else {
+							collectAllRulesFromDirectory(config, path, UNKNOWN_VERSION, UNKNOWN_OPTION);
+						}
+					}
+					else {
+						createAndAddRule(config, path, UNKNOWN_VERSION, UNKNOWN_OPTION);
+					}
+				}
+			}
+		}
+		else {
+			createAndAddRule(config, rulesPath, UNKNOWN_VERSION, UNKNOWN_OPTION);
+		}
 
-        return config;
-    }
+		return config;
+	}
 
-    private void collectAllRulesFromVersionDirectory( SemanticValidatorConfiguration config, Path versionDirectory,
-                                                      XPlanVersion planVersion )
-                            throws IOException {
-        try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules( versionDirectory )) {
-            for ( Path path : directoryStream ) {
-                if ( isDirectory( path ) ) {
-                    SemanticValidationOptions validationOption = parseSemanticValidationOption( path );
-                    if ( isIgnoreOptionDirectory( validationOption ) ) {
-                        collectAllRulesFromDirectory( config, path, planVersion, validationOption );
-                    } else {
-                        collectAllRulesFromDirectory( config, path, planVersion, validationOption );
-                    }
-                } else {
-                    createAndAddRule( config, path, planVersion, UNKNOWN_OPTION );
-                }
-            }
-        }
-    }
+	private void collectAllRulesFromVersionDirectory(SemanticValidatorConfiguration config, Path versionDirectory,
+			XPlanVersion planVersion) throws IOException {
+		try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules(versionDirectory)) {
+			for (Path path : directoryStream) {
+				if (isDirectory(path)) {
+					SemanticValidationOptions validationOption = parseSemanticValidationOption(path);
+					if (isIgnoreOptionDirectory(validationOption)) {
+						collectAllRulesFromDirectory(config, path, planVersion, validationOption);
+					}
+					else {
+						collectAllRulesFromDirectory(config, path, planVersion, validationOption);
+					}
+				}
+				else {
+					createAndAddRule(config, path, planVersion, UNKNOWN_OPTION);
+				}
+			}
+		}
+	}
 
-    private void collectAllRulesFromDirectory( SemanticValidatorConfiguration config, Path validationDirectory,
-                                               XPlanVersion planVersion, SemanticValidationOptions validationOption )
-                            throws IOException {
-        try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules( validationDirectory )) {
-            for ( Path path : directoryStream ) {
-                if ( isDirectory( path ) ) {
-                    collectAllRulesFromDirectory( config, path, planVersion, validationOption );
-                } else {
-                    createAndAddRule( config, path, planVersion, validationOption );
-                }
-            }
-        }
-    }
+	private void collectAllRulesFromDirectory(SemanticValidatorConfiguration config, Path validationDirectory,
+			XPlanVersion planVersion, SemanticValidationOptions validationOption) throws IOException {
+		try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules(validationDirectory)) {
+			for (Path path : directoryStream) {
+				if (isDirectory(path)) {
+					collectAllRulesFromDirectory(config, path, planVersion, validationOption);
+				}
+				else {
+					createAndAddRule(config, path, planVersion, validationOption);
+				}
+			}
+		}
+	}
 
-    private void createAndAddRule( SemanticValidatorConfiguration config, Path path, XPlanVersion version,
-                                   SemanticValidationOptions option ) {
-        LOG.debug( "Parse rule {}", path );
-        String nameWithType = path.getFileName().toString();
-        String name = nameWithType.substring( 0, nameWithType.lastIndexOf( '.' ) );
-        try {
-            XQuerySemanticValidatorRule rule = new XQuerySemanticValidatorRule( newInputStream( path ), name, version,
-                                                                                option );
-            config.addRule( rule );
-            LOG.debug( format( "New rule: %s from file rulesPath %s", name, path.toAbsolutePath().toString() ) );
-        } catch ( Throwable e ) {
-            LOG.warn( format( "Rule '%s' could not be parsed and will be skipped, reason: %s",
-                               path.toAbsolutePath().toString(), e.getMessage() ), e );
-        }
-    }
+	private void createAndAddRule(SemanticValidatorConfiguration config, Path path, XPlanVersion version,
+			SemanticValidationOptions option) {
+		LOG.debug("Parse rule {}", path);
+		String nameWithType = path.getFileName().toString();
+		String name = nameWithType.substring(0, nameWithType.lastIndexOf('.'));
+		try {
+			XQuerySemanticValidatorRule rule = new XQuerySemanticValidatorRule(newInputStream(path), name, version,
+					option);
+			config.addRule(rule);
+			LOG.debug(format("New rule: %s from file rulesPath %s", name, path.toAbsolutePath().toString()));
+		}
+		catch (Throwable e) {
+			LOG.warn(format("Rule '%s' could not be parsed and will be skipped, reason: %s",
+					path.toAbsolutePath().toString(), e.getMessage()), e);
+		}
+	}
 
-    private static DirectoryStream<Path> retrieveDirectoriesAndRules( Path filesPath )
-                            throws IOException {
-        return newDirectoryStream( filesPath, new DirectoryStream.Filter<Path>() {
-            @Override
-            public boolean accept( Path entry )
-                                    throws IOException {
-                return isDirectory( entry ) || valueOf( entry.getFileName() ).endsWith( ".xq" );
-            }
-        } );
-    }
+	private static DirectoryStream<Path> retrieveDirectoriesAndRules(Path filesPath) throws IOException {
+		return newDirectoryStream(filesPath, new DirectoryStream.Filter<Path>() {
+			@Override
+			public boolean accept(Path entry) throws IOException {
+				return isDirectory(entry) || valueOf(entry.getFileName()).endsWith(".xq");
+			}
+		});
+	}
 
-    private boolean isVersionDirectory( XPlanVersion planVersion ) {
-        return planVersion != UNKNOWN_VERSION;
-    }
+	private boolean isVersionDirectory(XPlanVersion planVersion) {
+		return planVersion != UNKNOWN_VERSION;
+	}
 
-    private boolean isIgnoreOptionDirectory( SemanticValidationOptions validationOption ) {
-        return !UNKNOWN_OPTION.equals( validationOption );
-    }
+	private boolean isIgnoreOptionDirectory(SemanticValidationOptions validationOption) {
+		return !UNKNOWN_OPTION.equals(validationOption);
+	}
 
-    private SemanticValidationOptions parseSemanticValidationOption( Path path ) {
-        String dirName = extractDirectoryName( path );
-        return SemanticValidationOptions.getByDirectoryName( dirName );
-    }
+	private SemanticValidationOptions parseSemanticValidationOption(Path path) {
+		String dirName = extractDirectoryName(path);
+		return SemanticValidationOptions.getByDirectoryName(dirName);
+	}
 
-    private XPlanVersion parseXPlanVersion(Path path) {
-        String dirName = extractDirectoryName(path);
-        if ("xplangml53".equals(dirName))
-            return XPLAN_53;
-        if ("xplangml52".equals(dirName))
-            return XPLAN_52;
-        if ("xplangml51".equals(dirName))
-            return XPLAN_51;
-        if ("xplangml50".equals(dirName))
-            return XPLAN_50;
-        if ("xplangml41".equals(dirName))
-            return XPLAN_41;
-        if ("xplangml40".equals(dirName))
-            return XPLAN_40;
-        if ("xplangml3".equals(dirName))
-            return XPLAN_3;
-        LOG.info("{} is not a known XPlanVersion", dirName);
-        return UNKNOWN_VERSION;
-    }
+	private XPlanVersion parseXPlanVersion(Path path) {
+		String dirName = extractDirectoryName(path);
+		if ("xplangml53".equals(dirName))
+			return XPLAN_53;
+		if ("xplangml52".equals(dirName))
+			return XPLAN_52;
+		if ("xplangml51".equals(dirName))
+			return XPLAN_51;
+		if ("xplangml50".equals(dirName))
+			return XPLAN_50;
+		if ("xplangml41".equals(dirName))
+			return XPLAN_41;
+		if ("xplangml40".equals(dirName))
+			return XPLAN_40;
+		if ("xplangml3".equals(dirName))
+			return XPLAN_3;
+		LOG.info("{} is not a known XPlanVersion", dirName);
+		return UNKNOWN_VERSION;
+	}
 
-    private String extractDirectoryName( Path path ) {
-        Path name = path.getFileName();
-        return name.toFile().getName();
-    }
+	private String extractDirectoryName(Path path) {
+		Path name = path.getFileName();
+		return name.toFile().getName();
+	}
 
 }

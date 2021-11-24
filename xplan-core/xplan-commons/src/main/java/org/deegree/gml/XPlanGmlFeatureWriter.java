@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -37,42 +37,42 @@ import static org.deegree.commons.xml.CommonNamespaces.XLNNS;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class XPlanGmlFeatureWriter extends GMLFeatureWriter {
-    private final XPlanVersion xPlanVersion;
 
-    /**
-     * Creates a new {@link GMLFeatureWriter} instance.
-     *
-     * @param gmlStreamWriter
-     *                 GML stream writer, must not be <code>null</code>
-     */
-    public XPlanGmlFeatureWriter( GMLStreamWriter gmlStreamWriter, XPlanVersion xPlanVersion ) {
-        super( gmlStreamWriter );
-        this.xPlanVersion = xPlanVersion;
-    }
+	private final XPlanVersion xPlanVersion;
 
-    @Override
-    public void export( Feature feature )
-                    throws XMLStreamException, UnknownCRSException, TransformationException {
-        if ( feature instanceof GenericFeatureCollection ) {
-            writeStartElementWithNS( xPlanVersion.getNamespace(), "XPlanAuszug" );
-            if ( feature.getId() != null ) {
-                GMLVersion gmlVersion = xPlanVersion.getGmlVersion();
-                writeAttributeWithNS( gmlVersion.getNamespace(), "id", feature.getId() );
-            }
-            for ( Feature member : ( (FeatureCollection) feature ) ) {
-                String memberFid = member.getId();
-                writeStartElementWithNS( gmlNs, "featureMember" );
-                if ( memberFid != null && referenceExportStrategy.isObjectExported( memberFid ) ) {
-                    writeAttributeWithNS( XLNNS, "href", "#" + memberFid );
-                } else {
-                    export( member, getResolveStateForNextLevel( referenceExportStrategy.getResolveOptions() ) );
-                }
-                writer.writeEndElement();
-            }
-            writer.writeEndElement();
-        } else {
-            super.export( feature );
-        }
-    }
+	/**
+	 * Creates a new {@link GMLFeatureWriter} instance.
+	 * @param gmlStreamWriter GML stream writer, must not be <code>null</code>
+	 */
+	public XPlanGmlFeatureWriter(GMLStreamWriter gmlStreamWriter, XPlanVersion xPlanVersion) {
+		super(gmlStreamWriter);
+		this.xPlanVersion = xPlanVersion;
+	}
+
+	@Override
+	public void export(Feature feature) throws XMLStreamException, UnknownCRSException, TransformationException {
+		if (feature instanceof GenericFeatureCollection) {
+			writeStartElementWithNS(xPlanVersion.getNamespace(), "XPlanAuszug");
+			if (feature.getId() != null) {
+				GMLVersion gmlVersion = xPlanVersion.getGmlVersion();
+				writeAttributeWithNS(gmlVersion.getNamespace(), "id", feature.getId());
+			}
+			for (Feature member : ((FeatureCollection) feature)) {
+				String memberFid = member.getId();
+				writeStartElementWithNS(gmlNs, "featureMember");
+				if (memberFid != null && referenceExportStrategy.isObjectExported(memberFid)) {
+					writeAttributeWithNS(XLNNS, "href", "#" + memberFid);
+				}
+				else {
+					export(member, getResolveStateForNextLevel(referenceExportStrategy.getResolveOptions()));
+				}
+				writer.writeEndElement();
+			}
+			writer.writeEndElement();
+		}
+		else {
+			super.export(feature);
+		}
+	}
 
 }

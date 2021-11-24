@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -53,37 +53,39 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith( SpringJUnit4ClassRunner.class )
-@ContextConfiguration( classes = { XPlanManagerWebContextConfig.class, TestConfig.class } )
-@ActiveProfiles( profiles = {"test"} )
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = { XPlanManagerWebContextConfig.class, TestConfig.class })
+@ActiveProfiles(profiles = { "test" })
 @WebAppConfiguration
 public class ManagerControllerTest {
 
-    private MockMvc mockMvc;
+	private MockMvc mockMvc;
 
-    @Autowired
-    private XPlanManager mockManager;
+	@Autowired
+	private XPlanManager mockManager;
 
-    @Autowired
-    private ManagerController managerController;
+	@Autowired
+	private ManagerController managerController;
 
-    @Autowired
-    private ReportProvider mockReportProvider;
+	@Autowired
+	private ReportProvider mockReportProvider;
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+	@Autowired
+	private WebApplicationContext webApplicationContext;
 
-    @Before
-    public void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
+	@Before
+	public void setUp() {
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
 
-    @Test
-    public void verifyThatManagerReturnList_WhenValidRequestIsSend() throws Exception {
-        doNothing().when(mockReportProvider).writeHtmlReport(isA(HttpServletResponse.class), isA(String.class), isA(String.class));
-        Mockito.when(mockManager.list(false)).thenReturn(new ArrayList<XPlan>());
-        assertThat(this.managerController, is(notNullValue()));
-        mockMvc.perform(get("/manager/plans")).andExpect(status().isOk());
-        verify(mockManager, times(1)).list(any(Boolean.class));
-    }
+	@Test
+	public void verifyThatManagerReturnList_WhenValidRequestIsSend() throws Exception {
+		doNothing().when(mockReportProvider).writeHtmlReport(isA(HttpServletResponse.class), isA(String.class),
+				isA(String.class));
+		Mockito.when(mockManager.list(false)).thenReturn(new ArrayList<XPlan>());
+		assertThat(this.managerController, is(notNullValue()));
+		mockMvc.perform(get("/manager/plans")).andExpect(status().isOk());
+		verify(mockManager, times(1)).list(any(Boolean.class));
+	}
+
 }

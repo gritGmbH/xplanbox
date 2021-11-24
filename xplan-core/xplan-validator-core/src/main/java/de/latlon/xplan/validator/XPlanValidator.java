@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -40,6 +40,7 @@ import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
@@ -76,330 +77,316 @@ import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
  */
 public class XPlanValidator {
 
-    private static final Logger LOG = LoggerFactory.getLogger( XPlanValidator.class );
+	private static final Logger LOG = LoggerFactory.getLogger(XPlanValidator.class);
 
-    private final GeometricValidator geometricValidator;
+	private final GeometricValidator geometricValidator;
 
-    private final SyntacticValidator syntacticValidator;
+	private final SyntacticValidator syntacticValidator;
 
-    private final SemanticValidator semanticValidator;
+	private final SemanticValidator semanticValidator;
 
-    private final ReportArchiveGenerator reportArchiveGenerator;
+	private final ReportArchiveGenerator reportArchiveGenerator;
 
-    private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
-    private XPlanSchemas schemas;
+	private XPlanSchemas schemas;
 
-    public XPlanValidator( GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-                           SemanticValidator semanticValidator, ReportArchiveGenerator reportArchiveGenerator ) {
-        this.geometricValidator = geometricValidator;
-        this.syntacticValidator = syntacticValidator;
-        this.semanticValidator = semanticValidator;
-        this.reportArchiveGenerator = reportArchiveGenerator;
-        this.schemas = XPlanSchemas.getInstance();
-    }
+	public XPlanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
+			SemanticValidator semanticValidator, ReportArchiveGenerator reportArchiveGenerator) {
+		this.geometricValidator = geometricValidator;
+		this.syntacticValidator = syntacticValidator;
+		this.semanticValidator = semanticValidator;
+		this.reportArchiveGenerator = reportArchiveGenerator;
+		this.schemas = XPlanSchemas.getInstance();
+	}
 
-    /**
-     * Validate a plan archive
-     *
-     * @param validationSettings
-     *                         to apply, never <code>null</code>
-     * @param planArchive
-     *                         to validate, never <code>null</code> and must point to a zip file with a gml plan
-     * @return <link>ValidatorReport</link>
-     * @throws ValidatorException
-     * @throws ParseException
-     * @throws IOException
-     * @throws ReportGenerationException
-     */
-    public ValidatorReport validate( ValidationSettings validationSettings, File planArchive, String planName )
-                            throws ValidatorException, IOException, ReportGenerationException {
-        XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
-        ValidatorReport report = validate( validationSettings, archive, planName );
-        writeReport( report );
-        LOG.info( "Archiv mit Validierungsergebnissen wird erstellt." );
-        Path validationReportDirectory = createZipArchive( validationSettings, report );
-        LOG.info( "Archiv mit Validierungsergebnissen wurde unter {} abgelegt.", validationReportDirectory );
-        return report;
-    }
+	/**
+	 * Validate a plan archive
+	 * @param validationSettings to apply, never <code>null</code>
+	 * @param planArchive to validate, never <code>null</code> and must point to a zip
+	 * file with a gml plan
+	 * @return <link>ValidatorReport</link>
+	 * @throws ValidatorException
+	 * @throws ParseException
+	 * @throws IOException
+	 * @throws ReportGenerationException
+	 */
+	public ValidatorReport validate(ValidationSettings validationSettings, File planArchive, String planName)
+			throws ValidatorException, IOException, ReportGenerationException {
+		XPlanArchive archive = archiveCreator.createXPlanArchive(planArchive);
+		ValidatorReport report = validate(validationSettings, archive, planName);
+		writeReport(report);
+		LOG.info("Archiv mit Validierungsergebnissen wird erstellt.");
+		Path validationReportDirectory = createZipArchive(validationSettings, report);
+		LOG.info("Archiv mit Validierungsergebnissen wurde unter {} abgelegt.", validationReportDirectory);
+		return report;
+	}
 
-    /**
-     * Validate a plan archive, but does not write the report
-     *
-     * @param validationSettings
-     *                         to apply, never <code>null</code>
-     * @param planArchive
-     *                         to validate, never <code>null</code> and must point to a zip file with a gml plan
-     * @return <link>ValidatorReport</link>
-     * @throws ValidatorException
-     * @throws IOException
-     */
-    public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, File planArchive,
-                                                   String planName )
-                            throws ValidatorException, IOException {
-        XPlanArchive archive = archiveCreator.createXPlanArchive( planArchive );
-        return validateNotWriteReport( validationSettings, planName, archive );
-    }
+	/**
+	 * Validate a plan archive, but does not write the report
+	 * @param validationSettings to apply, never <code>null</code>
+	 * @param planArchive to validate, never <code>null</code> and must point to a zip
+	 * file with a gml plan
+	 * @return <link>ValidatorReport</link>
+	 * @throws ValidatorException
+	 * @throws IOException
+	 */
+	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, File planArchive,
+			String planName) throws ValidatorException, IOException {
+		XPlanArchive archive = archiveCreator.createXPlanArchive(planArchive);
+		return validateNotWriteReport(validationSettings, planName, archive);
+	}
 
-    /**
-     * Validate a plan archive, but does not write the report
-     *
-     * @param validationSettings
-     *                         to apply, never <code>null</code>
-     * @param planArchive
-     *                         to validate, never <code>null</code>
-     * @return <link>ValidatorReport</link>
-     * @throws ValidatorException
-     * @throws IOException
-     */
-    public ValidatorReport validateNotWriteReport( ValidationSettings validationSettings, String planName,
-                                                   XPlanArchive planArchive )
-                            throws ValidatorException {
-        ValidatorReport validationReport = validate( validationSettings, planArchive, planName );
-        validationReport.setHasMultipleXPlanElements( planArchive.hasMultipleXPlanElements() );
-        return validationReport;
-    }
+	/**
+	 * Validate a plan archive, but does not write the report
+	 * @param validationSettings to apply, never <code>null</code>
+	 * @param planArchive to validate, never <code>null</code>
+	 * @return <link>ValidatorReport</link>
+	 * @throws ValidatorException
+	 * @throws IOException
+	 */
+	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, String planName,
+			XPlanArchive planArchive) throws ValidatorException {
+		ValidatorReport validationReport = validate(validationSettings, planArchive, planName);
+		validationReport.setHasMultipleXPlanElements(planArchive.hasMultipleXPlanElements());
+		return validationReport;
+	}
 
-    /**
-     * Write a report
-     *
-     * @param report
-     *                         to write, never <code>null</code>
-     */
-    void writeReport( ValidatorReport report ) {
-        writeReport( report.getGeometricValidatorResult() );
-        writeReport( report.getSemanticValidatorResult() );
-        writeReport( report.getSyntacticValidatorResult() );
-    }
+	/**
+	 * Write a report
+	 * @param report to write, never <code>null</code>
+	 */
+	void writeReport(ValidatorReport report) {
+		writeReport(report.getGeometricValidatorResult());
+		writeReport(report.getSemanticValidatorResult());
+		writeReport(report.getSyntacticValidatorResult());
+	}
 
-    private void writeReport( ValidatorResult result ) {
-        if ( result != null ) {
-            String validityMessage = result.isValid() ? "valide" : "nicht valide";
-            LOG.info( "{} hat ergeben: Dokument ist {}", result.getType(), validityMessage );
-        }
-    }
+	private void writeReport(ValidatorResult result) {
+		if (result != null) {
+			String validityMessage = result.isValid() ? "valide" : "nicht valide";
+			LOG.info("{} hat ergeben: Dokument ist {}", result.getType(), validityMessage);
+		}
+	}
 
-    private ValidatorReport validate( ValidationSettings validationSettings, XPlanArchive archive, String planName )
-                            throws ValidatorException {
-        List<ValidationOption> voOptions = validationSettings.getExtendedOptions();
-        List<SemanticValidationOptions> semanticValidationOptions = extractSemanticValidationOptions(
-                                validationSettings );
+	private ValidatorReport validate(ValidationSettings validationSettings, XPlanArchive archive, String planName)
+			throws ValidatorException {
+		List<ValidationOption> voOptions = validationSettings.getExtendedOptions();
+		List<SemanticValidationOptions> semanticValidationOptions = extractSemanticValidationOptions(
+				validationSettings);
 
-        ValidatorReport report = new ValidatorReport();
-        report.setValidationName( validationSettings.getValidationName() );
-        report.setPlanName( planName );
-        report.setDate( new Date() );
-        report.setXPlanVersion( archive.getVersion() );
+		ValidatorReport report = new ValidatorReport();
+		report.setValidationName(validationSettings.getValidationName());
+		report.setPlanName(planName);
+		report.setDate(new Date());
+		report.setXPlanVersion(archive.getVersion());
 
-        List<ValidationType> validationType = getValidationType( validationSettings );
-        validateSyntactic( archive, report );
-        if ( validationType.contains( GEOMETRIC ) )
-            validateGeometric( archive, voOptions, report );
-        if ( validationType.contains( SEMANTIC ) )
-            validateSemantic( archive, semanticValidationOptions, report );
-        return report;
-    }
+		List<ValidationType> validationType = getValidationType(validationSettings);
+		validateSyntactic(archive, report);
+		if (validationType.contains(GEOMETRIC))
+			validateGeometric(archive, voOptions, report);
+		if (validationType.contains(SEMANTIC))
+			validateSemantic(archive, semanticValidationOptions, report);
+		return report;
+	}
 
-    private void validateSyntactic( XPlanArchive archive, ValidatorReport report ) {
-        SyntacticValidatorResult syntacticallyResult = validateSyntacticallyAndWriteResult( archive );
-        report.setSyntacticValidatorResult( syntacticallyResult );
-        if ( !syntacticallyResult.isValid() ) {
-            report.setExternalReferenceReport( new ExternalReferenceReport( SYNTAX_ERRORS ) );
-        } else {
-            parseReferences( archive, report, null );
-        }
-    }
+	private void validateSyntactic(XPlanArchive archive, ValidatorReport report) {
+		SyntacticValidatorResult syntacticallyResult = validateSyntacticallyAndWriteResult(archive);
+		report.setSyntacticValidatorResult(syntacticallyResult);
+		if (!syntacticallyResult.isValid()) {
+			report.setExternalReferenceReport(new ExternalReferenceReport(SYNTAX_ERRORS));
+		}
+		else {
+			parseReferences(archive, report, null);
+		}
+	}
 
-    private void validateGeometric( XPlanArchive archive, List<ValidationOption> voOptions, ValidatorReport report )
-                            throws ValidatorException {
-        if ( !report.getSyntacticValidatorResult().isValid() ) {
-            report.setGeometricValidatorResult( new GeometricValidatorResult( SYNTAX_ERRORS ) );
-        } else {
-            GemetricValidatorParsingResult featuresAndResult = validateGeometricallyAndWriteResult( archive,
-                                                                                                    voOptions );
-            report.setGeometricValidatorResult( featuresAndResult.getValidatorResult() );
-        }
-    }
+	private void validateGeometric(XPlanArchive archive, List<ValidationOption> voOptions, ValidatorReport report)
+			throws ValidatorException {
+		if (!report.getSyntacticValidatorResult().isValid()) {
+			report.setGeometricValidatorResult(new GeometricValidatorResult(SYNTAX_ERRORS));
+		}
+		else {
+			GemetricValidatorParsingResult featuresAndResult = validateGeometricallyAndWriteResult(archive, voOptions);
+			report.setGeometricValidatorResult(featuresAndResult.getValidatorResult());
+		}
+	}
 
-    private void validateSemantic( XPlanArchive archive, List<SemanticValidationOptions> semanticValidationOptions,
-                                   ValidatorReport report ) {
-        if ( !report.getSyntacticValidatorResult().isValid() ) {
-            report.setSemanticValidatorResult( new SemanticValidatorResult( SYNTAX_ERRORS ) );
-        } else {
-            SemanticValidatorResult semanticallyResult = validateSemanticallyAndWriteResult( archive,
-                                                                                             semanticValidationOptions );
-            report.setSemanticValidatorResult( semanticallyResult );
-        }
-    }
+	private void validateSemantic(XPlanArchive archive, List<SemanticValidationOptions> semanticValidationOptions,
+			ValidatorReport report) {
+		if (!report.getSyntacticValidatorResult().isValid()) {
+			report.setSemanticValidatorResult(new SemanticValidatorResult(SYNTAX_ERRORS));
+		}
+		else {
+			SemanticValidatorResult semanticallyResult = validateSemanticallyAndWriteResult(archive,
+					semanticValidationOptions);
+			report.setSemanticValidatorResult(semanticallyResult);
+		}
+	}
 
-    private List<ValidationType> getValidationType( ValidationSettings validationSettings ) {
-        if ( validationSettings == null || validationSettings.getValidationTypes() == null
-             || validationSettings.getValidationTypes().isEmpty() )
-            return Collections.emptyList();
-        return validationSettings.getValidationTypes();
-    }
+	private List<ValidationType> getValidationType(ValidationSettings validationSettings) {
+		if (validationSettings == null || validationSettings.getValidationTypes() == null
+				|| validationSettings.getValidationTypes().isEmpty())
+			return Collections.emptyList();
+		return validationSettings.getValidationTypes();
+	}
 
-    /**
-     * Perform geometric validation of the given archive
-     *
-     * @param archive
-     *                         archive to validate, never <code>null</code>
-     * @param voOptions
-     *                         validation options, never <code>null</code>
-     * @return the created report
-     * @throws ValidatorException
-     *                         - validation failed
-     */
-    GemetricValidatorParsingResult validateGeometricallyAndWriteResult( XPlanArchive archive,
-                                                                        List<ValidationOption> voOptions )
-                            throws ValidatorException {
-        AppSchema appSchema = schemas.getAppSchema( archive.getVersion(), archive.getAde() );
-        GemetricValidatorParsingResult result = geometricValidator.validateGeometry( archive, archive.getCrs(),
-                                                                                     appSchema, true, voOptions );
-        GeometricValidatorResult validatorResult = result.getValidatorResult();
+	/**
+	 * Perform geometric validation of the given archive
+	 * @param archive archive to validate, never <code>null</code>
+	 * @param voOptions validation options, never <code>null</code>
+	 * @return the created report
+	 * @throws ValidatorException - validation failed
+	 */
+	GemetricValidatorParsingResult validateGeometricallyAndWriteResult(XPlanArchive archive,
+			List<ValidationOption> voOptions) throws ValidatorException {
+		AppSchema appSchema = schemas.getAppSchema(archive.getVersion(), archive.getAde());
+		GemetricValidatorParsingResult result = geometricValidator.validateGeometry(archive, archive.getCrs(),
+				appSchema, true, voOptions);
+		GeometricValidatorResult validatorResult = result.getValidatorResult();
 
-        log( validatorResult );
-        return result;
-    }
+		log(validatorResult);
+		return result;
+	}
 
-    /**
-     * Perform semantic validation of the given archive
-     *
-     * @param archive
-     *                         archive to validate, never <code>null</code>
-     * @param semanticValidationOptions
-     *                         {@link List} of {@link SemanticValidationOptions}, considered by the validation, may be empty, but
-     *                         never <code>null</code>
-     * @return the created report
-     */
-    SemanticValidatorResult validateSemanticallyAndWriteResult( SemanticValidableXPlanArchive archive,
-                                                                List<SemanticValidationOptions> semanticValidationOptions ) {
-        ValidatorResult result = semanticValidator.validateSemantic( archive, semanticValidationOptions );
-        SemanticValidatorResult validatorResult = (SemanticValidatorResult) result;
-        log( validatorResult );
-        return validatorResult;
-    }
+	/**
+	 * Perform semantic validation of the given archive
+	 * @param archive archive to validate, never <code>null</code>
+	 * @param semanticValidationOptions {@link List} of {@link SemanticValidationOptions},
+	 * considered by the validation, may be empty, but never <code>null</code>
+	 * @return the created report
+	 */
+	SemanticValidatorResult validateSemanticallyAndWriteResult(SemanticValidableXPlanArchive archive,
+			List<SemanticValidationOptions> semanticValidationOptions) {
+		ValidatorResult result = semanticValidator.validateSemantic(archive, semanticValidationOptions);
+		SemanticValidatorResult validatorResult = (SemanticValidatorResult) result;
+		log(validatorResult);
+		return validatorResult;
+	}
 
-    /**
-     * Perform syntactic validation of the given archive
-     *
-     * @param archive
-     *                         archive to validate, never <code>null</code>
-     * @return the created report, never <code>null</code>
-     */
-    SyntacticValidatorResult validateSyntacticallyAndWriteResult( XPlanArchive archive ) {
-        ValidatorResult result = syntacticValidator.validateSyntax( archive );
-        SyntacticValidatorResult validatorResult = (SyntacticValidatorResult) result;
-        log( validatorResult );
-        return validatorResult;
-    }
+	/**
+	 * Perform syntactic validation of the given archive
+	 * @param archive archive to validate, never <code>null</code>
+	 * @return the created report, never <code>null</code>
+	 */
+	SyntacticValidatorResult validateSyntacticallyAndWriteResult(XPlanArchive archive) {
+		ValidatorResult result = syntacticValidator.validateSyntax(archive);
+		SyntacticValidatorResult validatorResult = (SyntacticValidatorResult) result;
+		log(validatorResult);
+		return validatorResult;
+	}
 
-    private void parseReferences( XPlanArchive archive, ValidatorReport report,
-                                  GemetricValidatorParsingResult featuresAndResult ) {
-        XPlanFeatureCollection featureCollection = parseFeatures( featuresAndResult, archive );
-        report.setBBoxIn4326( featureCollection.getBboxIn4326() );
-        parseAndAddExternalReferences( report, featureCollection );
-    }
+	private void parseReferences(XPlanArchive archive, ValidatorReport report,
+			GemetricValidatorParsingResult featuresAndResult) {
+		XPlanFeatureCollection featureCollection = parseFeatures(featuresAndResult, archive);
+		report.setBBoxIn4326(featureCollection.getBboxIn4326());
+		parseAndAddExternalReferences(report, featureCollection);
+	}
 
-    private void parseAndAddExternalReferences( ValidatorReport report, XPlanFeatureCollection features ) {
-        ExternalReferenceReport externalReferenceReport;
-        if ( features != null )
-            externalReferenceReport = parseAndAddExternalReferences( features.getFeatures() );
-        else
-            externalReferenceReport = new ExternalReferenceReport( INTERNAL_ERRORS );
-        report.setExternalReferenceReport( externalReferenceReport );
-    }
+	private void parseAndAddExternalReferences(ValidatorReport report, XPlanFeatureCollection features) {
+		ExternalReferenceReport externalReferenceReport;
+		if (features != null)
+			externalReferenceReport = parseAndAddExternalReferences(features.getFeatures());
+		else
+			externalReferenceReport = new ExternalReferenceReport(INTERNAL_ERRORS);
+		report.setExternalReferenceReport(externalReferenceReport);
+	}
 
-    private ExternalReferenceReport parseAndAddExternalReferences( FeatureCollection fc ) {
-        ExternalReferenceScanner scanner = new ExternalReferenceScanner();
-        ExternalReferenceInfo externalReferenceInfo = scanner.scan( fc );
-        List<ExternalReference> allExternalReferences = externalReferenceInfo.getExternalRefs();
-        List<String> references = new ArrayList<>();
-        for ( ExternalReference ref : allExternalReferences ) {
-            String referenzUrl = ref.getReferenzUrl();
-            if ( referenzUrl != null )
-                references.add( referenzUrl );
-            String geoRefUrl = ref.getGeoRefUrl();
-            if ( geoRefUrl != null )
-                references.add( geoRefUrl );
-        }
-        return new ExternalReferenceReport( references );
+	private ExternalReferenceReport parseAndAddExternalReferences(FeatureCollection fc) {
+		ExternalReferenceScanner scanner = new ExternalReferenceScanner();
+		ExternalReferenceInfo externalReferenceInfo = scanner.scan(fc);
+		List<ExternalReference> allExternalReferences = externalReferenceInfo.getExternalRefs();
+		List<String> references = new ArrayList<>();
+		for (ExternalReference ref : allExternalReferences) {
+			String referenzUrl = ref.getReferenzUrl();
+			if (referenzUrl != null)
+				references.add(referenzUrl);
+			String geoRefUrl = ref.getGeoRefUrl();
+			if (geoRefUrl != null)
+				references.add(geoRefUrl);
+		}
+		return new ExternalReferenceReport(references);
 
-    }
+	}
 
-    private XPlanFeatureCollection parseFeatures( GemetricValidatorParsingResult validatorParsingResult,
-                                                  XPlanArchive archive ) {
-        if ( validatorParsingResult != null && validatorParsingResult.getFeatures() != null )
-            return validatorParsingResult.getFeatures();
-        try {
-            AppSchema appSchema = schemas.getAppSchema( archive.getVersion(), archive.getAde() );
-            XPlanFeatureCollection xPlanFeatureCollection = geometricValidator.retrieveGeometricallyValidXPlanFeatures(
-                                    archive, archive.getCrs(), appSchema, true, null );
-            return xPlanFeatureCollection;
-        } catch ( XMLStreamException | UnknownCRSException | ValidatorException e ) {
-            LOG.warn( "Parsing of external references failed", e );
-            return null;
-        }
-    }
+	private XPlanFeatureCollection parseFeatures(GemetricValidatorParsingResult validatorParsingResult,
+			XPlanArchive archive) {
+		if (validatorParsingResult != null && validatorParsingResult.getFeatures() != null)
+			return validatorParsingResult.getFeatures();
+		try {
+			AppSchema appSchema = schemas.getAppSchema(archive.getVersion(), archive.getAde());
+			XPlanFeatureCollection xPlanFeatureCollection = geometricValidator
+					.retrieveGeometricallyValidXPlanFeatures(archive, archive.getCrs(), appSchema, true, null);
+			return xPlanFeatureCollection;
+		}
+		catch (XMLStreamException | UnknownCRSException | ValidatorException e) {
+			LOG.warn("Parsing of external references failed", e);
+			return null;
+		}
+	}
 
-    private void log( GeometricValidatorResult validatorResult ) {
-        LOG.info( "Ergebnisse der geometrischen Validierung:" );
+	private void log(GeometricValidatorResult validatorResult) {
+		LOG.info("Ergebnisse der geometrischen Validierung:");
 
-        List<String> warnings = validatorResult.getWarnings();
-        LOG.info( "  Warnungen: {}", warnings.size() );
-        for ( String warn : warnings )
-            LOG.info( "    - {}", warn );
+		List<String> warnings = validatorResult.getWarnings();
+		LOG.info("  Warnungen: {}", warnings.size());
+		for (String warn : warnings)
+			LOG.info("    - {}", warn);
 
-        List<String> errors = validatorResult.getErrors();
-        LOG.info( "  Fehler: {}", errors.size() );
-        for ( String err : errors )
-            LOG.info( "    - {}", err );
-    }
+		List<String> errors = validatorResult.getErrors();
+		LOG.info("  Fehler: {}", errors.size());
+		for (String err : errors)
+			LOG.info("    - {}", err);
+	}
 
-    private void log( SemanticValidatorResult validatorResult ) {
-        RulesMetadata rulesMetadata = validatorResult.getRulesMetadata();
-        if ( rulesMetadata != null ) {
-            LOG.info( "Informationen zur semantischen Validierung:" );
-            LOG.info( "  - Version: {}", rulesMetadata.getVersion() );
-            LOG.info( "  - Quelle: {}", rulesMetadata.getSource() );
-        }
-        List<RuleResult> ruleResults = validatorResult.getRules();
-        LOG.info( "Ergebnisse der semantischen Validierung: {}", ruleResults.size() );
-        for ( RuleResult ruleResult : ruleResults ) {
-            if ( ruleResult.isValid() ) {
-                LOG.info( "  - Erfolgreich: {}", ruleResult.getMessage() );
-            } else {
-                List<String> invalidFeatures = ruleResult.getInvalidFeatures();
-                LOG.info( "  - Fehler: {}, fehlerhafte Features: {}", ruleResult.getMessage(),
-                          invalidFeatures.stream().collect( Collectors.joining( ", " ) ) );
-            }
-        }
-    }
+	private void log(SemanticValidatorResult validatorResult) {
+		RulesMetadata rulesMetadata = validatorResult.getRulesMetadata();
+		if (rulesMetadata != null) {
+			LOG.info("Informationen zur semantischen Validierung:");
+			LOG.info("  - Version: {}", rulesMetadata.getVersion());
+			LOG.info("  - Quelle: {}", rulesMetadata.getSource());
+		}
+		List<RuleResult> ruleResults = validatorResult.getRules();
+		LOG.info("Ergebnisse der semantischen Validierung: {}", ruleResults.size());
+		for (RuleResult ruleResult : ruleResults) {
+			if (ruleResult.isValid()) {
+				LOG.info("  - Erfolgreich: {}", ruleResult.getMessage());
+			}
+			else {
+				List<InvalidFeaturesResult> invalidFeatures = ruleResult.getInvalidFeaturesResults();
+				invalidFeatures.stream().forEach(invalidRuleResult -> {
+					String gmlIds = invalidRuleResult.getGmlIds().stream().collect(Collectors.joining(", "));
+					LOG.info("  - {}: {}, Features: {}", invalidRuleResult.getResultType(),
+							invalidRuleResult.getMessage(), gmlIds);
+				});
+			}
+		}
+	}
 
-    private void log( SyntacticValidatorResult validatorResult ) {
-        List<String> messages = validatorResult.getMessages();
-        LOG.info( "Ergebnisse der syntaktischen Validierung: {}", messages.size() );
-        for ( String mess : messages )
-            LOG.info( "  - {}", mess );
-    }
+	private void log(SyntacticValidatorResult validatorResult) {
+		List<String> messages = validatorResult.getMessages();
+		LOG.info("Ergebnisse der syntaktischen Validierung: {}", messages.size());
+		for (String mess : messages)
+			LOG.info("  - {}", mess);
+	}
 
-    private List<SemanticValidationOptions> extractSemanticValidationOptions( ValidationSettings validationSettings ) {
-        List<SemanticValidationOptions> semanticValidationOptions = new ArrayList<>();
-        List<ValidationOption> extendedOptions = validationSettings.getExtendedOptions();
-        if ( extendedOptions != null )
-            for ( ValidationOption validationOption : extendedOptions ) {
-                SemanticValidationOptions semanticValidationOption = SemanticValidationOptions.getByOption(
-                                        validationOption );
-                if ( !SemanticValidationOptions.NONE.equals( semanticValidationOption ) )
-                    semanticValidationOptions.add( semanticValidationOption );
-            }
-        return semanticValidationOptions;
-    }
+	private List<SemanticValidationOptions> extractSemanticValidationOptions(ValidationSettings validationSettings) {
+		List<SemanticValidationOptions> semanticValidationOptions = new ArrayList<>();
+		List<ValidationOption> extendedOptions = validationSettings.getExtendedOptions();
+		if (extendedOptions != null)
+			for (ValidationOption validationOption : extendedOptions) {
+				SemanticValidationOptions semanticValidationOption = SemanticValidationOptions
+						.getByOption(validationOption);
+				if (!SemanticValidationOptions.NONE.equals(semanticValidationOption))
+					semanticValidationOptions.add(semanticValidationOption);
+			}
+		return semanticValidationOptions;
+	}
 
-    private Path createZipArchive( ValidationSettings validationSettings, ValidatorReport report )
-                            throws ReportGenerationException {
-        String validationName = validationSettings.getValidationName();
-        return reportArchiveGenerator.generateZipArchive( report, validationName );
-    }
+	private Path createZipArchive(ValidationSettings validationSettings, ValidatorReport report)
+			throws ReportGenerationException {
+		String validationName = validationSettings.getValidationName();
+		return reportArchiveGenerator.generateZipArchive(report, validationName);
+	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation, either version 2.1 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Lesser Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Lesser Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
@@ -33,32 +33,32 @@ import java.util.List;
 
 public class XpHoehenangabeFlattener extends AbstractFlattener {
 
-    @Override
-    public boolean accepts( TypedObjectNode node ) {
-        String elName = null;
-        if ( node instanceof Feature ) {
-            elName = ( (Feature) node ).getName().getLocalPart();
-        }
-        if ( node instanceof ElementNode ) {
-            elName = ( (ElementNode) node ).getName().getLocalPart();
-        }
-        return "XP_Hoehenangabe".equals( elName );
-    }
+	@Override
+	public boolean accepts(TypedObjectNode node) {
+		String elName = null;
+		if (node instanceof Feature) {
+			elName = ((Feature) node).getName().getLocalPart();
+		}
+		if (node instanceof ElementNode) {
+			elName = ((ElementNode) node).getName().getLocalPart();
+		}
+		return "XP_Hoehenangabe".equals(elName);
+	}
 
-    @Override
-    public String flatten( TypedObjectNode xpHoehenangabe ) {
-        XPlanVersion version = XPlanVersionUtils.determineBaseVersion( ( (ElementNode) xpHoehenangabe ).getName() );
-        List<Pair<String, String>> properties = new ArrayList<>();
-        appendTranslatedCode( "Höhenbezug", xpHoehenangabe, "hoehenbezug", version, "XP_ArtHoehenbezug", properties );
-        append( "Abweichender Höhenbezug", xpHoehenangabe, "abweichenderHoehenbezug", properties );
-        appendTranslatedCode( "Bezugspunkt", xpHoehenangabe, "bezugspunkt", version,
-                              "XP_ArtHoehenbezugspunkt", properties );
-        append( "Abweichender Bezugspunkt", xpHoehenangabe, "abweichenderBezugspunkt", properties );
-        append( "Höhe", xpHoehenangabe, "h", properties );
-        append( "Höhe Min", xpHoehenangabe, "hMin", properties );
-        append( "Höhe Max", xpHoehenangabe, "hMax", properties );
-        append( "Höhe Zwingend", xpHoehenangabe, "hZwingend", properties );
-        return encode( properties );
-    }
+	@Override
+	public String flatten(TypedObjectNode xpHoehenangabe) {
+		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(((ElementNode) xpHoehenangabe).getName());
+		List<Pair<String, String>> properties = new ArrayList<>();
+		appendTranslatedCode("Höhenbezug", xpHoehenangabe, "hoehenbezug", version, "XP_ArtHoehenbezug", properties);
+		append("Abweichender Höhenbezug", xpHoehenangabe, "abweichenderHoehenbezug", properties);
+		appendTranslatedCode("Bezugspunkt", xpHoehenangabe, "bezugspunkt", version, "XP_ArtHoehenbezugspunkt",
+				properties);
+		append("Abweichender Bezugspunkt", xpHoehenangabe, "abweichenderBezugspunkt", properties);
+		append("Höhe", xpHoehenangabe, "h", properties);
+		append("Höhe Min", xpHoehenangabe, "hMin", properties);
+		append("Höhe Max", xpHoehenangabe, "hMax", properties);
+		append("Höhe Zwingend", xpHoehenangabe, "hZwingend", properties);
+		return encode(properties);
+	}
 
 }
