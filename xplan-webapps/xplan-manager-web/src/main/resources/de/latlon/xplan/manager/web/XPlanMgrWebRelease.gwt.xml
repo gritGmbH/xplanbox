@@ -22,13 +22,6 @@
   <inherits name='de.latlon.xplan.validator.web.XPlanValidatorWebCommons'/>
   <inherits name='org.gwtopenmaps.openlayers.OpenLayers'/>
   <inherits name='org.fusesource.restygwt.RestyGWT' />
-  <script src="js/OpenLayers-2.7/OpenLayers.js"></script>
-  <script src="js/proj4/proj4js/lib/proj4js-compressed.js"></script>
-  <script src="js/proj4/proj4js/lib/defs/EPSG25832.js"></script>
-  <script src="js/proj4/proj4js/lib/defs/EPSG25833.js"></script>
-  <script src="js/proj4/proj4js/lib/defs/EPSG31466.js"></script>
-  <script src="js/proj4/proj4js/lib/defs/EPSG31467.js"></script>
-  <script src="js/proj4/proj4js/lib/defs/EPSG31468.js"></script>
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='de.latlon.xplan.manager.web.client.gui.ManagerWebEntryPoint'/>
@@ -40,6 +33,5 @@
   <source path='client'/>
   <source path='shared'/>
 
-  <set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>
   <set-property name="user.agent" value="ie8,ie9,ie10,gecko1_8,safari,opera"/>
 </module>
