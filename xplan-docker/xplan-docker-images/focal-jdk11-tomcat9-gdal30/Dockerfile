@@ -8,7 +8,9 @@ ARG TOMCAT_VERSION="9.0.54"
 ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
-# update
+# update and install apt-transport-https (needed to install java 11)
+RUN apt update
+RUN apt -y install apt-transport-https
 RUN apt update
 
 # install utils
