@@ -2,7 +2,7 @@ pipeline {
   agent any
   tools {
     maven 'maven361'
-    jdk 'openjdk8'
+    jdk 'openjdk11'
   }
   parameters {
     string(defaultValue: "master", description: 'Set git branch', name: 'BRANCH')
