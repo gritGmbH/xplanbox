@@ -15,7 +15,7 @@ RUN apt update
 RUN apt -y install unzip wget
 
 # install jdk
-RUN DEBIAN_FRONTEND=noninteractive apt -y install openjdk-8-jdk
+RUN DEBIAN_FRONTEND=noninteractive apt -y install openjdk-11-jdk
 
 # install tomcat
 RUN mkdir /usr/local/tomcat

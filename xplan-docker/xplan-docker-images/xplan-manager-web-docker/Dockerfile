@@ -1,4 +1,4 @@
-FROM xplanbox/focal-jdk8-tomcat9-gdal30:latest
+FROM xplanbox/focal-jdk11-tomcat9-gdal30:latest
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
