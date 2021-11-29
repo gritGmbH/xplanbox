@@ -49,7 +49,6 @@ import de.latlon.xplan.manager.synthesizer.expression.XplanTextAbschnitte;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * The <code>RuleParser</code> class parses the Syn rules into corresponding objects.
@@ -87,7 +86,7 @@ class RuleParser {
 
 	private boolean asBoolean(String s) {
 		String asString = trimString(s);
-		return Boolean.getBoolean(asString.toLowerCase(Locale.ROOT));
+		return Boolean.parseBoolean(asString);
 	}
 
 	private Object parseDefaultValue(String s) {
