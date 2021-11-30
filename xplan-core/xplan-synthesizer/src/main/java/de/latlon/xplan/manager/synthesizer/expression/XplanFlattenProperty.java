@@ -37,6 +37,7 @@ import de.latlon.xplan.manager.synthesizer.expression.flatten.XpSPEMassnahmenDat
 import de.latlon.xplan.manager.synthesizer.expression.flatten.XpTextAbschnittFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.XpVerbundenerPlanFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.XpVerfahrensMerkmalFlattener;
+import de.latlon.xplan.manager.synthesizer.utils.AlphanumericComparator;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.Reference;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -132,9 +133,9 @@ public class XplanFlattenProperty implements Expression {
 			return null;
 		}
 		if (sortProperties) {
-			Collections.sort(flattenedValues);
+			Collections.sort(flattenedValues, new AlphanumericComparator());
 		}
-		String s = flattenedValues.stream().collect(Collectors.joining());
+		String s = flattenedValues.isEmpty() ? null : flattenedValues.stream().collect(Collectors.joining());
 		return toPrimitiveValue(s);
 	}
 

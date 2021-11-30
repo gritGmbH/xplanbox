@@ -32,7 +32,7 @@ public class XpTextAbschnittFlattenerTest {
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"), true);
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("[§2 Nr.1 | text 1][§2 Nr.21 | text 3][§2 Nr.3 | text 2]", value.toString());
+		assertEquals("[§2 Nr.1 | text 1][§2 Nr.3 | text 2][§2 Nr.21 | text 3]", value.toString());
 	}
 
 }
