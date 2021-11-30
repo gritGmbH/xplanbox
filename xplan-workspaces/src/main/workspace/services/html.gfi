@@ -4,7 +4,7 @@
     <title>deegree XPlan WMS Sachdatenanzeige</title>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
   </head>
-  
+
   <body>
     <script>
         var WMS_URL = "http://localhost:8080/xplan-wms";
@@ -13,6 +13,15 @@
           var complexProperties = document.getElementsByClassName('complexProperty');
           for(var i = 0; i < complexProperties.length; i++) {
             complexProperties[i].innerHTML = complexProperties[i].innerHTML.replace(/\|/g, '<br/>');
+          }
+          var textProperties = document.getElementsByClassName('textProperty');
+          for(var i = 0; i < textProperties.length; i++) {
+            var indexOfPipe = textProperties[i].innerHTML.indexOf('|');
+            if( indexOfPipe > 9 ) {
+               var key = textProperties[i].innerHTML.substring( 0, indexOfPipe ).trim();
+               var text = textProperties[i].innerHTML.substring( indexOfPipe + 1, textProperties[i].innerHTML.length ).trim();
+               textProperties[i].innerHTML = '<strong>' + key + '</strong><br/>' + text;
+            }
           }
           var links = document.getElementsByClassName('link');
           for(var i = 0; i < links.length; i++) {
@@ -40,8 +49,9 @@
 		</strong>
       </td>
 </tr>
-<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme):property>
+<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme,texte):property>
 <?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme:complexproperty>
+<?property texte:texteproperty>
 
 
 <tr>
@@ -64,7 +74,7 @@
 <?template property>
 <tr>
   <td <?even:maybegray> valign="top" style="width:20%;">
-        <strong> 
+        <strong>
           <?name:map propname>
         </strong>
   </td>
@@ -81,6 +91,18 @@
         </strong>
   </td>
   <td <?even:maybegray> class='complexProperty' style="white-space: pre-line;">
+    <?value:map propvalue>
+  </td>
+</tr>
+
+<?template texteproperty>
+<tr>
+  <td <?even:maybegray> valign="top" style="width:20%;">
+        <strong>
+          <?name:map propname>
+        </strong>
+  </td>
+  <td <?even:maybegray> class='textProperty' style="white-space: pre-line;">
     <?value:map propvalue>
   </td>
 </tr>
