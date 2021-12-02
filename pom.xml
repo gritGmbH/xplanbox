@@ -861,17 +861,17 @@
       <dependency>
         <groupId>net.sourceforge.dynamicreports</groupId>
         <artifactId>dynamicreports-core</artifactId>
-        <version>6.1.0</version>
+        <version>6.11.1</version>
       </dependency>
       <dependency>
         <groupId>net.sourceforge.dynamicreports</groupId>
         <artifactId>dynamicreports-adhoc</artifactId>
-        <version>6.1.0</version>
+        <version>6.11.1</version>
       </dependency>
       <dependency>
         <groupId>net.sourceforge.dynamicreports</groupId>
         <artifactId>dynamicreports-googlecharts</artifactId>
-        <version>6.1.0</version>
+        <version>6.11.1</version>
       </dependency>
       <dependency>
         <groupId>org.mybatis</groupId>
@@ -954,6 +954,16 @@
     <repository>
       <id>latlon</id>
       <url>https://repo.lat-lon.de/repository/maven-public/</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>jfrog-thirdparty</id>
+      <url>https://jaspersoft.jfrog.io/artifactory/third-party-ce-artifacts/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
