@@ -70,6 +70,7 @@ import static java.util.Collections.singletonList;
 import static org.deegree.cs.persistence.CRSManager.lookup;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
@@ -124,7 +125,7 @@ public class XPlanValidatorTest {
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verifyZeroInteractions(semVal);
 		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				anyString());
+				nullable(String.class));
 	}
 
 	@Test
@@ -136,7 +137,7 @@ public class XPlanValidatorTest {
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verifyZeroInteractions(semVal);
 		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				anyString());
+				nullable(String.class));
 	}
 
 	@Test
@@ -147,7 +148,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(1)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				anyString());
+				nullable(String.class));
 		verifyZeroInteractions(semVal);
 	}
 
@@ -160,7 +161,7 @@ public class XPlanValidatorTest {
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(1)).validateSemantic(archive(), list());
 		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				anyString());
+				nullable(String.class));
 	}
 
 	@Test
@@ -173,7 +174,7 @@ public class XPlanValidatorTest {
 		verify(geoVal, times(1)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(1)).validateSemantic(archive(), list());
 		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				anyString());
+				nullable(String.class));
 	}
 
 	@Test
@@ -185,7 +186,7 @@ public class XPlanValidatorTest {
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(0)).validateSemantic(archive(), list());
 		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				anyString());
+				nullable(String.class));
 	}
 
 	@Test
