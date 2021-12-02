@@ -21,7 +21,7 @@
  */
 package de.latlon.xplan.planwerkwms;
 
-import com.vividsolutions.jts.io.ParseException;
+import org.locationtech.jts.io.ParseException;
 import org.apache.commons.fileupload.FileItem;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;

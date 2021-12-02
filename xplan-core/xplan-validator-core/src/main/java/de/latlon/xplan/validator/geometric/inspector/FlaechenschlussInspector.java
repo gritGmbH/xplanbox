@@ -98,7 +98,7 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
 	private static final String ERROR_MSG_GELTUNGSBEREICH_BUFFER = "2.2.1.1: Der Geltungsbereich des Plans konnte nicht verwendet werden. Betroffen ist das Feature mit der gml id %s. Die Pruefung der Flaechenschlussbedingung kann nicht durchgeführt werden.";
 
-	private com.vividsolutions.jts.geom.Geometry geltungsbereich;
+	private org.locationtech.jts.geom.Geometry geltungsbereich;
 
 	private final List<ControlPoint> controlPoints = new ArrayList<>();
 
@@ -119,7 +119,7 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 		if (isGeltungsbereichFeature(feature)) {
 			Geometry originalGeltungsbereich = (Geometry) feature.getGeometryProperties().get(0).getValue();
 			try {
-				com.vividsolutions.jts.geom.Geometry jtsGeometry = ((AbstractDefaultGeometry) originalGeltungsbereich)
+				org.locationtech.jts.geom.Geometry jtsGeometry = ((AbstractDefaultGeometry) originalGeltungsbereich)
 						.getJTSGeometry();
 				if (!jtsGeometry.isValid()) {
 					invalidGeltungsbereich = new BadGeometry(originalGeltungsbereich,
@@ -191,21 +191,21 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 		return flaechenschlussErrors;
 	}
 
-	private com.vividsolutions.jts.geom.Geometry createJtsGeltungsbereichWithBuffer(
+	private org.locationtech.jts.geom.Geometry createJtsGeltungsbereichWithBuffer(
 			AbstractDefaultGeometry geltungsbereich) {
-		com.vividsolutions.jts.geom.Geometry jtsGeometry = geltungsbereich.getJTSGeometry();
-		if (jtsGeometry instanceof com.vividsolutions.jts.geom.Polygon) {
-			com.vividsolutions.jts.geom.Polygon polygon = (com.vividsolutions.jts.geom.Polygon) jtsGeometry;
+		org.locationtech.jts.geom.Geometry jtsGeometry = geltungsbereich.getJTSGeometry();
+		if (jtsGeometry instanceof org.locationtech.jts.geom.Polygon) {
+			org.locationtech.jts.geom.Polygon polygon = (org.locationtech.jts.geom.Polygon) jtsGeometry;
 			return fromPolygon(polygon, geltungsbereich.getCoordinateSystem());
 		}
-		else if (jtsGeometry instanceof com.vividsolutions.jts.geom.MultiPolygon) {
-			com.vividsolutions.jts.geom.MultiPolygon multiPolygon = (com.vividsolutions.jts.geom.MultiPolygon) jtsGeometry;
+		else if (jtsGeometry instanceof org.locationtech.jts.geom.MultiPolygon) {
+			org.locationtech.jts.geom.MultiPolygon multiPolygon = (org.locationtech.jts.geom.MultiPolygon) jtsGeometry;
 			int numGeometries = multiPolygon.getNumGeometries();
-			com.vividsolutions.jts.geom.Geometry buffer = null;
+			org.locationtech.jts.geom.Geometry buffer = null;
 			for (int indexGeometry = 0; indexGeometry < numGeometries; indexGeometry++) {
-				com.vividsolutions.jts.geom.Polygon geometryN = (com.vividsolutions.jts.geom.Polygon) multiPolygon
+				org.locationtech.jts.geom.Polygon geometryN = (org.locationtech.jts.geom.Polygon) multiPolygon
 						.getGeometryN(indexGeometry);
-				com.vividsolutions.jts.geom.Geometry geometryNBuffer = fromPolygon(geometryN,
+				org.locationtech.jts.geom.Geometry geometryNBuffer = fromPolygon(geometryN,
 						geltungsbereich.getCoordinateSystem());
 				if (buffer == null)
 					buffer = geometryNBuffer;
@@ -217,12 +217,12 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 		return null;
 	}
 
-	private com.vividsolutions.jts.geom.Geometry fromPolygon(com.vividsolutions.jts.geom.Polygon polygon, ICRS crs) {
-		com.vividsolutions.jts.geom.LineString exteriorRing = polygon.getExteriorRing();
-		com.vividsolutions.jts.geom.Geometry buffer = exteriorRing.buffer(0.05);
+	private org.locationtech.jts.geom.Geometry fromPolygon(org.locationtech.jts.geom.Polygon polygon, ICRS crs) {
+		org.locationtech.jts.geom.LineString exteriorRing = polygon.getExteriorRing();
+		org.locationtech.jts.geom.Geometry buffer = exteriorRing.buffer(0.05);
 		int numInteriorRing = polygon.getNumInteriorRing();
 		for (int indexInteriorRing = 0; indexInteriorRing < numInteriorRing; indexInteriorRing++) {
-			com.vividsolutions.jts.geom.Geometry geometryN = polygon.getInteriorRingN(indexInteriorRing);
+			org.locationtech.jts.geom.Geometry geometryN = polygon.getInteriorRingN(indexInteriorRing);
 			geometryN = geometryN.buffer(calculateAllowedDistanceValue(crs));
 			buffer = buffer.union(geometryN);
 		}

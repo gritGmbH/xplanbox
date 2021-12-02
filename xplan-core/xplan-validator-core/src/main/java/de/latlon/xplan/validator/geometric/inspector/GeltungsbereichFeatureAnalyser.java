@@ -1,6 +1,6 @@
 package de.latlon.xplan.validator.geometric.inspector;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
