@@ -19,24 +19,27 @@
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
  * #L%
  */
-package de.latlon.xplan.manager.web.spring.config;
+package de.latlon.xplan.manager.web.server.service.component;
 
-import de.latlon.xplan.manager.web.server.service.component.StringDateConverter;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.format.FormatterRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan(basePackages = { "de.latlon.xplan.validator.web.server.service",
-		"de.latlon.xplan.manager.web.server.service.rest" })
-public class XPlanManagerWebContextConfig extends WebMvcConfigurerAdapter {
+import java.util.Date;
+
+/**
+ * Converter from String to date handling 'null' values.
+ *
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @version $Revision: $, $Date: $
+ */
+@Component
+public class StringDateConverter implements Converter<String, Date> {
 
 	@Override
-	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(new StringDateConverter());
+	public Date convert(String source) {
+		if (source == null || "null".equals(source))
+			return null;
+		return new Date(Long.valueOf(source));
 	}
 
 }

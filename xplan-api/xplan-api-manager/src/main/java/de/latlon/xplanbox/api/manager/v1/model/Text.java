@@ -51,6 +51,7 @@ public class Text {
 						oldText.getReferenzMimeType() != null ? oldText.getReferenzMimeType().getCode() : null)
 				.referenzURL(oldText.getReference()).referenzName(oldText.getReferenzName());
 		Text text = new Text().id(textId).schluessel(oldText.getKey()).gesetzlicheGrundlage(oldText.getBasis())
+				.text(oldText.getText())
 				.rechtscharakter(oldText.getRechtscharakter() != null ? oldText.getRechtscharakter().getCode() : -1)
 				.refText(referenz);
 		return text;

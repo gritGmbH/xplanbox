@@ -21,15 +21,6 @@
  */
 package de.latlon.xplan.manager.web.client.gui;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
-import static de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener.FinishStatus.NEXT;
-
-import java.util.List;
-
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
-
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.cell.client.FieldUpdater;
@@ -58,13 +49,20 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.CellPreviewEvent;
 import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.ListDataProvider;
-
 import de.latlon.xplan.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.client.ValidatorOptionsDialog;
 import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
+
+import java.util.List;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
+import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
+import static de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener.FinishStatus.NEXT;
 
 /**
  * Files system panel of the xplan manager web gui.
@@ -416,11 +414,26 @@ public class UploadPanel extends DecoratorPanel {
 			@Override
 			public void onFailure(Method method, Throwable caught) {
 				uploadedPlanTable.setRowCount(0, true);
-				Window.alert(method.getResponse().getText());
+				// required as an empty response results in a failure: "Response was NOT a
+				// valid JSON document"
+				if (isPlanDeleted(method)) {
+					updatePlanTable(null);
+				}
+				else {
+					Window.alert(method.getResponse().getStatusCode() + ": " + caught.getMessage());
+				}
 			}
 
 			@Override
 			public void onSuccess(Method method, XPlan plan) {
+				updatePlanTable(plan);
+			}
+
+			private boolean isPlanDeleted(Method method) {
+				return method.getResponse().getStatusCode() == 404;
+			}
+
+			private void updatePlanTable(XPlan plan) {
 				List<XPlan> list = dataProviderFileSystem.getList();
 				list.clear();
 				int newRowCount = plan != null ? 1 : 0;
@@ -433,7 +446,6 @@ public class UploadPanel extends DecoratorPanel {
 					uploadedPlanTable.setVisible(false);
 				}
 				ColumnSortEvent.fire(uploadedPlanTable, uploadedPlanTable.getColumnSortList());
-
 			}
 		});
 	}

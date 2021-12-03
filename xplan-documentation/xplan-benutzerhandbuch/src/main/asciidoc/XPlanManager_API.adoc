@@ -1,7 +1,12 @@
 [[xplanmanager-api]]
 === XPlanManagerAPI
 
-Die REST-API des XPlanManager ermöglicht es, die Funktionen des XPlanManager über eine Web-API aufzurufen. Bei der Festlegung der Ressourcen wurden Begriffe aus drei Domänen verwendet. Die REST API Ressourcen wie z.B. `/plan` oder `/info` sind in Englisch und der Einstiegspunkt für eine Entität. Ressourcen unterhalb einer Entität wie z.B. `/plan/{planId}/aenderung` oder `/plan/{planId}/gueltigkeit` sind in Deutsch und aus der Oberfläches des XPlanManagerWeb abgeleitet. Die verwendeten Datentypen sind ebenfalls in Deutsch und aus den Bezeichnern des XPlanungs-Datenmodell (XPlanGML-Applikationsschema) abgeleitet.
+Die REST-API des XPlanManager ermöglicht es, die Funktionen des XPlanManager über eine Web-API aufzurufen. Bei der Festlegung der Ressourcen wurden Begriffe aus drei Domänen verwendet. Die REST API Ressourcen wie z.B. `/plan` oder `/info` sind in Englisch und der Einstiegspunkt für eine Entität. Ressourcen unterhalb einer Entität wie z.B. `/plan/{planId}/aenderung` oder `/plan/{planId}/gueltigkeit` sind in Deutsch und aus der Oberfläche des XPlanManagerWeb abgeleitet. Die verwendeten Datentypen sind ebenfalls in Deutsch und aus den Bezeichnern des XPlanungs-Datenmodell (XPlanGML-Applikationsschema) abgeleitet. Bezeichner wie z. B. `{planId}` in einer Ressource sind Variablen und müssen durch entsprechende Werte ausgetauscht werden. Folgende Variablen werden in der API verwendet:
+
+- `{planId}` - eindeutiger Schlüssel eines Plans (numerischer Wert, z.B. 10)
+- `{planName}` - eindeutiger Name eines Plans (alphanumerischer Wert, z.B. HafenCity14)
+- `{name}` - Name oder Suchtext (alphanumerischer Wert, z.B. Hafen )
+- `{id}` - eindeutiger Schlüssel einer Ressource (alphanumerischer Wert, Beispiele siehe Abschnitt <<xplanmanager-api-schluessel, eindeutige Schlüssel>>)
 
 Die REST-API des XPlanManager stellt folgende Ressourcen bereit:
 
@@ -45,6 +50,7 @@ NOTE: Die URL für die REST-API des XPlanManager setzt sich wie folgt zusammen: 
 NOTE: Die alte REST-API mit den Ressourcen `/xplanmgrweb/rest/manager/plans` und `/xplanmgrweb/rest/manager/plan/{planId}` wird durch die neue
 API komplett ersetzt und in einer zukünftigen Version der xPlanBox entfernt!
 
+[[xplanmanager-api-schluessel]]
 ==== Eindeutige Schlüssel für den Zugriff auf REST Ressourcen
 
 Um den Zugriff auf externe Dokumente zu ermöglichen, die über Referenzen in dem XPlanGML-Instanzdokument definiert sind, wurden folgende Konventionen für die Bestimmung eines eindeutigen Schlüssels festgelegt. Diese Konventionen müssen von einem XPlanArchiv erfüllt werden, wenn dieses über die REST API bearbeitet werden soll.
@@ -89,7 +95,7 @@ Ressource: `/plan/{planId}/rasterbasis/{id}`
 |6.0 	|BP_Bereich/refScan/XP_ExterneReferenz 	|3.2.4.2. Mindestens eines der Attribute referenzName und referenzURL muss belegt sein. |referenzName-referenzURLfootnote:pattern[]
 |===
 
-Zusätzliche Anforderungen:
+Zusätzliche Anforderungen an die im XPlanGML-Dokument verlinkten Referenzen:
 
 - Für alle Dokumente und Rasterbasis in der Version 4.1 bis 5.2 gilt, dass _referenzName_ oder _referenzURL_ belegt sein muss.
 - Und zusätzlich gilt für alle Dokumente und Rasterbasis, dass die Kombination aus _referenzName-referenzURL_ innerhalb eines XPlanGML-Instanzdokuments eindeutig sein muss.
