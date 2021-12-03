@@ -21,16 +21,40 @@
  */
 package de.latlon.xplan.manager.web.server.service.rest;
 
-import static java.lang.Double.doubleToLongBits;
-import static java.lang.Long.toHexString;
-import static java.lang.Math.random;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.apache.commons.io.IOUtils.write;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.manager.XPlanManager;
+import de.latlon.xplan.manager.internalid.InternalIdRetriever;
+import de.latlon.xplan.manager.web.server.service.ManagerPlanArchiveManager;
+import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.LegislationStatus;
+import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
+import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.cs.persistence.CRSManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Context;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -43,41 +67,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-
-import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.persistence.CRSManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.multipart.MultipartFile;
-
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.manager.XPlanManager;
-import de.latlon.xplan.manager.internalid.InternalIdRetriever;
-import de.latlon.xplan.manager.web.server.service.ManagerPlanArchiveManager;
-import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
-import de.latlon.xplan.manager.web.shared.LegislationStatus;
-import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
-import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
-import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import static java.lang.Double.doubleToLongBits;
+import static java.lang.Long.toHexString;
+import static java.lang.Math.random;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.apache.commons.io.IOUtils.write;
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 /**
  * REST-Interface for plan management.
@@ -124,12 +122,16 @@ public class ManagerController {
 	@RequestMapping(value = "/local/plan", method = GET)
 	@ResponseBody
 	// @formatter:off
-    public XPlan getPlanFromLocal( @Context HttpServletRequest request, @Context HttpServletResponse response ) {
+    public ResponseEntity<XPlan> getPlanFromLocal( @Context HttpServletRequest request, @Context HttpServletResponse response ) {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Retrieve plan from session.");
 		HttpSession session = request.getSession();
-		return archiveManager.retrievePlanFromSession(session);
+		XPlan xPlan = archiveManager.retrievePlanFromSession(session);
+		if (xPlan == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(xPlan, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/plan/{planId}", method = GET)
@@ -326,11 +328,12 @@ public class ManagerController {
                                @Context HttpServletRequest request, @Context HttpServletResponse response)
                                                throws Exception {
         // @formatter:on
+		response.addHeader("Expires", "-1");
 		LOG.info("Try to import plan with id {}", planId);
-		XPlan plan = getPlanFromLocal(request, response);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		if (planId != null && plan != null) {
 			LOG.info("Found local plan to import.");
-			HttpSession session = request.getSession();
 			archiveManager.savePlanInSession(session, plan);
 			try {
 				String fileToBeImported = archiveManager.getUploadFolder() + "/" + planId + ".zip";
