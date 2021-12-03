@@ -99,6 +99,18 @@
       <artifactId>commons-io</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-shapefile</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-epsg-hsql</artifactId>
+    </dependency>
+    <dependency>
       <groupId>net.sourceforge.dynamicreports</groupId>
       <artifactId>dynamicreports-core</artifactId>
       <exclusions>
@@ -227,14 +239,6 @@
       <groupId>pl.pragmatists</groupId>
       <artifactId>JUnitParams</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.geotools</groupId>
-      <artifactId>gt-shapefile</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.geotools</groupId>
-      <artifactId>gt-epsg-hsql</artifactId>
     </dependency>
   </dependencies>
 
