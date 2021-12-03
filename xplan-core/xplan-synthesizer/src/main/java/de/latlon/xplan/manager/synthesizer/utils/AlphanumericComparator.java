@@ -50,12 +50,14 @@ public class AlphanumericComparator implements Comparator<String> {
 	}
 
 	private List<Integer> parseInts(String stringToParse) {
+		if (stringToParse.contains("|")) {
+			stringToParse = stringToParse.substring(0, stringToParse.indexOf("|"));
+		}
 		Pattern p = Pattern.compile("\\d+");
 		Matcher m = p.matcher(stringToParse);
 		List<Integer> integers = new ArrayList<>();
 		while (m.find()) {
 			integers.add(Integer.parseInt(m.group()));
-
 		}
 		return integers;
 	}
