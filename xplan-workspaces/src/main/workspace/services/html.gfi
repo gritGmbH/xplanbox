@@ -17,7 +17,7 @@
           var textProperties = document.getElementsByClassName('textProperty');
           for(var i = 0; i < textProperties.length; i++) {
             var indexOfPipe = textProperties[i].innerHTML.indexOf('|');
-            if( indexOfPipe > 9 ) {
+            if( indexOfPipe > 0 ) {
                var key = textProperties[i].innerHTML.substring( 0, indexOfPipe ).trim();
                var text = textProperties[i].innerHTML.substring( indexOfPipe + 1, textProperties[i].innerHTML.length ).trim();
                textProperties[i].innerHTML = '<strong>' + key + '</strong><br/>' + text;
