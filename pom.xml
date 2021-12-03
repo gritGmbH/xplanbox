@@ -396,6 +396,11 @@
         <artifactId>deegree-core-base</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.deegree</groupId>
+        <artifactId>deegree-core-cs</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
       <!-- xerces -->
       <dependency>
         <groupId>xerces</groupId>
