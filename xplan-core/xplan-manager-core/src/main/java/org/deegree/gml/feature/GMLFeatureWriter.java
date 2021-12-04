@@ -78,7 +78,17 @@ import org.deegree.feature.GenericFeatureCollection;
 import org.deegree.feature.property.ExtraProps;
 import org.deegree.feature.property.GenericProperty;
 import org.deegree.feature.types.AppSchema;
-import org.deegree.feature.types.property.*;
+import org.deegree.feature.types.property.ArrayPropertyType;
+import org.deegree.feature.types.property.CodePropertyType;
+import org.deegree.feature.types.property.CustomPropertyType;
+import org.deegree.feature.types.property.EnvelopePropertyType;
+import org.deegree.feature.types.property.FeaturePropertyType;
+import org.deegree.feature.types.property.GeometryPropertyType;
+import org.deegree.feature.types.property.LengthPropertyType;
+import org.deegree.feature.types.property.MeasurePropertyType;
+import org.deegree.feature.types.property.ObjectPropertyType;
+import org.deegree.feature.types.property.SimplePropertyType;
+import org.deegree.feature.types.property.StringOrRefPropertyType;
 import org.deegree.feature.xpath.TypedObjectNodeXPathEvaluator;
 import org.deegree.filter.Filter;
 import org.deegree.filter.FilterEvaluationException;
@@ -97,7 +107,11 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import static javax.xml.XMLConstants.NULL_NS_URI;
@@ -150,7 +164,7 @@ public class GMLFeatureWriter extends AbstractGMLObjectWriter {
 		super(gmlStreamWriter);
 
 		if (gmlStreamWriter.getProjections() != null) {
-			for (ProjectionClause projection : gmlStreamWriter.getProjections()) {
+			for (List<ProjectionClause> projection : gmlStreamWriter.getProjections().values()) {
 				if (projection instanceof PropertyName) {
 					PropertyName propName = (PropertyName) projection;
 					QName qName = propName.getPropertyName().getAsQName();
