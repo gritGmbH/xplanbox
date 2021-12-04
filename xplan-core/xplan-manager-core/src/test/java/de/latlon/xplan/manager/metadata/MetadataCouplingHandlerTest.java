@@ -44,6 +44,7 @@ import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
@@ -75,8 +76,8 @@ public class MetadataCouplingHandlerTest {
 		assertThat(theRecordIn(directoryToStoreMetadata),
 				HasXPathMatcher.hasXPath("//gmd:MD_Metadata/gmd:dateStamp/gco:Date").withNamespaceContext(nsContext()));
 
-		verify(xPlanDao, times(1)).insertOrReplacePlanWerkWmsMetadata(eq(planId), eq(planName), anyString(),
-				anyString(), anyString());
+		verify(xPlanDao, times(1)).insertOrReplacePlanWerkWmsMetadata(eq(planId), eq(planName), anyString(), isNull(),
+				isNull());
 	}
 
 	@Test
@@ -92,8 +93,8 @@ public class MetadataCouplingHandlerTest {
 
 		Path directoryToStoreMetadata = config.getDirectoryToStoreMetadata();
 		assertThat(numberOfCreatedRecords(directoryToStoreMetadata), is(0l));
-		verify(xPlanDao, times(1)).insertOrReplacePlanWerkWmsMetadata(anyInt(), anyString(), anyString(), anyString(),
-				anyString());
+		verify(xPlanDao, times(1)).insertOrReplacePlanWerkWmsMetadata(anyInt(), anyString(), isNull(), isNull(),
+				isNull());
 	}
 
 	private Object numberOfCreatedRecords(Path directoryToStoreMetadata) throws IOException {

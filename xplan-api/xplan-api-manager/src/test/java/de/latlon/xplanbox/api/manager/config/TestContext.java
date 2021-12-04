@@ -21,7 +21,6 @@
  */
 package de.latlon.xplanbox.api.manager.config;
 
-import com.google.common.io.Files;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
@@ -61,14 +60,14 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -157,45 +156,41 @@ public class TestContext {
 		DeegreeWorkspace deegreeWorkspace = mock(DeegreeWorkspace.class);
 		DeegreeWorkspaceWrapper wmsWorkspace = mock(DeegreeWorkspaceWrapper.class);
 		when(wmsWorkspace.getWorkspaceInstance()).thenReturn(deegreeWorkspace);
-		File tempWorkspaceDir = Files.createTempDir().getAbsoluteFile();
+		Path tempWorkspaceDir = Files.createTempDirectory("xplan-api-manager");
 		initWorkspace(tempWorkspaceDir);
-		when(deegreeWorkspace.getLocation()).thenReturn(tempWorkspaceDir);
+		when(deegreeWorkspace.getLocation()).thenReturn(tempWorkspaceDir.toFile());
 		return new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
 	}
 
-	private void initWorkspace(File dir) throws IOException, URISyntaxException {
-		File themesDir = new File(dir, "themes");
-		java.nio.file.Files.createDirectory(themesDir.toPath());
-		Files.copy(new File(getClass().getResource("/bplanraster.xml").toURI()),
-				new File(themesDir, "bplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/bplanraster.xml").toURI()),
-				new File(themesDir, "bplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/bplanraster.xml").toURI()),
-				new File(themesDir, "bplanarchiveraster.xml"));
-		Files.copy(new File(getClass().getResource("/fplanraster.xml").toURI()),
-				new File(themesDir, "fplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/fplanraster.xml").toURI()),
-				new File(themesDir, "fplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/fplanraster.xml").toURI()),
-				new File(themesDir, "fplanarchiveraster.xml"));
-		Files.copy(new File(getClass().getResource("/rplanraster.xml").toURI()),
-				new File(themesDir, "rplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/rplanraster.xml").toURI()),
-				new File(themesDir, "rplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/rplanraster.xml").toURI()),
-				new File(themesDir, "rplanarchiveraster.xml"));
-		Files.copy(new File(getClass().getResource("/lplanraster.xml").toURI()),
-				new File(themesDir, "lplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/lplanraster.xml").toURI()),
-				new File(themesDir, "lplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/lplanraster.xml").toURI()),
-				new File(themesDir, "lplanarchiveraster.xml"));
-		Files.copy(new File(getClass().getResource("/soplanraster.xml").toURI()),
-				new File(themesDir, "soplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/soplanraster.xml").toURI()),
-				new File(themesDir, "soplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/soplanraster.xml").toURI()),
-				new File(themesDir, "soplanarchiveraster.xml"));
+	private void initWorkspace(Path dir) throws IOException, URISyntaxException {
+		Path themesDir = dir.resolve("themes");
+		java.nio.file.Files.createDirectory(themesDir);
+		Files.copy(Paths.get(getClass().getResource("/bplanraster.xml").toURI()), themesDir.resolve("bplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/bplanraster.xml").toURI()),
+				themesDir.resolve("bplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/bplanraster.xml").toURI()),
+				themesDir.resolve("bplanarchiveraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/fplanraster.xml").toURI()), themesDir.resolve("fplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/fplanraster.xml").toURI()),
+				themesDir.resolve("fplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/fplanraster.xml").toURI()),
+				themesDir.resolve("fplanarchiveraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/rplanraster.xml").toURI()), themesDir.resolve("rplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/rplanraster.xml").toURI()),
+				themesDir.resolve("rplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/rplanraster.xml").toURI()),
+				themesDir.resolve("rplanarchiveraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/lplanraster.xml").toURI()), themesDir.resolve("lplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/lplanraster.xml").toURI()),
+				themesDir.resolve("lplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/lplanraster.xml").toURI()),
+				themesDir.resolve("lplanarchiveraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/soplanraster.xml").toURI()),
+				themesDir.resolve("soplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/soplanraster.xml").toURI()),
+				themesDir.resolve("soplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/soplanraster.xml").toURI()),
+				themesDir.resolve("soplanarchiveraster.xml"));
 	}
 
 	@Bean
