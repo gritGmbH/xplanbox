@@ -20,7 +20,7 @@
     <sonar.host.url>http://vento:9000</sonar.host.url>
     <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
-    <deegree3.version>3.4.10-xplanbox-1.15</deegree3.version>
+    <deegree3.version>3.4.21-SNAPSHOT</deegree3.version>
     <geowerkstatt-hamburg.xplanung.version>0.10.1</geowerkstatt-hamburg.xplanung.version>
     <gwt.version>2.5.1</gwt.version>
     <geotools.version>10.0</geotools.version>
@@ -385,14 +385,14 @@
       </dependency>
       <!-- deegree -->
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-core-commons</artifactId>
         <version>${deegree3.version}</version>
         <type>jar</type>
         <scope>compile</scope>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-core-base</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
@@ -516,72 +516,72 @@
         <version>1.3.5</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-featurestore-sql</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-featurestore-memory</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-core-theme</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-tilestore-geotiff</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-tilestore-gdal</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-layers-tile</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-core-layer</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-core-geometry</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-core-db</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-connectionprovider-datasource</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-layers-feature</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-services-wms</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-featurestore-commons</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-protocol-csw</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
@@ -608,7 +608,7 @@
       </dependency>
       <!--deegree webservices -->
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-webservices</artifactId>
         <type>war</type>
         <version>${deegree3.version}</version>

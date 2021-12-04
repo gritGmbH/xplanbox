@@ -29,7 +29,7 @@
           <overlays>
             <overlay>
               <id>create-overlay</id>
-              <groupId>org.deegree</groupId>
+              <groupId>de.latlon</groupId>
               <artifactId>deegree-webservices</artifactId>
             </overlay>
           </overlays>
@@ -46,13 +46,13 @@
       <type>jar</type>
     </dependency>
     <dependency>
-      <groupId>org.deegree</groupId>
+      <groupId>de.latlon</groupId>
       <artifactId>deegree-webservices</artifactId>
       <type>war</type>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.deegree</groupId>
+      <groupId>de.latlon</groupId>
       <artifactId>deegree-core-commons</artifactId>
       <version>${deegree3.version}</version>
       <type>jar</type>
@@ -60,7 +60,7 @@
       <exclusions>
         <exclusion>
           <artifactId>deegree-core-annotations</artifactId>
-          <groupId>org.deegree</groupId>
+          <groupId>de.latlon</groupId>
         </exclusion>
         <exclusion>
           <artifactId>commons-dbcp</artifactId>
@@ -76,7 +76,7 @@
         </exclusion>
         <exclusion>
           <artifactId>deegree-ogcschemas</artifactId>
-          <groupId>org.deegree</groupId>
+          <groupId>de.latlon</groupId>
         </exclusion>
         <exclusion>
           <artifactId>jaxen</artifactId>

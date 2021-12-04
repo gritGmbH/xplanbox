@@ -30,7 +30,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.deegree</groupId>
+      <groupId>de.latlon</groupId>
       <artifactId>deegree-core-base</artifactId>
     </dependency>
     <dependency>
