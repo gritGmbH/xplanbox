@@ -605,6 +605,10 @@
             <groupId>it.geosolutions.jgridshift</groupId>
             <artifactId>jgridshift-core</artifactId>
           </exclusion>
+          <exclusion>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
