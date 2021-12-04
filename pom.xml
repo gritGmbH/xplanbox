@@ -397,7 +397,7 @@
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.deegree</groupId>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-core-cs</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
