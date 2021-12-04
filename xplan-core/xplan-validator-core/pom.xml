@@ -53,6 +53,10 @@
     </dependency>
     <dependency>
       <groupId>de.latlon</groupId>
+      <artifactId>deegree-core-cs</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.deegree</groupId>
       <artifactId>deegree-core-geometry</artifactId>
     </dependency>
     <dependency>
@@ -89,6 +93,22 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.11</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-shapefile</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-epsg-hsql</artifactId>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.dynamicreports</groupId>
