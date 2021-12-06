@@ -50,6 +50,7 @@ import de.latlon.xplanbox.api.manager.v1.InfoApi;
 import de.latlon.xplanbox.api.manager.v1.PlanApi;
 import de.latlon.xplanbox.api.manager.v1.PlansApi;
 import org.deegree.commons.config.DeegreeWorkspace;
+import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.persistence.FeatureStore;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
@@ -60,6 +61,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -74,6 +76,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType.gdal;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
@@ -135,9 +138,9 @@ public class TestContext {
 		when(featureStore41.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_41, null));
 		FeatureStore featureStore51 = mock(FeatureStore.class);
 		when(featureStore51.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_51, null));
-		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), any(XPlanAde.class), any(PlanStatus.class)))
+		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), nullable(XPlanAde.class), any(PlanStatus.class)))
 				.thenReturn(featureStore41);
-		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), any(XPlanAde.class), any(PlanStatus.class)))
+		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), nullable(XPlanAde.class), any(PlanStatus.class)))
 				.thenReturn(featureStore51);
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration());
 		return managerWorkspaceWrapper;
@@ -229,8 +232,8 @@ public class TestContext {
 			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
 			XPlanGmlTransformer xPlanGmlTransformer) throws Exception {
 		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
-		when(xplanInsertManager.importPlan(any(), any(), anyBoolean(), anyBoolean(), anyBoolean(), any(), anyString(),
-				any())).thenReturn(123);
+		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(), anyBoolean(),
+				nullable(File.class), nullable(String.class), any())).thenReturn(123);
 		return xplanInsertManager;
 	}
 
