@@ -107,10 +107,6 @@
           <groupId>org.reflections</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>xercesImpl</artifactId>
-          <groupId>xerces</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>serializer</artifactId>
           <groupId>xalan</groupId>
         </exclusion>
