@@ -103,7 +103,7 @@ class ShapefileBuilder {
 	 * @param id The id of the geometry
 	 * @param errors A string describing the errors of the geometry
 	 */
-	void addGeometry(com.vividsolutions.jts.geom.Geometry jtsGeom, String id, String errors) {
+	void addGeometry(org.locationtech.jts.geom.Geometry jtsGeom, String id, String errors) {
 		if (id == null)
 			id = "NOTSET_" + UUID.randomUUID().toString();
 		Geometries geomType = Geometries.get(jtsGeom);
