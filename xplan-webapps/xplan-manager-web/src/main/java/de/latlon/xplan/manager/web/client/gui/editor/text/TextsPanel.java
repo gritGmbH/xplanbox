@@ -72,6 +72,8 @@ import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
@@ -113,6 +115,18 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 		TextHeader actionHeader = new TextHeader(MESSAGES.actions());
 		addEditColumn(textsList, actionHeader);
 		addRemoveColumn(textsList, actionHeader);
+	}
+
+	@Override
+	public void setValues(List<Text> values) {
+		Collections.sort(values, new Comparator<Text>() {
+			@Override
+			public int compare(Text o1, Text o2) {
+				AlphanumericComparator alphanumericComparator = new AlphanumericComparator();
+				return alphanumericComparator.compare(o1.getKey(), o2.getKey());
+			}
+		});
+		super.setValues(values);
 	}
 
 	private Widget createGui() {
