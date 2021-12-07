@@ -67,12 +67,12 @@ angepasst werden.
 
 [[jdk]]
 === Java SE
-Als Java SE 8 wird sowohl
-http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK 8]
-als auch OpenJDK 8 (https://adoptopenjdk.net/?variant=openjdk8&jvmVariant=hotspot[AdoptOpenJDK 8]
-oder https://docs.aws.amazon.com/corretto/latest/corretto-8-ug/downloads-list.html[Amazon Corretto 8]) unterstützt.
+Als Java SE 11 wird sowohl
+http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK 11]
+als auch OpenJDK 11 (https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot[AdoptOpenJDK 11]
+oder https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html[Amazon Corretto 11]) unterstützt.
 
-NOTE: Empfohlen wird OpenJDK 1.8.0_272+.
+NOTE: Empfohlen wird OpenJDK 11.0.13+8.
 
 
 [[java-applikationsserver]]
@@ -83,8 +83,8 @@ Das Installationsarchiv findet sich bei der https://tomcat.apache.org[Apache Fou
 
 Um eine spätere Trennung der Dienste (Web-Anwendungen) zu gewährleisten, wird die Konfiguration von mehreren Tomcat-Instanzen empfohlen (siehe Kapitel <<web-anwendungen>>).
 
-NOTE: Die minimale Anforderung an den Applikationsserver ist das Java EE 6 Web
-Profil. Empfohlen wird Apache Tomcat Version 8.5.59+ oder 9.0.39+.
+NOTE: Die minimale Anforderung an den Applikationsserver ist das Java EE 7 Web
+Profil. Empfohlen wird Apache Tomcat Version 9.0.55.
 
 [[datenbank]]
 === Datenbank
@@ -92,7 +92,7 @@ Profil. Empfohlen wird Apache Tomcat Version 8.5.59+ oder 9.0.39+.
 Als Datenbanksystem ist eine Installation von PostgreSQL 9.5+ mit der
 Erweiterung PostGIS 2.4+ mindestens erforderlich.
 
-NOTE: Empfohlen wird PostgreSQL 11+ mit PostGIS 2.5+.
+NOTE: Empfohlen wird PostgreSQL 11+ mit PostGIS 3.0+.
 
 === GDAL
 
