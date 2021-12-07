@@ -6,7 +6,7 @@ pipeline {
   }
   agent any
   tools {
-    maven 'maven361'
+    maven 'maven-3.8'
     jdk 'openjdk11'
   }
   parameters {
