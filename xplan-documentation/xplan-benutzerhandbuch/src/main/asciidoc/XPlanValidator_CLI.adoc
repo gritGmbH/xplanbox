@@ -1,12 +1,12 @@
 [[xplanvalidator-cli]]
 === XPlanValidatorCLI
 
-Analog zum XPlanManagerWeb können XPlanGML-Instanzdokumente mit der Komponente XPlanValidatorCLI über ein Kommandozeilenwerkzeug validiert wreden.
+Analog zum XPlanManagerWeb können XPlanGML-Instanzdokumente mit der Komponente XPlanValidatorCLI über ein Kommandozeilenwerkzeug validiert werden.
 
 [[xplanvalidator-cli-benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-Beim XPlanValidatorCLI handelt es ich um ein Kommandozeilentool, das
+Beim XPlanValidatorCLI handelt es sich um ein Kommandozeilentool, das
 parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
 in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
 Ort aufrufbar.
@@ -45,8 +45,8 @@ XPlanValidator -validate Plan.zip
 ===== Bezeichnung für den Report
 
 Über den Parameter `name <bezeichnung>` kann eine Bezeichnung für den generierten
-Report vergeben werden. Die Angabe des Parameters ist optional.
-Fehlt dieser Parameter wird der Name des XPlanArchivs verwendet.
+Report vergeben werden. Die Angabe des Parameters `-name` ist optional.
+Fehlt dieser Parameter, wird der Name des XPlanArchivs verwendet.
 
 Aufruf:
 
@@ -59,7 +59,7 @@ XPlanValidator -validate Plan.zip -name Validierung
 
 Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl der
 Validierungsart parametrisiert aufgerufen werden. Die Angabe des
-Parameters ist optional.
+Parameters `-vtype` ist optional.
 
 Aufruf:
 
@@ -73,8 +73,7 @@ Zuordnung der Werte:
 * geometric = Geometrisch
 * semantic = Semantisch
 
-Wird kein _vtype_ Parameter gewählt, werden alle Validierungsarten
-durchgeführt.
+Wird kein `vtype` Parameter gewählt, werden alle Validierungsarten durchgeführt.
 
 Ausgabe:
 
@@ -109,7 +108,7 @@ Fortsetzung trotz Geometrie-Fehlern (--force).
 
 Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl von
 zusätzlichen Validierungsoptionen parametrisiert aufgerufen werden. Die
-Angabe des Parameters ist optional.
+Angabe des Parameters `-vo` ist optional.
 
 Aufruf:
 

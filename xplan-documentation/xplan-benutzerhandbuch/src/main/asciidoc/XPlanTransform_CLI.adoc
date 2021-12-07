@@ -26,7 +26,7 @@ Weiterhin sind zusätzliche SQL-Skripte auszuführen, die sich im entpackten Wer
 [[xplantransform-cli-benutzungsanleitung]]
 === Benutzungshinweise
 
-Beim XPlanTransformCLI handelt es ich um ein Kommandozeilenwerkzeug, das parametrisiert aufgerufen wird. Weitere Informationen über die verschiedenen Parameter gibt das Kommandozeilenwerkzeug aus, wenn der Parameter `-?` angehängt wird:
+Beim XPlanTransformCLI handelt es sich um ein Kommandozeilenwerkzeug, das parametrisiert aufgerufen wird. Weitere Informationen über die verschiedenen Parameter gibt das Kommandozeilenwerkzeug aus, wenn der Parameter `-?` angehängt wird:
 
 -----
 XPlanTransformCLI -?
