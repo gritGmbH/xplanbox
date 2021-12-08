@@ -52,7 +52,7 @@ _Systemsteuerung->System und Sicherheit->System->Erweiterte Systemeinstellungen-
 müssen folgende Einstellungen vorgenommen werden:
 
 * Setzen der Variable `JAVA_HOME` mit der Referenz zur Java Installation
-(JDK), z. B.: `C:\Program Files (x86)\Java\jdk1.8.0_202`
+(JDK), z. B.: `C:\Program Files\Java\jdk-11.0.11`
 * Setzen der Variable `GDAL_DATA` mit der Referenz auf den Ordner, der
 Datei "gcs.csv" enthält, z. B.:
 `C:\Program Files (x86)\gdal\bin\gdal-data`

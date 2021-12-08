@@ -11,7 +11,7 @@ importieren.
 [[xplanmanager-cli-benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-Beim XPlanManagerCLI handelt es ich um ein Kommandozeilentool, das
+Beim XPlanManagerCLI handelt es sich um ein Kommandozeilentool, das
 parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
 in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
 Ort aufrufbar.
@@ -413,7 +413,7 @@ XPlanManager -deletewithconfig 1
 Beim Import sehr großer Archive, kann es zu einem _OutOfMemoryError_
 Laufzeitfehler kommen, da die Java Virtual Machine keinen weiteren
 freien Speicher allokieren kann. Wenn der Server noch über freien
-Arbeitspeicher verfügt, dann kann dieser über die Umgebungsvariable
+Arbeitsspeicher verfügt, dann kann dieser über die Umgebungsvariable
 _JAVA_OPTS_ unter Linux wie folgt erhöht werden:
 
 ----

@@ -6,6 +6,8 @@
 === Version 4.4
 ==== Erweiterungen
 - Unterstützung von Links für externe Dokumente in XPlanManager und XPlanWMS GetFeatureInfo
+- Umstellung von Java 8 auf Java 11 sowie Tomcat 8.5 auf Tomcat 9.
+- Sortierung von Textschlüsseln in XPlanManagerWeb und XPlanWMS GFI-Antwort
 
 ==== Fehlerbehebungen
 

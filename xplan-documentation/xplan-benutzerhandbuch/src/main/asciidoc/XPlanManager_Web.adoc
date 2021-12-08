@@ -39,7 +39,7 @@ validiert bzw. entfernt werden. Erst nachdem der Plan erfolgreich
 validiert wurde, kann der Plan in die Datenbasis importiert werden.
 Andernfalls ist der Button _Import_ deaktiviert.
 
-Bei der Validierung werden immer die syntaktische und Basis-Geometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch>>) ausgeführt. Diese stellen sicher, dass ein Plan keine schwerwiegenden Fehler hat, die einen Import verhindern würden.
+Bei der Validierung werden immer die syntaktische und Basis-Geometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch, geometrische Validierung>>) ausgeführt. Diese stellen sicher, dass ein Plan keine schwerwiegenden Fehler hat, die einen Import verhindern würden.
 
 [[xplanmanager-web-import]]
 ===== Import
