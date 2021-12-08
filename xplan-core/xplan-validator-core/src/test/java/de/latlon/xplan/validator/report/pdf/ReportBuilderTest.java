@@ -21,22 +21,26 @@
  */
 package de.latlon.xplan.validator.report.pdf;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import org.junit.Test;
-
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -49,10 +53,11 @@ public class ReportBuilderTest {
 	public void testCreateReportAsPdf() throws Exception {
 		PdfReportGenerator reportBuilder = new PdfReportGenerator();
 
-		File pdf = File.createTempFile("report", ".pdf");
-		OutputStream os = new FileOutputStream(pdf);
+		Path pdf = Files.createTempFile("report", ".pdf");
+		OutputStream os = new FileOutputStream(pdf.toFile());
 		reportBuilder.createPdfReport(createReport(), os);
 		os.close();
+		assertThat(Files.size(pdf), is(not(0)));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
