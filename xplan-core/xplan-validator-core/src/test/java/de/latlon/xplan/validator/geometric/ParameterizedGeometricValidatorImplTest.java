@@ -29,6 +29,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import junitparams.FileParameters;

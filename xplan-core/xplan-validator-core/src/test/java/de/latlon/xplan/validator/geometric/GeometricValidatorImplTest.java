@@ -124,7 +124,6 @@ public class GeometricValidatorImplTest {
 		assertThat(numberOfErrors, is(12));
 	}
 
-	@Ignore
 	@Test
 	public void testValidateGeometryWithInteriorRing_ValidOrientation() throws Exception {
 		XPlanArchive archive = getTestArchive(getClass().getResourceAsStream("geometryOrientationValid.gml"));
@@ -137,7 +136,6 @@ public class GeometricValidatorImplTest {
 		assertThat(report.getBadGeometries().size(), is(0));
 	}
 
-	@Ignore
 	@Test
 	public void testValidateGeometryWithInteriorRing_InvalidOrientation() throws Exception {
 		XPlanArchive archive = getTestArchive(getClass().getResourceAsStream("geometryOrientationInvalid.gml"));

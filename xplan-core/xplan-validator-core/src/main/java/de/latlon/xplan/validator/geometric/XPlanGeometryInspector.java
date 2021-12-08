@@ -21,18 +21,6 @@
  */
 package de.latlon.xplan.validator.geometric;
 
-import org.locationtech.jts.algorithm.CGAlgorithms;
-import org.locationtech.jts.algorithm.LineIntersector;
-import org.locationtech.jts.algorithm.RobustLineIntersector;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.LineString;
-import org.locationtech.jts.geom.LinearRing;
-import org.locationtech.jts.geom.Polygon;
-import org.locationtech.jts.geomgraph.Edge;
-import org.locationtech.jts.geomgraph.EdgeIntersection;
-import org.locationtech.jts.geomgraph.EdgeIntersectionList;
-import org.locationtech.jts.geomgraph.GeometryGraph;
-import org.locationtech.jts.geomgraph.Node;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -63,6 +51,16 @@ import org.deegree.geometry.standard.primitive.DefaultPoint;
 import org.deegree.geometry.standard.primitive.DefaultPolygon;
 import org.deegree.geometry.standard.surfacepatches.DefaultPolygonPatch;
 import org.deegree.geometry.validation.GeometryFixer;
+import org.locationtech.jts.algorithm.CGAlgorithms;
+import org.locationtech.jts.algorithm.LineIntersector;
+import org.locationtech.jts.algorithm.RobustLineIntersector;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.geomgraph.Edge;
+import org.locationtech.jts.geomgraph.EdgeIntersection;
+import org.locationtech.jts.geomgraph.GeometryGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,7 +69,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -679,9 +676,16 @@ class XPlanGeometryInspector implements GeometryInspector {
 	private LineString getJTSLineString(Curve curve) {
 		Curve linearizedCurve = linearizer.linearize(curve, crit);
 		List<Coordinate> coordinates = new LinkedList<>();
+		Point lastPoint = null;
 		for (CurveSegment segment : linearizedCurve.getCurveSegments()) {
 			for (Point point : ((LineStringSegment) segment).getControlPoints()) {
-				coordinates.add(new Coordinate(point.get0(), point.get1()));
+				if (lastPoint != null && lastPoint.equals(point)) {
+					// ignore to avoid duplicate points.
+				}
+				else {
+					coordinates.add(new Coordinate(point.get0(), point.get1()));
+				}
+				lastPoint = point;
 			}
 		}
 		return jtsFactory.createLineString(coordinates.toArray(new Coordinate[coordinates.size()]));
