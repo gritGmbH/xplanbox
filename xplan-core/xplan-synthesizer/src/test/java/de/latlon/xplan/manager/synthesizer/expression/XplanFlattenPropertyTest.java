@@ -134,7 +134,7 @@ public class XplanFlattenPropertyTest {
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals(
-				"[text1 | Das ist Textabschnitt No 1][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB)]",
+				"[text1 | Das ist Textabschnitt No 1 | Externe Referenz: text1.pdf][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB) | Externe Referenz: text2.pdf]",
 				value.toString());
 	}
 
@@ -166,7 +166,7 @@ public class XplanFlattenPropertyTest {
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals(
-				"[text1 | Das ist Textabschnitt No 1][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB)]",
+				"[text1 | Das ist Textabschnitt No 1 | Externe Referenz: text1.pdf][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB) | Externe Referenz: text2.pdf]",
 				value.toString());
 	}
 
