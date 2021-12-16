@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.validator.geometric.inspector.AenderungenInspector;
 import de.latlon.xplan.validator.geometric.inspector.FlaechenschlussInspector;
 import de.latlon.xplan.validator.geometric.inspector.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
@@ -122,8 +123,9 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		LOG.info("- Einlesen der Features (+ Geometrievalidierung)...");
 		XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector(xmlStream);
 		List<GeometricFeatureInspector> featureInspectors = createInspectors(voOptions);
+		AenderungenInspector aenderungenInspector = new AenderungenInspector();
 		GMLStreamReader gmlStream = createGmlStreamReader(archive, crs, schema, xmlStream, geometryInspector,
-				featureInspectors);
+				featureInspectors, aenderungenInspector);
 		try {
 			FeatureCollection xPlanFeatures = (FeatureCollection) gmlStream.readFeature();
 			result.setXplanFeatures(xPlanFeatures);
@@ -135,7 +137,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 			result.addBadGeometries(geometryInspector.getBadGeometries());
 			featureInspectors.stream().forEach(fi -> checkAndAddRules(fi, result));
 
-			resolveAndValidateXlinks(gmlStream, result);
+			resolveAndValidateXlinks(gmlStream, result, aenderungenInspector);
 		}
 		catch (XMLParsingException e) {
 			String msg = "Die geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen. "
@@ -171,7 +173,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
 	private GMLStreamReader createGmlStreamReader(XPlanArchive archive, ICRS crs, AppSchema schema,
 			XMLStreamReaderWrapper xmlStream, XPlanGeometryInspector inspector,
-			List<GeometricFeatureInspector> featureInspectors) throws XMLStreamException {
+			List<GeometricFeatureInspector> featureInspectors, AenderungenInspector aenderungenInspector)
+			throws XMLStreamException {
 		GMLVersion gmlVersion = archive.getVersion().getGmlVersion();
 		GeometryFactory geomFac = new GeometryFactory();
 		geomFac.addInspector(inspector);
@@ -182,30 +185,47 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		gmlStream.setSkipBrokenGeometries(true);
 		for (GeometricFeatureInspector featureInspector : featureInspectors)
 			gmlStream.addInspector(featureInspector);
+		gmlStream.addInspector(aenderungenInspector);
 		return gmlStream;
 	}
 
-	private void resolveAndValidateXlinks(GMLStreamReader gmlStream, ParserAndValidatorResult result) {
+	private void resolveAndValidateXlinks(GMLStreamReader gmlStream, ParserAndValidatorResult result,
+			AenderungenInspector aenderungenInspector) {
 		long begin = System.currentTimeMillis();
 		LOG.info("- Überprüfung der XLink-Integrität...");
-		try {
-			gmlStream.getIdContext().resolveLocalRefs();
-			// now check for remote feature references
-			List<GMLReference<?>> gmlRefs = gmlStream.getIdContext().getReferences();
-			for (GMLReference<?> gmlReference : gmlRefs)
-				if (gmlReference instanceof FeatureReference)
-					if (!gmlReference.isLocal()) {
-						String msg = format("Fehler: Dokument enthält eine externe Feature-Referenz ('%s'). "
-								+ "Nur Dokument-lokale xlinks werden unterstützt.", gmlReference.getURI());
-						LOG.info(msg);
-						result.addError(msg);
+		List<GMLReference<?>> gmlRefs = gmlStream.getIdContext().getReferences();
+		for (GMLReference<?> gmlReference : gmlRefs) {
+			if (gmlReference instanceof FeatureReference) {
+				if (gmlReference.isLocal()) {
+					String id = gmlReference.getURI().substring(1);
+					LOG.debug("Resolving reference to object '" + id + "'");
+					try {
+						gmlReference.getReferencedObject();
 					}
-		}
-		catch (ReferenceResolvingException e) {
-			LOG.trace("Resolving XLinks failed!", e);
-			String errorMessage = format("Die XLink-Integrität konnte nicht sichergestellt werden: %s", e.getMessage());
-			LOG.info(errorMessage);
-			result.addError(errorMessage);
+					catch (ReferenceResolvingException e) {
+						if (aenderungenInspector.getLokalAendertAndWurdeGeandertVonReferences().contains("#" + id)) {
+							String warning = format(
+									"Die XLink-Integrität für die Referenz aendert oder wurdeGeandertVon mit der %s  konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht.",
+									id);
+							LOG.info(warning);
+							result.addWarning(warning);
+						}
+						else {
+							String errorMessage = format(
+									"Die XLink-Integrität für die Referenz %s konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht.",
+									id);
+							LOG.info(errorMessage);
+							result.addError(errorMessage);
+						}
+					}
+				}
+				else {
+					String msg = format("Fehler: Dokument enthält eine externe Feature-Referenz ('%s'). "
+							+ "Nur Dokument-lokale xlinks werden unterstützt.", gmlReference.getURI());
+					LOG.info(msg);
+					result.addError(msg);
+				}
+			}
 		}
 		result.elapsed = System.currentTimeMillis() - begin;
 	}
@@ -289,6 +309,10 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
 		private void addErrors(List<String> errorsToAdd) {
 			this.errors.addAll(errorsToAdd);
+		}
+
+		public void addWarning(String warning) {
+			this.warnings.add(warning);
 		}
 
 		private void addWarnings(List<String> warningsToAdd) {
