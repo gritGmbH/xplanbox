@@ -182,8 +182,8 @@ public class ValidatorOptionsDialog extends FormPanel {
 	private Panel createButtonsPanel(ClickHandler cancelHandler) {
 		HorizontalPanel buttonBar = new HorizontalPanel();
 		buttonBar.setSpacing(20);
-		buttonBar.add(createValidationStartButton());
 		buttonBar.add(createValidateCancelButton(cancelHandler));
+		buttonBar.add(createValidationStartButton());
 		return buttonBar;
 	}
 

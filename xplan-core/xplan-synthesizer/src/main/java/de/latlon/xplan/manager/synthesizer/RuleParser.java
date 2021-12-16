@@ -141,11 +141,11 @@ class RuleParser {
 		return new Xplan2CodeLookupExt(parse(args.get(0)), trimString(args.get(1)), trimString(args.get(2)));
 	}
 
-	private Expression parseXPlanTextSchluessel(List<String> args) {
+	private Expression parseXPlanTextSchluessel() {
 		return new XplanTextAbschnitte();
 	}
 
-	private Expression parseXPlanTextSchluesselBegruendung(List<String> args) {
+	private Expression parseXPlanTextSchluesselBegruendung() {
 		return new XplanBegruendungAbschnitte();
 	}
 
@@ -216,10 +216,10 @@ class RuleParser {
 			result = new XplanRefTextAbschnitte();
 			break;
 		case "xplanTextAbschnitte":
-			result = parseXPlanTextSchluessel(args);
+			result = parseXPlanTextSchluessel();
 			break;
 		case "xplanBegruendungAbschnitte":
-			result = parseXPlanTextSchluesselBegruendung(args);
+			result = parseXPlanTextSchluesselBegruendung();
 			break;
 		case "xplanBesondZweckbest":
 			result = parseXPlanBesondZweckbest(args);
