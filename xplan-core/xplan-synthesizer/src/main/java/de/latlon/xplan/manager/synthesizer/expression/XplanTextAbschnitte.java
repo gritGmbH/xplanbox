@@ -21,21 +21,21 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import static de.latlon.xplan.manager.synthesizer.XplanAbschnittLookup.lookupXpTextAbschnitt;
-
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.xml.namespace.QName;
-
 import de.latlon.xplan.commons.synthesizer.Features;
 import org.deegree.commons.tom.TypedObjectNode;
+import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.reference.FeatureReference;
+
+import javax.xml.namespace.QName;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+import static de.latlon.xplan.manager.synthesizer.XplanAbschnittLookup.lookupXpTextAbschnitt;
 
 /**
  * Returns a textual representation of the "XP_TextAbschnitt" features referenced by an
@@ -49,7 +49,7 @@ public class XplanTextAbschnitte implements Expression {
 
 	@Override
 	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
-		Set<Feature> abschnittFeatures = new LinkedHashSet<Feature>();
+		Set<Feature> abschnittFeatures = new LinkedHashSet<>();
 		abschnittFeatures.addAll(getTextAbschnitteReferencedBySchluessel(feature));
 		abschnittFeatures.addAll(getTextAbschnitteReferencedByRef(feature));
 		if (abschnittFeatures.isEmpty()) {
@@ -67,25 +67,63 @@ public class XplanTextAbschnitte implements Expression {
 		String text = getPropertyValue(f, namespaceURI, "text", "");
 		String gesetzlicheGrundlage = getPropertyValue(f, namespaceURI, "gesetzlicheGrundlage");
 		String schluessel = getPropertyValue(f, namespaceURI, "schluessel");
+		String externeReferenzUrl = parseExterneReferenzUrl(f);
 
 		StringBuffer textAbschnittText = new StringBuffer();
 		textAbschnittText.append("[");
-		if (schluessel != null) {
+		if (schluessel != null && !schluessel.isEmpty()) {
 			schluessel = replaceDelimiter(schluessel);
 			textAbschnittText.append(schluessel);
-			textAbschnittText.append(" | ");
 		}
-		if (text != null) {
+		if (text != null && !text.isEmpty()) {
+			if (textAbschnittText.length() > 1)
+				textAbschnittText.append(" | ");
 			text = replaceDelimiter(text);
 			textAbschnittText.append(text);
 		}
 
-		if (gesetzlicheGrundlage != null) {
+		if (gesetzlicheGrundlage != null && !gesetzlicheGrundlage.isEmpty()) {
 			gesetzlicheGrundlage = replaceDelimiter(gesetzlicheGrundlage);
 			textAbschnittText.append(" (Gesetzliche Grundlage: ").append(gesetzlicheGrundlage).append(")");
 		}
+		if (externeReferenzUrl != null && !externeReferenzUrl.isEmpty()) {
+			if (textAbschnittText.length() > 1)
+				textAbschnittText.append(" | ");
+			textAbschnittText.append("Externe Referenz: ").append(externeReferenzUrl);
+		}
 		textAbschnittText.append("]");
 		return textAbschnittText.toString();
+	}
+
+	private static String parseExterneReferenzUrl(Feature feature) {
+		String namespaceURI = feature.getName().getNamespaceURI();
+		List<Property> refTexts = feature.getProperties(new QName(namespaceURI, "refText"));
+		if (refTexts != null && refTexts.size() == 1) {
+			Property refText = refTexts.get(0);
+			GenericXMLElement xp_externeReferenz = getChildByName(refText.getChildren(), namespaceURI,
+					"XP_ExterneReferenz");
+			if (xp_externeReferenz != null && xp_externeReferenz.getChildren() != null) {
+				GenericXMLElement referenzURL = getChildByName(xp_externeReferenz.getChildren(), namespaceURI,
+						"referenzURL");
+				TypedObjectNode propertyValue = referenzURL.getValue();
+				if (propertyValue != null)
+					return propertyValue.toString();
+			}
+		}
+		return null;
+	}
+
+	private static GenericXMLElement getChildByName(List<TypedObjectNode> children, String namespaceURI,
+			String propertyName) {
+		for (TypedObjectNode child : children) {
+			if (child != null && child instanceof GenericXMLElement) {
+				GenericXMLElement property = (GenericXMLElement) child;
+				if (new QName(namespaceURI, propertyName).equals(property.getName())) {
+					return property;
+				}
+			}
+		}
+		return null;
 	}
 
 	private static String replaceDelimiter(String text) {
@@ -106,7 +144,7 @@ public class XplanTextAbschnitte implements Expression {
 	}
 
 	private Set<Feature> getTextAbschnitteReferencedBySchluessel(Feature feature) {
-		Set<Feature> abschnittFeatures = new LinkedHashSet<Feature>();
+		Set<Feature> abschnittFeatures = new LinkedHashSet<>();
 		QName propName = new QName(feature.getName().getNamespaceURI(), "textSchluessel");
 		List<Property> props = feature.getProperties(propName);
 		for (Property prop : props) {

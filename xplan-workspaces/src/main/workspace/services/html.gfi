@@ -20,7 +20,11 @@
             if( indexOfPipe > 0 ) {
                var key = textProperties[i].innerHTML.substring( 0, indexOfPipe ).trim();
                var text = textProperties[i].innerHTML.substring( indexOfPipe + 1, textProperties[i].innerHTML.length ).trim();
+               text = text.replace(' | ', ' ');
+               text = replaceLinks(text);
                textProperties[i].innerHTML = '<strong>' + key + '</strong><br/>' + text;
+            } else {
+              textProperties[i].innerHTML = replaceLinks(textProperties[i].innerHTML);
             }
           }
           var links = document.getElementsByClassName('link');
@@ -32,6 +36,14 @@
                 link.href = WMS_URL + link;
               }
           }
+        }
+
+        function replaceLinks(text){
+           if ( text == null ) {
+             return text;
+           }
+            const URLMatcher = /(?:(?:https?):\/\/)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
+            return text.replace(URLMatcher, match => `<a href="${match}" target="_blank">${match}</a>`)
         }
       </script>
     <h2>XPlanWMS: Sachdaten</h2>

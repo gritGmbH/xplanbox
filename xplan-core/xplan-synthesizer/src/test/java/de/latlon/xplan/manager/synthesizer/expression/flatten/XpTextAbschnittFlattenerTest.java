@@ -35,4 +35,15 @@ public class XpTextAbschnittFlattenerTest {
 		assertEquals("[§2 Nr.1 | text 1][§2 Nr.3 | text 2][§2 Nr.21 | text 3]", value.toString());
 	}
 
+	@Test
+	public void testFlattenTexte_refText() {
+		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpTextAbschnittWithRefText.xml");
+		Feature feature = getTestFeature(features, "BP_PLAN");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"), true);
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals(
+				"[§2 Nr.9 | Externe Referenz: schluesseltest.pdf][§2 Nr.21 | text 3 | Externe Referenz: test.pdf][Externe Referenz: test.pdf]",
+				value.toString());
+	}
+
 }
