@@ -83,6 +83,16 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		SKIP_OPTIONS.add(SKIP_GELTUNGSBEREICH);
 	}
 
+	private final boolean treatAenderungIntegrityAsFailure;
+
+	public GeometricValidatorImpl() {
+		this(false);
+	}
+
+	public GeometricValidatorImpl(boolean treatAenderungIntegrityAsFailure) {
+		this.treatAenderungIntegrityAsFailure = treatAenderungIntegrityAsFailure;
+	}
+
 	@Override
 	public GemetricValidatorParsingResult validateGeometry(XPlanArchive archive, ICRS crs, AppSchema schema,
 			boolean force, List<ValidationOption> voOptions) throws ValidatorException {
@@ -203,7 +213,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
 						gmlReference.getReferencedObject();
 					}
 					catch (ReferenceResolvingException e) {
-						if (aenderungenInspector.getLokalAendertAndWurdeGeandertVonReferences().contains("#" + id)) {
+						if (!treatAenderungIntegrityAsFailure && aenderungenInspector
+								.getLokalAendertAndWurdeGeandertVonReferences().contains("#" + id)) {
 							String warning = format(
 									"Die XLink-Integrität für die Referenz aendert oder wurdeGeandertVon mit der %s  konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht.",
 									id);
