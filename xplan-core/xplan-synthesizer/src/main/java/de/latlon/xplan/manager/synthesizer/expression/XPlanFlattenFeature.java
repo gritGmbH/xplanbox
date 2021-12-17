@@ -153,10 +153,10 @@ public class XPlanFlattenFeature implements Expression {
 					s += createUrlForExterneReferenz(feature);
 				}
 				else if ("XP_TextAbschnitt".equals(ftName)) {
-					s = XplanTextAbschnitte.toString(feature);
+					s = new XplanTextAbschnitte().toString(feature);
 				}
 				else if ("XP_BegruendungAbschnitt".equals(ftName)) {
-					s = XplanBegruendungAbschnitte.toString(feature);
+					s = new XplanBegruendungAbschnitte().toString(feature);
 				}
 				else if ("XP_VerfahrensMerkmal".equals(ftName)) {
 					s = concatenateVerfahrensMerkmal(feature);

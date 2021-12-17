@@ -21,14 +21,6 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import static de.latlon.xplan.manager.synthesizer.XplanAbschnittLookup.lookupXpBegruendungAbschnitt;
-
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.xml.namespace.QName;
-
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -36,7 +28,12 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.reference.FeatureReference;
 
-import de.latlon.xplan.commons.synthesizer.Features;
+import javax.xml.namespace.QName;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+import static de.latlon.xplan.manager.synthesizer.XplanAbschnittLookup.lookupXpBegruendungAbschnitt;
 
 /**
  * {@link Expression} that returns a textual representation of the
@@ -46,7 +43,7 @@ import de.latlon.xplan.commons.synthesizer.Features;
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
  * @since 1.0
  */
-public class XplanBegruendungAbschnitte implements Expression {
+public class XplanBegruendungAbschnitte extends XPlanTexlicherAbschnitt {
 
 	@Override
 	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
@@ -63,14 +60,8 @@ public class XplanBegruendungAbschnitte implements Expression {
 		return new PrimitiveValue(sBuilder.toString());
 	}
 
-	public static String toString(Feature abschnitt) {
-		QName textProp = new QName(abschnitt.getName().getNamespaceURI(), "text");
-		TypedObjectNode node = Features.getPropertyValue(abschnitt, textProp);
-		if (node != null) {
-			String text = node.toString();
-			return "[" + text + "]";
-		}
-		return null;
+	public String toString(Feature f) {
+		return super.toString(f);
 	}
 
 	private Set<Feature> getBegruendungAbschnitteReferencedBySchluessel(Feature feature) {

@@ -21,10 +21,9 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
+import de.latlon.xplan.manager.synthesizer.expression.XplanBegruendungAbschnitte;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.feature.Feature;
-
-import de.latlon.xplan.manager.synthesizer.expression.XplanBegruendungAbschnitte;
 
 public class XpBegruendungAbschnittFlattener extends AbstractFlattener {
 
@@ -40,7 +39,7 @@ public class XpBegruendungAbschnittFlattener extends AbstractFlattener {
 	@Override
 	public String flatten(TypedObjectNode xpBegruendungAbschnitt) {
 		Feature feature = (Feature) xpBegruendungAbschnitt;
-		return XplanBegruendungAbschnitte.toString(feature);
+		return new XplanBegruendungAbschnitte().toString(feature);
 	}
 
 }

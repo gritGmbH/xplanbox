@@ -61,9 +61,9 @@
 		</strong>
       </td>
 </tr>
-<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme,texte,textAbschnitte):property>
+<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme,texte,textAbschnitte,begruendungsTexte):property>
 <?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme:complexproperty>
-<?property texte,textAbschnitte:texteproperty>
+<?property texte,textAbschnitte,begruendungsTexte:texteproperty>
 
 
 <tr>
