@@ -39,7 +39,9 @@ public class XplanBegruendungAbschnitteTest {
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
 		XplanBegruendungAbschnitte expr = new XplanBegruendungAbschnitte();
 		PrimitiveValue abschnitte = expr.evaluate(feature, features);
-		assertEquals("[Das ist Begründungsabschnitt No 1][Das ist Begründungsabschnitt No 2]", abschnitte.toString());
+		assertEquals(
+				"[begruendung1 | Das ist Begründungsabschnitt No 1][begruendung2 | Das ist Begründungsabschnitt No 2]",
+				abschnitte.toString());
 	}
 
 }

@@ -45,7 +45,7 @@ public class XpTextAbschnittFlattener extends AbstractFlattener {
 	@Override
 	public String flatten(TypedObjectNode xpTextAbschnitt) {
 		Feature feature = (Feature) xpTextAbschnitt;
-		return XplanTextAbschnitte.toString(feature);
+		return new XplanTextAbschnitte().toString(feature);
 	}
 
 }
