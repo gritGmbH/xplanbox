@@ -4,7 +4,7 @@ MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
-ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-validator-config/ -Djava.security.manager -Djava.security.policy=/usr/local/tomcat/conf/catalina.policy"
+ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-validator-config/"
 
 # configure tomcat
 ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
