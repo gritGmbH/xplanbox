@@ -78,21 +78,10 @@
     <dependency>
       <groupId>net.sf.saxon</groupId>
       <artifactId>Saxon-HE</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>xalan</artifactId>
-          <groupId>xalan</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>xml-apis</groupId>
       <artifactId>xml-apis</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.11</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
@@ -104,24 +93,20 @@
     </dependency>
     <dependency>
       <groupId>org.geotools</groupId>
-      <artifactId>gt-shapefile</artifactId>
+      <artifactId>gt-epsg-hsql</artifactId>
     </dependency>
     <dependency>
       <groupId>org.geotools</groupId>
-      <artifactId>gt-epsg-hsql</artifactId>
+      <artifactId>gt-shapefile</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.locationtech.jts</groupId>
+      <artifactId>jts-core</artifactId>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.dynamicreports</groupId>
       <artifactId>dynamicreports-core</artifactId>
       <exclusions>
-        <exclusion>
-          <groupId>org.apache.commons</groupId>
-          <artifactId>commons-lang3</artifactId>
-        </exclusion>
-        <exclusion>
-          <artifactId>ecj</artifactId>
-          <groupId>org.eclipse.jdt.core.compiler</groupId>
-        </exclusion>
         <exclusion>
           <artifactId>batik-xml</artifactId>
           <groupId>org.apache.xmlgraphics</groupId>
@@ -175,28 +160,10 @@
     <dependency>
       <groupId>net.sourceforge.dynamicreports</groupId>
       <artifactId>dynamicreports-adhoc</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>ecj</artifactId>
-          <groupId>org.eclipse.jdt.core.compiler</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.dynamicreports</groupId>
       <artifactId>dynamicreports-googlecharts</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>ecj</artifactId>
-          <groupId>org.eclipse.jdt.core.compiler</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jdt.core.compiler</groupId>
-      <artifactId>ecj</artifactId>
-      <version>4.4.2</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -239,18 +206,6 @@
       <groupId>pl.pragmatists</groupId>
       <artifactId>JUnitParams</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.locationtech.jts</groupId>
-      <artifactId>jts-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.geotools</groupId>
-      <artifactId>gt-shapefile</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.geotools</groupId>
-      <artifactId>gt-epsg-hsql</artifactId>
     </dependency>
   </dependencies>
 
