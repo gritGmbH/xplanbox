@@ -117,7 +117,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			String internalId, PlanStatus planStatus) throws Exception {
 		performSchemaValidation(archive);
 		try {
-			GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl();
+			GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl(true);
 			AppSchema appSchema = managerWorkspaceWrapper
 					.lookupStore(archive.getVersion(), archive.getAde(), planStatus).getSchema();
 			XPlanFeatureCollection fc = geometricValidator.retrieveGeometricallyValidXPlanFeatures(archive, crs,

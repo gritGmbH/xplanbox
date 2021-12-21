@@ -103,7 +103,7 @@ public class ApplicationContext {
 
 	@Bean
 	public GeometricValidator geometricValidator() {
-		return new GeometricValidatorImpl();
+		return new GeometricValidatorImpl(true);
 	}
 
 	@Bean

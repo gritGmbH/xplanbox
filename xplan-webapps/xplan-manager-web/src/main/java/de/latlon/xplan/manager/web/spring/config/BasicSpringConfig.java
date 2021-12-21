@@ -86,7 +86,7 @@ public class BasicSpringConfig {
 
 	@Bean
 	public GeometricValidator geometricValidator() {
-		return new GeometricValidatorImpl();
+		return new GeometricValidatorImpl(true);
 	}
 
 	@Bean
