@@ -22,7 +22,6 @@
 package de.latlon.xplan.manager;
 
 import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -31,6 +30,7 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
@@ -61,7 +61,6 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
-import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
@@ -93,7 +92,6 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCo
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
 import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
@@ -255,8 +253,8 @@ public class XPlanManager {
 		// TODO: Simplify retrieval of plan name.
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
-		XPlanFeatureCollection fc = (new GeometricValidatorImpl()).retrieveGeometricallyValidXPlanFeatures(archive, crs,
-				getAppSchemaFromStore(archive, null), true, null);
+		XPlanFeatureCollection fc = (new GeometricValidatorImpl(true)).retrieveGeometricallyValidXPlanFeatures(archive,
+				crs, getAppSchemaFromStore(archive, null), true, null);
 		return fc.getPlanName();
 	}
 
