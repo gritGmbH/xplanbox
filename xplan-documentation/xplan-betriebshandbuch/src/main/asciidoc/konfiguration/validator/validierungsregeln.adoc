@@ -14,8 +14,8 @@ Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln verwende
 Wenn innerhalb des Validierungsbericht die Version und die Quelle der semantischen Validierungsregeln angezeigt werden sollen, dann muss im übergeordneten Verzeichnis aus _validationRulesDirectory_ eine Textdatei mit dem Dateinamen _VERSION.txt_ und folgendem Inhalt angelegt werden:
 
 ----
-version=0.9
-source=https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.9.zip
+version=0.10.1
+source=https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.10.1.zip
 ----
 
 [[weiterfuehrende-informationen-zur-semantischen-validierung]]
