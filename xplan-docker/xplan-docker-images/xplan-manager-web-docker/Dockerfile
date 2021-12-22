@@ -1,10 +1,10 @@
-FROM xplanbox/focal-jdk8-tomcat9-gdal30:latest
+FROM xplanbox/focal-jdk11-tomcat9-gdal30:latest
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
-ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/ -Djava.security.manager -Djava.security.policy=/usr/local/tomcat/conf/catalina.policy -Duser.timezone=Europe/Berlin"
+ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # configure tomcat

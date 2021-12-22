@@ -1,4 +1,4 @@
-FROM postgis/postgis:11-2.5
+FROM postgis/postgis:12-3.1
 
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>

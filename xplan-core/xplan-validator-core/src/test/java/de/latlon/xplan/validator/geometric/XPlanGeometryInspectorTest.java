@@ -36,9 +36,9 @@ import java.util.List;
 
 import static org.deegree.gml.GMLVersion.GML_32;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -79,6 +79,20 @@ public class XPlanGeometryInspectorTest {
 		assertThat(badGeometries.get(0).getOriginalGeometry().getId(), is("GML_ID_67697_intersection_1"));
 		assertThat(badGeometries.get(1).getOriginalGeometry().getId(), is("GML_ID_67697_intersection_2"));
 		assertThat(badGeometries.get(2).getOriginalGeometry().getId(), is("GML_ID_67697"));
+	}
+
+	@Test
+	public void testInspect_RingWithSelfIntersectionAtTheSamePoint() throws Exception {
+		Geometry geometryToInspect = readGeometry("selfIntersectingRing-samePoint.gml");
+
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(2));
+		assertThat(badGeometries.get(0).getOriginalGeometry().getId(), is("GML_ID_67697_doppelterStuetzpunkt_1"));
+		assertThat(badGeometries.get(1).getOriginalGeometry().getId(), is("GML_ID_67697"));
+		assertThat(badGeometries.get(1).getErrors().size(), is(1));
 	}
 
 	@Test

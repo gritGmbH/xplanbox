@@ -122,7 +122,7 @@ public class ShapefileGenerator {
 		if (geom instanceof AbstractDefaultGeometry) {
 			try {
 				AbstractDefaultGeometry defaultGeometry = (AbstractDefaultGeometry) geom;
-				com.vividsolutions.jts.geom.Geometry jtsGeom = defaultGeometry.getJTSGeometry();
+				org.locationtech.jts.geom.Geometry jtsGeom = defaultGeometry.getJTSGeometry();
 
 				Geometries geomType = Geometries.get(jtsGeom);
 				if (geomType2Builders.containsKey(geomType)) {

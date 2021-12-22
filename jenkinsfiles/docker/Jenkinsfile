@@ -6,8 +6,8 @@ pipeline {
   }
   agent any
   tools {
-    maven 'maven361'
-    jdk 'openjdk8'
+    maven 'maven-3.8'
+    jdk 'openjdk11'
   }
   parameters {
     string(description: 'Version of the Docker Image', name: 'VERSION', defaultValue: '4.4-SNAPSHOT')
@@ -24,7 +24,7 @@ pipeline {
       steps{
         sh 'mvn clean install -Pdocker'
         script {
-          focalJdk8Tomcat9Gdal30DockerImage = docker.build(ORGANISATION + '/focal-jdk8-tomcat9-gdal30:' + '$VERSION', '--build-arg REPO_USER=develop --build-arg REPO_PASSWD=$PASSWORD -f xplan-docker/xplan-docker-images/focal-jdk8-tomcat9-gdal30/Dockerfile xplan-docker/xplan-docker-images/focal-jdk8-tomcat9-gdal30/')
+          focalJdk11Tomcat9Gdal30DockerImage = docker.build(ORGANISATION + '/focal-jdk11-tomcat9-gdal30:' + '$VERSION', '--build-arg REPO_USER=develop --build-arg REPO_PASSWD=$PASSWORD -f xplan-docker/xplan-docker-images/focal-jdk11-tomcat9-gdal30/Dockerfile xplan-docker/xplan-docker-images/focal-jdk11-tomcat9-gdal30/')
           xplanApiManagerDockerImage = docker.build(ORGANISATION + '/xplan-api-manager-docker:' + '$VERSION', '--build-arg REPO_USER=develop --build-arg REPO_PASSWD=$PASSWORD -f xplan-docker/xplan-docker-images/xplan-api-manager-docker/Dockerfile xplan-docker/xplan-docker-images/xplan-api-manager-docker/')
           xplanApiValidatorDockerImage = docker.build(ORGANISATION + '/xplan-api-validator-docker:' + '$VERSION', '--build-arg REPO_USER=develop --build-arg REPO_PASSWD=$PASSWORD -f xplan-docker/xplan-docker-images/xplan-api-validator-docker/Dockerfile xplan-docker/xplan-docker-images/xplan-api-validator-docker/')
           xplanDbDockerImage = docker.build(ORGANISATION + '/xplan-db-docker:' + '$VERSION', '--build-arg REPO_USER=develop --build-arg REPO_PASSWD=$PASSWORD -f xplan-docker/xplan-docker-images/xplan-db-docker/Dockerfile xplan-docker/xplan-docker-images/xplan-db-docker/')
@@ -40,7 +40,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry( REGISTRY_URL, DEPLOY_CREDENTIAL ) {
-            focalJdk8Tomcat9Gdal30DockerImage.push()
+            focalJdk11Tomcat9Gdal30DockerImage.push()
             xplanApiManagerDockerImage.push()
             xplanApiValidatorDockerImage.push()
             xplanDbDockerImage.push()

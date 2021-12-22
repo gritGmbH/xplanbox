@@ -21,7 +21,6 @@
  */
 package de.latlon.xplanbox.api.manager.config;
 
-import com.google.common.io.Files;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
@@ -51,11 +50,9 @@ import de.latlon.xplanbox.api.manager.v1.InfoApi;
 import de.latlon.xplanbox.api.manager.v1.PlanApi;
 import de.latlon.xplanbox.api.manager.v1.PlansApi;
 import org.deegree.commons.config.DeegreeWorkspace;
+import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.persistence.FeatureStore;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.mockito.internal.listeners.CollectCreatedMocks;
-import org.mockito.internal.progress.MockingProgress;
-import org.mockito.internal.progress.ThreadSafeMockingProgress;
 import org.slf4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.context.annotation.Bean;
@@ -64,20 +61,22 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType.gdal;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
@@ -139,9 +138,9 @@ public class TestContext {
 		when(featureStore41.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_41, null));
 		FeatureStore featureStore51 = mock(FeatureStore.class);
 		when(featureStore51.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_51, null));
-		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), any(XPlanAde.class), any(PlanStatus.class)))
+		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), nullable(XPlanAde.class), any(PlanStatus.class)))
 				.thenReturn(featureStore41);
-		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), any(XPlanAde.class), any(PlanStatus.class)))
+		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), nullable(XPlanAde.class), any(PlanStatus.class)))
 				.thenReturn(featureStore51);
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration());
 		return managerWorkspaceWrapper;
@@ -160,45 +159,41 @@ public class TestContext {
 		DeegreeWorkspace deegreeWorkspace = mock(DeegreeWorkspace.class);
 		DeegreeWorkspaceWrapper wmsWorkspace = mock(DeegreeWorkspaceWrapper.class);
 		when(wmsWorkspace.getWorkspaceInstance()).thenReturn(deegreeWorkspace);
-		File tempWorkspaceDir = Files.createTempDir().getAbsoluteFile();
+		Path tempWorkspaceDir = Files.createTempDirectory("xplan-api-manager");
 		initWorkspace(tempWorkspaceDir);
-		when(deegreeWorkspace.getLocation()).thenReturn(tempWorkspaceDir);
+		when(deegreeWorkspace.getLocation()).thenReturn(tempWorkspaceDir.toFile());
 		return new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
 	}
 
-	private void initWorkspace(File dir) throws IOException, URISyntaxException {
-		File themesDir = new File(dir, "themes");
-		java.nio.file.Files.createDirectory(themesDir.toPath());
-		Files.copy(new File(getClass().getResource("/bplanraster.xml").toURI()),
-				new File(themesDir, "bplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/bplanraster.xml").toURI()),
-				new File(themesDir, "bplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/bplanraster.xml").toURI()),
-				new File(themesDir, "bplanarchiveraster.xml"));
-		Files.copy(new File(getClass().getResource("/fplanraster.xml").toURI()),
-				new File(themesDir, "fplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/fplanraster.xml").toURI()),
-				new File(themesDir, "fplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/fplanraster.xml").toURI()),
-				new File(themesDir, "fplanarchiveraster.xml"));
-		Files.copy(new File(getClass().getResource("/rplanraster.xml").toURI()),
-				new File(themesDir, "rplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/rplanraster.xml").toURI()),
-				new File(themesDir, "rplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/rplanraster.xml").toURI()),
-				new File(themesDir, "rplanarchiveraster.xml"));
-		Files.copy(new File(getClass().getResource("/lplanraster.xml").toURI()),
-				new File(themesDir, "lplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/lplanraster.xml").toURI()),
-				new File(themesDir, "lplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/lplanraster.xml").toURI()),
-				new File(themesDir, "lplanarchiveraster.xml"));
-		Files.copy(new File(getClass().getResource("/soplanraster.xml").toURI()),
-				new File(themesDir, "soplanraster.xml"));
-		Files.copy(new File(getClass().getResource("/soplanraster.xml").toURI()),
-				new File(themesDir, "soplanpreraster.xml"));
-		Files.copy(new File(getClass().getResource("/soplanraster.xml").toURI()),
-				new File(themesDir, "soplanarchiveraster.xml"));
+	private void initWorkspace(Path dir) throws IOException, URISyntaxException {
+		Path themesDir = dir.resolve("themes");
+		java.nio.file.Files.createDirectory(themesDir);
+		Files.copy(Paths.get(getClass().getResource("/bplanraster.xml").toURI()), themesDir.resolve("bplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/bplanraster.xml").toURI()),
+				themesDir.resolve("bplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/bplanraster.xml").toURI()),
+				themesDir.resolve("bplanarchiveraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/fplanraster.xml").toURI()), themesDir.resolve("fplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/fplanraster.xml").toURI()),
+				themesDir.resolve("fplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/fplanraster.xml").toURI()),
+				themesDir.resolve("fplanarchiveraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/rplanraster.xml").toURI()), themesDir.resolve("rplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/rplanraster.xml").toURI()),
+				themesDir.resolve("rplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/rplanraster.xml").toURI()),
+				themesDir.resolve("rplanarchiveraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/lplanraster.xml").toURI()), themesDir.resolve("lplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/lplanraster.xml").toURI()),
+				themesDir.resolve("lplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/lplanraster.xml").toURI()),
+				themesDir.resolve("lplanarchiveraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/soplanraster.xml").toURI()),
+				themesDir.resolve("soplanraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/soplanraster.xml").toURI()),
+				themesDir.resolve("soplanpreraster.xml"));
+		Files.copy(Paths.get(getClass().getResource("/soplanraster.xml").toURI()),
+				themesDir.resolve("soplanarchiveraster.xml"));
 	}
 
 	@Bean
@@ -237,8 +232,8 @@ public class TestContext {
 			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
 			XPlanGmlTransformer xPlanGmlTransformer) throws Exception {
 		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
-		when(xplanInsertManager.importPlan(any(), any(), anyBoolean(), anyBoolean(), anyBoolean(), any(), anyString(),
-				any())).thenReturn(123);
+		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(), anyBoolean(),
+				nullable(File.class), nullable(String.class), any())).thenReturn(123);
 		return xplanInsertManager;
 	}
 
@@ -270,26 +265,10 @@ public class TestContext {
 		return workspaceReloader;
 	}
 
-	private final List<Object> createdMocks = new LinkedList<Object>();
-
-	@PostConstruct
-	void initMockListener() {
-		MockingProgress progress = new ThreadSafeMockingProgress();
-		progress.setListener(new CollectCreatedMocks(createdMocks));
-	}
-
 	@PostConstruct
 	void initLoggingAdapter() {
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
-	}
-
-	@PreDestroy
-	void showAllMocks() {
-		createdMocks.forEach(mock -> {
-			LOG.debug("Used " + mock);
-			// verifyNoMoreInteractions(mock);
-		});
 	}
 
 }

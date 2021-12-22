@@ -21,18 +21,6 @@
  */
 package de.latlon.xplan.validator.geometric;
 
-import com.vividsolutions.jts.algorithm.CGAlgorithms;
-import com.vividsolutions.jts.algorithm.LineIntersector;
-import com.vividsolutions.jts.algorithm.RobustLineIntersector;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.LineString;
-import com.vividsolutions.jts.geom.LinearRing;
-import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.geomgraph.Edge;
-import com.vividsolutions.jts.geomgraph.EdgeIntersection;
-import com.vividsolutions.jts.geomgraph.EdgeIntersectionList;
-import com.vividsolutions.jts.geomgraph.GeometryGraph;
-import com.vividsolutions.jts.geomgraph.Node;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -63,6 +51,16 @@ import org.deegree.geometry.standard.primitive.DefaultPoint;
 import org.deegree.geometry.standard.primitive.DefaultPolygon;
 import org.deegree.geometry.standard.surfacepatches.DefaultPolygonPatch;
 import org.deegree.geometry.validation.GeometryFixer;
+import org.locationtech.jts.algorithm.CGAlgorithms;
+import org.locationtech.jts.algorithm.LineIntersector;
+import org.locationtech.jts.algorithm.RobustLineIntersector;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.geomgraph.Edge;
+import org.locationtech.jts.geomgraph.EdgeIntersection;
+import org.locationtech.jts.geomgraph.GeometryGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,7 +69,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -124,7 +121,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private static final String INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON = "2.2.2.1: Selbst\u00fcberschneidung zwischen MulitPolygonen an folgenden Punkten: %s";
 
-	private final com.vividsolutions.jts.geom.GeometryFactory jtsFactory;
+	private final org.locationtech.jts.geom.GeometryFactory jtsFactory;
 
 	private final LinearizationCriterion crit;
 
@@ -144,7 +141,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		this.xmlStream = xmlStream;
 		this.crit = new MaxErrorCriterion(1.0, 500);
 		this.linearizer = new CurveLinearizer(new GeometryFactory());
-		this.jtsFactory = new com.vividsolutions.jts.geom.GeometryFactory();
+		this.jtsFactory = new org.locationtech.jts.geom.GeometryFactory();
 	}
 
 	public List<String> getErrors() {
@@ -488,7 +485,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private void calculateIntersectionAndAddError(LinearRing exteriorJTSRing, LinearRing interiorJTSRing, ICRS crs,
 			String msg) {
-		com.vividsolutions.jts.geom.Geometry intersection = exteriorJTSRing.intersection(interiorJTSRing);
+		org.locationtech.jts.geom.Geometry intersection = exteriorJTSRing.intersection(interiorJTSRing);
 		AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS(intersection, crs);
 		badGeometries.add(new BadGeometry(intersectionGeom, msg));
 	}
@@ -679,9 +676,16 @@ class XPlanGeometryInspector implements GeometryInspector {
 	private LineString getJTSLineString(Curve curve) {
 		Curve linearizedCurve = linearizer.linearize(curve, crit);
 		List<Coordinate> coordinates = new LinkedList<>();
+		Point lastPoint = null;
 		for (CurveSegment segment : linearizedCurve.getCurveSegments()) {
 			for (Point point : ((LineStringSegment) segment).getControlPoints()) {
-				coordinates.add(new Coordinate(point.get0(), point.get1()));
+				if (lastPoint != null && lastPoint.equals(point)) {
+					// ignore to avoid duplicate points.
+				}
+				else {
+					coordinates.add(new Coordinate(point.get0(), point.get1()));
+				}
+				lastPoint = point;
 			}
 		}
 		return jtsFactory.createLineString(coordinates.toArray(new Coordinate[coordinates.size()]));
