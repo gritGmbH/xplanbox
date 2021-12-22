@@ -266,11 +266,6 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
     </dependency>
-    <!-- dependency required by dynamicreports and jasper reports -->
-    <dependency>
-      <groupId>org.eclipse.jdt.core.compiler</groupId>
-      <artifactId>ecj</artifactId>
-    </dependency>
   </dependencies>
 
   <profiles>

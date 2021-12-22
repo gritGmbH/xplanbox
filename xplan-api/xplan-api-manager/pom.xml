@@ -45,22 +45,6 @@
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-manager-core</artifactId>
-      <!--
-      <exclusions>
-        <exclusion>
-          <groupId>net.sourceforge.dynamicreports</groupId>
-          <artifactId>dynamicreports-core</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>net.sourceforge.dynamicreports</groupId>
-          <artifactId>dynamicreports-adhoc</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>net.sourceforge.dynamicreports</groupId>
-          <artifactId>dynamicreports-googlecharts</artifactId>
-        </exclusion>
-      </exclusions>
-      -->
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
