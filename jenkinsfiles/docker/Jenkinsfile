@@ -10,14 +10,14 @@ pipeline {
     jdk 'openjdk11'
   }
   parameters {
-    string(description: 'Version of the Docker Image', name: 'VERSION', defaultValue: '4.4-SNAPSHOT')
-    string(description: 'Version of the Docker Image', name: 'BRANCH', defaultValue: 'master')
+    string(description: 'Version of the Docker Image', name: 'VERSION', defaultValue: '4.3')
+    string(description: 'Version of the Docker Image', name: 'BRANCH', defaultValue: 'refs/tags/xplanbox-4.3')
   }
   stages {
     stage('Preparation') {
       steps{
         deleteDir()
-        git credentialsId: 'latlon-CI-bitbucket', url: 'https://bitbucket.org/latlon/xplanbox.git', branch: '$BRANCH'
+        checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://bitbucket.org/latlon/xplanbox.git', credentialsId: 'latlon-CI-bitbucket']], branches: [[name: '$BRANCH']]],poll: false
       }
     }
     stage('Build Images') {
