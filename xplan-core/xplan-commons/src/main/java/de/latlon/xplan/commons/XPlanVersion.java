@@ -75,7 +75,7 @@ public enum XPlanVersion {
 	 * XPlan 5.4
 	 */
 	XPLAN_54("http://www.xplanung.de/xplangml/5/4", "/appschemas/XPlanGML_5_4/XPlanung-Operationen.xsd", "xplan54.syn",
-			 GML_32),
+			GML_32),
 	/**
 	 * XPlan Syn
 	 */
