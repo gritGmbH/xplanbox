@@ -7,16 +7,16 @@ Standard-Out. Für die Web-Anwendungen und die Webservices ist dies die Logging-
 Java Applikationsserver (Apache Tomcat: _catalina.out_) und bei den CLI-Anwendungen die Konsole.
 Nach Standard-Out werden Informationen, Warnungen und Fehler geschrieben.
 
-Zusätzlich wird eine Log-Datei für alle Anwendungen und Dienste in einer entsprechenden benannten Datei im  Log-Verzeichnis des Tomcats _$\{catalina.base}/logs/_ geschrieben.
+Zusätzlich wird eine Log-Datei für alle Anwendungen und Dienste in einer entsprechenden benannten Datei im  Log-Verzeichnis des Tomcats _${catalina.base}/logs/_ geschrieben.
 
 [width="88%",cols="35%,65%",options="header"]
 |===
 |Anwendung |Log-Datei
-|XPlanManagerWeb |$\{catalina.base}/logs/xplan-manager-web.log
+|XPlanManagerWeb |${catalina.base}/logs/xplan-manager-web.log
 |XPlanManagerCLI |./xplan-manager-cli.log
-|XPlanValidatorWeb |$\{catalina.base}/logs/xplan-validator-web.log
+|XPlanValidatorWeb |${catalina.base}/logs/xplan-validator-web.log
 |XPlanValidatorCLI |./xplan-validator-cli.log
-|XPlanWMS |$\{catalina.base}/logs/xplan-wms.log
-|XPlanWFS |$\{catalina.base}/logs/xplan-wfs.log
-|XPlanSynWFS |$\{catalina.base}/logs/xplansyn-wfs.log
+|XPlanWMS |${catalina.base}/logs/xplan-wms.log
+|XPlanWFS |${catalina.base}/logs/xplan-wfs.log
+|XPlanSynWFS |${catalina.base}/logs/xplansyn-wfs.log
 |===
