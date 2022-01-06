@@ -1,11 +1,11 @@
 Configuration:
   status: debug
-  name: XPlanManagerWeb
+  name: XPlanManagerApi
 
   Properties:
     Property:
       -   name: log.file
-          value: xplan-manager-web.log
+          value: xplan-manager-api.log
       -   name: log.path
           value: ${catalina.base}/logs
 
@@ -35,7 +35,7 @@ Configuration:
           level: info
     Logger:
       -
-        name: XPlanManagerWeb_Log
+        name: XPlanManagerApi_Log
         level: info
         additivity: false
         AppenderRef:

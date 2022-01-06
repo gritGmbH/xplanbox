@@ -1,11 +1,11 @@
 Configuration:
-  status: debug
-  name: XPlanManagerWeb
+  status: error
+  name: XPlanWMS
 
   Properties:
     Property:
       -   name: log.file
-          value: xplan-manager-web.log
+          value: xplan-wms.log
       -   name: log.path
           value: ${catalina.base}/logs
 
@@ -35,7 +35,7 @@ Configuration:
           level: info
     Logger:
       -
-        name: XPlanManagerWeb_Log
+        name: XPlanWMS_Log
         level: info
         additivity: false
         AppenderRef:
@@ -44,11 +44,5 @@ Configuration:
           level: info
       -   name: de.latlon.xplan
           level: info
-      -   name: org.springframework
-          level: warn
       -   name: org.reflections
-          level: off
-      -   name: org.deegree.geometry.standard.AbstractDefaultGeometry
-          level: off
-      -   name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
           level: off

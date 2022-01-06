@@ -1,0 +1,27 @@
+Configuration:
+  name: XPlanWMSTest
+
+  Appenders:
+    Console:
+      name: STDOUT
+      PatternLayout:
+        Pattern: "%d{HH:mm:ss,SSS} %5p: [%c{1}] %m%n"
+      target: SYSTEM_OUT
+  Loggers:
+    Root:
+      AppenderRef:
+        - ref: STDOUT
+          level: info
+    Logger:
+      -
+        name: XPlanManagerWeb_Test_Log
+        level: info
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+      -   name: org.deegree
+          level: trace
+      -   name: de.latlon.xplan
+          level: debug
+      -   name: org.mockito
+          level: trace
