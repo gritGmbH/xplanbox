@@ -14,7 +14,7 @@ Configuration:
           level: info
     Logger:
       -
-        name: XPlanManagerWeb_Test_Log
+        name: XPlanValidatorCoreTest_Log
         level: info
         additivity: false
         AppenderRef:
