@@ -265,6 +265,9 @@
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/4}BP_WegerechtType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/4}BP_WegerechtType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/4}BP_WegerechtType/count">2</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/4}BP_WohngebaeudeFlaecheType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/4}BP_WohngebaeudeFlaecheType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
+    <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/4}BP_WohngebaeudeFlaecheType/count">2</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/4}BP_ZentralerVersorgungsbereichType/1">{http://www.opengis.net/gml/3.2}boundedBy</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/4}BP_ZentralerVersorgungsbereichType/2">{http://www.opengis.net/gml/3.2}Envelope</property>
     <property name="defaultGeometry:{http://www.xplanung.de/xplangml/5/4}BP_ZentralerVersorgungsbereichType/count">2</property>

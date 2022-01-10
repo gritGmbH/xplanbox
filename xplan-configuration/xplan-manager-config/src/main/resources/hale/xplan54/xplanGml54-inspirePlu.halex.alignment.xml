@@ -2796,6 +2796,22 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="C246bf091-6f22-4d7f-b142-b23f238ca486" priority="normal">
+        <source>
+            <class>
+                <type name="BP_WohngebaeudeFlaecheType" ns="http://www.xplanung.de/xplangml/5/4">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.retype" id="Cbc5666ce-9324-4a4b-8e02-cf43a617d098" priority="normal">
         <source>
             <class>
@@ -3079,28 +3095,6 @@
                 <child name="hatGenerAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
                 <child name="choice" ns="http://www.xplanung.de/xplangml/5/4/XP_GenerAttribut"/>
                 <child name="XP_DatumAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
-                <child name="name" ns="http://www.xplanung.de/xplangml/5/4"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="dimensioningIndication" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/plu/4.0/DimensioningIndicationValue"/>
-                <child name="DimensioningIndicationCharacterValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="indicationReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9f7c3198-b3bd-4d02-93bd-36f4e90f8e5b" priority="normal">
-        <source>
-            <property>
-                <type name="BP_UeberlagerungsobjektType" ns="http://www.xplanung.de/xplangml/5/4"/>
-                <child name="hatGenerAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
-                <child name="choice" ns="http://www.xplanung.de/xplangml/5/4/XP_GenerAttribut"/>
-                <child name="XP_IntegerAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
                 <child name="name" ns="http://www.xplanung.de/xplangml/5/4"/>
             </property>
         </source>
@@ -3530,6 +3524,28 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C9f7c3198-b3bd-4d02-93bd-36f4e90f8e5b" priority="normal">
+        <source>
+            <property>
+                <type name="BP_UeberlagerungsobjektType" ns="http://www.xplanung.de/xplangml/5/4"/>
+                <child name="hatGenerAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/4/XP_GenerAttribut"/>
+                <child name="XP_IntegerAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
+                <child name="name" ns="http://www.xplanung.de/xplangml/5/4"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="dimensioningIndication" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/plu/4.0/DimensioningIndicationValue"/>
+                <child name="DimensioningIndicationIntegerValue" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="indicationReference" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C5830cb21-0086-48f2-8b8f-34a4e1823466" priority="normal">
         <source>
             <property>
@@ -3762,13 +3778,13 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cca9af173-e058-44cc-b88b-c7972e34d18e" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2afc2074-921c-451e-bbfe-e5ed2c7737ee" priority="normal">
         <source>
             <property>
                 <type name="BP_PunktobjektType" ns="http://www.xplanung.de/xplangml/5/4"/>
                 <child name="hatGenerAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
                 <child name="choice" ns="http://www.xplanung.de/xplangml/5/4/XP_GenerAttribut"/>
-                <child name="XP_StringAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
+                <child name="XP_DoubleAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
                 <child name="name" ns="http://www.xplanung.de/xplangml/5/4"/>
             </property>
         </source>
@@ -3900,13 +3916,13 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C808ca33d-b552-4b62-9949-fe0d171d776b" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cc4f7025c-dd9d-4464-b5f5-189f465a630c" priority="normal">
         <source>
             <property>
                 <type name="BP_PunktobjektType" ns="http://www.xplanung.de/xplangml/5/4"/>
                 <child name="hatGenerAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
                 <child name="choice" ns="http://www.xplanung.de/xplangml/5/4/XP_GenerAttribut"/>
-                <child name="XP_StringAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
+                <child name="XP_DoubleAttribut" ns="http://www.xplanung.de/xplangml/5/4"/>
                 <child name="wert" ns="http://www.xplanung.de/xplangml/5/4"/>
             </property>
         </source>
@@ -6605,6 +6621,10 @@ if ( besondereArtDerBaulNutzung == '1000' ) {
   _target{
     href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_2_1_Dorfgebiet' ) 
   }
+} else if ( besondereArtDerBaulNutzung == '1450' ) {
+  _target{
+    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_2_1_Dorfgebiet' ) 
+  }
 } else if ( besondereArtDerBaulNutzung == '1500' ) {
   _target{
     href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_10_2_2_Mischgebiet' ) 
@@ -8788,6 +8808,10 @@ if ( besondereArtDerBaulNutzung == '1000' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' ) 
   }
+} else if ( besondereArtDerBaulNutzung == '1450' ) {
+  _target{
+    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' ) 
+  }
 } else if ( besondereArtDerBaulNutzung == '1500' ) {
   _target{
     href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_RegulationsOnBuildings' ) 
@@ -10723,6 +10747,24 @@ if ( typ == '1000' ) {
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce86c3a93-0f98-437d-b1b9-fbbbc05b2f12" priority="normal">
+        <source>
+            <property>
+                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/4">
+                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
+                </type>
+                <child name="startBedingung" ns="http://www.xplanung.de/xplangml/5/4"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="validFrom" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C24fd6469-b9c8-40f3-a706-d77954d3c8bb" priority="normal">
         <source>
             <property>
@@ -10814,24 +10856,6 @@ if ( typ == '1000' ) {
                     <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
                 </type>
                 <child name="endeBedingung" ns="http://www.xplanung.de/xplangml/5/4"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="validTo" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ce86c3a93-0f98-437d-b1b9-fbbbc05b2f12" priority="normal">
-        <source>
-            <property>
-                <type name="BP_GeometrieobjektType" ns="http://www.xplanung.de/xplangml/5/4">
-                    <condition lang="CQL">NOT((ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true')</condition>
-                </type>
-                <child name="startBedingung" ns="http://www.xplanung.de/xplangml/5/4"/>
             </property>
         </source>
         <target>
@@ -11455,6 +11479,22 @@ if ( typ == '1000' ) {
         <source>
             <class>
                 <type name="BP_WegerechtType" ns="http://www.xplanung.de/xplangml/5/4">
+                    <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
+                </type>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cca91de4f-3ab4-4e61-be75-0007d2894ce9" priority="normal">
+        <source>
+            <class>
+                <type name="BP_WohngebaeudeFlaecheType" ns="http://www.xplanung.de/xplangml/5/4">
                     <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
                 </type>
             </class>
