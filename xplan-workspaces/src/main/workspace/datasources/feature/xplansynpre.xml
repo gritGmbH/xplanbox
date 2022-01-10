@@ -37,6 +37,8 @@
     <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
     <Primitive path="xplan:rechtlicheCharakterisierung" mapping="xplan_rechtlichecharakterisierung" />
     <Primitive path="xplan:rechtlicheCharakterisierungCode" mapping="xplan_rechtlichecharakterisierungcode" />
+    <Primitive path="xplan:bedingungStart" mapping="xplan_bedingungstart" />
+    <Primitive path="xplan:bedingungEnde" mapping="xplan_bedingungende" />
     <Primitive path="xplan:startDatum" mapping="xplan_startdatum" />
     <Primitive path="xplan:endDatum" mapping="xplan_enddatum" />
     <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche" />
@@ -1159,6 +1161,8 @@
     <Primitive path="xplan:versionBauNVO" mapping="xplan_versionbaunvo" />
     <Primitive path="xplan:allgArtDerBaulNutzung" mapping="xplan_allgartderbaulnutzung" />
     <Primitive path="xplan:allgArtDerBaulNutzungCode" mapping="xplan_allgartderbaulnutzungcode" />
+    <Primitive path="xplan:besondereArtDerBaulichenNutzung" mapping="xplan_besondereartderbaulichennutzung" />
+    <Primitive path="xplan:besondereArtDerBaulichenNutzungCode" mapping="xplan_besondereartderbaulichennutzungcode" />
     <Primitive path="xplan:sondernutzung" mapping="xplan_sondernutzung" />
     <Primitive path="xplan:sondernutzungCode" mapping="xplan_sondernutzungcode" />
     <Primitive path="xplan:detaillierteArtDerBaulNutzung" mapping="xplan_detaillierteartderbaulnutzung" />
