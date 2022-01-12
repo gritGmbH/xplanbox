@@ -77,6 +77,7 @@ Die semantische Validierung überprüft die fachlich-inhaltliche Kohärenz der X
  * 5.1 (184 Regeln)
  * 5.2 (191 Regeln)
  * 5.3 (195 Regeln)
+ * 5.4 (198 Regeln)
 
 [NOTE]
 ====

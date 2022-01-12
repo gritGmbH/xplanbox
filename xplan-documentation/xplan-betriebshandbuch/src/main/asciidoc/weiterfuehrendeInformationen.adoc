@@ -51,6 +51,9 @@ Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschema und di
 | `xplan53`
 | <<xplanwfs>>/_wfs53_
 | BLOB <<appendix_xplandb_xplan53,(Schema)>>
+| `xplan54`
+| <<xplanwfs>>/_wfs54_
+| BLOB
 | `xplansyn`
 | <<xplansynwfs>>/_xplansynwfs_, <<xplanwms>>/_wms_
 | Relational <<appendix_xplandb_xplansyn,(Schema)>>
