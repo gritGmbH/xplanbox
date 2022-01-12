@@ -2,9 +2,10 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
-[[Aenderungshistorie-4.4]]
-=== Version 4.4
+[[Aenderungshistorie-5.0]]
+=== Version 5.0
 ==== Erweiterungen
+- Unterstützung für XPlanGML 5.4 in allen Komponenten der xPlanBox
 - Unterstützung von Links für externe Dokumente in XPlanManager und XPlanWMS GetFeatureInfo
 - Umstellung von Java 8 auf Java 11 sowie Tomcat 8.5 auf Tomcat 9.
 - Sortierung von Textschlüsseln in XPlanManagerWeb und XPlanWMS GFI-Antwort
