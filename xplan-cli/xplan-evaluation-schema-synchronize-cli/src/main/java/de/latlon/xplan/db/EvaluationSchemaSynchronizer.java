@@ -14,20 +14,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static de.latlon.xplan.commons.cli.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.db.UpdateUtils.detectBlobSchemaByVersion;
 import static de.latlon.xplan.db.UpdateUtils.detectNamespace;
 import static de.latlon.xplan.db.UpdateUtils.detectSynSchemaByPlanStatus;
 import static de.latlon.xplan.db.UpdateUtils.detectXPath;
-import static de.latlon.xplan.commons.cli.DatabaseUtils.closeQuietly;
 
 /**
  * Inserts/Updates/Deletes the LGV xplansyn schema.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class SynSchemaSynchronizer implements Synchronizer {
+public class EvaluationSchemaSynchronizer implements Synchronizer {
 
-	private static final Logger LOG = LogManager.getLogger(SynSchemaSynchronizer.class);
+	private static final Logger LOG = LogManager.getLogger(EvaluationSchemaSynchronizer.class);
 
 	static {
 		try {

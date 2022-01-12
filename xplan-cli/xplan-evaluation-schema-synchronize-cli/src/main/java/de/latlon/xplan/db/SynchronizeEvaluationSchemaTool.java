@@ -24,9 +24,9 @@ import java.util.function.Consumer;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class SynchronizeSynSchemaTool {
+public class SynchronizeEvaluationSchemaTool {
 
-	private static final Logger LOG = LogManager.getLogger(SynchronizeSynSchemaTool.class);
+	private static final Logger LOG = LogManager.getLogger(SynchronizeEvaluationSchemaTool.class);
 
 	private enum SYNCTYPE {
 
@@ -66,7 +66,7 @@ public class SynchronizeSynSchemaTool {
 				String password = cmdline.getOptionValue(OPT_PASSWORD);
 				SYNCTYPE synctype = determineSyncType(cmdline);
 
-				SynchronizeSynSchemaTool tool = new SynchronizeSynSchemaTool();
+				SynchronizeEvaluationSchemaTool tool = new SynchronizeEvaluationSchemaTool();
 				tool.run(synctype, host, port, database, user, password);
 			}
 			catch (Exception e) {
@@ -90,14 +90,14 @@ public class SynchronizeSynSchemaTool {
 		switch (synctype) {
 		case SYNC:
 			sync(host, port, database, user, password, (conn) -> {
-				SynSchemaSynchronizer synchronizer = new SynSchemaSynchronizer();
+				EvaluationSchemaSynchronizer synchronizer = new EvaluationSchemaSynchronizer();
 				SynchronizeExecutor executer = new SynchronizeExecutor(LOG_TABLE_NAME, synchronizer);
 				executer.synchronize(conn);
 			});
 			break;
 		case ALL:
 			sync(host, port, database, user, password, (conn) -> {
-				SynSchemaSynchronizer synchronizer = new SynSchemaSynchronizer();
+				EvaluationSchemaSynchronizer synchronizer = new EvaluationSchemaSynchronizer();
 				SynchronizeAllExecutor executor = new SynchronizeAllExecutor(LOG_TABLE_NAME, synchronizer);
 				executor.synchronizeAll(conn);
 			});
@@ -153,7 +153,7 @@ public class SynchronizeSynSchemaTool {
 
 	private static void printHelp(Options options) {
 		String helpMsg = "Update lgv syn schema.";
-		String toolName = SynchronizeSynSchemaTool.class.getSimpleName();
+		String toolName = SynchronizeEvaluationSchemaTool.class.getSimpleName();
 		HelpFormatter formatter = new HelpFormatter();
 		StringWriter helpWriter = new StringWriter();
 		StringBuffer helpBuffer = helpWriter.getBuffer();

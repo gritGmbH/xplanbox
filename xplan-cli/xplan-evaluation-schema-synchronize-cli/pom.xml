@@ -12,8 +12,8 @@
   </parent>
 
   <properties>
-    <mainclass>de.latlon.xplan.db.SynchronizeSynSchemaTool</mainclass>
-    <application-name>SynSchemaSynchronizer</application-name>
+    <mainclass>de.latlon.xplan.db.SynchronizeEvaluationSchemaTool</mainclass>
+    <application-name>EvaluationSchemaSynchronizer</application-name>
   </properties>
 
   <build>
