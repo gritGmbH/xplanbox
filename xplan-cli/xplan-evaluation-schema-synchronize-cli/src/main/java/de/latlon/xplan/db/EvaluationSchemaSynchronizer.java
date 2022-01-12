@@ -21,7 +21,7 @@ import static de.latlon.xplan.db.UpdateUtils.detectSynSchemaByPlanStatus;
 import static de.latlon.xplan.db.UpdateUtils.detectXPath;
 
 /**
- * Inserts/Updates/Deletes the LGV xplansyn schema.
+ * Inserts/Updates/Deletes the evaluation xplansyn schema.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -75,16 +75,16 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 				newSynSchema, operation);
 		switch (operation) {
 		case INSERT:
-			insertInLgvTable(conn, xPlanManagerId, newSynSchema, synTableName);
+			insertInEvaluationTable(conn, xPlanManagerId, newSynSchema, synTableName);
 			updateGeomColumns(conn, xPlanManagerId, newSynSchema, synTableName, blobSchema);
 			break;
 		case UPDATE:
-			deleteFromLgvTable(conn, xPlanManagerId, oldSynSchema, synTableName);
-			insertInLgvTable(conn, xPlanManagerId, newSynSchema, synTableName);
+			deleteFromEvaluationTable(conn, xPlanManagerId, oldSynSchema, synTableName);
+			insertInEvaluationTable(conn, xPlanManagerId, newSynSchema, synTableName);
 			updateGeomColumns(conn, xPlanManagerId, newSynSchema, synTableName, blobSchema);
 			break;
 		case DELETE:
-			deleteFromLgvTable(conn, xPlanManagerId, oldSynSchema, synTableName);
+			deleteFromEvaluationTable(conn, xPlanManagerId, oldSynSchema, synTableName);
 			break;
 		default:
 			LOG.warn("Unsupported operation: {}", operation);
@@ -182,16 +182,16 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		return 0;
 	}
 
-	private void insertInLgvTable(Connection conn, int xPlanManagerId, String synSchema, String synTableName)
+	private void insertInEvaluationTable(Connection conn, int xPlanManagerId, String synSchema, String synTableName)
 			throws SQLException {
 		String synTableWithSchema = synSchema + "." + synTableName;
 		PreparedStatement ps = null;
 		try {
-			StringBuffer insertInLgvSyn = new StringBuffer();
-			insertInLgvSyn.append("INSERT INTO lgv").append(synTableWithSchema);
-			insertInLgvSyn.append(" SELECT * FROM ").append(synTableWithSchema);
-			insertInLgvSyn.append(" WHERE xplan_mgr_planid = ?");
-			ps = conn.prepareStatement(insertInLgvSyn.toString());
+			StringBuffer insertInEvaluationSyn = new StringBuffer();
+			insertInEvaluationSyn.append("INSERT INTO lgv").append(synTableWithSchema);
+			insertInEvaluationSyn.append(" SELECT * FROM ").append(synTableWithSchema);
+			insertInEvaluationSyn.append(" WHERE xplan_mgr_planid = ?");
+			ps = conn.prepareStatement(insertInEvaluationSyn.toString());
 			ps.setInt(1, xPlanManagerId);
 
 			LOG.debug("Execute insert in lgv syn schema: {}", ps);
@@ -202,14 +202,14 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		}
 	}
 
-	private void deleteFromLgvTable(Connection conn, int xPlanManagerId, String synSchema, String synTableName)
+	private void deleteFromEvaluationTable(Connection conn, int xPlanManagerId, String synSchema, String synTableName)
 			throws SQLException {
 		PreparedStatement ps = null;
 		try {
-			StringBuffer insertInLgvSyn = new StringBuffer();
-			insertInLgvSyn.append("DELETE FROM lgv").append(synSchema).append(".").append(synTableName);
-			insertInLgvSyn.append(" WHERE xplan_mgr_planid = ?");
-			ps = conn.prepareStatement(insertInLgvSyn.toString());
+			StringBuffer insertInEvaluationSyn = new StringBuffer();
+			insertInEvaluationSyn.append("DELETE FROM lgv").append(synSchema).append(".").append(synTableName);
+			insertInEvaluationSyn.append(" WHERE xplan_mgr_planid = ?");
+			ps = conn.prepareStatement(insertInEvaluationSyn.toString());
 			ps.setInt(1, xPlanManagerId);
 
 			LOG.debug("Execute delete from lgv syn schema: {}", ps);

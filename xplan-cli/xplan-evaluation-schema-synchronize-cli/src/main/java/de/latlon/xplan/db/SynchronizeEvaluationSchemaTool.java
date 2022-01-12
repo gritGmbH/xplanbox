@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.function.Consumer;
 
 /**
- * Tool to synchronize the LGV xplansyn schema with the xPlanBox synschema.
+ * Tool to synchronize the evaluation xplansyn schema with the xPlanBox synschema.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
