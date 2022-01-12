@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION lgv.clone_schema(source_schema text, dest_schema text) RETURNS void AS
+CREATE OR REPLACE FUNCTION xplanevaluation.clone_schema(source_schema text, dest_schema text) RETURNS void AS
 $BODY$
 DECLARE
   tableName text;

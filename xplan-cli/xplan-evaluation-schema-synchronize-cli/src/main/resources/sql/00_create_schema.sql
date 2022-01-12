@@ -1,1 +1,1 @@
-CREATE SCHEMA lgv;
+CREATE SCHEMA xplanevaluation;

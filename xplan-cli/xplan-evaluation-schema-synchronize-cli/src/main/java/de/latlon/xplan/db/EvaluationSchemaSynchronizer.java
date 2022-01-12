@@ -164,7 +164,7 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 			Geometry geom = ogr.CreateGeometryFromGML(gmlGeom);
 			if (geom != null) {
 				StringBuffer updateGeomColumn = new StringBuffer();
-				updateGeomColumn.append("UPDATE lgv").append(synTableWithSchema);
+				updateGeomColumn.append("UPDATE xplanevaluation").append(synTableWithSchema);
 				updateGeomColumn.append(" SET ").append(geomColumn)
 						.append(" = ST_GeomFromWKB( ? ) WHERE xplan_gmlid = ?");
 				ps = conn.prepareStatement(updateGeomColumn.toString());
@@ -188,13 +188,13 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		PreparedStatement ps = null;
 		try {
 			StringBuffer insertInEvaluationSyn = new StringBuffer();
-			insertInEvaluationSyn.append("INSERT INTO lgv").append(synTableWithSchema);
+			insertInEvaluationSyn.append("INSERT INTO xplanevaluation").append(synTableWithSchema);
 			insertInEvaluationSyn.append(" SELECT * FROM ").append(synTableWithSchema);
 			insertInEvaluationSyn.append(" WHERE xplan_mgr_planid = ?");
 			ps = conn.prepareStatement(insertInEvaluationSyn.toString());
 			ps.setInt(1, xPlanManagerId);
 
-			LOG.debug("Execute insert in lgv syn schema: {}", ps);
+			LOG.debug("Execute insert in xplanevaluation syn schema: {}", ps);
 			ps.execute();
 		}
 		finally {
@@ -207,12 +207,12 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		PreparedStatement ps = null;
 		try {
 			StringBuffer insertInEvaluationSyn = new StringBuffer();
-			insertInEvaluationSyn.append("DELETE FROM lgv").append(synSchema).append(".").append(synTableName);
+			insertInEvaluationSyn.append("DELETE FROM xplanevaluation").append(synSchema).append(".").append(synTableName);
 			insertInEvaluationSyn.append(" WHERE xplan_mgr_planid = ?");
 			ps = conn.prepareStatement(insertInEvaluationSyn.toString());
 			ps.setInt(1, xPlanManagerId);
 
-			LOG.debug("Execute delete from lgv syn schema: {}", ps);
+			LOG.debug("Execute delete from xplanevaluation syn schema: {}", ps);
 			ps.execute();
 		}
 		finally {

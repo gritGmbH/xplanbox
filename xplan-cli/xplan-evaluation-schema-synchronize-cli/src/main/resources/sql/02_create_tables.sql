@@ -1,8 +1,8 @@
-SELECT lgv.clone_schema('xplansynpre','lgvxplansynpre');
-SELECT lgv.clone_schema('xplansyn','lgvxplansyn');
-SELECT lgv.clone_schema('xplansynarchive','lgvxplansynarchive');
+SELECT xplanevaluation.clone_schema('xplansynpre','xplanevaluationxplansynpre');
+SELECT xplanevaluation.clone_schema('xplansyn','xplanevaluationxplansyn');
+SELECT xplanevaluation.clone_schema('xplansynarchive','xplanevaluationxplansynarchive');
 
-CREATE TABLE lgv.lgvPlanTableLog (
+CREATE TABLE xplanevaluation.planTableLog (
     id SERIAL,
     xplanmgrid int NOT NULL,
     xp_version text NOT NULL,
@@ -12,4 +12,4 @@ CREATE TABLE lgv.lgvPlanTableLog (
     datum timestamp
 );
 
-COMMENT ON TABLE lgv.lgvPlanTableLog IS 'Logs inserted, updated and deleted plans';
+COMMENT ON TABLE xplanevaluation.planTableLog IS 'Logs inserted, updated and deleted plans';

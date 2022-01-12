@@ -34,7 +34,7 @@ public class SynchronizeEvaluationSchemaTool {
 
 	}
 
-	private static final String LOG_TABLE_NAME = "lgv.lgvPlanTableLog";
+	private static final String LOG_TABLE_NAME = "xplanevaluation.planTableLog";
 
 	private static final String OPT_HOST = "host";
 
@@ -123,7 +123,7 @@ public class SynchronizeEvaluationSchemaTool {
 		Options opts = new Options();
 
 		Option opt = new Option("t", OPT_TYPE, true,
-				"one of 'ALL' or 'SYNC'; 'SYNC' synchronizes plans logged in lgv.lgvPlanTableLog (default if missing), 'ALL' synchronizes all available plans");
+				"one of 'ALL' or 'SYNC'; 'SYNC' synchronizes plans logged in xplanevaluation.planTableLog (default if missing), 'ALL' synchronizes all available plans");
 		opt.setRequired(false);
 		opts.addOption(opt);
 
@@ -152,7 +152,7 @@ public class SynchronizeEvaluationSchemaTool {
 	}
 
 	private static void printHelp(Options options) {
-		String helpMsg = "Update lgv syn schema.";
+		String helpMsg = "Update xplanevaluation syn schema.";
 		String toolName = SynchronizeEvaluationSchemaTool.class.getSimpleName();
 		HelpFormatter formatter = new HelpFormatter();
 		StringWriter helpWriter = new StringWriter();
