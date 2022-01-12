@@ -14,34 +14,34 @@ Configuration:
           level: info
     Logger:
       -
-        name: XPlanManagerWeb_Test_Log
+        name: XPlanManagerApi_Test_Log
         level: info
         additivity: false
         AppenderRef:
           ref: STDOUT
-      -   name: org.deegree
-          level: warn
-      -   name: de.latlon.xplanbox.api
-          level: trace
-      -   name: de.latlon.xplan
-          level: warn
-      -   name: org.springframework
-          level: warn
+      - name: org.deegree
+        level: warn
+      - name: de.latlon.xplanbox.api
+        level: trace
+      - name: de.latlon.xplan
+        level: warn
+      - name: org.springframework
+        level: warn
       - name: org.glassfish
-          level: warn
+        level: warn
       - name: org.glassfish.jersey
-          level: warn
+        level: warn
       - name: org.apache
-          level: warn
+        level: warn
       - name: net.sf.jasperreports
-          level: warn
+        level: warn
       - name: com.ctc.wstx
-          level: warn
+        level: warn
       - name: org.reflections
-          level: fatal
-      -   name: org.deegree.geometry.standard.AbstractDefaultGeometry
-          level: off
-      -   name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
-          level: off
-      -   name: org.deegree.geometry.standard.AbstractDefaultGeometry
-          level: off
+        level: fatal
+      - name: org.deegree.geometry.standard.AbstractDefaultGeometry
+        level: off
+      - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
+        level: off
+      - name: org.deegree.geometry.standard.AbstractDefaultGeometry
+        level: off
