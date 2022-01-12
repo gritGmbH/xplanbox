@@ -15,7 +15,7 @@
     <module>xplan-manager-cli</module>
     <module>xplan-validator-cli</module>
     <module>xplan-transform-cli</module>
-    <module>xplan-evaluationschema-cli</module>
+    <module>xplan-evaluation-schema-synchronize-cli</module>
   </modules>
 
 </project>
