@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-evaluationschema-cli</artifactId>
   <description>Datenbankschema für die Auswertung der XPlanGML-Daten</description>
@@ -7,13 +8,12 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-cli</artifactId>
-    <version>4.3-SNAPSHOT</version>
+    <version>4.4-SNAPSHOT</version>
   </parent>
 
-
   <properties>
-    <mainclass>de.latlon.lgvxplanisk.db.SynchronizeLgvSynSchemaTool</mainclass>
-    <application-name>LgvSynSchemaSynchronizer</application-name>
+    <mainclass>de.latlon.xplan.db.SynchronizeSynSchemaTool</mainclass>
+    <application-name>SynSchemaSynchronizer</application-name>
   </properties>
 
   <build>
@@ -49,7 +49,7 @@
             <id>bundle</id>
             <configuration>
               <appendAssemblyId>false</appendAssemblyId>
-              <filters />
+              <filters/>
               <descriptors>
                 <descriptor>${project.basedir}/src/main/assembly/assembly.xml</descriptor>
               </descriptors>
@@ -70,7 +70,7 @@
               <tasks>
                 <chmod perm="+x">
                   <fileset dir="target/appassembler/bin">
-                    <include name="${application-name}" />
+                    <include name="${application-name}"/>
                   </fileset>
                 </chmod>
               </tasks>
@@ -78,37 +78,6 @@
             <goals>
               <goal>run</goal>
             </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.asciidoctor</groupId>
-        <artifactId>asciidoctor-maven-plugin</artifactId>
-        <version>2.1.0</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.asciidoctor</groupId>
-            <artifactId>asciidoctorj-pdf</artifactId>
-            <version>1.5.3</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <id>pdf</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>process-asciidoc</goal>
-            </goals>
-            <configuration>
-              <backend>pdf</backend>
-              <attributes>
-                <revnumber>${project.version}</revnumber>
-                <revdate>${maven.build.timestamp}</revdate>
-              </attributes>
-              <sourceDirectory>${project.basedir}</sourceDirectory>
-              <sourceDocumentName>README.adoc</sourceDocumentName>
-              <outputDirectory>target/pdf</outputDirectory>
-            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -149,7 +118,7 @@
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-commons-cli</artifactId>
-      <version>${xplanung.version}</version>
+      <version>${project.version}</version>
       <scope>compile</scope>
       <exclusions>
         <exclusion>

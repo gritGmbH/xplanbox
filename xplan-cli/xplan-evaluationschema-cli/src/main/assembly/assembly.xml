@@ -43,12 +43,5 @@
       <directory>${basedir}/src/main/resources/sql</directory>
       <outputDirectory>scripts</outputDirectory>
     </fileSet>
-    <fileSet>
-      <directory>target/pdf</directory>
-      <outputDirectory></outputDirectory>
-      <includes>
-        <include>README.pdf</include>
-      </includes>
-    </fileSet>
   </fileSets>
 </assembly>
