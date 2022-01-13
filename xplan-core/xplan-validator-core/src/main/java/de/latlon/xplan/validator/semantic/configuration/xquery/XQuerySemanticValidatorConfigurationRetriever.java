@@ -22,11 +22,11 @@
 package de.latlon.xplan.validator.semantic.configuration.xquery;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +42,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
@@ -183,6 +184,8 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
 	private XPlanVersion parseXPlanVersion(Path path) {
 		String dirName = extractDirectoryName(path);
+		if ("xplangml54".equals(dirName))
+			return XPLAN_54;
 		if ("xplangml53".equals(dirName))
 			return XPLAN_53;
 		if ("xplangml52".equals(dirName))
