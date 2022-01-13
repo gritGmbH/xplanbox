@@ -19,9 +19,20 @@
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
@@ -58,10 +69,88 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-wms/services/wmspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wmspre</con:endpoint>
           <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="ee362a4a-a0fb-4085-92db-ed3fc9274da6" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="wmsarchive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="9fdf4254-fbea-4956-bb1b-40b3bc00e36f">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="1aa96199-3dfe-48cb-a784-acc137e9febc" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:encoding xsi:nil="true"/>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -107,9 +196,20 @@
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
@@ -146,10 +246,87 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplansyn-wfs/services/xplansynwfspre</con:endpoint>
+          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfspre</con:endpoint>
           <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="f4dc17e2-7aef-448f-af04-59fa566039e9" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="630bd269-b9c1-412f-8797-85ef62a97937" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="fd68fcf7-c0cc-4506-ba66-8330b0e4bd8c" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="xplansynwfsarchive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="44fef9cc-a367-452a-9947-8c1b9f87cebb">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="f661995b-f638-4b5a-afda-6c31390b3c5d" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="367fab8b-c325-4fb3-9802-0d07f492b7fe" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="951a177f-4355-43e7-8939-537217c1236d" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -195,9 +372,20 @@
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="410fdb5c-f568-4e4e-87c1-f2ad005fb82d" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs110='http://www.opengis.net/wfs';
+
+exists(/wfs110:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
@@ -241,9 +429,20 @@
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="4baec822-06c8-4853-8851-b8c21161dfbe" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
@@ -287,9 +486,20 @@
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="f9d281ee-8c8a-4bbc-8a49-e6c49308f7a8" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
@@ -333,9 +543,20 @@
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="f05f7e76-6437-4b42-9af3-92364a24fffe" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
@@ -379,9 +600,20 @@
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="80fff297-f25d-451f-9ca5-c7b3d5b89e4c" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
@@ -425,9 +657,20 @@
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="9ceb328c-6b55-4f05-be0f-f4336b0d6f07" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
@@ -471,9 +714,20 @@
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="bf55ccb9-aa2c-4d11-b9ee-aecb7657df00" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
@@ -510,10 +764,30 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-wfs/services/wfs30pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs30pre</con:endpoint>
           <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="809977e3-4edb-4300-9c09-47fbc5833bea" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="5c151b34-2326-4d20-bbd9-efb5322c7d26" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs110='http://www.opengis.net/wfs';
+
+exists(/wfs110:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -547,10 +821,30 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-wfs/services/wfs40pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs40pre</con:endpoint>
           <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2302b9df-6d71-4346-b11f-b49fdd7bab21" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="c296d15e-e4d6-453d-9c67-174a683a94f4" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -584,10 +878,30 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-wfs/services/wfs41pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs41pre</con:endpoint>
           <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="1fefd3a3-a0ba-43fb-bd3c-89633fd21598" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f5370d78-8d74-4144-a9ff-5e0dbe6f220e" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -621,10 +935,30 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-wfs/services/wfs50pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs50pre</con:endpoint>
           <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="f5958a25-dad8-49c9-b284-40a9c982f525" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="44758453-3819-4eb6-a18f-5a835730993f" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -658,10 +992,30 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-wfs/services/wfs51pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs51pre</con:endpoint>
           <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="aed1be95-7eba-4ff5-86d1-8367f1b94a63" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="91c950c1-7cae-422b-910a-989d6dd80ea4" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -695,10 +1049,30 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-wfs/services/wfs52pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs52pre</con:endpoint>
           <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="477c6af5-0b9a-44dd-b8c9-3480a3afa74c" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="452a91a4-1bec-4e71-b55e-f2425e5c4fde" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -732,10 +1106,549 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-wfs/services/wfs53pre</con:endpoint>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs53pre</con:endpoint>
           <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="cae968a0-4537-4467-850a-d89efa084eac" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f5f2b41c-6bd1-4758-8166-1bea81fb0841" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
-            <con:authType>No Authorization</con:authType>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="60350d37-3d92-4605-a9ed-40aa132396cd" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="wfs30archive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="1e7e4f31-ffcc-4cac-aeb1-728bcab85ac8">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="7f8a144a-1759-43cf-9694-ee518218ce93" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs30archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="b5695518-011e-45c4-bf5e-3b03a0461b81" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e24d3a0c-50fd-4081-aad9-366b06d77897" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs110='http://www.opengis.net/wfs';
+
+exists(/wfs110:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="d9f78ad8-80c5-4a1e-b252-e9fec525d8bc" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="wfs40archive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="881861e6-2ffb-4cd2-a237-235df7a53dca">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="cb772fc9-5eab-4b45-8cd2-774aa4f9bb1d" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs40archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="db2d1b25-609b-4f6f-83d1-9adf30cc9721" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6cfe2508-5e27-4a44-9f32-86de6b3dc8dd" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="feb2ff73-4260-4cd6-b2fc-fd04a5c4f53b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="wfs41archive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapapbilities" id="252c4d54-eaa6-4f3b-860b-c0561df5c15a">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="dc8b862e-0f52-499c-9c09-d942d9201229" name="GetCapapbilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs41archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="1b881290-e038-4856-ab3f-89a62446e926" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f72c11e9-2164-475f-aed2-b55de5d3dd8b" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="5a597daa-2ae8-4545-98cb-af4b7ac95646" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="wfs50archive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="6f77d629-cd6a-44de-8c95-43b93264627f">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="8e37b3d1-455c-4dce-bb05-27f545b887a5" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs50archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="d88553db-0b92-46cc-9849-e94d12bf8726" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f002fc97-ea91-4512-9241-ea1b8b6ffa89" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="a7b8877c-1646-4f6f-bbfa-786f15351250" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="wfs51archive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="c13231fc-41c7-4c8f-9064-723efcf40813">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="5a2d8506-4ab1-4961-800d-09f8153c9fbd" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs51archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="4c0430fe-bc76-4d1b-9795-fe81309ea8ca" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="1ea9a216-ee20-4bea-a7f5-4f31b7553428" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="e72aa5a0-07ff-4696-9546-19ad239a8049" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="wfs52archive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="00b3f910-6825-4787-bd98-70336620d286">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="e91c3839-9e73-426c-adb0-9b8af20b5831" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs52archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="75fbee7e-8e78-4c13-b0da-94f4de47f183" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="7b309827-754d-49ee-98da-7ff9acafa263" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="0dec755a-19b6-4583-a5ad-e928f280ad6b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="wfs53archive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="fc6028d2-40b3-4991-827d-eb2d26847f75">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="8934eb6e-6bf6-481b-b8ba-231e84db7a13" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs53archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="717ce3e0-ec90-44e6-94c0-0ebfc61152d8" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="58cf640d-66af-4c27-bbee-db8c5bc9a914" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:properties/>
+  </con:testSuite>
+  <con:testSuite id="6527f28b-3b4b-4009-a40c-8651534a22a3" name="xplan-inspireplu">
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="0c49ae6f-45c9-4f6c-892a-90f159bfb8a8" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="viewservice" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="95f40707-945c-4b21-ace3-91210c448818">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="583d2488-b5af-4e99-bd6c-0780c2db7a8c" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-inspireplu/services/viewservice</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="c5c89b24-24e9-475d-9dc7-d10fbc260ca6" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match"/>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="0bd97d12-813d-4b4f-beab-c801b1597352" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="downloadservice" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="ef6668b8-2b54-472b-aa19-8bf3216d213b">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="11c692c8-af10-4a26-9f77-5c9e76150efc" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-inspireplu/services/downloadservice</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="a8564dc1-ce41-46b5-ac81-d97670635013" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="8424d11e-8a93-4e37-9d0b-6d08b64cd6a3" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(/wfs:WFS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
@@ -767,6 +1680,14 @@
     <con:property>
       <con:name>baseUrl</con:name>
       <con:value>https://xplanbox.lat-lon.de</con:value>
+    </con:property>
+    <con:property>
+      <con:name>username</con:name>
+      <con:value>xplanbox</con:value>
+    </con:property>
+    <con:property>
+      <con:name>password</con:name>
+      <con:value>xpl@n!secure9</con:value>
     </con:property>
   </con:properties>
   <con:wssContainer/>
