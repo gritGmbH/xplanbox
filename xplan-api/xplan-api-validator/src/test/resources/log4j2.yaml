@@ -1,28 +1,26 @@
 Configuration:
   name: XPlanValidatorAPITest
+  status: warn
   Appenders:
     Console:
       name: STDOUT
-      PatternLayout:
-        Pattern: "%d{HH:mm:ss,SSS} %5p: [%c{1}] %m%n"
       target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d{HH:mm:ss,SSS} %5p [%c{1}]: %m%n"
   Loggers:
     Root:
+      level: trace
       AppenderRef:
         - ref: STDOUT
-          level: info
     Logger:
-      - name: XPlanValidatorAPI_Test_Log
-        level: info
-        additivity: false
-        AppenderRef:
-          ref: STDOUT
       - name: org.deegree
         level: warn
-      - name: de.latlon.xplanbox.api
-        level: trace
       - name: de.latlon.xplan
         level: warn
+      - name: de.latlon.xplanbox.api
+        level: debug
+      - name: de.latlon.xplanbox.api.validator.config
+        level: debug
       - name: org.springframework
         level: warn
       - name: org.glassfish
@@ -35,11 +33,17 @@ Configuration:
         level: warn
       - name: com.ctc.wstx
         level: warn
+      - name: com.sun.xml
+        level: warn
       - name: org.reflections
         level: fatal
+      - name: io.swagger.v3
+        level: warn
       - name: org.deegree.geometry.standard.AbstractDefaultGeometry
-        level: off
+        level: fatal
       - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
-        level: off
-      - name: org.deegree.geometry.standard.AbstractDefaultGeometry
-        level: off
+        level: fatal
+      - name: bind
+        level: error
+      - name: logger
+        level: error
