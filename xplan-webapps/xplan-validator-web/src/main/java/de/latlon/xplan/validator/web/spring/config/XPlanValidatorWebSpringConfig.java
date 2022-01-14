@@ -124,7 +124,7 @@ public class XPlanValidatorWebSpringConfig {
 			ValidatorConfiguration validatorConfiguration) {
 		String validatorWmsEndpoint = validatorConfiguration.getValidatorWmsEndpoint();
 		if (validatorWmsEndpoint == null) {
-			LOG.info("XPlanValidatorWMS endpoint URL is not configured. Map preview will not be available.");
+			LOG.warn("XPlanValidatorWMS endpoint URL is not configured. Map preview will not be available.");
 			return null;
 		}
 		try {

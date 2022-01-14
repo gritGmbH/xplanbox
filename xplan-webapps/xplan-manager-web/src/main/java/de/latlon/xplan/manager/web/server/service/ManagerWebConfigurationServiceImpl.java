@@ -92,7 +92,7 @@ public class ManagerWebConfigurationServiceImpl extends RemoteServiceServlet imp
 
 	private void logManagerWebConfiguration(ManagerWebConfiguration configuration) {
 		LOG.info("-------------------------------------------");
-		LOG.info("Configuration of the XPlanManager-Web");
+		LOG.info("Configuration of the XPlanManagerWeb");
 		LOG.info("-------------------------------------------");
 		LOG.info("internal id dialog");
 		LOG.info("   - is activated: {}", configuration.getInternalIdActivated());
