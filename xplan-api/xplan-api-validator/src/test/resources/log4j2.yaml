@@ -1,5 +1,5 @@
 Configuration:
-  name: XPlanValidatorAPITest
+  name: XPlanValidatorApiTest
   status: warn
   Appenders:
     Console:
@@ -14,13 +14,13 @@ Configuration:
         - ref: STDOUT
     Logger:
       - name: org.deegree
-        level: warn
+        level: info
       - name: de.latlon.xplan
-        level: warn
+        level: info
       - name: de.latlon.xplanbox.api
         level: debug
       - name: de.latlon.xplanbox.api.validator.config
-        level: debug
+        level: trace
       - name: org.springframework
         level: warn
       - name: org.glassfish

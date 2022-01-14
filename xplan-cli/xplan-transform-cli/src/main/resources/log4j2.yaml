@@ -1,20 +1,18 @@
 Configuration:
-  status: debug
   name: XPlanTransformCli
-
+  status: warn
   Properties:
     Property:
-      -   name: log.file
-          value: xplan-transform-cli.log
-      -   name: log.path
-          value: ${catalina.base}/logs
-
+      - name: log.file
+        value: xplan-transform-cli.log
+      - name: log.path
+        value: ${catalina.base:-.}/logs
   Appenders:
     Console:
       name: STDOUT
+      target: SYSTEM_OUT
       PatternLayout:
         Pattern: "%d %p %C{1.} [%t] %m%n"
-      target: SYSTEM_OUT
     RollingFile:
       name: RollingFile_Appender
       fileName: ${log.path}/${log.file}
@@ -34,19 +32,13 @@ Configuration:
         - ref: RollingFile_Appender
           level: info
     Logger:
-      -
-        name: XPlanTransformCli_Log
+      - name: org.deegree
         level: info
-        additivity: false
-        AppenderRef:
-          ref: RollingFile_Appender
-      -   name: org.deegree
-          level: info
-      -   name: de.latlon.xplan
-          level: info
-      -   name: org.reflections
-          level: fatal
-      -   name: de.latlon.xplan.commons.hale
-          level: info
-      -   name: de.latlon.xplan.transform.cli
-          level: info
+      - name: de.latlon.xplan
+        level: info
+      - name: org.reflections
+        level: fatal
+      - name: de.latlon.xplan.commons.hale
+        level: info
+      - name: de.latlon.xplan.transform.cli
+        level: info

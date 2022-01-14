@@ -1,14 +1,12 @@
 Configuration:
-  status: debug
   name: XPlanUpdateDatabaseTool
-
+  status: warn
   Properties:
     Property:
-      -   name: log.file
-          value: xplan-update-database.log
-      -   name: log.path
-          value: ${catalina.base}/logs
-
+      - name: log.file
+        value: xplan-update-database.log
+      - name: log.path
+        value: ${catalina.base:-.}/logs
   Appenders:
     Console:
       name: STDOUT
@@ -34,15 +32,9 @@ Configuration:
         - ref: RollingFile_Appender
           level: info
     Logger:
-      -
-        name: XPlanUpdateDatabaseTool_Log
+      - name: org.deegree
         level: info
-        additivity: false
-        AppenderRef:
-          ref: RollingFile_Appender
-      -   name: org.deegree
-          level: info
-      -   name: de.latlon.xplan
-          level: info
-      -   name: org.reflections
-          level: fatal
+      - name: de.latlon.xplan
+        level: info
+      - name: org.reflections
+        level: fatal

@@ -1,20 +1,18 @@
 Configuration:
-  status: debug
   name: XPlanValidatorCli
-
+  status: warn
   Properties:
     Property:
-      -   name: log.file
-          value: xplan-validator-cli.log
-      -   name: log.path
-          value: ${catalina.base}/logs
-
+      - name: log.file
+        value: xplan-validator-cli.log
+      - name: log.path
+        value: ${catalina.base:-.}/logs
   Appenders:
     Console:
       name: STDOUT
+      target: SYSTEM_OUT
       PatternLayout:
         Pattern: "%d %p %C{1.} [%t] %m%n"
-      target: SYSTEM_OUT
     RollingFile:
       name: RollingFile_Appender
       fileName: ${log.path}/${log.file}
@@ -34,21 +32,15 @@ Configuration:
         - ref: RollingFile_Appender
           level: info
     Logger:
-      -
-        name: XPlanValidatorCli_Log
+      - name: org.deegree
         level: info
-        additivity: false
-        AppenderRef:
-          ref: RollingFile_Appender
-      -   name: org.deegree
-          level: info
-      -   name: de.latlon.xplan
-          level: info
-      -   name: org.springframework
-          level: warn
-      -   name: org.reflections
-          level: fatal
-      -   name: org.deegree.geometry.standard.AbstractDefaultGeometry
-          level: info
-      -   name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
-          level: info
+      - name: de.latlon.xplan
+        level: info
+      - name: org.springframework
+        level: warn
+      - name: org.reflections
+        level: fatal
+      - name: org.deegree.geometry.standard.AbstractDefaultGeometry
+        level: info
+      - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
+        level: info

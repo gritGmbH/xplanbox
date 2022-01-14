@@ -1,20 +1,18 @@
 Configuration:
-  status: debug
   name: XPlanManagerWeb
-
+  status: warn
   Properties:
     Property:
-      -   name: log.file
-          value: xplan-manager-web.log
-      -   name: log.path
-          value: ${catalina.base}/logs
-
+      - name: log.file
+        value: xplan-manager-web.log
+      - name: log.path
+        value: ${catalina.base:-.}/logs
   Appenders:
     Console:
       name: STDOUT
+      target: SYSTEM_OUT
       PatternLayout:
         Pattern: "%d %p %C{1.} [%t] %m%n"
-      target: SYSTEM_OUT
     RollingFile:
       name: RollingFile_Appender
       fileName: ${log.path}/${log.file}
@@ -28,27 +26,38 @@ Configuration:
         max: 5
   Loggers:
     Root:
+      level: info
       AppenderRef:
         - ref: STDOUT
           level: error
         - ref: RollingFile_Appender
           level: info
     Logger:
-      -
-        name: XPlanManagerWeb_Log
+      - name: org.deegree
         level: info
-        additivity: false
-        AppenderRef:
-          ref: RollingFile_Appender
-      -   name: org.deegree
-          level: info
-      -   name: de.latlon.xplan
-          level: info
-      -   name: org.springframework
-          level: warn
-      -   name: org.reflections
-          level: off
-      -   name: org.deegree.geometry.standard.AbstractDefaultGeometry
-          level: off
-      -   name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
-          level: off
+      - name: de.latlon.xplan
+        level: info
+      - name: org.springframework
+        level: warn
+      - name: org.glassfish
+        level: warn
+      - name: org.glassfish.jersey
+        level: warn
+      - name: org.apache
+        level: warn
+      - name: net.sf.jasperreports
+        level: warn
+      - name: com.ctc.wstx
+        level: warn
+      - name: com.sun.xml
+        level: warn
+      - name: org.reflections
+        level: fatal
+      - name: org.deegree.geometry.standard.AbstractDefaultGeometry
+        level: fatal
+      - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
+        level: fatal
+      - name: bind
+        level: error
+      - name: logger
+        level: error
