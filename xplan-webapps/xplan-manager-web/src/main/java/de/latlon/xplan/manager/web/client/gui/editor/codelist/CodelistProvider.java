@@ -71,6 +71,7 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_54;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_PlanArt;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_Rechtsstand;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_Verfahren;
@@ -142,6 +143,10 @@ public class CodelistProvider {
 		add_53_BP_Rechtsstand(codeLists);
 		add_53_BP_Verfahren(codeLists);
 		add_53_XP_RechtscharakterPlanaenderung(codeLists);
+		add_54_BP_PlanArt(codeLists);
+		add_54_BP_Rechtsstand(codeLists);
+		add_54_BP_Verfahren(codeLists);
+		add_54_XP_RechtscharakterPlanaenderung(codeLists);
 		return codeLists;
 	}
 
@@ -433,6 +438,64 @@ public class CodelistProvider {
 		codes.add(new Code(2000, MESSAGES.XPLAN_53_XP_RechtscharakterPlanaenderung_2000_Aufhebung()));
 		codes.add(new Code(20000, MESSAGES.XPLAN_53_XP_RechtscharakterPlanaenderung_20000_Aufhebungsverfahren()));
 		codes.add(new Code(20001, MESSAGES.XPLAN_53_XP_RechtscharakterPlanaenderung_20001_Ueberplanung()));
+		codeLists.put(key, codes);
+	}
+
+	private static void add_54_BP_PlanArt(HashMap<CodelistKey, List<Code>> codeLists) {
+		CodelistKey key = new CodelistKey(XPLAN_54, BP_PlanArt);
+		List<Code> codes = new ArrayList<Code>();
+		codes.add(new Code(1000, MESSAGES.XPLAN_54_BP_PlanArt_1000_BPlan()));
+		codes.add(new Code(10000, MESSAGES.XPLAN_54_BP_PlanArt_10000_EinfacherBPlan()));
+		codes.add(new Code(10001, MESSAGES.XPLAN_54_BP_PlanArt_10001_QualifizierterBPlan()));
+		codes.add(new Code(10002, MESSAGES.XPLAN_54_BP_PlanArt_10002_BebauungsplanZurWohnraumversorgung()));
+		codes.add(new Code(3000, MESSAGES.XPLAN_54_BP_PlanArt_3000_VorhabenbezogenerBPlan()));
+		codes.add(new Code(3100, MESSAGES.XPLAN_54_BP_PlanArt_3001_VorhabenUndErschliessungsplan()));
+		codes.add(new Code(4000, MESSAGES.XPLAN_54_BP_PlanArt_4000_InnenbereichsSatzung()));
+		codes.add(new Code(40000, MESSAGES.XPLAN_54_BP_PlanArt_40000_KlarstellungsSatzung()));
+		codes.add(new Code(40001, MESSAGES.XPLAN_54_BP_PlanArt_40001_EntwicklungsSatzung()));
+		codes.add(new Code(40002, MESSAGES.XPLAN_54_BP_PlanArt_40002_ErgaenzungsSatzung()));
+		codes.add(new Code(5000, MESSAGES.XPLAN_54_BP_PlanArt_5000_AussenbereichsSatzung()));
+		codes.add(new Code(7000, MESSAGES.XPLAN_54_BP_PlanArt_7000_OertlicheBauvorschrift()));
+		codes.add(new Code(9999, MESSAGES.XPLAN_54_BP_PlanArt_9999_Sonstiges()));
+		codeLists.put(key, codes);
+	}
+
+	private static void add_54_BP_Rechtsstand(HashMap<CodelistKey, List<Code>> codeLists) {
+		CodelistKey key = new CodelistKey(XPLAN_54, BP_Rechtsstand);
+		List<Code> codes = new ArrayList<Code>();
+		codes.add(new Code(1000, MESSAGES.XPLAN_54_BP_Rechtsstand_1000_Aufstellungsbeschluss()));
+		codes.add(new Code(2000, MESSAGES.XPLAN_54_BP_Rechtsstand_2000_Entwurf()));
+		codes.add(new Code(2100, MESSAGES.XPLAN_54_BP_Rechtsstand_2100_FruehzeitigeBehoerdenBeteiligung()));
+		codes.add(new Code(2200, MESSAGES.XPLAN_54_BP_Rechtsstand_2200_FruehzeitigeOeffentlichkeitsBeteiligung()));
+		codes.add(new Code(2300, MESSAGES.XPLAN_54_BP_Rechtsstand_2300_BehoerdenBeteiligung()));
+		codes.add(new Code(2400, MESSAGES.XPLAN_54_BP_Rechtsstand_2400_OeffentlicheAuslegung()));
+		codes.add(new Code(3000, MESSAGES.XPLAN_54_BP_Rechtsstand_3000_Satzung()));
+		codes.add(new Code(4000, MESSAGES.XPLAN_54_BP_Rechtsstand_4000_InkraftGetreten()));
+		codes.add(new Code(4500, MESSAGES.XPLAN_54_BP_Rechtsstand_4500_TeilweiseUntergegangen()));
+		codes.add(new Code(5000, MESSAGES.XPLAN_54_BP_Rechtsstand_5000_Untergegangen()));
+		codes.add(new Code(50000, MESSAGES.XPLAN_54_BP_Rechtsstand_50000_Aufgehoben()));
+		codes.add(new Code(50001, MESSAGES.XPLAN_54_BP_Rechtsstand_50001_AusserKraft()));
+		codeLists.put(key, codes);
+	}
+
+	private static void add_54_BP_Verfahren(HashMap<CodelistKey, List<Code>> codeLists) {
+		CodelistKey key = new CodelistKey(XPLAN_54, BP_Verfahren);
+		List<Code> codes = new ArrayList<Code>();
+		codes.add(new Code(1000, MESSAGES.XPLAN_54_BP_Verfahren_1000_Normal()));
+		codes.add(new Code(2000, MESSAGES.XPLAN_54_BP_Verfahren_2000_Parag13()));
+		codes.add(new Code(3000, MESSAGES.XPLAN_54_BP_Verfahren_3000_Parag13a()));
+		codes.add(new Code(4000, MESSAGES.XPLAN_54_BP_Verfahren_4000_Parag13b()));
+		codeLists.put(key, codes);
+	}
+
+	private static void add_54_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists) {
+		CodelistKey key = new CodelistKey(XPLAN_54, XP_RechtscharakterPlanaenderung);
+		List<Code> codes = new ArrayList<Code>();
+		codes.add(new Code(1000, MESSAGES.XPLAN_54_XP_RechtscharakterPlanaenderung_1000_Aenderung()));
+		codes.add(new Code(1100, MESSAGES.XPLAN_54_XP_RechtscharakterPlanaenderung_1100_Ergaenzung()));
+		codes.add(new Code(2000, MESSAGES.XPLAN_54_XP_RechtscharakterPlanaenderung_2000_Aufhebung()));
+		codes.add(new Code(20000, MESSAGES.XPLAN_54_XP_RechtscharakterPlanaenderung_20000_Aufhebungsverfahren()));
+		codes.add(new Code(20001, MESSAGES.XPLAN_54_XP_RechtscharakterPlanaenderung_20001_Ueberplanung()));
 		codeLists.put(key, codes);
 	}
 
