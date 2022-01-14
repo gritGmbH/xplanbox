@@ -2,7 +2,7 @@
 
 === Empfehlungen für die Bereitstellung von XPlanungsdaten
 
-Die Leitstelle XPlanung/XBau hat einen https://www.xleitstelle.de/leitfaden[Leitfaden XPlanung] herausgegeben, der sich an die Träger von Planverfahrenen, Planer in der öffentlichen Verwaltung als auch in Planungs- und Ingenieurbüros wendet, die mit der konkreten technischen Umsetzung von XPlanung bzw. der Erstellung von Planwerken gemäß dem Standard XPlanung beauftragt sind. Der Leitfaden bietet Unterstützung in der effektiven Umsetzung von XPlanung und der standardkonformen Erstellung und Bereitstellung von XPlanungsdaten von hoher Qualität.
+Die Leitstelle XPlanung/XBau hat einen https://www.xleitstelle.de/leitfaden[Leitfaden XPlanung] herausgegeben, der sich an die Träger von Planverfahren, Planer in der öffentlichen Verwaltung als auch in Planungs- und Ingenieurbüros wendet, die mit der konkreten technischen Umsetzung von XPlanung bzw. der Erstellung von Planwerken gemäß dem Standard XPlanung beauftragt sind. Der Leitfaden bietet Unterstützung in der effektiven Umsetzung von XPlanung und der standardkonformen Erstellung und Bereitstellung von XPlanungsdaten von hoher Qualität.
 
 === Einbindung in andere Software
 
