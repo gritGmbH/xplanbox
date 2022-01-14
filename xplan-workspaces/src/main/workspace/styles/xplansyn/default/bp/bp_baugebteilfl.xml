@@ -361,6 +361,10 @@
         </ogc:PropertyIsNull>
         <ogc:Or>
           <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzungCode</ogc:PropertyName>
+            <ogc:Literal>1450</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+          <ogc:PropertyIsEqualTo>
             <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
             <ogc:Literal>1450</ogc:Literal>
           </ogc:PropertyIsEqualTo>
