@@ -3439,6 +3439,7 @@ BP_Wegerecht/breite=xpath('xplan:breite/text()')
 BP_Wegerecht/breiteUOM=xpath('xplan:breite/@uom')
 BP_Wegerecht/aufschrift=xpath('xplan:aufschrift')
 BP_Wegerecht/istSchmal=xpath('xplan:istSchmal')
+BP_WohngebaeudeFlaeche/gmlId=xpath('@gml:id')
 BP_WohngebaeudeFlaeche/gmlName=xplanGmlName()
 BP_WohngebaeudeFlaeche/gmlDescription=xplanGmlDescription()
 BP_WohngebaeudeFlaeche/xpVersion='5.4'
