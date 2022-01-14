@@ -327,7 +327,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>35</con:value>
+          <con:value>52</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -601,7 +601,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>36</con:value>
+          <con:value>53</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -833,7 +833,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>37</con:value>
+          <con:value>54</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -982,7 +982,7 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>BP_Planvektor</con:value>
+              <con:value>bp_baugebteilfl</con:value>
               <con:style>QUERY</con:style>
               <con:default>BP_Planvektor</con:default>
             </con:parameter>
@@ -1000,7 +1000,7 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>QUERY_LAYERS</con:name>
-              <con:value>BP_Planvektor</con:value>
+              <con:value>bp_baugebteilfl</con:value>
               <con:style>QUERY</con:style>
               <con:default>BP_Planvektor</con:default>
             </con:parameter>
@@ -1021,6 +1021,11 @@ exists(/wms:WMS_Capabilities)</path>
               <con:value>387</con:value>
               <con:style>QUERY</con:style>
               <con:default>387</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FEATURE_COUNT</con:name>
+              <con:value>100</con:value>
+              <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
         </con:config>
@@ -1106,7 +1111,7 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>LAYERS</con:name>
-              <con:value>BP_Planvektor</con:value>
+              <con:value>bp_baugebteilfl</con:value>
               <con:style>QUERY</con:style>
               <con:default>BP_Planvektor</con:default>
             </con:parameter>
@@ -1124,7 +1129,7 @@ exists(/wms:WMS_Capabilities)</path>
             </con:parameter>
             <con:parameter>
               <con:name>QUERY_LAYERS</con:name>
-              <con:value>BP_Planvektor</con:value>
+              <con:value>bp_baugebteilfl</con:value>
               <con:style>QUERY</con:style>
               <con:default>BP_Planvektor</con:default>
             </con:parameter>
@@ -1145,6 +1150,11 @@ exists(/wms:WMS_Capabilities)</path>
               <con:value>387</con:value>
               <con:style>QUERY</con:style>
               <con:default>387</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FEATURE_COUNT</con:name>
+              <con:value>100</con:value>
+              <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
         </con:config>
@@ -1193,13 +1203,24 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>38</con:value>
+          <con:value>55</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
     <con:properties/>
   </con:testSuite>
   <con:testSuite id="69df8070-8c59-42e5-9019-58a5480efe89" name="xplansyn-wfs">
+    <con:description>For local execution use following property values:
+
+baseUrl=http://localhost:8083
+baseUrlInspirePlu=http://localhost:8084
+baseUrlManagerApi=http://localhost:8086/xplan-api-manager
+
+For execution against test environment use following property values:
+
+baseUrl=https://xplanbox.lat-lon.de
+baseUrlInspirePlu=https://xplanbox.lat-lon.de
+baseUrlManagerApi=https://xplanbox.lat-lon.de</con:description>
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
     <con:testCase id="4ef1ce85-fba6-417a-bc63-a0e198c0c674" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="xplansynwfs" searchProperties="true">
@@ -1630,7 +1651,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>39</con:value>
+          <con:value>58</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1717,9 +1738,10 @@ count(//wfs:member)</path>
           <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match">
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-count(//wfs:member)</path>
-              <content>1</content>
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+              <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -1808,7 +1830,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>40</con:value>
+          <con:value>59</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3141,15 +3163,15 @@ exists(/wfs:WFS_Capabilities)</path>
   <con:properties>
     <con:property>
       <con:name>baseUrl</con:name>
-      <con:value>http://localhost:8083</con:value>
+      <con:value>https://xplanbox.lat-lon.de</con:value>
     </con:property>
     <con:property>
       <con:name>baseUrlInspirePlu</con:name>
-      <con:value>http://localhost:8084</con:value>
+      <con:value>https://xplanbox.lat-lon.de</con:value>
     </con:property>
     <con:property>
       <con:name>baseUrlManagerApi</con:name>
-      <con:value>http://localhost:8086/xplan-api-manager</con:value>
+      <con:value>https://xplanbox.lat-lon.de</con:value>
     </con:property>
     <con:property>
       <con:name>username</con:name>
