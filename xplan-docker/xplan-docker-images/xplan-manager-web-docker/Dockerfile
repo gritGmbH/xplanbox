@@ -8,7 +8,7 @@ ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/ -Djav
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # configure tomcat
-ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
+#ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
 
 # add xplan-manager-web
 ADD target/xplan-manager-web-*.war /root/
