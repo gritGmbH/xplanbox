@@ -31,7 +31,7 @@ Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
 
 So kann über das Property _defaultBboxIn4326_ für den 'Alternativen
 Betriebsmodus' konfiguriert werden, welche default Bounding-Box während
-der Konfigurationserzeugung für einen neuen Services genutzt werden
+der Konfigurationserzeugung für einen neuen Service genutzt werden
 soll. Dieser Wert wird genutzt, falls von dem zu importierenden GML
 keine Bounding-Box ermittelt werden kann. Häufige Gründe dafür sind zum
 Beispiel das Fehlen der CRS-Definition oder das Vorkommen von invaliden
@@ -350,33 +350,36 @@ Plan 1 wurde gelöscht.
 Alternativ zum normalen Import von Plänen bietet das XPlanManagerCLI die
 Möglichkeit, für jeden Plan eigene WMS Konfigurationen zu verwalten,
 sodass planspezifische WMS Dienste möglich sind. Dazu gibt es insgesamt
-3 verschiedene Optionen für den XPlanManagerCLI.
+vier verschiedene Optionen für das XPlanManagerCLI.
 
-Datenbank erzeugen:
-  Mit dem XPlanManagerCLI kann die Datenhaltung erzeugt
-  werden. Der XPlanManager wird beim Erzeugen der Datenhaltung auf diese
-  neue Datenbank eingestellt.
+*Datenbank erzeugen:*
+
+Mit dem XPlanManagerCLI kann die Datenhaltung erzeugt
+werden. Der XPlanManager wird beim Erzeugen der Datenhaltung auf diese
+neue Datenbank eingestellt.
 
 ----
 XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres
 ----
 
-Aktualisierung des Sortierfeldes für die Visualisierung:
-  Mit dem XPlanManagerCLI können die Werte der Sortierfelder in der
-  Datenbank anhand einer bestehenden managerConfiguration.properties
-  Datei aktualisiert werden. Der Aufruf kann ohne Parameter oder mit dem
-  optionalen Parameter `managerconfiguration` erfolgen. Details zu
-  diesem Parameter sind im Abschnitt
-  Konfiguration über Datei <_anchor-manager-cli-managerConfigFile> zu
-  finden.
+*Aktualisierung des Sortierfeldes für die Visualisierung:*
+
+Mit dem XPlanManagerCLI können die Werte der Sortierfelder in der
+Datenbank anhand einer bestehenden _managerConfiguration.properties_
+Datei aktualisiert werden. Der Aufruf kann ohne Parameter oder mit dem
+optionalen Parameter `managerconfiguration` erfolgen. Details zu
+diesem Parameter sind im Abschnitt
+Konfiguration über Datei <<xplanmanager-cli-konfiguration-ueber-datei>> zu
+finden.
 
 ----
 XPlanManager -updatewmssortdate
 ----
 
-Konfiguration erzeugen:
-  Soll beim Import eine WMS Konfiguration erzeugt werden, so muss der
-  Import-Befehl folgendermaßen aussehen:
+*Konfiguration erzeugen:*
+
+Soll beim Import eine WMS Konfiguration erzeugt werden, so muss der
+Import-Befehl folgendermaßen aussehen:
 
 ----
 XPlanManager -importmakeconfig ../../resources/testdata/XPlanGML_4_0/Infrastruktur.zip
@@ -385,7 +388,7 @@ XPlanManager -importmakeconfig ../../resources/testdata/XPlanGML_4_0/Infrastrukt
 Über das Property _defaultBboxIn4326_ in der Konfigurationsdatei
 _managerConfiguration.properties_ kann angegeben werden, welche default
 Bounding-Box während der Konfigurationserzeugung für einen neuen
-Services genutzt werden soll (für weitere Details siehe _Konfiguration
+Service genutzt werden soll (für weitere Details siehe _Konfiguration
 über Datei_ weiter oben).
 
 Folgende Parameter können mit angegeben werden:
@@ -397,11 +400,12 @@ Folgende Parameter können mit angegeben werden:
 --managerconfiguration
 ----
 
-Konfiguration löschen:
-  Die entsprechende Konfiguration wird im Workspace
-  _xplansyn-wms-workspace_ im _.deegree_ Verzeichnis des entsprechenden
-  Nutzers abgelegt. Soll ein so importierter Plan gelöscht werden, ist
-  folgender Befehl notwendig:
+*Konfiguration löschen:*
+
+Die entsprechende Konfiguration wird im Workspace
+_xplansyn-wms-workspace_ im _.deegree_ Verzeichnis des entsprechenden
+Nutzers abgelegt. Soll ein so importierter Plan gelöscht werden, ist
+folgender Befehl notwendig:
 
 ----
 XPlanManager -deletewithconfig 1
@@ -414,7 +418,7 @@ Beim Import sehr großer Archive, kann es zu einem _OutOfMemoryError_
 Laufzeitfehler kommen, da die Java Virtual Machine keinen weiteren
 freien Speicher allokieren kann. Wenn der Server noch über freien
 Arbeitsspeicher verfügt, dann kann dieser über die Umgebungsvariable
-_JAVA_OPTS_ unter Linux wie folgt erhöht werden:
+`JAVA_OPTS` unter Linux wie folgt erhöht werden:
 
 ----
 export JAVA_OPTS='-Xmx4096m'
