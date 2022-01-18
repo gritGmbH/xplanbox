@@ -462,18 +462,22 @@
             </annotation>
           </element>
           <element name="startBedingung" minOccurs="0" type="xplan:XP_WirksamkeitBedingungPropertyType">
+            <!--
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_WirksamkeitBedingung</gml:targetElement>
               </appinfo>
             </annotation>
+            -->
           </element>
           <element name="endeBedingung" minOccurs="0" type="xplan:XP_WirksamkeitBedingungPropertyType">
+            <!--
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_WirksamkeitBedingung</gml:targetElement>
               </appinfo>
             </annotation>
+            -->
           </element>
           <element name="aufschrift" minOccurs="0" type="string" />
           <element ref="xplan:_GenericApplicationPropertyOfXP_Objekt" minOccurs="0" maxOccurs="unbounded" />
