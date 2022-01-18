@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+  <con:description>For local execution use following property values:
+
+baseUrl=http://localhost:8083
+baseUrlInspirePlu=http://localhost:8084
+baseUrlManagerApi=http://localhost:8086/xplan-api-manager
+
+For execution against test environment use following property values:
+
+baseUrl=https://xplanbox.lat-lon.de
+baseUrlInspirePlu=https://xplanbox.lat-lon.de
+baseUrlManagerApi=https://xplanbox.lat-lon.de</con:description>
   <con:settings/>
   <con:testSuite id="ef6a4631-78a1-4c83-b55b-a5a410e4ae47" name="xplan-wms">
     <con:settings/>
@@ -328,7 +339,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>22</con:value>
+          <con:value>46</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -603,7 +614,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>23</con:value>
+          <con:value>47</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -836,7 +847,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>24</con:value>
+          <con:value>48</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1207,24 +1218,14 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>25</con:value>
+          <con:value>49</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
     <con:properties/>
   </con:testSuite>
   <con:testSuite id="69df8070-8c59-42e5-9019-58a5480efe89" name="xplansyn-wfs">
-    <con:description>For local execution use following property values:
-
-baseUrl=http://localhost:8083
-baseUrlInspirePlu=http://localhost:8084
-baseUrlManagerApi=http://localhost:8086/xplan-api-manager
-
-For execution against test environment use following property values:
-
-baseUrl=https://xplanbox.lat-lon.de
-baseUrlInspirePlu=https://xplanbox.lat-lon.de
-baseUrlManagerApi=https://xplanbox.lat-lon.de</con:description>
+    <con:description/>
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
     <con:testCase id="4ef1ce85-fba6-417a-bc63-a0e198c0c674" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="xplansynwfs" searchProperties="true">
@@ -1656,7 +1657,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>27</con:value>
+          <con:value>44</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1836,7 +1837,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>28</con:value>
+          <con:value>45</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
