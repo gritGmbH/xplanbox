@@ -175,7 +175,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-test-resources</artifactId>
+      <artifactId>xplan-tests-resources</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

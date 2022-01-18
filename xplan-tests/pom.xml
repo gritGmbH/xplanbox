@@ -12,7 +12,7 @@
   </parent>
 
   <modules>
-    <module>xplan-test-resources</module>
+    <module>xplan-tests-resources</module>
     <module>xplan-tests-soapui</module>
   </modules>
 
