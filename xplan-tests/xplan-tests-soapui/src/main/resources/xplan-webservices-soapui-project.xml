@@ -1418,7 +1418,8 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-            <con:authType>Global HTTP Settings</con:authType>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
           </con:credentials>
           <con:attachment>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
@@ -1655,7 +1656,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>58</con:value>
+          <con:value>27</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1679,7 +1680,8 @@ count(//wfs:member)</path>
             <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-            <con:authType>Global HTTP Settings</con:authType>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
           </con:credentials>
           <con:attachment>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
@@ -1834,7 +1836,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>59</con:value>
+          <con:value>28</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
