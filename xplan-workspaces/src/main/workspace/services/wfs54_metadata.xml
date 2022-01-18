@@ -7,7 +7,7 @@
     <Abstract>Dieser WFS Dienst stellt auf dem Standard XPlanung 5.4 basierende FeatureTypes bereit.</Abstract>
     <Keywords>
       <Keyword>XPlanung</Keyword>
-      <Keyword>XPlanGML 5.5</Keyword>
+      <Keyword>XPlanGML 5.4</Keyword>
       <Keyword>Festgestellt</Keyword>
       <Keyword>WFS</Keyword>
       <Keyword>xPlanBox Version ${project.version}</Keyword>
