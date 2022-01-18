@@ -12,6 +12,7 @@ Die Regeln müssen abhängig von der XPlanGML-Version in einer der folgenden Dat
 * xplan51.syn
 * xplan52.syn
 * xplan53.syn
+* xplan54.syn
 
 Eine Zeile in diesen Dateien entspricht einer Regel.
 Beispiele für eine Regel:

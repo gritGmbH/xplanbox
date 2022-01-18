@@ -123,6 +123,10 @@
             <Value>MD</Value>
           </MapItem>
           <MapItem>
+            <Data>1450</Data>
+            <Value>MDW</Value>
+          </MapItem>
+          <MapItem>
             <Data>1500</Data>
             <Value>MI</Value>
           </MapItem>
@@ -222,6 +226,10 @@
           <MapItem>
             <Data>1400</Data>
             <Value>MD</Value>
+          </MapItem>
+          <MapItem>
+            <Data>1450</Data>
+            <Value>MDW</Value>
           </MapItem>
           <MapItem>
             <Data>1500</Data>

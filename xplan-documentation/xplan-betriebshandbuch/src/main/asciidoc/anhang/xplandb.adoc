@@ -8,7 +8,7 @@ Die Datenbankschema je XPlanGML-Version unterscheiden sich nur im Namen des Sche
 [[appendix_xplandb_xplan53]]
 === Datenbankschema für XPlanGML 5.3
 
-Das folgende Diagramm zeigt die Tabellenstruktur aus dem Datenbankschema `xplan53` für die Ablage von XPlanGML-Version 5.3 Instanzdokumenten.
+Das folgende Diagramm zeigt exemplarisch die Tabellenstruktur aus dem Datenbankschema `xplan53` für die Ablage von XPlanGML-Version 5.3 Instanzdokumenten.
 In der Tabelle `feature_types` werden die in XPlanGML 5.3 enthaltenen Feature Types gespeichert. In der Tabelle `gml_objects` werden die Instanzdokumente in `xplan53.gml_objects.binary_object` gespeichert.
 
 .Datenbankschema 'xplan53' für XPlanGML Version 5.3
@@ -20,7 +20,7 @@ Die Tabellenstruktur aus diesem Schema unterscheidet sich nicht zu den anderen v
 === Datenbankschema für XPlanSyn
 
 Das XPlanSyn-Schema wird aus den von der xPlanBox unterstützten XPlanGML-Versionen abgeleitet. Dabei wird ein versionsübergreifendes Schema erzeugt.
-In der aktuellen Version der xPlanBox sind dies die XPlanGML-Versionen 3.0 bis 5.3 und das Datenbankschema `xplansyn` umfasst 324 Tabellen. Instanzdokumente werden im XPlanSyn-Schema unter Verwendung des relationalen Mappings von deegree (siehe https://download.deegree.org/documentation/current/html/#_mapping_gml_application_schemas[deegree webservices relational mapping]) gespeichert.
+In der aktuellen Version der xPlanBox sind dies die XPlanGML-Versionen 3.0 bis 5.4 und das Datenbankschema `xplansyn` umfasst 324 Tabellen. Instanzdokumente werden im XPlanSyn-Schema unter Verwendung des relationalen Mappings von deegree (siehe https://download.deegree.org/documentation/current/html/#_mapping_gml_application_schemas[deegree webservices relational mapping]) gespeichert.
 
 IMPORTANT: Wird eine ältere XPlanGML-Version abgekündigt oder eine neue XPlanGML-Version hinzugefügt, ändert sich das XPlanSyn-Schema!
 

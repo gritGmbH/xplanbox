@@ -36,6 +36,9 @@ Der XPlanWFS bietet verschiedene Dienste zur Abfrage von XPlanGML an:
 | 5.3
 | _wfs53_
 | 1.1.0 und 2.0.0
+| 5.4
+| _wfs54_
+| 1.1.0 und 2.0.0
 |===
 
 Die folgende Tabelle fasst die vom XPlanWFS unterstützten Operationen zusammen.
@@ -61,6 +64,7 @@ http://<host>:<port>/xplan-wfs/services/wfs50?
 http://<host>:<port>/xplan-wfs/services/wfs51?
 http://<host>:<port>/xplan-wfs/services/wfs52?
 http://<host>:<port>/xplan-wfs/services/wfs53?
+http://<host>:<port>/xplan-wfs/services/wfs54?
 ----
 
 [[xplanwfs-inhalte-des-datendienstes]]
@@ -88,6 +92,7 @@ http://<host>:<port>/xplan-wfs/services/wfs50?request=GetCapabilities&Service=WF
 http://<host>:<port>/xplan-wfs/services/wfs51?request=GetCapabilities&Service=WFS
 http://<host>:<port>/xplan-wfs/services/wfs52?request=GetCapabilities&Service=WFS
 http://<host>:<port>/xplan-wfs/services/wfs53?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs54?request=GetCapabilities&Service=WFS
 ----
 
 [[xplanwfs-getfeature]]
@@ -106,6 +111,7 @@ http://<host>:<port>/xplan-wfs/services/wfs50?request=GetFeature&Service=WFS&Ver
 http://<host>:<port>/xplan-wfs/services/wfs51?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
 http://<host>:<port>/xplan-wfs/services/wfs52?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
 http://<host>:<port>/xplan-wfs/services/wfs53?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-wfs/services/wfs54?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
 ----
 
 [[xplanwfs-describefeaturetype]]
@@ -122,6 +128,7 @@ http://<host>:<port>/xplan-wfs/services/wfs50?request=DescribeFeatureType&Servic
 http://<host>:<port>/xplan-wfs/services/wfs51?request=DescribeFeatureType&Service=WFS&Version=2.0.0
 http://<host>:<port>/xplan-wfs/services/wfs52?request=DescribeFeatureType&Service=WFS&Version=2.0.0
 http://<host>:<port>/xplan-wfs/services/wfs53?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs54?request=DescribeFeatureType&Service=WFS&Version=2.0.0
 ----
 
 [[xplanwfs-liststoredqueries]]
@@ -129,7 +136,7 @@ http://<host>:<port>/xplan-wfs/services/wfs53?request=DescribeFeatureType&Servic
 
 Die Operation ListStoredQueries gibt Informationen über die verfügbaren
 StoredQueries zurück. Diese Operation steht nur in der Protokollversion
-2.0.0 über die Endpunkte __wfs40__, __wfs41__, __wfs50__, __wfs51__, __wfs52__ und __wfs53__ zur Verfügung.
+2.0.0 über die Endpunkte __wfs40__, __wfs41__, __wfs50__, __wfs51__, __wfs52__, __wfs53__ und __wfs54__ zur Verfügung.
 
 ----
 http://<host>:<port>/xplan-wfs/services/wfs40?request=ListStoredQueries&Service=WFS&Version=2.0.0
@@ -138,12 +145,13 @@ http://<host>:<port>/xplan-wfs/services/wfs50?request=ListStoredQueries&Service=
 http://<host>:<port>/xplan-wfs/services/wfs51?request=ListStoredQueries&Service=WFS&Version=2.0.0
 http://<host>:<port>/xplan-wfs/services/wfs52?request=ListStoredQueries&Service=WFS&Version=2.0.0
 http://<host>:<port>/xplan-wfs/services/wfs53?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs54?request=ListStoredQueries&Service=WFS&Version=2.0.0
 ----
 
 ==== StoredQueries
 
 Neben den üblichen StoredQueries urn:ogc:def:query:OGC-WFS::GetFeatureById
-und urn:ogc:def:query:OGC-WFS::GetFeatureByType bieten die Endpunkte __wfs40__, __wfs41__, __wfs50__, __wfs51__, __wfs52__ und __wfs53__
+und urn:ogc:def:query:OGC-WFS::GetFeatureByType bieten die Endpunkte __wfs40__, __wfs41__, __wfs50__, __wfs51__, __wfs52__, __wfs53__ und __wfs54__
 drei weitere StoredQueries an. Darüber lassen sich die Vektordaten eines einzelnen Plans anhand im XPlanGML gesetzten Eigenschaften anfragen:
 
 
