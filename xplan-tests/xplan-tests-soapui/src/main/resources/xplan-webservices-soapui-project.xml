@@ -182,7 +182,7 @@ exists(/wms:WMS_Capabilities)</path>
         <con:settings/>
         <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
-            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
           </con:settings>
           <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
           <con:request/>
@@ -196,7 +196,8 @@ exists(/wms:WMS_Capabilities)</path>
             <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-            <con:authType>Global HTTP Settings</con:authType>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
           </con:credentials>
           <con:attachment>
             <con:name>BPlan52_HH_Neustadt32.zip</con:name>
@@ -327,7 +328,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>52</con:value>
+          <con:value>22</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -351,7 +352,8 @@ exists(/wms:WMS_Capabilities)</path>
             <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-            <con:authType>Global HTTP Settings</con:authType>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
           </con:credentials>
           <con:attachment>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
@@ -601,7 +603,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>53</con:value>
+          <con:value>23</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -625,7 +627,8 @@ exists(/wms:WMS_Capabilities)</path>
             <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-            <con:authType>Global HTTP Settings</con:authType>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
           </con:credentials>
           <con:attachment>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
@@ -833,7 +836,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>54</con:value>
+          <con:value>24</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -857,7 +860,8 @@ exists(/wms:WMS_Capabilities)</path>
             <con:password>${#Project#password}</con:password>
             <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-            <con:authType>Global HTTP Settings</con:authType>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
           </con:credentials>
           <con:attachment>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
@@ -1203,7 +1207,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>55</con:value>
+          <con:value>25</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
