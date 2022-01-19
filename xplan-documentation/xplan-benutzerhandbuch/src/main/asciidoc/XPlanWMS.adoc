@@ -171,7 +171,7 @@ der Schnittstelle erlaubt den Zugriff auf die im XPlanGML referenzierten Anhäng
 
 Die Operation unterstützt folgende Parameter:
 
-* featureID: Die GML-ID eines Features, z.B. XPLAN_XP_RASTERPLANBASIS_7b36b0ee-5139-4a55-afc0-01fec18e9f0a
+* featureID: Die GML-ID eines Features im XPlanWMS (u.a. abrufbar über GetFeatureInfo), z.B. XPLAN_XP_RASTERPLANBASIS_7b36b0ee-5139-4a55-afc0-01fec18e9f0a
 * filename: Der Dateiname der referenzierten Datei, z.B. Stellingen64.png
 
 *XPlanWMS*
