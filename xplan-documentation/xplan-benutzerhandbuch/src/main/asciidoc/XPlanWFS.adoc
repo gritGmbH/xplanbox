@@ -171,10 +171,10 @@ Diese Eigenschaften sollten bei den importierten Plänen eindeutig sein, nur dan
 //Ist die getrennte Datenhaltung nicht aktiviert, gilt folgende Einschränkung: Sind mehrere Pläne mit der gleichen Eigenschaft importiert, wird der Plan mit dem aktuellsten Verfahrensstatus zurückgegeben. Zum Beispiel wird der Plan im Rechtsstand __inkraft getreten__ zurückgegeben, wenn daneben der Plan im Rechtstand __Entwurf__ existiert.
 
 Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage für
-den Plan mit dem Namen _Musterdorf_:
+den Plan mit dem Namen _Musterdorf_ in der XPlanGML Version 5.4:
 
 ----
-http://<host>:<port>/xplan-wfs/services/wfs51?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
+http://<host>:<port>/xplan-wfs/services/wfs54?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
 ----
 
 [[xplanwfs-koordinatenreferenzsysteme]]

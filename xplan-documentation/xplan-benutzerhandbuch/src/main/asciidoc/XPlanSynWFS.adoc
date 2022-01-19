@@ -111,7 +111,7 @@ Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage
 den Plan mit dem Namen _Musterdorf_:
 
 ----
-http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
+http://<host>:<port>/xplansyn-wfs/services/xplansynwfs?request=GetFeature&service=WFS&version=2.0.0&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
 ----
 
 [[xplansynwfs-koordinatenreferenzsysteme]]
