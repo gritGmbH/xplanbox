@@ -39,8 +39,6 @@ ADD target/xplan-manager-cli-*.zip /root/
 RUN cd /root/ && unzip -q xplan-manager-cli-*.zip
 ADD target/xplan-transform-cli-*.zip /root/
 RUN cd /root/ && unzip -q xplan-transform-cli-*.zip
-ADD target/xplan-evaluation-schema-synchronize-cli-*.zip /root/
-RUN cd /root/ && unzip -q xplan-evaluation-schema-synchronize-cli-*.zip
 
 # run tomcat
 CMD ["catalina.sh", "run"]

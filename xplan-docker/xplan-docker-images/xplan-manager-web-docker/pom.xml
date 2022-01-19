@@ -91,12 +91,6 @@
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-evaluation-schema-synchronize-cli</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
   </dependencies>
 
 </project>

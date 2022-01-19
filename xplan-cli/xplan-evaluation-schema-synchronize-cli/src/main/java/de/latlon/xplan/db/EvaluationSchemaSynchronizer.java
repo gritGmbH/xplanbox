@@ -207,8 +207,7 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		PreparedStatement ps = null;
 		try {
 			StringBuffer insertInEvaluationSyn = new StringBuffer();
-			insertInEvaluationSyn.append("DELETE FROM xplanevaluation").append(synSchema).append(".")
-					.append(synTableName);
+			insertInEvaluationSyn.append("DELETE FROM xplanevaluation").append(synSchema).append(".").append(synTableName);
 			insertInEvaluationSyn.append(" WHERE xplan_mgr_planid = ?");
 			ps = conn.prepareStatement(insertInEvaluationSyn.toString());
 			ps.setInt(1, xPlanManagerId);
