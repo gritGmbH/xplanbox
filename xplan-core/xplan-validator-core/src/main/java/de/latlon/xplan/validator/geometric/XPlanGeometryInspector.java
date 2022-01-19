@@ -50,9 +50,8 @@ import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.geometry.standard.primitive.DefaultPoint;
 import org.deegree.geometry.standard.primitive.DefaultPolygon;
 import org.deegree.geometry.standard.surfacepatches.DefaultPolygonPatch;
-import org.deegree.geometry.validation.GeometryFixer;
-import org.locationtech.jts.algorithm.CGAlgorithms;
 import org.locationtech.jts.algorithm.LineIntersector;
+import org.locationtech.jts.algorithm.Orientation;
 import org.locationtech.jts.algorithm.RobustLineIntersector;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.LineString;
@@ -644,25 +643,23 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	private Ring checkOuterRing(Ring ring) {
-		Ring inspected = ring;
-		LinearRing jTSRing = getJTSRing(inspected);
-		if (!CGAlgorithms.isCCW(jTSRing.getCoordinates())) {
+		LinearRing jTSRing = getJTSRing(ring);
+		if (!Orientation.isCCW(jTSRing.getCoordinates())) {
 			String msg = createMessage("2.2.2.1: \u00c4u\u00dferer Ring verwendet falsche Laufrichtung (CW).");
-			warnings.add(msg);
-			inspected = GeometryFixer.invertOrientation(ring);
+			errors.add(msg);
+			badGeometries.add(new BadGeometry(ring, msg));
 		}
-		return inspected;
+		return ring;
 	}
 
 	private Ring checkInnerRing(Ring ring) {
-		Ring inspected = ring;
-		LinearRing jTSRing = getJTSRing(inspected);
-		if (CGAlgorithms.isCCW(jTSRing.getCoordinates())) {
+		LinearRing jTSRing = getJTSRing(ring);
+		if (Orientation.isCCW(jTSRing.getCoordinates())) {
 			String msg = createMessage("2.2.2.1: Innerer Ring verwendet falsche Laufrichtung (CCW).");
-			warnings.add(msg);
-			inspected = GeometryFixer.invertOrientation(ring);
+			errors.add(msg);
+			badGeometries.add(new BadGeometry(ring, msg));
 		}
-		return inspected;
+		return ring;
 	}
 
 	/**

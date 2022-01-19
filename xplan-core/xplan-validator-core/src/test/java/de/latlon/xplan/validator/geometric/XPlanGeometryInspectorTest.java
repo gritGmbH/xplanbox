@@ -159,6 +159,16 @@ public class XPlanGeometryInspectorTest {
 		assertThat(geometry.getId(), is("GML_48d90d78-aa4a-44cc-939b-3562757993c6"));
 	}
 
+	@Test
+	public void testInspect_InvalidOrientation() throws Exception {
+		Geometry geometryToInspect = readGeometry("polygon-orientation-invalid.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(2));
+	}
+
 	private Geometry readGeometry(String geometryFile) throws Exception {
 		URL url = XPlanGeometryInspectorTest.class.getResource(geometryFile);
 		return GMLInputFactory.createGMLStreamReader(GML_32, url).readGeometry();
