@@ -3,10 +3,10 @@ Configuration:
   status: warn
   Properties:
     Property:
-      -   name: log.file
-          value: xplan-validator-wms.log
-      -   name: log.path
-          value: ${catalina.base:-.}/logs
+      - name: log.file
+        value: xplan-validator-wms.log
+      - name: log.path
+        value: ${sys:catalina.base:-.}/logs
   Appenders:
     Console:
       name: STDOUT

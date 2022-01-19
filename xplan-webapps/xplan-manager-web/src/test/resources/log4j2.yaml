@@ -17,10 +17,8 @@ Configuration:
         level: warn
       - name: de.latlon.xplan
         level: warn
-      - name: de.latlon.xplanbox.api
+      - name: de.latlon.xplan.manager
         level: debug
-      - name: de.latlon.xplanbox.api.validator.config
-        level: trace
       - name: org.springframework
         level: warn
       - name: org.glassfish

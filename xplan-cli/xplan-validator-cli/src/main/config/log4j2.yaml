@@ -6,7 +6,7 @@ Configuration:
       - name: log.file
         value: xplan-validator-cli.log
       - name: log.path
-        value: ${catalina.base:-.}/logs
+        value: ${sys:catalina.base:-.}/logs
   Appenders:
     Console:
       name: STDOUT
