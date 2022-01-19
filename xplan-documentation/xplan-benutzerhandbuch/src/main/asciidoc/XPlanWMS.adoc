@@ -41,6 +41,8 @@ NOTE: Vermeiden Sie Sonderzeichen im Plannamen wie z. B. `:`, `&`, `#` , `/`, `\
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>
 ----
 
+NOTE: Alternativ kann die URL auch ohne Sonderzeichen verwendet werden. Dafür müssen alle anderen Zeichen als `a-zA-Z0-9-_` aus <PLANNAME> entfernt werden. Die so erstellte URL liefert eine identische Response wie die dazugehörige, kodierte URL.
+
 [[xplanwms-inhalte-des-kartendienstes]]
 === Inhalte des Kartendienstes
 
