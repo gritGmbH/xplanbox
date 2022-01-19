@@ -7,7 +7,7 @@ MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-validator-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl"
 
 # configure tomcat
-ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
+#ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
 
 # add xplan-validator-web
 ADD target/xplan-validator-web-*.war /root/

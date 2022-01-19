@@ -1,0 +1,69 @@
+Configuration:
+  name: XPlanValidatorApi
+  status: warn
+  Properties:
+    Property:
+      - name: log.file
+        value: xplan-validator-api.log
+      - name: log.path
+        value: ${sys:catalina.base:-.}/logs
+  Appenders:
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n"
+    RollingFile:
+      name: RollingFile_Appender
+      fileName: ${log.path}/${log.file}
+      filePattern: ${log.path}/${log.file}.%d{yyyy-MM-dd-hh-mm}
+      PatternLayout:
+        pattern: "%d %p %C{1.} [%t] %m%n"
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: 100 MB
+      DefaultRollOverStrategy:
+        max: 5
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: STDOUT
+          level: error
+        - ref: RollingFile_Appender
+          level: info
+    Logger:
+      - name: org.deegree
+        level: info
+      - name: de.latlon.xplan
+        level: info
+      - name: de.latlon.xplanbox.api
+        level: info
+      - name: de.latlon.xplanbox.api.validator.config
+        level: info
+      - name: org.springframework
+        level: warn
+      - name: org.glassfish
+        level: warn
+      - name: org.glassfish.jersey
+        level: warn
+      - name: org.apache
+        level: warn
+      - name: net.sf.jasperreports
+        level: warn
+      - name: com.ctc.wstx
+        level: warn
+      - name: com.sun.xml
+        level: warn
+      - name: org.reflections
+        level: fatal
+      - name: io.swagger.v3
+        level: warn
+      - name: org.deegree.geometry.standard.AbstractDefaultGeometry
+        level: fatal
+      - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
+        level: fatal
+      - name: bind
+        level: error
+      - name: logger
+        level: error

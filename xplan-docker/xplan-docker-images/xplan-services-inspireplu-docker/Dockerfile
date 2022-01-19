@@ -4,12 +4,12 @@ MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
-ENV CATALINA_OPTS="-Xmx8192m -Djava.security.manager -Djava.security.policy=/usr/local/tomcat/conf/catalina.policy"
+ENV CATALINA_OPTS="-Xmx8192m -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl"
 
 # configure tomcat
 ADD tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
 ADD web.xml /usr/local/tomcat/conf/web.xml
-ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
+#ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
 
 # add xplan-inspireplu
 ADD target/xplan-inspireplu-*.war /root/
