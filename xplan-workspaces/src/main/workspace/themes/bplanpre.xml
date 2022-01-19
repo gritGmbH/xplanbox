@@ -57,6 +57,12 @@
       <Layer>bp_baugebteilfl</Layer>
     </Theme>
     <Theme>
+      <Identifier>bp_wohngebaeudeflaeche</Identifier>
+      <d:Title>BP: WohngebaeudeFläche</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_wohngebaeudeflaeche</Layer>
+    </Theme>
+    <Theme>
       <Identifier>bp_baugeb</Identifier>
       <d:Title>BP: Baugebiet</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>

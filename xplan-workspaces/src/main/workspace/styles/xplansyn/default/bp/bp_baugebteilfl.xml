@@ -350,6 +350,45 @@
     </PolygonSymbolizer>
   </Rule>
   <Rule>
+    <Name>Dörfliches Wohngebiet</Name>
+    <Description>
+      <Title>BP: Dörfliches Wohngebiet</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+        <ogc:Or>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzungCode</ogc:PropertyName>
+            <ogc:Literal>1450</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+            <ogc:Literal>1450</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Or>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill">#A87000</SvgParameter>
+        <SvgParameter name="fill-opacity">1.0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+  <Rule>
     <Name>Mischgebiete</Name>
     <Description>
       <Title>BP: Mischgebiete</Title>

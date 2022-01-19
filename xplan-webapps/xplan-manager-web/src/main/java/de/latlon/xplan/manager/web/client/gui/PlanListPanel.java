@@ -21,32 +21,6 @@
  */
 package de.latlon.xplan.manager.web.client.gui;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.COMMUNITY;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NAME;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NUMBER;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.PLANSTATUS;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VALIDITIYPERIOD;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VERSION;
-import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getImportDateFormat;
-import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getReleaseDateFormat;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
-
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.cell.client.DateCell;
@@ -67,9 +41,8 @@ import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.view.client.CellPreviewEvent;
-import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.CellPreviewEvent.Handler;
-
+import com.google.gwt.view.client.ListDataProvider;
 import de.latlon.xplan.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.comparator.ColumnComparator;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
@@ -77,16 +50,41 @@ import de.latlon.xplan.manager.web.client.gui.dialog.MapPreviewDialog;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.event.EditorStartedEvent;
 import de.latlon.xplan.manager.web.client.gui.filter.FilterPanel;
+import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.client.service.ManagerService;
 import de.latlon.xplan.manager.web.client.utils.DateTimeUtils;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.COMMUNITY;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NAME;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NUMBER;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.PLANSTATUS;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VALIDITIYPERIOD;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.VERSION;
+import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getImportDateFormat;
+import static de.latlon.xplan.manager.web.client.utils.DateTimeUtils.getReleaseDateFormat;
 
 /**
  * Manager panel of the xplan manager web gui.
@@ -737,13 +735,14 @@ public class PlanListPanel extends DecoratorPanel {
 	private boolean isVersionSupportedByEditor(XPlan xPlan) {
 		return "XPLAN_3".equals(xPlan.getVersion()) || "XPLAN_41".equals(xPlan.getVersion())
 				|| "XPLAN_50".equals(xPlan.getVersion()) || "XPLAN_51".equals(xPlan.getVersion())
-				|| "XPLAN_52".equals(xPlan.getVersion()) || "XPLAN_53".equals(xPlan.getVersion());
+				|| "XPLAN_52".equals(xPlan.getVersion()) || "XPLAN_53".equals(xPlan.getVersion())
+				|| "XPLAN_54".equals(xPlan.getVersion());
 	}
 
 	private boolean isVersionSupportedByInpirePlu(XPlan xPlan) {
 		return "XPLAN_41".equals(xPlan.getVersion()) || "XPLAN_50".equals(xPlan.getVersion())
 				|| "XPLAN_51".equals(xPlan.getVersion()) || "XPLAN_52".equals(xPlan.getVersion())
-				|| "XPLAN_53".equals(xPlan.getVersion());
+				|| "XPLAN_53".equals(xPlan.getVersion()) || "XPLAN_54".equals(xPlan.getVersion());
 	}
 
 	private String translateVersion(String version) {
@@ -761,6 +760,8 @@ public class PlanListPanel extends DecoratorPanel {
 			return "5.2";
 		if ("XPLAN_53".equalsIgnoreCase(version))
 			return "5.3";
+		if ("XPLAN_54".equalsIgnoreCase(version))
+			return "5.4";
 		return version;
 	}
 

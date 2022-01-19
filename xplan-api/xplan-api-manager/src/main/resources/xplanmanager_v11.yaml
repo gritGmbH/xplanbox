@@ -958,6 +958,7 @@ components:
               - XPLAN_51
               - XPLAN_52
               - XPLAN_53
+              - XPLAN_54
         rasterCrs:
           type: string
           description: Konfiguriertes CRS für die Rasterdatenhaltung
@@ -1071,6 +1072,7 @@ components:
             - XPLAN_51
             - XPLAN_52
             - XPLAN_53
+            - XPLAN_54
         planStatus:
           type: string
           example: Festgestellt
@@ -1164,6 +1166,7 @@ components:
             - XPLAN_51
             - XPLAN_52
             - XPLAN_53
+            - XPLAN_54
         filename:
           type: string
           example: xplan52-test.gml

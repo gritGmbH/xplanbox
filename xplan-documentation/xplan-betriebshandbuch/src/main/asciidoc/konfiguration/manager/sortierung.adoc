@@ -5,6 +5,7 @@ Für die Sortierung von Plandaten im XPlanWMS nach einem Datumsfeld stehen
 alle Datumsfelder zur Verfügung. Welches Feld für die Sortierung
 verwendet wird, kann in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ konfiguriert werden.
 
+Beispiel für eine Konfiguration mit unterschiedlichen Datumsfeldern je Planart:
 ----
 wmsSortDate_BP_Plan_XPLAN_3=BP_Plan,inkrafttretensDatum
 wmsSortDate_BP_Plan_XPLAN_40=BP_Plan,inkrafttretensDatum
@@ -53,8 +54,8 @@ Eigenschaft durch ein Komma separiert an.
 
 Wird kein Wert angegeben, oder fehlt ein Eintrag vollständig, kann für
 die Version/den Typ keine Zuordnung gefunden werden. Das Datumsfeld
-bleibt leer. Eine Änderung dieser Konfiguration während des laufenden
-Betriebs führt zu unterschiedlichen Grundlagen der Sortierung, über die
-Option `-updatewmssortdate` des XPlanManagerCLIs kann die Änderung aber
-für bereits importierte Daten nachgezogen werden. Dies ist im
-entsprechenden Kapitel des XPlanBenutzerhandbuchs beschrieben.
+bleibt leer.
+
+NOTE: Eine Änderung dieser Konfiguration während des laufenden
+Betriebs führt zu unterschiedlichen Grundlagen der Sortierung. Über die
+Option `updatewmssortdate` des XPlanManagerCLI kann die Änderung für bereits importierte Daten nachgezogen werden. Der Aufruf des XPlanManagerCLI ist im entsprechenden Kapitel des XPlanBenutzerhandbuchs beschrieben.

@@ -7144,6 +7144,170 @@
       </complexContent>
     </complexType>
   </element>
+  <element name="BP_WohngebaeudeFlaeche" substitutionGroup="gml:AbstractFeature">
+    <complexType>
+      <complexContent>
+        <extension base="gml:AbstractFeatureType">
+          <sequence>
+            <element name="gmlId" type="string" />
+            <element name="gmlName" minOccurs="0" type="string" />
+            <element name="gmlDescription" minOccurs="0" type="string" />
+            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
+            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
+            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
+            <element name="wmsSortDate" minOccurs="0" type="date" />
+            <element name="xpVersion" type="string" />
+            <element name="xpPlanType" type="string" />
+            <element name="xpPlanName" type="string" />
+            <element name="uuid" minOccurs="0" type="string" />
+            <element name="text" minOccurs="0" type="string" />
+            <element name="rechtsstand" minOccurs="0" type="string" />
+            <element name="rechtsstandCode" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
+            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
+            <element name="textAbschnitte" minOccurs="0" type="string" />
+            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
+            <element name="gliederung1" minOccurs="0" type="string" />
+            <element name="gliederung2" minOccurs="0" type="string" />
+            <element name="ebene" minOccurs="0" type="integer" />
+            <element name="gehoertZuBereich" minOccurs="0" type="string" />
+            <element name="hatGenerAttribut" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string" />
+            <element name="laermkontingent" minOccurs="0" type="string" />
+            <element name="laermkontingentGebiet" minOccurs="0" type="string" />
+            <element name="zusatzkontingent" minOccurs="0" type="string" />
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string" />
+            <element name="richtungssektorGrenze" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string" />
+            <element name="hoehenangabe" minOccurs="0" type="string" />
+            <element name="externeReferenz" minOccurs="0" type="string" />
+            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
+            <element name="flaechenschluss" minOccurs="0" type="string" />
+            <element name="DNmin" minOccurs="0" type="double" />
+            <element name="DNminUOM" minOccurs="0" type="string" />
+            <element name="DNmax" minOccurs="0" type="double" />
+            <element name="DNmaxUOM" minOccurs="0" type="string" />
+            <element name="DN" minOccurs="0" type="double" />
+            <element name="DNUOM" minOccurs="0" type="string" />
+            <element name="DNZwingend" minOccurs="0" type="double" />
+            <element name="DNZwingendUOM" minOccurs="0" type="string" />
+            <element name="FR" minOccurs="0" type="double" />
+            <element name="FRUOM" minOccurs="0" type="string" />
+            <element name="dachform" minOccurs="0" type="string" />
+            <element name="dachformCode" minOccurs="0" type="string" />
+            <element name="detaillierteDachform" minOccurs="0" type="string" />
+            <element name="detaillierteDachformCode" minOccurs="0" type="string" />
+            <element name="MaxZahlWohnungen" minOccurs="0" type="integer" />
+            <element name="Fmin" minOccurs="0" type="double" />
+            <element name="FminUOM" minOccurs="0" type="string" />
+            <element name="Fmax" minOccurs="0" type="double" />
+            <element name="FmaxUOM" minOccurs="0" type="string" />
+            <element name="Bmin" minOccurs="0" type="double" />
+            <element name="BminUOM" minOccurs="0" type="string" />
+            <element name="Bmax" minOccurs="0" type="double" />
+            <element name="BmaxUOM" minOccurs="0" type="string" />
+            <element name="Tmin" minOccurs="0" type="double" />
+            <element name="TminUOM" minOccurs="0" type="string" />
+            <element name="Tmax" minOccurs="0" type="double" />
+            <element name="TmaxUOM" minOccurs="0" type="string" />
+            <element name="GFZmin" minOccurs="0" type="decimal" />
+            <element name="GFZmax" minOccurs="0" type="decimal" />
+            <element name="GFZ" minOccurs="0" type="decimal" />
+            <element name="GFZ_Ausn" minOccurs="0" type="decimal" />
+            <element name="GFmin" minOccurs="0" type="double" />
+            <element name="GFminUOM" minOccurs="0" type="string" />
+            <element name="GFmax" minOccurs="0" type="double" />
+            <element name="GFmaxUOM" minOccurs="0" type="string" />
+            <element name="GF" minOccurs="0" type="double" />
+            <element name="GFUOM" minOccurs="0" type="string" />
+            <element name="GF_Ausn" minOccurs="0" type="double" />
+            <element name="GF_AusnUOM" minOccurs="0" type="string" />
+            <element name="BMZ" minOccurs="0" type="decimal" />
+            <element name="BMZ_Ausn" minOccurs="0" type="decimal" />
+            <element name="BMmin" minOccurs="0" type="double" />
+            <element name="BMminUOM" minOccurs="0" type="string" />
+            <element name="BMmax" minOccurs="0" type="double" />
+            <element name="BMmaxUOM" minOccurs="0" type="string" />
+            <element name="BM" minOccurs="0" type="double" />
+            <element name="BMUOM" minOccurs="0" type="string" />
+            <element name="BM_Ausn" minOccurs="0" type="double" />
+            <element name="BM_AusnUOM" minOccurs="0" type="string" />
+            <element name="GRZmin" minOccurs="0" type="decimal" />
+            <element name="GRZmax" minOccurs="0" type="decimal" />
+            <element name="GRZ" minOccurs="0" type="decimal" />
+            <element name="GRZ_Ausn" minOccurs="0" type="decimal" />
+            <element name="GRmin" minOccurs="0" type="double" />
+            <element name="GRminUOM" minOccurs="0" type="string" />
+            <element name="GRmax" minOccurs="0" type="double" />
+            <element name="GRmaxUOM" minOccurs="0" type="string" />
+            <element name="GR" minOccurs="0" type="double" />
+            <element name="GRUOM" minOccurs="0" type="string" />
+            <element name="GR_Ausn" minOccurs="0" type="double" />
+            <element name="GR_AusnUOM" minOccurs="0" type="string" />
+            <element name="Zmin" minOccurs="0" type="integer" />
+            <element name="Zmax" minOccurs="0" type="integer" />
+            <element name="Zzwingend" minOccurs="0" type="integer" />
+            <element name="Z" minOccurs="0" type="integer" />
+            <element name="Z_Ausn" minOccurs="0" type="integer" />
+            <element name="abweichungBauNVO" minOccurs="0" type="string" />
+            <element name="abweichungBauNVOCode" minOccurs="0" type="string" />
+            <element name="bauweise" minOccurs="0" type="string" />
+            <element name="bauweiseCode" minOccurs="0" type="string" />
+            <element name="abweichendeBauweise" minOccurs="0" type="string" />
+            <element name="abweichendeBauweiseCode" minOccurs="0" type="string" />
+            <element name="vertikaleDifferenzierung" minOccurs="0" type="string" />
+            <element name="bebauungsArt" minOccurs="0" type="string" />
+            <element name="bebauungsArtCode" minOccurs="0" type="string" />
+            <element name="bebauungVordereGrenze" minOccurs="0" type="string" />
+            <element name="bebauungVordereGrenzeCode" minOccurs="0" type="string" />
+            <element name="bebauungRueckwaertigeGrenze" minOccurs="0" type="string" />
+            <element name="bebauungRueckwaertigeGrenzeCode" minOccurs="0" type="string" />
+            <element name="bebauungSeitlicheGrenze" minOccurs="0" type="string" />
+            <element name="bebauungSeitlicheGrenzeCode" minOccurs="0" type="string" />
+            <element name="abweichungText" minOccurs="0" type="string" />
+            <element name="refGebaeudequerschnitt" minOccurs="0" type="string" />
+            <element name="artDerBaulichenNutzung" minOccurs="0" type="string" />
+            <element name="artDerBaulichenNutzungCode" minOccurs="0" type="string" />
+            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
+            <element name="rechtscharakter" minOccurs="0" type="string" />
+            <element name="rechtscharakterCode" minOccurs="0" type="string" />
+            <element name="startBedingung" minOccurs="0" type="string" />
+            <element name="endeBedingung" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string" />
+            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string" />
+            <element name="ZUmin" minOccurs="0" type="integer" />
+            <element name="ZUmax" minOccurs="0" type="integer" />
+            <element name="ZUzwingend" minOccurs="0" type="integer" />
+            <element name="ZU" minOccurs="0" type="integer" />
+            <element name="ZU_Ausn" minOccurs="0" type="integer" />
+            <element name="zugunstenVon" minOccurs="0" type="string" />
+            <element name="Z_Staffel" minOccurs="0" type="integer" />
+            <element name="wohnnutzungEGStrasse" minOccurs="0" type="string" />
+            <element name="wohnnutzungEGStrasseCode" minOccurs="0" type="string" />
+            <element name="ZWohn" minOccurs="0" type="integer" />
+            <element name="GFAntWohnen" minOccurs="0" type="double" />
+            <element name="GFAntWohnenUOM" minOccurs="0" type="string" />
+            <element name="GFWohnen" minOccurs="0" type="double" />
+            <element name="GFWohnenUOM" minOccurs="0" type="string" />
+            <element name="GFAntGewerbe" minOccurs="0" type="string" />
+            <element name="GFAntGewerbeUOM" minOccurs="0" type="double" />
+            <element name="GFGewerbe" minOccurs="0" type="string" />
+            <element name="GFGewerbeUOM" minOccurs="0" type="double" />
+            <element name="aufschrift" minOccurs="0" type="string" />
+            <element name="dachgestaltung" minOccurs="0" type="string" />
+            <element name="VF" minOccurs="0" type="string" />
+            <element name="VFUOM" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheit" minOccurs="0" type="double" />
+            <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
+            <element name="type" minOccurs="0" type="string" />
+            <element name="typCode" minOccurs="0" type="string" />
+          </sequence>
+        </extension>
+      </complexContent>
+    </complexType>
+  </element>
+
   <element name="BP_ZentralerVersorgungsbereich" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>

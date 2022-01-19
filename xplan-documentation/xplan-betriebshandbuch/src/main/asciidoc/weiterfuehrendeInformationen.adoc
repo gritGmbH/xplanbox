@@ -2,7 +2,7 @@
 
 === Empfehlungen für die Bereitstellung von XPlanungsdaten
 
-Die Leitstelle XPlanung/XBau hat einen https://www.xleitstelle.de/leitfaden[Leitfaden XPlanung] herausgegeben, der sich an die Träger von Planverfahrenen, Planer in der öffentlichen Verwaltung als auch in Planungs- und Ingenieurbüros wendet, die mit der konkreten technischen Umsetzung von XPlanung bzw. der Erstellung von Planwerken gemäß dem Standard XPlanung beauftragt sind. Der Leitfaden bietet Unterstützung in der effektiven Umsetzung von XPlanung und der standardkonformen Erstellung und Bereitstellung von XPlanungsdaten von hoher Qualität.
+Die Leitstelle XPlanung/XBau hat einen https://www.xleitstelle.de/leitfaden[Leitfaden XPlanung] herausgegeben, der sich an die Träger von Planverfahren, Planer in der öffentlichen Verwaltung als auch in Planungs- und Ingenieurbüros wendet, die mit der konkreten technischen Umsetzung von XPlanung bzw. der Erstellung von Planwerken gemäß dem Standard XPlanung beauftragt sind. Der Leitfaden bietet Unterstützung in der effektiven Umsetzung von XPlanung und der standardkonformen Erstellung und Bereitstellung von XPlanungsdaten von hoher Qualität.
 
 === Einbindung in andere Software
 
@@ -21,9 +21,9 @@ NOTE: Als Desktop-Client wird https://qgis.org/[QGIS] empfohlen. Als WebGIS-Clie
 
 Änderungen, die über den XPlanManager vorgenommen werden, werden in den Instanz-Dokumenten in der XPlanDB gespeichert. Die Datenbankschemata der XPlanDB sind im Anhang unter <<appendix_xplandb>> zu finden. Der Ablageort der Rasterdaten aus einem XPlanArchiv wird im Anhang unter <<appendix_xplanwms-workspace>> näher beschrieben.
 
-==== Übersicht der Datenbankschema
+==== Übersicht der Datenbankschemata
 
-Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschema und die auf diese Schema zugreifenden Komponenten am Beispiel der festgestellten Pläne bei <<systemarchitektur-und-schnittstellen,separater Datenhaltung>>.
+Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschemata und die auf diese Schema zugreifenden Komponenten am Beispiel der festgestellten Pläne bei <<systemarchitektur-und-schnittstellen,separater Datenhaltung>>.
 
 [width="100%",cols="25%,50%,25%",options="header"]
 |===
@@ -51,6 +51,9 @@ Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschema und di
 | `xplan53`
 | <<xplanwfs>>/_wfs53_
 | BLOB <<appendix_xplandb_xplan53,(Schema)>>
+| `xplan54`
+| <<xplanwfs>>/_wfs54_
+| BLOB
 | `xplansyn`
 | <<xplansynwfs>>/_xplansynwfs_, <<xplanwms>>/_wms_
 | Relational <<appendix_xplandb_xplansyn,(Schema)>>

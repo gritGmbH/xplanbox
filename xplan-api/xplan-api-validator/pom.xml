@@ -33,6 +33,8 @@
           <webApp>
             <contextPath>/xplan-api-validator</contextPath>
             <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
+            <webInfIncludeJarPattern>^$</webInfIncludeJarPattern>
+            <containerIncludeJarPattern>^$</containerIncludeJarPattern>
           </webApp>
           <webAppSourceDirectory>target/${project.artifactId}-${project.version}</webAppSourceDirectory>
           <stopPort>8079</stopPort>
@@ -42,6 +44,7 @@
             <port>8080</port>
             <idleTimeout>60000</idleTimeout>
           </httpConnector>
+          <jvmArgs>--illegal-access=warn --add-opens java.base/java.lang=ALL-UNNAMED -Dorg.eclipse.jetty.webapp.LEVEL=DEBUG -Dcatalina.base=${project.basedir}/target</jvmArgs>
         </configuration>
         <!--
         <executions>

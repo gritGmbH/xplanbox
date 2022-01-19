@@ -104,14 +104,15 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 
 /**
  * Modifies the {@link FeatureCollection} representing an XPlanGML.
@@ -178,7 +179,7 @@ public class XPlanManipulator {
 		modifyTexts(context, version, planToEdit, feature, schema, changes.getTexts(), featuresToAdd, featuresToRemove,
 				referencesToRemove, previouslyReferencedTextFeatureIds);
 		if (XPLAN_41.equals(version) || XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
-				|| XPLAN_53.equals(version))
+				|| XPLAN_53.equals(version) || XPLAN_54.equals(version))
 			modifyCode(version, feature, "verfahren", changes.getBaseData().getMethodCode());
 		modifyReferences(context, version, feature, changes, schema, featuresToAdd);
 	}
@@ -216,7 +217,7 @@ public class XPlanManipulator {
 		for (Change change : changes) {
 			if (changedType.equals(change.getType())) {
 				if (XPLAN_41.equals(version) || XPLAN_50.equals(version) || XPLAN_51.equals(version)
-						|| XPLAN_52.equals(version) || XPLAN_53.equals(version)) {
+						|| XPLAN_52.equals(version) || XPLAN_53.equals(version) || XPLAN_54.equals(version)) {
 					addProperty(properties, createVerbundenerPlanProperty(feature, schema, change, propName));
 				}
 				else if (XPLAN_3.equals(version)) {
@@ -266,7 +267,8 @@ public class XPlanManipulator {
 			List<Feature> featuresToRemove, List<String> referencesToRemove,
 			String previouslyReferencedRasterBasisFeatureId) {
 		String namespaceUri = bpBereichFeature.getName().getNamespaceURI();
-		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)) {
+		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
+				|| XPLAN_54.equals(version)) {
 			modifyRasterBasis_XPlan51(context, version, planToEdit, bpBereichFeature, schema, rasterBasis,
 					featuresToRemove, referencesToRemove, previouslyReferencedRasterBasisFeatureId, namespaceUri);
 		}
@@ -402,7 +404,7 @@ public class XPlanManipulator {
 						GRUENORDNUNGSPLAN, featuresToAdd);
 		}
 		else if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
-				|| XPLAN_53.equals(version)) {
+				|| XPLAN_53.equals(version) || XPLAN_54.equals(version)) {
 			modifyReferences_XPlan50(context, version, feature, changes, schema, featuresToAdd);
 		}
 	}
@@ -500,7 +502,7 @@ public class XPlanManipulator {
 				props, refPropName, "XP_ExterneReferenz", null);
 
 		if (text.getRechtscharakter() != null && (XPLAN_50.equals(version) || XPLAN_51.equals(version)
-				|| XPLAN_52.equals(version) || XPLAN_53.equals(version))) {
+				|| XPLAN_52.equals(version) || XPLAN_53.equals(version) || XPLAN_54.equals(version))) {
 			addProperty(props, createRechtscharakterProperty(namespaceUri, text.getRechtscharakter().getCode()));
 		}
 		if (props.isEmpty())
@@ -591,7 +593,7 @@ public class XPlanManipulator {
 			String namespaceUri, AbstractReference reference, FeatureType featureType, List<Property> props,
 			QName refPropName, String externeReferenzElementName, String spezExterneReferenzTyp) {
 		if (XPLAN_41.equals(version) || XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
-				|| XPLAN_53.equals(version)) {
+				|| XPLAN_53.equals(version) || XPLAN_54.equals(version)) {
 			GenericProperty refProperty = createExterneReferenzProperty_XPlan41_XPlan50(schema, featureType,
 					refPropName, reference, externeReferenzElementName, spezExterneReferenzTyp);
 			addProperty(props, refProperty);
@@ -906,15 +908,15 @@ public class XPlanManipulator {
 	private QName getTextAbschnittName(XPlanVersion version, String namespaceUri, Feature oldTextFeature) {
 		if (oldTextFeature != null)
 			return oldTextFeature.getName();
-		if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
-				|| XPLAN_53.equals(version))
+		if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
+				|| XPLAN_54.equals(version))
 			return new QName(namespaceUri, "BP_TextAbschnitt");
 		return new QName(namespaceUri, "XP_TextAbschnitt");
 	}
 
 	private QName getRasterBasisElementName(XPlanVersion version, String namespaceUri) {
-		if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
-				|| XPLAN_53.equals(version))
+		if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
+				|| XPLAN_54.equals(version))
 			return new QName(namespaceUri, "XP_Rasterdarstellung");
 		return new QName(namespaceUri, "XP_RasterplanBasis");
 	}
@@ -1002,7 +1004,8 @@ public class XPlanManipulator {
 
 	private void checkVersionAndType(XPlanVersion version, XPlanType type) {
 		if (!XPLAN_3.equals(version) && !XPLAN_41.equals(version) && !XPLAN_50.equals(version)
-				&& !XPLAN_51.equals(version) && !XPLAN_52.equals(version) && !XPLAN_53.equals(version))
+				&& !XPLAN_51.equals(version) && !XPLAN_52.equals(version) && !XPLAN_53.equals(version)
+				&& !XPLAN_54.equals(version))
 			throw new IllegalArgumentException("Unsupported Version: " + version);
 		if (!XPlanType.BP_Plan.equals(type))
 			throw new IllegalArgumentException("Unsupported Plan, only BP_Plan is supported yet.");
