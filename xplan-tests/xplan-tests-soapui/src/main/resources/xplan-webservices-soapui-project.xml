@@ -485,11 +485,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>80</con:value>
+          <con:value>87</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value>XPLAN_BP_PLAN_8c84a651-23c2-4488-bf7b-14cca919509a</con:value>
+          <con:value>XPLAN_BP_PLAN_a075a6ae-8596-41d4-99f6-0937691b9174</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -711,7 +711,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>81</con:value>
+          <con:value>88</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -944,7 +944,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>82</con:value>
+          <con:value>89</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1315,7 +1315,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>83</con:value>
+          <con:value>90</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1621,11 +1621,6 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <con:style>QUERY</con:style>
             </con:parameter>
             <con:parameter>
-              <con:name>resolvedepth</con:name>
-              <con:value>*</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
               <con:name>StoredQuery_ID</con:name>
               <con:value>urn:ogc:def:query:OGC-WFS::PlanId</con:value>
               <con:style>QUERY</con:style>
@@ -1695,11 +1690,6 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <con:style>QUERY</con:style>
             </con:parameter>
             <con:parameter>
-              <con:name>resolvedepth</con:name>
-              <con:value>*</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
               <con:name>StoredQuery_ID</con:name>
               <con:value>urn:ogc:def:query:OGC-WFS::PlanName</con:value>
               <con:style>QUERY</con:style>
@@ -1756,7 +1746,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>84</con:value>
+          <con:value>91</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1936,7 +1926,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>85</con:value>
+          <con:value>92</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
