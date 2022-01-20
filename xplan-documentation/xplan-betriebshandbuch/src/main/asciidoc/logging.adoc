@@ -95,7 +95,7 @@ Im Abschnitt `Loggers` werden die einzelnen `Logger` konfiguriert:
 <3> Der Ausgabekanal `RollingFile_Appender` gibt Informationen, Warnung und Fehler aus (Log-Level `info`, `warn`, `error` und `fatal` )
 <2> Für die Logger `org.deegree` und `de.latlon.xplan` ist ebenfalls ein Log-Level `info` gesetzt. Der Wert für den Log-Level kann `trace`, `debug`, `info`, `warn`, `error`, `fatal` oder `off` sein. Zwischen Klein- und Grossschreibung wird nicht unterschieden.
 
-Im Abschnitt `Properties` können Eigenschaften definiert werden:
+Im Abschnitt `Properties` können zusätzliche Eigenschaften definiert werden, die in der Konfigurationsdatei verwendet werden können:
 
 [source,yaml]
 ----
@@ -107,6 +107,6 @@ Im Abschnitt `Properties` können Eigenschaften definiert werden:
         value: ${sys:catalina.base:-.}/logs
 ----
 <1> Definiert die Variable `log.file` mit dem Wert `xplan-validator-api.log`
-<2> Definiert die Variable `log.path` mit dem Wert `${sys:catalina.base:-.}/logs`, dabei wird die Systemvariable `catalina.base` ausgewertet und dem Verzeichnisnamen `logs` vorangestellt. Ist die Systemvariable nicht gesetzt `:-`, wird der Vorgabewert `.` (Basisverzeichnis des Prozesses) verwendet.
+<2> Definiert die Variable `log.path` mit dem Wert `${sys:catalina.base:-.}/logs`, dabei wird die Systemvariable `catalina.base` ausgewertet und dem Verzeichnisnamen `logs` vorangestellt. Ist die Systemvariable nicht gesetzt `:-`, wird der Vorgabewert `.` (Basisverzeichnis des Prozesses) verwendet und dem Verzeichnisnamen `logs` vorangestellt.
 
 Weitere Informationen zur Konfiguration von Log4j sind auf den Seiten des Projekts unter https://logging.apache.org/log4j/2.x/manual/configuration.html zu finden.
