@@ -37,7 +37,7 @@ In den Anwendungen werden für die Nachrichten verschiedenen Protokollebenen (Lo
 
 ==== Konfiguration
 
-Die Konfiguration des verwendeten Apache Log4j-Frameworks erfolgt über die Konfigurationsdatei `log4j2.yaml`. Diese Datei ist in allen Komponenten enthalten und liegt bei den Webapps in dem Verzeichnis `WEB-INF/classes` und den Kommandozeilenwerkzeugen im Verzeichnis `etc/`.
+Die Konfiguration des verwendeten Apache Log4j-Frameworks erfolgt über die Konfigurationsdatei `log4j2.yaml`. Diese Datei ist in allen Komponenten enthalten und liegt in den Webapps im Verzeichnis `WEB-INF/classes` und bei den Kommandozeilenwerkzeugen im Verzeichnis `etc/`.
 
 Der Aufbau einer Log4j-Konfigurationsdatei ist in mehrere Abschnitte aufgeteilt.
 Die verschiedenen Protokollausgabekanäle werden im Abschnitt `Appenders` definiert:
@@ -110,3 +110,14 @@ Im Abschnitt `Properties` können zusätzliche Eigenschaften definiert werden, d
 <2> Definiert die Variable `log.path` mit dem Wert `${sys:catalina.base:-.}/logs`, dabei wird die Systemvariable `catalina.base` ausgewertet und dem Verzeichnisnamen `logs` vorangestellt. Ist die Systemvariable nicht gesetzt `:-`, wird der Vorgabewert `.` (Basisverzeichnis des Prozesses) verwendet und dem Verzeichnisnamen `logs` vorangestellt.
 
 Weitere Informationen zur Konfiguration von Log4j sind auf den Seiten des Projekts unter https://logging.apache.org/log4j/2.x/manual/configuration.html zu finden.
+
+==== Setzen der Log4j-Konfiguration
+
+Beim Betrieb der xPlanBox-Komponenten in einem Apache Tomcat muss die Systemvariable `log4j2.configurationFile` gesetzt werden. Die Einstellung wird am besten zu den `CATALINA_OPTS` hinzugefügt:
+
+[source,bash]
+----
+CATALINA_OPTS=-Dlog4j2.configurationFile=classpath:/log4j2.yaml
+----
+
+Weitere Informationen zur Konfiguration von Log4j in einem Servlet-Container sind unter https://logging.apache.org/log4j/2.x/manual/webapp.html zu finden.
