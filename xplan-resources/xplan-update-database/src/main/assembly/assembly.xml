@@ -18,7 +18,7 @@
     <fileSet>
       <directory>src/main/resources</directory>
       <includes>
-        <include>log4j.properties</include>
+        <include>log4j2.yaml</include>
       </includes>
       <outputDirectory>etc</outputDirectory>
     </fileSet>
