@@ -5,7 +5,8 @@ MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 ARG TOMCAT_VERSION="9.0.54"
 # set environment variables
-ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/"
+ENV CATALINA_OPTS="-DXPLANBOX_CONFIG=/root/xplan-manager-config/"
+ENV JAVA_OPTS="-Xmx8192m"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # update and install apt-transport-https (needed to install java 11)
