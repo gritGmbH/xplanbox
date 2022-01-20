@@ -17,6 +17,7 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
+        <SvgParameter name="fill">#FF8A6F</SvgParameter>
         <SvgParameter name="fill-opacity">0</SvgParameter>
       </Fill>
       <Stroke>
