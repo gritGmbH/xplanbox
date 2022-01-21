@@ -9,15 +9,17 @@ Nach Standard-Out werden nur Warnungen und Fehler geschrieben.
 
 ==== Protokolldateien der Komponenten
 
-Zusätzlich wird eine Log-Datei für alle Anwendungen und Dienste in einer entsprechenden benannten Datei im  Log-Verzeichnis des Tomcats _$\{catalina.base}/logs/_ geschrieben.
+Zusätzlich wird eine Log-Datei für alle Anwendungen und Dienste in einer entsprechenden benannten Datei im Log-Verzeichnis des Tomcats _${catalina.base}/logs/_ geschrieben.
 In die Log-Dateien werden Informationen, Warnungen und Fehler geschrieben.
 
 [width="88%",cols="35%,65%",options="header"]
 |===
 |Anwendung |Log-Datei
 |XPlanManagerWeb |${catalina.base}/logs/xplan-manager-web.log
+|XPlanManagerAPI |${catalina.base}/logs/xplan-manager-api.log
 |XPlanManagerCLI |./xplan-manager-cli.log
 |XPlanValidatorWeb |${catalina.base}/logs/xplan-validator-web.log
+|XPlanValidatorAPI |${catalina.base}/logs/xplan-validator-api.log
 |XPlanValidatorCLI |./xplan-validator-cli.log
 |XPlanWMS |${catalina.base}/logs/xplan-wms.log
 |XPlanWFS |${catalina.base}/logs/xplan-wfs.log
