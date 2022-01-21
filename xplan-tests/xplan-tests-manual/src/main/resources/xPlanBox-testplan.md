@@ -2,22 +2,35 @@
 
 Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschiedene Testfälle definiert wurden.
 
+
 * [XPlanManagerCLI](#xplanmanagercli)
 * [XPlanManagerWeb](#xplanmanagerweb)
 * [XPlanValidatorCLI](#xplanvalidatorcli)
-* [XPlanValidatorWeb](#xplanvalidatorweb) 
-* [XPlanPortale](#xplanportale)
+* [XPlanValidatorWeb](#xplanvalidatorweb)
+* [XPlanTransformCLI](#xplantransformcli)
 * [XPlanWMS](#xplanwms)
 * [XPlanWFS/XPlanSynWFS](#xplanwfsxplansynwfs)
-
+* [XPlanRessourcen](#xplanresssourcen)
 
 
 # XPlanManagerCLI 
 
-### Prüffall-01: Erzeugung der DB Schemata 
+### Prüffall-01: Hilfe
+
+#### Prüffall 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer ruft die Hilfe mit dem Befehl in [1] auf | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
+
+**Hinweis**
+* [1] `./XPlanManager -help `
+
+---
+
+### Prüffall-02: Erzeugung der DB Schemata 
 
 #### Vorbedingungen 
- * Der systemweit konfigurierbare alternativen Betriebsmodus ist verfügbar.
  * Die DB-Tabelle der Datenbasis ist leer, beinhaltet somit kein Datenbank-Schema.
  * Der Nutzer hat die Rechte, eine Datenbank anzulegen.
  
@@ -30,18 +43,16 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **03** | Der Benutzer überprüft, ob das Datenbank-Schema erstellt worden ist | Das Datenbank-Schema wurde erzeugt. 
 
 **Hinweis**
- * [1]  `cd ~/install-packages/$VERSION/workspace/cli/xplan-manager-cli-$VERSION/bin `
-  * Der Pfad kann abweichen
+ * [1]  `cd ~/install-packages/$VERSION/workspace/cli/xplan-manager-cli-$VERSION/bin ` (Der Pfad kann abweichen)
  * [2]  ` ./XPlanManager -createdb <dbname> jdbc:postgresql://<host>:<port> -u <username> -p <password> -t template_postgis `
   
-
 ---
 
-### Prüffall-02: DB Anbindung 
+### Prüffall-03: DB Anbindung 
 
 #### Vorbedingungen 
 
- * Der Prüffall-01 ist erfolgreich ausgeführt worden.
+ * Der Prüffall-02 ist erfolgreich ausgeführt worden.
 
 #### Prüffall 
 
@@ -50,137 +61,100 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer überprüft in dem Manager Workspace [1], ob die im Prüffall-01 verwendeten Einstellungen in der Datenbank-Verbindung geschrieben wurden | Die Datenbank-Einstellungen entsprechen den Eingaben von Prüffall-01. 
 
 **Hinweis**
- * [1]  ` .deegree/xplan-manager-workspace/jdbc/xplan.xml`
-  * Der Pfad kann abweichen
+ * [1]  ` .deegree/xplan-manager-workspace/jdbc/xplan.xml` (Der Pfad kann abweichen)
 
 ---
 
-
-### Prüffall-03: Alternativer Betriebsmodus: Konfigurationserzeugung
+### Prüffall-04: Planverwaltung
 
 #### Vorbedingungen 
- * Der systemweit konfigurierbare alternativen Betriebsmodus ist verfügbar.
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
+
+ * Der Prüffall-03 sind erfolgreich ausgeführt worden.
+
+#### Prüffall 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer importiert mit dem Befehl [1] einen Plan in den XPlanManager | Der Plan wird in den XPlanManager importiert, je nach Konfiguration auch mit Geometriefehlern (Nutzung von [--force]).
+**02** | Der Benutzer ruft mit dem Befehl [2] eine Auflistung der im XPlanManager vorliegenden Pläne auf und überprüft somit, ob der in Schritt 01 importierte Plan vorhanden ist |  Die vorliegenden Pläne werden aufgelistet und der in Schritt 01 importierte Plan wird angezeigt.
+**03** | Der Benutzer exportiert einen Plan mit Hilfe des Befehls in [3] aus dem XPlanManger | Der exportierte Plan wird im ausgewählten Verzeichnis angezeigt.
+**04** | Der Benutzer löscht mit dem Befehl [4] einen Plan aus dem XPlanManager | Der Plan wird aus dem XPlanManger gelöscht, geprüft werden kann dies mit erneuter Ausführung des Befehls [2].
+
+**Hinweis**
+* Korrekte Reihenfolge der Parameter beachten!
+* [1] `./XPlanManager -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]`
+* [2] `./XPlanManager -list`
+* [3] `./XPlanManager -export   <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]`
+* [4] `./XPlanManager -delete   <planid>`
+ 
+---
+
+# Prüffall-05: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanwerkWMS
+
+#### Vorbedingungen 
+
+ * Der Prüffall-03 ist erfolgreich ausgeführt worden.
+ * Das zur Sortierung genutzte Datumsfeld wurde in der Datei <XPLANBOX_CONFIG>/managerConfiguration.properties erfolgreich konfiguriert.
 
 #### Prüffall
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer importiert einen Plan mit [1] | Pro Plan wird eine Dienst-Konfiguration erstellt, in der ein gefilterter Zugriff (nach fortlaufender PlanID) realisiert ist.
-**02** | Der Benutzer führt einen Reload des deegree XPlanWMS Workspaces durch | Der Workspace wird neu geladen. 
-**03** | Der Benutzer überprüft die WMS-Konfiguration | Es werden pro Plan die folgenden Konfigurationsartefakte erstellt (siehe [2]). 
-**04** | Der Benutzer löscht den unter Punkt 1 erstellten Plan [3] | Der Plan ist aus der Datenhaltung entfernt worden. 
-**05** | Der Benutzer führt einen Reload des deegree XPlanWMS Workspaces durch | Der Workspace wird neu geladen. 
-**06** | Der Benutzer überprüft die WMS-Konfiguration | Die Konfigurationsdateien sind gelöscht. 
+**01** | Der Benutzer führt mit dem Befehl [1] eine Aktualisierung des  WMS-Sortierfeldes durch | Die Sortierung der Pläne im XPlanwerkWMS ändert sich.
+**02** | Der Benutzer wecheselt in den deegree XPlanwerkWMS Workspace und überprüft das Ergebnis in den Themes, siehe [2] | Die Sortierung der Pläne im XPlanwerkWMS hat sich mit der gewählten KOnfiguration geändert.
 
 **Hinweis**
 
- * [1]  ` ./XPlanManager -importmakeconfig [--force] <xplanarchiv> [CRS] ` 
- * [2] deegreeWMS, Themes (bplan, fplan, lplan, rplan, bplanraster, fplanraster, lplanraster, rplanraster), FeatureLayers (bplan, fplan, lplan, rplan), TileLayers (bplanraster, fplanraster, lplanraster, rplanraster)
-  * Wird z.B.: nur ein BPlan ohne Rasterplan importiert, so dürfen auch nur die zu dem BPLan gehörigen Konfigurationsdateien angelegt werden. Die unter [1] aufgelisteten Artefakte sind eine Auflistung aller möglichen Konfigurationsdateien.
- * [3]   `./XPlanManager -deletewithconfig <planid> `
- 
- 
+* [1]  ` ./XPlanManager -updatewmssortdate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]` 
+* [2]  ` .deegree/xplansyn-wms-workspace/themes/BP_Planraster_sortiert.xml` (Der Pfad kann abweichen)
+
 ---
- 
-### Prüffall-04: Filter auf PlanId in Layer Konfigurationen 
+
+# Prüffall-06: Bearbeitung von Ebenenbäumen
 
 #### Vorbedingungen 
- * Der systemweit konfigurierbare alternativen Betriebsmodus ist verfügbar.
- * Der Prüffall-03 wurde erfolgreich ausgeführt.
- 
-#### Prüffall 
+
+ * Der Prüffall-03 ist erfolgreich ausgeführt worden.
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in die Layer Konfiguration des deegree Workspace Verzeichnis [1] | Der Benutzer befindet sich in dem unter [1] angegebenen Verzeichnis. 
-**02** | Der Benutzer öffnet die Konfiguration für einen Layer | Die Layer Konfiguration wird als XML-Struktur dargestellt. 
-**03** | Der Benutzer überprüft das Vorhandensein des Filter Ausdrucks auf die zu dem Plan gehörige PlanID | Der Filter Ausdruck mit PlanID ist vorhanden.
+**01** | Der Benutzer fügt mit dem Befehl [1] eine Ebene in den Ebenenbaum ein | Die neue Ebene wird eingefügt, beim weglassen des Parameters <categoryname> wird die Ebene direkt unter der Wurzelebene eingefügt.
+**02** | Der Benutzer entfernt mit dem Befehl [2] eine Ebene aus dem Ebenenbaum | Die Ebene wird aus der Ebenenkonfiguration entfernt.
+**03** | Der Benutzer fügt mit dem Befehl [3] eine Katergorieebene in den Ebenenbaum ein | Die neue Kategorieebene wird eingefügt. Beim angeben des Parameters <uppercategory> wird die neue Kategorieebene direkt unter die angegebene Kategorieebene eingefügt. Das Verhalten ist rekursiv, d.h. die Verschachtelung der Kategorieebenen kann beliebig tief erfolgen.
+**04** | Der Benutzer entfernt mit dem Befehl [4] eine Kategorieebene aus dem Ebenenbaum | Die Kategorieebene wird aus der Ebenenkonfiguration entfernt. Enthält die gewählte Kategorieebene untergeordneten Kategorien, werden diese ebenfalls gelöscht.
+**05** | Der Benutzer bewegt mit dem Befehl [5] eine Ebene in eine andere Kategorieebene des Ebenenbaums | Die Ebene wird in die andere Kategoriebene bewegt.
 
 **Hinweis**
- *  ` cd ~/.deegree/xplan-wms-workspace/layers/`
- 
+
+* [1]  ` ./XPlanManager -addlayer <bplan|rplan|fplan|lplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]` 
+* [2]  ` ./XPlanManager -removelayer <bplan|rplan|fplan|lplan> <layername>`
+* [3]  ` ./XPlanManager -addcategory <bplan|rplan|fplan|lplan> [<uppercategory>] <categoryname> <categorytitle>`  
+* [4]  ` ./XPlanManager -removecategory <bplan|rplan|fplan|lplan> <categoryname>`
+* [5]  ` ./XPlanManager -movelayer <bplan|rplan|fplan|lplan> <layername> <categoryname>`
+
 ---
 
-### Prüffall-05: Ablage der Konfigurationsdateien 
+# Prüffall-07: Visualisierung von importierten XPlanGML-Rasterdaten 
 
 #### Vorbedingungen 
- * Der systemweit konfigurierbare alternativen Betriebsmodus ist verfügbar.
- * Der Prüffall-03 wurde erfolgreich ausgeführt.
+
+ * Der Prüffall-03 ist erfolgreich ausgeführt worden.
  
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer überprüft die WMS-Konfiguration | Alle Konfigurationsartefakte für den importierten Plan enthalten die PlanId. 
-
----
-
-### Prüffall-06: Laden von XPlanGML-Rasterdaten in die Datenbasis
-
-Beispielhaft werden anhand der Testdaten XPlanGML-Pläne (Rasterdaten) der Versionen 4.0.2 und 4.1.1 über den XPlanManager in die Datenbasis geladen und mittels GetMap-Request über den XPlan WMS wieder abgerufen.
-
-#### Vorbedingungen: 
- * Nutzer ist an dem System angemeldet
+ Beispielhaft werden anhand der Testdaten XPlanGML-Pläne (Rasterdaten) mit verschiedenen Versionen über den XPlanManager in die Datenbasis geladen und mittels GetMap-Request über den XPlanWMS wieder abgerufen.
  
 #### Prüffall
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanManagers mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis des XPlanManagers.
-**02** | Der Benutzer importiert einen Plan mit Rasterdaten [2] | Pro Plan wird eine Dienst-Konfiguration erstellt, in der ein gefilterter Zugriff (nach fortlaufender PlanID) realisiert ist.
-**03** | Der Benutzer lässt sich den importierten Plan auflisten [3] | Der importierte Plan wird aufgelistet.
-**04** | Der Benutzer führt einen Reload des deegree XPlan WMS Workspaces durch [4] | Der Workspace wird neu geladen. 
-**05** | Der Benutzer führt eine GetMap-Anfrage durch [5] | Der importierte Rasterplan wird dargestellt. 
+**01** | Der Benutzer importiert mit dem Befehl in [1] einen Plan mit Rasterdaten in den XPlanManager | Der Plan wird in den XPlanManager importiert.
+**02** | Der Benutzer lässt sich den importierten Plan mit dem Befehl in [2] auflisten | Der importierte Plan wird aufgelistet.
+**03** | Der Benutzer führt eine GetMap-Anfrage wie in [3] durch | Der importierte Rasterplan wird dargestellt. 
 
 **Hinweis**
 
-* [1]  `cd ~/install-packages/$VERSION/workspace/cli/xplan-manager-cli-$VERSION/bin `
-* [2]  ` ./XPlanManager -importmakeconfig [--force] <xplanarchiv> [CRS] ` 
-* [3]  ` ./XPlanManager -list `
-* [4] <http://<host:port>/xplan-wms/>
-* [5] <http://<host:port>/xplan-wms/services/wms?REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&WIDTH=1081&HEIGHT=725&LAYERS=bplanraster_sortiert&TRANSPARENT=TRUE&FORMAT=image%2Fpng&BBOX=417326.9138990595,5715257.490169556,418938.9357000923,5716338.633375614&SRS=EPSG:25833&STYLES=default>
-
----
-  
-### Prüffall-07: Anlegen der Konfigurationsstrukturen für die Rasterplanbereitstellung 
-
-Überprüfung der angelegten Konfigurationsstrukturen für die unter Prüffall-06 geladenen Rasterdaten (in der Datenbasis wurden die Konfigurationsdateien angelegt GeoTiffTileStore-Konfiguration, TileLayer-Konfiguration und Ebenenbaum-Konfiguration: hier wurde neuer Raster-Layer eingefügt und nach Datum sortiert)
-
-#### Vorbedingung: 
- * Nutzer ist an dem System angemeldet
- 
-#### Prüffall
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanManagers mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis des XPlanManagers.
-**02** | Der Benutzer importiert mehrere Pläne mit Rasterdaten [2] | Pro Plan wird eine Dienst-Konfiguration erstellt, in der ein gefilterter Zugriff (nach fortlaufender PlanID) realisiert ist.
-**03** | Der Benutzer lässt sich die importierten Plan auflisten [3] | Der importierte Plan wird aufgelistet.
-**04** | Der Benutzer öffnet die deegree-Oberfläche [4] | Es öffnet sich die deegree-Oberfläche.
-**05** | Der Benutzer überprüft das Vorhandensein der Konfigurationsdateien für TileStore und TileLayer | Die Konfigurationsdateien sind vorhanden.
-**06** | Der Benutzer überprüft das Vorhandensein der der Ebenenbaum-Konfiguration (Raster-Layer werden nach Datum sortiert)| Die Raster-Layer werden nach dem Datum sortiert angezeigt.
-
-
-**Hinweis**
-
-* [1]  `cd ~/install-packages/$VERSION/workspace/cli/xplan-manager-cli-$VERSION/bin `
-* [2]  ` ./XPlanManager -importmakeconfig [--force] <xplanarchiv> [CRS] ` 
-* [3]  ` ./XPlanManager -list `
-* [4] <http://<host:port>/xplan-wms/>
-
-
-
-# xPlanBox Landingpage
-
-### Prüffall-01: Links aufrufen
-
-#### Prüffall 
-Schritt | Beschreibung | Erwartetes Ergebnis 
------------ |------------------|-------------------------
-**01** | Der Benutzer überprüft die Ordnung sowie Rechtsschreibung der Linkvorschau auf der gesamten Landingpage | Alle Links sind richtig geordnet und weisen keine Rechtsschreibfehler auf. 
-**02** | Der Benutzer klickt auf jeden Link der Oberpunkte "XPlanManager und XPlanValidator", "XPlanDienste", "XPlanInspirePluDienste", "XPlanDokumentation" sowie "Weiterführende Informationen" und überprüft die Funktionalität | Alle Links funktionieren. 
-**03** | Der Benutzer klickt unter Oberpunkt "Demodatensätze" auf jeden Demodatensatz und lädt diese herunter | Alle Testdatensätze werden erfolgreich heruntergeladen.
+* [1]  ` ./XPlanManager -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]` 
+* [2]  ` ./XPlanManager -list `
+* [3] <http://<host:port>/xplan-wms/services/wms?REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&WIDTH=1081&HEIGHT=725&LAYERS=bplanraster_sortiert&TRANSPARENT=TRUE&FORMAT=image%2Fpng&BBOX=417326.9138990595,5715257.490169556,418938.9357000923,5716338.633375614&SRS=EPSG:25833&STYLES=default>
 
 
 # XPlanManagerWeb
@@ -804,11 +778,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer überprüft, ob das Validierungsergebnis als XML-Dokument abgelegt worden ist | Das Validierungsergebnis wurde als XML-Dokument angelegt. 
 
 **Hinweis**
- * [1] `cd ~/tmp/`
-  * Der Pfad kann variieren
+ * [1] `cd ~/tmp/` (Der Pfad kann variieren)
   
 
-  
+# XPlanTransformCLI  
 
 
 
@@ -1473,207 +1446,14 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 * [2] http://<host:port>/xplan-wfs/services/dls?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F3.2.1&TYPENAME=xplan4:BP_Plan&NAMESPACE=xmlns%28xplan=http://www.xplanung.de/xplangml/4/1%29
 
----
 
+# XPlanRessourcen (Landingpage)
 
-# Wenn die Portale mit ausgeliefert werden, müssen noch folgende Tests erfolgen:
-
-# XPlanPortale
-
-
-### Prüffall-01: Direktaufruf von Portalen ohne Startseite 
+### Prüffall-01: Links aufrufen
 
 #### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
+Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
-**01** | Der Benutzer ruft das Portals ohne zwischengeschaltete HTML- Seite auf | Die Seite des Portals wird angezeigt |
-
----
-
-
-### Prüffall-02: Legendenmodul
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-* Es befinden sich Pläne im jeweiligen Portal
-
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer überprüft ob im Legendenmodul für alle im aktuellen Maßstab sichtbaren Ebenen die korrekten Legendenbilder ausgegeben werden. | Alle Legendenbilder sind korrekt ||
-
----
-
-### Prüffall-03: Minimieren der Werkzeugbereiche links und rechts des Kartenbildes
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer minimiert bzw. maximiert die Werkzeugbereiche links und rechts des Kartenbildes mittels Schaltfläche minimierbar bzw. maximierbar | Das Kartenbild verkleinert bzw. vergrößert sich entsprechend der Einstellung der Schaltfläche. |
-
----
-
-### Prüffall-04: Maßstabswechsel
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wechselt den Maßstab zwischen den verschiedenen voreingestellten Maßstäben | Das Kartenbild passt sich dem entsprechenden Maßstab an ||
-
----
-
-### Prüffall-05: Koordinatenanzeige
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-
-#### Prüffall
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer überprüft die Koordinatenanzeige und bewegt seinen Cursor über das Kartenbild | Die Koordinaten am rechten Bildrand verändern sich je nach Position des Cursors. |
-
----
-
-### Prüffall-06: Ebenenbaum
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-* Es befinden sich Pläne im jeweiligen Portal
-
-#### Prüffall
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer navigiert zur Ebenenübersicht | Die Ebenenübersicht ist verfügbar und bearbeitbar |
-**02** | Der Benutzer überprüft, ob alle Ebenen die für die jeweiligen Planart im XPlan WMS bereitgestellt wird vorhanden ist | Alle Ebenen sind vorhanden und verfügbar | 
-**03** | Der Benutzer überprüft, ob der Ebenenbaum Ebenen zur Darstellung von Geobasisdaten (Topographie, Gemeindegrenzen, Liegenschaftskarte und Luftbilder) besitzt | Alle Ebenen sind vorhanden und verfügbar |
-**04** | Der Benutzer schaltet eine beliebige Ebene sichtbar | Die entsprechende Ebene wird im Kartenbild angezeigt |
-**05** | Der Benutzer klickt auf **Zeichenreihenfolge verändern** und verschiebt beliebige Ebenen nach oben | Die Zeichenreihenfolge im Kartenbild hat sich dementsprechend verändert |
-
----
-
-### Prüffall-07: Steuerung der Ebenentransparenz
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-* Es befinden sich Pläne im jeweiligen Portal
-
-#### Prüffall
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer navigiert zur **Ebeneneigenschaft im Ebenenbaum** und reduziert die Deckkraft der ausgewählten Ebene | Die ausgewählte Ebene wird im Kartenfenster transparenter dargestellt |
-
----
-
-### Prüffall-08: Kartenfenster mit Navigation
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-* Es befinden sich Pläne im jeweiligen Portal
-
-#### Prüffall
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wählt die Schaltfläche **Verschieben** aus und verschiebt das Kartenbild | Der Kartenausschnitt wurde verschoben |
-**02** | Der Benutzer drückt auf **Karte aktualisieren** | Das Kartenbild wird aktualisiert und erneut geladen |
-**03** | Der Benutzer wählt die Schaltfläche **Zoom Rechteck** aus und zieht ein beliebig großes Rechteck im Kartenfenster | Das Kartenbild wird herangezoom |
-**04** | Der Benutzer drückt auf die Schaltfläche **Vorheriger Kartenausschnitt** bzw. ** Nächster Kartenausschnitt** | Das Kartenbild  springt zurück zum vorherigen Kartenausschnitt bzw. zurück zum herangezoomten Kartenbild |
-**05** | Der Benutzer drückt auf die Schaltfläche **Entfernung messen** und misst eine beliebige Strecke im Kartenbild | Die gesamt Entfernung wird angezeigt |
-**06** | Der Benutzer führt eine **Räumliche Suche** durch |
-**06a** | Der Benutzer wählt unter **Freihandzeichung** z.B. _Fläche_ aus und zeichnet eine Fläche in das Kartenbild | Im Kartenbild wird die gezeichnete Fläche dargestellt |
-**06b** | Der Benutzer drückt auf **Suchen** | Es wird nach Objekten in dieser Fläche gesucht und falls vorhanden angezeigt |
-
----
-
-### Prüffall-09: Objektinformationsabfrage
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-* Es befinden sich Pläne im jeweiligen Portal
-
-#### Prüffall
-
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer drückt auf **Sachinformationen abfragen** und wählt ein Objekt aus | Es öffnet sich ein Fenster mit der entsprechenden GetFeatureInfo?-HTML-Ausgabe des ausgewählten Objektes |
-
-
----
-
-
-### Prüffall-10: Druckfunktionalität
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-* Es befinden sich Pläne im jeweiligen Portal
-
-#### Prüffall
-
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer drückt auf die Schaltfläche **Drucken** | Es öffnet sich ein neues Fenster |
-**02** | Der Benutzer gibt alle relevanten Einstellungen an und drückt auf **Drucken** |
-**03** | Der Benutzer überprüft, ob im erzeugten PDF-Dokument alle Elemente wie Legende, Nordpfeil und Maßstabsleiste vorhanden sind | Das PDF- Dokument enthält alle Elemente |
-
----
-
-### Prüffall-11: Gazetteer-Suche
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-* Es befinden sich Pläne im jeweiligen Portal
-
-#### Prüffall
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer führt eine **Freie Suche** durch |
-**01a** | Der Benutzer wählt **In Ebenen suchen** _Bebauungspläne_ aus |
-**01b** | Der Benutzer wählt z.B. als **Attribut** _Name_ als **Operator** _enthält_ und als **Value** _a_ aus |
-**01c** | Der Benutzer drückt auf **Suchen** | Alle "falls vorhanden" Objekte mit den oben eingestellten Parametern werden angezeigt |
-**01d** | Der Benutzer drückt auf den ersten Plan in den Suchergebnissen und drückt auf **Fokusauswahl** | Es wird auf das ausgewählte Objekt gezoomt |
-
-
-
----
-
-
-### Prüffall-12: Verlinkung der Fachportale
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des jeweiligen Portals ist verfügbar und geöffnet.
-
-
-#### Prüffall
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer geht bei Planart auf das **Drop-down-Menü** und wählt eines der Fachportale (Bebauungspläne, Flächennutzungspläne, Landschaftspläne ) aus. | Es ändert sich das Portal, sowie der Inhalt des Kartenfensters und des Ebenenbaumes. Es werden die jeweiligen Informationen des Fachportals angezeigt |
-
-
+**01** | Der Benutzer überprüft die Ordnung sowie Rechtsschreibung der Linkvorschau auf der gesamten Landingpage | Alle Links sind richtig geordnet und weisen keine Rechtsschreibfehler auf. 
+**02** | Der Benutzer klickt auf jeden Link der Oberpunkte "XPlanManager und XPlanValidator", "XPlanDienste", "XPlanInspirePluDienste", "XPlanDokumentation" sowie "Weiterführende Informationen" und überprüft die Funktionalität | Alle Links funktionieren. 
+**03** | Der Benutzer klickt unter Oberpunkt "Demodatensätze" auf jeden Demodatensatz und lädt diese herunter | Alle Testdatensätze werden erfolgreich heruntergeladen.
