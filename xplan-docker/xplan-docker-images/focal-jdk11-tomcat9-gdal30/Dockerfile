@@ -3,7 +3,7 @@ FROM ubuntu:focal
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
-ARG TOMCAT_VERSION="9.0.56"
+ARG TOMCAT_VERSION="9.0.58"
 # set environment variables
 ENV CATALINA_OPTS="-DXPLANBOX_CONFIG=/root/xplan-manager-config/"
 ENV JAVA_OPTS="-Xmx8192m"
