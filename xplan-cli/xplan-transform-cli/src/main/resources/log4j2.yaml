@@ -1,0 +1,44 @@
+Configuration:
+  name: XPlanTransformCli
+  status: warn
+  Properties:
+    Property:
+      - name: log.file
+        value: xplan-transform-cli.log
+      - name: log.path
+        value: ${sys:catalina.base:-.}/logs
+  Appenders:
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n"
+    RollingFile:
+      name: RollingFile_Appender
+      fileName: ${log.path}/${log.file}
+      filePattern: ${log.path}/${log.file}.%d{yyyy-MM-dd-hh-mm}
+      PatternLayout:
+        pattern: "%d %p %C{1.} [%t] %m%n"
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: 100 MB
+      DefaultRollOverStrategy:
+        max: 2
+  Loggers:
+    Root:
+      AppenderRef:
+        - ref: STDOUT
+          level: error
+        - ref: RollingFile_Appender
+          level: info
+    Logger:
+      - name: org.deegree
+        level: info
+      - name: de.latlon.xplan
+        level: info
+      - name: org.reflections
+        level: fatal
+      - name: de.latlon.xplan.commons.hale
+        level: info
+      - name: de.latlon.xplan.transform.cli
+        level: info

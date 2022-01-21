@@ -4,11 +4,12 @@ MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
-ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-manager-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin"
+ENV CATALINA_OPTS="-DXPLANBOX_CONFIG=/root/xplan-manager-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin"
+ENV JAVA_OPTS="-Xmx8192m"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # configure tomcat
-ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
+#ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
 
 # add xplan-manager-web
 ADD target/xplan-manager-web-*.war /root/

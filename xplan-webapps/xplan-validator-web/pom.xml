@@ -126,6 +126,10 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-core-commons</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
@@ -138,6 +142,26 @@
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
     </dependency>
     <dependency>
       <groupId>commons-fileupload</groupId>
@@ -168,6 +192,10 @@
           <groupId>org.eclipse.jdt.core.compiler</groupId>
           <artifactId>ecj</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -191,10 +219,6 @@
       <type>zip</type>
     </dependency>
     <dependency>
-      <groupId>de.latlon</groupId>
-      <artifactId>deegree-core-commons</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
     </dependency>
@@ -215,14 +239,6 @@
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
       <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

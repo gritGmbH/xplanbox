@@ -4,10 +4,11 @@ MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
-ENV CATALINA_OPTS="-Xmx8192m -DXPLANBOX_CONFIG=/root/xplan-validator-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl"
+ENV CATALINA_OPTS="-DXPLANBOX_CONFIG=/root/xplan-validator-config/ -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl"
+ENV JAVA_OPTS="-Xmx8192m"
 
 # configure tomcat
-ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
+#ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
 
 # add xplan-validator-web
 ADD target/xplan-validator-web-*.war /root/
