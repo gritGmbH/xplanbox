@@ -9,7 +9,7 @@ Nach Standard-Out werden nur Warnungen und Fehler geschrieben.
 
 ==== Protokolldateien der Komponenten
 
-Zusätzlich wird eine Log-Datei für alle Anwendungen und Dienste in einer entsprechenden benannten Datei im Log-Verzeichnis des Tomcats _${catalina.base}/logs/_ geschrieben.
+Zusätzlich wird eine Log-Datei für alle Anwendungen und Dienste in einer entsprechenden benannten Datei im Log-Verzeichnis des Tomcat-Servers _${catalina.base}/logs/_ geschrieben.
 In die Log-Dateien werden Informationen, Warnungen und Fehler geschrieben.
 
 [width="88%",cols="35%,65%",options="header"]

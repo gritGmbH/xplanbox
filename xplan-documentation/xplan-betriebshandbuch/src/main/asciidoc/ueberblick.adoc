@@ -84,7 +84,7 @@ Das Installationsarchiv findet sich bei der https://tomcat.apache.org[Apache Fou
 Um eine spätere Trennung der Dienste (Web-Anwendungen) zu gewährleisten, wird die Konfiguration von mehreren Tomcat-Instanzen empfohlen (siehe Kapitel <<web-anwendungen>>).
 
 NOTE: Die minimale Anforderung an den Applikationsserver ist das Java EE 7 Web
-Profil. Empfohlen wird Apache Tomcat Version 9.0.55.
+Profil. Empfohlen wird Apache Tomcat Version 9.0.58.
 
 [[datenbank]]
 === Datenbank

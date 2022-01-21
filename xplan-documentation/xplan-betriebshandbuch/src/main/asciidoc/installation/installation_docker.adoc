@@ -68,7 +68,7 @@ Hinweise zur Konfiguration des Images:
 
 Folgende Punkte sind zu beachten:
 
- * Der Port 8080 des Tomcats aus dem Container muss nach außen freigegeben werden (-p 8081:8080).
+ * Der Port 8080 des Tomcat-Servers aus dem Container muss nach außen freigegeben werden (-p 8081:8080).
  * Der Kontextname der Webanwendung ist xplan-validator.
  * Das Volume _xplan-validator-config_ (s. <<volumexplanvalidatorconfig>>) muss als Verzeichnis _/root/xplan-manager-config_ eingebunden werden.
  * Das Volume _xplan-valdiator-workspaces_ (s. <<volumexplanvalidatorworkspaces>>) muss als Verzeichnis _/root/.deegree_ eingebunden werden.
@@ -121,7 +121,7 @@ Hinweise zur Konfiguration des Images:
 
 Folgende Punkte sind zu beachten:
 
- * Der Port 8080 des Tomcats aus dem Container muss nach außen freigegeben werden (-p 8082:8080).
+ * Der Port 8080 des Tomcat-Servers aus dem Container muss nach außen freigegeben werden (-p 8082:8080).
  * Der Kontextname der Webanwendung ist xplan-manager
  * Das Volume _xplan-manager-config_ (s. <<volumexplanmanagerconfig>>) muss als Verzeichnis _/root/xplan-manager-config_ eingebunden werden.
  * Das Volume _xplan-workspaces_ (s. <<volumexplanworkspaces>>) muss als Verzeichnis _/root/.deegree_ eingebunden werden.
@@ -144,7 +144,7 @@ Hinweise zur Konfiguration des Images:
 
 Folgende Punkte sind zu beachten:
 
- * Der Port 8080 des Tomcats aus dem Container muss nach außen freigegeben werden (-p 8083:8080).
+ * Der Port 8080 des Tomcat-Servers aus dem Container muss nach außen freigegeben werden (-p 8083:8080).
  * Die Kontextnamen der Webanwendungen sind
  ** xplan-wms
  ** xplan-wfs
@@ -174,7 +174,7 @@ Hinweise zur Konfiguration des Images:
 
 Folgende Punkte sind zu beachten:
 
- * Der Port 8080 des Tomcats aus dem Container muss nach außen freigegeben werden (-p 8084:8080).
+ * Der Port 8080 des Tomcat-Servers aus dem Container muss nach außen freigegeben werden (-p 8084:8080).
  * Der Kontextname der Webanwendung ist xplan-inspireplu
  * Das Volume _xplan-inspireplu-workspaces_ (s. <<volumexplaninspirepluworkspaces>>) muss als Verzeichnis _/root/.deegree_ eingebunden werden.
  * Die deegree REST-API kann mit folgenden Credentials genutzt werden: deegree/deegree
