@@ -7300,7 +7300,7 @@
             <element name="VFUOM" minOccurs="0" type="double" />
             <element name="MinGRWohneinheit" minOccurs="0" type="double" />
             <element name="MinGRWohneinheitUOM" minOccurs="0" type="string" />
-            <element name="type" minOccurs="0" type="string" />
+            <element name="typ" minOccurs="0" type="string" />
             <element name="typCode" minOccurs="0" type="string" />
           </sequence>
         </extension>

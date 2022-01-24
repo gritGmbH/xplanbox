@@ -6931,6 +6931,8 @@
     <Primitive path="xplan:VFUOM" mapping="xplan_vfuom" />
     <Primitive path="xplan:MinGRWohneinheit" mapping="xplan_mingrwohneinheit" />
     <Primitive path="xplan:MinGRWohneinheitUOM" mapping="xplan_mingrwohneinheituom" />
+    <Primitive path="xplan:typ" mapping="xplan_typ" />
+    <Primitive path="xplan:typCode" mapping="xplan_typcode" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_ZentralerVersorgungsbereich" table="xplansyn.xplan_bp_zentralerversorgungsbereich">
     <FIDMapping prefix="XPLAN_BP_ZENTRALERVERSORGUNGSBEREICH_">
