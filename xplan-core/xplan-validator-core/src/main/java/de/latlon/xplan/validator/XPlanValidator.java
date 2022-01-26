@@ -207,8 +207,8 @@ public class XPlanValidator {
 			report.setGeometricValidatorResult(new GeometricValidatorResult(SYNTAX_ERRORS));
 		}
 		else {
-			GemetricValidatorParsingResult featuresAndResult = validateGeometricallyAndWriteResult(archive, voOptions);
-			report.setGeometricValidatorResult(featuresAndResult.getValidatorResult());
+			GeometricValidatorResult validatorResult = validateGeometricallyAndWriteResult(archive, voOptions);
+			report.setGeometricValidatorResult(validatorResult);
 		}
 	}
 
@@ -238,14 +238,13 @@ public class XPlanValidator {
 	 * @return the created report
 	 * @throws ValidatorException - validation failed
 	 */
-	GemetricValidatorParsingResult validateGeometricallyAndWriteResult(XPlanArchive archive,
-			List<ValidationOption> voOptions) throws ValidatorException {
+	GeometricValidatorResult validateGeometricallyAndWriteResult(XPlanArchive archive, List<ValidationOption> voOptions)
+			throws ValidatorException {
 		AppSchema appSchema = schemas.getAppSchema(archive.getVersion(), archive.getAde());
-		GemetricValidatorParsingResult result = geometricValidator.validateGeometry(archive, archive.getCrs(),
-				appSchema, true, voOptions);
-		GeometricValidatorResult validatorResult = result.getValidatorResult();
+		GeometricValidatorResult result = geometricValidator.validateGeometry(archive, archive.getCrs(), appSchema,
+				true, voOptions);
 
-		log(validatorResult);
+		log(result);
 		return result;
 	}
 

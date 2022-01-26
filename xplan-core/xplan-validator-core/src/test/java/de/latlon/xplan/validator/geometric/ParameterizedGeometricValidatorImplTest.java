@@ -29,7 +29,6 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import junitparams.FileParameters;
@@ -95,8 +94,7 @@ public class ParameterizedGeometricValidatorImplTest {
 		XPlanVersion version = archive.getVersion();
 		XPlanAde ade = archive.getAde();
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
-		return new GeometricValidatorImpl().validateGeometry(archive, archive.getCrs(), schema, true, SKIP_OPTIONS)
-				.getValidatorResult();
+		return new GeometricValidatorImpl().validateGeometry(archive, archive.getCrs(), schema, true, SKIP_OPTIONS);
 	}
 
 	private XPlanFeatureCollection readFeaturesAndAssertGeometryValidity(XPlanArchive archive)

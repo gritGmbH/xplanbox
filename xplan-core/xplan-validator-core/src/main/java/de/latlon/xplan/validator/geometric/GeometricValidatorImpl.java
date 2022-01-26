@@ -94,15 +94,12 @@ public class GeometricValidatorImpl implements GeometricValidator {
 	}
 
 	@Override
-	public GemetricValidatorParsingResult validateGeometry(XPlanArchive archive, ICRS crs, AppSchema schema,
-			boolean force, List<ValidationOption> voOptions) throws ValidatorException {
+	public GeometricValidatorResult validateGeometry(XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
+			List<ValidationOption> voOptions) throws ValidatorException {
 		try {
 			ParserAndValidatorResult result = retrieveFeatureCollection(archive, crs, force, schema, voOptions);
-			GeometricValidatorResult validationResult = new GeometricValidatorResult(result.warnings, result.errors,
-					result.badGeometries, crs, result.isValid());
-			XPlanFeatureCollection features = result.xPlanFeatures == null || result.xPlanFeatures.size() < 1 ? null
-					: new XPlanFeatureCollectionBuilder(result.xPlanFeatures, archive.getType()).build();
-			return new GemetricValidatorParsingResult(features, validationResult);
+			return new GeometricValidatorResult(result.warnings, result.errors, result.badGeometries, crs,
+					result.isValid());
 		}
 		catch (XMLStreamException e) {
 			LOG.trace("Geometric validation failed!", e);

@@ -150,8 +150,7 @@ public class BadGeometryImgGeneratorTest {
 		XPlanVersion version = archive.getVersion();
 		XPlanAde ade = archive.getAde();
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
-		return (new GeometricValidatorImpl()).validateGeometry(archive, archive.getCrs(), schema, true, voOptions)
-				.getValidatorResult();
+		return (new GeometricValidatorImpl()).validateGeometry(archive, archive.getCrs(), schema, true, voOptions);
 	}
 
 }

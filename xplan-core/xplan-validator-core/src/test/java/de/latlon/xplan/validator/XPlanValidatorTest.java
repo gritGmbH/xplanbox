@@ -23,7 +23,6 @@ package de.latlon.xplan.validator;
 
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.validator.geometric.GemetricValidatorParsingResult;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
@@ -31,12 +30,10 @@ import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
-import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
-import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 import org.apache.commons.io.IOUtils;
@@ -48,7 +45,6 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -61,8 +57,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_SO;
-import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_XP;
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
@@ -73,7 +67,6 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -302,10 +295,7 @@ public class XPlanValidatorTest {
 		GeometricValidator geomVal = spy(new GeometricValidatorImpl());
 		GeometricValidatorResult result = new GeometricValidatorResult(emptyList(), emptyList(), emptyList(),
 				lookup("epsg:4326"), true);
-		GemetricValidatorParsingResult gemetricValidatorParsingResult = mock(GemetricValidatorParsingResult.class);
-		doReturn(result).when(gemetricValidatorParsingResult).getValidatorResult();
-		doReturn(gemetricValidatorParsingResult).when(geomVal).validateGeometry(archive(), crs(), schema(),
-				anyBoolean(), list());
+		doReturn(result).when(geomVal).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		return geomVal;
 	}
 
@@ -319,10 +309,6 @@ public class XPlanValidatorTest {
 
 	private ICRS crs() {
 		return any(ICRS.class);
-	}
-
-	private List<ValidationOption> singleOption(String name) {
-		return singletonList(new ValidationOption(name));
 	}
 
 	private AppSchema schema() {

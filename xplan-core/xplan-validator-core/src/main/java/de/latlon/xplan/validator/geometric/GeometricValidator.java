@@ -25,6 +25,7 @@ import java.util.List;
 
 import javax.xml.stream.XMLStreamException;
 
+import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
@@ -54,7 +55,7 @@ public interface GeometricValidator {
 	 * @return a <link>ValidatorReport</link> containing the result of the validation
 	 * @throws ValidatorException - validation failed
 	 */
-	GemetricValidatorParsingResult validateGeometry(XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
+	GeometricValidatorResult validateGeometry(XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
 			List<ValidationOption> voOptions) throws ValidatorException;
 
 	/**
