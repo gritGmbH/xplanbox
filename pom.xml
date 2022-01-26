@@ -16,21 +16,18 @@
   <properties>
     <java.version>11</java.version>
     <maven.version>3.6.0</maven.version>
-    <!-- sonar settings -->
-    <sonar.host.url>http://vento:9000</sonar.host.url>
-    <sonar.jdbc.url>jdbc:postgresql://habub/sonar</sonar.jdbc.url>
     <!-- version properties -->
     <deegree3.version>3.4.24-SNAPSHOT</deegree3.version>
     <geowerkstatt-hamburg.xplanung.version>0.11.1</geowerkstatt-hamburg.xplanung.version>
     <gwt.version>2.9.0</gwt.version>
     <geotools.version>26.1</geotools.version>
     <log4j.version>2.17.1</log4j.version>
-    <slf4j.version>1.7.32</slf4j.version>
+    <slf4j.version>1.7.33</slf4j.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>4.3.30.RELEASE</spring.version>
-    <spring.security.version>4.2.20.RELEASE</spring.security.version>
-    <jackson.version>2.11.4</jackson.version>
+    <spring.version>5.2.18.RELEASE</spring.version>
+    <spring.security.version>5.2.13.RELEASE</spring.security.version>
+    <jackson.version>2.13.1</jackson.version>
     <skip.unit.tests>false</skip.unit.tests>
   </properties>
 
@@ -778,7 +775,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.13.1</version>
+        <version>4.13.2</version>
         <scope>test</scope>
       </dependency>
       <dependency>
