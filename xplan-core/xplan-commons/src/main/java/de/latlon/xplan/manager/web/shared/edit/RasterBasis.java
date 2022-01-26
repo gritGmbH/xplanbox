@@ -123,7 +123,7 @@ public class RasterBasis {
 
 	@Override
 	public String toString() {
-		return "RasterWithReferences [featureId=" + featureId + ", rasterReferences=" + rasterReferences + "]";
+		return "RasterWithReferences {featureId=" + featureId + ", rasterReferences=" + rasterReferences + "}";
 	}
 
 }

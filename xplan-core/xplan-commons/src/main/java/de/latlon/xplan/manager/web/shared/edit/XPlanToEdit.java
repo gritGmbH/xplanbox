@@ -240,9 +240,9 @@ public class XPlanToEdit {
 
 	@Override
 	public String toString() {
-		return "XPlanToEdit [baseData=" + baseData + ", validityPeriod=" + validityPeriod + ", changes=" + changes
+		return "XPlanToEdit {baseData=" + baseData + ", validityPeriod=" + validityPeriod + ", changes=" + changes
 				+ ", texts=" + texts + ", references=" + references + ", rasterBasis=" + rasterBasis + ", hasBereich="
-				+ hasBereich + "]";
+				+ hasBereich + "}";
 	}
 
 }

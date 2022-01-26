@@ -96,8 +96,8 @@ public class ExternalReferenceInfo {
 
 	@Override
 	public String toString() {
-		return "ExternalReferenceInfo [externalRefs=" + externalRefs + ", rasterPlanBaseScans=" + rasterPlanBaseScans
-				+ ", rasterPlanUpdateScans=" + rasterPlanUpdateScans + "]";
+		return "ExternalReferenceInfo {externalRefs=" + externalRefs + ", rasterPlanBaseScans=" + rasterPlanBaseScans
+				+ ", rasterPlanUpdateScans=" + rasterPlanUpdateScans + "}";
 	}
 
 }

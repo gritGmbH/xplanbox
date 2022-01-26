@@ -94,7 +94,7 @@ public class Reference extends AbstractReference {
 
 	@Override
 	public String toString() {
-		return "Reference [type=" + type + ", " + super.toString() + "]";
+		return "Reference {type=" + type + ", " + super.toString() + "}";
 	}
 
 }

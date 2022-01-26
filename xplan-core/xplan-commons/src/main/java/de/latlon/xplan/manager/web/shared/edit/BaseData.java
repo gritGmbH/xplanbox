@@ -239,10 +239,10 @@ public class BaseData {
 
 	@Override
 	public String toString() {
-		return "BaseData [planName=" + planName + ", description=" + description + ", creationDate=" + creationDate
+		return "BaseData {planName=" + planName + ", description=" + description + ", creationDate=" + creationDate
 				+ ", lossDate=" + lossDate + ", planTypeCode=" + planTypeCode + ", otherPlanTypeCode="
 				+ otherPlanTypeCode + ", methodCode=" + methodCode + ", legislationStatusCode=" + legislationStatusCode
-				+ ", regulationDate=" + regulationDate + "]";
+				+ ", regulationDate=" + regulationDate + "}";
 	}
 
 }

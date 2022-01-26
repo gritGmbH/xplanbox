@@ -153,8 +153,8 @@ public class Change {
 
 	@Override
 	public String toString() {
-		return "Change [planName=" + planName + ", legalNatureCode=" + legalNatureCode + ", number=" + number
-				+ ", type=" + type + "]";
+		return "Change {planName=" + planName + ", legalNatureCode=" + legalNatureCode + ", number=" + number
+				+ ", type=" + type + "}";
 	}
 
 }

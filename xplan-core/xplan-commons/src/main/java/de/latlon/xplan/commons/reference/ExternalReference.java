@@ -82,9 +82,9 @@ public class ExternalReference {
 
 	@Override
 	public String toString() {
-		return "ExternalReference [geoRefUrl=" + geoRefUrl + ", geoRefMimeTypeCode=" + geoRefMimeTypeCode
+		return "ExternalReference {geoRefUrl=" + geoRefUrl + ", geoRefMimeTypeCode=" + geoRefMimeTypeCode
 				+ ", referenzUrl=" + referenzUrl + ", referenzName=" + referenzName + ", referenzMimeTypeCode="
-				+ referenzMimeTypeCode + ", isPlan=" + isPlan + "]";
+				+ referenzMimeTypeCode + ", isPlan=" + isPlan + "}";
 	}
 
 }
