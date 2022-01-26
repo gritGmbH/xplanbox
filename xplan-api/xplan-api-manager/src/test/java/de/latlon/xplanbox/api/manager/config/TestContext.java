@@ -269,6 +269,7 @@ public class TestContext {
 	void initLoggingAdapter() {
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
+		LOG.trace("JUL logging enabled");
 	}
 
 }

@@ -134,6 +134,7 @@ public class ApplicationContext {
 
 	@Bean
 	public ValidatorWmsManager validatorWmsManager(ValidatorConfiguration validatorConfiguration) {
+		LOG.trace("Using validatorConfiguration: " + validatorConfiguration);
 		String validatorWmsEndpoint = validatorConfiguration.getValidatorWmsEndpoint();
 		if (validatorWmsEndpoint == null) {
 			LOG.warn("XPlanValidatorWMS endpoint URL is not configured. Map preview will not be available.");

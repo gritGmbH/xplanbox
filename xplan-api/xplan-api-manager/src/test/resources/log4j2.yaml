@@ -14,9 +14,13 @@ Configuration:
         - ref: STDOUT
     Logger:
       - name: org.deegree
-        level: info
+        level: warn
       - name: de.latlon.xplan
-        level: info
+        level: warn
+      - name: de.latlon.xplan.commons.configuration
+        level: trace
+      - name: de.latlon.xplan.manager.configuration;
+        level: trace
       - name: de.latlon.xplanbox.api
         level: debug
       - name: de.latlon.xplanbox.api.manager.config
