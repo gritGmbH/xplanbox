@@ -9,7 +9,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -20,7 +20,7 @@ public class AlphanumericComparatorTest {
 
 	@Test
 	public void testCompare() {
-		int compare = new Integer(4).compareTo(new Integer(2));
+		int compare = Integer.valueOf(4).compareTo(Integer.valueOf(2));
 		assertThat(compare, is(1));
 	}
 
