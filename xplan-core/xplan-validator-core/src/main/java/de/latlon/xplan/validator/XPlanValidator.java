@@ -30,7 +30,6 @@ import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
-import de.latlon.xplan.validator.geometric.GemetricValidatorParsingResult;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
@@ -200,7 +199,7 @@ public class XPlanValidator {
 			report.setExternalReferenceReport(new ExternalReferenceReport(SYNTAX_ERRORS));
 		}
 		else {
-			parseReferences(archive, report, null);
+			parseReferences(archive, report);
 		}
 	}
 
@@ -278,11 +277,15 @@ public class XPlanValidator {
 		return validatorResult;
 	}
 
-	private void parseReferences(XPlanArchive archive, ValidatorReport report,
-			GemetricValidatorParsingResult featuresAndResult) {
-		XPlanFeatureCollection featureCollection = parseFeatures(featuresAndResult, archive);
-		report.setBBoxIn4326(featureCollection.getBboxIn4326());
-		parseAndAddExternalReferences(report, featureCollection);
+	private void parseReferences(XPlanArchive archive, ValidatorReport report) {
+		try {
+			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseFeatureCollection(archive);
+			report.setBBoxIn4326(featureCollection.getBboxIn4326());
+			parseAndAddExternalReferences(report, featureCollection);
+		}
+		catch (XMLStreamException | UnknownCRSException e) {
+			LOG.error("Plan could not be parsed. Reason {}", e.getMessage(), e);
+		}
 	}
 
 	private void parseAndAddExternalReferences(ValidatorReport report, XPlanFeatureCollection features) {
@@ -309,20 +312,6 @@ public class XPlanValidator {
 		}
 		return new ExternalReferenceReport(references);
 
-	}
-
-	private XPlanFeatureCollection parseFeatures(GemetricValidatorParsingResult validatorParsingResult,
-			XPlanArchive archive) {
-		if (validatorParsingResult != null && validatorParsingResult.getFeatures() != null)
-			return validatorParsingResult.getFeatures();
-		try {
-			XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseFeatureCollection(archive);
-			return xPlanFeatureCollection;
-		}
-		catch (XMLStreamException | UnknownCRSException e) {
-			LOG.error("Plan could not be parsed. Reason {}", e.getMessage(), e);
-			return null;
-		}
 	}
 
 	private void log(GeometricValidatorResult validatorResult) {

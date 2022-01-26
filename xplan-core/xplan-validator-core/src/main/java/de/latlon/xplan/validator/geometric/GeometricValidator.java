@@ -21,20 +21,14 @@
  */
 package de.latlon.xplan.validator.geometric;
 
-import java.util.List;
-
-import javax.xml.stream.XMLStreamException;
-
-import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.feature.types.AppSchema;
-
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.report.ValidatorResult;
+import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
+import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.feature.types.AppSchema;
+
+import java.util.List;
 
 /**
  * Validates <link>XPlanArchives</link> geometrically
@@ -57,20 +51,5 @@ public interface GeometricValidator {
 	 */
 	GeometricValidatorResult validateGeometry(XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
 			List<ValidationOption> voOptions) throws ValidatorException;
-
-	/**
-	 * Validate geometrically and return a <link>XPlanFeatureCollection</link>
-	 * @param archive the archive to validate, never <code>null</code>
-	 * @param crs the crs to validate against, never <code>null</code>
-	 * @param schema the application schema, never <code>null</code>
-	 * @param force true if validation shall continue on error, false if not
-	 * @param internalId the internalId is added to the feature collection. It represents
-	 * a property of a *Plan feature (see schema). If <code>null</code>, internalId
-	 * property is not added to the feature collection.
-	 * @return a <link>XPlanFeatureCollection</link> containing all valid features
-	 * @throws ValidatorException - validation failed
-	 */
-	XPlanFeatureCollection retrieveGeometricallyValidXPlanFeatures(XPlanArchive archive, ICRS crs, AppSchema schema,
-			boolean force, String internalId) throws XMLStreamException, UnknownCRSException, ValidatorException;
 
 }
