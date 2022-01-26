@@ -175,9 +175,7 @@ public class UploadPanel extends DecoratorPanel {
 
 			@Override
 			public String getCellStyleNames(Cell.Context context, XPlan object) {
-				if (object.isHasMultipleXPlanElements())
-					return "cellButton buttonNotValid";
-				else if (object.isValidated())
+				if (object.isValidated())
 					return "cellButton " + (object.isValid() ? "buttonValid" : "buttonNotValid");
 				else
 					return "cellButton buttonNotValidated";
@@ -191,9 +189,7 @@ public class UploadPanel extends DecoratorPanel {
 		Column<XPlan, String> validatedColumn = new Column<XPlan, String>(validatedNoteCell) {
 			@Override
 			public String getValue(XPlan object) {
-				if (object.isHasMultipleXPlanElements())
-					return messages.validationNoteMultipleXPlanElements();
-				else if (!object.isValidated())
+				if (!object.isValidated())
 					return messages.validationNoteNotValidated();
 				else if (object.isValid())
 					return messages.validationNoteValid();
@@ -210,7 +206,7 @@ public class UploadPanel extends DecoratorPanel {
 		Column<XPlan, String> importButtonColumn = new Column<XPlan, String>(importButtonCell) {
 			@Override
 			public String getValue(XPlan object) {
-				if (object.isValid() && !object.isHasMultipleXPlanElements())
+				if (object.isValid())
 					importButtonCell.setEnabled();
 				else
 					importButtonCell.setDisabled();
