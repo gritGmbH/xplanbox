@@ -71,6 +71,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -113,10 +114,11 @@ public class TestContext {
 	@Primary
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			InspirePluTransformator inspirePluTransformator, XPlanGmlTransformer xPlanGmlTransformer,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
+			Optional<InspirePluTransformator> inspirePluTransformator,
+			Optional<XPlanGmlTransformer> xPlanGmlTransformer, WmsWorkspaceWrapper wmsWorkspaceWrapper)
+			throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator, xPlanGmlTransformer, wmsWorkspaceWrapper);
+				inspirePluTransformator.orElse(null), xPlanGmlTransformer.orElse(null), wmsWorkspaceWrapper);
 	}
 
 	@Bean

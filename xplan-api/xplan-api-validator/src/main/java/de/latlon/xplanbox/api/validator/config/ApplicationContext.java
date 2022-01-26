@@ -57,7 +57,7 @@ import static java.nio.file.Files.createTempDirectory;
 import static java.nio.file.Paths.get;
 
 @Configuration
-@ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator" })
+@ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator.handler", "de.latlon.xplanbox.api.validator.v1" })
 public class ApplicationContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ApplicationContext.class);
@@ -159,12 +159,6 @@ public class ApplicationContext {
 			return validationRulesDirectory;
 		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
-	}
-
-	private ValidatorWmsManager createValidatorWmsManager() throws IOException {
-		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
-		Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
-		return new ValidatorWmsManager(synthesizer, workspaceLocation);
 	}
 
 }

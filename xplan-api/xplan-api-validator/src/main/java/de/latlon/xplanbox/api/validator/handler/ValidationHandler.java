@@ -80,7 +80,7 @@ public class ValidationHandler {
 	@Autowired
 	private ReportWriter reportWriter;
 
-	@Autowired
+	@Autowired(required = false)
 	private ValidatorWmsManager validatorWmsManager;
 
 	@Autowired
