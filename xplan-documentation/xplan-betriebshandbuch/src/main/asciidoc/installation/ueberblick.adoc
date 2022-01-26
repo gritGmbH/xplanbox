@@ -26,7 +26,7 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
 |===
 
  * Dokumentation (in HTML und PDF-Format):
- ** xPlanBox-Benutzerhandbuch
- ** xPlanBox-Betriebshandbuch
+ ** XPlanBenutzerhandbuch - Benutzerhandbuch für die Komponenten der xPlanBox
+ ** XPlanBetriebshandbuch - Betriebshandbuch und Installationsanleitung für die xPlanBox
 
 Bitte kontaktieren Sie http://www.lat-lon.de[lat/lon GmbH], per E-mail an info@lat-lon.de, wenn Installationskomponenten fehlen.

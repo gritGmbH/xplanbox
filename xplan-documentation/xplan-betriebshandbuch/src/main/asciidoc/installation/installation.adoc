@@ -59,12 +59,12 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 * XPlanManagerCLI: _xplan-manager-cli/bin/XPlanManager_ - Beschreibung im Kapitel "XPlanManagerCLI" des XPlanBenutzerhandbuchs.
 * XPlanValidatorCLI: _xplan-validator-cli/bin/XPlanValidator_ - Beschreibung im Kapitel "XPlanValidatorCLI" des XPlanBenutzerhandbuchs.
 * XPlanUpdateDatabaseCLI: _xplan-update-database/bin/databaseUpdate_ - wird nur für eine Aktualisierung der xPlanBox benötigt, weitere Informationen befinden sich im Abschnitt <<aktualisierung>>) sowie
-** _xplan-update-database/bin/districtUpdate_ - Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung. Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen.
-** _xplan-update-database/bin/reSynthesizer_ - Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung. Aktualisierung der im XPlanSyn-Schema gespeicherten Daten.
-** _xplan-update-database/bin/serviceMetadatRecordCreator_ - Der Aufruf des Tools mit `serviceMetadatRecordCreator --help` liefert Hinweise zur Verwendung. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt der Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
-* XPlanAuswerteschemaCLI: _xplan-evaluation-schema-synchronize-cli/bin/EvaluationSchemaSynchronizer
+** _xplan-update-database/bin/districtUpdate_ - Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-database/bin/reSynthesizer_ - Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-database/bin/serviceMetadatRecordCreator_ - Erstellt Metadatensätze für den XPlanWerkWMS. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt der Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert. Der Aufruf des Tools mit `serviceMetadatRecordCreator --help` liefert Hinweise zur Verwendung.
+* XPlanAuswerteschemaCLI: _xplan-evaluation-schema-synchronize-cli/bin/EvaluationSchemaSynchronizer - siehe folgendes Kapitel <<install-xplanevaluationschemasynchronize-cli>>.
 
-[[xplanevaluationschemasynchronize-cli]]
+[[install-xplanevaluationschemasynchronize-cli]]
 ===== XPlanAuswerteschemaCLI
 
 Das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI erzeugt ein weiteres Datenbankschema für die Auswertung und kann die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas synchronisieren. Das Auswerteschema unterscheidet sich zum XPlanSyn-Schema dadurch, dass die GML-Geometrien (wie z.B. Kreisbögen) wie im Original-XPlanGML zusätzlich zu den Simple Features Geometrien abgelegt sind.
@@ -109,4 +109,4 @@ EvaluationSchemaSynchronizer -h localhost -p 5432 -d xplanbox -u postgres -w pos
 [[dokumentation]]
 ==== Dokumentation
 
-Das XPlanBenutzerhandbuch (s. <<installationskomponenten>>) zu den verschiedenen Komponenten liegt in den Formaten HTML und PDF vor.
+Das XPlanBenutzerhandbuch und XPlanBetriebshandbuch (s. <<installationskomponenten>>) zu den verschiedenen Komponenten der xPlanBox liegt in den Formaten HTML und PDF vor.
