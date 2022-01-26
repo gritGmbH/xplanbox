@@ -78,56 +78,11 @@ welches dem Fachadministrator der xPlanBox ermöglicht,
 bereits über den XPlanManagerWeb oder das XPlanManagerCLI
 importierte Pläne in eine aktuellere XPlanGML Version zu transformieren und in der <<xplandb>> zu speichern.
 
-[[planevaluationschemasynchronize-cli]]
+[[xplanevaluationschemasynchronize-cli]]
 === XPlanAuswerteschemaCLI
 
-Für die Auswertung des Datenbestands der XPlanDB ist ein dupliziertes Syn-Schema erstellt worden, in dem die Original-Geometrien (wie z.B. Kreisbögen) abgelegt sind. Über das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI kann das Anlegen des Auswerteschemas sowie eine Synchronisierung des Original-Datenbestands mit dem Syn-Schema für die Auswertung erfolgen.
-
-==== Vorbereitung
-
-===== Datenbank
-
-Das Datenbankschema für die Auswertung der XPlanGML-Daten muss durch Ausführen der SQL-Skripte im Ordner _scripts/_ angelegt werden. Folgende Reihenfolge muss beibehalten werden:
-
-1. 00_create_schema.sql
-2. 01_create_function.sql
-3. 02_create_tables.sql
-4. 03_create_trigger-function.sql
-5. 04_create_trigger.sql
-
-Diese Skripte erstellen zum einen jeweils eine Kopie der drei Syn-Schemas (lgvxplansyn, lgvxplansynpre und lgvxplansynarchive) und zum anderen eine Log-Tabelle (lgv.lgvPlanTableLog).
-
-Die Log-Tabelle wird beim Importieren, Editieren und Löschen von Plänen über den XPlanManager mit einer Historie der Operationen auf die einzelnen Pläne gefüllt und dient als Basis für die regelmäßige Synchronisation des Syn-Schema aus der xPlanBox und des duplizierte Syn-Schema.
-
-===== GDAL
-
-Damit das Tool ausgeführt werden kann, muss GDAL Version 3.0 plus JNI-Schnittstelle installiert werden.
-
-Zusätzlich muss die Umgebungsvariable `LD_LIBRARY_PATH` (Linux) bzw. `GDAL_DATA` (Windows) gesetzt werden.
-
-Im Betriebshandbuch der xPlanBox in Kapitel "Installation und Konfiguration von GDAL" wird beschrieben, wie die Installation auf Linux und Windows erfolgt.
-Für den LgvSynSchemaSynchronizer ist es wichtig, dass die gleiche Version von GDAL installiert wird wie im Betriebshandbuch benannt.
-
-==== Nutzung
-
-Im Verzeichnis _bin/_ steht ein Werkzeug mit dem Namen _EvaluationSchemaSynchronizer_ zur Verfügung, dass wiederum zwei Modi anbietet:
-
-* Option *ALL* zur Überführung aller Pläne aus dem Syn-Schema der xPlanBox in das duplizierte Syn-Schema
-* Option *SYNC* um die Synchronisation der seit der letzten Ausführung des Werkzeuges geänderten Pläne aus dem Syn-Schema der xPlanBox in das duplizierte Syn-Schema durchzuführen.
-
-Üblicherweise erfolgt zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z.B. nachts mit Hilfe eines Cron-Jobs) die Option *SYNC* um einen tagesaktuellen Stand im duplizierten Syn-Schema zu erreichen.
-
-Die einzelnen Parameter des Werkzeuges können durch folgenden Aufruf abgerufen werden:
-
--------
-EvaluationSchemaSynchronizer -?
--------
-
-==== Beispiel
-
--------
-EvaluationSchemaSynchronizer -p 5432 -h localhost -d xplanbox -u postgres -w postgres -t ALL
--------
+Die Komponente XPlanAuswerteschemaCLI ist ein Kommandozeilenwerkzeug,
+welches dem Fachadministrator der xPlanBox ermöglicht, ein weiteres Datenbankschema für die Auswertung zu erzeugen und die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas zu synchronisieren.
 
 [[xplanwms]]
 === XPlanWMS und XPlanWerkWMS

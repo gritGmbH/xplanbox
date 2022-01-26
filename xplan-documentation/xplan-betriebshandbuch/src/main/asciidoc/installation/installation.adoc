@@ -54,10 +54,57 @@ NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
 
-Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an beliebiger Stelle entpackt werden. _xplan-update-database_ wird nur für eine Aktualisierung der xPlanBox benötigt (weitere Informationen befinden sich im Abschnitt <<aktualisierung>>). Im jeweiligen _bin_ Verzeichnis der beiden Kommandozeilenwerkzeuge findet sich das entsprechende Ausführungsskript:
+Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an beliebiger Stelle entpackt werden. Im jeweiligen _bin/_ Verzeichnis der Kommandozeilenwerkzeuge befindet sich das Ausführungsskript:
 
-* _XPlanManager_ (XPlanManagerCLI)
-* _XPlanValidator_ (XPlanValidatorCLI)
+* XPlanManagerCLI: _xplan-manager-cli/bin/XPlanManager_ - Beschreibung im Kapitel "XPlanManagerCLI" des XPlanBenutzerhandbuchs.
+* XPlanValidatorCLI: _xplan-validator-cli/bin/XPlanValidator_ - Beschreibung im Kapitel "XPlanValidatorCLI" des XPlanBenutzerhandbuchs.
+* XPlanUpdateDatabaseCLI: _xplan-update-database/bin/databaseUpdate_ - wird nur für eine Aktualisierung der xPlanBox benötigt, weitere Informationen befinden sich im Abschnitt <<aktualisierung>>) sowie
+** _xplan-update-database/bin/districtUpdate_ - Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung. Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen.
+** _xplan-update-database/bin/reSynthesizer_ - Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung. Aktualisierung der im XPlanSyn-Schema gespeicherten Daten.
+** _xplan-update-database/bin/serviceMetadatRecordCreator_ - Der Aufruf des Tools mit `serviceMetadatRecordCreator --help` liefert Hinweise zur Verwendung. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt der Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
+* XPlanAuswerteschemaCLI: _xplan-evaluation-schema-synchronize-cli/bin/EvaluationSchemaSynchronizer
+
+[[xplanevaluationschemasynchronize-cli]]
+===== XPlanAuswerteschemaCLI
+
+Das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI erzeugt ein weiteres Datenbankschema für die Auswertung und kann die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas synchronisieren. Das Auswerteschema unterscheidet sich zum XPlanSyn-Schema dadurch, dass die GML-Geometrien (wie z.B. Kreisbögen) wie im Original-XPlanGML zusätzlich zu den Simple Features Geometrien abgelegt sind.
+
+====== Installation
+
+Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte aus dem Ordner _scripts/_ angelegt werden. Folgende Reihenfolge muss beibehalten werden:
+
+. _00_create_schema.sql_
+. _01_create_function.sql_
+. _02_create_tables.sql_
+. _03_create_trigger-function.sql_
+. _04_create_trigger.sql_
+
+Die Skripte erstellen eine Kopie der drei XPlanSyn-Schemas in den Schemas _xplanevaluationxplansynpre_, _xplanevaluationxplansyn_ und _xplanevaluationxplansynarchive_ sowie eine Log-Tabelle _xplanevaluation.planTableLog_.
+
+Die Log-Tabelle wird beim Importieren, Editieren und Löschen von Plänen über den XPlanManager mit einer Historie der ausgeführten Operationen auf die einzelnen Pläne gefüllt und dient als Basis für die regelmäßige Synchronisierung des XPlanSyn-Schema und des Auswerteschemas.
+
+Damit das Tool ausgeführt werden kann, muss GDAL installiert werden, wie in Kapitel <<installation-gdal>> beschrieben.
+
+====== Nutzung
+
+Das CLI _EvaluationSchemaSynchronizer_ unterstützt zwei Modi, die über die Option `-t` aufgerufen werden können:
+
+* Option *ALL* zur Überführung aller Pläne aus dem XPlanSyn-Schema der xPlanBox in das Auswerteschema.
+* Option *SYNC* um die Synchronisierung der seit der letzten Ausführung des Werkzeuges geänderten Pläne aus dem XPlanSyn-Schema in das Auswerteschema durchzuführen.
+
+Üblicherweise erfolgt zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z.B. mit Hilfe eines Cron-Jobs) die Option *SYNC* um einen tagesaktuellen Stand im Auswerteschema zu erreichen.
+
+Die einzelnen Parameter des Werkzeuges können durch folgenden Aufruf abgerufen werden:
+
+-------
+EvaluationSchemaSynchronizer -?
+-------
+
+Beispiel für den Aufruf mit den Parametern `-h` für den Hostnamen des PostgreSQL-Servers, `-p` den Port, `-d` der Datenbank, `-u` dem Benutzer, `-t` der Angabe zur Synchronisierung:
+
+-------
+EvaluationSchemaSynchronizer -h localhost -p 5432 -d xplanbox -u postgres -w postgres -t ALL
+-------
 
 [[dokumentation]]
 ==== Dokumentation
