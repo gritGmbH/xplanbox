@@ -114,7 +114,7 @@ public class XPlanValidatorWeb implements EntryPoint {
 		helpLink.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent clickEvent) {
-				Window.open("../XPlanValidatorWeb-Benutzerhandbuch/index-xPlanValidator.html", "_blank", "");
+				Window.open("XPlanValidatorWeb-Benutzerhandbuch/index-xPlanValidator.html", "_blank", "");
 			}
 		});
 		mainPanel.add(helpLink);
