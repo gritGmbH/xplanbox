@@ -31,6 +31,7 @@ import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
@@ -63,7 +64,6 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.xml.XMLParsingException;
@@ -135,6 +135,8 @@ public class XPlanManager {
 	private final XPlanEditManager xPlanEditManager;
 
 	private final XPlanDeleteManager xPlanDeleteManager;
+
+	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	/**
 	 * @param xPlanDao mandatory XPlan data access object
@@ -253,8 +255,7 @@ public class XPlanManager {
 		// TODO: Simplify retrieval of plan name.
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
-		XPlanFeatureCollection fc = (new GeometricValidatorImpl(true)).retrieveGeometricallyValidXPlanFeatures(archive,
-				crs, getAppSchemaFromStore(archive, null), true, null);
+		XPlanFeatureCollection fc = xPlanGmlParser.parseFeatureCollection(archive, crs);
 		return fc.getPlanName();
 	}
 

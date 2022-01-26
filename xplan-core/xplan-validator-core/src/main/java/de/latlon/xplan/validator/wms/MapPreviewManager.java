@@ -25,7 +25,7 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
@@ -33,7 +33,6 @@ import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.TransformationException;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
-import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.Envelope;
 import org.deegree.geometry.GeometryTransformer;
 import org.slf4j.Logger;
@@ -41,7 +40,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -51,6 +49,8 @@ public class MapPreviewManager {
 	private static final Logger LOG = LoggerFactory.getLogger(MapPreviewManager.class);
 
 	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+
+	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final ValidatorWmsManager validatorWmsManager;
 
@@ -80,7 +80,7 @@ public class MapPreviewManager {
 	public MapPreviewMetadata createConfigurations(File xPlan) throws MapPreviewCreationException {
 		try {
 			XPlanArchive archive = archiveCreator.createXPlanArchive(xPlan);
-			XPlanFeatureCollection featureCollection = parseFeatures(archive);
+			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseFeatureCollection(archive);
 			int managerId = this.validatorWmsManager.insert(featureCollection);
 			String configFileName = this.configWriter.createMasterportalConfig(managerId, archive.getType());
 
@@ -89,22 +89,13 @@ public class MapPreviewManager {
 					envelope.getMax().get0(), envelope.getMax().get1(), "EPSG:4326");
 			return new MapPreviewMetadata(configFileName, featureCollection.getPlanName(), xPlanEnvelope);
 		}
+		catch (XMLStreamException | UnknownCRSException e) {
+			LOG.error("Plan could not be parsed. Reason {}", e.getMessage(), e);
+			throw new MapPreviewCreationException(e.getMessage());
+		}
 		catch (Exception e) {
 			LOG.error("An exception occurred during creation of the map preview configuration", e);
 			throw new MapPreviewCreationException(e.getMessage());
-		}
-	}
-
-	private XPlanFeatureCollection parseFeatures(XPlanArchive archive) {
-		try {
-			AppSchema appSchema = schemas.getAppSchema(archive.getVersion(), archive.getAde());
-			XPlanFeatureCollection xPlanFeatureCollection = geometricValidator
-					.retrieveGeometricallyValidXPlanFeatures(archive, archive.getCrs(), appSchema, true, null);
-			return xPlanFeatureCollection;
-		}
-		catch (XMLStreamException | UnknownCRSException | ValidatorException e) {
-			LOG.warn("Parsing of external references failed", e);
-			return null;
 		}
 	}
 

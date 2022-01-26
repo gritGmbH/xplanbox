@@ -23,6 +23,7 @@ package de.latlon.xplan.validator;
 
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
@@ -64,7 +65,6 @@ import static java.util.Collections.singletonList;
 import static org.deegree.cs.persistence.CRSManager.lookup;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Mockito.doReturn;
@@ -89,6 +89,8 @@ public class XPlanValidatorTest {
 
 	private SyntacticValidator synVal;
 
+	private XPlanGmlParser xPlanGmlParser;
+
 	private static File planToValidate;
 
 	@Before
@@ -96,6 +98,7 @@ public class XPlanValidatorTest {
 		geoVal = mockGeometricValidator();
 		semVal = mockSemanticValidator();
 		synVal = mockSyntacticValidator();
+		xPlanGmlParser = mockXPlanGmlParser();
 	}
 
 	@BeforeClass
@@ -117,8 +120,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verifyZeroInteractions(semVal);
-		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				nullable(String.class));
+		verifyZeroInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -129,8 +131,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verifyZeroInteractions(semVal);
-		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				nullable(String.class));
+		verifyZeroInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -140,8 +141,7 @@ public class XPlanValidatorTest {
 
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(1)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
-		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				nullable(String.class));
+		verifyZeroInteractions(xPlanGmlParser);
 		verifyZeroInteractions(semVal);
 	}
 
@@ -153,8 +153,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(1)).validateSemantic(archive(), list());
-		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				nullable(String.class));
+		verifyZeroInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -166,8 +165,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(1)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(1)).validateSemantic(archive(), list());
-		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				nullable(String.class));
+		verifyZeroInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -178,8 +176,7 @@ public class XPlanValidatorTest {
 		verify(synVal, times(1)).validateSyntax(archive());
 		verify(geoVal, times(0)).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		verify(semVal, times(0)).validateSemantic(archive(), list());
-		verify(geoVal, times(1)).retrieveGeometricallyValidXPlanFeatures(archive(), crs(), schema(), anyBoolean(),
-				nullable(String.class));
+		verifyZeroInteractions(xPlanGmlParser);
 	}
 
 	@Test
@@ -297,6 +294,10 @@ public class XPlanValidatorTest {
 				lookup("epsg:4326"), true);
 		doReturn(result).when(geomVal).validateGeometry(archive(), crs(), schema(), anyBoolean(), list());
 		return geomVal;
+	}
+
+	private XPlanGmlParser mockXPlanGmlParser() {
+		return spy(new XPlanGmlParser());
 	}
 
 	private List emptyList() {

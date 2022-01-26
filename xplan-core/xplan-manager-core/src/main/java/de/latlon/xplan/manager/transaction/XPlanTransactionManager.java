@@ -27,6 +27,7 @@ import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
@@ -60,9 +61,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TimeZone;
 import java.util.UUID;
 
@@ -99,6 +98,8 @@ public abstract class XPlanTransactionManager {
 	protected final XPlanManipulator planModifier = new XPlanManipulator();
 
 	protected final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+
+	protected final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final MetadataCouplingHandler metadataCouplingHandler;
 

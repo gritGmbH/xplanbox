@@ -37,7 +37,6 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceManager;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -96,7 +95,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		LOG.info("- Importiere Plan " + archive);
 		ICRS crs = CrsUtils.determineActiveCrs(defaultCRS, archive, LOG);
 		PlanStatus planStatus = xPlanMetadata.getPlanStatus();
-		XPlanFeatureCollection fc = readAndValidateMainDocument(archive, crs, force, internalId, planStatus);
+		XPlanFeatureCollection fc = readAndValidateMainDocument(archive, crs, force);
 		FeatureCollection synFc = createSynFeatures(fc, archive.getVersion());
 		if (internalId != null) {
 			AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, planStatus).getSchema();
@@ -113,15 +112,11 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		return planId;
 	}
 
-	private XPlanFeatureCollection readAndValidateMainDocument(XPlanArchive archive, ICRS crs, boolean force,
-			String internalId, PlanStatus planStatus) throws Exception {
+	private XPlanFeatureCollection readAndValidateMainDocument(XPlanArchive archive, ICRS crs, boolean force)
+			throws Exception {
 		performSchemaValidation(archive);
 		try {
-			GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl(true);
-			AppSchema appSchema = managerWorkspaceWrapper
-					.lookupStore(archive.getVersion(), archive.getAde(), planStatus).getSchema();
-			XPlanFeatureCollection fc = geometricValidator.retrieveGeometricallyValidXPlanFeatures(archive, crs,
-					appSchema, force, internalId);
+			XPlanFeatureCollection fc = xPlanGmlParser.parseFeatureCollection(archive, crs);
 			reassignFids(fc);
 			long begin = System.currentTimeMillis();
 			new SyntacticValidatorImpl().validateReferences(archive, fc.getExternalReferenceInfo(), force);

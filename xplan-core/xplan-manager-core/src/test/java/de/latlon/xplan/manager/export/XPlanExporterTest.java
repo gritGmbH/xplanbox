@@ -56,17 +56,15 @@
 package de.latlon.xplan.manager.export;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
 import org.junit.Test;
 import org.xmlunit.builder.Input;
 import org.xmlunit.matchers.ValidationMatcher;
@@ -330,11 +328,10 @@ public class XPlanExporterTest {
 	}
 
 	private XPlanFeatureCollection readFeatures(XPlanArchive archive) throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion(), archive.getAde());
-		ICRS crs = CRSManager.lookup("EPSG:31467");
+		ICRS defaultCrs = CRSManager.lookup("EPSG:31467");
 		if (archive.getCrs() != null)
-			crs = archive.getCrs();
-		return (new GeometricValidatorImpl()).retrieveGeometricallyValidXPlanFeatures(archive, crs, schema, true, null);
+			defaultCrs = archive.getCrs();
+		return new XPlanGmlParser().parseFeatureCollection(archive, defaultCrs);
 	}
 
 	private ByteArrayInputStream createZippedContent(String name) throws IOException {
