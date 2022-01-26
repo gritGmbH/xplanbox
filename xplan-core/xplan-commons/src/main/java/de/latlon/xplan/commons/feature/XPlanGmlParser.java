@@ -35,7 +35,10 @@ import org.deegree.geometry.GeometryFactory;
 import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.GMLVersion;
 
+import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import java.io.InputStream;
 
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 
@@ -50,9 +53,9 @@ public class XPlanGmlParser {
 	 * @throws XMLStreamException
 	 * @throws UnknownCRSException
 	 */
-	public XPlanFeatureCollection parseFeatureCollection(XPlanArchive xPlanArchive)
+	public XPlanFeatureCollection parseXPlanFeatureCollection(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException {
-		return parseFeatureCollection(xPlanArchive, xPlanArchive.getCrs());
+		return parseXPlanFeatureCollection(xPlanArchive, xPlanArchive.getCrs());
 	}
 
 	/**
@@ -62,16 +65,80 @@ public class XPlanGmlParser {
 	 * @throws XMLStreamException
 	 * @throws UnknownCRSException
 	 */
-	public XPlanFeatureCollection parseFeatureCollection(XPlanArchive xPlanArchive, ICRS defaultCrs)
+	public XPlanFeatureCollection parseXPlanFeatureCollection(XPlanArchive xPlanArchive, ICRS defaultCrs)
 			throws XMLStreamException, UnknownCRSException {
 		XPlanVersion version = xPlanArchive.getVersion();
 		XPlanAde ade = xPlanArchive.getAde();
 		XPlanType type = xPlanArchive.getType();
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
-		return parseFeatureCollection(version, type, ade, defaultCrs, xmlStream);
+		return parseXPlanFeatureCollection(version, type, ade, defaultCrs, xmlStream);
 	}
 
-	private XPlanFeatureCollection parseFeatureCollection(XPlanVersion version, XPlanType type, XPlanAde ade,
+	/**
+	 * Reads the {@link XPlanFeatureCollection} from the passed {@link InputStream}
+	 * @param plan to parse, never <code>null</code>
+	 * @param type of the plan, never <code>null</code>
+	 * @param version of the plan, never <code>null</code>
+	 * @return never <code>null</code>
+	 * @throws XMLStreamException if the plan could not be read
+	 * @throws UnknownCRSException if the CRS of a geometry in the plan is not known
+	 */
+	public XPlanFeatureCollection parseXPlanFeatureCollection(InputStream plan, XPlanVersion version, XPlanType type)
+			throws XMLStreamException, UnknownCRSException {
+		XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+		XMLStreamReader xmlStreamReader = null;
+		try {
+			xmlStreamReader = xmlInputFactory.createXMLStreamReader(plan);
+			return parseXPlanFeatureCollection(xmlStreamReader, type, version);
+		}
+		finally {
+			if (xmlStreamReader != null)
+				xmlStreamReader.close();
+		}
+	}
+
+	/**
+	 * Parses a FeatureCollection from the passed stream
+	 * @param plan as XMLStreamReader, never <code>null</code>
+	 * @param version of the plan, never <code>null</code>
+	 * @return never <code>null</code>
+	 * @throws XMLStreamException if the plan could not be read
+	 * @throws UnknownCRSException if the CRS of a geometry in the plan is not known
+	 */
+	public FeatureCollection parseFeatureCollection(XMLStreamReader plan, XPlanVersion version)
+			throws XMLStreamException, UnknownCRSException {
+		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(plan, null);
+		GMLStreamReader gmlStreamReader = createGmlStreamReader(version, null, null, xmlStream);
+		FeatureCollection features = gmlStreamReader.readFeatureCollection();
+		gmlStreamReader.getIdContext().resolveLocalRefs();
+		return features;
+	}
+
+	/**
+	 * Parses a FeatureCollection from the passed stream
+	 * @param plan as InputStream, never <code>null</code>
+	 * @param version of the plan, never <code>null</code>
+	 * @return never <code>null</code>
+	 * @throws XMLStreamException if the plan could not be read
+	 * @throws UnknownCRSException if the CRS of a geometry in the plan is not known
+	 */
+	public FeatureCollection parseFeatureCollection(InputStream plan, XPlanVersion version)
+			throws XMLStreamException, UnknownCRSException {
+		XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(plan);
+		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xmlStreamReader, null);
+		GMLStreamReader gmlStreamReader = createGmlStreamReader(version, null, null, xmlStream);
+		FeatureCollection features = gmlStreamReader.readFeatureCollection();
+		gmlStreamReader.getIdContext().resolveLocalRefs();
+		return features;
+	}
+
+	private XPlanFeatureCollection parseXPlanFeatureCollection(XMLStreamReader plan, XPlanType type,
+			XPlanVersion version) throws XMLStreamException, UnknownCRSException {
+		FeatureCollection xplanFeatures = parseFeatureCollection(plan, version);
+		return new XPlanFeatureCollectionBuilder(xplanFeatures, type).build();
+	}
+
+	private XPlanFeatureCollection parseXPlanFeatureCollection(XPlanVersion version, XPlanType type, XPlanAde ade,
 			ICRS defaultCrs, XMLStreamReaderWrapper xmlStream) throws XMLStreamException, UnknownCRSException {
 		GMLStreamReader gmlStream = createGmlStreamReader(version, ade, defaultCrs, xmlStream);
 		FeatureCollection features = (FeatureCollection) gmlStream.readFeature();
@@ -85,6 +152,7 @@ public class XPlanGmlParser {
 		GeometryFactory geomFac = new GeometryFactory();
 		GMLStreamReader gmlStream = createGMLStreamReader(gmlVersion, xmlStream);
 		gmlStream.setDefaultCRS(defaultCrs);
+		gmlStream.setSkipBrokenGeometries(true);
 		gmlStream.setGeometryFactory(geomFac);
 		gmlStream.setApplicationSchema(schema);
 		return gmlStream;

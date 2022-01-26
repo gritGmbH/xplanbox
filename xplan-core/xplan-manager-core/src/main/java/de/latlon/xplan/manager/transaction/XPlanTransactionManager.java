@@ -65,7 +65,6 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.UUID;
 
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 
 /**
@@ -167,14 +166,14 @@ public abstract class XPlanTransactionManager {
 		}
 	}
 
-	protected FeatureCollection renewFeatureCollection(XPlanVersion version, AppSchema appSchema,
-			FeatureCollection modifiedFeatures) throws Exception {
+	protected FeatureCollection renewFeatureCollection(XPlanVersion version, FeatureCollection modifiedFeatures)
+			throws Exception {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		xPlanExporter.export(outputStream, version, modifiedFeatures, null);
 		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
 		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
 		try {
-			return parseFeatureCollection(originalPlanAsXmlReader, version, appSchema);
+			return xPlanGmlParser.parseFeatureCollection(originalPlanAsXmlReader, version);
 		}
 		finally {
 			originalPlanAsXmlReader.close();

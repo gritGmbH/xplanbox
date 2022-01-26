@@ -75,7 +75,7 @@ public class ParameterizedGeometricValidatorImplTest {
 	public void testRetrieveGeometricallyValidXPlanFeatures(String testResource, String expectedPlanName,
 			String expectedPlanGz, String expectedPlanNumber, int expectedNumberOfFeatures) throws Exception {
 		XPlanArchive archive = getTestArchive(testResource);
-		XPlanFeatureCollection fc = new XPlanGmlParser().parseFeatureCollection(archive);
+		XPlanFeatureCollection fc = new XPlanGmlParser().parseXPlanFeatureCollection(archive);
 		if (!NULL.equals(expectedPlanName))
 			assertThat(fc.getPlanName(), is(expectedPlanName));
 		if (NULL.equals(expectedPlanGz))

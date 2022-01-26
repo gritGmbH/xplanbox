@@ -24,6 +24,7 @@ package de.latlon.xplanbox.api.manager.handler;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
@@ -37,12 +38,10 @@ import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
-import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
-import org.apache.http.client.utils.URIBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,14 +51,10 @@ import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
-import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 import static java.lang.Integer.parseInt;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -92,6 +87,9 @@ public class PlanHandler {
 
 	@Autowired
 	private XPlanExporter xPlanExporter;
+
+	@Autowired
+	private XPlanGmlParser xPlanGmlParser;
 
 	public XPlan importPlan(File uploadedPlan, String xFileName, ValidationSettings validationSettings,
 			String internalId, String planStatus) throws Exception {
@@ -186,7 +184,7 @@ public class PlanHandler {
 
 	private PlanStatus determinePlanStatusByRechtsstand(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException {
-		XPlanFeatureCollection fc = parseXPlanFeatureCollection(xPlanArchive);
+		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(xPlanArchive);
 		removeAllFeaturesExceptOfPlanFeature(fc);
 
 		String legislationStatus = retrieveLegislationStatus(fc.getFeatures(), fc.getType());

@@ -19,7 +19,7 @@ public class XPlanGmlParserTest {
 	public void testParseFeatureCollection() throws Exception {
 		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 		XPlanArchive testArchive = getTestArchive("xplan41/Eidelstedt_4_V4.zip");
-		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseFeatureCollection(testArchive);
+		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(testArchive);
 		assertThat(xPlanFeatureCollection.getFeatures().size(), is(56));
 	}
 

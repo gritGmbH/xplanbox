@@ -126,7 +126,7 @@ public class ValidationHandler {
 	public URI addToWms(XPlanArchive archive) {
 		try {
 			if (validatorWmsManager != null) {
-				XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseFeatureCollection(archive);
+				XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 				int id = validatorWmsManager.insert(xPlanFeatureCollection);
 				return createWmsUrl(id);
 			}

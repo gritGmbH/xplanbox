@@ -331,7 +331,7 @@ public class XPlanExporterTest {
 		ICRS defaultCrs = CRSManager.lookup("EPSG:31467");
 		if (archive.getCrs() != null)
 			defaultCrs = archive.getCrs();
-		return new XPlanGmlParser().parseFeatureCollection(archive, defaultCrs);
+		return new XPlanGmlParser().parseXPlanFeatureCollection(archive, defaultCrs);
 	}
 
 	private ByteArrayInputStream createZippedContent(String name) throws IOException {

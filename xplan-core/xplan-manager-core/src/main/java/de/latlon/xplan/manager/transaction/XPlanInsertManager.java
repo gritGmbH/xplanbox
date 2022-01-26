@@ -116,7 +116,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			throws Exception {
 		performSchemaValidation(archive);
 		try {
-			XPlanFeatureCollection fc = xPlanGmlParser.parseFeatureCollection(archive, crs);
+			XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive, crs);
 			reassignFids(fc);
 			long begin = System.currentTimeMillis();
 			new SyntacticValidatorImpl().validateReferences(archive, fc.getExternalReferenceInfo(), force);

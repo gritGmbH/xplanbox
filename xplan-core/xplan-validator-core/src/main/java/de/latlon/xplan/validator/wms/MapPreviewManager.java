@@ -80,7 +80,7 @@ public class MapPreviewManager {
 	public MapPreviewMetadata createConfigurations(File xPlan) throws MapPreviewCreationException {
 		try {
 			XPlanArchive archive = archiveCreator.createXPlanArchive(xPlan);
-			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseFeatureCollection(archive);
+			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 			int managerId = this.validatorWmsManager.insert(featureCollection);
 			String configFileName = this.configWriter.createMasterportalConfig(managerId, archive.getType());
 

@@ -279,7 +279,7 @@ public class XPlanValidator {
 
 	private void parseReferences(XPlanArchive archive, ValidatorReport report) {
 		try {
-			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseFeatureCollection(archive);
+			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 			report.setBBoxIn4326(featureCollection.getBboxIn4326());
 			parseAndAddExternalReferences(report, featureCollection);
 		}

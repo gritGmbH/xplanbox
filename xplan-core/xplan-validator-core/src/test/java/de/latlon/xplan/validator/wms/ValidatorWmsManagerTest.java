@@ -67,7 +67,7 @@ public class ValidatorWmsManagerTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		return new XPlanGmlParser().parseFeatureCollection(archive);
+		return new XPlanGmlParser().parseXPlanFeatureCollection(archive);
 
 	}
 

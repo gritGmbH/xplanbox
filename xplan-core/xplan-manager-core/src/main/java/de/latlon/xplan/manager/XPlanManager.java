@@ -21,7 +21,6 @@
  */
 package de.latlon.xplan.manager;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -76,9 +75,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -88,9 +85,7 @@ import java.util.EmptyStackException;
 import java.util.List;
 
 import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
-import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.io.IOUtils.closeQuietly;
@@ -255,7 +250,7 @@ public class XPlanManager {
 		// TODO: Simplify retrieval of plan name.
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
-		XPlanFeatureCollection fc = xPlanGmlParser.parseFeatureCollection(archive, crs);
+		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive, crs);
 		return fc.getPlanName();
 	}
 
@@ -283,7 +278,7 @@ public class XPlanManager {
 	public LegislationStatus determineLegislationStatus(String pathToArchive)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection fc = parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 		removeAllFeaturesExceptOfPlanFeature(fc);
 
 		String legislationStatus = retrieveLegislationStatus(fc.getFeatures(), fc.getType());
@@ -314,7 +309,7 @@ public class XPlanManager {
 	public List<RasterEvaluationResult> evaluateRasterdata(String pathToArchive)
 			throws IOException, XMLStreamException, XMLParsingException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection fc = parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 		return xPlanRasterManager.evaluateRasterdata(archive, fc);
 	}
 
@@ -330,7 +325,7 @@ public class XPlanManager {
 			throws IOException, XMLStreamException, UnknownCRSException {
 		LOG.info("- Analyse des Vorkommens eines Plans mit gleichem Namen und Planstatus...");
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection fc = parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 		String planName = fc.getPlanName();
 		boolean planWithSameNameAndStatusExists = xplanDao.checkIfPlanWithSameNameAndStatusExists(planName, status);
 		LOG.info("OK, Plan mit Namen '{}' und Status '{}' existiert: {}", planName, status,
@@ -400,21 +395,14 @@ public class XPlanManager {
 	@PreAuthorize("(hasPermission(#plan, 'hasDistrictPermission') and hasRole('ROLE_XPLAN_EDITOR')) or hasRole('ROLE_XPLAN_SUPERUSER')")
 	public XPlanToEdit getXPlanToEdit(XPlan plan) throws Exception {
 		InputStream originalPlan = null;
-		XMLStreamReader originalPlanAsXmlReader = null;
 		try {
 			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
-			XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf(plan.getAde()) : null;
-			AppSchema appSchema = managerWorkspaceWrapper
-					.lookupStore(version, ade, plan.getXplanMetadata().getPlanStatus()).getSchema();
 			originalPlan = xplanDao.retrieveXPlanArtefact(plan.getId());
-			originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
-			FeatureCollection originalPlanFC = parseFeatureCollection(originalPlanAsXmlReader, version, appSchema);
+			FeatureCollection originalPlanFC = xPlanGmlParser.parseFeatureCollection(originalPlan, version);
 			return planToEditFactory.createXPlanToEdit(plan, originalPlanFC);
 		}
 		finally {
 			closeQuietly(originalPlan);
-			if (originalPlanAsXmlReader != null)
-				originalPlanAsXmlReader.close();
 		}
 	}
 

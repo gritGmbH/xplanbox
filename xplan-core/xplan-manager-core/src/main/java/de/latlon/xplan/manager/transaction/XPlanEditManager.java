@@ -61,7 +61,6 @@ import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
-import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
@@ -99,14 +98,15 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
 			AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, ade, oldPlanStatus).getSchema();
 			originalPlan = xplanDao.retrieveXPlanArtefact(planId);
-			XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection(originalPlan, type, version, appSchema);
+			XPlanFeatureCollection originalPlanFC = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan, version,
+					type);
 			String oldDescription = retrieveDescription(originalPlanFC.getFeatures(), type);
 			String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus(originalPlanFC.getFeatures(),
 					type);
 			FeatureCollection featuresToModify = originalPlanFC.getFeatures();
 			ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan(featuresToModify);
 			planModifier.modifyXPlan(featuresToModify, xPlanToEdit, version, type, appSchema);
-			FeatureCollection modifiedFeatures = renewFeatureCollection(version, appSchema, featuresToModify);
+			FeatureCollection modifiedFeatures = renewFeatureCollection(version, featuresToModify);
 			ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan(modifiedFeatures);
 
 			byte[] xPlanGml = createXPlanGml(version, modifiedFeatures);
