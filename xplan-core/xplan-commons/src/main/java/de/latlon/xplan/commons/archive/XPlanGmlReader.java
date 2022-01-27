@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.util.XPlanVersionUtils;
 import org.apache.axiom.om.util.XMLStreamWriterFilter;
+import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 
@@ -74,7 +75,7 @@ public class XPlanGmlReader {
 	 * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
 	 * @throws XMLStreamException if the XPlanGML GML could not be parsed
 	 */
-	public MainZipEntry createZipEntry(ArtefactEntry entry) throws XMLStreamException {
+	public Pair<MainZipEntry, ArchiveMetadata> createZipEntry(ArtefactEntry entry) throws XMLStreamException {
 		XMLStreamReader reader = null;
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		try {
@@ -87,8 +88,9 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		return new MainZipEntry(bos.toByteArray(), entry.getName(), version, type, ade, crs, district,
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, district,
 				hasMultipleXPlanElements);
+		return new Pair<>(new MainZipEntry(bos.toByteArray(), entry.getName()), archiveMetadata);
 	}
 
 	/**
@@ -98,7 +100,8 @@ public class XPlanGmlReader {
 	 * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
 	 * @throws XMLStreamException if the XPlanGML GML could not be parsed
 	 */
-	public MainZipEntry createZipEntry(String name, InputStream xplanGml) throws XMLStreamException {
+	public Pair<MainZipEntry, ArchiveMetadata> createZipEntry(String name, InputStream xplanGml)
+			throws XMLStreamException {
 		XMLStreamReader reader = null;
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		try {
@@ -110,7 +113,9 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		return new MainZipEntry(bos.toByteArray(), name, version, type, ade, crs, district, hasMultipleXPlanElements);
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, district,
+				hasMultipleXPlanElements);
+		return new Pair<>(new MainZipEntry(bos.toByteArray(), name), archiveMetadata);
 	}
 
 	private void copy(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {

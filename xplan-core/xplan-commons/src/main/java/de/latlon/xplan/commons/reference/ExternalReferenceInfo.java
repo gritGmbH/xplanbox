@@ -44,8 +44,7 @@ public class ExternalReferenceInfo {
 	private final List<ExternalReference> rasterPlanUpdateScans;
 
 	public ExternalReferenceInfo() {
-		this(new ArrayList<ExternalReference>(), new ArrayList<ExternalReference>(),
-				new ArrayList<ExternalReference>());
+		this(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 	}
 
 	public ExternalReferenceInfo(List<ExternalReference> externalRefs, List<ExternalReference> rasterPlanBaseScans,
@@ -92,6 +91,14 @@ public class ExternalReferenceInfo {
 		rasterPlanBaseAndUpdateScans.addAll(rasterPlanBaseScans);
 		rasterPlanBaseAndUpdateScans.addAll(rasterPlanUpdateScans);
 		return rasterPlanBaseAndUpdateScans;
+	}
+
+	public List<ExternalReference> getAllReferences() {
+		List<ExternalReference> allReferences = new ArrayList<>();
+		allReferences.addAll(externalRefs);
+		allReferences.addAll(rasterPlanBaseScans);
+		allReferences.addAll(rasterPlanUpdateScans);
+		return allReferences;
 	}
 
 	@Override

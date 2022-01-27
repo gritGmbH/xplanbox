@@ -154,7 +154,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 	}
 
 	@Override
-	public List<? extends ArchiveEntry> getZipFileEntries() {
+	public List<ZipEntryWithContent> getZipFileEntries() {
 		return zipFileEntries;
 	}
 

@@ -24,8 +24,8 @@ package de.latlon.xplan.manager.database;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.CategoryMapper;
@@ -168,7 +168,7 @@ public class XPlanDao {
 
 			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanSynTA = insertXPlanSyn(synFs, synFc);
 
-			insertArtefacts(archive, conn, planId);
+			insertArtefacts(fc, archive, conn, planId);
 
 			long begin = System.currentTimeMillis();
 			LOG.info("- Persistierung...");
@@ -1318,16 +1318,17 @@ public class XPlanDao {
 		}
 	}
 
-	private void insertArtefacts(XPlanArchive archive, Connection conn, int planId) throws Exception {
+	private void insertArtefacts(XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive, Connection conn,
+			int planId) throws Exception {
 		PreparedStatement stmt = null;
-		List<? extends ArchiveEntry> entryEnum = archive.getZipFileEntries();
+		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
 		int i = 0;
-		for (ArchiveEntry entry : entryEnum) {
+		for (ZipEntryWithContent archiveEntry : archiveEntries) {
 			long begin = System.currentTimeMillis();
-			String name = entry.getName();
+			String name = archiveEntry.getName();
 			LOG.info(String.format("- Einfügen von XPlan-Artefakt '%s'...", name));
 			try {
-				InputStream is = archive.retrieveInputStreamFor(name);
+				InputStream is = archiveEntry.retrieveContentAsStream();
 				String mimetype = getArtefactMimeType(name);
 				String insertStatement = "INSERT INTO xplanmgr.artefacts (plan,filename,data,num,mimetype)"
 						+ " VALUES (?,?,?,?,?)";

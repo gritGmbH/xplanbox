@@ -45,6 +45,7 @@ public class XPlanGmlWriter extends GMLStreamWriter {
 		super(xPlanVersion.getGmlVersion(), xmlStream);
 		this.xPlanVersion = xPlanVersion;
 		getNamespaceBindings().put("xplan", xPlanVersion.getNamespace());
+		getNamespaceBindings().put("gml", xPlanVersion.getGmlVersion().getNamespace());
 	}
 
 	@Override

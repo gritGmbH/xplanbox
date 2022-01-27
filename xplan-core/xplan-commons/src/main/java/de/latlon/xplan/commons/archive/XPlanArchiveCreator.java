@@ -21,6 +21,8 @@
  */
 package de.latlon.xplan.commons.archive;
 
+import org.deegree.commons.utils.Pair;
+
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLStreamException;
 import java.io.ByteArrayOutputStream;
@@ -88,10 +90,12 @@ public class XPlanArchiveCreator {
 	public XPlanArchive createXPlanArchiveFromZip(String name, InputStream inputStream) throws IOException {
 		try {
 			List<ZipEntryWithContent> zipEntries = new ArrayList<>();
-			MainZipEntry mainEntry = readEntries(inputStream, zipEntries);
-			String district = mapDistrict(mainEntry);
-			return new XPlanArchive(zipEntries, name, mainEntry.getVersion(), mainEntry.getAde(), mainEntry.getType(),
-					mainEntry.getCrs(), district, mainEntry.hasMultipleXPlanElements());
+			Pair<MainZipEntry, ArchiveMetadata> mainEntry = readEntries(inputStream, zipEntries);
+			ArchiveMetadata archiveMetadata = mainEntry.getSecond();
+			String district = mapDistrict(archiveMetadata);
+			return new XPlanArchive(zipEntries, name, archiveMetadata.getVersion(), archiveMetadata.getAde(),
+					archiveMetadata.getType(), archiveMetadata.getCrs(), district,
+					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException | FactoryConfigurationError e) {
 			String message = format("Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage());
@@ -110,10 +114,12 @@ public class XPlanArchiveCreator {
 	public XPlanArchive createXPlanArchiveFromGml(String name, InputStream inputStream) throws IOException {
 		XPlanGmlReader xPlanGmlReader = new XPlanGmlReader();
 		try {
-			MainZipEntry mainEntry = xPlanGmlReader.createZipEntry(name, inputStream);
-			String district = mapDistrict(mainEntry);
-			return new XPlanArchive(mainEntry, name, mainEntry.getVersion(), mainEntry.getAde(), mainEntry.getType(),
-					mainEntry.getCrs(), district, mainEntry.hasMultipleXPlanElements());
+			Pair<MainZipEntry, ArchiveMetadata> mainEntry = xPlanGmlReader.createZipEntry(name, inputStream);
+			ArchiveMetadata archiveMetadata = mainEntry.getSecond();
+			String district = mapDistrict(archiveMetadata);
+			return new XPlanArchive(mainEntry.first, name, archiveMetadata.getVersion(), archiveMetadata.getAde(),
+					archiveMetadata.getType(), archiveMetadata.getCrs(), district,
+					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException e) {
 			e.printStackTrace();
@@ -125,17 +131,16 @@ public class XPlanArchiveCreator {
 		}
 	}
 
-	private String mapDistrict(MainZipEntry mainEntry) {
-		String district = mainEntry.getDistrict();
+	private String mapDistrict(ArchiveMetadata archiveMetadata) {
+		String district = archiveMetadata.getDistrict();
 		if (localCenterToDistrictMapper == null)
 			return district;
 		return localCenterToDistrictMapper.mapToDistrict(district);
 	}
 
-	private MainZipEntry readEntries(InputStream inputStream, List<ZipEntryWithContent> zipEntries)
-			throws IOException, XMLStreamException {
-
-		MainZipEntry mainZipEntry = null;
+	private Pair<MainZipEntry, ArchiveMetadata> readEntries(InputStream inputStream,
+			List<ZipEntryWithContent> zipEntries) throws IOException, XMLStreamException {
+		Pair<MainZipEntry, ArchiveMetadata> mainZipEntry = null;
 		ZipInputStream zipInputStream = new ZipInputStream(inputStream, Charset.forName("UTF-8"));
 		ZipEntry entry;
 		while ((entry = zipInputStream.getNextEntry()) != null) {
@@ -143,7 +148,7 @@ public class XPlanArchiveCreator {
 			if (MAIN_FILE.equals(entry.getName())) {
 				XPlanGmlReader xPlanGmlReader = new XPlanGmlReader();
 				mainZipEntry = xPlanGmlReader.createZipEntry(zipEntry);
-				zipEntries.add(mainZipEntry);
+				zipEntries.add(mainZipEntry.first);
 			}
 			else {
 				zipEntries.add(zipEntry);

@@ -22,28 +22,22 @@
 package org.deegree.gml;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.xmlunit.matchers.HasXPathMatcher.hasXPath;
 
 /**
@@ -55,7 +49,7 @@ public class XPlanGmlFeatureWriterTest {
 	public void testWrite() throws Exception {
 		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan41/Eidelstedt_4_V4.zip");
 		String xPlanFeatureCollection = writeXPlanFeatureCollection(fc);
-
+		System.out.println(xPlanFeatureCollection);
 		assertThat(xPlanFeatureCollection, hasXPath("/xplan:XPlanAuszug").withNamespaceContext(nsContext()));
 	}
 
@@ -74,16 +68,8 @@ public class XPlanGmlFeatureWriterTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		XPlanVersion version = archive.getVersion();
-		XPlanAde ade = archive.getAde();
-		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
-		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, ade));
-		FeatureCollection fc = gmlReader.readFeatureCollection();
-		gmlReader.getIdContext().resolveLocalRefs();
-		gmlReader.close();
-		xmlReader.close();
-		return new XPlanFeatureCollectionBuilder(fc, archive.getType()).build();
+		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
+		return xPlanGmlParser.parseXPlanFeatureCollection(archive);
 	}
 
 	private Map<String, String> nsContext() {
