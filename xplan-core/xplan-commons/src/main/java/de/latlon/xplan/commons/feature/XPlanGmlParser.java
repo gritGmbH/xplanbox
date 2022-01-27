@@ -75,6 +75,23 @@ public class XPlanGmlParser {
 	}
 
 	/**
+	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
+	 * @param defaultCrs of the geometries if not specified, may be <code>null</code>
+	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
+	 * @throws XMLStreamException
+	 * @throws UnknownCRSException
+	 */
+	public XPlanFeatureCollections parseXPlanFeatureCollectionAllowMultipleInstances(XPlanArchive xPlanArchive,
+			ICRS defaultCrs) throws XMLStreamException, UnknownCRSException {
+		XPlanVersion version = xPlanArchive.getVersion();
+		XPlanType type = xPlanArchive.getType();
+		XPlanAde ade = xPlanArchive.getAde();
+		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
+		GMLStreamReader gmlStream = createGmlStreamReader(version, ade, defaultCrs, xmlStream);
+		return new MultipleInstanceParser().parse(gmlStream, version, type);
+	}
+
+	/**
 	 * Reads the {@link XPlanFeatureCollection} from the passed {@link InputStream}
 	 * @param plan to parse, never <code>null</code>
 	 * @param type of the plan, never <code>null</code>

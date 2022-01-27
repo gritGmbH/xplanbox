@@ -103,8 +103,11 @@ public class PlanHandler {
 		}
 		LOG.info("Plan is valid. Importing plan into storage for '{}'", planStatus);
 		AdditionalPlanData metadata = createAdditionalPlanData(xPlanArchive, planStatus);
-		int planId = xPlanInsertManager.importPlan(xPlanArchive, null, false, false, true, null, internalId, metadata);
-
+		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, null, false, false, true, null, internalId,
+				metadata);
+		if (planIds.size() > 1)
+			throw new IllegalArgumentException("Currently only one plan is supported");
+		int planId = planIds.get(0);
 		XPlan planById = findPlanById(planId);
 		LOG.info("Plan with Id {} successfully imported", planById);
 		return planById;

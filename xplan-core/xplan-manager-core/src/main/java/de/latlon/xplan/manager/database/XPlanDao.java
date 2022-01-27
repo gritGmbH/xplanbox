@@ -21,7 +21,6 @@
  */
 package de.latlon.xplan.manager.database;
 
-import org.locationtech.jts.io.ParseException;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
@@ -59,6 +58,7 @@ import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.io.WKTWriter;
 import org.deegree.protocol.wfs.getfeature.TypeName;
 import org.deegree.protocol.wfs.transaction.action.IDGenMode;
+import org.locationtech.jts.io.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -27,6 +27,7 @@ import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -47,7 +48,6 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -163,6 +163,12 @@ public abstract class XPlanTransactionManager {
 			String prefix = "XPLAN_" + f.getName().getLocalPart().toUpperCase() + "_";
 			String uuid = UUID.randomUUID().toString();
 			f.setId(prefix + uuid);
+		}
+	}
+
+	protected void reassignFids(XPlanFeatureCollections fc) {
+		for (XPlanFeatureCollection xplanInstance : fc.getxPlanGmlInstances()) {
+			reassignFids(xplanInstance);
 		}
 	}
 

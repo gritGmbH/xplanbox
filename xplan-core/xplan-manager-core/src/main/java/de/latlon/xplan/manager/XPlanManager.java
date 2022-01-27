@@ -247,7 +247,6 @@ public class XPlanManager {
 	 * @throws Exception
 	 */
 	public String retrievePlanName(String archiveFileName) throws Exception {
-		// TODO: Simplify retrieval of plan name.
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
 		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive, crs);
