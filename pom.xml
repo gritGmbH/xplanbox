@@ -1061,10 +1061,6 @@
 
   <developers>
     <developer>
-      <name>grit Support</name>
-      <email>support@grit.de</email>
-    </developer>
-    <developer>
       <name>lat/lon Support</name>
       <email>support@lat-lon.de</email>
     </developer>
