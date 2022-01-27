@@ -364,7 +364,7 @@
         <plugin>
           <groupId>org.asciidoctor</groupId>
           <artifactId>asciidoctor-maven-plugin</artifactId>
-          <version>2.1.0</version>
+          <version>2.2.1</version>
           <dependencies>
             <dependency>
               <groupId>org.asciidoctor</groupId>
@@ -377,7 +377,6 @@
     </pluginManagement>
   </build>
 
-  <!-- TODO: move all scopes to childmodules where they are used -->
   <dependencyManagement>
     <dependencies>
       <dependency>
