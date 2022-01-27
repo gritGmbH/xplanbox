@@ -67,4 +67,4 @@ Abschluss eines EVB-IT Pflegevertrags.
 ==== Nutzungsbedingungen
 
 Die Binärprogramme der xPlanBox werden von lat/lon hergestellt und stehen unter einem
-besonderen Nutzungsvorbehalt. Vertragspartner erhalten ein einfaches Nutzungsrecht an den Binärprogrammen der xPlanBox. Näheres regelt der EVB-IT Pflegevertrag.
+besonderen Nutzungsvorbehalt. Vertragspartner erhalten einfache Nutzungsrechte an den Binärprogrammen der xPlanBox. Näheres regelt der EVB-IT Pflegevertrag.

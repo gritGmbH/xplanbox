@@ -27,7 +27,7 @@ Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Dirk Stenger,
 Sebastian Goerke, Lyn Elisa Goltz, Carmen Tawalika, Jeronimo Wanhoff,
 Lena Rippolz.
 
-Copyright (C) 2010 - 2021, lat/lon GmbH, Bonn
+Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
 
 [[lizenz]]
 === Lizenz
@@ -38,7 +38,7 @@ urheberrechtlich geschützt und wird unter der http://www.gnu.org/licenses/lgpl-
 Lesser General Public License (LGPL), version 2.1] veröffentlicht. Bitte beachten Sie die Lizenzen der verwendeten Bibliotheken im <<appendix_license,Anhang>>.
 
 Die Komponenten der xPlanBox sind urheberrechtlich geschützt. +
-Copyright (C) 2010 - 2021, lat/lon GmbH, Bonn.
+Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
 
 [[softwareüberlassung]]
 ==== Softwareüberlassung
@@ -63,8 +63,7 @@ sofern diese verfügbar sind. Näheres regelt der EVB-IT Pflegevertrag.
 ==== Nutzungsbedingungen
 
 Die Binärprogramme der xPlanBox werden von lat/lon hergestellt und stehen unter einem
-besonderen Nutzungsvorbehalt. Vertragspartner erhalten ein nicht dauerhaftes, nicht ausschließliches und
-nicht übertragbares Nutzungsrecht an den Binärprogrammen der xPlanBox. Näheres regelt der EVB-IT Pflegevertrag.
+besonderen Nutzungsvorbehalt. Vertragspartner erhalten einfache Nutzungsrechte an den Binärprogrammen der xPlanBox. Näheres regelt der EVB-IT Pflegevertrag.
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments
