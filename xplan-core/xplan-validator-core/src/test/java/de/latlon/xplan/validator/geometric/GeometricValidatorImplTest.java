@@ -70,7 +70,7 @@ public class GeometricValidatorImplTest {
 		int numberOfErrors = ((GeometricValidatorResult) report).getErrors().size();
 
 		assertThat(report.isValid(), is(false));
-		assertThat(numberOfErrors, is(10));
+		assertThat(numberOfErrors, is(17));
 	}
 
 	@Test
@@ -81,7 +81,7 @@ public class GeometricValidatorImplTest {
 		int numberOfErrors = ((GeometricValidatorResult) report).getErrors().size();
 
 		assertThat(report.isValid(), is(false));
-		assertThat(numberOfErrors, is(11));
+		assertThat(numberOfErrors, is(18));
 	}
 
 	@Test
@@ -142,10 +142,10 @@ public class GeometricValidatorImplTest {
 		GeometricValidatorResult report = (GeometricValidatorResult) validateGeometryAndReturnReport(archive,
 				SKIP_OPTIONS);
 
-		assertThat(report.isValid(), is(true));
-		assertThat(report.getErrors().size(), is(0));
-		assertThat(report.getWarnings().size(), is(2));
-		assertThat(report.getBadGeometries().size(), is(0));
+		assertThat(report.isValid(), is(false));
+		assertThat(report.getErrors().size(), is(2));
+		assertThat(report.getWarnings().size(), is(0));
+		assertThat(report.getBadGeometries().size(), is(2));
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {
