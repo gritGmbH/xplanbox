@@ -71,6 +71,7 @@ Das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI erzeugt ein weiteres Datenbank
 
 ====== Installation
 
+Die Installation dieses Kommandozeilenwerkzeugs sowie das Anlegen des zusätzlichen Datenbankschemas ist optional. Für den Betrieb der xPlanBox sind diese nicht erforderlich.
 Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte aus dem Ordner _scripts/_ angelegt werden. Folgende Reihenfolge muss beibehalten werden:
 
 . _00_create_schema.sql_
