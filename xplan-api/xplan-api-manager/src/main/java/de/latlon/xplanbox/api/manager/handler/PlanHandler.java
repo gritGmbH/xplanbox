@@ -51,7 +51,9 @@ import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
@@ -91,7 +93,7 @@ public class PlanHandler {
 	@Autowired
 	private XPlanGmlParser xPlanGmlParser;
 
-	public XPlan importPlan(File uploadedPlan, String xFileName, ValidationSettings validationSettings,
+	public List<XPlan> importPlan(File uploadedPlan, String xFileName, ValidationSettings validationSettings,
 			String internalId, String planStatus) throws Exception {
 		LOG.info("Importing plan using validation settings '{}'", validationSettings);
 		String validationName = validationSettings.getValidationName();
@@ -107,10 +109,10 @@ public class PlanHandler {
 				metadata);
 		if (planIds.size() > 1)
 			throw new IllegalArgumentException("Currently only one plan is supported");
-		int planId = planIds.get(0);
-		XPlan planById = findPlanById(planId);
-		LOG.info("Plan with Id {} successfully imported", planById);
-		return planById;
+		List<XPlan> plansById = findPlansById(planIds);
+		LOG.info("Plan successfully imported. Ids: {}",
+				plansById.stream().map(plan -> plan.getId()).collect(Collectors.joining(",")));
+		return plansById;
 	}
 
 	private XPlanArchive createArchive(File uploadedPlan) throws InvalidXPlanGmlOrArchive {
@@ -155,6 +157,15 @@ public class PlanHandler {
 		if (planName != null)
 			return xPlanDao.getXPlansLikeName(planName);
 		return xPlanDao.getXPlanList(false);
+	}
+
+	private List<XPlan> findPlansById(List<Integer> planIds) throws Exception {
+		List<XPlan> plans = new ArrayList<>();
+		for (int planId : planIds) {
+			XPlan planById = findPlanById(planId);
+			plans.add(planById);
+		}
+		return plans;
 	}
 
 	private XPlan findPlanById(int id) throws Exception {

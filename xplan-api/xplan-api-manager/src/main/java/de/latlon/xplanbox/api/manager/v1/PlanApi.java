@@ -59,7 +59,6 @@ import javax.ws.rs.core.StreamingOutput;
 import javax.ws.rs.core.Variant;
 import java.io.File;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -146,10 +145,10 @@ public class PlanApi {
 				overwriteByRequest(skipSemantisch, validationConfig.isSkipSemantisch()),
 				overwriteByRequest(skipFlaechenschluss, validationConfig.isSkipFlaechenschluss()),
 				overwriteByRequest(skipGeltungsbereich, validationConfig.isSkipGeltungsbereich()));
-		XPlan xPlan = planHandler.importPlan(body, xFilename, validationSettings, internalId, planStatus);
+		List<XPlan> xPlans = planHandler.importPlan(body, xFilename, validationSettings, internalId, planStatus);
 		MediaType requestedMediaType = requestedMediaType(request);
-		PlanInfo planInfo = createPlanInfo(requestedMediaType, xPlan);
-		return Response.created(getSelfLink(planInfo)).entity(planInfo).build();
+		List<PlanInfo> planInfos = createPlanInfo(requestedMediaType, xPlans);
+		return Response.created(getSelfLink(planInfos)).entity(planInfos).build();
 	}
 
 	@DELETE
@@ -216,13 +215,21 @@ public class PlanApi {
 		return Response.ok().entity(planInfos).build();
 	}
 
-	private PlanInfo createPlanInfo(MediaType requestedMediaType, XPlan planById) throws URISyntaxException {
+	private List<PlanInfo> createPlanInfo(MediaType requestedMediaType, List<XPlan> plans) {
+		return plans.stream().map(plan -> createPlanInfo(requestedMediaType, plan)).collect(Collectors.toList());
+	}
+
+	private PlanInfo createPlanInfo(MediaType requestedMediaType, XPlan planById) {
 		List<String> alternateMediaTypes = alternateMediaTypes(requestedMediaType);
 		return new PlanInfoBuilder(planById, managerApiConfiguration).selfMediaType(requestedMediaType.toString())
 				.alternateMediaType(alternateMediaTypes).build();
 	}
 
-	private URI getSelfLink(PlanInfo planInfo) {
+	// TODO: handle multiple values!
+	private URI getSelfLink(List<PlanInfo> planInfos) {
+		if (planInfos.size() != 1)
+			return null;
+		PlanInfo planInfo = planInfos.get(0);
 		for (Link link : planInfo.getLinks()) {
 			if (SELF.equals(link.getRel()))
 				return link.getHref();
