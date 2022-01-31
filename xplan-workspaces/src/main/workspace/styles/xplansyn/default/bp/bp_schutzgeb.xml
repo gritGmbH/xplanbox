@@ -7,10 +7,11 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_Schutzgebiet</FeatureTypeName>
   <!-- TODO: Linien & Punkte -->
+  <!-- Flaeche -->
   <Rule>
-    <Name>bp_schutzgeb</Name>
+    <Name>bp_schutzgebiet Flaeche</Name>
     <Description>
-      <Title>BP: Schutzgebiet</Title>
+      <Title>BP: Schutzgebiet Flaeche</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
@@ -26,14 +27,41 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#008000</SvgParameter>
+        <SvgParameter name="stroke">#4DAE38</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">3</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-1.5</sed:PerpendicularOffset>
+      <PerpendicularOffset>-1.5</PerpendicularOffset>
     </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>bp_schutzgebiet Flaeche</Name>
+    <Description>
+      <Title>BP: Schutzgebiet Flaeche</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:Function name="IsSurface">
+          <ogc:PropertyName>xplan:position</ogc:PropertyName>
+        </ogc:Function>
+        <ogc:Literal>true</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -43,42 +71,31 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/schutzgeb_rs.svg" />
+                              xlink:href="../../symbols/naturschutzrecht.svg" />
               <Format>svg</Format>
               <Fill>
-                <SvgParameter name="fill">#000000</SvgParameter>
+                <SvgParameter name="fill-opacity">0</SvgParameter>
               </Fill>
-              <Stroke>
+               <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-                <SvgParameter name="stroke-width">0.3</SvgParameter>
+                <SvgParameter name="stroke-width">0.1</SvgParameter>
               </Stroke>
             </Mark>
-            <Size>2.7</Size>
+            <Size>5</Size>
           </Graphic>
           <Gap>3</Gap>
         </GraphicStroke>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-1.5</sed:PerpendicularOffset>
-    </PolygonSymbolizer>
-    <PolygonSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Stroke>
-        <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">0.5</SvgParameter>
-        <SvgParameter name="stroke-linecap">butt</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
-      </Stroke>
+      <PerpendicularOffset>-1.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
+
   <!-- Linie -->
   <Rule>
-    <Name>bp_schutzgeb</Name>
+    <Name>bp_schutzgebiet Linie</Name>
     <Description>
-      <Title>BP: Schutzgebiet</Title>
+      <Title>BP: Schutzgebiet Linie</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
@@ -94,14 +111,41 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#008000</SvgParameter>
+        <SvgParameter name="stroke">#4DAE38</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">3</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-1.5</sed:PerpendicularOffset>
+      <PerpendicularOffset>-1.5</PerpendicularOffset>
     </LineSymbolizer>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>bp_schutzgebiet Linie</Name>
+    <Description>
+      <Title>BP: Schutzgebiet Linie</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:Function name="IsCurve">
+          <ogc:PropertyName>xplan:position</ogc:PropertyName>
+        </ogc:Function>
+        <ogc:Literal>true</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -111,37 +155,26 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/schutzgeb_rs.svg" />
+                              xlink:href="../../symbols/naturschutzrecht.svg" />
               <Format>svg</Format>
               <Fill>
-                <SvgParameter name="fill">#000000</SvgParameter>
+                <SvgParameter name="fill-opacity">0</SvgParameter>
               </Fill>
-              <Stroke>
+               <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-                <SvgParameter name="stroke-width">0.3</SvgParameter>
+                <SvgParameter name="stroke-width">0.1</SvgParameter>
               </Stroke>
             </Mark>
-            <Size>2.7</Size>
+            <Size>5</Size>
           </Graphic>
           <Gap>3</Gap>
         </GraphicStroke>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-1.5</sed:PerpendicularOffset>
-    </LineSymbolizer>
-    <LineSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Stroke>
-        <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">0.5</SvgParameter>
-        <SvgParameter name="stroke-linecap">butt</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
-      </Stroke>
+      <PerpendicularOffset>-1.5</PerpendicularOffset>
     </LineSymbolizer>
   </Rule>
+
   <!-- Naturschutzgebiet -->
   <Rule>
     <Name>Naturschutzgebiet</Name>
@@ -162,7 +195,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -180,7 +213,7 @@
             <SvgParameter name="stroke-opacity">0</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>5</Size>
+        <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
     <PointSymbolizer uom="meter">
@@ -197,10 +230,10 @@
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
             <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>
@@ -225,7 +258,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -237,14 +270,34 @@
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>3</Size>
+      </Graphic>
+    </PointSymbolizer>
+	<PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
             <SvgParameter name="fill-opacity">0.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>
@@ -269,7 +322,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -281,14 +334,14 @@
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0.0</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>
@@ -313,7 +366,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -331,7 +384,7 @@
             <SvgParameter name="stroke-opacity">0</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>5</Size>
+        <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
     <PointSymbolizer uom="meter">
@@ -348,10 +401,10 @@
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
             <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-            <SvgParameter name="stroke-width">0.3</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>
@@ -376,7 +429,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -388,14 +441,34 @@
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>3</Size>
+      </Graphic>
+    </PointSymbolizer>
+	<PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
             <SvgParameter name="fill-opacity">0.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>
@@ -420,7 +493,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -432,14 +505,34 @@
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>3</Size>
+      </Graphic>
+    </PointSymbolizer>
+	<PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
             <SvgParameter name="fill-opacity">0.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>
@@ -464,7 +557,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -476,14 +569,34 @@
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>3</Size>
+      </Graphic>
+    </PointSymbolizer>
+	<PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
             <SvgParameter name="fill-opacity">0.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>
@@ -508,7 +621,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -520,14 +633,34 @@
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.1</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>3</Size>
+      </Graphic>
+    </PointSymbolizer>
+	<PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#000000</SvgParameter>
             <SvgParameter name="fill-opacity">0.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>
@@ -552,7 +685,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -568,7 +701,7 @@
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
         <Size>7</Size>
@@ -596,7 +729,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -612,7 +745,7 @@
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
         <Size>7</Size>

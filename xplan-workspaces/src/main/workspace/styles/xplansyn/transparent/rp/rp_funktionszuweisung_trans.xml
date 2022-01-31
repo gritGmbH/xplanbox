@@ -5,7 +5,7 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>transparent</Name>
-  <FeatureTypeName>xplan:RP_Funktionszuweisung</FeatureTypeName>
+  <FeatureTypeName>RP_Funktionszuweisung</FeatureTypeName>
 
   <!--RP_Funktionszuweisung-->
   <Rule>

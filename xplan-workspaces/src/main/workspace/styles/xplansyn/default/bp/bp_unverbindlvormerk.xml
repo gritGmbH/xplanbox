@@ -19,7 +19,7 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -27,10 +27,10 @@
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
-        <SvgParameter name="stroke-dasharray">5 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.3</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+        <SvgParameter name="stroke-dasharray">9 1</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
@@ -48,18 +48,18 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-opacity">0.3</SvgParameter>
         <SvgParameter name="stroke-width">1.0</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
-        <SvgParameter name="stroke-dasharray">5 2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+        <SvgParameter name="stroke-dasharray">9 1</SvgParameter>
       </Stroke>
     </LineSymbolizer>
   </Rule>
@@ -77,7 +77,7 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -95,7 +95,7 @@
             <SvgParameter name="stroke-width">0.3</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>

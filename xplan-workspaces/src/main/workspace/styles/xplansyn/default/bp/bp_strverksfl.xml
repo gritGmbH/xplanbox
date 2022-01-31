@@ -10,21 +10,21 @@
     <Description>
       <Title>BP: Straßenverkehrsfläche</Title>
     </Description>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#e1dc45</SvgParameter>
+        <SvgParameter name="fill">#FFD92F</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">0.5</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>

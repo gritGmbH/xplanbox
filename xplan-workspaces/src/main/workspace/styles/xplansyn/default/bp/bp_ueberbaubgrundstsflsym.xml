@@ -1,23 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<FeatureTypeStyle xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.opengis.net/se"
-  xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:sed="http://www.deegree.org/se" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
-  <FeatureTypeName>xplan:BP_GemeinbedarfsFlaeche</FeatureTypeName>
+  <FeatureTypeName>xplan:BP_UeberbaubareGrundstuecksFlaeche</FeatureTypeName>
   <Rule>
-    <Name>bp_gemeinbedarfsflsym</Name>
+    <Name>bp_ueberbaubgrundstsflsym</Name>
     <Description>
-      <Title>BP: Gemeinbedarfsfläche Symbol</Title>
+      <Title>BP: Überbaubare Grundstücksfläche Symbol</Title>
     </Description>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <ogc:Filter>
-        <ogc:Not>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:Z</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Not>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:Zzwingend</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
+    </ogc:Filter>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="InteriorPoint">
+          <ogc:PropertyName>xplan:position</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Label>
+        <Recode fallbackValue="">
+          <LookupValue>
+            <ogc:PropertyName>xplan:Zzwingend</ogc:PropertyName>
+          </LookupValue>
+          <MapItem>
+            <Data>1</Data>
+            <Value>I</Value>
+          </MapItem>
+          <MapItem>
+            <Data>2</Data>
+            <Value>II</Value>
+          </MapItem>
+          <MapItem>
+            <Data>3</Data>
+            <Value>III</Value>
+          </MapItem>
+          <MapItem>
+            <Data>4</Data>
+            <Value>IV</Value>
+          </MapItem>
+          <MapItem>
+            <Data>5</Data>
+            <Value>V</Value>
+          </MapItem>
+          <MapItem>
+            <Data>6</Data>
+            <Value>VI</Value>
+          </MapItem>
+          <MapItem>
+            <Data>7</Data>
+            <Value>VII</Value>
+          </MapItem>
+          <MapItem>
+            <Data>8</Data>
+            <Value>VIII</Value>
+          </MapItem>
+          <MapItem>
+            <Data>9</Data>
+            <Value>IX</Value>
+          </MapItem>
+          <MapItem>
+            <Data>10</Data>
+            <Value>X</Value>
+          </MapItem>
+          <MapItem>
+            <Data>11</Data>
+            <Value>XI</Value>
+          </MapItem>
+                    <MapItem>
+            <Data>12</Data>
+            <Value>XII</Value>
+          </MapItem>
+        </Recode>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
+        <SvgParameter name="font-weight">normal</SvgParameter>
+        <SvgParameter name="font-size">3</SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Displacement>
+            <DisplacementX>-0.2</DisplacementX>
+            <DisplacementY>0</DisplacementY>
+          </Displacement>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:Function name="InteriorPoint">
+          <ogc:PropertyName>xplan:position</ogc:PropertyName>
+        </ogc:Function>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>5</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>bp_ueberbaubgrundstsflsym</Name>
+    <Description>
+      <Title>BP: Überbaubare Grundstücksfläche Symbol</Title>
+    </Description>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:Z</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
     </ogc:Filter>
     <TextSymbolizer uom="meter">
       <Geometry>
@@ -74,50 +183,47 @@
             <Data>11</Data>
             <Value>XI</Value>
           </MapItem>
+                    <MapItem>
+            <Data>12</Data>
+            <Value>XII</Value>
+          </MapItem>
         </Recode>
       </Label>
       <Font>
         <SvgParameter name="font-family">Arial</SvgParameter>
         <SvgParameter name="font-family">Sans-Serif</SvgParameter>
-        <SvgParameter name="font-weight">bold</SvgParameter>
+        <SvgParameter name="font-weight">normal</SvgParameter>
         <SvgParameter name="font-size">3</SvgParameter>
       </Font>
       <LabelPlacement>
         <PointPlacement>
-          <AnchorPoint>
-            <AnchorPointX>0</AnchorPointX>
-            <AnchorPointY>0</AnchorPointY>
+                          <AnchorPoint>
+            <AnchorPointX>1</AnchorPointX>
+            <AnchorPointY>0.5</AnchorPointY>
           </AnchorPoint>
           <Displacement>
-            <DisplacementX>1</DisplacementX>
-            <DisplacementY>1</DisplacementY>
+            <DisplacementX>-1</DisplacementX>
+            <DisplacementY>0</DisplacementY>
           </Displacement>
         </PointPlacement>
       </LabelPlacement>
-      <Halo>
-        <Radius>0.3</Radius>
-        <Fill>
-          <SvgParameter name="fill">#E94EA5</SvgParameter>
-          <SvgParameter name="fill-opacity">1</SvgParameter>
-        </Fill>
-      </Halo>
       <Fill>
         <SvgParameter name="fill">#000000</SvgParameter>
       </Fill>
     </TextSymbolizer>
   </Rule>
   <Rule>
-    <Name>bp_gemeinbedarfsflsym</Name>
+    <Name>bp_ueberbaubgrundstsflsym</Name>
     <Description>
-      <Title>BP: Gemeinbedarfsfläche Symbol</Title>
+      <Title>BP: Überbaubare Grundstücksfläche Symbol</Title>
     </Description>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <ogc:Filter>
-        <ogc:Not>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:Zmin</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Not>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:Zmin</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
     </ogc:Filter>
     <TextSymbolizer uom="meter">
       <Geometry>
@@ -224,129 +330,30 @@
             <Data>11</Data>
             <Value>XI</Value>
           </MapItem>
+                    <MapItem>
+            <Data>12</Data>
+            <Value>XII</Value>
+          </MapItem>
         </Recode>
       </Label>
       <Font>
         <SvgParameter name="font-family">Arial</SvgParameter>
         <SvgParameter name="font-family">Sans-Serif</SvgParameter>
-        <SvgParameter name="font-weight">bold</SvgParameter>
-        <SvgParameter name="font-size">3</SvgParameter>
-      </Font>
-      <LabelPlacement>
-        <PointPlacement>
-          <AnchorPoint>
-            <AnchorPointX>0</AnchorPointX>
-            <AnchorPointY>0</AnchorPointY>
-          </AnchorPoint>
-          <Displacement>
-            <DisplacementX>1</DisplacementX>
-            <DisplacementY>1</DisplacementY>
-          </Displacement>
-        </PointPlacement>
-      </LabelPlacement>
-      <Halo>
-        <Radius>0.3</Radius>
-        <Fill>
-          <SvgParameter name="fill">#E94EA5</SvgParameter>
-          <SvgParameter name="fill-opacity">1</SvgParameter>
-        </Fill>
-      </Halo>
-      <Fill>
-        <SvgParameter name="fill">#000000</SvgParameter>
-      </Fill>
-    </TextSymbolizer>
-  </Rule>
-  <Rule>
-    <Name>bp_gemeindarfsflsym</Name>
-    <Description>
-      <Title>BP: GRZ</Title>
-    </Description>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <ogc:Filter>
-      <ogc:Not>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:GRZ</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:Not>
-    </ogc:Filter>
-    <TextSymbolizer uom="meter">
-      <Geometry>
-        <ogc:Function name="InteriorPoint">
-          <ogc:PropertyName>xplan:position</ogc:PropertyName>
-        </ogc:Function>
-      </Geometry>
-      <Label>
-        <ogc:Literal>GRZ </ogc:Literal>
-        <FormatNumber fallbackValue="" decimalPoint=",">
-          <NumericValue>
-            <ogc:PropertyName>xplan:GRZ</ogc:PropertyName>
-          </NumericValue>
-          <Pattern>0.0</Pattern>
-        </FormatNumber>
-      </Label>
-      <Font>
-        <SvgParameter name="font-family">Arial</SvgParameter>
-        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
         <SvgParameter name="font-weight">normal</SvgParameter>
-        <SvgParameter name="font-size">2</SvgParameter>
+        <SvgParameter name="font-size">3</SvgParameter>
       </Font>
       <LabelPlacement>
         <PointPlacement>
-          <AnchorPoint>
-            <AnchorPointX>0</AnchorPointX>
-            <AnchorPointY>0</AnchorPointY>
+                          <AnchorPoint>
+            <AnchorPointX>1</AnchorPointX>
+            <AnchorPointY>0.5</AnchorPointY>
           </AnchorPoint>
           <Displacement>
-            <DisplacementX>1</DisplacementX>
-            <DisplacementY>-1.5</DisplacementY>
+            <DisplacementX>-1</DisplacementX>
+            <DisplacementY>0</DisplacementY>
           </Displacement>
         </PointPlacement>
       </LabelPlacement>
-      <Halo>
-        <Radius>0.3</Radius>
-        <Fill>
-          <SvgParameter name="fill">#E94EA5</SvgParameter>
-          <SvgParameter name="fill-opacity">1</SvgParameter>
-        </Fill>
-      </Halo>
-      <Fill>
-        <SvgParameter name="fill">#000000</SvgParameter>
-      </Fill>
-    </TextSymbolizer>
-  </Rule>
-  <Rule>
-    <Name>detaillierteZweckbestimmung</Name>
-    <Description>
-      <Title>BP: detaillierte Zweckbestimmung</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:Not>
-        <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:detaillierteZweckbestimmung</ogc:PropertyName>
-        </ogc:PropertyIsNull>
-      </ogc:Not>
-    </ogc:Filter>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <TextSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Label>
-        <ogc:PropertyName>xplan:detaillierteZweckbestimmung</ogc:PropertyName>
-      </Label>
-      <Font>
-        <SvgParameter name="font-family">Arial</SvgParameter>
-        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
-        <SvgParameter name="font-weight">bold</SvgParameter>
-        <SvgParameter name="font-size">3</SvgParameter>
-      </Font>
-      <Halo>
-        <Radius>0.3</Radius>
-        <Fill>
-          <SvgParameter name="fill">#E94EA5</SvgParameter>
-          <SvgParameter name="fill-opacity">1</SvgParameter>
-        </Fill>
-      </Halo>
       <Fill>
         <SvgParameter name="fill">#000000</SvgParameter>
       </Fill>

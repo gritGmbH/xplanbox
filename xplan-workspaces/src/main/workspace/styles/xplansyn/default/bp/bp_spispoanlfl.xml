@@ -11,16 +11,23 @@
     <Description>
       <Title>BP: Spiel- und Sportanlagen</Title>
     </Description>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-width">0.75</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>bp_spispoanlfl</Name>
+    <Description>
+      <Title>BP: Spiel- und Sportanlagen</Title>
+    </Description>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -37,15 +44,15 @@
               </Fill>
               <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
-                <SvgParameter name="stroke-width">0.1</SvgParameter>
+                <SvgParameter name="stroke-width">0.2</SvgParameter>
               </Stroke>
             </Mark>
-            <Size>3</Size>
+            <Size>2.5</Size>
           </Graphic>
-          <Gap>3</Gap>
+          <Gap>0</Gap>
         </GraphicStroke>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-2.3</sed:PerpendicularOffset>
+      <sed:PerpendicularOffset type="Standard">-2</sed:PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 </FeatureTypeStyle>

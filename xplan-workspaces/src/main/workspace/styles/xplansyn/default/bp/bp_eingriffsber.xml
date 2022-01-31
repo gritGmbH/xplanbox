@@ -5,24 +5,40 @@
   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_EingriffsBereich</FeatureTypeName>
-  <!-- TODO: platzhalter -->
   <Rule>
     <Name>bp_eingriffsber</Name>
     <Description>
       <Title>BP: Eingriffsbereich</Title>
     </Description>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#CCD4C7</SvgParameter>
+        <SvgParameter name="stroke-width">3</SvgParameter>
+      </Stroke>
+      <PerpendicularOffset>-1.5</PerpendicularOffset>
+    </PolygonSymbolizer>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
       </Stroke>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+      </Stroke>
+      <PerpendicularOffset>-3</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 </FeatureTypeStyle>

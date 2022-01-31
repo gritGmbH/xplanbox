@@ -23,14 +23,13 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#d1de85</SvgParameter>
+        <SvgParameter name="fill">#CCE968</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">2.5</SvgParameter>
-        <SvgParameter name="stroke-dasharray">2.5</SvgParameter>
+        <SvgParameter name="stroke-width">1</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
       </Stroke>
@@ -48,7 +47,7 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>

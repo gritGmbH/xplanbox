@@ -11,7 +11,7 @@
     <Description>
       <Title>BP: Firstrichtung</Title>
     </Description>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -19,7 +19,7 @@
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1</SvgParameter>
-        <SvgParameter name="stroke-width">0.3</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
@@ -41,7 +41,7 @@
               <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-                <SvgParameter name="stroke-width">0.3</SvgParameter>
+                <SvgParameter name="stroke-width">0.2</SvgParameter>
               </Stroke>
             </Mark>
             <Size>3</Size>
@@ -68,7 +68,7 @@
               <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-                <SvgParameter name="stroke-width">0.3</SvgParameter>
+                <SvgParameter name="stroke-width">0.2</SvgParameter>
               </Stroke>
             </Mark>
             <Size>3</Size>

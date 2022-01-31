@@ -11,14 +11,14 @@
     <Description>
       <Title>BP: Aufschüttungsfläche</Title>
     </Description>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
     <PolygonSymbolizer uom="meter">
@@ -34,13 +34,23 @@
                 <SvgParameter name="fill">#000000</SvgParameter>
               </Fill>
             </Mark>
-            <Size>3</Size>
+            <Size>2</Size>
             <Rotation>180</Rotation>
           </Graphic>
-          <Gap>5</Gap>
+          <Gap>1.5</Gap>
         </GraphicStroke>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-2.5</sed:PerpendicularOffset>
+      <sed:PerpendicularOffset type="Standard">-2.1</sed:PerpendicularOffset>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+      </Stroke>
+	  <sed:PerpendicularOffset type="Standard">-3.6</sed:PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 </FeatureTypeStyle>

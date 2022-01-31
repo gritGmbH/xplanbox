@@ -37,16 +37,16 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#9975b9</SvgParameter>
+        <SvgParameter name="fill">#A591B3</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+		<SvgParameter name="stroke-width">0.2</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
-  <!-- unterirdische Bahnanlage -->
+  <!-- unterirdische Bahnanlage Linie-->
 
   <Rule>
     <Name>so_Schienenverkehrsrecht</Name>
@@ -73,17 +73,148 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#9975b9</SvgParameter>
+        <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">5.0</SvgParameter>
+        <SvgParameter name="stroke-width">2</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
-        <SvgParameter name="stroke-dasharray">7 2</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+		<SvgParameter name="stroke-dasharray">6 3</SvgParameter>
+		<SvgParameter name="stroke-dashoffset">0.1</SvgParameter>
+	  </Stroke>
+    </LineSymbolizer>
+	<LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#A591B3</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.6</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+		<SvgParameter name="stroke-dasharray">5.7 3.3</SvgParameter>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">0.5</sed:PerpendicularOffset>
     </LineSymbolizer>
   </Rule>
-  <!-- hochgelegende Bahnanlage -->
+  <!-- unterirdische Bahnanlage Fläche-->
+
+  <Rule>
+    <Name>so_Schienenverkehrsrecht</Name>
+    <Description>
+      <Title>SO: Schienenverkehrsrecht</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsSurface">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+          <ogc:Literal>-1</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+	<PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+		<SvgParameter name="stroke-dasharray">6 3</SvgParameter>
+		<SvgParameter name="stroke-dashoffset">0.1</SvgParameter>
+	  </Stroke>
+	  <sed:PerpendicularOffset type="Standard">-1</sed:PerpendicularOffset>
+    </PolygonSymbolizer>
+	<PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#A591B3</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.6</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+		<SvgParameter name="stroke-dasharray">5.7 3.3</SvgParameter>
+      </Stroke>
+	  <sed:PerpendicularOffset type="Standard">-1</sed:PerpendicularOffset>
+    </PolygonSymbolizer>
+	<PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+  
+  <!-- oberirdische Bahnanlage Linie-->
+
+  <Rule>
+    <Name>so_Schienenverkehrsrecht</Name>
+    <Description>
+      <Title>SO: Schienenverkehrsrecht</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsCurve">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+          <ogc:PropertyIsGreaterThanOrEqualTo>
+            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+            <ogc:Literal>0</ogc:Literal>
+          </ogc:PropertyIsGreaterThanOrEqualTo>
+        </ogc:Or>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+	  </Stroke>
+    </LineSymbolizer>
+	<LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#A591B3</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.6</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>  
+  
+  <!-- hochgelegende Bahnanlage Fläche -->
   <Rule>
     <Name>so_Schienenverkehrsrecht</Name>
     <Description>
@@ -108,16 +239,35 @@
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
-      <Fill>
+	  <Fill>
         <SvgParameter name="fill">#FFFFFF</SvgParameter>
-        <SvgParameter name="fill-opacity">1.0</SvgParameter>
+        <SvgParameter name="fill-opacity">0</SvgParameter>
       </Fill>
       <Stroke>
-        <SvgParameter name="stroke">#9975b9</SvgParameter>
-        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">5.0</SvgParameter>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-2.5</sed:PerpendicularOffset>
+      <PerpendicularOffset>-2</PerpendicularOffset>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#A591B3</SvgParameter>
+        <SvgParameter name="stroke-width">2</SvgParameter>
+      </Stroke>
+      <PerpendicularOffset>-1</PerpendicularOffset>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+      </Stroke>
     </PolygonSymbolizer>
   </Rule>
 </FeatureTypeStyle>
