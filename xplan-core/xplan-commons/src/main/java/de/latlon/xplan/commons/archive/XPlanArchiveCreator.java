@@ -122,7 +122,6 @@ public class XPlanArchiveCreator {
 					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException e) {
-			e.printStackTrace();
 			String message = format("Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage());
 			throw new IllegalArgumentException(message, e);
 		}

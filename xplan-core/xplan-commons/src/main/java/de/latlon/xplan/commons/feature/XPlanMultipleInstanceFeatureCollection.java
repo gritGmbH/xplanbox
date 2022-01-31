@@ -45,6 +45,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
+
 /**
  * Provides convenient access to the information contained in the main document of an
  * {@link XPlanArchive} which contains multiple XPlan instances.
@@ -69,7 +71,7 @@ public class XPlanMultipleInstanceFeatureCollection extends XPlanFeatureCollecti
 		addReferencedArtefacts(xPlanArchive, archiveEntries);
 		try {
 			byte[] bytes = writeFeatures();
-			MainZipEntry mainZipEntry = new MainZipEntry(bytes, "xplan.gml");
+			MainZipEntry mainZipEntry = new MainZipEntry(bytes, MAIN_FILE);
 			archiveEntries.add(mainZipEntry);
 			return archiveEntries;
 		}
