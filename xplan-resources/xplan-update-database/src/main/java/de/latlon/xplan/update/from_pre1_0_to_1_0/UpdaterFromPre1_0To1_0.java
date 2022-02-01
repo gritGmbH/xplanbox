@@ -55,23 +55,16 @@
 ----------------------------------------------------------------------------*/
 package de.latlon.xplan.update.from_pre1_0_to_1_0;
 
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
-import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
-import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
-
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.List;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
+import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.update.AbstractUpdater;
 import org.deegree.cs.exceptions.TransformationException;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
@@ -82,15 +75,20 @@ import org.deegree.gml.GMLStreamReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.update.AbstractUpdater;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
+import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
+import static org.apache.commons.io.IOUtils.closeQuietly;
+import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 
 /**
  * Updates the data from version pre 1.0 to 1.0.
@@ -183,7 +181,7 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
 		try {
 			stmt = conn.prepareStatement(updateSql);
 
-			stmt.setString(1, retrieveLegislationStatus(synFc, type));
+			stmt.setString(1, retrieveRechtsstand(synFc, type));
 			stmt.setString(2, retrieveAdditionalType(synFc, type));
 			stmt.setString(3, retrieveDistrict(fc.getFeatures(), type, version));
 			stmt.setString(4, createWktFromTransformedEnvelope(fc));

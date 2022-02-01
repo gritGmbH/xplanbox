@@ -76,6 +76,17 @@ public class XPlanGmlParser {
 
 	/**
 	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
+	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
+	 * @throws XMLStreamException
+	 * @throws UnknownCRSException
+	 */
+	public XPlanFeatureCollections parseXPlanFeatureCollectionAllowMultipleInstances(XPlanArchive xPlanArchive)
+			throws XMLStreamException, UnknownCRSException {
+		return parseXPlanFeatureCollectionAllowMultipleInstances(xPlanArchive, null);
+	}
+
+	/**
+	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
 	 * @param defaultCrs of the geometries if not specified, may be <code>null</code>
 	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
 	 * @throws XMLStreamException

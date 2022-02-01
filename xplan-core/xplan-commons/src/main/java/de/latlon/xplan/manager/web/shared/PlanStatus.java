@@ -33,7 +33,7 @@ public enum PlanStatus {
 
 	private String message;
 
-	private PlanStatus(String message) {
+	PlanStatus(String message) {
 		this.message = message;
 	}
 

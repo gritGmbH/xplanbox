@@ -216,7 +216,7 @@ public class UploadPanel extends DecoratorPanel {
 		importButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
 			public void update(int index, XPlan object, String value) {
 				if (object.isValid()) {
-					importWizardCreator.importPlan(object.getId());
+					importWizardCreator.importPlan(object.getId(), object.isHasMultipleXPlanElements());
 				}
 				else {
 					Window.alert(messages.loadNotPossible());

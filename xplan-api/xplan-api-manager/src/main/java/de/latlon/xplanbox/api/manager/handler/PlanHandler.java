@@ -55,8 +55,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 import static java.lang.Integer.parseInt;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -199,9 +198,7 @@ public class PlanHandler {
 	private PlanStatus determinePlanStatusByRechtsstand(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException {
 		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(xPlanArchive);
-		removeAllFeaturesExceptOfPlanFeature(fc);
-
-		String legislationStatus = retrieveLegislationStatus(fc.getFeatures(), fc.getType());
+		String legislationStatus = retrieveRechtsstand(fc.getFeatures(), fc.getType());
 		if (legislationStatus != null && !legislationStatus.isEmpty()) {
 			try {
 				int rechtsstand = parseInt(legislationStatus);

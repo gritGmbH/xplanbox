@@ -101,7 +101,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			XPlanFeatureCollection originalPlanFC = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan, version,
 					type);
 			String oldDescription = retrieveDescription(originalPlanFC.getFeatures(), type);
-			String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus(originalPlanFC.getFeatures(),
+			String oldLegislationStatus = FeatureCollectionUtils.retrieveRechtsstand(originalPlanFC.getFeatures(),
 					type);
 			FeatureCollection featuresToModify = originalPlanFC.getFeatures();
 			ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan(featuresToModify);

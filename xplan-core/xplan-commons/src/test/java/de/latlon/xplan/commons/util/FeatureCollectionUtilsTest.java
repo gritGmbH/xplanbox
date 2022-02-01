@@ -21,6 +21,20 @@
  */
 package de.latlon.xplan.commons.util;
 
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.gml.GMLStreamReader;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import javax.xml.stream.XMLStreamReader;
+
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -28,26 +42,11 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import javax.xml.stream.XMLStreamReader;
-
-import org.deegree.feature.Feature;
-import org.deegree.feature.FeatureCollection;
-import org.deegree.gml.GMLStreamReader;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 
 /**
  * Tests for {@link FeatureCollectionUtils}.
@@ -102,7 +101,7 @@ public class FeatureCollectionUtilsTest {
 	@Test
 	public void testRetrieveLegislationStatusWithExistingLegislationStatusShouldReturnString() throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection("xplan41/Eidelstedt_4_V4.zip");
-		String legislationStatus = retrieveLegislationStatus(fc, BP_Plan);
+		String legislationStatus = retrieveRechtsstand(fc, BP_Plan);
 
 		assertThat(legislationStatus, is("4000"));
 	}
@@ -110,7 +109,7 @@ public class FeatureCollectionUtilsTest {
 	@Test
 	public void testRetrieveLegislationStatusWithMissingLegislationStatusShouldReturnNull() throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection("xplan41/LA67.zip");
-		String legislationStatus = retrieveLegislationStatus(fc, BP_Plan);
+		String legislationStatus = retrieveRechtsstand(fc, BP_Plan);
 
 		assertThat(legislationStatus, nullValue());
 	}

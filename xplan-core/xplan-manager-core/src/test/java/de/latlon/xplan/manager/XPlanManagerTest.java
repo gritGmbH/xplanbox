@@ -55,13 +55,21 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType.gdal;
-import static de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager.isGdalSuccessfullInitialized;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assume.assumeTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.configuration.SortConfiguration;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.web.shared.Rechtsstand;
+import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.workspace.WorkspaceUtils;
+import org.apache.commons.io.IOUtils;
+import org.deegree.commons.config.DeegreeWorkspace;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -70,23 +78,13 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.List;
 
-import de.latlon.xplan.commons.configuration.SortConfiguration;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.workspace.WorkspaceUtils;
-import org.apache.commons.io.IOUtils;
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.web.shared.LegislationStatus;
-import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import static de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType.gdal;
+import static de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager.isGdalSuccessfullInitialized;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assume.assumeTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -135,7 +133,7 @@ public class XPlanManagerTest {
 		XPlanManager xPlanManager = createXPlanManager();
 		String pathToArchive = copyPlan();
 
-		LegislationStatus legislationStatus = xPlanManager.determineLegislationStatus(pathToArchive);
+		Rechtsstand legislationStatus = xPlanManager.determineRechtsstand(pathToArchive);
 
 		assertThat(legislationStatus.getCodeNumber(), is(4000));
 	}

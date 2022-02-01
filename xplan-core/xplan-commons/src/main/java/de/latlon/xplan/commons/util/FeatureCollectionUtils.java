@@ -30,8 +30,6 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
 import javax.xml.namespace.QName;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
@@ -68,34 +66,12 @@ public class FeatureCollectionUtils {
 	}
 
 	/**
-	 * Finds all XP_Plan features in a XPlan featureCollection.
-	 * @param fc XPlan featureCollection, never <code>null</code>
-	 * @param type the type of the expected plan feature, never <code>null</code>
-	 * @return list if XP_Plan features, never <code>null</code> or empty
-	 * @throws IllegalArgumentException if the feature collection does not contain at
-	 * least one XP_Plan feature
-	 */
-	public static List<Feature> findPlanFeatures(FeatureCollection fc, XPlanType type) {
-		List<Feature> planFeatures = new ArrayList<>();
-		for (Feature feature : fc) {
-			QName featureName = feature.getName();
-			if (featureName.getLocalPart().equals(type.name())) {
-				planFeatures.add(feature);
-			}
-		}
-		if (planFeatures.isEmpty()) {
-			throw new IllegalArgumentException("Keine XPlan-FeatureCollection. Keine XP_Plan-Feature enthalten.");
-		}
-		return planFeatures;
-	}
-
-	/**
-	 * Retrieves the legislation status ("rechtsstand") of a XPlan-FeatureCollection.
+	 * Retrieves the rechtsstand of a XPlan-FeatureCollection.
 	 * @param fc XPlan-FeatureCollection, never <code>null</code>
 	 * @param type XPlan-Type, never <code>null</code>
-	 * @return legislation status value or <code>null</code> if no value was found
+	 * @return rechtsstand of the plan or <code>null</code> if no value was found
 	 */
-	public static String retrieveLegislationStatus(FeatureCollection fc, XPlanType type) {
+	public static String retrieveRechtsstand(FeatureCollection fc, XPlanType type) {
 		return retrievePlanProperty(fc, type, "rechtsstand");
 	}
 
