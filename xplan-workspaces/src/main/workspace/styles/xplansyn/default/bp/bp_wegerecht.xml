@@ -21,33 +21,50 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <PolygonSymbolizer uom="meter">
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+	<PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <GraphicStroke>
-          <Graphic>
-            <Mark>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/wegerecht_rs.svg" />
-              <Format>svg</Format>
-              <Fill>
-                <SvgParameter name="fill">#000000</SvgParameter>
-              </Fill>
-              <Stroke>
-                <SvgParameter name="stroke">#000000</SvgParameter>
-                <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-                <SvgParameter name="stroke-width">0.3</SvgParameter>
-              </Stroke>
-            </Mark>
-            <Size>3</Size>
-          </Graphic>
-          <Gap>3</Gap>
-        </GraphicStroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.6</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+		<SvgParameter name="stroke-dasharray">5 3</SvgParameter>
+		<SvgParameter name="stroke-dashoffset">0.1</SvgParameter>
+	  </Stroke>
+	  <!--PerpendicularOffset>-0.8</PerpendicularOffset-->
+	  <sed:PerpendicularOffset type="Edged">-0.8</sed:PerpendicularOffset>
+    </PolygonSymbolizer>
+	<PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FFD92F</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+		<SvgParameter name="stroke-dasharray">4.7 3.3</SvgParameter>
+		<!--SvgParameter name="stroke-dashoffset">0</SvgParameter-->
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-1.5</sed:PerpendicularOffset>
+	  <!--PerpendicularOffset>-0.8</PerpendicularOffset-->
+	  <sed:PerpendicularOffset type="Edged">-0.8</sed:PerpendicularOffset>
+    </PolygonSymbolizer>
+	<PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+      </Stroke>
     </PolygonSymbolizer>
   </Rule>
 
@@ -65,33 +82,48 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <LineSymbolizer uom="meter">
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+	<LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <GraphicStroke>
-          <Graphic>
-            <Mark>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/wegerecht_ls.svg" />
-              <Format>svg</Format>
-              <Fill>
-                <SvgParameter name="fill">#000000</SvgParameter>
-              </Fill>
-              <Stroke>
-                <SvgParameter name="stroke">#000000</SvgParameter>
-                <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-                <SvgParameter name="stroke-width">0.3</SvgParameter>
-              </Stroke>
-            </Mark>
-            <Size>3</Size>
-          </Graphic>
-          <Gap>3</Gap>
-        </GraphicStroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+		<SvgParameter name="stroke-dasharray">5 3</SvgParameter>
+		<SvgParameter name="stroke-dashoffset">0.1</SvgParameter>
+	  </Stroke>
+	  <PerpendicularOffset>-0.8</PerpendicularOffset>
+    </LineSymbolizer>
+	<LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#FFD92F</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.6</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+		<SvgParameter name="stroke-dasharray">4.7 3.3</SvgParameter>
+		<SvgParameter name="stroke-dashoffset">0</SvgParameter>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-1.5</sed:PerpendicularOffset>
+	  <PerpendicularOffset>-0.8</PerpendicularOffset>
+    </LineSymbolizer>
+	<LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+      </Stroke>
     </LineSymbolizer>
   </Rule>
 
@@ -109,18 +141,18 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Graphic>
         <Mark>
           <WellKnownName>circle</WellKnownName>
           <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
+            <SvgParameter name="fill">#FFD92F</SvgParameter>
             <SvgParameter name="fill-opacity">1.0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
         <Size>3</Size>

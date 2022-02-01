@@ -20,20 +20,20 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#75c7ff</SvgParameter>
+        <SvgParameter name="fill">#99D9E8</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+        <!--SvgParameter name="stroke-dasharray">1</SvgParameter-->
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
@@ -51,13 +51,13 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#75c7ff</SvgParameter>
+        <SvgParameter name="stroke">#99D9E8</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">4.0</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
@@ -72,7 +72,7 @@
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>

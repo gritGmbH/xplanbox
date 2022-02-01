@@ -29,7 +29,7 @@
             <SvgParameter name="stroke-width">0.3</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>5</Size>
       </Graphic>
     </PointSymbolizer>
     <PointSymbolizer uom="meter">
@@ -51,7 +51,7 @@
             <SvgParameter name="stroke-width">0.1</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>5</Size>
+        <Size>3</Size>
         <Displacement>
           <DisplacementX>0.2</DisplacementX>
           <DisplacementY>0</DisplacementY>

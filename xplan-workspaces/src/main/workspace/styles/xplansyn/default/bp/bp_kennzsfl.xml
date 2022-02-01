@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+<FeatureTypeStyle xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.opengis.net/se" 
+  xmlns:ogc="http://www.opengis.net/ogc"
   xmlns:sed="http://www.deegree.org/se"
   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -170,7 +171,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -181,28 +182,28 @@
             <Mark>
               <WellKnownName>x</WellKnownName>
               <Fill>
-                <SvgParameter name="fill">#808080</SvgParameter>
+                <SvgParameter name="fill">#000000</SvgParameter>
               </Fill>
               <Stroke>
-                <SvgParameter name="stroke">#808080</SvgParameter>
-                <SvgParameter name="stroke-width">0.2</SvgParameter>
+                <SvgParameter name="stroke">#000000</SvgParameter>
+                <SvgParameter name="stroke-width">0.1</SvgParameter>
               </Stroke>
             </Mark>
             <Size>3</Size>
           </Graphic>
-          <Gap>7.5</Gap>
+          <Gap>8</Gap>
         </GraphicStroke>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-2.1</sed:PerpendicularOffset>
+      <sed:PerpendicularOffset type="Standard">-1.5</sed:PerpendicularOffset>
     </PolygonSymbolizer>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#808080</SvgParameter>
+        <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.25</SvgParameter>
+        <SvgParameter name="stroke-width">0.1</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
@@ -331,18 +332,92 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#808080</SvgParameter>
-        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">2.5</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+        <GraphicStroke>
+          <Graphic>
+            <Mark>
+              <WellKnownName>circle</WellKnownName>
+              <Fill>
+                <SvgParameter name="fill">#000000</SvgParameter>
+				<SvgParameter name="fill-opacity">0</SvgParameter>
+              </Fill>
+              <Stroke>
+                <SvgParameter name="stroke">#000000</SvgParameter>
+                <SvgParameter name="stroke-width">0.1</SvgParameter>
+              </Stroke>
+            </Mark>
+            <Size>3</Size>
+          </Graphic>
+          <Gap>8</Gap>
+        </GraphicStroke>
       </Stroke>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.1</SvgParameter>
+        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>Vorhabensgebiet</Name>
+    <Description>
+      <Title>BP: Vorhabensgebiet</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsSurface">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>8000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#CCD4C7</SvgParameter>
+        <SvgParameter name="stroke-width">3</SvgParameter>
+      </Stroke>
+      <PerpendicularOffset>-1.5</PerpendicularOffset>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+      </Stroke>
+      <PerpendicularOffset>-3</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
   <!-- AndereGesetzlVorschriften -->
@@ -366,18 +441,43 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#808080</SvgParameter>
+        <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">2.5</SvgParameter>
+        <SvgParameter name="stroke-width">0.1</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <GraphicStroke>
+		  <Graphic>
+			<Mark>
+			  <OnlineResource xlink:href="../../symbols/FreeSans.ttf" />
+			  <Format>ttf</Format>
+			  <MarkIndex>34</MarkIndex>
+			  <Fill>
+				<SvgParameter name="fill">#000000</SvgParameter>
+			  </Fill>
+			  <Stroke>
+				<SvgParameter name="stroke-opacity">0</SvgParameter>
+			  </Stroke>
+			</Mark>
+			<Size>2</Size>
+		  </Graphic>
+          <Gap>8</Gap>
+        </GraphicStroke>
+      </Stroke>
+      <sed:PerpendicularOffset type="Standard">-1</sed:PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 </FeatureTypeStyle>

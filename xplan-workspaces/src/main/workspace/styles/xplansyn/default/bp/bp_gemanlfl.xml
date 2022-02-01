@@ -6,6 +6,24 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_GemeinschaftsanlagenFlaeche</FeatureTypeName>
 
+  <Rule>
+    <Name>Gemeinschaftsanlagen</Name>
+    <Description>
+      <Title>BP: Gemeinschaftsanlagen</Title>
+    </Description>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+
   <!-- Stellplaetze -->
   <Rule>
     <Name>Gemeinschaftsstellplaetze</Name>
@@ -18,17 +36,18 @@
         <ogc:Literal>1000</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -44,17 +63,18 @@
         <ogc:Literal>2000</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -70,17 +90,18 @@
         <ogc:Literal>3000</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -96,17 +117,18 @@
         <ogc:Literal>3100</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -122,17 +144,18 @@
         <ogc:Literal>3200</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -148,17 +171,18 @@
         <ogc:Literal>3300</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -174,17 +198,18 @@
         <ogc:Literal>3400</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -200,17 +225,18 @@
         <ogc:Literal>3500</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -226,17 +252,18 @@
         <ogc:Literal>3600</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -252,17 +279,18 @@
         <ogc:Literal>3700</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -278,17 +306,18 @@
         <ogc:Literal>3800</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -304,17 +333,18 @@
         <ogc:Literal>3900</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -330,17 +360,18 @@
         <ogc:Literal>4000</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 
@@ -356,17 +387,18 @@
         <ogc:Literal>9999</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke">#FD341F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
-        <SvgParameter name="stroke-width">1</SvgParameter>
+        <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
+	  <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
   </Rule>
 </FeatureTypeStyle>

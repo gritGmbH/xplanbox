@@ -10,7 +10,22 @@
     <Description>
       <Title>BP: Nutzungsartengrenze</Title>
     </Description>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <ogc:Filter>
+	  <ogc:Or>
+		<ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+		<ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>2000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+		<ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+	  </ogc:Or>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -24,7 +39,7 @@
                 <SvgParameter name="fill">#000000</SvgParameter>
               </Fill>
             </Mark>
-            <Size>2</Size>
+            <Size>1</Size>
           </Graphic>
           <Gap>8</Gap>
         </GraphicStroke>
@@ -37,9 +52,35 @@
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">0.75</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-width">0.3</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>bp_nutzartgr</Name>
+    <Description>
+      <Title>BP: Sonstige Abgrenzung</Title>
+    </Description>
+    <ogc:Filter>
+		<ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:Literal>9999</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.8</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+        <SvgParameter name="stroke-dasharray">5 1</SvgParameter>
       </Stroke>
     </LineSymbolizer>
   </Rule>
