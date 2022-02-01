@@ -4869,6 +4869,10 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:flaechenschluss</PropertyName>
+          <SortOrder>DESC</SortOrder>
+        </SortProperty>
+        <SortProperty>        
           <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
