@@ -582,6 +582,48 @@
         </SortProperty>
       </SortBy>
     </SortBy>
+    <l:Name>bp_ueberbaubgrundstsflsym</l:Name>
+    <d:Title>BP: Überbaubare Grundstücksfläche Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsflsym_trans</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsflsym</l:StyleStoreId>
+    </l:StyleRef>    
+  </FeatureLayer>    
+  <FeatureLayer>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now" />
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc">
+        <SortProperty>
+          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
     <l:Name>bp_besnutzzweckflsym</l:Name>
     <d:Title>BP: Fläche besonderer Nutzung Symbol</d:Title>
     <s:CRS>EPSG:25832</s:CRS>
