@@ -100,6 +100,8 @@ public class UpdateUtils {
 			return "http://www.xplanung.de/xplangml/5/2";
 		case "xplan53":
 			return "http://www.xplanung.de/xplangml/5/3";
+		case "xplan54":
+			return "http://www.xplanung.de/xplangml/5/4";
 		}
 		throw new IllegalArgumentException("Unsupported schemaname: " + schemaname);
 	}
