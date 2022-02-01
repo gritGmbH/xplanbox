@@ -88,6 +88,11 @@
       <d:Title>SO: Gebiet</d:Title>
       <Layer>so_gebiet</Layer>
     </Theme>
+	<Theme>
+      <Identifier>so_gebiet-erhaltungsbereich</Identifier>
+      <d:Title>SO: Gebiet-Erhaltungsbereich</d:Title>
+      <Layer>so_gebiet-erhaltungsbereich</Layer>
+    </Theme>    
     <Theme>
       <Identifier>so_grenze</Identifier>
       <d:Title>SO: Grenze</d:Title>
