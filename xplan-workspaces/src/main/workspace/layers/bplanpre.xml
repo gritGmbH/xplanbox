@@ -585,9 +585,11 @@
     <l:Name>bp_ueberbaubgrundstsflsym</l:Name>
     <d:Title>BP: Überbaubare Grundstücksfläche Symbol</d:Title>
     <s:CRS>EPSG:25832</s:CRS>
+    <!-- temporarily commented - XPLANBOX-691
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
+    -->
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsflsym</l:StyleStoreId>
     </l:StyleRef>    
