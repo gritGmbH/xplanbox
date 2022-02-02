@@ -442,29 +442,25 @@ public class XPlanManager {
 	@PreAuthorize("hasPermission(#plan, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
 	public void delete(XPlan plan) throws Exception {
 		String planId = plan.getId();
-		delete(planId, false);
+		delete(planId);
 	}
 
 	/**
 	 * @param planId the plan id to delete
-	 * @param removeWMSConfig <code>true</code> if the WMS configuration for the plan to
-	 * delete should be removed, <code>false</code> otherwise
 	 * @throws Exception
 	 */
-	public void delete(String planId, boolean removeWMSConfig) throws Exception {
-		delete(planId, removeWMSConfig, null);
+	public void delete(String planId) throws Exception {
+		delete(planId, null);
 	}
 
 	/**
 	 * @param planId the plan id to delete
-	 * @param removeWMSConfig <code>true</code> if the WMS configuration for the plan to
-	 * delete should be removed, <code>false</code> otherwise
 	 * @param workspaceFolder workspace folder, may be <code>null</code> if default path
 	 * should be used.
 	 * @throws Exception
 	 */
-	public void delete(String planId, boolean removeWMSConfig, File workspaceFolder) throws Exception {
-		xPlanDeleteManager.delete(planId, removeWMSConfig, workspaceFolder);
+	public void delete(String planId, File workspaceFolder) throws Exception {
+		xPlanDeleteManager.delete(planId, workspaceFolder);
 	}
 
 	/**
