@@ -86,7 +86,7 @@ public class PlansApi {
 	}
 
 	private List<XPlan> searchByNameOrId(String planName, List<Integer> planIds) throws Exception {
-		if (planIds != null) {
+		if (!planIds.isEmpty()) {
 			return planHandler.findPlansById(planIds);
 		}
 		return planHandler.findPlans(planName);

@@ -89,7 +89,7 @@ public class PlanHandlerTest {
 
 	@Test(expected = InvalidPlanId.class)
 	public void verifyThat_findPlanById_WithWrongIdFails() throws Exception {
-		XPlan plan = planHandler.findPlanById("42");
+		planHandler.findPlanById("42");
 	}
 
 	@Test
