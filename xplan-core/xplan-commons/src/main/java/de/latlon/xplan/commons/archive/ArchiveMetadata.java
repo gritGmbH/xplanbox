@@ -26,6 +26,8 @@ import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.cs.coordinatesystems.ICRS;
 
+import java.util.List;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -39,17 +41,17 @@ public class ArchiveMetadata {
 
 	private final ICRS crs;
 
-	private final String district;
+	private final List<String> districts;
 
 	private final boolean hasMultipleXPlanElements;
 
-	public ArchiveMetadata(XPlanVersion version, XPlanType type, XPlanAde ade, ICRS crs, String district,
+	public ArchiveMetadata(XPlanVersion version, XPlanType type, XPlanAde ade, ICRS crs, List<String> districts,
 			boolean hasMultipleXPlanElements) {
 		this.version = version;
 		this.type = type;
 		this.ade = ade;
 		this.crs = crs;
-		this.district = district;
+		this.districts = districts;
 		this.hasMultipleXPlanElements = hasMultipleXPlanElements;
 	}
 
@@ -65,8 +67,8 @@ public class ArchiveMetadata {
 		return ade;
 	}
 
-	public String getDistrict() {
-		return district;
+	public List<String> getDistricts() {
+		return districts;
 	}
 
 	public XPlanVersion getVersion() {

@@ -39,6 +39,7 @@ import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.XMLEvent;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanType.valueOfDefaultNull;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -62,7 +63,7 @@ public class XPlanGmlReader {
 
 	private ICRS crs;
 
-	private String district;
+	private List<String> districts;
 
 	private boolean hasMultipleXPlanElements = false;
 
@@ -85,7 +86,7 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, district,
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, districts,
 				hasMultipleXPlanElements);
 		return new Pair<>(new MainZipEntry(bos.toByteArray(), entry.getName()), archiveMetadata);
 	}
@@ -110,7 +111,7 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, district,
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, districts,
 				hasMultipleXPlanElements);
 		return new Pair<>(new MainZipEntry(bos.toByteArray(), name), archiveMetadata);
 	}
@@ -119,7 +120,7 @@ public class XPlanGmlReader {
 		XPlanGmlWriterFilter filter = new XPlanGmlWriterFilter();
 		filter.setDelegate(writer);
 		writeAll(reader, filter);
-		this.district = filter.getDistrict();
+		this.districts = filter.getDistricts();
 	}
 
 	private XMLStreamReader createReader(InputStream stream) throws XMLStreamException, FactoryConfigurationError {

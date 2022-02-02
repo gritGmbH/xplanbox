@@ -66,22 +66,23 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
 	private final ICRS crs;
 
-	private final String district;
+	private final List<String> districts;
 
 	private final boolean hasMultipleXPlanElements;
 
 	XPlanArchive(List<ZipEntryWithContent> zipEntries, String fileName, XPlanVersion version, XPlanAde ade,
-			XPlanType type, ICRS crs, String district, boolean hasMultipleXPlanElements) {
-		this(zipEntries, null, fileName, version, ade, type, crs, district, hasMultipleXPlanElements);
+			XPlanType type, ICRS crs, List<String> districts, boolean hasMultipleXPlanElements) {
+		this(zipEntries, null, fileName, version, ade, type, crs, districts, hasMultipleXPlanElements);
 	}
 
 	public XPlanArchive(MainZipEntry mainEntry, String fileName, XPlanVersion version, XPlanAde ade, XPlanType type,
-			ICRS crs, String district, boolean hasMultipleXPlanElements) {
-		this(Collections.emptyList(), mainEntry, fileName, version, ade, type, crs, district, hasMultipleXPlanElements);
+			ICRS crs, List<String> districts, boolean hasMultipleXPlanElements) {
+		this(Collections.emptyList(), mainEntry, fileName, version, ade, type, crs, districts,
+				hasMultipleXPlanElements);
 	}
 
 	private XPlanArchive(List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String fileName,
-			XPlanVersion version, XPlanAde ade, XPlanType type, ICRS crs, String district,
+			XPlanVersion version, XPlanAde ade, XPlanType type, ICRS crs, List<String> districts,
 			boolean hasMultipleXPlanElements) {
 		this.zipFileEntries = zipEntries;
 		this.mainEntry = mainEntry;
@@ -90,7 +91,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 		this.ade = ade;
 		this.type = type;
 		this.crs = crs;
-		this.district = district;
+		this.districts = districts;
 		this.hasMultipleXPlanElements = hasMultipleXPlanElements;
 	}
 
@@ -131,8 +132,8 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 	 * Returns the district
 	 * @return district, can be <code>null</code>
 	 */
-	public String getDistrict() {
-		return district;
+	public List<String> getDistricts() {
+		return districts;
 	}
 
 	/**

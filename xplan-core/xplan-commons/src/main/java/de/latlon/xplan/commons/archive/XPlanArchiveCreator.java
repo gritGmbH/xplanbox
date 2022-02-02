@@ -33,6 +33,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -92,9 +93,9 @@ public class XPlanArchiveCreator {
 			List<ZipEntryWithContent> zipEntries = new ArrayList<>();
 			Pair<MainZipEntry, ArchiveMetadata> mainEntry = readEntries(inputStream, zipEntries);
 			ArchiveMetadata archiveMetadata = mainEntry.getSecond();
-			String district = mapDistrict(archiveMetadata);
+			List<String> districts = mapDistricts(archiveMetadata);
 			return new XPlanArchive(zipEntries, name, archiveMetadata.getVersion(), archiveMetadata.getAde(),
-					archiveMetadata.getType(), archiveMetadata.getCrs(), district,
+					archiveMetadata.getType(), archiveMetadata.getCrs(), districts,
 					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException | FactoryConfigurationError e) {
@@ -116,9 +117,9 @@ public class XPlanArchiveCreator {
 		try {
 			Pair<MainZipEntry, ArchiveMetadata> mainEntry = xPlanGmlReader.createZipEntry(name, inputStream);
 			ArchiveMetadata archiveMetadata = mainEntry.getSecond();
-			String district = mapDistrict(archiveMetadata);
+			List<String> districts = mapDistricts(archiveMetadata);
 			return new XPlanArchive(mainEntry.first, name, archiveMetadata.getVersion(), archiveMetadata.getAde(),
-					archiveMetadata.getType(), archiveMetadata.getCrs(), district,
+					archiveMetadata.getType(), archiveMetadata.getCrs(), districts,
 					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException e) {
@@ -130,11 +131,12 @@ public class XPlanArchiveCreator {
 		}
 	}
 
-	private String mapDistrict(ArchiveMetadata archiveMetadata) {
-		String district = archiveMetadata.getDistrict();
+	private List<String> mapDistricts(ArchiveMetadata archiveMetadata) {
+		List<String> districts = archiveMetadata.getDistricts();
 		if (localCenterToDistrictMapper == null)
-			return district;
-		return localCenterToDistrictMapper.mapToDistrict(district);
+			return districts;
+		return districts.stream().map(district -> localCenterToDistrictMapper.mapToDistrict(district))
+				.collect(Collectors.toList());
 	}
 
 	private Pair<MainZipEntry, ArchiveMetadata> readEntries(InputStream inputStream,
