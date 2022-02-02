@@ -162,7 +162,7 @@ public class ValidateApi {
 
 		ValidationSettings settings = createValidationSettings(validationName, skipGeometrisch, skipSemantisch,
 				skipFlaechenschluss, skipGeltungsbereich);
-		ValidatorReport validatorReport = validationHandler.validate(archive, validationName, settings);
+		ValidatorReport validatorReport = validationHandler.validate(archive, settings);
 		if (APPLICATION_ZIP_TYPE.equals(mediaType)) {
 			java.nio.file.Path report = validationHandler.zipReports(validatorReport);
 			return Response.ok(FileUtils.readFileToByteArray(report.toFile())).type(APPLICATION_ZIP)

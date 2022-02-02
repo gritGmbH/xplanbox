@@ -94,7 +94,7 @@ public class ValidationHandlerTest {
 		final ValidationSettings settings = Mockito.mock(ValidationSettings.class);
 
 		XPlanArchive archive = validationHandler.createArchiveFromZip(file, "bplan_valid_41");
-		ValidatorReport report = validationHandler.validate(archive, "noName", settings);
+		ValidatorReport report = validationHandler.validate(archive, settings);
 		assertTrue(report.isReportValid());
 	}
 

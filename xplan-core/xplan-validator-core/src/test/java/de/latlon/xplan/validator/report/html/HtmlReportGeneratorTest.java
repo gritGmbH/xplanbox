@@ -36,7 +36,7 @@ import java.util.List;
 
 import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 public class HtmlReportGeneratorTest {
@@ -157,7 +157,7 @@ public class HtmlReportGeneratorTest {
 
 	private ValidatorReport createValidationReport() {
 		ValidatorReport validatorReport = new ValidatorReport();
-		validatorReport.setPlanName("PLAN_NAME");
+		validatorReport.setPlanNames(Collections.singletonList("PLAN_NAME"));
 		validatorReport.setValidationName("VALIDATION_NAME");
 		return validatorReport;
 	}

@@ -21,18 +21,15 @@
  */
 package de.latlon.xplan.validator.cli;
 
-import java.io.File;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.cli.options.CliOptions;
 import de.latlon.xplan.validator.cli.options.CliOptionsParser;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Command line tool to read zip files and a validation argument and validate the input
@@ -72,7 +69,7 @@ public class XPlanValidatorCli {
 		ValidationSettings settings = new ValidationSettings(options.getValidationName(), options.getValidationTypes(),
 				options.getVoOptions());
 		XPlanValidator validator = createValidator();
-		validator.validate(settings, options.getArchive(), options.getArchive().getName());
+		validator.validate(settings, options.getArchive());
 	}
 
 	private static XPlanValidator createValidator() {

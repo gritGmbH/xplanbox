@@ -29,6 +29,7 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.geometry.Envelope;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * A validation report contains all ValidationResults of one Validation
@@ -47,6 +48,8 @@ public class ValidatorReport {
 	private ExternalReferenceReport externalReferenceReport;
 
 	private String validationName;
+
+	private List<String> planNames;
 
 	private String planName;
 
@@ -136,17 +139,17 @@ public class ValidatorReport {
 	}
 
 	/**
-	 * @param planName of teh archive
+	 * @param planNames of all plan instances in the archive
 	 */
-	public void setPlanName(String planName) {
-		this.planName = planName;
+	public void setPlanNames(List<String> planNames) {
+		this.planNames = planNames;
 	}
 
 	/**
-	 * @return name of teh archive
+	 * @return names of all plan instances in the archive
 	 */
-	public String getPlanName() {
-		return planName;
+	public List<String> getPlanNames() {
+		return planNames;
 	}
 
 	/**

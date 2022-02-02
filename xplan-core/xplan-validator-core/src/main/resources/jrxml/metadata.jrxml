@@ -38,15 +38,6 @@
 				<textFieldExpression><![CDATA[$P{valResult}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="40" width="95" height="20" uuid="3c84bb99-d0a9-4aec-8c60-ca4fdd94ccd9"/>
-				<textElement markup="none"/>
-				<text><![CDATA[Planname:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="95" y="40" width="210" height="20" uuid="0dc98306-9f9f-491a-8bf4-59d5c68b6b54"/>
-				<textFieldExpression><![CDATA[$P{planName}]]></textFieldExpression>
-			</textField>
-			<staticText>
 				<reportElement x="305" y="40" width="95" height="20" uuid="3c84bb99-d0a9-4aec-8c60-ca4fdd94ccd9"/>
 				<textElement markup="none"/>
 				<text><![CDATA[XPlanGML Version:]]></text>

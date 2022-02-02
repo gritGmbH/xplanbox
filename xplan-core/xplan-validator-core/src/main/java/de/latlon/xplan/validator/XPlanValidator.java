@@ -30,6 +30,7 @@ import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
+import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
@@ -113,10 +114,10 @@ public class XPlanValidator {
 	 * @throws IOException
 	 * @throws ReportGenerationException
 	 */
-	public ValidatorReport validate(ValidationSettings validationSettings, File planArchive, String planName)
+	public ValidatorReport validate(ValidationSettings validationSettings, File planArchive)
 			throws ValidatorException, IOException, ReportGenerationException {
 		XPlanArchive archive = archiveCreator.createXPlanArchive(planArchive);
-		ValidatorReport report = validate(validationSettings, archive, planName);
+		ValidatorReport report = validate(validationSettings, archive);
 		writeReport(report);
 		LOG.info("Archiv mit Validierungsergebnissen wird erstellt.");
 		Path validationReportDirectory = createZipArchive(validationSettings, report);
@@ -133,10 +134,10 @@ public class XPlanValidator {
 	 * @throws ValidatorException
 	 * @throws IOException
 	 */
-	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, File planArchive,
-			String planName) throws ValidatorException, IOException {
+	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, File planArchive)
+			throws ValidatorException, IOException {
 		XPlanArchive archive = archiveCreator.createXPlanArchive(planArchive);
-		return validateNotWriteReport(validationSettings, planName, archive);
+		return validateNotWriteReport(validationSettings, archive);
 	}
 
 	/**
@@ -147,9 +148,9 @@ public class XPlanValidator {
 	 * @throws ValidatorException
 	 * @throws IOException
 	 */
-	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, String planName,
-			XPlanArchive planArchive) throws ValidatorException {
-		ValidatorReport validationReport = validate(validationSettings, planArchive, planName);
+	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, XPlanArchive planArchive)
+			throws ValidatorException {
+		ValidatorReport validationReport = validate(validationSettings, planArchive);
 		validationReport.setHasMultipleXPlanElements(planArchive.hasMultipleXPlanElements());
 		return validationReport;
 	}
@@ -171,7 +172,7 @@ public class XPlanValidator {
 		}
 	}
 
-	private ValidatorReport validate(ValidationSettings validationSettings, XPlanArchive archive, String planName)
+	private ValidatorReport validate(ValidationSettings validationSettings, XPlanArchive archive)
 			throws ValidatorException {
 		List<ValidationOption> voOptions = validationSettings.getExtendedOptions();
 		List<SemanticValidationOptions> semanticValidationOptions = extractSemanticValidationOptions(
@@ -179,7 +180,6 @@ public class XPlanValidator {
 
 		ValidatorReport report = new ValidatorReport();
 		report.setValidationName(validationSettings.getValidationName());
-		report.setPlanName(planName);
 		report.setDate(new Date());
 		report.setXPlanVersion(archive.getVersion());
 
@@ -199,7 +199,7 @@ public class XPlanValidator {
 			report.setExternalReferenceReport(new ExternalReferenceReport(SYNTAX_ERRORS));
 		}
 		else {
-			parseReferences(archive, report);
+			parseReferencesAndPlanNames(archive, report);
 		}
 	}
 
@@ -277,11 +277,12 @@ public class XPlanValidator {
 		return validatorResult;
 	}
 
-	private void parseReferences(XPlanArchive archive, ValidatorReport report) {
+	private void parseReferencesAndPlanNames(XPlanArchive archive, ValidatorReport report) {
 		try {
 			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 			report.setBBoxIn4326(featureCollection.getBboxIn4326());
 			parseAndAddExternalReferences(report, featureCollection);
+			parseAndAddPlanNames(report, featureCollection);
 		}
 		catch (XMLStreamException | UnknownCRSException e) {
 			LOG.error("Plan could not be parsed. Reason {}", e.getMessage(), e);
@@ -311,7 +312,12 @@ public class XPlanValidator {
 				references.add(geoRefUrl);
 		}
 		return new ExternalReferenceReport(references);
+	}
 
+	private void parseAndAddPlanNames(ValidatorReport report, XPlanFeatureCollection featureCollection) {
+		List<String> planNames = FeatureCollectionUtils.retrievePlanNames(featureCollection.getFeatures(),
+				featureCollection.getType());
+		report.setPlanNames(planNames);
 	}
 
 	private void log(GeometricValidatorResult validatorResult) {

@@ -21,23 +21,21 @@
  */
 package de.latlon.xplan.commons.archive;
 
-import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
-import static java.lang.String.format;
-import static org.deegree.commons.xml.stax.XMLStreamUtils.skipStartDocument;
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
+import org.deegree.cs.coordinatesystems.ICRS;
 
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamReader;
-
-import org.deegree.cs.coordinatesystems.ICRS;
-
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
+import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
+import static java.lang.String.format;
+import static org.deegree.commons.xml.stax.XMLStreamUtils.skipStartDocument;
 
 /**
  * Provides easy access to the metadata and contents of an XPlan archive.
@@ -58,7 +56,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
 	private final MainZipEntry mainEntry;
 
-	private final String name;
+	private final String fileName;
 
 	private final XPlanVersion version;
 
@@ -72,36 +70,28 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
 	private final boolean hasMultipleXPlanElements;
 
-	XPlanArchive(List<ZipEntryWithContent> zipEntries, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
-			ICRS crs, String district, boolean hasMultipleXPlanElements) {
-		this(zipEntries, null, name, version, ade, type, crs, district, hasMultipleXPlanElements);
+	XPlanArchive(List<ZipEntryWithContent> zipEntries, String fileName, XPlanVersion version, XPlanAde ade,
+			XPlanType type, ICRS crs, String district, boolean hasMultipleXPlanElements) {
+		this(zipEntries, null, fileName, version, ade, type, crs, district, hasMultipleXPlanElements);
 	}
 
-	public XPlanArchive(MainZipEntry mainEntry, String name, XPlanVersion version, XPlanAde ade, XPlanType type,
+	public XPlanArchive(MainZipEntry mainEntry, String fileName, XPlanVersion version, XPlanAde ade, XPlanType type,
 			ICRS crs, String district, boolean hasMultipleXPlanElements) {
-		this(Collections.emptyList(), mainEntry, name, version, ade, type, crs, district, hasMultipleXPlanElements);
+		this(Collections.emptyList(), mainEntry, fileName, version, ade, type, crs, district, hasMultipleXPlanElements);
 	}
 
-	private XPlanArchive(List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String name,
+	private XPlanArchive(List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String fileName,
 			XPlanVersion version, XPlanAde ade, XPlanType type, ICRS crs, String district,
 			boolean hasMultipleXPlanElements) {
 		this.zipFileEntries = zipEntries;
 		this.mainEntry = mainEntry;
-		this.name = name;
+		this.fileName = fileName;
 		this.version = version;
 		this.ade = ade;
 		this.type = type;
 		this.crs = crs;
 		this.district = district;
 		this.hasMultipleXPlanElements = hasMultipleXPlanElements;
-	}
-
-	/**
-	 * Returns the XPlan name.
-	 * @return name, never <code>null</code>
-	 */
-	public String getName() {
-		return name;
 	}
 
 	/**
@@ -179,7 +169,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 			return xmlReader;
 		}
 		catch (Exception e) {
-			String message = format("Kann Datei '%s' aus '%s' nicht lesen. Fehlermeldung: %s", MAIN_FILE, this.name,
+			String message = format("Kann Datei '%s' aus '%s' nicht lesen. Fehlermeldung: %s", MAIN_FILE, this.fileName,
 					e.getLocalizedMessage());
 			throw new IllegalArgumentException(message, e);
 		}
@@ -200,7 +190,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 		ZipEntryWithContent entry = getEntry(name);
 		if (entry != null)
 			return entry.retrieveContentAsStream();
-		String message = format("Zip entry with the name%scould not be found in archive%s", name, this.name);
+		String message = format("Zip entry with the name %s could not be found in archive %s", name, this.fileName);
 		throw new IllegalArgumentException(message);
 	}
 
@@ -216,7 +206,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 			if (MAIN_FILE.equals(zipEntry.getName()))
 				return zipEntry;
 		}
-		String msg = format("%s ist kein gültiges XPlanArchiv (enthält keine Datei mit Namen '%s').", this.name,
+		String msg = format("%s ist kein gültiges XPlanArchiv (enthält keine Datei mit Namen '%s').", this.fileName,
 				MAIN_FILE);
 		throw new IllegalArgumentException(msg);
 	}

@@ -37,7 +37,7 @@ import java.util.List;
 
 import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -120,7 +120,7 @@ public class XmlReportGeneratorTest {
 
 	private ValidatorReport createValidatorReport() {
 		ValidatorReport validatorReport = new ValidatorReport();
-		validatorReport.setPlanName(PLAN_NAME);
+		validatorReport.setPlanNames(Collections.singletonList(PLAN_NAME));
 		validatorReport.setValidationName(VALIDATION_NAME);
 		return validatorReport;
 	}

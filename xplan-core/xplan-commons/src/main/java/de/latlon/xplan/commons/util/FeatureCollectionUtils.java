@@ -30,7 +30,10 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
 import javax.xml.namespace.QName;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
@@ -63,6 +66,27 @@ public class FeatureCollectionUtils {
 			}
 		}
 		throw new IllegalArgumentException("Keine XPlan-FeatureCollection. Kein XP_Plan-Feature enthalten.");
+	}
+
+	/**
+	 * Finds the XP_Plan features of a XPlan featureCollection.
+	 * @param fc XPlan featureCollection, never <code>null</code>
+	 * @param type the type of the expected plan feature, never <code>null</code>
+	 * @return list of XPlan features, never <code>null</code> nor empty
+	 * @throws IllegalArgumentException if the feature collection does not contain at
+	 * least one XP_Plan feature
+	 */
+	public static List<Feature> findPlanFeatures(FeatureCollection fc, XPlanType type) {
+		List<Feature> planFeatures = new ArrayList<>();
+		for (Feature feature : fc) {
+			QName featureName = feature.getName();
+			if (featureName.getLocalPart().equals(type.name())) {
+				planFeatures.add(feature);
+			}
+		}
+		if (planFeatures.isEmpty())
+			throw new IllegalArgumentException("Keine XPlan-FeatureCollection. Kein XP_Plan-Feature enthalten.");
+		return planFeatures;
 	}
 
 	/**
@@ -109,6 +133,19 @@ public class FeatureCollectionUtils {
 	 */
 	public static String retrieveDescription(FeatureCollection fc, XPlanType type) {
 		return retrievePlanProperty(fc, type, "beschreibung");
+	}
+
+	/**
+	 * Retrieves the value of XX_Plan/name of all XX_Plan features in the
+	 * {@link FeatureCollection}.
+	 * @param fc XPlan-FeatureCollection, never <code>null</code>
+	 * @param type XPlan-Type, never <code>null</code>
+	 * @return list of names of the plans, never <code>null</code> (a new name is created
+	 * for each unnamed plan)
+	 */
+	public static List<String> retrievePlanNames(FeatureCollection fc, XPlanType type) {
+		return findPlanFeatures(fc, type).stream().map(feature -> retrievePlanName(feature))
+				.collect(Collectors.toList());
 	}
 
 	/**
