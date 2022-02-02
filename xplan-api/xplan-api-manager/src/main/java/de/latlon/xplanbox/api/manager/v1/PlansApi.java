@@ -69,13 +69,26 @@ public class PlansApi {
 			description = "Returns a list of plans where the plan name contains the query string case insensitve",
 			tags = { "search" }, responses = { @ApiResponse(responseCode = "200", description = "OK",
 					content = @Content(array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class)))) })
-	public Response findByName(@QueryParam("planName") @Parameter(description = "The name of the plan to search for",
-			example = "bplan_123, fplan-123, rplan20200803") String planName) throws Exception {
-		List<XPlan> plans = planHandler.findPlans(planName);
+	public Response findByNameOrId(
+			@QueryParam("planName") @Parameter(description = "The name of the plan to search for",
+					example = "bplan_123, fplan-123, rplan20200803") String planName,
+			@QueryParam("planId") @Parameter(description = "The id of the plan to search for",
+					example = "1, 2, 42") List<Integer> planIds)
+			throws Exception {
+		if (planName != null && !planIds.isEmpty())
+			throw new IllegalArgumentException("Searching by name and id within the same request is not supported!");
+		List<XPlan> plans = searchByNameOrId(planName, planIds);
 		List<PlanInfo> planInfos = plans.stream().map(xPlan -> {
 			return new PlanInfoBuilder(xPlan, managerApiConfiguration).selfMediaType(APPLICATION_JSON).build();
 		}).collect(Collectors.toList());
 		return Response.ok().entity(planInfos).build();
+	}
+
+	private List<XPlan> searchByNameOrId(String planName, List<Integer> planIds) throws Exception {
+		if (planIds != null) {
+			return planHandler.findPlansById(planIds);
+		}
+		return planHandler.findPlans(planName);
 	}
 
 }

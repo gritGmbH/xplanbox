@@ -104,8 +104,6 @@ public class PlanHandler {
 		AdditionalPlanData metadata = createAdditionalPlanData(xPlanArchive, planStatus);
 		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, null, false, false, true, null, internalId,
 				metadata);
-		if (planIds.size() > 1)
-			throw new IllegalArgumentException("Currently only one plan is supported");
 		List<XPlan> plansById = findPlansById(planIds);
 		LOG.info("Plan successfully imported. Ids: {}",
 				plansById.stream().map(plan -> plan.getId()).collect(Collectors.joining(",")));
@@ -156,7 +154,7 @@ public class PlanHandler {
 		return xPlanDao.getXPlanList(false);
 	}
 
-	private List<XPlan> findPlansById(List<Integer> planIds) throws Exception {
+	public List<XPlan> findPlansById(List<Integer> planIds) throws Exception {
 		LOG.info("Finding plan by IDs '{}'", planIds);
 		List<XPlan> plans = new ArrayList<>();
 		for (int planId : planIds) {
