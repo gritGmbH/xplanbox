@@ -4,7 +4,7 @@
 Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
 dem Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
 kontrollieren. Dabei ist das Kommandozeilenwerkzeug in der Lage,
-XPlanGML-Instanzdokumente in die Datenhaltung zu Laden, zu Löschen,
+XPlanGML-Dokumente in die Datenhaltung zu Laden, zu Löschen,
 Listenausgaben zu erzeugen sowie eingebettete Rasterpläne zu
 importieren.
 
@@ -136,13 +136,10 @@ Bitte beachten Sie die korrekte Reihenfolge der Parameterangabe.
 
 _-force_
 
-Enthält das XPlanGML-Instanzdokument Geometriefehler o.ä., ist es
-dringend angeraten, diese vor einem Import zu bereinigen. Unter
-Inkaufnahme von unerwartetem Diensteverhalten ist es dennoch möglich,
-den Import eines Planes zu erzwingen. Das Erzwingen eines Imports
-erfolgt mit dem Parameter `force`.
+Enthält das XPlanGML-Dokument Geometriefehler o.ä., ist es
+dringend angeraten, diese vor einem Import zu bereinigen. Der Import eines Planes kann mit dem Parameter `force` erzwungen werden.
 
-NOTE: Bitte beachten Sie, dass dabei vorhandene Geometriefehler o.ä.
+NOTE: Bitte beachten Sie, dass dabei vorliegenden Geometriefehler o.ä.
 übernommen werden und der importierte Plan dadurch fehlerhaft ist. Die
 Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin
 zu unerwarteten Verhalten der xPlanBox reichen.

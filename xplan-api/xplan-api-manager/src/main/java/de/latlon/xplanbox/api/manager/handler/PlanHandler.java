@@ -139,24 +139,25 @@ public class PlanHandler {
 	}
 
 	public XPlan findPlanById(String planId) throws Exception {
-		LOG.info("Find plan by Id '{}'", planId);
+		LOG.info("Finding plan by Id '{}'", planId);
 		int id = Integer.parseInt(planId);
 		return findPlanById(id);
 	}
 
 	public List<XPlan> findPlansByName(String planName) throws Exception {
-		LOG.info("Find plan by name '{}'", planName);
+		LOG.info("Finding plan by name '{}'", planName);
 		return xPlanDao.getXPlanByName(planName);
 	}
 
 	public List<XPlan> findPlans(String planName) throws Exception {
-		LOG.info("Search plan by name '{}'", planName);
+		LOG.info("Searching plan by name '{}'", planName);
 		if (planName != null)
 			return xPlanDao.getXPlansLikeName(planName);
 		return xPlanDao.getXPlanList(false);
 	}
 
 	private List<XPlan> findPlansById(List<Integer> planIds) throws Exception {
+		LOG.info("Finding plan by IDs '{}'", planIds);
 		List<XPlan> plans = new ArrayList<>();
 		for (int planId : planIds) {
 			XPlan planById = findPlanById(planId);
