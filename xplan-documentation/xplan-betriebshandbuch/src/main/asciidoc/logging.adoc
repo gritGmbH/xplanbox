@@ -95,7 +95,7 @@ Im Abschnitt `Loggers` werden die einzelnen `Logger` konfiguriert:
 <1> Konfiguriert den Logger `Root` auf Log-Level `info` und schreibt in die beiden Ausgabekanäle `STDOUT` und `RollingFile_Appender`
 <2> Der Ausgabekanal `STDOUT` gibt nur Fehler aus (Log-Level `error` und `fatal`)
 <3> Der Ausgabekanal `RollingFile_Appender` gibt Informationen, Warnung und Fehler aus (Log-Level `info`, `warn`, `error` und `fatal` )
-<2> Für die Logger `org.deegree` und `de.latlon.xplan` ist ebenfalls ein Log-Level `info` gesetzt. Der Wert für den Log-Level kann `trace`, `debug`, `info`, `warn`, `error`, `fatal` oder `off` sein. Zwischen Klein- und Grossschreibung wird nicht unterschieden.
+<4> Für die Logger `org.deegree` und `de.latlon.xplan` ist ebenfalls ein Log-Level `info` gesetzt. Der Wert für den Log-Level kann `trace`, `debug`, `info`, `warn`, `error`, `fatal` oder `off` sein. Zwischen Klein- und Grossschreibung wird nicht unterschieden.
 
 Im Abschnitt `Properties` können zusätzliche Eigenschaften definiert werden, die in der Konfigurationsdatei verwendet werden können:
 

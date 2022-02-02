@@ -71,7 +71,7 @@ Fenster, indem der XPlan visualisiert wird. Im Hintergrund befindet sich
 eine Hintergrundkarte. Durch den Klick auf _Schließen_ wird die
 Kartenvorschau wieder geschlossen.
 
-NOTE: Die Kartenvorschau verwendet den Browser-Cache. Falls in der Kartenvorschau nicht der aktuelle Status des Plans angezeigt wird, muss der Cache des genutzten Web-Browsers gelöscht werden.
+TIP: Die Kartenvorschau verwendet den Browser-Cache. Falls in der Kartenvorschau nicht der aktuelle Status des Plans angezeigt wird, muss der Cache des genutzten Web-Browsers gelöscht werden.
 
 [[xplanmanager-web-herunterladen]]
 ===== Herunterladen
@@ -114,7 +114,7 @@ Aufstellung' und 'Archiviert' möglich. Eine Zustandsänderung von
 'Festgestellt' nach 'In Aufstellung' tritt beispielsweise beim Ändern
 des Rechtsstands von 'InkraftGetreten' nach 'Untergegangen' ein.
 
-NOTE: __Achtung__: Beim Import kann der Nutzer den Zustand eines Planes über eine
+IMPORTANT: **Achtung**: Beim Import kann der Nutzer den Zustand eines Planes über eine
 Auswahlliste mit den Optionen 'Festgestellt', 'In Aufstellung' und
 'Archiviert' ändern. Abhängig von dem im Plan gesetzten Rechtsstand wird
 eine Vorauswahl getroffen, die der Nutzer aber überschreiben kann. Beim

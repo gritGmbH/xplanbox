@@ -89,7 +89,7 @@ bzw. Sachinformationen abzufragen, ist es möglich, sowohl eine einfache
 2) zu nutzen, in der die Plandaten hinterlegt sind. Dabei wird bei
 einer separaten Datenhaltung (Unterteilung in: In Aufstellung, Festgestellt, Archiviert)
 durch die Auswahl des Planstatus, die dazugehörige Datenhaltung und
-somit der entsprechende XPlanWMS-Endpoint angesprochen. Der XPlanWMS greift auf dasselbe Datenbankschema wie der <<xplansynwfs>> in der <<xplandb>> zu. Rasterdaten werden im Workspace-Verzeichnis des XPlanWMS hinterlegt. Im Anhang <<appendix_xplanwms-workspace>> ist die Verzeichnisstruktur des Workspace dokumentiert.
+somit der entsprechende XPlanWMS-Endpoint angesprochen. Der XPlanWMS greift auf dasselbe Datenbankschema wie der <<xplansynwfs>> in der <<xplandb>> zu. Rasterdaten werden im Workspace-Verzeichnis des XPlanWMS hinterlegt. Die Verzeichnisstruktur des Workspace <<appendix_xplanwms-workspace>> ist im Anhang dokumentiert.
 
 Während der XPlanWMS planübergreifend arbeitet, beschränkt sich der
 XPlanWerkWMS auf einzelne Planwerke.

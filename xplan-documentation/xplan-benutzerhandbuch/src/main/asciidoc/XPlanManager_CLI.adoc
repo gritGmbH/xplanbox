@@ -142,7 +142,7 @@ Inkaufnahme von unerwartetem Diensteverhalten ist es dennoch möglich,
 den Import eines Planes zu erzwingen. Das Erzwingen eines Imports
 erfolgt mit dem Parameter `force`.
 
-NOTE: Bitte beachten Sie, dass dabei vorhandene Geometriefehler o.ä.
+CAUTION: Bitte beachten Sie, dass dabei vorhandene Geometriefehler o.ä.
 übernommen werden und der importierte Plan dadurch fehlerhaft ist. Die
 Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin
 zu unerwarteten Verhalten der xPlanBox reichen.

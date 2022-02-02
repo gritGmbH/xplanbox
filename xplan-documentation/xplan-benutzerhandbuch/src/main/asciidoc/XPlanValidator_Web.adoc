@@ -4,10 +4,7 @@
 
 Laden Sie Ihren Plan bzw. Planarchiv hoch, indem Sie auf „Datei auswählen“ klicken.
 
-[NOTE]
-====
-Bitte beachten Sie, dass abhängig von Ihrem Browser, "Datei auswählen" auch "Durchsuchen" o.a. heißen kann. 
-====
+IMPORTANT: Bitte beachten Sie, dass abhängig von Ihrem Browser, "Datei auswählen" auch "Durchsuchen" o.a. heißen kann.
 
 Vom XPlanValidator werden folgende Dateiformate akzeptiert:
 
@@ -18,7 +15,7 @@ Vom XPlanValidator werden folgende Dateiformate akzeptiert:
 [.bordered]
 image::validator/Hochladen.png[Hochladen]
 
-[NOTE]
+[IMPORTANT]
 ====
 Bitte beachten Sie die Anforderungen an den Dateinamen. Der Dateiname darf nur folgende Zeichen enthalten:
 
@@ -33,10 +30,8 @@ Bitte beachten Sie die Anforderungen an den Dateinamen. Der Dateiname darf nur f
 Sonderzeichen wie z.B. Umlaute, Zeilenumbrüche und Leerzeichen sind nicht erlaubt.
 ====
 
-[NOTE]
-====
-Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
-====
+CAUTION: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
+
 
 ===== Schritt 2 – Bezeichnung des Validierungsberichts und Validierungstyp wählen
 
@@ -47,10 +42,7 @@ image::validator/Validierungsoptionen.png[Validierungsoptionen]
 
 Sie können der aktuellen Validierung, falls notwendig, einen eigenen Namen geben. Dieser erscheint ausschließlich auf dem Validierungsbericht.
 
-[NOTE]
-====
-Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen.
-====
+TIP: Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen.
 
 [.bordered]
 image::validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
@@ -250,7 +242,7 @@ Der Plan wird zentriert in der Kartenvorschau angezeigt.
 [.bordered]
 image::validator/Kartenvorschau.png[]
 
-[NOTE]
+[IMPORTANT]
 ====
 Der Plan steht in der Kartenansicht nur für eine begrenzte Zeitspanne (ca. 5 Minuten) zur Verfügung, anschließend ist nur noch die Hintergrundkarte zu sehen.
 
