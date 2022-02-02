@@ -3,6 +3,8 @@ package de.latlon.xplan.commons.feature;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -28,9 +30,12 @@ public class XPlanGmlParserTest {
 	public void testParseFeatureCollectionMultipleInstance() throws Exception {
 		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 		XPlanArchive testArchive = getArchive("xplan-multipleInstances.gml");
-		XPlanFeatureCollections xPlanFeatureCollection = xPlanGmlParser
+		XPlanFeatureCollections xPlanFeatureCollections = xPlanGmlParser
 				.parseXPlanFeatureCollectionAllowMultipleInstances(testArchive, null);
-		assertThat(xPlanFeatureCollection.getxPlanGmlInstances().size(), is(3));
+		assertThat(xPlanFeatureCollections.getxPlanGmlInstances().size(), is(3));
+		assertThat(xPlanFeatureCollections, containsInstanceWithNoOFFeatures(5));
+		assertThat(xPlanFeatureCollections, containsInstanceWithNoOFFeatures(20));
+		assertThat(xPlanFeatureCollections, containsInstanceWithNoOFFeatures(488));
 	}
 
 	@Test(expected = FeatureCollectionParseException.class)
@@ -49,6 +54,27 @@ public class XPlanGmlParserTest {
 		InputStream resourceAsStream = XPlanGmlParserTest.class.getResourceAsStream(name);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		return archiveCreator.createXPlanArchiveFromGml("multipleInstances", resourceAsStream);
+	}
+
+	private BaseMatcher<XPlanFeatureCollections> containsInstanceWithNoOFFeatures(int expectedNoOfFeatures) {
+		return new BaseMatcher<>() {
+
+			@Override
+			public boolean matches(Object o) {
+				XPlanFeatureCollections collections = (XPlanFeatureCollections) o;
+				for (XPlanFeatureCollection collection : collections.getxPlanGmlInstances()) {
+					if (collection.getFeatures().size() == expectedNoOfFeatures) {
+						return true;
+					}
+				}
+				return false;
+			}
+
+			@Override
+			public void describeTo(Description description) {
+
+			}
+		};
 	}
 
 }

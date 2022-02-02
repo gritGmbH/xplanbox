@@ -96,20 +96,21 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			throws Exception {
 		LOG.info("- Importiere Plan " + archive);
 		ICRS crs = CrsUtils.determineActiveCrs(defaultCRS, archive, LOG);
-		PlanStatus planStatus = xPlanMetadata.getPlanStatus();
+		PlanStatus selectedPlanStatus = xPlanMetadata.getPlanStatus();
 		XPlanFeatureCollections xPlanInstances = readAndValidateMainDocument(archive, crs, force);
 		List<Integer> planIds = new ArrayList<>();
 		for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 			FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
 			if (internalId != null) {
-				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, planStatus).getSchema();
+				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, selectedPlanStatus)
+						.getSchema();
 				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
 			}
 			Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
 					xPlanInstance.getFeatures());
 			int planId = xplanDao.insert(archive, xPlanInstance, synFc, xPlanMetadata, sortDate, internalId);
 			createRasterConfigurations(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, xPlanInstance, planId,
-					planStatus, sortDate);
+					selectedPlanStatus, sortDate);
 			startCreationOfDataServicesCoupling(planId, xPlanInstance, crs);
 			reloadWorkspace();
 			LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);

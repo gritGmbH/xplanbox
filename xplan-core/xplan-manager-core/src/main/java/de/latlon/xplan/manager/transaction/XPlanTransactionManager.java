@@ -158,17 +158,17 @@ public abstract class XPlanTransactionManager {
 		return bos.toByteArray();
 	}
 
+	protected void reassignFids(XPlanFeatureCollections fc) {
+		for (XPlanFeatureCollection xplanInstance : fc.getxPlanGmlInstances()) {
+			reassignFids(xplanInstance);
+		}
+	}
+
 	protected void reassignFids(XPlanFeatureCollection fc) {
 		for (Feature f : fc.getFeatures()) {
 			String prefix = "XPLAN_" + f.getName().getLocalPart().toUpperCase() + "_";
 			String uuid = UUID.randomUUID().toString();
 			f.setId(prefix + uuid);
-		}
-	}
-
-	protected void reassignFids(XPlanFeatureCollections fc) {
-		for (XPlanFeatureCollection xplanInstance : fc.getxPlanGmlInstances()) {
-			reassignFids(xplanInstance);
 		}
 	}
 

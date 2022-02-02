@@ -99,7 +99,9 @@ public class XPlanGmlParser {
 		XPlanAde ade = xPlanArchive.getAde();
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
 		GMLStreamReader gmlStream = createGmlStreamReader(version, ade, defaultCrs, xmlStream);
-		return new MultipleInstanceParser().parse(gmlStream, version, type);
+		XPlanFeatureCollections parse = new MultipleInstanceParser().parse(gmlStream, version, type);
+		gmlStream.getIdContext().resolveLocalRefs();
+		return parse;
 	}
 
 	/**
@@ -169,7 +171,7 @@ public class XPlanGmlParser {
 	private XPlanFeatureCollection parseXPlanFeatureCollection(XPlanVersion version, XPlanType type, XPlanAde ade,
 			ICRS defaultCrs, XMLStreamReaderWrapper xmlStream) throws XMLStreamException, UnknownCRSException {
 		GMLStreamReader gmlStream = createGmlStreamReader(version, ade, defaultCrs, xmlStream);
-		FeatureCollection features = (FeatureCollection) gmlStream.readFeature();
+		FeatureCollection features = gmlStream.readFeatureCollection();
 		return new XPlanFeatureCollectionBuilder(features, type).build();
 	}
 
@@ -180,7 +182,6 @@ public class XPlanGmlParser {
 		GeometryFactory geomFac = new GeometryFactory();
 		GMLStreamReader gmlStream = createGMLStreamReader(gmlVersion, xmlStream);
 		gmlStream.setDefaultCRS(defaultCrs);
-		gmlStream.setSkipBrokenGeometries(true);
 		gmlStream.setGeometryFactory(geomFac);
 		gmlStream.setApplicationSchema(schema);
 		return gmlStream;
