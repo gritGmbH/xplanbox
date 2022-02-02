@@ -156,7 +156,7 @@ Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die formalen
 [.bordered]
 image::validator/Validierungsbericht_2.png[Validierungsbericht]
 
-Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG- und PGW-Dateien vorhanden sind.
+Neben dem Namen des XPlanArchivs, des Datums der Validierung sowie der Version der XPlanGML-Datei werden auch die in dem XPlanGML-Instanzdokument enthaltenen Pläne sowie externe Referenzen angezeigt, wenn z.B. Rasterdaten in Form von PNG- mit PGW-Dateien im XPlanArchiv hinterlegt sind.
 
 *2) Semantische Validierung – valide*
 
