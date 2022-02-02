@@ -28,6 +28,7 @@ import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
+import de.latlon.xplan.commons.feature.FeatureCollectionParseException;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
@@ -308,7 +309,7 @@ public class XPlanManager {
 	 * @throws UnknownCRSException
 	 */
 	public List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(String pathToArchive, String status)
-			throws IOException, XMLStreamException, UnknownCRSException {
+			throws IOException, XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
 		LOG.info("- Analyse des Vorkommens eines Plans mit gleichem Namen und Planstatus...");
 		XPlanArchive archive = analyzeArchive(pathToArchive);
 		XPlanFeatureCollections xPlanFeatureCollections = xPlanGmlParser

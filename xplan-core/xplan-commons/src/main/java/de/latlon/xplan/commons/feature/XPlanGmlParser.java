@@ -81,7 +81,7 @@ public class XPlanGmlParser {
 	 * @throws UnknownCRSException
 	 */
 	public XPlanFeatureCollections parseXPlanFeatureCollectionAllowMultipleInstances(XPlanArchive xPlanArchive)
-			throws XMLStreamException, UnknownCRSException {
+			throws XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
 		return parseXPlanFeatureCollectionAllowMultipleInstances(xPlanArchive, null);
 	}
 
@@ -93,7 +93,7 @@ public class XPlanGmlParser {
 	 * @throws UnknownCRSException
 	 */
 	public XPlanFeatureCollections parseXPlanFeatureCollectionAllowMultipleInstances(XPlanArchive xPlanArchive,
-			ICRS defaultCrs) throws XMLStreamException, UnknownCRSException {
+			ICRS defaultCrs) throws XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
 		XPlanVersion version = xPlanArchive.getVersion();
 		XPlanType type = xPlanArchive.getType();
 		XPlanAde ade = xPlanArchive.getAde();

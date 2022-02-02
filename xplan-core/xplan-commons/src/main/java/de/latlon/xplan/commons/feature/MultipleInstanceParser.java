@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -39,6 +40,8 @@ public class MultipleInstanceParser {
 
 	private final Map<String, List<String>> featuresAndReferenceIds = new HashMap<>();
 
+	private int remainingFeatures;
+
 	/**
 	 * @param gmlStream to parse, never <code>null</code>
 	 * @param version the version of the XPlan GML, never <code>null</code>
@@ -48,11 +51,13 @@ public class MultipleInstanceParser {
 	 * @throws UnknownCRSException
 	 */
 	XPlanFeatureCollections parse(GMLStreamReader gmlStream, XPlanVersion version, XPlanType type)
-			throws XMLStreamException, UnknownCRSException {
+			throws XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
 		FeatureInspector fi = feature -> {
 			String id = feature.getId();
 			if (feature.getName().getLocalPart().endsWith("_Plan")) {
 				rootIds.add(id);
+				featuresAndReferenceIds.put(id, referenceIds);
+				referenceIds = new ArrayList<>();
 			}
 			else if (!"XPlanAuszug".equals(feature.getName().getLocalPart())) {
 				featuresAndReferenceIds.put(id, referenceIds);
@@ -63,9 +68,15 @@ public class MultipleInstanceParser {
 
 		gmlStream.addInspector(fi);
 		GmlDocumentIdContextListening idContext = new GmlDocumentIdContextListening(version.getGmlVersion());
+		idContext.setApplicationSchema(gmlStream.getAppSchema());
 		gmlStream.setIdContext(idContext);
 
 		FeatureCollection features = gmlStream.readFeatureCollection();
+		if (rootIds.size() == 1) {
+			return new XPlanFeatureCollectionBuilder(Collections.singletonList(features), type)
+					.buildAllowMultipleInstances();
+		}
+		remainingFeatures = featuresAndReferenceIds.size();
 
 		List<Set<String>> featuresPerInstance = new ArrayList();
 		addRoots(featuresPerInstance);
@@ -94,11 +105,13 @@ public class MultipleInstanceParser {
 		rootIds.forEach(rootId -> {
 			Set<String> rootIdList = new HashSet<>();
 			rootIdList.add(rootId);
+			rootIdList.addAll(featuresAndReferenceIds.get(rootId));
 			featuresPerInstance.add(rootIdList);
+			featuresAndReferenceIds.remove(rootId);
 		});
 	}
 
-	private void addReferenced(List<Set<String>> featuresPerInstance) {
+	private void addReferenced(List<Set<String>> featuresPerInstance) throws FeatureCollectionParseException {
 		Set<String> addedIds = new HashSet<>();
 		featuresAndReferenceIds.forEach((candidate, referenceIds) -> {
 			featuresPerInstance.forEach((assignedIds) -> {
@@ -113,8 +126,15 @@ public class MultipleInstanceParser {
 			});
 		});
 		addedIds.forEach(addedId -> featuresAndReferenceIds.remove(addedId));
-		if (!featuresAndReferenceIds.isEmpty())
+		if (remainingFeatures == featuresAndReferenceIds.size()) {
+			throw new FeatureCollectionParseException(
+					"Could not split feature collection in separated plans. Remaining features: "
+							+ featuresPerInstance);
+		}
+		remainingFeatures = featuresAndReferenceIds.size();
+		if (!featuresAndReferenceIds.isEmpty()) {
 			addReferenced(featuresPerInstance);
+		}
 	}
 
 	private class GmlDocumentIdContextListening extends GmlDocumentIdContext {
