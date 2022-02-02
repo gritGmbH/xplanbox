@@ -85,7 +85,7 @@ import static de.latlon.xplan.manager.export.XPlanExporter.MAIN_FILE_REEXPORTED_
 import static org.apache.commons.io.IOUtils.copyLarge;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
