@@ -99,6 +99,14 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		PlanStatus selectedPlanStatus = xPlanMetadata.getPlanStatus();
 		XPlanFeatureCollections xPlanInstances = readAndValidateMainDocument(archive, crs, force);
 		List<Integer> planIds = new ArrayList<>();
+		boolean gmlWithMultipleInstances = xPlanInstances.getxPlanGmlInstances().size() > 1;
+		if (gmlWithMultipleInstances && (internalId != null || selectedPlanStatus != null)) {
+			LOG.warn(
+					"XPlanGML contains multiple plan instances, internalId ({}) and selected planStatus ({}) are ignored.",
+					internalId, selectedPlanStatus);
+			internalId = null;
+			selectedPlanStatus = null;
+		}
 		for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 			FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
 			if (internalId != null) {
