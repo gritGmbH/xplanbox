@@ -243,7 +243,7 @@ Diese Bean muss nicht manipuliert werden! Die Konfiguration sollte
 lediglich modifiziert werden, wenn Gruppenhierarchien deaktiviert werden
 sollen (dazu mehr im nächsten Abschnitt).
 
-NOTE: Achtung - In der obigen Beispielkonfiguration wird eine Gruppenhierarchie
+IMPORTANT: *Achtung* - In der obigen Beispielkonfiguration wird eine Gruppenhierarchie
 genutzt. Der nächste Absatz muss zwingend beachtet werden.
 
 [[gruppenhierarchien]]

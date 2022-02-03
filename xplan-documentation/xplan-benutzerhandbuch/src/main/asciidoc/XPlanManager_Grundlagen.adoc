@@ -220,7 +220,7 @@ stellen zu können, müssen die Daten folgende Anforderungen erfüllen.
 Die Unterstützung verschiedener Rasterdatenformate ist vom gesetzten
 Raster-Konfigurationstyp abhängig.
 
-NOTE: *Wichtig*: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden.
+IMPORTANT: *Wichtig*: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden.
 Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.
 
 Unterschieden wird dabei zwischen den Konfigurationstypen _GeoTiff_ und

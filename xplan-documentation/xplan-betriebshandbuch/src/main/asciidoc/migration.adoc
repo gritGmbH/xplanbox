@@ -34,7 +34,7 @@ workspaceReloadUser=<user>
 workspaceReloadPassword=<passwort>
 ----
 
-NOTE: Werden der XPlanWMS und der XPlanManager auf dem selben Server
+NOTE: Werden der XPlanWMS und der XPlanManager auf einem Server
 betrieben, so können die Dienste über den Hostnamen _localhost_
 kommunizieren.
 

@@ -35,7 +35,7 @@ wmsSortDate_SO_Plan_XPLAN_51=SO_Plan,inkrafttretenDatum
 wmsSortDate_SO_Plan_XPLAN_52=SO_Plan,inkrafttretenDatum
 ----
 
-NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.
+IMPORTANT: Es müssen ggf. Zeilenumbrüche entfernt werden.
 
 Die Angabe eines Sortierfeldes kann für jeden Plan-Type und Plan-Version
 differenziert erfolgen und kann am Aufbau des Schlüsselnamens erkannt

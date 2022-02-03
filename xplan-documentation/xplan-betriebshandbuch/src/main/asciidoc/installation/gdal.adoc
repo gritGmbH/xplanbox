@@ -25,8 +25,8 @@ Umgebungsvariable zur GDAL-Bibliothek gesetzt werden, z. B.:
 export LD_LIBRARY_PATH=/usr/lib/jni/
 ----
 
-NOTE: Die Umgebungsvariable "LD_LIBRARY_PATH" muss auf das Verzeichnis
-zeigen, in dem sich die Datei libgdaljni.so befindet.
+IMPORTANT: Die Umgebungsvariable `LD_LIBRARY_PATH` muss auf das Verzeichnis
+zeigen, in dem sich die Datei _libgdaljni.so_ befindet.
 
 [[installation-gdal-windows]]
 ==== Windows

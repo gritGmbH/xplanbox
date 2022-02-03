@@ -93,7 +93,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 
 Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teilweisen Aktualisierung zu unterscheiden. Bei der im Abschnitt <<vollstaendige-aktualisierung>> beschriebenen vollständigen Aktualisierung werden z. B. Rasterdaten aus Plänen, die bereits importiert wurden, verworfen. Sollen vorhandene Daten beibehalten werden, ist die im Abschnitt <<teilweise-aktualisierung>> beschriebene Variante durchzuführen.
 
-NOTE: Alle Konfigurationsänderungen in _xplan-manager-config_ und _xplan-valdiator-config_  müssen manuell übertragen werden.
+IMPORTANT: Alle Konfigurationsänderungen in _xplan-manager-config_ und _xplan-valdiator-config_  müssen manuell übertragen werden.
 
 [[vollstaendige-aktualisierung]]
 ==== Vollständige Aktualisierung des Workspaces
@@ -133,7 +133,7 @@ Folgende Ordner des neuen xplansyn-wms-workspace müssen in die bestehende Insta
 * layers
 * services
 * styles
-* themes (*Wichtig*: Nicht die Dateien, die auf _raster.xml_ enden, ersetzen)
+* themes (*Wichtig*: Nicht die Dateien, die auf _raster.xml_ enden, ersetzen!)
 
 [[aktualisierung-des-wms-workspaces-auf-die-version-2.0-der-xplanbox]]
 ===== Aktualisierung des WMS-Workspaces auf die Version 2.0 der xPlanBox
@@ -220,7 +220,7 @@ Update-Skript überführt und damit an der Datenbank durchgeführt werden.
 Für einige Aktualisierungen sind Aktualisierungsskripte im Modul
 _xplan-update-database_ verfügbar.
 
-NOTE: Es gibt sowohl SQL-Update-Skripte als auch Liquibase-Skripte, die mit
+TIP: Es gibt sowohl SQL-Update-Skripte als auch Liquibase-Skripte, die mit
 der Software http://www.liquibase.org/[Liquibase] ausgeführt werden
 können. Falls beide Skript-Typen vorhanden sind, kann der Nutzer wählen,
 ob das Update per SQL oder Liquibase durchgeführt werden soll.
@@ -258,7 +258,7 @@ Mit der Version 2.7 bietet die xPlanBox die Möglichkeit die vom XPlanManager ve
  * Aktualisierung von _xplan-manager-workspace_ und _xplan-manager-config_ (s. <<teilweise-aktualisierung>>).
  * Aufsetzen des INSPIRE PLU Datenbankschemas (s. <<aufsetzen-plu-db-schema>>).
  * Anlegen des _xplan-inspireplu-workspace_ Workspaces (s. <<konfiguration>>).
- * Installation der _xplan-inspireplu.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-inspireplu-workspace_ Workspace initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
+ * Installation der _xplan-inspireplu.war_ Webanwendung (s. <<web-anwendungen>>). *Achtung:* Anschließend muss der _xplan-inspireplu-workspace_ Workspace initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
  * Installation von HALE CLI, wie in <<installation-hale-cli>> beschrieben.
  * Konfiguration der neuen Option, wie in <<konfiguration-inspire-plu>> beschrieben.
 
@@ -320,7 +320,7 @@ Tomcat-Servers (${catalina.base}/logs) gelogged wird. Das Java Property `xplan.l
 Wenn die neuen Features <<kartenvorschau-validator>> und <<semantische-validierungsregeln-validiator>> im XPlanValidatorWeb genutzt werden sollen, sind folgende Anpassungen nötig:
 
  * Workspace __xplan-validator-wms-workspace__ und Konfiguration __xplan-validator-config__ entpacken und installieren (siehe <<konfiguration>>).
- * Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). Achtung: Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder durch Anpassung der Datei _webapps.properties_ mit anschliessendem Neustart der Webanwendung erfolgen.
+ * Installation der _xplan-validator-wms.war_ Webanwendung (s. <<web-anwendungen>>). *Achtung:* Anschließend muss der _xplan-validator-wms-workspace_ initialisiert werden. Dies kann beispielsweise über die deegree Console oder durch Anpassung der Datei _webapps.properties_ mit anschliessendem Neustart der Webanwendung erfolgen.
  * XPlanValidatorWeb gemäß <<konfiguration-validator>> konfigurieren.
 
 [[aktualisierung-auf-die-version-3.3.1-der-xplanbox]]
@@ -374,7 +374,7 @@ Für die Aktualisierung auf die Version 4.2 sind folgende Schritte auszuführen:
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Des Weiteren muss GDAL auf Version 3.0 aktualisiert werden (siehe <<installation-gdal>>).
 
-NOTE:  GDAL 2 wird nicht mehr unterstützt.
+IMPORTANT:  GDAL 2 wird nicht mehr unterstützt.
 
 [[aktualisierung-auf-die-version-4.3-der-xplanbox]]
 === Aktualisierung auf die Version 4.3 der xPlanBox

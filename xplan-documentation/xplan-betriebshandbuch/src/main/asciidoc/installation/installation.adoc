@@ -49,7 +49,7 @@ Die WAR-Archive der REST-API werden über eine weitere Tomcat-Instanz _API-Tomca
 * _xplan-api-validator.war_ (XPlanValidatorAPI)
 
 
-NOTE: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-root.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
+TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-root.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
 
 [[kommandozeilen-anwendungen]]
 ==== Kommandozeilen-Anwendungen
