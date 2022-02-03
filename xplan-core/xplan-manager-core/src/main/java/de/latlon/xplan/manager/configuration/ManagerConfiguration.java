@@ -69,7 +69,7 @@ public class ManagerConfiguration {
 	static final String ACTIVATE_EXPORT_OF_REEXPORTED = "activateExportOfReexported";
 
 	static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
-
+	@Deprecated
 	static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
 
 	static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
@@ -181,6 +181,7 @@ public class ManagerConfiguration {
 	/**
 	 * @return default BBOX in EPSG:4326, may be <code>null</code>
 	 */
+	@Deprecated
 	public Envelope getDefaultBboxIn4326() {
 		return defaultBboxIn4326;
 	}
@@ -310,9 +311,6 @@ public class ManagerConfiguration {
 		LOG.info("  workspace reloader configuration");
 		LOG.info("   - urls of service to reload: {}", workspaceReloaderConfiguration.getUrls().toString());
 		LOG.info("-------------------------------------------");
-		LOG.info("  alternative operating mode");
-		LOG.info("   - default bbox: {}", defaultBboxIn4326);
-		LOG.info("-------------------------------------------");
 		LOG.info("  InternalIdRetriever");
 		LOG.info("   - workspace: {}", internalIdRetrieverConfiguration.getWorkspaceName());
 		LOG.info("   - jdbc connection id: {}", internalIdRetrieverConfiguration.getJdbcConnectionId());
@@ -393,6 +391,7 @@ public class ManagerConfiguration {
 		return new WorkspaceReloaderConfiguration();
 	}
 
+	@Deprecated
 	private Envelope parseDefaultBboxIn4326(Properties loadProperties) {
 		String defaultBbox = loadProperties.getProperty(DEFAULT_BBOX_IN_4326);
 		if (defaultBbox == null || defaultBbox.isEmpty())
