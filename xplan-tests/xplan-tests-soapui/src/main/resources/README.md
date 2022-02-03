@@ -20,6 +20,7 @@ Die zu testenden Endpunkte können folgendermaßen geändert werden:
 Hinweise zur Nutzung der TestSuite:
 
 - Die TestCases dieser TestSuite bauen teilweise aufeinander auf. Dies bedeutet, dass die TestSuite immer komplett ausgeführt werden sollte.
+- Die TestSuite kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
 
 ### xplan-api-validator TestSuite
 
@@ -43,3 +44,4 @@ Die zu testenden Endpunkte können folgendermaßen geändert werden:
 Hinweise zur Nutzung der TestSuite:
 
 - Die TestCases aller TestSuites können individuell genutzt werden und es gibt keine Abhängigkeiten zwischen diesen. Nur die einzelnen TestSteps bauen teilweise aufeinander auf.
+- Die TestSuite kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
