@@ -2852,14 +2852,14 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>fp_privvorh</l:Name>
+    <l:Name>fp_privivorh</l:Name>
     <d:Title>FP: Priviligiertes Vorhaben</d:Title>
     <d:Abstract>FP_PriviligiertesVorhaben</d:Abstract>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_privvorh_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/fp/fp_privivorh_trans</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/fp/fp_privvorh</l:StyleStoreId>
+      <l:StyleStoreId>default/fp/fp_privivorh</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
