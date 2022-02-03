@@ -22,4 +22,4 @@ wird für alle eingetragenen Dienste ein Reload durchgeführt.
 workspaceReloadUrls=http://server1/xplan-wms/,http://server2/xplan-wms/
 ----
 
-NOTE: Wichtig! Alle Dienste müssen über die gleiche Nutzer/Passwort-Kombination angesprochen werden können.
+CAUTION: *Wichtig*! Alle Dienste müssen über die gleiche Nutzer/Passwort-Kombination angesprochen werden können.

@@ -17,7 +17,7 @@ Wurde der Anleitung in Abschnitt <<anwendung-installieren>> gefolgt, befindet si
 
 NOTE: Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ erforderlich.
 
-NOTE: Es wird empfohlen die Zeitzone im _Anwendungs-Tomcat_ auf "Europe/Berlin" zu konfigurieren, wenn dies nicht bereits auf Ebene des Betriebssystems gesetzt ist. Andernfalls kann es beim Editieren eines Plans veränderten Datumsangaben (z. B. Herstellungsdatum) kommen. Für die Konfiguration im Tomcat muss folgende Option zusätzlich in den `JAVA_OPTS` ergänzt werden: `-Duser.timezone=Europe/Berlin`.
+TIP: Es wird empfohlen die Zeitzone im _Anwendungs-Tomcat_ auf "Europe/Berlin" zu konfigurieren, wenn dies nicht bereits auf Ebene des Betriebssystems gesetzt ist. Andernfalls kann es beim Editieren eines Plans veränderten Datumsangaben (z. B. Herstellungsdatum) kommen. Für die Konfiguration im Tomcat muss folgende Option zusätzlich in den `JAVA_OPTS` ergänzt werden: `-Duser.timezone=Europe/Berlin`.
 
 [[anwendungs-tomcat-linux]]
 ===== Linux
@@ -70,7 +70,7 @@ NOTE: Der Nutzername und das Passwort müssen in die
 _managerConfiguration.properties_ eingetragen werden (s. Kapitel
 <<automatischer-workspace-reload>>.
 
-NOTE: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+CAUTION: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
 ==== Absicherung des Tomcat und der Webanwendungen

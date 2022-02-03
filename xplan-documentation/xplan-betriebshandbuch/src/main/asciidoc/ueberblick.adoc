@@ -59,7 +59,7 @@ Als Betriebssystem kann ein beliebiges 64-bit Betriebssystem verwendet werden.
 
 NOTE: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian 10 (Buster) oder Ubuntu 20.04 LTS (Focal Fossa).
 
-NOTE: Das Gebietsschema des Betriebssystems ("Locale") sollte auf deutsch
+TIP: Das Gebietsschema des Betriebssystems ("Locale") sollte auf deutsch
 konfiguriert sein, da einzelne Fehlerbeschreibungen in dieser Sprache
 ausgegeben werden (z. B. im Validierungsbericht). Unter Linux kann das
 Gebietsschema beispielsweise in der Datei "/etc/default/locale"

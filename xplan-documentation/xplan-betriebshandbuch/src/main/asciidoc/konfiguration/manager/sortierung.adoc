@@ -56,6 +56,6 @@ Wird kein Wert angegeben, oder fehlt ein Eintrag vollständig, kann für
 die Version/den Typ keine Zuordnung gefunden werden. Das Datumsfeld
 bleibt leer.
 
-NOTE: Eine Änderung dieser Konfiguration während des laufenden
+IMPORTANT: Eine Änderung dieser Konfiguration während des laufenden
 Betriebs führt zu unterschiedlichen Grundlagen der Sortierung. Über die
 Option `updatewmssortdate` des XPlanManagerCLI kann die Änderung für bereits importierte Daten nachgezogen werden. Der Aufruf des XPlanManagerCLI ist im entsprechenden Kapitel des XPlanBenutzerhandbuchs beschrieben.
