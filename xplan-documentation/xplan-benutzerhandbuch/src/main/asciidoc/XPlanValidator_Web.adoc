@@ -45,7 +45,7 @@ Wenn Sie einen Plan hochgeladen haben, steht im Feld „Bezeichnung für den Rep
 [.bordered]
 image::validator/Validierungsoptionen.png[Validierungsoptionen]
 
-Sie können der aktuellen Validierung, falls notwendig, einen eigenen Namen geben. Dieser erscheint ausschließlich auf dem Validierungsbericht.
+Sie können der aktuellen Validierung, falls notwendig, eine beliebige Bezeichnung geben. Diese erscheint ausschließlich auf dem Validierungsbericht.
 
 [NOTE]
 ====
@@ -55,7 +55,7 @@ Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen.
 [.bordered]
 image::validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
 
-In Ihrem Validierungsbericht wird Ihre Bezeichnung wie folgt dargestellt:
+In Ihrem Validierungsbericht wird die Bezeichnung wie folgt dargestellt:
 
 [.bordered]
 image::validator/Validierungsbericht.png[Validierungsbericht]
@@ -150,12 +150,12 @@ Die Validierung kann über den Button image:validator/BT_ValidierungStarten.png[
 
 *1) Allgemeine Informationen*
 
-Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die formalen Informationen.
+Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die Informationen aus der XPlanGML-Datei sowie das Validierungsergebnis.
 
 [.bordered]
 image::validator/Validierungsbericht_2.png[Validierungsbericht]
 
-Neben dem Namen des XPlanArchivs, des Datums der Validierung sowie der Version der XPlanGML-Datei werden auch die in dem XPlanGML-Dokument enthaltenen Instanzen mit deren Namen sowie externe Referenzen angezeigt, wenn z.B. Rasterdaten in Form von PNG- mit PGW-Dateien im XPlanArchiv hinterlegt sind.
+Neben dem Namen des XPlanArchivs, des Datums der Validierung sowie der Version der XPlanGML-Datei werden auch die in dem XPlanGML-Dokument enthaltenen Instanzen mit deren Namen sowie externe Referenzen angezeigt, wenn z.B. Rasterdaten in Form von PNG- mit PGW-Dateien im XPlanArchiv hinterlegt sind. Das Validierungsergebnis wird für alle in dem XPlanArchiv enthaltenen Instanzen angezeigt. Es müssen alle Validierungstypen für alle Instanzen fehlerfrei sein, damit das Gesamtergebnis valide ist. Die zu den jeweiligen Validierungstypen detaillierten Validierungsergebnisse werden in den folgenden Abschnitten ausgegeben.
 
 *2) Semantische Validierung – valide*
 
