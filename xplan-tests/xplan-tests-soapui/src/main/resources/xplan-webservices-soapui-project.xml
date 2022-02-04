@@ -372,7 +372,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>planId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
+            <con:sourcePath>$[0].id</con:sourcePath>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
@@ -485,11 +485,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>107</con:value>
+          <con:value>1</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value>XPLAN_BP_PLAN_f34efa33-5561-43d4-bea3-10be1ac7fe75</con:value>
+          <con:value>XPLAN_BP_PLAN_b26347ad-361c-4891-8c8e-483fef8443ec</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -552,7 +552,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>planId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import Eidelstedt_4_V4-soapui-webservices.zip</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
+            <con:sourcePath>$[0].id</con:sourcePath>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
@@ -711,7 +711,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>108</con:value>
+          <con:value>2</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -774,7 +774,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>planId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import Eidelstedt_4_V4-soapui-webservices.zip</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
+            <con:sourcePath>$[0].id</con:sourcePath>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
@@ -944,7 +944,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>109</con:value>
+          <con:value>3</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1007,7 +1007,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>planId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import Eidelstedt_4_V4-soapui-webservices.zip</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
+            <con:sourcePath>$[0].id</con:sourcePath>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
@@ -1315,7 +1315,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>110</con:value>
+          <con:value>4</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1555,7 +1555,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:name>planId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
+            <con:sourcePath>$[0].id</con:sourcePath>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
@@ -1746,7 +1746,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>111</con:value>
+          <con:value>5</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1809,7 +1809,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:name>planId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import Eidelstedt_4_V4-soapui-webservices.zip</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
+            <con:sourcePath>$[0].id</con:sourcePath>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
@@ -1926,7 +1926,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>112</con:value>
+          <con:value>6</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3434,7 +3434,7 @@ declare namespace ows='http://www.opengis.net/ows/1.1';
             <con:name>planId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Import Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
+            <con:sourcePath>$[0].id</con:sourcePath>
             <con:targetType>planId</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
@@ -3633,7 +3633,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>114</con:value>
+          <con:value>7</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3764,15 +3764,15 @@ exists(/wfs:WFS_Capabilities)</path>
   <con:properties>
     <con:property>
       <con:name>baseUrl</con:name>
-      <con:value>https://xplanbox.lat-lon.de</con:value>
+      <con:value>http://localhost:8083</con:value>
     </con:property>
     <con:property>
       <con:name>baseUrlInspirePlu</con:name>
-      <con:value>https://xplanbox.lat-lon.de</con:value>
+      <con:value>http://localhost:8084</con:value>
     </con:property>
     <con:property>
       <con:name>baseUrlManagerApi</con:name>
-      <con:value>https://xplanbox.lat-lon.de</con:value>
+      <con:value>http://localhost:8086/xplan-api-manager</con:value>
     </con:property>
     <con:property>
       <con:name>username</con:name>
