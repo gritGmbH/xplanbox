@@ -30,20 +30,19 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#ff8a67</SvgParameter>
+        <SvgParameter name="fill">#CF9377</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
@@ -73,13 +72,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#a87000</SvgParameter>
+        <SvgParameter name="fill">#D5A744</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -116,13 +115,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#c0c0c0</SvgParameter>
+        <SvgParameter name="fill">#A6A596</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -159,13 +158,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#e45c00</SvgParameter>
+        <SvgParameter name="fill">#FE7F26</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -201,7 +200,7 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -247,13 +246,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#FF8A6F</SvgParameter>
+        <SvgParameter name="fill">#CF9377</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -291,13 +290,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#FF8A6F</SvgParameter>
+        <SvgParameter name="fill">#CF9377</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -335,13 +334,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#FF8A6F</SvgParameter>
+        <SvgParameter name="fill">#CF9377</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -379,13 +378,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#FF8A6F</SvgParameter>
+        <SvgParameter name="fill">#CF9377</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -409,6 +408,50 @@
         <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+          <ogc:Not>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+              <ogc:Literal>true</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Not>
+        </ogc:Or>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill">#D5A744</SvgParameter>
+        <SvgParameter name="fill-opacity">1.0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">1.0</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+  </Rule>
+  <Rule>
+    <Name>Dorfgebiet</Name>
+    <Description>
+      <Title>FP: Dorfgebiet</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:Literal>1450</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
@@ -467,13 +510,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#A87000</SvgParameter>
+        <SvgParameter name="fill">#D5A744</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -511,13 +554,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#A87000</SvgParameter>
+        <SvgParameter name="fill">#D5A744</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -555,13 +598,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#C0C0C0</SvgParameter>
+        <SvgParameter name="fill">#A6A596</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -599,13 +642,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#C0C0C0</SvgParameter>
+        <SvgParameter name="fill">#A6A596</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -643,13 +686,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#E45C00</SvgParameter>
+        <SvgParameter name="fill">#FE7F26</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -693,13 +736,13 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#E45C00</SvgParameter>
+        <SvgParameter name="fill">#FE7F26</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
@@ -738,7 +781,7 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -763,7 +806,7 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>

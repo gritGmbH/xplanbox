@@ -10,7 +10,7 @@
     <Description>
       <Title>BP: Höhenpunkt</Title>
     </Description>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>1000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -26,10 +26,10 @@
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>7</Size>
+        <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>

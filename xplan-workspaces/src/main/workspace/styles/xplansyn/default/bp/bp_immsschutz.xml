@@ -20,7 +20,7 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -36,10 +36,10 @@
             </Mark>
             <Size>2</Size>
           </Graphic>
-          <Gap>2.5</Gap>
+          <Gap>5</Gap>
         </GraphicStroke>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-1.2</sed:PerpendicularOffset>
+      <sed:PerpendicularOffset type="Edged">-1.4</sed:PerpendicularOffset>
     </PolygonSymbolizer>
     <PolygonSymbolizer uom="meter">
       <Geometry>
@@ -48,9 +48,9 @@
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">0.75</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-width">0.3</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
@@ -68,7 +68,7 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -84,10 +84,10 @@
             </Mark>
             <Size>2</Size>
           </Graphic>
-          <Gap>2.5</Gap>
+          <Gap>5</Gap>
         </GraphicStroke>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-1.2</sed:PerpendicularOffset>
+      <sed:PerpendicularOffset type="Standard">-1.4</sed:PerpendicularOffset>
     </LineSymbolizer>
     <LineSymbolizer uom="meter">
       <Geometry>
@@ -96,9 +96,9 @@
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">0.75</SvgParameter>
-        <SvgParameter name="stroke-linecap">round</SvgParameter>
-        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-width">0.3</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
     </LineSymbolizer>
   </Rule>
@@ -116,7 +116,7 @@
         <ogc:Literal>true</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>

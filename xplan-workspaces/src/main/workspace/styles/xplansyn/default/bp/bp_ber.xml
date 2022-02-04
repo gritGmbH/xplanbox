@@ -17,7 +17,7 @@
       </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-width">1.5</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>

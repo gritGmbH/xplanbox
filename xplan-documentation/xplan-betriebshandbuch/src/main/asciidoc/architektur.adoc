@@ -9,6 +9,8 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * <<xplanvalidator-web, XPlanValidatorWeb>> inkl. <<xplanvalidator-wms, XPlanValidatorWMS>>
 * <<xplanvalidator-api, XPlanValidatorAPI>>
 * <<xplanvalidator-cli, XPlanValidatorCLI>>
+* <<xplantransform-cli, XPlanTransformCLI>>
+* <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>>
 * <<xplanwms, XPlanWMS und XPlanWerkWMS>>
 * <<xplanwfs, XPlanWFS>>
 * <<xplansynwfs, XPlanSynWFS>>
@@ -75,6 +77,12 @@ Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator der xPlanBox ermöglicht,
 bereits über den XPlanManagerWeb oder das XPlanManagerCLI
 importierte Pläne in eine aktuellere XPlanGML Version zu transformieren und in der <<xplandb>> zu speichern.
+
+[[xplanevaluationschemasynchronize-cli]]
+=== XPlanAuswerteschemaCLI
+
+Die Komponente XPlanAuswerteschemaCLI ist ein Kommandozeilenwerkzeug,
+welches dem Fachadministrator der xPlanBox ermöglicht, ein weiteres Datenbankschema für die Auswertung zu erzeugen und die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas zu synchronisieren.
 
 [[xplanwms]]
 === XPlanWMS und XPlanWerkWMS
