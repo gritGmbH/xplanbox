@@ -114,10 +114,10 @@ public class XPlanValidator {
 	 * @throws IOException
 	 * @throws ReportGenerationException
 	 */
-	public ValidatorReport validate(ValidationSettings validationSettings, File planArchive)
+	public ValidatorReport validate(ValidationSettings validationSettings, File planArchive, String archiveName)
 			throws ValidatorException, IOException, ReportGenerationException {
 		XPlanArchive archive = archiveCreator.createXPlanArchive(planArchive);
-		ValidatorReport report = validate(validationSettings, archive);
+		ValidatorReport report = validate(validationSettings, archive, archiveName);
 		writeReport(report);
 		LOG.info("Archiv mit Validierungsergebnissen wird erstellt.");
 		Path validationReportDirectory = createZipArchive(validationSettings, report);
@@ -134,10 +134,10 @@ public class XPlanValidator {
 	 * @throws ValidatorException
 	 * @throws IOException
 	 */
-	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, File planArchive)
-			throws ValidatorException, IOException {
+	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, File planArchive,
+			String archiveName) throws ValidatorException, IOException {
 		XPlanArchive archive = archiveCreator.createXPlanArchive(planArchive);
-		return validateNotWriteReport(validationSettings, archive);
+		return validateNotWriteReport(validationSettings, archive, archiveName);
 	}
 
 	/**
@@ -148,9 +148,9 @@ public class XPlanValidator {
 	 * @throws ValidatorException
 	 * @throws IOException
 	 */
-	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, XPlanArchive planArchive)
-			throws ValidatorException {
-		ValidatorReport validationReport = validate(validationSettings, planArchive);
+	public ValidatorReport validateNotWriteReport(ValidationSettings validationSettings, XPlanArchive planArchive,
+			String archiveName) throws ValidatorException {
+		ValidatorReport validationReport = validate(validationSettings, planArchive, archiveName);
 		validationReport.setHasMultipleXPlanElements(planArchive.hasMultipleXPlanElements());
 		return validationReport;
 	}
@@ -172,7 +172,7 @@ public class XPlanValidator {
 		}
 	}
 
-	private ValidatorReport validate(ValidationSettings validationSettings, XPlanArchive archive)
+	private ValidatorReport validate(ValidationSettings validationSettings, XPlanArchive archive, String archiveName)
 			throws ValidatorException {
 		List<ValidationOption> voOptions = validationSettings.getExtendedOptions();
 		List<SemanticValidationOptions> semanticValidationOptions = extractSemanticValidationOptions(
@@ -180,6 +180,7 @@ public class XPlanValidator {
 
 		ValidatorReport report = new ValidatorReport();
 		report.setValidationName(validationSettings.getValidationName());
+		report.setArchiveName(archiveName);
 		report.setDate(new Date());
 		report.setXPlanVersion(archive.getVersion());
 

@@ -270,7 +270,7 @@ public class XPlanValidatorTest {
 			SyntacticValidator synVal, ValidationSettings settings)
 			throws IOException, ValidatorException, ParseException, ReportGenerationException {
 		XPlanValidator validator = new XPlanValidator(geomVal, synVal, semVal, mock(ReportArchiveGenerator.class));
-		return validator.validate(settings, planToValidate);
+		return validator.validate(settings, planToValidate, "archiveName");
 	}
 
 	private SemanticValidator mockSemanticValidator() {

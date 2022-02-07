@@ -75,6 +75,7 @@ public class JaxbConverter {
 		ValidationReport validationReportType = objectFactory.createValidationReport();
 		validationReportType.setDate(toCalendar(report.getDate()));
 		validationReportType.setName(report.getValidationName());
+		validationReportType.setFileName(report.getArchiveName());
 		validationReportType.setIsValid(report.isReportValid());
 		validationReportType.setPlan(convertPlanType(report));
 		validationReportType.setExternalReferences(convertExternalReferences(report));

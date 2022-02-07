@@ -93,10 +93,10 @@ public class ValidationHandler {
 
 	private XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
-	public ValidatorReport validate(XPlanArchive archive, ValidationSettings validationSettings)
+	public ValidatorReport validate(XPlanArchive archive, String xFileName, ValidationSettings validationSettings)
 			throws ValidatorException {
 		LOG.debug("Validate plan with validationName {}", validationSettings.getValidationName());
-		return xPlanValidator.validateNotWriteReport(validationSettings, archive);
+		return xPlanValidator.validateNotWriteReport(validationSettings, archive, xFileName);
 	}
 
 	public Path zipReports(ValidatorReport validatorReport) throws IOException {

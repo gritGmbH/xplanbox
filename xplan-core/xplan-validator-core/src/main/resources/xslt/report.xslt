@@ -45,9 +45,14 @@
             </head>
             <body>
                 <h1>Validierungsbericht</h1>
+                <p>Name:
+                    <b>
+                        <xsl:value-of select="ValidationReport/name"/>
+                    </b>
+                </p>
                 <p>XPlan Archivname:
                     <b>
-                        <xsl:value-of select="ValidationReport/Plan/name"/>
+                        <xsl:value-of select="ValidationReport/fileName"/>
                     </b>
                 </p>
                 <p>Datum:

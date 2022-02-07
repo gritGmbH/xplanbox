@@ -58,10 +58,10 @@ public class HtmlReportGeneratorTest {
 
 		htmlReportGenerator.generateHtmlReport(createValidatorReportWithSemanticFailures(), html);
 
-		assertThat(html.toString(), hasXPath("/html/body/p[6]/p/ul/li[1]", containsString("2 Validierungsregeln")));
+		assertThat(html.toString(), hasXPath("/html/body/p[7]/p/ul/li[1]", containsString("2 Validierungsregeln")));
 		assertThat(html.toString(),
-				hasXPath("/html/body/p[6]/p/ul/li[2]", containsString("1 Validierungsregeln nicht")));
-		assertThat(html.toString(), hasXPath("/html/body/p[6]/p/ul/li[3]", containsString("1 Validierungsregeln")));
+				hasXPath("/html/body/p[7]/p/ul/li[2]", containsString("1 Validierungsregeln nicht")));
+		assertThat(html.toString(), hasXPath("/html/body/p[7]/p/ul/li[3]", containsString("1 Validierungsregeln")));
 	}
 
 	@Test
@@ -81,7 +81,7 @@ public class HtmlReportGeneratorTest {
 
 		htmlReportGenerator.generateHtmlReport(createValidatorReportWithGeometricWarnings(), html);
 
-		assertThat(html.toString(), hasXPath("/html/body/p[6]/p[2]", containsString("1 Warnungen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[7]/p[2]", containsString("1 Warnungen")));
 	}
 
 	@Test
@@ -91,9 +91,9 @@ public class HtmlReportGeneratorTest {
 
 		htmlReportGenerator.generateHtmlReport(createValidatorReportWithAllTypes(), html);
 
-		assertThat(html.toString(), hasXPath("/html/body/p[6]", containsString("semantischen")));
-		assertThat(html.toString(), hasXPath("/html/body/p[7]", containsString("geometrischen")));
-		assertThat(html.toString(), hasXPath("/html/body/p[8]", containsString("syntaktischen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[7]", containsString("semantischen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[8]", containsString("geometrischen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[9]", containsString("syntaktischen")));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

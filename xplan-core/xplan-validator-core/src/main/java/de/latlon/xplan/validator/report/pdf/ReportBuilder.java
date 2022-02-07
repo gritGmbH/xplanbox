@@ -325,6 +325,7 @@ class ReportBuilder {
 		params.put("valName", report.getValidationName());
 		params.put("valResult", isValid);
 		params.put("date", report.getDate());
+		params.put("fileName", report.getArchiveName());
 		params.put("version", asLabel(report.getXPlanVersion()));
 		return params;
 	}

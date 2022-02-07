@@ -43,9 +43,9 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
@@ -94,7 +94,7 @@ public class ValidationHandlerTest {
 		final ValidationSettings settings = Mockito.mock(ValidationSettings.class);
 
 		XPlanArchive archive = validationHandler.createArchiveFromZip(file, "bplan_valid_41");
-		ValidatorReport report = validationHandler.validate(archive, settings);
+		ValidatorReport report = validationHandler.validate(archive, "bplan_valid_41", settings);
 		assertTrue(report.isReportValid());
 	}
 

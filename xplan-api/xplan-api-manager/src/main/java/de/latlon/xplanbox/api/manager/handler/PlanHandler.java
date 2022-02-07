@@ -96,7 +96,8 @@ public class PlanHandler {
 			String internalId, String planStatus) throws Exception {
 		LOG.info("Importing plan using validation settings '{}'", validationSettings);
 		XPlanArchive xPlanArchive = createArchive(uploadedPlan);
-		ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport(validationSettings, xPlanArchive);
+		ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport(validationSettings, xPlanArchive,
+				xFileName);
 		if (!validatorReport.isReportValid()) {
 			throw new InvalidPlan(validatorReport, xFileName);
 		}

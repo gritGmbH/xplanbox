@@ -49,9 +49,9 @@ public class ValidatorReport {
 
 	private String validationName;
 
-	private List<String> planNames;
+	private String archiveName;
 
-	private String planName;
+	private List<String> planNames;
 
 	private Date date;
 
@@ -136,6 +136,20 @@ public class ValidatorReport {
 	 */
 	public String getValidationName() {
 		return validationName;
+	}
+
+	/**
+	 * @param archiveName name of the archive or file
+	 */
+	public void setArchiveName(String archiveName) {
+		this.archiveName = archiveName;
+	}
+
+	/**
+	 * @return name of the archive or file
+	 */
+	public String getArchiveName() {
+		return archiveName;
 	}
 
 	/**

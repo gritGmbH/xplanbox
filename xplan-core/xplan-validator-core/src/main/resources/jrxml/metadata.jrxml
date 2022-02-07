@@ -7,6 +7,7 @@
 	<parameter name="planName" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="version" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="valResult" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fileName" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="date" class="java.util.Date" isForPrompting="false"/>
 	<title>
 		<band height="62" splitType="Stretch">
@@ -36,6 +37,15 @@
 			<textField>
 				<reportElement x="95" y="20" width="137" height="20" uuid="38d6fb2e-3e38-4230-b408-b8b0da70c71e"/>
 				<textFieldExpression><![CDATA[$P{valResult}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="95" height="20" uuid="3c84bb99-d0a9-4aec-8c60-ca4fdd94ccd9"/>
+				<textElement markup="none"/>
+				<text><![CDATA[Dateiname:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="40" width="210" height="20" uuid="0dc98306-9f9f-491a-8bf4-59d5c68b6b54"/>
+				<textFieldExpression><![CDATA[$P{fileName}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="305" y="40" width="95" height="20" uuid="3c84bb99-d0a9-4aec-8c60-ca4fdd94ccd9"/>
