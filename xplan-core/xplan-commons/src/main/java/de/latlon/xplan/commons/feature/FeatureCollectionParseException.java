@@ -24,7 +24,7 @@ package de.latlon.xplan.commons.feature;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class FeatureCollectionParseException extends Exception {
+public class FeatureCollectionParseException extends RuntimeException {
 
 	public FeatureCollectionParseException(String message) {
 		super(message);
