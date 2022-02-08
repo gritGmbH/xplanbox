@@ -43,7 +43,7 @@ Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validier
 Wenn Sie einen Plan hochgeladen haben, steht im Feld „Bezeichnung für den Report“ der Name der Datei ohne Endung.
 
 [.bordered]
-image::validator/Validierungsoptionen.png[Validierungsoptionen]
+image::validator/Validierungsbezeichnung_Datei.png[Dateiname als Bezeichner des Validierungsbereichts]
 
 Sie können der aktuellen Validierung, falls notwendig, eine beliebige Bezeichnung geben. Diese erscheint ausschließlich auf dem Validierungsbericht.
 
@@ -53,7 +53,7 @@ Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen.
 ====
 
 [.bordered]
-image::validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
+image::validator/Validierungsbezeichnung.png[Bezeichnung des Validierungsberichts]
 
 In Ihrem Validierungsbericht wird die Bezeichnung wie folgt dargestellt:
 
