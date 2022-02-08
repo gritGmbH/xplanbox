@@ -162,7 +162,7 @@ public class XPlanFeatureCollectionBuilder {
 
 	private List<XPlanFeatureCollection> createListOfXPlanGmlInstances(FeatureCollection featuresOfFirstCollection,
 			XPlanVersion version, XPlanAde ade) {
-		if (featuresOfFirstCollection.size() == 1) {
+		if (featuresCollections.size() == 1) {
 			return Collections.singletonList(build(featuresOfFirstCollection));
 		}
 		return featuresCollections.stream().map(featureCollection -> {
