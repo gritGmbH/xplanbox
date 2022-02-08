@@ -56,10 +56,19 @@ import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
  */
 public class XPlanMultipleInstanceFeatureCollection extends XPlanFeatureCollection {
 
+	private final MainZipEntry mainZipEntry;
+
 	XPlanMultipleInstanceFeatureCollection(FeatureCollection fc, XPlanType type, String name, String nummer, String gkz,
 			Date planReleaseDate, ExternalReferenceInfo externalRefInfo, Envelope bboxIn4326, XPlanVersion version,
-			XPlanAde ade) {
+			XPlanAde ade) throws FeatureCollectionParseException {
 		super(fc, type, name, nummer, gkz, planReleaseDate, externalRefInfo, bboxIn4326, version, ade);
+		try {
+			byte[] bytes = writeFeatures();
+			this.mainZipEntry = new MainZipEntry(bytes, MAIN_FILE);
+		}
+		catch (Exception e) {
+			throw new FeatureCollectionParseException("XPlan GML could not be written", e);
+		}
 	}
 
 	@Override
@@ -70,8 +79,6 @@ public class XPlanMultipleInstanceFeatureCollection extends XPlanFeatureCollecti
 		List<ZipEntryWithContent> archiveEntries = new ArrayList<>();
 		addReferencedArtefacts(xPlanArchive, archiveEntries);
 		try {
-			byte[] bytes = writeFeatures();
-			MainZipEntry mainZipEntry = new MainZipEntry(bytes, MAIN_FILE);
 			archiveEntries.add(mainZipEntry);
 			return archiveEntries;
 		}

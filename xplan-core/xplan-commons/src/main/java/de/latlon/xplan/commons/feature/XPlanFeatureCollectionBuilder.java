@@ -140,7 +140,6 @@ public class XPlanFeatureCollectionBuilder {
 
 		List<XPlanFeatureCollection> xPlanGmlInstances = createListOfXPlanGmlInstances(featuresOfFirstCollection,
 				version, ade);
-
 		return new XPlanFeatureCollections(version, xPlanType, ade, xPlanGmlInstances);
 	}
 
