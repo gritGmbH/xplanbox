@@ -241,7 +241,7 @@ Beim Import wird das CRS des Rasterplans überprüft.
 Beispiel Aufruf:
 
 ----
-./XPlanManager -importmakeconfig ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration .
+./XPlanManager -import ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration .
 ----
 
 Beispiel Ausgabe:
