@@ -39,6 +39,8 @@ import de.latlon.xplan.validator.web.shared.ArtifactType;
  * Provides reports after validation.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @version 2.3
+ * @since 2.3
  */
 public class ValidatorReportProvider implements ReportProvider {
 

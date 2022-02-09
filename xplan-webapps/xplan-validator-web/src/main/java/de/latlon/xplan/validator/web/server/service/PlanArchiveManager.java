@@ -37,10 +37,11 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 
 /**
- * Access to plan archive from session and filesystem
+ * Access to plan archive from session and filesystem.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
+ * @version 2.3
+ * @since 2.3
  */
 public class PlanArchiveManager {
 
@@ -63,8 +64,10 @@ public class PlanArchiveManager {
 
 	XPlan readPlanFromSession(HttpSession session) throws ValidatorException {
 		Object localPlan = session.getAttribute(LOCAL_PLAN_ATTRIBUTE);
-		if (localPlan != null)
+		if (localPlan != null) {
+			LOG.trace("Reading plan {} from session with ID '{}'", ((XPlan) localPlan).getName(), session.getId());
 			return (XPlan) localPlan;
+		}
 		throw new ValidatorException("Could not find a plan to validate!");
 	}
 

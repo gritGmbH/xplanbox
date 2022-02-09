@@ -60,7 +60,6 @@ import static java.nio.file.Paths.get;
  * XPlanValidatorWeb Application Configuration.
  *
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
- * @version $Revision: $, $Date: $
  */
 @Configuration
 public class XPlanValidatorWebSpringConfig {
