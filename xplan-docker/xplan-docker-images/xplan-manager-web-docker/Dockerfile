@@ -11,6 +11,9 @@ ENV LD_LIBRARY_PATH="/usr/lib/jni"
 # configure tomcat
 #ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
 
+# add web.xml
+ADD web.xml /usr/local/tomcat/conf/web.xml
+
 # add xplan-manager-web
 ADD target/xplan-manager-web-*.war /root/
 RUN cd /root/ && unzip -q xplan-manager-web-*.war -d /usr/local/tomcat/webapps/xplan-manager-web
