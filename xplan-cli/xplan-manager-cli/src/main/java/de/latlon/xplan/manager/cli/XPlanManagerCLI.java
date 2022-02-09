@@ -85,16 +85,10 @@ public class XPlanManagerCLI {
 			exportOption(args, instantiateManager(args));
 			break;
 		case "-delete":
-			deleteOption(args, instantiateManager(args), false);
+			deleteOption(args, instantiateManager(args));
 			break;
 		case "-list":
 			listOption(args, instantiateManager(args));
-			break;
-		case "-importmakeconfig":
-			importOption(args, instantiateManager(args), true);
-			break;
-		case "-deletewithconfig":
-			deleteOption(args, instantiateManager(args), true);
 			break;
 		case "-createdb":
 			createDBOption(args, instantiateManager(args));
@@ -152,17 +146,17 @@ public class XPlanManagerCLI {
 		}
 	}
 
-	private static void deleteOption(String[] args, XPlanManager manager, boolean removeWMSConfig) {
+	private static void deleteOption(String[] args, XPlanManager manager) {
 		if (args.length < 2 || args.length > 4) {
 			printUsage();
 		}
 		String planId = args[1];
 		try {
 			if (args.length == 2)
-				manager.delete(planId, removeWMSConfig);
+				manager.delete(planId);
 			else if (args.length == 4 && "--workspace".equals(args[2])) {
 				File workspaceFolder = new File(args[3]);
-				manager.delete(planId, removeWMSConfig, workspaceFolder);
+				manager.delete(planId, workspaceFolder);
 			}
 			else {
 				printUsage();
@@ -245,7 +239,7 @@ public class XPlanManagerCLI {
 	private static void importPlan(XPlanManager manager, boolean makeWMSConfig, boolean force, String fileName,
 			ICRS defaultCRS, File workspaceFolder) throws Exception {
 		List<RasterEvaluationResult> evaluateRasterdata = manager.evaluateRasterdata(fileName);
-		System.out.println("Evaluationsergebniss von referenzierten Rasterdaten: ");
+		System.out.println("Evaluationsergebnis der referenzierten Rasterdaten: ");
 		boolean areAllValid = true;
 		for (RasterEvaluationResult result : evaluateRasterdata) {
 			boolean configuredCrs = result.isConfiguredCrs();
@@ -385,20 +379,14 @@ public class XPlanManagerCLI {
 		System.out.println();
 		System.out.println(" -help");
 		System.out.println(" -list");
-		System.out.println(" -delete   <planid>");
-		System.out.println(
-				" -import   [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
-		System.out.println(
-				" -export   <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
-		System.out.println();
-		System.out.println("Alternativer Betriebsmodus:");
-		System.out.println();
-		System.out.println(" -deletewithconfig   <planid> [--workspace <workspace verzeichnis>]");
-		System.out.println(
-				" -importmakeconfig   [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--crs <CRS>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(" -createdb <DB Name> <JDBC-Connection> -u <user> -p <passwort> [-t <PostGis Template>]");
 		System.out
 				.println(" -updateWmsSortDate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(
+				" -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(
+				" -export <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(" -delete <planid> [--workspace <workspace verzeichnis>]");
 		System.out.println();
 		System.out.println("Raster-Operationen:");
 		System.out.println();

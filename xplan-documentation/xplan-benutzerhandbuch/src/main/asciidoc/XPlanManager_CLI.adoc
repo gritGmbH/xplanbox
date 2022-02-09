@@ -29,8 +29,8 @@ Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
 _etc/_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
 Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
 
-So kann über das Property _defaultBboxIn4326_ für den 'Alternativen
-Betriebsmodus' konfiguriert werden, welche default Bounding-Box während
+So kann über das Property _defaultBboxIn4326_ konfiguriert werden, welche
+default Bounding-Box während
 der Konfigurationserzeugung für einen neuen Service genutzt werden
 soll. Dieser Wert wird genutzt, falls von dem zu importierenden GML
 keine Bounding-Box ermittelt werden kann. Häufige Gründe dafür sind zum
@@ -58,16 +58,11 @@ Usage: XPlanManager <options>
 
  -help
  -list
- -delete   <planid>
- -import   [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
- -export   <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
-
-Alternativer Betriebsmodus:
-
- -deletewithconfig   <planid> [--workspace <workspace verzeichnis>]
- -importmakeconfig   [--force] <xplanarchiv> [--workspace <workspace verzeichnis>] [--crs <CRS>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
  -createdb <DB Name> <JDBC-Connection> -u <user> -p <passwort> [-t <PostGis Template>]
  -updatewmssortdate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ -export <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ -delete <planid> [--workspace <workspace verzeichnis>]
 
 Raster-Operationen:
 
@@ -103,7 +98,19 @@ Id: 12, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22
 Anzahl Pläne: 11
 ----
 
-[[import]]
+[[xplanmanager-cli-create]]
+===== XPlanDB-Datenbank erzeugen
+
+Mit dem XPlanManagerCLI kann die Datenhaltung XPlanDB erzeugt
+werden. Der XPlanManager wird beim Erzeugen der Datenhaltung auf diese
+neue Datenbank eingestellt.
+
+----
+XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres
+----
+
+
+[[xplanmanager-cli-import]]
 ===== Import
 
 Ein Import kann durch Angabe des Parameters `import` gefolgt vom Pfad
@@ -153,8 +160,8 @@ XPlanManager -import --force ../Input-Planverzeichnis/Infrastruktur.zip
 
 _–crs_
 
-Fehlt die Angabe des Koordinatenreferenzsystem in den Daten, so kann
-diese mit dem Parameter `crs` übergeben werden.
+Fehlt die Angabe des Koordinatenreferenzsystems in den Daten, so kann
+dieses mit dem Parameter `crs` übergeben werden.
 
 Beispiel Aufruf:
 
@@ -164,7 +171,7 @@ XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --crs EPSG:31467
 
 _–workspace_
 
-Sind mehrere Workspace Verzeichnisse vorhanden, so kann durch den
+Sind mehrere Workspace-Verzeichnisse vorhanden, so kann durch den
 Parameter `workspace` das entsprechende Verzeichnis übergeben
 werden.
 
@@ -207,6 +214,21 @@ OK [6376 ms]
 Plan wurde eingefügt. Zugewiesene Id: 13
 ----
 
+[[xplanmanager-cli-sortwms]]
+===== Aktualisierung des Sortierfeldes für die Visualisierung
+
+Mit dem XPlanManagerCLI können die Werte der Sortierfelder in der
+Datenbank anhand einer bestehenden _managerConfiguration.properties_
+Datei aktualisiert werden. Der Aufruf kann ohne Parameter oder mit dem
+optionalen Parameter `managerconfiguration` erfolgen. Details zu
+diesem Parameter sind im Abschnitt
+Konfiguration über Datei <<xplanmanager-cli-konfiguration-ueber-datei>> zu
+finden.
+
+----
+XPlanManager -updatewmssortdate
+----
+
 [[xplanmanager-cli-rasterdatenanalyse]]
 ===== Rasterdatenanalyse
 
@@ -219,7 +241,7 @@ Beim Import wird das CRS des Rasterplans überprüft.
 Beispiel Aufruf:
 
 ----
-./XPlanManager -importmakeconfig ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration .
+./XPlanManager -import ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration .
 ----
 
 Beispiel Ausgabe:
@@ -342,73 +364,6 @@ Beispiel Ausgabe:
 - Entferne Plan 1 aus der Manager-DB...OK
 - Persistierung...OK
 Plan 1 wurde gelöscht.
-----
-
-[[xplanmanager-cli-alternativer-betriebsmodus]]
-===== Alternativer Betriebsmodus
-
-Alternativ zum normalen Import von Plänen bietet das XPlanManagerCLI die
-Möglichkeit, für jeden Plan eigene WMS Konfigurationen zu verwalten,
-sodass planspezifische WMS Dienste möglich sind. Dazu gibt es insgesamt
-vier verschiedene Optionen für das XPlanManagerCLI.
-
-*Datenbank erzeugen:*
-
-Mit dem XPlanManagerCLI kann die Datenhaltung erzeugt
-werden. Der XPlanManager wird beim Erzeugen der Datenhaltung auf diese
-neue Datenbank eingestellt.
-
-----
-XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres
-----
-
-*Aktualisierung des Sortierfeldes für die Visualisierung:*
-
-Mit dem XPlanManagerCLI können die Werte der Sortierfelder in der
-Datenbank anhand einer bestehenden _managerConfiguration.properties_
-Datei aktualisiert werden. Der Aufruf kann ohne Parameter oder mit dem
-optionalen Parameter `managerconfiguration` erfolgen. Details zu
-diesem Parameter sind im Abschnitt
-Konfiguration über Datei <<xplanmanager-cli-konfiguration-ueber-datei>> zu
-finden.
-
-----
-XPlanManager -updatewmssortdate
-----
-
-*Konfiguration erzeugen:*
-
-Soll beim Import eine WMS Konfiguration erzeugt werden, so muss der
-Import-Befehl folgendermaßen aussehen:
-
-----
-XPlanManager -importmakeconfig ../../resources/testdata/XPlanGML_4_0/Infrastruktur.zip
-----
-
-Über das Property _defaultBboxIn4326_ in der Konfigurationsdatei
-_managerConfiguration.properties_ kann angegeben werden, welche default
-Bounding-Box während der Konfigurationserzeugung für einen neuen
-Service genutzt werden soll (für weitere Details siehe _Konfiguration
-über Datei_ weiter oben).
-
-Folgende Parameter können mit angegeben werden:
-
-----
---force
---crs
---workspace
---managerconfiguration
-----
-
-*Konfiguration löschen:*
-
-Die entsprechende Konfiguration wird im Workspace
-_xplansyn-wms-workspace_ im _.deegree_ Verzeichnis des entsprechenden
-Nutzers abgelegt. Soll ein so importierter Plan gelöscht werden, ist
-folgender Befehl notwendig:
-
-----
-XPlanManager -deletewithconfig 1
 ----
 
 [[xplanmanager-cli-troubleshooting]]

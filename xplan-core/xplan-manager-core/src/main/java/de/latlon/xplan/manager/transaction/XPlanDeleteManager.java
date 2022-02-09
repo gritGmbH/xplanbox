@@ -23,7 +23,6 @@ package de.latlon.xplan.manager.transaction;
 
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceManager;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
@@ -31,8 +30,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.findWorkspaceDirectory;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -63,23 +60,23 @@ public class XPlanDeleteManager {
 	 * @param planId
 	 */
 	public void delete(String planId) throws Exception {
-		delete(planId, false, null);
+		delete(planId, null);
 	}
 
 	/**
 	 * @param planId the plan id to delete
-	 * @param removeWMSConfig <code>true</code> if the WMS configuration for the plan to
-	 * delete should be removed, <code>false</code> otherwise
 	 * @param workspaceFolder workspace folder, may be <code>null</code> if default path
 	 * should be used.
 	 * @throws Exception
 	 */
-	public void delete(String planId, boolean removeWMSConfig, File workspaceFolder) throws Exception {
+	public void delete(String planId, File workspaceFolder) throws Exception {
 		xPlanDao.deletePlan(planId);
-		xPlanRasterManager.removeRasterLayers(planId);
-		if (removeWMSConfig) {
-			new WmsWorkspaceManager(findWorkspaceDirectory(workspaceFolder)).deleteWmsWorkspaceFilesForId(planId);
-		}
+		xPlanRasterManager.removeRasterLayers(planId); // may require path to workspace
+		// TODO workspace is passed by CLI but not used, if following is removed also
+		// if (workspaceFolder!=null && workspaceFolder.exists()) {
+		// new
+		// WmsWorkspaceManager(findWorkspaceDirectory(workspaceFolder)).deleteWmsWorkspaceFilesForId(planId);
+		// }
 		reloadWorkspace();
 		LOG.info("XPlanArchiv mit Id {} wurde gelöscht", planId);
 	}

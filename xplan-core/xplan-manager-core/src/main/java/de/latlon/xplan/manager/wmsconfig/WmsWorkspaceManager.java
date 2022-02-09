@@ -115,6 +115,7 @@ public class WmsWorkspaceManager {
 	 * @param planId id of the plan, is used in the filenames of the configuration
 	 * @throws Exception if the expected workspace does not exist
 	 */
+	@Deprecated
 	public void deleteWmsWorkspaceFilesForId(String planId) throws Exception {
 		for (String planType : retrieveAllPlanTypes()) {
 			deleteConfigFile(pathToLayersVectorConfig(planType, planId));
