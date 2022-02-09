@@ -69,6 +69,7 @@ public class ManagerConfiguration {
 	static final String ACTIVATE_EXPORT_OF_REEXPORTED = "activateExportOfReexported";
 
 	static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
+
 	@Deprecated
 	static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
 
