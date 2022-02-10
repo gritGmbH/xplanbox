@@ -46,10 +46,11 @@ import java.io.IOException;
 import static org.springframework.web.context.support.SpringBeanAutowiringSupport.processInjectionBasedOnServletContext;
 
 /**
- * Executes validation runs
+ * Executes validation runs.
  *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @version $Revision: $, $Date: $
+ * @version 2.3
+ * @since 2.3
  */
 public class XPlanValidationServiceImpl extends RemoteServiceServlet implements ValidationService {
 
@@ -76,6 +77,7 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 	@Override
 	public void service(final HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		LOG.trace("Handling request {} in {}", request.getRequestURI(), this.getClass());
 		session = request.getSession(true);
 		super.service(request, response);
 	}
@@ -83,14 +85,19 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 	@Override
 	public ValidationSummary validate(ValidationSettings validationSettings)
 			throws ValidationException, IllegalArgumentException {
+		LOG.debug("Starting validation of plan with {}", validationSettings.toString());
 		try {
 			XPlan planToVerify = planArchiveManager.readPlanFromSession(session);
 			String planUuid = planToVerify.getId();
+			LOG.debug("Validating plan {} with id {}", planToVerify.getName(), planUuid);
 			File archive = planArchiveManager.retrieveXPlanArchiveFromFileSystem(planToVerify);
+			LOG.debug("Writing validation report for plan {}", planUuid);
 			ValidatorReport report = xPlanValidator.validateNotWriteReport(validationSettings, archive,
 					planToVerify.getName());
 
 			File reportDirectory = planArchiveManager.createReportDirectory(planUuid);
+
+			LOG.debug("Validation report for {} written to file {}", planUuid, reportDirectory);
 			reportWriter.writeArtefacts(report, reportDirectory);
 
 			return new ValidationSummary(planUuid, validationSettings.getValidationName());
@@ -99,6 +106,11 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 			LOG.error("An exception occurred during validation", e);
 			throw new ValidationException(e.getMessage());
 		}
+	}
+
+	public boolean poll() {
+		LOG.trace("Client still polling");
+		return true;
 	}
 
 }

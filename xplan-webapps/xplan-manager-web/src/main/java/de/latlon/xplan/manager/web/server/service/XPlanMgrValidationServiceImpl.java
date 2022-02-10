@@ -106,6 +106,11 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
 		}
 	}
 
+	public boolean poll() {
+		LOG.trace("Client still polling");
+		return true;
+	}
+
 	private void writeArtifacts(XPlan planToVerify, ValidatorReport report) throws ReportGenerationException {
 		File targetDirectory = archiveManager.createReportDirectory(planToVerify.getId());
 		reportWriter.writeArtefacts(report, targetDirectory);

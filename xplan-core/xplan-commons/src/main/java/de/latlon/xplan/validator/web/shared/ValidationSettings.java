@@ -74,4 +74,10 @@ public class ValidationSettings implements Serializable {
 		this.extendedOptions = extendedOptions;
 	}
 
+	@Override
+	public String toString() {
+		return "ValidationSettings{" + "validationName='" + validationName + '\'' + ", validationTypes="
+				+ validationTypes + ", extendedOptions=" + extendedOptions + '}';
+	}
+
 }

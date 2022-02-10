@@ -34,4 +34,6 @@ public interface ValidationServiceAsync {
 
 	void validate(ValidationSettings validationSettings, AsyncCallback<ValidationSummary> callback);
 
+	void poll(AsyncCallback<Boolean> callback);
+
 }

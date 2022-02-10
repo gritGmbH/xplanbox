@@ -45,7 +45,11 @@ import java.io.IOException;
 import static org.springframework.web.context.support.SpringBeanAutowiringSupport.processInjectionBasedOnServletContext;
 
 /**
+ * Configuration service providing access to XPlanValidatorWMS settings.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @version 3.0
+ * @since 3.0
  */
 @RemoteServiceRelativePath("mappreviewconfig")
 public class ValidatorMapPreviewConfigService extends RemoteServiceServlet implements MapPreviewConfigService {

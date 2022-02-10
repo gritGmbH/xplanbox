@@ -45,4 +45,6 @@ public interface ValidationService extends RemoteService {
 	ValidationSummary validate(ValidationSettings validationSettings)
 			throws ValidationException, IllegalArgumentException;
 
+	boolean poll();
+
 }
