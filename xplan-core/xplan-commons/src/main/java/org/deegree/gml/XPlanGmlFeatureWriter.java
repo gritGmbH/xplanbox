@@ -30,6 +30,7 @@ import org.deegree.feature.GenericFeatureCollection;
 import org.deegree.gml.feature.GMLFeatureWriter;
 
 import javax.xml.stream.XMLStreamException;
+import java.util.UUID;
 
 import static org.deegree.commons.xml.CommonNamespaces.XLNNS;
 
@@ -53,10 +54,10 @@ public class XPlanGmlFeatureWriter extends GMLFeatureWriter {
 	public void export(Feature feature) throws XMLStreamException, UnknownCRSException, TransformationException {
 		if (feature instanceof GenericFeatureCollection) {
 			writeStartElementWithNS(xPlanVersion.getNamespace(), "XPlanAuszug");
-			if (feature.getId() != null) {
-				GMLVersion gmlVersion = xPlanVersion.getGmlVersion();
-				writeAttributeWithNS(gmlVersion.getNamespace(), "id", feature.getId());
-			}
+			String id = getOrCreateId(feature);
+			GMLVersion gmlVersion = xPlanVersion.getGmlVersion();
+			writeAttributeWithNS(gmlVersion.getNamespace(), "id", id);
+
 			for (Feature member : ((FeatureCollection) feature)) {
 				String memberFid = member.getId();
 				writeStartElementWithNS(gmlNs, "featureMember");
@@ -73,6 +74,13 @@ public class XPlanGmlFeatureWriter extends GMLFeatureWriter {
 		else {
 			super.export(feature);
 		}
+	}
+
+	private String getOrCreateId(Feature feature) {
+		if (feature.getId() != null) {
+			return feature.getId();
+		}
+		return "XPLANAUSZUG_" + UUID.randomUUID();
 	}
 
 }

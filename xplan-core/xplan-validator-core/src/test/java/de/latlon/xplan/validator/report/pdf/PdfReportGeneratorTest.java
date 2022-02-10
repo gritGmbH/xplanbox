@@ -24,6 +24,8 @@ package de.latlon.xplan.validator.report.pdf;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import org.junit.Test;
 
+import java.util.Collections;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
@@ -62,7 +64,7 @@ public class PdfReportGeneratorTest {
 
 	private ValidatorReport createReport(String archiveName, String planName) {
 		ValidatorReport validatorReport = new ValidatorReport();
-		validatorReport.setPlanName(archiveName);
+		validatorReport.setPlanNames(Collections.singletonList(archiveName));
 		validatorReport.setValidationName(planName);
 		return validatorReport;
 	}

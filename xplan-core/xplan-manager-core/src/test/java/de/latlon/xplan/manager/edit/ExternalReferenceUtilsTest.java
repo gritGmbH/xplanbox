@@ -62,7 +62,7 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
 import java.util.ArrayList;

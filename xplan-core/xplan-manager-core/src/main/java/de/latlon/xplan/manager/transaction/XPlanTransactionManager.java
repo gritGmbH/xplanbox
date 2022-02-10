@@ -27,6 +27,8 @@ import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
@@ -46,7 +48,6 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,13 +61,10 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TimeZone;
 import java.util.UUID;
 
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 
 /**
@@ -99,6 +97,8 @@ public abstract class XPlanTransactionManager {
 	protected final XPlanManipulator planModifier = new XPlanManipulator();
 
 	protected final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+
+	protected final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final MetadataCouplingHandler metadataCouplingHandler;
 
@@ -158,6 +158,12 @@ public abstract class XPlanTransactionManager {
 		return bos.toByteArray();
 	}
 
+	protected void reassignFids(XPlanFeatureCollections fc) {
+		for (XPlanFeatureCollection xplanInstance : fc.getxPlanGmlInstances()) {
+			reassignFids(xplanInstance);
+		}
+	}
+
 	protected void reassignFids(XPlanFeatureCollection fc) {
 		for (Feature f : fc.getFeatures()) {
 			String prefix = "XPLAN_" + f.getName().getLocalPart().toUpperCase() + "_";
@@ -166,14 +172,14 @@ public abstract class XPlanTransactionManager {
 		}
 	}
 
-	protected FeatureCollection renewFeatureCollection(XPlanVersion version, AppSchema appSchema,
-			FeatureCollection modifiedFeatures) throws Exception {
+	protected FeatureCollection renewFeatureCollection(XPlanVersion version, FeatureCollection modifiedFeatures)
+			throws Exception {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		xPlanExporter.export(outputStream, version, modifiedFeatures, null);
 		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
 		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
 		try {
-			return parseFeatureCollection(originalPlanAsXmlReader, version, appSchema);
+			return xPlanGmlParser.parseFeatureCollection(originalPlanAsXmlReader, version);
 		}
 		finally {
 			originalPlanAsXmlReader.close();

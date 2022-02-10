@@ -1,8 +1,8 @@
 /*-
  * #%L
- * xplan-validator-core - XPlan Validator Core Komponente
+ * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -19,19 +19,19 @@
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric;
+package de.latlon.xplan.commons.feature;
 
 /**
- * Interface tests for {@link de.latlon.xplan.validator.geometric.GeometricValidatorImpl}.
- *
- * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
- * @version $Revision: $, $Date: $
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class GeometricValidatorImplInterfaceTest extends GeometricValidatorAbstractTest {
+public class FeatureCollectionParseException extends RuntimeException {
 
-	@Override
-	protected GeometricValidator createGeometricValidator() {
-		return new GeometricValidatorImpl();
+	public FeatureCollectionParseException(String message) {
+		super(message);
+	}
+
+	public FeatureCollectionParseException(String message, Exception e) {
+		super(message, e);
 	}
 
 }

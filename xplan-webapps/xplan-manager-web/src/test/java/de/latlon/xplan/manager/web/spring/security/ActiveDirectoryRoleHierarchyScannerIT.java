@@ -57,7 +57,7 @@ package de.latlon.xplan.manager.web.spring.security;
 
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.HashMap;
 import java.util.List;

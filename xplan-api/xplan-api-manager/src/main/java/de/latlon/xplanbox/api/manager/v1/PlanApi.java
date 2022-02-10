@@ -24,6 +24,7 @@ package de.latlon.xplanbox.api.manager.v1;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
+import de.latlon.xplanbox.api.manager.ApplicationPathConfig;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.config.DefaultValidationConfiguration;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
@@ -38,6 +39,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.apache.http.client.utils.URIBuilder;
+import org.jfree.util.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
@@ -60,6 +63,7 @@ import javax.ws.rs.core.Variant;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -146,10 +150,10 @@ public class PlanApi {
 				overwriteByRequest(skipSemantisch, validationConfig.isSkipSemantisch()),
 				overwriteByRequest(skipFlaechenschluss, validationConfig.isSkipFlaechenschluss()),
 				overwriteByRequest(skipGeltungsbereich, validationConfig.isSkipGeltungsbereich()));
-		XPlan xPlan = planHandler.importPlan(body, xFilename, validationSettings, internalId, planStatus);
+		List<XPlan> xPlans = planHandler.importPlan(body, xFilename, validationSettings, internalId, planStatus);
 		MediaType requestedMediaType = requestedMediaType(request);
-		PlanInfo planInfo = createPlanInfo(requestedMediaType, xPlan);
-		return Response.created(getSelfLink(planInfo)).entity(planInfo).build();
+		List<PlanInfo> planInfos = createPlanInfo(requestedMediaType, xPlans);
+		return Response.created(getSelfLink(planInfos)).entity(planInfos).build();
 	}
 
 	@DELETE
@@ -216,16 +220,26 @@ public class PlanApi {
 		return Response.ok().entity(planInfos).build();
 	}
 
-	private PlanInfo createPlanInfo(MediaType requestedMediaType, XPlan planById) throws URISyntaxException {
+	private List<PlanInfo> createPlanInfo(MediaType requestedMediaType, List<XPlan> plans) {
+		return plans.stream().map(plan -> createPlanInfo(requestedMediaType, plan)).collect(Collectors.toList());
+	}
+
+	private PlanInfo createPlanInfo(MediaType requestedMediaType, XPlan planById) {
 		List<String> alternateMediaTypes = alternateMediaTypes(requestedMediaType);
 		return new PlanInfoBuilder(planById, managerApiConfiguration).selfMediaType(requestedMediaType.toString())
 				.alternateMediaType(alternateMediaTypes).build();
 	}
 
-	private URI getSelfLink(PlanInfo planInfo) {
-		for (Link link : planInfo.getLinks()) {
-			if (SELF.equals(link.getRel()))
-				return link.getHref();
+	// TODO: handle multiple values!
+	private URI getSelfLink(List<PlanInfo> planInfos) {
+		if (planInfos.size() == 1) {
+			for (Link link : planInfos.get(0).getLinks()) {
+				if (SELF.equals(link.getRel()))
+					return link.getHref();
+			}
+		}
+		if (planInfos.size() > 1) {
+			return createRefToMultipleInstances(planInfos);
 		}
 		return null;
 	}
@@ -247,6 +261,30 @@ public class PlanApi {
 		if (requested != null)
 			return requested;
 		return configured;
+	}
+
+	private URI createRefToMultipleInstances(List<PlanInfo> planInfos) {
+		URI apiUrl = managerApiConfiguration.getApiUrl();
+		URIBuilder uriBuilder = new URIBuilder(apiUrl);
+
+		List<String> pathSegments = new ArrayList<>();
+		if (apiUrl.getPath() != null && !apiUrl.getPath().isEmpty())
+			pathSegments.addAll(Arrays.asList(apiUrl.getPath().split("/")));
+		pathSegments.addAll(Arrays.asList(ApplicationPathConfig.APP_PATH.split("/")));
+		pathSegments.add("plans");
+		uriBuilder.setPathSegments(pathSegments.stream()
+				.filter(pathSegment -> pathSegment != null && !pathSegment.isEmpty()).collect(Collectors.toList()));
+		planInfos.stream().forEach(planInfo -> {
+			String id = Integer.toString(planInfo.getId());
+			uriBuilder.addParameter("planId", id);
+		});
+		try {
+			return uriBuilder.build();
+		}
+		catch (URISyntaxException e) {
+			Log.warn("Could not create self reference: " + e.getMessage(), e);
+		}
+		return null;
 	}
 
 }

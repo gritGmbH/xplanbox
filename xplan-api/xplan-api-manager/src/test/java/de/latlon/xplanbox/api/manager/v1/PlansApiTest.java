@@ -34,7 +34,8 @@ import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PlansApiTest extends JerseyTest {
 
@@ -50,9 +51,21 @@ public class PlansApiTest extends JerseyTest {
 
 	@Test
 	public void verifyThat_GetPlansByName_ReturnCorrectStatus() {
-		final String response = target("/plans").queryParam("planName", "bplan_41").request().accept(APPLICATION_JSON)
-				.get(String.class);
-		assertThat(response, containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
+		Response response = target("/plans").queryParam("planName", "bplan_41").request().accept(APPLICATION_JSON)
+				.get();
+		assertThat(response.getStatus(), is(200));
+		assertThat(response.readEntity(String.class),
+				containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
+	}
+
+	@Test
+	public void verifyThat_GetPlansById_ReturnCorrectStatus() {
+		Response response = target("/plans").queryParam("planId", 123).queryParam("planId", 2).request()
+				.accept(APPLICATION_JSON).get();
+		assertThat(response.getStatus(), is(200));
+		String responseEntity = response.readEntity(String.class);
+		assertThat(responseEntity, containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
+		assertThat(responseEntity, containsString("{\"id\":2,\"type\":\"BP_Plan\",\"version\":\"XPLAN_51\","));
 	}
 
 }

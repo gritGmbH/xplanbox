@@ -21,25 +21,6 @@
  */
 package de.latlon.xplan.validator.report.pdf;
 
-import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
-import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
-import static de.latlon.xplan.validator.report.pdf.Templates.bold14LeftStyle;
-import static de.latlon.xplan.validator.report.pdf.Templates.createFooter;
-import static de.latlon.xplan.validator.report.pdf.Templates.createTemplate;
-import static de.latlon.xplan.validator.report.pdf.Templates.root20LeftIndentStyle;
-import static de.latlon.xplan.validator.report.pdf.Templates.simpleStyle;
-import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
-import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
-import static net.sf.dynamicreports.report.builder.DynamicReports.report;
-import static net.sf.dynamicreports.report.builder.DynamicReports.stl;
-
-import java.io.InputStream;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ReportUtils;
@@ -62,6 +43,25 @@ import net.sf.dynamicreports.report.builder.style.StyleBuilder;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
+
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
+import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
+import static de.latlon.xplan.validator.report.pdf.Templates.bold14LeftStyle;
+import static de.latlon.xplan.validator.report.pdf.Templates.createFooter;
+import static de.latlon.xplan.validator.report.pdf.Templates.createTemplate;
+import static de.latlon.xplan.validator.report.pdf.Templates.root20LeftIndentStyle;
+import static de.latlon.xplan.validator.report.pdf.Templates.simpleStyle;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
+import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
+import static net.sf.dynamicreports.report.builder.DynamicReports.report;
+import static net.sf.dynamicreports.report.builder.DynamicReports.stl;
 
 /**
  * Encapsulates a {@link JasperReportBuilder} building a validation report
@@ -93,13 +93,9 @@ class ReportBuilder {
 	JasperReportBuilder createReport(ValidatorReport report) throws ReportGenerationException {
 		checkReportParam(report);
 		try {
-			return report().setTemplate(createTemplate()).
-
-					title(Templates.createTitleComponent(LABEL_TITLE), createMetadataSection(report))
-
-					.summary(createValidationResults(report))
-
-					.pageFooter(createFooter());
+			return report().setTemplate(createTemplate())
+					.title(Templates.createTitleComponent(LABEL_TITLE), createMetadataSection(report))
+					.summary(createValidationResults(report)).pageFooter(createFooter());
 		}
 		catch (JRException e) {
 			throw new ReportGenerationException(e);
@@ -114,6 +110,11 @@ class ReportBuilder {
 	private VerticalListBuilder createValidationResults(ValidatorReport report) {
 		VerticalListBuilder verticalList = cmp.verticalList();
 
+		List<String> planNames = report.getPlanNames();
+		if (planNames != null) {
+			verticalList = addPlanNames(verticalList, planNames);
+		}
+
 		ExternalReferenceReport externalReferenceReport = report.getExternalReferenceReport();
 		if (externalReferenceReport != null) {
 			verticalList = addExternalReferenceReport(verticalList, externalReferenceReport);
@@ -127,7 +128,7 @@ class ReportBuilder {
 			verticalList = verticalList.add(appendNumberOfRules(semanticValidatorResult));
 			verticalList = verticalList.add(appendNumberOfFailedRules(semanticValidatorResult));
 			verticalList = verticalList.add(appendNumberOfValidRules(semanticValidatorResult));
-			verticalList = verticalList.add(appendDetailsSection(semanticValidatorResult));
+			verticalList = verticalList.add(appendDetailsSection());
 			verticalList = verticalList.add(createSemanticRules(semanticValidatorResult)).add(cmp.verticalGap(10));
 		}
 
@@ -146,6 +147,21 @@ class ReportBuilder {
 		}
 
 		return verticalList;
+	}
+
+	private VerticalListBuilder addPlanNames(VerticalListBuilder verticalList, List<String> planNames) {
+		ComponentBuilder<?, ?> rulesHead = cmp.text("Plannamen").setStyle(bold14LeftStyle);
+		HorizontalListBuilder header = cmp.horizontalList().add(rulesHead);
+		verticalList = verticalList.add(header);
+
+		MultiPageListBuilder rules = cmp.multiPageList();
+
+		planNames.stream().sorted().forEach(planName -> {
+			StyleBuilder style = stl.style(simpleStyle).setLeftIndent(10);
+			TextFieldBuilder<String> referenceField = cmp.text(planName).setStyle(style);
+			rules.add(cmp.horizontalList().add(referenceField));
+		});
+		return verticalList.add(rules);
 	}
 
 	private VerticalListBuilder addExternalReferenceReport(VerticalListBuilder verticalList,
@@ -203,7 +219,7 @@ class ReportBuilder {
 		return addTextString(text);
 	}
 
-	private ComponentBuilder<?, ?> appendDetailsSection(SemanticValidatorResult semanticValidatorResult) {
+	private ComponentBuilder<?, ?> appendDetailsSection() {
 		return addTextString("Details:");
 	}
 
@@ -307,9 +323,9 @@ class ReportBuilder {
 		String isValid = createValidLabel(report.isReportValid());
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("valName", report.getValidationName());
-		params.put("planName", report.getPlanName());
 		params.put("valResult", isValid);
 		params.put("date", report.getDate());
+		params.put("fileName", report.getArchiveName());
 		params.put("version", asLabel(report.getXPlanVersion()));
 		return params;
 	}

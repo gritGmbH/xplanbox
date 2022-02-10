@@ -24,6 +24,7 @@ package de.latlon.xplan.manager.transaction;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
 import de.latlon.xplan.manager.CrsUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
@@ -37,7 +38,6 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceManager;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -49,6 +49,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -90,45 +91,61 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 	 * @throws Exception
 	 * @return the id of the plan, never <code>null</code>
 	 */
-	public int importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
+	public List<Integer> importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
 			boolean makeRasterConfig, File workspaceFolder, String internalId, AdditionalPlanData xPlanMetadata)
 			throws Exception {
 		LOG.info("- Importiere Plan " + archive);
 		ICRS crs = CrsUtils.determineActiveCrs(defaultCRS, archive, LOG);
-		PlanStatus planStatus = xPlanMetadata.getPlanStatus();
-		XPlanFeatureCollection fc = readAndValidateMainDocument(archive, crs, force, internalId, planStatus);
-		FeatureCollection synFc = createSynFeatures(fc, archive.getVersion());
-		if (internalId != null) {
-			AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, planStatus).getSchema();
-			featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
+		PlanStatus selectedPlanStatus = xPlanMetadata.getPlanStatus();
+		XPlanFeatureCollections xPlanInstances = readAndValidateMainDocument(archive, crs, force);
+		List<Integer> planIds = new ArrayList<>();
+		boolean gmlWithMultipleInstances = xPlanInstances.getxPlanGmlInstances().size() > 1;
+		if (gmlWithMultipleInstances && (internalId != null || selectedPlanStatus != null)) {
+			LOG.warn(
+					"XPlanGML contains multiple plan instances, internalId ({}) and selected planStatus ({}) are ignored.",
+					internalId, selectedPlanStatus);
+			internalId = null;
+			selectedPlanStatus = null;
 		}
-		Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(), fc.getFeatures());
-		int planId = xplanDao.insert(archive, fc, synFc, xPlanMetadata, sortDate, internalId);
-		createRasterConfigurations(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, fc, planId, planStatus,
-				sortDate);
-		startCreationOfDataServicesCoupling(planId, fc, crs);
-		reloadWorkspace();
-		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
-		LOG.info("OK.");
-		return planId;
+		for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
+			FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
+			if (internalId != null) {
+				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, selectedPlanStatus)
+						.getSchema();
+				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
+			}
+			Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
+					xPlanInstance.getFeatures());
+			int planId = xplanDao.insert(archive, xPlanInstance, synFc, xPlanMetadata, sortDate, internalId);
+			createRasterConfigurations(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, xPlanInstance, planId,
+					selectedPlanStatus, sortDate);
+			startCreationOfDataServicesCoupling(planId, xPlanInstance, crs);
+			reloadWorkspace();
+			LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
+			LOG.info("OK.");
+			planIds.add(planId);
+		}
+		LOG.info("Alle {0} XPlan GML Instanzen aus dem XPlanArchiv wurden erfolgreich importiert.",
+				xPlanInstances.getxPlanGmlInstances().size());
+		return planIds;
 	}
 
-	private XPlanFeatureCollection readAndValidateMainDocument(XPlanArchive archive, ICRS crs, boolean force,
-			String internalId, PlanStatus planStatus) throws Exception {
+	private XPlanFeatureCollections readAndValidateMainDocument(XPlanArchive archive, ICRS crs, boolean force)
+			throws Exception {
 		performSchemaValidation(archive);
 		try {
-			GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl(true);
-			AppSchema appSchema = managerWorkspaceWrapper
-					.lookupStore(archive.getVersion(), archive.getAde(), planStatus).getSchema();
-			XPlanFeatureCollection fc = geometricValidator.retrieveGeometricallyValidXPlanFeatures(archive, crs,
-					appSchema, force, internalId);
-			reassignFids(fc);
-			long begin = System.currentTimeMillis();
-			new SyntacticValidatorImpl().validateReferences(archive, fc.getExternalReferenceInfo(), force);
-			LOG.info("- Überprüfung der externen Referenzen...");
-			long elapsed = System.currentTimeMillis() - begin;
-			LOG.info("OK [" + elapsed + " ms]");
-			return fc;
+			XPlanFeatureCollections xPlanInstances = xPlanGmlParser
+					.parseXPlanFeatureCollectionAllowMultipleInstances(archive, crs);
+			reassignFids(xPlanInstances);
+			for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
+				long begin = System.currentTimeMillis();
+				new SyntacticValidatorImpl().validateReferences(archive, xPlanInstance.getExternalReferenceInfo(),
+						force);
+				LOG.info("- Überprüfung der externen Referenzen...");
+				long elapsed = System.currentTimeMillis() - begin;
+				LOG.info("OK [" + elapsed + " ms]");
+			}
+			return xPlanInstances;
 		}
 		catch (XMLStreamException | UnknownCRSException e) {
 			LOG.error("Could not read and validate xplan gml", e);

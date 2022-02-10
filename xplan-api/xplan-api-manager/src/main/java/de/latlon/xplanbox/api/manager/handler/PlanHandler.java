@@ -24,6 +24,7 @@ package de.latlon.xplanbox.api.manager.handler;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
@@ -37,12 +38,10 @@ import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
-import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
-import org.apache.http.client.utils.URIBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,14 +51,11 @@ import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
-import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 import static java.lang.Integer.parseInt;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -93,23 +89,26 @@ public class PlanHandler {
 	@Autowired
 	private XPlanExporter xPlanExporter;
 
-	public XPlan importPlan(File uploadedPlan, String xFileName, ValidationSettings validationSettings,
+	@Autowired
+	private XPlanGmlParser xPlanGmlParser;
+
+	public List<XPlan> importPlan(File uploadedPlan, String xFileName, ValidationSettings validationSettings,
 			String internalId, String planStatus) throws Exception {
 		LOG.info("Importing plan using validation settings '{}'", validationSettings);
-		String validationName = validationSettings.getValidationName();
 		XPlanArchive xPlanArchive = createArchive(uploadedPlan);
-		ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport(validationSettings, validationName,
-				xPlanArchive);
+		ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport(validationSettings, xPlanArchive,
+				xFileName);
 		if (!validatorReport.isReportValid()) {
 			throw new InvalidPlan(validatorReport, xFileName);
 		}
 		LOG.info("Plan is valid. Importing plan into storage for '{}'", planStatus);
 		AdditionalPlanData metadata = createAdditionalPlanData(xPlanArchive, planStatus);
-		int planId = xPlanInsertManager.importPlan(xPlanArchive, null, false, false, true, null, internalId, metadata);
-
-		XPlan planById = findPlanById(planId);
-		LOG.info("Plan with Id {} successfully imported", planById);
-		return planById;
+		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, null, false, false, true, null, internalId,
+				metadata);
+		List<XPlan> plansById = findPlansById(planIds);
+		LOG.info("Plan successfully imported. Ids: {}",
+				plansById.stream().map(plan -> plan.getId()).collect(Collectors.joining(",")));
+		return plansById;
 	}
 
 	private XPlanArchive createArchive(File uploadedPlan) throws InvalidXPlanGmlOrArchive {
@@ -139,21 +138,31 @@ public class PlanHandler {
 	}
 
 	public XPlan findPlanById(String planId) throws Exception {
-		LOG.info("Find plan by Id '{}'", planId);
+		LOG.info("Finding plan by Id '{}'", planId);
 		int id = Integer.parseInt(planId);
 		return findPlanById(id);
 	}
 
 	public List<XPlan> findPlansByName(String planName) throws Exception {
-		LOG.info("Find plan by name '{}'", planName);
+		LOG.info("Finding plan by name '{}'", planName);
 		return xPlanDao.getXPlanByName(planName);
 	}
 
 	public List<XPlan> findPlans(String planName) throws Exception {
-		LOG.info("Search plan by name '{}'", planName);
+		LOG.info("Searching plan by name '{}'", planName);
 		if (planName != null)
 			return xPlanDao.getXPlansLikeName(planName);
 		return xPlanDao.getXPlanList(false);
+	}
+
+	public List<XPlan> findPlansById(List<Integer> planIds) throws Exception {
+		LOG.info("Finding plan by IDs '{}'", planIds);
+		List<XPlan> plans = new ArrayList<>();
+		for (int planId : planIds) {
+			XPlan planById = findPlanById(planId);
+			plans.add(planById);
+		}
+		return plans;
 	}
 
 	private XPlan findPlanById(int id) throws Exception {
@@ -186,10 +195,8 @@ public class PlanHandler {
 
 	private PlanStatus determinePlanStatusByRechtsstand(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException {
-		XPlanFeatureCollection fc = parseXPlanFeatureCollection(xPlanArchive);
-		removeAllFeaturesExceptOfPlanFeature(fc);
-
-		String legislationStatus = retrieveLegislationStatus(fc.getFeatures(), fc.getType());
+		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(xPlanArchive);
+		String legislationStatus = retrieveRechtsstand(fc.getFeatures(), fc.getType());
 		if (legislationStatus != null && !legislationStatus.isEmpty()) {
 			try {
 				int rechtsstand = parseInt(legislationStatus);

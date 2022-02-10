@@ -40,7 +40,7 @@ import static de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoad
 import static java.io.File.createTempFile;
 import static org.apache.commons.io.IOUtils.copy;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Please note: This test uses static mocking of the <link>java.lang.System</link>-class,

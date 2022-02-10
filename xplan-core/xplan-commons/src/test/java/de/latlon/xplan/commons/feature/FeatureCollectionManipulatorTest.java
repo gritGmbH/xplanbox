@@ -21,18 +21,12 @@
  */
 package de.latlon.xplan.commons.feature;
 
-import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
-import static org.deegree.commons.tom.primitive.BaseType.STRING;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamReader;
-
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.gml.property.PropertyType;
 import org.deegree.feature.Feature;
@@ -49,12 +43,14 @@ import org.hamcrest.Description;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import static org.deegree.commons.tom.primitive.BaseType.STRING;
+import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Tests for {@link de.latlon.xplan.commons.feature.FeatureCollectionManipulator}.
@@ -125,28 +121,6 @@ public class FeatureCollectionManipulatorTest {
 		featureCollectionManipulator.addInternalId(fcWithoutNameProperty, createSchema(), propValue);
 
 		assertThat(fcWithoutNameProperty, hasProperty(FEATURE_NAME_BP_PLAN, "internalId", propValue, 1));
-	}
-
-	@Test
-	public void testRemoveAllFeaturesExceptOfPlanFeatureWithXPlan41() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan41/Eidelstedt_4_V4.zip");
-		removeAllFeaturesExceptOfPlanFeature(fc);
-		FeatureCollection features = fc.getFeatures();
-		QName nameOfFirstFeature = features.iterator().next().getName();
-
-		assertThat(features.size(), is(1));
-		assertThat(nameOfFirstFeature, is(new QName("http://www.xplanung.de/xplangml/4/1", "BP_Plan")));
-	}
-
-	@Test
-	public void testRemoveAllFeaturesExceptOfPlanFeatureWithXPlan3() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan3/Plessa.zip");
-		removeAllFeaturesExceptOfPlanFeature(fc);
-		FeatureCollection features = fc.getFeatures();
-		QName nameOfFirstFeature = features.iterator().next().getName();
-
-		assertThat(features.size(), is(1));
-		assertThat(nameOfFirstFeature, is(new QName("http://www.xplanung.de/xplangml/3/0", "BP_Plan")));
 	}
 
 	private ArrayList<Feature> createFeaturesWithAllProperties() {

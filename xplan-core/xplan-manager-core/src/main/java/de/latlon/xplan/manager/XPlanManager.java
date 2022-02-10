@@ -21,7 +21,6 @@
  */
 package de.latlon.xplan.manager;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -29,8 +28,11 @@ import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
+import de.latlon.xplan.commons.feature.FeatureCollectionParseException;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
@@ -53,17 +55,16 @@ import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
-import de.latlon.xplan.manager.web.shared.LegislationStatus;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.xml.XMLParsingException;
@@ -71,14 +72,11 @@ import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -86,12 +84,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.EmptyStackException;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
-import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.valueOf;
+import static de.latlon.xplan.manager.web.shared.Rechtsstand.UNKNOWN_RECHTSSTAND;
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
@@ -105,8 +104,6 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 public class XPlanManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanManager.class);
-
-	private static final LegislationStatus UNKNOWN_LEGISLATION_STATUS = new LegislationStatus(-1);
 
 	private final XPlanArchiveCreator archiveCreator;
 
@@ -135,6 +132,8 @@ public class XPlanManager {
 	private final XPlanEditManager xPlanEditManager;
 
 	private final XPlanDeleteManager xPlanDeleteManager;
+
+	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	/**
 	 * @param xPlanDao mandatory XPlan data access object
@@ -250,11 +249,9 @@ public class XPlanManager {
 	 * @throws Exception
 	 */
 	public String retrievePlanName(String archiveFileName) throws Exception {
-		// TODO: Simplify retrieval of plan name.
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
-		XPlanFeatureCollection fc = (new GeometricValidatorImpl(true)).retrieveGeometricallyValidXPlanFeatures(archive,
-				crs, getAppSchemaFromStore(archive, null), true, null);
+		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive, crs);
 		return fc.getPlanName();
 	}
 
@@ -279,25 +276,11 @@ public class XPlanManager {
 	 * @throws UnknownCRSException
 	 * @throws XMLStreamException
 	 */
-	public LegislationStatus determineLegislationStatus(String pathToArchive)
+	public Rechtsstand determineRechtsstand(String pathToArchive)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection fc = parseXPlanFeatureCollection(archive);
-		removeAllFeaturesExceptOfPlanFeature(fc);
-
-		String legislationStatus = retrieveLegislationStatus(fc.getFeatures(), fc.getType());
-		if (legislationStatus != null && !legislationStatus.isEmpty()) {
-			try {
-				int legislationStatusCode = parseInt(legislationStatus);
-				String legislationStatusTranslation = translateLegislationStatusCode(archive.getVersion(), fc.getType(),
-						legislationStatusCode);
-				return new LegislationStatus(legislationStatusCode, legislationStatusTranslation);
-			}
-			catch (NumberFormatException e) {
-				LOG.info("Legislationstatus '{}' could not be parsed as integer. Returning -1.", legislationStatus);
-			}
-		}
-		return UNKNOWN_LEGISLATION_STATUS;
+		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+		return determineRechtsstand(xPlanFeatureCollection);
 	}
 
 	/**
@@ -313,7 +296,7 @@ public class XPlanManager {
 	public List<RasterEvaluationResult> evaluateRasterdata(String pathToArchive)
 			throws IOException, XMLStreamException, XMLParsingException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection fc = parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 		return xPlanRasterManager.evaluateRasterdata(archive, fc);
 	}
 
@@ -325,16 +308,28 @@ public class XPlanManager {
 	 * @throws XMLStreamException
 	 * @throws UnknownCRSException
 	 */
-	public PlanNameWithStatusResult evaluatePlanNameAndStatus(String pathToArchive, String status)
-			throws IOException, XMLStreamException, UnknownCRSException {
+	public List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(String pathToArchive, String status)
+			throws IOException, XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
 		LOG.info("- Analyse des Vorkommens eines Plans mit gleichem Namen und Planstatus...");
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection fc = parseXPlanFeatureCollection(archive);
-		String planName = fc.getPlanName();
-		boolean planWithSameNameAndStatusExists = xplanDao.checkIfPlanWithSameNameAndStatusExists(planName, status);
-		LOG.info("OK, Plan mit Namen '{}' und Status '{}' existiert: {}", planName, status,
-				planWithSameNameAndStatusExists);
-		return new PlanNameWithStatusResult(planName, status, planWithSameNameAndStatusExists);
+		XPlanFeatureCollections xPlanFeatureCollections = xPlanGmlParser
+				.parseXPlanFeatureCollectionAllowMultipleInstances(archive);
+		return xPlanFeatureCollections.getxPlanGmlInstances().stream().map(xPlanFeatureCollection -> {
+			String planName = xPlanFeatureCollection.getPlanName();
+			PlanStatus planStatus;
+			if (status != null) {
+				Rechtsstand rechtsstand = determineRechtsstand(xPlanFeatureCollection);
+				planStatus = findByLegislationStatusCode(rechtsstand.getCodeNumber());
+			}
+			else {
+				planStatus = valueOf(status);
+			}
+			boolean planWithSameNameAndStatusExists = xplanDao.checkIfPlanWithSameNameAndStatusExists(planName,
+					planStatus.getMessage());
+			LOG.info("OK, Plan mit Namen '{}' und Status '{}' existiert: {}", planName, status,
+					planWithSameNameAndStatusExists);
+			return new PlanNameWithStatusResult(planName, planStatus, planWithSameNameAndStatusExists);
+		}).collect(Collectors.toList());
 	}
 
 	/**
@@ -399,21 +394,14 @@ public class XPlanManager {
 	@PreAuthorize("(hasPermission(#plan, 'hasDistrictPermission') and hasRole('ROLE_XPLAN_EDITOR')) or hasRole('ROLE_XPLAN_SUPERUSER')")
 	public XPlanToEdit getXPlanToEdit(XPlan plan) throws Exception {
 		InputStream originalPlan = null;
-		XMLStreamReader originalPlanAsXmlReader = null;
 		try {
 			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
-			XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf(plan.getAde()) : null;
-			AppSchema appSchema = managerWorkspaceWrapper
-					.lookupStore(version, ade, plan.getXplanMetadata().getPlanStatus()).getSchema();
 			originalPlan = xplanDao.retrieveXPlanArtefact(plan.getId());
-			originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
-			FeatureCollection originalPlanFC = parseFeatureCollection(originalPlanAsXmlReader, version, appSchema);
+			FeatureCollection originalPlanFC = xPlanGmlParser.parseFeatureCollection(originalPlan, version);
 			return planToEditFactory.createXPlanToEdit(plan, originalPlanFC);
 		}
 		finally {
 			closeQuietly(originalPlan);
-			if (originalPlanAsXmlReader != null)
-				originalPlanAsXmlReader.close();
 		}
 	}
 
@@ -529,18 +517,31 @@ public class XPlanManager {
 		}
 	}
 
-	private AppSchema getAppSchemaFromStore(XPlanArchive archive, PlanStatus planStatus) {
-		return managerWorkspaceWrapper.lookupStore(archive.getVersion(), archive.getAde(), planStatus).getSchema();
+	private Rechtsstand determineRechtsstand(XPlanFeatureCollection xPlanFeatureCollection) {
+		String legislationStatus = retrieveRechtsstand(xPlanFeatureCollection.getFeatures(),
+				xPlanFeatureCollection.getType());
+		if (legislationStatus != null && !legislationStatus.isEmpty()) {
+			try {
+				int legislationStatusCode = parseInt(legislationStatus);
+				String legislationStatusTranslation = translateRechtsstand(xPlanFeatureCollection.getVersion(),
+						xPlanFeatureCollection.getType(), legislationStatusCode);
+				return new Rechtsstand(legislationStatusCode, legislationStatusTranslation);
+			}
+			catch (NumberFormatException e) {
+				LOG.info("Legislationstatus '{}' could not be parsed as integer. Returning -1.", legislationStatus);
+			}
+		}
+		return UNKNOWN_RECHTSSTAND;
 	}
 
-	private String translateLegislationStatusCode(XPlanVersion version, XPlanType type, int legislationStatusCode) {
+	private String translateRechtsstand(XPlanVersion version, XPlanType type, int rechtsstandCode) {
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
 		String codeListId = findCodeListId(type);
 		try {
-			return xPlanCodeLists.getDescription(codeListId, Integer.toString(legislationStatusCode));
+			return xPlanCodeLists.getDescription(codeListId, Integer.toString(rechtsstandCode));
 		}
 		catch (Exception e) {
-			LOG.error("Could not translate rechtsstand code {}: {}", legislationStatusCode, e.getMessage());
+			LOG.error("Could not translate rechtsstand code {}: {}", rechtsstandCode, e.getMessage());
 			LOG.trace("Error translating rechtsstand code", e);
 			return null;
 		}

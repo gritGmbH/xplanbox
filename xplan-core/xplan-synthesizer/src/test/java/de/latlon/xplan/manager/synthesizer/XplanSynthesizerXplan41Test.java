@@ -34,7 +34,7 @@ import javax.xml.namespace.QName;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class XplanSynthesizerXplan41Test extends AbstractXplanSynthesizerTest {
 

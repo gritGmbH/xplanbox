@@ -95,6 +95,8 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 	private boolean showMapPreview = false;
 
+	private PollingTextBox pollingTextBox;
+
 	/**
 	 * @param reportDownloadFinishedListener informed when the validation report dialog is
 	 * closed or next is clicked, never <code>null</code>
@@ -287,13 +289,19 @@ public class ValidatorOptionsDialog extends FormPanel {
 	private void showValidatingDialogBox() {
 		validating = new DialogBox(false, true);
 		validating.setText(messages.validatingStatus());
+		pollingTextBox = new PollingTextBox(validationService);
+		pollingTextBox.setReadOnly(true);
+		pollingTextBox.setValue(".");
+		validating.add(pollingTextBox);
 		validating.center();
 		validating.show();
 	}
 
 	private void hideValidatingDialogBox() {
-		if (validating != null)
+		if (validating != null) {
 			validating.hide();
+			pollingTextBox.stop();
+		}
 	}
 
 }

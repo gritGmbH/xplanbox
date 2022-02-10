@@ -118,7 +118,7 @@ import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.HI
 import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.VERMERK;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;

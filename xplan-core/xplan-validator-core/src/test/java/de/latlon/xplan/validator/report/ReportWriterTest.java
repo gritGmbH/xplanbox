@@ -21,12 +21,17 @@
  */
 package de.latlon.xplan.validator.report;
 
-import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
-import static org.deegree.cs.persistence.CRSManager.lookup;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import org.deegree.commons.uom.Measure;
+import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.cs.exceptions.UnknownCRSException;
+import org.deegree.geometry.GeometryFactory;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -40,18 +45,12 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.deegree.commons.uom.Measure;
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.geometry.GeometryFactory;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-import org.junit.Before;
-import org.junit.Test;
-
-import de.latlon.xplan.validator.geometric.report.BadGeometry;
-import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
+import static org.deegree.cs.persistence.CRSManager.lookup;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -135,14 +134,14 @@ public class ReportWriterTest {
 				Collections.<String>emptyList(), badGeometries, crs, false);
 		ValidatorReport report = new ValidatorReport();
 		report.setGeometricValidatorResult(result);
-		report.setPlanName(PLAN_NAME);
+		report.setPlanNames(Collections.singletonList(PLAN_NAME));
 		report.setValidationName(VALIDATION_NAME);
 		return report;
 	}
 
 	private ValidatorReport createReportThrowingFailure() {
 		ValidatorReport report = mock(ValidatorReport.class);
-		when(report.getPlanName()).thenReturn(PLAN_NAME);
+		when(report.getPlanNames()).thenReturn(Collections.singletonList(PLAN_NAME));
 		when(report.getValidationName()).thenReturn(VALIDATION_NAME);
 		when(report.getGeometricValidatorResult()).thenThrow(new IllegalArgumentException(FAILURE));
 		return report;

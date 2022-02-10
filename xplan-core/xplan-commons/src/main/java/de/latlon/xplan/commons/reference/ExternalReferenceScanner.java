@@ -50,11 +50,11 @@ import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersio
  */
 public class ExternalReferenceScanner {
 
-	private final List<ExternalReference> externalRefs = new ArrayList<ExternalReference>();
+	private final List<ExternalReference> externalRefs = new ArrayList<>();
 
-	private final List<ExternalReference> rasterPlanBaseScans = new ArrayList<ExternalReference>();
+	private final List<ExternalReference> rasterPlanBaseScans = new ArrayList<>();
 
-	private final List<ExternalReference> rasterPlanUpdateScans = new ArrayList<ExternalReference>();
+	private final List<ExternalReference> rasterPlanUpdateScans = new ArrayList<>();
 
 	/**
 	 * Scans the given XPlan {@link FeatureCollection}.

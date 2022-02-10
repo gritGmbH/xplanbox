@@ -1,8 +1,8 @@
 /*-
  * #%L
- * xplan-validator-core - XPlan Validator Core Komponente
+ * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -19,31 +19,24 @@
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric;
+package de.latlon.xplanbox.api.manager.exception;
 
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
+import de.latlon.xplanbox.api.commons.exception.XPlanApiException;
+
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class GemetricValidatorParsingResult {
+public class InvalidSearch extends XPlanApiException {
 
-	private XPlanFeatureCollection features;
-
-	private GeometricValidatorResult validatorResult;
-
-	public GemetricValidatorParsingResult(XPlanFeatureCollection features, GeometricValidatorResult validatorResult) {
-		this.features = features;
-		this.validatorResult = validatorResult;
+	public InvalidSearch(String message) {
+		super(message);
 	}
 
-	public XPlanFeatureCollection getFeatures() {
-		return features;
-	}
-
-	public GeometricValidatorResult getValidatorResult() {
-		return validatorResult;
+	@Override
+	public int getStatusCode() {
+		return BAD_REQUEST.getStatusCode();
 	}
 
 }

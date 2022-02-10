@@ -44,10 +44,11 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.latlon.xplan.manager.web.shared.XPlan;
 
 /**
- * Stores an uploaded zip file into a tmp directory
+ * Stores an uploaded zip file into a tmp directory.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
+ * @version 2.3
+ * @since 2.3
  */
 @SuppressWarnings("serial")
 public class XPlanUploadService extends RemoteServiceServlet {
@@ -64,6 +65,7 @@ public class XPlanUploadService extends RemoteServiceServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		LOG.trace("Handling request {} in {}", request.getRequestURI(), this.getClass());
 		boolean isMultiPart = isMultipartContent(new ServletRequestContext(request));
 		if (!isMultiPart)
 			super.service(request, response);
@@ -83,7 +85,7 @@ public class XPlanUploadService extends RemoteServiceServlet {
 				planArchiveManager.writePlanToSession(request.getSession(true), plan);
 				planArchiveManager.writeXPlanArchiveToFileSystem(uploadedFileItem, plan);
 				populateResponse(response, uploadedFileItem, fileName);
-				LOG.debug("Plan was successfully loaded.");
+				LOG.debug("Plan {} was successfully loaded.", fileName);
 			}
 			else {
 				super.service(request, response);

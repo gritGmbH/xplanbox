@@ -58,7 +58,7 @@ package de.latlon.xplan.manager.wmsconfig;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 

@@ -38,7 +38,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
 import static org.deegree.commons.tom.primitive.BaseType.STRING;
 
 /**
@@ -125,18 +124,6 @@ public class FeatureCollectionManipulator {
 			FeatureType featureType = applicationSchema.getFeatureType(feature.getName());
 			addMgrPlanIdProperty(planId, feature, featureType);
 		}
-	}
-
-	/**
-	 * Removes all features of a {@link XPlanFeatureCollection} except of the plan
-	 * feature.
-	 * @param fc xplan feature collection to modify, never <code>null</code>
-	 */
-	public static void removeAllFeaturesExceptOfPlanFeature(XPlanFeatureCollection fc) {
-		FeatureCollection features = fc.getFeatures();
-		Feature planFeature = findPlanFeature(features, fc.getType());
-		features.clear();
-		features.add(planFeature);
 	}
 
 	private void addInternalIdProperty(AppSchema schema, String internalId, Feature feature) {
