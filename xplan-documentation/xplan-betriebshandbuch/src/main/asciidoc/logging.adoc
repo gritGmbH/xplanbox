@@ -1,5 +1,5 @@
 [[logging]]
-=== Logging
+== Logging
 
 Die Anwendungen XPlanManagerWeb, XPlanManagerCLI, XPlanValidatorWeb
 und XPlanValidatorCLI und alle XPlanDienste schreiben Log-Ausgaben standardmäßig nach
@@ -7,7 +7,7 @@ Standard-Out. Für die Web-Anwendungen und die Webservices ist dies die Logging-
 Java Applikationsserver (Apache Tomcat: _catalina.out_) und bei den CLI-Anwendungen die Konsole.
 Nach Standard-Out werden nur Warnungen und Fehler geschrieben.
 
-==== Protokolldateien der Komponenten
+=== Protokolldateien der Komponenten
 
 Zusätzlich wird eine Log-Datei für alle Anwendungen und Dienste in einer entsprechenden benannten Datei im Log-Verzeichnis des Tomcat-Servers _${catalina.base}/logs/_ geschrieben.
 In die Log-Dateien werden Informationen, Warnungen und Fehler geschrieben.
@@ -26,7 +26,7 @@ In die Log-Dateien werden Informationen, Warnungen und Fehler geschrieben.
 |XPlanSynWFS |${catalina.base}/logs/xplansyn-wfs.log
 |===
 
-==== Protokollebenen
+=== Protokollebenen
 
 In den Anwendungen werden für die Nachrichten verschiedenen Protokollebenen (Log-Level) verwendet. Diese haben folgende Bedeutung:
 
@@ -37,7 +37,7 @@ In den Anwendungen werden für die Nachrichten verschiedenen Protokollebenen (Lo
 - DEBUG: Detaillierte Informationen zum Programmablauf, die vom Entwickler zur Fehler- und Laufzeitanalyse ausgewertet werden können (Vorgabeeinstellung: deaktiviert, wird bei Bedarf und nur temporär aktiviert)
 - TRACE: noch detailliertere Informationen zum Programmablauf (Vorgabeeinstellung: deaktiviert, wird bei Bedarf und nur temporär aktiviert, erzeugt viele Nachrichten)
 
-==== Konfiguration
+=== Konfiguration
 
 Die Konfiguration des verwendeten Apache Log4j-Frameworks erfolgt über die Konfigurationsdatei `log4j2.yaml`. Diese Datei ist in allen Komponenten enthalten und liegt in den Webapps im Verzeichnis `WEB-INF/classes` und bei den Kommandozeilenwerkzeugen im Verzeichnis `etc/`.
 
