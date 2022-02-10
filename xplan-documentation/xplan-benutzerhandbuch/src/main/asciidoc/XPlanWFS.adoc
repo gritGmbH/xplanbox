@@ -1,7 +1,7 @@
 [[xplanwfs]]
 == XPlanWFS
 
-Der XPlanWFS ist ein auf der Open Source Software http://www.deegree.org[deegree] basierender Dienst zur Abfrage von Vektordaten und ist konform zum Standard Web Feature Service (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC).
+Der XPlanWFS ist ein auf der Open Source Software https://www.deegree.org[deegree] basierender Dienst zur Abfrage von Vektordaten und ist konform zum Standard Web Feature Service (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC).
 
 [[xplanwfs-benutzung-des-xplanwfs]]
 === Benutzung des XPlanWFS

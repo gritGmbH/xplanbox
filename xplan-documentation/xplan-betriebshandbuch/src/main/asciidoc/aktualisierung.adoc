@@ -66,7 +66,7 @@ In der Tabelle sind nur Versionen aufgelistet, die auch Änderungen enthalten. I
 Anhand der Übersicht lässt sich ableiten, welche Schritte bei einer Aktualisierung ausgeführt werden müssen. Die Details zu den jeweiligen Aktualisierungsschritten werden in den nachfolgenden Kapiteln erläutert.
 
 Alle Aktualisierungswerkzeuge und -skripte werden ohne Gewähr und nur für ausgewählte Versionen auf Anfrage zusammen mit der Liefereinheit
-bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Versionen älter als 2.0, wenden Sie sich bitte an die http://www.lat-lon.de[lat/lon GmbH].
+bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Versionen älter als 2.0, wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
 
 
 .Überblick über die Datenhaltung betreffenden Änderungen

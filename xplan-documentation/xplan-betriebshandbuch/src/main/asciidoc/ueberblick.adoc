@@ -4,7 +4,7 @@
 In diesem Betriebshandbuch befinden sich Informationen zu
 Systemvoraussetzungen, Schnittstellen und Installation für den Betrieb
 der xPlanBox. Die Web-Anwendungen basieren auf den Komponenten des
-OSGeo-Projekts http://www.deegree.org/[deegree]. Als zugrunde liegende
+OSGeo-Projekts https://www.deegree.org/[deegree]. Als zugrunde liegende
 Basistechnologien werden Java, Apache Tomcat und PostgreSQL mit PostGIS
 verwendet.
 
@@ -68,7 +68,7 @@ angepasst werden.
 [[jdk]]
 === Java SE
 Als Java SE 11 wird sowohl
-http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK 11]
+https://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK 11]
 als auch OpenJDK 11 (https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot[AdoptOpenJDK 11]
 oder https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html[Amazon Corretto 11]) unterstützt.
 

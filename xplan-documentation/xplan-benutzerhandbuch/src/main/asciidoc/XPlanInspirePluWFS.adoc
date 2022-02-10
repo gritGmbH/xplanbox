@@ -6,7 +6,7 @@ Der XPlanInspirePluWFS ist ein INSPIRE Download Service zur Abfrage von Vektorda
 [[xplaninspirepluwfs-benutzung-des-xplaninspirepluwfs]]
 === Benutzung des XPlanInspirePluWFS
 
-Der XPlanInspirePluWFS ist ein INSPIRE Download Service (WFS 2.0) basierend auf der Open Source Software http://www.deegree.org[deegree]. Die folgende Tabelle gibt einen Überblick über die zur Verfügung stehenden Operationen des XPlanInspirePluWFS, die in den weiteren Kapiteln noch näher erläutert werden.
+Der XPlanInspirePluWFS ist ein INSPIRE Download Service (WFS 2.0) basierend auf der Open Source Software https://www.deegree.org[deegree]. Die folgende Tabelle gibt einen Überblick über die zur Verfügung stehenden Operationen des XPlanInspirePluWFS, die in den weiteren Kapiteln noch näher erläutert werden.
 
 [width="97%",cols="30%,70%",options="header",]
 |=========================================================
