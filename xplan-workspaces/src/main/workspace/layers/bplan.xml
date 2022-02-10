@@ -4780,10 +4780,11 @@
     <d:Abstract>BP_UeberbaubareGrundstuecksFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsfl</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
       <l:StyleStoreId>transparent/bp/bp_ueberbaubgrundstsfl_trans</l:StyleStoreId>
+    </l:StyleRef>
+    <!-- Ausnahme: BP_UeberbaubareGrundstuecksFlaeche ist per default auch bei festgestellten Plänen transparent -->
+    <l:StyleRef>
+      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
