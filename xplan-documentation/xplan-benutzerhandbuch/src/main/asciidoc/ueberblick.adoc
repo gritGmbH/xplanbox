@@ -14,13 +14,12 @@ Software http://www.deegree.org[deegree] eingesetzt, das ein
 Projekt der OSGeo Foundation ist. Die xPlanBox besteht aus den
 folgenden Komponenten:
 
-* XPlanValidator: Web-Oberfläche für den Validator
-* XPlanManager: Web-Oberfläche für das Datenmanagement
-* XPlanWMS: Standard-Karten-Dienst für die Auskunft
-* XPlanWFS: Standard-Daten-Dienst für die Auskunft (originale
-Datenstruktur)
-* XPlanSynWFS: Standard-Daten-Dienst für die Auskunft (vereinfachte
-Datenstruktur)
+* <<xplanvalidator,XPlanValidator>>: Web-Oberfläche für den Validator
+* <<xplanmanager,XPlanManager>>: Web-Oberfläche für das Datenmanagement
+* <<xplanwms,XPlanWMS>>: Standard-Karten-Dienst für die Auskunft
+* <<xplanwfs,XPlanWFS>>: Standard-Daten-Dienst für die Auskunft (originale Datenstruktur)
+* <<xplansynwfs,XPlanSynWFS>>: Standard-Daten-Dienst für die Auskunft (vereinfachte Datenstruktur)
+* <<xplantransform-cli, XPlanTransformCLI>>: Kommandozeilenwerkzeug für die Transformation von Plänen
 
 Aktuell werden für Bebauungspläne, Flächennutzungspläne, Landschaftspläne und Raumordnungspläne die XPlanGML Versionen 2.0, 3.0, 4.0, 4.1, 5.0, 5.1, 5.2, 5.3 und 5.4 durch die xPlanBox unterstützt.
 Für sonstige raumbezogene Planwerke werden die XPlanGML Versionen 5.0, 5.1, 5.2, 5.3 und 5.4 unterstützt.
