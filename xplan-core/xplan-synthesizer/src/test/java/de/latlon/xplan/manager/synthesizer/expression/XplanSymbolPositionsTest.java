@@ -39,7 +39,7 @@ public class XplanSymbolPositionsTest {
 		Feature feature = getTestFeature(features, "BP_BaugebietsTeilFlaeche_1");
 		XplanSymbolPositions expr = new XplanSymbolPositions();
 		MultiPoint geom = expr.evaluate(feature, features);
-		assertEquals(3, geom.size());
+		assertEquals(2, geom.size());
 	}
 
 }
