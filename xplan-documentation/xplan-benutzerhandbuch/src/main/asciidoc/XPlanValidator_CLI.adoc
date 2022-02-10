@@ -1,7 +1,7 @@
 [[xplanvalidator-cli]]
 === XPlanValidatorCLI
 
-Analog zum XPlanManagerWeb können XPlanGML-Instanzdokumente mit der Komponente XPlanValidatorCLI über ein Kommandozeilenwerkzeug validiert werden.
+Analog zum XPlanManagerWeb können XPlanGML-Dokumente mit der Komponente XPlanValidatorCLI über ein Kommandozeilenwerkzeug validiert werden.
 
 [[xplanvalidator-cli-benutzungsanleitung]]
 ==== Benutzungsanleitung

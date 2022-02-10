@@ -30,14 +30,14 @@ public class PlanNameWithStatusResult {
 
 	private String name;
 
-	private String status;
+	private PlanStatus status;
 
 	private boolean planWithSameNameAndStatusExists;
 
 	public PlanNameWithStatusResult() {
 	}
 
-	public PlanNameWithStatusResult(String name, String status, boolean planWithSameNameAndStatusExists) {
+	public PlanNameWithStatusResult(String name, PlanStatus status, boolean planWithSameNameAndStatusExists) {
 		this.name = name;
 		this.status = status;
 		this.planWithSameNameAndStatusExists = planWithSameNameAndStatusExists;
@@ -51,11 +51,11 @@ public class PlanNameWithStatusResult {
 		this.name = name;
 	}
 
-	public String getStatus() {
+	public PlanStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(PlanStatus status) {
 		this.status = status;
 	}
 

@@ -23,6 +23,7 @@ package de.latlon.xplanbox.api.validator.config;
 
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
@@ -75,6 +76,11 @@ public class ApplicationContext {
 	@Bean
 	public Path uploadFolder() throws IOException {
 		return createTempDirectory("xplan-validator");
+	}
+
+	@Bean
+	public XPlanGmlParser xPlanGmlParser() {
+		return new XPlanGmlParser();
 	}
 
 	@Bean

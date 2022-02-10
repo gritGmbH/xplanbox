@@ -21,14 +21,13 @@
  */
 package de.latlon.xplan.manager.web.spring.security;
 
-import java.util.Collection;
-import java.util.List;
-
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.manager.web.shared.XPlan;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.manager.web.shared.XPlan;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Checks if the requesting user has the permission to the archive with the district.
@@ -41,12 +40,12 @@ public class DistrictPermission implements Permission {
 	@Override
 	public boolean isAllowed(Authentication authentication, Object targetDomainObject) {
 		if (canHandleXPlanArchive(authentication, targetDomainObject)) {
-			String district = ((XPlanArchive) targetDomainObject).getDistrict();
-			return checkPermission(authentication, district);
+			List<String> districts = ((XPlanArchive) targetDomainObject).getDistricts();
+			return isAllowedToAllDistricts(authentication, districts);
 		}
 		else if (canHandleXPlan(authentication, targetDomainObject)) {
 			String district = ((XPlan) targetDomainObject).getDistrict();
-			return checkPermission(authentication, district);
+			return isAllowed(authentication, district);
 		}
 		return false;
 	}
@@ -59,7 +58,16 @@ public class DistrictPermission implements Permission {
 		return authentication != null && targetDomainObject instanceof XPlan;
 	}
 
-	private boolean checkPermission(Authentication authentication, String planDistrict) {
+	private boolean isAllowedToAllDistricts(Authentication authentication, List<String> districts) {
+		for (String district : districts) {
+			if (!isAllowed(authentication, district)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean isAllowed(Authentication authentication, String planDistrict) {
 		if (planDistrict != null) {
 			Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 			for (GrantedAuthority grantedAuthority : authorities) {

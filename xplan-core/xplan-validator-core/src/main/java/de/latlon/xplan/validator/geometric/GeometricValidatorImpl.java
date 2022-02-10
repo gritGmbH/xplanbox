@@ -22,8 +22,6 @@
 package de.latlon.xplan.validator.geometric;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.AenderungenInspector;
 import de.latlon.xplan.validator.geometric.inspector.FlaechenschlussInspector;
@@ -37,7 +35,6 @@ import org.deegree.commons.tom.gml.GMLReference;
 import org.deegree.commons.xml.XMLParsingException;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.GeometryFactory;
@@ -62,9 +59,6 @@ import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 public class GeometricValidatorImpl implements GeometricValidator {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GeometricValidatorImpl.class);
-
-	// Maximum distance for gaps that are to be closed
-	private static final double EPSILON = 0.10;
 
 	public static final String SKIP_FLAECHENSCHLUSS_OPTION = "skip-flaechenschluss";
 
@@ -94,15 +88,13 @@ public class GeometricValidatorImpl implements GeometricValidator {
 	}
 
 	@Override
-	public GemetricValidatorParsingResult validateGeometry(XPlanArchive archive, ICRS crs, AppSchema schema,
-			boolean force, List<ValidationOption> voOptions) throws ValidatorException {
+	public GeometricValidatorResult validateGeometry(XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
+			List<ValidationOption> voOptions) throws ValidatorException {
 		try {
-			ParserAndValidatorResult result = retrieveFeatureCollection(archive, crs, force, schema, voOptions);
-			GeometricValidatorResult validationResult = new GeometricValidatorResult(result.warnings, result.errors,
-					result.badGeometries, crs, result.isValid());
-			XPlanFeatureCollection features = result.xPlanFeatures == null || result.xPlanFeatures.size() < 1 ? null
-					: new XPlanFeatureCollectionBuilder(result.xPlanFeatures, archive.getType()).build();
-			return new GemetricValidatorParsingResult(features, validationResult);
+			ValidatorResult result = readAndValidateArchive(archive, crs, schema, voOptions);
+			logResult(force, result);
+			return new GeometricValidatorResult(result.warnings, result.errors, result.badGeometries, crs,
+					result.isValid());
 		}
 		catch (XMLStreamException e) {
 			LOG.trace("Geometric validation failed!", e);
@@ -111,23 +103,9 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		}
 	}
 
-	@Override
-	public XPlanFeatureCollection retrieveGeometricallyValidXPlanFeatures(XPlanArchive archive, ICRS crs,
-			AppSchema schema, boolean force, String internalId) throws XMLStreamException, UnknownCRSException {
-		ParserAndValidatorResult result = retrieveFeatureCollection(archive, crs, force, schema, SKIP_OPTIONS);
-		return new XPlanFeatureCollectionBuilder(result.xPlanFeatures, archive.getType()).build();
-	}
-
-	private ParserAndValidatorResult retrieveFeatureCollection(XPlanArchive archive, ICRS crs, boolean force,
-			AppSchema schema, List<ValidationOption> voOptions) throws XMLStreamException {
-		ParserAndValidatorResult result = readAndValidateArchive(archive, crs, schema, voOptions);
-		logResult(force, result);
-		return result;
-	}
-
-	private ParserAndValidatorResult readAndValidateArchive(XPlanArchive archive, ICRS crs, AppSchema schema,
+	private ValidatorResult readAndValidateArchive(XPlanArchive archive, ICRS crs, AppSchema schema,
 			List<ValidationOption> voOptions) throws XMLStreamException {
-		ParserAndValidatorResult result = new ParserAndValidatorResult();
+		ValidatorResult result = new ValidatorResult();
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
 		long begin = System.currentTimeMillis();
 		LOG.info("- Einlesen der Features (+ Geometrievalidierung)...");
@@ -164,7 +142,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		return result;
 	}
 
-	private void checkAndAddRules(GeometricFeatureInspector fi, ParserAndValidatorResult result) {
+	private void checkAndAddRules(GeometricFeatureInspector fi, ValidatorResult result) {
 		boolean isValid = fi.checkGeometricRule();
 		if (!isValid) {
 			result.addErrors(fi.getErrors());
@@ -199,7 +177,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		return gmlStream;
 	}
 
-	private void resolveAndValidateXlinks(GMLStreamReader gmlStream, ParserAndValidatorResult result,
+	private void resolveAndValidateXlinks(GMLStreamReader gmlStream, ValidatorResult result,
 			AenderungenInspector aenderungenInspector) {
 		long begin = System.currentTimeMillis();
 		LOG.info("- Überprüfung der XLink-Integrität...");
@@ -253,14 +231,14 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		return false;
 	}
 
-	private void logResult(boolean force, ParserAndValidatorResult result) {
+	private void logResult(boolean force, ValidatorResult result) {
 		if (result.isValid())
 			logSuccessMessages(result);
 		else
 			logErrorMessages(force, result);
 	}
 
-	private void logSuccessMessages(ParserAndValidatorResult result) {
+	private void logSuccessMessages(ValidatorResult result) {
 		LOG.info("OK [{} ms]: {} Features", result.elapsed, result.xPlanFeatures.size());
 		if (!result.warnings.isEmpty()) {
 			LOG.info("Geometrie-Warnungen: {}", result.warnings.size());
@@ -269,7 +247,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		}
 	}
 
-	private void logErrorMessages(boolean force, ParserAndValidatorResult result) {
+	private void logErrorMessages(boolean force, ValidatorResult result) {
 		if (!result.warnings.isEmpty()) {
 			LOG.info("Geometrie-Warnungen: {}", result.warnings.size());
 			for (String warning : result.warnings)
@@ -302,7 +280,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		return extendedBrokenGeometryErrors;
 	}
 
-	private class ParserAndValidatorResult {
+	private class ValidatorResult {
 
 		private List<String> errors = new ArrayList<>();
 

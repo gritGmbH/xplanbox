@@ -25,7 +25,7 @@ import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.util.XPlanVersionUtils;
-import org.apache.axiom.om.util.XMLStreamWriterFilter;
+import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 
@@ -39,6 +39,7 @@ import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.XMLEvent;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanType.valueOfDefaultNull;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -46,15 +47,13 @@ import static java.lang.String.format;
 import static org.deegree.commons.xml.stax.XMLStreamUtils.skipStartDocument;
 
 /**
- * Reads the XPlan GML, pareses required information and updates the planname.
+ * Reads the XPlan GML, pareses required information.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class XPlanGmlReader {
 
 	private Location crsLocation;
-
-	private Location typeLocation;
 
 	private XPlanVersion version;
 
@@ -64,17 +63,17 @@ public class XPlanGmlReader {
 
 	private ICRS crs;
 
-	private String district;
+	private List<String> districts;
 
 	private boolean hasMultipleXPlanElements = false;
 
 	/**
-	 * Reads the XPlan GML, pareses required information and updates the planname.
+	 * Reads the XPlan GML, pareses required information.
 	 * @param entry XPlanGML to read, never <code>null</code>
 	 * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
 	 * @throws XMLStreamException if the XPlanGML GML could not be parsed
 	 */
-	public MainZipEntry createZipEntry(ArtefactEntry entry) throws XMLStreamException {
+	public Pair<MainZipEntry, ArchiveMetadata> createZipEntry(ArtefactEntry entry) throws XMLStreamException {
 		XMLStreamReader reader = null;
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		try {
@@ -87,18 +86,20 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		return new MainZipEntry(bos.toByteArray(), entry.getName(), version, type, ade, crs, district,
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, districts,
 				hasMultipleXPlanElements);
+		return new Pair<>(new MainZipEntry(bos.toByteArray(), entry.getName()), archiveMetadata);
 	}
 
 	/**
-	 * Reads the XPlan GML, pareses required information and updates the planname.
+	 * Reads the XPlan GML, pareses required information.
 	 * @param name of the entry, never <code>null</code>
 	 * @param xplanGml XPlanGML to read, never <code>null</code>
 	 * @return the XPlanGML as {@link MainZipEntry}, never <code>null</code>
 	 * @throws XMLStreamException if the XPlanGML GML could not be parsed
 	 */
-	public MainZipEntry createZipEntry(String name, InputStream xplanGml) throws XMLStreamException {
+	public Pair<MainZipEntry, ArchiveMetadata> createZipEntry(String name, InputStream xplanGml)
+			throws XMLStreamException {
 		XMLStreamReader reader = null;
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		try {
@@ -110,15 +111,16 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		return new MainZipEntry(bos.toByteArray(), name, version, type, ade, crs, district, hasMultipleXPlanElements);
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, districts,
+				hasMultipleXPlanElements);
+		return new Pair<>(new MainZipEntry(bos.toByteArray(), name), archiveMetadata);
 	}
 
 	private void copy(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {
-		XMLStreamWriterFilter filter = new XPlanGmlWriterFilter();
+		XPlanGmlWriterFilter filter = new XPlanGmlWriterFilter();
 		filter.setDelegate(writer);
 		writeAll(reader, filter);
-
-		this.district = ((XPlanGmlWriterFilter) filter).getDistrict();
+		this.districts = filter.getDistricts();
 	}
 
 	private XMLStreamReader createReader(InputStream stream) throws XMLStreamException, FactoryConfigurationError {
@@ -191,7 +193,7 @@ public class XPlanGmlReader {
 		String namespaceURI = reader.getNamespaceURI();
 
 		setVersion(namespaceURI);
-		setType(localName, reader.getLocation());
+		setType(localName);
 		setAde(namespaceURI);
 		setCrs(reader);
 
@@ -239,12 +241,11 @@ public class XPlanGmlReader {
 		}
 	}
 
-	private void setType(String localName, Location location) {
+	private void setType(String localName) {
 		XPlanType currentType = valueOfDefaultNull(localName);
 		if (currentType != null) {
 			if (type == null) {
 				type = currentType;
-				typeLocation = location;
 			}
 			else {
 				hasMultipleXPlanElements = true;

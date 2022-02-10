@@ -76,14 +76,14 @@ public class XPlanArchiveCreatorTest {
 	public void testMetadataWuerdenhainXPlan3() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan3/BP2070-Finkenwerder.zip");
 		assertEquals(XPLAN_3, archive.getVersion());
-		assertEquals("Finkenwerder", archive.getDistrict());
+		assertEquals("Finkenwerder", archive.getDistricts().get(0));
 	}
 
 	@Test
 	public void testMetadataWuerdenhainXPlan3WithMapper() throws IOException {
 		XPlanArchive archive = getTestArchiveWithMapper("xplan3/BP2070-Finkenwerder.zip");
 		assertEquals(XPLAN_3, archive.getVersion());
-		assertEquals("Hamburg-Mitte", archive.getDistrict());
+		assertEquals("Hamburg-Mitte", archive.getDistricts().get(0));
 	}
 
 	@Test
@@ -156,7 +156,7 @@ public class XPlanArchiveCreatorTest {
 		XPlanArchive archive = getTestArchive("xplan41/Eidelstedt_4_V4-Eimsbuettel.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals("Eimsbüttel", archive.getDistrict());
+		assertEquals("Eimsbüttel", archive.getDistricts().get(0));
 	}
 
 	@Test
@@ -164,7 +164,7 @@ public class XPlanArchiveCreatorTest {
 		XPlanArchive archive = getTestArchiveWithMapper("xplan41/Eidelstedt_4_V4-Eimsbuettel.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals("Eimsbüttel", archive.getDistrict());
+		assertEquals("Eimsbüttel", archive.getDistricts().get(0));
 	}
 
 	@Test
@@ -198,7 +198,7 @@ public class XPlanArchiveCreatorTest {
 		XPlanArchive archive = getTestArchive("xplan41/Erhaltung.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(null, archive.getAde());
-		assertEquals(null, archive.getDistrict());
+		assertEquals(0, archive.getDistricts().size());
 		assertEquals(SO_Plan, archive.getType());
 		assertEquals(CRSManager.lookup("EPSG:25832"), archive.getCrs());
 	}
@@ -215,7 +215,7 @@ public class XPlanArchiveCreatorTest {
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103.gml", gmlAsStream);
 		assertEquals(XPLAN_51, archive.getVersion());
 		assertEquals(null, archive.getAde());
-		assertEquals(null, archive.getDistrict());
+		assertEquals(null, archive.getDistricts().get(0));
 		assertEquals(BP_Plan, archive.getType());
 	}
 

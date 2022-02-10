@@ -58,7 +58,7 @@ package de.latlon.xplan.manager.web.client.filter;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 

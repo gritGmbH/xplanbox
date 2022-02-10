@@ -27,10 +27,10 @@ import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.server.service.ManagerPlanArchiveManager;
 import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
-import de.latlon.xplan.manager.web.shared.LegislationStatus;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -420,8 +420,8 @@ public class ManagerController {
 
 	@RequestMapping(value = "/plannamestatus/{id}/{status}", method = GET)
 	@ResponseBody
-	public PlanNameWithStatusResult evaluatePlanNameAndStatus(@PathVariable String id, @PathVariable String status,
-			@Context HttpServletResponse response) throws Exception {
+	public List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(@PathVariable String id,
+			@PathVariable String status, @Context HttpServletResponse response) throws Exception {
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate name of plan with id {}.", id);
 		try {
@@ -438,15 +438,15 @@ public class ManagerController {
 	@RequestMapping(value = "/legislationstatus/{id}", method = GET)
 	@ResponseBody
 	// @formatter:off
-    public LegislationStatus determineLegislationStatus( @PathVariable String id,
-                                                         @Context HttpServletResponse response )
+    public Rechtsstand determineLegislationStatus( @PathVariable String id,
+												   @Context HttpServletResponse response )
                                                                          throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate legislation status of plan with id {}.", id);
 		try {
 			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
-			return manager.determineLegislationStatus(fileToBeImported);
+			return manager.determineRechtsstand(fileToBeImported);
 		}
 		catch (Exception e) {
 			String message = BUNDLE.getString("determinationLegislationStatusFailed") + ": " + e.getMessage();

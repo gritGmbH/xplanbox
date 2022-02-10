@@ -39,7 +39,7 @@ import java.util.Map;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.xmlunit.builder.Input.fromURI;
 import static org.xmlunit.matchers.ValidationMatcher.valid;
 

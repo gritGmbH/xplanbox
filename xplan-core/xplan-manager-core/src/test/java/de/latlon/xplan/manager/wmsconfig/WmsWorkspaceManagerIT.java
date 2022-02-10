@@ -57,7 +57,7 @@ import static org.deegree.commons.config.DeegreeWorkspace.getInstance;
 import static org.deegree.cs.CRSUtils.EPSG_4326;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 /**

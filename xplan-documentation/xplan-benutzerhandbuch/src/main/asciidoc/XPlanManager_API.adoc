@@ -53,7 +53,7 @@ API komplett ersetzt und in einer zukünftigen Version der xPlanBox entfernt!
 [[xplanmanager-api-schluessel]]
 ==== Eindeutige Schlüssel für den Zugriff auf REST Ressourcen
 
-Um den Zugriff auf externe Dokumente zu ermöglichen, die über Referenzen in dem XPlanGML-Instanzdokument definiert sind, wurden folgende Konventionen für die Bestimmung eines eindeutigen Schlüssels festgelegt. Diese Konventionen müssen von einem XPlanArchiv erfüllt werden, wenn dieses über die REST API bearbeitet werden soll.
+Um den Zugriff auf externe Dokumente zu ermöglichen, die über Referenzen in dem XPlanGML-Dokument definiert sind, wurden folgende Konventionen für die Bestimmung eines eindeutigen Schlüssels festgelegt. Diese Konventionen müssen von einem XPlanArchiv erfüllt werden, wenn dieses über die REST API bearbeitet werden soll.
 Im Folgenden sind die Konventionen am Beispiel der Planart "BPlan" und die jeweilige XPlanGML Version aufgeführt.
 
 Ressource: `/plan/{planId}/text/{id}`
@@ -98,4 +98,4 @@ Ressource: `/plan/{planId}/rasterbasis/{id}`
 Zusätzliche Anforderungen an die im XPlanGML-Dokument verlinkten Referenzen:
 
 - Für alle Dokumente und Rasterbasis in der Version 4.1 bis 5.2 gilt, dass _referenzName_ oder _referenzURL_ belegt sein muss.
-- Und zusätzlich gilt für alle Dokumente und Rasterbasis, dass die Kombination aus _referenzName-referenzURL_ innerhalb eines XPlanGML-Instanzdokuments eindeutig sein muss.
+- Und zusätzlich gilt für alle Dokumente und Rasterbasis, dass die Kombination aus _referenzName-referenzURL_ innerhalb eines XPlanGML-Dokument eindeutig sein muss.

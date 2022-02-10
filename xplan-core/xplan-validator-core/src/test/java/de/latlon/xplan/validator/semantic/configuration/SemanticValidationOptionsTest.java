@@ -27,7 +27,7 @@ import static de.latlon.xplan.validator.semantic.configuration.SemanticValidatio
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.getByDirectoryName;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.getByOption;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 

@@ -28,6 +28,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 
+import java.util.Map;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -36,12 +38,17 @@ public class PlanNameAndStatusDialogBox extends WizardDialogBox {
 	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
 	/**
-	 * @param planName the name of the plan, never <code>null</code>
-	 * @param planStatus the status of the plan, never <code>null</code>
+	 * @param planNameAndStatus the name and status of the plan, never <code>null</code>
 	 */
-	public PlanNameAndStatusDialogBox(String planName, PlanStatus planStatus) {
+	public PlanNameAndStatusDialogBox(Map<String, PlanStatus> planNameAndStatus) {
 		super(MESSAGES.planNameAndStatusDialogHeader());
-		setContent(createMessageContent(planName, planStatus));
+		if (planNameAndStatus.size() == 1) {
+			String planName = planNameAndStatus.keySet().iterator().next();
+			setContent(createMessageContent(planName, planNameAndStatus.get(planName)));
+		}
+		else {
+			setContent(createMessageContent(planNameAndStatus));
+		}
 	}
 
 	private Panel createMessageContent(String planName, PlanStatus planStatus) {
@@ -50,6 +57,22 @@ public class PlanNameAndStatusDialogBox extends WizardDialogBox {
 		Label label = new Label(MESSAGES.duplicatePlanName(planName, planStatus.getMessage()));
 		label.setWordWrap(true);
 		mainPanel.add(label);
+		return mainPanel;
+	}
+
+	private Panel createMessageContent(Map<String, PlanStatus> planNameAndStatus) {
+		VerticalPanel mainPanel = new VerticalPanel();
+		mainPanel.setSpacing(15);
+		Label label = new Label(MESSAGES.duplicatePlanNames());
+		label.setWordWrap(true);
+		mainPanel.add(label);
+		for (String planName : planNameAndStatus.keySet()) {
+			PlanStatus planStatus = planNameAndStatus.get(planName);
+			String planStatusText = planStatus != null ? planStatus.getMessage() : "-";
+			String text = "   - " + planName + ": " + planStatusText;
+			Label duplicateNameEntry = new Label(text);
+			mainPanel.add(duplicateNameEntry);
+		}
 		return mainPanel;
 	}
 

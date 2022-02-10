@@ -22,13 +22,11 @@
 package de.latlon.xplan.validator.wms;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
-import org.deegree.feature.types.AppSchema;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -39,7 +37,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -69,10 +67,7 @@ public class ValidatorWmsManagerTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion(), archive.getAde());
-		GeometricValidatorImpl geometricValidator = new GeometricValidatorImpl();
-		return geometricValidator.retrieveGeometricallyValidXPlanFeatures(archive, archive.getCrs(), schema, true,
-				null);
+		return new XPlanGmlParser().parseXPlanFeatureCollection(archive);
 
 	}
 

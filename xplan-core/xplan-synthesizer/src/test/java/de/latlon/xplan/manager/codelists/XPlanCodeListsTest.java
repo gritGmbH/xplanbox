@@ -63,7 +63,7 @@ import java.util.Map;
 
 import static org.deegree.gml.GMLVersion.GML_30;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>

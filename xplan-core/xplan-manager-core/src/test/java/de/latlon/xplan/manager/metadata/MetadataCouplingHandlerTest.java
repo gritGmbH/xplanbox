@@ -43,7 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;

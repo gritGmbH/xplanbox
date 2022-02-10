@@ -27,7 +27,9 @@ package de.latlon.xplan.manager.web.shared;
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  * @version $Revision: $, $Date: $
  */
-public class LegislationStatus {
+public class Rechtsstand {
+
+	public static final Rechtsstand UNKNOWN_RECHTSSTAND = new Rechtsstand(-1);
 
 	private int codeNumber;
 
@@ -36,13 +38,13 @@ public class LegislationStatus {
 	/**
 	 * An empty constructor is mandatory for GWT applications.
 	 */
-	public LegislationStatus() {
+	public Rechtsstand() {
 	}
 
 	/**
 	 * @param codeNumber code number
 	 */
-	public LegislationStatus(int codeNumber) {
+	public Rechtsstand(int codeNumber) {
 		this(codeNumber, null);
 	}
 
@@ -50,7 +52,7 @@ public class LegislationStatus {
 	 * @param codeNumber code number
 	 * @param translatedCode may be <code>null</code>
 	 */
-	public LegislationStatus(int codeNumber, String translatedCode) {
+	public Rechtsstand(int codeNumber, String translatedCode) {
 		this.codeNumber = codeNumber;
 		this.translatedCode = translatedCode;
 	}

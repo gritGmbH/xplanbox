@@ -55,19 +55,18 @@
  ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.web.client.gui.dialog;
 
-import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
-import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
-import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
-import de.latlon.xplan.manager.web.shared.LegislationStatus;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
+import de.latlon.xplan.manager.web.shared.Rechtsstand;
+
+import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 
 /**
  * Dialog to select the legislation status of a plan.
@@ -85,7 +84,7 @@ public class LegislationStatusDialog extends WizardDialogBox {
 	 * @param legislationStatus the status from the plan, may be <code>null</code> if not
 	 * set
 	 */
-	public LegislationStatusDialog(LegislationStatus legislationStatus) {
+	public LegislationStatusDialog(Rechtsstand legislationStatus) {
 		super(MESSAGES.legislationStatusDialogTitle());
 		setWidth("425px");
 		this.legislationStatusSelectBox = createLegislationStatusListBox(legislationStatus.getCodeNumber());

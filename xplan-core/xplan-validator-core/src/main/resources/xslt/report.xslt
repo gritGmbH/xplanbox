@@ -52,14 +52,9 @@
                 </p>
                 <p>XPlan Archivname:
                     <b>
-                        <xsl:value-of select="ValidationReport/Plan/name"/>
+                        <xsl:value-of select="ValidationReport/fileName"/>
                     </b>
                 </p>
-              <p>XPlanGML Version:
-                <b>
-                  <xsl:value-of select="ValidationReport/Plan/version"/>
-                </b>
-              </p>
                 <p>Datum:
                     <b>
                         <xsl:call-template name="format-date">
@@ -80,6 +75,22 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </b>
+                </p>
+                <p>XPlanGML Version:
+                  <b>
+                    <xsl:value-of select="ValidationReport/Plan/version"/>
+                  </b>
+                </p>
+                <p>Plannamen:
+                  <b>
+                    <ul>
+                      <xsl:for-each select="ValidationReport/Plan/name">
+                        <li>
+                          <xsl:value-of select="."/>
+                        </li>
+                      </xsl:for-each>
+                    </ul>
+                  </b>
                 </p>
                 <xsl:apply-templates select="ValidationReport/ExternalReferences"/>
                 <hr/>

@@ -21,35 +21,33 @@
  */
 package de.latlon.xplan.manager.web.client.gui;
 
-import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import de.latlon.xplan.manager.web.client.gui.dialog.PlanNameAndStatusDialogBox;
-import de.latlon.xplan.manager.web.client.gui.dialog.WizardDialogBox;
-import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
-import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.DialogBox;
-
 import de.latlon.xplan.manager.web.client.gui.dialog.CrsDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.InternalIdDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.LegislationStatusDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.NextSubmittedHandler;
+import de.latlon.xplan.manager.web.client.gui.dialog.PlanNameAndStatusDialogBox;
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterHandler;
 import de.latlon.xplan.manager.web.client.gui.dialog.ValidityPeriodDialog;
+import de.latlon.xplan.manager.web.client.i18n.DynamicXPlanWebMessages;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
-import de.latlon.xplan.manager.web.shared.LegislationStatus;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
+import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.web.shared.Rechtsstand;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 
 /**
  * Wizard to start imports of plans.
@@ -79,13 +77,14 @@ public class ImportWizardCreator {
 	/**
 	 * Imports a plan. Several dialogs are opened during this process, if configured.
 	 * @param id id of plan to import
+	 * @param hasMultipleXPlanElements
 	 */
-	public void importPlan(final String id) {
-		selectValidityPeriodAndImportPlan(id);
+	public void importPlan(final String id, final boolean hasMultipleXPlanElements) {
+		selectValidityPeriodAndImportPlan(id, hasMultipleXPlanElements);
 	}
 
-	private void selectValidityPeriodAndImportPlan(final String id) {
-		if (configuration.isValidityPeriodActivated()) {
+	private void selectValidityPeriodAndImportPlan(final String id, final boolean hasMultipleXPlanElements) {
+		if (configuration.isValidityPeriodActivated() && !hasMultipleXPlanElements) {
 			final ValidityPeriodDialog dialog = new ValidityPeriodDialog();
 			dialog.addNextSubmittedHandler(new NextSubmittedHandler() {
 				@Override
@@ -95,7 +94,7 @@ public class ImportWizardCreator {
 							Date startDateTime = dialog.retrieveStartDateTime();
 							Date endDateTime = dialog.retrieveEndDateTime();
 							dialog.hide();
-							selectInternalIdAndImportPlan(id, startDateTime, endDateTime);
+							selectInternalIdAndImportPlan(id, hasMultipleXPlanElements, startDateTime, endDateTime);
 						}
 						else {
 							Window.alert(MESSAGES.editInvalidInput());
@@ -111,12 +110,13 @@ public class ImportWizardCreator {
 			dialog.show();
 		}
 		else {
-			selectInternalIdAndImportPlan(id, null, null);
+			selectInternalIdAndImportPlan(id, hasMultipleXPlanElements, null, null);
 		}
 	}
 
-	private void selectInternalIdAndImportPlan(final String id, final Date startDateTime, final Date endDateTime) {
-		if (configuration.getInternalIdActivated()) {
+	private void selectInternalIdAndImportPlan(final String id, final boolean hasMultipleXPlanElements,
+			final Date startDateTime, final Date endDateTime) {
+		if (configuration.getInternalIdActivated() && !hasMultipleXPlanElements) {
 			getService().retrieveMatchingInternalIds(id, new MethodCallback<Map<String, String>>() {
 				@Override
 				public void onFailure(Method method, Throwable caught) {
@@ -144,7 +144,8 @@ public class ImportWizardCreator {
 							String internalId = internalIdDialog.retrieveSelectedInternalId();
 							if (internalId != null) {
 								internalIdDialog.hide();
-								selectLegislationStatusAndImportPlan(id, internalId, startDateTime, endDateTime);
+								selectLegislationStatusAndImportPlan(id, hasMultipleXPlanElements, internalId,
+										startDateTime, endDateTime);
 							}
 							else {
 								Window.alert(MESSAGES.noInternalIdSelected());
@@ -155,14 +156,14 @@ public class ImportWizardCreator {
 			});
 		}
 		else {
-			selectLegislationStatusAndImportPlan(id, null, startDateTime, endDateTime);
+			selectLegislationStatusAndImportPlan(id, hasMultipleXPlanElements, null, startDateTime, endDateTime);
 		}
 	}
 
-	private void selectLegislationStatusAndImportPlan(final String id, final String internalId,
-			final Date startDateTime, final Date endDateTime) {
-		if (configuration.isLegislationStatusActivated()) {
-			getService().determineLegislationStatus(id, new MethodCallback<LegislationStatus>() {
+	private void selectLegislationStatusAndImportPlan(final String id, final boolean hasMultipleXPlanElements,
+			final String internalId, final Date startDateTime, final Date endDateTime) {
+		if (configuration.isLegislationStatusActivated() && !hasMultipleXPlanElements) {
+			getService().determineLegislationStatus(id, new MethodCallback<Rechtsstand>() {
 
 				@Override
 				public void onFailure(Method method, Throwable caught) {
@@ -170,7 +171,7 @@ public class ImportWizardCreator {
 				}
 
 				@Override
-				public void onSuccess(Method method, LegislationStatus legislationStatus) {
+				public void onSuccess(Method method, Rechtsstand legislationStatus) {
 					LegislationStatusDialog legislationStatusDialog = new LegislationStatusDialog(legislationStatus);
 					NextSubmittedHandler nextSubmittedHandler = createNextSubmittedHandler(legislationStatusDialog);
 					legislationStatusDialog.addNextSubmittedHandler(nextSubmittedHandler);
@@ -287,42 +288,44 @@ public class ImportWizardCreator {
 	private void evaluatePlanNameAndStatusAndImportPlan(final String id, final String internalId,
 			final String defaultCrs, final boolean makeRasterConfig, final PlanStatus planStatus,
 			final Date startDateTime, final Date endDateTime) {
-		getService().evaluatePlanNameAndStatus(id, planStatus.getMessage(),
-				new MethodCallback<PlanNameWithStatusResult>() {
-					@Override
-					public void onFailure(Method method, Throwable caught) {
-						Window.alert(method.getResponse().getText());
-					}
+		getService().evaluatePlanNameAndStatus(id, planStatus, new MethodCallback<List<PlanNameWithStatusResult>>() {
+			@Override
+			public void onFailure(Method method, Throwable caught) {
+				Window.alert(method.getResponse().getText());
+			}
 
-					@Override
-					public void onSuccess(Method method, PlanNameWithStatusResult planNameWithStatusResult) {
-						if (planNameWithStatusResult.isPlanWithSameNameAndStatusExists()) {
-							PlanNameAndStatusDialogBox planNameAndStatusDialogBox = new PlanNameAndStatusDialogBox(
-									planNameWithStatusResult.getName(), planStatus);
-							NextSubmittedHandler nextSubmittedHandler = createNextSubmittedHandler(
-									planNameAndStatusDialogBox);
-							planNameAndStatusDialogBox.addNextSubmittedHandler(nextSubmittedHandler);
-							planNameAndStatusDialogBox.center();
-							planNameAndStatusDialogBox.show();
-						}
-						else {
-							importPlan(id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime,
-									endDateTime);
-						}
-					}
+			@Override
+			public void onSuccess(Method method, List<PlanNameWithStatusResult> planNameWithStatusResults) {
+				Map<String, PlanStatus> alreadyInserted = planNameWithStatusResults.stream().filter(
+						planNameWithStatusResult -> planNameWithStatusResult.isPlanWithSameNameAndStatusExists())
+						.collect(Collectors.toMap(planNameWithStatusResult -> planNameWithStatusResult.getName(),
+								planNameWithStatusResult -> planNameWithStatusResult.getStatus()));
+				if (alreadyInserted.size() == 0) {
+					importPlan(id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime, endDateTime);
+				}
+				else {
+					PlanNameAndStatusDialogBox planNameAndStatusDialogBox = new PlanNameAndStatusDialogBox(
+							alreadyInserted);
+					NextSubmittedHandler nextSubmittedHandler = createNextSubmittedHandler(planNameAndStatusDialogBox);
+					planNameAndStatusDialogBox.addNextSubmittedHandler(nextSubmittedHandler);
+					planNameAndStatusDialogBox.center();
+					planNameAndStatusDialogBox.show();
 
-					private NextSubmittedHandler createNextSubmittedHandler(
-							final PlanNameAndStatusDialogBox planNameAndStatusDialogBox) {
-						return new NextSubmittedHandler() {
-							@Override
-							public void onNextSubmitted() {
-								planNameAndStatusDialogBox.hide();
-								importPlan(id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime,
-										endDateTime);
-							}
-						};
+				}
+			}
+
+			private NextSubmittedHandler createNextSubmittedHandler(
+					final PlanNameAndStatusDialogBox planNameAndStatusDialogBox) {
+				return new NextSubmittedHandler() {
+					@Override
+					public void onNextSubmitted() {
+						planNameAndStatusDialogBox.hide();
+						importPlan(id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime,
+								endDateTime);
 					}
-				});
+				};
+			}
+		});
 	}
 
 	private void importPlan(String id, String internalId, String defaultCrs, boolean makeRasterConfig,

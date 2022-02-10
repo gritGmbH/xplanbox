@@ -46,7 +46,7 @@ import java.util.List;
 
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_OPTIONS;
 import static java.lang.String.format;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -123,8 +123,7 @@ public class ShapefileGeneratorTest {
 		XPlanVersion version = archive.getVersion();
 		XPlanAde ade = archive.getAde();
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
-		return (new GeometricValidatorImpl()).validateGeometry(archive, archive.getCrs(), schema, true, voOptions)
-				.getValidatorResult();
+		return (new GeometricValidatorImpl()).validateGeometry(archive, archive.getCrs(), schema, true, voOptions);
 	}
 
 }

@@ -14,6 +14,7 @@
   <xs:complexType name="ValidationReportType">
     <xs:sequence>
       <xs:element type="xs:string" name="name"/>
+      <xs:element type="xs:string" name="fileName"/>
       <xs:element type="xs:dateTime" name="date"/>
       <xs:element type="xs:boolean" name="isValid"/>
       <xs:element type="PlanType" name="Plan"/>
@@ -36,7 +37,7 @@
   </xs:complexType>
   <xs:complexType name="RuleType">
     <xs:sequence>
-      <xs:element type="xs:string" name="name"/>
+      <xs:element type="xs:string" name="name" />
       <xs:element type="xs:boolean" name="isValid"/>
       <xs:element type="xs:string" name="message"/>
       <xs:element type="InvalidFeaturesType" name="WarnedFeatures" minOccurs="0" maxOccurs="unbounded"/>
@@ -84,7 +85,7 @@
   </xs:complexType>
   <xs:complexType name="PlanType">
     <xs:sequence>
-      <xs:element type="xs:string" name="name"/>
+      <xs:element type="xs:string" name="name" maxOccurs="unbounded"/>
       <xs:element type="xs:string" name="id"/>
       <xs:element type="xs:string" name="version"/>
     </xs:sequence>

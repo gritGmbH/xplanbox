@@ -57,9 +57,10 @@ public abstract class XPlanTexlicherAbschnitt implements Expression {
 			if (xp_externeReferenz != null && xp_externeReferenz.getChildren() != null) {
 				GenericXMLElement referenzURL = getChildByName(xp_externeReferenz.getChildren(), namespaceURI,
 						"referenzURL");
-				TypedObjectNode propertyValue = referenzURL.getValue();
-				if (propertyValue != null)
+				if (referenzURL != null && referenzURL.getValue() != null) {
+					TypedObjectNode propertyValue = referenzURL.getValue();
 					return propertyValue.toString();
+				}
 			}
 		}
 		return null;

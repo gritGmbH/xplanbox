@@ -31,7 +31,7 @@ import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.g
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class XplanRefTextAbschnitteTest {
 

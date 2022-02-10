@@ -24,6 +24,8 @@ package de.latlon.xplan.commons.archive;
 import org.apache.axiom.om.util.XMLStreamWriterFilterBase;
 
 import javax.xml.stream.XMLStreamException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -32,7 +34,7 @@ public class XPlanGmlWriterFilter extends XMLStreamWriterFilterBase {
 
 	private String currentPath = "";
 
-	private String district;
+	private final List<String> districts = new ArrayList<>();
 
 	@Override
 	public void writeStartElement(String localName) throws XMLStreamException {
@@ -61,20 +63,20 @@ public class XPlanGmlWriterFilter extends XMLStreamWriterFilterBase {
 	@Override
 	protected String xmlData(String s) {
 		if (this.currentPath.endsWith("/gemeinde/XP_Gemeinde/ortsteilName")) {
-			this.district = s;
+			this.districts.add(s);
 		}
 		if (this.currentPath.endsWith("ortsteil")) {
-			this.district = s;
+			this.districts.add(s);
 		}
 		return s;
 	}
 
 	/**
-	 * @return the district (if available and the filter was already applied), otherwise
+	 * @return the districts (if available and the filter was already applied), otherwise
 	 * <code>null</code>
 	 */
-	public String getDistrict() {
-		return district;
+	public List<String> getDistricts() {
+		return districts;
 	}
 
 }

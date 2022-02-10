@@ -25,7 +25,7 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.findWorkspaceDirectory;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
 import java.io.IOException;

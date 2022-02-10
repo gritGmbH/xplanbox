@@ -70,6 +70,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -233,7 +234,7 @@ public class TestContext {
 			XPlanGmlTransformer xPlanGmlTransformer) throws Exception {
 		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
 		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(), anyBoolean(),
-				nullable(File.class), nullable(String.class), any())).thenReturn(123);
+				nullable(File.class), nullable(String.class), any())).thenReturn(Collections.singletonList(123));
 		return xplanInsertManager;
 	}
 

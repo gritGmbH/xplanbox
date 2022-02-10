@@ -28,7 +28,7 @@ import static de.latlon.xplan.validator.semantic.configuration.SemanticValidatio
 import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
 import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

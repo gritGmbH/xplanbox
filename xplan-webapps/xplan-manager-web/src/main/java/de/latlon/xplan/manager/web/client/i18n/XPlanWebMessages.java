@@ -451,4 +451,6 @@ public interface XPlanWebMessages extends Messages {
 
 	String duplicatePlanName(String planName, String planStatus);
 
+	String duplicatePlanNames();
+
 }

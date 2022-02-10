@@ -28,10 +28,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -42,7 +43,7 @@ import static org.mockito.Mockito.mock;
 public class DistrictPermissionTest {
 
 	@Test
-	public void testIsAllowedArchiveAuthorised() throws Exception {
+	public void testIsAllowedArchiveAuthorised() {
 		DistrictPermission evaluator = new DistrictPermission();
 		XPlanArchive archive = createArchive("planDistrict");
 		boolean hasPermission = evaluator.isAllowed(createAuthentication(), archive);
@@ -50,7 +51,7 @@ public class DistrictPermissionTest {
 	}
 
 	@Test
-	public void testIsAllowedArchiveAccessDenied() throws Exception {
+	public void testIsAllowedArchiveMultipleInstancesAccessDenied() {
 		DistrictPermission evaluator = new DistrictPermission();
 		XPlanArchive archive = createArchive("unauthorized");
 		boolean hasPermission = evaluator.isAllowed(createAuthentication(), archive);
@@ -58,7 +59,23 @@ public class DistrictPermissionTest {
 	}
 
 	@Test
-	public void testIsAllowedPlanAuthorised() throws Exception {
+	public void testIsAllowedArchiveMultipleInstancesAuthorised() {
+		DistrictPermission evaluator = new DistrictPermission();
+		XPlanArchive archive = createArchive("planDistrict", "planDistrict");
+		boolean hasPermission = evaluator.isAllowed(createAuthentication(), archive);
+		assertThat(hasPermission, is(true));
+	}
+
+	@Test
+	public void testIsAllowedArchiveAccessDenied() {
+		DistrictPermission evaluator = new DistrictPermission();
+		XPlanArchive archive = createArchive("unauthorized", "planDistrict");
+		boolean hasPermission = evaluator.isAllowed(createAuthentication(), archive);
+		assertThat(hasPermission, is(false));
+	}
+
+	@Test
+	public void testIsAllowedPlanAuthorised() {
 		DistrictPermission evaluator = new DistrictPermission();
 		XPlan plan = createPlan("planDistrict");
 		boolean hasPermission = evaluator.isAllowed(createAuthentication(), plan);
@@ -66,7 +83,7 @@ public class DistrictPermissionTest {
 	}
 
 	@Test
-	public void testIsAllowedPlanAccessDenied() throws Exception {
+	public void testIsAllowedPlanAccessDenied() {
 		DistrictPermission evaluator = new DistrictPermission();
 		XPlan plan = createPlan("unauthorized");
 		boolean hasPermission = evaluator.isAllowed(createAuthentication(), plan);
@@ -81,9 +98,9 @@ public class DistrictPermissionTest {
 		return mock;
 	}
 
-	private XPlanArchive createArchive(String planDistrict) {
+	private XPlanArchive createArchive(String... planDistrict) {
 		XPlanArchive mock = mock(XPlanArchive.class);
-		doReturn(planDistrict).when(mock).getDistrict();
+		doReturn(Arrays.asList(planDistrict)).when(mock).getDistricts();
 		return mock;
 	}
 

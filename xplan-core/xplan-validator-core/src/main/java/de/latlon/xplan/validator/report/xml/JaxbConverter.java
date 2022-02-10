@@ -21,15 +21,6 @@
  */
 package de.latlon.xplan.validator.report.xml;
 
-import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
-import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
-import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
-import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ErrorsType;
 import de.latlon.xplan.validator.report.ExternalReferencesType;
@@ -55,6 +46,16 @@ import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
+import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
+
 /**
  * Converts the internal used {@link ValidatorReport} instances to jaxb
  *
@@ -74,6 +75,7 @@ public class JaxbConverter {
 		ValidationReport validationReportType = objectFactory.createValidationReport();
 		validationReportType.setDate(toCalendar(report.getDate()));
 		validationReportType.setName(report.getValidationName());
+		validationReportType.setFileName(report.getArchiveName());
 		validationReportType.setIsValid(report.isReportValid());
 		validationReportType.setPlan(convertPlanType(report));
 		validationReportType.setExternalReferences(convertExternalReferences(report));
@@ -112,7 +114,7 @@ public class JaxbConverter {
 	private PlanType convertPlanType(ValidatorReport report) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		PlanType pt = objectFactory.createPlanType();
-		pt.setName(report.getPlanName());
+		pt.getNames().addAll(report.getPlanNames().stream().sorted().collect(Collectors.toList()));
 		pt.setVersion(asLabel(report.getXPlanVersion()));
 		return pt;
 	}

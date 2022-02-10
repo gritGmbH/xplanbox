@@ -43,7 +43,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { ApplicationContext.class, TestContext.class })
@@ -56,9 +56,10 @@ public class PlanHandlerTest {
 	public void verifyThat_importPlan() throws Exception {
 		final File file = new File(PlanHandlerTest.class.getResource("/bplan_valid_41.zip").toURI());
 		final ValidationSettings validationSettings = Mockito.mock(ValidationSettings.class);
-		XPlan xPlan = planHandler.importPlan(file, "noName", validationSettings, "noInternalId",
+		List<XPlan> xPlan = planHandler.importPlan(file, "noName", validationSettings, "noInternalId",
 				FESTGESTELLT.toString());
-		assertThat(xPlan.getId(), is("123"));
+		assertThat(xPlan.size(), is(1));
+		assertThat(xPlan.get(0).getId(), is("123"));
 	}
 
 	@Test
@@ -88,7 +89,7 @@ public class PlanHandlerTest {
 
 	@Test(expected = InvalidPlanId.class)
 	public void verifyThat_findPlanById_WithWrongIdFails() throws Exception {
-		XPlan plan = planHandler.findPlanById("42");
+		planHandler.findPlanById("42");
 	}
 
 	@Test

@@ -28,18 +28,16 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
-import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_OPTIONS;
@@ -77,7 +75,7 @@ public class ParameterizedGeometricValidatorImplTest {
 	public void testRetrieveGeometricallyValidXPlanFeatures(String testResource, String expectedPlanName,
 			String expectedPlanGz, String expectedPlanNumber, int expectedNumberOfFeatures) throws Exception {
 		XPlanArchive archive = getTestArchive(testResource);
-		XPlanFeatureCollection fc = readFeaturesAndAssertGeometryValidity(archive);
+		XPlanFeatureCollection fc = new XPlanGmlParser().parseXPlanFeatureCollection(archive);
 		if (!NULL.equals(expectedPlanName))
 			assertThat(fc.getPlanName(), is(expectedPlanName));
 		if (NULL.equals(expectedPlanGz))
@@ -95,17 +93,7 @@ public class ParameterizedGeometricValidatorImplTest {
 		XPlanVersion version = archive.getVersion();
 		XPlanAde ade = archive.getAde();
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
-		return new GeometricValidatorImpl().validateGeometry(archive, archive.getCrs(), schema, true, SKIP_OPTIONS)
-				.getValidatorResult();
-	}
-
-	private XPlanFeatureCollection readFeaturesAndAssertGeometryValidity(XPlanArchive archive)
-			throws XMLStreamException, UnknownCRSException, ValidatorException {
-		XPlanVersion version = archive.getVersion();
-		XPlanAde ade = archive.getAde();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
-		return new GeometricValidatorImpl().retrieveGeometricallyValidXPlanFeatures(archive, archive.getCrs(), schema,
-				true, null);
+		return new GeometricValidatorImpl().validateGeometry(archive, archive.getCrs(), schema, true, SKIP_OPTIONS);
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {

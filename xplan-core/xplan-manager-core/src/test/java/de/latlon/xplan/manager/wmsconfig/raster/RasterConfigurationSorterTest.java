@@ -57,7 +57,7 @@ package de.latlon.xplan.manager.wmsconfig.raster;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.sort;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

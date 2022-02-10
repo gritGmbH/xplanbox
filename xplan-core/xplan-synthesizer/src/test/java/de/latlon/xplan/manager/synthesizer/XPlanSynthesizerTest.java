@@ -42,7 +42,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
