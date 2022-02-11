@@ -588,6 +588,9 @@
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsflsym</l:StyleStoreId>
     </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/bp/bp_ueberbaubgrundstsflsym</l:StyleStoreId>
+    </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
     <Filter>
