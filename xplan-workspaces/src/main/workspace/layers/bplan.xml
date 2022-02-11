@@ -589,7 +589,7 @@
       <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsflsym</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/bp/bp_ueberbaubgrundstsflsym</l:StyleStoreId>
+      <l:StyleStoreId>transparent/bp/bp_ueberbaubgrundstsflsym_trans</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
