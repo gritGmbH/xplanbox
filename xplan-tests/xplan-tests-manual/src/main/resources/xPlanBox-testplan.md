@@ -8,6 +8,7 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 * [XPlanValidatorCLI](#xplanvalidatorcli)
 * [XPlanValidatorWeb](#xplanvalidatorweb)
 * [XPlanTransformCLI](#xplantransformcli)
+* [XPlanAuswerteschemaCLI](#xplanauswerteschemacli)
 * [XPlanWMS](#xplanwms)
 * [XPlanWFS/XPlanSynWFS](#xplanwfsxplansynwfs)
 * [XPlanRessourcen](#xplanresssourcen)
@@ -25,6 +26,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer ruft die Hilfe mit dem Befehl in [1] auf | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
 
 **Hinweis**
+
 * [1] `~/xplan-manager-cli-$VERSION/bin`
 * [1] `./XPlanManager -help `
 
@@ -41,12 +43,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-
 **02** | Der Benutzer führt den in [1] aufgelisteten Befehl in der Kommandozeile aus | Der XPlanManager kann das benötigte Datenbankschema selbst erzeugen. 
 **03** | Der Benutzer überprüft, ob das Datenbank-Schema erstellt worden ist | Das Datenbank-Schema wurde erzeugt. 
 
 **Hinweis**
- * [1]  ` ./XPlanManager -createdb <dbname> jdbc:postgresql://<host>:<port> -u <username> -p <password> -t template_postgis `
+
+* [1]  ` ./XPlanManager -createdb <dbname> jdbc:postgresql://<host>:<port> -u <username> -p <password> -t template_postgis `
   
 ---
 
@@ -63,7 +65,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer überprüft in dem Manager Workspace [1], ob die im Prüffall-02 verwendeten Einstellungen in der Datenbank-Verbindung geschrieben wurden | Die Datenbank-Einstellungen entsprechen den Eingaben von Prüffall-02. 
 
 **Hinweis**
- * [1]  ` .deegree/xplan-manager-workspace/jdbc/xplan.xml` (Der Pfad kann abweichen)
+
+ * [1]  ` .deegree/xplan-manager-workspace/jdbc/xplan.xml`
+   * Der Pfad kann variieren
 
 ---
 
@@ -83,6 +87,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer löscht mit dem Befehl [4] einen Plan aus dem XPlanManager | Der Plan wird aus dem XPlanManager gelöscht, geprüft werden kann dies mit erneuter Ausführung des Befehls [2].
 
 **Hinweis**
+
 * Korrekte Reihenfolge der Parameter beachten!
 * [1] `./XPlanManager -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]`
 * [2] `./XPlanManager -list`
@@ -108,7 +113,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **Hinweis**
 
 * [1]  ` ./XPlanManager -updatewmssortdate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]` 
-* [2]  ` .deegree/xplansyn-wms-workspace/themes/bplanraster.xml` (Der Pfad kann abweichen)
+* [2]  ` .deegree/xplansyn-wms-workspace/themes/bplanraster.xml`
+  * Der Pfad kann variieren 
 
 ---
 
@@ -248,11 +254,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-[1] Zur Unterstützung des Arbeitsablaufs bietet die Oberfläche dem Nutzer:
+* [1] Zur Unterstützung des Arbeitsablaufs bietet die Oberfläche dem Nutzer:
 
   * eine tabellarische Anzeige aller XPlanGML-Dokumente
 
-[2] Die Liste enthält die folgenden Eigenschaften:
+* [2] Die Liste enthält die folgenden Eigenschaften:
     
   * Name [sortierfähig]
   * ID [sortierfähig]
@@ -671,7 +677,7 @@ BP_BaugebietsTeilFlaeche/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(x
 
 # XPlanValidatorCLI
 
-### Prüffall-01: : Validierungsart
+### Prüffall-01: Validierungsart
 
 #### Vorbedingungen 
  * Der Benutzer ist auf dem System angemeldet.
@@ -692,23 +698,17 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **09** | Der Benutzer führt den Befehl [5] aus | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
 
 **Hinweis**
- * [1] ` cd ~/xplan-validator-cli-$VERSION/bin ` (Der Pfad kann variieren)
 
- * [2] Ohne Angabe einer Validierungsart
-  * ` ./XPlanValidator -validate Plan.zip [-name Bezeichnung] `
+* [1] ` cd ~/xplan-validator-cli-$VERSION/bin `
+  * Der Pfad kann variieren
+* [2] Ohne Angabe einer Validierungsart: ` ./XPlanValidator -validate Plan.zip [-name Bezeichnung] `
   * `Plan.zip` muss ggf. ersetzt werden
-
- * [3] Syntaktische Überprüfung:
-  *  `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype syntax`
+* [3] Syntaktische Überprüfung: `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype syntax`
   * `Plan.zip` muss ggf. ersetzt werden
-
- * [4] Geometrische Überprüfung:
-  *  `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype geometric`
+* [4] Geometrische Überprüfung: `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype geometric`
   * ` Plan.zip` muss ggf. ersetzt werden
-
- * [5] Semantische Überprüfung:
-  *  `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype semantic`
-  * ` Plan.zip` muss ggf. ersetzt werden
+ * [5] Semantische Überprüfung: `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype semantic`
+   * ` Plan.zip` muss ggf. ersetzt werden
 
 ---
  
@@ -728,11 +728,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 
 **Hinweis**
- * [2] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-flaechenschluss`
- * `Plan.zip` muss ggf. ersetzt werden
 
- * [3] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-geltungsbereich`
- * `Plan.zip` muss ggf. ersetzt werden
+* [1] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-flaechenschluss`
+  * `Plan.zip` muss ggf. ersetzt werden
+* [2] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-geltungsbereich`
+  * `Plan.zip` muss ggf. ersetzt werden
   
 ---
 
@@ -752,10 +752,13 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **05** | Der Benutzer überprüft, ob das Validierungsergebnis als Archiv (HTML, XML und PDF) dort abgelegt worden ist | Das Validierungsergebnis wurde als Archiv angelegt.	 
 
 **Hinweis**
- * [1] `cd ~/xplan-validator-cli-$VERSION/etc/` (Der Pfad kann variieren)
+
+ * [1] `cd ~/xplan-validator-cli-$VERSION/etc/`
+   * Der Pfad kann variieren
  * [2] `validatorConfiguration.properties`
  * [3] `validationReportDirectory=<directory>`
- * [4] `cd ~/xplan-validator-cli-$VERSION/tmp/` (Der Pfad kann variieren)
+ * [4] `cd ~/xplan-validator-cli-$VERSION/tmp/` 
+   * Der Pfad kann variieren
 
 
 # XPlanValidatorWeb
@@ -948,6 +951,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
+
  * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
 
 
@@ -973,6 +977,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
+
  * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
 
 
@@ -995,6 +1000,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
+
  * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
  
  ---
@@ -1016,6 +1022,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
+
  * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
  
  ---
@@ -1037,6 +1044,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
+
  * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
  
  ---
@@ -1058,6 +1066,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
+
  * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
  
  ---
@@ -1079,6 +1088,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
+
  * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
  
  ---
@@ -1100,6 +1110,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
+
  * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
  
  ---
@@ -1136,17 +1147,19 @@ Die Ausgabe der Validierungsergebnisse erfolgt bei den folgenden Komponenten ent
 ### Vorbedingungen 
  * Der Benutzer ist auf dem System angemeldet.
  * Die Installation von HALE wurde erfolgreich abgeschlossen.
- * Die im Verzeichnis `~/xplan-transform-cli/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
+ * Die im Verzeichnis `~/xplan-transform-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
 ### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanTransformCLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-transform-cli/bin`.
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanTransformCLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-transform-cli-$VERSION/bin`.
 **02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanTransformCLI.
 
 **Hinweis**
- * [1] ` cd ~/xplan-transform-cli-$VERSION/bin` (Der Pfad kann variieren)
+
+ * [1] ` cd ~/xplan-transform-cli-$VERSION/bin` 
+   * Der Pfad kann variieren
  * [2] `./XPlanTransformCLI -? [oder --help]`
 
 ---
@@ -1182,11 +1195,52 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
  * [6] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -w [oder --workspaceName] <PFAD/ZU/VERZEICHNIS/DES/WORKSPACE>`
 
+# XPlanAuswerteschemaCLI
+
+### Prüffall-01: Hilfe aufrufen
+
+### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet.
+ * Die im Verzeichnis `~/xplan-evaluation-schema-synchronize-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
+ 
+### Prüffall 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanAuswerteschemaCLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin`.
+**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanAuswerteschemaCLI.
+
+**Hinweis**
+
+ * [1] ` cd ~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin` 
+   * Der Pfad kann variieren
+ * [2] `./EvaluationSchemaSynchronizer -? [oder --help]`
+
+---
+
+### Prüffall-02: Eingabeparameter
+
+### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet.
+ * Prüffall-01 wurde erfolgreich ausgeführt.
+ 
+### Prüffall 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer führt den Befehl [1] aus | Alle in der Datenbasis enthaltenen Pläne werden aus dem XPlanSyn-Schema in das Auswerteschema der xPlanBox überführt.
+**02** | Der Benutzer importiert einen neuen Plan in die xPlanBox und führt anschließend den Befehl [2] aus | Alle in der Datenbasis enthaltenen Pläne, die seit der letzten Ausführung des XPlanAuswerteschemaCLI verändert oder hinzugefügt wurden, werden mit den Auswerteschmema synchronisiert und überführt.
+
+
+**Hinweis**
+
+ * [1] `./EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] ALL -u [oder --user] <arg> -w [oder --password] <arg>`
+   * Der Befehl in [1] darf nur einmal, initial, ausgeführt werden!
+ * [2] `../EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] SYNC -u [oder --user] <arg> -w [oder --password] <arg>`
 
 # XPlanWMS
 
 ### Prüffall-01: Transparente Zeichenvorschriften im XPlanWMS ermöglichen
-
 
 #### Vorbedingungen 
 
@@ -1274,7 +1328,9 @@ Der Benutzer tauscht lediglich den Style aus.
 http://<host>:<Port>/xplan-wms/services/wms?FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=BP_Planvektor&STYLES=transparent&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&SRS=EPSG%3A25832&BBOX=559063.243051755,5938015.832686279,560684.741896508,5939637.331531033&WIDTH=750&HEIGHT=750
 
 
-**Antwort:** Eine transparente Kartendarstellung. Es erfolgt nur eine Darstellung der Geltungsbereiche der jeweiligen Planwerke.
+**Antwort:** 
+
+Eine transparente Kartendarstellung. Es erfolgt nur eine Darstellung der Geltungsbereiche der jeweiligen Planwerke.
 
 
 
@@ -1317,6 +1373,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer führt eine GetMap-Anfrage mit den Layer-Angaben bp_plan und bp_XYZ für das Gebiet des importierten Plans aus Schritt 02 aus.| Es werden nur die Umringe des Plans angezeigt.
 
 **Hinweis:**
+
 * Zum Layer bp_XYZ müssen in der xplan.gml-Datei Daten enthalten sein.
 
 
