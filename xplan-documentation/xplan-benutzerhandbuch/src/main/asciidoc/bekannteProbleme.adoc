@@ -16,17 +16,6 @@ Referenzen:
     - https://connect.microsoft.com/IE/feedback/details/817183/ie10-and-ie11-keep-files-locked-after-uploading[IE10 and IE11 keep files locked after uploading]
     - https://connect.microsoft.com/IE/feedback/details/794708/uploaded-file-is-locked-on-file-system-after-upload[Uploaded file is locked on file system after upload]
 
-[[kapazitaetsbezogene-einschraenkungen]]
-=== Kapazitätsbezogene Einschränkungen
-
-Sowohl für das XPlanManagerCLI, den XPlanManagerWeb als auch den XPlanValidator gelten Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei inklusive Anhänge) größer als 50 MB und XPlanGML-Dateien größer als 2 MB können die Systemstabilität beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert werden sollen, so müssen Server-seitig entsprechende Systemvoraussetzungen erfüllt sein.
-
-Für die Bereitstellung von mehr als 500 XPlanArchiven über die Dienste
-XPlanWMS, XPlanWFS oder XPlanSynWFS müssen Server-seitig ebenfalls entsprechende
-Systemvoraussetzungen erfüllt sein. Das Antwortzeitverhalten der Dienste ist von den verfügbaren System-Ressourcen abhängig.
-
-Weitere Informationen zu den Systemanforderungen der xPlanBox finden Sie im Betriebshandbuch.
-
 [[xplanbox---durch-kartenvorschau-generierter-getmap-request]]
 === xPlanBox - Durch Kartenvorschau generierter GetMap-Request
 

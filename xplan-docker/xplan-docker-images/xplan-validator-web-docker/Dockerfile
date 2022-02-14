@@ -10,6 +10,9 @@ ENV JAVA_OPTS="-Xmx8192m"
 # configure tomcat
 #ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
 
+# add web.xml
+ADD web.xml /usr/local/tomcat/conf/web.xml
+
 # add xplan-validator-web
 ADD target/xplan-validator-web-*.war /root/
 RUN cd /root/ && unzip -q xplan-validator-web-*.war -d /usr/local/tomcat/webapps/xplan-validator-web
