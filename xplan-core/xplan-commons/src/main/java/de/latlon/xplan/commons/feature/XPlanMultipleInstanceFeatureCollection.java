@@ -29,6 +29,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
 import org.deegree.cs.exceptions.TransformationException;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
@@ -126,7 +127,7 @@ public class XPlanMultipleInstanceFeatureCollection extends XPlanFeatureCollecti
 		GMLStreamWriter gmlStreamWriter = null;
 		try {
 			xmlStream = XMLOutputFactory.newFactory().createXMLStreamWriter(os);
-			gmlStreamWriter = new XPlanGmlWriter(version, xmlStream);
+			gmlStreamWriter = new XPlanGmlWriter(version, new IndentingXMLStreamWriter(xmlStream));
 			gmlStreamWriter.write(getFeatures());
 		}
 		finally {
