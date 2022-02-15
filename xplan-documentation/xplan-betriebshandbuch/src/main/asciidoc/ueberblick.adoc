@@ -26,10 +26,6 @@ diesem Kapitel beschriebenen Voraussetzungen erfüllt werden.
 * Festplattensystem: Journaling-Dateisystem (Kapazität nach Bedarf,
 Minimum 500 GB)
 
-NOTE: Die Anwendung xPlanBox benötigt min. 800 MB Festplattenspeicherplatz.
-Wachsende Daten über die Laufzeit sind die Datenhaltung für die Pläne
-inkl. der Anhänge und die Systemlogdateien. Zur Kapazitätsplanung kann folgende Abschätzung gegeben werden: Der Festplattenspeicherplatz für die Daten ist erforderlich auf dem Server mit der <<XPlanDB>> und der Tomcat-Instanz mit dem <<XPlanManager>>. Folgende Formel kann bei der   Kapazitätsplanung zur Hilfe gezogen werden: _Größe eines XPlanArchivs (inkl. der Anhänge) * Anzahl der XPlanArchive * 2_. Wenn also zum Beispiel 100 Pläne mit einer durchschnittlichen Größe von 50 MB inkl. der Anhänge importiert werden sollen, dann sind ca. 10 GB Festplattenspeicherplatz je Server notwendig.
-
 [[empfohlene-systemkonfiguration]]
 ===== Empfohlene Systemkonfiguration
 
