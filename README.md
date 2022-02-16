@@ -1,31 +1,57 @@
-# xPlanBox (Produktversion)
-In diesem Repository werden alle Ressourcen zur xPlanBox Produktversion verwaltet. Alle technischen Issues wie Aufgaben oder Fehler werden im GitHub Issue Tracker gepflegt:
+# xPlanBox
 
-* [Offene Issues](https://github.com/lat-lon/xplanbox/issues?issue%20is%3Aopen)
+In diesem Repository ist der Quellcode für die Open Source Version der Anwendung xPlanBox enthalten. Die xPlanBox dient der Abbildung der Bauleit- und der Landschaftsplanung auf Basis des Standards [XPlanung](https://xleitstelle.de/xplanung/ueber_xplanung). Die xPlanBox basiert zudem auf den Standards des [Open Geospatial Consortium](https://www.ogc.org/), den technischen Empfehlungen der [INSPIRE Richtlinie](https://inspire.ec.europa.eu/) und insbesondere der Abbildung des deutschen Planungsrechts durch das [GML-Anwendungsschema XPlanGML](https://xleitstelle.de/xplanung/releases-xplanung). Die Komponenten der xPlanBox wurden u.a. unter der Verwendung der Open Source Software [deegree webservices](https://www.deegree.org) implementiert.
 
-## Versionen
+## Lizenz
 
-## geplant
+Dieses Projekt ist unter der GNU Affero General Public License, Version 3 oder jeder späteren Version veröffentlicht. Weitere Informationen zur Lizenz stehen in [LICENSE.txt](LICENSE.txt).
 
-|xPlanBox Version |Auslieferung                   |REST API | 
-|:--------------- |:----------------------------- |:------- |
-| 5.0             | Unterstützung von Java 11 und XPlanGML 5.4 | v1(*) |
-| 6.0             | **OSS Version für OZG**       | v1(*)   |
+## Mitarbeit
 
-(*) nach Bedarf evt. zusätzlich v2
-(S) SNAPSHOT
- 
-## umgesetzt
+Regeln für die Mitarbeit finden Sie in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-|xPlanBox Version |Auslieferung   | REST API  | Datum       |  Milestone
-|:--------------- |:------------- | :-------- |:----------- |:---------------
-| 4.3             | -             | v1        | 03 Sep 2021 | Bug Fix Version (https://github.com/lat-lon/xplanbox/issues/355) 
-| 4.2             | -             | v1        | 18 Feb 2021 | Testversion für LGV mit XPlanGML 5.3 / Paket 2 - Teil 2 - Abnahme und Auslieferung
-| 4.1             | -             | v1        | 20 Jan 2021 | Testversion für LGV mit Validator Erweiterungen / Paket 2 - Teil 1 - Auslieferung nicht erfolgt
-| 4.0             | dEE 2020.2    | v1        | 13 Nov 2020 | https://github.com/deegree-enterprise/xplanbox/milestone/7
-| 3.3             | dEE 2020.1    | -         | 21 Apr 2020 | https://github.com/deegree-enterprise/xplanbox/milestone/6
-| 3.0             | dEE 2019.1    | -         | 04 Nov 2019 | https://github.com/deegree-enterprise/xplanbox/milestone/5 
-| 2.8.2           | dEE 2018.1    | -         | 19 Feb 2019 | https://github.com/deegree-enterprise/xplanbox/milestone/4
-| 2.7.1           | dEE 2017.2    | -         | 03 Apr 2018 | https://github.com/deegree-enterprise/xplanbox/milestone/3
-| 2.5             | dEE 2017.1    | -         | 26 Oct 2017 | https://github.com/deegree-enterprise/xplanbox/milestone/2
-| 2.3             | dEE 1.0-pre   | -         | 15 Mar 2017 | https://github.com/deegree-enterprise/xplanbox/milestone/1
+## Autoren
+
+* **lat/lon GmbH** - **Hersteller der xPlanBox** - [lat/lon](https://github.com/lat-lon)
+
+Personen, die an diesem Projekt mitgearbeitet haben, stehen in [contributors](CONTRIBUTORS.md).
+
+## Versionierung
+
+Die Versionierung der Software folgt dem Versionierungsschema von [SemVer](http://semver.org/). Eine Übersicht der bisher erstellten Versionen ist unter [Releases](../releases) zu finden. 
+
+## Dokumentation
+
+### Anwenderdokumentation
+
+Die Dokumentation zur xPlanBox liegt im Asciidoc-Format vor und sowohl das Benutzer- als auch Betriebshandbuch mit der Installationsanleitung sind im Quelltext in den Verzeichnissen [Benutzerhandbuch](xplan-documentation/xplan-benutzerhandbuch/src/main/asciidoc) und [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc) abgelegt. Die Erstellung von PDF- und HTML-Ausgabedateien erfolgt mit dem Bauen der Software wie im folgenden Kapitel dokumentiert.
+
+### Entwicklerdokumentation
+
+Für die Erstellung der ausführbaren Binärdateien ist ein [JDK 11](https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot) und das Werkzeug [Apache Maven 3.8](https://maven.apache.org/) erforderlich.
+
+Die Anwendungskomponenten der xPlanBox können mit folgendem Maven Befehl erstellt werden:
+
+```shell
+mvn clean install
+```
+
+Für die Erstellung von Docker Images mit den Anwendungskomponenten muss [Docker](https://www.docker.com/) installiert sein. Der folgende Aufruf erstellt die Dateien:
+
+```shell
+mvn clean install -Pdocker
+```
+
+### Installation und Konfiguration
+
+Die Installation und Konfiguration der xPlanBox ist im Betriebshandbuch dokumentiert.
+
+----
+© 2022 lat/lon gesellschaft für raumbezogene informationssysteme mbH  
+Aennchenstrasse 19  
+53177 Bonn  
+Tel: +49 +228 9477 9877  
+info@lat-lon.de  
+https://www.lat-lon.de  
+twitter: https://twitter.com/latlon_de  
+GitHub: https://github.com/lat-lon
