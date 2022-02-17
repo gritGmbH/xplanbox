@@ -136,7 +136,7 @@ public class XPlanGeometryInspectorTest {
 	}
 
 	@Test
-	public void testInspect_MultiSurface() throws Exception {
+	public void testInspect_MultiSurface_shouldBeValid() throws Exception {
 		Geometry geometryToInspect = readGeometry("multiSurface.gml");
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(geometryToInspect);
@@ -146,8 +146,18 @@ public class XPlanGeometryInspectorTest {
 	}
 
 	@Test
-	public void testInspect_InvalidMultiSurface() throws Exception {
-		Geometry geometryToInspect = readGeometry("multiSurface-invalid.gml");
+	public void testInspect_MultiSurfaceTouches_shouldBeValid() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-touches.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(0));
+	}
+
+	@Test
+	public void testInspect_MultiSurfaceIntersection_shouldBeInvalid() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-intersection.gml");
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(geometryToInspect);
 
