@@ -689,7 +689,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-test-resources</artifactId>
+        <artifactId>xplan-tests-resources</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
