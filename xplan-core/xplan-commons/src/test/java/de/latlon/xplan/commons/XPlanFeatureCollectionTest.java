@@ -44,6 +44,9 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XPlanFeatureCollectionTest {
 
 	@Test

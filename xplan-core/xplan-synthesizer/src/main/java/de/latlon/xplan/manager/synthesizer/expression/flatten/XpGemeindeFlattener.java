@@ -27,6 +27,9 @@ import org.deegree.commons.utils.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XpGemeindeFlattener extends AbstractFlattener {
 
 	@Override

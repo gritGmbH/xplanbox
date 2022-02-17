@@ -41,6 +41,9 @@ import org.junit.Test;
 
 import de.latlon.xplan.commons.XPlanVersion;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XPlanVersionUtilsTest {
 
 	@Test

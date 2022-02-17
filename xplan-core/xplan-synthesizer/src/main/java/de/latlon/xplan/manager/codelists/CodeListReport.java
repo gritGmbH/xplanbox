@@ -39,6 +39,10 @@ import org.deegree.feature.types.AppSchema;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
+ */
 class CodeListReport {
 
 	public static void main(String[] args)

@@ -30,6 +30,9 @@ import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class Features {
 
 	public static TypedObjectNode getPropertyValue(Feature f, QName propName) {

@@ -47,6 +47,9 @@ import static javax.ws.rs.core.MediaType.TEXT_PLAIN_TYPE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class PlanRasterbasisApiTest extends JerseyTest {
 
 	@Override

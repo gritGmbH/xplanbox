@@ -50,6 +50,10 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { ApplicationContext.class })
 public class ValidationHandlerTest {

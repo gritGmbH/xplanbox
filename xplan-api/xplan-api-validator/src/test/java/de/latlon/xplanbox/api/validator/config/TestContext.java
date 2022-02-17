@@ -34,6 +34,8 @@ import javax.annotation.PostConstruct;
 /**
  * Indented to register the JAX-RS resources within Spring Application Context. TODO
  * Resources not configured automatically. Using JerseyTest instead.
+ *
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
 public class TestContext {

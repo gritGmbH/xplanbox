@@ -56,6 +56,9 @@ import java.nio.file.Paths;
 import static java.nio.file.Files.createTempDirectory;
 import static java.nio.file.Paths.get;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator" })
 public class ApplicationContext {

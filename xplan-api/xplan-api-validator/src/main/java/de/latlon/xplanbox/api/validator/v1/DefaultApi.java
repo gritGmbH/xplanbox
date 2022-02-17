@@ -23,7 +23,6 @@ package de.latlon.xplanbox.api.validator.v1;
 import io.swagger.v3.jaxrs2.integration.resources.BaseOpenApiResource;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletConfig;
 import javax.ws.rs.GET;
@@ -37,6 +36,13 @@ import javax.ws.rs.core.UriInfo;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
+/**
+ * Controller class for handling access to the default resource returning the OpenAPI
+ * document.
+ *
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @since 4.0
+ */
 @Path("/")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")

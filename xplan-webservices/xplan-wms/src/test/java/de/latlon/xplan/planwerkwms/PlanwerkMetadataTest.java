@@ -59,6 +59,10 @@ import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ */
 public class PlanwerkMetadataTest {
 
 	private final String schemaLocation = "/META-INF/schemas/services/planwerkwms/1.0/planwerk_configuration.xsd";

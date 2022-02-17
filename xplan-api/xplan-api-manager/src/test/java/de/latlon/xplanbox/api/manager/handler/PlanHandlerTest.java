@@ -44,6 +44,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { ApplicationContext.class, TestContext.class })
 public class PlanHandlerTest {

@@ -37,6 +37,9 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ */
 public class ValidationReportBuilderTest {
 
 	@Test

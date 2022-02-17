@@ -27,6 +27,10 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "de.latlon.xplan.validator.web.server.service",

@@ -24,6 +24,9 @@ import de.latlon.xplan.commons.XPlanVersion;
 import org.junit.Ignore;
 import org.junit.Test;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XplanSynthesizerXplan40Test extends AbstractXplanSynthesizerTest {
 
 	private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();

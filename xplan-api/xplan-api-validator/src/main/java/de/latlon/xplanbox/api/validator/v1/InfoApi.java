@@ -34,6 +34,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
+/**
+ * Controller class for handling access to the application info resource.
+ *
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @since 4.0
+ */
 @Path("/info")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")

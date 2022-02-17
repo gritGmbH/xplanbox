@@ -26,6 +26,9 @@ import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class DefaultFlattener extends AbstractFlattener {
 
 	@Override

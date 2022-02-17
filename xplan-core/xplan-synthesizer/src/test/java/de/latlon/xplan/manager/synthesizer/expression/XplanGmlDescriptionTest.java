@@ -30,6 +30,9 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XplanGmlDescriptionTest {
 
 	@Test

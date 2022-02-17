@@ -24,6 +24,9 @@ import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class StringConstantTest {
 
 	@Test

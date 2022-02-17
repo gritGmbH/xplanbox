@@ -27,6 +27,9 @@ import java.util.Map;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.gml.schema.GMLAppSchemaReader;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XPlanSchemas {
 
 	private static XPlanSchemas INSTANCE = new XPlanSchemas();

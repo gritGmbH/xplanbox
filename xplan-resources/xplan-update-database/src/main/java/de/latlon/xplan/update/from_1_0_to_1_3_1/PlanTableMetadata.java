@@ -20,6 +20,9 @@
  */
 package de.latlon.xplan.update.from_1_0_to_1_3_1;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 class PlanTableMetadata {
 
 	private final String planTableName;

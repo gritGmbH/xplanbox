@@ -49,7 +49,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
+ * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
  */
 public class GeometricValidatorImplTest {
 

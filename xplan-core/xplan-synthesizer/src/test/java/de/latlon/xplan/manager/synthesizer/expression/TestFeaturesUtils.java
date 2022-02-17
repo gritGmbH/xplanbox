@@ -35,6 +35,9 @@ import java.io.InputStream;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class TestFeaturesUtils {
 
 	public static FeatureCollection getTestFeatures(XPlanVersion version) {

@@ -31,6 +31,9 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { ApplicationContext.class })
 public class ConfigHandlerTest {

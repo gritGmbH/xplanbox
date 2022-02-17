@@ -35,6 +35,9 @@ import java.util.List;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XplanSynthesizerXplan41Test extends AbstractXplanSynthesizerTest {
 
 	@Override

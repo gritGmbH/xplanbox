@@ -28,6 +28,8 @@ import java.util.TimeZone;
 
 /**
  * Common ContextResolver specifying the date format and time zone.
+ *
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper> {
 

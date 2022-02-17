@@ -33,6 +33,9 @@ import org.deegree.feature.Feature;
 import javax.xml.namespace.QName;
 import java.util.List;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 abstract class AbstractFlattener implements Flattener {
 
 	TypedObjectNode getPropertyValue(TypedObjectNode xpVerfahrensmerkmal, String propName) {

@@ -25,6 +25,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.TextBox;
 import de.latlon.xplan.validator.web.client.service.ValidationServiceAsync;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ */
 public class PollingTextBox extends TextBox {
 
 	private final Timer timer;

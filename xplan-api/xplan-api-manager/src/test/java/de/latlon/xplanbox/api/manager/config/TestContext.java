@@ -92,6 +92,8 @@ import static org.slf4j.LoggerFactory.getLogger;
  * Indented to register the JAX-RS resources within Spring Application Context. Resources
  * not configured automatically. Using Jersey <code>ResourceConfig</code> with profile
  * <code>jaxrs</code> instead.
+ *
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
 public class TestContext {

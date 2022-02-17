@@ -30,6 +30,9 @@ import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.g
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XplanBegruendungAbschnitteTest {
 
 	@Test

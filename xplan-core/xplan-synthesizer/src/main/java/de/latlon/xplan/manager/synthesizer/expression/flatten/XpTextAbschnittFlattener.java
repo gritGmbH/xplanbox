@@ -27,6 +27,9 @@ import org.deegree.feature.Feature;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XpTextAbschnittFlattener extends AbstractFlattener {
 
 	private static final List<String> ACCEPTEDELEMENTS = Arrays.asList(new String[] { "XP_TextAbschnitt",

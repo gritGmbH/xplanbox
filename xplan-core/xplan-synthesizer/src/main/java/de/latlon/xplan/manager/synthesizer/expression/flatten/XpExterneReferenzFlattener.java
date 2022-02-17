@@ -24,6 +24,9 @@ import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.feature.Feature;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XpExterneReferenzFlattener extends AbstractFlattener {
 
 	private final String fid;

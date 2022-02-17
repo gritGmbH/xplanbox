@@ -34,6 +34,9 @@ import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XpRasterplanFlattener extends AbstractFlattener {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XpRasterplanFlattener.class);

@@ -45,6 +45,9 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
 		classes = { XPlanValidatorWebContextConfig.class, XPlanValidatorWebSpringConfig.class, TestConfig.class })

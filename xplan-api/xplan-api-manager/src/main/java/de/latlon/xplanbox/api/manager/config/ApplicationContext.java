@@ -75,6 +75,10 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MAN
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
 import static java.nio.file.Paths.get;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager" })
 public class ApplicationContext {

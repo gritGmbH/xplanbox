@@ -22,6 +22,9 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
 import org.deegree.commons.tom.TypedObjectNode;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public interface Flattener {
 
 	public boolean accepts(TypedObjectNode element);

@@ -20,6 +20,9 @@
  */
 package de.latlon.xplan.validator.web.shared;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public enum ArtifactType {
 
 	HTML, XML, PDF, SHP, PNG

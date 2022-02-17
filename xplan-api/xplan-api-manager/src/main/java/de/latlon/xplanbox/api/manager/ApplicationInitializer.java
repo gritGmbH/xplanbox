@@ -30,6 +30,9 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class ApplicationInitializer implements WebApplicationInitializer {
 

@@ -29,6 +29,9 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Geometry;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 class Expressions {
 
 	public static TypedObjectNode evaluateSingle(Expression expr, Feature f, FeatureCollection features) {

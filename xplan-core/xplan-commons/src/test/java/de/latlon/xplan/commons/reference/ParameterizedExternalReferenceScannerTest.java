@@ -40,6 +40,9 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 @RunWith(JUnitParamsRunner.class)
 public class ParameterizedExternalReferenceScannerTest {
 

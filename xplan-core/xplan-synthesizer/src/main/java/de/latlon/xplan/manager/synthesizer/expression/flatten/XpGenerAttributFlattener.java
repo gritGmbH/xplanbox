@@ -33,6 +33,9 @@ import javax.xml.namespace.QName;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class XpGenerAttributFlattener extends AbstractFlattener {
 
 	@Override

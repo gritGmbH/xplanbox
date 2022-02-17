@@ -38,6 +38,8 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Encapsulates metadata describing the Planwerk WMS of a plan.
+ *
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class PlanwerkServiceMetadataBuilder {
 

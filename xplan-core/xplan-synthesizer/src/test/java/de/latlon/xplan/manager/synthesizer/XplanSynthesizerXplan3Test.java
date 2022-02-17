@@ -27,6 +27,9 @@ import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 @Ignore
 public class XplanSynthesizerXplan3Test extends AbstractXplanSynthesizerTest {
 

@@ -69,6 +69,13 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML_TYPE;
 
+/**
+ * Controller class for handling access to the validate resource.
+ *
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @since 4.0
+ */
 @Path("/validate")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2020-08-26T09:59:16.298+02:00[Europe/Berlin]")
