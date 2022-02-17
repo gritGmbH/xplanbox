@@ -52,12 +52,16 @@ public class GeltungsbereichInspectorTest {
 	@Test
 	public void testCheck() throws Exception {
 		XPlanArchive archive = getTestArchive("xplan51/V4_1_ID_103_geltungsbereich-erfuellt.zip");
+		long startTimeMillis = System.currentTimeMillis();
 		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		long endTimeMillis = System.currentTimeMillis();
 		assertThat(isValid, is(true));
 		assertThat(geltungsbereichInspector.getErrors().size(), is(0));
 		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(0));
+
+		System.out.println(String.format("Geltungsbereich check needed %s [ms]", endTimeMillis - startTimeMillis));
 	}
 
 	@Test
