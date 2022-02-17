@@ -1,4 +1,4 @@
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
 import org.locationtech.jts.geom.Geometry;
 import de.latlon.xplan.commons.XPlanVersion;

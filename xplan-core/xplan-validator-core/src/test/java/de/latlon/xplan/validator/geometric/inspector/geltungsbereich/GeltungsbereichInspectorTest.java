@@ -19,7 +19,7 @@
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanAde;
@@ -27,6 +27,7 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;

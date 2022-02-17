@@ -1,4 +1,4 @@
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
 import org.deegree.feature.Feature;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;

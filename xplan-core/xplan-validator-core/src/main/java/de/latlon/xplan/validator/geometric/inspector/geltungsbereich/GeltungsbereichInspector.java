@@ -19,8 +19,10 @@
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
+import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
+import de.latlon.xplan.validator.geometric.inspector.InvalidGeometryException;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.composite.CompositeGeometry;
