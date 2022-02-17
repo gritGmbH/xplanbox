@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-test-resources - Ressourcen fuer JUnit- und Integrationstests
+ * xplan-tests-resources - Ressourcen fuer JUnit- und Integrationstests
  * %%
  * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
