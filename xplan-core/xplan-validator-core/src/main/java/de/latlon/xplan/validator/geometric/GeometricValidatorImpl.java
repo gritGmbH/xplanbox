@@ -23,8 +23,8 @@ package de.latlon.xplan.validator.geometric;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.geometric.inspector.AenderungenInspector;
-import de.latlon.xplan.validator.geometric.inspector.FlaechenschlussInspector;
+import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
+import de.latlon.xplan.validator.geometric.inspector.flaechenschluss.FlaechenschlussInspector;
 import de.latlon.xplan.validator.geometric.inspector.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;

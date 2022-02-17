@@ -19,7 +19,7 @@
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
 import org.deegree.commons.uom.Measure;
 import org.deegree.cs.components.IUnit;

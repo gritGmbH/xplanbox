@@ -19,16 +19,12 @@
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
 import org.deegree.commons.uom.Measure;
-import org.deegree.cs.components.IUnit;
-import org.deegree.cs.components.Unit;
 import org.deegree.geometry.primitive.Point;
 
-import java.math.BigDecimal;
-
-import static de.latlon.xplan.validator.geometric.inspector.FlaechenschlussTolerance.calculateAllowedDistance;
+import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.FlaechenschlussTolerance.calculateAllowedDistance;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
