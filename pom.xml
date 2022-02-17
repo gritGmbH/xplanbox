@@ -171,6 +171,7 @@
             <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
             <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
             <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+            <exclude>**/*.json</exclude>
           </excludes>
           <extraExtensions>
             <xq>xml</xq>
