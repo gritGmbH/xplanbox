@@ -122,7 +122,6 @@ Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es h
   ** Schnittmenge der von zwei inneren Ringen gebildeten Flächen ist leer
   ** keine doppelten Stützpunkte (äußere und innere Ringe)
  * MultiPolygone:
-  ** keine Berührung zwischen einzelnen Polygonen
   ** kein Schnitt zwischen einzelnen Polygonen
   ** alle für Polygone geltenden Prüfungen für jedes einzelne Polygon
 
