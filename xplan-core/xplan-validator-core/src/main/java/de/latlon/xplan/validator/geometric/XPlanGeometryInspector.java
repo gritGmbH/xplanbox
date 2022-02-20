@@ -224,7 +224,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	private void inspect(MultiSurface geom) throws GeometryInspectionException {
-		List<Geometry> selfIntersections = calulateSelfIntersection(geom);
+		List<Geometry> selfIntersections = calculateSelfIntersection(geom);
 		if (!selfIntersections.isEmpty()) {
 			String msg = createMessage(String.format(INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON,
 					geometriesAsReadableString(selfIntersections)));
@@ -340,7 +340,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		return ring;
 	}
 
-	private List<Geometry> calulateSelfIntersection(MultiSurface geom) {
+	private List<Geometry> calculateSelfIntersection(MultiSurface geom) {
 		List<Geometry> selfIntersections = new ArrayList<>();
 		List<Object> surfaces = new ArrayList<>(geom);
 		int intersectionIndex = 1;
@@ -350,7 +350,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 			for (Object curve2 : surfaces) {
 				Surface surface2 = inspect((Surface) curve2);
 				Geometry intersection = calculateSelfIntersection(surface1, surface2);
-				if (intersection != null) {
+				if (hasIntersection(intersection)) {
 					selfIntersections.add(intersection);
 					intersection.setId(geom.getId() + "_intersection_" + intersectionIndex++);
 					String intersectionMultiGeomMsg = "Geometrie der Selbst\u00fcberschneidung zwischen MulttPolygonen";
@@ -370,6 +370,11 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 		}
 		return surface1.getIntersection(surface2);
+	}
+
+	private boolean hasIntersection(Geometry intersection) {
+		// touching multi polygons (with a single point intersection) are allowed
+		return intersection != null && !(intersection instanceof DefaultPoint);
 	}
 
 	void checkSelfIntersection(Ring ring) {
