@@ -41,6 +41,15 @@ public class ControlPoint {
 	 * @param featureGmlId the gml id of the feature this control point is part of, never
 	 * <code>null</code>
 	 * @param point the control point, never <code>null</code>
+	 */
+	public ControlPoint(String featureGmlId, Point point) {
+		this(featureGmlId, point, false);
+	}
+
+	/**
+	 * @param featureGmlId the gml id of the feature this control point is part of, never
+	 * <code>null</code>
+	 * @param point the control point, never <code>null</code>
 	 * @param hasIdenticalControlPoint <code>true</code> if already an identical point was
 	 * found, <code>false</code> otherwise
 	 */
