@@ -134,6 +134,17 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		return flaechenschlussErrors.isEmpty();
 	}
 
+	@Override
+	public List<String> getErrors() {
+		return flaechenschlussErrors.stream().map(e -> e.getErrors()).flatMap(List::stream)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<BadGeometry> getBadGeometries() {
+		return flaechenschlussErrors;
+	}
+
 	private void analyseFlaechenschlussFeaturePairs() {
 		List<Pair<FlaechenschlussFeature, FlaechenschlussFeature>> flaechenschlussFeaturePairs = detectFlaechenschlussFeaturePairsToAnalyse();
 		LOG.debug("Found {} intersecting flaechenschluss features.", flaechenschlussFeaturePairs.size());
@@ -186,24 +197,33 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 							.map(flaechenschlussFeature -> flaechenschlussFeature.getFeatureId() + "("
 									+ flaechenschlussFeature.getFeatureType() + ")")
 							.collect(Collectors.joining("\n  ")));
-			List<ControlPoint> controlPointsInIntersection = intersectingFlaechenschlussFeatures.stream().map(
-					flaechenschlussFeature -> parseControlPointsInIntersection(flaechenschlussFeature, interiorRing))
-					.flatMap(List::stream).collect(Collectors.toList());
-			List<ControlPoint> controlPointsInIntersectionTmp = new ArrayList<>(controlPointsInIntersection);
-			controlPointsInIntersection.forEach(cpToCheck -> {
-				controlPointsInIntersectionTmp.remove(cpToCheck);
-				controlPointsInIntersectionTmp
-						.forEach(cpInIntersection2 -> cpToCheck.checkIfIdentical(cpInIntersection2));
-			});
-			List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPointsInIntersection.stream()
-					.filter(cp -> !cp.hasIdenticalControlPoint()).collect(Collectors.toList());
-
-			controlPointsWithInvalidFlaechenschluss.stream().forEach(cp -> {
-				String error = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
-				BadGeometry badGeometry = new BadGeometry(cp.getPoint(), error);
-				flaechenschlussErrors.add(badGeometry);
-			});
+			List<ControlPoint> controlPointsInIntersection = collectControlPointsIntersectingTheInteriorRing(
+					interiorRing, intersectingFlaechenschlussFeatures);
+			checkControlPointsAndAddFailures(controlPointsInIntersection);
 		}
+	}
+
+	private void checkControlPointsAndAddFailures(List<ControlPoint> controlPoints) {
+		List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPoints.stream()
+				.filter(cp -> !cp.hasIdenticalControlPoint()).collect(Collectors.toList());
+		controlPointsWithInvalidFlaechenschluss.stream().forEach(cp -> {
+			String error = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
+			BadGeometry badGeometry = new BadGeometry(cp.getPoint(), error);
+			flaechenschlussErrors.add(badGeometry);
+		});
+	}
+
+	private List<ControlPoint> collectControlPointsIntersectingTheInteriorRing(Ring interiorRing,
+			List<FlaechenschlussFeature> intersectingFlaechenschlussFeatures) {
+		List<ControlPoint> controlPointsInIntersection = intersectingFlaechenschlussFeatures.stream()
+				.map(flaechenschlussFeature -> parseControlPointsInIntersection(flaechenschlussFeature, interiorRing))
+				.flatMap(List::stream).collect(Collectors.toList());
+		List<ControlPoint> controlPointsInIntersectionTmp = new ArrayList<>(controlPointsInIntersection);
+		controlPointsInIntersection.forEach(cpToCheck -> {
+			controlPointsInIntersectionTmp.remove(cpToCheck);
+			controlPointsInIntersectionTmp.forEach(cpInIntersection2 -> cpToCheck.checkIfIdentical(cpInIntersection2));
+		});
+		return controlPointsInIntersection;
 	}
 
 	private List<FlaechenschlussFeature> collectFlaechenschlussFeaturesIntersectingTheInteriorRing(Ring interiorRing) {
@@ -297,41 +317,11 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 					flaechenschlussFeature2.getFeatureType(), controlPointsFlaechenschlussFeature2.stream()
 							.map(p -> WKTWriter.write(p.getPoint())).collect(Collectors.joining(",")));
 
-			checkControlPoints(controlPointsFlaechenschlussFeature1, controlPointsFlaechenschlussFeature2);
-
-			if (hasInvalidControlPoints(controlPointsFlaechenschlussFeature1)) {
-				addFlaechenschlussFailure(flaechenschlussFeature1, intersection);
-			}
-			if (hasInvalidControlPoints(controlPointsFlaechenschlussFeature2)) {
-				addFlaechenschlussFailure(flaechenschlussFeature2, intersection);
-			}
+			List<ControlPoint> controlPointsToCheck = new ArrayList<>();
+			controlPointsToCheck.addAll(controlPointsFlaechenschlussFeature1);
+			controlPointsToCheck.addAll(controlPointsFlaechenschlussFeature2);
+			checkControlPointsAndAddFailures(controlPointsToCheck);
 		}
-	}
-
-	private boolean hasInvalidControlPoints(List<ControlPoint> controlPointsFlaechenschlussFeature) {
-		for (ControlPoint controlPoint : controlPointsFlaechenschlussFeature) {
-			if (!controlPoint.hasIdenticalControlPoint())
-				return true;
-		}
-		return false;
-	}
-
-	private void checkControlPoints(List<ControlPoint> controlPointsFlaechenschlussFeature1,
-			List<ControlPoint> controlPointsFlaechenschlussFeature2) {
-		for (ControlPoint controlPoint1 : controlPointsFlaechenschlussFeature1) {
-			for (ControlPoint controlPoint2 : controlPointsFlaechenschlussFeature2) {
-				controlPoint1.checkIfIdentical(controlPoint2);
-			}
-		}
-	}
-
-	private void addFlaechenschlussFailure(FlaechenschlussFeature flaechenschlussFeature,
-			GeometricPrimitive intersection) {
-		String featureId = flaechenschlussFeature.getFeatureId();
-		String wkt = WKTWriter.write(intersection);
-		String error = String.format(ERROR_MSG, featureId, wkt);
-		BadGeometry badGeometry = new BadGeometry(intersection, error);
-		flaechenschlussErrors.add(badGeometry);
 	}
 
 	private List<ControlPoint> parseControlPointsInIntersection(FlaechenschlussFeature flaechenschlussFeature,
@@ -436,17 +426,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			throw new IllegalArgumentException(Messages.getMessage("SURFACE_IS_NON_PLANAR"));
 		}
 		throw new IllegalArgumentException(Messages.getMessage("SURFACE_MORE_THAN_ONE_PATCH"));
-	}
-
-	@Override
-	public List<String> getErrors() {
-		return flaechenschlussErrors.stream().map(e -> e.getErrors()).flatMap(List::stream)
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public List<BadGeometry> getBadGeometries() {
-		return flaechenschlussErrors;
 	}
 
 }
