@@ -96,8 +96,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private static final String ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht: %s";
 
-	private static final String MARKER_MSG = "2.2.1.1: Bereich an der die Flaechenschlussbedingung des Flaechenschlussobjekts mit der gml id %s nicht erfuellt ist.";
-
 	private final List<FlaechenschlussFeature> flaechenschlussFeatures = new ArrayList<>();
 
 	private final List<BadGeometry> flaechenschlussErrors = new ArrayList<>();
@@ -123,10 +121,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	 */
 	@Override
 	public boolean checkGeometricRule() {
-		List<Pair<FlaechenschlussFeature, FlaechenschlussFeature>> flaechenschlussFeaturePairs = detectFlaechenschlussFeaturePairsToAnalyse();
-		LOG.debug("Found {} intersecting flaechenschluss features.", flaechenschlussFeaturePairs.size());
-
-		analyseFlaechenschlussFeaturePairs(flaechenschlussFeaturePairs);
+		analyseFlaechenschlussFeaturePairs();
 		analyseFlaechenschlussUnion();
 
 		if (flaechenschlussErrors.isEmpty()) {
@@ -139,9 +134,16 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		return flaechenschlussErrors.isEmpty();
 	}
 
+	private void analyseFlaechenschlussFeaturePairs() {
+		List<Pair<FlaechenschlussFeature, FlaechenschlussFeature>> flaechenschlussFeaturePairs = detectFlaechenschlussFeaturePairsToAnalyse();
+		LOG.debug("Found {} intersecting flaechenschluss features.", flaechenschlussFeaturePairs.size());
+		flaechenschlussFeaturePairs
+				.forEach(flaechenschlussFeaturePair -> analyseFlaechenschlussFeaturePair(flaechenschlussFeaturePair));
+	}
+
 	private void analyseFlaechenschlussUnion() {
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion();
-		System.out.println("union: " + WKTWriter.write(flaechenschlussUnion));
+		LOG.debug("Union of all flaechenschluss geometries: " + WKTWriter.write(flaechenschlussUnion));
 		checkFlaechenschlussFeaturesIntersectingAnInteriorRing(flaechenschlussUnion);
 	}
 
@@ -178,9 +180,9 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		for (Ring interiorRing : interiorRings) {
 			List<FlaechenschlussFeature> intersectingFlaechenschlussFeatures = collectFlaechenschlussFeaturesIntersectingTheInteriorRing(
 					interiorRing);
-			System.out.println("Check " + WKTWriter.write(interiorRing));
-			System.out
-					.println("Flaechenschluss Features: \n  " + intersectingFlaechenschlussFeatures.stream()
+			LOG.debug("Analyse flaechenschluss features intersection {}", WKTWriter.write(interiorRing));
+			LOG.debug(
+					"Flaechenschluss Features: \n  " + intersectingFlaechenschlussFeatures.stream()
 							.map(flaechenschlussFeature -> flaechenschlussFeature.getFeatureId() + "("
 									+ flaechenschlussFeature.getFeatureType() + ")")
 							.collect(Collectors.joining("\n  ")));
@@ -241,13 +243,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			}
 		}
 		return flaechenschlussFeaturePairs;
-	}
-
-	private void analyseFlaechenschlussFeaturePairs(
-			List<Pair<FlaechenschlussFeature, FlaechenschlussFeature>> flaechenschlussFeaturePairs) {
-		flaechenschlussFeaturePairs.forEach(flaechenschlussFeaturePair -> {
-			analyseFlaechenschlussFeaturePair(flaechenschlussFeaturePair);
-		});
 	}
 
 	private void analyseFlaechenschlussFeaturePair(
