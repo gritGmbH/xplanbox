@@ -24,6 +24,7 @@ package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.utils.Pair;
+import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.i18n.Messages;
@@ -51,11 +52,17 @@ import org.deegree.geometry.primitive.segments.CurveSegment;
 import org.deegree.geometry.primitive.segments.Geodesic;
 import org.deegree.geometry.primitive.segments.GeodesicString;
 import org.deegree.geometry.primitive.segments.LineStringSegment;
+import org.deegree.geometry.standard.AbstractDefaultGeometry;
+import org.deegree.geometry.standard.primitive.DefaultPoint;
+import org.deegree.geometry.standard.primitive.DefaultSurface;
 import org.deegree.gml.feature.FeatureInspectionException;
+import org.locationtech.jts.geom.GeometryCollection;
+import org.locationtech.jts.geom.GeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -83,6 +90,9 @@ import java.util.stream.Collectors;
 public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspector {
 
 	private static final Logger LOG = LoggerFactory.getLogger(OptimisedFlaechenschlussInspector.class);
+
+	private static final AbstractDefaultGeometry DEFAULT_GEOM = new DefaultPoint(null, null, null,
+			new double[] { 0.0, 0.0 });
 
 	private static final String ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht: %s";
 
@@ -114,9 +124,10 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	@Override
 	public boolean checkGeometricRule() {
 		List<Pair<FlaechenschlussFeature, FlaechenschlussFeature>> flaechenschlussFeaturePairs = detectFlaechenschlussFeaturePairsToAnalyse();
-		LOG.debug("Found {} intersection flaechenschluss features.", flaechenschlussFeaturePairs.size());
+		LOG.debug("Found {} intersecting flaechenschluss features.", flaechenschlussFeaturePairs.size());
 
 		analyseFlaechenschlussFeaturePairs(flaechenschlussFeaturePairs);
+		analyseFlaechenschlussUnion();
 
 		if (flaechenschlussErrors.isEmpty()) {
 			LOG.info("No features with invalid flaechenschluss");
@@ -126,6 +137,96 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 					flaechenschlussErrors.stream().map(fe -> fe.getErrors().get(0)).collect(Collectors.joining("\n")));
 		}
 		return flaechenschlussErrors.isEmpty();
+	}
+
+	private void analyseFlaechenschlussUnion() {
+		Geometry flaechenschlussUnion = createFlaechenschlussUnion();
+		System.out.println("union: " + WKTWriter.write(flaechenschlussUnion));
+		checkFlaechenschlussFeaturesIntersectingAnInteriorRing(flaechenschlussUnion);
+	}
+
+	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(Geometry flaechenschlussUnion) {
+		if (flaechenschlussUnion == null)
+			return;
+		if (flaechenschlussUnion instanceof DefaultSurface) {
+			// Simple Polygon without interior ring must be valid!
+			if (((DefaultSurface) flaechenschlussUnion).getInteriorRingsCoordinates().isEmpty())
+				return;
+			checkFlaechenschlussFeaturesIntersectingAnInteriorRing((DefaultSurface) flaechenschlussUnion);
+		}
+		else if (flaechenschlussUnion instanceof MultiSurface) {
+			checkFlaechenschlussFeaturesIntersectingAnInteriorRing((MultiSurface) flaechenschlussUnion);
+		}
+		Collections.emptyList();
+	}
+
+	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(MultiSurface<Surface> flaechenschlussUnion) {
+		for (Surface flaechenschlussUnionGeom : flaechenschlussUnion) {
+			if (flaechenschlussUnionGeom instanceof DefaultSurface) {
+				checkFlaechenschlussFeaturesIntersectingAnInteriorRing((DefaultSurface) flaechenschlussUnionGeom);
+			}
+			else {
+				LOG.warn("Could not handle surface of type " + flaechenschlussUnionGeom.getClass());
+			}
+		}
+	}
+
+	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(DefaultSurface flaechenschlussUnion) {
+		List<? extends SurfacePatch> patches = flaechenschlussUnion.getPatches();
+		PolygonPatch patch = (PolygonPatch) patches.get(0);
+		List<Ring> interiorRings = patch.getInteriorRings();
+		for (Ring interiorRing : interiorRings) {
+			List<FlaechenschlussFeature> intersectingFlaechenschlussFeatures = collectFlaechenschlussFeaturesIntersectingTheInteriorRing(
+					interiorRing);
+			System.out.println("Check " + WKTWriter.write(interiorRing));
+			System.out
+					.println("Flaechenschluss Features: \n  " + intersectingFlaechenschlussFeatures.stream()
+							.map(flaechenschlussFeature -> flaechenschlussFeature.getFeatureId() + "("
+									+ flaechenschlussFeature.getFeatureType() + ")")
+							.collect(Collectors.joining("\n  ")));
+			List<ControlPoint> controlPointsInIntersection = intersectingFlaechenschlussFeatures.stream().map(
+					flaechenschlussFeature -> parseControlPointsInIntersection(flaechenschlussFeature, interiorRing))
+					.flatMap(List::stream).collect(Collectors.toList());
+			List<ControlPoint> controlPointsInIntersectionTmp = new ArrayList<>(controlPointsInIntersection);
+			controlPointsInIntersection.forEach(cpToCheck -> {
+				controlPointsInIntersectionTmp.remove(cpToCheck);
+				controlPointsInIntersectionTmp
+						.forEach(cpInIntersection2 -> cpToCheck.checkIfIdentical(cpInIntersection2));
+			});
+			List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPointsInIntersection.stream()
+					.filter(cp -> !cp.hasIdenticalControlPoint()).collect(Collectors.toList());
+
+			controlPointsWithInvalidFlaechenschluss.stream().forEach(cp -> {
+				String error = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
+				BadGeometry badGeometry = new BadGeometry(cp.getPoint(), error);
+				flaechenschlussErrors.add(badGeometry);
+			});
+		}
+	}
+
+	private List<FlaechenschlussFeature> collectFlaechenschlussFeaturesIntersectingTheInteriorRing(Ring interiorRing) {
+		List<FlaechenschlussFeature> intersectingFlaechenschlussFeatures = new ArrayList<>();
+		for (FlaechenschlussFeature flaechenschlussFeature : flaechenschlussFeatures) {
+			if (flaechenschlussFeature.getGeometry().intersects(interiorRing)) {
+				intersectingFlaechenschlussFeatures.add(flaechenschlussFeature);
+			}
+		}
+		return intersectingFlaechenschlussFeatures;
+	}
+
+	private Geometry createFlaechenschlussUnion() {
+		ICRS coordinateSystem = null;
+		GeometryFactory factory = new GeometryFactory();
+		org.locationtech.jts.geom.Geometry[] geometries = new org.locationtech.jts.geom.Geometry[flaechenschlussFeatures
+				.size()];
+		int i = 0;
+		for (FlaechenschlussFeature flaechenschlussFeature : flaechenschlussFeatures) {
+			coordinateSystem = flaechenschlussFeature.getGeometry().getCoordinateSystem();
+			geometries[i++] = flaechenschlussFeature.getJtsGeometry();
+		}
+		GeometryCollection geometryCollection = factory.createGeometryCollection(geometries);
+		org.locationtech.jts.geom.Geometry union = geometryCollection.buffer(0);
+		return DEFAULT_GEOM.createFromJTS(union, coordinateSystem);
 	}
 
 	private List<Pair<FlaechenschlussFeature, FlaechenschlussFeature>> detectFlaechenschlussFeaturePairsToAnalyse() {
@@ -234,8 +335,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		String featureId = flaechenschlussFeature.getFeatureId();
 		String wkt = WKTWriter.write(intersection);
 		String error = String.format(ERROR_MSG, featureId, wkt);
-		BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature.getGeometry(), error);
-		badGeometry.addMarkerGeometry(String.format(MARKER_MSG, featureId), intersection);
+		BadGeometry badGeometry = new BadGeometry(intersection, error);
 		flaechenschlussErrors.add(badGeometry);
 	}
 
