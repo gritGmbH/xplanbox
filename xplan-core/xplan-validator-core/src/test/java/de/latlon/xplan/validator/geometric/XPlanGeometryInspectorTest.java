@@ -170,6 +170,22 @@ public class XPlanGeometryInspectorTest {
 	}
 
 	@Test
+	public void testInspect_MultiSurfaceIntersectionInSelfIntersection() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-intersectionInIntersection.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		// Self intersection is not found because the single parts of the multi geometry
+		// are not tested in this test.
+		// The intersection of the multi geometries is not found because of the
+		// implementation of touching multi geometries (only one point is found).
+		// The failure notes the incorrect direction of the polygon with self
+		// intersection.
+		assertThat(badGeometries.size(), is(1));
+	}
+
+	@Test
 	public void testInspect_InvalidOrientation() throws Exception {
 		Geometry geometryToInspect = readGeometry("polygon-orientation-invalid.gml");
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
