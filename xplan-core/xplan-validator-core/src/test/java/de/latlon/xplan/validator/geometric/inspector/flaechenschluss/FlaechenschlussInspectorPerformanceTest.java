@@ -5,6 +5,7 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.types.AppSchema;
@@ -28,18 +29,18 @@ public class FlaechenschlussInspectorPerformanceTest {
 	@Test
 	public void testCheckFlaechenschluss_OldInspector() throws Exception {
 		FlaechenschlussInspector flaechenschlussInspector = new FlaechenschlussInspector();
-		XPlanArchive archive = getLocalTestArchive("Testplan.zip");
-		long start = System.currentTimeMillis();
-		readFeatures(archive, flaechenschlussInspector);
-		flaechenschlussInspector.checkGeometricRule();
-		long end = System.currentTimeMillis();
-		System.out.println("Flaechenschluss check with old implementation: " + (end - start) + " [ms]");
+		checkFlaechenschluss(flaechenschlussInspector);
 	}
 
 	@Ignore
 	@Test
 	public void testCheckFlaechenschluss_OptimizedInspector() throws Exception {
 		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector();
+		checkFlaechenschluss(flaechenschlussInspector);
+	}
+
+	private void checkFlaechenschluss(GeometricFeatureInspector flaechenschlussInspector)
+			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = getLocalTestArchive("Testplan.zip");
 		long start = System.currentTimeMillis();
 		readFeatures(archive, flaechenschlussInspector);
