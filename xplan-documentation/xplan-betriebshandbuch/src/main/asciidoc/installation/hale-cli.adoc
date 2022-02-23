@@ -1,6 +1,20 @@
 [[installation-hale-cli]]
 === Installation und Konfiguration von HALE CLI
 
-Optional unterstützt die xPlanBox die Bereitstellung vom XPlanManager verwalteter Pläne im INSPIRE Datenthema Planned Land Use (PLU). Die Transformation der Pläne aus dem XPlanGML Format nach PLU erfolgt mittels HALE. Wird die Bereitstellung über INSPIRE nicht benötigt, ist die Installation des HALE CLI auch nicht erforderlich.
+Für die Transformation von Plänen aus dem XPlanGML-Datenformat in das INSPIRE Planned Land Use (PLU) Format sowie der Transformation von XPlanGML 4.1 nach 5.1 wird die Software https://halestudio.org/[HALE] verwendet. Werden diese Transformationen nicht benötigt, dann ist die Installation des HALE CLI auch nicht erforderlich.
 
-Für die Installation muss zunächst das HALE CLI 3.4.0 heruntergeladen (https://github.com/halestudio/hale-cli/releases/tag/v3.4.0) werden. Anschließend muss es auf dem Server, auf dem auch der XPlanManager installiert wird, entpackt werden.
+Für die Installation muss zunächst das HALE CLI 3.4.0 (ZIP-Datei) von der Projektseite auf GitHub https://github.com/halestudio/hale-cli/releases/tag/v3.4.0[https://github.com/halestudio/hale-cli] heruntergeladen werden. Anschließend muss die Datei auf dem Server, auf dem XPlanManagerWeb, XPlanManagerAPI oder das XPlanTransform_CLI installiert wird, entpackt werden.
+
+IMPORTANT: Die Version 3.4.0 des HALE CLI erfordert ein JDK 8 und kann nicht mit JDK 11 ausgeführt werden. Zusätzlich zu dem JDK 11, das für alle xPlanBox-Komponenten erforderlich ist (siehe Kapitel <<jdk>>) muss ein JDK 8 installiert werden (Download von https://adoptium.net/?variant=openjdk8&jvmVariant=hotspot[AdoptOpenJDK 1.8]).
+
+Tragen Sie den Pfad zum Installationsverzeichnis des JDK unter Linux in die Datei _hale_ unterhalb des Kommentarblocks wie folgt ein:
+[source,bash]
+JAVA_HOME=/pfad/zum/jdk
+
+Für das Betriebssystem Windows passen Sie die Datei _hale.bat_ an und fügen unterhalb des Kommentarblocks folgende Zeile hinzu:
+[source,bash]
+JAVA_HOME=LAUFWERK:/pfad/zum/jdk
+
+WARNING: Setzen Sie den Pfad zum JDK 1.8 nicht global mit `export` unter Linux bzw. `set` unter Windows, da sonst auch die Komponenten der xPlanBox mit dieser Java Version ausgeführt werden.
+
+Die Konfiguration von HALE für die Verwendung in den Komponenten der xPlanBox ist im Kapitel <<konfiguration-hale>> beschrieben.

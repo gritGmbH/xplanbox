@@ -99,6 +99,6 @@ NOTE: Erforderlich ist GDAL 3.0.
 
 === HALE CLI
 
-Optional kann die Installation von https://github.com/halestudio/hale-cli/[HALE CLI] erforderlich sein. HALE CLI wird benötigt, wenn die Bereitstellung von Plänen in XPlanGML, die im XPlanManager verwaltet werden, im INSPIRE Planned Land Use (PLU) Datenthema, genutzt werden soll. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
+Optional kann die Installation von https://github.com/halestudio/hale-cli/[HALE CLI] erforderlich sein. HALE CLI wird für die Transformation von Daten der xPlanBox verwendet. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
 
 NOTE: Erforderlich ist HALE CLI 3.4.0+.
