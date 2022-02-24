@@ -186,6 +186,16 @@ public class XPlanGeometryInspectorTest {
 	}
 
 	@Test
+	public void testInspect_MultiSurfaceCoveringGeometries() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-covering.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(1));
+	}
+
+	@Test
 	public void testInspect_InvalidOrientation() throws Exception {
 		Geometry geometryToInspect = readGeometry("polygon-orientation-invalid.gml");
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
