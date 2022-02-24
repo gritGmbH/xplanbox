@@ -151,8 +151,8 @@ public class XPlanGeometryInspectorTest {
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(geometryToInspect);
 
-		List<BadGeometry> badGeometries = inspector.getBadGeometries();
-		assertThat(badGeometries.size(), is(0));
+		assertThat(inspector.getBadGeometries().size(), is(0));
+		assertThat(inspector.getErrors().size(), is(0));
 	}
 
 	@Test
@@ -162,11 +162,10 @@ public class XPlanGeometryInspectorTest {
 		inspector.inspect(geometryToInspect);
 
 		List<BadGeometry> badGeometries = inspector.getBadGeometries();
-		assertThat(badGeometries.size(), is(2));
+		assertThat(badGeometries.size(), is(1));
 		Geometry intersection = badGeometries.get(0).getOriginalGeometry();
 		assertThat(intersection.getId(), is("GML_48d90d78-aa4a-44cc-939b-3562757993c6_intersection_1"));
-		Geometry geometry = badGeometries.get(1).getOriginalGeometry();
-		assertThat(geometry.getId(), is("GML_48d90d78-aa4a-44cc-939b-3562757993c6"));
+		assertThat(inspector.getErrors().size(), is(1));
 	}
 
 	@Test
@@ -175,14 +174,8 @@ public class XPlanGeometryInspectorTest {
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(geometryToInspect);
 
-		List<BadGeometry> badGeometries = inspector.getBadGeometries();
-		// Self intersection is not found because the single parts of the multi geometry
-		// are not tested in this test.
-		// The intersection of the multi geometries is not found because of the
-		// implementation of touching multi geometries (only one point is found).
-		// The failure notes the incorrect direction of the polygon with self
-		// intersection.
-		assertThat(badGeometries.size(), is(1));
+		assertThat(inspector.getErrors().size(), is(2));
+		assertThat(inspector.getBadGeometries().size(), is(1));
 	}
 
 	@Test
@@ -191,8 +184,8 @@ public class XPlanGeometryInspectorTest {
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(geometryToInspect);
 
-		List<BadGeometry> badGeometries = inspector.getBadGeometries();
-		assertThat(badGeometries.size(), is(1));
+		assertThat(inspector.getErrors().size(), is(1));
+		assertThat(inspector.getBadGeometries().size(), is(1));
 	}
 
 	@Test

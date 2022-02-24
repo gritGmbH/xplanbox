@@ -29,6 +29,7 @@ import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.GeometryInspectionException;
 import org.deegree.geometry.GeometryInspector;
 import org.deegree.geometry.composite.CompositeGeometry;
+import org.deegree.geometry.io.WKTWriter;
 import org.deegree.geometry.linearization.CurveLinearizer;
 import org.deegree.geometry.linearization.LinearizationCriterion;
 import org.deegree.geometry.linearization.MaxErrorCriterion;
@@ -54,9 +55,11 @@ import org.locationtech.jts.algorithm.LineIntersector;
 import org.locationtech.jts.algorithm.Orientation;
 import org.locationtech.jts.algorithm.RobustLineIntersector;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.IntersectionMatrix;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.geom.TopologyException;
 import org.locationtech.jts.geomgraph.Edge;
 import org.locationtech.jts.geomgraph.EdgeIntersection;
 import org.locationtech.jts.geomgraph.GeometryGraph;
@@ -118,7 +121,9 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private static final String INVALID_MSG_SELBSTUEBERSCHNEIDUNG = "2.2.2.1: Selbst\u00fcberschneidung an folgenden Punkten: %s.";
 
-	private static final String INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON = "2.2.2.1: Selbst\u00fcberschneidung zwischen MulitPolygonen an folgenden Punkten: %s";
+	private static final String INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON = "2.2.2.1: Selbst\u00fcberschneidung zwischen Polygonen des MulitPolygonen %s an folgenden Punkten: %s";
+
+	private static final String INVALID_MSG_COVERED_MULTIPOLYGON = "2.2.2.1: Das folgende Polygon des MulitPolygonen %s liegt vollstaendig in einem anderen Polygon des gleichen MultiPolygons: %s";
 
 	private final org.locationtech.jts.geom.GeometryFactory jtsFactory;
 
@@ -224,11 +229,15 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	private void inspect(MultiSurface geom) throws GeometryInspectionException {
-		List<Geometry> selfIntersections = calculateSelfIntersection(geom);
-		if (!selfIntersections.isEmpty()) {
-			String msg = createMessage(String.format(INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON,
-					geometriesAsReadableString(selfIntersections)));
-			createError(msg);
+		List<Object> surfaces = new ArrayList<>(geom);
+		AtomicInteger intersectionIndex = new AtomicInteger(1);
+		for (Object geom1 : geom) {
+			surfaces.remove(geom1);
+			Surface surface1 = (Surface) geom1;
+			for (Object curve2 : surfaces) {
+				Surface surface2 = inspect((Surface) curve2);
+				inspect(geom.getId(), intersectionIndex, surface1, surface2);
+			}
 		}
 	}
 
@@ -340,28 +349,45 @@ class XPlanGeometryInspector implements GeometryInspector {
 		return ring;
 	}
 
-	private List<Geometry> calculateSelfIntersection(MultiSurface geom) {
-		List<Geometry> selfIntersections = new ArrayList<>();
-		List<Object> surfaces = new ArrayList<>(geom);
-		int intersectionIndex = 1;
-		for (Object curve1 : geom) {
-			surfaces.remove(curve1);
-			Surface surface1 = (Surface) curve1;
-			for (Object curve2 : surfaces) {
-				Surface surface2 = inspect((Surface) curve2);
-				Geometry intersection = calculateSelfIntersection(surface1, surface2);
-				if (hasIntersection(intersection)) {
-					selfIntersections.add(intersection);
-					intersection.setId(geom.getId() + "_intersection_" + intersectionIndex++);
-					String intersectionMultiGeomMsg = "Geometrie der Selbst\u00fcberschneidung zwischen MulttPolygonen";
-					badGeometries.add(new BadGeometry(intersection, intersectionMultiGeomMsg));
+	private void inspect(String multSurfaceId, AtomicInteger intersectionIndex, Surface surface1, Surface surface2) {
+		org.locationtech.jts.geom.Geometry jtsGeometry1 = getJTSGeometry(surface1);
+		org.locationtech.jts.geom.Geometry jtsGeometry2 = getJTSGeometry(surface2);
+		if (jtsGeometry1 != null && jtsGeometry2 != null) {
+			try {
+				IntersectionMatrix relate = jtsGeometry1.relate(jtsGeometry2);
+				if (relate.isContains()) {
+					String error = createMessage(
+							String.format(INVALID_MSG_COVERED_MULTIPOLYGON, multSurfaceId, WKTWriter.write(surface2)));
+					errors.add(error);
+					badGeometries.add(new BadGeometry(surface2, error));
+				}
+				else if (relate.isCoveredBy()) {
+					String error = createMessage(
+							String.format(INVALID_MSG_COVERED_MULTIPOLYGON, multSurfaceId, WKTWriter.write(surface1)));
+					errors.add(error);
+					badGeometries.add(new BadGeometry(surface1, error));
+				}
+				else if (relate.isIntersects()) {
+					Geometry intersection = calculateSelfIntersectionOfExterior(surface1, surface2);
+					if (hasIntersection(intersection)) {
+						intersection.setId(multSurfaceId + "_intersection_" + intersectionIndex.getAndAdd(1));
+						String error = createMessage(String.format(INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON,
+								multSurfaceId, geometryAsReadableString(intersection)));
+						errors.add(error);
+						badGeometries.add(new BadGeometry(intersection, error));
+					}
 				}
 			}
+			catch (TopologyException e) {
+				String error = String.format(
+						"2.2.2.1: Das MulitPolygon mit der ID %s kann aufgrund von Fehlern der Geometrie nicht validiert werden.",
+						multSurfaceId);
+				errors.add(error);
+			}
 		}
-		return selfIntersections;
 	}
 
-	private Geometry calculateSelfIntersection(Surface surface1, Surface surface2) {
+	private Geometry calculateSelfIntersectionOfExterior(Surface surface1, Surface surface2) {
 		if (Surface.SurfaceType.Polygon.equals(surface1.getSurfaceType())
 				&& Surface.SurfaceType.Polygon.equals(surface2.getSurfaceType())) {
 			org.deegree.geometry.primitive.Polygon polygon1 = (org.deegree.geometry.primitive.Polygon) surface1;
@@ -555,10 +581,6 @@ class XPlanGeometryInspector implements GeometryInspector {
 		return duplicateControlPoints;
 	}
 
-	private String geometriesAsReadableString(List<Geometry> selfIntersections) {
-		return selfIntersections.stream().map(this::geometryAsReadableString).collect(Collectors.joining(","));
-	}
-
 	private String geometryAsReadableString(Geometry geom) {
 		switch (geom.getGeometryType()) {
 		case PRIMITIVE_GEOMETRY:
@@ -713,6 +735,16 @@ class XPlanGeometryInspector implements GeometryInspector {
 			}
 		}
 		return jtsFactory.createLinearRing(coordinates.toArray(new Coordinate[coordinates.size()]));
+	}
+
+	private org.locationtech.jts.geom.Geometry getJTSGeometry(Surface surface) {
+		if (surface instanceof AbstractDefaultGeometry)
+			return ((AbstractDefaultGeometry) surface).getJTSGeometry();
+		String msg = createMessage(String.format(
+				"Nicht unterstuetzer Geometrietyp {}, die geometrische Pruefung kann nicht durchgefuehrt werden.",
+				surface.getClass().getSimpleName()));
+		createError(msg);
+		return null;
 	}
 
 	private void addLastBadGeometry(Geometry inspected) {
