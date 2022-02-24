@@ -21,8 +21,6 @@
  */
 package de.latlon.xplan.validator.geometric.inspector;
 
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.TopologyException;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.composite.CompositeGeometry;
@@ -37,6 +35,8 @@ import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.TopologyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -143,6 +143,11 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	@Override
 	public List<String> getErrors() {
 		return errors;
+	}
+
+	@Override
+	public List<String> getWarnings() {
+		return Collections.emptyList();
 	}
 
 	@Override

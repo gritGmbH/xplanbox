@@ -21,6 +21,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.utils.Pair;
@@ -62,10 +63,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 
 /**
  * Inspector for 2.2.1 Flaechenschlussbedingung:
@@ -96,11 +105,23 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private static final String ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht: %s";
 
+	private static final String WARNINGERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s koennte die Flaechenschlussbedingung an folgender Stelle nicht erfuellen: %s";
+
 	private final List<FlaechenschlussFeature> flaechenschlussFeatures = new ArrayList<>();
 
-	private final List<BadGeometry> flaechenschlussErrors = new ArrayList<>();
+	private final List<String> flaechenschlussErrors = new ArrayList<>();
+
+	private final List<String> flaechenschlussWarnings = new ArrayList<>();
+
+	private final List<BadGeometry> badGeometries = new ArrayList<>();
+
+	private final XPlanVersion xPlanVersion;
 
 	private FlaechenschlussFeatureInspector flaechenschlussFeatureInspector = new FlaechenschlussFeatureInspector();
+
+	public OptimisedFlaechenschlussInspector(XPlanVersion xPlanVersion) {
+		this.xPlanVersion = xPlanVersion;
+	}
 
 	@Override
 	public Feature inspect(Feature feature) throws FeatureInspectionException {
@@ -129,20 +150,24 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		}
 		else {
 			LOG.info("Features with invalid flaechenschluss:\n {}",
-					flaechenschlussErrors.stream().map(fe -> fe.getErrors().get(0)).collect(Collectors.joining("\n")));
+					flaechenschlussErrors.stream().collect(Collectors.joining("\n")));
 		}
 		return flaechenschlussErrors.isEmpty();
 	}
 
 	@Override
 	public List<String> getErrors() {
-		return flaechenschlussErrors.stream().map(e -> e.getErrors()).flatMap(List::stream)
-				.collect(Collectors.toList());
+		return flaechenschlussErrors;
+	}
+
+	@Override
+	public List<String> getWarnings() {
+		return flaechenschlussWarnings;
 	}
 
 	@Override
 	public List<BadGeometry> getBadGeometries() {
-		return flaechenschlussErrors;
+		return badGeometries;
 	}
 
 	private void analyseFlaechenschlussFeaturePairs() {
@@ -153,30 +178,50 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	}
 
 	private void analyseFlaechenschlussUnion() {
+		if (XPLAN_3.equals(xPlanVersion) || XPLAN_40.equals(xPlanVersion) || XPLAN_41.equals(xPlanVersion)
+				|| XPLAN_50.equals(xPlanVersion) || XPLAN_51.equals(xPlanVersion) || XPLAN_52.equals(xPlanVersion)) {
+			LOG.info("Loecher im Flaechenschluss sind in der Version {} zugelassen und werden daher nicht ueberprueft.",
+					xPlanVersion);
+			return;
+		}
+		boolean handleHolesAsFailure = true;
+		if (XPLAN_53.equals(xPlanVersion) || XPLAN_54.equals(xPlanVersion)) {
+			LOG.info(
+					"Loecher im Flaechenschluss sind in der Version {} zugelassen sollten aber ueber BP_FlaecheOhneFestsetzung bzw. FP_FlaecheOhneDarstellung modelliert werden. Potentielle Fehler werden als Warnung ausgegeben",
+					xPlanVersion);
+			handleHolesAsFailure = false;
+		}
+		LOG.info(
+				"Loecher im Flaechenschluss sind in der Version {} nicht mehr zugelassen muessen ueber BP_FlaecheOhneFestsetzung bzw. FP_FlaecheOhneDarstellung modelliert werden.",
+				xPlanVersion);
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion();
 		LOG.debug("Union of all flaechenschluss geometries: " + WKTWriter.write(flaechenschlussUnion));
-		checkFlaechenschlussFeaturesIntersectingAnInteriorRing(flaechenschlussUnion);
+		checkFlaechenschlussFeaturesIntersectingAnInteriorRing(flaechenschlussUnion, handleHolesAsFailure);
 	}
 
-	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(Geometry flaechenschlussUnion) {
+	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(Geometry flaechenschlussUnion,
+			boolean handleHolesAsFailure) {
 		if (flaechenschlussUnion == null)
 			return;
 		if (flaechenschlussUnion instanceof DefaultSurface) {
 			// Simple Polygon without interior ring must be valid!
 			if (((DefaultSurface) flaechenschlussUnion).getInteriorRingsCoordinates().isEmpty())
 				return;
-			checkFlaechenschlussFeaturesIntersectingAnInteriorRing((DefaultSurface) flaechenschlussUnion);
+			checkFlaechenschlussFeaturesIntersectingAnInteriorRing((DefaultSurface) flaechenschlussUnion,
+					handleHolesAsFailure);
 		}
 		else if (flaechenschlussUnion instanceof MultiSurface) {
-			checkFlaechenschlussFeaturesIntersectingAnInteriorRing((MultiSurface) flaechenschlussUnion);
+			checkFlaechenschlussFeaturesIntersectingAnInteriorRing((MultiSurface) flaechenschlussUnion,
+					handleHolesAsFailure);
 		}
-		Collections.emptyList();
 	}
 
-	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(MultiSurface<Surface> flaechenschlussUnion) {
+	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(MultiSurface<Surface> flaechenschlussUnion,
+			boolean handleHolesAsFailure) {
 		for (Surface flaechenschlussUnionGeom : flaechenschlussUnion) {
 			if (flaechenschlussUnionGeom instanceof DefaultSurface) {
-				checkFlaechenschlussFeaturesIntersectingAnInteriorRing((DefaultSurface) flaechenschlussUnionGeom);
+				checkFlaechenschlussFeaturesIntersectingAnInteriorRing((DefaultSurface) flaechenschlussUnionGeom,
+						handleHolesAsFailure);
 			}
 			else {
 				LOG.warn("Could not handle surface of type " + flaechenschlussUnionGeom.getClass());
@@ -184,7 +229,8 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		}
 	}
 
-	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(DefaultSurface flaechenschlussUnion) {
+	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(DefaultSurface flaechenschlussUnion,
+			boolean handleHolesAsFailure) {
 		List<? extends SurfacePatch> patches = flaechenschlussUnion.getPatches();
 		PolygonPatch patch = (PolygonPatch) patches.get(0);
 		List<Ring> interiorRings = patch.getInteriorRings();
@@ -199,17 +245,26 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 							.collect(Collectors.joining("\n  ")));
 			List<ControlPoint> controlPointsInIntersection = collectControlPointsIntersectingTheInteriorRing(
 					interiorRing, intersectingFlaechenschlussFeatures);
-			checkControlPointsAndAddFailures(controlPointsInIntersection);
+			checkControlPointsAndAddFailures(controlPointsInIntersection, handleHolesAsFailure);
 		}
 	}
 
-	private void checkControlPointsAndAddFailures(List<ControlPoint> controlPoints) {
+	private void checkControlPointsAndAddFailures(List<ControlPoint> controlPoints, boolean handleHolesAsFailure) {
 		List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPoints.stream()
 				.filter(cp -> !cp.hasIdenticalControlPoint()).collect(Collectors.toList());
 		controlPointsWithInvalidFlaechenschluss.stream().forEach(cp -> {
-			String error = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
-			BadGeometry badGeometry = new BadGeometry(cp.getPoint(), error);
-			flaechenschlussErrors.add(badGeometry);
+			if (handleHolesAsFailure) {
+				String error = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
+				BadGeometry badGeometry = new BadGeometry(cp.getPoint(), error);
+				badGeometries.add(badGeometry);
+				flaechenschlussErrors.add(error);
+			}
+			else {
+				String warning = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
+				flaechenschlussWarnings.add(warning);
+				BadGeometry badGeometry = new BadGeometry(cp.getPoint(), warning);
+				badGeometries.add(badGeometry);
+			}
 		});
 	}
 
@@ -320,7 +375,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			List<ControlPoint> controlPointsToCheck = new ArrayList<>();
 			controlPointsToCheck.addAll(controlPointsFlaechenschlussFeature1);
 			controlPointsToCheck.addAll(controlPointsFlaechenschlussFeature2);
-			checkControlPointsAndAddFailures(controlPointsToCheck);
+			checkControlPointsAndAddFailures(controlPointsToCheck, true);
 		}
 	}
 

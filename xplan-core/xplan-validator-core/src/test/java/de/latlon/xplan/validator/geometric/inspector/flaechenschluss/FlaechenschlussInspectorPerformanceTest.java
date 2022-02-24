@@ -20,33 +20,36 @@ import org.junit.Test;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Ignore
 public class FlaechenschlussInspectorPerformanceTest {
 
-	@Ignore
 	@Test
 	public void testCheckFlaechenschluss_OldInspector() throws Exception {
 		FlaechenschlussInspector flaechenschlussInspector = new FlaechenschlussInspector();
-		checkFlaechenschluss(flaechenschlussInspector);
+		long timeNeede = checkFlaechenschluss(flaechenschlussInspector);
+		System.out.println("Flaechenschluss with old implementation: " + timeNeede + " [ms]");
 	}
 
-	@Ignore
 	@Test
 	public void testCheckFlaechenschluss_OptimizedInspector() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector();
-		checkFlaechenschluss(flaechenschlussInspector);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		long timeNeede = checkFlaechenschluss(flaechenschlussInspector);
+		System.out.println("Flaechenschluss with optimized implementation: " + timeNeede + " [ms]");
 	}
 
-	private void checkFlaechenschluss(GeometricFeatureInspector flaechenschlussInspector)
+	private long checkFlaechenschluss(GeometricFeatureInspector flaechenschlussInspector)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = getLocalTestArchive("Testplan.zip");
 		long start = System.currentTimeMillis();
 		readFeatures(archive, flaechenschlussInspector);
 		flaechenschlussInspector.checkGeometricRule();
 		long end = System.currentTimeMillis();
-		System.out.println("Flaechenschluss with optimized implementation: " + (end - start) + " [ms]");
+		return end - start;
 	}
 
 	private void readFeatures(XPlanArchive archive, FeatureInspector flaechenschlussInspector)

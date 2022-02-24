@@ -185,6 +185,11 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 	}
 
 	@Override
+	public List<String> getWarnings() {
+		return Collections.emptyList();
+	}
+
+	@Override
 	public List<BadGeometry> getBadGeometries() {
 		if (invalidGeltungsbereich != null)
 			return Collections.singletonList(invalidGeltungsbereich);

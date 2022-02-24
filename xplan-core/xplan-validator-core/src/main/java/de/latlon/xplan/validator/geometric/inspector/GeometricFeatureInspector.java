@@ -42,6 +42,11 @@ public interface GeometricFeatureInspector extends FeatureInspector {
 	List<String> getErrors();
 
 	/**
+	 * @return all warnings found, max be empty but never <code>null</code>
+	 */
+	List<String> getWarnings();
+
+	/**
 	 * @return the BadGeoemtries, max be empty but never <code>null</code>
 	 */
 	List<BadGeometry> getBadGeometries();

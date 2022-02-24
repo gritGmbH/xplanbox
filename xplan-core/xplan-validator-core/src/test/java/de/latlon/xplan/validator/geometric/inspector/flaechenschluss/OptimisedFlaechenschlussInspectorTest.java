@@ -87,7 +87,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 		gmlStream.setGeometryFactory(geomFac);
 		gmlStream.setApplicationSchema(schema);
 		gmlStream.setSkipBrokenGeometries(true);
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector();
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(
+				archive.getVersion());
 		gmlStream.addInspector(flaechenschlussInspector);
 		gmlStream.readFeature();
 
