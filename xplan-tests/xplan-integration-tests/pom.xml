@@ -101,10 +101,10 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>${project.groupId}</groupId>
-                  <artifactId>xplan-test-resources</artifactId>
+                  <artifactId>xplan-tests-resources</artifactId>
                 </artifactItem>
               </artifactItems>
-              <outputDirectory>${project.build.outputDirectory}/xplan-test-resources</outputDirectory>
+              <outputDirectory>${project.build.outputDirectory}/xplan-tests-resources</outputDirectory>
             </configuration>
           </execution>
         </executions>
@@ -254,7 +254,7 @@
     <!-- xplanung -->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-test-resources</artifactId>
+      <artifactId>xplan-tests-resources</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>

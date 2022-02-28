@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!--
+  #%L
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
 <sld:StyledLayerDescriptor version="1.0.0" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
   <sld:NamedLayer>
@@ -16,7 +37,7 @@
 
         <sld:Rule>
           <sld:Name>Fernwaermeltg</sld:Name>
-          <sld:Title>Fernwärmeleitung</sld:Title>
+          <sld:Title>Fernwï¿½rmeleitung</sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>xplan:detailTyp_NSMCode</ogc:PropertyName>
@@ -159,8 +180,8 @@
         <!--Grosskraftwerk-->
 
         <sld:Rule>
-          <sld:Name>VR Großkraftwerk</sld:Name>
-          <sld:Title>VR Großkraftwerk</sld:Title>
+          <sld:Name>VR Groï¿½kraftwerk</sld:Name>
+          <sld:Title>VR Groï¿½kraftwerk</sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
@@ -184,8 +205,8 @@
         </sld:Rule>
 
         <sld:Rule>
-          <sld:Name>VR Großkraftwerk außerhalb</sld:Name>
-          <sld:Title>VR Großkraftwerk außerhalb</sld:Title>
+          <sld:Name>VR Groï¿½kraftwerk auï¿½erhalb</sld:Name>
+          <sld:Title>VR Groï¿½kraftwerk auï¿½erhalb</sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
@@ -209,8 +230,8 @@
         </sld:Rule>
 
         <sld:Rule>
-          <sld:Name>VR Großkraftwerk</sld:Name>
-          <sld:Title>VR Großkraftwerk</sld:Title>
+          <sld:Name>VR Groï¿½kraftwerk</sld:Name>
+          <sld:Title>VR Groï¿½kraftwerk</sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
@@ -234,8 +255,8 @@
         </sld:Rule>
 
         <sld:Rule>
-          <sld:Name>VR Großkraftwerk außerhalb</sld:Name>
-          <sld:Title>VR Großkraftwerk außerhalb</sld:Title>
+          <sld:Name>VR Groï¿½kraftwerk auï¿½erhalb</sld:Name>
+          <sld:Title>VR Groï¿½kraftwerk auï¿½erhalb</sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
@@ -259,8 +280,8 @@
         </sld:Rule>
 
         <sld:Rule>
-          <sld:Name>VR Großkraftwerk</sld:Name>
-          <sld:Title>VR Großkraftwerk</sld:Title>
+          <sld:Name>VR Groï¿½kraftwerk</sld:Name>
+          <sld:Title>VR Groï¿½kraftwerk</sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
@@ -284,8 +305,8 @@
         </sld:Rule>
 
         <sld:Rule>
-          <sld:Name>VR Großkraftwerk außerhalb</sld:Name>
-          <sld:Title>VR Großkraftwerk außerhalb</sld:Title>
+          <sld:Name>VR Groï¿½kraftwerk auï¿½erhalb</sld:Name>
+          <sld:Title>VR Groï¿½kraftwerk auï¿½erhalb</sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
@@ -309,8 +330,8 @@
         </sld:Rule>
 
         <sld:Rule>
-          <sld:Name>VR Großkraftwerk</sld:Name>
-          <sld:Title>VR Großkraftwerk</sld:Title>
+          <sld:Name>VR Groï¿½kraftwerk</sld:Name>
+          <sld:Title>VR Groï¿½kraftwerk</sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
@@ -334,8 +355,8 @@
         </sld:Rule>
 
         <sld:Rule>
-          <sld:Name>VR Großkraftwerk außerhalb</sld:Name>
-          <sld:Title>VR Großkraftwerk außerhalb</sld:Title>
+          <sld:Name>VR Groï¿½kraftwerk auï¿½erhalb</sld:Name>
+          <sld:Title>VR Groï¿½kraftwerk auï¿½erhalb</sld:Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
