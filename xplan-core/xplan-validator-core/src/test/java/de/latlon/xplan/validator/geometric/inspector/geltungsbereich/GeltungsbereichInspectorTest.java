@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanAde;
@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -51,12 +52,16 @@ public class GeltungsbereichInspectorTest {
 	@Test
 	public void testCheck() throws Exception {
 		XPlanArchive archive = getTestArchive("xplan51/V4_1_ID_103_geltungsbereich-erfuellt.zip");
+		long startTimeMillis = System.currentTimeMillis();
 		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		long endTimeMillis = System.currentTimeMillis();
 		assertThat(isValid, is(true));
 		assertThat(geltungsbereichInspector.getErrors().size(), is(0));
 		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(0));
+
+		System.out.println(String.format("Geltungsbereich check needed %s [ms]", endTimeMillis - startTimeMillis));
 	}
 
 	@Test
