@@ -52,6 +52,15 @@ import static org.mockito.Mockito.verify;
 public class XPlanGeometryInspectorTest {
 
 	@Test
+	public void testInspect_PolygonWithInteriorRing() throws Exception {
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(readGeometry("polygonWithInteriorRing.gml"));
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(0));
+	}
+
+	@Test
 	public void testInspect_Ring_ShouldTestSelfIntersection() throws Exception {
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(readGeometry("curve.gml"));
