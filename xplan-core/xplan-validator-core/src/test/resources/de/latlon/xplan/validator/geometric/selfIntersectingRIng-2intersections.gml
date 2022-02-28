@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+  #%L
+  xplan-validator-core - XPlan Validator Core Komponente
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
 <gml:LinearRing xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="Gml_8AB9C0E6-69DB-4855-A32C-CD9BBC95ABED"
                 srsName="EPSG:25832">
   <gml:posList srsName="EPSG:25832">583188.3148 5921242.5417 583152.0668 5921053.8934 583264.515 5921031.6683
