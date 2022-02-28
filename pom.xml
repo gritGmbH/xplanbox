@@ -5,7 +5,8 @@
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
   <version>4.4-SNAPSHOT</version>
-  <description>xPlanBox</description>
+  <name>xPlanBox</name>
+  <description>Software zur Verwaltung von XPlanGML Daten</description>
   <inceptionYear>2008</inceptionYear>
   <url>https://xplanbox.lat-lon.de</url>
   <organization>
@@ -147,6 +148,73 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>license-maven-plugin</artifactId>
         <version>2.0.0</version>
+        <configuration>
+          <inceptionYear>${project.inceptionYear}</inceptionYear>
+          <organizationName>${project.organization.name}</organizationName>
+          <projectName>${project.name} - ${project.description}</projectName>
+          <copyrightOwners>lat/lon GmbH, info@lat-lon.de, www.lat-lon.de</copyrightOwners>
+          <licenseName>agpl_v3</licenseName>
+          <roots>
+            <root>src/main</root>
+            <root>src/test</root>
+          </roots>
+          <excludes>
+            <exclude>*/codelists/**</exclude>
+            <exclude>*/appschemas/**</exclude>
+            <exclude>*/masterportal/**</exclude>
+            <exclude>*/xplanmgrweb/js/**</exclude>
+            <exclude>*/appschemas/XPlanGML_3_0/**</exclude>
+            <exclude>*/appschemas/XPlanGML_4_0/**</exclude>
+            <exclude>*/appschemas/XPlanGML_4_1/**</exclude>
+            <exclude>*/appschemas/XPlanGML_5_0/**</exclude>
+            <exclude>*/appschemas/XPlanGML_5_1/**</exclude>
+            <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
+            <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
+            <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+            <exclude>**/*.json</exclude>
+          </excludes>
+          <extraExtensions>
+            <xq>xml</xq>
+            <gfi>xml</gfi>
+            <gml>xml</gml>
+            <jrxml>xml</jrxml>
+            <xjc>xml</xjc>
+            <xsd>xml</xsd>
+            <xslt>xml</xslt>
+            <rules>properties</rules>
+            <syn>properties</syn>
+            <yaml>properties</yaml>
+            <yuml>properties</yuml>
+          </extraExtensions>
+        </configuration>
+      </plugin>
+      <!-- Workaround to replace XML comments with XQuery comments,
+           since licence:update-file-header goal does not support xq files yet! -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>replace-xml-comment</id>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>process-sources</phase>
+            <configuration>
+              <target>
+                <replace dir="${project.basedir}" value="(:">
+                  <include name="**/*.xq"/>
+                  <replacetoken><![CDATA[<!--]]></replacetoken>
+                </replace>
+                <replace dir="${project.basedir}" value=":)">
+                  <include name="**/*.xq"/>
+                  <replacetoken><![CDATA[-->]]></replacetoken>
+                </replace>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -689,7 +757,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>xplan-test-resources</artifactId>
+        <artifactId>xplan-tests-resources</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -1057,8 +1125,8 @@
 
   <licenses>
     <license>
-      <name>GNU Lesser General Public License (LGPL), version 2.1</name>
-      <url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
+      <name>GNU Affero General Public License (AGPL), version 3</name>
+      <url>https://www.gnu.org/licenses/agpl-3.0.html</url>
       <distribution>repo</distribution>
     </license>
   </licenses>

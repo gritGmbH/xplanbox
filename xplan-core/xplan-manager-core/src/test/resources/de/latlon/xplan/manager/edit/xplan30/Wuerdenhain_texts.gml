@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!--
+  #%L
+  xplan-manager-core - XPlan Manager Core Komponente
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
 <XPlanAuszug
   xsi:schemaLocation="http://www.xplanung.de/xplangml/3/0 ../../../../../../../../../xplan-schemas/src/main/resources/appschemas/XPlanGML_3_0/XPlanung-Operationen.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml"
@@ -132,8 +153,8 @@
       <xplan:refRechtsplan xlink:href="#GML_1D00000D-0DE0-4667-A19C-6EC6ABDF000B" />
       <xplan:gkz>12062410</xplan:gkz>
       <xplan:planArt>40000</xplan:planArt>
-      <xplan:stadt>Gemeinde Röderland</xplan:stadt>
-      <xplan:ortsteil>Würdenhain</xplan:ortsteil>
+      <xplan:stadt>Gemeinde Rï¿½derland</xplan:stadt>
+      <xplan:ortsteil>Wï¿½rdenhain</xplan:ortsteil>
       <xplan:rechtsstand>3000</xplan:rechtsstand>
       <xplan:rechtsverordnungsDatum>1988-01-01</xplan:rechtsverordnungsDatum>
     </xplan:BP_Plan>
