@@ -249,6 +249,11 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	}
 
 	private void checkControlPointsAndAddFailures(List<ControlPoint> controlPoints, boolean handleHolesAsFailure) {
+		List<ControlPoint> controlPointsInIntersectionTmp = new ArrayList<>(controlPoints);
+		controlPoints.forEach(cpToCheck -> {
+			controlPointsInIntersectionTmp.remove(cpToCheck);
+			controlPointsInIntersectionTmp.forEach(cpInIntersection2 -> cpToCheck.checkIfIdentical(cpInIntersection2));
+		});
 		List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPoints.stream()
 				.filter(cp -> !cp.hasIdenticalControlPoint()).collect(Collectors.toList());
 		controlPointsWithInvalidFlaechenschluss.stream().forEach(cp -> {
@@ -272,11 +277,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		List<ControlPoint> controlPointsInIntersection = intersectingFlaechenschlussFeatures.stream()
 				.map(flaechenschlussFeature -> parseControlPointsInIntersection(flaechenschlussFeature, interiorRing))
 				.flatMap(List::stream).collect(Collectors.toList());
-		List<ControlPoint> controlPointsInIntersectionTmp = new ArrayList<>(controlPointsInIntersection);
-		controlPointsInIntersection.forEach(cpToCheck -> {
-			controlPointsInIntersectionTmp.remove(cpToCheck);
-			controlPointsInIntersectionTmp.forEach(cpInIntersection2 -> cpToCheck.checkIfIdentical(cpInIntersection2));
-		});
 		return controlPointsInIntersection;
 	}
 
