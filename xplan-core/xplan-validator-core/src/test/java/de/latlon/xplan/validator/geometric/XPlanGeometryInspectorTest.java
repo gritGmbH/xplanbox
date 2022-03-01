@@ -144,7 +144,7 @@ public class XPlanGeometryInspectorTest {
 	}
 
 	@Test
-	public void testInspect_MultiSurface() throws Exception {
+	public void testInspect_MultiSurface_shouldBeValid() throws Exception {
 		Geometry geometryToInspect = readGeometry("multiSurface.gml");
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(geometryToInspect);
@@ -154,17 +154,46 @@ public class XPlanGeometryInspectorTest {
 	}
 
 	@Test
-	public void testInspect_InvalidMultiSurface() throws Exception {
-		Geometry geometryToInspect = readGeometry("multiSurface-invalid.gml");
+	public void testInspect_MultiSurfaceTouches_shouldBeValid() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-touches.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		assertThat(inspector.getBadGeometries().size(), is(0));
+		assertThat(inspector.getErrors().size(), is(0));
+	}
+
+	@Test
+	public void testInspect_MultiSurfaceIntersection_shouldBeInvalid() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-intersection.gml");
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(geometryToInspect);
 
 		List<BadGeometry> badGeometries = inspector.getBadGeometries();
-		assertThat(badGeometries.size(), is(2));
+		assertThat(badGeometries.size(), is(1));
 		Geometry intersection = badGeometries.get(0).getOriginalGeometry();
 		assertThat(intersection.getId(), is("GML_48d90d78-aa4a-44cc-939b-3562757993c6_intersection_1"));
-		Geometry geometry = badGeometries.get(1).getOriginalGeometry();
-		assertThat(geometry.getId(), is("GML_48d90d78-aa4a-44cc-939b-3562757993c6"));
+		assertThat(inspector.getErrors().size(), is(1));
+	}
+
+	@Test
+	public void testInspect_MultiSurfaceIntersectionInSelfIntersection() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-intersectionInIntersection.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		assertThat(inspector.getErrors().size(), is(2));
+		assertThat(inspector.getBadGeometries().size(), is(1));
+	}
+
+	@Test
+	public void testInspect_MultiSurfaceCoveringGeometries() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-covering.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		assertThat(inspector.getErrors().size(), is(1));
+		assertThat(inspector.getBadGeometries().size(), is(1));
 	}
 
 	@Test
