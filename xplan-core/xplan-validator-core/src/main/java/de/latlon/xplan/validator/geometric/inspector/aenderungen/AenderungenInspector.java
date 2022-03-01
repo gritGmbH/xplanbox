@@ -1,4 +1,4 @@
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.aenderungen;
 
 /*-
  * #%L

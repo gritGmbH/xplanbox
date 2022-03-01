@@ -20,12 +20,13 @@
  */
 package de.latlon.xplan.validator.geometric;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.geometric.inspector.AenderungenInspector;
-import de.latlon.xplan.validator.geometric.inspector.FlaechenschlussInspector;
 import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
+import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
+import de.latlon.xplan.validator.geometric.inspector.flaechenschluss.OptimisedFlaechenschlussInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
@@ -109,7 +110,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		long begin = System.currentTimeMillis();
 		LOG.info("- Einlesen der Features (+ Geometrievalidierung)...");
 		XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector(xmlStream);
-		List<GeometricFeatureInspector> featureInspectors = createInspectors(voOptions);
+		List<GeometricFeatureInspector> featureInspectors = createInspectors(archive.getVersion(), voOptions);
 		AenderungenInspector aenderungenInspector = new AenderungenInspector();
 		GMLStreamReader gmlStream = createGmlStreamReader(archive, crs, schema, xmlStream, geometryInspector,
 				featureInspectors, aenderungenInspector);
@@ -145,14 +146,15 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		boolean isValid = fi.checkGeometricRule();
 		if (!isValid) {
 			result.addErrors(fi.getErrors());
+			result.addWarnings(fi.getWarnings());
 			result.addBadGeometries(fi.getBadGeometries());
 		}
 	}
 
-	private List<GeometricFeatureInspector> createInspectors(List<ValidationOption> voOptions) {
+	private List<GeometricFeatureInspector> createInspectors(XPlanVersion version, List<ValidationOption> voOptions) {
 		List<GeometricFeatureInspector> inspectors = new ArrayList<>();
 		if (!isSkipped(voOptions, SKIP_FLAECHENSCHLUSS_OPTION))
-			inspectors.add(new FlaechenschlussInspector());
+			inspectors.add(new OptimisedFlaechenschlussInspector(version));
 		if (!isSkipped(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
 			inspectors.add(new GeltungsbereichInspector());
 		return inspectors;

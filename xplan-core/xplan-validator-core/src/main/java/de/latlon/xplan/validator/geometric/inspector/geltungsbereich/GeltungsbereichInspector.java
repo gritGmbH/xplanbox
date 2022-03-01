@@ -146,6 +146,11 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	}
 
 	@Override
+	public List<String> getWarnings() {
+		return Collections.emptyList();
+	}
+
+	@Override
 	public List<BadGeometry> getBadGeometries() {
 		return badGeometries;
 	}

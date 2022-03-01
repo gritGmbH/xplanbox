@@ -18,8 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.datetime.Date;
@@ -34,7 +35,6 @@ import org.deegree.geometry.i18n.Messages;
 import org.deegree.geometry.multi.MultiSurface;
 import org.deegree.geometry.points.Points;
 import org.deegree.geometry.primitive.Point;
-import org.deegree.geometry.primitive.Polygon;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
 import org.deegree.geometry.primitive.patches.PolygonPatch;
@@ -63,7 +63,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.validator.geometric.inspector.FlaechenschlussTolerance.calculateAllowedDistanceValue;
+import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.FlaechenschlussTolerance.calculateAllowedDistanceValue;
 
 /**
  * Inspector for 2.2.1 Flaechenschlussbedingung:
@@ -181,6 +181,11 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 			return invalidGeltungsbereich.getErrors();
 		return flaechenschlussErrors.stream().map(e -> e.getErrors()).flatMap(List::stream)
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<String> getWarnings() {
+		return Collections.emptyList();
 	}
 
 	@Override

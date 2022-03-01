@@ -18,16 +18,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
 import org.deegree.commons.uom.Measure;
-import org.deegree.cs.components.IUnit;
-import org.deegree.cs.components.Unit;
 import org.deegree.geometry.primitive.Point;
 
-import java.math.BigDecimal;
-
-import static de.latlon.xplan.validator.geometric.inspector.FlaechenschlussTolerance.calculateAllowedDistance;
+import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.FlaechenschlussTolerance.calculateAllowedDistance;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -39,6 +35,15 @@ public class ControlPoint {
 	private final Point point;
 
 	private boolean hasIdenticalControlPoint;
+
+	/**
+	 * @param featureGmlId the gml id of the feature this control point is part of, never
+	 * <code>null</code>
+	 * @param point the control point, never <code>null</code>
+	 */
+	public ControlPoint(String featureGmlId, Point point) {
+		this(featureGmlId, point, false);
+	}
 
 	/**
 	 * @param featureGmlId the gml id of the feature this control point is part of, never

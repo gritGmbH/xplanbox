@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector;
+package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
 import org.deegree.commons.uom.Measure;
 import org.deegree.cs.components.IUnit;
