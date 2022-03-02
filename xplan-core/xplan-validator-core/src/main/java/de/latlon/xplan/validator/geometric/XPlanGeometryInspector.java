@@ -22,7 +22,6 @@ package de.latlon.xplan.validator.geometric;
 
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
-import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.GeometryInspectionException;
@@ -441,31 +440,27 @@ class XPlanGeometryInspector implements GeometryInspector {
 			for (int ringIdx = 0; ringIdx < interiorJTSRings.size(); ringIdx++) {
 				LinearRing interiorJTSRing = interiorJTSRings.get(ringIdx);
 				interiorJTSRingsAsPolygons.get(ringIdx);
-				if (exteriorJTSRing.touches(interiorJTSRing)) {
-					String msg = createMessage(String.format(
-							"2.2.2.1: \u00c4u\u00dferer Ring ber\u00fchrt den inneren Ring mit Index %d.", ringIdx));
-					createError(msg);
-					String intersectionMsg = String.format(
-							"Ber\u00fchrung(en) des \u00c4u\u00dferer Ring mit dem inneren Ring mit Index %d.",
-							ringIdx);
-					calculateIntersectionAndAddError(exteriorJTSRing, interiorJTSRing,
-							exteriorRing.getCoordinateSystem(), intersectionMsg);
-				}
 				if (exteriorJTSRing.intersects(interiorJTSRing)) {
-					String msg = createMessage(String.format(
-							"2.2.2.1: \u00c4u\u00dferer Ring schneidet den inneren Ring mit Index %d.", ringIdx));
-					createError(msg);
-					String intersectionMsg = String.format(
-							"Schnittpunkt(e) des \u00c4u\u00dferer Ring mit dem inneren Ring mit Index %d.", ringIdx);
-					calculateIntersectionAndAddError(exteriorJTSRing, interiorJTSRing,
-							exteriorRing.getCoordinateSystem(), intersectionMsg);
+					org.locationtech.jts.geom.Geometry intersection = exteriorJTSRing.intersection(interiorJTSRing);
+					AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS(intersection,
+							exteriorRing.getCoordinateSystem());
+					if (hasIntersection(intersectionGeom)) {
+						String msg = createMessage(String.format(
+								"2.2.2.1: \u00c4u\u00dferer Ring schneidet den inneren Ring mit Index %d.", ringIdx));
+						createError(msg);
+						String intersectionMsg = String.format(
+								"Schnittpunkt(e) des \u00c4u\u00dferer Ring mit dem inneren Ring mit Index %d.",
+								ringIdx);
+						badGeometries.add(new BadGeometry(intersectionGeom, intersectionMsg));
+					}
 				}
-				if (!interiorJTSRing.within(exteriorJTSRingAsPolygon)) {
+				else if (!interiorJTSRing.within(exteriorJTSRingAsPolygon)) {
 					String msg = createMessage(String.format(
 							"2.2.2.1: Innerer Ring mit Index %d befindet sich nicht innerhalb des \u00e4u\u00dferen Rings.",
 							ringIdx));
 					createError(msg);
 				}
+				ringIdx++;
 			}
 
 			LOG.debug("Validating spatial relations between pairs of interior rings.");
@@ -510,13 +505,6 @@ class XPlanGeometryInspector implements GeometryInspector {
 			String msg = createMessage("Validierung der Oberfl\u00e4chen-Topologie fehlgeschlagen (Folgefehler!?).");
 			getErrors().add(msg); // don't use cm errors - mocking!
 		}
-	}
-
-	private void calculateIntersectionAndAddError(LinearRing exteriorJTSRing, LinearRing interiorJTSRing, ICRS crs,
-			String msg) {
-		org.locationtech.jts.geom.Geometry intersection = exteriorJTSRing.intersection(interiorJTSRing);
-		AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS(intersection, crs);
-		badGeometries.add(new BadGeometry(intersectionGeom, msg));
 	}
 
 	private List<Point> calculateIntersectionsAndAddError(Ring ring, LineString jtsLineString) {

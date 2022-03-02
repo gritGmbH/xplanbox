@@ -61,6 +61,15 @@ public class XPlanGeometryInspectorTest {
 	}
 
 	@Test
+	public void testInspect_PolygonWithInteriorRing_touching() throws Exception {
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(readGeometry("polygonWithInteriorRing-touching.gml"));
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(0));
+	}
+
+	@Test
 	public void testInspect_Ring_ShouldTestSelfIntersection() throws Exception {
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(readGeometry("curve.gml"));
