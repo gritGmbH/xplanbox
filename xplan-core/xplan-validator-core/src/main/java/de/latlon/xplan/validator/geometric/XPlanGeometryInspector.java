@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric;
 
+import de.latlon.xplan.commons.jts.JtsParser;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -29,9 +30,6 @@ import org.deegree.geometry.GeometryInspectionException;
 import org.deegree.geometry.GeometryInspector;
 import org.deegree.geometry.composite.CompositeGeometry;
 import org.deegree.geometry.io.WKTWriter;
-import org.deegree.geometry.linearization.CurveLinearizer;
-import org.deegree.geometry.linearization.LinearizationCriterion;
-import org.deegree.geometry.linearization.MaxErrorCriterion;
 import org.deegree.geometry.multi.MultiGeometry;
 import org.deegree.geometry.multi.MultiSurface;
 import org.deegree.geometry.points.Points;
@@ -42,8 +40,6 @@ import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
 import org.deegree.geometry.primitive.patches.PolygonPatch;
 import org.deegree.geometry.primitive.patches.SurfacePatch;
-import org.deegree.geometry.primitive.segments.Arc;
-import org.deegree.geometry.primitive.segments.Circle;
 import org.deegree.geometry.primitive.segments.CurveSegment;
 import org.deegree.geometry.primitive.segments.LineStringSegment;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
@@ -68,7 +64,6 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -124,12 +119,6 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private static final String INVALID_MSG_COVERED_MULTIPOLYGON = "2.2.2.1: Das folgende Polygon des MulitPolygonen %s liegt vollstaendig in einem anderen Polygon des gleichen MultiPolygons: %s";
 
-	private final org.locationtech.jts.geom.GeometryFactory jtsFactory;
-
-	private final LinearizationCriterion crit;
-
-	private final CurveLinearizer linearizer;
-
 	private final XMLStreamReaderWrapper xmlStream;
 
 	private final List<String> errors = new ArrayList<>();
@@ -138,13 +127,12 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private final List<BadGeometry> badGeometries = new ArrayList<>();
 
+	private final JtsParser jtsParser = new JtsParser();
+
 	private BadGeometry lastBadGeometry;
 
 	public XPlanGeometryInspector(XMLStreamReaderWrapper xmlStream) {
 		this.xmlStream = xmlStream;
-		this.crit = new MaxErrorCriterion(1.0, 500);
-		this.linearizer = new CurveLinearizer(new GeometryFactory());
-		this.jtsFactory = new org.locationtech.jts.geom.GeometryFactory();
 	}
 
 	public List<String> getErrors() {
@@ -403,7 +391,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	void checkSelfIntersection(Ring ring) {
-		LineString jtsLineString = getJTSLineString(ring);
+		LineString jtsLineString = jtsParser.getJTSLineString(ring);
 		boolean selfIntersection = !jtsLineString.isSimple();
 		if (selfIntersection) {
 			List<Point> points = calculateIntersectionsAndAddError(ring, jtsLineString);
@@ -425,16 +413,16 @@ class XPlanGeometryInspector implements GeometryInspector {
 	void checkSelfIntersection(PolygonPatch inspected) {
 		try {
 			Ring exteriorRing = inspected.getExteriorRing();
-			LinearRing exteriorJTSRing = getJTSRing(exteriorRing);
-			Polygon exteriorJTSRingAsPolygon = jtsFactory.createPolygon(exteriorJTSRing, null);
+			LinearRing exteriorJTSRing = jtsParser.getJTSRing(exteriorRing);
+			Polygon exteriorJTSRingAsPolygon = jtsParser.getJTSPolygon(exteriorJTSRing);
 
 			List<Ring> interiorRings = inspected.getInteriorRings();
 			List<LinearRing> interiorJTSRings = new ArrayList<>(interiorRings.size());
 			List<Polygon> interiorJTSRingsAsPolygons = new ArrayList<>(interiorRings.size());
 			for (Ring interiorRing : interiorRings) {
-				LinearRing interiorJTSRing = getJTSRing(interiorRing);
+				LinearRing interiorJTSRing = jtsParser.getJTSRing(interiorRing);
 				interiorJTSRings.add(interiorJTSRing);
-				interiorJTSRingsAsPolygons.add(jtsFactory.createPolygon(interiorJTSRing, null));
+				interiorJTSRingsAsPolygons.add(jtsParser.getJTSPolygon(interiorJTSRing));
 			}
 
 			LOG.debug("Validating spatial relations between exterior ring and interior rings.");
@@ -669,7 +657,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	private Ring checkOuterRing(Ring ring) {
-		LinearRing jTSRing = getJTSRing(ring);
+		LinearRing jTSRing = jtsParser.getJTSRing(ring);
 		if (!Orientation.isCCW(jTSRing.getCoordinates())) {
 			String msg = createMessage("2.2.2.1: \u00c4u\u00dferer Ring verwendet falsche Laufrichtung (CW).");
 			errors.add(msg);
@@ -679,61 +667,13 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	private Ring checkInnerRing(Ring ring) {
-		LinearRing jTSRing = getJTSRing(ring);
+		LinearRing jTSRing = jtsParser.getJTSRing(ring);
 		if (Orientation.isCCW(jTSRing.getCoordinates())) {
 			String msg = createMessage("2.2.2.1: Innerer Ring verwendet falsche Laufrichtung (CCW).");
 			errors.add(msg);
 			badGeometries.add(new BadGeometry(ring, msg));
 		}
 		return ring;
-	}
-
-	/**
-	 * Returns a JTS geometry for the given {@link Curve} (which is linearized first).
-	 * @param curve {@link Curve} that consists of {@link LineStringSegment} and
-	 * {@link Arc} segments only
-	 * @return linear JTS curve geometry
-	 * @throws IllegalArgumentException if the given input ring contains other segment
-	 * types than {@link LineStringSegment}, {@link Arc} and {@link Circle}
-	 */
-	private LineString getJTSLineString(Curve curve) {
-		Curve linearizedCurve = linearizer.linearize(curve, crit);
-		List<Coordinate> coordinates = new LinkedList<>();
-		Point lastPoint = null;
-		for (CurveSegment segment : linearizedCurve.getCurveSegments()) {
-			for (Point point : ((LineStringSegment) segment).getControlPoints()) {
-				if (lastPoint != null && lastPoint.equals(point)) {
-					// ignore to avoid duplicate points.
-				}
-				else {
-					coordinates.add(new Coordinate(point.get0(), point.get1()));
-				}
-				lastPoint = point;
-			}
-		}
-		return jtsFactory.createLineString(coordinates.toArray(new Coordinate[coordinates.size()]));
-	}
-
-	/**
-	 * Returns a JTS geometry for the given {@link Ring} (which is linearized first).
-	 * @param ring {@link Ring} that consists of {@link LineStringSegment}, {@link Arc}
-	 * and {@link Circle} segments only
-	 * @return linear JTS ring geometry, null if no
-	 * @throws IllegalArgumentException if the given input ring contains other segment
-	 * types than {@link LineStringSegment}, {@link Arc} and {@link Circle}
-	 */
-	private LinearRing getJTSRing(Ring ring) {
-
-		Ring linearizedRing = (Ring) linearizer.linearize(ring, crit);
-		List<Coordinate> coordinates = new LinkedList<Coordinate>();
-		for (Curve member : linearizedRing.getMembers()) {
-			for (CurveSegment segment : member.getCurveSegments()) {
-				for (Point point : ((LineStringSegment) segment).getControlPoints()) {
-					coordinates.add(new Coordinate(point.get0(), point.get1()));
-				}
-			}
-		}
-		return jtsFactory.createLinearRing(coordinates.toArray(new Coordinate[coordinates.size()]));
 	}
 
 	private org.locationtech.jts.geom.Geometry getJTSGeometry(Surface surface) {
