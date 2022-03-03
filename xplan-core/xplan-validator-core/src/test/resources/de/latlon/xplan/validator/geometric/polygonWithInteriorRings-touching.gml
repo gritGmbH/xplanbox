@@ -43,4 +43,14 @@
       </gml:posList>
     </gml:LinearRing>
   </gml:interior>
+  <gml:interior>
+    <gml:LinearRing>
+      <gml:posList>
+        563466.2 5934915.6
+        563593.3 5934844.5
+        563456.633379448 5934814.91196812
+        563466.2 5934915.6
+      </gml:posList>
+    </gml:LinearRing>
+  </gml:interior>
 </gml:Polygon>

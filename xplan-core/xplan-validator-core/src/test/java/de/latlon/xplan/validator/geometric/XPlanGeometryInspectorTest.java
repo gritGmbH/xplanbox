@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.geometric;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.geometry.Geometry;
+import org.deegree.geometry.io.WKTWriter;
 import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.patches.PolygonPatch;
@@ -64,6 +65,15 @@ public class XPlanGeometryInspectorTest {
 	public void testInspect_PolygonWithInteriorRing_touching() throws Exception {
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(readGeometry("polygonWithInteriorRing-touching.gml"));
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(0));
+	}
+
+	@Test
+	public void testInspect_PolygonWithInteriorRings_touching() throws Exception {
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(readGeometry("polygonWithInteriorRings-touching.gml"));
 
 		List<BadGeometry> badGeometries = inspector.getBadGeometries();
 		assertThat(badGeometries.size(), is(0));
