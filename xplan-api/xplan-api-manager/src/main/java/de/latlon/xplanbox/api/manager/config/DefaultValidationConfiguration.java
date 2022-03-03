@@ -33,11 +33,13 @@ public class DefaultValidationConfiguration {
 
 	private final boolean skipGeltungsbereich;
 
+	private final boolean skipLaufrichtung;
+
 	/**
 	 * Default validation configuration. Nothing is skipped.
 	 */
 	public DefaultValidationConfiguration() {
-		this(false, false, false, false);
+		this(false, false, false, false, false);
 	}
 
 	/**
@@ -49,13 +51,16 @@ public class DefaultValidationConfiguration {
 	 * should be skipped, <code>false</code> otherwise
 	 * @param skipGeltungsbereich <code>true</code> if the geltungsbereich validation
 	 * should be skipped, <code>false</code> otherwise
+	 * @param skipLaufrichtung <code>true</code> if the laufrichtung validation should be
+	 * skipped, <code>false</code> otherwise
 	 */
 	public DefaultValidationConfiguration(boolean skipSemantisch, boolean skipGeometrisch, boolean skipFlaechenschluss,
-			boolean skipGeltungsbereich) {
+			boolean skipGeltungsbereich, boolean skipLaufrichtung) {
 		this.skipSemantisch = skipSemantisch;
 		this.skipGeometrisch = skipGeometrisch;
 		this.skipFlaechenschluss = skipFlaechenschluss;
 		this.skipGeltungsbereich = skipGeltungsbereich;
+		this.skipLaufrichtung = skipLaufrichtung;
 	}
 
 	/**
@@ -88,6 +93,14 @@ public class DefaultValidationConfiguration {
 	 */
 	public boolean isSkipGeltungsbereich() {
 		return skipGeltungsbereich;
+	}
+
+	/**
+	 * @return <code>true</code> if the laufrichtung validation should be skipped,
+	 * <code>false</code> otherwise
+	 */
+	public boolean isSkipLaufrichtung() {
+		return skipLaufrichtung;
 	}
 
 }

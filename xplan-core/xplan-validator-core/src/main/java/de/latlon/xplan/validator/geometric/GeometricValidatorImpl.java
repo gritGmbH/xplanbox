@@ -72,6 +72,9 @@ public class GeometricValidatorImpl implements GeometricValidator {
 	public static final ValidationOption SKIP_GELTUNGSBEREICH = new ValidationOption(SKIP_GELTUNGSBEREICH_OPTION,
 			Boolean.toString(true));
 
+	public static final ValidationOption SKIP_LAUFRICHTUNG = new ValidationOption(SKIP_LAUFRICHTUNG_OPTION,
+			Boolean.toString(true));
+
 	public static final ArrayList<ValidationOption> SKIP_OPTIONS = new ArrayList<>();
 
 	static {

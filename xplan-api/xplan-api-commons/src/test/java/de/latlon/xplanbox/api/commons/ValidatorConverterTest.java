@@ -27,7 +27,8 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
@@ -60,10 +61,11 @@ public class ValidatorConverterTest {
 	@Test
 	public void verifyThat_CreateValidationSettings_ReturnsCompleteSettings() {
 		ValidationSettings validationSettings = ValidatorConverter.createValidationSettings("foo", false, true, true,
-				false);
+				false, true);
 		assertThat(validationSettings.getValidationName(), containsString("foo"));
 		assertThat(validationSettings.getValidationTypes(), hasItem(ValidationType.GEOMETRIC));
 		assertThat(validationSettings.getExtendedOptions(), hasItem(GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS));
+		assertThat(validationSettings.getExtendedOptions(), hasItem(GeometricValidatorImpl.SKIP_LAUFRICHTUNG));
 	}
 
 }
