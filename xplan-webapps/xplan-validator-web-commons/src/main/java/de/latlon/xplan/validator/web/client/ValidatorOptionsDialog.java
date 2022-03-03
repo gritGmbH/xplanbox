@@ -68,7 +68,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 	private static final String SKIP_GELTUNGSBEREICH = "skip-geltungsbereich";
 
-	private static final String IGNORE_LAUFRICHTUNG = "ignore-laufrichtung";
+	private static final String SKIP_LAUFRICHTUNG = "skip-laufrichtung";
 
 	private final ValidationServiceAsync validationService = GWT.create(ValidationService.class);
 
@@ -86,7 +86,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 	private CheckBox skipGeltungsbereich = new CheckBox(messages.skipGeltungsbereich());
 
-	private CheckBox ignoreLaufrichtung = new CheckBox(messages.ignoreLaufrichtung());
+	private CheckBox skipLaufrichtung = new CheckBox(messages.skipLaufrichtung());
 
 	private final ReportDownloadFinishedListener reportDownloadFinishedListener;
 
@@ -154,7 +154,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 		mainPanel.add(validationTypeGeom);
 		mainPanel.add(skipFlaechenschluss);
 		mainPanel.add(skipGeltungsbereich);
-		mainPanel.add(ignoreLaufrichtung);
+		mainPanel.add(skipLaufrichtung);
 		mainPanel.add(validationTypeSyn);
 		mainPanel.add(createButtonsPanel(cancelHandler));
 		add(mainPanel);
@@ -171,7 +171,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 		skipFlaechenschluss.setStyleName("valOption");
 		skipGeltungsbereich.setStyleName("valOption");
-		ignoreLaufrichtung.setStyleName("valOption");
+		skipLaufrichtung.setStyleName("valOption");
 	}
 
 	private Label createTitel() {
@@ -228,8 +228,8 @@ public class ValidatorOptionsDialog extends FormPanel {
 			options.add(new ValidationOption(SKIP_FLAECHENSCHLUSS, Boolean.TRUE.toString()));
 		if (skipGeltungsbereich.getValue())
 			options.add(new ValidationOption(SKIP_GELTUNGSBEREICH, Boolean.TRUE.toString()));
-		if (ignoreLaufrichtung.getValue())
-			options.add(new ValidationOption(IGNORE_LAUFRICHTUNG, Boolean.TRUE.toString()));
+		if (skipLaufrichtung.getValue())
+			options.add(new ValidationOption(SKIP_LAUFRICHTUNG, Boolean.TRUE.toString()));
 		return new ValidationSettings(name, validationType, options);
 	}
 

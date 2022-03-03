@@ -70,7 +70,7 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
 	String skipGeltungsbereich();
 
-	String ignoreLaufrichtung();
+	String skipLaufrichtung();
 
 	String startValidationButton();
 

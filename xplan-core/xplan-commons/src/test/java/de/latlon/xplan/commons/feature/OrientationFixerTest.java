@@ -28,35 +28,33 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class OrientationFixerTest {
 
 	@Test
-	public void testLaufrichtungCorrector_validLaufrichtung() throws Exception {
+	public void testOrientationFixer_validLaufrichtung() throws Exception {
 		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 		XPlanArchive testArchive = getArchive("geometryOrientationValid.gml");
 		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointOriginal = getSecondPoint(xPlanFeatureCollection);
-		XPlanFeatureCollection xPlanFeatureCollectionRepairedLaufrichtung = xPlanGmlParser
+		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = xPlanGmlParser
 				.parseXPlanFeatureCollection(testArchive, true);
-		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionRepairedLaufrichtung);
+		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
 		assertThat(startPointRepaired.getX(), is(startPointOriginal.getX()));
 		assertThat(startPointRepaired.getY(), is(startPointOriginal.getY()));
 	}
 
 	@Test
-	public void testLaufrichtungCorrector_invalidLaufrichtung() throws Exception {
+	public void testOrientationFixer_invalidLaufrichtung() throws Exception {
 		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 		XPlanArchive testArchive = getArchive("geometryOrientationInvalid.gml");
 		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointOriginal = getSecondPoint(xPlanFeatureCollection);
-		XPlanFeatureCollection xPlanFeatureCollectionRepairedLaufrichtung = xPlanGmlParser
+		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = xPlanGmlParser
 				.parseXPlanFeatureCollection(testArchive, true);
-		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionRepairedLaufrichtung);
+		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
 		assertThat(startPointRepaired.getX(), not(startPointOriginal.getX()));
 		assertThat(startPointRepaired.getY(), not(startPointOriginal.getY()));
 	}
 
-	private Coordinate getSecondPoint(XPlanFeatureCollection xPlanFeatureCollectionRepairedLaufrichtung)
-			throws FilterEvaluationException {
-		Feature featureById = getFeatureById(xPlanFeatureCollectionRepairedLaufrichtung,
-				"GML_88258139-e3ff-4388-9838-a30775e1f8bf");
+	private Coordinate getSecondPoint(XPlanFeatureCollection xPlanFeatureCollection) throws FilterEvaluationException {
+		Feature featureById = getFeatureById(xPlanFeatureCollection, "GML_88258139-e3ff-4388-9838-a30775e1f8bf");
 		DefaultPolygon polygon = parseGeometry(featureById);
 		Ring exteriorRing = polygon.getExteriorRing();
 		return new JtsParser().getJTSRing(exteriorRing).getCoordinateN(1);
@@ -82,7 +80,7 @@ public class OrientationFixerTest {
 	private XPlanArchive getArchive(String name) throws IOException {
 		InputStream resourceAsStream = OrientationFixerTest.class.getResourceAsStream(name);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		return archiveCreator.createXPlanArchiveFromGml("laufrichtung", resourceAsStream);
+		return archiveCreator.createXPlanArchiveFromGml("orientation", resourceAsStream);
 	}
 
 }

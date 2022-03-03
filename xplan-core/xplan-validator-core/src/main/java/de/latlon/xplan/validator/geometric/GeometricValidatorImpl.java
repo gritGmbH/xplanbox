@@ -64,7 +64,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
 	public static final String SKIP_GELTUNGSBEREICH_OPTION = "skip-geltungsbereich";
 
-	public static final String IGNORE_LAUFRICHTUNG_OPTION = "ignore-laufrichtung";
+	public static final String SKIP_LAUFRICHTUNG_OPTION = "skip-laufrichtung";
 
 	public static final ValidationOption SKIP_FLAECHENSCHLUSS = new ValidationOption(SKIP_FLAECHENSCHLUSS_OPTION,
 			Boolean.toString(true));
@@ -111,7 +111,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
 		long begin = System.currentTimeMillis();
 		LOG.info("- Einlesen der Features (+ Geometrievalidierung)...");
-		boolean skipOrientation = isOptionTrue(voOptions, IGNORE_LAUFRICHTUNG_OPTION);
+		boolean skipOrientation = isOptionTrue(voOptions, SKIP_LAUFRICHTUNG_OPTION);
 		XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector(xmlStream, skipOrientation);
 		List<GeometricFeatureInspector> featureInspectors = createInspectors(archive.getVersion(), voOptions);
 		AenderungenInspector aenderungenInspector = new AenderungenInspector();
