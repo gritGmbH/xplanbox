@@ -53,18 +53,10 @@ Zum Lieferumfang der xPlanBox gehören Bibliotheken und andere Softwareprogramme
 - Mozilla Public License, Version 1.1
 - Mozilla Public License, Version 2.0
 
-Die Komponenten der xPlanBox sind urheberrechtlich geschützt. +
+Die Komponenten der xPlanBox sind urheberrechtlich geschützt und werden unter der https://www.gnu.org/licenses/agpl-3.0.en.html[GNU Affero General Public License, Version 3 oder jeder späteren Version] veröffentlicht. +
 Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
-
-[[softwareüberlassung]]
-==== Softwareüberlassung
-
-Die Überlassung der in Binärcode übersetzten Programme (Binärprogramme) der
-xPlanBox sowie Skripte, Konfigurationsdateien und Dokumentation erfolgt bei
-Abschluss eines EVB-IT Pflegevertrags.
 
 [[nutzungsbedingungen]]
 ==== Nutzungsbedingungen
 
-Die Binärprogramme der xPlanBox werden von lat/lon hergestellt und stehen unter einem
-besonderen Nutzungsvorbehalt. Vertragspartner erhalten ein einfaches Nutzungsrecht an den Binärprogrammen der xPlanBox. Näheres regelt der EVB-IT Pflegevertrag.
+Die Binärprogramme der xPlanBox werden von lat/lon hergestellt und stehen unter https://repo.lat-lon.de/ als Distributionsdatei zum Download zur Verfügung. Die Nutzungsbedingungen ergeben sich aus der https://www.gnu.org/licenses/agpl-3.0.en.html[GNU Affero General Public License, Version 3 oder jeder späteren Version].

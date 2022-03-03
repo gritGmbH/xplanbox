@@ -32,39 +32,29 @@ Copyright (C) 2010 - 2021, lat/lon GmbH, Bonn
 [[lizenz]]
 === Lizenz
 
-Die xPlanBox basiert auf dem https://www.deegree.org[OSGeo-Projekt deegree], welches
-Bestandteil der xPlanBox ist. Der Quellcode von deegree ist
-urheberrechtlich geschützt und wird unter der http://www.gnu.org/licenses/lgpl-2.1.html[GNU
-Lesser General Public License (LGPL), version 2.1] veröffentlicht. Bitte beachten Sie die Lizenzen der verwendeten Bibliotheken im <<appendix_license,Anhang>>.
+Die Komponenten der xPlanBox sind urheberrechtlich geschützt und werden unter der https://www.gnu.org/licenses/agpl-3.0.en.html[GNU Affero General Public License, Version 3 oder jeder späteren Version] veröffentlicht. +
+Die xPlanBox basiert auf dem https://www.deegree.org[OSGeo-Projekt deegree], welches Bestandteil der xPlanBox ist. Der Quellcode von deegree ist urheberrechtlich geschützt und wird unter der http://www.gnu.org/licenses/lgpl-2.1.html[GNU Lesser General Public License (LGPL), version 2.1] veröffentlicht. Bitte beachten Sie auch die Lizenzen der verwendeten Bibliotheken im <<appendix_license,Anhang>>.
 
-Die Komponenten der xPlanBox sind urheberrechtlich geschützt. +
-Copyright (C) 2010 - 2021, lat/lon GmbH, Bonn.
+Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
 
 [[softwareüberlassung]]
 ==== Softwareüberlassung
 
 Die Überlassung der in Binärcode übersetzten Programme (Binärprogramme) der
-xPlanBox sowie Skripte, Konfigurationsdateien und Dokumentation erfolgt bei
-Abschluss eines EVB-IT Pflegevertrags.
+xPlanBox sowie Skripte, Konfigurationsdateien und Dokumentation erfolgt als Distributionsdatei durch lat/lon und stehen unter https://repo.lat-lon.de/ zum Download zur Verfügung.
 
 [[gewährleistung]]
 ==== Gewährleistung
 
-Für deegree gelten die Haftungs- und Gewährleistungsausschlüsse wie in der LGPL benannt.
-Die Firma lat/lon GmbH übernimmt keine Gewähr zur Freiheit der Software deegree
-bezüglich von Funktions- oder Sachmängeln. Die Gewährleistung der Firma
-lat/lon GmbH bei Überlassung der Binärprogramme der xPlanBox erstreckt sich auf die
-im Benutzerhandbuch der xPlanBox dokumentierte Funktionsfähigkeit sowie Benennung
-einer auf die xPlanBox abgestimmten, funktionsfähigen Systemumgebung.
-Bei auftretenden Mängeln werden Programmkorrekturen bereitgestellt,
-sofern diese verfügbar sind. Näheres regelt der EVB-IT Pflegevertrag.
+Für die Komponenten der xPlanBox gelten die Haftungs- und Gewährleistungsausschlüsse wie in der AGPL benannt. Für deegree gelten die Haftungs- und Gewährleistungsausschlüsse wie in der LGPL benannt.
+
+Die Firma lat/lon GmbH übernimmt keine Gewähr zur Freiheit der Software xPlanBox
+bezüglich von Funktions- oder Sachmängeln.
 
 [[nutzungsbedingungen]]
 ==== Nutzungsbedingungen
 
-Die Binärprogramme der xPlanBox werden von lat/lon hergestellt und stehen unter einem
-besonderen Nutzungsvorbehalt. Vertragspartner erhalten ein nicht dauerhaftes, nicht ausschließliches und
-nicht übertragbares Nutzungsrecht an den Binärprogrammen der xPlanBox. Näheres regelt der EVB-IT Pflegevertrag.
+Die Nutzungsbedingungen ergeben sich aus der https://www.gnu.org/licenses/agpl-3.0.en.html[GNU Affero General Public License, Version 3 oder jeder späteren Version].
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments
