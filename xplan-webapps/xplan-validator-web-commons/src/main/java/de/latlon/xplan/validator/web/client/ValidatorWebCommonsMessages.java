@@ -66,10 +66,6 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
 	String selectionValidationTypeGeom();
 
-	String ignoreSelfIntersection();
-
-	String ignoreOrientation();
-
 	String skipFlaechenschluss();
 
 	String skipGeltungsbereich();
