@@ -121,6 +121,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private final XMLStreamReaderWrapper xmlStream;
 
+	private final boolean skipOrientation;
+
 	private final List<String> errors = new ArrayList<>();
 
 	private final List<String> warnings = new ArrayList<>();
@@ -131,8 +133,9 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private BadGeometry lastBadGeometry;
 
-	public XPlanGeometryInspector(XMLStreamReaderWrapper xmlStream) {
+	public XPlanGeometryInspector(XMLStreamReaderWrapper xmlStream, boolean skipOrientation) {
 		this.xmlStream = xmlStream;
+		this.skipOrientation = skipOrientation;
 	}
 
 	public List<String> getErrors() {
@@ -631,7 +634,9 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	PolygonPatch checkRingOrientations(PolygonPatch patch) {
-
+		if (skipOrientation) {
+			return patch;
+		}
 		PolygonPatch inspected = patch;
 		boolean needsRebuild = false;
 
