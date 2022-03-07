@@ -30,10 +30,20 @@
         var WMS_URL = "http://localhost:8080/xplan-wms";
 
         window.onload = function () {
+          updateComplexProperties();
+          updateTextProperties();
+          updateReferenzProperties();
+          updateReferenzKeys();
+        }
+
+        function updateComplexProperties(){
           var complexProperties = document.getElementsByClassName('complexProperty');
           for(var i = 0; i < complexProperties.length; i++) {
             complexProperties[i].innerHTML = complexProperties[i].innerHTML.replace(/\|/g, '<br/>');
           }
+        }
+
+        function updateTextProperties(){
           var textProperties = document.getElementsByClassName('textProperty');
           for(var i = 0; i < textProperties.length; i++) {
             var indexOfPipe = textProperties[i].innerHTML.indexOf('|');
@@ -47,14 +57,39 @@
               textProperties[i].innerHTML = replaceLinks(textProperties[i].innerHTML);
             }
           }
-          var links = document.getElementsByClassName('link');
-          for(var i = 0; i < links.length; i++) {
-              var link = links[i];
-              if(link.href.startsWith('http')){
-                link.href = link;
-              } else {
-                link.href = WMS_URL + link;
-              }
+        }
+
+        function updateReferenzProperties(){
+          var referenzProperties = document.getElementsByClassName('referenzProperty');
+          for(var i = 0; i < referenzProperties.length; i++) {
+            var referenzProperty = referenzProperties[i];
+            var indexOfPipe = referenzProperty.href.indexOf('|');
+            if( indexOfPipe > 0 ) {
+              var referenz = referenzProperty.innerHTML.substring( 0, indexOfPipe ).trim();
+              replaceReferenz(referenz, referenzProperty);
+            } else {
+              replaceReferenz(referenzProperty.href, referenzProperty);
+            }
+          }
+        }
+
+        function updateReferenzKeys(){
+          var referenzKeys = document.getElementsByClassName('referenzKey');
+          for(var i = 0; i < referenzKeys.length; i++) {
+            var indexOfPipe = referenzKeys[i].innerHTML.indexOf('|');
+            if( indexOfPipe > 0 ) {
+              referenzKeys[i].innerHTML = referenzKeys[i].innerHTML.substring( indexOfPipe + 1, referenzKeys[i].innerHTML.length ).trim();
+            } else {
+              referenzKeys[i].innerHTML = "Externe Referenz";
+            }
+          }
+        }
+
+        function replaceReferenz(referenz, referenzProperty){
+          if(referenz.startsWith('http')){
+            referenzProperty.href = referenz;
+          } else {
+            referenzProperty.href = WMS_URL + referenz;
           }
         }
 
@@ -99,8 +134,14 @@
 
 <?template makeitalink>
 <tr>
-  <td <?odd:maybegray>><?name:map propname></td>
-  <td <?odd:maybegray>><a target="_blank" href="<?value>" class="link">Dokument herunterladen</a></td>
+  <td <?odd:maybegray>>
+    <span class='referenzKey' >
+      <?value>
+    </span>
+  </td>
+  <td <?odd:maybegray>>
+    <a target="_blank" href="<?value>" class="referenzProperty">Dokument herunterladen</a>
+  </td>
 </tr>
 
 <?template property>
