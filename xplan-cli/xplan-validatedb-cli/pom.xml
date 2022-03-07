@@ -2,64 +2,34 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplan-validatedb-cli</artifactId>
-  <version>2.11-SNAPSHOT</version>
-  <packaging>jar</packaging>
   <description>Kommandozeilentool für das Validieren von Datensätzen in einer bestehenden xPlanBox Instanz</description>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.4.RELEASE</version>
+    <groupId>de.latlon.product.xplanbox</groupId>
+    <artifactId>xplan-cli</artifactId>
+    <version>4.4-SNAPSHOT</version>
   </parent>
 
   <properties>
     <mainclass>de.latlon.xplan.validator.cli.XPlanValidatorCli</mainclass>
     <application-name>XPlanValidator</application-name>
-    <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
-    <spring-batch.version>4.0.1.RELEASE</spring-batch.version>
-    <spring-framework.version>5.0.8.RELEASE</spring-framework.version>
+    <spring-boot.version>2.5.9</spring-boot.version>
+    <spring-batch.version>4.3.5</spring-batch.version>
+    <spring.version>5.2.18.RELEASE</spring.version>
   </properties>
 
-  <scm>
-    <connection>scm:git:https://bitbucket.org/latlon/xplanbox-validatedb-cli.git</connection>
-    <developerConnection>scm:git:https://bitbucket.org/latlon/xplanbox-validatedb-cli.git</developerConnection>
-    <url>https://bitbucket.org/latlon/xplanbox-validatedb-cli</url>
-    <tag>HEAD</tag>
-  </scm>
-
-  <repositories>
-    <repository>
-      <id>latlon-repo</id>
-      <url>http://repo/nexus/content/groups/public/</url>
-      <releases>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>xplanbox-release</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-release/</url>
-    </repository>
-    <repository>
-      <id>xplanbox-snapshot</id>
-      <url>http://repo/nexus/content/repositories/xplanbox-snapshot/</url>
-    </repository>
-  </repositories>
-
-  <distributionManagement>
-    <repository>
-      <id>dee-lgv-releases</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-lgv-releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>dee-lgv-snapshots</id>
-      <url>http://buildserver.deegree-enterprise.de/nexus/content/repositories/dee-lgv-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <plugins>
@@ -77,8 +47,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>${project.groupId}</groupId>
-                  <artifactId>xplan-validator-rules</artifactId>
+                  <groupId>de.geowerkstatt-hamburg</groupId>
+                  <artifactId>xplanung</artifactId>
                   <type>zip</type>
                   <overWrite>true</overWrite>
                 </artifactItem>
@@ -91,6 +61,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
       </plugin>
     </plugins>
   </build>
@@ -99,45 +70,34 @@
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-commons</artifactId>
-      <version>2.11-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-manager-core</artifactId>
-      <version>2.11-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-validator-core</artifactId>
-      <version>2.11-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-validator-rules</artifactId>
-      <version>2.11-SNAPSHOT</version>
+      <groupId>de.geowerkstatt-hamburg</groupId>
+      <artifactId>xplanung</artifactId>
       <type>zip</type>
     </dependency>
     <dependency>
-      <groupId>de.latlon.product.xplanbox</groupId>
-      <artifactId>xplan-validator-rules</artifactId>
-      <version>2.11-SNAPSHOT</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
-    <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
-      <version>1.4</version>
     </dependency>
     <!-- spring -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>${spring-framework.version}</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>${spring-framework.version}</version>
+      <version>${spring.version}</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>

@@ -16,6 +16,7 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.file.FlatFileItemWriter;
@@ -23,7 +24,7 @@ import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.batch.JobLauncherCommandLineRunner;
+import org.springframework.boot.autoconfigure.batch.JobLauncherApplicationRunner;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,9 +53,12 @@ public class ValidateFromDatabaseConfiguration {
 	@Autowired
 	private JobExplorer jobExplorer;
 
+	@Autowired
+	private JobRepository jobRepository;
+
 	@Bean
-	public JobLauncherCommandLineRunner runner() {
-		return new JobLauncherCommandLineRunner(jobLauncher, jobExplorer);
+	public JobLauncherApplicationRunner runner() {
+		return new JobLauncherApplicationRunner(jobLauncher, jobExplorer, jobRepository);
 	}
 
 	@Autowired

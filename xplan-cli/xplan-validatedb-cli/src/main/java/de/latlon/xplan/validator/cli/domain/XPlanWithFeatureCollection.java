@@ -8,6 +8,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -111,6 +112,11 @@ public class XPlanWithFeatureCollection implements SemanticValidableXPlanArchive
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public InputStream getMainFileInputStream() {
+		return new ByteArrayInputStream(data);
 	}
 
 }
