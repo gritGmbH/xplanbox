@@ -1,6 +1,6 @@
-package de.latlon.xplan.validator.cli;
+package de.latlon.xplan.validatedb.cli;
 
-import de.latlon.xplan.validator.cli.config.ValidateFromDatabaseConfiguration;
+import de.latlon.xplan.validatedb.cli.config.ValidateFromDatabaseConfiguration;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

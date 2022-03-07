@@ -1,4 +1,4 @@
-package de.latlon.xplan.validator.cli.domain;
+package de.latlon.xplan.validatedb.cli.domain;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;

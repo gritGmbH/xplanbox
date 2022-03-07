@@ -1,4 +1,4 @@
-package de.latlon.xplan.validator.cli.domain;
+package de.latlon.xplan.validatedb.cli.domain;
 
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;

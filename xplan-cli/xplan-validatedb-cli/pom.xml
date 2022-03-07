@@ -12,8 +12,8 @@
   </parent>
 
   <properties>
-    <mainclass>de.latlon.xplan.validator.cli.XPlanValidatorCli</mainclass>
-    <application-name>XPlanValidator</application-name>
+    <mainclass>de.latlon.xplan.validatedb.cli.XPlanValidatorCli</mainclass>
+    <application-name>XPlanValidateDB</application-name>
     <spring-boot.version>2.5.9</spring-boot.version>
     <spring-batch.version>4.3.5</spring-batch.version>
     <spring.version>5.2.18.RELEASE</spring.version>

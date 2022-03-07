@@ -1,7 +1,7 @@
-package de.latlon.xplan.validator.cli.config;
+package de.latlon.xplan.validatedb.cli.config;
 
-import de.latlon.xplan.validator.cli.domain.ValidationResultSummary;
-import de.latlon.xplan.validator.cli.domain.XPlanWithFeatureCollection;
+import de.latlon.xplan.validatedb.cli.domain.ValidationResultSummary;
+import de.latlon.xplan.validatedb.cli.domain.XPlanWithFeatureCollection;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import org.springframework.batch.item.ItemProcessor;

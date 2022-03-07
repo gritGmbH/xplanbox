@@ -1,8 +1,8 @@
-package de.latlon.xplan.validator.cli.config;
+package de.latlon.xplan.validatedb.cli.config;
 
 import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.cli.domain.ValidationResultSummary;
-import de.latlon.xplan.validator.cli.domain.XPlanWithFeatureCollection;
+import de.latlon.xplan.validatedb.cli.domain.ValidationResultSummary;
+import de.latlon.xplan.validatedb.cli.domain.XPlanWithFeatureCollection;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
