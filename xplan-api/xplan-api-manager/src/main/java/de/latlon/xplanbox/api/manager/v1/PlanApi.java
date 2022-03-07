@@ -113,8 +113,13 @@ public class PlanApi {
 	@Operation(operationId = "import", summary = "Import the plan", description = "Imports the plan",
 			tags = { "manage", },
 			responses = {
-					@ApiResponse(responseCode = "201", description = "successful operation",
-							content = @Content(schema = @Schema(implementation = PlanInfo.class))),
+					@ApiResponse(responseCode = "201", description = "successful operation", content = {
+							@Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
+							@Content(mediaType = XPLANBOX_NO_VERSION_JSON,
+									schema = @Schema(implementation = PlanInfo.class)),
+							@Content(mediaType = XPLANBOX_V1_JSON, schema = @Schema(implementation = PlanInfo.class)),
+							@Content(mediaType = XPLANBOX_V2_JSON,
+									array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class))) }),
 					@ApiResponse(responseCode = "400", description = "Invalid input",
 							content = @Content(schema = @Schema(implementation = ValidationReport.class))),
 					@ApiResponse(responseCode = "406",
