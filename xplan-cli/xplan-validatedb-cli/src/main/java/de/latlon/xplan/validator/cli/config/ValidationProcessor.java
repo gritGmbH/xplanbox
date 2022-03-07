@@ -13,25 +13,25 @@ import static java.util.Collections.EMPTY_LIST;
  */
 public class ValidationProcessor implements ItemProcessor<XPlanWithFeatureCollection, ValidationResultSummary> {
 
-    private SemanticValidator validator;
+	private SemanticValidator validator;
 
-    public ValidationProcessor( SemanticValidator validator ) {
-        this.validator = validator;
-    }
+	public ValidationProcessor(SemanticValidator validator) {
+		this.validator = validator;
+	}
 
-    @Override
-    public ValidationResultSummary process( XPlanWithFeatureCollection xPlanWithFeatureCollection ) {
-        try {
-            System.out.println( "Validate xplan with id " + xPlanWithFeatureCollection.getId() );
-            ValidatorResult validatorReport = validator.validateSemantic( xPlanWithFeatureCollection, EMPTY_LIST );
-            return new ValidationResultSummary( xPlanWithFeatureCollection.getId(),
-                                                xPlanWithFeatureCollection.getXp_version(),
-                                                xPlanWithFeatureCollection.getName(),
-                                                xPlanWithFeatureCollection.getDistrict(), validatorReport );
-        } catch ( Exception e ) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
+	@Override
+	public ValidationResultSummary process(XPlanWithFeatureCollection xPlanWithFeatureCollection) {
+		try {
+			System.out.println("Validate xplan with id " + xPlanWithFeatureCollection.getId());
+			ValidatorResult validatorReport = validator.validateSemantic(xPlanWithFeatureCollection, EMPTY_LIST);
+			return new ValidationResultSummary(xPlanWithFeatureCollection.getId(),
+					xPlanWithFeatureCollection.getXp_version(), xPlanWithFeatureCollection.getName(),
+					xPlanWithFeatureCollection.getDistrict(), validatorReport);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 
 }

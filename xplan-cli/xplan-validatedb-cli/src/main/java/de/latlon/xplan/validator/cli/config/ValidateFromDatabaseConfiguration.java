@@ -46,110 +46,101 @@ import static java.nio.file.Paths.get;
 @EnableBatchProcessing
 public class ValidateFromDatabaseConfiguration {
 
-    @Autowired
-    private JobLauncher jobLauncher;
+	@Autowired
+	private JobLauncher jobLauncher;
 
-    @Autowired
-    private JobExplorer jobExplorer;
+	@Autowired
+	private JobExplorer jobExplorer;
 
-    @Bean
-    public JobLauncherCommandLineRunner runner() {
-        return new JobLauncherCommandLineRunner( jobLauncher, jobExplorer );
-    }
+	@Bean
+	public JobLauncherCommandLineRunner runner() {
+		return new JobLauncherCommandLineRunner(jobLauncher, jobExplorer);
+	}
 
-    @Autowired
-    private JobBuilderFactory jobBuilderFactory;
+	@Autowired
+	private JobBuilderFactory jobBuilderFactory;
 
-    @Autowired
-    private StepBuilderFactory stepBuilderFactory;
+	@Autowired
+	private StepBuilderFactory stepBuilderFactory;
 
-    @Bean
-    @StepScope
-    public SemanticValidator semanticValidator(
-                    @Value("#{jobParameters[rulesDirectory]}")
-                                    String rulesDirectory )
-                    throws ValidatorException, URISyntaxException {
-        try {
-            System.out.println( "Rules are read from: " + rulesDirectory );
-            Path rulesPath = get( rulesDirectory );
-            return new XQuerySemanticValidator( new XQuerySemanticValidatorConfigurationRetriever( rulesPath ) );
-        } catch ( Exception e ) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
+	@Bean
+	@StepScope
+	public SemanticValidator semanticValidator(@Value("#{jobParameters[rulesDirectory]}") String rulesDirectory)
+			throws ValidatorException, URISyntaxException {
+		try {
+			System.out.println("Rules are read from: " + rulesDirectory);
+			Path rulesPath = get(rulesDirectory);
+			return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath));
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 
-    @StepScope
-    @Bean
-    public JdbcCursorItemReader planFromDatabaseReader(
-                    @Value("#{jobParameters[jdbcurl]}")
-                                    String jdbcurl,
-                    @Value("#{jobParameters[user]}")
-                                    String user,
-                    @Value("#{jobParameters[password]}")
-                                    String password ) {
-        System.out.println( "JDBC connection:" );
-        System.out.println( " - jdbcurl: " + jdbcurl );
-        System.out.println( " - user: " + user );
-        System.out.println( " - password: " + password );
-        BasicDataSource dataSource = createDataSource( jdbcurl, user, password );
-        JdbcCursorItemReader xplanItemReader = new JdbcCursorItemReader<>();
-        xplanItemReader.setSql(
-                        "SELECT id, xp_version, name, district, filename, data FROM xplanmgr.plans p, xplanmgr.artefacts a "
-                        + "WHERE p.id = a.plan  AND filename = 'xplan.gml'" );
-        xplanItemReader.setDataSource( dataSource );
-        xplanItemReader.setRowMapper( new BeanPropertyRowMapper<>( XPlanWithFeatureCollection.class ) );
-        return xplanItemReader;
-    }
+	@StepScope
+	@Bean
+	public JdbcCursorItemReader planFromDatabaseReader(@Value("#{jobParameters[jdbcurl]}") String jdbcurl,
+			@Value("#{jobParameters[user]}") String user, @Value("#{jobParameters[password]}") String password) {
+		System.out.println("JDBC connection:");
+		System.out.println(" - jdbcurl: " + jdbcurl);
+		System.out.println(" - user: " + user);
+		System.out.println(" - password: " + password);
+		BasicDataSource dataSource = createDataSource(jdbcurl, user, password);
+		JdbcCursorItemReader xplanItemReader = new JdbcCursorItemReader<>();
+		xplanItemReader.setSql(
+				"SELECT id, xp_version, name, district, filename, data FROM xplanmgr.plans p, xplanmgr.artefacts a "
+						+ "WHERE p.id = a.plan  AND filename = 'xplan.gml'");
+		xplanItemReader.setDataSource(dataSource);
+		xplanItemReader.setRowMapper(new BeanPropertyRowMapper<>(XPlanWithFeatureCollection.class));
+		return xplanItemReader;
+	}
 
-    @StepScope
-    @Bean
-    public ValidationProcessor validationProcessor( SemanticValidator semanticValidator ) {
-        return new ValidationProcessor( semanticValidator );
-    }
+	@StepScope
+	@Bean
+	public ValidationProcessor validationProcessor(SemanticValidator semanticValidator) {
+		return new ValidationProcessor(semanticValidator);
+	}
 
-    @Bean
-    public ItemWriter validationResultsWriter()
-                    throws IOException {
-        File outputFile = Files.createTempFile( "result", ".csv" ).toFile();
-        System.out.println( "Write result to file " + outputFile );
-        Resource outputResource = new FileSystemResource( outputFile );
-        FlatFileItemWriter<ValidationResultSummary> writer = new FlatFileItemWriter<>();
-        writer.setResource( outputResource );
-        writer.setAppendAllowed( true );
-        writer.setHeaderCallback( w -> w.append( "id,version,name,district,result,failedRules" ) );
-        writer.setLineAggregator( new DelimitedLineAggregator<ValidationResultSummary>() {
-            {
-                setDelimiter( "," );
-                setFieldExtractor( new BeanWrapperFieldExtractor<ValidationResultSummary>() {
-                    {
-                        setNames( new String[] { "id", "version", "name", "district", "result", "failedRules" } );
-                    }
-                } );
+	@Bean
+	public ItemWriter validationResultsWriter() throws IOException {
+		File outputFile = Files.createTempFile("result", ".csv").toFile();
+		System.out.println("Write result to file " + outputFile);
+		Resource outputResource = new FileSystemResource(outputFile);
+		FlatFileItemWriter<ValidationResultSummary> writer = new FlatFileItemWriter<>();
+		writer.setResource(outputResource);
+		writer.setAppendAllowed(true);
+		writer.setHeaderCallback(w -> w.append("id,version,name,district,result,failedRules"));
+		writer.setLineAggregator(new DelimitedLineAggregator<ValidationResultSummary>() {
+			{
+				setDelimiter(",");
+				setFieldExtractor(new BeanWrapperFieldExtractor<ValidationResultSummary>() {
+					{
+						setNames(new String[] { "id", "version", "name", "district", "result", "failedRules" });
+					}
+				});
 
-            }
-        } );
-        return writer;
-    }
+			}
+		});
+		return writer;
+	}
 
-    @Bean
-    public Step step( JdbcCursorItemReader planFromDatabaseReader, ValidationProcessor validationProcessor,
-                      ItemWriter validationResultsWriter ) {
-        return stepBuilderFactory.get(
-                        "validateFromDatabaseStep" ).<XPlanWithFeatureCollection, ValidationResultSummary>chunk(
-                        1 ).reader( planFromDatabaseReader ).processor( validationProcessor ).writer(
-                        validationResultsWriter ).build();
-    }
+	@Bean
+	public Step step(JdbcCursorItemReader planFromDatabaseReader, ValidationProcessor validationProcessor,
+			ItemWriter validationResultsWriter) {
+		return stepBuilderFactory.get("validateFromDatabaseStep")
+				.<XPlanWithFeatureCollection, ValidationResultSummary>chunk(1).reader(planFromDatabaseReader)
+				.processor(validationProcessor).writer(validationResultsWriter).build();
+	}
 
-    @Bean
-    public Job job( Step step ) {
-        return jobBuilderFactory.get( "validateFromDatabaseJob" ).incrementer( new RunIdIncrementer() ).start(
-                        step ).build();
-    }
+	@Bean
+	public Job job(Step step) {
+		return jobBuilderFactory.get("validateFromDatabaseJob").incrementer(new RunIdIncrementer()).start(step).build();
+	}
 
-    private BasicDataSource createDataSource( String jdbcurl, String user, String password ) {
-        return DataSourceBuilder.create().driverClassName( "org.postgresql.Driver" ).url( jdbcurl ).type(
-                        BasicDataSource.class ).username( user ).password( password ).build();
-    }
+	private BasicDataSource createDataSource(String jdbcurl, String user, String password) {
+		return DataSourceBuilder.create().driverClassName("org.postgresql.Driver").url(jdbcurl)
+				.type(BasicDataSource.class).username(user).password(password).build();
+	}
 
 }
