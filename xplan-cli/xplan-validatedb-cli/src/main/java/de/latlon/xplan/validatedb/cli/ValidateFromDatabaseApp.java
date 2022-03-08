@@ -30,7 +30,7 @@ public class ValidateFromDatabaseApp {
 
 	private static void printUsage() {
 		System.out.println(
-				"Usage: java -jar xplan-validatedb-cli.jar -jdbcurl=jdbc:postgresql://localhost:5432/xplanbox -user=postgres -password=postgres -rulesDirectory=tmp/rules");
+				"Usage: ./XPlanValidateDB -jdbcurl=jdbc:postgresql://localhost:5432/xplanbox -user=postgres -password=postgres -rulesDirectory=../etc/rules");
 		System.out.println();
 		System.out.println("Options:");
 		System.out.println(" -jdbcurl=jdbc:postgresql://localhost:5432/xplanbox");

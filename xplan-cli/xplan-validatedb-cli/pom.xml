@@ -12,7 +12,7 @@
   </parent>
 
   <properties>
-    <mainclass>de.latlon.xplan.validatedb.cli.XPlanValidatorCli</mainclass>
+    <mainclass>de.latlon.xplan.validatedb.cli.ValidateFromDatabaseApp</mainclass>
     <application-name>XPlanValidateDB</application-name>
     <spring-boot.version>2.5.9</spring-boot.version>
     <spring-batch.version>4.3.5</spring-batch.version>
@@ -59,9 +59,67 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring-boot.version}</version>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>appassembler-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>assemble</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <repositoryLayout>flat</repositoryLayout>
+          <programs>
+            <program>
+              <mainClass>${mainclass}</mainClass>
+              <id>${application-name}</id>
+            </program>
+          </programs>
+          <copyConfigurationDirectory>true</copyConfigurationDirectory>
+          <useWildcardClassPath>true</useWildcardClassPath>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>bundle</id>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <filters/>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/assembly/assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <configuration>
+              <tasks>
+                <chmod perm="+x">
+                  <fileset dir="target/appassembler/bin">
+                    <include name="${application-name}"/>
+                  </fileset>
+                </chmod>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
