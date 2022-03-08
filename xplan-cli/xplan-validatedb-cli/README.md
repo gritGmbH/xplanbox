@@ -1,2 +1,0 @@
-# xplanbox-validatedb-cli
-
