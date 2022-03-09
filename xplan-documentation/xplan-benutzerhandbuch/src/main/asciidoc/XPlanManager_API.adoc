@@ -43,7 +43,9 @@ Die REST-API des XPlanManager stellt folgende Ressourcen bereit:
 |`/plan/{planId}/rasterbasis/{id}` |`DELETE` |Entfernen einer Rasterbasisdatei zu einem Plan
 |===
 
-Eine vollständige Beschreibung der HTTP Status-Codes und der unterstützten Formate (Encodings) für die jeweiligen Ressourcen sind in der OpenAPI Schnittstellenbeschreibung enthalten.
+Neben dem Datenformat `application/json` unterstützt die REST API im Rahmen der Inhaltsvereinbarung zwischen Client und Server über das HTTP-Header-Feld `Accept` auch die Inhaltstypen (media types) `application/vnd.xplanbox.api+json`, `application/vnd.xplanbox.api.v1+json` und `application/vnd.xplanbox.api.v2+json`. Einzelne Ressourcen wie z.B. `POST /plan` unterstützen diese anwendungsspezifischen Datentypen.
+
+Eine vollständige Beschreibung der HTTP Status-Codes und der unterstützten Inhaltstypen (media types) und Formate (Encodings) für die jeweiligen Ressourcen sind in der OpenAPI Schnittstellenbeschreibung enthalten.
 
 NOTE: Die URL für die REST-API des XPlanManager setzt sich wie folgt zusammen: http://<host>:<port>/xplan-api-manager/xmanager/api/v1/. Die URL für die xPlanBox-Demo lautet https://xplanbox.lat-lon.de/xmanager/api/v1/.
 
@@ -98,4 +100,4 @@ Ressource: `/plan/{planId}/rasterbasis/{id}`
 Zusätzliche Anforderungen an die im XPlanGML-Dokument verlinkten Referenzen:
 
 - Für alle Dokumente und Rasterbasis in der Version 4.1 bis 5.2 gilt, dass _referenzName_ oder _referenzURL_ belegt sein muss.
-- Und zusätzlich gilt für alle Dokumente und Rasterbasis, dass die Kombination aus _referenzName-referenzURL_ innerhalb eines XPlanGML-Dokument eindeutig sein muss.
+- Und zusätzlich gilt für alle Dokumente und Rasterbasis, dass die Kombination aus _referenzName-referenzURL_ innerhalb eines XPlanGML-Dokuments eindeutig sein muss.
