@@ -51,13 +51,13 @@ public class ValidateFromDatabaseApp {
 
 	private static void printUsage() {
 		System.out.println(
-				"Usage: ./XPlanValidateDB -jdbcurl=jdbc:postgresql://localhost:5432/xplanbox -user=postgres -password=postgres -rulesDirectory=../etc/rules");
+				"Usage: ./XPlanValidateDB -jdbcurl=jdbc:postgresql://localhost:5432/xplanbox -user=postgres -password=postgres -rulesDirectory=/PATH_TO_CLI/etc/rules");
 		System.out.println();
 		System.out.println("Options:");
 		System.out.println(" -jdbcurl=jdbc:postgresql://localhost:5432/xplanbox");
 		System.out.println(" -user=postgres");
 		System.out.println(" -password=postgres");
-		System.out.println(" -rulesDirectory=tmp/rules");
+		System.out.println(" -rulesDirectory=/PATH_TO_CLI/etc/rules");
 	}
 
 }
