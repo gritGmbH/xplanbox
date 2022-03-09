@@ -12,8 +12,9 @@
   </parent>
 
   <modules>
-    <module>xplan-test-resources</module>
+    <module>xplan-tests-resources</module>
     <module>xplan-tests-soapui</module>
+    <module>xplan-tests-manual</module>
   </modules>
 
   <profiles>

@@ -2,30 +2,36 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.web.client.service;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import com.google.gwt.core.client.GWT;
+import de.latlon.xplan.manager.web.shared.Rechtsstand;
+import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
+import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import org.fusesource.restygwt.client.MethodCallback;
+import org.fusesource.restygwt.client.Resource;
+import org.fusesource.restygwt.client.RestService;
+import org.fusesource.restygwt.client.RestServiceProxy;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -35,21 +41,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
-import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
-import org.fusesource.restygwt.client.MethodCallback;
-import org.fusesource.restygwt.client.Resource;
-import org.fusesource.restygwt.client.RestService;
-import org.fusesource.restygwt.client.RestServiceProxy;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import com.google.gwt.core.client.GWT;
-
-import de.latlon.xplan.manager.web.shared.LegislationStatus;
-import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
-import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
  * REST interface of the manager to get, remove, import plans.
@@ -134,13 +130,13 @@ public interface ManagerService extends RestService {
 	@GET
 	@Produces(APPLICATION_JSON)
 	@Path("/plannamestatus/{id}/{status}")
-	void evaluatePlanNameAndStatus(@PathParam("id") String id, @PathParam("status") String status,
-			MethodCallback<PlanNameWithStatusResult> callback);
+	void evaluatePlanNameAndStatus(@PathParam("id") String id, @PathParam("status") PlanStatus status,
+			MethodCallback<List<PlanNameWithStatusResult>> callback);
 
 	@GET
 	@Produces(APPLICATION_JSON)
 	@Path("/legislationstatus/{id}")
-	void determineLegislationStatus(@PathParam("id") String id, MethodCallback<LegislationStatus> callback);
+	void determineLegislationStatus(@PathParam("id") String id, MethodCallback<Rechtsstand> callback);
 
 	@GET
 	@Path("/plu/plan/{planId}")

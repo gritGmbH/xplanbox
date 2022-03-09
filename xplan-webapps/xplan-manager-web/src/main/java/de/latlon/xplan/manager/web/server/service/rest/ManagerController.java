@@ -2,21 +2,20 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.web.server.service.rest;
@@ -27,10 +26,10 @@ import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.server.service.ManagerPlanArchiveManager;
 import de.latlon.xplan.manager.web.server.service.security.AuthorizationManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
-import de.latlon.xplan.manager.web.shared.LegislationStatus;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -420,8 +419,8 @@ public class ManagerController {
 
 	@RequestMapping(value = "/plannamestatus/{id}/{status}", method = GET)
 	@ResponseBody
-	public PlanNameWithStatusResult evaluatePlanNameAndStatus(@PathVariable String id, @PathVariable String status,
-			@Context HttpServletResponse response) throws Exception {
+	public List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(@PathVariable String id,
+			@PathVariable String status, @Context HttpServletResponse response) throws Exception {
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate name of plan with id {}.", id);
 		try {
@@ -438,15 +437,15 @@ public class ManagerController {
 	@RequestMapping(value = "/legislationstatus/{id}", method = GET)
 	@ResponseBody
 	// @formatter:off
-    public LegislationStatus determineLegislationStatus( @PathVariable String id,
-                                                         @Context HttpServletResponse response )
+    public Rechtsstand determineLegislationStatus( @PathVariable String id,
+												   @Context HttpServletResponse response )
                                                                          throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate legislation status of plan with id {}.", id);
 		try {
 			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
-			return manager.determineLegislationStatus(fileToBeImported);
+			return manager.determineRechtsstand(fileToBeImported);
 		}
 		catch (Exception e) {
 			String message = BUNDLE.getString("determinationLegislationStatusFailed") + ": " + e.getMessage();

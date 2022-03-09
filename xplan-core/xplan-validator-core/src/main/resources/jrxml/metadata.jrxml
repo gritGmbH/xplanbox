@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  xplan-validator-core - XPlan Validator Core Komponente
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titlesubreport" pageWidth="575" pageHeight="100" whenNoDataType="AllSectionsNoDetail" columnWidth="575" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2c25d9f8-6145-41c8-86f4-45a27224c6ce">
 	<property name="ireport.zoom" value="1.3310000000000006"/>
 	<property name="ireport.x" value="0"/>
@@ -7,6 +28,7 @@
 	<parameter name="planName" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="version" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="valResult" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fileName" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="date" class="java.util.Date" isForPrompting="false"/>
 	<title>
 		<band height="62" splitType="Stretch">
@@ -40,11 +62,11 @@
 			<staticText>
 				<reportElement x="0" y="40" width="95" height="20" uuid="3c84bb99-d0a9-4aec-8c60-ca4fdd94ccd9"/>
 				<textElement markup="none"/>
-				<text><![CDATA[Planname:]]></text>
+				<text><![CDATA[Dateiname:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="95" y="40" width="210" height="20" uuid="0dc98306-9f9f-491a-8bf4-59d5c68b6b54"/>
-				<textFieldExpression><![CDATA[$P{planName}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{fileName}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="305" y="40" width="95" height="20" uuid="3c84bb99-d0a9-4aec-8c60-ca4fdd94ccd9"/>

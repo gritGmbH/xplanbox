@@ -2,21 +2,20 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.transaction;
@@ -61,7 +60,6 @@ import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
-import static de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils.parseXPlanFeatureCollection;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
@@ -99,14 +97,15 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
 			AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, ade, oldPlanStatus).getSchema();
 			originalPlan = xplanDao.retrieveXPlanArtefact(planId);
-			XPlanFeatureCollection originalPlanFC = parseXPlanFeatureCollection(originalPlan, type, version, appSchema);
+			XPlanFeatureCollection originalPlanFC = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan, version,
+					type);
 			String oldDescription = retrieveDescription(originalPlanFC.getFeatures(), type);
-			String oldLegislationStatus = FeatureCollectionUtils.retrieveLegislationStatus(originalPlanFC.getFeatures(),
+			String oldLegislationStatus = FeatureCollectionUtils.retrieveRechtsstand(originalPlanFC.getFeatures(),
 					type);
 			FeatureCollection featuresToModify = originalPlanFC.getFeatures();
 			ExternalReferenceInfo externalReferencesOriginal = new ExternalReferenceScanner().scan(featuresToModify);
 			planModifier.modifyXPlan(featuresToModify, xPlanToEdit, version, type, appSchema);
-			FeatureCollection modifiedFeatures = renewFeatureCollection(version, appSchema, featuresToModify);
+			FeatureCollection modifiedFeatures = renewFeatureCollection(version, featuresToModify);
 			ExternalReferenceInfo externalReferencesModified = new ExternalReferenceScanner().scan(modifiedFeatures);
 
 			byte[] xPlanGml = createXPlanGml(version, modifiedFeatures);

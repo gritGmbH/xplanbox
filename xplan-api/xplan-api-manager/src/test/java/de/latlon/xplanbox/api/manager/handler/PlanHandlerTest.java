@@ -2,21 +2,20 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplanbox.api.manager.handler;
@@ -45,6 +44,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { ApplicationContext.class, TestContext.class })
 public class PlanHandlerTest {
@@ -56,9 +58,10 @@ public class PlanHandlerTest {
 	public void verifyThat_importPlan() throws Exception {
 		final File file = new File(PlanHandlerTest.class.getResource("/bplan_valid_41.zip").toURI());
 		final ValidationSettings validationSettings = Mockito.mock(ValidationSettings.class);
-		XPlan xPlan = planHandler.importPlan(file, "noName", validationSettings, "noInternalId",
+		List<XPlan> xPlan = planHandler.importPlan(file, "noName", validationSettings, "noInternalId",
 				FESTGESTELLT.toString());
-		assertThat(xPlan.getId(), is("123"));
+		assertThat(xPlan.size(), is(1));
+		assertThat(xPlan.get(0).getId(), is("123"));
 	}
 
 	@Test
@@ -88,7 +91,7 @@ public class PlanHandlerTest {
 
 	@Test(expected = InvalidPlanId.class)
 	public void verifyThat_findPlanById_WithWrongIdFails() throws Exception {
-		XPlan plan = planHandler.findPlanById("42");
+		planHandler.findPlanById("42");
 	}
 
 	@Test

@@ -2,71 +2,34 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-/*----------------------------------------------------------------------------
- This file is part of deegree, http://deegree.org/
- Copyright (C) 2001-2014 by:
- - Department of Geography, University of Bonn -
- and
- - lat/lon GmbH -
-
- This library is free software; you can redistribute it and/or modify it under
- the terms of the GNU Lesser General Public License as published by the Free
- Software Foundation; either version 2.1 of the License, or (at your option)
- any later version.
- This library is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- details.
- You should have received a copy of the GNU Lesser General Public License
- along with this library; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
- Contact information:
-
- lat/lon GmbH
- Aennchenstr. 19, 53177 Bonn
- Germany
- http://lat-lon.de/
-
- Department of Geography, University of Bonn
- Prof. Dr. Klaus Greve
- Postfach 1147, 53001 Bonn
- Germany
- http://www.geographie.uni-bonn.de/deegree/
-
- e-mail: info@deegree.org
- ----------------------------------------------------------------------------*/
 package de.latlon.xplan.manager.export;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
 import org.junit.Test;
 import org.xmlunit.builder.Input;
 import org.xmlunit.matchers.ValidationMatcher;
@@ -87,7 +50,7 @@ import static de.latlon.xplan.manager.export.XPlanExporter.MAIN_FILE_REEXPORTED_
 import static org.apache.commons.io.IOUtils.copyLarge;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -330,11 +293,10 @@ public class XPlanExporterTest {
 	}
 
 	private XPlanFeatureCollection readFeatures(XPlanArchive archive) throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion(), archive.getAde());
-		ICRS crs = CRSManager.lookup("EPSG:31467");
+		ICRS defaultCrs = CRSManager.lookup("EPSG:31467");
 		if (archive.getCrs() != null)
-			crs = archive.getCrs();
-		return (new GeometricValidatorImpl()).retrieveGeometricallyValidXPlanFeatures(archive, crs, schema, true, null);
+			defaultCrs = archive.getCrs();
+		return new XPlanGmlParser().parseXPlanFeatureCollection(archive, defaultCrs);
 	}
 
 	private ByteArrayInputStream createZippedContent(String name) throws IOException {

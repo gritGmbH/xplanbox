@@ -2,29 +2,28 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplanbox.api.validator.handler;
 
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
@@ -38,7 +37,6 @@ import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import org.apache.http.client.utils.URIBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,12 +87,15 @@ public class ValidationHandler {
 	@Autowired
 	private GeometricValidator geometricValidator;
 
+	@Autowired
+	public XPlanGmlParser xPlanGmlParser;
+
 	private XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
-	public ValidatorReport validate(XPlanArchive archive, String validationName, ValidationSettings validationSettings)
+	public ValidatorReport validate(XPlanArchive archive, String xFileName, ValidationSettings validationSettings)
 			throws ValidatorException {
-		LOG.debug("Validate plan with validationName {}", validationName);
-		return xPlanValidator.validateNotWriteReport(validationSettings, validationName, archive);
+		LOG.debug("Validate plan with validationName {}", validationSettings.getValidationName());
+		return xPlanValidator.validateNotWriteReport(validationSettings, archive, xFileName);
 	}
 
 	public Path zipReports(ValidatorReport validatorReport) throws IOException {
@@ -124,10 +125,13 @@ public class ValidationHandler {
 	public URI addToWms(XPlanArchive archive) {
 		try {
 			if (validatorWmsManager != null) {
-				XPlanFeatureCollection xPlanFeatureCollection = parseFeatures(archive);
+				XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 				int id = validatorWmsManager.insert(xPlanFeatureCollection);
 				return createWmsUrl(id);
 			}
+		}
+		catch (XMLStreamException | UnknownCRSException e) {
+			LOG.error("Plan could not be parsed. Reason {}", e.getMessage(), e);
 		}
 		catch (MapPreviewCreationException | URISyntaxException e) {
 			LOG.error("Plan could not be added to the XPlanValidatorWMS. Reason {}", e.getMessage(), e);
@@ -160,20 +164,6 @@ public class ValidationHandler {
 		uriBuilder.addParameter("SERVICE", "WMS");
 		uriBuilder.addParameter("REQUEST", "GetCapabilities");
 		return uriBuilder.build();
-	}
-
-	private XPlanFeatureCollection parseFeatures(XPlanArchive archive) {
-		try {
-			XPlanSchemas schemas = XPlanSchemas.getInstance();
-			AppSchema appSchema = schemas.getAppSchema(archive.getVersion(), archive.getAde());
-			XPlanFeatureCollection xPlanFeatureCollection = geometricValidator
-					.retrieveGeometricallyValidXPlanFeatures(archive, archive.getCrs(), appSchema, true, null);
-			return xPlanFeatureCollection;
-		}
-		catch (XMLStreamException | UnknownCRSException | ValidatorException e) {
-			LOG.warn("Parsing of external references failed", e);
-			return null;
-		}
 	}
 
 	private Path createWorkDir() throws IOException {

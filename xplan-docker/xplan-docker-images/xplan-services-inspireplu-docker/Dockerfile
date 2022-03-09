@@ -10,7 +10,6 @@ ENV JAVA_OPTS="-Xmx8192m"
 # configure tomcat
 ADD tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
 ADD web.xml /usr/local/tomcat/conf/web.xml
-#ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
 
 # add xplan-inspireplu
 ADD target/xplan-inspireplu-*.war /root/

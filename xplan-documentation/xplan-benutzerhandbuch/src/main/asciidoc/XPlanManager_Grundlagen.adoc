@@ -11,7 +11,7 @@ XPlanWFS und XPlanWMS abgerufen werden. Im folgenden Abschnitt werden die Anford
 
 Das XPlanArchiv ist eine ZIP-Datei mit folgendem Aufbau:
 
- * Im Basisverzeichnis muss das XPlanGML-Instanzdokument mit dem Dateinamen __xplan.gml__ vorhanden sein.
+ * Im Basisverzeichnis muss die XPlanGML-Datei mit dem Dateinamen __xplan.gml__ vorhanden sein.
  * Rasterdaten, die im __xplan.gml__ referenziert sind, müssen ebenfalls im Basisverzeichnis der ZIP-Datei liegen, siehe dazu auch <<referenzierung-von-rasterdaten-im-xplangml>>.
  * Alle anderen im __xplan.gml__ referenzierten Anhänge müssen entweder im Basisverzeichnis der ZIP-Datei liegen oder werden über einen Link auf eine externe Datei (URL) referenziert.
 
@@ -19,12 +19,12 @@ IMPORTANT: *Wichtig*: Dateinamen dürfen keine Sonderzeichen wie z. B. `&`, `#` 
 Leerzeichen oder auch Umlaute beinhalten. Gross- und Kleinschreibung in den Dateinamen (auch der Dateiendung) werden berücksichtigt
 und müssen vollständig mit den Referenzen im Dokument übereinstimmen!
 
-==== Das XPlanGML-Instanzdokument
+==== Das XPlanGML-Dokument
 
-Das XPlanGML-Instanzdokument muss folgende Eigenschaften aufweisen:
+Das XPlanGML-Dokument muss folgende Eigenschaften aufweisen:
 
- * Das XPlanGML-Instanzdokument ist wohlgeformt und hat den Dateinamen __xplan.gml__.
- * Das XPlanGML-Instanzdokument beinhaltet nur ein Element vom Typ `<xplan:XP_PLAN/>`. Beinhaltet eine Datei mehrere dieser Elemente, ist ein Import über den XPlanManager nicht möglich!
+ * Das XPlanGML-Dokument ist wohlgeformt und hat den Dateinamen __xplan.gml__.
+ * Das XPlanGML-Dokument beinhaltet nur ein oder mehrere Elemente vom Typ `<xplan:XP_PLAN/>`. Beinhaltet eine Datei mehrere dieser Elemente, so dürfen keine nicht referenzierte Features im XPlanGML-Dokument vorkommen, wie z.B. ein freies Präsentationsobjekt ohne Bezug zum Bereich!
 
 [[anlegen-von-deegree-konfigurationsstrukturen-fuer-rasterdaten]]
 ==== Anlegen von deegree Konfigurationsstrukturen für Rasterdaten

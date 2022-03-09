@@ -15,9 +15,9 @@ Unterstützt wird derzeit die Transformation von XPlanGML 4.1 nach XPlanGML 5.1
 [[xplantransform-cli-installation]]
 === Installation
 
-Für die Nutzung des Tools muss die Installation von HALE erfolgreich abgeschlossen sein (s. Betriebshandbuch).
+Für die Nutzung des Tools muss die Installation der Software https://github.com/halestudio/hale-cli/[HALE CLI] erfolgreich abgeschlossen sein. Weitere Informationen zur Installation finden Sie im Betriebshandbuch der xPlanBox.
 
-Weiterhin sind zusätzliche SQL-Skripte auszuführen, die sich im entpackten Werkzeug im Verzeichnis scripts befinden. Die Ausführung muss in der festgelegten Reihenfolge erfolgen:
+Weiterhin sind zusätzliche SQL-Skripte auszuführen, die sich im Verzeichnis _scripts/_ befinden. Die Ausführung muss in der festgelegten Reihenfolge erfolgen:
 
  1. 01_create_tables.sql
  2. 02_create_trigger-functions.sql

@@ -2,24 +2,37 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.commons.util;
+
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.gml.GMLStreamReader;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import javax.xml.stream.XMLStreamReader;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
@@ -28,26 +41,11 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import javax.xml.stream.XMLStreamReader;
-
-import org.deegree.feature.Feature;
-import org.deegree.feature.FeatureCollection;
-import org.deegree.gml.GMLStreamReader;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 
 /**
  * Tests for {@link FeatureCollectionUtils}.
@@ -102,7 +100,7 @@ public class FeatureCollectionUtilsTest {
 	@Test
 	public void testRetrieveLegislationStatusWithExistingLegislationStatusShouldReturnString() throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection("xplan41/Eidelstedt_4_V4.zip");
-		String legislationStatus = retrieveLegislationStatus(fc, BP_Plan);
+		String legislationStatus = retrieveRechtsstand(fc, BP_Plan);
 
 		assertThat(legislationStatus, is("4000"));
 	}
@@ -110,7 +108,7 @@ public class FeatureCollectionUtilsTest {
 	@Test
 	public void testRetrieveLegislationStatusWithMissingLegislationStatusShouldReturnNull() throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection("xplan41/LA67.zip");
-		String legislationStatus = retrieveLegislationStatus(fc, BP_Plan);
+		String legislationStatus = retrieveRechtsstand(fc, BP_Plan);
 
 		assertThat(legislationStatus, nullValue());
 	}

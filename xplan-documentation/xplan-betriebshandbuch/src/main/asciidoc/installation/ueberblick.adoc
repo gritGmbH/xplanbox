@@ -7,6 +7,7 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
  ** xplan-manager-cli-<VERSION>.zip
  ** xplan-validator-cli-<VERSION>.zip
  ** xplan-update-database-<VERSION>.zip
+ ** xplan-evaluation-schema-synchronize-cli-<VERSION>.zip
 * Web-Anwendungen und Web-Dienste und zugehörige Konfigurationen:
 
 [width="100%",cols="40%,60%",options="header"]
@@ -25,7 +26,7 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
 |===
 
  * Dokumentation (in HTML und PDF-Format):
- ** xPlanBox-Benutzerhandbuch
- ** xPlanBox-Betriebshandbuch
+ ** XPlanBenutzerhandbuch - Benutzerhandbuch für die Komponenten der xPlanBox
+ ** XPlanBetriebshandbuch - Betriebshandbuch und Installationsanleitung für die xPlanBox
 
 Bitte kontaktieren Sie https://www.lat-lon.de[lat/lon GmbH], per E-mail an info@lat-lon.de, wenn Installationskomponenten fehlen.

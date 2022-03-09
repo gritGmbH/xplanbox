@@ -2,21 +2,20 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.web.client.gui;
@@ -175,9 +174,7 @@ public class UploadPanel extends DecoratorPanel {
 
 			@Override
 			public String getCellStyleNames(Cell.Context context, XPlan object) {
-				if (object.isHasMultipleXPlanElements())
-					return "cellButton buttonNotValid";
-				else if (object.isValidated())
+				if (object.isValidated())
 					return "cellButton " + (object.isValid() ? "buttonValid" : "buttonNotValid");
 				else
 					return "cellButton buttonNotValidated";
@@ -191,9 +188,7 @@ public class UploadPanel extends DecoratorPanel {
 		Column<XPlan, String> validatedColumn = new Column<XPlan, String>(validatedNoteCell) {
 			@Override
 			public String getValue(XPlan object) {
-				if (object.isHasMultipleXPlanElements())
-					return messages.validationNoteMultipleXPlanElements();
-				else if (!object.isValidated())
+				if (!object.isValidated())
 					return messages.validationNoteNotValidated();
 				else if (object.isValid())
 					return messages.validationNoteValid();
@@ -210,7 +205,7 @@ public class UploadPanel extends DecoratorPanel {
 		Column<XPlan, String> importButtonColumn = new Column<XPlan, String>(importButtonCell) {
 			@Override
 			public String getValue(XPlan object) {
-				if (object.isValid() && !object.isHasMultipleXPlanElements())
+				if (object.isValid())
 					importButtonCell.setEnabled();
 				else
 					importButtonCell.setDisabled();
@@ -220,7 +215,7 @@ public class UploadPanel extends DecoratorPanel {
 		importButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
 			public void update(int index, XPlan object, String value) {
 				if (object.isValid()) {
-					importWizardCreator.importPlan(object.getId());
+					importWizardCreator.importPlan(object.getId(), object.isHasMultipleXPlanElements());
 				}
 				else {
 					Window.alert(messages.loadNotPossible());

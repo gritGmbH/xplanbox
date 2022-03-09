@@ -2,21 +2,20 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplanbox.api.validator.handler;
@@ -43,14 +42,18 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { ApplicationContext.class })
 public class ValidationHandlerTest {
@@ -94,7 +97,7 @@ public class ValidationHandlerTest {
 		final ValidationSettings settings = Mockito.mock(ValidationSettings.class);
 
 		XPlanArchive archive = validationHandler.createArchiveFromZip(file, "bplan_valid_41");
-		ValidatorReport report = validationHandler.validate(archive, "noName", settings);
+		ValidatorReport report = validationHandler.validate(archive, "bplan_valid_41", settings);
 		assertTrue(report.isReportValid());
 	}
 

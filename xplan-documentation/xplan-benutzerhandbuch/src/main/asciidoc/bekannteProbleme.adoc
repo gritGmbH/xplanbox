@@ -16,17 +16,6 @@ Referenzen:
     - https://connect.microsoft.com/IE/feedback/details/817183/ie10-and-ie11-keep-files-locked-after-uploading[IE10 and IE11 keep files locked after uploading]
     - https://connect.microsoft.com/IE/feedback/details/794708/uploaded-file-is-locked-on-file-system-after-upload[Uploaded file is locked on file system after upload]
 
-[[kapazitaetsbezogene-einschraenkungen]]
-=== Kapazitätsbezogene Einschränkungen
-
-Sowohl für das XPlanManagerCLI, den XPlanManagerWeb als auch den XPlanValidator gelten Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei inklusive Anhänge) größer als 50 MB und XPlanGML-Dateien größer als 2 MB können die Systemstabilität beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert werden sollen, so müssen Server-seitig entsprechende Systemvoraussetzungen erfüllt sein.
-
-Für die Bereitstellung von mehr als 500 XPlanArchiven über die Dienste
-XPlanWMS, XPlanWFS oder XPlanSynWFS müssen Server-seitig ebenfalls entsprechende
-Systemvoraussetzungen erfüllt sein. Das Antwortzeitverhalten der Dienste ist von den verfügbaren System-Ressourcen abhängig.
-
-Weitere Informationen zu den Systemanforderungen der xPlanBox finden Sie im Betriebshandbuch.
-
 [[xplanbox---durch-kartenvorschau-generierter-getmap-request]]
 === xPlanBox - Durch Kartenvorschau generierter GetMap-Request
 
@@ -46,15 +35,14 @@ Dies gilt für jeden einzeln Plan-Typ: Für die URL für BPläne muss z. B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
 
-=== Alternativer Betriebsmodus (XPlanManagerCLI) - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
+=== XPlanManagerCLI - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
 
-Für die Erzeugung der deegree Konfigurationsdateien im alternativen Betriebsmodus muss zwingend die Bibliothek Apache Xalan 2.7.1 verwendet werden.
-Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als Saxon-HE-9.4.jar und xalan-2.7.1.jar.
+Für die Erzeugung der deegree Konfigurationsdateien muss zwingend die Bibliothek Apache Xalan 2.7.2 verwendet werden.
+Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als die Dateien _Saxon-HE-9.9.x.jar_ und _xalan-2.7.2.jar_.
 
-Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML Namespace Attribute in Form von xmlns="" aufweisen.
-Diese Konfigurationsdateien können nicht von deegree geparst werden.
-
-Wenn die leeren XML Namespace Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
+Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML Namespace Attribute in Form von `xmlns=""` aufweisen.
+Diese Konfigurationsdateien können nicht von deegree geparst werden. Und führen zu einem Systemfehler und verhindern den Start der Dienste.
+Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namespace-Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
 
 === Transformation in das INSPIRE Planned Land Use Datenschema
 

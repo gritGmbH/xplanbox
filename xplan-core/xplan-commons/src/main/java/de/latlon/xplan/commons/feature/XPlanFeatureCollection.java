@@ -1,52 +1,50 @@
+package de.latlon.xplan.commons.feature;
+
 /*-
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.commons.feature;
 
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Envelope;
 
 import java.util.Date;
+import java.util.List;
 
 /**
- * Provides convenient access to the information contained in the main document of an
- * {@link XPlanArchive}.
- *
- * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
- * @since 1.0
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XPlanFeatureCollection {
+public abstract class XPlanFeatureCollection {
 
-	private final FeatureCollection fc;
+	protected final FeatureCollection features;
 
-	private final XPlanType type;
+	protected final XPlanType type;
 
-	private final XPlanVersion version;
+	protected final XPlanVersion version;
 
-	private final XPlanAde ade;
+	protected final XPlanAde ade;
 
 	private String name;
 
@@ -60,10 +58,10 @@ public class XPlanFeatureCollection {
 
 	private final ExternalReferenceInfo externalRefInfo;
 
-	XPlanFeatureCollection(FeatureCollection fc, XPlanType type, String name, String nummer, String gkz,
+	XPlanFeatureCollection(FeatureCollection features, XPlanType type, String name, String nummer, String gkz,
 			Date planReleaseDate, ExternalReferenceInfo externalRefInfo, Envelope bboxIn4326, XPlanVersion version,
 			XPlanAde ade) {
-		this.fc = fc;
+		this.features = features;
 		this.type = type;
 		this.name = name;
 		this.nummer = nummer;
@@ -112,7 +110,7 @@ public class XPlanFeatureCollection {
 	}
 
 	public FeatureCollection getFeatures() {
-		return fc;
+		return features;
 	}
 
 	public ExternalReferenceInfo getExternalReferenceInfo() {
@@ -128,5 +126,15 @@ public class XPlanFeatureCollection {
 	public Envelope getBboxIn4326() {
 		return bboxIn4326;
 	}
+
+	/**
+	 * Returns all ArchiveEntries assigned to the XPlanFeatureCollection.
+	 * @param xPlanArchive the XPlanArchive the XPlanFeatureCollection belongs to, ḿay be
+	 * <code>null</code>
+	 * @return a list of ArchiveEntries assigned to the XPlanFeatureCollection, may be
+	 * empty but never <code>null</code>. Empty if the xPlanArchive is null
+	 */
+	public abstract List<ZipEntryWithContent> getArchiveEntries(XPlanArchive xPlanArchive)
+			throws FeatureCollectionParseException;
 
 }

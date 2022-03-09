@@ -8,11 +8,10 @@ ENV CATALINA_OPTS="-DXPLANBOX_CONFIG=/root/xplan-manager-config/ -Djavax.xml.tra
 ENV JAVA_OPTS="-Xmx8192m"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
-# configure tomcat
-#ADD catalina.policy /usr/local/tomcat/conf/catalina.policy
-
-# add hale-cli
+# add hale-cli which is using Java 8 JDK
 RUN cd / && wget https://github.com/halestudio/hale-cli/releases/download/v3.4.0/hale-cli-3.4.0.zip && unzip hale-cli-3.4.0.zip
+RUN apt update && apt -y install openjdk-8-jdk
+RUN sed -i '2iJAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' /hale/bin/hale
 
 # Fix for #96 (java.awt.AWTError: Assistive Technology not found: org.GNOME.Accessibility.AtkWrapper)
 ADD accessibility.properties /etc/java-8-openjdk/accessibility.properties

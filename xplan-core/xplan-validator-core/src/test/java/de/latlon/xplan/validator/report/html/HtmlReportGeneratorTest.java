@@ -2,21 +2,20 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.validator.report.html;
@@ -36,9 +35,12 @@ import java.util.List;
 
 import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.SYNTAX_ERRORS;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
 public class HtmlReportGeneratorTest {
 
 	@Test
@@ -58,10 +60,10 @@ public class HtmlReportGeneratorTest {
 
 		htmlReportGenerator.generateHtmlReport(createValidatorReportWithSemanticFailures(), html);
 
-		assertThat(html.toString(), hasXPath("/html/body/p[6]/p/ul/li[1]", containsString("2 Validierungsregeln")));
+		assertThat(html.toString(), hasXPath("/html/body/p[7]/p/ul/li[1]", containsString("2 Validierungsregeln")));
 		assertThat(html.toString(),
-				hasXPath("/html/body/p[6]/p/ul/li[2]", containsString("1 Validierungsregeln nicht")));
-		assertThat(html.toString(), hasXPath("/html/body/p[6]/p/ul/li[3]", containsString("1 Validierungsregeln")));
+				hasXPath("/html/body/p[7]/p/ul/li[2]", containsString("1 Validierungsregeln nicht")));
+		assertThat(html.toString(), hasXPath("/html/body/p[7]/p/ul/li[3]", containsString("1 Validierungsregeln")));
 	}
 
 	@Test
@@ -81,7 +83,7 @@ public class HtmlReportGeneratorTest {
 
 		htmlReportGenerator.generateHtmlReport(createValidatorReportWithGeometricWarnings(), html);
 
-		assertThat(html.toString(), hasXPath("/html/body/p[6]/p[2]", containsString("1 Warnungen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[7]/p[2]", containsString("1 Warnungen")));
 	}
 
 	@Test
@@ -91,9 +93,9 @@ public class HtmlReportGeneratorTest {
 
 		htmlReportGenerator.generateHtmlReport(createValidatorReportWithAllTypes(), html);
 
-		assertThat(html.toString(), hasXPath("/html/body/p[6]", containsString("semantischen")));
-		assertThat(html.toString(), hasXPath("/html/body/p[7]", containsString("geometrischen")));
-		assertThat(html.toString(), hasXPath("/html/body/p[8]", containsString("syntaktischen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[7]", containsString("semantischen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[8]", containsString("geometrischen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[9]", containsString("syntaktischen")));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -157,7 +159,7 @@ public class HtmlReportGeneratorTest {
 
 	private ValidatorReport createValidationReport() {
 		ValidatorReport validatorReport = new ValidatorReport();
-		validatorReport.setPlanName("PLAN_NAME");
+		validatorReport.setPlanNames(Collections.singletonList("PLAN_NAME"));
 		validatorReport.setValidationName("VALIDATION_NAME");
 		return validatorReport;
 	}

@@ -2,21 +2,20 @@
  * #%L
  * xplan-transform-cli - Kommandozeilentool fuer die Transformation zwischen XPlanGML Versionen
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.transform.cli;
@@ -30,7 +29,7 @@ import de.latlon.xplan.commons.cli.Operation;
 import de.latlon.xplan.commons.cli.SynchronizationException;
 import de.latlon.xplan.commons.cli.Synchronizer;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.util.XPlanFeatureCollectionUtils;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -64,6 +63,8 @@ import static de.latlon.xplan.transform.cli.TransformTool.LOG_TABLE_NAME;
 public class TransformationSynchronizer implements Synchronizer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TransformationSynchronizer.class);
+
+	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final XPlanDao xPlanDao;
 
@@ -180,7 +181,7 @@ public class TransformationSynchronizer implements Synchronizer {
 		XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
 		try (InputStream inputStream = new ByteArrayInputStream(resultAsBytes)) {
 			AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(resultVersion, ade);
-			return XPlanFeatureCollectionUtils.parseXPlanFeatureCollection(inputStream, type, resultVersion, appSchema);
+			return xPlanGmlParser.parseXPlanFeatureCollection(inputStream, resultVersion, type);
 		}
 	}
 

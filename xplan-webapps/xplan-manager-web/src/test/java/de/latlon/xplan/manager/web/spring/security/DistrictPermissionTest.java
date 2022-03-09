@@ -2,21 +2,20 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.web.spring.security;
@@ -28,10 +27,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -42,7 +42,7 @@ import static org.mockito.Mockito.mock;
 public class DistrictPermissionTest {
 
 	@Test
-	public void testIsAllowedArchiveAuthorised() throws Exception {
+	public void testIsAllowedArchiveAuthorised() {
 		DistrictPermission evaluator = new DistrictPermission();
 		XPlanArchive archive = createArchive("planDistrict");
 		boolean hasPermission = evaluator.isAllowed(createAuthentication(), archive);
@@ -50,7 +50,7 @@ public class DistrictPermissionTest {
 	}
 
 	@Test
-	public void testIsAllowedArchiveAccessDenied() throws Exception {
+	public void testIsAllowedArchiveMultipleInstancesAccessDenied() {
 		DistrictPermission evaluator = new DistrictPermission();
 		XPlanArchive archive = createArchive("unauthorized");
 		boolean hasPermission = evaluator.isAllowed(createAuthentication(), archive);
@@ -58,7 +58,23 @@ public class DistrictPermissionTest {
 	}
 
 	@Test
-	public void testIsAllowedPlanAuthorised() throws Exception {
+	public void testIsAllowedArchiveMultipleInstancesAuthorised() {
+		DistrictPermission evaluator = new DistrictPermission();
+		XPlanArchive archive = createArchive("planDistrict", "planDistrict");
+		boolean hasPermission = evaluator.isAllowed(createAuthentication(), archive);
+		assertThat(hasPermission, is(true));
+	}
+
+	@Test
+	public void testIsAllowedArchiveAccessDenied() {
+		DistrictPermission evaluator = new DistrictPermission();
+		XPlanArchive archive = createArchive("unauthorized", "planDistrict");
+		boolean hasPermission = evaluator.isAllowed(createAuthentication(), archive);
+		assertThat(hasPermission, is(false));
+	}
+
+	@Test
+	public void testIsAllowedPlanAuthorised() {
 		DistrictPermission evaluator = new DistrictPermission();
 		XPlan plan = createPlan("planDistrict");
 		boolean hasPermission = evaluator.isAllowed(createAuthentication(), plan);
@@ -66,7 +82,7 @@ public class DistrictPermissionTest {
 	}
 
 	@Test
-	public void testIsAllowedPlanAccessDenied() throws Exception {
+	public void testIsAllowedPlanAccessDenied() {
 		DistrictPermission evaluator = new DistrictPermission();
 		XPlan plan = createPlan("unauthorized");
 		boolean hasPermission = evaluator.isAllowed(createAuthentication(), plan);
@@ -81,9 +97,9 @@ public class DistrictPermissionTest {
 		return mock;
 	}
 
-	private XPlanArchive createArchive(String planDistrict) {
+	private XPlanArchive createArchive(String... planDistrict) {
 		XPlanArchive mock = mock(XPlanArchive.class);
-		doReturn(planDistrict).when(mock).getDistrict();
+		doReturn(Arrays.asList(planDistrict)).when(mock).getDistricts();
 		return mock;
 	}
 

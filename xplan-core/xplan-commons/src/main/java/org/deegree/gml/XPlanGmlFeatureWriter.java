@@ -2,21 +2,20 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package org.deegree.gml;
@@ -30,6 +29,7 @@ import org.deegree.feature.GenericFeatureCollection;
 import org.deegree.gml.feature.GMLFeatureWriter;
 
 import javax.xml.stream.XMLStreamException;
+import java.util.UUID;
 
 import static org.deegree.commons.xml.CommonNamespaces.XLNNS;
 
@@ -53,10 +53,10 @@ public class XPlanGmlFeatureWriter extends GMLFeatureWriter {
 	public void export(Feature feature) throws XMLStreamException, UnknownCRSException, TransformationException {
 		if (feature instanceof GenericFeatureCollection) {
 			writeStartElementWithNS(xPlanVersion.getNamespace(), "XPlanAuszug");
-			if (feature.getId() != null) {
-				GMLVersion gmlVersion = xPlanVersion.getGmlVersion();
-				writeAttributeWithNS(gmlVersion.getNamespace(), "id", feature.getId());
-			}
+			String id = getOrCreateId(feature);
+			GMLVersion gmlVersion = xPlanVersion.getGmlVersion();
+			writeAttributeWithNS(gmlVersion.getNamespace(), "id", id);
+
 			for (Feature member : ((FeatureCollection) feature)) {
 				String memberFid = member.getId();
 				writeStartElementWithNS(gmlNs, "featureMember");
@@ -73,6 +73,13 @@ public class XPlanGmlFeatureWriter extends GMLFeatureWriter {
 		else {
 			super.export(feature);
 		}
+	}
+
+	private String getOrCreateId(Feature feature) {
+		if (feature.getId() != null) {
+			return feature.getId();
+		}
+		return "XPLANAUSZUG_" + UUID.randomUUID();
 	}
 
 }

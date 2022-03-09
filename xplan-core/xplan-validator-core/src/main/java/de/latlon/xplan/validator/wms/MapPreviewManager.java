@@ -2,21 +2,20 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.validator.wms;
@@ -25,7 +24,7 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.validator.ValidatorException;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
@@ -33,7 +32,6 @@ import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.TransformationException;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
-import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.Envelope;
 import org.deegree.geometry.GeometryTransformer;
 import org.slf4j.Logger;
@@ -41,7 +39,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -51,6 +48,8 @@ public class MapPreviewManager {
 	private static final Logger LOG = LoggerFactory.getLogger(MapPreviewManager.class);
 
 	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+
+	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final ValidatorWmsManager validatorWmsManager;
 
@@ -80,7 +79,7 @@ public class MapPreviewManager {
 	public MapPreviewMetadata createConfigurations(File xPlan) throws MapPreviewCreationException {
 		try {
 			XPlanArchive archive = archiveCreator.createXPlanArchive(xPlan);
-			XPlanFeatureCollection featureCollection = parseFeatures(archive);
+			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
 			int managerId = this.validatorWmsManager.insert(featureCollection);
 			String configFileName = this.configWriter.createMasterportalConfig(managerId, archive.getType());
 
@@ -89,22 +88,13 @@ public class MapPreviewManager {
 					envelope.getMax().get0(), envelope.getMax().get1(), "EPSG:4326");
 			return new MapPreviewMetadata(configFileName, featureCollection.getPlanName(), xPlanEnvelope);
 		}
+		catch (XMLStreamException | UnknownCRSException e) {
+			LOG.error("Plan could not be parsed. Reason {}", e.getMessage(), e);
+			throw new MapPreviewCreationException(e.getMessage());
+		}
 		catch (Exception e) {
 			LOG.error("An exception occurred during creation of the map preview configuration", e);
 			throw new MapPreviewCreationException(e.getMessage());
-		}
-	}
-
-	private XPlanFeatureCollection parseFeatures(XPlanArchive archive) {
-		try {
-			AppSchema appSchema = schemas.getAppSchema(archive.getVersion(), archive.getAde());
-			XPlanFeatureCollection xPlanFeatureCollection = geometricValidator
-					.retrieveGeometricallyValidXPlanFeatures(archive, archive.getCrs(), appSchema, true, null);
-			return xPlanFeatureCollection;
-		}
-		catch (XMLStreamException | UnknownCRSException | ValidatorException e) {
-			LOG.warn("Parsing of external references failed", e);
-			return null;
 		}
 	}
 

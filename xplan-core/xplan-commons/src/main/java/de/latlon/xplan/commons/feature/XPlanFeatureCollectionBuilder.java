@@ -2,21 +2,20 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.commons.feature;
@@ -45,8 +44,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValues;
@@ -70,6 +71,8 @@ public class XPlanFeatureCollectionBuilder {
 
 	private final FeatureCollection features;
 
+	private final List<FeatureCollection> featuresCollections;
+
 	private final XPlanType xPlanType;
 
 	private ExternalReferenceInfo externalReferenceInfo;
@@ -80,6 +83,17 @@ public class XPlanFeatureCollectionBuilder {
 	 */
 	public XPlanFeatureCollectionBuilder(FeatureCollection features, XPlanType xPlanType) {
 		this.features = features;
+		this.featuresCollections = null;
+		this.xPlanType = xPlanType;
+	}
+
+	/**
+	 * @param featuresCollections to be encapsulated, never <code>null</code>
+	 * @param xPlanType type of the plan, never <code>null</code>
+	 */
+	public XPlanFeatureCollectionBuilder(List<FeatureCollection> featuresCollections, XPlanType xPlanType) {
+		this.featuresCollections = featuresCollections;
+		this.features = null;
 		this.xPlanType = xPlanType;
 	}
 
@@ -96,10 +110,39 @@ public class XPlanFeatureCollectionBuilder {
 	}
 
 	/**
+	 * Build the {@link XPlanSingleInstanceFeatureCollection}.
+	 * @return never <code>null</code>
+	 */
+	public XPlanSingleInstanceFeatureCollection build() {
+		if (features == null) {
+			throw new IllegalArgumentException("featuresPerInstance cannot be null");
+		}
+		return build(features);
+	}
+
+	/**
 	 * Build the {@link XPlanFeatureCollection}.
 	 * @return never <code>null</code>
 	 */
-	public XPlanFeatureCollection build() {
+	public XPlanFeatureCollections buildAllowMultipleInstances() {
+		if (featuresCollections == null) {
+			throw new IllegalArgumentException("featuresPerInstance cannot be null");
+		}
+		if (featuresCollections.isEmpty()) {
+			throw new IllegalArgumentException("feature collection cannot be empty");
+		}
+		FeatureCollection featuresOfFirstCollection = featuresCollections.get(0);
+		Feature planFeatures = findPlanFeature(featuresOfFirstCollection, xPlanType);
+		String planFeatureNamespaceUri = planFeatures.getName().getNamespaceURI();
+		XPlanVersion version = XPlanVersion.valueOfNamespace(planFeatureNamespaceUri);
+		XPlanAde ade = determineAde(planFeatureNamespaceUri);
+
+		List<XPlanFeatureCollection> xPlanGmlInstances = createListOfXPlanGmlInstances(featuresOfFirstCollection,
+				version, ade);
+		return new XPlanFeatureCollections(version, xPlanType, ade, xPlanGmlInstances);
+	}
+
+	private XPlanSingleInstanceFeatureCollection build(FeatureCollection features) {
 		Feature planFeature = findPlanFeature(features, xPlanType);
 		String planFeatureNamespaceUri = planFeature.getName().getNamespaceURI();
 		XPlanVersion version = XPlanVersion.valueOfNamespace(planFeatureNamespaceUri);
@@ -111,8 +154,27 @@ public class XPlanFeatureCollectionBuilder {
 		Envelope bboxIn4326 = createBboxIn4326(features);
 		if (externalReferenceInfo == null)
 			externalReferenceInfo = new ExternalReferenceScanner().scan(features, version);
-		return new XPlanFeatureCollection(features, xPlanType, name, nummer, gkz, planReleaseDate,
+		return new XPlanSingleInstanceFeatureCollection(features, xPlanType, name, nummer, gkz, planReleaseDate,
 				externalReferenceInfo, bboxIn4326, version, ade);
+	}
+
+	private List<XPlanFeatureCollection> createListOfXPlanGmlInstances(FeatureCollection featuresOfFirstCollection,
+			XPlanVersion version, XPlanAde ade) {
+		if (featuresCollections.size() == 1) {
+			return Collections.singletonList(build(featuresOfFirstCollection));
+		}
+		return featuresCollections.stream().map(featureCollection -> {
+			Feature planFeature = findPlanFeature(featureCollection, xPlanType);
+			String name = FeatureCollectionUtils.retrievePlanName(planFeature);
+			String nummer = parsePlanNummer(planFeature);
+			String gkz = parsePlanGemeindeKennzahl(planFeature);
+			Date planReleaseDate = parsePlanReleaseDate(xPlanType, planFeature);
+			Envelope bboxIn4326 = createBboxIn4326(featureCollection);
+			ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceScanner().scan(featureCollection,
+					version);
+			return new XPlanMultipleInstanceFeatureCollection(featureCollection, xPlanType, name, nummer, gkz,
+					planReleaseDate, externalReferenceInfo, bboxIn4326, version, ade);
+		}).collect(Collectors.toList());
 	}
 
 	private XPlanAde determineAde(String namespaceUri) {

@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
   xmlns:sed="http://www.deegree.org/se"
   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
@@ -33,20 +54,19 @@
         </ogc:Or>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#ffdc45</SvgParameter>
+        <SvgParameter name="fill">#FFD92F</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-opacity">0.0</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">1.0</SvgParameter>
-        <SvgParameter name="stroke-dasharray">1</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
@@ -70,7 +90,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -89,7 +109,7 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#ffdc45</SvgParameter>
+        <SvgParameter name="stroke">#FFD92F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">5.0</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
@@ -144,7 +164,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -163,7 +183,7 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#ffdc45</SvgParameter>
+        <SvgParameter name="stroke">#FFD92F</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">5.0</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
@@ -205,7 +225,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -240,7 +260,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -275,7 +295,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -310,7 +330,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -345,7 +365,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -380,7 +400,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -421,7 +441,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -462,7 +482,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -503,32 +523,24 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/FreeSans.ttf" />
-          <Format>ttf</Format>
-          <MarkIndex>1600</MarkIndex>
+          <WellKnownName>square</WellKnownName>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1</SvgParameter>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1</SvgParameter>
-            <SvgParameter name="stroke-width">1</SvgParameter>
+            <SvgParameter name="stroke-width">3</SvgParameter>
           </Stroke>
         </Mark>
-        <Size>90</Size>
-        <Displacement>
-          <DisplacementX>-8</DisplacementX>
-          <DisplacementY>-5</DisplacementY>
-        </Displacement>
+        <Size>70</Size>
       </Graphic>
     </PointSymbolizer>
     <PointSymbolizer uom="meter">
@@ -575,7 +587,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -616,7 +628,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -657,7 +669,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -723,7 +735,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>

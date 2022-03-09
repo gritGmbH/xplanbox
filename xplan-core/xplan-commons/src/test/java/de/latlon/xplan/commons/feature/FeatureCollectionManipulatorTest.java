@@ -2,37 +2,30 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.commons.feature;
 
-import static de.latlon.xplan.commons.feature.FeatureCollectionManipulator.removeAllFeaturesExceptOfPlanFeature;
-import static org.deegree.commons.tom.primitive.BaseType.STRING;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamReader;
-
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.XPlanAde;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.gml.property.PropertyType;
 import org.deegree.feature.Feature;
@@ -49,12 +42,14 @@ import org.hamcrest.Description;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import static org.deegree.commons.tom.primitive.BaseType.STRING;
+import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Tests for {@link de.latlon.xplan.commons.feature.FeatureCollectionManipulator}.
@@ -125,28 +120,6 @@ public class FeatureCollectionManipulatorTest {
 		featureCollectionManipulator.addInternalId(fcWithoutNameProperty, createSchema(), propValue);
 
 		assertThat(fcWithoutNameProperty, hasProperty(FEATURE_NAME_BP_PLAN, "internalId", propValue, 1));
-	}
-
-	@Test
-	public void testRemoveAllFeaturesExceptOfPlanFeatureWithXPlan41() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan41/Eidelstedt_4_V4.zip");
-		removeAllFeaturesExceptOfPlanFeature(fc);
-		FeatureCollection features = fc.getFeatures();
-		QName nameOfFirstFeature = features.iterator().next().getName();
-
-		assertThat(features.size(), is(1));
-		assertThat(nameOfFirstFeature, is(new QName("http://www.xplanung.de/xplangml/4/1", "BP_Plan")));
-	}
-
-	@Test
-	public void testRemoveAllFeaturesExceptOfPlanFeatureWithXPlan3() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan3/Plessa.zip");
-		removeAllFeaturesExceptOfPlanFeature(fc);
-		FeatureCollection features = fc.getFeatures();
-		QName nameOfFirstFeature = features.iterator().next().getName();
-
-		assertThat(features.size(), is(1));
-		assertThat(nameOfFirstFeature, is(new QName("http://www.xplanung.de/xplangml/3/0", "BP_Plan")));
 	}
 
 	private ArrayList<Feature> createFeaturesWithAllProperties() {

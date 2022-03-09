@@ -2,52 +2,41 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.commons.util;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
-
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
-import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.GMLVersion;
-
+import javax.xml.namespace.QName;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
+import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 
 /**
  * Contains utilities for deegree {@link org.deegree.feature.FeatureCollection}s.
@@ -61,32 +50,12 @@ public class FeatureCollectionUtils {
 	}
 
 	/**
-	 * Parses a FeatureCollection from the passed stream
-	 * @param plan as XMLStreamReader, never <code>null</code>
-	 * @param version of the plan, never <code>null</code>
-	 * @param appSchema of the plan, never <code>null</code>
-	 * @return never <code>null</code>
-	 * @throws XMLStreamException if the plan could not be read
-	 * @throws UnknownCRSException if the CRS of a geometry in the plan is not known
-	 */
-	public static FeatureCollection parseFeatureCollection(XMLStreamReader plan, XPlanVersion version,
-			AppSchema appSchema) throws XMLStreamException, UnknownCRSException {
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(plan, null);
-		GMLVersion gmlVersion = version.getGmlVersion();
-		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(gmlVersion, xmlStream);
-		gmlStream.setGeometryFactory(new GeometryFactory());
-		gmlStream.setApplicationSchema(appSchema);
-		gmlStream.setSkipBrokenGeometries(true);
-		FeatureCollection features = gmlStream.readFeatureCollection();
-		gmlStream.getIdContext().resolveLocalRefs();
-		return features;
-	}
-
-	/**
-	 * Finds the XP_Plan-Feature of a XPlan-FeatureCollection.
-	 * @param fc XPlan-FeatureCollection, never <code>null</code>
-	 * @param type XPlan-Type, never <code>null</code>
-	 * @return XP_Plan-Feature
+	 * Finds the XP_Plan feature of a XPlan featureCollection.
+	 * @param fc XPlan featureCollection, never <code>null</code>
+	 * @param type the type of the expected plan feature, never <code>null</code>
+	 * @return XP_Plan , never <code>null</code>
+	 * @throws IllegalArgumentException if the feature collection does not contain at
+	 * least one XP_Plan feature
 	 */
 	public static Feature findPlanFeature(FeatureCollection fc, XPlanType type) {
 		for (Feature feature : fc) {
@@ -99,12 +68,33 @@ public class FeatureCollectionUtils {
 	}
 
 	/**
-	 * Retrieves the legislation status ("rechtsstand") of a XPlan-FeatureCollection.
+	 * Finds the XP_Plan features of a XPlan featureCollection.
+	 * @param fc XPlan featureCollection, never <code>null</code>
+	 * @param type the type of the expected plan feature, never <code>null</code>
+	 * @return list of XPlan features, never <code>null</code> nor empty
+	 * @throws IllegalArgumentException if the feature collection does not contain at
+	 * least one XP_Plan feature
+	 */
+	public static List<Feature> findPlanFeatures(FeatureCollection fc, XPlanType type) {
+		List<Feature> planFeatures = new ArrayList<>();
+		for (Feature feature : fc) {
+			QName featureName = feature.getName();
+			if (featureName.getLocalPart().equals(type.name())) {
+				planFeatures.add(feature);
+			}
+		}
+		if (planFeatures.isEmpty())
+			throw new IllegalArgumentException("Keine XPlan-FeatureCollection. Kein XP_Plan-Feature enthalten.");
+		return planFeatures;
+	}
+
+	/**
+	 * Retrieves the rechtsstand of a XPlan-FeatureCollection.
 	 * @param fc XPlan-FeatureCollection, never <code>null</code>
 	 * @param type XPlan-Type, never <code>null</code>
-	 * @return legislation status value or <code>null</code> if no value was found
+	 * @return rechtsstand of the plan or <code>null</code> if no value was found
 	 */
-	public static String retrieveLegislationStatus(FeatureCollection fc, XPlanType type) {
+	public static String retrieveRechtsstand(FeatureCollection fc, XPlanType type) {
 		return retrievePlanProperty(fc, type, "rechtsstand");
 	}
 
@@ -142,6 +132,19 @@ public class FeatureCollectionUtils {
 	 */
 	public static String retrieveDescription(FeatureCollection fc, XPlanType type) {
 		return retrievePlanProperty(fc, type, "beschreibung");
+	}
+
+	/**
+	 * Retrieves the value of XX_Plan/name of all XX_Plan features in the
+	 * {@link FeatureCollection}.
+	 * @param fc XPlan-FeatureCollection, never <code>null</code>
+	 * @param type XPlan-Type, never <code>null</code>
+	 * @return list of names of the plans, never <code>null</code> (a new name is created
+	 * for each unnamed plan)
+	 */
+	public static List<String> retrievePlanNames(FeatureCollection fc, XPlanType type) {
+		return findPlanFeatures(fc, type).stream().map(feature -> retrievePlanName(feature))
+				.collect(Collectors.toList());
 	}
 
 	/**

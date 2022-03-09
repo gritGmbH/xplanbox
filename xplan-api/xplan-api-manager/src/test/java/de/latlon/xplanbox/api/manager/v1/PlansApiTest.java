@@ -2,21 +2,20 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplanbox.api.manager.v1;
@@ -34,8 +33,12 @@ import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ */
 public class PlansApiTest extends JerseyTest {
 
 	@Override
@@ -50,9 +53,21 @@ public class PlansApiTest extends JerseyTest {
 
 	@Test
 	public void verifyThat_GetPlansByName_ReturnCorrectStatus() {
-		final String response = target("/plans").queryParam("planName", "bplan_41").request().accept(APPLICATION_JSON)
-				.get(String.class);
-		assertThat(response, containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
+		Response response = target("/plans").queryParam("planName", "bplan_41").request().accept(APPLICATION_JSON)
+				.get();
+		assertThat(response.getStatus(), is(200));
+		assertThat(response.readEntity(String.class),
+				containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
+	}
+
+	@Test
+	public void verifyThat_GetPlansById_ReturnCorrectStatus() {
+		Response response = target("/plans").queryParam("planId", 123).queryParam("planId", 2).request()
+				.accept(APPLICATION_JSON).get();
+		assertThat(response.getStatus(), is(200));
+		String responseEntity = response.readEntity(String.class);
+		assertThat(responseEntity, containsString("{\"id\":123,\"type\":\"BP_Plan\",\"version\":\"XPLAN_41\","));
+		assertThat(responseEntity, containsString("{\"id\":2,\"type\":\"BP_Plan\",\"version\":\"XPLAN_51\","));
 	}
 
 }

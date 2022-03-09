@@ -113,7 +113,7 @@ Die folgende Übersicht der Verzeichnisstruktur und der darin enthaltenen Dateie
 <7> Im Verzeichnis _layers/_ werden zu jeder Rasterdatei durch den <<xplanmanager-web, XPlanManager>> eine Konfigurationsdatei passend zu <3> nach dem Muster __<planId>_<rasterdatei>.xml__ automatisch erzeugt.
 <8> Im Verzeichnis _legends/_ liegen die Legendensymbole.
 <9> Im Verzeichnis _services/_ liegen die Konfigurationsdateien für den <<xplanwms, XPlanWMS>>.
-<10> Im Verzeichnis _styles/_ liegen die Zeichenvorschriften für den <<xplanwms, XPlanWMS>>.
-<11> Die Datei _html.gfi_ beinhaltet die Konfiguration der HTML-Ausgabe der GetFeatureInfo-Operation des <<xplanwms, XPlanWMS>>.
+<10> Die Datei _html.gfi_ beinhaltet die Konfiguration der HTML-Ausgabe der GetFeatureInfo-Operation des <<xplanwms, XPlanWMS>>.
+<11> Im Verzeichnis _styles/_ liegen die Zeichenvorschriften für den <<xplanwms, XPlanWMS>>.
 <12> Im Verzeichnis _symbols/_ liegen die Symbole, die in den Zeichenvorschriften verwendet werden.
 <13> Im Verzeichnis _themes/_ liegen die Konfigurationsdateien für den <<xplanwms, XPlanWMS>>, die den Ebenenbaum definieren. Die unter <6> generierten Konfigurationsdateien für die einzelnen Ebenen werden beim Import vom XPlanManager automatisch erweitert. Dies sind nach Planart und Planstatus die Dateien mit der Dateiendung `*raster.xml`.

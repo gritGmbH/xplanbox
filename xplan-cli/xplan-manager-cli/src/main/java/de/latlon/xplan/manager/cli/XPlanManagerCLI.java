@@ -2,21 +2,20 @@
  * #%L
  * xplan-manager-cli - Kommandozeilentool des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.cli;
@@ -85,16 +84,10 @@ public class XPlanManagerCLI {
 			exportOption(args, instantiateManager(args));
 			break;
 		case "-delete":
-			deleteOption(args, instantiateManager(args), false);
+			deleteOption(args, instantiateManager(args));
 			break;
 		case "-list":
 			listOption(args, instantiateManager(args));
-			break;
-		case "-importmakeconfig":
-			importOption(args, instantiateManager(args), true);
-			break;
-		case "-deletewithconfig":
-			deleteOption(args, instantiateManager(args), true);
 			break;
 		case "-createdb":
 			createDBOption(args, instantiateManager(args));
@@ -152,17 +145,17 @@ public class XPlanManagerCLI {
 		}
 	}
 
-	private static void deleteOption(String[] args, XPlanManager manager, boolean removeWMSConfig) {
+	private static void deleteOption(String[] args, XPlanManager manager) {
 		if (args.length < 2 || args.length > 4) {
 			printUsage();
 		}
 		String planId = args[1];
 		try {
 			if (args.length == 2)
-				manager.delete(planId, removeWMSConfig);
+				manager.delete(planId);
 			else if (args.length == 4 && "--workspace".equals(args[2])) {
 				File workspaceFolder = new File(args[3]);
-				manager.delete(planId, removeWMSConfig, workspaceFolder);
+				manager.delete(planId, workspaceFolder);
 			}
 			else {
 				printUsage();
@@ -245,7 +238,7 @@ public class XPlanManagerCLI {
 	private static void importPlan(XPlanManager manager, boolean makeWMSConfig, boolean force, String fileName,
 			ICRS defaultCRS, File workspaceFolder) throws Exception {
 		List<RasterEvaluationResult> evaluateRasterdata = manager.evaluateRasterdata(fileName);
-		System.out.println("Evaluationsergebniss von referenzierten Rasterdaten: ");
+		System.out.println("Evaluationsergebnis der referenzierten Rasterdaten: ");
 		boolean areAllValid = true;
 		for (RasterEvaluationResult result : evaluateRasterdata) {
 			boolean configuredCrs = result.isConfiguredCrs();
@@ -385,20 +378,14 @@ public class XPlanManagerCLI {
 		System.out.println();
 		System.out.println(" -help");
 		System.out.println(" -list");
-		System.out.println(" -delete   <planid>");
-		System.out.println(
-				" -import   [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
-		System.out.println(
-				" -export   <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
-		System.out.println();
-		System.out.println("Alternativer Betriebsmodus:");
-		System.out.println();
-		System.out.println(" -deletewithconfig   <planid> [--workspace <workspace verzeichnis>]");
-		System.out.println(
-				" -importmakeconfig   [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--crs <CRS>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(" -createdb <DB Name> <JDBC-Connection> -u <user> -p <passwort> [-t <PostGis Template>]");
 		System.out
 				.println(" -updateWmsSortDate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(
+				" -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(
+				" -export <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(" -delete <planid> [--workspace <workspace verzeichnis>]");
 		System.out.println();
 		System.out.println("Raster-Operationen:");
 		System.out.println();

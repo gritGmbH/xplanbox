@@ -2,33 +2,23 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.validator.report.xml;
-
-import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
-import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
-import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
-import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ErrorsType;
@@ -55,6 +45,16 @@ import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
+import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
+
 /**
  * Converts the internal used {@link ValidatorReport} instances to jaxb
  *
@@ -74,6 +74,7 @@ public class JaxbConverter {
 		ValidationReport validationReportType = objectFactory.createValidationReport();
 		validationReportType.setDate(toCalendar(report.getDate()));
 		validationReportType.setName(report.getValidationName());
+		validationReportType.setFileName(report.getArchiveName());
 		validationReportType.setIsValid(report.isReportValid());
 		validationReportType.setPlan(convertPlanType(report));
 		validationReportType.setExternalReferences(convertExternalReferences(report));
@@ -112,7 +113,7 @@ public class JaxbConverter {
 	private PlanType convertPlanType(ValidatorReport report) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		PlanType pt = objectFactory.createPlanType();
-		pt.setName(report.getPlanName());
+		pt.getNames().addAll(report.getPlanNames().stream().sorted().collect(Collectors.toList()));
 		pt.setVersion(asLabel(report.getXPlanVersion()));
 		return pt;
 	}

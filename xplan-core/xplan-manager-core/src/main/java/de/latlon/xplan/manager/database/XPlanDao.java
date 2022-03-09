@@ -2,31 +2,29 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.database;
 
-import org.locationtech.jts.io.ParseException;
 import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.CategoryMapper;
@@ -59,6 +57,7 @@ import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.io.WKTWriter;
 import org.deegree.protocol.wfs.getfeature.TypeName;
 import org.deegree.protocol.wfs.transaction.action.IDGenMode;
+import org.locationtech.jts.io.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -91,7 +90,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveLegislationStatus;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.apache.commons.io.IOUtils.closeQuietly;
@@ -168,7 +167,7 @@ public class XPlanDao {
 
 			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanSynTA = insertXPlanSyn(synFs, synFc);
 
-			insertArtefacts(archive, conn, planId);
+			insertArtefacts(fc, archive, conn, planId);
 
 			long begin = System.currentTimeMillis();
 			LOG.info("- Persistierung...");
@@ -1223,7 +1222,7 @@ public class XPlanDao {
 			stmt.setString(6, fc.getPlanNummer());
 			stmt.setString(7, fc.getPlanGkz());
 			stmt.setBoolean(8, fc.getHasRaster());
-			stmt.setString(9, retrieveLegislationStatus(synFc, archive.getType()));
+			stmt.setString(9, retrieveRechtsstand(synFc, archive.getType()));
 			stmt.setTimestamp(10, convertToSqlTimestamp(fc.getPlanReleaseDate()));
 			stmt.setString(11, retrieveAdditionalType(synFc, archive.getType()));
 			stmt.setString(12, retrievePlanStatusMessage(xPlanMetadata));
@@ -1283,7 +1282,7 @@ public class XPlanDao {
 			XPlanType type = XPlanType.valueOf(xplan.getType());
 			stmt = conn.prepareStatement(updateSql);
 			stmt.setString(1, fc.getPlanName());
-			stmt.setString(2, retrieveLegislationStatus(synFc, type));
+			stmt.setString(2, retrieveRechtsstand(synFc, type));
 			stmt.setString(3, retrieveAdditionalType(synFc, type));
 			stmt.setTimestamp(4, convertToSqlTimestamp(sortDate));
 			stmt.setTimestamp(5, convertToSqlTimestamp(newXPlanMetadata.getStartDateTime()));
@@ -1318,16 +1317,17 @@ public class XPlanDao {
 		}
 	}
 
-	private void insertArtefacts(XPlanArchive archive, Connection conn, int planId) throws Exception {
+	private void insertArtefacts(XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive, Connection conn,
+			int planId) throws Exception {
 		PreparedStatement stmt = null;
-		List<? extends ArchiveEntry> entryEnum = archive.getZipFileEntries();
+		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
 		int i = 0;
-		for (ArchiveEntry entry : entryEnum) {
+		for (ZipEntryWithContent archiveEntry : archiveEntries) {
 			long begin = System.currentTimeMillis();
-			String name = entry.getName();
+			String name = archiveEntry.getName();
 			LOG.info(String.format("- Einfügen von XPlan-Artefakt '%s'...", name));
 			try {
-				InputStream is = archive.retrieveInputStreamFor(name);
+				InputStream is = archiveEntry.retrieveContentAsStream();
 				String mimetype = getArtefactMimeType(name);
 				String insertStatement = "INSERT INTO xplanmgr.artefacts (plan,filename,data,num,mimetype)"
 						+ " VALUES (?,?,?,?,?)";

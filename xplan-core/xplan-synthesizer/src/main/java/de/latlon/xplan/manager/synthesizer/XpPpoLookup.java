@@ -2,35 +2,44 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.synthesizer;
 
 import de.latlon.xplan.commons.synthesizer.Features;
 import de.latlon.xplan.manager.synthesizer.expression.XplanSymbolPositions;
+import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
+import org.deegree.geometry.multi.MultiPoint;
 import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.refs.PointReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 
@@ -45,6 +54,8 @@ import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
  */
 public class XpPpoLookup {
 
+	private static final Logger LOG = LoggerFactory.getLogger(XpPpoLookup.class);
+
 	private static final Map<String, Set<Point>> fachobjektIdToPoints = new HashMap<String, Set<Point>>();
 
 	/**
@@ -58,14 +69,7 @@ public class XpPpoLookup {
 		for (Feature feature : fc) {
 			if ("XP_PPO".equals(feature.getName().getLocalPart())) {
 				QName positionName = new QName(feature.getName().getNamespaceURI(), "position");
-				Point positionProp;
-				if (getPropertyValue(feature, positionName) instanceof PointReference) {
-					positionProp = ((PointReference) getPropertyValue(feature, positionName)).getReferencedObject();
-				}
-				else {
-					positionProp = (Point) getPropertyValue(feature, positionName);
-				}
-
+				List<Point> positionProps = parsePoints(feature, positionName);
 				QName dientZurPropName = new QName(feature.getName().getNamespaceURI(), "dientZurDarstellungVon");
 				List<Property> featureProps = feature.getProperties(dientZurPropName);
 				if (featureProps != null) {
@@ -73,7 +77,8 @@ public class XpPpoLookup {
 						Feature refFeature = Features.getPropertyFeatureValue(prop);
 						String refFeatureId = refFeature.getId();
 						if (refFeatureId == null) {
-							// if the XP_Objekt feature has no id, then it will not need
+							// if the XP_Objekt feature has no id, then it will not
+							// need
 							// be referenced, hence it doesn't
 							// need any points from XP_PPO objects
 							continue;
@@ -82,12 +87,31 @@ public class XpPpoLookup {
 						if (currentPoints == null) {
 							currentPoints = new LinkedHashSet<Point>();
 						}
-						currentPoints.add(positionProp);
+						currentPoints.addAll(positionProps);
 						fachobjektIdToPoints.put(refFeatureId, currentPoints);
 					}
 				}
 			}
 		}
+	}
+
+	private static List<Point> parsePoints(Feature feature, QName positionName) {
+		TypedObjectNode propertyValue = getPropertyValue(feature, positionName);
+		if (propertyValue == null) {
+			return Collections.emptyList();
+		}
+		if (propertyValue instanceof PointReference) {
+			return Collections.singletonList(((PointReference) propertyValue).getReferencedObject());
+		}
+		else if (propertyValue instanceof Point) {
+			return Collections.singletonList((Point) propertyValue);
+		}
+		else if (propertyValue instanceof MultiPoint) {
+			return ((MultiPoint) propertyValue).stream().collect(Collectors.toList());
+		}
+		LOG.warn("Unexpected property value of class {}. Supported are Points and MultiPoints ",
+				propertyValue.getClass());
+		return Collections.emptyList();
 	}
 
 	/**

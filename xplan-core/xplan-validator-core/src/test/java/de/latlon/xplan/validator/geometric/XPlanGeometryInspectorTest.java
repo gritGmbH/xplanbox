@@ -2,21 +2,20 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.validator.geometric;
@@ -51,6 +50,15 @@ import static org.mockito.Mockito.verify;
  * @version $Revision: $, $Date: $
  */
 public class XPlanGeometryInspectorTest {
+
+	@Test
+	public void testInspect_PolygonWithInteriorRing() throws Exception {
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(readGeometry("polygonWithInteriorRing.gml"));
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(0));
+	}
 
 	@Test
 	public void testInspect_Ring_ShouldTestSelfIntersection() throws Exception {
@@ -136,7 +144,7 @@ public class XPlanGeometryInspectorTest {
 	}
 
 	@Test
-	public void testInspect_MultiSurface() throws Exception {
+	public void testInspect_MultiSurface_shouldBeValid() throws Exception {
 		Geometry geometryToInspect = readGeometry("multiSurface.gml");
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(geometryToInspect);
@@ -146,17 +154,56 @@ public class XPlanGeometryInspectorTest {
 	}
 
 	@Test
-	public void testInspect_InvalidMultiSurface() throws Exception {
-		Geometry geometryToInspect = readGeometry("multiSurface-invalid.gml");
+	public void testInspect_MultiSurfaceTouches_shouldBeValid() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-touches.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		assertThat(inspector.getBadGeometries().size(), is(0));
+		assertThat(inspector.getErrors().size(), is(0));
+	}
+
+	@Test
+	public void testInspect_MultiSurfaceIntersection_shouldBeInvalid() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-intersection.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(1));
+		Geometry intersection = badGeometries.get(0).getOriginalGeometry();
+		assertThat(intersection.getId(), is("GML_48d90d78-aa4a-44cc-939b-3562757993c6_intersection_1"));
+		assertThat(inspector.getErrors().size(), is(1));
+	}
+
+	@Test
+	public void testInspect_MultiSurfaceIntersectionInSelfIntersection() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-intersectionInIntersection.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		assertThat(inspector.getErrors().size(), is(2));
+		assertThat(inspector.getBadGeometries().size(), is(1));
+	}
+
+	@Test
+	public void testInspect_MultiSurfaceCoveringGeometries() throws Exception {
+		Geometry geometryToInspect = readGeometry("multiSurface-covering.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(geometryToInspect);
+
+		assertThat(inspector.getErrors().size(), is(1));
+		assertThat(inspector.getBadGeometries().size(), is(1));
+	}
+
+	@Test
+	public void testInspect_InvalidOrientation() throws Exception {
+		Geometry geometryToInspect = readGeometry("polygon-orientation-invalid.gml");
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(geometryToInspect);
 
 		List<BadGeometry> badGeometries = inspector.getBadGeometries();
 		assertThat(badGeometries.size(), is(2));
-		Geometry intersection = badGeometries.get(0).getOriginalGeometry();
-		assertThat(intersection.getId(), is("GML_48d90d78-aa4a-44cc-939b-3562757993c6_intersection_1"));
-		Geometry geometry = badGeometries.get(1).getOriginalGeometry();
-		assertThat(geometry.getId(), is("GML_48d90d78-aa4a-44cc-939b-3562757993c6"));
 	}
 
 	private Geometry readGeometry(String geometryFile) throws Exception {

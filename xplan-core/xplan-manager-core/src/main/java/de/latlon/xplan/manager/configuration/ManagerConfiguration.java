@@ -2,21 +2,20 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.configuration;
@@ -70,6 +69,7 @@ public class ManagerConfiguration {
 
 	static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
 
+	@Deprecated
 	static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
 
 	static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
@@ -181,6 +181,7 @@ public class ManagerConfiguration {
 	/**
 	 * @return default BBOX in EPSG:4326, may be <code>null</code>
 	 */
+	@Deprecated
 	public Envelope getDefaultBboxIn4326() {
 		return defaultBboxIn4326;
 	}
@@ -310,9 +311,6 @@ public class ManagerConfiguration {
 		LOG.info("  workspace reloader configuration");
 		LOG.info("   - urls of service to reload: {}", workspaceReloaderConfiguration.getUrls().toString());
 		LOG.info("-------------------------------------------");
-		LOG.info("  alternative operating mode");
-		LOG.info("   - default bbox: {}", defaultBboxIn4326);
-		LOG.info("-------------------------------------------");
 		LOG.info("  InternalIdRetriever");
 		LOG.info("   - workspace: {}", internalIdRetrieverConfiguration.getWorkspaceName());
 		LOG.info("   - jdbc connection id: {}", internalIdRetrieverConfiguration.getJdbcConnectionId());
@@ -393,6 +391,7 @@ public class ManagerConfiguration {
 		return new WorkspaceReloaderConfiguration();
 	}
 
+	@Deprecated
 	private Envelope parseDefaultBboxIn4326(Properties loadProperties) {
 		String defaultBbox = loadProperties.getProperty(DEFAULT_BBOX_IN_4326);
 		if (defaultBbox == null || defaultBbox.isEmpty())

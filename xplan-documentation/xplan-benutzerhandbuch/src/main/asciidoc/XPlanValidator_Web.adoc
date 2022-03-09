@@ -8,7 +8,7 @@ IMPORTANT: Bitte beachten Sie, dass abhängig von Ihrem Browser, "Datei auswähl
 
 Vom XPlanValidator werden folgende Dateiformate akzeptiert:
 
-* ZIP-Dateien (Dateiendung `.zip`) mit folgendem Aufbau: Im Basisverzeichnis muss das XPlanGML-Instanzdokument mit dem Dateinamen __xplan.gml__ vorhanden sein. Rasterdaten sowie alle im __xplan.gml__ referenzierten Anhänge liegen ebenfalls im Basisverzeichnis der ZIP-Datei. Eine solche ZIP-Datei wird <<xplanarchiv, XPlanArchiv>> genannt.
+* ZIP-Dateien (Dateiendung `.zip`) mit folgendem Aufbau: Im Basisverzeichnis muss die XPlanGML-Datei mit dem Dateinamen __xplan.gml__ vorhanden sein. Rasterdaten sowie alle im __xplan.gml__ referenzierten Anhänge liegen ebenfalls im Basisverzeichnis der ZIP-Datei. Eine solche ZIP-Datei wird <<xplanarchiv, XPlanArchiv>> genannt.
 * GML-Dateien (Dateiendung `.gml`)
 * XML-Dateien (Dateiendung `.xml`)
 
@@ -38,16 +38,16 @@ CAUTION: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der
 Wenn Sie einen Plan hochgeladen haben, steht im Feld „Bezeichnung für den Report“ der Name der Datei ohne Endung.
 
 [.bordered]
-image::validator/Validierungsoptionen.png[Validierungsoptionen]
+image::validator/Validierungsbezeichnung_Datei.png[Dateiname als Bezeichner des Validierungsbereichts]
 
-Sie können der aktuellen Validierung, falls notwendig, einen eigenen Namen geben. Dieser erscheint ausschließlich auf dem Validierungsbericht.
+Sie können der aktuellen Validierung, falls notwendig, eine beliebige Bezeichnung geben. Diese erscheint ausschließlich auf dem Validierungsbericht.
 
 TIP: Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen.
 
 [.bordered]
-image::validator/Validierungsoptionen_bezeichnung.png[Validerungsoptionen]
+image::validator/Validierungsbezeichnung.png[Bezeichnung des Validierungsberichts]
 
-In Ihrem Validierungsbericht wird Ihre Bezeichnung wie folgt dargestellt:
+In Ihrem Validierungsbericht wird die Bezeichnung wie folgt dargestellt:
 
 [.bordered]
 image::validator/Validierungsbericht.png[Validierungsbericht]
@@ -105,19 +105,17 @@ Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es h
  * Linien: Segment-Kontinuität
  * Polygone:
   ** Geschlossenheit (äußere und innere Ringe)
-  ** Äußerer Ring: Orientierung im Gegenuhrzeigersinn (Warnung)
-  ** Innere Ringe: Orientierung im Uhrzeigersinn (Warnung)
-  ** Keine Berührung äußerer Ring / innere Ringe
-  ** Kein Schnitt äußerer Ring / innere Ringe
+  ** äußerer Ring: Orientierung im Gegenuhrzeigersinn
+  ** innere Ringe: Orientierung im Uhrzeigersinn
+  ** keine Berührung äußerer Ring / innere Ringe
+  ** kein Schnitt äußerer Ring / innere Ringe
   ** Innere Ringe liegen innerhalb der vom äußeren Ring umschlossenen Fläche
-  ** Keine Berührung innere Ringe / innere Ringe
+  ** keine Berührung innere Ringe / innere Ringe
   ** Schnittmenge der von zwei inneren Ringen gebildeten Flächen ist leer
-  ** Keine doppelten Stützpunkte (äußere und innere Ringe)
+  ** keine doppelten Stützpunkte (äußere und innere Ringe)
  * MultiPolygone:
-  ** Keine Berührung zwischen einzelnen Polygonen
-  ** Kein Schnitt zwischen einzelnen Polygonen
+  ** kein Schnitt zwischen einzelnen Polygonen
   ** alle für Polygone geltenden Prüfungen für jedes einzelne Polygon
-
 
 Nutzung der Optionen
 
@@ -143,12 +141,12 @@ Die Validierung kann über den Button image:validator/BT_ValidierungStarten.png[
 
 *1) Allgemeine Informationen*
 
-Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die formalen Informationen.
+Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die Informationen aus der XPlanGML-Datei sowie das Validierungsergebnis.
 
 [.bordered]
 image::validator/Validierungsbericht_2.png[Validierungsbericht]
 
-Externe Referenzen zeigen an, ob Rasterdaten in Form von PNG- und PGW-Dateien vorhanden sind.
+Neben dem Namen des XPlanArchivs, des Datums der Validierung sowie der Version der XPlanGML-Datei werden auch die in dem XPlanGML-Dokument enthaltenen Instanzen mit deren Namen sowie externe Referenzen angezeigt, wenn z.B. Rasterdaten in Form von PNG- mit PGW-Dateien im XPlanArchiv hinterlegt sind. Das Validierungsergebnis wird für alle in dem XPlanArchiv enthaltenen Instanzen angezeigt. Es müssen alle Validierungstypen für alle Instanzen fehlerfrei sein, damit das Gesamtergebnis valide ist. Die zu den jeweiligen Validierungstypen detaillierten Validierungsergebnisse werden in den folgenden Abschnitten ausgegeben.
 
 *2) Semantische Validierung – valide*
 
@@ -251,7 +249,6 @@ Angehängte Rasterpläne werden nicht dargestellt.
 
 Bei Plänen, die geometrisch nicht valide sind, kann es zu Problemen bei der Darstellung in der Kartenvorschau kommen.
 ====
-
 
 ====== Navigation:
 

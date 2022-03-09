@@ -2,21 +2,20 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.commons.archive;
@@ -76,14 +75,14 @@ public class XPlanArchiveCreatorTest {
 	public void testMetadataWuerdenhainXPlan3() throws IOException {
 		XPlanArchive archive = getTestArchive("xplan3/BP2070-Finkenwerder.zip");
 		assertEquals(XPLAN_3, archive.getVersion());
-		assertEquals("Finkenwerder", archive.getDistrict());
+		assertEquals("Finkenwerder", archive.getDistricts().get(0));
 	}
 
 	@Test
 	public void testMetadataWuerdenhainXPlan3WithMapper() throws IOException {
 		XPlanArchive archive = getTestArchiveWithMapper("xplan3/BP2070-Finkenwerder.zip");
 		assertEquals(XPLAN_3, archive.getVersion());
-		assertEquals("Hamburg-Mitte", archive.getDistrict());
+		assertEquals("Hamburg-Mitte", archive.getDistricts().get(0));
 	}
 
 	@Test
@@ -156,7 +155,7 @@ public class XPlanArchiveCreatorTest {
 		XPlanArchive archive = getTestArchive("xplan41/Eidelstedt_4_V4-Eimsbuettel.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals("Eimsbüttel", archive.getDistrict());
+		assertEquals("Eimsbüttel", archive.getDistricts().get(0));
 	}
 
 	@Test
@@ -164,7 +163,7 @@ public class XPlanArchiveCreatorTest {
 		XPlanArchive archive = getTestArchiveWithMapper("xplan41/Eidelstedt_4_V4-Eimsbuettel.zip");
 
 		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals("Eimsbüttel", archive.getDistrict());
+		assertEquals("Eimsbüttel", archive.getDistricts().get(0));
 	}
 
 	@Test
@@ -198,7 +197,7 @@ public class XPlanArchiveCreatorTest {
 		XPlanArchive archive = getTestArchive("xplan41/Erhaltung.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
 		assertEquals(null, archive.getAde());
-		assertEquals(null, archive.getDistrict());
+		assertEquals(0, archive.getDistricts().size());
 		assertEquals(SO_Plan, archive.getType());
 		assertEquals(CRSManager.lookup("EPSG:25832"), archive.getCrs());
 	}
@@ -215,7 +214,7 @@ public class XPlanArchiveCreatorTest {
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103.gml", gmlAsStream);
 		assertEquals(XPLAN_51, archive.getVersion());
 		assertEquals(null, archive.getAde());
-		assertEquals(null, archive.getDistrict());
+		assertEquals(null, archive.getDistricts().get(0));
 		assertEquals(BP_Plan, archive.getType());
 	}
 

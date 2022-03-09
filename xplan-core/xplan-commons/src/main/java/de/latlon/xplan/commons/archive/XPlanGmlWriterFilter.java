@@ -2,21 +2,20 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.commons.archive;
@@ -24,6 +23,8 @@ package de.latlon.xplan.commons.archive;
 import org.apache.axiom.om.util.XMLStreamWriterFilterBase;
 
 import javax.xml.stream.XMLStreamException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -32,7 +33,7 @@ public class XPlanGmlWriterFilter extends XMLStreamWriterFilterBase {
 
 	private String currentPath = "";
 
-	private String district;
+	private final List<String> districts = new ArrayList<>();
 
 	@Override
 	public void writeStartElement(String localName) throws XMLStreamException {
@@ -61,20 +62,20 @@ public class XPlanGmlWriterFilter extends XMLStreamWriterFilterBase {
 	@Override
 	protected String xmlData(String s) {
 		if (this.currentPath.endsWith("/gemeinde/XP_Gemeinde/ortsteilName")) {
-			this.district = s;
+			this.districts.add(s);
 		}
 		if (this.currentPath.endsWith("ortsteil")) {
-			this.district = s;
+			this.districts.add(s);
 		}
 		return s;
 	}
 
 	/**
-	 * @return the district (if available and the filter was already applied), otherwise
+	 * @return the districts (if available and the filter was already applied), otherwise
 	 * <code>null</code>
 	 */
-	public String getDistrict() {
-		return district;
+	public List<String> getDistricts() {
+		return districts;
 	}
 
 }

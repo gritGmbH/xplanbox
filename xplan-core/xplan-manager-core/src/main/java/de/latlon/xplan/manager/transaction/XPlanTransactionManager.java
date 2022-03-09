@@ -2,21 +2,20 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation, either version 2.1 of the
- * License, or (at your option) any later version.
- *
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Lesser Public License for more details.
- *
- * You should have received a copy of the GNU General Lesser Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.transaction;
@@ -27,6 +26,8 @@ import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
@@ -46,7 +47,6 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.Envelope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,13 +60,10 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TimeZone;
 import java.util.UUID;
 
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.parseFeatureCollection;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 
 /**
@@ -99,6 +96,8 @@ public abstract class XPlanTransactionManager {
 	protected final XPlanManipulator planModifier = new XPlanManipulator();
 
 	protected final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+
+	protected final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final MetadataCouplingHandler metadataCouplingHandler;
 
@@ -158,6 +157,12 @@ public abstract class XPlanTransactionManager {
 		return bos.toByteArray();
 	}
 
+	protected void reassignFids(XPlanFeatureCollections fc) {
+		for (XPlanFeatureCollection xplanInstance : fc.getxPlanGmlInstances()) {
+			reassignFids(xplanInstance);
+		}
+	}
+
 	protected void reassignFids(XPlanFeatureCollection fc) {
 		for (Feature f : fc.getFeatures()) {
 			String prefix = "XPLAN_" + f.getName().getLocalPart().toUpperCase() + "_";
@@ -166,14 +171,14 @@ public abstract class XPlanTransactionManager {
 		}
 	}
 
-	protected FeatureCollection renewFeatureCollection(XPlanVersion version, AppSchema appSchema,
-			FeatureCollection modifiedFeatures) throws Exception {
+	protected FeatureCollection renewFeatureCollection(XPlanVersion version, FeatureCollection modifiedFeatures)
+			throws Exception {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		xPlanExporter.export(outputStream, version, modifiedFeatures, null);
 		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
 		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
 		try {
-			return parseFeatureCollection(originalPlanAsXmlReader, version, appSchema);
+			return xPlanGmlParser.parseFeatureCollection(originalPlanAsXmlReader, version);
 		}
 		finally {
 			originalPlanAsXmlReader.close();
