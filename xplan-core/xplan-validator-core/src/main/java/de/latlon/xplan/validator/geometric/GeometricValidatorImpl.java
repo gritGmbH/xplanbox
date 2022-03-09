@@ -23,10 +23,10 @@ package de.latlon.xplan.validator.geometric;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
 import de.latlon.xplan.validator.geometric.inspector.flaechenschluss.OptimisedFlaechenschlussInspector;
+import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
@@ -143,12 +143,10 @@ public class GeometricValidatorImpl implements GeometricValidator {
 	}
 
 	private void checkAndAddRules(GeometricFeatureInspector fi, ValidatorResult result) {
-		boolean isValid = fi.checkGeometricRule();
-		if (!isValid) {
-			result.addErrors(fi.getErrors());
-			result.addWarnings(fi.getWarnings());
-			result.addBadGeometries(fi.getBadGeometries());
-		}
+		fi.checkGeometricRule();
+		result.addErrors(fi.getErrors());
+		result.addWarnings(fi.getWarnings());
+		result.addBadGeometries(fi.getBadGeometries());
 	}
 
 	private List<GeometricFeatureInspector> createInspectors(XPlanVersion version, List<ValidationOption> voOptions) {

@@ -177,22 +177,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	}
 
 	private void analyseFlaechenschlussUnion() {
-		if (XPLAN_3.equals(xPlanVersion) || XPLAN_40.equals(xPlanVersion) || XPLAN_41.equals(xPlanVersion)
-				|| XPLAN_50.equals(xPlanVersion) || XPLAN_51.equals(xPlanVersion) || XPLAN_52.equals(xPlanVersion)) {
-			LOG.info("Loecher im Flaechenschluss sind in der Version {} zugelassen und werden daher nicht ueberprueft.",
-					xPlanVersion);
-			return;
-		}
-		boolean handleHolesAsFailure = true;
-		if (XPLAN_53.equals(xPlanVersion) || XPLAN_54.equals(xPlanVersion)) {
-			LOG.info(
-					"Loecher im Flaechenschluss sind in der Version {} zugelassen sollten aber ueber BP_FlaecheOhneFestsetzung bzw. FP_FlaecheOhneDarstellung modelliert werden. Potentielle Fehler werden als Warnung ausgegeben",
-					xPlanVersion);
-			handleHolesAsFailure = false;
-		}
-		LOG.info(
-				"Loecher im Flaechenschluss sind in der Version {} nicht mehr zugelassen muessen ueber BP_FlaecheOhneFestsetzung bzw. FP_FlaecheOhneDarstellung modelliert werden.",
-				xPlanVersion);
+		boolean handleHolesAsFailure = handleAsFailure();
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion();
 		LOG.debug("Union of all flaechenschluss geometries: " + WKTWriter.write(flaechenschlussUnion));
 		checkFlaechenschlussFeaturesIntersectingAnInteriorRing(flaechenschlussUnion, handleHolesAsFailure);
@@ -376,6 +361,26 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			controlPointsToCheck.addAll(controlPointsFlaechenschlussFeature2);
 			checkControlPointsAndAddFailures(controlPointsToCheck, true);
 		}
+	}
+
+	private boolean handleAsFailure() {
+		if (XPLAN_3.equals(xPlanVersion) || XPLAN_40.equals(xPlanVersion) || XPLAN_41.equals(xPlanVersion)
+				|| XPLAN_50.equals(xPlanVersion) || XPLAN_51.equals(xPlanVersion) || XPLAN_52.equals(xPlanVersion)) {
+			LOG.info(
+					"Loecher im Flaechenschluss sind in der Version {} zugelassen, werden aber als Warnung ausgegeben.",
+					xPlanVersion);
+			return false;
+		}
+		else if (XPLAN_53.equals(xPlanVersion) || XPLAN_54.equals(xPlanVersion)) {
+			LOG.info(
+					"Loecher im Flaechenschluss sind in der Version {} zugelassen sollten aber ueber BP_FlaecheOhneFestsetzung bzw. FP_FlaecheOhneDarstellung modelliert werden. Potentielle Fehler werden als Warnung ausgegeben",
+					xPlanVersion);
+			return false;
+		}
+		LOG.info(
+				"Loecher im Flaechenschluss sind in der Version {} nicht mehr zugelassen muessen ueber BP_FlaecheOhneFestsetzung bzw. FP_FlaecheOhneDarstellung modelliert werden.",
+				xPlanVersion);
+		return true;
 	}
 
 	private List<ControlPoint> parseControlPointsInIntersection(FlaechenschlussFeature flaechenschlussFeature,
