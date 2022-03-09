@@ -135,6 +135,11 @@ Mit der Option "Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen" k
 +
 Wenn Fehler im Geltungsbereich, z.B. in Kreisbögen, nicht korrigiert werden können, selektieren Sie in Ausnahmefällen die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm. Grundsätzlich sollten alle Fehler, die den Geltungsbereich betreffen, behoben werden.
 
+[NOTE]
+====
+Wenn sich zwei aneinandergrenzene Flächenschlussobjekte an einer Geraden berühren und nur eines der Flächenschlussobjekte einen zusätzlichen Stützpunkt innerhalb dieser Geraden aufweist, wird der fehlende Stützpunkt des anderen Flächenschlussobjekt durch den XPlanValidator nicht gefunden.
+====
+
 *3) Syntaktische Validierung (obligatorisch)*
 
 Die syntaktische Validierung ist die Voraussetzung für die semantische und geometrische Validierung und ist daher nicht abwählbar.
