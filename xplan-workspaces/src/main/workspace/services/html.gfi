@@ -32,8 +32,7 @@
         window.onload = function () {
           updateComplexProperties();
           updateTextProperties();
-          updateReferenzProperties();
-          updateReferenzKeys();
+          updateReferenz();
         }
 
         function updateComplexProperties(){
@@ -59,28 +58,21 @@
           }
         }
 
-        function updateReferenzProperties(){
-          var referenzProperties = document.getElementsByClassName('referenzProperty');
-          for(var i = 0; i < referenzProperties.length; i++) {
-            var referenzProperty = referenzProperties[i];
-            var indexOfPipe = referenzProperty.href.indexOf('|');
+        function updateReferenz(){
+          var referenzRows = document.getElementsByClassName('referenz');
+          for(var i = 0; i < referenzRows.length; i++) {
+            var referenzRow = referenzRows[i];
+            var referenzKey = referenzRow.getElementsByTagName("td")[0];
+            var referenzProperty = referenzRow.getElementsByTagName("td")[1].getElementsByTagName("a")[0];
+            var indexOfPipe = referenzKey.innerText.indexOf('|');
             if( indexOfPipe > 0 ) {
-              var referenz = referenzProperty.innerHTML.substring( 0, indexOfPipe ).trim();
-              replaceReferenz(referenz, referenzProperty);
+              var newKey = referenzKey.innerText.substring( indexOfPipe + 1, referenzKey.innerText.length ).trim();
+              var newReferenz = referenzKey.innerText.substring( 0, indexOfPipe ).trim();
+              referenzKey.innerText = newKey;
+              replaceReferenz(newReferenz, referenzProperty);
             } else {
-              replaceReferenz(referenzProperty.href, referenzProperty);
-            }
-          }
-        }
-
-        function updateReferenzKeys(){
-          var referenzKeys = document.getElementsByClassName('referenzKey');
-          for(var i = 0; i < referenzKeys.length; i++) {
-            var indexOfPipe = referenzKeys[i].innerHTML.indexOf('|');
-            if( indexOfPipe > 0 ) {
-              referenzKeys[i].innerHTML = referenzKeys[i].innerHTML.substring( indexOfPipe + 1, referenzKeys[i].innerHTML.length ).trim();
-            } else {
-              referenzKeys[i].innerHTML = "Externe Referenz";
+              referenzKey.innerText = "Externe Referenz";
+              replaceReferenz(referenzKey.innerText, referenzProperty);
             }
           }
         }
@@ -133,14 +125,12 @@
 </tr>
 
 <?template makeitalink>
-<tr>
+<tr class='referenz'>
   <td <?odd:maybegray>>
-    <span class='referenzKey' >
-      <?value>
-    </span>
+    <?value>
   </td>
   <td <?odd:maybegray>>
-    <a target="_blank" href="<?value>" class="referenzProperty">Dokument herunterladen</a>
+    <a target="_blank" href="<?value>">Dokument herunterladen</a>
   </td>
 </tr>
 
