@@ -22,6 +22,8 @@ package de.latlon.xplan.validatedb.cli.domain;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -36,6 +38,8 @@ import java.util.zip.GZIPInputStream;
  * @since 5.0
  */
 public class XPlanWithFeatureCollection implements SemanticValidableXPlanArchive {
+
+	private static final Logger LOG = LoggerFactory.getLogger(XPlanWithFeatureCollection.class);
 
 	private String id;
 
@@ -130,14 +134,20 @@ public class XPlanWithFeatureCollection implements SemanticValidableXPlanArchive
 			return xmlStreamReader;
 		}
 		catch (XMLStreamException | IOException e) {
-			e.printStackTrace();
+			LOG.error("Could not create XMLStreamReader from data.");
 		}
 		return null;
 	}
 
 	@Override
 	public InputStream getMainFileInputStream() {
-		return new ByteArrayInputStream(data);
+		try {
+			return new GZIPInputStream(new ByteArrayInputStream(data));
+		}
+		catch (IOException e) {
+			LOG.error("Could not create InputStream from data.");
+		}
+		return null;
 	}
 
 }
