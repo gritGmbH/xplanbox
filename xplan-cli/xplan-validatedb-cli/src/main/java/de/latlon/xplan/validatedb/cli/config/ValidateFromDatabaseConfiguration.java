@@ -20,13 +20,15 @@
  */
 package de.latlon.xplan.validatedb.cli.config;
 
-import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validatedb.cli.domain.ValidationResultSummary;
 import de.latlon.xplan.validatedb.cli.domain.XPlanWithFeatureCollection;
+import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -68,6 +70,8 @@ import static java.nio.file.Paths.get;
 @EnableBatchProcessing
 public class ValidateFromDatabaseConfiguration {
 
+	private static final Logger LOG = LoggerFactory.getLogger(ValidateFromDatabaseConfiguration.class);
+
 	@Autowired
 	private JobLauncher jobLauncher;
 
@@ -93,7 +97,7 @@ public class ValidateFromDatabaseConfiguration {
 	public SemanticValidator semanticValidator(@Value("#{jobParameters[rulesDirectory]}") String rulesDirectory)
 			throws ValidatorException, URISyntaxException {
 		try {
-			System.out.println("Rules are read from: " + rulesDirectory);
+			LOG.info("Rules are read from: {}", rulesDirectory);
 			Path rulesPath = get(rulesDirectory);
 			return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath));
 		}
@@ -107,10 +111,10 @@ public class ValidateFromDatabaseConfiguration {
 	@Bean
 	public JdbcCursorItemReader planFromDatabaseReader(@Value("#{jobParameters[jdbcurl]}") String jdbcurl,
 			@Value("#{jobParameters[user]}") String user, @Value("#{jobParameters[password]}") String password) {
-		System.out.println("JDBC connection:");
-		System.out.println(" - jdbcurl: " + jdbcurl);
-		System.out.println(" - user: " + user);
-		System.out.println(" - password: " + password);
+		LOG.info("JDBC connection:");
+		LOG.info(" - jdbcurl: {}", jdbcurl);
+		LOG.info(" - user: {}", user);
+		LOG.info(" - password: {}", password);
 		BasicDataSource dataSource = createDataSource(jdbcurl, user, password);
 		JdbcCursorItemReader xplanItemReader = new JdbcCursorItemReader<>();
 		xplanItemReader.setSql(
@@ -130,7 +134,7 @@ public class ValidateFromDatabaseConfiguration {
 	@Bean
 	public ItemWriter validationResultsWriter() throws IOException {
 		File outputFile = Files.createTempFile("result", ".csv").toFile();
-		System.out.println("Write result to file " + outputFile);
+		LOG.info("Write result to file {}", outputFile);
 		Resource outputResource = new FileSystemResource(outputFile);
 		FlatFileItemWriter<ValidationResultSummary> writer = new FlatFileItemWriter<>();
 		writer.setResource(outputResource);

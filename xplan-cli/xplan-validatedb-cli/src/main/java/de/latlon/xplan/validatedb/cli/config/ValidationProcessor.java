@@ -24,6 +24,8 @@ import de.latlon.xplan.validatedb.cli.domain.ValidationResultSummary;
 import de.latlon.xplan.validatedb.cli.domain.XPlanWithFeatureCollection;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 
 import static java.util.Collections.EMPTY_LIST;
@@ -34,6 +36,8 @@ import static java.util.Collections.EMPTY_LIST;
  */
 public class ValidationProcessor implements ItemProcessor<XPlanWithFeatureCollection, ValidationResultSummary> {
 
+	private static final Logger LOG = LoggerFactory.getLogger(ValidationProcessor.class);
+
 	private SemanticValidator validator;
 
 	public ValidationProcessor(SemanticValidator validator) {
@@ -43,7 +47,7 @@ public class ValidationProcessor implements ItemProcessor<XPlanWithFeatureCollec
 	@Override
 	public ValidationResultSummary process(XPlanWithFeatureCollection xPlanWithFeatureCollection) {
 		try {
-			System.out.println("Validate xplan with id " + xPlanWithFeatureCollection.getId());
+			LOG.info("Validate xplan with id {}", xPlanWithFeatureCollection.getId());
 			ValidatorResult validatorReport = validator.validateSemantic(xPlanWithFeatureCollection, EMPTY_LIST);
 			return new ValidationResultSummary(xPlanWithFeatureCollection.getId(),
 					xPlanWithFeatureCollection.getXp_version(), xPlanWithFeatureCollection.getName(),

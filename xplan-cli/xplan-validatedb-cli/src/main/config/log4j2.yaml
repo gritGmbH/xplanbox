@@ -20,7 +20,7 @@
 ###
 Configuration:
   name: XPlanValidateDBCli
-  status: debug
+  status: warn
   Properties:
     Property:
       - name: log.file
@@ -48,17 +48,17 @@ Configuration:
     Root:
       AppenderRef:
         - ref: STDOUT
-          level: trace
+          level: info
         - ref: RollingFile_Appender
           level: info
     Logger:
-      - name: org.deegree
+      - name: de.latlon.xplan.validatedb
         level: info
+      - name: org.deegree
+        level: error
       - name: de.latlon.xplan
-        level: trace
+        level: error
+      - name: org.springframework
+        level: error
       - name: org.reflections
         level: fatal
-      - name: de.latlon.xplan.commons.hale
-        level: info
-      - name: de.latlon.xplan.transform.cli
-        level: info
