@@ -235,7 +235,7 @@ Der Validierungsbericht kann in den Formaten:
 
 exportiert werden.
 
-Geometriefehler können zusätzlich auch als Shapefile und als Grafik gespeichert werden.
+Geometriefehler können zusätzlich auch als Shapefile gespeichert werden.
 
 Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einer ZIP-Datei gespeichert. Der Dateiname entspricht der Bezeichnung des Validierungsdurchlaufs.
 

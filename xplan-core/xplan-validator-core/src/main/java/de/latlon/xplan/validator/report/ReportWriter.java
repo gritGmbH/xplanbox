@@ -20,8 +20,14 @@
  */
 package de.latlon.xplan.validator.report;
 
-import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
-import static org.apache.commons.io.IOUtils.copy;
+import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
+import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
+import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
+import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
+import de.latlon.xplan.validator.web.shared.ArtifactType;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,16 +39,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.validator.report.badgeometryimg.BadGeometryImgGenerator;
-import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
-import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
-import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
-import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
-import de.latlon.xplan.validator.web.shared.ArtifactType;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
+import static org.apache.commons.io.IOUtils.copy;
 
 /**
  * Generates an archive the {@link ValidatorReport} as XMl, HTML and PDF
@@ -64,8 +62,6 @@ public class ReportWriter {
 
 	private final HtmlReportGenerator htmlGenerator = new HtmlReportGenerator();
 
-	private final BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
-
 	private final ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
 
 	/**
@@ -81,7 +77,6 @@ public class ReportWriter {
 		addXmlEntry(report, targetDirectory, failures);
 		addHtmlEntry(report, targetDirectory, failures);
 		addPdfEntry(report, targetDirectory, failures);
-		addPNGEntry(report, targetDirectory, failures);
 		addShapeDirectoryEntry(report, targetDirectory, failures);
 
 		addFailureLog(failures, targetDirectory);
@@ -138,22 +133,6 @@ public class ReportWriter {
 		}
 	}
 
-	private void addPNGEntry(ValidatorReport report, File directoryToCreateZip, List<String> failures) {
-		String validationName = report.getValidationName();
-		try {
-			if (badGeometryImgGenerator.hasBadGeometry(report)) {
-				File pngFile = new File(directoryToCreateZip, validationName + ".png");
-				try (FileOutputStream fileOutputStream = new FileOutputStream(pngFile)) {
-					badGeometryImgGenerator.generateReport(report, fileOutputStream);
-
-				}
-			}
-		}
-		catch (Exception e) {
-			failures.add(e.getMessage());
-		}
-	}
-
 	private void addShapeDirectoryEntry(ValidatorReport report, File directoryToCreateZip, List<String> failures) {
 		String validationName = report.getValidationName();
 		try {
@@ -187,7 +166,6 @@ public class ReportWriter {
 		case SHP:
 			addShpArtifact(zipOutputStream, sourceDirectory);
 			break;
-		case PNG:
 		case HTML:
 		case XML:
 		case PDF:
