@@ -20,13 +20,13 @@
 ###
 Configuration:
   name: XPlanValidateDBCli
-  status: warn
+  status: debug
   Properties:
     Property:
       - name: log.file
         value: xplan-validatedb-cli.log
       - name: log.path
-        value: ${sys:catalina.base:-.}/logs
+        value: ${sys:basedir:-.}/logs
   Appenders:
     Console:
       name: STDOUT
@@ -48,14 +48,14 @@ Configuration:
     Root:
       AppenderRef:
         - ref: STDOUT
-          level: error
+          level: trace
         - ref: RollingFile_Appender
           level: info
     Logger:
       - name: org.deegree
         level: info
       - name: de.latlon.xplan
-        level: info
+        level: trace
       - name: org.reflections
         level: fatal
       - name: de.latlon.xplan.commons.hale
