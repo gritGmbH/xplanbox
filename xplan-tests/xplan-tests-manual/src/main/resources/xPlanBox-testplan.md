@@ -7,6 +7,7 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 * [XPlanManagerWeb](#xplanmanagerweb)
 * [XPlanValidatorCLI](#xplanvalidatorcli)
 * [XPlanValidatorWeb](#xplanvalidatorweb)
+* [XPlanValidateDB-CLI](#xplanvalidatedb-cli)         
 * [XPlanTransformCLI](#xplantransformcli)
 * [XPlanAuswerteschemaCLI](#xplanauswerteschemacli)
 * [XPlanWMS](#xplanwms)
@@ -1139,7 +1140,41 @@ Die Ausgabe der Validierungsergebnisse erfolgt bei den folgenden Komponenten ent
 * XPlanManagerWeb
 * XPlanManagerCLI.
 
+# XPlanValidateDB-CLI  
+
+### Prüffall-01: Hilfe aufrufen
+
+### Prüffall 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidateDB-CLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validatedb-cli-$VERSION/bin`.
+**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanValidateDB-CLI.
+
+**Hinweis**
+
+ * [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
+   * Der Pfad kann variieren
+ * [2] `./XPlanValidateDB-CLI -h [oder -help und --help]`
+
+---
+
+### Prüffall-02: Eingabeparameter
+
+### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet.
+ * Prüffall-01 wurde erfolgreich ausgeführt.
  
+### Prüffall 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer führt den Befehl [1] aus | Alle in der Datenbasis enthaltenen Pläne werden validiert, anschließend wird das Ergebnis der Validierung in einer CSV-Datei zusammengefasst. Die erstellte Ergebnisdatei liegt unter /tmp.
+
+**Hinweis**
+
+ * [1] `./XPlanValidateDB -jdbcurl= <jdbc:postgresql://hostadresse:port/xplanbox> -user= <dbuser>  -password= <dbpassword> -rulesDirectory= <../xplan-validatedb-cli-$VERSION/etc/rules>`
+
 # XPlanTransformCLI  
 
 ### Prüffall-01: Hilfe aufrufen
