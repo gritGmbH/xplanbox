@@ -20,8 +20,15 @@
  */
 package de.latlon.xplan.validator.report;
 
-import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
-import static org.apache.commons.io.IOUtils.copy;
+import de.latlon.xplan.validator.report.badgeometryimg.BadGeometryImgGenerator;
+import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
+import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
+import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
+import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
+import de.latlon.xplan.validator.web.shared.ArtifactType;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,16 +40,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.validator.report.badgeometryimg.BadGeometryImgGenerator;
-import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
-import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
-import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
-import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
-import de.latlon.xplan.validator.web.shared.ArtifactType;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
+import static org.apache.commons.io.IOUtils.copy;
 
 /**
  * Generates an archive the {@link ValidatorReport} as XMl, HTML and PDF
@@ -123,6 +122,7 @@ public class ReportWriter {
 		}
 		catch (Exception e) {
 			failures.add(e.getMessage());
+			LOG.error("XML Entry of the validtion report could not be created.", e);
 		}
 
 	}
