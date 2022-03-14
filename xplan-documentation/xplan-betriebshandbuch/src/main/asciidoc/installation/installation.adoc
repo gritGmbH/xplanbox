@@ -60,11 +60,11 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 * XPlanValidatorCLI: _xplan-validator-cli/bin/XPlanValidator_ - Beschreibung der Funktionalität im Kapitel "XPlanValidatorCLI" des XPlanBenutzerhandbuchs.
 * XPlanTransformCLI: _xplan-transform-cli/bin/XPlanTransformCLI_ - Beschreibung der Funktionalität im Kapitel "XPlanTransformCLI" des XPlanBenutzerhandbuchs.
 * XPlanValidateDB: _xplan-validatedb-cli/bin/XPlanValidateDB_ - ermöglicht die Validierung von bereits in die XPlanDB importierten Plänen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+* XPlanAuswerteschemaCLI: _xplan-evaluation-schema-synchronize-cli/bin/EvaluationSchemaSynchronizer_ - Beschreibung der Funktionalität im  folgenden Kapitel <<install-xplanevaluationschemasynchronize-cli>>.
 * XPlanUpdateDatabaseCLI: _xplan-update-database/bin/databaseUpdate_ - wird  für eine Aktualisierung des Datenbestands der xPlanBox benötigt, weitere Informationen befinden sich im Abschnitt <<aktualisierung>>). Die Funktionen im Überblick:
 ** _xplan-update-database/bin/districtUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-database/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-database/bin/serviceMetadatRecordCreator_ - erstellt Metadatensätze für den XPlanWerkWMS. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt der Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert. Der Aufruf des Tools mit `serviceMetadatRecordCreator --help` liefert Hinweise zur Verwendung.
-* XPlanAuswerteschemaCLI: _xplan-evaluation-schema-synchronize-cli/bin/EvaluationSchemaSynchronizer - Beschreibung der Funktionalität im  folgenden Kapitel <<install-xplanevaluationschemasynchronize-cli>>.
 
 [[install-xplanevaluationschemasynchronize-cli]]
 ===== XPlanAuswerteschemaCLI
