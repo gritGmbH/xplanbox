@@ -25,44 +25,15 @@ import org.deegree.feature.Feature;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public abstract class GeltungsbereichFeature extends AbstractGeltungsbereichFeature {
-
-	private org.locationtech.jts.geom.Geometry geometryWithBuffer;
-
-	private final double toleranceMetre;
+public class PlanFeature extends GeltungsbereichFeature {
 
 	/**
 	 * @param feature never <code>null</code>
 	 * @param featureAnalyser used to analyse the feature, never <code>null</code>
+	 * @param toleranceMetre
 	 */
-	public GeltungsbereichFeature(Feature feature, GeltungsbereichFeatureAnalyser featureAnalyser,
-			double toleranceMetre) {
-		super(feature, featureAnalyser);
-		this.toleranceMetre = toleranceMetre;
-	}
-
-	/**
-	 * @return the buffered JTS geometry of the feature
-	 */
-	public org.locationtech.jts.geom.Geometry getBufferedGeometry() {
-		if (geometryWithBuffer == null && getJtsGeometry() != null)
-			geometryWithBuffer = getJtsGeometry().buffer(toleranceMetre);
-		return geometryWithBuffer;
-	}
-
-	public boolean hasGeometry() {
-		return getOriginalGeometry() != null;
-	}
-
-	/**
-	 * @return <code>true</code> if the geometry is not empty and valid,
-	 * <code>false</code> otherwise
-	 */
-	public boolean isGeometryValid() {
-		org.locationtech.jts.geom.Geometry jtsGeometry = getJtsGeometry();
-		if (jtsGeometry != null)
-			return jtsGeometry.isValid();
-		return false;
+	public PlanFeature(Feature feature, GeltungsbereichFeatureAnalyser featureAnalyser, double toleranceMetre) {
+		super(feature, featureAnalyser, toleranceMetre);
 	}
 
 }
