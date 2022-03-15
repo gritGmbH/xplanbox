@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.model;
 
-import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspectorContext;
 import org.deegree.feature.Feature;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 
 	private static final List<String> GEHOERT_ZU_BEREICH_PROPNAMES = new ArrayList<>();
 
-	private final GeltungsbereichInspectorContext geltungsbereichInspectorContext;
+	private final InspectorContext inspectorContext;
 
 	static {
 		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuBereich");
@@ -47,9 +46,9 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuSO_Bereich");
 	}
 
-	public FeatureUnderTest(Feature feature, GeltungsbereichInspectorContext geltungsbereichInspectorContext) {
+	public FeatureUnderTest(Feature feature, InspectorContext inspectorContext) {
 		super(feature);
-		this.geltungsbereichInspectorContext = geltungsbereichInspectorContext;
+		this.inspectorContext = inspectorContext;
 	}
 
 	/**
@@ -61,11 +60,11 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 		if (bereichId == null) {
 			return null;
 		}
-		BereichFeature bereichFeature = geltungsbereichInspectorContext.getBereichFeatures().get(bereichId);
+		BereichFeature bereichFeature = inspectorContext.getBereichFeatures().get(bereichId);
 		if (bereichFeature.hasGeometry())
 			return bereichFeature;
 		String planId = bereichFeature.getPlanId();
-		return geltungsbereichInspectorContext.getPlanFeatures().get(planId);
+		return inspectorContext.getPlanFeatures().get(planId);
 	}
 
 	/**

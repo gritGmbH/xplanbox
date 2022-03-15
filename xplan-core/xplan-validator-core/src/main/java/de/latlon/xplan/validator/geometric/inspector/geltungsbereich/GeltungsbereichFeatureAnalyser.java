@@ -58,33 +58,11 @@ public class GeltungsbereichFeatureAnalyser {
 
 	/**
 	 * @param feature never <code>null</code>
-	 * @return <code>true</code> if the feature is a X_Plan feature, <code>false</code>
-	 * otherwise
-	 */
-	boolean isPlanFeature(Feature feature) {
-		return feature.getName().getLocalPart().endsWith("_Plan");
-	}
-
-	/**
-	 * @param feature never <code>null</code>
-	 * @return <code>true</code> if the feature is a X_Bereich feature, <code>false</code>
-	 * otherwise
-	 */
-	boolean isBereichFeature(Feature feature) {
-		return feature.getName().getLocalPart().endsWith("_Bereich");
-	}
-
-	/**
-	 * @param feature never <code>null</code>
 	 * @return <code>true</code> if the feature is allowed to be outside of the
 	 * geltungsbereich, <code>false</code> otherwise
 	 */
 	boolean isAllowedToBeOutside(Feature feature) {
 		return OBJECTS_ALLOWED_OUTSIDE.contains(feature.getName());
-	}
-
-	boolean hasGeometry(Feature feature) {
-		return !feature.getGeometryProperties().isEmpty();
 	}
 
 }

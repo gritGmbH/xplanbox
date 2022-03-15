@@ -20,69 +20,24 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
-import de.latlon.xplan.validator.geometric.inspector.model.BereichFeature;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
-import de.latlon.xplan.validator.geometric.inspector.model.PlanFeature;
+import de.latlon.xplan.validator.geometric.inspector.model.InspectorContext;
 import org.deegree.feature.Feature;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Holds the features relevant for the GeltungsbereichInspector
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class GeltungsbereichInspectorContext {
-
-	public static final double TOLERANCE_METRE = 0.001;
+public class GeltungsbereichInspectorContext extends InspectorContext {
 
 	private final GeltungsbereichFeatureAnalyser featureAnalyser = new GeltungsbereichFeatureAnalyser();
 
-	private Map<String, PlanFeature> planFeatures = new HashMap<>();
-
-	private Map<String, BereichFeature> bereichFeatures = new HashMap<>();
-
-	private List<FeatureUnderTest> featuresUnderTest = new ArrayList<>();
-
-	/**
-	 * Adss a new feature to the context.
-	 * @param feature to add, never <code>null</code>
-	 */
-	void addToContext(Feature feature) {
-		if (featureAnalyser.isPlanFeature(feature)) {
-			planFeatures.put(feature.getId(), new PlanFeature(feature, TOLERANCE_METRE));
-		}
-		else if (featureAnalyser.isBereichFeature(feature)) {
-			bereichFeatures.put(feature.getId(), new BereichFeature(feature, TOLERANCE_METRE));
-		}
-		else if (!featureAnalyser.isAllowedToBeOutside(feature)) {
+	@Override
+	protected void addFeatureUnderTest(Feature feature) {
+		if (!featureAnalyser.isAllowedToBeOutside(feature)) {
 			featuresUnderTest.add(new FeatureUnderTest(feature, this));
 		}
-	}
-
-	/**
-	 * @return all plan features, never <code>null</code>
-	 */
-	public Map<String, PlanFeature> getPlanFeatures() {
-		return planFeatures;
-	}
-
-	/**
-	 * @return all bereich features, never <code>null</code>
-	 */
-	public Map<String, BereichFeature> getBereichFeatures() {
-		return bereichFeatures;
-	}
-
-	/**
-	 * @return all features which should be part of the Geltungsbereich, never
-	 * <code>null</code>
-	 */
-	public List<FeatureUnderTest> getFeaturesUnderTest() {
-		return featuresUnderTest;
 	}
 
 }
