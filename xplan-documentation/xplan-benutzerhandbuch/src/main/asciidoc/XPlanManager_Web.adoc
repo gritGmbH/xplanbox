@@ -32,14 +32,14 @@ muss dieser über die Web-Oberfläche hochgeladen werden. Hierfür kann der Plan
 über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
 _Import_ hochgeladen werden. Der Benutzer wird
 über das erfolgreiche bzw. fehlerhafte Hinzufügen des Plans in Form
-eines PopUps informiert.
+eines PopUp-Fensters informiert.
 
 Nachdem der Plan hochgeladen wurde, kann dieser
 validiert bzw. entfernt werden. Erst nachdem der Plan erfolgreich
 validiert wurde, kann der Plan in die Datenbasis importiert werden.
 Andernfalls ist der Button _Import_ deaktiviert.
 
-Bei der Validierung werden immer die syntaktische und Basis-Geometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch, geometrische Validierung>>) ausgeführt. Diese stellen sicher, dass ein Plan keine schwerwiegenden Fehler hat, die einen Import verhindern würden.
+IMPORTANT: Bei der Validierung werden immer die syntaktische und Basis-Geometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch, geometrische Validierung>>) ausgeführt. Diese stellen sicher, dass ein Plan keine schwerwiegenden Fehler hat, die einen Import verhindern würden. Dies umfasst auch die automatische Korrektur der Laufrichtung von Polygonen.
 
 [[xplanmanager-web-import]]
 ===== Import

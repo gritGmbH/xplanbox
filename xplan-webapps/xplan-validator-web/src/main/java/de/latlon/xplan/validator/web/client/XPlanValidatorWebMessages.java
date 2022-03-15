@@ -66,12 +66,6 @@ interface XPlanValidatorWebMessages extends Messages {
 
 	String moreOptions();
 
-	String extendedOptionsDialogTitle();
-
-	String ignoreSelfIntersection();
-
-	String ignoreOrientation();
-
 	String ignorePresentation();
 
 	String ignoreOther();
