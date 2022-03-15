@@ -29,6 +29,7 @@ import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.namespace.QName;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -108,6 +109,21 @@ public class AbstractGeltungsbereichFeature {
 		if (originalGeometry != null)
 			return originalGeometry.getJTSGeometry();
 		return null;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		AbstractGeltungsbereichFeature that = (AbstractGeltungsbereichFeature) o;
+		return Objects.equals(getFeatureId(), that.getFeatureId());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getFeatureId());
 	}
 
 }

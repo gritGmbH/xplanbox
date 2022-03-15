@@ -88,7 +88,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	public boolean checkGeometricRule() {
 		List<String> featureIdOfInvalidFeatures = new ArrayList<>();
 		for (FeatureUnderTest featureUnderTest : geltungsbereichInspectorContext.getFeaturesUnderTest()) {
-			GeltungsbereichFeature geltungsbereichFeature = featureUnderTest.retrieveGeltungsbereichFeature();
+			GeltungsbereichFeature geltungsbereichFeature = featureUnderTest.getGeltungsbereichFeature();
 			if (geltungsbereichFeature == null) {
 				LOG.debug("Feature with ID {} has no Plan or Bereich", featureUnderTest.getFeatureId());
 			}

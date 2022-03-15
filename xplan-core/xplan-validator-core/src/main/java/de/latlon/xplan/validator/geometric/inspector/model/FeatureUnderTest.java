@@ -52,10 +52,17 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 	}
 
 	/**
+	 * @return the name of the FeatureType, never <code>null</code>
+	 */
+	public String getFeatureType() {
+		return feature.getName().getLocalPart();
+	}
+
+	/**
 	 * @return The Plan or Bereich feature of this InGeltungsbereichFeature, may be
 	 * <code>null</code> if no Plan or Bereich feature is assigned
 	 */
-	public GeltungsbereichFeature retrieveGeltungsbereichFeature() {
+	public GeltungsbereichFeature getGeltungsbereichFeature() {
 		String bereichId = getGehortZuBereichId();
 		if (bereichId == null) {
 			return null;
