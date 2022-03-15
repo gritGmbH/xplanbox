@@ -79,10 +79,8 @@ public class ValidationResultSummary {
 	public String getFailedRules() {
 		if (validatorReport instanceof SemanticValidatorResult) {
 			List<RuleResult> rules = ((SemanticValidatorResult) validatorReport).getRules();
-			String collectedRules = rules.stream().filter(rule -> !rule.isValid()).map(rule -> rule.getName())
+			return rules.stream().filter(rule -> !rule.isValid()).map(rule -> rule.getName())
 					.collect(Collectors.joining(","));
-			if (!collectedRules.isEmpty())
-				return "\"" + collectedRules + "\"";
 		}
 		return null;
 	}

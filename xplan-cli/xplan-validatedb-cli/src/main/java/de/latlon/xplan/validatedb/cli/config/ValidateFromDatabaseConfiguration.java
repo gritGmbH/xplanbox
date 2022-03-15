@@ -42,8 +42,8 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.file.FlatFileItemWriter;
-import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
+import org.springframework.batch.item.file.transform.FieldExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.batch.JobLauncherApplicationRunner;
@@ -59,6 +59,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.nio.file.Paths.get;
 
@@ -140,15 +142,28 @@ public class ValidateFromDatabaseConfiguration {
 		writer.setResource(outputResource);
 		writer.setAppendAllowed(true);
 		writer.setHeaderCallback(w -> w.append("id,version,name,district,result,failedRules"));
-		writer.setLineAggregator(new DelimitedLineAggregator<ValidationResultSummary>() {
+		writer.setLineAggregator(new DelimitedLineAggregator<>() {
 			{
 				setDelimiter(",");
-				setFieldExtractor(new BeanWrapperFieldExtractor<ValidationResultSummary>() {
-					{
-						setNames(new String[] { "id", "version", "name", "district", "result", "failedRules" });
+				setFieldExtractor(new FieldExtractor<>() {
+					@Override
+					public Object[] extract(ValidationResultSummary validationResultSummary) {
+						List<Object> fields = new ArrayList<>();
+						fields.add(validationResultSummary.getId());
+						fields.add(validationResultSummary.getVersion());
+						fields.add(encapsulate(validationResultSummary.getName()));
+						fields.add(encapsulate(validationResultSummary.getDistrict()));
+						fields.add(validationResultSummary.getResult());
+						fields.add(encapsulate(validationResultSummary.getFailedRules()));
+						return fields.toArray();
+					}
+
+					private String encapsulate(String toEncapsulate) {
+						if (toEncapsulate == null)
+							return null;
+						return "\"" + toEncapsulate.replace("\"", "\"\"") + "\"";
 					}
 				});
-
 			}
 		});
 		return writer;
