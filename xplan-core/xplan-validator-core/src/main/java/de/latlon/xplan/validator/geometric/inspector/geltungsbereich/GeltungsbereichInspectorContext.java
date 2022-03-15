@@ -20,6 +20,9 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
+import de.latlon.xplan.validator.geometric.inspector.model.BereichFeature;
+import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
+import de.latlon.xplan.validator.geometric.inspector.model.PlanFeature;
 import org.deegree.feature.Feature;
 
 import java.util.ArrayList;
@@ -42,7 +45,7 @@ public class GeltungsbereichInspectorContext {
 
 	private Map<String, BereichFeature> bereichFeatures = new HashMap<>();
 
-	private List<InGeltungsbereichFeature> inGeltungsbereichFeatures = new ArrayList<>();
+	private List<FeatureUnderTest> featuresUnderTest = new ArrayList<>();
 
 	/**
 	 * Adss a new feature to the context.
@@ -50,13 +53,13 @@ public class GeltungsbereichInspectorContext {
 	 */
 	void addToContext(Feature feature) {
 		if (featureAnalyser.isPlanFeature(feature)) {
-			planFeatures.put(feature.getId(), new PlanFeature(feature, featureAnalyser, TOLERANCE_METRE));
+			planFeatures.put(feature.getId(), new PlanFeature(feature, TOLERANCE_METRE));
 		}
 		else if (featureAnalyser.isBereichFeature(feature)) {
-			bereichFeatures.put(feature.getId(), new BereichFeature(feature, featureAnalyser, TOLERANCE_METRE));
+			bereichFeatures.put(feature.getId(), new BereichFeature(feature, TOLERANCE_METRE));
 		}
 		else if (!featureAnalyser.isAllowedToBeOutside(feature)) {
-			inGeltungsbereichFeatures.add(new InGeltungsbereichFeature(feature, featureAnalyser, this));
+			featuresUnderTest.add(new FeatureUnderTest(feature, this));
 		}
 	}
 
@@ -78,8 +81,8 @@ public class GeltungsbereichInspectorContext {
 	 * @return all features which should be part of the Geltungsbereich, never
 	 * <code>null</code>
 	 */
-	public List<InGeltungsbereichFeature> getInGeltungsbereichFeatures() {
-		return inGeltungsbereichFeatures;
+	public List<FeatureUnderTest> getFeaturesUnderTest() {
+		return featuresUnderTest;
 	}
 
 }

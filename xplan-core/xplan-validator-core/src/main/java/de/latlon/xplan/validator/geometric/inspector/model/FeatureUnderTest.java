@@ -18,22 +18,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
+package de.latlon.xplan.validator.geometric.inspector.model;
 
+import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspectorContext;
 import org.deegree.feature.Feature;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A feature which should be part of the geltungsbereich.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class InGeltungsbereichFeature extends AbstractGeltungsbereichFeature {
+public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
+
+	private static final List<String> GEHOERT_ZU_BEREICH_PROPNAMES = new ArrayList<>();
 
 	private final GeltungsbereichInspectorContext geltungsbereichInspectorContext;
 
-	InGeltungsbereichFeature(Feature feature, GeltungsbereichFeatureAnalyser featureAnalyser,
-			GeltungsbereichInspectorContext geltungsbereichInspectorContext) {
-		super(feature, featureAnalyser);
+	static {
+		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuBereich");
+		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuBereich");
+		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuBP_Bereich");
+		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuLP_Bereich");
+		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuFP_Bereich");
+		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuRP_Bereich");
+		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuSO_Bereich");
+	}
+
+	public FeatureUnderTest(Feature feature, GeltungsbereichInspectorContext geltungsbereichInspectorContext) {
+		super(feature);
 		this.geltungsbereichInspectorContext = geltungsbereichInspectorContext;
 	}
 
@@ -41,8 +56,8 @@ public class InGeltungsbereichFeature extends AbstractGeltungsbereichFeature {
 	 * @return The Plan or Bereich feature of this InGeltungsbereichFeature, may be
 	 * <code>null</code> if no Plan or Bereich feature is assigned
 	 */
-	GeltungsbereichFeature retrieveGeltungsbereichFeature() {
-		String bereichId = featureAnalyser.getGehortZuBereichId(feature);
+	public GeltungsbereichFeature retrieveGeltungsbereichFeature() {
+		String bereichId = getGehortZuBereichId();
 		if (bereichId == null) {
 			return null;
 		}
@@ -51,6 +66,19 @@ public class InGeltungsbereichFeature extends AbstractGeltungsbereichFeature {
 			return bereichFeature;
 		String planId = bereichFeature.getPlanId();
 		return geltungsbereichInspectorContext.getPlanFeatures().get(planId);
+	}
+
+	/**
+	 * @return the id of the bereich this feature belongs to, <code>null</code> is not
+	 * assigned to a bereich
+	 */
+	private String getGehortZuBereichId() {
+		for (String propName : GEHOERT_ZU_BEREICH_PROPNAMES) {
+			String gehortZuBereichId = getPropertyValue(propName);
+			if (gehortZuBereichId != null)
+				return gehortZuBereichId;
+		}
+		return null;
 	}
 
 }

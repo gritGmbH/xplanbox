@@ -18,17 +18,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
+package de.latlon.xplan.validator.geometric.inspector.model;
 
+import org.deegree.commons.tom.TypedObjectNode;
+import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
+import org.deegree.gml.reference.FeatureReference;
+import org.locationtech.jts.geom.Geometry;
+
+import javax.xml.namespace.QName;
+import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class AbstractGeltungsbereichFeature {
-
-	protected GeltungsbereichFeatureAnalyser featureAnalyser;
 
 	protected final Feature feature;
 
@@ -36,10 +41,9 @@ public class AbstractGeltungsbereichFeature {
 
 	private org.locationtech.jts.geom.Geometry jtsGeometry;
 
-	public AbstractGeltungsbereichFeature(Feature feature, GeltungsbereichFeatureAnalyser featureAnalyser) {
+	public AbstractGeltungsbereichFeature(Feature feature) {
 		this.feature = feature;
-		this.originalGeometry = featureAnalyser.getOriginalGeometry(feature);
-		this.featureAnalyser = featureAnalyser;
+		this.originalGeometry = parseOriginalGeometry();
 	}
 
 	/**
@@ -68,8 +72,42 @@ public class AbstractGeltungsbereichFeature {
 	 */
 	public org.locationtech.jts.geom.Geometry getJtsGeometry() {
 		if (jtsGeometry == null)
-			jtsGeometry = featureAnalyser.getJtsGeometry(feature);
+			jtsGeometry = createJtsGeometry();
 		return jtsGeometry;
+	}
+
+	protected String getPropertyValue(String propName) {
+		QName qName = new QName(feature.getName().getNamespaceURI(), propName);
+		List<Property> properties = feature.getProperties(qName);
+		if (properties == null || properties.isEmpty())
+			return null;
+		Property property = properties.get(0);
+		TypedObjectNode value = property.getValue();
+		if (value instanceof FeatureReference)
+			return ((FeatureReference) value).getURI().substring(1);
+		return value.toString().substring(1);
+	}
+
+	/**
+	 * @return the geometry of the feature, <code>null</code> if the feature has no
+	 * geometry
+	 */
+	private AbstractDefaultGeometry parseOriginalGeometry() {
+		List<Property> geometryProperties = feature.getGeometryProperties();
+		if (!geometryProperties.isEmpty())
+			return (AbstractDefaultGeometry) geometryProperties.get(0).getValue();
+		return null;
+	}
+
+	/**
+	 * @return the geometry of the feature as JTS geometry, <code>null</code> if the
+	 * feature has no geometry
+	 */
+	private Geometry createJtsGeometry() {
+		AbstractDefaultGeometry originalGeometry = getOriginalGeometry();
+		if (originalGeometry != null)
+			return originalGeometry.getJTSGeometry();
+		return null;
 	}
 
 }
