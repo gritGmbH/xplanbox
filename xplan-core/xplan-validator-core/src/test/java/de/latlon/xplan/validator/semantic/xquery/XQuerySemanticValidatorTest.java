@@ -20,24 +20,6 @@
  */
 package de.latlon.xplan.validator.semantic.xquery;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Collections;
-
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
@@ -46,6 +28,22 @@ import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Tests for <link>XQuerySemanticValidator</link>
@@ -56,8 +54,7 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 @RunWith(JUnitParamsRunner.class)
 public class XQuerySemanticValidatorTest {
 
-	@Parameters({ "xplan41/BP2070.zip,10 ", "xplan41/nsm/nsm_niedersachsen_lrop_small.zip,10", "xplan50/BP2070.zip,7",
-			"xplan51/BP2070.zip,7" })
+	@Parameters({ "xplan41/BP2070.zip,10 ", "xplan50/BP2070.zip,7", "xplan51/BP2070.zip,7" })
 	@Test
 	public void testValidateSemantic(String testResource, int expectedNumberOfRules) throws Exception {
 		Path xqueryFilePath = pathToSampleRules();
@@ -79,8 +76,8 @@ public class XQuerySemanticValidatorTest {
 		SemanticConformityLinkConfiguration linkConfig = new SemanticConformityLinkConfiguration();
 		linkConfig.addLink(XPLAN_41, "link");
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever, linkConfig);
-		ValidatorResult result = xQuerySemanticValidator.validateSemantic(
-				getTestArchive("xplan41/nsm/nsm_niedersachsen_lrop_small.zip"), Collections.emptyList());
+		ValidatorResult result = xQuerySemanticValidator.validateSemantic(getTestArchive("xplan41/BP2070.zip"),
+				Collections.emptyList());
 		SemanticValidatorResult semanticValidatorResult = (SemanticValidatorResult) result;
 
 		assertThat(semanticValidatorResult.getValidatorDetail().getDetailsString(), is(notNullValue()));
@@ -95,8 +92,8 @@ public class XQuerySemanticValidatorTest {
 		SemanticConformityLinkConfiguration linkConfig = new SemanticConformityLinkConfiguration();
 		linkConfig.addLink(XPLAN_40, "link");
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever, linkConfig);
-		ValidatorResult result = xQuerySemanticValidator.validateSemantic(
-				getTestArchive("xplan41/nsm/nsm_niedersachsen_lrop_small.zip"), Collections.emptyList());
+		ValidatorResult result = xQuerySemanticValidator.validateSemantic(getTestArchive("xplan41/BP2070.zip"),
+				Collections.emptyList());
 		SemanticValidatorResult semanticValidatorResult = (SemanticValidatorResult) result;
 
 		assertThat(semanticValidatorResult.getValidatorDetail(), is(nullValue()));
@@ -108,8 +105,8 @@ public class XQuerySemanticValidatorTest {
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
 				xqueryFilePath);
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever);
-		ValidatorResult result = xQuerySemanticValidator.validateSemantic(
-				getTestArchive("xplan41/nsm/nsm_niedersachsen_lrop_small.zip"), Collections.emptyList());
+		ValidatorResult result = xQuerySemanticValidator.validateSemantic(getTestArchive("xplan41/BP2070.zip"),
+				Collections.emptyList());
 		SemanticValidatorResult semanticValidatorResult = (SemanticValidatorResult) result;
 
 		assertThat(semanticValidatorResult.getValidatorDetail(), is(nullValue()));

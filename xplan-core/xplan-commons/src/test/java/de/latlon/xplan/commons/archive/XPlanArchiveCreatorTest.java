@@ -31,7 +31,6 @@ import java.io.InputStream;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
-import static de.latlon.xplan.commons.XPlanType.RP_Plan;
 import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
@@ -171,22 +170,6 @@ public class XPlanArchiveCreatorTest {
 		assertEquals(XPLAN_40, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
 		assertEquals("EPSG:25833", archive.getCrs().getName());
-	}
-
-	@Test
-	public void testMetadataV4_1_NSM_Niedersachsen_lrop_Small() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan41/nsm/nsm_niedersachsen_lrop_small.zip");
-		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals(RP_Plan, archive.getType());
-		assertEquals("EPSG:31467", archive.getCrs().getName());
-	}
-
-	@Test
-	public void testMetadataEidelstedt_4_V4XPlan41_With_NSM_Namespace() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan41/Eidelstedt_4_V4_with_nsm_namespace.zip");
-		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals(BP_Plan, archive.getType());
-		assertEquals("urn:adv:crs:ETRS89_UTM32", archive.getCrs().getName());
 	}
 
 	@Test
