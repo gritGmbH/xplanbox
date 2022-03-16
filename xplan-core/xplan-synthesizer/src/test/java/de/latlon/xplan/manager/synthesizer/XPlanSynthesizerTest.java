@@ -61,7 +61,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
-		assertThat(xPlanSynthesizer.getRules().size(), is(7888));
+		assertThat(xPlanSynthesizer.getRules().size(), is(7250));
 	}
 
 	@Test
@@ -73,7 +73,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
-		assertThat(xPlanSynthesizer.getRules().size(), is(7888));
+		assertThat(xPlanSynthesizer.getRules().size(), is(7250));
 	}
 
 	@Test
@@ -85,7 +85,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
-		assertThat(xPlanSynthesizer.getRules().size(), is(7888));
+		assertThat(xPlanSynthesizer.getRules().size(), is(7250));
 	}
 
 	@Test
@@ -97,7 +97,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
-		assertThat(xPlanSynthesizer.getRules().size(), is(7888));
+		assertThat(xPlanSynthesizer.getRules().size(), is(7250));
 	}
 
 	@Test
@@ -110,7 +110,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		FeatureCollection synthesizedFeatures = xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
-		assertThat(xPlanSynthesizer.getRules().size(), is(7889));
+		assertThat(xPlanSynthesizer.getRules().size(), is(7251));
 		Iterator<Feature> it = synthesizedFeatures.iterator();
 		while (it.hasNext()) {
 			Feature feature = it.next();
@@ -135,7 +135,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		FeatureCollection synthesizedFeatures = xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
-		assertThat(xPlanSynthesizer.getRules().size(), is(7888));
+		assertThat(xPlanSynthesizer.getRules().size(), is(7250));
 
 		String firstPropertyValue = valueOfFirstProperty(synthesizedFeatures, "BP_BaugebietsTeilFlaeche",
 				"besondereArtDerBaulNutzung");
@@ -152,7 +152,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		FeatureCollection synthesizedFeatures = xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
-		assertThat(xPlanSynthesizer.getRules().size(), is(7888));
+		assertThat(xPlanSynthesizer.getRules().size(), is(7250));
 
 		String firstPropertyValue = valueOfFirstProperty(synthesizedFeatures, "BP_BaugebietsTeilFlaeche",
 				"detaillierteArtDerBaulNutzung");

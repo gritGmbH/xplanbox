@@ -1195,7 +1195,7 @@ public class XPlanDao {
 				+ "(import_date, xp_version, xp_type, name, nummer, gkz, has_raster, rechtsstand, "
 				+ "release_date, sonst_plan_art, planstatus, district, "
 				+ "wmsSortDate, gueltigkeitBeginn, gueltigkeitEnde, internalid, bbox)"
-				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,ST_GeometryFromText(?, 4326))";
+				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,ST_GeometryFromText(?, 4326))";
 		PreparedStatement stmt = null;
 		int planId;
 		try {
