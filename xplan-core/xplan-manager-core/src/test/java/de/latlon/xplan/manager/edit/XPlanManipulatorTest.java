@@ -68,7 +68,6 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.PLANMITGEOREFERENZ;
@@ -929,7 +928,7 @@ public class XPlanManipulatorTest {
 	}
 
 	private String exportPlan(FeatureCollection featureCollection, XPlanVersion version) throws Exception {
-		XPlanExporter planExporter = new XPlanExporter(null);
+		XPlanExporter planExporter = new XPlanExporter();
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		planExporter.export(outputStream, version, featureCollection, null);
 		return new String(outputStream.toByteArray());

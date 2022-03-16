@@ -20,30 +20,7 @@
  */
 package de.latlon.xplan.manager.export;
 
-import static java.lang.Math.max;
-import static javax.xml.stream.XMLOutputFactory.IS_REPAIRING_NAMESPACES;
-import static org.deegree.commons.xml.CommonNamespaces.XLNNS;
-import static org.deegree.gml.GMLOutputFactory.createGMLStreamWriter;
-
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
-import java.util.UUID;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
-import javax.xml.stream.FactoryConfigurationError;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
-
+import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
 import org.deegree.cs.exceptions.TransformationException;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -55,8 +32,22 @@ import org.deegree.gml.GMLStreamWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+import java.util.UUID;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import static javax.xml.stream.XMLOutputFactory.IS_REPAIRING_NAMESPACES;
+import static org.deegree.commons.xml.CommonNamespaces.XLNNS;
+import static org.deegree.gml.GMLOutputFactory.createGMLStreamWriter;
 
 /**
  * Exports the content of a plan as zip archive.
@@ -69,22 +60,6 @@ public class XPlanExporter {
 	private final Logger LOG = LoggerFactory.getLogger(XPlanExporter.class);
 
 	private static final DateFormat DATEFORMAT = createDateFormat();
-
-	static final String MAIN_FILE_REEXPORTED_PREFIX = "xplan-reexported";
-
-	static final String MAIN_FILE_REEXPORTED_SUFFIX = ".gml";
-
-	static final String MAIN_FILE_REEXPORTED_SEPERATOR = "-";
-
-	private ManagerConfiguration managerConfiguration;
-
-	/**
-	 * @param managerConfiguration the configuration of the manager containing details
-	 * about the export, may be <code>null</code>
-	 */
-	public XPlanExporter(ManagerConfiguration managerConfiguration) {
-		this.managerConfiguration = managerConfiguration;
-	}
 
 	/**
 	 * Exports the content of a plan as zip archive.
@@ -112,89 +87,7 @@ public class XPlanExporter {
 	 */
 	public void export(OutputStream outputStream, XPlanVersion version, FeatureCollection fc, String comment)
 			throws Exception {
-		createReexported(outputStream, version, fc, comment);
-	}
 
-	private void writeContentToStream(OutputStream outputStream, XPlanArchiveContent contents) {
-		try {
-			ZipOutputStream zipOS = new ZipOutputStream(outputStream);
-			List<String> exportedArtefactFileNames = writeArchiveContentToStream(zipOS, contents);
-			if (isExportOfReexportedActive())
-				exportReexported(zipOS, contents, exportedArtefactFileNames);
-			zipOS.close();
-		}
-		catch (XPlanExportException e) {
-			throw e;
-		}
-		catch (Exception e) {
-			LOG.error("Plan could not be exported!", e);
-			throw new XPlanExportException("Fehler beim Exportieren des Plans: " + e.getMessage() + ".", e);
-		}
-	}
-
-	private List<String> writeArchiveContentToStream(ZipOutputStream zipOS, XPlanArchiveContent contents)
-			throws Exception {
-		List<String> exportedArtefactFileNames = new ArrayList<String>();
-		XPlanArtefactIterator artefacts = contents.getArtefacts();
-		while (artefacts.hasNext()) {
-			XPlanArtefact artefact = artefacts.next();
-			writeArtefactToStream(zipOS, artefact);
-			exportedArtefactFileNames.add(artefact.getFileName());
-		}
-		artefacts.close();
-		return exportedArtefactFileNames;
-	}
-
-	private void writeArtefactToStream(ZipOutputStream zos, XPlanArtefact artefact) {
-		String fileName = artefact.getFileName();
-		LOG.info("- Schreibe Artefakt '" + fileName + "'...");
-		try {
-			InputStream artefactContent = artefact.getContent();
-			GZIPInputStream is = new GZIPInputStream(artefactContent);
-			ZipEntry entry = new ZipEntry(fileName);
-			zos.putNextEntry(entry);
-			byte[] buffer = new byte[10240];
-			int read;
-			while ((read = is.read(buffer)) != -1) {
-				zos.write(buffer, 0, read);
-			}
-			zos.closeEntry();
-		}
-		catch (Exception e) {
-			throw new XPlanExportException("Fehler beim Rekonstruieren des XPlan-Artefakts mit Namen " + fileName + ": "
-					+ e.getLocalizedMessage(), e);
-		}
-	}
-
-	private void exportReexported(ZipOutputStream zipOS, XPlanArchiveContent contents,
-			List<String> exportedArtefactFileNames) {
-		String reexportedFileName = createReexportedFileName(exportedArtefactFileNames);
-		LOG.info("- Schreibe reexported '{}'...", reexportedFileName);
-		try {
-			FeatureCollection restoredFeatureCollection = contents.getRestoredFeatureCollection();
-			XPlanVersion version = contents.getVersion();
-			ByteArrayOutputStream reexportedXplanAuszug = createReexported(version, restoredFeatureCollection);
-			ZipEntry entry = new ZipEntry(reexportedFileName);
-			zipOS.putNextEntry(entry);
-			zipOS.write(reexportedXplanAuszug.toByteArray());
-			zipOS.closeEntry();
-		}
-		catch (Exception e) {
-			throw new XPlanExportException(
-					"Fehler beim Rekonstruieren der XPlan reexported Datei: " + e.getLocalizedMessage(), e);
-		}
-	}
-
-	private ByteArrayOutputStream createReexported(XPlanVersion version, FeatureCollection fc)
-			throws FactoryConfigurationError, XMLStreamException, UnknownCRSException, TransformationException {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		String comment = "Generiert von XPlanManager, " + DATEFORMAT.format(new Date());
-		createReexported(bos, version, fc, comment);
-		return bos;
-	}
-
-	private void createReexported(OutputStream outputStream, XPlanVersion version, FeatureCollection fc, String comment)
-			throws FactoryConfigurationError, XMLStreamException, UnknownCRSException, TransformationException {
 		XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newInstance();
 		xmlOutputFactory.setProperty(IS_REPAIRING_NAMESPACES, true);
 		XMLStreamWriter writer = new IndentingXMLStreamWriter(
@@ -225,6 +118,51 @@ public class XPlanExporter {
 		writer.close();
 	}
 
+	private void writeContentToStream(OutputStream outputStream, XPlanArchiveContent contents) {
+		try {
+			ZipOutputStream zipOS = new ZipOutputStream(outputStream);
+			writeArchiveContentToStream(zipOS, contents);
+			zipOS.close();
+		}
+		catch (XPlanExportException e) {
+			throw e;
+		}
+		catch (Exception e) {
+			LOG.error("Plan could not be exported!", e);
+			throw new XPlanExportException("Fehler beim Exportieren des Plans: " + e.getMessage() + ".", e);
+		}
+	}
+
+	private void writeArchiveContentToStream(ZipOutputStream zipOS, XPlanArchiveContent contents) throws Exception {
+		XPlanArtefactIterator artefacts = contents.getArtefacts();
+		while (artefacts.hasNext()) {
+			XPlanArtefact artefact = artefacts.next();
+			writeArtefactToStream(zipOS, artefact);
+		}
+		artefacts.close();
+	}
+
+	private void writeArtefactToStream(ZipOutputStream zos, XPlanArtefact artefact) {
+		String fileName = artefact.getFileName();
+		LOG.info("- Schreibe Artefakt '" + fileName + "'...");
+		try {
+			InputStream artefactContent = artefact.getContent();
+			GZIPInputStream is = new GZIPInputStream(artefactContent);
+			ZipEntry entry = new ZipEntry(fileName);
+			zos.putNextEntry(entry);
+			byte[] buffer = new byte[10240];
+			int read;
+			while ((read = is.read(buffer)) != -1) {
+				zos.write(buffer, 0, read);
+			}
+			zos.closeEntry();
+		}
+		catch (Exception e) {
+			throw new XPlanExportException("Fehler beim Rekonstruieren des XPlan-Artefakts mit Namen " + fileName + ": "
+					+ e.getLocalizedMessage(), e);
+		}
+	}
+
 	private void exportEnvelope(GMLStreamWriter encoder, FeatureCollection fc, XMLStreamWriter writer, String gmlNs)
 			throws XMLStreamException, UnknownCRSException, TransformationException {
 		Envelope envelope = fc.getEnvelope();
@@ -238,49 +176,6 @@ public class XPlanExporter {
 			writer.writeEndElement();
 		}
 		writer.writeEndElement();
-	}
-
-	private String createReexportedFileName(List<String> exportedArtefactFileNames) {
-		int maxCounter = Integer.MIN_VALUE;
-		for (String fileName : exportedArtefactFileNames) {
-			if (fileName.startsWith(MAIN_FILE_REEXPORTED_PREFIX) && fileName.endsWith(MAIN_FILE_REEXPORTED_SUFFIX)) {
-				String mid = extractMid(fileName);
-				maxCounter = max(maxCounter, parseMid(mid));
-			}
-		}
-		String counter = "";
-		if (maxCounter > -1) {
-			int newCounter = maxCounter + 1;
-			counter = MAIN_FILE_REEXPORTED_SEPERATOR + newCounter;
-		}
-		return MAIN_FILE_REEXPORTED_PREFIX + counter + MAIN_FILE_REEXPORTED_SUFFIX;
-	}
-
-	private boolean isExportOfReexportedActive() {
-		if (managerConfiguration != null)
-			return managerConfiguration.isExportOfReexportedActive();
-		return false;
-	}
-
-	private int parseMid(String mid) {
-		if (mid.length() > 0) {
-			try {
-				return Integer.parseInt(mid);
-			}
-			catch (NumberFormatException e) {
-				LOG.trace("Error: {} is not parsable as integer. Returning 0", mid);
-			}
-		}
-		return 0;
-	}
-
-	private String extractMid(String fileName) {
-		String fileNameWithoutPrefix = fileName.replaceFirst(MAIN_FILE_REEXPORTED_PREFIX, "");
-		int lastIndexOfSuffix = fileNameWithoutPrefix.lastIndexOf(MAIN_FILE_REEXPORTED_SUFFIX);
-		String mid = fileNameWithoutPrefix.substring(0, lastIndexOfSuffix);
-		if (mid.startsWith(MAIN_FILE_REEXPORTED_SEPERATOR) && mid.length() > 1)
-			mid = mid.substring(1);
-		return mid;
 	}
 
 	private static DateFormat createDateFormat() {

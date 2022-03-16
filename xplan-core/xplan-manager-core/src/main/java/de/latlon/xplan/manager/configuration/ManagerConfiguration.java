@@ -33,8 +33,6 @@ import org.deegree.geometry.SimpleGeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -64,8 +62,6 @@ public class ManagerConfiguration {
 	static final String RASTER_LAYER_SCALE_DENOMINATOR_MAX = "rasterLayerMaxScaleDenominator";
 
 	static final String ACTIVATE_SEPARATED_DATAMANAGEMENT = "activateSeparatedDataManagement";
-
-	static final String ACTIVATE_EXPORT_OF_REEXPORTED = "activateExportOfReexported";
 
 	static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
 
@@ -97,8 +93,6 @@ public class ManagerConfiguration {
 	private double rasterLayerMaxScaleDenominator = Double.NaN;
 
 	private boolean isSeperatedDataManagementActived = false;
-
-	private boolean isExportOfReexportedActive = false;
 
 	private WorkspaceReloaderConfiguration workspaceReloaderConfiguration = new WorkspaceReloaderConfiguration();
 
@@ -208,14 +202,6 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return <code>true</code> if the xplan-reexported.gml file should be exported,
-	 * <code>false</code> otherwise
-	 */
-	public boolean isExportOfReexportedActive() {
-		return isExportOfReexportedActive;
-	}
-
-	/**
 	 * @return the directory containing the synthesizer configuration, may be
 	 * <code>null</code>
 	 */
@@ -261,7 +247,6 @@ public class ManagerConfiguration {
 						RASTER_LAYER_SCALE_DENOMINATOR_MAX);
 				isSeperatedDataManagementActived = parseBoolean(loadProperties, ACTIVATE_SEPARATED_DATAMANAGEMENT,
 						false);
-				isExportOfReexportedActive = parseBoolean(loadProperties, ACTIVATE_EXPORT_OF_REEXPORTED, false);
 				workspaceReloaderConfiguration = parseWorkspaceReloaderConfiguration(loadProperties);
 				defaultBboxIn4326 = parseDefaultBboxIn4326(loadProperties);
 				internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration(loadProperties);
@@ -304,9 +289,6 @@ public class ManagerConfiguration {
 		LOG.info("-------------------------------------------");
 		LOG.info("  separated data management");
 		LOG.info("   - is activated: {}", isSeperatedDataManagementActived);
-		LOG.info("-------------------------------------------");
-		LOG.info("  export of xplan-reexported.gml");
-		LOG.info("   - is activated: {}", isExportOfReexportedActive);
 		LOG.info("-------------------------------------------");
 		LOG.info("  workspace reloader configuration");
 		LOG.info("   - urls of service to reload: {}", workspaceReloaderConfiguration.getUrls().toString());
