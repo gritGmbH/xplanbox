@@ -20,12 +20,8 @@
  */
 package de.latlon.xplan.commons.feature;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.gml.property.PropertyType;
 import org.deegree.feature.Feature;
@@ -36,19 +32,16 @@ import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
 import org.deegree.feature.types.GenericFeatureType;
 import org.deegree.feature.types.property.SimplePropertyType;
-import org.deegree.gml.GMLStreamReader;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import static org.deegree.commons.tom.primitive.BaseType.STRING;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -168,23 +161,7 @@ public class FeatureCollectionManipulatorTest {
 	}
 
 	private AppSchema createSchema() {
-		return XPlanSchemas.getInstance().getAppSchema(XPlanVersion.XPLAN_41, null);
-	}
-
-	private XPlanFeatureCollection getMainFileAsXplanFeatureCollection(String name) throws Exception {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
-				ResourceAccessor.readResourceStream(name));
-		XPlanVersion version = archive.getVersion();
-		XPlanAde ade = archive.getAde();
-		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
-		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, ade));
-		FeatureCollection fc = gmlReader.readFeatureCollection();
-		gmlReader.getIdContext().resolveLocalRefs();
-		gmlReader.close();
-		xmlReader.close();
-		return new XPlanFeatureCollectionBuilder(fc, archive.getType()).build();
+		return XPlanSchemas.getInstance().getAppSchema(XPlanVersion.XPLAN_41);
 	}
 
 	private BaseMatcher<FeatureCollection> hasNumberOfProperties(final String featureName, final int noOfProperties) {

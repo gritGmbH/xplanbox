@@ -62,7 +62,7 @@ public class AenderungenInspectorTest {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xmlStreamReader, null);
 		XPlanVersion version = XPlanVersion.XPLAN_50;
 		GMLVersion gmlVersion = version.getGmlVersion();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 
 		GeometryFactory geomFac = new GeometryFactory();
 		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(gmlVersion, xmlStream);

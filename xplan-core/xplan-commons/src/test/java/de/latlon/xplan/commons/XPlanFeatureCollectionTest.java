@@ -273,32 +273,14 @@ public class XPlanFeatureCollectionTest {
 		assertThat(fc.getBboxIn4326(), nullValue());
 	}
 
-	@Test
-	public void testnsm_niedersachsen_lrop_small_valid_for_managerWithDatumDesInkrafttretensXPlan41() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection(
-				"xplan41/nsm/nsm_niedersachsen_lrop_small_valid_for_manager-with-datumDesInkrafttretens.zip");
-		Envelope expectedBbox = createEnvelopeIn4326(6.086234576558423, 51.267042189186874, 11.66863301837069,
-				54.23453401178898);
-
-		assertEquals("LROP_NI", fc.getPlanName());
-		assertNull(fc.getPlanNummer());
-		assertEquals(71, fc.getFeatures().size());
-		assertThat(fc.getPlanReleaseDate(), is(new SimpleDateFormat("yyyy-MM-dd").parse("2015-02-02")));
-		assertThat(fc.getBboxIn4326().getMin().get0(), is(expectedBbox.getMin().get0()));
-		assertThat(fc.getBboxIn4326().getMin().get1(), is(expectedBbox.getMin().get1()));
-		assertThat(fc.getBboxIn4326().getMax().get0(), is(expectedBbox.getMax().get0()));
-		assertThat(fc.getBboxIn4326().getMax().get1(), is(expectedBbox.getMax().get1()));
-	}
-
 	private XPlanFeatureCollection getMainFileAsXplanFeatureCollection(String name) throws Exception {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
 		XPlanVersion version = archive.getVersion();
-		XPlanAde ade = archive.getAde();
 		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
 		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, ade));
+		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
 		FeatureCollection fc = gmlReader.readFeatureCollection();
 		gmlReader.getIdContext().resolveLocalRefs();
 		gmlReader.close();

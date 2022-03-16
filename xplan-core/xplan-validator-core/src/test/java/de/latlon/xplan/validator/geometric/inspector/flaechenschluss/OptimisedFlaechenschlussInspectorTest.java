@@ -21,7 +21,6 @@
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -78,8 +77,7 @@ public class OptimisedFlaechenschlussInspectorTest {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
 		XPlanVersion version = archive.getVersion();
 		GMLVersion gmlVersion = version.getGmlVersion();
-		XPlanAde ade = archive.getAde();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 
 		GeometryFactory geomFac = new GeometryFactory();
 		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(gmlVersion, xmlStream);

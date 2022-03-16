@@ -21,7 +21,6 @@
 package de.latlon.xplan.validator.report.badgeometryimg;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -47,8 +46,8 @@ import java.util.List;
 
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_OPTIONS;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
@@ -147,8 +146,7 @@ public class BadGeometryImgGeneratorTest {
 	private ValidatorResult validateGeometryAndReturnReport(XPlanArchive archive, List<ValidationOption> voOptions)
 			throws ValidatorException {
 		XPlanVersion version = archive.getVersion();
-		XPlanAde ade = archive.getAde();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		return (new GeometricValidatorImpl()).validateGeometry(archive, archive.getCrs(), schema, true, voOptions);
 	}
 

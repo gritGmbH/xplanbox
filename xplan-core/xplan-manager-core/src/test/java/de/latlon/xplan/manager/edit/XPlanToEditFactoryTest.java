@@ -394,7 +394,7 @@ public class XPlanToEditFactoryTest {
 
 		GeometryFactory geomFac = new GeometryFactory();
 		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(xplanVersion.getGmlVersion(), xmlStream);
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xplanVersion, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xplanVersion);
 		gmlStream.setApplicationSchema(schema);
 		gmlStream.setGeometryFactory(geomFac);
 		return (FeatureCollection) gmlStream.readFeature();

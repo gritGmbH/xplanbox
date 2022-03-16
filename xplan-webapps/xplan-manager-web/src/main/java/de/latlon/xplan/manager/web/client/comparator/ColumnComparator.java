@@ -89,8 +89,6 @@ public class ColumnComparator implements Comparator<XPlan> {
 			String firstPlanStatus = retrievePlanStatus(first);
 			String secondPlanStatus = retrievePlanStatus(second);
 			return compareString(firstPlanStatus, secondPlanStatus);
-		case ADE:
-			return compareString(first.getAde(), second.getAde());
 		case VERSION:
 			return compareString(first.getVersion(), second.getVersion());
 		}

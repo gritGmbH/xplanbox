@@ -78,7 +78,7 @@ public class XPlanSynthesizer {
 
 	static {
 		try {
-			synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN, null);
+			synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

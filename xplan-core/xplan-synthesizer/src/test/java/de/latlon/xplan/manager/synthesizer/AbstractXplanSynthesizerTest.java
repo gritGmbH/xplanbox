@@ -82,7 +82,7 @@ public abstract class AbstractXplanSynthesizerTest {
 
 	@Before
 	public void setup() {
-		synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN, null);
+		synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 	}
 
 	abstract XPlanVersion getXPlanVersion();
@@ -132,7 +132,7 @@ public abstract class AbstractXplanSynthesizerTest {
 	}
 
 	protected XPlanFeatureCollection readFeatures(XPlanArchive archive) throws XMLStreamException, UnknownCRSException {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion(), archive.getAde());
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion());
 		ICRS crs = archive.getCrs();
 
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);

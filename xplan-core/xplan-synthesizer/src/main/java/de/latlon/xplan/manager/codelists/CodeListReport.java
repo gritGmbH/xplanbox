@@ -72,7 +72,7 @@ class CodeListReport {
 
 	private void printReport(XPlanVersion version) {
 		System.out.print("Lese Schema...");
-		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(version);
 		System.out.println("OK");
 
 		XSModel xsModel = appSchema.getGMLSchema().getXSModel();

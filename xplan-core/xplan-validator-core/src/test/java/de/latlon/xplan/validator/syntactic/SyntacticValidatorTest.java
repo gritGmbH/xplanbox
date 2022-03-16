@@ -20,21 +20,19 @@
  */
 package de.latlon.xplan.validator.syntactic;
 
-import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.io.IOException;
-
-import org.junit.Test;
-
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import org.junit.Test;
+
+import java.io.IOException;
+
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Tests for <link>SyntacticValidatorImpl</link>
@@ -43,15 +41,6 @@ import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
  * @version $Revision: $, $Date: $
  */
 public class SyntacticValidatorTest {
-
-	@Test
-	public void testValidateSyntaxWithXPlanNSM() throws Exception {
-		XPlanArchive archive = getTestArchive("xplan41/nsm/nsm_niedersachsen_lrop_small.zip");
-		SyntacticValidator validator = new SyntacticValidatorImpl();
-		SyntacticValidatorResult result = (SyntacticValidatorResult) validator.validateSyntax(archive);
-		assertThat(result.isValid(), is(true));
-		assertThat(result.getValidatorDetail(), nullValue());
-	}
 
 	@Test
 	public void testEidelstedt_4_V4XPlan41_Syntaxfehler() throws IOException {

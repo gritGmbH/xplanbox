@@ -21,7 +21,6 @@
 package de.latlon.xplan.validator.geometric;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -59,28 +58,6 @@ public class GeometricValidatorImplTest {
 		XPlanArchive archive = getTestArchive("xplan51/BP2070.zip");
 		ValidatorResult report = validateGeometryAndReturnReport(archive, null);
 		assertNotEquals(null, report);
-	}
-
-	@Test
-	public void testValidateGeometryWithXPlanNSMShouldReturnAnInvalidResultWithFiveErrors() throws Exception {
-		XPlanArchive archive = getTestArchive("xplan41/nsm/nsm_niedersachsen_lrop_small.zip");
-		List<ValidationOption> validVoOptions = createValidVoOptions();
-		ValidatorResult report = validateGeometryAndReturnReport(archive, validVoOptions);
-		int numberOfErrors = ((GeometricValidatorResult) report).getErrors().size();
-
-		assertThat(report.isValid(), is(false));
-		assertThat(numberOfErrors, is(11));
-	}
-
-	@Test
-	public void testValidateGeometryWithErroneousXlinkShouldReturnAnInvalidResultWithSixErrors() throws Exception {
-		XPlanArchive archive = getTestArchive("xplan41/nsm/nsm_niedersachsen_lrop_small_erroneous_xlink.zip");
-		List<ValidationOption> validVoOptions = createValidVoOptions();
-		ValidatorResult report = validateGeometryAndReturnReport(archive, validVoOptions);
-		int numberOfErrors = ((GeometricValidatorResult) report).getErrors().size();
-
-		assertThat(report.isValid(), is(false));
-		assertThat(numberOfErrors, is(12));
 	}
 
 	@Test
@@ -160,8 +137,7 @@ public class GeometricValidatorImplTest {
 	private ValidatorResult validateGeometryAndReturnReport(XPlanArchive archive, List<ValidationOption> voOptions)
 			throws ValidatorException {
 		XPlanVersion version = archive.getVersion();
-		XPlanAde ade = archive.getAde();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		return new GeometricValidatorImpl().validateGeometry(archive, archive.getCrs(), schema, true, voOptions);
 	}
 
