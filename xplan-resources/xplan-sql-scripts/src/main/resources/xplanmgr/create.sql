@@ -30,7 +30,6 @@ CREATE TABLE plans (
     import_date timestamp NOT NULL,
     xp_version text NOT NULL,
     xp_type text NOT NULL,
-    ade text,
     name text,
     nummer text,
     internalid text,
