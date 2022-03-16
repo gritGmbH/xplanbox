@@ -189,7 +189,6 @@ class RuleParser {
 		case "xplanGmlDescription":
 			result = new XPlanGmlDescription();
 			break;
-		case "xplanFlattenFeature":
 		case "xplanFlatten":
 			result = parseXPlanFlattenFeature(args);
 			break;
@@ -202,7 +201,7 @@ class RuleParser {
 		case "xplan2CodeNormalize":
 			result = parseXPlanCodeNormalize(args);
 			break;
-		case "xplanCodeNormalizeExt":
+		case "xplanCodeNormalizeExt": // UNUSED
 			result = parseXPlanCodeNormalizeExt(args);
 			break;
 		case "xplan2CodeLookup":
@@ -229,7 +228,7 @@ class RuleParser {
 		case "xplanGeometry":
 			result = parseXPlanGeometry(args);
 			break;
-		case "xplanAggregatePPOPosition":
+		case "xplanAggregatePPOPosition": // UNUSED
 			result = parseXPlanAggregatePPOPosition();
 			break;
 		case "xplanAggregateFlaechenteil":
@@ -241,7 +240,7 @@ class RuleParser {
 		case "xplanName":
 			result = new XPlanName(xplanName);
 			break;
-		case "xplanExternalCodeLookup":
+		case "xplanExternalCodeLookup": // UNUSED
 			result = parseXPlanExternalCodeLookup(args);
 			break;
 		case "ausrichtungLookup":
