@@ -118,6 +118,7 @@ public class ReportWriter {
 		}
 		catch (Exception e) {
 			failures.add(e.getMessage());
+			LOG.error("XML Entry of the validtion report could not be created.", e);
 		}
 
 	}

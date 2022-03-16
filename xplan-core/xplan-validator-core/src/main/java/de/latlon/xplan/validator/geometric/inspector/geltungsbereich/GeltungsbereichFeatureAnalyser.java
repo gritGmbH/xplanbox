@@ -20,13 +20,13 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
-import org.locationtech.jts.geom.Geometry;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.gml.reference.FeatureReference;
+import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
@@ -97,6 +97,18 @@ public class GeltungsbereichFeatureAnalyser {
 		return OBJECTS_ALLOWED_OUTSIDE.contains(feature.getName());
 	}
 
+	boolean hasGeometry(Feature feature) {
+		return !feature.getGeometryProperties().isEmpty();
+	}
+
+	/**
+	 * @param bereichFeature never <code>null</code>
+	 * @return the id of the plan this feature belongs to
+	 */
+	public String getGehortZuPlanId(Feature bereichFeature) {
+		return getPropertyValue(bereichFeature, "gehoertZuPlan");
+	}
+
 	/**
 	 * @param feature never <code>null</code>
 	 * @return the id of the bereich this feature belongs to, <code>null</code> is not
@@ -104,7 +116,7 @@ public class GeltungsbereichFeatureAnalyser {
 	 */
 	String getGehortZuBereichId(Feature feature) {
 		for (String propName : GEHOERT_ZU_BEREICH_PROPNAMES) {
-			String gehortZuBereichId = getGehortZuBereichId(feature, propName);
+			String gehortZuBereichId = getPropertyValue(feature, propName);
 			if (gehortZuBereichId != null)
 				return gehortZuBereichId;
 		}
@@ -135,7 +147,7 @@ public class GeltungsbereichFeatureAnalyser {
 		return null;
 	}
 
-	private String getGehortZuBereichId(Feature feature, String propName) {
+	private String getPropertyValue(Feature feature, String propName) {
 		QName qName = new QName(feature.getName().getNamespaceURI(), propName);
 		List<Property> properties = feature.getProperties(qName);
 		if (properties == null || properties.isEmpty())

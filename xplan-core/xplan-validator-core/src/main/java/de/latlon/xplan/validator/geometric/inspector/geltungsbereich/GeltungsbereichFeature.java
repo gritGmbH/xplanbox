@@ -21,22 +21,13 @@
 package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
 import org.deegree.feature.Feature;
-import org.deegree.geometry.standard.AbstractDefaultGeometry;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class GeltungsbereichFeature {
-
-	private final Feature feature;
-
-	private AbstractDefaultGeometry originalGeometry;
-
-	private org.locationtech.jts.geom.Geometry jtsGeometry;
+public abstract class GeltungsbereichFeature extends AbstractGeltungsbereichFeature {
 
 	private org.locationtech.jts.geom.Geometry geometryWithBuffer;
-
-	private GeltungsbereichFeatureAnalyser featureAnalyser;
 
 	private final double toleranceMetre;
 
@@ -46,33 +37,8 @@ public class GeltungsbereichFeature {
 	 */
 	public GeltungsbereichFeature(Feature feature, GeltungsbereichFeatureAnalyser featureAnalyser,
 			double toleranceMetre) {
-		this.feature = feature;
-		this.featureAnalyser = featureAnalyser;
+		super(feature, featureAnalyser);
 		this.toleranceMetre = toleranceMetre;
-		this.originalGeometry = featureAnalyser.getOriginalGeometry(feature);
-	}
-
-	/**
-	 * @return the ID of the feature
-	 */
-	public String getFeatureId() {
-		return feature.getId();
-	}
-
-	/**
-	 * @return the original geometry of the feature
-	 */
-	public AbstractDefaultGeometry getOriginalGeometry() {
-		return originalGeometry;
-	}
-
-	/**
-	 * @return the JTS geometry of the feature
-	 */
-	public org.locationtech.jts.geom.Geometry getJtsGeometry() {
-		if (jtsGeometry == null)
-			jtsGeometry = featureAnalyser.getJtsGeometry(feature);
-		return jtsGeometry;
 	}
 
 	/**
@@ -82,6 +48,10 @@ public class GeltungsbereichFeature {
 		if (geometryWithBuffer == null && getJtsGeometry() != null)
 			geometryWithBuffer = getJtsGeometry().buffer(toleranceMetre);
 		return geometryWithBuffer;
+	}
+
+	public boolean hasGeometry() {
+		return getOriginalGeometry() != null;
 	}
 
 	/**

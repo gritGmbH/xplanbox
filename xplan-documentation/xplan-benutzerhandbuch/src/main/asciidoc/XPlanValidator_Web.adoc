@@ -115,10 +115,8 @@ Folgende Prüfungen werden in Abhängigkeit vom Geometrietyp durchgeführt, es h
   ** Geschlossenheit (äußere und innere Ringe)
   ** äußerer Ring: Orientierung im Gegenuhrzeigersinn
   ** innere Ringe: Orientierung im Uhrzeigersinn
-  ** keine Berührung äußerer Ring / innere Ringe
   ** kein Schnitt äußerer Ring / innere Ringe
   ** Innere Ringe liegen innerhalb der vom äußeren Ring umschlossenen Fläche
-  ** keine Berührung innere Ringe / innere Ringe
   ** Schnittmenge der von zwei inneren Ringen gebildeten Flächen ist leer
   ** keine doppelten Stützpunkte (äußere und innere Ringe)
  * MultiPolygone:
@@ -129,11 +127,16 @@ Nutzung der Optionen
 
  * „Geometrische Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen“
 +
-Bei der Flächenschlussprüfung werden Lücken als Fehler ausgegeben. Ist eine Lücke im Plan gewollt, können Sie die Option "Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen" aktivieren.
- 
+Mit der Option "Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen" kann die Prüfung der Flächenschlussbedingung in Ausnahmefällen deaktiviert werden. Grundsätzlich sollten alle Fehler, die den Flächenschluss betreffen, behoben werden.
+
  * „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“
 +
 Wenn Fehler im Geltungsbereich, z.B. in Kreisbögen, nicht korrigiert werden können, selektieren Sie in Ausnahmefällen die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm. Grundsätzlich sollten alle Fehler, die den Geltungsbereich betreffen, behoben werden.
+
+[NOTE]
+====
+Wenn sich zwei aneinandergrenzene Flächenschlussobjekte an einer Geraden berühren und nur eines der Flächenschlussobjekte einen zusätzlichen Stützpunkt innerhalb dieser Geraden aufweist, wird der fehlende Stützpunkt des anderen Flächenschlussobjekt durch den XPlanValidator nicht gefunden.
+====
 
 *3) Syntaktische Validierung (obligatorisch)*
 
