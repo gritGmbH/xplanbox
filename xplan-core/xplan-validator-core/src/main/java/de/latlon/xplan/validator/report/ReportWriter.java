@@ -65,7 +65,7 @@ public class ReportWriter {
 	private final ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
 
 	/**
-	 * Writes all artefacts (XML, HTML and PDF as well as shp and png) into the passed
+	 * Writes all artefacts (XML, HTML and PDF as well as shp) into the passed
 	 * directory.
 	 * @param report the report to write, never <code>null</code>
 	 * @param targetDirectory the directory to put the archive in, never <code>null</code>
