@@ -20,20 +20,11 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static org.apache.commons.io.IOUtils.closeQuietly;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.namespace.QName;
-
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import org.apache.commons.io.IOUtils;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
@@ -50,11 +41,18 @@ import org.deegree.feature.types.FeatureType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.synthesizer.expression.Expression;
+import javax.xml.namespace.QName;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static org.apache.commons.io.IOUtils.closeQuietly;
 
 /**
  * Transforms an {@link XPlanFeatureCollection} (with XPlan 3/4.0/4.1/5.0/5.1/5.2
@@ -238,45 +236,22 @@ public class XPlanSynthesizer {
 		for (PropertyType propType : propTypes) {
 			// the rule keys are specified in "<featureName>/<propName>" format
 			String key = feature.getName().getLocalPart() + "/" + propType.getName().getLocalPart();
-
 			if (rules.containsKey(key)) {
 				TypedObjectNode newPropValue = rules.get(key).evaluate(feature, features);
-
 				if (newPropValue == null) {
 					continue;
 				}
-
 				if (newPropValue instanceof Property) {
 					newPropValue = ((Property) newPropValue).getValue();
 				}
-
 				if (newPropValue instanceof TypedObjectNodeArray<?>) {
 					newPropValue = toString(((TypedObjectNodeArray<?>) newPropValue));
 				}
-
 				if (newPropValue instanceof GenericXMLElement) {
 					newPropValue = new PrimitiveValue(newPropValue.getClass() + "");
 				}
-
 				Property newProp = new GenericProperty(propType, newPropValue);
-				// some (still-to-be-improved) corrections...
-				// if ( propType instanceof SimplePropertyType ) {
-				// SimplePropertyType simplePropType = (SimplePropertyType) propType;
-				// if ( newPropValue instanceof BigInteger
-				// && DECIMAL.equals( simplePropType.getPrimitiveType().getBaseType() ) )
-				// {
-				// BigInteger bigInt = (BigInteger) newPropValue;
-				//
-				// newProp = new GenericProperty( propType, new BigDecimal( bigInt ) );
-				// } else {
-				// newProp = new GenericProperty( propType, newPropValue );
-				// }
-				// } else {
-				// newProp = new GenericProperty( propType, newPropValue );
-				// }
-
 				newProps.add(newProp);
-
 			}
 			else if (propType.getMinOccurs() != 0) {
 				throw new RuntimeException("Interner Fehler. Die Regeldatei enthält keine Regel für " + key + ".");

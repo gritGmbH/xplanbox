@@ -76,7 +76,7 @@ public class XPlanCodeNormalizeExt implements Expression {
 					+ feature.getId() + "': " + e.getMessage();
 			throw new RuntimeException(msg, e);
 		}
-		return new TypedObjectNodeArray<PrimitiveValue>(normalizedCodes);
+		return new TypedObjectNodeArray<>(normalizedCodes);
 	}
 
 }

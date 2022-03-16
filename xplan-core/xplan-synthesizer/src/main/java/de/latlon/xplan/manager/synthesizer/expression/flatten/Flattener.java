@@ -27,8 +27,8 @@ import org.deegree.commons.tom.TypedObjectNode;
  */
 public interface Flattener {
 
-	public boolean accepts(TypedObjectNode element);
+	boolean accepts(TypedObjectNode element);
 
-	public String flatten(TypedObjectNode element);
+	String flatten(TypedObjectNode element);
 
 }

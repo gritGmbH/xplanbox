@@ -20,13 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.xml.namespace.QName;
-
+import de.latlon.xplan.manager.synthesizer.XpPpoLookup;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
@@ -35,7 +29,11 @@ import org.deegree.geometry.multi.MultiPoint;
 import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.standard.multi.DefaultMultiPoint;
 
-import de.latlon.xplan.manager.synthesizer.XpPpoLookup;
+import javax.xml.namespace.QName;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * {@link Expression} that aggregates symbol positions for XP_Objekt features
@@ -60,22 +58,22 @@ public class XplanSymbolPositions implements Expression {
 			return null;
 		}
 		ICRS crs = positions.iterator().next().getCoordinateSystem();
-		return new DefaultMultiPoint(null, crs, null, new ArrayList<Point>(positions));
+		return new DefaultMultiPoint(null, crs, null, new ArrayList<>(positions));
 	}
 
 	private Set<Point> getPpoSymbolPositions(Feature xpObjekt) {
 		Set<Point> positions = XpPpoLookup.lookup(xpObjekt.getId());
 		if (positions == null) {
-			positions = new LinkedHashSet<Point>();
+			positions = new LinkedHashSet<>();
 		}
 		else if (!positions.isEmpty()) {
-			positions = new LinkedHashSet<Point>(positions);
+			positions = new LinkedHashSet<>(positions);
 		}
 		return positions;
 	}
 
 	private Set<Point> getXpObjektSymbolPositionsXplan2or3(Feature xpObjekt) {
-		Set<Point> points = new LinkedHashSet<Point>();
+		Set<Point> points = new LinkedHashSet<>();
 		QName symbolPosName = new QName(xpObjekt.getName().getNamespaceURI(), "symbolPosition");
 		List<Property> props = xpObjekt.getProperties(symbolPosName);
 		for (Property prop : props) {
