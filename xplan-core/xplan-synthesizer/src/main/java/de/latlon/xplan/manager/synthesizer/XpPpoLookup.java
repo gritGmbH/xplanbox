@@ -21,7 +21,6 @@
 package de.latlon.xplan.manager.synthesizer;
 
 import de.latlon.xplan.commons.synthesizer.Features;
-import de.latlon.xplan.manager.synthesizer.expression.XplanSymbolPositions;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
@@ -44,10 +43,9 @@ import java.util.stream.Collectors;
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 
 /**
- * The <code>XPlanAggregatePPOLookup</code> class is auxiliary to
- * {@link XplanSymbolPositions}. It first statically registers all the points from the
- * symbolPosition of fachobjekte in a map. Then it can statically return the set of points
- * by providing the feauture id of the fachobjekt.
+ * The <code>XPlanAggregatePPOLookup</code> class first statically registers all the
+ * points from the symbolPosition of fachobjekte in a map. Then it can statically return
+ * the set of points by providing the feauture id of the fachobjekt.
  *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
  * @version $Revision: 1028 $, $Date: 2010-02-18 15:48:22 +0100 (Do, 18 Feb 2010) $

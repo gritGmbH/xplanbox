@@ -26,7 +26,6 @@ import de.latlon.xplan.manager.synthesizer.expression.LatestDate;
 import de.latlon.xplan.manager.synthesizer.expression.StringConstant;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbest;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbestLookup;
-import de.latlon.xplan.manager.synthesizer.expression.XPlanCodeNormalizeExt;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanExternalCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGeometry;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGmlDescription;
@@ -43,7 +42,6 @@ import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookupExt;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
 import de.latlon.xplan.manager.synthesizer.expression.XplanGmlName;
 import de.latlon.xplan.manager.synthesizer.expression.XplanRefTextAbschnitte;
-import de.latlon.xplan.manager.synthesizer.expression.XplanSymbolPositions;
 import de.latlon.xplan.manager.synthesizer.expression.XplanTextAbschnitte;
 
 import java.util.ArrayList;
@@ -118,10 +116,6 @@ class RuleParser {
 
 	private Expression parseXPlanCodeNormalize(List<String> args) {
 		return new Xplan2CodeNormalize(parse(args.get(0)), trimString(args.get(1)), trimString(args.get(2)));
-	}
-
-	private Expression parseXPlanCodeNormalizeExt(List<String> args) {
-		return new XPlanCodeNormalizeExt(parse(args.get(0)), trimString(args.get(1)), trimString(args.get(2)));
 	}
 
 	private Expression parseXPlanCodeLookup(List<String> args) {
@@ -201,9 +195,6 @@ class RuleParser {
 		case "xplan2CodeNormalize":
 			result = parseXPlanCodeNormalize(args);
 			break;
-		case "xplanCodeNormalizeExt": // UNUSED
-			result = parseXPlanCodeNormalizeExt(args);
-			break;
 		case "xplan2CodeLookup":
 			result = parseXPlan2CodeLookup(args);
 			break;
@@ -228,9 +219,6 @@ class RuleParser {
 		case "xplanGeometry":
 			result = parseXPlanGeometry(args);
 			break;
-		case "xplanAggregatePPOPosition": // UNUSED
-			result = parseXPlanAggregatePPOPosition();
-			break;
 		case "xplanAggregateFlaechenteil":
 			result = parseXPlanAggregateFlaechenteil();
 			break;
@@ -240,7 +228,8 @@ class RuleParser {
 		case "xplanName":
 			result = new XPlanName(xplanName);
 			break;
-		case "xplanExternalCodeLookup": // UNUSED
+		case "xplanExternalCodeLookup":
+			// Required to resolve codelist from external files
 			result = parseXPlanExternalCodeLookup(args);
 			break;
 		case "ausrichtungLookup":
@@ -257,10 +246,6 @@ class RuleParser {
 
 	private Expression parseXPlanAggregateFlaechenteil() {
 		return new XplanBaugebietFlaechenteile();
-	}
-
-	private Expression parseXPlanAggregatePPOPosition() {
-		return new XplanSymbolPositions();
 	}
 
 	/**
