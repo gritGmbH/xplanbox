@@ -30,10 +30,19 @@ import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.CATEGORIES_TO_PARTS_KEY;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.DEFAULT_BBOX_IN_4326;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_CONFIG_CRS;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_LAYER_SCALE_DENOMINATOR_MAX;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_LAYER_SCALE_DENOMINATOR_MIN;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.WORKSPACE_RELOAD_PASSWORD;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.WORKSPACE_RELOAD_URLS;
+import static de.latlon.xplan.manager.configuration.ManagerConfiguration.WORKSPACE_RELOAD_USER;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -180,12 +189,28 @@ public class ManagerConfigurationTest {
 		new ManagerConfiguration(mockPropertiesLoader(min, max));
 	}
 
-	private PropertiesLoader mockPropertiesLoader() {
+	private PropertiesLoader mockPropertiesLoader() throws ConfigurationException {
 		return mockPropertiesLoader(Double.NaN, Double.NaN);
 	}
 
-	private PropertiesLoader mockPropertiesLoader(double minScaleDenominator, double maxScaleDenominator) {
-		return mockPropertiesLoader(minScaleDenominator, maxScaleDenominator);
+	private PropertiesLoader mockPropertiesLoader(double minScaleDenominator, double maxScaleDenominator)
+			throws ConfigurationException {
+		PropertiesLoader propertiesLoader = mock(PropertiesLoader.class);
+		Properties properties = new Properties();
+		properties.put(CATEGORIES_TO_PARTS_KEY, "Cat1(A,B,C D);Cat2(1 , 7)");
+		properties.put(RASTER_CONFIG_CRS, "epsg:4326");
+		properties.put(DEFAULT_BBOX_IN_4326, "-180,-90,180,90");
+		properties.put("wmsSortDate_BP_Plan_XPLAN_50", "BP_Plan,rechtsverordnungsDatum");
+		properties.put("linkSemanticConformity_XPLAN_50", "http://link.de/to.pdf");
+		properties.put(WORKSPACE_RELOAD_URLS, "url1,url2");
+		properties.put(WORKSPACE_RELOAD_USER, "user");
+		properties.put(WORKSPACE_RELOAD_PASSWORD, "password");
+		if (!Double.isNaN(minScaleDenominator))
+			properties.put(RASTER_LAYER_SCALE_DENOMINATOR_MIN, Double.toString(minScaleDenominator));
+		if (!Double.isNaN(maxScaleDenominator))
+			properties.put(RASTER_LAYER_SCALE_DENOMINATOR_MAX, Double.toString(maxScaleDenominator));
+		when(propertiesLoader.loadProperties(anyString())).thenReturn(properties);
+		return propertiesLoader;
 	}
 
 	private PropertiesLoader mockPropertiesLoaderReturningNull() throws ConfigurationException {
