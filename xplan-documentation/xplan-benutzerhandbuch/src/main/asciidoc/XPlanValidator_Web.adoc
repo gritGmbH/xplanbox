@@ -119,11 +119,16 @@ Nutzung der Optionen
 
  * „Geometrische Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen“
 +
-Bei der Flächenschlussprüfung werden Lücken als Fehler ausgegeben. Ist eine Lücke im Plan gewollt, können Sie die Option "Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen" aktivieren.
- 
+Mit der Option "Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen" kann die Prüfung der Flächenschlussbedingung in Ausnahmefällen deaktiviert werden. Grundsätzlich sollten alle Fehler, die den Flächenschluss betreffen, behoben werden.
+
  * „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“
 +
 Wenn Fehler im Geltungsbereich, z.B. in Kreisbögen, nicht korrigiert werden können, selektieren Sie in Ausnahmefällen die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm. Grundsätzlich sollten alle Fehler, die den Geltungsbereich betreffen, behoben werden.
+
+[NOTE]
+====
+Wenn sich zwei aneinandergrenzene Flächenschlussobjekte an einer Geraden berühren und nur eines der Flächenschlussobjekte einen zusätzlichen Stützpunkt innerhalb dieser Geraden aufweist, wird der fehlende Stützpunkt des anderen Flächenschlussobjekt durch den XPlanValidator nicht gefunden.
+====
 
 *3) Syntaktische Validierung (obligatorisch)*
 
@@ -225,7 +230,7 @@ Der Validierungsbericht kann in den Formaten:
 
 exportiert werden.
 
-Geometriefehler können zusätzlich auch als Shapefile und als Grafik gespeichert werden.
+Geometriefehler können zusätzlich auch als Shapefile gespeichert werden.
 
 Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einer ZIP-Datei gespeichert. Der Dateiname entspricht der Bezeichnung des Validierungsdurchlaufs.
 

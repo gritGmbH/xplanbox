@@ -67,7 +67,7 @@ public class FlaechenschlussFeature {
 
 	public Geometry getJtsGeometry() {
 		if (jtsGeometry == null) {
-			jtsGeometry = geometry.getJTSGeometry();
+			jtsGeometry = getGeometry().getJTSGeometry();
 		}
 		return jtsGeometry;
 	}
