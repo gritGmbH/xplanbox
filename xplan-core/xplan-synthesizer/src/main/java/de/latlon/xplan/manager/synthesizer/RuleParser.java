@@ -115,7 +115,8 @@ class RuleParser {
 	}
 
 	private Expression parseXPlanCodeNormalize(List<String> args) {
-		return new Xplan2CodeNormalize(parse(args.get(0)), trimString(args.get(1)), trimString(args.get(2)));
+		// third argument is ignored
+		return new Xplan2CodeNormalize(parse(args.get(0)), trimString(args.get(1)));
 	}
 
 	private Expression parseXPlanCodeLookup(List<String> args) {
@@ -127,11 +128,13 @@ class RuleParser {
 	}
 
 	private Expression parseXPlan2CodeLookup(List<String> args) {
-		return new Xplan2CodeLookup(parse(args.get(0)), trimString(args.get(1)), trimString(args.get(2)));
+		// second argument is ignored
+		return new Xplan2CodeLookup(parse(args.get(0)), trimString(args.get(2)));
 	}
 
 	private Expression parseXPlan2CodeLookupExt(List<String> args) {
-		return new Xplan2CodeLookupExt(parse(args.get(0)), trimString(args.get(1)), trimString(args.get(2)));
+		// second argument is ignored
+		return new Xplan2CodeLookupExt(parse(args.get(0)), trimString(args.get(2)));
 	}
 
 	private Expression parseXPlanTextSchluessel() {
@@ -172,76 +175,53 @@ class RuleParser {
 	}
 
 	private Expression parseFunction(String functionName, List<String> args) {
-		Expression result;
 		switch (functionName) {
 		case "xpath":
-			result = parseXPath(args);
-			break;
+			return parseXPath(args);
 		case "xplanGmlName":
-			result = new XplanGmlName();
-			break;
+			return new XplanGmlName();
 		case "xplanGmlDescription":
-			result = new XPlanGmlDescription();
-			break;
+			return new XPlanGmlDescription();
 		case "xplanFlatten":
-			result = parseXPlanFlattenFeature(args);
-			break;
+			return parseXPlanFlattenFeature(args);
 		case "xplanCodeLookup":
-			result = parseXPlanCodeLookup(args);
-			break;
+			return parseXPlanCodeLookup(args);
 		case "xplanCodeLookupExt":
-			result = parseXPlanCodeLookupExt(args);
-			break;
+			return parseXPlanCodeLookupExt(args);
 		case "xplan2CodeNormalize":
-			result = parseXPlanCodeNormalize(args);
-			break;
+			return parseXPlanCodeNormalize(args);
 		case "xplan2CodeLookup":
-			result = parseXPlan2CodeLookup(args);
-			break;
+			return parseXPlan2CodeLookup(args);
 		case "xplan2CodeLookupExt":
-			result = parseXPlan2CodeLookupExt(args);
-			break;
+			return parseXPlan2CodeLookupExt(args);
 		case "xplanRefTextAbschnitte":
-			result = new XplanRefTextAbschnitte();
-			break;
+			return new XplanRefTextAbschnitte();
 		case "xplanTextAbschnitte":
-			result = parseXPlanTextSchluessel();
-			break;
+			return parseXPlanTextSchluessel();
 		case "xplanBegruendungAbschnitte":
-			result = parseXPlanTextSchluesselBegruendung();
-			break;
+			return parseXPlanTextSchluesselBegruendung();
 		case "xplanBesondZweckbest":
-			result = parseXPlanBesondZweckbest(args);
-			break;
+			return parseXPlanBesondZweckbest(args);
 		case "xplanBesondZweckbestLookup":
-			result = parseXPlanBesondZweckbestLookup(args);
-			break;
+			return parseXPlanBesondZweckbestLookup(args);
 		case "xplanGeometry":
-			result = parseXPlanGeometry(args);
-			break;
+			return parseXPlanGeometry(args);
 		case "xplanAggregateFlaechenteil":
-			result = parseXPlanAggregateFlaechenteil();
-			break;
+			return parseXPlanAggregateFlaechenteil();
 		case "xplanType":
-			result = new XPlanType(xplanType);
-			break;
+			return new XPlanType(xplanType);
 		case "xplanName":
-			result = new XPlanName(xplanName);
-			break;
+			return new XPlanName(xplanName);
 		case "xplanExternalCodeLookup":
 			// Required to resolve codelist from external files
-			result = parseXPlanExternalCodeLookup(args);
-			break;
+			return parseXPlanExternalCodeLookup(args);
 		case "ausrichtungLookup":
-			result = parseAusrichtungLookup(args);
-			break;
+			return parseAusrichtungLookup(args);
 		case "latest":
-			result = parseLatest(args);
-			break;
+			return parseLatest(args);
 		default:
 			throw new RuntimeException(String.format("Expression %s is not expected.", functionName));
 		}
-		return result;
 	}
 
 	private Expression parseXPlanAggregateFlaechenteil() {
