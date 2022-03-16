@@ -46,22 +46,11 @@ public class Xplan2CodeNormalize implements Expression {
 
 	private final Expression exp;
 
-	private String xplan2CodeList;
+	private String xplanCodeList;
 
-	private final String xplanSynCodeList;
-
-	private boolean noXPlan2CodeList = false;
-
-	public Xplan2CodeNormalize(Expression exp, String xplan2CodeList, String xplan3CodeList) {
+	public Xplan2CodeNormalize(Expression exp, String xplanCodeList) {
 		this.exp = exp;
-		this.xplanSynCodeList = xplan3CodeList;
-		try {
-			this.xplan2CodeList = xplan2CodeList;
-		}
-		catch (IllegalArgumentException e) {
-			// no xplan2 code list available for this property
-			noXPlan2CodeList = true;
-		}
+		this.xplanCodeList = xplanCodeList;
 	}
 
 	@Override
@@ -82,8 +71,7 @@ public class Xplan2CodeNormalize implements Expression {
 			}
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			String msg = "Error performing code list lookup (" + xplan2CodeList + ") for feature '" + feature.getId()
+			String msg = "Error performing code list lookup (" + xplanCodeList + ") for feature '" + feature.getId()
 					+ "': " + e.getMessage();
 			throw new RuntimeException(msg, e);
 		}

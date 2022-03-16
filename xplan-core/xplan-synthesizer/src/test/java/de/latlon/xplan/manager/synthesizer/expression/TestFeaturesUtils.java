@@ -63,7 +63,6 @@ public class TestFeaturesUtils {
 		return null;
 	}
 
-	@SuppressWarnings("incomplete-switch")
 	private static FeatureCollection load(XPlanVersion version) {
 		switch (version) {
 		case XPLAN_3:
