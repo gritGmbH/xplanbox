@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.geometry.Envelope;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -162,6 +163,9 @@ public class ValidatorReport {
 	 * @return names of all plan instances in the archive
 	 */
 	public List<String> getPlanNames() {
+		if (planNames == null) {
+			return Collections.emptyList();
+		}
 		return planNames;
 	}
 
