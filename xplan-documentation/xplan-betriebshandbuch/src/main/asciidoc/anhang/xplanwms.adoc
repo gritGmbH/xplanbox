@@ -43,9 +43,6 @@ Die folgende Übersicht der Verzeichnisstruktur und der darin enthaltenen Dateie
 │   ├── lplanarchive.xml
 │   ├── lplanpre.xml
 │   ├── rplan.xml
-│   ├── rplan_nsm.xml
-│   ├── rplan_nsmarchive.xml
-│   ├── rplan_nsmpre.xml
 │   ├── rplanarchive.xml
 │   ├── rplanpre.xml
 │   ├── soplan.xml
