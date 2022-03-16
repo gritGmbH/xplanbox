@@ -81,10 +81,10 @@
         function updateExterneReferenz(){
           var extRefProperties = document.getElementsByClassName('externeReferenzProperty');
           for(var i = 0; i < extRefProperties.length; i++) {
-            var indexOfPipe = extRefProperties[i].innerHTML.indexOf('|');
+            var indexOfPipe = extRefProperties[i].innerText.indexOf('|');
             if( indexOfPipe > 0 ) {
-               var referenz = extRefProperties[i].innerHTML.substring( 0, indexOfPipe ).trim();
-               var label = extRefProperties[i].innerHTML.substring( indexOfPipe + 1, extRefProperties[i].innerHTML.length ).trim();
+               var referenz = extRefProperties[i].innerText.substring( 0, indexOfPipe ).trim();
+               var label = extRefProperties[i].innerText.substring( indexOfPipe + 1, extRefProperties[i].innerText.length ).trim();
                replaceReferenzAndLinkText(referenz, label, extRefProperties[i]);
             } else {
               replaceReferenzAndLinkText(extRefProperties[i].href, extRefProperties[i].href, extRefProperties[i]);
@@ -95,10 +95,10 @@
         function replaceReferenzAndLinkText(referenz, label, referenzProperty){
           if(referenz.startsWith('http')){
             referenzProperty.href = referenz;
-            referenzProperty.innerHTML = label;
+            referenzProperty.innerText = label;
           } else {
             referenzProperty.href = WMS_URL + referenz;
-            referenzProperty.innerHTML = label;
+            referenzProperty.innerText = label;
           }
         }
 
