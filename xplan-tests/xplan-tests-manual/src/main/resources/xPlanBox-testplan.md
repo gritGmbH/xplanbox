@@ -7,6 +7,7 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 * [XPlanManagerWeb](#xplanmanagerweb)
 * [XPlanValidatorCLI](#xplanvalidatorcli)
 * [XPlanValidatorWeb](#xplanvalidatorweb)
+* [XPlanValidateDB-CLI](#xplanvalidatedb-cli)         
 * [XPlanTransformCLI](#xplantransformcli)
 * [XPlanAuswerteschemaCLI](#xplanauswerteschemacli)
 * [XPlanWMS](#xplanwms)
@@ -35,9 +36,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-02: Erzeugung der DB Schemata 
 
 #### Vorbedingungen 
+ * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * Die DB-Tabelle der Datenbasis ist leer, beinhaltet somit kein Datenbank-Schema.
  * Der Nutzer hat die Rechte, eine Datenbank anzulegen.
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
 #### Prüffall 
 
@@ -172,7 +173,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * XPlanArchive sind verfügbar.
- * Der Benutzer ist auf dem System angemeldet.
  
 #### Prüffall 
 Schritt | Beschreibung | Erwartetes Ergebnis 
@@ -198,8 +198,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-02: Plan-Funktion: Validieren
   
 #### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
+ 
  
 #### Prüffall 
 
@@ -327,7 +328,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
- * Der Benutzer ist auf dem System angemeldet.
  
 #### Prüffall 
  
@@ -345,7 +345,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
 
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer ist am XPlanManagerWeb angemeldet und hat die Berechtigung zum Editieren von Planstammdaten.
+* Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten.
 
 #### Prüffall 1
 
@@ -572,7 +572,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
 
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer ist am XPlanManager-Web angemeldet und hat die Berechtigung zum Import von Planarchiven. 
+* Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
 
 #### Prüffall 
 
@@ -608,7 +608,7 @@ Dieser Test wird sowohl für !GeoTiff-Rasterplänen als auch für PNG- Rasterpl�
 #### Vorbedingungen
 
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer ist am XPlanManager-Web angemeldet und hat die Berechtigung zum Import von Planarchiven. 
+* Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
 
 #### Prüffall
 
@@ -680,7 +680,6 @@ BP_BaugebietsTeilFlaeche/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(x
 ### Prüffall-01: Validierungsart
 
 #### Vorbedingungen 
- * Der Benutzer ist auf dem System angemeldet.
  * Valide und invalide XPlanArchive sind verfügbar.
  
 #### Prüffall 
@@ -715,9 +714,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-02: Validierungsoptionen
 
 ### Vorbedingungen 
- * Der Benutzer ist auf dem System angemeldet.
- * XPlanArchive sind verfügbar.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
+ * XPlanArchive sind verfügbar.
  
 ### Prüffall 
 
@@ -738,8 +736,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-03: Speichern der Validierungsergebnisse
 
-#### Vorbedingungen 
- * Der Benutzer ist auf dem System angemeldet. 
+#### Vorbedingungen  
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
 #### Prüffall 
@@ -780,6 +777,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 
 #### Vorbedingungen 
+ * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
  
 #### Prüffall 
@@ -1139,13 +1137,46 @@ Die Ausgabe der Validierungsergebnisse erfolgt bei den folgenden Komponenten ent
 * XPlanManagerWeb
 * XPlanManagerCLI.
 
+# XPlanValidateDB-CLI  
+
+### Prüffall-01: Hilfe aufrufen
+
+### Prüffall 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidateDB-CLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validatedb-cli-$VERSION/bin`.
+**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanValidateDB-CLI.
+
+**Hinweis**
+
+ * [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
+   * Der Pfad kann variieren
+ * [2] `./XPlanValidateDB-CLI -h [oder -help und --help]`
+
+---
+
+### Prüffall-02: Eingabeparameter
+
+### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet.
+ * Prüffall-01 wurde erfolgreich ausgeführt.
  
+### Prüffall 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer führt den Befehl [1] aus | Alle in der Datenbasis enthaltenen Pläne werden validiert, anschließend wird das Ergebnis der Validierung in einer CSV-Datei zusammengefasst. Die erstellte Ergebnisdatei liegt unter /tmp.
+
+**Hinweis**
+
+ * [1] `./XPlanValidateDB -jdbcurl= <jdbc:postgresql://hostadresse:port/xplanbox> -user= <dbuser>  -password= <dbpassword> -rulesDirectory= <../xplan-validatedb-cli-$VERSION/etc/rules>`
+
 # XPlanTransformCLI  
 
 ### Prüffall-01: Hilfe aufrufen
 
 ### Vorbedingungen 
- * Der Benutzer ist auf dem System angemeldet.
  * Die Installation von HALE wurde erfolgreich abgeschlossen.
  * Die im Verzeichnis `~/xplan-transform-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
@@ -1167,7 +1198,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-02: Eingabeparameter
 
 ### Vorbedingungen 
- * Der Benutzer ist auf dem System angemeldet.
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
 ### Prüffall 
@@ -1200,7 +1230,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-01: Hilfe aufrufen
 
 ### Vorbedingungen 
- * Der Benutzer ist auf dem System angemeldet.
  * Die im Verzeichnis `~/xplan-evaluation-schema-synchronize-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
 ### Prüffall 
@@ -1221,7 +1250,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-02: Eingabeparameter
 
 ### Vorbedingungen 
- * Der Benutzer ist auf dem System angemeldet.
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
 ### Prüffall 
@@ -1341,8 +1369,8 @@ Eine transparente Kartendarstellung. Es erfolgt nur eine Darstellung der Geltung
 
 #### Vorbedingungen 
 
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer ist am XPlanManagerWeb angemeldet und hat die Berechtigung zum Import von Planarchiven.
+* Die web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+* Der Benutzer hat die Berechtigung zum Import von Planarchiven.
 
 #### Prüffall 1 
 
@@ -1361,7 +1389,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
 
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
-* Der Benutzer ist am XPlanManagerWeb angemeldet und hat die Berechtigung zum Import von Planarchiven.
+* Der Benutzer hat die Berechtigung zum Import von Planarchiven.
 
 #### Prüffall 
 
@@ -1433,7 +1461,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
 * Eine Instanz der Komponente XPlanManagerWeb und zwei Instanzen der Komponente XPlanWMS stehen zur Verfügung.
 * Die beiden WMS-Instanzen nutzen ein gemeinsames Workspace-Verzeichnis und ein gemeinsames Verzeichnis für die Speicherung der Rasterdaten in einem Netzwerk-Dateisystem.
-* Der Benutzer ist am XPlanManagerWeb angemeldet und hat die Berechtigung zum Import von Planarchiven. 
+* Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
 * Der Systemadministrator hat Zugriff auf die Protokolldateien der o.g. Komponenten.
 
 #### Prüffall 1 
