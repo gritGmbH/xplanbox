@@ -16,7 +16,7 @@
 
   <properties>
     <java.version>11</java.version>
-    <maven.version>3.6.0</maven.version>
+    <maven.version>3.8.1</maven.version>
     <!-- version properties -->
     <deegree3.version>3.4.26-SNAPSHOT</deegree3.version>
     <geowerkstatt-hamburg.xplanung.version>0.11.1</geowerkstatt-hamburg.xplanung.version>
