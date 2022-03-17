@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -79,7 +79,6 @@ public class ReportWriterTest {
 		assertThat(targetDirectory, containsFile(VALIDATION_NAME + ".html"));
 		assertThat(targetDirectory, containsFile(VALIDATION_NAME + ".pdf"));
 		assertThat(targetDirectory, containsFile(VALIDATION_NAME + ".xml"));
-		assertThat(targetDirectory, containsFile(VALIDATION_NAME + ".png"));
 		assertThat(targetDirectory, containsDirectory("shapes"));
 	}
 

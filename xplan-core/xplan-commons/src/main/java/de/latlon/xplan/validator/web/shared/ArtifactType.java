@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,6 +25,6 @@ package de.latlon.xplan.validator.web.shared;
  */
 public enum ArtifactType {
 
-	HTML, XML, PDF, SHP, PNG
+	HTML, XML, PDF, SHP
 
 }

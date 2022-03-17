@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -26,7 +26,6 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -118,6 +117,15 @@ public class GeltungsbereichInspectorTest {
 		assertThat(isValid, is(true));
 	}
 
+	@Test
+	public void testCheck_MultipePlanNoBereich() throws Exception {
+		XPlanArchive archive = getLokalArchive("HafenCity11_HafenCity14_Bereich_ohne_Geometrie.gml");
+		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+	}
+
 	private GeltungsbereichInspector readFeatures(XPlanArchive archive) throws XMLStreamException, UnknownCRSException {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
 		XPlanVersion version = archive.getVersion();
@@ -140,6 +148,12 @@ public class GeltungsbereichInspectorTest {
 	private XPlanArchive getTestArchive(String name) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
+	}
+
+	private XPlanArchive getLokalArchive(String name) throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		return archiveCreator.createXPlanArchiveFromGml(name,
+				GeltungsbereichInspectorTest.class.getResourceAsStream(name));
 	}
 
 }

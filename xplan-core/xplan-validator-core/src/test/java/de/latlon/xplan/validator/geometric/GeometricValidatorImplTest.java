@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -69,7 +69,7 @@ public class GeometricValidatorImplTest {
 		int numberOfErrors = ((GeometricValidatorResult) report).getErrors().size();
 
 		assertThat(report.isValid(), is(false));
-		assertThat(numberOfErrors, is(17));
+		assertThat(numberOfErrors, is(11));
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class GeometricValidatorImplTest {
 		int numberOfErrors = ((GeometricValidatorResult) report).getErrors().size();
 
 		assertThat(report.isValid(), is(false));
-		assertThat(numberOfErrors, is(18));
+		assertThat(numberOfErrors, is(12));
 	}
 
 	@Test

@@ -48,9 +48,9 @@ Die Installation und Konfiguration der xPlanBox ist im Betriebshandbuch dokument
 
 ----
 © 2022 lat/lon gesellschaft für raumbezogene informationssysteme mbH  
-Aennchenstrasse 19  
-53177 Bonn  
-Tel: +49 +228 9477 9877  
+Im Ellig 1
+53343 Wachtberg  
+Tel: +49 +228 24333784  
 info@lat-lon.de  
 https://www.lat-lon.de  
 twitter: https://twitter.com/latlon_de  

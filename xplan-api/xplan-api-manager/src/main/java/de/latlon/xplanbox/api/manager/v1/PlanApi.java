@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,7 @@ import de.latlon.xplanbox.api.manager.ApplicationPathConfig;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
 import de.latlon.xplanbox.api.manager.config.DefaultValidationConfiguration;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
+import de.latlon.xplanbox.api.manager.exception.InvalidApiVersion;
 import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
@@ -71,6 +72,12 @@ import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidation
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP_TYPE;
+import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_NO_VERSION_JSON;
+import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_NO_VERSION_JSON_TYPE;
+import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_V1_JSON;
+import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_V1_JSON_TYPE;
+import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_V2_JSON;
+import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_V2_JSON_TYPE;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.SELF;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
@@ -89,8 +96,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 		date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 public class PlanApi {
 
-	private final static MediaType[] MEDIA_TYPES_SEARCH = { APPLICATION_JSON_TYPE, APPLICATION_XML_TYPE,
-			APPLICATION_ZIP_TYPE };
+	private final static MediaType[] MEDIA_TYPES_SEARCH = { APPLICATION_JSON_TYPE, XPLANBOX_NO_VERSION_JSON_TYPE,
+			XPLANBOX_V1_JSON_TYPE, XPLANBOX_V2_JSON_TYPE, APPLICATION_XML_TYPE, APPLICATION_ZIP_TYPE };
 
 	private static final boolean WITH_GEOMETRISCH_VALIDATION = false;
 
@@ -102,12 +109,17 @@ public class PlanApi {
 
 	@POST
 	@Consumes({ "application/octet-stream", "application/zip", "application/x-zip", "application/x-zip-compressed" })
-	@Produces({ "application/json" })
+	@Produces({ "application/json", XPLANBOX_NO_VERSION_JSON, XPLANBOX_V1_JSON, XPLANBOX_V2_JSON })
 	@Operation(operationId = "import", summary = "Import the plan", description = "Imports the plan",
 			tags = { "manage", },
 			responses = {
-					@ApiResponse(responseCode = "201", description = "successful operation",
-							content = @Content(schema = @Schema(implementation = PlanInfo.class))),
+					@ApiResponse(responseCode = "201", description = "successful operation", content = {
+							@Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
+							@Content(mediaType = XPLANBOX_NO_VERSION_JSON,
+									schema = @Schema(implementation = PlanInfo.class)),
+							@Content(mediaType = XPLANBOX_V1_JSON, schema = @Schema(implementation = PlanInfo.class)),
+							@Content(mediaType = XPLANBOX_V2_JSON,
+									array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class))) }),
 					@ApiResponse(responseCode = "400", description = "Invalid input",
 							content = @Content(schema = @Schema(implementation = ValidationReport.class))),
 					@ApiResponse(responseCode = "406",
@@ -154,8 +166,17 @@ public class PlanApi {
 				overwriteByRequest(skipLaufrichtung, validationConfig.isSkipLaufrichtung()));
 		List<XPlan> xPlans = planHandler.importPlan(body, xFilename, validationSettings, internalId, planStatus);
 		MediaType requestedMediaType = requestedMediaType(request);
-		List<PlanInfo> planInfos = createPlanInfo(requestedMediaType, xPlans);
-		return Response.created(getSelfLink(planInfos)).entity(planInfos).build();
+		if (XPLANBOX_V2_JSON_TYPE.equals(requestedMediaType)) {
+			List<PlanInfo> planInfos = createPlanInfo(requestedMediaType, xPlans);
+			return Response.created(getSelfLink(planInfos)).entity(planInfos).build();
+		}
+		if (xPlans.size() > 1) {
+			throw new InvalidApiVersion(
+					"The imported XPlanArchive contains multiple XPlan GML instances, accept header " + XPLANBOX_V2_JSON
+							+ "  must be used to import this plan.");
+		}
+		PlanInfo planInfo = createPlanInfo(requestedMediaType, xPlans.get(0));
+		return Response.created(getSelfLink(planInfo)).entity(planInfo).build();
 	}
 
 	@DELETE
@@ -232,16 +253,20 @@ public class PlanApi {
 				.alternateMediaType(alternateMediaTypes).build();
 	}
 
-	// TODO: handle multiple values!
 	private URI getSelfLink(List<PlanInfo> planInfos) {
 		if (planInfos.size() == 1) {
-			for (Link link : planInfos.get(0).getLinks()) {
-				if (SELF.equals(link.getRel()))
-					return link.getHref();
-			}
+			return getSelfLink(planInfos.get(0));
 		}
 		if (planInfos.size() > 1) {
 			return createRefToMultipleInstances(planInfos);
+		}
+		return null;
+	}
+
+	private URI getSelfLink(PlanInfo planInfo) {
+		for (Link link : planInfo.getLinks()) {
+			if (SELF.equals(link.getRel()))
+				return link.getHref();
 		}
 		return null;
 	}

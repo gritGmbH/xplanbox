@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.geometry.Envelope;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -162,6 +163,9 @@ public class ValidatorReport {
 	 * @return names of all plan instances in the archive
 	 */
 	public List<String> getPlanNames() {
+		if (planNames == null) {
+			return Collections.emptyList();
+		}
 		return planNames;
 	}
 

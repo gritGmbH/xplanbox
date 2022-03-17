@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -149,12 +149,10 @@ public class GeometricValidatorImpl implements GeometricValidator {
 	}
 
 	private void checkAndAddRules(GeometricFeatureInspector fi, ValidatorResult result) {
-		boolean isValid = fi.checkGeometricRule();
-		if (!isValid) {
-			result.addErrors(fi.getErrors());
-			result.addWarnings(fi.getWarnings());
-			result.addBadGeometries(fi.getBadGeometries());
-		}
+		fi.checkGeometricRule();
+		result.addErrors(fi.getErrors());
+		result.addWarnings(fi.getWarnings());
+		result.addBadGeometries(fi.getBadGeometries());
 	}
 
 	private List<GeometricFeatureInspector> createInspectors(XPlanVersion version, List<ValidationOption> voOptions) {

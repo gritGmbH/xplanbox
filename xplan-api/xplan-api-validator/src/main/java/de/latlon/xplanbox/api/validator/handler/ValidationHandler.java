@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -57,7 +57,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static de.latlon.xplan.validator.web.shared.ArtifactType.PDF;
-import static de.latlon.xplan.validator.web.shared.ArtifactType.PNG;
 import static de.latlon.xplan.validator.web.shared.ArtifactType.SHP;
 
 /**
@@ -104,7 +103,7 @@ public class ValidationHandler {
 		LOG.debug("Create zip report in directory {} with validationName {}", workDir, validationName);
 
 		reportWriter.writeArtefacts(validatorReport, workDir.toFile());
-		List<ArtifactType> artifacts = Arrays.asList(PDF, SHP, PNG);
+		List<ArtifactType> artifacts = Arrays.asList(PDF, SHP);
 
 		Path zipArchive = workDir.resolve(validationName + ".zip");
 		try (OutputStream zipOutput = Files.newOutputStream(zipArchive)) {

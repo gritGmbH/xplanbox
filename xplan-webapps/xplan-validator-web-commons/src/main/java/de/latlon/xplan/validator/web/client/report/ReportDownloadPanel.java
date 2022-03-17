@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-web-commons - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,15 +20,6 @@
  */
 package de.latlon.xplan.validator.web.client.report;
 
-import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
-import static de.latlon.xplan.validator.web.shared.ArtifactType.PDF;
-import static de.latlon.xplan.validator.web.shared.ArtifactType.PNG;
-import static de.latlon.xplan.validator.web.shared.ArtifactType.SHP;
-import static de.latlon.xplan.validator.web.shared.ArtifactType.XML;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -39,10 +30,17 @@ import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.validator.web.client.ValidatorWebCommonsMessages;
 import de.latlon.xplan.validator.web.shared.ArtifactType;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.PDF;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.SHP;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.XML;
 
 /**
  * Encapulates the download options.
@@ -61,8 +59,6 @@ public class ReportDownloadPanel extends CaptionPanel {
 	private final CheckBox pdfCheckBox = new CheckBox(messages.reportDownloadPdf());
 
 	private final CheckBox shpCheckBox = new CheckBox(messages.reportDownloadShp());
-
-	private final CheckBox pngCheckBox = new CheckBox(messages.reportDownloadPng());
 
 	private final ReportUrlBuilder urlBuilder = new ReportUrlBuilder();
 
@@ -85,7 +81,6 @@ public class ReportDownloadPanel extends CaptionPanel {
 		mainPanel.add(createGeometryErrorSeperator());
 
 		mainPanel.add(shpCheckBox);
-		mainPanel.add(pngCheckBox);
 
 		mainPanel.add(createDownloadButton());
 
@@ -126,8 +121,6 @@ public class ReportDownloadPanel extends CaptionPanel {
 			selectedArtifacts.add(PDF);
 		if (shpCheckBox.getValue())
 			selectedArtifacts.add(SHP);
-		if (pngCheckBox.getValue())
-			selectedArtifacts.add(PNG);
 		return selectedArtifacts;
 	}
 

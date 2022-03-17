@@ -1,7 +1,7 @@
 [[xplantransform-cli]]
 == XPlanTransformCLI
 
-Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug, welches dem Fachadministrator der xPlanBox ermöglicht, bereits über den XPlanManagerWeb oder das XPlanManagerCLI importierte Pläne in eine aktuellere XPlanGML Version zu transformieren.
+Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug, welches dem Fachadministrator der xPlanBox ermöglicht, bereits über den XPlanManagerWeb, XPlanManagerAPI oder das XPlanManagerCLI importierte Pläne in eine aktuellere XPlanGML Version zu transformieren.
 
 Die transformierten Pläne können entweder syntaktisch validiert und das Validierungsergebnis in eine CSV-Datei geschrieben werden oder die transformierten Pläne werden in die entsprechende Datenhaltung eingespielt.
 

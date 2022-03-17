@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2020 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.geometric;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.geometry.Geometry;
+import org.deegree.geometry.io.WKTWriter;
 import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.patches.PolygonPatch;
@@ -55,6 +56,24 @@ public class XPlanGeometryInspectorTest {
 	public void testInspect_PolygonWithInteriorRing() throws Exception {
 		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
 		inspector.inspect(readGeometry("polygonWithInteriorRing.gml"));
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(0));
+	}
+
+	@Test
+	public void testInspect_PolygonWithInteriorRing_touching() throws Exception {
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(readGeometry("polygonWithInteriorRing-touching.gml"));
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(0));
+	}
+
+	@Test
+	public void testInspect_PolygonWithInteriorRings_touching() throws Exception {
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream();
+		inspector.inspect(readGeometry("polygonWithInteriorRings-touching.gml"));
 
 		List<BadGeometry> badGeometries = inspector.getBadGeometries();
 		assertThat(badGeometries.size(), is(0));
