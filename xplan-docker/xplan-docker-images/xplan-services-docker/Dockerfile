@@ -4,8 +4,7 @@ MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
 # set environment variables
-ENV CATALINA_OPTS="-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl"
-ENV JAVA_OPTS="-Xmx8192m"
+ENV CATALINA_OPTS="-Dlog4j2.configurationFile=classpath:/log4j2.yaml -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl"
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # configure tomcat
