@@ -23,8 +23,8 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanManagerCLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-manager-cli-$VERSION/bin`
-**01** | Der Benutzer ruft die Hilfe mit dem Befehl in [1] auf | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanManagerCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-manager-cli-$VERSION/bin`.
+**01** | Der Benutzer ruft die Hilfe mit dem Befehl in [1] auf. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
 
 **Hinweis**
 
@@ -36,16 +36,16 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-02: Erzeugung der DB Schemata 
 
 #### Vorbedingungen 
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * Die DB-Tabelle der Datenbasis ist leer, beinhaltet somit kein Datenbank-Schema.
  * Der Nutzer hat die Rechte, eine Datenbank anzulegen.
+ * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
 #### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**02** | Der Benutzer führt den in [1] aufgelisteten Befehl in der Kommandozeile aus | Der XPlanManager kann das benötigte Datenbankschema selbst erzeugen. 
-**03** | Der Benutzer überprüft, ob das Datenbank-Schema erstellt worden ist | Das Datenbank-Schema wurde erzeugt. 
+**02** | Der Benutzer führt den in [1] aufgelisteten Befehl in der Kommandozeile aus. | Der XPlanManager kann das benötigte Datenbankschema selbst erzeugen. 
+**03** | Der Benutzer überprüft, ob das Datenbank-Schema erstellt worden ist. | Das Datenbank-Schema wurde erzeugt. 
 
 **Hinweis**
 
@@ -68,7 +68,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **Hinweis**
 
  * [1]  ` .deegree/xplan-manager-workspace/jdbc/xplan.xml`
-   * Der Pfad kann variieren
+   * Der Pfad kann variieren.
 
 ---
 
@@ -82,10 +82,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer importiert mit dem Befehl [1] einen Plan in den XPlanManager | Der Plan wird in den XPlanManager importiert, je nach Konfiguration auch mit Geometriefehlern (Nutzung von [--force]).
-**02** | Der Benutzer ruft mit dem Befehl [2] eine Auflistung der im XPlanManager vorliegenden Pläne auf und überprüft somit, ob der in Schritt 01 importierte Plan vorhanden ist |  Die vorliegenden Pläne werden aufgelistet und der in Schritt 01 importierte Plan wird angezeigt.
-**03** | Der Benutzer exportiert einen Plan mit Hilfe des Befehls in [3] aus dem XPlanManager | Der exportierte Plan wird im ausgewählten Verzeichnis angezeigt.
-**04** | Der Benutzer löscht mit dem Befehl [4] einen Plan aus dem XPlanManager | Der Plan wird aus dem XPlanManager gelöscht, geprüft werden kann dies mit erneuter Ausführung des Befehls [2].
+**01** | Der Benutzer importiert mit dem Befehl [1] einen Plan in den XPlanManager. | Der Plan wird in den XPlanManager importiert, je nach Konfiguration auch mit Geometriefehlern (Nutzung von [--force]).
+**02** | Der Benutzer ruft mit dem Befehl [2] eine Auflistung der im XPlanManager vorliegenden Pläne auf und überprüft somit, ob der in Schritt 01 importierte Plan vorhanden ist. |  Die vorliegenden Pläne werden aufgelistet und der in Schritt 01 importierte Plan wird angezeigt.
+**03** | Der Benutzer exportiert einen Plan mit Hilfe des Befehls in [3] aus dem XPlanManager. | Der exportierte Plan wird im ausgewählten Verzeichnis angezeigt.
+**04** | Der Benutzer löscht mit dem Befehl [4] einen Plan aus dem XPlanManager. | Der Plan wird aus dem XPlanManager gelöscht, geprüft werden kann dies mit erneuter Ausführung des Befehls [2].
 
 **Hinweis**
 
@@ -108,14 +108,14 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer führt mit dem Befehl [1] eine Aktualisierung des  WMS-Sortierfeldes durch | Die Sortierung der Pläne im XPlanwerkWMS ändert sich.
-**02** | Der Benutzer wecheselt in den deegree XPlanwerkWMS Workspace und überprüft das Ergebnis in den Themes, siehe [2] | Die Sortierung der Pläne im XPlanwerkWMS hat sich mit der gewählten Konfiguration geändert.
+**01** | Der Benutzer führt mit dem Befehl [1] eine Aktualisierung des WMS-Sortierfeldes durch. | Die Sortierung der Pläne im XPlanwerkWMS ändert sich.
+**02** | Der Benutzer wecheselt in den deegree XPlanwerkWMS Workspace und überprüft das Ergebnis in den Themes, siehe [2]. | Die Sortierung der Pläne im XPlanwerkWMS hat sich mit der gewählten Konfiguration geändert.
 
 **Hinweis**
 
 * [1]  ` ./XPlanManager -updatewmssortdate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]` 
 * [2]  ` .deegree/xplansyn-wms-workspace/themes/bplanraster.xml`
-  * Der Pfad kann variieren 
+  * Der Pfad kann variieren. 
 
 ---
 
@@ -127,11 +127,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer fügt mit dem Befehl [1] eine Ebene in den Ebenenbaum ein | Die neue Ebene wird eingefügt, beim weglassen des Parameters <categoryname> wird die Ebene direkt unter der Wurzelebene eingefügt.
-**02** | Der Benutzer entfernt mit dem Befehl [2] eine Ebene aus dem Ebenenbaum | Die Ebene wird aus der Ebenenkonfiguration entfernt.
-**03** | Der Benutzer fügt mit dem Befehl [3] eine Katergorieebene in den Ebenenbaum ein | Die neue Kategorieebene wird eingefügt. Beim angeben des Parameters <uppercategory> wird die neue Kategorieebene direkt unter die angegebene Kategorieebene eingefügt. Das Verhalten ist rekursiv, d.h. die Verschachtelung der Kategorieebenen kann beliebig tief erfolgen.
-**04** | Der Benutzer entfernt mit dem Befehl [4] eine Kategorieebene aus dem Ebenenbaum | Die Kategorieebene wird aus der Ebenenkonfiguration entfernt. Enthält die gewählte Kategorieebene untergeordneten Kategorien, werden diese ebenfalls gelöscht.
-**05** | Der Benutzer bewegt mit dem Befehl [5] eine Ebene in eine andere Kategorieebene des Ebenenbaums | Die Ebene wird in die andere Kategoriebene bewegt.
+**01** | Der Benutzer fügt mit dem Befehl [1] eine Ebene in den Ebenenbaum ein. | Die neue Ebene wird eingefügt, beim weglassen des Parameters <categoryname> wird die Ebene direkt unter der Wurzelebene eingefügt.
+**02** | Der Benutzer entfernt mit dem Befehl [2] eine Ebene aus dem Ebenenbaum. | Die Ebene wird aus der Ebenenkonfiguration entfernt.
+**03** | Der Benutzer fügt mit dem Befehl [3] eine Katergorieebene in den Ebenenbaum ein. | Die neue Kategorieebene wird eingefügt. Beim angeben des Parameters <uppercategory> wird die neue Kategorieebene direkt unter die angegebene Kategorieebene eingefügt. Das Verhalten ist rekursiv, d.h. die Verschachtelung der Kategorieebenen kann beliebig tief erfolgen.
+**04** | Der Benutzer entfernt mit dem Befehl [4] eine Kategorieebene aus dem Ebenenbaum. | Die Kategorieebene wird aus der Ebenenkonfiguration entfernt. Enthält die gewählte Kategorieebene untergeordneten Kategorien, werden diese ebenfalls gelöscht.
+**05** | Der Benutzer bewegt mit dem Befehl [5] eine Ebene in eine andere Kategorieebene des Ebenenbaums. | Die Ebene wird in die andere Kategoriebene bewegt.
 
 **Hinweis**
 
@@ -155,9 +155,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer importiert mit dem Befehl in [1] einen Plan mit Rasterdaten in den XPlanManager | Der Plan wird in den XPlanManager importiert.
-**02** | Der Benutzer lässt sich den importierten Plan mit dem Befehl in [2] auflisten | Der importierte Plan wird aufgelistet.
-**03** | Der Benutzer führt eine GetMap-Anfrage wie in [3] durch | Der importierte Rasterplan wird dargestellt. 
+**01** | Der Benutzer importiert mit dem Befehl in [1] einen Plan mit Rasterdaten in den XPlanManager. | Der Plan wird in den XPlanManager importiert.
+**02** | Der Benutzer lässt sich den importierten Plan mit dem Befehl in [2] auflisten. | Der importierte Plan wird aufgelistet.
+**03** | Der Benutzer führt eine GetMap-Anfrage wie in [3] durch. | Der importierte Rasterplan wird dargestellt. 
 
 **Hinweis**
 
@@ -173,48 +173,49 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * XPlanArchive sind verfügbar.
+ * Der Benutzer ist auf dem System angemeldet.
  
 #### Prüffall 
 Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt auf den Button **Datei auswählen** | Es öffnet sich ein neues Fenster zur Auswahl von Plänen. 
-**02** | Der Benutzer wählt eine beliebige Datei (außer ein Plan im `Zip`-Format) aus klickt auf **Öffnen** | Die beliebige Datei wird zwischengelagert in der Weboberfläche angezeigt.
-**02.1** | Der Benutzer klickt auf den Button **Hinzufügen** | Es wird ein Fenster geöffnet. Die Datei wird abgelehnt und nicht hoch geladen. 
-**02.3** | Der Benutzer klickt auf den Button **Schließen** | Das Fenster wird geschlossen.
-**03** | Der Benutzer wählt ein Plan im `Zip`-Format aus | Der Plan wird markiert im Fenster dargestellt. 
-**03.1** | Der Benutzer klickt auf den Button **Datei auswählen** | Das Fenster schließt sich. Der Planname wird zwischengelagert in der Weboberfläche angezeigt. 
-**03.2** | Der Benutzer klickt auf den Button **Hinzufügen** | Der Plan wird hoch geladen. Nach Ende des Uploads wird ein neues Fenster geöffnet, mit der Meldung, dass der Upload abgeschlossen ist. 
-**03.3** | Der Benutzer klickt auf **Ok** | Das Fenster wird geschlossen. Der Plan wird angezeigt. 
-**04** | Der Benutzer wählt ein Plan im `Zip`-Format aus | Der Plan wird markiert im Fenster dargestellt. 
-**04.1** | Der Benutzer klickt auf den Button **Datei auswählen** | Das Fenster schließt sich. Der Planname wird angezeigt. 
-**04.2** | Der Benutzer klickt auf den Button **Hinzufügen** | Der Plan wird hoch geladen. Nach Ende des Uploads wird ein neues Fenster geöffnet, mit der Meldung, dass der Upload abgeschlossen ist. 
-**04.3** | Der Benutzer klickt auf **Ok** | Das Fenster wird geschlossen. Der Plan wird angezeigt. 
-**04.4** | Der Benutzer klickt auf **Entfernen** | Es wird ein neues Fenster geöffnet, mit der Meldung, ob der Plan wirklich entfernt werden soll.
-**04.5** | Der Benutzer klickt auf **Ok** | Es wird ein neues Fenster geöffnet, mit der Meldung, dass das Entfernen abgeschlossen ist.
-**04.6** | Der Benutzer klickt auf **Ok** | Es ist kein Plan aufgelistet, welcher zur Validation aussteht.
+**01** | Der Benutzer klickt auf den Button **Datei auswählen**. | Es öffnet sich ein neues Fenster zur Auswahl von Plänen. 
+**02** | Der Benutzer wählt eine beliebige Datei (außer ein Plan im `Zip`-Format) aus klickt auf **Öffnen**. | Die beliebige Datei wird zwischengelagert in der Weboberfläche angezeigt.
+**02.1** | Der Benutzer klickt auf den Button **Hinzufügen**. | Es wird ein Fenster geöffnet. Die Datei wird abgelehnt und nicht hoch geladen. 
+**02.3** | Der Benutzer klickt auf den Button **Schließen**. | Das Fenster wird geschlossen.
+**03** | Der Benutzer wählt ein Plan im `Zip`-Format aus. | Der Plan wird markiert im Fenster dargestellt. 
+**03.1** | Der Benutzer klickt auf den Button **Datei auswählen**. | Das Fenster schließt sich. Der Planname wird zwischengelagert in der Weboberfläche angezeigt. 
+**03.2** | Der Benutzer klickt auf den Button **Hinzufügen**. | Der Plan wird hoch geladen. Nach Ende des Uploads wird ein neues Fenster geöffnet, mit der Meldung, dass der Upload abgeschlossen ist. 
+**03.3** | Der Benutzer klickt auf **Ok**. | Das Fenster wird geschlossen. Der Plan wird angezeigt. 
+**04** | Der Benutzer wählt ein Plan im `Zip`-Format aus. | Der Plan wird markiert im Fenster dargestellt. 
+**04.1** | Der Benutzer klickt auf den Button **Datei auswählen**. | Das Fenster schließt sich. Der Planname wird angezeigt. 
+**04.2** | Der Benutzer klickt auf den Button **Hinzufügen**. | Der Plan wird hoch geladen. Nach Ende des Uploads wird ein neues Fenster geöffnet, mit der Meldung, dass der Upload abgeschlossen ist. 
+**04.3** | Der Benutzer klickt auf **Ok**. | Das Fenster wird geschlossen. Der Plan wird angezeigt. 
+**04.4** | Der Benutzer klickt auf **Entfernen**. | Es wird ein neues Fenster geöffnet, mit der Meldung, ob der Plan wirklich entfernt werden soll.
+**04.5** | Der Benutzer klickt auf **Ok**. | Es wird ein neues Fenster geöffnet, mit der Meldung, dass das Entfernen abgeschlossen ist.
+**04.6** | Der Benutzer klickt auf **Ok**. | Es ist kein Plan aufgelistet, welcher zur Validation aussteht.
 
 ---
 
 ### Prüffall-02: Plan-Funktion: Validieren
   
 #### Vorbedingungen 
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
- 
+ * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
 #### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt neben einen hoch geladenen Plan auf den Button **Validieren** | Ein neues Fenster mit dem XPlanValidator öffnet sich. 
-**02** | Der Benutzer vergibt eine _Bezeichnung_ | Die Bezeichnung wird im Feld dargestellt. 
-**03** | Der Benutzer wählt einen _Validierungstyp_ aus | Der Validierungstyp wird im Feld dargestellt. 
-**04** | Der Benutzer startet den XPlanValidator | Das Validierungsergebnis wird dargestellt. 
-**05** | Der Benutzer kehrt zu dem XPlanManager zurück | Die Web-Oberfläche des XPlanManagers wird angezeigt. 
-**06.1** | Die Schaltfläche **Validieren** je nach Ergebnis rot (Validierung fehlgeschlagen) | Bei erfolgreicher Validierung wird die Schaltfläche **Import** freigegeben. 
-**06.2** | Die Schaltfläche **Validieren** je nach Ergebnis grün (Validierung erfolgreich) eingefärbt | Bei fehlgeschlagener Validierung wird die Schaltfläche **Import** nicht freigegeben. 
+**01** | Der Benutzer klickt neben einen hoch geladenen Plan auf den Button **Validieren**. | Ein neues Fenster mit dem XPlanValidator öffnet sich. 
+**02** | Der Benutzer vergibt eine _Bezeichnung_. | Die Bezeichnung wird im Feld dargestellt. 
+**03** | Der Benutzer wählt einen _Validierungstyp_ aus. | Der Validierungstyp wird im Feld dargestellt. 
+**04** | Der Benutzer startet den XPlanValidator. | Das Validierungsergebnis wird dargestellt. 
+**05** | Der Benutzer kehrt zu dem XPlanManager zurück. | Die Web-Oberfläche des XPlanManagers wird angezeigt. 
+**06.1** | Die Schaltfläche **Validieren** je nach Ergebnis rot (Validierung fehlgeschlagen). | Bei erfolgreicher Validierung wird die Schaltfläche **Import** freigegeben. 
+**06.2** | Die Schaltfläche **Validieren** je nach Ergebnis grün (Validierung erfolgreich) eingefärbt. | Bei fehlgeschlagener Validierung wird die Schaltfläche **Import** nicht freigegeben. 
 
 **Hinweis**
+
  * Der Prüffall muss insgesamt zwei mal ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
  
 ---
@@ -230,12 +231,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt neben einen syntaktisch, semmantisch oder geometrisch invaliden Plan auf den Button **Import** | Der Button ist deaktiviert und kann nicht angeklickt werden.
-**02** | Der Benutzer klickt neben einen validen Plan auf den Button **Import** | Es öffnet sich ein Fenster zur Angabe des Gültigkeitszeitraums.  
-**02.1** | Der Benutzer wählt einen _Gültigkeitszeitraum_ aus oder klickt ohne Angaben den Button **Weiter** | Es öffnet sich ein weiteres Fenster um den Rechtsstand auszuwählen.
-**02.2** | Der Benutzer wählt einen _Rechtsstand_ aus oder klickt ohne Änderung den Button **Weiter** | Es öffnet sich ein weiteres Fenster für die Analyse der Rasterdaten.
-**02.3** | Der Benutzer wählt klickt den Button **Weiter mit Rasterdaten**, klickt den Button **Weiter ohne Rasterdaten** oder bricht den Import ab mit dem Button **Abbrechen** | Beim klicken von den Button **Weiter mit/ohne Rasterdaten** wird Plan importiert, es öffnet sich ein Fenster mit der Meldung, dass der Import abgeschlossen ist.
-**02.4** | Der Benutzer wählt klickt den Button **Ok** | Der Plan wird in der Plan-Liste angezeigt.
+**01** | Der Benutzer klickt neben einen syntaktisch, semmantisch oder geometrisch invaliden Plan auf den Button **Import**. | Der Button ist deaktiviert und kann nicht angeklickt werden.
+**02** | Der Benutzer klickt neben einen validen Plan auf den Button **Import**. | Es öffnet sich ein Fenster zur Angabe des Gültigkeitszeitraums.  
+**02.1** | Der Benutzer wählt einen _Gültigkeitszeitraum_ aus oder klickt ohne Angaben den Button **Weiter**. | Es öffnet sich ein weiteres Fenster um den Rechtsstand auszuwählen.
+**02.2** | Der Benutzer wählt einen _Rechtsstand_ aus oder klickt ohne Änderung den Button **Weiter**. | Es öffnet sich ein weiteres Fenster für die Analyse der Rasterdaten.
+**02.3** | Der Benutzer wählt klickt den Button **Weiter mit Rasterdaten**, klickt den Button **Weiter ohne Rasterdaten** oder bricht den Import ab mit dem Button **Abbrechen**. | Beim klicken von den Button **Weiter mit/ohne Rasterdaten** wird Plan importiert, es öffnet sich ein Fenster mit der Meldung, dass der Import abgeschlossen ist.
+**02.4** | Der Benutzer wählt klickt den Button **Ok**. | Der Plan wird in der Plan-Liste angezeigt.
 **03** | Der Benutzer überprüft mit dem XPlanManager CLI (Parameter: `-list`), ob ein Plan importiert wurde. | Der zuvor ausgewählte Plan wurde importiert. 
 
 ---
@@ -250,14 +251,14 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer überprüft die Oberfläche des XPlanManagers auf die in [1] aufgelisteten Punkte | Die in [1] aufgelisteten Punkte sind vorhanden. 
-**02** | Der Benutzer überprüft die tabellarische Anzeige des XPlanManagers auf die in [2] aufgelisteten Punkte | Die in [2] aufgelisteten Punkte sind vorhanden. 
+**01** | Der Benutzer überprüft die Oberfläche des XPlanManagers auf die in [1] aufgelisteten Punkte. | Die in [1] aufgelisteten Punkte sind vorhanden. 
+**02** | Der Benutzer überprüft die tabellarische Anzeige des XPlanManagers auf die in [2] aufgelisteten Punkte. | Die in [2] aufgelisteten Punkte sind vorhanden. 
 
 **Hinweis**
 
 * [1] Zur Unterstützung des Arbeitsablaufs bietet die Oberfläche dem Nutzer:
 
-  * eine tabellarische Anzeige aller XPlanGML-Dokumente
+  * eine tabellarische Anzeige aller XPlanGML-Dokumente.
 
 * [2] Die Liste enthält die folgenden Eigenschaften:
     
@@ -273,8 +274,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
   * Datum Import [sortierfähig]
   * Planstatus [sortierfähig]
   * Gültigkeit (rot, grün)
-  * ADE [sortierfähig]
-  * Aktionen: Plan editieren, Kartenvorschau, Plan publizieren, Herunterladen, Entfernen
+  * Aktionen: Plan editieren, Kartenvorschau, Plan publizieren, Herunterladen, Entfernen.
  
 --- 
   
@@ -288,7 +288,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt neben einen Plan auf den Button **Kartenvorschau** | Es öffnet sich ein neues Fenster. Der Plan wird in einer Vorschau angezeigt. 
+**01** | Der Benutzer klickt neben einen Plan auf den Button **Kartenvorschau**. | Es öffnet sich ein neues Fenster. Der Plan wird in einer Vorschau angezeigt. 
 
 ---
 
@@ -302,8 +302,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt neben einen Plan auf den Button **Plan publizieren** | Es öffnet sich ein Pop-up, welches den Vorgang bestätigt. 
-**02** | Der Benutzer geht auf die xPlanBox Landingpage und überprüft, ob der Plan in den XPlanInspirePluDiensten aufgelistet wird | Der publizierte Plan wird in den XPlanInspirePluDiensten aufgelistet.  
+**01** | Der Benutzer klickt neben einen Plan auf den Button **Plan publizieren**. | Es öffnet sich ein Pop-up, welches den Vorgang bestätigt. 
+**02** | Der Benutzer geht auf die xPlanBox Landingpage und überprüft, ob der Plan in den XPlanInspirePluDiensten aufgelistet wird. | Der publizierte Plan wird in den XPlanInspirePluDiensten aufgelistet.  
 
 ---
 
@@ -317,9 +317,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt neben einen Plan auf den Button **Herunterladen** | Es öffnet sich ein neues Fenster zur Auswahl des Speicherplatzes. 
-**02** | Der Benutzer wählt ein Verzeichnis zum Speichern des Plans | Das Verzeichnis wird im Fenster dargestellt. 
-**03** | Der Benutzer klickt auf den Button **Speichern** | Das Fenster schließt sich. Der Plan wird von der Datenbasis lokal gespeichert. 
+**01** | Der Benutzer klickt neben einen Plan auf den Button **Herunterladen**. | Es öffnet sich ein neues Fenster zur Auswahl des Speicherplatzes. 
+**02** | Der Benutzer wählt ein Verzeichnis zum Speichern des Plans. | Das Verzeichnis wird im Fenster dargestellt. 
+**03** | Der Benutzer klickt auf den Button **Speichern**. | Das Fenster schließt sich. Der Plan wird von der Datenbasis lokal gespeichert. 
 
 ---
 
@@ -328,14 +328,15 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
+ * Der Benutzer ist auf dem System angemeldet.
  
 #### Prüffall 
  
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt neben einen Plan auf den Button **Entfernen** | Es öffnet sich ein neues Fenster zur Bestätigung des Vorgangs. 
-**02** | Der Benutzer bestätigt mit **OK** | Es öffnet sich ein Dialog mit dem Inhalt `Plan wird entfernt...`. 
-**03** | Der Benutzer wartet während der Löschvorgang durchgeführt wird | Das Dialog-Fenster schließt sich. Der Plan wird aus der Datenbasis gelöscht und nicht mehr in der Plan-Liste dargestellt. 
+**01** | Der Benutzer klickt neben einen Plan auf den Button **Entfernen**. | Es öffnet sich ein neues Fenster zur Bestätigung des Vorgangs. 
+**02** | Der Benutzer bestätigt mit **OK**. | Es öffnet sich ein Dialog mit dem Inhalt `Plan wird entfernt...`. 
+**03** | Der Benutzer wartet während der Löschvorgang durchgeführt wird. | Das Dialog-Fenster schließt sich. Der Plan wird aus der Datenbasis gelöscht und nicht mehr in der Plan-Liste dargestellt. 
 **04** | Der Benutzer überprüft mit dem XPlanManager CLI (Parameter: `-list`), ob der zuvor ausgewählte Plan gelöscht wurde. | Der zuvor ausgewählte Plan wurde gelöscht. 
 
 ---
@@ -345,7 +346,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
 
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten.
+* Der Benutzer ist am XPlanManagerWeb angemeldet und hat die Berechtigung zum Editieren von Planstammdaten.
 
 #### Prüffall 1
 
@@ -484,7 +485,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer öffnet die Web-basierte Benutzeroberfläche des XPlanManagers. |Es wird ein Anmeldefenster angezeigt.
+**01** | Der Benutzer öffnet die Web-basierte Benutzeroberfläche des XPlanManagers. | Es wird ein Anmeldefenster angezeigt.
 **02** | Der Benutzer meldet sich als Nutzer „B“ an.| Es öffnet sich die Web-basierte Benutzeroberfläche des XPlanManagers, bereits importierte Pläne werden aufgelistet.
 **03** | Der Benutzer überprüft die Möglichkeit der Editierbarkeit.| Hinter den Plänen wird je eine ausgegraute Schaltfläche „editieren“  angezeigt.
 
@@ -493,7 +494,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer öffnet die Server-Schnittstelle des XPlanManagers.|Es öffnet sich ein Anmeldefenster.
+**01** | Der Benutzer öffnet die Server-Schnittstelle des XPlanManagers.| Es öffnet sich ein Anmeldefenster.
 
 ---
 
@@ -510,27 +511,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Die Größe des Fensters wird auf die Breite von 1080 Pixeln verändert. | Es wird kein horizontaler Rollbalken angezeigt. 
 **02** | Das Fenster wird beliebig in der Breite vergrößert. | Es wird ein horizontaler Rollbalken angezeigt. 
 
-
 ---
 
-### Prüffall-14: Zeichenvorschriften NSM
-
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
- * Der Prüffall-03 wurde erfolgreich mit einem NSM Plan ausgeführt (Ein NSM XPlan ist in der Datenbasis vorhanden).
- 
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer klickt neben den NSM XPlan auf den Button **Kartenvorschau** | Die Kartenvorschau wird geöffnet und stellt den NSM XPlan in dem Style dar. 
-
----
-
-### Prüffall-15: Optimierte Anbindung der Verfahrensdatenbank
-
-
+### Prüffall-14: Optimierte Anbindung der Verfahrensdatenbank
 
 #### Vorbedingungen 
 
@@ -566,32 +549,32 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-16: Gültigkeitszeitraum für Rasterdaten in XPlanWMS unterstützen
+### Prüffall-15: Gültigkeitszeitraum für Rasterdaten in XPlanWMS unterstützen
 
 
 #### Vorbedingungen 
 
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
+* Der Benutzer ist am XPlanManager-Web angemeldet und hat die Berechtigung zum Import von Planarchiven. 
 
 #### Prüffall 
 
 Schritt |Beschreibung |Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** |Der Benutzer importiert einen Rasterplan mit unbegrenztem Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". |Der Plan wird importiert. Der Gültigkeitszeitraum ist grün.  
-**02** |Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) |Der Workspace wird neu geladen. 
-**03** |Der Benutzer öffnet die Kartenvorschau |Der Rasterplan wird abgebildet. 
-**04** |Der Benutzer löscht den zuvor importierten Plan. |Der Plan wurde gelöscht. 
-**05** |Der Benutzer importiert den gleichen Rasterplan erneut mit einem in der Vergangenheit liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". |Der Plan wird importiert. Der Gültigkeitszeitraum ist rot.
-**06** |Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) |Der Workspace wird neu geladen. 
-**07** |Der Benutzer öffnet die Kartenvorschau |Es wird lediglich der Umring des Vektorplans abgebildet. 
-**08** |Der Benutzer löscht den zuvor importierten Plan. |Der Plan wurde gelöscht. 
-**09** |Der Benutzer importiert den gleichen Plan erneut mit einem in der Zukunft liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". |Der Plan wird importiert. Der Gültigkeitszeitraum ist rot. 
-**10** |Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) |Der Workspace wird neu geladen. 
-**11** |Der Benutzer öffnet die Kartenvorschau |Es wird lediglich der Umring des Vektorplans abgebildet. 
-**12** |Der Benutzer navigiert zum Editier -Button |Es öffnet sich ein neues Fenster mit dem editier Formular. 
-**13** |Der Benutzer verändert den Gültigkeitszeitraum auf einen unbegrenzten Zeitraum und drückt auf speichern |Der Gültigkeitszeitraum ist grün 
-**14** |Der Benutzer geht auf Kartenvorschau |Der Rasterplan wird abgebildet. 
+**01** | Der Benutzer importiert einen Rasterplan mit unbegrenztem Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". | Der Plan wird importiert. Der Gültigkeitszeitraum ist grün.  
+**02** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
+**03** | Der Benutzer öffnet die Kartenvorschau | Der Rasterplan wird abgebildet. 
+**04** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wurde gelöscht. 
+**05** | Der Benutzer importiert den gleichen Rasterplan erneut mit einem in der Vergangenheit liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". |Der Plan wird importiert. Der Gültigkeitszeitraum ist rot.
+**06** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
+**07** | Der Benutzer öffnet die Kartenvorschau | Es wird lediglich der Umring des Vektorplans abgebildet. 
+**08** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wurde gelöscht. 
+**09** | Der Benutzer importiert den gleichen Plan erneut mit einem in der Zukunft liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". | Der Plan wird importiert. Der Gültigkeitszeitraum ist rot. 
+**10** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
+**11** | Der Benutzer öffnet die Kartenvorschau. | Es wird lediglich der Umring des Vektorplans abgebildet. 
+**12** | Der Benutzer klickt auf den Button **Editieren**. | Es öffnet sich ein neues Fenster mit dem editier Formular. 
+**13** | Der Benutzer verändert den Gültigkeitszeitraum auf einen unbegrenzten Zeitraum und drückt auf speichern. | Der Gültigkeitszeitraum wird grün dargestellt.
+**14** | Der Benutzer öffnet die Kartenvorschau. | Der Rasterplan wird abgebildet. 
 
 
 **Hinweis:**
@@ -603,36 +586,36 @@ Dieser Test wird sowohl für !GeoTiff-Rasterplänen als auch für PNG- Rasterpl�
 
 ---
 
-### Prüffall-17: Unterstützung von externen Codelisten in der XPlanBox
+### Prüffall-16: Unterstützung von externen Codelisten in der XPlanBox
 
 #### Vorbedingungen
 
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
+* Der Benutzer ist am XPlanManager-Web angemeldet und hat die Berechtigung zum Import von Planarchiven. 
 
 #### Prüffall
 
 Schritt |Beschreibung |Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** |Der Benutzer importiert einen Plan. |Der Plan wird erfolgreich importiert. 
-**02** |Der Benutzer bindet den WMS in QGIS ein. |Der importierte Plan wird angezeigt. 
-**03** |Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (!GetFeatureInfo Operation). | Die Objektinformationen werden angezeigt. Der Wert für die im nächsten Schritt zu übersetzende Codeliste ist leer oder enthält den nicht übersetzten Code. 
-**04** |Der Benutzer navigiert in den Ordner [1] und legt dort die Dateien `xplan[VERSION].syn` und `xplan_[CODELIST_NAME].xml` ab. 
-**05** |Der Benutzer löscht den zuvor importierten Plan. |Der Plan wird gelöscht. 
-**06** |Der Benutzer importiert den Plan erneut. |Der Plan wird erfolgreich importiert. 
-**07** |Der Benutzer bewegt das Kartenbild in QGIS. |Der WMS wird neu geladen. 
-**08** |Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (!GetFeatureInfo Operation). | Es werden die Objektinformationen der neuen Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die Übersetzung des Codes dar. 
-**09** |Der Benutzer navigiert in den Ordner [1] und editiert dort in {{{xplan_[CODELIST_NAME].xml}}} den übersetzten Wert (gml:description) des in Schritt 8 überprüften Codes in einen beliebigen anderen Wert.
-**10** |Der Benutzer löscht den zuvor importierten Plan. |Der Plan wird gelöscht. 
-**11** |Der Benutzer importiert den Plan erneut. |Der Plan wird erfolgreich importiert. 
-**12** |Der Benutzer bewegt das Kartenbild in QGIS. |Der WMS wird neu geladen. 
-**13** |Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (!GetFeatureInfo Operation). | Es werden die Objektinformationen der editierten Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die in Schritt 09 geänderte Übersetzung des Codes dar. 
+**01** | Der Benutzer importiert einen Plan. | Der Plan wird erfolgreich importiert. 
+**02** | Der Benutzer bindet den WMS in QGIS ein. | Der importierte Plan wird angezeigt. 
+**03** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (!GetFeatureInfo Operation). | Die Objektinformationen werden angezeigt. Der Wert für die im nächsten Schritt zu übersetzende Codeliste ist leer oder enthält den nicht übersetzten Code. 
+**04** | Der Benutzer navigiert in den Ordner [1] und legt dort die Dateien `xplan[VERSION].syn` und `xplan_[CODELIST_NAME].xml` ab. 
+**05** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wird gelöscht. 
+**06** | Der Benutzer importiert den Plan erneut. | Der Plan wird erfolgreich importiert. 
+**07** | Der Benutzer bewegt das Kartenbild in QGIS. | Der WMS wird neu geladen. 
+**08** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (!GetFeatureInfo Operation). | Es werden die Objektinformationen der neuen Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die Übersetzung des Codes dar. 
+**09** | Der Benutzer navigiert in den Ordner [1] und editiert dort in {{{xplan_[CODELIST_NAME].xml}}} den übersetzten Wert (gml:description) des in Schritt 8 überprüften Codes in einen beliebigen anderen Wert.
+**10** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wird gelöscht. 
+**11** | Der Benutzer importiert den Plan erneut. |Der Plan wird erfolgreich importiert. 
+**12** | Der Benutzer bewegt das Kartenbild in QGIS. | Der WMS wird neu geladen. 
+**13** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (!GetFeatureInfo Operation). | Es werden die Objektinformationen der editierten Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die in Schritt 09 geänderte Übersetzung des Codes dar. 
 
 
 **Hinweis**
 
-[1] ~/.deegree/mananger-configuration/synthesizer 
- * Gibt es diesen Ordner noch nicht muss dieser noch angelegt werden
+* [1] ~/.deegree/mananger-configuration/synthesizer 
+* Gibt es diesen Ordner noch nicht muss dieser noch angelegt werden.
 
 **Beispiel einer xplan41.syn-Datei:**
 
@@ -680,82 +663,85 @@ BP_BaugebietsTeilFlaeche/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(x
 ### Prüffall-01: Validierungsart
 
 #### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet.
  * Valide und invalide XPlanArchive sind verfügbar.
  
 #### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidators mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validator-cli-$VERSION/bin`
-**02** | Der Benutzer führt den Befehl [2] aus | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**03** | Der Benutzer führt den Befehl [2] aus | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
-**04** | Der Benutzer führt den Befehl [3] aus | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**05** | Der Benutzer führt den Befehl [3] aus | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
-**06** | Der Benutzer führt den Befehl [4] aus | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**07** | Der Benutzer führt den Befehl [4] aus | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
-**08** | Der Benutzer führt den Befehl [5] aus | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
-**09** | Der Benutzer führt den Befehl [5] aus | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidators mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validator-cli-$VERSION/bin`.
+**02** | Der Benutzer führt den Befehl [2] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**03** | Der Benutzer führt den Befehl [2] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**04** | Der Benutzer führt den Befehl [3] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**05** | Der Benutzer führt den Befehl [3] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**06** | Der Benutzer führt den Befehl [4] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**07** | Der Benutzer führt den Befehl [4] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
+**08** | Der Benutzer führt den Befehl [5] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument valide ist. 
+**09** | Der Benutzer führt den Befehl [5] aus. | Der Benutzer erhält eine Validationsausgabe, dass das XPlan-Dokument invalide ist. 
 
 **Hinweis**
 
 * [1] ` cd ~/xplan-validator-cli-$VERSION/bin `
-  * Der Pfad kann variieren
+  * Der Pfad kann variieren.
 * [2] Ohne Angabe einer Validierungsart: ` ./XPlanValidator -validate Plan.zip [-name Bezeichnung] `
-  * `Plan.zip` muss ggf. ersetzt werden
+  * `Plan.zip` muss ggf. ersetzt werden.
 * [3] Syntaktische Überprüfung: `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype syntax`
-  * `Plan.zip` muss ggf. ersetzt werden
+  * `Plan.zip` muss ggf. ersetzt werden.
 * [4] Geometrische Überprüfung: `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype geometric`
-  * ` Plan.zip` muss ggf. ersetzt werden
+  * ` Plan.zip` muss ggf. ersetzt werden.
  * [5] Semantische Überprüfung: `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype semantic`
-   * ` Plan.zip` muss ggf. ersetzt werden
+   * ` Plan.zip` muss ggf. ersetzt werden.
 
 ---
  
 ### Prüffall-02: Validierungsoptionen
 
 ### Vorbedingungen 
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
+ * Der Benutzer ist auf dem System angemeldet.
  * XPlanArchive sind verfügbar.
+ * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
 ### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer führt den Befehl [1] aus | Der Benutzer erhält eine Validationsausgabe. Die geometrische Überprüfung der Flächenschlussbedingung wird übersprungen.
-**02** | Der Benutzer führt den Befehl [2] aus | Der Benutzer erhält eine Validationsausgabe. Die geometrische Überprüfung des Geltungsbereich wird übersprungen.
+**01** | Der Benutzer führt den Befehl [1] aus. | Der Benutzer erhält eine Validationsausgabe. Die geometrische Überprüfung der Flächenschlussbedingung wird übersprungen.
+**02** | Der Benutzer führt den Befehl [2] aus. | Der Benutzer erhält eine Validationsausgabe. Die geometrische Überprüfung des Geltungsbereich wird übersprungen.
 
 
 **Hinweis**
 
 * [1] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-flaechenschluss`
-  * `Plan.zip` muss ggf. ersetzt werden
+  * `Plan.zip` muss ggf. ersetzt werden.
 * [2] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-geltungsbereich`
-  * `Plan.zip` muss ggf. ersetzt werden
+  * `Plan.zip` muss ggf. ersetzt werden.
   
 ---
 
 ### Prüffall-03: Speichern der Validierungsergebnisse
 
-#### Vorbedingungen  
+#### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet. 
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
 #### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidatorCLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validator-cli-$VERSION/etc/`. 
-**02** | Der Benutzer überprüft, ob in der Datei [2] das Verzeichnis [3] für die erstellten Validierungsergebnisse angegeben ist | Ein Verzeichnis ist nicht gesetzt, daher befinden sich die Validierungsergebnisse unter [4].
-**04** | Der Benutzer wechselt in das Default-Verzeichnis mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validator-cli-$VERSION/tmp/`.
-**05** | Der Benutzer überprüft, ob das Validierungsergebnis als Archiv (HTML, XML und PDF) dort abgelegt worden ist | Das Validierungsergebnis wurde als Archiv angelegt.	 
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidatorCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validator-cli-$VERSION/etc/`. 
+**02** | Der Benutzer überprüft, ob in der Datei [2] das Verzeichnis [3] für die erstellten Validierungsergebnisse angegeben ist. | Ein Verzeichnis ist nicht gesetzt, daher befinden sich die Validierungsergebnisse unter [4].
+**04** | Der Benutzer wechselt in das Default-Verzeichnis mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validator-cli-$VERSION/tmp/`.
+**05** | Der Benutzer überprüft, ob das Validierungsergebnis als Archiv (HTML, XML und PDF) dort abgelegt worden ist. | Das Validierungsergebnis wurde als Archiv angelegt.	 
 
 **Hinweis**
 
  * [1] `cd ~/xplan-validator-cli-$VERSION/etc/`
-   * Der Pfad kann variieren
+   * Der Pfad kann variieren.
  * [2] `validatorConfiguration.properties`
  * [3] `validationReportDirectory=<directory>`
  * [4] `cd ~/xplan-validator-cli-$VERSION/tmp/` 
-   * Der Pfad kann variieren
+   * Der Pfad kann variieren.
 
 
 # XPlanValidatorWeb
@@ -769,7 +755,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer überprüft, ob die Web-basierte Benutzeroberfläche des XPlanValidators geöffnet ist | Die Web-basierte Benutzeroberfläche des XPlanValidators ist geöffnet. 
+**01** | Der Benutzer überprüft, ob die Web-basierte Benutzeroberfläche des XPlanValidators geöffnet ist. | Die Web-basierte Benutzeroberfläche des XPlanValidators ist geöffnet. 
 
 ---
 
@@ -777,16 +763,15 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 
 #### Vorbedingungen 
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
  
 #### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators | Die Eingabesicht hat eine Möglichkeit, ein Planarchiv auszuwählen.  
-**02** | Der Benutzer klickt auf **Datei auswählen** | Ein neues Fenster öffnet sich. 
-**03** | Der Benutzer wählt ein Planarchiv (`*.zip`) aus und klickt auf **OK** | Das Fenster schließt sich. Der Planname wird in der Web-basierten Benutzeroberfläche des XPlanValidators angezeigt. |
+**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Möglichkeit, ein Planarchiv auszuwählen.  
+**02** | Der Benutzer klickt auf **Datei auswählen**. | Ein neues Fenster öffnet sich. 
+**03** | Der Benutzer wählt ein Planarchiv (`*.zip`) aus und klickt auf **OK**. | Das Fenster schließt sich. Der Planname wird in der Web-basierten Benutzeroberfläche des XPlanValidators angezeigt. |
 
 ---
 
@@ -800,17 +785,17 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoptionen einstellen** | Es öffnet sich ein Fenster mit _Plan hochladen_ und dem _Namen_ des ausgewählten Planarchivs.
-**02** | Der Benutzer klickt auf **Abbrechen** | Das Fenster schließt sich, das Planarchiv ist aber immer noch ausgewählt.
+**01** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoptionen einstellen**. | Es öffnet sich ein Fenster mit _Plan hochladen_ und dem _Namen_ des ausgewählten Planarchivs.
+**02** | Der Benutzer klickt auf **Abbrechen**. | Das Fenster schließt sich, das Planarchiv ist aber immer noch ausgewählt.
 
 #### Prüffall 2
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoptionen einstellen** | Es öffnet sich ein Fenster mit _Plan hochladen_ und dem _Namen_ des ausgewählten Planarchivs.
-**02** | Der Benutzer klickt auf **Zur Validierung** | Es öffnet sich ein neues Fenster mit den Validierungsoptionen.
-**03** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators | Die Eingabesicht hat ein Eingabefeld **Bezeichnung für den Report** 
-**04** | Der Benutzer gibt eine _Bezeichnung_ in das Eingabefeld ein | Das Eingabefeld enthält die Bezeichnung. 
+**01** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoptionen einstellen**. | Es öffnet sich ein Fenster mit _Plan hochladen_ und dem _Namen_ des ausgewählten Planarchivs.
+**02** | Der Benutzer klickt auf **Zur Validierung**. | Es öffnet sich ein neues Fenster mit den Validierungsoptionen.
+**03** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat ein Eingabefeld **Bezeichnung für den Report** 
+**04** | Der Benutzer gibt eine _Bezeichnung_ in das Eingabefeld ein. | Das Eingabefeld enthält die Bezeichnung. 
 
 
 ---
@@ -824,8 +809,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators | Die Eingabesicht hat eine Auswahl **Validierungstyp**. 
-**02** | Der Benutzer wählt durch das anklicken eines Kästchens einen _Validierungstyp_ aus | Der ausgewählte Validierungstyp wird anhand eines _Häckchens_ im Kästchen angezeigt.
+**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Auswahl **Validierungstyp**. 
+**02** | Der Benutzer wählt durch das anklicken eines Kästchens einen _Validierungstyp_ aus. | Der ausgewählte Validierungstyp wird anhand eines _Häckchens_ im Kästchen angezeigt.
 
 
 ---
@@ -839,10 +824,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators | Die Eingabesicht hat eine Möglichkeit, weitere Validierungsoptionen auszuwählen. 
-**02** | Der Benutzer klickt auf **weitere Validierungsoption** | Ein neues Fenster öffnet sich. 
-**03** | Der Benutzer wählt einige _Validierungsoptionen_ aus | Die Validierungsoptionen werden markiert. 
-**04** | Der Benutzer klickt auf **Speichern** | Das Fenster schließt sich. 
+**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Möglichkeit, weitere Validierungsoptionen auszuwählen. 
+**02** | Der Benutzer klickt auf **weitere Validierungsoption**. | Ein neues Fenster öffnet sich. 
+**03** | Der Benutzer wählt einige _Validierungsoptionen_ aus. | Die Validierungsoptionen werden markiert. 
+**04** | Der Benutzer klickt auf **Speichern**. | Das Fenster schließt sich. 
 
 ---
 
@@ -857,13 +842,13 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt auf den Button **Validierung abbrechen** | Die Validierungsoptionen werden geschlossen, das Planarchiv gelöscht.
+**01** | Der Benutzer klickt auf den Button **Validierung abbrechen**. | Die Validierungsoptionen werden geschlossen, das Planarchiv gelöscht.
 
 #### Prüffall 2
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt auf den Button **Validierung starten** | Ein neues Fenster mit dem Validierungsergebnis öffnet sich. 
+**01** | Der Benutzer klickt auf den Button **Validierung starten**. | Ein neues Fenster mit dem Validierungsergebnis öffnet sich. 
 
 
 ---
@@ -879,7 +864,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer überprüft die Titelzeile | Die Titelzeile enthält die Bezeichnung des Validierungsdurchlaufs. 
+**01** | Der Benutzer überprüft die Titelzeile. | Die Titelzeile enthält die Bezeichnung des Validierungsdurchlaufs. 
 
 ---
 
@@ -893,22 +878,22 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wählt in der Rubrik **Downloads** den _HTML Report_ aus | Der HTML Report ist ausgewählt. 
+**01** | Der Benutzer wählt in der Rubrik **Downloads** den _HTML Report_ aus. | Der HTML Report ist ausgewählt. 
 **02** | Der Benutzer klickt auf **Download** | Der Report wird als `Zip`-Datei zum Herunterladen angeboten. 
-**03** | Der Benutzer wählt in der Rubrik **Downloads** den _PDF Report_ aus | Der PDF Report ist ausgewählt. 
+**03** | Der Benutzer wählt in der Rubrik **Downloads** den _PDF Report_ aus. | Der PDF Report ist ausgewählt. 
 **04** | Der Benutzer klickt auf **Download** | Der Report wird als `Zip`-Datei zum Herunterladen angeboten. 
-**05** | Der Benutzer wählt in der Rubrik **Downloads** den _XML Report_ aus | Der XML Report ist ausgewählt. 
+**05** | Der Benutzer wählt in der Rubrik **Downloads** den _XML Report_ aus. | Der XML Report ist ausgewählt. 
 **06** | Der Benutzer klickt auf **Download** | Der Report wird als `Zip`-Datei zum Herunterladen angeboten. 
-**07** | Der Benutzer wählt in der Rubrik **Downloads** den Geometriefehler _Shapefile_ aus | Der Geometriefehler Shapefile ist ausgewählt. 
+**07** | Der Benutzer wählt in der Rubrik **Downloads** den Geometriefehler _Shapefile_ aus. | Der Geometriefehler Shapefile ist ausgewählt. 
 **08** | Der Benutzer klickt auf **Download** | Das Shapefile wird als `Zip`-Datei zum Herunterladen angeboten. 
-**09** | Der Benutzer lädt das exportiere Shapefile in ein beliebiges GIS Tool | Das Shapefile wird im GIS angezeigt. 
-**10** | Der Benutzer wählt in der Rubrik **Downloads** den Geometriefehler _Grafik_ aus | Der Geometriefehler Grafik ist ausgewählt. 
+**09** | Der Benutzer lädt das exportiere Shapefile in ein beliebiges GIS Tool. | Das Shapefile wird im GIS angezeigt. 
+**10** | Der Benutzer wählt in der Rubrik **Downloads** den Geometriefehler _Grafik_ aus. | Der Geometriefehler Grafik ist ausgewählt. 
 **11** | Der Benutzer klickt auf **Download** | Die Grafik wird als `Zip`-Datei zum Herunterladen angeboten. 
 **12** | Der Benutzer öffnet die exportiere Grafik | Die Grafik wird angezeigt. 
-**13** | Der Benutzer wählt in der Rubrik **Downloads** den _HTML Report_, _PDF Report_ und _XML Report_ aus | Der HTML Report, PDF Report und XML Report ist ausgewählt. 
+**13** | Der Benutzer wählt in der Rubrik **Downloads** den _HTML Report_, _PDF Report_ und _XML Report_ aus. | Der HTML Report, PDF Report und XML Report ist ausgewählt. 
 **14** | Der Benutzer klickt auf **Download** | Die Reporte werden als `Zip`-Datei zum Herunterladen angeboten. 
-**15** | Der Benutzer wählt in der Rubrik **Downloads** den Geometriefehler _Shapefile_ und _Grafik_ aus | Die Geometriefehler Shapefile und Grafik sind ausgewählt. 
-**16** | Der Benutzer klickt auf **Download** | Die Reporte werden als `Zip`-Datei zum Herunterladen angeboten. 
+**15** | Der Benutzer wählt in der Rubrik **Downloads** den Geometriefehler _Shapefile_ und _Grafik_ aus. | Die Geometriefehler Shapefile und Grafik sind ausgewählt. 
+**16** | Der Benutzer klickt auf **Download**. | Die Reporte werden als `Zip`-Datei zum Herunterladen angeboten. 
 
 
 ---
@@ -924,8 +909,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer überprüft die Benutzeroberfläche | Die Benutzeroberfläche enthält einen Button **weiteren Plan validieren** 
-**02** | Der Benutzer klickt auf den Button **weitere Plan validieren** | Der Benutzer wird auf die Eingabesicht weitergeleitet. 
+**01** | Der Benutzer überprüft die Benutzeroberfläche. | Die Benutzeroberfläche enthält einen Button **weiteren Plan validieren** 
+**02** | Der Benutzer klickt auf den Button **weitere Plan validieren**. | Der Benutzer wird auf die Eingabesicht weitergeleitet. 
 
 
 ---
@@ -943,15 +928,14 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wählt einen BPlan über **Hinzufügen** aus | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung** | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
+**01** | Der Benutzer wählt einen BPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
+**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
+**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
+**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
 
  * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
-
 
 
 ---
@@ -969,10 +953,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wählt einen FPlan über **Hinzufügen** aus | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung** | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
+**01** | Der Benutzer wählt einen FPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
+**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
+**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
+**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
 
@@ -992,10 +976,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung** | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
+**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
+**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
+**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
+**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
 
@@ -1014,10 +998,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung** | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
+**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
+**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
+**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
+**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
 
@@ -1036,10 +1020,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wählt einen BPlan über **Hinzufügen** aus | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung** | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
+**01** | Der Benutzer wählt einen BPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
+**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
+**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
+**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
 
@@ -1058,10 +1042,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wählt einen FPlan über **Hinzufügen** aus | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung** | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
+**01** | Der Benutzer wählt einen FPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
+**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
+**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
+**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
 
@@ -1080,10 +1064,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung** | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
+**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
+**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
+**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
+**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
 
@@ -1102,10 +1086,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung** | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten** | Das Validierungsergebnis wird dargestellt. 
+**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
+**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
+**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
+**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
 
 **Hinweis**
 
@@ -1145,13 +1129,13 @@ Die Ausgabe der Validierungsergebnisse erfolgt bei den folgenden Komponenten ent
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidateDB-CLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validatedb-cli-$VERSION/bin`.
-**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanValidateDB-CLI.
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanValidateDB-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-validatedb-cli-$VERSION/bin`.
+**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanValidateDB-CLI.
 
 **Hinweis**
 
  * [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
-   * Der Pfad kann variieren
+   * Der Pfad kann variieren.
  * [2] `./XPlanValidateDB-CLI -h [oder -help und --help]`
 
 ---
@@ -1166,7 +1150,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer führt den Befehl [1] aus | Alle in der Datenbasis enthaltenen Pläne werden validiert, anschließend wird das Ergebnis der Validierung in einer CSV-Datei zusammengefasst. Die erstellte Ergebnisdatei liegt unter /tmp.
+**01** | Der Benutzer führt den Befehl [1] aus. | Alle in der Datenbasis enthaltenen Pläne werden validiert, anschließend wird das Ergebnis der Validierung in einer CSV-Datei zusammengefasst. Die erstellte Ergebnisdatei liegt unter /tmp.
 
 **Hinweis**
 
@@ -1177,6 +1161,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-01: Hilfe aufrufen
 
 ### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet.
  * Die Installation von HALE wurde erfolgreich abgeschlossen.
  * Die im Verzeichnis `~/xplan-transform-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
@@ -1184,13 +1169,13 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanTransformCLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-transform-cli-$VERSION/bin`.
-**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanTransformCLI.
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanTransformCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-transform-cli-$VERSION/bin`.
+**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanTransformCLI.
 
 **Hinweis**
 
  * [1] ` cd ~/xplan-transform-cli-$VERSION/bin` 
-   * Der Pfad kann variieren
+   * Der Pfad kann variieren.
  * [2] `./XPlanTransformCLI -? [oder --help]`
 
 ---
@@ -1198,18 +1183,19 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-02: Eingabeparameter
 
 ### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet.
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
 ### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer führt den Befehl [1] aus | Alle in der Datenbasis enthaltenen Pläne werden transformiert und daraufhin validiert, anschließend wird das Ergebnis in einer CSV-Datei zusammengefasst. Es erfolgt keine Übertragung der transformierten Pläne in die Datenbasis.
-**02** | Der Benutzer führt den Befehl [2] aus | Alle in der Datenbasis enthaltenen Pläne werden transformiert und in die Datenbasis übertragen.
-**03** | Der Benutzer führt den Befehl [3] aus | Alle in der Tabelle "xplanmgr.transformToolPlanTableLog" enthaltenen Pläne werden transformiert, die validen Pläne werden draufhin in die Datenbasis übertragen. 
-**04** | Der Benutzer führt den Befehl [4] aus | Ergebnis aus Schritt 01; der Output wird in das aufgeführte Verzeichnis ausgegeben. 
-**05** | Der Benutzer führt den Befehl [5] aus | Ergebnis aus Schritt 01; das Logging für mögliche Fehler wird ausführlicher angezeigt.
-**06** | Der Benutzer führt den Befehl [6] aus | Ergebnis aus Schritt 01; der aufgeführte Workspace wird verwendet.
+**01** | Der Benutzer führt den Befehl [1] aus. | Alle in der Datenbasis enthaltenen Pläne werden transformiert und daraufhin validiert, anschließend wird das Ergebnis in einer CSV-Datei zusammengefasst. Es erfolgt keine Übertragung der transformierten Pläne in die Datenbasis.
+**02** | Der Benutzer führt den Befehl [2] aus.| Alle in der Datenbasis enthaltenen Pläne werden transformiert und in die Datenbasis übertragen.
+**03** | Der Benutzer führt den Befehl [3] aus. | Alle in der Tabelle "xplanmgr.transformToolPlanTableLog" enthaltenen Pläne werden transformiert, die validen Pläne werden draufhin in die Datenbasis übertragen. 
+**04** | Der Benutzer führt den Befehl [4] aus. | Ergebnis aus Schritt 01; der Output wird in das aufgeführte Verzeichnis ausgegeben. 
+**05** | Der Benutzer führt den Befehl [5] aus. | Ergebnis aus Schritt 01; das Logging für mögliche Fehler wird ausführlicher angezeigt.
+**06** | Der Benutzer führt den Befehl [6] aus. | Ergebnis aus Schritt 01; der aufgeführte Workspace wird verwendet.
 
 **Hinweis**
 
@@ -1230,19 +1216,20 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-01: Hilfe aufrufen
 
 ### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet.
  * Die im Verzeichnis `~/xplan-evaluation-schema-synchronize-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
 ### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanAuswerteschemaCLI mit Hilfe des Befehls [1] | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin`.
-**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanAuswerteschemaCLI.
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanAuswerteschemaCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin`.
+**02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanAuswerteschemaCLI.
 
 **Hinweis**
 
  * [1] ` cd ~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin` 
-   * Der Pfad kann variieren
+   * Der Pfad kann variieren.
  * [2] `./EvaluationSchemaSynchronizer -? [oder --help]`
 
 ---
@@ -1250,14 +1237,15 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-02: Eingabeparameter
 
 ### Vorbedingungen 
+ * Der Benutzer ist auf dem System angemeldet.
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
 ### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer führt den Befehl [1] aus | Alle in der Datenbasis enthaltenen Pläne werden aus dem XPlanSyn-Schema in das Auswerteschema der xPlanBox überführt.
-**02** | Der Benutzer importiert einen neuen Plan in die xPlanBox und führt anschließend den Befehl [2] aus | Alle in der Datenbasis enthaltenen Pläne, die seit der letzten Ausführung des XPlanAuswerteschemaCLI verändert oder hinzugefügt wurden, werden mit den Auswerteschmema synchronisiert und überführt.
+**01** | Der Benutzer führt den Befehl [1] aus. | Alle in der Datenbasis enthaltenen Pläne werden aus dem XPlanSyn-Schema in das Auswerteschema der xPlanBox überführt.
+**02** | Der Benutzer importiert einen neuen Plan in die xPlanBox und führt anschließend den Befehl [2] aus. | Alle in der Datenbasis enthaltenen Pläne, die seit der letzten Ausführung des XPlanAuswerteschemaCLI verändert oder hinzugefügt wurden, werden mit den Auswerteschmema synchronisiert und überführt.
 
 
 **Hinweis**
@@ -1369,8 +1357,8 @@ Eine transparente Kartendarstellung. Es erfolgt nur eine Darstellung der Geltung
 
 #### Vorbedingungen 
 
-* Die web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer hat die Berechtigung zum Import von Planarchiven.
+* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+* Der Benutzer ist am XPlanManagerWeb angemeldet und hat die Berechtigung zum Import von Planarchiven.
 
 #### Prüffall 1 
 
@@ -1389,7 +1377,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
 
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
-* Der Benutzer hat die Berechtigung zum Import von Planarchiven.
+* Der Benutzer ist am XPlanManagerWeb angemeldet und hat die Berechtigung zum Import von Planarchiven.
 
 #### Prüffall 
 
@@ -1441,7 +1429,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer importiert einen bereits vorhandene Plan erneut.| Der Plan wird importiert.
 **02** | Der Benutzer drückt auf die Schaltfläche „editieren“ des neu importierten Plans.| Es öffnet sich ein neues Fenster mit einem Formular.
 **03** | Der Benutzer verändert das „Rechtsverordungsdatum“ in ein zurückliegendes Datum und verändert ein Attribut. Die Änderung ist valide.| Die geänderten Daten sind gespeichert.
-**04** | Der Benutzer überprüft die Änderung mit Hilfe einer !GetMap-Anfrage.|Der geänderte Plan wird auf der Karte im Hintergrund angezeigt. 
+**04** | Der Benutzer überprüft die Änderung mit Hilfe einer GetMap-Anfrage.|Der geänderte Plan wird auf der Karte im Hintergrund angezeigt. 
 
 
 #### Prüffall 2 
@@ -1451,7 +1439,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer importiert einen bereits vorhandene Plan erneut.| Der Plan wird importiert.
 **02** | Der Benutzer drückt auf die Schaltfläche „editieren“ des neu importierten Plans.| Es öffnet sich ein neues Fenster mit einem Formular.
 **03** | Der Benutzer verändert das „Rechtsverordungsdatum“ in ein zukünftiges Datum und verändert ein Attribut. Die Änderung erfolgt valide.| Speicherung der Änderung.
-**04** | Der Benutzer überprüft die Änderung mit Hilfe eines GetMap-Requests.| Der geänderte Plan wird auf der Karte im Vordergrund angezeigt. 
+**04** | Der Benutzer überprüft die Änderung mit Hilfe eines GetMap-Anfrage.| Der geänderte Plan wird auf der Karte im Vordergrund angezeigt. 
 
 
 ---
@@ -1461,7 +1449,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
 * Eine Instanz der Komponente XPlanManagerWeb und zwei Instanzen der Komponente XPlanWMS stehen zur Verfügung.
 * Die beiden WMS-Instanzen nutzen ein gemeinsames Workspace-Verzeichnis und ein gemeinsames Verzeichnis für die Speicherung der Rasterdaten in einem Netzwerk-Dateisystem.
-* Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
+* Der Benutzer ist am XPlanManagerWeb angemeldet und hat die Berechtigung zum Import von Planarchiven. 
 * Der Systemadministrator hat Zugriff auf die Protokolldateien der o.g. Komponenten.
 
 #### Prüffall 1 
@@ -1482,10 +1470,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer öffnet die html.gfi - Datei [1] | Die Datei wird geöffnet. 
-**02** | Der Benutzer ändert die Ausgabereihenfolge der Objektattribute in der GFI-Vorlage [2] 
+**01** | Der Benutzer öffnet die html.gfi - Datei [1]. | Die Datei wird geöffnet. 
+**02** | Der Benutzer ändert die Ausgabereihenfolge der Objektattribute in der GFI-Vorlage [2]. 
 **03** | Der Benutzer fügt eine neue Zeile hinzu [3] und speichert die Änderungen.
-**04** | Der Benutzer ruft [4] auf und kontrolliert die Ausgabe auf Lesbarkeit, richtige Wiedergabe der gewünschten Infos und Vollständigkeit | Die Ausgabe ist lesbar und es werden die gewünschten Infos wiedergegeben.
+**04** | Der Benutzer ruft [4] auf und kontrolliert die Ausgabe auf Lesbarkeit, richtige Wiedergabe der gewünschten Infos und Vollständigkeit. | Die Ausgabe ist lesbar und es werden die gewünschten Infos wiedergegeben.
 
 
 
@@ -1510,16 +1498,16 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer ruft [1] (XPlanGML 2) auf | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
-**02** | Der Benutzer startet ein Validations-tool
-**03** | Der Benutzer ersetzt die SchemaLocation
-**04** | Der Benutzer importiert die Response aus Schritt 01
-**05** | Der Benutzer führt eine Schemavalidation durch | Der GetFeature Request ist GML 3.1.1 konform.
-**06** | Der Benutzer ruft [2] (XPlanGML 3) auf | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
-**07** | Der Benutzer startet ein Validations-tool
-**08** | Der Benutzer ersetzt die SchemaLocation
-**09** | Der Benutzer importiert die Response aus Schritt 06
-**10** | Der Benutzer führt eine Schemavalidation durch | Der GetFeature Request ist GML 3.1.1 konform.
+**01** | Der Benutzer ruft [1] (XPlanGML 2) auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
+**02** | Der Benutzer startet ein Validations-tool.
+**03** | Der Benutzer ersetzt die SchemaLocation.
+**04** | Der Benutzer importiert die Response aus Schritt 01.
+**05** | Der Benutzer führt eine Schemavalidation durch. | Der GetFeature Request ist GML 3.1.1 konform.
+**06** | Der Benutzer ruft [2] (XPlanGML 3) auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
+**07** | Der Benutzer startet ein Validations-tool.
+**08** | Der Benutzer ersetzt die SchemaLocation.
+**09** | Der Benutzer importiert die Response aus Schritt 06.
+**10** | Der Benutzer führt eine Schemavalidation durch. | Der GetFeature Request ist GML 3.1.1 konform.
 
 
 **Hinweis:**
@@ -1539,16 +1527,16 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer ruft [1] auf | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
-**02** | Der Benutzer startet ein Validations-tool
-**03** | Der Benutzer ersetzt die SchemaLocation 
-**04** | Der Benutzer importiert die Response aus Schritt 01
-**05** | Der Benutzer führt eine Schemavalidation durch | Der GetFeature Request ist GML konform.
-**06** | Der Benutzer ruft [2] auf | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
-**07** | Der Benutzer startet ein Validations-tool
-**08** | Der Benutzer ersetzt die SchemaLocation 
-**09** | Der Benutzer importiert die Response aus Schritt 05
-**10** | Der Benutzer führt eine Schemavalidation durch | Der GetFeature Request ist GML konform.
+**01** | Der Benutzer ruft [1] auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
+**02** | Der Benutzer startet ein Validations-tool.
+**03** | Der Benutzer ersetzt die SchemaLocation.
+**04** | Der Benutzer importiert die Response aus Schritt 01.
+**05** | Der Benutzer führt eine Schemavalidation durch. | Der GetFeature Request ist GML konform.
+**06** | Der Benutzer ruft [2] auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
+**07** | Der Benutzer startet ein Validations-tool.
+**08** | Der Benutzer ersetzt die SchemaLocation. 
+**09** | Der Benutzer importiert die Response aus Schritt 05.
+**10** | Der Benutzer führt eine Schemavalidation durch. | Der GetFeature Request ist GML konform.
 
 **Hinweis:**
 
