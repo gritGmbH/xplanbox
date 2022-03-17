@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
+package de.latlon.xplan.validator.geometric.inspector.model;
 
 import org.deegree.feature.Feature;
 
@@ -33,11 +33,9 @@ public abstract class GeltungsbereichFeature extends AbstractGeltungsbereichFeat
 
 	/**
 	 * @param feature never <code>null</code>
-	 * @param featureAnalyser used to analyse the feature, never <code>null</code>
 	 */
-	public GeltungsbereichFeature(Feature feature, GeltungsbereichFeatureAnalyser featureAnalyser,
-			double toleranceMetre) {
-		super(feature, featureAnalyser);
+	public GeltungsbereichFeature(Feature feature, double toleranceMetre) {
+		super(feature);
 		this.toleranceMetre = toleranceMetre;
 	}
 

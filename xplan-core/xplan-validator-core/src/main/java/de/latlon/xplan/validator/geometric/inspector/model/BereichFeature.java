@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
+package de.latlon.xplan.validator.geometric.inspector.model;
 
 import org.deegree.feature.Feature;
 
@@ -29,18 +29,17 @@ public class BereichFeature extends GeltungsbereichFeature {
 
 	/**
 	 * @param feature never <code>null</code>
-	 * @param featureAnalyser used to analyse the feature, never <code>null</code>
 	 * @param toleranceMetre
 	 */
-	public BereichFeature(Feature feature, GeltungsbereichFeatureAnalyser featureAnalyser, double toleranceMetre) {
-		super(feature, featureAnalyser, toleranceMetre);
+	public BereichFeature(Feature feature, double toleranceMetre) {
+		super(feature, toleranceMetre);
 	}
 
 	/**
 	 * @return the od of the plan this bereich belongs to.
 	 */
 	public String getPlanId() {
-		return featureAnalyser.getGehortZuPlanId(feature);
+		return getPropertyValue("gehoertZuPlan");
 	}
 
 }
