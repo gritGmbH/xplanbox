@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.commons.feature;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
@@ -135,18 +134,16 @@ public class XPlanFeatureCollectionBuilder {
 		Feature planFeatures = findPlanFeature(featuresOfFirstCollection, xPlanType);
 		String planFeatureNamespaceUri = planFeatures.getName().getNamespaceURI();
 		XPlanVersion version = XPlanVersion.valueOfNamespace(planFeatureNamespaceUri);
-		XPlanAde ade = determineAde(planFeatureNamespaceUri);
 
 		List<XPlanFeatureCollection> xPlanGmlInstances = createListOfXPlanGmlInstances(featuresOfFirstCollection,
-				version, ade);
-		return new XPlanFeatureCollections(version, xPlanType, ade, xPlanGmlInstances);
+				version);
+		return new XPlanFeatureCollections(version, xPlanGmlInstances);
 	}
 
 	private XPlanSingleInstanceFeatureCollection build(FeatureCollection features) {
 		Feature planFeature = findPlanFeature(features, xPlanType);
 		String planFeatureNamespaceUri = planFeature.getName().getNamespaceURI();
 		XPlanVersion version = XPlanVersion.valueOfNamespace(planFeatureNamespaceUri);
-		XPlanAde ade = determineAde(planFeatureNamespaceUri);
 		String name = FeatureCollectionUtils.retrievePlanName(planFeature);
 		String nummer = parsePlanNummer(planFeature);
 		String gkz = parsePlanGemeindeKennzahl(planFeature);
@@ -155,11 +152,11 @@ public class XPlanFeatureCollectionBuilder {
 		if (externalReferenceInfo == null)
 			externalReferenceInfo = new ExternalReferenceScanner().scan(features, version);
 		return new XPlanSingleInstanceFeatureCollection(features, xPlanType, name, nummer, gkz, planReleaseDate,
-				externalReferenceInfo, bboxIn4326, version, ade);
+				externalReferenceInfo, bboxIn4326, version);
 	}
 
 	private List<XPlanFeatureCollection> createListOfXPlanGmlInstances(FeatureCollection featuresOfFirstCollection,
-			XPlanVersion version, XPlanAde ade) {
+			XPlanVersion version) {
 		if (featuresCollections.size() == 1) {
 			return Collections.singletonList(build(featuresOfFirstCollection));
 		}
@@ -173,17 +170,8 @@ public class XPlanFeatureCollectionBuilder {
 			ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceScanner().scan(featureCollection,
 					version);
 			return new XPlanMultipleInstanceFeatureCollection(featureCollection, xPlanType, name, nummer, gkz,
-					planReleaseDate, externalReferenceInfo, bboxIn4326, version, ade);
+					planReleaseDate, externalReferenceInfo, bboxIn4326, version);
 		}).collect(Collectors.toList());
-	}
-
-	private XPlanAde determineAde(String namespaceUri) {
-		try {
-			return XPlanAde.valueOfNamespace(namespaceUri);
-		}
-		catch (IllegalArgumentException e) {
-		}
-		return null;
 	}
 
 	private String parsePlanNummer(Feature planFeature) {

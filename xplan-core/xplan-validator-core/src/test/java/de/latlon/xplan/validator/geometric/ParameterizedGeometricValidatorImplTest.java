@@ -21,7 +21,6 @@
 package de.latlon.xplan.validator.geometric;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -90,8 +89,7 @@ public class ParameterizedGeometricValidatorImplTest {
 
 	private ValidatorResult validateGeometryAndReturnReport(XPlanArchive archive) throws ValidatorException {
 		XPlanVersion version = archive.getVersion();
-		XPlanAde ade = archive.getAde();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		return new GeometricValidatorImpl().validateGeometry(archive, archive.getCrs(), schema, true, SKIP_OPTIONS);
 	}
 

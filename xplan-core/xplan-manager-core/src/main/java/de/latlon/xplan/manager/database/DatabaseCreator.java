@@ -112,7 +112,6 @@ public class DatabaseCreator {
 			FileReader xplan3 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan3/create.sql");
 			FileReader xplan40 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan40/create.sql");
 			FileReader xplan41 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan41/create.sql");
-			FileReader xplan41nsm = new FileReader(wsDirectory.toString() + "/sql/fix/xplan41nsm/create.sql");
 			FileReader xplan50 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan50/create.sql");
 			FileReader xplan51 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan51/create.sql");
 			FileReader xplan52 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan52/create.sql");
@@ -128,7 +127,6 @@ public class DatabaseCreator {
 			FileReader xplan52pre = new FileReader(wsDirectory.toString() + "/sql/pre/xplan52/create.sql");
 			FileReader xplan53pre = new FileReader(wsDirectory.toString() + "/sql/pre/xplan53/create.sql");
 			FileReader xplan54pre = new FileReader(wsDirectory.toString() + "/sql/pre/xplan54/create.sql");
-			FileReader xplan41nsmpre = new FileReader(wsDirectory.toString() + "/sql/pre/xplan41nsm/create.sql");
 			FileReader xplanSynpre = new FileReader(wsDirectory.toString() + "/sql/pre/xplansyn/create.sql");
 
 			FileReader xplan3archive = new FileReader(wsDirectory.toString() + "/sql/archive/xplan3/create.sql");
@@ -139,8 +137,6 @@ public class DatabaseCreator {
 			FileReader xplan52archive = new FileReader(wsDirectory.toString() + "/sql/archive/xplan52/create.sql");
 			FileReader xplan53archive = new FileReader(wsDirectory.toString() + "/sql/archive/xplan53/create.sql");
 			FileReader xplan54archive = new FileReader(wsDirectory.toString() + "/sql/archive/xplan54/create.sql");
-			FileReader xplan41nsmarchive = new FileReader(
-					wsDirectory.toString() + "/sql/archive/xplan41nsm/create.sql");
 			FileReader xplanSynarchive = new FileReader(wsDirectory.toString() + "/sql/archive/xplansyn/create.sql");
 
 			ScriptRunner runner = new ScriptRunner(connection);
@@ -149,7 +145,6 @@ public class DatabaseCreator {
 			runner.runScript(xplan3);
 			runner.runScript(xplan40);
 			runner.runScript(xplan41);
-			runner.runScript(xplan41nsm);
 			runner.runScript(xplan50);
 			runner.runScript(xplan51);
 			runner.runScript(xplan52);
@@ -166,7 +161,6 @@ public class DatabaseCreator {
 			runner.runScript(xplan52pre);
 			runner.runScript(xplan53pre);
 			runner.runScript(xplan54pre);
-			runner.runScript(xplan41nsmpre);
 			runner.runScript(xplanSynpre);
 
 			runner.runScript(xplan3archive);
@@ -177,7 +171,6 @@ public class DatabaseCreator {
 			runner.runScript(xplan52archive);
 			runner.runScript(xplan53archive);
 			runner.runScript(xplan54archive);
-			runner.runScript(xplan41nsmarchive);
 			runner.runScript(xplanSynarchive);
 		}
 	}

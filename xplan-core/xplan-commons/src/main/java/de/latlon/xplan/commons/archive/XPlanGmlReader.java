@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.commons.archive;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.util.XPlanVersionUtils;
@@ -41,7 +40,6 @@ import java.io.InputStream;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanType.valueOfDefaultNull;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static java.lang.String.format;
 import static org.deegree.commons.xml.stax.XMLStreamUtils.skipStartDocument;
 
@@ -57,8 +55,6 @@ public class XPlanGmlReader {
 	private XPlanVersion version;
 
 	private XPlanType type;
-
-	private XPlanAde ade;
 
 	private ICRS crs;
 
@@ -85,8 +81,7 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, districts,
-				hasMultipleXPlanElements);
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, districts, hasMultipleXPlanElements);
 		return new Pair<>(new MainZipEntry(bos.toByteArray(), entry.getName()), archiveMetadata);
 	}
 
@@ -110,8 +105,7 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, ade, crs, districts,
-				hasMultipleXPlanElements);
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, districts, hasMultipleXPlanElements);
 		return new Pair<>(new MainZipEntry(bos.toByteArray(), name), archiveMetadata);
 	}
 
@@ -193,7 +187,6 @@ public class XPlanGmlReader {
 
 		setVersion(namespaceURI);
 		setType(localName);
-		setAde(namespaceURI);
 		setCrs(reader);
 
 		if (namespaceURI != null && !namespaceURI.isEmpty()) {
@@ -249,18 +242,6 @@ public class XPlanGmlReader {
 			else {
 				hasMultipleXPlanElements = true;
 			}
-		}
-	}
-
-	private void setAde(String namespaceUri) {
-		if (namespaceUri == null)
-			return;
-		try {
-			if (ade == null && XPLAN_41.equals(version)) {
-				ade = XPlanAde.valueOfNamespace(namespaceUri);
-			}
-		}
-		catch (IllegalArgumentException e) {
 		}
 	}
 

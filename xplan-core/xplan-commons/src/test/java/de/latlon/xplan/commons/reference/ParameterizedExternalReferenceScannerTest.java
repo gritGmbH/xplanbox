@@ -20,25 +20,22 @@
  */
 package de.latlon.xplan.commons.reference;
 
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
-import static org.junit.Assert.assertEquals;
-
-import javax.xml.stream.XMLStreamReader;
-
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
-
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLStreamReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import javax.xml.stream.XMLStreamReader;
+
+import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -62,10 +59,9 @@ public class ParameterizedExternalReferenceScannerTest {
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
 		XPlanVersion version = archive.getVersion();
-		XPlanAde ade = archive.getAde();
 		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
 		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, ade));
+		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
 		FeatureCollection fc = gmlReader.readFeatureCollection();
 		gmlReader.getIdContext().resolveLocalRefs();
 		gmlReader.close();

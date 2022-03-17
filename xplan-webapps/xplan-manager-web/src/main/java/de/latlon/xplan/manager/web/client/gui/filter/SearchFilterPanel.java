@@ -20,20 +20,6 @@
  */
 package de.latlon.xplan.manager.web.client.gui.filter;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NAME;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NUMBER;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -46,12 +32,24 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.filter.FreeTextFilter;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.gui.PlanListColumnType;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.LEGISLATIONSTATUS;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NAME;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.NUMBER;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.RELEASEDATE;
+import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.TYPE;
 
 /**
  * GUI component containing the search filter of the plan list.
@@ -168,7 +166,6 @@ public class SearchFilterPanel extends AbstractFilterPanel implements ResetableF
 		addColumn(labelsToColumns, messages.legislationStatus(), LEGISLATIONSTATUS, configuration);
 		addColumn(labelsToColumns, messages.releaseDate(), RELEASEDATE, configuration);
 		addColumn(labelsToColumns, messages.importDate(), IMPORTDATE, configuration);
-		addColumn(labelsToColumns, messages.ade(), ADE, configuration);
 		return labelsToColumns;
 	}
 

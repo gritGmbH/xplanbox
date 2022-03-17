@@ -20,8 +20,6 @@
  */
 package de.latlon.xplan.transform.cli;
 
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.cli.DatabaseUtils;
@@ -38,7 +36,6 @@ import de.latlon.xplan.transform.cli.result.FileTransformationResultWriter;
 import de.latlon.xplan.transform.cli.result.TransformationResultWriter;
 import de.latlon.xplan.transform.cli.result.TransformingValidationResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
-import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -115,9 +112,8 @@ public class TransformationSynchronizer implements Synchronizer {
 					LOG.info("Plan with id {} is valid.", id);
 					XPlanType type = XPlanType.valueOf(xPlan.getType());
 					PlanStatus planStatus = PlanStatus.findByMessage(newPlanStatus);
-					XPlanAde ade = xPlan.getAde() != null ? XPlanAde.valueOf(xPlan.getAde()) : null;
 					XPlanFeatureCollection transformedXPlanFc = createXPlanFeatureCollection(
-							validationResult.getTransformationResult(), type, ade);
+							validationResult.getTransformationResult(), type);
 					xPlanDao.insertXPlanFeatureCollection(transformedXPlanFc, planStatus);
 				}
 				else {
@@ -142,7 +138,7 @@ public class TransformationSynchronizer implements Synchronizer {
 		try {
 			List<String> fids = selectIds(conn, logTableId);
 			PlanStatus planStatus = PlanStatus.findByMessage(oldPlanStatus);
-			xPlanDao.deleteXPlanFeatureCollection(xPlanManagerId, XPlanVersion.XPLAN_51, null, planStatus, fids);
+			xPlanDao.deleteXPlanFeatureCollection(xPlanManagerId, XPlanVersion.XPLAN_51, planStatus, fids);
 		}
 		catch (Exception e) {
 			throw new SynchronizationException(e);
@@ -176,11 +172,10 @@ public class TransformationSynchronizer implements Synchronizer {
 	}
 
 	private XPlanFeatureCollection createXPlanFeatureCollection(TransformationResult transformationResult,
-			XPlanType type, XPlanAde ade) throws Exception {
+			XPlanType type) throws Exception {
 		byte[] resultAsBytes = transformationResult.getTransformationResult();
 		XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
 		try (InputStream inputStream = new ByteArrayInputStream(resultAsBytes)) {
-			AppSchema appSchema = XPlanSchemas.getInstance().getAppSchema(resultVersion, ade);
 			return xPlanGmlParser.parseXPlanFeatureCollection(inputStream, resultVersion, type);
 		}
 	}

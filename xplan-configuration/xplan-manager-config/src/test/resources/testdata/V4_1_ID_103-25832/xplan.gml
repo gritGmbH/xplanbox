@@ -23,7 +23,7 @@
 <!--Erzeugt mit KIT (www.kit.edu) XPlanGML-Toolbox, Erstellungsdatum: 06/10/13 -->
 <xplan:XPlanAuszug xmlns:adv="http://www.adv-online.de/nas"
 	xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:xplan="http://www.xplanung.de/xplangml/4/1" xmlns:xplanNSM="http://www.xplanung.de/4/1/ADE_NSM"
+	xmlns:xplan="http://www.xplanung.de/xplangml/4/1"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.xplanung.de/xplangml/4/1 ../../../../21_systemspezifikation/schemas/xplangml411/XPlanung-Operationen.xsd"
 	xmlns:wfs="http://www.opengis.net/wfs" gml:id="GML_597bdedb-0d50-41f9-9cd3-e021ee53e2e9">

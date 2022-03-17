@@ -4,8 +4,7 @@
         attributeFormDefault="unqualified">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
   <!--=========================================================================================-->
-  <!-- Erweitertes Schema für XPLANSYN mit NSM-Unterstützung -->
-  <!-- Basis: XPlanGML_Regionalplanung_NSM_ADE.xsd, Erstellungsdatum: 11.09.2013 11:07:20 -->
+  <!-- Erweitertes Schema für XPLANSYN -->
   <!-- Erstellt von fitzke@lat-lon.de, 2014-03-25 -->
   <!--=========================================================================================-->
   <element name="BP_AbgrabungsFlaeche" substitutionGroup="gml:AbstractFeature">
@@ -12547,8 +12546,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="weitererAchsenTyp_NSM" minOccurs="0" type="string" />
-            <element name="weitererAchsenTyp_NSMCode" minOccurs="0" type="string" />
             <element name="gebietsTyp" minOccurs="0" type="string" />
             <element name="gebietsTypCode" minOccurs="0" type="string" />
             <element name="kuestenmeer" minOccurs="0" type="string" />
@@ -12652,8 +12649,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="zweckbestimmungBS_NSM" minOccurs="0" type="string" />
-            <element name="zweckbestimmungBS_NSMCode" minOccurs="0" type="string" />
             <element name="kuestenmeer" minOccurs="0" type="string" />
             <element name="bedeutsamkeit" minOccurs="0" type="string" />
             <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
@@ -12773,10 +12768,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="detailTyp_NSM" minOccurs="0" type="string" />
-            <element name="detailTyp_NSMCode" minOccurs="0" type="string" />
-            <element name="status_NSM" minOccurs="0" type="string" />
-            <element name="status_NSMCode" minOccurs="0" type="string" />
             <element name="kuestenmeer" minOccurs="0" type="string" />
             <element name="bedeutsamkeit" minOccurs="0" type="string" />
             <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
@@ -12980,108 +12971,6 @@
       </complexContent>
     </complexType>
   </element>
-  <!-- Erweiterte Kopie von RP_Entsorgung mit NSM-Erweiterung -->
-  <element name="RP_NSM_Abfallentsorgung" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="typAE_NSM" minOccurs="0" type="string" />
-            <element name="typAE_NSMCode" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_Entsorgung mit NSM-Erweiterung -->
-  <element name="RP_NSM_Abwasser" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="typAW_NSM" minOccurs="0" type="string" />
-            <element name="typAW_NSMCode" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
   <element name="RP_Entwicklungsschwerpunkte" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
@@ -13167,8 +13056,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="zweckbestimmungFW_NSM" minOccurs="0" type="string" />
-            <element name="zweckbestimmungFW_NSMCode" minOccurs="0" type="string" />
             <element name="kuestenmeer" minOccurs="0" type="string" />
             <element name="bedeutsamkeit" minOccurs="0" type="string" />
             <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
@@ -13346,206 +13233,6 @@
       </complexContent>
     </complexType>
   </element>
-  <!-- Erweiterte Kopie von RP_FreizeitErholung mit NSM-Erweiterung -->
-  <element name="RP_NSM_Erholung" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="typET_NSM" minOccurs="0" type="string" />
-            <element name="typET_NSMCode" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_FreizeitErholung mit NSM-Erweiterung -->
-  <element name="RP_NSM_RegionalBedeutsamerWanderweg" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="typRBW_NSM" minOccurs="0" type="string" />
-            <element name="typRBW_NSMCode" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_FreizeitErholung mit NSM-Erweiterung -->
-  <element name="RP_NSM_RegionalBedeutsameSportanlage" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="typRBS_NSM" minOccurs="0" type="string" />
-            <element name="typRBS_NSMCode" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_FreizeitErholung mit NSM-Erweiterung -->
-  <element name="RP_NSM_Tourismus" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="typTT_NSM" minOccurs="0" type="string" />
-            <element name="typTT_NSMCode" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
   <element name="RP_GemeindeFunktionSiedlungsentwicklung" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
@@ -13591,108 +13278,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_GemeindeFunktionSiedlungsentwicklung mit NSM-Erweiterung -->
-  <element name="RP_NSM_ASB" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="funktion" minOccurs="0" type="string" />
-            <element name="funktionCode" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="zweckbindungASB_NSM" minOccurs="0" type="string" />
-            <element name="zweckbindungASB_NSMCode" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_GemeindeFunktionSiedlungsentwicklung mit NSM-Erweiterung -->
-  <element name="RP_NSM_GIB" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="funktion" minOccurs="0" type="string" />
-            <element name="funktionCode" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="zweckbindungGIB_NSM" minOccurs="0" type="string" />
-            <element name="zweckbindungGIB_NSMCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14380,9 +13965,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema mehrfach, hier in eine Zeichenkette zusammengefasst: -->
-            <element name="typLS_NSM" minOccurs="0" type="string" />
-            <element name="typLS_NSMCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -14432,8 +14014,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="typLW_NSM" minOccurs="0" type="string" />
-            <element name="typLW_NSMCode" minOccurs="0" type="string" />
             <element name="kuestenmeer" minOccurs="0" type="string" />
             <element name="bedeutsamkeit" minOccurs="0" type="string" />
             <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
@@ -15528,105 +15108,6 @@
       </complexContent>
     </complexType>
   </element>
-  <!-- Erweiterte Kopie von RP_NaturLandschaft mit NSM-Erweiterung -->
-  <element name="RP_NSM_Landschaftsschutz" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="typLS_NSM" minOccurs="0" type="string" />
-            <element name="typLS_NSMCode" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_NaturLandschaft mit NSM-Erweiterung -->
-  <element name="RP_NSM_Naturschutz" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="typNS_NSM" minOccurs="0" type="string" />
-            <element name="typNS_NSMCode" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
   <element name="RP_NaturschutzrechtlichesSchutzgebiet" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
@@ -15671,9 +15152,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema mehrfach, hier in eine Zeichenkette zusammengefasst: -->
-            <element name="besondereZweckbestimmungNSG_NSM" minOccurs="0" type="string" />
-            <element name="besondereZweckbestimmungNSG_NSMCode" minOccurs="0" type="string" />
             <element name="gebietsTyp" minOccurs="0" type="string" />
             <element name="gebietsTypCode" minOccurs="0" type="string" />
             <element name="kuestenmeer" minOccurs="0" type="string" />
@@ -15970,8 +15448,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="typRK_NSM" minOccurs="0" type="string" />
-            <element name="typRK_NSMCode" minOccurs="0" type="string" />
             <element name="gebietsTyp" minOccurs="0" type="string" />
             <element name="gebietsTypCode" minOccurs="0" type="string" />
             <element name="kuestenmeer" minOccurs="0" type="string" />
@@ -16104,114 +15580,6 @@
             <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
             <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="externeReferenz" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_Rohstoffsicherung mit NSM-Erweiterung -->
-  <element name="RP_NSM_OberflaechennaheBodenschaetze" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="abbaugut" minOccurs="0" type="string" />
-            <element name="abbaugutCode" minOccurs="0" type="string" />
-            <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="folgenutzung_NSM" minOccurs="0" type="string" />
-            <element name="folgenutzung_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="folgenutzungText_NSM" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="zeitstufe_NSM" minOccurs="0" type="string" />
-            <element name="zeitstufe_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="zeitstufeText_NSM" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_Rohstoffsicherung mit NSM-Erweiterung -->
-  <element name="RP_NSM_TiefliegendeRohstoffe" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="abbaugut" minOccurs="0" type="string" />
-            <element name="abbaugutCode" minOccurs="0" type="string" />
-            <element name="istAusgleichsgebiet" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
@@ -16756,8 +16124,6 @@
             <element name="rechtscharakterCode" minOccurs="0" type="string" />
             <element name="konkretisierung" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="sperrgebietTyp_NSM" minOccurs="0" type="string" />
-            <element name="sperrgebietTyp_NSMCode" minOccurs="0" type="string" />
             <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
             <element name="gebietsTyp" minOccurs="0" type="string" />
             <element name="gebietsTypCode" minOccurs="0" type="string" />
@@ -16984,293 +16350,6 @@
       </complexContent>
     </complexType>
   </element>
-  <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_Luftverkehr" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="luftverkehrTyp_NSM" minOccurs="0" type="string" />
-            <element name="luftverkehrTyp_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="sonstTyp_NSM" minOccurs="0" type="string" />
-            <element name="sonstTyp_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="status_NSM" minOccurs="0" type="string" />
-            <element name="status_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="bezeichnung_NSM" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_Schienenverkehr" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="schienenverkehrTyp_NSM" minOccurs="0" type="string" />
-            <element name="schienenverkehrTyp_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="sonstTyp_NSM" minOccurs="0" type="string" />
-            <element name="sonstTyp_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="status_NSM" minOccurs="0" type="string" />
-            <element name="status_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="bezeichnung_NSM" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_SonstVerkehr" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="sonstVerkehrTyp_NSM" minOccurs="0" type="string" />
-            <element name="sonstVerkehrTyp_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="bezeichnung_NSM" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_Strassenverkehr" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="strassenverkehrTyp_NSM" minOccurs="0" type="string" />
-            <element name="strassenverkehrTyp_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="sonstTyp_NSM" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="status_NSM" minOccurs="0" type="string" />
-            <element name="status_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="bezeichnung_NSM" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <!-- Erweiterte Kopie von RP_Verkehr mit NSM-Erweiterung -->
-  <element name="RP_NSM_Wasserverkehr" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" type="string" />
-            <element name="gmlName" minOccurs="0" type="string" />
-            <element name="gmlDescription" minOccurs="0" type="string" />
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer" />
-            <element name="gueltigkeitBeginn" minOccurs="0" type="date" />
-            <element name="gueltigkeitEnde" minOccurs="0" type="date" />
-            <element name="wmsSortDate" minOccurs="0" type="date" />
-            <element name="xpVersion" type="string" />
-            <element name="xpPlanType" type="string" />
-            <element name="xpPlanName" type="string" />
-            <element name="uuid" minOccurs="0" type="string" />
-            <element name="text" minOccurs="0" type="string" />
-            <element name="rechtsstand" minOccurs="0" type="string" />
-            <element name="rechtsstandCode" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-            <element name="gesetzlicheGrundlageCode" minOccurs="0" type="string" />
-            <element name="textAbschnitte" minOccurs="0" type="string" />
-            <element name="begruendungAbschnitte" minOccurs="0" type="string" />
-            <element name="gliederung1" minOccurs="0" type="string" />
-            <element name="gliederung2" minOccurs="0" type="string" />
-            <element name="ebene" minOccurs="0" type="integer" />
-            <element name="gehoertZuBereich" minOccurs="0" type="string" />
-            <element name="informell" minOccurs="0" type="string" />
-            <element name="rechtsverbindlich" minOccurs="0" type="string" />
-            <element name="hatGenerAttribut" minOccurs="0" type="string" />
-            <element name="rechtscharakter" minOccurs="0" type="string" />
-            <element name="rechtscharakterCode" minOccurs="0" type="string" />
-            <element name="konkretisierung" minOccurs="0" type="string" />
-            <element name="position" minOccurs="0" type="gml:GeometryPropertyType" />
-            <element name="gebietsTyp" minOccurs="0" type="string" />
-            <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <element name="typ" minOccurs="0" type="string" />
-            <element name="typCode" minOccurs="0" type="string" />
-            <element name="hoehenangabe" minOccurs="0" type="string" />
-            <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
-            <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="wasserverkehrTyp_NSM" minOccurs="0" type="string" />
-            <element name="wasserverkehrTyp_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="sonstTyp_NSM" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="status_NSM" minOccurs="0" type="string" />
-            <element name="status_NSMCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema einfach, wie hier auch: -->
-            <element name="bezeichnung_NSM" minOccurs="0" type="string" />
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
   <element name="RP_VorbHochwasserschutz" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
@@ -17317,9 +16396,6 @@
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
             <element name="gebietsTyp" minOccurs="0" type="string" />
             <element name="gebietsTypCode" minOccurs="0" type="string" />
-            <!-- Im Originalschema mehrfach, hier in eine Zeichenkette zusammengefasst: -->
-            <element name="zweckbestimmungHWS_NSM" minOccurs="0" type="string" />
-            <element name="zweckbestimmungHWS_NSMCode" minOccurs="0" type="string" />
           </sequence>
         </extension>
       </complexContent>
@@ -17371,8 +16447,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="zweckbestimmungWS_NSM" minOccurs="0" type="string" />
-            <element name="zweckbestimmungWS_NSMCode" minOccurs="0" type="string" />
             <element name="kuestenmeer" minOccurs="0" type="string" />
             <element name="bedeutsamkeit" minOccurs="0" type="string" />
             <element name="bedeutsamkeitCode" minOccurs="0" type="string" />
@@ -17692,8 +16766,6 @@
             <element name="gehoertNachrichtlichZuBereich" minOccurs="0" type="string" />
             <element name="wirdDargestelltDurch" minOccurs="0" type="string" />
             <element name="gehoertZuRP_Bereich" minOccurs="0" type="string" />
-            <element name="detailFunktion_NSM" minOccurs="0" type="string" />
-            <element name="detailFunktion_NSMCode" minOccurs="0" type="string" />
             <element name="gebietsTyp" minOccurs="0" type="string" />
             <element name="gebietsTypCode" minOccurs="0" type="string" />
             <element name="kuestenmeer" minOccurs="0" type="string" />

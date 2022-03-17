@@ -92,7 +92,7 @@ public class ValidatorWmsManager {
 	public int insert(XPlanFeatureCollection featureCollection) throws MapPreviewCreationException {
 		try {
 			int managerId = PLANID++;
-			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN, null);
+			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 			FeatureCollection fc = synthesizer.synthesize(featureCollection);
 			featureCollectionManipulator.addPlanIdToFeatures(fc, synSchema, managerId);
 			writeSynFeatureCollectionAsGml(fc, synSchema);

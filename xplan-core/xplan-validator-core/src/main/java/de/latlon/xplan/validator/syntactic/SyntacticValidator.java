@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.validator.syntactic;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
@@ -44,7 +43,7 @@ public interface SyntacticValidator {
 	 */
 	ValidatorResult validateSyntax(XPlanArchive archive);
 
-	ValidatorResult validateSyntax(InputStream is, XPlanVersion version, XPlanAde ade);
+	ValidatorResult validateSyntax(InputStream is, XPlanVersion version);
 
 	/**
 	 * Validate all XLink-References in the plan

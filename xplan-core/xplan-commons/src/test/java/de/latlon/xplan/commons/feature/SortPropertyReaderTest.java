@@ -20,6 +20,21 @@
  */
 package de.latlon.xplan.commons.feature;
 
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.configuration.SortConfiguration;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.gml.GMLStreamReader;
+import org.junit.Test;
+
+import javax.xml.stream.XMLStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
@@ -30,25 +45,6 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.xml.stream.XMLStreamReader;
-
-import org.deegree.feature.FeatureCollection;
-import org.deegree.gml.GMLStreamReader;
-import org.junit.Test;
-
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.commons.configuration.SortConfiguration;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -118,10 +114,9 @@ public class SortPropertyReaderTest {
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
 		XPlanVersion version = archive.getVersion();
-		XPlanAde ade = archive.getAde();
 		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
 		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, ade));
+		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
 		FeatureCollection fc = gmlReader.readFeatureCollection();
 		gmlReader.getIdContext().resolveLocalRefs();
 		gmlReader.close();

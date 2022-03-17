@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.transform.cli;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.cli.SynchronizationException;
@@ -63,7 +62,6 @@ public class TransformingValidator {
 		String id = plan.getId();
 		LOG.info("Transform plan with id {}", id);
 		XPlanType type = XPlanType.valueOf(plan.getType());
-		XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf(plan.getAde()) : null;
 		try {
 			FeatureCollection features = xPlanDao.retrieveFeatureCollection(plan);
 			if (features.isEmpty()) {
@@ -73,7 +71,7 @@ public class TransformingValidator {
 
 			TransformationResult transformationResult = xPlanGmlTransformer.transform(xPlanFeatureCollection);
 			if (transformationResult != null) {
-				SyntacticValidatorResult validatorResult = validateSyntactically(transformationResult, ade);
+				SyntacticValidatorResult validatorResult = validateSyntactically(transformationResult);
 				if (validatorResult.isValid()) {
 					LOG.info("Plan with id {} is valid.", id);
 				}
@@ -95,12 +93,12 @@ public class TransformingValidator {
 		return null;
 	}
 
-	private SyntacticValidatorResult validateSyntactically(TransformationResult transformationResult, XPlanAde ade)
+	private SyntacticValidatorResult validateSyntactically(TransformationResult transformationResult)
 			throws IOException {
 		byte[] transformedPlan = transformationResult.getTransformationResult();
 		try (InputStream is = new ByteArrayInputStream(transformedPlan)) {
 			XPlanVersion version = transformationResult.getVersionOfTheResult();
-			return (SyntacticValidatorResult) new SyntacticValidatorImpl().validateSyntax(is, version, ade);
+			return (SyntacticValidatorResult) new SyntacticValidatorImpl().validateSyntax(is, version);
 		}
 	}
 

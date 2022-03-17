@@ -112,7 +112,7 @@ public class ReSynthesizer {
 	private void addInternalId(XPlan plan, FeatureCollection synthesizedFeatureCollection) {
 		String internalId = plan.getInternalId();
 		if (internalId != null) {
-			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN, null);
+			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 			featureCollectionManipulator.addInternalId(synthesizedFeatureCollection, synSchema, internalId);
 		}
 	}

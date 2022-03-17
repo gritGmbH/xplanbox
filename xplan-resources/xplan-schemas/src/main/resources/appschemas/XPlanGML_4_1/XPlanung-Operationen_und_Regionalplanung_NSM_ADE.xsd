@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.xplanung.de/xplangml/4/1" elementFormDefault="qualified" version="4.1">
-  <include schemaLocation="XPlanung-Operationen.xsd" />
-  <import namespace="http://www.xplanung.de/4/1/ADE_NSM" schemaLocation="NSM/XPlanGML_Regionalplanung_NSM_ADE.xsd" />
-</schema>

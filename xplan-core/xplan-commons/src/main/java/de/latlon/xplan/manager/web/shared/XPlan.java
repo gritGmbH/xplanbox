@@ -61,8 +61,6 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
 	private Date importDate;
 
-	private String ade;
-
 	private Boolean validated = false;
 
 	private Boolean valid = false;
@@ -211,14 +209,6 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
 	public void setLegislationStatus(String legislationStatus) {
 		this.legislationStatus = legislationStatus;
-	}
-
-	public String getAde() {
-		return ade;
-	}
-
-	public void setAde(String ade) {
-		this.ade = ade;
 	}
 
 	public String getAdditionalType() {
