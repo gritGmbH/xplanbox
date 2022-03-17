@@ -72,6 +72,26 @@ public class OptimisedFlaechenschlussInspectorTest {
 		assertThat(isValid, is(false));
 	}
 
+	@Test
+	public void testCheckFlaechenschluss_equalFlaechenschlussGeometries() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("equalFlaechenschlussGeometries.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(flaechenschlussInspector.getErrors().size(), is(1));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_LueckeGeltungsbereich() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("xplan52_Flaechenschlussfehler_Luecke_Geltungsbereich.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(3));
+	}
+
 	private OptimisedFlaechenschlussInspector readFeatures(XPlanArchive archive)
 			throws XMLStreamException, UnknownCRSException {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
@@ -95,6 +115,12 @@ public class OptimisedFlaechenschlussInspectorTest {
 	private XPlanArchive getTestArchive(String name) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
+	}
+
+	private XPlanArchive getLocalTestArchive(String name) throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		return archiveCreator.createXPlanArchiveFromGml(name,
+				OptimisedFlaechenschlussInspector.class.getResourceAsStream(name));
 	}
 
 }

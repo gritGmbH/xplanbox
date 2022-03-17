@@ -6,8 +6,10 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
 * Kommandozeilenwerkzeuge:
  ** xplan-manager-cli-<VERSION>.zip
  ** xplan-validator-cli-<VERSION>.zip
- ** xplan-update-database-<VERSION>.zip
+ ** xplan-transform-cli-<VERSION>.zip
+ ** xplan-validatedb-cli-<VERSION>.zip
  ** xplan-evaluation-schema-synchronize-cli-<VERSION>.zip
+ ** xplan-update-database-<VERSION>.zip
 * Web-Anwendungen und Web-Dienste und zugehörige Konfigurationen:
 
 [width="100%",cols="40%,60%",options="header"]

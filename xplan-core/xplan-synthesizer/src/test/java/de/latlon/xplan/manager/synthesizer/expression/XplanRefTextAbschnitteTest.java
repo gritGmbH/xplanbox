@@ -44,7 +44,7 @@ public class XplanRefTextAbschnitteTest {
 		XplanRefTextAbschnitte expr = new XplanRefTextAbschnitte();
 		PrimitiveValue abschnitte = expr.evaluate(feature, features);
 		assertThat(abschnitte.getAsText(), is(
-				"[/getAttachment?featureID=XP_TEXTABSCHNITT_1&filename=text1.pdf][/getAttachment?featureID=XP_TEXTABSCHNITT_2&filename=text2.pdf]"));
+				"[/getAttachment?featureID=XP_TEXTABSCHNITT_1&filename=text1.pdf | Externe Referenz][/getAttachment?featureID=XP_TEXTABSCHNITT_2&filename=text2.pdf | Externe Referenz]"));
 	}
 
 	@Test

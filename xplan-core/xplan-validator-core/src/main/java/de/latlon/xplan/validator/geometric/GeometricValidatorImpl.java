@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -23,10 +23,10 @@ package de.latlon.xplan.validator.geometric;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
-import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
 import de.latlon.xplan.validator.geometric.inspector.flaechenschluss.OptimisedFlaechenschlussInspector;
+import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
@@ -64,10 +64,15 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
 	public static final String SKIP_GELTUNGSBEREICH_OPTION = "skip-geltungsbereich";
 
+	public static final String SKIP_LAUFRICHTUNG_OPTION = "skip-laufrichtung";
+
 	public static final ValidationOption SKIP_FLAECHENSCHLUSS = new ValidationOption(SKIP_FLAECHENSCHLUSS_OPTION,
 			Boolean.toString(true));
 
 	public static final ValidationOption SKIP_GELTUNGSBEREICH = new ValidationOption(SKIP_GELTUNGSBEREICH_OPTION,
+			Boolean.toString(true));
+
+	public static final ValidationOption SKIP_LAUFRICHTUNG = new ValidationOption(SKIP_LAUFRICHTUNG_OPTION,
 			Boolean.toString(true));
 
 	public static final ArrayList<ValidationOption> SKIP_OPTIONS = new ArrayList<>();
@@ -109,7 +114,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
 		long begin = System.currentTimeMillis();
 		LOG.info("- Einlesen der Features (+ Geometrievalidierung)...");
-		XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector(xmlStream);
+		boolean skipOrientation = isOptionTrue(voOptions, SKIP_LAUFRICHTUNG_OPTION);
+		XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector(xmlStream, skipOrientation);
 		List<GeometricFeatureInspector> featureInspectors = createInspectors(archive.getVersion(), voOptions);
 		AenderungenInspector aenderungenInspector = new AenderungenInspector();
 		GMLStreamReader gmlStream = createGmlStreamReader(archive, crs, schema, xmlStream, geometryInspector,
@@ -143,19 +149,17 @@ public class GeometricValidatorImpl implements GeometricValidator {
 	}
 
 	private void checkAndAddRules(GeometricFeatureInspector fi, ValidatorResult result) {
-		boolean isValid = fi.checkGeometricRule();
-		if (!isValid) {
-			result.addErrors(fi.getErrors());
-			result.addWarnings(fi.getWarnings());
-			result.addBadGeometries(fi.getBadGeometries());
-		}
+		fi.checkGeometricRule();
+		result.addErrors(fi.getErrors());
+		result.addWarnings(fi.getWarnings());
+		result.addBadGeometries(fi.getBadGeometries());
 	}
 
 	private List<GeometricFeatureInspector> createInspectors(XPlanVersion version, List<ValidationOption> voOptions) {
 		List<GeometricFeatureInspector> inspectors = new ArrayList<>();
-		if (!isSkipped(voOptions, SKIP_FLAECHENSCHLUSS_OPTION))
+		if (!isOptionTrue(voOptions, SKIP_FLAECHENSCHLUSS_OPTION))
 			inspectors.add(new OptimisedFlaechenschlussInspector(version));
-		if (!isSkipped(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
+		if (!isOptionTrue(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
 			inspectors.add(new GeltungsbereichInspector());
 		return inspectors;
 	}
@@ -220,7 +224,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		result.elapsed = System.currentTimeMillis() - begin;
 	}
 
-	private boolean isSkipped(List<ValidationOption> voOptions, String optionName) {
+	private boolean isOptionTrue(List<ValidationOption> voOptions, String optionName) {
 		if (voOptions == null)
 			return false;
 		for (ValidationOption voOption : voOptions) {

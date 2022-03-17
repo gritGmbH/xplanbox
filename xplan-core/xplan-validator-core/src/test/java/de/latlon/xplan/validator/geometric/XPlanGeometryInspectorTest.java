@@ -225,14 +225,28 @@ public class XPlanGeometryInspectorTest {
 		assertThat(badGeometries.size(), is(2));
 	}
 
+	@Test
+	public void testInspect_InvalidOrientation_skipOrientation() throws Exception {
+		Geometry geometryToInspect = readGeometry("polygon-orientation-invalid.gml");
+		XPlanGeometryInspector inspector = createInspectorWithMockedStream(true);
+		inspector.inspect(geometryToInspect);
+
+		List<BadGeometry> badGeometries = inspector.getBadGeometries();
+		assertThat(badGeometries.size(), is(0));
+	}
+
 	private Geometry readGeometry(String geometryFile) throws Exception {
 		URL url = XPlanGeometryInspectorTest.class.getResource(geometryFile);
 		return GMLInputFactory.createGMLStreamReader(GML_32, url).readGeometry();
 	}
 
 	private XPlanGeometryInspector createInspectorWithMockedStream() {
+		return createInspectorWithMockedStream(false);
+	}
+
+	private XPlanGeometryInspector createInspectorWithMockedStream(boolean skipOrientation) {
 		XMLStreamReaderWrapper mockXmlStream = mock(XMLStreamReaderWrapper.class);
-		XPlanGeometryInspector inspector = new XPlanGeometryInspector(mockXmlStream);
+		XPlanGeometryInspector inspector = new XPlanGeometryInspector(mockXmlStream, skipOrientation);
 		XPlanGeometryInspector spiedInspector = Mockito.spy(inspector);
 		doAnswer(returnsFirstArg()).when(spiedInspector).createMessage(Mockito.anyString());
 		return spiedInspector;

@@ -21,7 +21,6 @@
 package de.latlon.xplan.validator.report;
 
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
-import de.latlon.xplan.validator.report.badgeometryimg.BadGeometryImgGenerator;
 import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
 import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
 import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
@@ -46,8 +45,6 @@ public class ReportArchiveGenerator {
 	private final PdfReportGenerator pdfGenerator = new PdfReportGenerator();
 
 	private final HtmlReportGenerator htmlGenerator = new HtmlReportGenerator();
-
-	private final BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
 
 	private final ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
 
@@ -77,7 +74,6 @@ public class ReportArchiveGenerator {
 			addXmlEntry(report, validationName, zipOutStream);
 			addHtmlEntry(report, validationName, zipOutStream);
 			addPdfEntry(report, validationName, zipOutStream);
-			addPNGEntry(report, validationName, zipOutStream);
 			addShapeDirectoryEntry(report, validationName, validationReportDirectory, zipOutStream);
 			return validationReportDirectory;
 		}
@@ -108,16 +104,6 @@ public class ReportArchiveGenerator {
 		zipOutStream.putNextEntry(xmlEntry);
 		htmlGenerator.generateHtmlReport(report, zipOutStream);
 		zipOutStream.closeEntry();
-	}
-
-	private void addPNGEntry(ValidatorReport report, String validationName, ZipOutputStream zipOutStream)
-			throws IOException, ReportGenerationException {
-		if (badGeometryImgGenerator.hasBadGeometry(report)) {
-			ZipEntry pngEntry = new ZipEntry(validationName + ".png");
-			zipOutStream.putNextEntry(pngEntry);
-			badGeometryImgGenerator.generateReport(report, zipOutStream);
-			zipOutStream.closeEntry();
-		}
 	}
 
 	private void addShapeDirectoryEntry(ValidatorReport report, String validationName, Path directoryToCreateShapes,

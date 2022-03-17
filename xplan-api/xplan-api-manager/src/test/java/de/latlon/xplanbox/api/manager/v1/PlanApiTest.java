@@ -44,6 +44,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
+import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_V2_JSON;
 import static de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum.FESTGESTELLT;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
@@ -78,6 +79,17 @@ public class PlanApiTest extends JerseyTest {
 				.post(Entity.entity(data, APPLICATION_OCTET_STREAM));
 		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
+	}
+
+	@Test
+	public void verifyThat_PostPlanOctetStream_ReturnsCorrectStatusCodeForValidMediaType_v2()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/plan").request().accept(XPLANBOX_V2_JSON)
+				.post(Entity.entity(data, APPLICATION_OCTET_STREAM));
+		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(XPLANBOX_V2_JSON));
 		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
 	}
 

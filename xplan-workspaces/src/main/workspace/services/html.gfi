@@ -30,10 +30,20 @@
         var WMS_URL = "http://localhost:8080/xplan-wms";
 
         window.onload = function () {
+          updateComplexProperties();
+          updateTextProperties();
+          updateReferenz();
+          updateExterneReferenz();
+        }
+
+        function updateComplexProperties(){
           var complexProperties = document.getElementsByClassName('complexProperty');
           for(var i = 0; i < complexProperties.length; i++) {
             complexProperties[i].innerHTML = complexProperties[i].innerHTML.replace(/\|/g, '<br/>');
           }
+        }
+
+        function updateTextProperties(){
           var textProperties = document.getElementsByClassName('textProperty');
           for(var i = 0; i < textProperties.length; i++) {
             var indexOfPipe = textProperties[i].innerHTML.indexOf('|');
@@ -47,14 +57,56 @@
               textProperties[i].innerHTML = replaceLinks(textProperties[i].innerHTML);
             }
           }
-          var links = document.getElementsByClassName('link');
-          for(var i = 0; i < links.length; i++) {
-              var link = links[i];
-              if(link.href.startsWith('http')){
-                link.href = link;
-              } else {
-                link.href = WMS_URL + link;
-              }
+        }
+
+        function updateReferenz(){
+          var referenzRows = document.getElementsByClassName('referenz');
+          for(var i = 0; i < referenzRows.length; i++) {
+            var referenzRow = referenzRows[i];
+            var referenzKey = referenzRow.getElementsByTagName("td")[0];
+            var referenzProperty = referenzRow.getElementsByTagName("td")[1].getElementsByTagName("a")[0];
+            var indexOfPipe = referenzKey.innerText.indexOf('|');
+            if( indexOfPipe > 0 ) {
+              var newKey = referenzKey.innerText.substring( indexOfPipe + 1, referenzKey.innerText.length ).trim();
+              var newReferenz = referenzKey.innerText.substring( 0, indexOfPipe ).trim();
+              referenzKey.innerText = newKey;
+              replaceReferenz(newReferenz, referenzProperty);
+            } else {
+              referenzKey.innerText = "Externe Referenz";
+              replaceReferenz(referenzKey.innerText, referenzProperty);
+            }
+          }
+        }
+
+        function updateExterneReferenz(){
+          var extRefProperties = document.getElementsByClassName('externeReferenzProperty');
+          for(var i = 0; i < extRefProperties.length; i++) {
+            var indexOfPipe = extRefProperties[i].innerText.indexOf('|');
+            if( indexOfPipe > 0 ) {
+               var referenz = extRefProperties[i].innerText.substring( 0, indexOfPipe ).trim();
+               var label = extRefProperties[i].innerText.substring( indexOfPipe + 1, extRefProperties[i].innerText.length ).trim();
+               replaceReferenzAndLinkText(referenz, label, extRefProperties[i]);
+            } else {
+              replaceReferenzAndLinkText(extRefProperties[i].href, extRefProperties[i].href, extRefProperties[i]);
+            }
+          }
+        }
+
+        function replaceReferenzAndLinkText(referenz, label, referenzProperty){
+          if(referenz.startsWith('http')){
+            referenzProperty.href = referenz;
+            referenzProperty.innerText = label;
+          } else {
+            referenzProperty.href = WMS_URL + referenz;
+            referenzProperty.innerText = label;
+          }
+        }
+
+        function replaceReferenz(referenz, referenzProperty){
+          if(referenz.startsWith('http')){
+            referenzProperty.href = referenz;
+          } else {
+            referenzProperty.href = WMS_URL + referenz;
           }
         }
 
@@ -81,7 +133,8 @@
 		</strong>
       </td>
 </tr>
-<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme,texte,textAbschnitte,begruendungsTexte):property>
+<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,externeReferenz,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme,texte,textAbschnitte,begruendungsTexte):property>
+<?property externeReferenz:externeReferenzProperty>
 <?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme:complexproperty>
 <?property texte,textAbschnitte,begruendungsTexte:texteproperty>
 
@@ -98,9 +151,13 @@
 </tr>
 
 <?template makeitalink>
-<tr>
-  <td <?odd:maybegray>><?name:map propname></td>
-  <td <?odd:maybegray>><a target="_blank" href="<?value>" class="link">Dokument herunterladen</a></td>
+<tr class='referenz'>
+  <td <?odd:maybegray>>
+    <?value>
+  </td>
+  <td <?odd:maybegray>>
+    <a target="_blank" href="<?value>">Dokument herunterladen</a>
+  </td>
 </tr>
 
 <?template property>
@@ -124,6 +181,18 @@
   </td>
   <td <?even:maybegray> class='complexProperty' style="white-space: pre-line;">
     <?value:map propvalue>
+  </td>
+</tr>
+
+<?template externeReferenzProperty>
+<tr>
+  <td <?even:maybegray> valign="top" style="width:20%;">
+        <strong>
+          Externe Referenz
+        </strong>
+  </td>
+  <td <?even:maybegray> style="white-space: pre-line;">
+    <a target="_blank" href="<?value>" class='externeReferenzProperty' ><?value></a>
   </td>
 </tr>
 

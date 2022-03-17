@@ -63,7 +63,6 @@ public class TestFeaturesUtils {
 		return null;
 	}
 
-	@SuppressWarnings("incomplete-switch")
 	private static FeatureCollection load(XPlanVersion version) {
 		switch (version) {
 		case XPLAN_3:
@@ -74,6 +73,8 @@ public class TestFeaturesUtils {
 			return load(version, "xplan41.xml");
 		case XPLAN_50:
 			return load(version, "xplan50.xml");
+		case XPLAN_53:
+			return load(version, "xplan53.xml");
 		}
 		throw new IllegalArgumentException();
 	}

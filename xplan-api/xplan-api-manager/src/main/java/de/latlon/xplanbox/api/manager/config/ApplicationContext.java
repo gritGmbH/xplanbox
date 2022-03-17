@@ -176,8 +176,8 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanExporter xPlanExporter(ManagerConfiguration managerConfiguration) {
-		return new XPlanExporter(managerConfiguration);
+	public XPlanExporter xPlanExporter() {
+		return new XPlanExporter();
 	}
 
 	@Bean
