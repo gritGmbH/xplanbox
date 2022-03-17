@@ -196,7 +196,7 @@ public class XPlanGmlParser {
 
 	private XPlanFeatureCollection parseXPlanFeatureCollection(XPlanVersion version, XPlanType type, ICRS defaultCrs,
 			XMLStreamReaderWrapper xmlStream, boolean fixOrientation) throws XMLStreamException, UnknownCRSException {
-		GMLStreamReader gmlStream = createGmlStreamReader(version, defaultCrs, xmlStream);
+		GMLStreamReader gmlStream = createGmlStreamReader(version, defaultCrs, xmlStream, fixOrientation);
 		FeatureCollection features = gmlStream.readFeatureCollection();
 		return new XPlanFeatureCollectionBuilder(features, type).build();
 	}
