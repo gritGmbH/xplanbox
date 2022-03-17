@@ -21,7 +21,6 @@ package de.latlon.xplan.commons.feature;
  * #L%
  */
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -44,8 +43,6 @@ public abstract class XPlanFeatureCollection {
 
 	protected final XPlanVersion version;
 
-	protected final XPlanAde ade;
-
 	private String name;
 
 	private final String nummer;
@@ -59,8 +56,7 @@ public abstract class XPlanFeatureCollection {
 	private final ExternalReferenceInfo externalRefInfo;
 
 	XPlanFeatureCollection(FeatureCollection features, XPlanType type, String name, String nummer, String gkz,
-			Date planReleaseDate, ExternalReferenceInfo externalRefInfo, Envelope bboxIn4326, XPlanVersion version,
-			XPlanAde ade) {
+			Date planReleaseDate, ExternalReferenceInfo externalRefInfo, Envelope bboxIn4326, XPlanVersion version) {
 		this.features = features;
 		this.type = type;
 		this.name = name;
@@ -70,7 +66,6 @@ public abstract class XPlanFeatureCollection {
 		this.externalRefInfo = externalRefInfo;
 		this.bboxIn4326 = bboxIn4326;
 		this.version = version;
-		this.ade = ade;
 	}
 
 	public void setName(String name) {
@@ -83,10 +78,6 @@ public abstract class XPlanFeatureCollection {
 
 	public XPlanVersion getVersion() {
 		return version;
-	}
-
-	public XPlanAde getAde() {
-		return ade;
 	}
 
 	public String getPlanName() {

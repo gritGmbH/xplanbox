@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.commons.archive;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -36,19 +35,16 @@ public class ArchiveMetadata {
 
 	private final XPlanType type;
 
-	private final XPlanAde ade;
-
 	private final ICRS crs;
 
 	private final List<String> districts;
 
 	private final boolean hasMultipleXPlanElements;
 
-	public ArchiveMetadata(XPlanVersion version, XPlanType type, XPlanAde ade, ICRS crs, List<String> districts,
+	public ArchiveMetadata(XPlanVersion version, XPlanType type, ICRS crs, List<String> districts,
 			boolean hasMultipleXPlanElements) {
 		this.version = version;
 		this.type = type;
-		this.ade = ade;
 		this.crs = crs;
 		this.districts = districts;
 		this.hasMultipleXPlanElements = hasMultipleXPlanElements;
@@ -60,10 +56,6 @@ public class ArchiveMetadata {
 
 	public XPlanType getType() {
 		return type;
-	}
-
-	public XPlanAde getAde() {
-		return ade;
 	}
 
 	public List<String> getDistricts() {

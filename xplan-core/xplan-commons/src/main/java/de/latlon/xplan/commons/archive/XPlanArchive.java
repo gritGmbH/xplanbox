@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.commons.archive;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -59,8 +58,6 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
 	private final XPlanVersion version;
 
-	private final XPlanAde ade;
-
 	private final XPlanType type;
 
 	private final ICRS crs;
@@ -69,25 +66,22 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
 	private final boolean hasMultipleXPlanElements;
 
-	XPlanArchive(List<ZipEntryWithContent> zipEntries, String fileName, XPlanVersion version, XPlanAde ade,
-			XPlanType type, ICRS crs, List<String> districts, boolean hasMultipleXPlanElements) {
-		this(zipEntries, null, fileName, version, ade, type, crs, districts, hasMultipleXPlanElements);
+	XPlanArchive(List<ZipEntryWithContent> zipEntries, String fileName, XPlanVersion version, XPlanType type, ICRS crs,
+			List<String> districts, boolean hasMultipleXPlanElements) {
+		this(zipEntries, null, fileName, version, type, crs, districts, hasMultipleXPlanElements);
 	}
 
-	public XPlanArchive(MainZipEntry mainEntry, String fileName, XPlanVersion version, XPlanAde ade, XPlanType type,
-			ICRS crs, List<String> districts, boolean hasMultipleXPlanElements) {
-		this(Collections.emptyList(), mainEntry, fileName, version, ade, type, crs, districts,
-				hasMultipleXPlanElements);
+	public XPlanArchive(MainZipEntry mainEntry, String fileName, XPlanVersion version, XPlanType type, ICRS crs,
+			List<String> districts, boolean hasMultipleXPlanElements) {
+		this(Collections.emptyList(), mainEntry, fileName, version, type, crs, districts, hasMultipleXPlanElements);
 	}
 
 	private XPlanArchive(List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String fileName,
-			XPlanVersion version, XPlanAde ade, XPlanType type, ICRS crs, List<String> districts,
-			boolean hasMultipleXPlanElements) {
+			XPlanVersion version, XPlanType type, ICRS crs, List<String> districts, boolean hasMultipleXPlanElements) {
 		this.zipFileEntries = zipEntries;
 		this.mainEntry = mainEntry;
 		this.fileName = fileName;
 		this.version = version;
-		this.ade = ade;
 		this.type = type;
 		this.crs = crs;
 		this.districts = districts;
@@ -101,14 +95,6 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 	@Override
 	public XPlanVersion getVersion() {
 		return version;
-	}
-
-	/**
-	 * Returns the XPlan ADE.
-	 * @return ade, may be <code>null</code>
-	 */
-	public XPlanAde getAde() {
-		return ade;
 	}
 
 	/**

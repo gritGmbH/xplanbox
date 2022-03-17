@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.database;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -154,8 +153,8 @@ public class XPlanDao {
 			LOG.info("Insert XPlan");
 
 			PlanStatus planStatus = additionalPlanData.getPlanStatus();
-			FeatureStore xplanFs = managerWorkspaceWrapper.lookupStore(fc.getVersion(), fc.getAde(), planStatus);
-			FeatureStore synFs = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, planStatus);
+			FeatureStore xplanFs = managerWorkspaceWrapper.lookupStore(fc.getVersion(), planStatus);
+			FeatureStore synFs = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
 
 			conn = managerWorkspaceWrapper.openConnection();
 			conn.setAutoCommit(false);
@@ -300,7 +299,7 @@ public class XPlanDao {
 			int planId = getXPlanIdAsInt(xplan.getId());
 			PlanStatus planStatus = xplan.getXplanMetadata().getPlanStatus();
 
-			FeatureStore synFeatureStore = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, planStatus);
+			FeatureStore synFeatureStore = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
 			taSyn = (SQLFeatureStoreTransaction) synFeatureStore.acquireTransaction();
 
 			Set<String> ids = selectFids(planId);
@@ -340,7 +339,7 @@ public class XPlanDao {
 		SQLFeatureStoreTransaction taTarget = null;
 		try {
 			FeatureStore fsTarget = managerWorkspaceWrapper.lookupStore(xPlanFeatureCollection.getVersion(),
-					xPlanFeatureCollection.getAde(), planStatus);
+					planStatus);
 
 			taTarget = insertXPlan(fsTarget, xPlanFeatureCollection).second;
 
@@ -366,17 +365,16 @@ public class XPlanDao {
 	 * @param planStatus
 	 * @param fids to remove
 	 */
-	public void deleteXPlanFeatureCollection(int planId, XPlanVersion version, XPlanAde ade, PlanStatus planStatus,
-			List<String> fids) throws Exception {
+	public void deleteXPlanFeatureCollection(int planId, XPlanVersion version, PlanStatus planStatus, List<String> fids)
+			throws Exception {
 		PreparedStatement stmt = null;
 		SQLFeatureStoreTransaction ta = null;
 		try {
-			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, ade, planStatus);
+			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
 			ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
 
 			IdFilter idFilter = new IdFilter(fids);
-			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ", " + planStatus
-					+ (ade == null ? "" : ade) + ")...");
+			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ", " + planStatus + ")...");
 			ta.performDelete(idFilter, null);
 			LOG.info("OK");
 
@@ -413,7 +411,7 @@ public class XPlanDao {
 			StringBuffer sql = new StringBuffer();
 			sql.append("SELECT ");
 			sql.append(
-					"id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), ade, sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid ");
+					"id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid ");
 			if (includeNoOfFeature)
 				sql.append(", (SELECT count(fid) FROM xplanmgr.features WHERE id = plan) AS numfeatures ");
 			sql.append("FROM xplanmgr.plans");
@@ -449,7 +447,7 @@ public class XPlanDao {
 		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
 			stmt = mgrConn.prepareStatement("SELECT id, import_date, xp_version, xp_type, name, "
 					+ "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
-					+ "ade, sonst_plan_art, planstatus, rechtsstand, district, "
+					+ "sonst_plan_art, planstatus, rechtsstand, district, "
 					+ "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE id =?");
 			stmt.setInt(1, planId);
 			rs = stmt.executeQuery();
@@ -735,7 +733,7 @@ public class XPlanDao {
 		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
 			stmt = mgrConn.prepareStatement("SELECT id, import_date, xp_version, xp_type, name, "
 					+ "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
-					+ "ade, sonst_plan_art, planstatus, rechtsstand, district, "
+					+ "sonst_plan_art, planstatus, rechtsstand, district, "
 					+ "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE "
 					+ whereClause);
 			stmt.setString(1, planName);
@@ -845,18 +843,17 @@ public class XPlanDao {
 		Boolean isRaster = rs.getBoolean(8);
 		Date releaseDate = convertToDate(rs.getDate(9));
 		XPlanEnvelope bbox = createBboxFromWkt(rs.getString(10));
-		String ade = rs.getString(11);
-		String sonstPlanArt = rs.getString(12);
-		String planStatus = rs.getString(13);
-		String rechtsstand = rs.getString(14);
-		String district = rs.getString(15);
-		Timestamp startDateTime = rs.getTimestamp(16);
-		Timestamp endDateTime = rs.getTimestamp(17);
-		Boolean isInspirePublished = rs.getBoolean(18);
-		String internalId = rs.getString(19);
+		String sonstPlanArt = rs.getString(11);
+		String planStatus = rs.getString(12);
+		String rechtsstand = rs.getString(13);
+		String district = rs.getString(14);
+		Timestamp startDateTime = rs.getTimestamp(15);
+		Timestamp endDateTime = rs.getTimestamp(16);
+		Boolean isInspirePublished = rs.getBoolean(17);
+		String internalId = rs.getString(18);
 		int numFeatures = -1;
 		if (includeNoOfFeature)
-			numFeatures = rs.getInt(20);
+			numFeatures = rs.getInt(19);
 
 		XPlan xPlan = new XPlan((name != null ? name : "-"), (new Integer(id)).toString(), xpType);
 		xPlan.setVersion(xpVersion);
@@ -864,7 +861,6 @@ public class XPlanDao {
 		xPlan.setGkz(gkz);
 		xPlan.setNumFeatures(numFeatures);
 		xPlan.setRaster(isRaster);
-		xPlan.setAde(ade);
 		xPlan.setAdditionalType(sonstPlanArt);
 		xPlan.setLegislationStatus(rechtsstand);
 		xPlan.setReleaseDate(releaseDate);
@@ -902,16 +898,15 @@ public class XPlanDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
-			stmt = mgrConn.prepareStatement("SELECT xp_version, ade, planstatus FROM xplanmgr.plans WHERE id=?");
+			stmt = mgrConn.prepareStatement("SELECT xp_version, planstatus FROM xplanmgr.plans WHERE id=?");
 			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
 			if (!rs.next()) {
 				throw new PlanNotFoundException(id);
 			}
 			XPlanVersion version = XPlanVersion.valueOf(rs.getString(1));
-			XPlanAde ade = retrieveNsmAde(version, rs.getString(2));
 			PlanStatus planStatus = retrievePlanStatus(rs.getString(3));
-			return new XPlanMetadata(version, ade, planStatus);
+			return new XPlanMetadata(version, planStatus);
 		}
 		catch (PlanNotFoundException pe) {
 			throw pe;
@@ -975,12 +970,11 @@ public class XPlanDao {
 		ResultSet rs = null;
 		try {
 			XPlanVersion version = xPlanMetadata.version;
-			XPlanAde ade = xPlanMetadata.ade;
 			PlanStatus planStatus = xPlanMetadata.planStatus;
 			int id = getXPlanIdAsInt(planId);
 
-			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, ade, planStatus);
-			FeatureStore fsSyn = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, planStatus);
+			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
+			FeatureStore fsSyn = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
 
 			conn = managerWorkspaceWrapper.openConnection();
 			conn.setAutoCommit(false);
@@ -999,8 +993,7 @@ public class XPlanDao {
 			stmt.close();
 
 			IdFilter idFilter = new IdFilter(ids);
-			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + (ade == null ? "" : ade)
-					+ ")...");
+			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ")...");
 			ta.performDelete(idFilter, null);
 			LOG.info("OK");
 
@@ -1052,7 +1045,7 @@ public class XPlanDao {
 
 	private FeatureCollection restoreFeatureCollection(int id, XPlanMetadata xPlanMetadata) throws Exception {
 		XPlanVersion version = xPlanMetadata.version;
-		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, xPlanMetadata.ade, xPlanMetadata.planStatus);
+		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, xPlanMetadata.planStatus);
 		Set<String> ids = determineFeatureIds(id);
 
 		IdFilter filter = new IdFilter(ids);
@@ -1094,18 +1087,17 @@ public class XPlanDao {
 		try {
 			int planId = getXPlanIdAsInt(oldXPlan.getId());
 			XPlanVersion version = fc.getVersion();
-			XPlanAde ade = retrieveNsmAde(version, oldXPlan.getAde());
 			PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
 			PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();
 
-			FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, ade, oldPlanStatus);
-			FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, oldPlanStatus);
+			FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus);
+			FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus);
 			sameSourceAndTarget = oldPlanStatus == newPlanStatus
 					|| !managerConfiguration.isSeperatedDataManagementActived();
 			FeatureStore fsTarget = sameSourceAndTarget ? fsSource
-					: managerWorkspaceWrapper.lookupStore(version, ade, newPlanStatus);
+					: managerWorkspaceWrapper.lookupStore(version, newPlanStatus);
 			FeatureStore synFsTarget = sameSourceAndTarget ? synFsSource
-					: managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, newPlanStatus);
+					: managerWorkspaceWrapper.lookupStore(XPLAN_SYN, newPlanStatus);
 
 			taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
 			taSynSource = (SQLFeatureStoreTransaction) synFsSource.acquireTransaction();
@@ -1113,8 +1105,7 @@ public class XPlanDao {
 			Set<String> ids = selectFids(conn, planId);
 
 			IdFilter idFilter = new IdFilter(ids);
-			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + (ade == null ? "" : ade)
-					+ ")...");
+			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")...");
 			taSource.performDelete(idFilter, null);
 			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTa = insertXPlan(fsTarget, fc);
 			taTarget = fidsAndXPlanTa.second;
@@ -1201,10 +1192,10 @@ public class XPlanDao {
 			FeatureCollection synFc, AdditionalPlanData xPlanMetadata, Date sortDate, String internalId)
 			throws SQLException {
 		String insertPlansSql = "INSERT INTO xplanmgr.plans "
-				+ "(import_date, xp_version, xp_type, ade, name, nummer, gkz, has_raster, rechtsstand, "
+				+ "(import_date, xp_version, xp_type, name, nummer, gkz, has_raster, rechtsstand, "
 				+ "release_date, sonst_plan_art, planstatus, district, "
 				+ "wmsSortDate, gueltigkeitBeginn, gueltigkeitEnde, internalid, bbox)"
-				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,ST_GeometryFromText(?, 4326))";
+				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,ST_GeometryFromText(?, 4326))";
 		PreparedStatement stmt = null;
 		int planId;
 		try {
@@ -1213,25 +1204,20 @@ public class XPlanDao {
 			stmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
 			stmt.setString(2, archive.getVersion().name());
 			stmt.setString(3, archive.getType().name());
-			XPlanAde ade = archive.getAde();
-			if (ade != null)
-				stmt.setString(4, ade.name());
-			else
-				stmt.setString(4, null);
-			stmt.setString(5, fc.getPlanName());
-			stmt.setString(6, fc.getPlanNummer());
-			stmt.setString(7, fc.getPlanGkz());
-			stmt.setBoolean(8, fc.getHasRaster());
-			stmt.setString(9, retrieveRechtsstand(synFc, archive.getType()));
-			stmt.setTimestamp(10, convertToSqlTimestamp(fc.getPlanReleaseDate()));
-			stmt.setString(11, retrieveAdditionalType(synFc, archive.getType()));
-			stmt.setString(12, retrievePlanStatusMessage(xPlanMetadata));
-			stmt.setString(13, retrieveDistrict(fc.getFeatures(), archive.getType(), archive.getVersion()));
-			stmt.setTimestamp(14, convertToSqlTimestamp(sortDate));
-			stmt.setTimestamp(15, convertToSqlTimestamp(xPlanMetadata.getStartDateTime()));
-			stmt.setTimestamp(16, convertToSqlTimestamp(xPlanMetadata.getEndDateTime()));
-			stmt.setString(17, internalId);
-			stmt.setString(18, createWktFromBboxIn4326(fc));
+			stmt.setString(4, fc.getPlanName());
+			stmt.setString(5, fc.getPlanNummer());
+			stmt.setString(6, fc.getPlanGkz());
+			stmt.setBoolean(7, fc.getHasRaster());
+			stmt.setString(8, retrieveRechtsstand(synFc, archive.getType()));
+			stmt.setTimestamp(9, convertToSqlTimestamp(fc.getPlanReleaseDate()));
+			stmt.setString(10, retrieveAdditionalType(synFc, archive.getType()));
+			stmt.setString(11, retrievePlanStatusMessage(xPlanMetadata));
+			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType(), archive.getVersion()));
+			stmt.setTimestamp(13, convertToSqlTimestamp(sortDate));
+			stmt.setTimestamp(14, convertToSqlTimestamp(xPlanMetadata.getStartDateTime()));
+			stmt.setTimestamp(15, convertToSqlTimestamp(xPlanMetadata.getEndDateTime()));
+			stmt.setString(16, internalId);
+			stmt.setString(17, createWktFromBboxIn4326(fc));
 
 			stmt.executeUpdate();
 			planId = detectPlanId(stmt);
@@ -1654,14 +1640,6 @@ public class XPlanDao {
 		}
 	}
 
-	private XPlanAde retrieveNsmAde(XPlanVersion version, String adeValue) throws SQLException {
-		if (XPlanVersion.XPLAN_41.equals(version)) {
-			if (XPlanAde.NSM.name().equalsIgnoreCase(adeValue))
-				return XPlanAde.NSM;
-		}
-		return null;
-	}
-
 	private PlanStatus retrievePlanStatus(String planStatusMessage) throws SQLException {
 		if (planStatusMessage != null && planStatusMessage.length() > 0)
 			return PlanStatus.findByMessage(planStatusMessage);
@@ -1708,18 +1686,14 @@ public class XPlanDao {
 
 		XPlanVersion version;
 
-		XPlanAde ade;
-
 		PlanStatus planStatus;
 
 		/**
 		 * @param version may be <code>null</code>
-		 * @param ade may be <code>null</code>
 		 * @param planStatus may be <code>null</code>
 		 */
-		XPlanMetadata(XPlanVersion version, XPlanAde ade, PlanStatus planStatus) {
+		XPlanMetadata(XPlanVersion version, PlanStatus planStatus) {
 			this.version = version;
-			this.ade = ade;
 			this.planStatus = planStatus;
 		}
 

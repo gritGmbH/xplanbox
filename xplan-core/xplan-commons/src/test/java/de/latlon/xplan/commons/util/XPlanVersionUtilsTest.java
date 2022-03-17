@@ -20,7 +20,16 @@
  */
 package de.latlon.xplan.commons.util;
 
-import static de.latlon.xplan.commons.XPlanAde.NSM;
+import de.latlon.xplan.commons.XPlanVersion;
+import org.deegree.commons.xml.NamespaceBindings;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
+import org.junit.Test;
+
+import javax.xml.namespace.QName;
+import java.util.Iterator;
+
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -28,18 +37,6 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.util.Iterator;
-
-import javax.xml.namespace.QName;
-
-import org.deegree.commons.xml.NamespaceBindings;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-import org.junit.Test;
-
-import de.latlon.xplan.commons.XPlanVersion;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -81,13 +78,6 @@ public class XPlanVersionUtilsTest {
 		assertThat(version, is(XPLAN_51));
 	}
 
-	@Test
-	public void testDetermineBaseVersionForNsmShouldReturnVersion41() {
-		QName element = new QName(NSM.getNamespace(), "element");
-		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(element);
-		assertThat(version, is(XPLAN_41));
-	}
-
 	@Test(expected = IllegalArgumentException.class)
 	public void testDetermineBaseVersionForUnknownNamespaceShouldFail() {
 		QName element = new QName("http://unknown.namespaceuri.de", "element");
@@ -116,7 +106,6 @@ public class XPlanVersionUtilsTest {
 		NamespaceBindings namespaceBindings = XPlanVersionUtils.retrieveNamespaceBindings(element);
 		assertThat(namespaceBindings, hasNamespace(XPLAN_41.getNamespace(), "xplan"));
 		assertThat(namespaceBindings, hasNamespace(XPLAN_41.getGmlVersion().getNamespace(), "gml"));
-		assertThat(namespaceBindings, hasNamespace(NSM.getNamespace(), "xplanNSM"));
 	}
 
 	@Test
@@ -125,15 +114,6 @@ public class XPlanVersionUtilsTest {
 		NamespaceBindings namespaceBindings = XPlanVersionUtils.retrieveNamespaceBindings(element);
 		assertThat(namespaceBindings, hasNamespace(XPLAN_50.getNamespace(), "xplan"));
 		assertThat(namespaceBindings, hasNamespace(XPLAN_50.getGmlVersion().getNamespace(), "gml"));
-	}
-
-	@Test
-	public void testRetrieveNamespaceBindingsForNsmShouldReturnVersion41() {
-		QName element = new QName(NSM.getNamespace(), "element");
-		NamespaceBindings namespaceBindings = XPlanVersionUtils.retrieveNamespaceBindings(element);
-		assertThat(namespaceBindings, hasNamespace(XPLAN_41.getNamespace(), "xplan"));
-		assertThat(namespaceBindings, hasNamespace(XPLAN_41.getGmlVersion().getNamespace(), "gml"));
-		assertThat(namespaceBindings, hasNamespace(NSM.getNamespace(), "xplanNSM"));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

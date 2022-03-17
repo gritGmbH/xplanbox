@@ -3,10 +3,10 @@
 
 Die angezeigten Spalten der Planliste auf der Hauptseite können in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ konfiguriert werden.
 
-Im folgenden Beispiel werden die Spalten 'Nummer' und 'ADE' aus der Planliste entfernt:
+Im folgenden Beispiel werden die Spalten 'Nummer' und 'Rechtsstand' aus der Planliste entfernt:
 
 ----
-hiddenColumns=NUMBER,ADE
+hiddenColumns=NUMBER,LEGISLATIONSTATUS
 ----
 
 Mehrere Spalten müssen komma-separiert angegeben werden. Der folgenden Tabelle kann die Zuordnung des Spaltentitels und der Angabe in der Konfiguration entnommen werden:
@@ -50,7 +50,4 @@ Mehrere Spalten müssen komma-separiert angegeben werden. Der folgenden Tabelle 
 
 |Gültigkeit
 |VALIDITIYPERIOD
-
-|ADE
-|ADE
 |===

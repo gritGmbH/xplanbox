@@ -20,8 +20,6 @@
  */
 package de.latlon.xplan.commons.feature;
 
-import de.latlon.xplan.commons.XPlanAde;
-import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 
@@ -38,23 +36,15 @@ public class XPlanFeatureCollections {
 
 	private final XPlanVersion version;
 
-	private final XPlanAde ade;
-
 	private final List<XPlanFeatureCollection> xPlanGmlInstances;
 
-	XPlanFeatureCollections(XPlanVersion version, XPlanType type, XPlanAde ade,
-			List<XPlanFeatureCollection> xPlanGmlInstances) {
+	XPlanFeatureCollections(XPlanVersion version, List<XPlanFeatureCollection> xPlanGmlInstances) {
 		this.version = version;
-		this.ade = ade;
 		this.xPlanGmlInstances = xPlanGmlInstances;
 	}
 
 	public XPlanVersion getVersion() {
 		return version;
-	}
-
-	public XPlanAde getAde() {
-		return ade;
 	}
 
 	public List<XPlanFeatureCollection> getxPlanGmlInstances() {

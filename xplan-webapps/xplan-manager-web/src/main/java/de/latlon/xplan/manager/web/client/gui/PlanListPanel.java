@@ -70,7 +70,6 @@ import java.util.List;
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADDITIONALTYPE;
-import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ADE;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.COMMUNITY;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.ID;
 import static de.latlon.xplan.manager.web.client.gui.PlanListColumnType.IMPORTDATE;
@@ -239,8 +238,6 @@ public class PlanListPanel extends DecoratorPanel {
 			addPlanStatusColumn(columnSortHandler, planList);
 		if (configuration.isColumnVisible(VALIDITIYPERIOD))
 			addValidityPeriodColumn(columnSortHandler, planList);
-		if (configuration.isColumnVisible(ADE))
-			addAdeColumn(columnSortHandler, planList);
 
 		TextHeader actionHeader = new TextHeader(messages.actions());
 		actionHeader.setHeaderStyleNames("actionHeaderStyle");
@@ -459,19 +456,6 @@ public class PlanListPanel extends DecoratorPanel {
 			}
 		});
 		xPlanTable.addColumn(validityStatusColumn, messages.validityStatus());
-	}
-
-	private void addAdeColumn(ColumnSortEvent.ListHandler<XPlan> columnSortHandler, CellTable<XPlan> xPlanTable) {
-		TextColumn<XPlan> adeColumn = new TextColumn<XPlan>() {
-			@Override
-			public String getValue(XPlan object) {
-				return object.getAde();
-			}
-		};
-		adeColumn.setSortable(true);
-		adeColumn.setCellStyleNames("planListColumn adeColumn");
-		columnSortHandler.setComparator(adeColumn, new ColumnComparator(ADE));
-		xPlanTable.addColumn(adeColumn, messages.ade());
 	}
 
 	private void addRemoveColumn(final CellTable<XPlan> xPlanTable, TextHeader columnHeader) {

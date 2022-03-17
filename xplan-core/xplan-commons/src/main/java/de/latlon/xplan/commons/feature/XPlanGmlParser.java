@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.commons.feature;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
@@ -94,10 +93,9 @@ public class XPlanGmlParser {
 	public XPlanFeatureCollection parseXPlanFeatureCollection(XPlanArchive xPlanArchive, ICRS defaultCrs,
 			boolean fixOrientation) throws XMLStreamException, UnknownCRSException {
 		XPlanVersion version = xPlanArchive.getVersion();
-		XPlanAde ade = xPlanArchive.getAde();
 		XPlanType type = xPlanArchive.getType();
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
-		return parseXPlanFeatureCollection(version, type, ade, defaultCrs, xmlStream, fixOrientation);
+		return parseXPlanFeatureCollection(version, type, defaultCrs, xmlStream, fixOrientation);
 	}
 
 	/**
@@ -125,9 +123,8 @@ public class XPlanGmlParser {
 			throws XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
 		XPlanVersion version = xPlanArchive.getVersion();
 		XPlanType type = xPlanArchive.getType();
-		XPlanAde ade = xPlanArchive.getAde();
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
-		GMLStreamReader gmlStream = createGmlStreamReader(version, ade, defaultCrs, xmlStream, fixOrientation);
+		GMLStreamReader gmlStream = createGmlStreamReader(version, defaultCrs, xmlStream, fixOrientation);
 		XPlanFeatureCollections parse = new MultipleInstanceParser().parse(gmlStream, version, type);
 		gmlStream.getIdContext().resolveLocalRefs();
 		return parse;
@@ -167,7 +164,7 @@ public class XPlanGmlParser {
 	public FeatureCollection parseFeatureCollection(XMLStreamReader plan, XPlanVersion version)
 			throws XMLStreamException, UnknownCRSException {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(plan, null);
-		GMLStreamReader gmlStreamReader = createGmlStreamReader(version, null, null, xmlStream);
+		GMLStreamReader gmlStreamReader = createGmlStreamReader(version, null, xmlStream);
 		FeatureCollection features = gmlStreamReader.readFeatureCollection();
 		gmlStreamReader.getIdContext().resolveLocalRefs();
 		return features;
@@ -185,7 +182,7 @@ public class XPlanGmlParser {
 			throws XMLStreamException, UnknownCRSException {
 		XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(plan);
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xmlStreamReader, null);
-		GMLStreamReader gmlStreamReader = createGmlStreamReader(version, null, null, xmlStream);
+		GMLStreamReader gmlStreamReader = createGmlStreamReader(version, null, xmlStream);
 		FeatureCollection features = gmlStreamReader.readFeatureCollection();
 		gmlStreamReader.getIdContext().resolveLocalRefs();
 		return features;
@@ -197,17 +194,16 @@ public class XPlanGmlParser {
 		return new XPlanFeatureCollectionBuilder(xplanFeatures, type).build();
 	}
 
-	private XPlanFeatureCollection parseXPlanFeatureCollection(XPlanVersion version, XPlanType type, XPlanAde ade,
-			ICRS defaultCrs, XMLStreamReaderWrapper xmlStream, boolean fixOrientation)
-			throws XMLStreamException, UnknownCRSException {
-		GMLStreamReader gmlStream = createGmlStreamReader(version, ade, defaultCrs, xmlStream, fixOrientation);
+	private XPlanFeatureCollection parseXPlanFeatureCollection(XPlanVersion version, XPlanType type, ICRS defaultCrs,
+			XMLStreamReaderWrapper xmlStream, boolean fixOrientation) throws XMLStreamException, UnknownCRSException {
+		GMLStreamReader gmlStream = createGmlStreamReader(version, defaultCrs, xmlStream, fixOrientation);
 		FeatureCollection features = gmlStream.readFeatureCollection();
 		return new XPlanFeatureCollectionBuilder(features, type).build();
 	}
 
-	private GMLStreamReader createGmlStreamReader(XPlanVersion version, XPlanAde ade, ICRS defaultCrs,
+	private GMLStreamReader createGmlStreamReader(XPlanVersion version, ICRS defaultCrs,
 			XMLStreamReaderWrapper xmlStream, boolean fixOrientation) throws XMLStreamException {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, ade);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		GMLVersion gmlVersion = version.getGmlVersion();
 		GeometryFactory geomFac = new GeometryFactory();
 		if (fixOrientation) {
@@ -221,9 +217,9 @@ public class XPlanGmlParser {
 
 	}
 
-	private GMLStreamReader createGmlStreamReader(XPlanVersion version, XPlanAde ade, ICRS defaultCrs,
+	private GMLStreamReader createGmlStreamReader(XPlanVersion version, ICRS defaultCrs,
 			XMLStreamReaderWrapper xmlStream) throws XMLStreamException {
-		return createGmlStreamReader(version, ade, defaultCrs, xmlStream, false);
+		return createGmlStreamReader(version, defaultCrs, xmlStream, false);
 	}
 
 }

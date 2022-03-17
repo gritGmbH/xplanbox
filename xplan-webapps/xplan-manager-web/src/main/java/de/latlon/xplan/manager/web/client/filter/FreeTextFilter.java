@@ -75,8 +75,6 @@ public class FreeTextFilter implements PlanFilter {
 		switch (columnToSearchIn) {
 		case ADDITIONALTYPE:
 			return isMatching(plan.getAdditionalType());
-		case ADE:
-			return isMatching(plan.getAde());
 		case ID:
 			return isMatching(plan.getId());
 		case IMPORTDATE:

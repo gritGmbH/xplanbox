@@ -93,9 +93,8 @@ public class XPlanArchiveCreator {
 			Pair<MainZipEntry, ArchiveMetadata> mainEntry = readEntries(inputStream, zipEntries);
 			ArchiveMetadata archiveMetadata = mainEntry.getSecond();
 			List<String> districts = mapDistricts(archiveMetadata);
-			return new XPlanArchive(zipEntries, name, archiveMetadata.getVersion(), archiveMetadata.getAde(),
-					archiveMetadata.getType(), archiveMetadata.getCrs(), districts,
-					archiveMetadata.hasMultipleXPlanElements());
+			return new XPlanArchive(zipEntries, name, archiveMetadata.getVersion(), archiveMetadata.getType(),
+					archiveMetadata.getCrs(), districts, archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException | FactoryConfigurationError e) {
 			String message = format("Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage());
@@ -117,9 +116,8 @@ public class XPlanArchiveCreator {
 			Pair<MainZipEntry, ArchiveMetadata> mainEntry = xPlanGmlReader.createZipEntry(name, inputStream);
 			ArchiveMetadata archiveMetadata = mainEntry.getSecond();
 			List<String> districts = mapDistricts(archiveMetadata);
-			return new XPlanArchive(mainEntry.first, name, archiveMetadata.getVersion(), archiveMetadata.getAde(),
-					archiveMetadata.getType(), archiveMetadata.getCrs(), districts,
-					archiveMetadata.hasMultipleXPlanElements());
+			return new XPlanArchive(mainEntry.first, name, archiveMetadata.getVersion(), archiveMetadata.getType(),
+					archiveMetadata.getCrs(), districts, archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException e) {
 			String message = format("Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage());

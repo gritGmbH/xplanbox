@@ -29,10 +29,8 @@ import org.mockito.Mockito;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static de.latlon.xplan.commons.XPlanAde.NSM;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
-import static de.latlon.xplan.commons.XPlanType.RP_Plan;
 import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
@@ -175,28 +173,9 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testMetadataV4_1_NSM_Niedersachsen_lrop_Small() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan41/nsm/nsm_niedersachsen_lrop_small.zip");
-		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals(NSM, archive.getAde());
-		assertEquals(RP_Plan, archive.getType());
-		assertEquals("EPSG:31467", archive.getCrs().getName());
-	}
-
-	@Test
-	public void testMetadataEidelstedt_4_V4XPlan41_With_NSM_Namespace() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan41/Eidelstedt_4_V4_with_nsm_namespace.zip");
-		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals(null, archive.getAde());
-		assertEquals(BP_Plan, archive.getType());
-		assertEquals("urn:adv:crs:ETRS89_UTM32", archive.getCrs().getName());
-	}
-
-	@Test
 	public void testCreateXPlanArchive_41_SOPlan() throws IOException, UnknownCRSException {
 		XPlanArchive archive = getTestArchive("xplan41/Erhaltung.zip");
 		assertEquals(XPLAN_41, archive.getVersion());
-		assertEquals(null, archive.getAde());
 		assertEquals(0, archive.getDistricts().size());
 		assertEquals(SO_Plan, archive.getType());
 		assertEquals(CRSManager.lookup("EPSG:25832"), archive.getCrs());
@@ -213,7 +192,6 @@ public class XPlanArchiveCreatorTest {
 		InputStream gmlAsStream = ResourceAccessor.readResourceStream("xplan51/V4_1_ID_103.gml");
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103.gml", gmlAsStream);
 		assertEquals(XPLAN_51, archive.getVersion());
-		assertEquals(null, archive.getAde());
 		assertEquals(null, archive.getDistricts().get(0));
 		assertEquals(BP_Plan, archive.getType());
 	}

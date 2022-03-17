@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.update.from_pre1_0_to_1_0;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
@@ -122,9 +121,8 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
 			int planId = Integer.parseInt(plan.getId());
 			XPlanType type = XPlanType.valueOf(plan.getType());
 			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
-			XPlanAde ade = plan.getAde() != null ? XPlanAde.valueOf(plan.getAde()) : null;
 
-			FeatureCollection featureCollection = createFeatureCollection(conn, planId, version, ade);
+			FeatureCollection featureCollection = createFeatureCollection(conn, planId, version);
 
 			XPlanFeatureCollection fc = new XPlanFeatureCollectionBuilder(featureCollection, type).build();
 			FeatureCollection synFc = xPlanSynthesizer.synthesize(version, fc);
@@ -164,7 +162,7 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
 		}
 	}
 
-	private FeatureCollection createFeatureCollection(Connection conn, int planId, XPlanVersion version, XPlanAde ade)
+	private FeatureCollection createFeatureCollection(Connection conn, int planId, XPlanVersion version)
 			throws Exception {
 		InputStream xplan = null;
 		XMLStreamReader xmlReader = null;
@@ -172,7 +170,7 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
 			xplan = xplanDao.retrieveXPlanArtefact(conn, planId);
 			xmlReader = XMLInputFactory.newInstance().createXMLStreamReader(xplan);
 			GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-			gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, ade));
+			gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
 			FeatureCollection fc = gmlReader.readFeatureCollection();
 			gmlReader.getIdContext().resolveLocalRefs();
 			return fc;

@@ -19,7 +19,7 @@
 # #L%
 ###
 # Additional
-RP_NSM_Tourismus/gmlTest=xplanGmlName()
+BP_BaugebietsTeilFlaeche/gmlTest=xplanGmlName()
 
 #Overwriting
 BP_BaugebietsTeilFlaeche/besondereArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:besondereArtDerBaulNutzung'), 'XP_BesondereArtDerBaulNutzung-XPlan3.xml')

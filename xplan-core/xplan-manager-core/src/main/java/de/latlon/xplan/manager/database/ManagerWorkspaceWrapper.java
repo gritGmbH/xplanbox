@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.database;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -29,13 +28,11 @@ import org.deegree.db.ConnectionProvider;
 import org.deegree.db.ConnectionProviderProvider;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.FeatureStoreProvider;
-import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
 
@@ -91,18 +88,14 @@ public class ManagerWorkspaceWrapper {
 	}
 
 	/**
-	 * Looks up a FeatureStore by the version, ade and type.
+	 * Looks up a FeatureStore by the version and type.
 	 * @param version XPlan version, never <code>null</code>
-	 * @param ade XPlan ADE extension, may be <code>null</code>
 	 * @param planStatus xplan status, if <code>null</code>, default store is chosen (FIX)
 	 * @return the FeatureStore fitting to version and ade, never <code>null</code>
 	 * @throws IllegalArgumentException if a FeatureStore can not be found
 	 */
-	public FeatureStore lookupStore(XPlanVersion version, XPlanAde ade, PlanStatus planStatus) {
+	public FeatureStore lookupStore(XPlanVersion version, PlanStatus planStatus) {
 		String store = version.name().replace("_", "").toLowerCase();
-		if (XPLAN_41.equals(version) && XPlanAde.NSM.equals(ade)) {
-			store = "xplan41nsm";
-		}
 		if (managerConfiguration.isSeperatedDataManagementActived()) {
 			if (IN_AUFSTELLUNG.equals(planStatus))
 				return lookupStore(store + PRE_SUFFIX);

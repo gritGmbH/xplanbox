@@ -87,7 +87,7 @@ public class TestFeaturesUtils {
 			is = TestFeaturesUtils.class.getResourceAsStream(resource);
 			xmlReader = XMLInputFactory.newInstance().createXMLStreamReader(is);
 			gmlReader = GMLInputFactory.createGMLStreamReader(version.getGmlVersion(), xmlReader);
-			gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version, null));
+			gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
 			FeatureCollection fc = gmlReader.readFeatureCollection();
 			gmlReader.getIdContext().resolveLocalRefs();
 			return fc;

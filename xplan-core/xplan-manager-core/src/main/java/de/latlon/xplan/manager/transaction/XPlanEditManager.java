@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.transaction;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
@@ -93,9 +92,8 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			String oldPlanName = oldXplan.getName();
 			XPlanVersion version = XPlanVersion.valueOf(oldXplan.getVersion());
 			XPlanType type = XPlanType.valueOf(oldXplan.getType());
-			XPlanAde ade = oldXplan.getAde() != null ? XPlanAde.valueOf(oldXplan.getAde()) : null;
 			PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
-			AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, ade, oldPlanStatus).getSchema();
+			AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus).getSchema();
 			originalPlan = xplanDao.retrieveXPlanArtefact(planId);
 			XPlanFeatureCollection originalPlanFC = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan, version,
 					type);
@@ -121,7 +119,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			FeatureCollection synFc = createSynFeatures(modifiedPlanFc, version);
 			String internalId = xplanDao.retrieveInternalId(planId, type);
 			if (internalId != null) {
-				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, oldPlanStatus).getSchema();
+				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus).getSchema();
 				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
 			}
 

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -109,8 +109,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 			FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
 			if (internalId != null) {
-				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, null, selectedPlanStatus)
-						.getSchema();
+				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, selectedPlanStatus).getSchema();
 				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
 			}
 			Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),

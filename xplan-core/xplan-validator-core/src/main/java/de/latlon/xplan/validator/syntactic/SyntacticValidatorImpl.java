@@ -20,21 +20,6 @@
  */
 package de.latlon.xplan.validator.syntactic;
 
-import static java.lang.String.format;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import de.latlon.xplan.commons.XPlanAde;
-import org.apache.xerces.xni.parser.XMLParseException;
-import org.deegree.commons.xml.schema.SchemaValidationEvent;
-import org.deegree.commons.xml.schema.SchemaValidator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.reference.ExternalReference;
@@ -43,6 +28,19 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import org.apache.xerces.xni.parser.XMLParseException;
+import org.deegree.commons.xml.schema.SchemaValidationEvent;
+import org.deegree.commons.xml.schema.SchemaValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static java.lang.String.format;
 
 /**
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
@@ -56,7 +54,7 @@ public class SyntacticValidatorImpl implements SyntacticValidator {
 	@Override
 	public ValidatorResult validateSyntax(XPlanArchive archive) {
 		try (InputStream is = archive.getMainFileInputStream()) {
-			return validateSyntax(is, archive.getVersion(), archive.getAde());
+			return validateSyntax(is, archive.getVersion());
 		}
 		catch (IOException e) {
 			LOG.error("Syntaktische Valdierung wurde aufgrund eines Fehlers abgebrochen: {}", e.getMessage());
@@ -66,9 +64,9 @@ public class SyntacticValidatorImpl implements SyntacticValidator {
 	}
 
 	@Override
-	public ValidatorResult validateSyntax(InputStream is, XPlanVersion version, XPlanAde ade) {
+	public ValidatorResult validateSyntax(InputStream is, XPlanVersion version) {
 		List<String> resultMessages = new ArrayList<>();
-		String schemaUrl = findSchemaUrl(ade, version);
+		String schemaUrl = version.getSchemaUrl().toString();
 		List<SchemaValidationEvent> schemaValidationEvents = SchemaValidator.validate(is, schemaUrl);
 		appendResultMessages(resultMessages, schemaValidationEvents);
 		boolean isValid = resultMessages.isEmpty();
@@ -112,15 +110,6 @@ public class SyntacticValidatorImpl implements SyntacticValidator {
 			String resultMessage = format("%s Zeile: %s, Spalte %s", exceptionMessage, line, column);
 			resultMessages.add(resultMessage);
 		}
-	}
-
-	private String findSchemaUrl(XPlanAde ade, XPlanVersion version) {
-		String schemaUrl;
-		if (ade != null)
-			schemaUrl = ade.getSchemaUrl().toString();
-		else
-			schemaUrl = version.getSchemaUrl().toString();
-		return schemaUrl;
 	}
 
 	private ValidatorDetail createDetail(boolean isValid) {

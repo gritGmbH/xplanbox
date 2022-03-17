@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.commons.feature;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -42,9 +41,8 @@ import java.util.List;
 public class XPlanSingleInstanceFeatureCollection extends XPlanFeatureCollection {
 
 	XPlanSingleInstanceFeatureCollection(FeatureCollection fc, XPlanType type, String name, String nummer, String gkz,
-			Date planReleaseDate, ExternalReferenceInfo externalRefInfo, Envelope bboxIn4326, XPlanVersion version,
-			XPlanAde ade) {
-		super(fc, type, name, nummer, gkz, planReleaseDate, externalRefInfo, bboxIn4326, version, ade);
+			Date planReleaseDate, ExternalReferenceInfo externalRefInfo, Envelope bboxIn4326, XPlanVersion version) {
+		super(fc, type, name, nummer, gkz, planReleaseDate, externalRefInfo, bboxIn4326, version);
 	}
 
 	@Override

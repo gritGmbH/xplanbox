@@ -20,7 +20,6 @@
  */
 package de.latlon.xplanbox.api.manager.config;
 
-import de.latlon.xplan.commons.XPlanAde;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
@@ -139,13 +138,11 @@ public class TestContext {
 			throws WorkspaceException {
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = mock(ManagerWorkspaceWrapper.class);
 		FeatureStore featureStore41 = mock(FeatureStore.class);
-		when(featureStore41.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_41, null));
+		when(featureStore41.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_41));
 		FeatureStore featureStore51 = mock(FeatureStore.class);
-		when(featureStore51.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_51, null));
-		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), nullable(XPlanAde.class), any(PlanStatus.class)))
-				.thenReturn(featureStore41);
-		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), nullable(XPlanAde.class), any(PlanStatus.class)))
-				.thenReturn(featureStore51);
+		when(featureStore51.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_51));
+		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), any(PlanStatus.class))).thenReturn(featureStore41);
+		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), any(PlanStatus.class))).thenReturn(featureStore51);
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration());
 		return managerWorkspaceWrapper;
 	}

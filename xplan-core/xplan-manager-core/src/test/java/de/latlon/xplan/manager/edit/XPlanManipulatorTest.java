@@ -103,7 +103,7 @@ public class XPlanManipulatorTest {
 			"xplan41/Eidelstedt_4_V4-Blankenese.gml, XPLAN_41" })
 	public void testModifyXPlan(String planResource, String xplanVersion) throws Exception {
 		XPlanVersion version = XPlanVersion.valueOf(xplanVersion);
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		String planName = "newPlanName";
@@ -138,7 +138,7 @@ public class XPlanManipulatorTest {
 			"xplan41/Eidelstedt_4_V4-Blankenese.gml, XPLAN_41" })
 	public void testModifyXPlan_Aenderungen(String planResource, String xplanVersion) throws Exception {
 		XPlanVersion version = XPlanVersion.valueOf(xplanVersion);
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -158,7 +158,7 @@ public class XPlanManipulatorTest {
 	@Parameters({ "xplan51/BP2070.gml, XPLAN_51", "xplan50/BP2070.gml, XPLAN_50" })
 	public void testModifyXPlan_XPlan5X_Texte(String planResource, String xplanVersion) throws Exception {
 		XPlanVersion version = XPlanVersion.valueOf(xplanVersion);
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -176,7 +176,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_XPlan51_ModifyTextKeepFeatureId() throws Exception {
 		XPlanVersion version = XPLAN_51;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, "xplan51/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -195,7 +195,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_XPlan41_Texte() throws Exception {
 		XPlanVersion version = XPLAN_41;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, "xplan41/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -214,7 +214,7 @@ public class XPlanManipulatorTest {
 	@Parameters({ "xplan51/BP2070.gml, XPLAN_51", "xplan50/BP2070.gml, XPLAN_50" })
 	public void testModifyXPlan_XPlan50_TextWerte(String planResource, String xplanVersion) throws Exception {
 		XPlanVersion version = XPlanVersion.valueOf(xplanVersion);
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -239,7 +239,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_XPlan41_TextWerte() throws Exception {
 		XPlanVersion version = XPLAN_41;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, "xplan41/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -263,7 +263,7 @@ public class XPlanManipulatorTest {
 	@Parameters({ "xplan51/BP2070.gml, XPLAN_51", "xplan50/BP2070.gml, XPLAN_50" })
 	public void testModifyXPlan_XPlan50_Referenzen(String planResource, String xplanVersion) throws Exception {
 		XPlanVersion version = XPlanVersion.valueOf(xplanVersion);
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -281,7 +281,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_XPlan41_Referenzen() throws Exception {
 		XPlanVersion version = XPLAN_41;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, "xplan41/Eidelstedt_4_V4-Blankenese.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -302,7 +302,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_RasterReferences() throws Exception {
 		XPlanVersion version = XPLAN_50;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, "xplan50/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -353,7 +353,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_XPlan50_delete_RasterReferences() throws Exception {
 		XPlanVersion xPlanVersion = XPLAN_50;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xPlanVersion, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xPlanVersion);
 		FeatureCollection featureCollection = readXPlanGml(xPlanVersion, "xplan50/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -373,7 +373,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_XPlan50_new_RasterReferences() throws Exception {
 		XPlanVersion xPlanVersion = XPLAN_50;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xPlanVersion, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xPlanVersion);
 		FeatureCollection featureCollection = readXPlanGml(xPlanVersion, "xplan50/BP2070.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -429,7 +429,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_XPlan41_RasterReferences() throws Exception {
 		XPlanVersion xPlanVersion = XPLAN_41;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xPlanVersion, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xPlanVersion);
 		FeatureCollection featureCollection = readXPlanGml(xPlanVersion, "xplan41/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -459,7 +459,7 @@ public class XPlanManipulatorTest {
 	@Parameters({ "xplan50/BP2070.gml, XPLAN_50", "xplan41/Eidelstedt_4_V4-Blankenese.gml, XPLAN_41" })
 	public void testModifyXPlan_XPlan41_NullAndEmptyValue(String planResource, String xplanVersion) throws Exception {
 		XPlanVersion version = XPlanVersion.valueOf(xplanVersion);
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		XPlanToEdit editedXplan = createEditedXplan("newPlanName", null, asDate("2010-01-01"), null,
@@ -477,7 +477,7 @@ public class XPlanManipulatorTest {
 	// #3288
 	@Test
 	public void testModifyXPlan_XPlan41_ValidReferences() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_41, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_41);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_41, "xplan41/V4_1_ID_103_references.gml", schema);
 
 		XPlanToEdit editedXplan = factory.createXPlanToEdit(mockXPlan(XPLAN_41), featureCollection);
@@ -490,7 +490,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan41_TextValues_MultipleReferences_Modify() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_41, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_41);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_41, "xplan41/V4_1_ID_103_texts.gml", schema);
 
 		XPlanToEdit editedXplan = factory.createXPlanToEdit(mockXPlan(XPLAN_41), featureCollection);
@@ -520,7 +520,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan41_TextValues_MultipleReferences_Remove() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_41, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_41);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_41, "xplan41/V4_1_ID_103_texts.gml", schema);
 
 		XPlanToEdit editedXplan = factory.createXPlanToEdit(mockXPlan(XPLAN_41), featureCollection);
@@ -542,7 +542,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan41_TextValues_MultipleReferences_New() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_41, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_41);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_41, "xplan41/V4_1_ID_103_texts.gml", schema);
 
 		XPlanToEdit editedXplan = factory.createXPlanToEdit(mockXPlan(XPLAN_41), featureCollection);
@@ -573,7 +573,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan3() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain.gml", schema);
 
 		String planName = "newPlanName";
@@ -607,7 +607,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan3_Changes() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -625,7 +625,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan3_Texts() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -642,7 +642,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan3_TextValues() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -664,7 +664,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan3_References() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -692,7 +692,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_XPlan3_RasterReferences() throws Exception {
 		XPlanVersion xPlanVersion = XPLAN_3;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xPlanVersion, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xPlanVersion);
 		FeatureCollection featureCollection = readXPlanGml(xPlanVersion, "xplan30/Wuerdenhain.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -756,7 +756,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan3_NullAndEmptyValue() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain.gml", schema);
 
 		XPlanToEdit editedXplan = createEditedXplan("newPlanName", null, asDate("2010-01-01"), null,
@@ -773,7 +773,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan3_TextValues_MultipleReferences_Modify() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain_texts.gml", schema);
 
 		XPlanToEdit editedXplan = factory.createXPlanToEdit(mockXPlan(XPLAN_3), featureCollection);
@@ -803,7 +803,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan3_TextValues_MultipleReferences_Remove() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain_texts.gml", schema);
 
 		XPlanToEdit editedXplan = factory.createXPlanToEdit(mockXPlan(XPLAN_3), featureCollection);
@@ -825,7 +825,7 @@ public class XPlanManipulatorTest {
 
 	@Test
 	public void testModifyXPlan_XPlan3_TextValues_MultipleReferences_New() throws Exception {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_3);
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain_texts.gml", schema);
 
 		XPlanToEdit editedXplan = factory.createXPlanToEdit(mockXPlan(XPLAN_3), featureCollection);
@@ -851,7 +851,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_RasterBasis_refScan() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_51;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, "xplan51/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
@@ -878,7 +878,7 @@ public class XPlanManipulatorTest {
 	@Test
 	public void testModifyXPlan_RasterBasis_refScan_remove() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_51;
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version, null);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		FeatureCollection featureCollection = readXPlanGml(version, "xplan51/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();

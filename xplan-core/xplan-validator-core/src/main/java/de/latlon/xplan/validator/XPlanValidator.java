@@ -242,7 +242,7 @@ public class XPlanValidator {
 	 */
 	GeometricValidatorResult validateGeometricallyAndWriteResult(XPlanArchive archive, List<ValidationOption> voOptions)
 			throws ValidatorException {
-		AppSchema appSchema = schemas.getAppSchema(archive.getVersion(), archive.getAde());
+		AppSchema appSchema = schemas.getAppSchema(archive.getVersion());
 		GeometricValidatorResult result = geometricValidator.validateGeometry(archive, archive.getCrs(), appSchema,
 				true, voOptions);
 

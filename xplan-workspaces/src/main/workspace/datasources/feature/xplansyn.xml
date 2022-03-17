@@ -11822,8 +11822,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:weitererAchsenTyp_NSM" mapping="xplan_weitererAchsenTyp_nsm" />
-    <Primitive path="xplan:weitererAchsenTyp_NSMCode" mapping="xplan_weitererAchsenTyp_nsmcode" />
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
     <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
     <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
@@ -11919,8 +11917,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:zweckbestimmungBS_NSM" mapping="xplan_zweckbestimmungbs_nsm" />
-    <Primitive path="xplan:zweckbestimmungBS_NSMCode" mapping="xplan_zweckbestimmungbs_nsmcode" />
     <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit" />
     <Primitive path="xplan:bedeutsamkeitCode" mapping="xplan_bedeutsamkeitcode" />
@@ -12032,10 +12028,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:detailTyp_NSM" mapping="xplan_detailtyp_nsm" />
-    <Primitive path="xplan:detailTyp_NSMCode" mapping="xplan_detailtyp_nsmcode" />
-    <Primitive path="xplan:status_NSM" mapping="xplan_status_nsm" />
-    <Primitive path="xplan:status_NSMCode" mapping="xplan_status_nsmcode" />
     <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit" />
     <Primitive path="xplan:bedeutsamkeitCode" mapping="xplan_bedeutsamkeitcode" />
@@ -12303,8 +12295,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:zweckbestimmungFW_NSM" mapping="xplan_zweckbestimmungfw_nsm" />
-    <Primitive path="xplan:zweckbestimmungFW_NSMCode" mapping="xplan_zweckbestimmungfw_nsmcode" />
     <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit" />
     <Primitive path="xplan:bedeutsamkeitCode" mapping="xplan_bedeutsamkeitcode" />
@@ -13148,8 +13138,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typLS_NSM" mapping="xplan_typls_nsm" />
-    <Primitive path="xplan:typLS_NSMCode" mapping="xplan_typls_nsmcode" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Landwirtschaft" table="xplansyn.xplan_rp_landwirtschaft">
     <FIDMapping prefix="XPLAN_RP_LANDWIRTSCHAFT_">
@@ -13196,8 +13184,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typLW_NSM" mapping="xplan_typlw_nsm" />
-    <Primitive path="xplan:typLW_NSMCode" mapping="xplan_typlw_nsmcode" />
     <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit" />
     <Primitive path="xplan:bedeutsamkeitCode" mapping="xplan_bedeutsamkeitcode" />
@@ -14134,788 +14120,6 @@
     <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
     <Primitive path="xplan:zeitlinieText" mapping="xplan_zeitlinietext" />
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_ASB" table="xplansyn.xplan_rp_nsm_asb">
-    <FIDMapping prefix="XPLAN_RP_NSM_ASB_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:funktion" mapping="xplan_funktion" />
-    <Primitive path="xplan:funktionCode" mapping="xplan_funktioncode" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:zweckbindungASB_NSM" mapping="xplan_zweckbindungasb_nsm" />
-    <Primitive path="xplan:zweckbindungASB_NSMCode" mapping="xplan_zweckbindungasb_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Abfallentsorgung" table="xplansyn.xplan_rp_nsm_abfallentsorgung">
-    <FIDMapping prefix="XPLAN_RP_NSM_ABFALLENTSORGUNG_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:typ" mapping="xplan_typ" />
-    <Primitive path="xplan:typCode" mapping="xplan_typcode" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typAE_NSM" mapping="xplan_typae_nsm" />
-    <Primitive path="xplan:typAE_NSMCode" mapping="xplan_typae_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Abwasser" table="xplansyn.xplan_rp_nsm_abwasser">
-    <FIDMapping prefix="XPLAN_RP_NSM_ABWASSER_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:typ" mapping="xplan_typ" />
-    <Primitive path="xplan:typCode" mapping="xplan_typcode" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typAW_NSM" mapping="xplan_typaw_nsm" />
-    <Primitive path="xplan:typAW_NSMCode" mapping="xplan_typaw_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Erholung" table="xplansyn.xplan_rp_nsm_erholung">
-    <FIDMapping prefix="XPLAN_RP_NSM_ERHOLUNG_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typET_NSM" mapping="xplan_typet_nsm" />
-    <Primitive path="xplan:typET_NSMCode" mapping="xplan_typet_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_GIB" table="xplansyn.xplan_rp_nsm_gib">
-    <FIDMapping prefix="XPLAN_RP_NSM_GIB_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:funktion" mapping="xplan_funktion" />
-    <Primitive path="xplan:funktionCode" mapping="xplan_funktioncode" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:zweckbindungGIB_NSM" mapping="xplan_zweckbindunggib_nsm" />
-    <Primitive path="xplan:zweckbindungGIB_NSMCode" mapping="xplan_zweckbindunggib_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Landschaftsschutz" table="xplansyn.xplan_rp_nsm_landschaftsschutz">
-    <FIDMapping prefix="XPLAN_RP_NSM_LANDSCHAFTSSCHUTZ_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typLS_NSM" mapping="xplan_typls_nsm" />
-    <Primitive path="xplan:typLS_NSMCode" mapping="xplan_typls_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Luftverkehr" table="xplansyn.xplan_rp_nsm_luftverkehr">
-    <FIDMapping prefix="XPLAN_RP_NSM_LUFTVERKEHR_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:typ" mapping="xplan_typ" />
-    <Primitive path="xplan:typCode" mapping="xplan_typcode" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:luftverkehrTyp_NSM" mapping="xplan_luftverkehrtyp_nsm" />
-    <Primitive path="xplan:luftverkehrTyp_NSMCode" mapping="xplan_luftverkehrtyp_nsmcode" />
-    <Primitive path="xplan:sonstTyp_NSM" mapping="xplan_sonsttyp_nsm" />
-    <Primitive path="xplan:sonstTyp_NSMCode" mapping="xplan_sonsttyp_nsmcode" />
-    <Primitive path="xplan:status_NSM" mapping="xplan_status_nsm" />
-    <Primitive path="xplan:status_NSMCode" mapping="xplan_status_nsmcode" />
-    <Primitive path="xplan:bezeichnung_NSM" mapping="xplan_bezeichnung_nsm" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Naturschutz" table="xplansyn.xplan_rp_nsm_naturschutz">
-    <FIDMapping prefix="XPLAN_RP_NSM_NATURSCHUTZ_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typNS_NSM" mapping="xplan_typns_nsm" />
-    <Primitive path="xplan:typNS_NSMCode" mapping="xplan_typns_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_OberflaechennaheBodenschaetze" table="xplansyn.xplan_rp_nsm_oberflaechennahebodenschaetze">
-    <FIDMapping prefix="XPLAN_RP_NSM_OBERFLAECHENNAHEBODENSCHAETZE_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:abbaugut" mapping="xplan_abbaugut" />
-    <Primitive path="xplan:abbaugutCode" mapping="xplan_abbaugutcode" />
-    <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:folgenutzung_NSM" mapping="xplan_folgenutzung_nsm" />
-    <Primitive path="xplan:folgenutzung_NSMCode" mapping="xplan_folgenutzung_nsmcode" />
-    <Primitive path="xplan:folgenutzungText_NSM" mapping="xplan_folgenutzungtext_nsm" />
-    <Primitive path="xplan:zeitstufe_NSM" mapping="xplan_zeitstufe_nsm" />
-    <Primitive path="xplan:zeitstufe_NSMCode" mapping="xplan_zeitstufe_nsmcode" />
-    <Primitive path="xplan:zeitstufeText_NSM" mapping="xplan_zeitstufetext_nsm" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_RegionalBedeutsameSportanlage" table="xplansyn.xplan_rp_nsm_regionalbedeutsamesportanlage">
-    <FIDMapping prefix="XPLAN_RP_NSM_REGIONALBEDEUTSAMESPORTANLAGE_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typRBS_NSM" mapping="xplan_typrbs_nsm" />
-    <Primitive path="xplan:typRBS_NSMCode" mapping="xplan_typrbs_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_RegionalBedeutsamerWanderweg" table="xplansyn.xplan_rp_nsm_regionalbedeutsamerwanderweg">
-    <FIDMapping prefix="XPLAN_RP_NSM_REGIONALBEDEUTSAMERWANDERWEG_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typRBW_NSM" mapping="xplan_typrbw_nsm" />
-    <Primitive path="xplan:typRBW_NSMCode" mapping="xplan_typrbw_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Schienenverkehr" table="xplansyn.xplan_rp_nsm_schienenverkehr">
-    <FIDMapping prefix="XPLAN_RP_NSM_SCHIENENVERKEHR_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:typ" mapping="xplan_typ" />
-    <Primitive path="xplan:typCode" mapping="xplan_typcode" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:schienenverkehrTyp_NSM" mapping="xplan_schienenverkehrtyp_nsm" />
-    <Primitive path="xplan:schienenverkehrTyp_NSMCode" mapping="xplan_schienenverkehrtyp_nsmcode" />
-    <Primitive path="xplan:sonstTyp_NSM" mapping="xplan_sonsttyp_nsm" />
-    <Primitive path="xplan:sonstTyp_NSMCode" mapping="xplan_sonsttyp_nsmcode" />
-    <Primitive path="xplan:status_NSM" mapping="xplan_status_nsm" />
-    <Primitive path="xplan:status_NSMCode" mapping="xplan_status_nsmcode" />
-    <Primitive path="xplan:bezeichnung_NSM" mapping="xplan_bezeichnung_nsm" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_SonstVerkehr" table="xplansyn.xplan_rp_nsm_sonstverkehr">
-    <FIDMapping prefix="XPLAN_RP_NSM_SONSTVERKEHR_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:typ" mapping="xplan_typ" />
-    <Primitive path="xplan:typCode" mapping="xplan_typcode" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:sonstVerkehrTyp_NSM" mapping="xplan_sonstverkehrtyp_nsm" />
-    <Primitive path="xplan:sonstVerkehrTyp_NSMCode" mapping="xplan_sonstverkehrtyp_nsmcode" />
-    <Primitive path="xplan:bezeichnung_NSM" mapping="xplan_bezeichnung_nsm" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Strassenverkehr" table="xplansyn.xplan_rp_nsm_strassenverkehr">
-    <FIDMapping prefix="XPLAN_RP_NSM_STRASSENVERKEHR_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:typ" mapping="xplan_typ" />
-    <Primitive path="xplan:typCode" mapping="xplan_typcode" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:strassenverkehrTyp_NSM" mapping="xplan_strassenverkehrtyp_nsm" />
-    <Primitive path="xplan:strassenverkehrTyp_NSMCode" mapping="xplan_strassenverkehrtyp_nsmcode" />
-    <Primitive path="xplan:sonstTyp_NSM" mapping="xplan_sonsttyp_nsm" />
-    <Primitive path="xplan:status_NSM" mapping="xplan_status_nsm" />
-    <Primitive path="xplan:status_NSMCode" mapping="xplan_status_nsmcode" />
-    <Primitive path="xplan:bezeichnung_NSM" mapping="xplan_bezeichnung_nsm" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_TiefliegendeRohstoffe" table="xplansyn.xplan_rp_nsm_tiefliegenderohstoffe">
-    <FIDMapping prefix="XPLAN_RP_NSM_TIEFLIEGENDEROHSTOFFE_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:abbaugut" mapping="xplan_abbaugut" />
-    <Primitive path="xplan:abbaugutCode" mapping="xplan_abbaugutcode" />
-    <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Tourismus" table="xplansyn.xplan_rp_nsm_tourismus">
-    <FIDMapping prefix="XPLAN_RP_NSM_TOURISMUS_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:istAusgleichsgebiet" mapping="xplan_istausgleichsgebiet" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typTT_NSM" mapping="xplan_typtt_nsm" />
-    <Primitive path="xplan:typTT_NSMCode" mapping="xplan_typtt_nsmcode" />
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NSM_Wasserverkehr" table="xplansyn.xplan_rp_nsm_wasserverkehr">
-    <FIDMapping prefix="XPLAN_RP_NSM_WASSERVERKEHR_">
-      <Column name="attr_gml_id" type="string" />
-      <UUIDGenerator />
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid" />
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname" />
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription" />
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion" />
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype" />
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname" />
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid" />
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitBeginn" />
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitEnde" />
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmsSortDate" />
-    <Primitive path="xplan:uuid" mapping="xplan_uuid" />
-    <Primitive path="xplan:text" mapping="xplan_text" />
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand" />
-    <Primitive path="xplan:rechtsstandCode" mapping="xplan_rechtsstandcode" />
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage" />
-    <Primitive path="xplan:gesetzlicheGrundlageCode" mapping="xplan_gesetzlichegrundlagecode" />
-    <Primitive path="xplan:textAbschnitte" mapping="xplan_textabschnitte" />
-    <Primitive path="xplan:begruendungAbschnitte" mapping="xplan_begruendungabschnitte" />
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1" />
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2" />
-    <Primitive path="xplan:ebene" mapping="xplan_ebene" />
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich" />
-    <Primitive path="xplan:informell" mapping="xplan_informell" />
-    <Primitive path="xplan:rechtsverbindlich" mapping="xplan_rechtsverbindlich" />
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut" />
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter" />
-    <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
-    <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
-    <Geometry path="xplan:position" mapping="xplan_position" />
-    <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
-    <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:typ" mapping="xplan_typ" />
-    <Primitive path="xplan:typCode" mapping="xplan_typcode" />
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe" />
-    <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
-    <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:wasserverkehrTyp_NSM" mapping="xplan_wasserverkehrtyp_nsm" />
-    <Primitive path="xplan:wasserverkehrTyp_NSMCode" mapping="xplan_wasserverkehrtyp_nsmcode" />
-    <Primitive path="xplan:sonstTyp_NSM" mapping="xplan_sonsttyp_nsm" />
-    <Primitive path="xplan:status_NSM" mapping="xplan_status_nsm" />
-    <Primitive path="xplan:status_NSMCode" mapping="xplan_status_nsmcode" />
-    <Primitive path="xplan:bezeichnung_NSM" mapping="xplan_bezeichnung_nsm" />
-  </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_NaturLandschaft" table="xplansyn.xplan_rp_naturlandschaft">
     <FIDMapping prefix="XPLAN_RP_NATURLANDSCHAFT_">
       <Column name="attr_gml_id" type="string" />
@@ -15018,8 +14222,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:besondereZweckbestimmungNSG_NSM" mapping="xplan_besonderezweckbestimmungnsg_nsm" />
-    <Primitive path="xplan:besondereZweckbestimmungNSG_NSMCode" mapping="xplan_besonderezweckbestimmungnsg_nsmcode" />
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
     <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
     <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
@@ -15296,8 +14498,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:typRK_NSM" mapping="xplan_typRK_nsm" />
-    <Primitive path="xplan:typRK_NSMCode" mapping="xplan_typRK_nsmcode" />
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
     <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
     <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
@@ -15926,8 +15126,6 @@
     <Primitive path="xplan:rechtscharakterCode" mapping="xplan_rechtscharaktercode" />
     <Primitive path="xplan:konkretisierung" mapping="xplan_konkretisierung" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:sperrgebietTyp_NSM" mapping="xplan_sperrgebietTyp_nsm" />
-    <Primitive path="xplan:sperrgebietTyp_NSMCode" mapping="xplan_sperrgebietTyp_nsmcode" />
     <Geometry path="xplan:position" mapping="xplan_position" />
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
     <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
@@ -16179,8 +15377,6 @@
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
     <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
-    <Primitive path="xplan:zweckbestimmungHWS_NSM" mapping="xplan_zweckbestimmunghws_nsm" />
-    <Primitive path="xplan:zweckbestimmungHWS_NSMCode" mapping="xplan_zweckbestimmunghws_nsmcode" />
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:RP_Wasserschutz" table="xplansyn.xplan_rp_wasserschutz">
     <FIDMapping prefix="XPLAN_RP_WASSERSCHUTZ_">
@@ -16229,8 +15425,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:zweckbestimmungWS_NSM" mapping="xplan_zweckbestimmungws_nsm" />
-    <Primitive path="xplan:zweckbestimmungWS_NSMCode" mapping="xplan_zweckbestimmungws_nsmcode" />
     <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit" />
     <Primitive path="xplan:bedeutsamkeitCode" mapping="xplan_bedeutsamkeitcode" />
@@ -16527,8 +15721,6 @@
     <Primitive path="xplan:gehoertNachrichtlichZuBereich" mapping="xplan_gehoertnachrichtlichzubereich" />
     <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch" />
     <Primitive path="xplan:gehoertZuRP_Bereich" mapping="xplan_gehoertzurp_bereich" />
-    <Primitive path="xplan:detailFunktion_NSM" mapping="xplan_detailfunktion_nsm" />
-    <Primitive path="xplan:detailFunktion_NSMCode" mapping="xplan_detailfunktion_nsmcode" />
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp" />
     <Primitive path="xplan:gebietsTypCode" mapping="xplan_gebietstypcode" />
     <Primitive path="xplan:kuestenmeer" mapping="xplan_kuestenmeer" />
