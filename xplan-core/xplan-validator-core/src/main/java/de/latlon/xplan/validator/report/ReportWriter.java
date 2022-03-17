@@ -8,20 +8,26 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.validator.report;
 
-import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
-import static org.apache.commons.io.IOUtils.copy;
+import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
+import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
+import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
+import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
+import de.latlon.xplan.validator.web.shared.ArtifactType;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,16 +39,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.validator.report.badgeometryimg.BadGeometryImgGenerator;
-import de.latlon.xplan.validator.report.html.HtmlReportGenerator;
-import de.latlon.xplan.validator.report.pdf.PdfReportGenerator;
-import de.latlon.xplan.validator.report.shapefile.ShapefileGenerator;
-import de.latlon.xplan.validator.report.xml.XmlReportGenerator;
-import de.latlon.xplan.validator.web.shared.ArtifactType;
+import static de.latlon.xplan.validator.web.shared.ArtifactType.HTML;
+import static org.apache.commons.io.IOUtils.copy;
 
 /**
  * Generates an archive the {@link ValidatorReport} as XMl, HTML and PDF
@@ -64,13 +62,10 @@ public class ReportWriter {
 
 	private final HtmlReportGenerator htmlGenerator = new HtmlReportGenerator();
 
-	private final BadGeometryImgGenerator badGeometryImgGenerator = new BadGeometryImgGenerator();
-
 	private final ShapefileGenerator shapefileGenerator = new ShapefileGenerator();
 
 	/**
-	 * Writes all artefacts (XML, HTML and PDF as well as shp and png) into the passed
-	 * directory.
+	 * Writes all artefacts (XML, HTML and PDF as well as shp) into the passed directory.
 	 * @param report the report to write, never <code>null</code>
 	 * @param targetDirectory the directory to put the archive in, never <code>null</code>
 	 * @throws ReportGenerationException if an exception occurred during writing the
@@ -81,7 +76,6 @@ public class ReportWriter {
 		addXmlEntry(report, targetDirectory, failures);
 		addHtmlEntry(report, targetDirectory, failures);
 		addPdfEntry(report, targetDirectory, failures);
-		addPNGEntry(report, targetDirectory, failures);
 		addShapeDirectoryEntry(report, targetDirectory, failures);
 
 		addFailureLog(failures, targetDirectory);
@@ -123,6 +117,7 @@ public class ReportWriter {
 		}
 		catch (Exception e) {
 			failures.add(e.getMessage());
+			LOG.error("XML Entry of the validtion report could not be created.", e);
 		}
 
 	}
@@ -132,22 +127,6 @@ public class ReportWriter {
 		File htmlFile = new File(directoryToCreateZip, validationName + ".html");
 		try (FileOutputStream fileOutputStream = new FileOutputStream(htmlFile)) {
 			htmlGenerator.generateHtmlReport(report, fileOutputStream);
-		}
-		catch (Exception e) {
-			failures.add(e.getMessage());
-		}
-	}
-
-	private void addPNGEntry(ValidatorReport report, File directoryToCreateZip, List<String> failures) {
-		String validationName = report.getValidationName();
-		try {
-			if (badGeometryImgGenerator.hasBadGeometry(report)) {
-				File pngFile = new File(directoryToCreateZip, validationName + ".png");
-				try (FileOutputStream fileOutputStream = new FileOutputStream(pngFile)) {
-					badGeometryImgGenerator.generateReport(report, fileOutputStream);
-
-				}
-			}
 		}
 		catch (Exception e) {
 			failures.add(e.getMessage());
@@ -187,7 +166,6 @@ public class ReportWriter {
 		case SHP:
 			addShpArtifact(zipOutputStream, sourceDirectory);
 			break;
-		case PNG:
 		case HTML:
 		case XML:
 		case PDF:

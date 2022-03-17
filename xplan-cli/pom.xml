@@ -16,6 +16,7 @@
     <module>xplan-validator-cli</module>
     <module>xplan-transform-cli</module>
     <module>xplan-evaluation-schema-synchronize-cli</module>
+    <module>xplan-validatedb-cli</module>
   </modules>
 
 </project>
