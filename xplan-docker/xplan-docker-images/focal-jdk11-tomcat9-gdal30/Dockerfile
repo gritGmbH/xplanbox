@@ -3,7 +3,7 @@ FROM ubuntu:focal
 MAINTAINER Dirk Stenger <stenger@lat-lon.de>
 MAINTAINER Lyn Goltz <goltz@lat-lon.de>
 
-ARG TOMCAT_VERSION="9.0.58"
+ARG TOMCAT_VERSION="9.0.60"
 # set environment variables
 ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
