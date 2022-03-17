@@ -30,6 +30,7 @@ import java.util.UUID;
 
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_GELTUNGSBEREICH;
+import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_LAUFRICHTUNG;
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
@@ -61,11 +62,12 @@ public final class ValidatorConverter {
 	}
 
 	public static ValidationSettings createValidationSettings(String validationName, boolean skipGeometrisch,
-			boolean skipSemantisch, boolean skipFlaechenschluss, boolean skipGeltungsbereich) {
+			boolean skipSemantisch, boolean skipFlaechenschluss, boolean skipGeltungsbereich,
+			boolean skipLaufrichtung) {
 		ValidationSettings settings = new ValidationSettings();
 		settings.setValidationName(validationName);
 		settings.setValidationTypes(asValidationTypes(skipGeometrisch, skipSemantisch));
-		settings.setExtendedOptions(asValidationOptions(skipFlaechenschluss, skipGeltungsbereich));
+		settings.setExtendedOptions(asValidationOptions(skipFlaechenschluss, skipGeltungsbereich, skipLaufrichtung));
 		return settings;
 	}
 
@@ -79,13 +81,15 @@ public final class ValidatorConverter {
 		return validationTypes;
 	}
 
-	private static List<ValidationOption> asValidationOptions(boolean skipFlaechenschluss,
-			boolean skipGeltungsbereich) {
+	private static List<ValidationOption> asValidationOptions(boolean skipFlaechenschluss, boolean skipGeltungsbereich,
+			boolean skipLaufrichtung) {
 		List<ValidationOption> validationOptions = new ArrayList<>();
 		if (skipFlaechenschluss)
 			validationOptions.add(SKIP_FLAECHENSCHLUSS);
 		if (skipGeltungsbereich)
 			validationOptions.add(SKIP_GELTUNGSBEREICH);
+		if (skipLaufrichtung)
+			validationOptions.add(SKIP_LAUFRICHTUNG);
 		return validationOptions;
 	}
 

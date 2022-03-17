@@ -60,12 +60,14 @@ Mit diesen Einstellungen kann das Validierungslevel konfiguriert werden, das bei
 Standardmäßig müssen alle Tests (syntaktisch, semantisch und geometrisch) bestanden werden.
 Mit dieser Option kann z. B. festgelegt werden, dass Pläne die Prüfung auf den Geltungsbereich nicht bestehen müssen, um diesen zu importieren.
 Unabhängig von dieser Konfiguration muss die syntaktische Validierung in jedem Fall bestanden werden, ebenso werden Pläne mit schwerwiegenden geometrischen Fehlern grundsätzlich abgelehnt.
+
 Beispiel:
 
 ----
 skipSemantisch=false
 skipGeometrisch=false
 skipFlaechenschluss=false
+skipLaufrichtung=false
 skipGeltungsbereich=true
 ----
 

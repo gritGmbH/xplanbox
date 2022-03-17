@@ -91,6 +91,7 @@ public class ManagerApiConfiguration extends ApiConfiguration {
 		LOG.info("   - skip geometrisch: {}", defaultValidationConfiguration.isSkipGeometrisch());
 		LOG.info("   - skip Flaechenschluss: {}", defaultValidationConfiguration.isSkipFlaechenschluss());
 		LOG.info("   - skip Geltungsbereich: {}", defaultValidationConfiguration.isSkipGeltungsbereich());
+		LOG.info("   - skip Laufrichtung: {}", defaultValidationConfiguration.isSkipLaufrichtung());
 		LOG.info("-------------------------------------------");
 	}
 
@@ -99,8 +100,9 @@ public class ManagerApiConfiguration extends ApiConfiguration {
 		boolean skipGeometrisch = parseBoolean(loadProperties, "skipGeometrisch", false);
 		boolean skipFlaechenschluss = parseBoolean(loadProperties, "skipFlaechenschluss", false);
 		boolean skipGeltungsbereich = parseBoolean(loadProperties, "skipGeltungsbereich", false);
+		boolean skipLaufrichtung = parseBoolean(loadProperties, "skipLaufrichtung", false);
 		return new DefaultValidationConfiguration(skipSemantisch, skipGeometrisch, skipFlaechenschluss,
-				skipGeltungsbereich);
+				skipGeltungsbereich, skipLaufrichtung);
 	}
 
 }

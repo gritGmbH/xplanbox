@@ -52,7 +52,7 @@ public class XPlanGmlParserTest {
 		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 		XPlanArchive testArchive = getArchive("xplan-multipleInstances.gml");
 		XPlanFeatureCollections xPlanFeatureCollections = xPlanGmlParser
-				.parseXPlanFeatureCollectionAllowMultipleInstances(testArchive, null);
+				.parseXPlanFeatureCollectionAllowMultipleInstances(testArchive, null, false);
 		assertThat(xPlanFeatureCollections.getxPlanGmlInstances().size(), is(3));
 		assertThat(xPlanFeatureCollections, containsInstanceWithNoOFFeatures(5));
 		assertThat(xPlanFeatureCollections, containsInstanceWithNoOFFeatures(20));
@@ -63,7 +63,7 @@ public class XPlanGmlParserTest {
 	public void testParseFeatureCollectionMultipleInstanceWithUnreferencedFeature() throws Exception {
 		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 		XPlanArchive testArchive = getArchive("xplan-multipleInstances-withUnreferenced.gml");
-		xPlanGmlParser.parseXPlanFeatureCollectionAllowMultipleInstances(testArchive, null);
+		xPlanGmlParser.parseXPlanFeatureCollectionAllowMultipleInstances(testArchive, null, false);
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {

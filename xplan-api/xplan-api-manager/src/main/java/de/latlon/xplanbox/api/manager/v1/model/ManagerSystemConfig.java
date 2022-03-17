@@ -54,6 +54,8 @@ public class ManagerSystemConfig extends SystemConfig {
 
 	private @Valid Boolean skipGeltungsbereich = false;
 
+	private @Valid Boolean skipLaufrichtung = false;
+
 	/**
 	 * Konfiguriertes CRS für die Rasterdatenhaltung
 	 **/
@@ -162,6 +164,24 @@ public class ManagerSystemConfig extends SystemConfig {
 		this.skipGeltungsbereich = skipGeltungsbereich;
 	}
 
+	/**
+	 * Ueberpruefung der Laufrichtung bei Import ueberspringen
+	 **/
+	public ManagerSystemConfig skipLaufrichtung(Boolean skipLaufrichtung) {
+		this.skipLaufrichtung = skipLaufrichtung;
+		return this;
+	}
+
+	@Schema(description = "Ueberpruefung der Laufrichtung bei Import ueberspringen")
+	@JsonProperty("skipLaufrichtung")
+	public Boolean getSkipLaufrichtung() {
+		return skipLaufrichtung;
+	}
+
+	public void setSkipLaufrichtung(Boolean skipLaufrichtung) {
+		this.skipLaufrichtung = skipLaufrichtung;
+	}
+
 	@Override
 	public boolean equals(java.lang.Object o) {
 		if (this == o) {
@@ -176,13 +196,14 @@ public class ManagerSystemConfig extends SystemConfig {
 				&& Objects.equals(this.skipSemantisch, managerSystemConfig.skipSemantisch)
 				&& Objects.equals(this.skipGeometrisch, managerSystemConfig.skipGeometrisch)
 				&& Objects.equals(this.skipFlaechenschluss, managerSystemConfig.skipFlaechenschluss)
-				&& Objects.equals(this.skipGeltungsbereich, managerSystemConfig.skipGeltungsbereich);
+				&& Objects.equals(this.skipGeltungsbereich, managerSystemConfig.skipGeltungsbereich)
+				&& Objects.equals(this.skipLaufrichtung, managerSystemConfig.skipLaufrichtung);
 	}
 
 	@Override
 	public int hashCode() {
 		return Arrays.hashCode(new int[] { super.hashCode(), Objects.hash(rasterCrs, rasterType, skipSemantisch,
-				skipGeometrisch, skipFlaechenschluss, skipGeltungsbereich) });
+				skipGeometrisch, skipFlaechenschluss, skipGeltungsbereich, skipLaufrichtung) });
 	}
 
 	@Override
@@ -200,6 +221,7 @@ public class ManagerSystemConfig extends SystemConfig {
 		sb.append("    skipGeometrisch: ").append(toIndentedString(skipGeometrisch)).append("\n");
 		sb.append("    skipFlaechenschluss: ").append(toIndentedString(skipFlaechenschluss)).append("\n");
 		sb.append("    skipGeltungsbereich: ").append(toIndentedString(skipGeltungsbereich)).append("\n");
+		sb.append("    skipLaufrichtung: ").append(toIndentedString(skipLaufrichtung)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}
