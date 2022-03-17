@@ -905,7 +905,7 @@ public class XPlanDao {
 				throw new PlanNotFoundException(id);
 			}
 			XPlanVersion version = XPlanVersion.valueOf(rs.getString(1));
-			PlanStatus planStatus = retrievePlanStatus(rs.getString(3));
+			PlanStatus planStatus = retrievePlanStatus(rs.getString(2));
 			return new XPlanMetadata(version, planStatus);
 		}
 		catch (PlanNotFoundException pe) {
