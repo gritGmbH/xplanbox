@@ -141,28 +141,29 @@ public class XPlanDao {
 	 * <code>null</code>
 	 * @param synFc flattened features (of the main GML document from the archive), must
 	 * not be <code>null</code>
-	 * @param additionalPlanData containing some metadata about the xplan, never
+	 * @param planStatus the status of the plan, may be <code>null</code>
+	 * @param beginValidity the begin of the validity, may be <code>null</code>
+	 * @param beginValidity the endo of the validity, may be <code>null</code>
 	 * <code>null</code>
 	 * @param internalId
 	 * @return database id of the plan
 	 */
-	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
-			AdditionalPlanData additionalPlanData, Date sortDate, String internalId) throws Exception {
+	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
+			Date beginValidity, Date endValidity, Date sortDate, String internalId) throws Exception {
 		Connection conn = null;
 		try {
 			LOG.info("Insert XPlan");
 
-			PlanStatus planStatus = additionalPlanData.getPlanStatus();
 			FeatureStore xplanFs = managerWorkspaceWrapper.lookupStore(fc.getVersion(), planStatus);
 			FeatureStore synFs = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
 
 			conn = managerWorkspaceWrapper.openConnection();
 			conn.setAutoCommit(false);
 			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTA = insertXPlan(xplanFs, fc);
-			int planId = insertMetadata(conn, archive, fc, synFc, fidsAndXPlanTA.first, additionalPlanData, sortDate,
-					internalId);
+			int planId = insertMetadata(conn, archive, fc, synFc, fidsAndXPlanTA.first, planStatus, beginValidity,
+					endValidity, sortDate, internalId);
 
-			addAdditionalProperties(synFc, additionalPlanData, synFs, planId, sortDate);
+			addAdditionalProperties(synFc, beginValidity, endValidity, synFs, planId, sortDate);
 
 			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanSynTA = insertXPlanSyn(synFs, synFc);
 
@@ -297,7 +298,8 @@ public class XPlanDao {
 		SQLFeatureStoreTransaction taSyn = null;
 		try {
 			int planId = getXPlanIdAsInt(xplan.getId());
-			PlanStatus planStatus = xplan.getXplanMetadata().getPlanStatus();
+			AdditionalPlanData xplanMetadata = xplan.getXplanMetadata();
+			PlanStatus planStatus = xplanMetadata.getPlanStatus();
 
 			FeatureStore synFeatureStore = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
 			taSyn = (SQLFeatureStoreTransaction) synFeatureStore.acquireTransaction();
@@ -305,7 +307,8 @@ public class XPlanDao {
 			Set<String> ids = selectFids(planId);
 			IdFilter idFilter = new IdFilter(ids);
 
-			addAdditionalProperties(synFc, xplan.getXplanMetadata(), synFeatureStore, planId, sortDate);
+			addAdditionalProperties(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(),
+					synFeatureStore, planId, sortDate);
 			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
 			taSyn.performDelete(idFilter, null);
 			insertXPlanSyn(synFeatureStore, synFc);
@@ -818,13 +821,14 @@ public class XPlanDao {
 		}
 	}
 
-	private void addAdditionalProperties(FeatureCollection synFc, AdditionalPlanData xPlanMetadata, FeatureStore synFs,
-			int planId, Date sortDate) {
+	private void addAdditionalProperties(FeatureCollection synFc, Date beginValidity, Date endValidity,
+			FeatureStore synFs, int planId, Date sortDate) {
 		AppSchema schema = synFs.getSchema();
-		featureCollectionManipulator.addAdditionalPropertiesToFeatures(synFc, schema, planId, sortDate, xPlanMetadata);
+		featureCollectionManipulator.addAdditionalPropertiesToFeatures(synFc, schema, planId, sortDate, beginValidity,
+				endValidity);
 	}
 
-	private InputStream unzipArtefact(InputStream zippedStream) throws IOException, SQLException {
+	private InputStream unzipArtefact(InputStream zippedStream) throws IOException {
 		try (GZIPInputStream is = new GZIPInputStream(zippedStream);
 				ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
 			IOUtils.copy(is, bos);
@@ -1111,7 +1115,8 @@ public class XPlanDao {
 			taTarget = fidsAndXPlanTa.second;
 			LOG.info("OK");
 
-			addAdditionalProperties(synFc, newXPlanMetadata, synFsSource, planId, sortDate);
+			addAdditionalProperties(synFc, newXPlanMetadata.getStartDateTime(), newXPlanMetadata.getEndDateTime(),
+					synFsSource, planId, sortDate);
 			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
 			taSynSource.performDelete(idFilter, null);
 			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanSynTa = insertXPlanSyn(synFsTarget, synFc);
@@ -1157,13 +1162,14 @@ public class XPlanDao {
 	}
 
 	private int insertMetadata(Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
-			FeatureCollection synFc, List<String> fids, AdditionalPlanData xPlanMetadata, Date sortDate,
-			String internalId) throws SQLException {
+			FeatureCollection synFc, List<String> fids, PlanStatus planStatus, Date beginValidity, Date endValidity,
+			Date sortDate, String internalId) throws SQLException {
 
 		long begin = System.currentTimeMillis();
 		LOG.info("- Einfügen der XPlan-Metadaten (XPLAN_MGR)...");
 
-		int planId = insertPlanMetadata(mgrConn, archive, fc, synFc, xPlanMetadata, sortDate, internalId);
+		int planId = insertPlanMetadata(mgrConn, archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate,
+				internalId);
 		insertFeatureMetadata(mgrConn, fids, planId);
 
 		long elapsed = System.currentTimeMillis() - begin;
@@ -1189,8 +1195,8 @@ public class XPlanDao {
 	}
 
 	private int insertPlanMetadata(Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
-			FeatureCollection synFc, AdditionalPlanData xPlanMetadata, Date sortDate, String internalId)
-			throws SQLException {
+			FeatureCollection synFc, PlanStatus planStatus, Date beginValidity, Date endValidity, Date sortDate,
+			String internalId) throws SQLException {
 		String insertPlansSql = "INSERT INTO xplanmgr.plans "
 				+ "(import_date, xp_version, xp_type, name, nummer, gkz, has_raster, rechtsstand, "
 				+ "release_date, sonst_plan_art, planstatus, district, "
@@ -1211,11 +1217,11 @@ public class XPlanDao {
 			stmt.setString(8, retrieveRechtsstand(synFc, archive.getType()));
 			stmt.setTimestamp(9, convertToSqlTimestamp(fc.getPlanReleaseDate()));
 			stmt.setString(10, retrieveAdditionalType(synFc, archive.getType()));
-			stmt.setString(11, retrievePlanStatusMessage(xPlanMetadata));
+			stmt.setString(11, retrievePlanStatusMessage(planStatus));
 			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType(), archive.getVersion()));
 			stmt.setTimestamp(13, convertToSqlTimestamp(sortDate));
-			stmt.setTimestamp(14, convertToSqlTimestamp(xPlanMetadata.getStartDateTime()));
-			stmt.setTimestamp(15, convertToSqlTimestamp(xPlanMetadata.getEndDateTime()));
+			stmt.setTimestamp(14, convertToSqlTimestamp(beginValidity));
+			stmt.setTimestamp(15, convertToSqlTimestamp(endValidity));
 			stmt.setString(16, internalId);
 			stmt.setString(17, createWktFromBboxIn4326(fc));
 
@@ -1273,7 +1279,7 @@ public class XPlanDao {
 			stmt.setTimestamp(4, convertToSqlTimestamp(sortDate));
 			stmt.setTimestamp(5, convertToSqlTimestamp(newXPlanMetadata.getStartDateTime()));
 			stmt.setTimestamp(6, convertToSqlTimestamp(newXPlanMetadata.getEndDateTime()));
-			stmt.setString(7, retrievePlanStatusMessage(newXPlanMetadata));
+			stmt.setString(7, retrievePlanStatusMessage(newXPlanMetadata.getPlanStatus()));
 			stmt.setObject(8, Integer.parseInt(xplan.getId()));
 			LOG.trace("SQL Update XPlanManager Metadata: {}", stmt);
 			stmt.executeUpdate();
@@ -1640,19 +1646,19 @@ public class XPlanDao {
 		}
 	}
 
-	private PlanStatus retrievePlanStatus(String planStatusMessage) throws SQLException {
+	private PlanStatus retrievePlanStatus(String planStatusMessage) {
 		if (planStatusMessage != null && planStatusMessage.length() > 0)
 			return PlanStatus.findByMessage(planStatusMessage);
 		return FESTGESTELLT;
 	}
 
-	private String retrievePlanStatusMessage(AdditionalPlanData xPlanMetadata) {
-		if (xPlanMetadata.getPlanStatus() != null)
-			return xPlanMetadata.getPlanStatus().getMessage();
+	private String retrievePlanStatusMessage(PlanStatus planStatus) {
+		if (planStatus != null)
+			return planStatus.getMessage();
 		return FESTGESTELLT.getMessage();
 	}
 
-	private Date convertToDate(java.sql.Date dateToConvert) throws SQLException {
+	private Date convertToDate(java.sql.Date dateToConvert) {
 		return dateToConvert != null ? new Date(dateToConvert.getTime()) : null;
 	}
 

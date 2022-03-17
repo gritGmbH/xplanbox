@@ -424,6 +424,8 @@ public class ManagerController {
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate name of plan with id {}.", id);
 		try {
+			if ("null".equals(status))
+				status = null;
 			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
 			return manager.evaluatePlanNameAndStatus(fileToBeImported, status);
 		}

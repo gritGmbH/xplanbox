@@ -24,6 +24,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
+import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CrsUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
@@ -49,6 +50,7 @@ import org.slf4j.LoggerFactory;
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -95,37 +97,66 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			throws Exception {
 		LOG.info("- Importiere Plan " + archive);
 		ICRS crs = CrsUtils.determineActiveCrs(defaultCRS, archive, LOG);
-		PlanStatus selectedPlanStatus = xPlanMetadata.getPlanStatus();
 		XPlanFeatureCollections xPlanInstances = readAndValidateMainDocument(archive, crs, force);
-		List<Integer> planIds = new ArrayList<>();
 		boolean gmlWithMultipleInstances = xPlanInstances.getxPlanGmlInstances().size() > 1;
-		if (gmlWithMultipleInstances && (internalId != null || selectedPlanStatus != null)) {
+		if (gmlWithMultipleInstances) {
+			return importGmlWithMultipleInstances(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, internalId,
+					xPlanMetadata, crs, xPlanInstances);
+		}
+		XPlanFeatureCollection xPlanInstance = xPlanInstances.getxPlanGmlInstances().get(0);
+		return importGmlWithSingleInstance(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, internalId,
+				xPlanMetadata, crs, xPlanInstance);
+	}
+
+	private List<Integer> importGmlWithSingleInstance(XPlanArchive archive, boolean makeWMSConfig,
+			boolean makeRasterConfig, File workspaceFolder, String internalId, AdditionalPlanData xPlanMetadata,
+			ICRS crs, XPlanFeatureCollection xPlanInstance) throws Exception {
+		PlanStatus selectedPlanStatus = xPlanMetadata.getPlanStatus();
+		FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
+		if (internalId != null) {
+			AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, selectedPlanStatus).getSchema();
+			featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
+		}
+		int planId = importPlan(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, xPlanMetadata, crs,
+				selectedPlanStatus, xPlanInstance, synFc);
+		return Collections.singletonList(planId);
+	}
+
+	private List<Integer> importGmlWithMultipleInstances(XPlanArchive archive, boolean makeWMSConfig,
+			boolean makeRasterConfig, File workspaceFolder, String internalId, AdditionalPlanData xPlanMetadata,
+			ICRS crs, XPlanFeatureCollections xPlanInstances) throws Exception {
+		if (internalId != null || xPlanMetadata.getPlanStatus() != null) {
 			LOG.warn(
 					"XPlanGML contains multiple plan instances, internalId ({}) and selected planStatus ({}) are ignored.",
-					internalId, selectedPlanStatus);
-			internalId = null;
-			selectedPlanStatus = null;
+					internalId, xPlanMetadata.getPlanStatus());
 		}
+		List<Integer> planIds = new ArrayList<>();
 		for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
+			PlanStatus planStatusFromPlan = detectPlanStatus(xPlanInstance);
 			FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
-			if (internalId != null) {
-				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, selectedPlanStatus).getSchema();
-				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);
-			}
-			Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
-					xPlanInstance.getFeatures());
-			int planId = xplanDao.insert(archive, xPlanInstance, synFc, xPlanMetadata, sortDate, internalId);
-			createRasterConfigurations(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, xPlanInstance, planId,
-					selectedPlanStatus, sortDate);
-			startCreationOfDataServicesCoupling(planId, xPlanInstance, crs);
-			reloadWorkspace();
-			LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
-			LOG.info("OK.");
+			int planId = importPlan(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, xPlanMetadata, crs,
+					planStatusFromPlan, xPlanInstance, synFc);
 			planIds.add(planId);
 		}
 		LOG.info("Alle {0} XPlan GML Instanzen aus dem XPlanArchiv wurden erfolgreich importiert.",
 				xPlanInstances.getxPlanGmlInstances().size());
 		return planIds;
+	}
+
+	private int importPlan(XPlanArchive archive, boolean makeWMSConfig, boolean makeRasterConfig, File workspaceFolder,
+			AdditionalPlanData xPlanMetadata, ICRS crs, PlanStatus selectedPlanStatus,
+			XPlanFeatureCollection xPlanInstance, FeatureCollection synFc) throws Exception {
+		Date sortDate = sortPropertyReader.readSortDate(archive.getType(), archive.getVersion(),
+				xPlanInstance.getFeatures());
+		int planId = xplanDao.insert(archive, xPlanInstance, synFc, selectedPlanStatus,
+				xPlanMetadata.getStartDateTime(), xPlanMetadata.getEndDateTime(), sortDate, null);
+		createRasterConfigurations(archive, makeWMSConfig, makeRasterConfig, workspaceFolder, xPlanInstance, planId,
+				selectedPlanStatus, sortDate);
+		startCreationOfDataServicesCoupling(planId, xPlanInstance, crs);
+		reloadWorkspace();
+		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
+		LOG.info("OK.");
+		return planId;
 	}
 
 	private XPlanFeatureCollections readAndValidateMainDocument(XPlanArchive archive, ICRS crs, boolean force)
@@ -189,6 +220,22 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			}
 			throw new Exception("Das Hauptdokument ist nicht schema-valide.");
 		}
+	}
+
+	private PlanStatus detectPlanStatus(XPlanFeatureCollection xPlanInstance) {
+		String rechtsstand = FeatureCollectionUtils.retrieveRechtsstand(xPlanInstance.getFeatures(),
+				xPlanInstance.getType());
+		if (rechtsstand != null) {
+			try {
+				int rechtsstandCode = Integer.parseInt(rechtsstand);
+				return PlanStatus.findByLegislationStatusCode(rechtsstandCode);
+
+			}
+			catch (NumberFormatException e) {
+			}
+			LOG.warn("Could not parse legislation status code {} as integer", rechtsstand);
+		}
+		return PlanStatus.FESTGESTELLT;
 	}
 
 }

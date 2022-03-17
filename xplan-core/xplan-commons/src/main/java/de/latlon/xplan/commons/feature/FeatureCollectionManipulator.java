@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.commons.feature;
 
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.gml.property.PropertyType;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -92,18 +91,18 @@ public class FeatureCollectionManipulator {
 	 * @param planId the id of the plan to add to all features, never <code>null</code>
 	 * @param wmsSortDate the date to add to each sortable feature, may be
 	 * <code>null</code>
-	 * @param xPlanMetadata encapsulating the start and end date of the validity period,
-	 * never <code>null</code>
+	 * @param beginValidity the begin of the validity, may be <code>null</code>
+	 * @param beginValidity the endo of the validity, may be <code>null</code>
 	 */
 	public void addAdditionalPropertiesToFeatures(FeatureCollection featureCollectionToModify,
-			AppSchema applicationSchema, int planId, Date wmsSortDate, AdditionalPlanData xPlanMetadata) {
+			AppSchema applicationSchema, int planId, Date wmsSortDate, Date beginValidity, Date endValidity) {
 		Iterator<Feature> featureCollectionIterator = featureCollectionToModify.iterator();
 		while (featureCollectionIterator.hasNext()) {
 			Feature feature = featureCollectionIterator.next();
 			FeatureType featureType = applicationSchema.getFeatureType(feature.getName());
 			addMgrPlanIdProperty(planId, feature, featureType);
 			addWmsSortDatePropertyToFeature(wmsSortDate, feature, featureType);
-			addStartAndEndDateTimeProperty(xPlanMetadata, feature, featureType);
+			addStartAndEndDateTimeProperty(beginValidity, endValidity, feature, featureType);
 		}
 	}
 
@@ -143,14 +142,12 @@ public class FeatureCollectionManipulator {
 			addDateProperty(feature, featureType, WMS_SORT_DATE_PROP_NAME, releaseDate);
 	}
 
-	private void addStartAndEndDateTimeProperty(AdditionalPlanData xPlanMetadata, Feature feature,
+	private void addStartAndEndDateTimeProperty(Date beginValidity, Date endValidity, Feature feature,
 			FeatureType featureType) {
-		Date startDateTime = xPlanMetadata.getStartDateTime();
-		if (startDateTime != null)
-			addDateProperty(feature, featureType, START_DATE_TIME_PROP_NAME, startDateTime);
-		Date endDateTime = xPlanMetadata.getEndDateTime();
-		if (endDateTime != null)
-			addDateProperty(feature, featureType, END_DATE_TIME_PROP_NAME, endDateTime);
+		if (beginValidity != null)
+			addDateProperty(feature, featureType, START_DATE_TIME_PROP_NAME, beginValidity);
+		if (endValidity != null)
+			addDateProperty(feature, featureType, END_DATE_TIME_PROP_NAME, endValidity);
 	}
 
 	private void addDateProperty(Feature feature, FeatureType featureType, String datePropName, Date dateValue) {
