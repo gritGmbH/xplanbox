@@ -67,7 +67,7 @@
       <l:StyleStoreId>default/so/so_xp_pto</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -110,7 +110,7 @@
       <l:StyleStoreId>default/so/so_xp_lto</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <!-- Beschriftung Ende -->
@@ -154,7 +154,7 @@
       <l:StyleStoreId>default/so/so_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -197,7 +197,7 @@
       <l:StyleStoreId>default/so/so_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -240,7 +240,7 @@
       <l:StyleStoreId>default/so/so_xp_ppo</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
 
@@ -285,7 +285,7 @@
       <l:StyleStoreId>default/so/so_bereich</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -332,7 +332,7 @@
       <l:StyleStoreId>default/so/so_bodenschutzrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -379,7 +379,7 @@
       <l:StyleStoreId>default/so/so_denkmalschutzrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -426,7 +426,7 @@
       <l:StyleStoreId>default/so/so_forstrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -473,7 +473,7 @@
       <l:StyleStoreId>default/so/so_gebiet</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -520,7 +520,7 @@
       <l:StyleStoreId>default/so/so_gelaendemorphologie</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -567,7 +567,7 @@
       <l:StyleStoreId>default/so/so_grenze</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -652,7 +652,7 @@
       <l:StyleStoreId>default/so/so_luftverkehrsrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -737,7 +737,7 @@
       <l:StyleStoreId>default/so/so_plan</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -784,7 +784,7 @@
       <l:StyleStoreId>default/so/so_schienenverkehrsrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -831,7 +831,7 @@
       <l:StyleStoreId>default/so/so_schutzgebietnaturschutzrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -878,7 +878,7 @@
       <l:StyleStoreId>default/so/so_schutzgebietsonstigesrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -925,7 +925,7 @@
       <l:StyleStoreId>default/so/so_schutzgebietwasserrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -972,7 +972,7 @@
       <l:StyleStoreId>default/so/so_sonstigesrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1019,7 +1019,7 @@
       <l:StyleStoreId>default/so/so_strassenverkehrsrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1066,7 +1066,7 @@
       <l:StyleStoreId>default/so/so_wasserrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1113,7 +1113,7 @@
       <l:StyleStoreId>default/so/so_bauverbotszone</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -1160,7 +1160,7 @@
       <l:StyleStoreId>default/so/so_gewaesser</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>

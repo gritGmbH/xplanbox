@@ -86,7 +86,7 @@
     <d:Title>LP: XP: PTO</d:Title>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_xp_pto</l:StyleStoreId>
@@ -129,7 +129,7 @@
     <d:Title>LP: XP: LTO</d:Title>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_xp_lto</l:StyleStoreId>
@@ -175,7 +175,7 @@
     <d:Abstract>LP_SchutzobjektBundesrecht Symbole</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_schutzobjbundesrechtsym</l:StyleStoreId>
@@ -219,7 +219,7 @@
     <d:Abstract>LP_SchutzobjektLandesrecht Symbole</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_schutzobjlandesrechtsym</l:StyleStoreId>
@@ -263,7 +263,7 @@
     <d:Abstract>LP_Schutzobjekt internationales Recht Symbole</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_schutzobjinterrechtsym</l:StyleStoreId>
@@ -307,7 +307,7 @@
     <d:Abstract>LP_Denkmalschutzrecht Symbole</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_denkmschrechtsym</l:StyleStoreId>
@@ -351,7 +351,7 @@
     <d:Abstract>LP_Ausgleich Symbole</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_ausgleichsym</l:StyleStoreId>
@@ -395,7 +395,7 @@
     <d:Abstract>LP_NutzungserfordernisRegelung Symbole</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_nutzerforderregelungsym</l:StyleStoreId>
@@ -439,7 +439,7 @@
     <d:Title>LP: XP: FPO</d:Title>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_xp_fpo</l:StyleStoreId>
@@ -482,7 +482,7 @@
     <d:Title>LP: XP: LPO</d:Title>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_xp_lpo</l:StyleStoreId>
@@ -525,7 +525,7 @@
     <d:Title>LP: XP: PPO</d:Title>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_xp_ppo</l:StyleStoreId>
@@ -570,7 +570,7 @@
     <d:Abstract>LP_Bereich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_ber</l:StyleStoreId>
@@ -617,7 +617,7 @@
     <d:Abstract>LP_Abgrenzung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_abgrenzung</l:StyleStoreId>
@@ -664,7 +664,7 @@
     <d:Abstract>LP_AllgGruenflaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_allggruenfl</l:StyleStoreId>
@@ -711,7 +711,7 @@
     <d:Abstract>LP_Ausgleich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_ausgleich</l:StyleStoreId>
@@ -758,7 +758,7 @@
     <d:Abstract>LP_Biotopverbundflaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_biotopverbundfl</l:StyleStoreId>
@@ -805,7 +805,7 @@
     <d:Abstract>LP_Bodenschutzrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_bodenschutzrecht</l:StyleStoreId>
@@ -852,7 +852,7 @@
     <d:Abstract>LP_Denkmalschutzrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_denkmschrecht</l:StyleStoreId>
@@ -896,7 +896,7 @@
     <d:Abstract>LP_ErholungFreizeit</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_erholungfreizeit</l:StyleStoreId>
@@ -943,7 +943,7 @@
     <d:Abstract>LP_Forstrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_forstrecht</l:StyleStoreId>
@@ -990,7 +990,7 @@
     <d:Abstract>LP_Forstrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_forstrechtsym</l:StyleStoreId>
@@ -1037,7 +1037,7 @@
     <d:Abstract>LP_GenerischesObjekt</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_genobj</l:StyleStoreId>
@@ -1084,7 +1084,7 @@
     <d:Abstract>LP_NRW_Biotopschutz</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_biotopschutz</l:StyleStoreId>
@@ -1131,7 +1131,7 @@
     <d:Abstract>LP_NRW_Brachflaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_brachfl</l:StyleStoreId>
@@ -1176,8 +1176,9 @@
     <l:Name>lpnw_elkulturlandsch</l:Name>
     <d:Title>LP: NRW Elemente der Kulturlandschaft</d:Title>
     <d:Abstract>LP_NRW_ElementeKulturlandschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_elkulturlandsch</l:StyleStoreId>
@@ -1222,8 +1223,9 @@
     <l:Name>lpnw_forstlichefests</l:Name>
     <d:Title>LP: NRW Forstliche Festsetzungen</d:Title>
     <d:Abstract>LP_NRW_ForstlicheFestsetzung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_forstlichefests</l:StyleStoreId>
@@ -1268,8 +1270,9 @@
     <l:Name>lpnw_herrigrundst</l:Name>
     <d:Title>LP: NRW Herrichtung von Grundstücken</d:Title>
     <d:Abstract>LP_NRW_HerrichtungGrundstueck</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_herrigrundst</l:StyleStoreId>
@@ -1314,8 +1317,9 @@
     <l:Name>lpnw_pflegeanpflanz</l:Name>
     <d:Title>LP: NRW Pflege und Anpflanzung</d:Title>
     <d:Abstract>LP_NRW_PflegeAnpflanzung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_pflegeanpflanz</l:StyleStoreId>
@@ -1360,8 +1364,9 @@
     <l:Name>lpnw_pflegelandschbild</l:Name>
     <d:Title>LP: NRW Pflege des Landschaftsbildes</d:Title>
     <d:Abstract>LP_NRW_PflegeLandschaftsbild</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_pflegelandschbild</l:StyleStoreId>
@@ -1406,8 +1411,9 @@
     <l:Name>lpnw_schutzobjlandrecht</l:Name>
     <d:Title>LP: NRW Schutzobjekt</d:Title>
     <d:Abstract>LP_NRW_SchutzobjektLandesrecht</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_schutzobjlandrecht</l:StyleStoreId>
@@ -1452,8 +1458,9 @@
     <l:Name>lpnw_sonstmassn</l:Name>
     <d:Title>LP: NRW Sonstige Maßnahme</d:Title>
     <d:Abstract>LP_NRW_SonstigeMassnahme</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_sonstmassn</l:StyleStoreId>
@@ -1498,8 +1505,9 @@
     <l:Name>lpnw_struktelbesiedber</l:Name>
     <d:Title>LP: NRW Strukturen Besiedelter Bereich</d:Title>
     <d:Abstract>LP_NRW_StrukturenElementeBesiedelterBereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_struktelbesiedber</l:StyleStoreId>
@@ -1544,8 +1552,9 @@
     <l:Name>lpnw_templandschschutz</l:Name>
     <d:Title>LP: NRW Temporärer Landschaftsschutz</d:Title>
     <d:Abstract>LP_NRW_TemporaererLandschaftsschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_templandschschutz</l:StyleStoreId>
@@ -1590,8 +1599,9 @@
     <l:Name>lpnw_verpflichtungwrrl</l:Name>
     <d:Title>LP: NRW Verpflichtung nach WRRL</d:Title>
     <d:Abstract>LP_NRW_VerpflichtungWRRL</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lpnw_verpflichtungwrrl</l:StyleStoreId>
@@ -1638,7 +1648,7 @@
     <d:Abstract>LP_NutzungsAusschluss</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_nutzausschl</l:StyleStoreId>
@@ -1685,7 +1695,7 @@
     <d:Abstract>LP_NutzungserfordernisRegelung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_nutzerforderregelung</l:StyleStoreId>
@@ -1732,7 +1742,7 @@
     <d:Abstract>LP_PlanerischeVertiefung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_planerischevertief</l:StyleStoreId>
@@ -1779,7 +1789,7 @@
     <d:Abstract>LP_SchutzobjektBundesrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_schutzobjbundesrecht</l:StyleStoreId>
@@ -1826,7 +1836,7 @@
     <d:Abstract>LP_SchutzobjektLandesrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_schutzobjlandesrecht</l:StyleStoreId>
@@ -1873,7 +1883,7 @@
     <d:Abstract>LP_SchutzobjektInternatRecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_schutzobjinterrecht</l:StyleStoreId>
@@ -1920,7 +1930,7 @@
     <d:Abstract>LP_SchutzPflegeEntwicklung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_schutzpflentw</l:StyleStoreId>
@@ -1967,7 +1977,7 @@
     <d:Abstract>LP_SonstigesRecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_sonstsrecht</l:StyleStoreId>
@@ -2015,7 +2025,7 @@
     </d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_wrgemgebreinschrnats</l:StyleStoreId>
@@ -2063,7 +2073,7 @@
     </d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_wrgemgebreinschrnatssym</l:StyleStoreId>
@@ -2110,7 +2120,7 @@
     <d:Abstract>LP_WasserrechtSchutzgebiet</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_wrschutzgeb</l:StyleStoreId>
@@ -2157,7 +2167,7 @@
     <d:Abstract>LP_WasserrechtSchutzgebiet</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_wrschutzgebsym</l:StyleStoreId>
@@ -2201,7 +2211,7 @@
     <d:Abstract>LP_WasserrechtSonstige</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_wrsonst</l:StyleStoreId>
@@ -2248,7 +2258,7 @@
     <d:Abstract>LP_WasserrechtWirtschaftAbflussHochwSchutz</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_wrwirtschabflusshws</l:StyleStoreId>
@@ -2295,7 +2305,7 @@
     <d:Abstract>LP_WasserrechtWirtschaftAbflussHochwSchutz</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_wrwirtschabflusshwssym</l:StyleStoreId>
@@ -2342,7 +2352,7 @@
     <d:Abstract>LP_Zwischennutzung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_zwischennutz</l:StyleStoreId>

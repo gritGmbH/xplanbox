@@ -283,7 +283,7 @@
   </FeatureLayer>
   <!-- Beschriftung Ende -->
   <FeatureLayer>
-    <FeatureType>xplan:xP_FPO</FeatureType>
+    <FeatureType>xplan:XP_FPO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>

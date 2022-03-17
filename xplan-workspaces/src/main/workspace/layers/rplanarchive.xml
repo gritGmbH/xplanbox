@@ -85,6 +85,7 @@
 
     <l:Name>rp_xp_pto</l:Name>
     <d:Title>RP: XP: PTO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -125,9 +126,9 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-
     <l:Name>rp_xp_lto</l:Name>
     <d:Title>RP: XP: LTO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -172,6 +173,7 @@
 
     <l:Name>rp_xp_fpo</l:Name>
     <d:Title>RP: XP: FPO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -215,6 +217,7 @@
 
     <l:Name>rp_xp_lpo</l:Name>
     <d:Title>RP: XP: LPO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -258,6 +261,7 @@
 
     <l:Name>rp_xp_ppo</l:Name>
     <d:Title>RP: XP: PPO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -302,6 +306,7 @@
     <l:Name>rp_ber</l:Name>
     <d:Title>RP: Bereich</d:Title>
     <d:Abstract>RP_Bereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -349,6 +354,7 @@
     <l:Name>rp_achse</l:Name>
     <d:Title>RP: Achse</d:Title>
     <d:Abstract>RP_Achse</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -396,6 +402,7 @@
     <l:Name>rp_bodenschutz</l:Name>
     <d:Title>RP: Bodenschutz</d:Title>
     <d:Abstract>RP_Bodenschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -443,6 +450,7 @@
     <l:Name>rp_einzelhandel</l:Name>
     <d:Title>RP: Einzelhandel</d:Title>
     <d:Abstract>RP_Einzelhandel</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -490,6 +498,7 @@
     <l:Name>rp_energieversorgung</l:Name>
     <d:Title>RP: Energieversorgung</d:Title>
     <d:Abstract>RP_Energieversorgung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -537,6 +546,7 @@
     <l:Name>rp_entsorgung</l:Name>
     <d:Title>RP: Entsorgung</d:Title>
     <d:Abstract>RP_Entsorgung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -584,6 +594,7 @@
     <l:Name>rp_entwschwerpte</l:Name>
     <d:Title>RP: Entwicklungsschwerpunkte</d:Title>
     <d:Abstract>RP_Entwicklungsschwerpunkte</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -631,6 +642,7 @@
     <l:Name>rp_erholung</l:Name>
     <d:Title>RP: Erholung</d:Title>
     <d:Abstract>RP_Erholung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -678,6 +690,7 @@
     <l:Name>rp_erneuerbareenergie</l:Name>
     <d:Title>RP: ErneuerbareEnergie</d:Title>
     <d:Abstract>RP_ErneuerbareEnergie</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -725,6 +738,7 @@
     <l:Name>rp_forstwirtsch</l:Name>
     <d:Title>RP: Forstwirtschaft</d:Title>
     <d:Abstract>RP_Forstwirtschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -772,6 +786,7 @@
     <l:Name>rp_freiraum</l:Name>
     <d:Title>RP: Freiraum</d:Title>
     <d:Abstract>RP_Freiraum</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -819,6 +834,7 @@
     <l:Name>rp_freizeiterholung</l:Name>
     <d:Title>RP: Freizeit und Erholung</d:Title>
     <d:Abstract>RP_FreizeitErholung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -866,6 +882,7 @@
     <l:Name>rp_funktionszuweisung</l:Name>
     <d:Title>RP: Funktionszuweisung</d:Title>
     <d:Abstract>RP_Funktionszuweisung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -913,6 +930,7 @@
     <l:Name>rp_gemfunktsiedlentw</l:Name>
     <d:Title>RP: Gemeindefunktion</d:Title>
     <d:Abstract>RP_GemeindeFunktionSiedlungsentwicklung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -960,6 +978,7 @@
     <l:Name>rp_genobj</l:Name>
     <d:Title>RP: Generisches Objekt</d:Title>
     <d:Abstract>RP_GenerischesObjekt</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1007,6 +1026,7 @@
     <l:Name>rp_gr</l:Name>
     <d:Title>RP: Grenze</d:Title>
     <d:Abstract>RP_Grenze</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1054,6 +1074,7 @@
     <l:Name>rp_gruenzuggruenzaesur</l:Name>
     <d:Title>RP: Grünzug und - zäsur</d:Title>
     <d:Abstract>RP_GruenzugGruenzaesur</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1101,6 +1122,7 @@
     <l:Name>rp_hochwasserschutz</l:Name>
     <d:Title>RP: Hochwasserschutz</d:Title>
     <d:Abstract>RP_Hochwasserschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1148,6 +1170,7 @@
     <l:Name>rp_industriegewerbe</l:Name>
     <d:Title>RP: IndustrieGewerbe</d:Title>
     <d:Abstract>RP_IndustrieGewerbe</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1195,6 +1218,7 @@
     <l:Name>rp_klimaschutz</l:Name>
     <d:Title>RP: Klimaschutz</d:Title>
     <d:Abstract>RP_Klimaschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1242,6 +1266,7 @@
     <l:Name>rp_kommunikation</l:Name>
     <d:Title>RP: Kommunikation</d:Title>
     <d:Abstract>RP_Kommunikation</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1289,6 +1314,7 @@
     <l:Name>rp_kulturlandschaft</l:Name>
     <d:Title>RP: Kulturlandschaft</d:Title>
     <d:Abstract>RP_Kulturlandschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1336,6 +1362,7 @@
     <l:Name>rp_laermschutzbauschutz</l:Name>
     <d:Title>RP: LärmschutzBauschutz</d:Title>
     <d:Abstract>RP_LaermschutzBauschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1383,6 +1410,7 @@
     <l:Name>rp_laermschutzber</l:Name>
     <d:Title>RP: Lärmschutzbereich</d:Title>
     <d:Abstract>RP_Laermschutzbereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1430,6 +1458,7 @@
     <l:Name>rp_luftverkehr</l:Name>
     <d:Title>RP: Luftverkehr</d:Title>
     <d:Abstract>RP_Luftverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1477,6 +1506,7 @@
     <l:Name>rp_lw</l:Name>
     <d:Title>RP: Landwirtschaft</d:Title>
     <d:Abstract>RP_Landwirtschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1524,6 +1554,7 @@
     <l:Name>rp_naturlandsch</l:Name>
     <d:Title>RP: Natur und Landschaft</d:Title>
     <d:Abstract>RP_NaturLandschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1571,6 +1602,7 @@
     <l:Name>rp_natsrechtlschutzgeb</l:Name>
     <d:Title>RP: Naturschutzgebiete</d:Title>
     <d:Abstract>RP_NaturschutzrechtlichesSchutzgebiet</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1618,6 +1650,7 @@
     <l:Name>rpnw_asb</l:Name>
     <d:Title>RP: NRW ASB</d:Title>
     <d:Abstract>RP_NRW_ASB</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1665,6 +1698,7 @@
     <l:Name>rpnw_aufschuettablager</l:Name>
     <d:Title>RP: NRW Ablagerung</d:Title>
     <d:Abstract>RP_NRW_AufschuettungAblagerung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1712,6 +1746,7 @@
     <l:Name>rpnw_forstwirtsch</l:Name>
     <d:Title>RP: NRW Forstwirtschaft</d:Title>
     <d:Abstract>RP_NRW_Forstwirtschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1759,6 +1794,7 @@
     <l:Name>rpnw_freiraumagrarber</l:Name>
     <d:Title>RP: NRW Freiraum- und Agrarbereiche</d:Title>
     <d:Abstract>RP_NRW_FreiraumAgrarbereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1806,6 +1842,7 @@
     <l:Name>rpnw_gib</l:Name>
     <d:Title>RP: NRW GIB</d:Title>
     <d:Abstract>RP_NRW_GIB</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1853,6 +1890,7 @@
     <l:Name>rpnw_grundwgewschutz</l:Name>
     <d:Title>RP: NRW Grundwasser- und Gewässerschutz</d:Title>
     <d:Abstract>RP_NRW_GrundwasserGewaesserschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1900,6 +1938,7 @@
     <l:Name>rpnw_laermschutzzone</l:Name>
     <d:Title>RP: NRW Lärmschutzzone</d:Title>
     <d:Abstract>RP_NRW_Laermschutzzone</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1947,6 +1986,7 @@
     <l:Name>rpnw_landschschutz</l:Name>
     <d:Title>RP: NRW Landschaftsschutz</d:Title>
     <d:Abstract>RP_NRW_Landschaftsschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -1994,6 +2034,7 @@
     <l:Name>rpnw_luftverk</l:Name>
     <d:Title>RP: NRW Luftverkehr</d:Title>
     <d:Abstract>RP_NRW_Luftverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2041,6 +2082,7 @@
     <l:Name>rpnw_nats</l:Name>
     <d:Title>RP: NRW Naturschutz</d:Title>
     <d:Abstract>RP_NRW_Naturschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2088,6 +2130,7 @@
     <l:Name>rpnw_oberflngew</l:Name>
     <d:Title>RP: NRW Oberflächengewässer</d:Title>
     <d:Abstract>RP_NRW_OberflaechenGewaesser</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2135,6 +2178,7 @@
     <l:Name>rpnw_oberflnnahebs</l:Name>
     <d:Title>RP: NRW Oberflächennahe Bodenschätze</d:Title>
     <d:Abstract>RP_NRW_OberflaechennaheBodenschaetze</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2182,6 +2226,7 @@
     <l:Name>rpnw_schienenverk</l:Name>
     <d:Title>RP: NRW Schienenverkehr</d:Title>
     <d:Abstract>RP_NRW_Schienenverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2229,6 +2274,7 @@
     <l:Name>rpnw_sonstinfrastrukt</l:Name>
     <d:Title>RP: NRW sonstige Infrastruktur</d:Title>
     <d:Abstract>RP_NRW_Schienenverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2276,6 +2322,7 @@
     <l:Name>rpnw_sonstrsiedlber</l:Name>
     <d:Title>RP: NRW sonstiger Siedlungsbereich</d:Title>
     <d:Abstract>RP_NRW_SonstigerSiedlungsbereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2323,6 +2370,7 @@
     <l:Name>rpnw_sonstzweckbind</l:Name>
     <d:Title>RP: NRW sonstige Zweckbindung</d:Title>
     <d:Abstract>RP_NRW_SonstigeZweckbindung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2370,6 +2418,7 @@
     <l:Name>rpnw_sonstverk</l:Name>
     <d:Title>RP: NRW sonstiger Verkehr</d:Title>
     <d:Abstract>RP_NRW_SonstVerkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2417,6 +2466,7 @@
     <l:Name>rpnw_strverk</l:Name>
     <d:Title>RP: NRW Straßenverkehr</d:Title>
     <d:Abstract>RP_NRW_Strassenverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2464,6 +2514,7 @@
     <l:Name>rpnw_uberschwber</l:Name>
     <d:Title>RP: NRW Überschwemmungsbereich</d:Title>
     <d:Abstract>RP_NRW_Ueberschwemmungsbereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2511,6 +2562,7 @@
     <l:Name>rpnw_wasserverk</l:Name>
     <d:Title>RP: NRW Wasserverkehr</d:Title>
     <d:Abstract>RP_NRW_Wasserverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2558,6 +2610,7 @@
     <l:Name>rpnw_zeitlin</l:Name>
     <d:Title>RP: NRW Zeitlinie</d:Title>
     <d:Abstract>RP_NRW_Zeitlinie</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2605,6 +2658,7 @@
     <l:Name>rp_planungsraum</l:Name>
     <d:Title>RP: Planungsraum</d:Title>
     <d:Abstract>RP_Planungsraum</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2652,6 +2706,7 @@
     <l:Name>rp_radwegwanderweg</l:Name>
     <d:Title>RP: RadwegWanderweg</d:Title>
     <d:Abstract>RP_RadwegWanderweg</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2699,6 +2754,7 @@
     <l:Name>rp_raumkategorie</l:Name>
     <d:Title>RP: Raumkategorie</d:Title>
     <d:Abstract>RP_Raumkategorie</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2746,6 +2802,7 @@
     <l:Name>rp_rohstoff</l:Name>
     <d:Title>RP: Rohstoff</d:Title>
     <d:Abstract>RP_Rohstoff</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2793,6 +2850,7 @@
     <l:Name>rp_rohstoffsicherung</l:Name>
     <d:Title>RP: Rohstoffsicherung</d:Title>
     <d:Abstract>RP_Rohstoffsicherung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2840,6 +2898,7 @@
     <l:Name>rp_schienenverkehr</l:Name>
     <d:Title>RP: Schienenverkehr</d:Title>
     <d:Abstract>RP_Schienenverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2887,6 +2946,7 @@
     <l:Name>rp_siedlung</l:Name>
     <d:Title>RP: Siedlung</d:Title>
     <d:Abstract>RP_Siedlung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2934,6 +2994,7 @@
     <l:Name>rp_sonstinfrastrukt</l:Name>
     <d:Title>RP: sonstige Infrastruktur</d:Title>
     <d:Abstract>RP_SonstigeInfrastruktur</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -2981,6 +3042,7 @@
     <l:Name>rp_sonstrfreiraumstrukt</l:Name>
     <d:Title>RP: sonstige Freiraumstruktur</d:Title>
     <d:Abstract>RP_SonstigerFreiraumstruktur</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3028,6 +3090,7 @@
     <l:Name>rp_sonstsiedlstrukt</l:Name>
     <d:Title>RP: sonstige Siedlungsstruktur</d:Title>
     <d:Abstract>RP_SonstigeSiedlungsstruktur</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3075,6 +3138,7 @@
     <l:Name>rp_sonstfreiraumschutz</l:Name>
     <d:Title>RP: Sonstiger Freiraumschutz</d:Title>
     <d:Abstract>RP_SonstigerFreiraumschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3122,6 +3186,7 @@
     <l:Name>rp_sonstsiedlbereich</l:Name>
     <d:Title>RP: Sonstiger Siedlungsbereich</d:Title>
     <d:Abstract>RP_SonstigerSiedlungsbereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3169,6 +3234,7 @@
     <l:Name>rp_sonstverkehr</l:Name>
     <d:Title>RP: Sonstiger Verkehr</d:Title>
     <d:Abstract>RP_SonstVerkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3216,6 +3282,7 @@
     <l:Name>rp_sozinfrastrukt</l:Name>
     <d:Title>RP: soziale Infrastruktur</d:Title>
     <d:Abstract>RP_SozialeInfrastruktur</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3263,6 +3330,7 @@
     <l:Name>rp_sportanlage</l:Name>
     <d:Title>RP: Sportanlage</d:Title>
     <d:Abstract>RP_Sportanlage</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3310,6 +3378,7 @@
     <l:Name>rp_strassenverkehr</l:Name>
     <d:Title>RP: Strassenverkehr</d:Title>
     <d:Abstract>RP_Strassenverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3357,6 +3426,7 @@
     <l:Name>rp_verk</l:Name>
     <d:Title>RP: Verkehr</d:Title>
     <d:Abstract>RP_Verkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3404,6 +3474,7 @@
     <l:Name>rp_vorbhwschutz</l:Name>
     <d:Title>RP: vorbeugender Hochwasserschutz</d:Title>
     <d:Abstract>RP_VorbHochwasserschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3451,6 +3522,7 @@
     <l:Name>rp_wasserschutz</l:Name>
     <d:Title>RP: Wasserschutz</d:Title>
     <d:Abstract>RP_Wasserschutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3498,6 +3570,7 @@
     <l:Name>rp_wasserverkehr</l:Name>
     <d:Title>RP: Wasserverkehr</d:Title>
     <d:Abstract>RP_Wasserverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3545,6 +3618,7 @@
     <l:Name>rp_wws</l:Name>
     <d:Title>RP: Wasserwirtschaft</d:Title>
     <d:Abstract>RP_Wasserwirtschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3592,6 +3666,7 @@
     <l:Name>rp_windenergie</l:Name>
     <d:Title>RP: Windenergie</d:Title>
     <d:Abstract>RP_Windenergie</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3639,6 +3714,7 @@
     <l:Name>rp_windenergienutz</l:Name>
     <d:Title>RP: Windenergienutzung</d:Title>
     <d:Abstract>RP_Windenergienutzung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3686,6 +3762,7 @@
     <l:Name>rp_wohnensiedlung</l:Name>
     <d:Title>RP: Wohnen Siedlung</d:Title>
     <d:Abstract>RP_WohnenSiedlung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
@@ -3733,6 +3810,7 @@
     <l:Name>rp_zentralerort</l:Name>
     <d:Title>RP: Zentrale Orte</d:Title>
     <d:Abstract>RP_ZentralerOrt</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
