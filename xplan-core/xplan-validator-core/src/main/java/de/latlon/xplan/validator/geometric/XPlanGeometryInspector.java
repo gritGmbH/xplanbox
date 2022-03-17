@@ -624,7 +624,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	void checkRingOrientations(PolygonPatch patch) {
 		if (skipOrientation) {
-			return patch;
+			return;
 		}
 		checkOuterRing(patch.getExteriorRing());
 		for (Ring interiorRing : patch.getInteriorRings()) {
@@ -633,7 +633,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	private void checkOuterRing(Ring ring) {
-		LinearRing jTSRing = getJTSRing(ring);
+		LinearRing jTSRing = jtsParser.getJTSRing(ring);
 		if (!Orientation.isCCW(jTSRing.getCoordinates())) {
 			String msg = createMessage("2.2.2.1: \u00c4u\u00dferer Ring verwendet falsche Laufrichtung (CW).");
 			errors.add(msg);
@@ -642,7 +642,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 	}
 
 	private void checkInnerRing(Ring ring) {
-		LinearRing jTSRing = getJTSRing(ring);
+		LinearRing jTSRing = jtsParser.getJTSRing(ring);
 		if (Orientation.isCCW(jTSRing.getCoordinates())) {
 			String msg = createMessage("2.2.2.1: Innerer Ring verwendet falsche Laufrichtung (CCW).");
 			errors.add(msg);
