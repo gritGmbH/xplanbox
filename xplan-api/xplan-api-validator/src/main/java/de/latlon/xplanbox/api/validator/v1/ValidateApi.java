@@ -134,13 +134,15 @@ public class ValidateApi {
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") @Parameter(
 					description = "skip Flaechenschluss Ueberpruefung") Boolean skipFlaechenschluss,
 			@QueryParam("skipGeltungsbereich") @DefaultValue("false") @Parameter(
-					description = "skip Geltungsbereich Ueberpruefung") Boolean skipGeltungsbereich)
+					description = "skip Geltungsbereich Ueberpruefung") Boolean skipGeltungsbereich,
+			@QueryParam("skipLaufrichtung") @DefaultValue("false") @Parameter(
+					description = "skip Laufrichtung Ueberpruefung") Boolean skipLaufrichtung)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromGml(body, validationName);
 
 		return validate(request, xFilename, validationName, skipSemantisch, skipGeometrisch, skipFlaechenschluss,
-				skipGeltungsbereich, archive);
+				skipGeltungsbereich, skipLaufrichtung, archive);
 	}
 
 	@POST
@@ -152,22 +154,23 @@ public class ValidateApi {
 			@QueryParam("skipSemantisch") @DefaultValue("false") Boolean skipSemantisch,
 			@QueryParam("skipGeometrisch") @DefaultValue("false") Boolean skipGeometrisch,
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
-			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich)
+			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,
+			@QueryParam("skipLaufrichtung") @DefaultValue("false") Boolean skipLaufrichtung)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromZip(body, validationName);
 
 		return validate(request, xFilename, validationName, skipSemantisch, skipGeometrisch, skipFlaechenschluss,
-				skipGeltungsbereich, archive);
+				skipGeltungsbereich, skipLaufrichtung, archive);
 	}
 
 	private Response validate(Request request, String xFileName, String validationName, Boolean skipSemantisch,
-			Boolean skipGeometrisch, Boolean skipFlaechenschluss, Boolean skipGeltungsbereich, XPlanArchive archive)
-			throws ValidatorException, IOException {
+			Boolean skipGeometrisch, Boolean skipFlaechenschluss, Boolean skipGeltungsbereich, Boolean skipLaufrichtung,
+			XPlanArchive archive) throws ValidatorException, IOException {
 		MediaType mediaType = detectRequestedMediaType(request);
 
 		ValidationSettings settings = createValidationSettings(validationName, skipGeometrisch, skipSemantisch,
-				skipFlaechenschluss, skipGeltungsbereich);
+				skipFlaechenschluss, skipGeltungsbereich, skipLaufrichtung);
 		ValidatorReport validatorReport = validationHandler.validate(archive, xFileName, settings);
 		if (APPLICATION_ZIP_TYPE.equals(mediaType)) {
 			java.nio.file.Path report = validationHandler.zipReports(validatorReport);

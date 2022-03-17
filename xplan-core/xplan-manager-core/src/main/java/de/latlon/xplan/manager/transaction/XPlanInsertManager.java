@@ -134,7 +134,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		performSchemaValidation(archive);
 		try {
 			XPlanFeatureCollections xPlanInstances = xPlanGmlParser
-					.parseXPlanFeatureCollectionAllowMultipleInstances(archive, crs);
+					.parseXPlanFeatureCollectionAllowMultipleInstances(archive, crs, true);
 			reassignFids(xPlanInstances);
 			for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 				long begin = System.currentTimeMillis();
