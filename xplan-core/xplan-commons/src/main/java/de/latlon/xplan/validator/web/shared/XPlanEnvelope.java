@@ -103,8 +103,8 @@ public class XPlanEnvelope implements Serializable {
 
 	@Override
 	public String toString() {
-		return "XPlanEnvelope [crs=" + crs + ", minX=" + minX + ", minY=" + minY + ", maxX=" + maxX + ", maxY=" + maxY
-				+ "]";
+		return "XPlanEnvelope {crs=" + crs + ", minX=" + minX + ", minY=" + minY + ", maxX=" + maxX + ", maxY=" + maxY
+				+ "}";
 	}
 
 	@Override

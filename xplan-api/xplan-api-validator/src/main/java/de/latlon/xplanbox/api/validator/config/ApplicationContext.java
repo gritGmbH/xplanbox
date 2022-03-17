@@ -60,7 +60,7 @@ import static java.nio.file.Paths.get;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @Configuration
-@ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator" })
+@ComponentScan(basePackages = { "de.latlon.xplanbox.api.validator.handler", "de.latlon.xplanbox.api.validator.v1" })
 public class ApplicationContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ApplicationContext.class);
@@ -142,6 +142,7 @@ public class ApplicationContext {
 
 	@Bean
 	public ValidatorWmsManager validatorWmsManager(ValidatorConfiguration validatorConfiguration) {
+		LOG.trace("Using validatorConfiguration: " + validatorConfiguration);
 		String validatorWmsEndpoint = validatorConfiguration.getValidatorWmsEndpoint();
 		if (validatorWmsEndpoint == null) {
 			LOG.warn("XPlanValidatorWMS endpoint URL is not configured. Map preview will not be available.");
@@ -166,12 +167,6 @@ public class ApplicationContext {
 			return validationRulesDirectory;
 		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
-	}
-
-	private ValidatorWmsManager createValidatorWmsManager() throws IOException {
-		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
-		Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
-		return new ValidatorWmsManager(synthesizer, workspaceLocation);
 	}
 
 }

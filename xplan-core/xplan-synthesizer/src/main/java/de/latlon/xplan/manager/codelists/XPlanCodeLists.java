@@ -20,23 +20,10 @@
  */
 package de.latlon.xplan.manager.codelists;
 
-import static org.deegree.gml.GMLVersion.GML_30;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
-
-import javax.xml.stream.FactoryConfigurationError;
-import javax.xml.stream.XMLStreamException;
-
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.dictionary.Definition;
-import org.deegree.gml.dictionary.Dictionary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Map;
 
 /**
  * Encapsulates the internal or external code lists for one XPlan schema.
@@ -49,10 +36,10 @@ public class XPlanCodeLists {
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanCodeLists.class);
 
 	// for each code list: key: code, value: description
-	private Map<String, Map<String, String>> codeListIdToMapping = new TreeMap<String, Map<String, String>>();
+	private final Map<String, Map<String, String>> codeListIdToMapping;
 
 	// for each code list: key: description, value: code
-	private Map<String, Map<String, String>> codeListIdToReverseMapping = new TreeMap<String, Map<String, String>>();
+	private final Map<String, Map<String, String>> codeListIdToReverseMapping;
 
 	/**
 	 * @param codeListIdToMapping
@@ -63,64 +50,6 @@ public class XPlanCodeLists {
 		this.codeListIdToMapping = codeListIdToMapping;
 		this.codeListIdToReverseMapping = codeListIdToReverseMapping;
 	}
-
-	// public void checkConsistency( ApplicationSchema schema ) {
-	//
-	// Set<String> internalCodeTypes = new TreeSet<String>();
-	// Set<String> externalCodeTypes = new TreeSet<String>();
-	//
-	// for ( FeatureType ft : schema.getFeatureTypes() ) {
-	// for ( PropertyType<?> prop : ft.getPropertyDeclarations() ) {
-	// if ( prop instanceof SimplePropertyType<?> ) {
-	// SimplePropertyType<?> simpleProp = (SimplePropertyType<?>) prop;
-	// if ( simpleProp.getCodeList() != null ) {
-	// if ( !simpleProp.getCodeList().startsWith( "xplan:" ) ) {
-	// throw new RuntimeException( "Code list reference '" + simpleProp.getCodeList()
-	// + " does not start with 'xplan:'." );
-	// }
-	// externalCodeTypes.add( simpleProp.getCodeList().substring( 6 ) );
-	// } else {
-	// QName xsdSimpleType = simpleProp.getXSDTypeName();
-	// if ( !"http://www.w3.org/2001/XMLSchema".equals( xsdSimpleType.getNamespaceURI() )
-	// ) {
-	// String simpleType = xsdSimpleType.getLocalPart();
-	// if ( !simpleType.endsWith( "Type" ) ) {
-	// throw new RuntimeException( "Simple type '" + simpleType + " does not end on
-	// 'Type'." );
-	// }
-	// internalCodeTypes.add( simpleType.substring( 0, simpleType.length() - 4 ) );
-	// }
-	// }
-	// }
-	// }
-	// }
-	// System.out.println( "Internal code lists: " + internalCodeTypes.size() );
-	// for ( String codeType : internalCodeTypes ) {
-	// Dictionary codeList = (Dictionary) codeListsIdContext.getObject( codeType );
-	// if ( codeList == null ) {
-	// System.out.println( "Keine interne CodeList für code type " + codeType + "
-	// gefunden." );
-	// throw new RuntimeException();
-	// }
-	// }
-	// System.out.println( "External code lists: " + externalCodeTypes.size() );
-	// for ( String codeType : externalCodeTypes ) {
-	// Dictionary codeList = (Dictionary) extDictIdContext.getObject( codeType );
-	// if ( codeList == null ) {
-	// System.out.println( "Keine externe CodeList für code type " + codeType + "
-	// gefunden." );
-	// throw new RuntimeException();
-	// }
-	// }
-	//
-	// for ( String codeListId : codeListIdToCodeList.keySet() ) {
-	// if ( !( externalCodeTypes.contains( codeListId ) || internalCodeTypes.contains(
-	// codeListId ) ) ) {
-	// System.out.println( "Warnung: Externe CodeList " + codeListId + " wird nicht im
-	// Schema verwendet." );
-	// }
-	// }
-	// }
 
 	/**
 	 * @param codeListId

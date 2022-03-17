@@ -35,13 +35,13 @@ Die Adresse des XPlanWerkWMS ist abhängig von dem Planwerk das angefragt werden
 
 Die vollständige XPlanWerkWMS URL kann über die Kartenvorschau im XPlanManagerWeb abgerufen werden.
 
-NOTE: Vermeiden Sie Sonderzeichen im Plannamen wie z. B. `:`, `&`, `#` , `/`, `\`, `?`, `@`, `'`, `"` oder Zeilenumbrüche.
+IMPORTANT: Vermeiden Sie Sonderzeichen im Plannamen wie z. B. `:`, `&`, `#` , `/`, `\`, `?`, `@`, `'`, `"` oder Zeilenumbrüche.
 
 ----
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>
 ----
 
-NOTE: Alternativ kann die URL auch ohne Sonderzeichen verwendet werden. Dafür müssen alle anderen Zeichen als `a-zA-Z0-9-_` aus <PLANNAME> entfernt werden. Die so erstellte URL liefert eine identische Response wie die dazugehörige, kodierte URL.
+TIP: Alternativ kann die URL auch ohne Sonderzeichen verwendet werden. Dafür müssen alle anderen Zeichen als `a-zA-Z0-9-_` aus <PLANNAME> entfernt werden. Die so erstellte URL liefert eine identische Response wie die dazugehörige, kodierte URL.
 
 [[xplanwms-inhalte-des-kartendienstes]]
 === Inhalte des Kartendienstes
@@ -103,11 +103,35 @@ verschieden Styles zu wechseln, die die Darstellung der Inhalte des
 Kartendienstes beeinflussen. Dabei liegen alle Zeichenvorschriften
 (Styles) für alle Ebenen des XPlanWMS in transparenter und in
 vollflächiger Form vor. Bei GetMap Operationen kann mittels des
-Style-Parameter zwischen beiden Darstellungen gewechselt werden. Im
-WMS-Endpoint ist als default Style die vollflächige Darstellung
-eingestellt, im WMSpre-Endpoint und im WMSarchive-Endpoint hingegen die
+Style-Parameters zwischen beiden Darstellungen gewechselt werden. Im
+XPlanWMS ist als Default-Style die vollflächige Darstellung
+eingestellt, im XPlanWMSInAufstellung und im XPlanWMSArchiviert hingegen die
 transparente. Wenn der transparente Style ausgewählt wird, sind
 lediglich die Planumringe sichtbar.
+
+[width="100%",cols="25%,25%,20%,25%,5%",options="header"]
+|===
+|Endpoint
+|Planstatus
+|Default-Style
+|Dargestellte Planzeichen
+|GFI
+|XPlanWMSInAufstellung
+|In Aufstellung
+|`transparent`
+|nur Planumring
+|GFI
+|XPlanWMSFestgestellt
+|Festgestellt
+|`vollflaechig`
+|alle Planzeichen
+|GFI
+|XPlanWMSArchiviert
+|Archiviert
+|`transparent`
+|nur Planumring
+|GFI
+|===
 
 [[xplanwms-gueltigkeitszeitraum]]
 ===== Gültigkeitszeitraum

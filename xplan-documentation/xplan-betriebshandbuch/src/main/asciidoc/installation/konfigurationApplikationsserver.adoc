@@ -15,9 +15,9 @@ Für den XPlanManagerWeb muss die Variable _XPLANBOX_CONFIG_ als Java Property g
 _managerWebConfiguration.properties_ und _validatorConfiguration.properties_.
 Wurde der Anleitung in Abschnitt <<anwendung-installieren>> gefolgt, befindet sich das Verzeichnis mit dem Namen _xplan-manager-config_ im Verzeichnis _.deegree_ im Home-Verzeichnis des Nutzers. Wird ausschließlich der XPlanValidatorWeb installiert, heißt das Verzeichnis _xplan-validator-config_.
 
-NOTE: Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ erforderlich.
+IMPORTANT: Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ erforderlich.
 
-NOTE: Es wird empfohlen die Zeitzone im _Anwendungs-Tomcat_ auf "Europe/Berlin" zu konfigurieren, wenn dies nicht bereits auf Ebene des Betriebssystems gesetzt ist. Andernfalls kann es beim Editieren eines Plans veränderten Datumsangaben (z. B. Herstellungsdatum) kommen. Für die Konfiguration im Tomcat muss folgende Option zusätzlich in den `JAVA_OPTS` ergänzt werden: `-Duser.timezone=Europe/Berlin`.
+TIP: Es wird empfohlen die Zeitzone im _Anwendungs-Tomcat_ auf "Europe/Berlin" zu konfigurieren, wenn dies nicht bereits auf Ebene des Betriebssystems gesetzt ist. Andernfalls kann es beim Editieren eines Plans veränderten Datumsangaben (z. B. Herstellungsdatum) kommen. Für die Konfiguration im Tomcat muss folgende Option zusätzlich in den `JAVA_OPTS` ergänzt werden: `-Duser.timezone=Europe/Berlin`.
 
 [[anwendungs-tomcat-linux]]
 ===== Linux
@@ -46,7 +46,7 @@ export JAVA_OPTS='-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config -DDEEGREE_W
 
 Falls es bereits einen Export von `JAVA_OPTS` in dieser Datei gibt, muss die Variable `-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config` und ggf. `-DDEEGREE_WORKSPACE_ROOT=C:\pfad\zu\den\workspaces` in die bestehenden `JAVA_OPTS` integriert werden.
 
-NOTE: Der _Anwendungs-Tomcat_ muss mindestens über 4GB Arbeitsspeicher verfügen, dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
+IMPORTANT: Der _Anwendungs-Tomcat_ muss mindestens über 4GB Arbeitsspeicher verfügen, dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
 [[dienste-tomcat]]
 ==== Dienste-Tomcat
@@ -70,7 +70,7 @@ NOTE: Der Nutzername und das Passwort müssen in die
 _managerConfiguration.properties_ eingetragen werden (s. Kapitel
 <<automatischer-workspace-reload>>.
 
-NOTE: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+CAUTION: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
 ==== Absicherung des Tomcat und der Webanwendungen

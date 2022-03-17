@@ -25,30 +25,12 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
-import org.deegree.feature.Feature;
-import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Geometry;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 class Expressions {
-
-	public static TypedObjectNode evaluateSingle(Expression expr, Feature f, FeatureCollection features) {
-		TypedObjectNode value = expr.evaluate(f, features);
-		if (value == null) {
-			return null;
-		}
-		if (value instanceof TypedObjectNodeArray<?>) {
-			@SuppressWarnings("unchecked")
-			TypedObjectNodeArray<TypedObjectNode> array = (TypedObjectNodeArray<TypedObjectNode>) value;
-			if (array.getElements().length == 0) {
-				return null;
-			}
-			return array.getElements()[0];
-		}
-		return value;
-	}
 
 	public static PrimitiveValue castToPrimitive(TypedObjectNode node) {
 		if (node == null) {
@@ -79,7 +61,6 @@ class Expressions {
 		throw new IllegalArgumentException("Cannot cast '" + node.getClass() + "' to PrimitiveValue.");
 	}
 
-	@SuppressWarnings("unchecked")
 	public static TypedObjectNodeArray<TypedObjectNode> castToArray(TypedObjectNode node) {
 		if (node == null) {
 			return null;
@@ -87,7 +68,7 @@ class Expressions {
 		if (node instanceof TypedObjectNodeArray) {
 			return (TypedObjectNodeArray<TypedObjectNode>) node;
 		}
-		return new TypedObjectNodeArray<TypedObjectNode>(new TypedObjectNode[] { node });
+		return new TypedObjectNodeArray<>(new TypedObjectNode[] { node });
 	}
 
 	public static Geometry castToGeometry(TypedObjectNode node) {

@@ -35,7 +35,7 @@ wmsSortDate_SO_Plan_XPLAN_51=SO_Plan,inkrafttretenDatum
 wmsSortDate_SO_Plan_XPLAN_52=SO_Plan,inkrafttretenDatum
 ----
 
-NOTE: Es müssen ggf. Zeilenumbrüche entfernt werden.
+IMPORTANT: Es müssen ggf. Zeilenumbrüche entfernt werden.
 
 Die Angabe eines Sortierfeldes kann für jeden Plan-Type und Plan-Version
 differenziert erfolgen und kann am Aufbau des Schlüsselnamens erkannt
@@ -56,6 +56,6 @@ Wird kein Wert angegeben, oder fehlt ein Eintrag vollständig, kann für
 die Version/den Typ keine Zuordnung gefunden werden. Das Datumsfeld
 bleibt leer.
 
-NOTE: Eine Änderung dieser Konfiguration während des laufenden
+IMPORTANT: Eine Änderung dieser Konfiguration während des laufenden
 Betriebs führt zu unterschiedlichen Grundlagen der Sortierung. Über die
 Option `updatewmssortdate` des XPlanManagerCLI kann die Änderung für bereits importierte Daten nachgezogen werden. Der Aufruf des XPlanManagerCLI ist im entsprechenden Kapitel des XPlanBenutzerhandbuchs beschrieben.

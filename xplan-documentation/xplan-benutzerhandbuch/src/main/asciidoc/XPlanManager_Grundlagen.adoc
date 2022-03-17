@@ -15,7 +15,7 @@ Das XPlanArchiv ist eine ZIP-Datei mit folgendem Aufbau:
  * Rasterdaten, die im __xplan.gml__ referenziert sind, müssen ebenfalls im Basisverzeichnis der ZIP-Datei liegen, siehe dazu auch <<referenzierung-von-rasterdaten-im-xplangml>>.
  * Alle anderen im __xplan.gml__ referenzierten Anhänge müssen entweder im Basisverzeichnis der ZIP-Datei liegen oder werden über einen Link auf eine externe Datei (URL) referenziert.
 
-NOTE: *Wichtig*: Dateinamen dürfen keine Sonderzeichen wie z. B. `&`, `#` , `/`, `\`, `"`, `'` (doppeltes oder einfaches Anführungszeichen),
+IMPORTANT: *Wichtig*: Dateinamen dürfen keine Sonderzeichen wie z. B. `&`, `#` , `/`, `\`, `"`, `'` (doppeltes oder einfaches Anführungszeichen),
 Leerzeichen oder auch Umlaute beinhalten. Gross- und Kleinschreibung in den Dateinamen (auch der Dateiendung) werden berücksichtigt
 und müssen vollständig mit den Referenzen im Dokument übereinstimmen!
 
@@ -220,7 +220,7 @@ stellen zu können, müssen die Daten folgende Anforderungen erfüllen.
 Die Unterstützung verschiedener Rasterdatenformate ist vom gesetzten
 Raster-Konfigurationstyp abhängig.
 
-NOTE: *Wichtig*: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden.
+IMPORTANT: *Wichtig*: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden.
 Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.
 
 Unterschieden wird dabei zwischen den Konfigurationstypen _GeoTiff_ und

@@ -23,6 +23,7 @@ package de.latlon.xplanbox.api.validator.config;
 import de.latlon.xplanbox.api.validator.v1.DefaultApi;
 import de.latlon.xplanbox.api.validator.v1.InfoApi;
 import de.latlon.xplanbox.api.validator.v1.ValidateApi;
+import org.slf4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Indented to register the JAX-RS resources within Spring Application Context. TODO
@@ -39,6 +42,8 @@ import javax.annotation.PostConstruct;
  */
 @Configuration
 public class TestContext {
+
+	private static final Logger LOG = getLogger(TestContext.class);
 
 	@Bean
 	@Profile("jaxrs")
@@ -54,6 +59,7 @@ public class TestContext {
 	void initLoggingAdapter() {
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
+		LOG.trace("JUL logging enabled");
 	}
 
 }

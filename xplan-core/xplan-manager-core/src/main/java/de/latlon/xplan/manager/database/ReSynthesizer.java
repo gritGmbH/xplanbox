@@ -59,7 +59,7 @@ public class ReSynthesizer {
 	/**
 	 * @param dao used to access the database, never <code>null</code>
 	 * @param xPlanSynthesizer used to synthesize the plans, never <code>null</code>
-	 * @param sortPropertyReader used to to retrieve the configured sort property, never
+	 * @param sortPropertyReader used to retrieve the configured sort property, never
 	 * <code>null</code>
 	 */
 	public ReSynthesizer(XPlanDao dao, XPlanSynthesizer xPlanSynthesizer, SortPropertyReader sortPropertyReader) {

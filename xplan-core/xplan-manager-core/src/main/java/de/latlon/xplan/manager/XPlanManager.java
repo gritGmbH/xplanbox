@@ -170,7 +170,7 @@ public class XPlanManager {
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		this.sortPropertyUpdater = new SortPropertyUpdater(sortPropertyReader, xplanDao, xPlanRasterManager);
-		this.xPlanExporter = new XPlanExporter(managerWorkspaceWrapper.getConfiguration());
+		this.xPlanExporter = new XPlanExporter();
 		XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer(managerWorkspaceWrapper.getConfiguration());
 		if (inspirePluTransformator != null)
 			this.inspirePluPublisher = new InspirePluPublisher(xplanDao, inspirePluTransformator);

@@ -20,19 +20,18 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.commons.XPlanVersion;
+import org.deegree.commons.tom.TypedObjectNode;
+import org.deegree.commons.tom.array.TypedObjectNodeArray;
+import org.deegree.commons.tom.primitive.PrimitiveValue;
+import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
+
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
 import static de.latlon.xplan.manager.codelists.XPlanCodeListsFactory.getXPlanSyn;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
-
-import org.deegree.commons.tom.TypedObjectNode;
-import org.deegree.commons.tom.array.TypedObjectNodeArray;
-import org.deegree.commons.tom.primitive.PrimitiveValue;
-import org.deegree.feature.Feature;
-
-import de.latlon.xplan.commons.XPlanVersion;
-import org.deegree.feature.FeatureCollection;
 
 /**
  * {@link Expression} for translating codes from internal XPlan2 codelists to their
@@ -48,9 +47,9 @@ public class Xplan2CodeLookup implements Expression {
 
 	private final String xplanSynCodeList;
 
-	public Xplan2CodeLookup(Expression exp, String xplan2CodeList, String xplan3CodeList) {
+	public Xplan2CodeLookup(Expression exp, String xplanCodeList) {
 		this.exp = exp;
-		this.xplanSynCodeList = xplan3CodeList;
+		this.xplanSynCodeList = xplanCodeList;
 	}
 
 	@Override

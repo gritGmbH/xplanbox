@@ -4,7 +4,7 @@
 In diesem Betriebshandbuch befinden sich Informationen zu
 Systemvoraussetzungen, Schnittstellen und Installation für den Betrieb
 der xPlanBox. Die Web-Anwendungen basieren auf den Komponenten des
-OSGeo-Projekts http://www.deegree.org/[deegree]. Als zugrunde liegende
+OSGeo-Projekts https://www.deegree.org/[deegree]. Als zugrunde liegende
 Basistechnologien werden Java, Apache Tomcat und PostgreSQL mit PostGIS
 verwendet.
 
@@ -35,7 +35,7 @@ Minimum 500 GB)
 * Festplattensystem: RAID-10 (Kapazität nach Bedarf, Minimum 500 GB)
 optional mit SSD
 
-NOTE: Hohe Datentransferraten sind bei Bereitstellung von großen
+IMPORTANT: Hohe Datentransferraten sind bei Bereitstellung von großen
 Datenbeständen sowohl von Raster- als auch Vektordaten
 notwendig, u.a. um die Vorgaben der INSPIRE-Richtlinien zu erfüllen.
 
@@ -53,9 +53,9 @@ Browsern: Microsoft Edge (79.0+), Mozilla Firefox (80.0+), Google Chrome (85.0+)
 
 Als Betriebssystem kann ein beliebiges 64-bit Betriebssystem verwendet werden.
 
-NOTE: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian 10 (Buster) oder Ubuntu 20.04 LTS (Focal Fossa).
+TIP: Empfohlen wird die Nutzung eines der folgenden Betriebssysteme: Debian 10 (Buster) oder Ubuntu 20.04 LTS (Focal Fossa).
 
-NOTE: Das Gebietsschema des Betriebssystems ("Locale") sollte auf deutsch
+TIP: Das Gebietsschema des Betriebssystems ("Locale") sollte auf deutsch
 konfiguriert sein, da einzelne Fehlerbeschreibungen in dieser Sprache
 ausgegeben werden (z. B. im Validierungsbericht). Unter Linux kann das
 Gebietsschema beispielsweise in der Datei "/etc/default/locale"
@@ -64,11 +64,11 @@ angepasst werden.
 [[jdk]]
 === Java SE
 Als Java SE 11 wird sowohl
-http://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK 11]
+https://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK 11]
 als auch OpenJDK 11 (https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot[AdoptOpenJDK 11]
 oder https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html[Amazon Corretto 11]) unterstützt.
 
-NOTE: Empfohlen wird OpenJDK 11.0.13+8.
+TIP: Empfohlen wird OpenJDK 11.0.13+8.
 
 
 [[java-applikationsserver]]
@@ -79,7 +79,7 @@ Das Installationsarchiv findet sich bei der https://tomcat.apache.org[Apache Fou
 
 Um eine spätere Trennung der Dienste (Web-Anwendungen) zu gewährleisten, wird die Konfiguration von mehreren Tomcat-Instanzen empfohlen (siehe Kapitel <<web-anwendungen>>).
 
-NOTE: Die minimale Anforderung an den Applikationsserver ist das Java EE 7 Web
+TIP: Die minimale Anforderung an den Applikationsserver ist das Java EE 7 Web
 Profil. Empfohlen wird Apache Tomcat Version 9.0.58.
 
 [[datenbank]]
@@ -88,17 +88,17 @@ Profil. Empfohlen wird Apache Tomcat Version 9.0.58.
 Als Datenbanksystem ist eine Installation von PostgreSQL 9.5+ mit der
 Erweiterung PostGIS 2.4+ mindestens erforderlich.
 
-NOTE: Empfohlen wird PostgreSQL 11+ mit PostGIS 3.0+.
+TIP: Empfohlen wird PostgreSQL 11+ mit PostGIS 3.0+.
 
 === GDAL
 
 Optional kann die Installation der https://gdal.org/[GDAL-Bibliothek] erforderlich sein. Liegen Teil-Vektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vor, die mit der xPlanBox verwaltet werden sollen, ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötigt.
 Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
 
-NOTE: Erforderlich ist GDAL 3.0.
+IMPORTANT: Erforderlich ist GDAL 3.0.
 
 === HALE CLI
 
 Optional kann die Installation von https://github.com/halestudio/hale-cli/[HALE CLI] erforderlich sein. HALE CLI wird für die Transformation von Daten der xPlanBox verwendet. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
 
-NOTE: Erforderlich ist HALE CLI 3.4.0+.
+IMPORTANT: Erforderlich ist HALE CLI 3.4.0+.

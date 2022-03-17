@@ -62,7 +62,7 @@ public class XPlanBesondZweckbestLookup implements Expression {
 		if (normalizedCodes == null) {
 			return null;
 		}
-		return new TypedObjectNodeArray<PrimitiveValue>(normalizedCodes);
+		return new TypedObjectNodeArray<>(normalizedCodes);
 	}
 
 	private String escape(String desc) {

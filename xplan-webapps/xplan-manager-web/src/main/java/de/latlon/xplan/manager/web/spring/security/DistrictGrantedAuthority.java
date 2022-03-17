@@ -72,7 +72,7 @@ public class DistrictGrantedAuthority implements GrantedAuthority {
 
 	@Override
 	public String toString() {
-		return "DistrictGrantedAuthority [role=" + role + ", districts=" + districts + "]";
+		return "DistrictGrantedAuthority {role=" + role + ", districts=" + districts + "}";
 	}
 
 	@Override

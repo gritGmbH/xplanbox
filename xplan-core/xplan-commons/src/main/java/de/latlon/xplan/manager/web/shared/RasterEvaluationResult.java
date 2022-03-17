@@ -152,9 +152,9 @@ public class RasterEvaluationResult {
 
 	@Override
 	public String toString() {
-		return "RasterEvaluationResult [rasterName=" + rasterName + ", rasterCrs=" + rasterCrs
+		return "RasterEvaluationResult {rasterName=" + rasterName + ", rasterCrs=" + rasterCrs
 				+ ", rasterConfigurationCrs=" + rasterConfigurationCrs + ", crsSet=" + crsSet + ", configuredCrs="
-				+ configuredCrs + ", supportedImageFormat=" + supportedImageFormat + "]";
+				+ configuredCrs + ", supportedImageFormat=" + supportedImageFormat + "}";
 	}
 
 }

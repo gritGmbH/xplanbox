@@ -123,8 +123,8 @@ public class AdditionalPlanData implements Serializable {
 
 	@Override
 	public String toString() {
-		return "XPlanMetadata [planStatus=" + planStatus + ", startDateTime=" + startDateTime + ", endDateTime="
-				+ endDateTime + "]";
+		return "XPlanMetadata {planStatus=" + planStatus + ", startDateTime=" + startDateTime + ", endDateTime="
+				+ endDateTime + "}";
 	}
 
 	@Override

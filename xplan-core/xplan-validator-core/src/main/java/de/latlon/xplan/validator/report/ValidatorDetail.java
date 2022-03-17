@@ -145,7 +145,7 @@ public class ValidatorDetail {
 
 		@Override
 		public String toString() {
-			return "DetailPart [detailPart=" + detailPart + ", isLink()=" + isLink() + "]";
+			return "DetailPart {detailPart=" + detailPart + ", isLink()=" + isLink() + "}";
 		}
 
 		public abstract boolean isLink();

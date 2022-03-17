@@ -41,7 +41,7 @@ public class AlphanumericComparatorTest {
 
 	@Test
 	public void testCompare() {
-		int compare = new Integer(4).compareTo(new Integer(2));
+		int compare = Integer.valueOf(4).compareTo(Integer.valueOf(2));
 		assertThat(compare, is(1));
 	}
 

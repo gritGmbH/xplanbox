@@ -1,3 +1,4 @@
+[[xplanmanager]]
 == XPlanManager
 
 include::XPlanManager_Grundlagen.adoc[]

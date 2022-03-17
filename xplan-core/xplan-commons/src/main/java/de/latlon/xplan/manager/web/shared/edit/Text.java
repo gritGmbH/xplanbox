@@ -165,8 +165,8 @@ public class Text extends AbstractReference {
 
 	@Override
 	public String toString() {
-		return "Text [featureId=" + featureId + ", key=" + key + ", basis=" + basis + ", text=" + text
-				+ ", rechtscharakter= " + rechtscharakter + "]";
+		return "Text {featureId=" + featureId + ", key=" + key + ", basis=" + basis + ", text=" + text
+				+ ", rechtscharakter= " + rechtscharakter + "}";
 	}
 
 }

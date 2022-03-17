@@ -81,4 +81,11 @@ public class ValidatorConfiguration {
 			throw new IllegalArgumentException("validationReportDirectory must not be null!");
 	}
 
+	@Override
+	public String toString() {
+		return "ValidatorConfiguration{" + "validationReportDirectory=" + validationReportDirectory
+				+ ", validationRulesDirectory=" + validationRulesDirectory + ", validatorWmsEndpoint='"
+				+ validatorWmsEndpoint + '\'' + '}';
+	}
+
 }

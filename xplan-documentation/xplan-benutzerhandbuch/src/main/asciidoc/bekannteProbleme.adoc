@@ -69,7 +69,7 @@ Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeb
 
 === Umsetzung von Präsentationsobjekte
 
-Im XPlanWMS ist der Umfang der Darstellung von Präsentationsobjekten nur eingeschränkt implementiert. Über die folgenden Layern werden diese angezeigt:
+Im XPlanWMS ist der Umfang der Darstellung von Präsentationsobjekten nur eingeschränkt implementiert. Über die folgenden Layer werden diese angezeigt:
 
 * BP_Plan
 ** bp_xp_fpo
@@ -134,5 +134,5 @@ Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten finden, s
 [[support]]
 == Support
 
-Professionellen Support per Telefon oder E-Mail bieten Ihnen die Entwickler von http://www.lat-lon.de[lat/lon] an.
+Professionellen Support per Telefon oder E-Mail bieten Ihnen die Entwickler von https://www.lat-lon.de[lat/lon] an.
 Ihre Supportanfragen schicken Sie bitte an: ​support@lat-lon.de​.

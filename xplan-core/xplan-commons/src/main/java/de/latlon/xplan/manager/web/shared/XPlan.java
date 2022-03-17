@@ -298,8 +298,8 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
 	@Override
 	public String toString() {
-		return "XPlan[" + "name='" + name + '\'' + ", id='" + id + '\'' + ", type='" + type + '\'' + ", version='"
-				+ version + '\'' + ']';
+		return "XPlan {" + "name='" + name + '\'' + ", id='" + id + '\'' + ", type='" + type + '\'' + ", version='"
+				+ version + '\'' + '}';
 	}
 
 }

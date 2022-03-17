@@ -20,18 +20,9 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
-import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
-
-import java.util.List;
-
-import javax.xml.namespace.QName;
-
-import org.deegree.commons.tom.ElementNode;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.synthesizer.Features;
+import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import org.deegree.commons.tom.Reference;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
@@ -48,9 +39,15 @@ import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.synthesizer.Features;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import javax.xml.namespace.QName;
+import java.util.List;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
+import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
+import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
 
 /**
  * Expression for building the flat XPlan Syn version of XPlan 2.0 / 3.0 properties that
@@ -127,9 +124,7 @@ public class XPlanFlattenFeature implements Expression {
 				return flattenFeature(subFeature, features);
 			}
 		}
-		/*
-		 * else if ( value instanceof ElementNode ) { // TODO: Flatten ElementNode }
-		 */else {
+		else {
 			throw new IllegalArgumentException("Unexpected property value type: " + value.getClass());
 		}
 		return "";
@@ -206,26 +201,6 @@ public class XPlanFlattenFeature implements Expression {
 		if (value instanceof PrimitiveValue) {
 			resultString += value.toString();
 		}
-		// if ( value instanceof Object[] ) {
-		// Object[] values = (Object[]) value;
-		// for ( Object val : values ) {
-		// if ( val instanceof BigDecimal ) {
-		// resultString += ( (BigDecimal) val ).toString();
-		// } else if ( val instanceof BigInteger ) {
-		// resultString += ( (BigInteger) val ).toString();
-		// } else {
-		// resultString += (String) val;
-		// }
-		// }
-		// } else {
-		// if ( value instanceof BigDecimal ) {
-		// resultString += ( (BigDecimal) value ).toString();
-		// } else if ( value instanceof BigInteger ) {
-		// resultString += ( (BigInteger) value ).toString();
-		// } else {
-		// resultString += (String) value;
-		// }
-		// }
 		return resultString;
 	}
 
@@ -324,24 +299,6 @@ public class XPlanFlattenFeature implements Expression {
 		return s;
 	}
 
-	static String createUrlForExterneReferenz(ElementNode xpExterneReferenz, String featureId) {
-		String ns = xpExterneReferenz.getName().getNamespaceURI();
-		QName referenzURLName = new QName(ns, "referenzURL");
-		for (TypedObjectNode child : xpExterneReferenz.getChildren()) {
-			if (child instanceof ElementNode) {
-				ElementNode childEl = (ElementNode) child;
-				if (childEl.getName().equals(referenzURLName) && !childEl.getChildren().isEmpty()) {
-					String referenzURL = ("" + childEl.getChildren().get(0)).trim();
-					if (referenzURL.contains(":/")) {
-						return "[" + escape(referenzURL) + "]";
-					}
-					return "[/getAttachment?featureID=" + featureId + "&filename=" + escape(referenzURL) + "]";
-				}
-			}
-		}
-		return "";
-	}
-
 	private String concatenateVerfahrensMerkmal(Feature feature) {
 		String s = "[";
 		String ns = feature.getName().getNamespaceURI();
@@ -378,102 +335,5 @@ public class XPlanFlattenFeature implements Expression {
 		result = result.replace("][", "][][");
 		return result;
 	}
-
-	// private String concatenateExterneReferenzPlan( Feature feature ) {
-	// String s = "";
-	// String ns = feature.getName().getNamespaceURI();
-	// String informationssystemURL = (String) feature.getPropertyValue( new QName( ns,
-	// "informationssystemURL" ) );
-	// String beschreibung = (String) feature.getPropertyValue( new QName( ns,
-	// "beschreibung" ) );
-	// String referenzName = (String) feature.getPropertyValue( new QName( ns,
-	// "referenzName" ) );
-	// String referenzURL = (String) feature.getPropertyValue( new QName( ns,
-	// "referenzURL" ) );
-	// String referenzMimeType = (String) feature.getPropertyValue( new QName( ns,
-	// "referenzMimeType" ) );
-	// String georefURL = (String) feature.getPropertyValue( new QName( ns, "georefURL" )
-	// );
-	// String georefMimeType = (String) feature.getPropertyValue( new QName( ns,
-	// "georefMimeType" ) );
-	//
-	// if ( referenzName != null ) {
-	// s += "[\"" + referenzName + "\"=";
-	// } else {
-	// s += "[keine referenz ";
-	// }
-	// if ( beschreibung != null ) {
-	// s += "\"" + beschreibung + "\" ";
-	// } else {
-	// s += " keine beschreibung ";
-	// }
-	// if ( georefURL != null ) {
-	// s += "(" + georefURL + ", ";
-	// } else {
-	// s += "(keine geoRefURL, ";
-	// }
-	// if ( referenzURL != null ) {
-	// s += "(" + referenzURL + " ";
-	// } else {
-	// s += "(keine referenzURL ";
-	// }
-	//
-	// if ( informationssystemURL != null ) {
-	// s += "in " + informationssystemURL + ", ";
-	// } else {
-	// s += " keine informationssystemURL, ";
-	// }
-	//
-	// if ( referenzMimeType != null ) {
-	// s += referenzMimeType + ", ";
-	// } else {
-	// s += "keine referenzMimeType, ";
-	// }
-	// if ( georefMimeType != null ) {
-	// s += georefMimeType + ")]";
-	// } else {
-	// s += "keine geoRefMimeType)]";
-	// }
-	//
-	// return s;
-	// }
-	//
-	// private String concatenateExterneReferenz( Feature feature ) {
-	// String s = "";
-	// String ns = feature.getName().getNamespaceURI();
-	// String informationssystemURL = (String) feature.getPropertyValue( new QName( ns,
-	// "informationssystemURL" ) );
-	// String referenzName = (String) feature.getPropertyValue( new QName( ns,
-	// "referenzName" ) );
-	// String referenzURL = (String) feature.getPropertyValue( new QName( ns,
-	// "referenzURL" ) );
-	// String referenzMimeType = (String) feature.getPropertyValue( new QName( ns,
-	// "referenzMimeType" ) );
-	//
-	// if ( referenzName != null ) {
-	// s += "[\"" + referenzName + "\" ";
-	// } else {
-	// s += "[keine referenz ";
-	// }
-	//
-	// if ( referenzURL != null ) {
-	// s += "(" + referenzURL + " ";
-	// } else {
-	// s += "(keine referenzURL ";
-	// }
-	//
-	// if ( informationssystemURL != null ) {
-	// s += "in " + informationssystemURL + ", ";
-	// } else {
-	// s += " keine informationssystemURL, ";
-	// }
-	//
-	// if ( referenzMimeType != null ) {
-	// s += referenzMimeType + ")]";
-	// } else {
-	// s += "keine referenzMimeType)]";
-	// }
-	// return s;
-	// }
 
 }
