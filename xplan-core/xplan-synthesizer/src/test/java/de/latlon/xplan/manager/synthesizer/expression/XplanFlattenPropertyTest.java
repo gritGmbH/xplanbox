@@ -27,6 +27,7 @@ import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
 import static org.junit.Assert.assertEquals;
@@ -72,7 +73,8 @@ public class XplanFlattenPropertyTest {
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refLegende"));
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("[/getAttachment?featureID=BP_Plan_1&filename=B-Plan_Klingmuehl_Heideweg_Leg.pdf]",
+		assertEquals(
+				"[/getAttachment?featureID=BP_Plan_1&filename=B-Plan_Klingmuehl_Heideweg_Leg.pdf | Externe Referenz]",
 				value.toString());
 	}
 
@@ -83,7 +85,7 @@ public class XplanFlattenPropertyTest {
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refRechtsplan"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals(
-				"[/getAttachment?featureID=BP_Plan_1&filename=B-Plan_Klingmuehl_Heideweg.tif][/getAttachment?featureID=BP_Plan_1&filename=georef]",
+				"[/getAttachment?featureID=BP_Plan_1&filename=B-Plan_Klingmuehl_Heideweg.tif | Externe Referenz][/getAttachment?featureID=BP_Plan_1&filename=georef | Georeferenz]",
 				value.toString());
 	}
 
@@ -114,7 +116,7 @@ public class XplanFlattenPropertyTest {
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:rasterBasis"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals(
-				"[/getAttachment?featureID=XP_RASTERPLANBASIS_1&filename=B-Plan_Klingmuehl_Heideweg_Karte.tif][/getAttachment?featureID=XP_RASTERPLANBASIS_1&filename=B-Plan_Klingmuehl_Heideweg_Karte.tfw]",
+				"[/getAttachment?featureID=XP_RASTERPLANBASIS_1&filename=B-Plan_Klingmuehl_Heideweg_Karte.tif | Externe Referenz][/getAttachment?featureID=XP_RASTERPLANBASIS_1&filename=B-Plan_Klingmuehl_Heideweg_Karte.tfw | Georeferenz]",
 				value.toString());
 	}
 
@@ -125,7 +127,7 @@ public class XplanFlattenPropertyTest {
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:rasterAenderung"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals(
-				"[/getAttachment?featureID=BP_RASTERPLANAENDERUNG_1&filename=B-Plan_Klingmuehl_Heideweg_Karte1.tif][/getAttachment?featureID=BP_RASTERPLANAENDERUNG_1&filename=B-Plan_Klingmuehl_Heideweg_Karte1.tfw][/getAttachment?featureID=BP_RASTERPLANAENDERUNG_2&filename=B-Plan_Klingmuehl_Heideweg_Karte2.tif][/getAttachment?featureID=BP_RASTERPLANAENDERUNG_2&filename=B-Plan_Klingmuehl_Heideweg_Karte2.tfw]",
+				"[/getAttachment?featureID=BP_RASTERPLANAENDERUNG_1&filename=B-Plan_Klingmuehl_Heideweg_Karte1.tif | Externe Referenz][/getAttachment?featureID=BP_RASTERPLANAENDERUNG_1&filename=B-Plan_Klingmuehl_Heideweg_Karte1.tfw | Georeferenz][/getAttachment?featureID=BP_RASTERPLANAENDERUNG_2&filename=B-Plan_Klingmuehl_Heideweg_Karte2.tif | Externe Referenz][/getAttachment?featureID=BP_RASTERPLANAENDERUNG_2&filename=B-Plan_Klingmuehl_Heideweg_Karte2.tfw | Georeferenz]",
 				value.toString());
 	}
 
@@ -188,6 +190,15 @@ public class XplanFlattenPropertyTest {
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals(null, value);
+	}
+
+	@Test
+	public void testEvaluate53XpSpezExterneReferenz() {
+		FeatureCollection features = getTestFeatures(XPLAN_53);
+		Feature feature = getTestFeature(features, "BP_Plan");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:externeReferenz"));
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals("[/getAttachment?featureID=BP_Plan&filename=Satzung.pdf | Satzung]", value.toString());
 	}
 
 }

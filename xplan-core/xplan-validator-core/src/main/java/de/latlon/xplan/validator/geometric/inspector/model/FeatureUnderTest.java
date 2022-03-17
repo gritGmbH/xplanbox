@@ -38,12 +38,12 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 
 	static {
 		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuBereich");
-		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuBereich");
 		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuBP_Bereich");
 		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuLP_Bereich");
 		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuFP_Bereich");
 		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuRP_Bereich");
 		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertZuSO_Bereich");
+		GEHOERT_ZU_BEREICH_PROPNAMES.add("gehoertNachrichtlichZuBereich");
 	}
 
 	public FeatureUnderTest(Feature feature, InspectorContext inspectorContext) {

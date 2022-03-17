@@ -43,7 +43,7 @@ public class XplanCodeLookup extends AbstractXplanCodeLookup {
 	}
 
 	@Override
-	protected XPlanCodeLists getXplanCodeLists(Feature feature) {
+	public XPlanCodeLists getXplanCodeLists(Feature feature) {
 		XPlanVersion version = determineBaseVersion(feature.getName());
 		return XPlanCodeListsFactory.get(version);
 	}
