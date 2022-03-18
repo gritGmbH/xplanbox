@@ -19,16 +19,18 @@
   #L%
   -->
 <FeatureLayers xmlns="http://www.deegree.org/layers/feature"
-  xmlns:d="http://www.deegree.org/metadata/description" xmlns:l="http://www.deegree.org/layers/base"
-  xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.deegree.org/layers/feature http://schemas.deegree.org/layers/feature/3.4.0/feature.xsd"
-  configVersion="3.4.0">
+               xmlns:d="http://www.deegree.org/metadata/description" xmlns:l="http://www.deegree.org/layers/base"
+               xmlns:s="http://www.deegree.org/metadata/spatial"
+               xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://www.deegree.org/layers/feature http://schemas.deegree.org/layers/feature/3.4.0/feature.xsd"
+               configVersion="3.4.0">
   <FeatureStoreId>xplansynpre</FeatureStoreId>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Plan</FeatureType>
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
@@ -37,7 +39,7 @@
     <d:Abstract>FP_Plan</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_plan_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_plan</l:StyleStoreId>
@@ -48,13 +50,14 @@
   </FeatureLayer>
   <!-- Beschriftung Anfang -->
   <FeatureLayer>
+    <FeatureType>xplan:XP_PTO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -63,7 +66,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -75,27 +78,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_xp_pto</l:Name>
     <d:Title>FP: XP: PTO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_xp_pto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_xp_pto</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:XP_LTO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -104,7 +109,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -116,14 +121,15 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_xp_lto</l:Name>
     <d:Title>FP: XP: LTO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_xp_lto_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_xp_lto</l:StyleStoreId>
@@ -131,13 +137,14 @@
   </FeatureLayer>
   <!-- Beschriftung Ende -->
   <FeatureLayer>
+    <FeatureType>xplan:XP_FPO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -146,7 +153,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -158,27 +165,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_xp_fpo</l:Name>
     <d:Title>FP: XP: FPO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_xp_fpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_xp_fpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:XP_LPO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -187,7 +196,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -199,27 +208,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_xp_lpo</l:Name>
     <d:Title>FP: XP: LPO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_xp_lpo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_xp_lpo</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:XP_PPO</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -228,7 +239,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -240,14 +251,15 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_xp_ppo</l:Name>
     <d:Title>FP: XP: PPO</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_xp_ppo_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_xp_ppo</l:StyleStoreId>
@@ -255,13 +267,14 @@
   </FeatureLayer>
   <!-- Symbole Anfang -->
   <FeatureLayer>
+    <FeatureType>xplan:FP_Bahnverkehr</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -270,7 +283,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -282,27 +295,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_bahnverksym</l:Name>
     <d:Title>FP: Bahnverkehr Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_bahnverksym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_bahnverksym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Gemeinbedarf</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -311,7 +326,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -323,27 +338,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_gembedarfsym</l:Name>
     <d:Title>FP: Gemeinbedarfsfläche Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_gembedarfsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_gembedarfsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Gewaesser</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -352,7 +369,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -364,27 +381,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_gewflsym</l:Name>
     <d:Title>FP: Gewässer Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_gewsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_gewsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_VorbHochwSchutz</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -393,7 +412,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -405,27 +424,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_vorbhwssym</l:Name>
     <d:Title>FP: Festgesetztes Überschwemmungsgebiet Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_vorbhwssym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_vorbhwssym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Wasserrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -434,7 +455,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -446,27 +467,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_wrsym</l:Name>
     <d:Title>FP: Wasserrecht Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_wrsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_wrsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_LandwirtschaftsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -475,7 +498,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -487,27 +510,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_lwflsym</l:Name>
     <d:Title>FP: Landwirtschaftsfläche Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_lwflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_lwflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Wasserwirtschaft</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -516,7 +541,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -528,27 +553,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_wsssym</l:Name>
     <d:Title>FP: Wasserwirtschaft Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_wwssym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_wwssym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_BodenschaetzeFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -557,7 +584,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -569,27 +596,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_bsflsym</l:Name>
     <d:Title>FP: Bodenschätzefläche Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_bsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_bsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_AufschuettungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -598,7 +627,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -610,27 +639,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_aufschuettsflsym</l:Name>
     <d:Title>FP: Aufschüttungsfläche Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_aufschuettsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_aufschuettsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_AbgrabungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -639,7 +670,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -651,27 +682,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_abgrabungsflsym</l:Name>
     <d:Title>FP: Abgrabungsfläche Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_abgrabungsflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_abgrabungsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_VerEntsorgung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -680,7 +713,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -692,27 +725,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_verentsorgungsym</l:Name>
     <d:Title>FP: Ver- und Entsorgung Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_verentsorgungsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_verentsorgungsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_WaldFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -721,7 +756,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -733,27 +768,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_waldflsym</l:Name>
     <d:Title>FP: Waldfläche Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_waldflsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_waldflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Strassenverkehr</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -762,7 +799,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -774,27 +811,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_strverksym</l:Name>
     <d:Title>FP: Strassenverkehr Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_strverksym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_strverksym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_DenkmalschutzEnsemble</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -803,7 +842,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -815,27 +854,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_denkmschenssym</l:Name>
     <d:Title>FP: Denkmalensemble Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_denkmschenssym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_denkmschenssym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Erhaltungssatzung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -844,7 +885,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -856,27 +897,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_erhssatzungsym</l:Name>
     <d:Title>FP: Erhaltungssatzung Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_erhssatzungsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_erhssatzungsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Schutzgebiet</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -885,7 +928,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -897,27 +940,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_schutzgebsym</l:Name>
     <d:Title>FP: Schutzgebiet Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_schutzgebsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_schutzgebsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_SchutzPflegeEntwicklung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -926,7 +971,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -938,27 +983,29 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_schutzpflentwsym</l:Name>
     <d:Title>FP: FP: Schutz-, Pflege- und Entwicklungsfläche Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_schutzpflentwsym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_schutzpflentwsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Gruen</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -967,7 +1014,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -979,14 +1026,15 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_gruensym</l:Name>
     <d:Title>FP: Grünfläche Symbol</d:Title>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_gruensym_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_gruensym</l:StyleStoreId>
@@ -994,13 +1042,14 @@
   </FeatureLayer>
   <!-- Symbole Ende -->
   <FeatureLayer>
+    <FeatureType>xplan:FP_BebauungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1009,7 +1058,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1021,15 +1070,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_bebausfl</l:Name>
     <d:Title>FP: Bebauungsfläche</d:Title>
     <d:Abstract>FP_BebauungsFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_bebausfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_bebausfl</l:StyleStoreId>
@@ -1039,13 +1089,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Bahnverkehr</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1054,7 +1105,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1066,15 +1117,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_bahnverk</l:Name>
     <d:Title>FP: Bahnverkehr</d:Title>
     <d:Abstract>FP_Bahnverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_bahnverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_bahnverk</l:StyleStoreId>
@@ -1084,13 +1136,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Strassenverkehr</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1099,7 +1152,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1111,15 +1164,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_strverk</l:Name>
     <d:Title>FP: Straßenverkehr</d:Title>
     <d:Abstract>FP_Strassenverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_strverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_strverk</l:StyleStoreId>
@@ -1129,13 +1183,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Kennzeichnung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1144,7 +1199,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1156,15 +1211,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_kennz</l:Name>
     <d:Title>FP: Kennzeichnungsfläche</d:Title>
     <d:Abstract>FP_Kennzeichnung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_kennz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_kennz</l:StyleStoreId>
@@ -1174,13 +1230,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Bodenschaetze</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1189,7 +1246,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1201,15 +1258,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_bs</l:Name>
     <d:Title>FP: Bodenschätze</d:Title>
     <d:Abstract>FP_Bodenschaetze</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_bs_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_bs</l:StyleStoreId>
@@ -1219,13 +1277,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_BodenschaetzeFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1234,7 +1293,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1246,15 +1305,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_bsfl</l:Name>
     <d:Title>FP: BodenschätzeFläche</d:Title>
     <d:Abstract>FP_BodenschaetzeFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_bsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_bsfl</l:StyleStoreId>
@@ -1264,13 +1324,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_DarstellungNachLandesrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1279,7 +1340,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1291,15 +1352,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_darstellungnachlandesrecht</l:Name>
     <d:Title>FP: DarstellungNachLandesrecht</d:Title>
     <d:Abstract>FP_DarstellungNachLandesrecht</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_darstellungnachlandesrecht_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_darstellungnachlandesrecht</l:StyleStoreId>
@@ -1309,13 +1371,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_FlaecheOhneDarstellung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1324,7 +1387,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1336,15 +1399,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_flaecheohnedarstellung</l:Name>
     <d:Title>FP: FlaecheOhneDarstellung</d:Title>
     <d:Abstract>FP_FlaecheOhneDarstellung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_flaecheohnedarstellung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_flaecheohnedarstellung</l:StyleStoreId>
@@ -1354,13 +1418,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_AufschuettungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1369,7 +1434,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1381,15 +1446,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_aufschuettsfl</l:Name>
     <d:Title>FP: Aufschüttungsfläche</d:Title>
     <d:Abstract>FP_AufschuettungsFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_aufschuettsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_aufschuettsfl</l:StyleStoreId>
@@ -1399,13 +1465,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Aufschuettung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1414,7 +1481,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1426,15 +1493,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_aufschuettung</l:Name>
     <d:Title>FP: Aufschüttung</d:Title>
     <d:Abstract>FP_Aufschuettung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_aufschuettung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_aufschuettung</l:StyleStoreId>
@@ -1444,13 +1512,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_AbgrabungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1459,7 +1528,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1471,15 +1540,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_abgrabungsfl</l:Name>
     <d:Title>FP: Abgrabungsfläche</d:Title>
     <d:Abstract>FP_AbgrabungsFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_abgrabungsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_abgrabungsfl</l:StyleStoreId>
@@ -1489,13 +1559,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Abgrabung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1504,7 +1575,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1516,15 +1587,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_abgrabung</l:Name>
     <d:Title>FP: Abgrabung</d:Title>
     <d:Abstract>FP_Abgrabung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_abgrabung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_abgrabung</l:StyleStoreId>
@@ -1534,13 +1606,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Gewaesser</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1549,7 +1622,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1561,15 +1634,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_gew</l:Name>
     <d:Title>FP: Gewässer</d:Title>
     <d:Abstract>FP_Gewaesser</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_gew_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_gew</l:StyleStoreId>
@@ -1579,13 +1653,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_WaldFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1594,7 +1669,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1606,15 +1681,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_waldfl</l:Name>
     <d:Title>FP: Waldfläche</d:Title>
     <d:Abstract>FP_WaldFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_waldfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_waldfl</l:StyleStoreId>
@@ -1624,13 +1700,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Gruen</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1639,7 +1716,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1651,15 +1728,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_gruen</l:Name>
     <d:Title>FP: Grünfläche</d:Title>
     <d:Abstract>FP_Gruen</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_gruen_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_gruen</l:StyleStoreId>
@@ -1669,13 +1747,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Landwirtschaft</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1684,7 +1763,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1696,15 +1775,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_lw</l:Name>
     <d:Title>FP: Landwirtschaft</d:Title>
     <d:Abstract>FP_Landwirtschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_lw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_lw</l:StyleStoreId>
@@ -1714,13 +1794,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_LandwirtschaftsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1729,7 +1810,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1741,15 +1822,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_lwfl</l:Name>
     <d:Title>FP: Landwirtschaftsfläche</d:Title>
     <d:Abstract>FP_LandwirtschaftsFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_lwfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_lwfl</l:StyleStoreId>
@@ -1759,13 +1841,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_GenerischesObjekt</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1774,7 +1857,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1786,15 +1869,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_genobj</l:Name>
     <d:Title>FP: Generisches Objekt</d:Title>
     <d:Abstract>FP_GenerischesObjekt</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_genobj_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_genobj</l:StyleStoreId>
@@ -1804,13 +1888,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Fachgesetz</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1819,7 +1904,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1831,15 +1916,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_fachgesetz</l:Name>
     <d:Title>FP: Fachgesetz</d:Title>
     <d:Abstract>FP_Fachgesetz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_fachgesetz_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_fachgesetz</l:StyleStoreId>
@@ -1849,13 +1935,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_AusgleichsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1864,7 +1951,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1876,15 +1963,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_ausgleichsfl</l:Name>
     <d:Title>FP: Ausgleichsfläche</d:Title>
     <d:Abstract>FP_AusgleichsFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_ausgleichsfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_ausgleichsfl</l:StyleStoreId>
@@ -1894,13 +1982,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_VorbHochwSchutz</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1909,7 +1998,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1921,15 +2010,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_vorbhws</l:Name>
     <d:Title>FP: Festgesetztes Überschwemmungsgebiet</d:Title>
     <d:Abstract>FP_VorbHochwSchutz</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_vorbhws_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_vorbhws</l:StyleStoreId>
@@ -1939,13 +2029,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Wasserrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1954,7 +2045,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -1966,15 +2057,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_wr</l:Name>
     <d:Title>FP: Wasserrecht</d:Title>
     <d:Abstract>FP_Wasserrecht</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_wr_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_wr</l:StyleStoreId>
@@ -1984,13 +2076,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Wasserwirtschaft</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -1999,7 +2092,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2011,15 +2104,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_wws</l:Name>
     <d:Title>FP: Wasserwirtschaft</d:Title>
     <d:Abstract>FP_Wasserwirtschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_wws_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_wws</l:StyleStoreId>
@@ -2029,13 +2123,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_VerEntsorgung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2044,7 +2139,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2056,15 +2151,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_verentsorgung</l:Name>
     <d:Title>FP: Ver- und Entsorgung</d:Title>
     <d:Abstract>FP_VerEntsorgung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_verentsorgung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_verentsorgung</l:StyleStoreId>
@@ -2074,13 +2170,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Schutzgebiet</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2089,7 +2186,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2101,15 +2198,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_schutzgeb</l:Name>
     <d:Title>FP: Schutzgebiet</d:Title>
     <d:Abstract>FP_Schutzgebiet</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_schutzgeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_schutzgeb</l:StyleStoreId>
@@ -2119,13 +2217,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_SchutzPflegeEntwicklung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2134,7 +2233,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2146,15 +2245,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_schutzpflentw</l:Name>
     <d:Title>FP: Schutz-, Pflege- und Entwicklungsfläche</d:Title>
     <d:Abstract>FP_SchutzPflegeEntwicklung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_schutzpflentw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_schutzpflentw</l:StyleStoreId>
@@ -2164,13 +2264,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Gemeinbedarf</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2179,7 +2280,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2191,15 +2292,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_gembedarf</l:Name>
     <d:Title>FP: Gemeinbedarf</d:Title>
     <d:Abstract>FP_Gemeinbedarf</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_gembedarf_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_gembedarf</l:StyleStoreId>
@@ -2209,13 +2311,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_SpielSportanlage</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2224,7 +2327,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2236,15 +2339,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_spispoanl</l:Name>
     <d:Title>FP: Spiel- und Sportanlagen</d:Title>
     <d:Abstract>FP_SpielSportanlage</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_spispoanl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_spispoanl</l:StyleStoreId>
@@ -2254,13 +2358,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Luftverkehr</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2269,7 +2374,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2281,15 +2386,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_luftverk</l:Name>
     <d:Title>FP: Luftverkehr</d:Title>
     <d:Abstract>FP_Luftverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_luftverk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_luftverk</l:StyleStoreId>
@@ -2299,13 +2405,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_DenkmalschutzEnsemble</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2314,7 +2421,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2326,15 +2433,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_denkmschens</l:Name>
     <d:Title>FP: Denkmalensemble</d:Title>
     <d:Abstract>FP_DenkmalschutzEnsemble</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_denkmschens_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_denkmschens</l:StyleStoreId>
@@ -2344,13 +2452,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Erhaltungssatzung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2359,7 +2468,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2371,15 +2480,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_erhssatzung</l:Name>
     <d:Title>FP: Erhaltungssatzung</d:Title>
     <d:Abstract>FP_Erhaltungssatzung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_erhssatzung_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_erhssatzung</l:StyleStoreId>
@@ -2389,13 +2499,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Bereich</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2404,7 +2515,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2416,15 +2527,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_ber</l:Name>
     <d:Title>FP: Bereich</d:Title>
     <d:Abstract>FP_Bereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_ber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_ber</l:StyleStoreId>
@@ -2434,13 +2546,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_NutzungsbeschraenkungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2449,7 +2562,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2461,15 +2574,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_nutzbeschraenkfl</l:Name>
     <d:Title>FP: Nutzungsbeschränkung</d:Title>
     <d:Abstract>FP_NutzungsbeschraenkungsFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_nutzbeschraenkfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_nutzbeschraenkfl</l:StyleStoreId>
@@ -2479,13 +2593,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_RasterplanAenderung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2494,7 +2609,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2506,15 +2621,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_rasterplanaender</l:Name>
     <d:Title>FP: Rasterplanänderung</d:Title>
     <d:Abstract>FP_RasterplanAenderung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_rasterplanaender_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_rasterplanaender</l:StyleStoreId>
@@ -2524,13 +2640,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Grabungsschutzgebiet</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2539,7 +2656,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2551,15 +2668,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_grabungsschutzgeb</l:Name>
     <d:Title>FP: Grabungsschutzgebiet</d:Title>
     <d:Abstract>FP_Grabungsschutzgebiet</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_grabungsschutzgeb_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_grabungsschutzgeb</l:StyleStoreId>
@@ -2569,13 +2687,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_UnverbindlicheVormerkung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2584,7 +2703,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2596,15 +2715,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_unverbindlvormerk</l:Name>
     <d:Title>FP: Unverbindliche Vormerkung</d:Title>
     <d:Abstract>FP_UnverbindlicheVormerkung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_unverbindlvormerk_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_unverbindlvormerk</l:StyleStoreId>
@@ -2614,13 +2734,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_TextlicheDarstellungsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2629,7 +2750,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2641,15 +2762,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_textldarstfl</l:Name>
     <d:Title>FP: Bereich textlicher Festsetzungen</d:Title>
     <d:Abstract>FP_TextlicheDarstellungsFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_textldarstfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_textldarstfl</l:StyleStoreId>
@@ -2659,13 +2781,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Laermschutzbereich</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2674,7 +2797,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2686,15 +2809,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_laermschutzber</l:Name>
     <d:Title>FP: Lärmschutzbereich</d:Title>
     <d:Abstract>FP_Laermschutzbereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_laermschutzber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_laermschutzber</l:StyleStoreId>
@@ -2704,13 +2828,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_Bauschutzbereich</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2719,7 +2844,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2731,15 +2856,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_bauschutzber</l:Name>
     <d:Title>FP: Bauschutzbereich</d:Title>
     <d:Abstract>FP_Bauschutzbereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_bauschutzber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_bauschutzber</l:StyleStoreId>
@@ -2749,13 +2875,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_KeineZentrAbwasserBeseitigungFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2764,7 +2891,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2776,15 +2903,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_keinezentrabwbesfl</l:Name>
     <d:Title>FP: ohne zentrale Abwasserbeseitigung</d:Title>
     <d:Abstract>FP_KeineZentrAbwasserBeseitigungFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_keinezentrabwbesfl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_keinezentrabwbesfl</l:StyleStoreId>
@@ -2794,13 +2922,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_PrivilegiertesVorhaben</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2809,7 +2938,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2821,7 +2950,7 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
@@ -2830,7 +2959,7 @@
     <d:Abstract>FP_PrivilegiertesVorhaben</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_privvorh_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_privvorh</l:StyleStoreId>
@@ -2841,13 +2970,14 @@
   </FeatureLayer>
   <!-- XPlan GML 3.0: Typo FP_PriviligiertesVorhaben -->
   <FeatureLayer>
+    <FeatureType>xplan:FP_PriviligiertesVorhaben</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2856,7 +2986,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2868,15 +2998,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_privivorh</l:Name>
     <d:Title>FP: Priviligiertes Vorhaben</d:Title>
     <d:Abstract>FP_PriviligiertesVorhaben</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_privivorh_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_privivorh</l:StyleStoreId>
@@ -2886,13 +3017,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_VorbehalteFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2901,7 +3033,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2913,15 +3045,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_vorbehaltefl</l:Name>
     <d:Title>FP: Vorbehaltfläche</d:Title>
     <d:Abstract>FP_VorbehalteFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_vorbehaltefl_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_vorbehaltefl</l:StyleStoreId>
@@ -2931,13 +3064,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_ZentralerVersorgungsbereich</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2946,7 +3080,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -2958,15 +3092,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_zentrversber</l:Name>
     <d:Title>FP: Zentraler Versorgungsbereich</d:Title>
     <d:Abstract>FP_ZentralerVersorgungsbereich</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_zentrversber_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_zentrversber</l:StyleStoreId>
@@ -2976,13 +3111,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_TextAbschnitt</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -2991,7 +3127,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -3003,15 +3139,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_textabschn</l:Name>
     <d:Title>FP: TextAbschnitt</d:Title>
     <d:Abstract>FP_TextAbschnitt</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_textabschn_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_textabschn</l:StyleStoreId>
@@ -3021,13 +3158,14 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType>xplan:FP_AnpassungKlimawandel</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
           <ogc:Or>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsLessThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
@@ -3036,7 +3174,7 @@
           <ogc:Or>
             <ogc:PropertyIsGreaterThan>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now" />
+              <ogc:Function name="now"/>
             </ogc:PropertyIsGreaterThan>
             <ogc:PropertyIsNull>
               <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
@@ -3048,15 +3186,16 @@
     <SortBy reverseFeatureInfo="true">
       <SortBy xmlns="http://www.opengis.net/ogc">
         <SortProperty>
-          <PropertyName xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:wmsSortDate</PropertyName>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
         </SortProperty>
       </SortBy>
     </SortBy>
     <l:Name>fp_anpassklimaw</l:Name>
     <d:Title>FP: AnpassungKlimawandel</d:Title>
     <d:Abstract>FP_AnpassungKlimawandel</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
-      <l:StyleStoreId>transparent/fp/fp_anpassklimaw_trans</l:StyleStoreId>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/fp/fp_anpassklimaw</l:StyleStoreId>
