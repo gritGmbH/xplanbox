@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>4.4-SNAPSHOT</version>
+  <version>5.0-RC1</version>
   <name>xPlanBox</name>
   <description>Software zur Verwaltung von XPlanGML Daten</description>
   <inceptionYear>2008</inceptionYear>
@@ -226,11 +226,11 @@
             <configuration>
               <target>
                 <replace dir="${project.basedir}" value="(:">
-                  <include name="**/*.xq"/>
+                  <include name="**/*.xq" />
                   <replacetoken><![CDATA[<!--]]></replacetoken>
                 </replace>
                 <replace dir="${project.basedir}" value=":)">
-                  <include name="**/*.xq"/>
+                  <include name="**/*.xq" />
                   <replacetoken><![CDATA[-->]]></replacetoken>
                 </replace>
               </target>
@@ -1112,7 +1112,7 @@
     <connection>scm:git:git@bitbucket.org:latlon/xplanbox.git</connection>
     <developerConnection>scm:git:git@bitbucket.org:latlon/xplanbox.git</developerConnection>
     <url>https://bitbucket.org/latlon/xplanbox</url>
-    <tag>HEAD</tag>
+    <tag>xplanbox-5.0-RC1</tag>
   </scm>
 
   <repositories>
