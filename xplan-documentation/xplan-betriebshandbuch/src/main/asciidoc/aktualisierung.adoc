@@ -387,17 +387,19 @@ Für die Aktualisierung auf die Version 4.3 sind folgende Schritte auszuführen:
 [[aktualisierung-auf-die-version-5.0-der-xplanbox]]
 === Aktualisierung auf die Version 5.0 der xPlanBox
 
-Mit der Version 5.0 der xPlanBox kann die xPlanBox ausschließlich unter Java 11 mit Tomcat 9 betrieben werden, außerdem wird die Version XPlanGML 5.4 unterstützt. Weiterhin sind einige Verbesserungen am XPlanValidator, XPlanManagerWeb und den XPlanDiensten vorgenommen worden.
+Mit der Version 5.0 der xPlanBox kann die xPlanBox ausschließlich unter Java 11 mit Tomcat 9 betrieben werden, außerdem wird die Version XPlanGML 5.4 unterstützt. Weiterhin sind einige Erweiterungen und Verbesserungen am XPlanValidator, XPlanManagerWeb und den XPlanDiensten vorgenommen worden. Zwei Kommandozeilenwerkzeuge (XPlanAuswerteschemaCLI und XPlanValdiateDB) sind neu hinzugekommen.
 Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte für die Erstellung der Datenhaltung für 5.3 aus dem Modul _xplan-manager-workspace_:
+** Ausführen der Skripte für die Erstellung der Datenhaltung für 5.4 aus dem Modul _xplan-manager-workspace_:
 *** _fix/xplan54/create.sql_
 *** _pre/xplan54/create.sql_
 *** _archive/xplan54/create.sql_
 ** Ausführen der Skripte im Verzeichnis _from_4.2_to_5.0_ im Modul _xplan-update-database_ in der vorgegebenen Reihenfolge
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
+
 === Troubleshooting
 
 Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
