@@ -325,6 +325,7 @@
             <preparationGoals>clean install</preparationGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <releaseProfiles>docker</releaseProfiles>
+            <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
           </configuration>
         </plugin>
         <plugin>
