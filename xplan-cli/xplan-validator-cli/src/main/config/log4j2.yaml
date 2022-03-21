@@ -26,7 +26,7 @@ Configuration:
       - name: log.file
         value: xplan-validator-cli.log
       - name: log.path
-        value: ${sys:catalina.base:-.}/logs
+        value: ${sys:basedir:-.}/logs
   Appenders:
     Console:
       name: STDOUT
@@ -48,19 +48,19 @@ Configuration:
     Root:
       AppenderRef:
         - ref: STDOUT
-          level: error
+          level: info
         - ref: RollingFile_Appender
           level: info
     Logger:
-      - name: org.deegree
-        level: info
       - name: de.latlon.xplan
         level: info
-      - name: org.springframework
+      - name: org.deegree
         level: warn
+      - name: org.springframework
+        level: error
       - name: org.reflections
         level: fatal
       - name: org.deegree.geometry.standard.AbstractDefaultGeometry
-        level: info
+        level: warn
       - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
-        level: info
+        level: warn

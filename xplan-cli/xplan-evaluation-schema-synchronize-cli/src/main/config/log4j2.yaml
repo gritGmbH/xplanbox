@@ -1,6 +1,6 @@
 ###
 # #%L
-# xplan-transform-cli - Kommandozeilentool fuer die Transformation zwischen XPlanGML Versionen
+# xplan-evaluation-schema-synchronize-cli - Kommandozeilentool fuer das Datenbankschema für die Auswertung der XPlanGML-Daten
 # %%
 # Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
 # %%
@@ -19,14 +19,14 @@
 # #L%
 ###
 Configuration:
-  name: XPlanTransformCli
+  name: XPlanAuswerteschemaCli
   status: warn
   Properties:
     Property:
       - name: log.file
-        value: xplan-transform-cli.log
+        value: xplan-evaluation-schema-synchronize.log
       - name: log.path
-        value: ${sys:catalina.base:-.}/logs
+        value: ${sys:basedir:-.}/logs
   Appenders:
     Console:
       name: STDOUT
@@ -48,14 +48,14 @@ Configuration:
     Root:
       AppenderRef:
         - ref: STDOUT
-          level: error
+          level: info
         - ref: RollingFile_Appender
           level: info
     Logger:
-      - name: org.deegree
-        level: info
       - name: de.latlon.xplan
         level: info
+      - name: org.deegree
+        level: warn
       - name: org.reflections
         level: fatal
       - name: de.latlon.xplan.commons.hale
