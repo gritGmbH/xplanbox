@@ -17,7 +17,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="45582ef9-4bae-43d8-9226-a378e02ff0b5" activeEnvironment="Default" name="xplan-api-validator" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="85ec4fc3-149e-4a77-a566-194de2899fd3" wadlVersion="http://wadl.dev.java.net/2009/02" name="XPlanValidatorAPI" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:description>XPlanValidator REST API</con:description>
@@ -1010,8 +1010,8 @@ Validate XPlanGML or XPlanArchive</con:description>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="0a3750ed-207e-40f8-a4c9-2d50e525f2b1" name="geometrisch">
               <con:configuration>
-                <path>$..geometrisch.valid[0]</path>
-                <content>true</content>
+                <path>$..geometrisch.valid</path>
+                <content>[true]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
