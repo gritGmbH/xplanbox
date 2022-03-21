@@ -56,7 +56,6 @@ import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_VND_
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.IMAGE_SVG_XML;
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.TEXT_PLAIN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
-import static java.util.Collections.singletonList;
 
 /**
  * Dialog to edit an existing or create a new {@link RasterReference}
@@ -267,6 +266,11 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			}
 		}
 		if (includeReferences && !validateReferenceAndGeoreference(validationFailures)) {
+			valid = false;
+		}
+
+		if (!datum.isValid()) {
+			validationFailures.add(MESSAGES.editInvalidDate());
 			valid = false;
 		}
 		showValidationError(validationFailures);
