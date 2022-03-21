@@ -20,7 +20,14 @@
  */
 package de.latlon.xplan.manager.internalid;
 
-import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
+import de.latlon.xplan.manager.configuration.InternalIdRetrieverConfiguration;
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import org.deegree.commons.config.DeegreeWorkspace;
+import org.deegree.db.ConnectionProvider;
+import org.deegree.db.ConnectionProviderProvider;
+import org.deegree.workspace.Workspace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,15 +36,7 @@ import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.deegree.db.ConnectionProvider;
-import org.deegree.db.ConnectionProviderProvider;
-import org.deegree.workspace.Workspace;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.manager.configuration.InternalIdRetrieverConfiguration;
-import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 
 /**
  * Retrieves the internal id of a plan by the plan name from database.
@@ -90,6 +89,8 @@ public class InternalIdRetriever {
 		Workspace workspace = instance.getNewWorkspace();
 		ConnectionProvider resource = workspace.getResource(ConnectionProviderProvider.class,
 				configuration.getJdbcConnectionId());
+		if (resource == null)
+			throw new ConfigurationException("Database connection to retrieve internalid is not available");
 		return resource.getConnection();
 	}
 
