@@ -17,7 +17,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="4497dcb6-2c5f-4d87-bcee-3913ada70576" activeEnvironment="Default" name="xplan-webservices" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
   <con:description>For local execution use following property values:
 
 baseUrl=http://localhost:8083
@@ -502,11 +502,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>168</con:value>
+          <con:value>209</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value>XPLAN_BP_PLAN_d5cbc576-c712-48e5-822d-f6550b06b8d1</con:value>
+          <con:value>XPLAN_BP_PLAN_53e0b39b-adf5-48e2-a31d-0ecc612676e2</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -727,7 +727,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>169</con:value>
+          <con:value>210</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -959,7 +959,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>170</con:value>
+          <con:value>211</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1556,11 +1556,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>171</con:value>
+          <con:value>212</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>172</con:value>
+          <con:value>213</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1990,7 +1990,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>173</con:value>
+          <con:value>214</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -2169,7 +2169,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>174</con:value>
+          <con:value>215</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3875,7 +3875,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>175</con:value>
+          <con:value>216</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
