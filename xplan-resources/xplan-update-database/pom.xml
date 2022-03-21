@@ -41,7 +41,7 @@
             </program>
             <program>
               <mainClass>de.latlon.xplan.update.tool.ServiceMetadataRecordCreationTool</mainClass>
-              <name>serviceMetadatRecordCreator</name>
+              <name>serviceMetadataRecordCreator</name>
             </program>
           </programs>
         </configuration>
@@ -58,7 +58,7 @@
                     <include name="databaseUpdate" />
                     <include name="districtUpdate" />
                     <include name="reSynthesizer" />
-                    <include name="serviceMetadatRecordCreator" />
+                    <include name="serviceMetadataRecordCreator" />
                   </fileset>
                 </chmod>
               </tasks>

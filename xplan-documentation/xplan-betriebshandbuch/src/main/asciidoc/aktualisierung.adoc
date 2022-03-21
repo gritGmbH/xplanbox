@@ -295,7 +295,7 @@ Weiterhin ist mit der Version 3.0 der xPlanBox die Abbildung von Kreisbögen im 
 Des Weiteren muss die HALE CLI auf Version 3.4.0 (siehe <<installation-hale-cli>>) und GDAL auf Version 2.4 (siehe <<installation-gdal>>) aktualisiert werden.
 
 Mit der Version 3.0 wird bei entsprechender Konfiguration (s. <<konfiguration-daten-dienste-kopplung>>) beim Import eines Plans geprüft, ob für diesen Plan bereits ein Daten-Metadatensatz existiert. Ist dies der Fall wird automatisiert ein Service-Metadatensatz für den Plan bzw. dessen XPlanWerkWMS erstellt.
-Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul __xplan-update-database__ das Werkzeug __serviceMetadatRecordCreator__ zur Verfügung.
+Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul __xplan-update-database__ das Werkzeug __serviceMetadataRecordCreator__ zur Verfügung.
 
 [[aktualisierung-auf-die-version-3.3-der-xplanbox]]
 === Aktualisierung auf die Version 3.3 der xPlanBox
@@ -382,7 +382,7 @@ IMPORTANT:  GDAL 2 wird nicht mehr unterstützt.
 Für die Aktualisierung auf die Version 4.3 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-* Ausführen des Kommandozeilenwerkzeug _serviceMetadatRecordCreator_ im Modul _xplan-update-database_ zur Aktualisierung der generierten Metadatensätze, da sich die URL des XPlanWerkWMS geändert hat. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+* Ausführen des Kommandozeilenwerkzeug _serviceMetadataRecordCreator_ im Modul _xplan-update-database_ zur Aktualisierung der generierten Metadatensätze, da sich die URL des XPlanWerkWMS geändert hat. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 [[aktualisierung-auf-die-version-5.0-der-xplanbox]]
 === Aktualisierung auf die Version 5.0 der xPlanBox
