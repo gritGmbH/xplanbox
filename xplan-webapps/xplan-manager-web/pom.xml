@@ -15,15 +15,6 @@
     <gwt.moduleName>de.latlon.xplan.manager.web.XPlanMgrWeb</gwt.moduleName>
   </properties>
 
-  <profiles>
-    <profile>
-      <id>release</id>
-      <properties>
-        <gwt.moduleName>de.latlon.xplan.manager.web.XPlanMgrWebRelease</gwt.moduleName>
-      </properties>
-    </profile>
-  </profiles>
-
   <build>
     <plugins>
       <plugin>
