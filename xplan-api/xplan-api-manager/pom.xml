@@ -50,6 +50,11 @@
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-api-commons</artifactId>
     </dependency>
+    <!-- deegree -->
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-sqldialect-postgis</artifactId>
+    </dependency>
     <!-- XPlanung -->
     <dependency>
       <groupId>de.geowerkstatt-hamburg</groupId>
