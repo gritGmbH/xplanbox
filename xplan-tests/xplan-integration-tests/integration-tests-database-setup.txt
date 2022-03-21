@@ -1,4 +1,0 @@
-Following plans are imported into integration tests database (configured in manager-workspace: xplan-integration-tests/src/test/filter/workspace.properties):
- * Eidelstedt_4_V4.zip (via manager-cli)
- * Eidelstedt_4_V4.zip (via manager-web; includes internal id and validity period and "Festgestellt" data storage)
- * Blankenese4.zip (via manager-web; includes internal id, validity period and "Festgestellt" data storage)

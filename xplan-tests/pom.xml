@@ -17,13 +17,4 @@
     <module>xplan-tests-manual</module>
   </modules>
 
-  <profiles>
-    <profile>
-      <id>integration-tests</id>
-      <modules>
-        <module>xplan-integration-tests</module>
-      </modules>
-    </profile>
-  </profiles>
-
 </project>
