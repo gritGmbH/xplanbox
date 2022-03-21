@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>xplan-update-database</artifactId>
+  <artifactId>xplan-update-database-cli</artifactId>
   <description>update of database</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
-    <artifactId>xplan-resources</artifactId>
+    <artifactId>xplan-cli</artifactId>
     <version>5.0-SNAPSHOT</version>
   </parent>
 
@@ -29,19 +29,19 @@
           <programs>
             <program>
               <mainClass>de.latlon.xplan.update.DatabaseUpdateTool</mainClass>
-              <name>databaseUpdate</name>
+              <id>databaseUpdate</id>
             </program>
             <program>
               <mainClass>de.latlon.xplan.update.tool.DistrictUpdateTool</mainClass>
-              <name>districtUpdate</name>
+              <id>districtUpdate</id>
             </program>
             <program>
               <mainClass>de.latlon.xplan.update.tool.ReSynthesizerTool</mainClass>
-              <name>reSynthesizer</name>
+              <id>reSynthesizer</id>
             </program>
             <program>
               <mainClass>de.latlon.xplan.update.tool.ServiceMetadataRecordCreationTool</mainClass>
-              <name>serviceMetadataRecordCreator</name>
+              <id>serviceMetadataRecordCreator</id>
             </program>
           </programs>
         </configuration>
@@ -52,7 +52,7 @@
           <execution>
             <phase>package</phase>
             <configuration>
-              <tasks>
+              <target>
                 <chmod perm="+x">
                   <fileset dir="target/appassembler/bin">
                     <include name="databaseUpdate" />
@@ -61,7 +61,7 @@
                     <include name="serviceMetadataRecordCreator" />
                   </fileset>
                 </chmod>
-              </tasks>
+              </target>
             </configuration>
             <goals>
               <goal>run</goal>
@@ -108,6 +108,11 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-sql-update-scripts</artifactId>
+      <type>zip</type>
     </dependency>
   </dependencies>
 

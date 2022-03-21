@@ -14,7 +14,7 @@
   <modules>
     <module>xplan-sql-scripts</module>
     <module>xplan-schemas</module>
-    <module>xplan-update-database</module>
+    <module>xplan-sql-update-scripts</module>
   </modules>
 
 </project>

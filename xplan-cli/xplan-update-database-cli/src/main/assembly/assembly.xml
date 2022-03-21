@@ -37,20 +37,23 @@
       <outputDirectory>etc</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>src/main/resources</directory>
-      <includes>
-        <include>log4j2.yaml</include>
-      </includes>
-      <outputDirectory>etc</outputDirectory>
+      <directory>target/appassembler/repo</directory>
+      <outputDirectory>repo</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>scripts</directory>
       <outputDirectory>scripts</outputDirectory>
     </fileSet>
-    <fileSet>
-      <directory>target/appassembler/repo</directory>
-      <outputDirectory>repo</outputDirectory>
-    </fileSet>
   </fileSets>
+  <dependencySets>
+    <dependencySet>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-sql-update-scripts:zip</include>
+      </includes>
+      <useProjectArtifact>true</useProjectArtifact>
+      <unpack>true</unpack>
+      <outputDirectory>scripts</outputDirectory>
+    </dependencySet>
+  </dependencySets>
 
 </assembly>

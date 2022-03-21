@@ -19,20 +19,20 @@
 # #L%
 ###
 Configuration:
-  name: XPlanUpdateDatabaseTool
+  name: XPlanUpdateDatabaseCLI
   status: warn
   Properties:
     Property:
       - name: log.file
         value: xplan-update-database.log
       - name: log.path
-        value: ${sys:catalina.base:-.}/logs
+        value: ${sys:basedir:-.}/logs
   Appenders:
     Console:
       name: STDOUT
+      target: SYSTEM_OUT
       PatternLayout:
         Pattern: "%d %p %C{1.} [%t] %m%n"
-      target: SYSTEM_OUT
     RollingFile:
       name: RollingFile_Appender
       fileName: ${log.path}/${log.file}
@@ -48,13 +48,13 @@ Configuration:
     Root:
       AppenderRef:
         - ref: STDOUT
-          level: error
+          level: info
         - ref: RollingFile_Appender
           level: info
     Logger:
-      - name: org.deegree
-        level: info
       - name: de.latlon.xplan
         level: info
+      - name: org.deegree
+        level: warn
       - name: org.reflections
         level: fatal
