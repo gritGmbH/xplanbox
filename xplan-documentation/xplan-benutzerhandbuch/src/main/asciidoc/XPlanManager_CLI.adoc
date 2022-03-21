@@ -283,7 +283,7 @@ bereitgestellten Funktionen ergeben sich aus folgender Spezifikation:
 
 .  XPlanManager fügt eine Ebene in den Ebenenbaum ein. Wird der
 _<categoryname>_ weggelassen, wird die Ebene direkt unter der
-Wurzelebene eingefügt. Die tiffid ist hierbei der Datei-Basisname der
+Wurzelebene eingefügt. Die `tiffid` ist hierbei der Datei-Basisname der
 gewünschten .tiff-Datei von dem Rasterplan.
 +
 ----
@@ -307,7 +307,7 @@ tief erfolgen.
 XPlanManager -addcategory <bplan|rplan|fplan|lplan> [<uppercategory>] <categoryname> <categorytitle>
 ----
 
-.  XPlanManager löscht eine Kategorieebene. Achtung: Handelt es sich
+.  XPlanManager löscht eine Kategorieebene. *Achtung:* Handelt es sich
 bei der zu löschenden Kategorieebene um eine Ebene mit untergeordneten
 Kategorien, werden diese ebenfalls gelöscht!
 +

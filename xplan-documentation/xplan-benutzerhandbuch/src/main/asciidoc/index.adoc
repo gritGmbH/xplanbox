@@ -35,6 +35,8 @@ include::XPlanInspirePluWFS.adoc[]
 
 include::bekannteProbleme.adoc[]
 
+include::ausblick.adoc
+
 include::aenderungsHistorie.adoc[]
 
 

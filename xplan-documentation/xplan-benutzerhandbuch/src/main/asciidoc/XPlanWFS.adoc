@@ -183,14 +183,14 @@ http://<host>:<port>/xplan-wfs/services/wfs54?request=GetFeature&service=WFS&ver
 Der XPlanWFS unterstützt die folgenden
 Koordinatenreferenzsysteme:
 
-* EPSG:25832,
-* EPSG:25833,
-* EPSG:325833,
-* EPSG:31466,
-* EPSG:31467,
-* EPSG:31468,
-* EPSG:31469,
-* EPSG:4258,
-* EPSG:4326,
-* EPSG:4839,
-* CRS:84.
+ * EPSG:25832,
+ * EPSG:25833,
+ * EPSG:325833,
+ * EPSG:31466,
+ * EPSG:31467,
+ * EPSG:31468,
+ * EPSG:31469,
+ * EPSG:4258,
+ * EPSG:4326,
+ * EPSG:4839,
+ * CRS:84.

@@ -33,6 +33,8 @@ include::konfiguration/rest-api/main.adoc[]
 
 include::konfiguration/dienste/main.adoc[]
 
+include::xplandb.adoc[]
+
 include::logging.adoc[]
 
 include::bekannteProbleme.adoc[]
@@ -40,7 +42,5 @@ include::bekannteProbleme.adoc[]
 include::aktualisierung.adoc[]
 
 include::migration.adoc[]
-
-include::weiterfuehrendeInformationen.adoc[]
 
 include::anhang.adoc[]

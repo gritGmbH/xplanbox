@@ -8,9 +8,9 @@ IMPORTANT: Bitte beachten Sie, dass abhängig von Ihrem Browser, "Datei auswähl
 
 Vom XPlanValidator werden folgende Dateiformate akzeptiert:
 
-* ZIP-Dateien (Dateiendung `.zip`) mit folgendem Aufbau: Im Basisverzeichnis muss die XPlanGML-Datei mit dem Dateinamen __xplan.gml__ vorhanden sein. Rasterdaten sowie alle im __xplan.gml__ referenzierten Anhänge liegen ebenfalls im Basisverzeichnis der ZIP-Datei. Eine solche ZIP-Datei wird <<xplanarchiv, XPlanArchiv>> genannt.
-* GML-Dateien (Dateiendung `.gml`)
-* XML-Dateien (Dateiendung `.xml`)
+ * ZIP-Dateien (Dateiendung `.zip`) mit folgendem Aufbau: Im Basisverzeichnis muss die XPlanGML-Datei mit dem Dateinamen __xplan.gml__ vorhanden sein. Rasterdaten sowie alle im __xplan.gml__ referenzierten Anhänge liegen ebenfalls im Basisverzeichnis der ZIP-Datei. Eine solche ZIP-Datei wird <<xplanarchiv, XPlanArchiv>> genannt.
+ * GML-Dateien (Dateiendung `.gml`)
+ * XML-Dateien (Dateiendung `.xml`)
 
 [.bordered]
 image::validator/Hochladen.png[Hochladen]
