@@ -92,6 +92,16 @@ public class OptimisedFlaechenschlussInspectorTest {
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(3));
 	}
 
+	@Test
+	public void testCheckFlaechenschluss_TestLuecke() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("Test_Luecke.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
+	}
+
 	private OptimisedFlaechenschlussInspector readFeatures(XPlanArchive archive)
 			throws XMLStreamException, UnknownCRSException {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);

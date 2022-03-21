@@ -21,7 +21,6 @@
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.jts.JtsParser;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.model.AbstractGeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
@@ -279,13 +278,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private void checkFlaechenschlussFeaturesIntersectingGeltungsbereich(List<FeatureUnderTest> flaechenschlussFeatures,
 			GeltungsbereichFeature geltungsbereich, DefaultSurface diffGeltungsbereich, boolean handleHolesAsFailure) {
-		List<? extends SurfacePatch> patches = diffGeltungsbereich.getPatches();
-		PolygonPatch patch = (PolygonPatch) patches.get(0);
-		Ring exteriorRing = patch.getExteriorRing();
-		IntersectionMatrix relate = geltungsbereich.getJtsGeometry().relate(new JtsParser().getJTSRing(exteriorRing));
+		IntersectionMatrix relate = geltungsbereich.getJtsGeometry().relate(diffGeltungsbereich.getJTSGeometry());
 		// The exterior of the flaechenschluss feature geometry must have at least one
 		// point in common with the exterior of the geltungsbereich geometry
-		if (relate.matches("TFTTFTFFT")) {
+		LOG.debug("Intersection matrix: {}", relate);
+		if (relate.matches("TTT*TT**T")) {
+			List<? extends SurfacePatch> patches = diffGeltungsbereich.getPatches();
+			PolygonPatch patch = (PolygonPatch) patches.get(0);
+			Ring exteriorRing = patch.getExteriorRing();
 			List<FeatureUnderTest> intersectingFlaechenschlussFeatures = collectFlaechenschlussFeaturesIntersectingTheInteriorRing(
 					flaechenschlussFeatures, exteriorRing);
 			LOG.debug("Analyse flaechenschluss features intersection with difference from geltungsbereich {}",
