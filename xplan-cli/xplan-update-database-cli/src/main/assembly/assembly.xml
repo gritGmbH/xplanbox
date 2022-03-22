@@ -30,14 +30,30 @@
     <fileSet>
       <directory>target/appassembler/bin</directory>
       <outputDirectory>bin</outputDirectory>
+      <includes>
+        <include>*.bat</include>
+      </includes>
+      <lineEnding>dos</lineEnding>
     </fileSet>
     <fileSet>
-      <directory>target/appassembler/etc</directory>
-      <outputDirectory>etc</outputDirectory>
+      <directory>target/appassembler/bin</directory>
+      <outputDirectory>bin</outputDirectory>
+      <includes>
+        <include>*</include>
+      </includes>
+      <excludes>
+        <exclude>*.*</exclude>
+      </excludes>
+      <lineEnding>unix</lineEnding>
+      <fileMode>0755</fileMode>
     </fileSet>
     <fileSet>
       <directory>target/appassembler/repo</directory>
       <outputDirectory>repo</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>target/appassembler/etc</directory>
+      <outputDirectory>etc</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>scripts</directory>

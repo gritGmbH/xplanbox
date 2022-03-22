@@ -31,14 +31,14 @@
         </executions>
         <configuration>
           <repositoryLayout>flat</repositoryLayout>
+          <useWildcardClassPath>true</useWildcardClassPath>
+          <copyConfigurationDirectory>true</copyConfigurationDirectory>
           <programs>
             <program>
               <mainClass>${mainclass}</mainClass>
               <name>${application-name}</name>
             </program>
           </programs>
-          <copyConfigurationDirectory>true</copyConfigurationDirectory>
-          <useWildcardClassPath>true</useWildcardClassPath>
         </configuration>
       </plugin>
       <plugin>
