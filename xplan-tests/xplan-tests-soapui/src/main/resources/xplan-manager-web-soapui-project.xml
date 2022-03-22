@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="xplan-manager-web" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" id="d6b438c5-e36f-447d-97b3-c0ed43c1c1a2" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project activeEnvironment="Default" name="xplan-manager-web" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" id="d6b438c5-e36f-447d-97b3-c0ed43c1c1a2" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="MANAGER" type="rest" basePath="/${#Project#ManagerContext}/xplanmgrweb/rest" definitionUrl="" id="e35a1adf-d31f-49f2-8d74-efe2e22f0380" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:settings/>
@@ -495,121 +495,6 @@
   <con:testSuite name="TestProcedures" id="b53d2374-afb6-4de6-a088-49eab1f6e6d6">
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
-    <con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetPlan" searchProperties="true" id="9f838a88-64d0-4a9a-a155-716bd4c96307" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
-      <con:description>Als Fachadministrator möchte ich über einen GetMap-Request mit der ID eines Plans alle zugehörigen Datenebenen (in der korrekten Zeichenreihenfolge) abfragen können, damit entsprechende Requests nicht länger als 2048 Zeichen lang sind.</con:description>
-      <con:settings>
-        <con:setting id="HttpSettings@socket_timeout">180000</con:setting>
-      </con:settings>
-      <con:testStep type="httprequest" name="GetPlan" id="12415dbf-be6c-40ef-8b20-013c19e98655">
-        <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" name="GetPlan" id="3527e43c-82b5-4162-bdff-36f047dd14e4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:settings>
-            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-          </con:settings>
-          <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ServiceEndpointPort}/${#Project#ServiceContextWms}/services/wms?</con:endpoint>
-          <con:request/>
-          <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="391cbbc1-1786-47f9-82e5-7c556ba362bf">
-            <con:configuration>
-              <codes>200</codes>
-            </con:configuration>
-          </con:assertion>
-          <con:assertion type="Simple NotContains" name="Not Contains (ServiceException)" id="f93cb8f7-a539-4b52-b57b-b5de79d0313e">
-            <con:configuration>
-              <token>ServiceException</token>
-              <ignoreCase>false</ignoreCase>
-              <useRegEx>false</useRegEx>
-            </con:configuration>
-          </con:assertion>
-          <con:credentials>
-            <con:authType>No Authorization</con:authType>
-          </con:credentials>
-          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-          <con:jmsPropertyConfig/>
-          <con:parameters>
-            <con:parameter>
-              <con:name>type</con:name>
-              <con:value>BP_Plan</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>SRS</con:name>
-              <con:value>epsg:25832</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>BBOX</con:name>
-              <con:value>559333.4928592138,5938286.082493738,560414.4920890492,5939367.081723574</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>WIDTH</con:name>
-              <con:value>700</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>HEIGHT</con:name>
-              <con:value>700</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-          </con:parameters>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="httprequest" name="GetPlan - InvalidType" id="facec673-e6f3-43cd-b63f-9d695ddb2248">
-        <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" name="GetPlan - InvalidType" id="653cfe57-3b5e-4462-a4a9-23862973e435" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:settings>
-            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-          </con:settings>
-          <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ServiceEndpointPort}/${#Project#ServiceContextWms}/services</con:endpoint>
-          <con:request/>
-          <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="dbc89bdf-56b9-46ab-a901-448d2c9a93ea">
-            <con:configuration>
-              <codes>500</codes>
-            </con:configuration>
-          </con:assertion>
-          <con:assertion type="Simple Contains" name="Contains (Invalid type parameter)" id="f7b62e0b-a145-4165-8255-ca1ea086efcb">
-            <con:configuration>
-              <token>Invalid type parameter value</token>
-              <ignoreCase>false</ignoreCase>
-              <useRegEx>false</useRegEx>
-            </con:configuration>
-          </con:assertion>
-          <con:credentials>
-            <con:authType>No Authorization</con:authType>
-          </con:credentials>
-          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-          <con:jmsPropertyConfig/>
-          <con:parameters>
-            <con:parameter>
-              <con:name>type</con:name>
-              <con:value>UNKNOWN</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>SRS</con:name>
-              <con:value>epsg:25832</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>BBOX</con:name>
-              <con:value>559333.4928592138,5938286.082493738,560414.4920890492,5939367.081723574</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>WIDTH</con:name>
-              <con:value>700</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-            <con:parameter>
-              <con:name>HEIGHT</con:name>
-              <con:value>700</con:value>
-              <con:style>QUERY</con:style>
-            </con:parameter>
-          </con:parameters>
-        </con:config>
-      </con:testStep>
-      <con:properties/>
-    </con:testCase>
     <con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="true" maxResults="0" name="Rechtsstand" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" id="e8b6d1e0-c7c1-4d17-ab12-5a2e2cfbfaec">
       <con:settings>
         <con:setting id="HttpSettings@socket_timeout">180000</con:setting>
@@ -617,11 +502,11 @@
       <con:testStep type="restrequest" name="POST - uploadPlan" id="de732523-8c68-4111-8210-ab8695c716a3">
         <con:settings/>
         <con:config service="MANAGER" resourcePath="/${#Project#ManagerContext}/xplanmgrweb/rest/manager/plan" methodName="POST - uploadPlan" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST - uploadPlan - Request 1" mediaType="multipart/form-data" postQueryString="true" id="74768555-9249-4ae6-8eed-9ddaebfb1261">
+          <con:restRequest name="POST - uploadPlan" mediaType="multipart/form-data" postQueryString="true" id="74768555-9249-4ae6-8eed-9ddaebfb1261">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
+            <con:endpoint>${#Project#baseUrl}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/plan</con:originalUri>
             <con:assertion type="Simple Contains" id="7c700cfb-fa0b-4e20-8382-11dab675df44" name="Contains">
@@ -663,11 +548,11 @@
       <con:testStep type="restrequest" name="GET - getPlanFromLocal" id="6b90ef6b-1bc1-4f15-af9a-ca44406a0932">
         <con:settings/>
         <con:config service="MANAGER" resourcePath="/${#Project#ManagerContext}/xplanmgrweb/rest/manager/local/plan" methodName="GET - getPlanFromLocal" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET - getPlanFromLocal - Request 1" mediaType="application/json" id="5f31c363-197d-41e2-8922-ff1141ad483b">
+          <con:restRequest name="GET - getPlanFromLocal" mediaType="application/json" id="5f31c363-197d-41e2-8922-ff1141ad483b">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
+            <con:endpoint>${#Project#baseUrl}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/local/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="25c2d00d-efb0-4706-b7ba-f0a0f3808f29">
@@ -713,11 +598,11 @@
       <con:testStep type="restrequest" name="GET - determineLegislationStatus" id="5ab69a4f-c3d2-4107-a28c-b3d5cd35e07d">
         <con:settings/>
         <con:config service="MANAGER" resourcePath="/${#Project#ManagerContext}/xplanmgrweb/rest/manager/legislationstatus/{id}" methodName="GET - determineLegislationStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET - determineLegislationStatus - Request 1" mediaType="application/json" id="a5d32f93-4ab8-4df1-a7d3-f6ac733244b2">
+          <con:restRequest name="GET - determineLegislationStatus" mediaType="application/json" id="a5d32f93-4ab8-4df1-a7d3-f6ac733244b2">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
+            <con:endpoint>${#Project#baseUrl}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="0aac6135-cda1-40d1-8448-e0cc38a1f075">
@@ -775,11 +660,11 @@ count(//mgr:Response/*)</path>
       <con:testStep type="restrequest" name="POST - uploadPlan" id="22549d3a-fb23-426f-a214-9c3f6d017e7b">
         <con:settings/>
         <con:config service="MANAGER" resourcePath="/${#Project#ManagerContext}/xplanmgrweb/rest/manager/plan" methodName="POST - uploadPlan" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST - uploadPlan - Request 1" mediaType="multipart/form-data" postQueryString="true" id="9b2af25c-8b91-4414-a7c8-0d945b1aeb6b">
+          <con:restRequest name="POST - uploadPlan" mediaType="multipart/form-data" postQueryString="true" id="9b2af25c-8b91-4414-a7c8-0d945b1aeb6b">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
+            <con:endpoint>${#Project#baseUrl}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/plan</con:originalUri>
             <con:assertion type="Simple Contains" id="b404a193-92c3-49a9-9125-6f1cba2913ee" name="Contains">
@@ -820,11 +705,11 @@ count(//mgr:Response/*)</path>
       <con:testStep type="restrequest" name="GET - getPlanFromLocal" id="ec2f2231-a5e3-48b7-9a02-c09ed92c08ea">
         <con:settings/>
         <con:config service="MANAGER" resourcePath="/${#Project#ManagerContext}/xplanmgrweb/rest/manager/local/plan" methodName="GET - getPlanFromLocal" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET - getPlanFromLocal - Request 1" mediaType="application/json" id="09357cdb-3f52-4b1b-8237-398e548c37de">
+          <con:restRequest name="GET - getPlanFromLocal" mediaType="application/json" id="09357cdb-3f52-4b1b-8237-398e548c37de">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
+            <con:endpoint>${#Project#baseUrl}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/local/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="d75d2380-59b1-44b6-a48e-bf7389b46084">
@@ -869,11 +754,11 @@ count(//mgr:Response/*)</path>
       <con:testStep type="restrequest" name="GET - retrieveMatchingInternalIds" id="0f985d14-3bfc-4975-b51f-899503209265">
         <con:settings/>
         <con:config service="MANAGER" resourcePath="/${#Project#ManagerContext}/xplanmgrweb/rest/manager/internalid/{id}" methodName="GET - retrieveMatchingInternalIds" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET - retrieveMatchingInternalIds - disabled" mediaType="application/json" id="0ed6286b-efaf-4ccd-b72d-3f137db7d6bc">
+          <con:restRequest name="GET - retrieveMatchingInternalIds" mediaType="application/json" id="0ed6286b-efaf-4ccd-b72d-3f137db7d6bc">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
+            <con:endpoint>${#Project#baseUrl}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="0b89f7b9-e0fd-43f4-8b91-0aa2eb384064">
@@ -901,11 +786,11 @@ count(//mgr:Response/*)</path>
       <con:testStep type="restrequest" name="POST - uploadPlan" id="feb6c34b-0184-4da9-8bdb-12c6c709a68e">
         <con:settings/>
         <con:config service="MANAGER" resourcePath="/${#Project#ManagerContext}/xplanmgrweb/rest/manager/plan" methodName="POST - uploadPlan" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST - uploadPlan - Request 1" mediaType="multipart/form-data" postQueryString="true" id="f8c57ac9-9af5-419c-9fd5-750b3b32be85">
+          <con:restRequest name="POST - uploadPlan" mediaType="multipart/form-data" postQueryString="true" id="f8c57ac9-9af5-419c-9fd5-750b3b32be85">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
+            <con:endpoint>${#Project#baseUrl}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/plan</con:originalUri>
             <con:assertion type="Simple Contains" id="246a426e-0cf9-4e51-8941-d495d2656760" name="Contains">
@@ -946,11 +831,11 @@ count(//mgr:Response/*)</path>
       <con:testStep type="restrequest" name="GET - getPlanFromLocal" id="92597b89-b1c6-4af5-a64d-cdc5f294a8f4">
         <con:settings/>
         <con:config service="MANAGER" resourcePath="/${#Project#ManagerContext}/xplanmgrweb/rest/manager/local/plan" methodName="GET - getPlanFromLocal" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET - getPlanFromLocal - Request 1" mediaType="application/json" id="6c8c27f5-a689-4180-9643-577f77661bd8">
+          <con:restRequest name="GET - getPlanFromLocal" mediaType="application/json" id="6c8c27f5-a689-4180-9643-577f77661bd8">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
+            <con:endpoint>${#Project#baseUrl}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/local/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="1d695eac-5d15-4da5-91d3-5d8a91cf7bac">
@@ -996,11 +881,11 @@ count(//mgr:Response/*)</path>
       <con:testStep type="restrequest" name="GET - evaluateRaster" id="80172e3f-fe0a-4baa-8c8c-9b6c72153dc1">
         <con:settings/>
         <con:config service="MANAGER" resourcePath="/${#Project#ManagerContext}/xplanmgrweb/rest/manager/raster/{id}" methodName="GET - determineLegislationStatus" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET - evaluateRaster - Request 1" mediaType="application/json" id="5bfc8c35-4f6c-426f-9cda-8b72e89e0846">
+          <con:restRequest name="GET - evaluateRaster" mediaType="application/json" id="5bfc8c35-4f6c-426f-9cda-8b72e89e0846">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>${#Project#Protocol}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
+            <con:endpoint>${#Project#baseUrl}://${#Project#Host}:${#Project#ManagerPort}</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="9cb58c38-3688-45c0-aea2-fab9c1aadead">
@@ -1088,16 +973,8 @@ count(//mgr:Response/*)</path>
   </con:testSuite>
   <con:properties>
     <con:property>
-      <con:name>Protocol</con:name>
-      <con:value>http</con:value>
-    </con:property>
-    <con:property>
-      <con:name>Host</con:name>
-      <con:value>localhost</con:value>
-    </con:property>
-    <con:property>
-      <con:name>ServiceEndpointPort</con:name>
-      <con:value>8083</con:value>
+      <con:name>baseUrl</con:name>
+      <con:value>https://xplanbox.lat-lon.de</con:value>
     </con:property>
     <con:property>
       <con:name>ServiceContextWms</con:name>
@@ -1110,10 +987,6 @@ count(//mgr:Response/*)</path>
     <con:property>
       <con:name>ServiceContextWfsSyn</con:name>
       <con:value>xplansyn-wfs</con:value>
-    </con:property>
-    <con:property>
-      <con:name>ManagerPort</con:name>
-      <con:value>8082</con:value>
     </con:property>
     <con:property>
       <con:name>ManagerContext</con:name>
