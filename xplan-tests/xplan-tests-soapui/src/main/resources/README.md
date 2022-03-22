@@ -45,3 +45,9 @@ Hinweise zur Nutzung der TestSuite:
 
 - Die TestCases aller TestSuites können individuell genutzt werden und es gibt keine Abhängigkeiten zwischen diesen. Nur die einzelnen TestSteps bauen teilweise aufeinander auf.
 - Die TestSuite kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
+
+### xplan-manager-web TestSuite
+
+Diese TestSuite testet Teile der REST API des XPlanManagerWeb.
+
+Die Ausführung der TestSuite erfolgt wir in der xplan-api-manager TestSuite beschrieben.
