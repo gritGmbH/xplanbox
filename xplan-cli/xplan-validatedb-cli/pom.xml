@@ -112,6 +112,10 @@
       <artifactId>xplan-validator-core</artifactId>
     </dependency>
     <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-sqldialect-postgis</artifactId>
+    </dependency>
+    <dependency>
       <groupId>de.geowerkstatt-hamburg</groupId>
       <artifactId>xplanung</artifactId>
       <type>zip</type>

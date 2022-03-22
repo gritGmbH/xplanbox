@@ -114,6 +114,10 @@
       <artifactId>xplan-sql-update-scripts</artifactId>
       <type>zip</type>
     </dependency>
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-sqldialect-postgis</artifactId>
+    </dependency>
   </dependencies>
 
 </project>

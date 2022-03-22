@@ -97,6 +97,10 @@
       <artifactId>xplan-commons-cli</artifactId>
     </dependency>
     <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-sqldialect-postgis</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
