@@ -74,7 +74,7 @@ public class CliOptionsParser {
 		return fileName.substring(0, fileName.indexOf("."));
 	}
 
-	private Options createOptions() {
+	public Options createOptions() {
 		Options options = new Options();
 		Option zipFileNameOption = new Option(is(VALIDATE), HAS_ARG, "zip file path");
 		Option nameOption = new Option(is(NAME), HAS_ARG, "name of the validation");
