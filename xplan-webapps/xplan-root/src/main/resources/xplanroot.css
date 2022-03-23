@@ -113,36 +113,6 @@ p#dienste{
   padding-right: 4em;
   width: 25em;
   }
-    
-/* Portale Vorschau */
-#a li{
-  display: inline;
- }
-#b-plan, #f-plan, #l-plan{
-  display: inline-block;
-  width: 200px;
-  height: 200px;
-  background-image:url("osm.png");
-  background-size: cover;
-  margin-right: 30px;
-  text-align: center;	
-  color: #ff9900;
-  font-size: 1.3em;
-  font-weight: bold;
-  letter-spacing: .1em;
-  opacity: 0.8;
-  }
-#b-plan:hover, #f-plan:hover, #l-plan:hover{
-  text-decoration: none;
-  background-color: #F3F6FC;
-  opacity: 1;
-  }
-#a li p{
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background-color: #f3f6fc;
-  opacity: 0.7;
-  }
 /*Logo Anordnung */  
 div.footer {
   padding: 15px;
