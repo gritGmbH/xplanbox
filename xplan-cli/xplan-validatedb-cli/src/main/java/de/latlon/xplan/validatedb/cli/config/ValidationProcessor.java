@@ -54,7 +54,7 @@ public class ValidationProcessor implements ItemProcessor<XPlanWithFeatureCollec
 					xPlanWithFeatureCollection.getDistrict(), validatorReport);
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			LOG.error("Plan could not be validated", e);
 			throw e;
 		}
 	}
