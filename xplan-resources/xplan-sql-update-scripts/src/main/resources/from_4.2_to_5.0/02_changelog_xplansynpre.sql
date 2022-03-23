@@ -8,7 +8,7 @@
 -- *********************************************************************
 
 -- Create Database Lock Table
-CREATE TABLE xplansynpre.databasechangeloglock (ID INTEGER NOT NULL, LOCKED BOOLEAN NOT NULL, LOCKGRANTED TIMESTAMP WITHOUT TIME ZONE, LOCKEDBY VARCHAR(255), CONSTRAINT DATABASECHANGELOGLOCK_PKEY PRIMARY KEY (ID));
+CREATE TABLE IF NOT EXISTS xplansynpre.databasechangeloglock (ID INTEGER NOT NULL, LOCKED BOOLEAN NOT NULL, LOCKGRANTED TIMESTAMP WITHOUT TIME ZONE, LOCKEDBY VARCHAR(255), CONSTRAINT DATABASECHANGELOGLOCK_PKEY PRIMARY KEY (ID));
 
 -- Initialize Database Lock Table
 DELETE FROM xplansynpre.databasechangeloglock;
