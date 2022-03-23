@@ -37,7 +37,6 @@ import org.apache.commons.cli.PosixParser;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.tools.CommandUtils;
-import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -161,7 +160,7 @@ public class ReSynthesizerTool {
 
 	private static void printHelp(Options options) {
 		String help = "Reads the XPlanGML and stores the re-synthesized in the xplansyn schema.";
-		CommandUtils.printHelp(options, ReSynthesizerTool.class.getSimpleName(), help, null);
+		CommandUtils.printHelp(options, "reSynthesizer", help, null);
 	}
 
 }
