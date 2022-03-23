@@ -25,6 +25,8 @@ import de.latlon.xplan.validator.cli.options.CliOptions;
 import de.latlon.xplan.validator.cli.options.CliOptionsParser;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import org.apache.commons.cli.Options;
+import org.deegree.commons.tools.CommandUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -46,6 +48,10 @@ public class XPlanValidatorCli {
 	 * @param args expects the options -validate and -option with String arguments
 	 */
 	public static void main(String[] args) {
+		if (args == null || args.length == 0
+				|| (args.length > 0 && (args[0].contains("help") || args[0].contains("?")))) {
+			printHelp(new CliOptionsParser().createOptions());
+		}
 		try {
 			validate(args);
 		}
@@ -69,6 +75,11 @@ public class XPlanValidatorCli {
 				options.getVoOptions());
 		XPlanValidator validator = createValidator();
 		validator.validate(settings, options.getArchive(), options.getArchive().getName());
+	}
+
+	private static void printHelp(Options options) {
+		String help = "Validates XPlanGML files.";
+		CommandUtils.printHelp(options, "XPlanValidator", help, null);
 	}
 
 	private static XPlanValidator createValidator() {

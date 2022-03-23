@@ -75,7 +75,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-update-database</artifactId>
+      <artifactId>xplan-update-database-cli</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>

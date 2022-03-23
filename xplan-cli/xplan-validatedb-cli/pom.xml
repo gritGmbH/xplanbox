@@ -45,14 +45,14 @@
         </executions>
         <configuration>
           <repositoryLayout>flat</repositoryLayout>
+          <useWildcardClassPath>true</useWildcardClassPath>
+          <copyConfigurationDirectory>true</copyConfigurationDirectory>
           <programs>
             <program>
               <mainClass>${mainclass}</mainClass>
               <name>${application-name}</name>
             </program>
           </programs>
-          <copyConfigurationDirectory>true</copyConfigurationDirectory>
-          <useWildcardClassPath>true</useWildcardClassPath>
         </configuration>
       </plugin>
       <plugin>
@@ -76,6 +76,7 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
@@ -110,6 +111,10 @@
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-validator-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-sqldialect-postgis</artifactId>
     </dependency>
     <dependency>
       <groupId>de.geowerkstatt-hamburg</groupId>

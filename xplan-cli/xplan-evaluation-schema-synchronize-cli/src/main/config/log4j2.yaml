@@ -1,6 +1,6 @@
 ###
 # #%L
-# xplan-validatedb-cli - Kommandozeilentool für das Validieren von Datensätzen in einer bestehenden xPlanBox Instanz
+# xplan-evaluation-schema-synchronize-cli - Kommandozeilentool fuer das Datenbankschema für die Auswertung der XPlanGML-Daten
 # %%
 # Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
 # %%
@@ -19,12 +19,12 @@
 # #L%
 ###
 Configuration:
-  name: XPlanValidateDBCli
+  name: XPlanAuswerteschemaCli
   status: warn
   Properties:
     Property:
       - name: log.file
-        value: xplan-validatedb-cli.log
+        value: xplan-evaluation-schema-synchronize.log
       - name: log.path
         value: ${sys:basedir:-.}/logs
   Appenders:
@@ -56,7 +56,9 @@ Configuration:
         level: info
       - name: org.deegree
         level: warn
-      - name: org.springframework
-        level: error
       - name: org.reflections
         level: fatal
+      - name: de.latlon.xplan.commons.hale
+        level: info
+      - name: de.latlon.xplan.transform.cli
+        level: info

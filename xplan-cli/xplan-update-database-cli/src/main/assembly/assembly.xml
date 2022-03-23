@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
   #%L
-  xplan-validator-cli - Kommandozeilentool des XPlan Validators
+  xplan-update-database-cli - update of database
   %%
   Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
   %%
@@ -20,9 +20,8 @@
   #L%
   -->
 
-<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
   <id>distribution</id>
   <formats>
     <format>zip</format>
@@ -56,15 +55,20 @@
       <directory>target/appassembler/etc</directory>
       <outputDirectory>etc</outputDirectory>
     </fileSet>
+    <fileSet>
+      <directory>scripts</directory>
+      <outputDirectory>scripts</outputDirectory>
+    </fileSet>
   </fileSets>
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>de.geowerkstatt-hamburg:xplanung:zip</include>
+        <include>de.latlon.product.xplanbox:xplan-sql-update-scripts:zip</include>
       </includes>
       <useProjectArtifact>true</useProjectArtifact>
       <unpack>true</unpack>
-      <outputDirectory>etc</outputDirectory>
+      <outputDirectory>scripts</outputDirectory>
     </dependencySet>
   </dependencySets>
+
 </assembly>

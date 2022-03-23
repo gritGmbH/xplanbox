@@ -53,10 +53,6 @@
       <outputDirectory>repo</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>target/classes</directory>
-      <outputDirectory>etc</outputDirectory>
-    </fileSet>
-    <fileSet>
       <directory>target/appassembler/etc</directory>
       <outputDirectory>etc</outputDirectory>
     </fileSet>

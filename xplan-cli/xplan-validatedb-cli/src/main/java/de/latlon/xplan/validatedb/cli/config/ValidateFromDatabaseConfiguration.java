@@ -104,7 +104,7 @@ public class ValidateFromDatabaseConfiguration {
 			return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath));
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			LOG.error("Rules could not be read", e);
 			throw e;
 		}
 	}

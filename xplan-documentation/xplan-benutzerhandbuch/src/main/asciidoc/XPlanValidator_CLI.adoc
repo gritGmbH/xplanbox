@@ -28,6 +28,32 @@ Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
 wo die Reports mit dem Validierungsergebnis, die während der Ausführung
 des Tools generiert werden, abgespeichert werden sollen.
 
+[[xplanvalidator-cli-hilfe]]
+===== Hilfe
+
+Die Hilfe mit den Angaben zu den möglichen Eingabeparametern lässt sich
+mit dem Parameter `help` ausgeben.
+
+Aufruf:
+
+----
+XPlanValidator -help
+----
+
+Ausgabe:
+
+----
+usage: XPlanValidator [-name <arg>] -validate <arg> [-vo <arg>] [-vtype
+       <arg>] [-xq <arg>]
+
+   -name <arg>         name of the validation
+   -validate <arg>     zip file path
+   -vo <arg>           validation options
+   -vtype <arg>        values: syntax, geometric, semantic. multiple types must
+                       be comma separated
+   -xq <arg>           xquery file path
+----
+
 [[xplanvalidator-cli-auswahl-planarchiv]]
 ===== Auswahl XPlanArchiv
 

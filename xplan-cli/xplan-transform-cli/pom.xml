@@ -30,14 +30,14 @@
         </executions>
         <configuration>
           <repositoryLayout>flat</repositoryLayout>
+          <useWildcardClassPath>true</useWildcardClassPath>
+          <copyConfigurationDirectory>true</copyConfigurationDirectory>
           <programs>
             <program>
               <mainClass>${mainclass}</mainClass>
               <id>${application-name}</id>
             </program>
           </programs>
-          <copyConfigurationDirectory>true</copyConfigurationDirectory>
-          <useWildcardClassPath>true</useWildcardClassPath>
         </configuration>
       </plugin>
       <plugin>
@@ -61,6 +61,7 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
@@ -95,6 +96,10 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-commons-cli</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-sqldialect-postgis</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
