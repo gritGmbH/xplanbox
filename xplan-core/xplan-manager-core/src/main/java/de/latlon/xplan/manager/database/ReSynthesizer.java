@@ -91,13 +91,14 @@ public class ReSynthesizer {
 	}
 
 	private void reSynthesize(XPlan plan) throws Exception {
-		LOG.debug("Synthesize plan with id {}, version {}", plan.getId(), plan.getVersion());
+		LOG.info("Synthesize plan with id {}, version {}, type {}", plan.getId(), plan.getVersion(), plan.getType());
 		XPlanType planType = XPlanType.valueOf(plan.getType());
 		XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 
 		FeatureCollection featureCollection = xPlanDao.retrieveFeatureCollection(plan);
 		if (featureCollection.isEmpty()) {
-			LOG.warn("FeatureCollection is not available! Plan with id {} is skipped", plan.getId());
+			LOG.warn("FeatureCollection is not available! Plan with id {} is skipped.", plan.getId());
+			return;
 		}
 		XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder(featureCollection, planType)
 				.build();

@@ -145,7 +145,7 @@ public class ReSynthesizerTool {
 		opt.setRequired(false);
 		opts.addOption(opt);
 
-		opt = new Option("c", OPT_CONFIG_DIR, true, "the directory containing the manager configuration");
+		opt = new Option("c", OPT_CONFIG_DIR, true, "The directory containing the manager configuration, e.g. /path/to/directory/xplan-manager-config");
 		opt.setRequired(true);
 		opts.addOption(opt);
 
