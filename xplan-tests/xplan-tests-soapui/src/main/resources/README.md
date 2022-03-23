@@ -50,4 +50,4 @@ Hinweise zur Nutzung der TestSuite:
 
 Diese TestSuite testet Teile der REST API des XPlanManagerWeb.
 
-Die Ausführung der TestSuite erfolgt wir in der xplan-api-manager TestSuite beschrieben.
+Die Ausführung der TestSuite erfolgt, wie in der xplan-api-manager TestSuite beschrieben.
