@@ -51,3 +51,12 @@ Hinweise zur Nutzung der TestSuite:
 Diese TestSuite testet Teile der REST API des XPlanManagerWeb.
 
 Die Ausführung der TestSuite erfolgt, wie in der xplan-api-manager TestSuite beschrieben.
+
+## Hinweise
+
+### Nutzung von SoapUI mit Windows
+
+Unter Windows kann es zu Encoding-Problemen kommen.
+Um diese zu beheben, muss in der <SoapUI>\bin\SoapUI-<Version>.vmoptions folgende Zeile ergänzt werden:
+
+> -Dfile.encoding=utf-8
