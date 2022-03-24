@@ -62,6 +62,9 @@ import org.deegree.gml.feature.FeatureInspectionException;
 import org.locationtech.jts.geom.GeometryCollection;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.IntersectionMatrix;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.MultiPolygon;
+import org.locationtech.jts.geom.Polygon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -145,8 +148,10 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		Map<GeltungsbereichFeature, List<FeatureUnderTest>> allFlaechenschlussFeaturesOfAPlan = flaechenschlussContext
 				.getAllFlaechenschlussFeaturesOfAPlan();
 		allFlaechenschlussFeaturesOfAPlan.forEach((geltungsbereichFeature, featuresUnderTest) -> {
-			analyseFlaechenschlussFeaturePairs(featuresUnderTest);
-			analyseFlaechenschlussUnion(geltungsbereichFeature, featuresUnderTest);
+			if (!featuresUnderTest.isEmpty()) {
+				analyseFlaechenschlussFeaturePairs(featuresUnderTest);
+				analyseFlaechenschlussUnion(geltungsbereichFeature, featuresUnderTest);
+			}
 		});
 
 		if (flaechenschlussErrors.isEmpty()) {
@@ -348,16 +353,47 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	private Geometry createFlaechenschlussUnion(List<FeatureUnderTest> featuresUnderTest) {
 		ICRS coordinateSystem = null;
 		GeometryFactory factory = new GeometryFactory();
-		org.locationtech.jts.geom.Geometry[] geometries = new org.locationtech.jts.geom.Geometry[featuresUnderTest
-				.size()];
-		int i = 0;
+		List<org.locationtech.jts.geom.Geometry> geometries = new ArrayList<>();
 		for (FeatureUnderTest flaechenschlussFeature : featuresUnderTest) {
 			coordinateSystem = flaechenschlussFeature.getOriginalGeometry().getCoordinateSystem();
-			geometries[i++] = flaechenschlussFeature.getJtsGeometry();
+			geometries.add(flaechenschlussFeature.getJtsGeometry());
 		}
-		GeometryCollection geometryCollection = factory.createGeometryCollection(geometries);
+		addHolesFromGeltungsbereich(featuresUnderTest, factory, geometries);
+		GeometryCollection geometryCollection = factory
+				.createGeometryCollection(geometries.toArray(new org.locationtech.jts.geom.Geometry[] {}));
+
 		org.locationtech.jts.geom.Geometry union = geometryCollection.buffer(0);
 		return DEFAULT_GEOM.createFromJTS(union, coordinateSystem);
+	}
+
+	private void addHolesFromGeltungsbereich(List<FeatureUnderTest> featuresUnderTest, GeometryFactory factory,
+			List<org.locationtech.jts.geom.Geometry> geometries) {
+		org.locationtech.jts.geom.Geometry geltungsbereichGeometry = featuresUnderTest.get(0)
+				.getGeltungsbereichFeature().getJtsGeometry();
+		if (geltungsbereichGeometry instanceof Polygon) {
+			Polygon geltungsbereichPolygon = (Polygon) geltungsbereichGeometry;
+			addHolesFromPolygon(factory, geometries, geltungsbereichPolygon);
+		}
+		else if (geltungsbereichGeometry instanceof MultiPolygon) {
+			MultiPolygon geltungsbereichMultiPolygon = (MultiPolygon) geltungsbereichGeometry;
+			for (int j = 0; j < geltungsbereichMultiPolygon.getNumGeometries(); j++) {
+				org.locationtech.jts.geom.Geometry geometry = geltungsbereichMultiPolygon.getGeometryN(j);
+				if (geometry instanceof Polygon) {
+					Polygon polygon = (Polygon) geometry;
+					addHolesFromPolygon(factory, geometries, polygon);
+				}
+			}
+		}
+	}
+
+	private void addHolesFromPolygon(GeometryFactory factory, List<org.locationtech.jts.geom.Geometry> geometries,
+			Polygon geltungsbereichGeometry) {
+		Polygon polygon = geltungsbereichGeometry;
+		for (int j = 0; j < polygon.getNumInteriorRing(); j++) {
+			LinearRing interiorRingN = polygon.getInteriorRingN(j);
+			Polygon hole = factory.createPolygon(interiorRingN);
+			geometries.add(hole);
+		}
 	}
 
 	private List<Pair<FeatureUnderTest, FeatureUnderTest>> detectFlaechenschlussFeaturePairsToAnalyse(
