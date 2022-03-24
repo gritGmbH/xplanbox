@@ -33,8 +33,8 @@ NOTE: Diese Konfiguration ist für alle drei Varianten erforderlich! Wenn der Se
 
 Weitere Informationen zur Absicherung mit Spring Security sind Online in der Referenzdokumentation von Spring Security zu finden:
 
-* https://docs.spring.io/spring-security/site/docs/4.2.20.RELEASE/reference/htmlsingle/#delegating-filter-proxy[Servlet-Filter von Spring Security]
-* https://docs.spring.io/spring-security/site/docs/4.2.20.RELEASE/reference/htmlsingle/#jc-authentication[Authentifizierung mit Spring Security]
+* https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html5/#ns-getting-started[Servlet-Filter von Spring Security]
+* https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html5/#jc-authentication[Authentifizierung mit Spring Security]
 
 ==== Rollenbasierter Zugriff
 
@@ -53,7 +53,7 @@ Weitere Informationen zu den Rollen und Berechtigungen stehen im Kapitel <<rolle
 Steht keine Datenbank oder ein LDAP mit Benutzerinformationen zur Verfügung, dann kann die Absicherung über einen UserService von Spring Security erfolgen,
 dessen Konfiguration aus der Konfigurationsdatei _security-simple.xml_ ausgelesen wird.
 
-Die Vorgabewerte für die beiden vorkonfigurierten Benutzer "admin" (Rolle _SUPERUSER_) und "guest" (Rolle _USER_) sind in der Konfgurationsdatei _WEB-INF/classes/security.properties_ gesetzt.
+Die Vorgabewerte für die beiden vorkonfigurierten Benutzer "admin" (Rolle _SUPERUSER_) und "guest" (Rolle _USER_) sind in der Konfigurationsdatei _WEB-INF/classes/security.properties_ gesetzt.
 
 Um die Absicherung zu aktivieren ist neben der Konfiguration des Spring Security Servlet-Filter wie oben in <<enable_security>> beschrieben folgende
 Anpassungen im Deployment-Deskriptor _WEB-INF/web.xml_ notwendig:
@@ -108,12 +108,12 @@ der Referenzdokumentation von Spring Security zu finden. Auch diese Variante unt
 
 Die Konfiguration eines UserService mit allen Optionen ist auch in der Referenzdokumentation von Spring Security beschrieben:
 
-* https://docs.spring.io/spring-security/site/docs/4.2.20.RELEASE/reference/htmlsingle/#core-services-jdbc-user-service[Datenbank UserService]
+* https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html5/#core-services-jdbc-user-service[Datenbank UserService]
 
 [[ldap_security]]
 ==== Absicherung mit LDAP
 
-Wenn zur Authentifizierung eines Benutzer ein LDAP bzw. Microsoft Active Directory (AD) Server verwendet werden soll,
+Wenn zur Authentifizierung eines Benutzers ein LDAP bzw. Microsoft Active Directory (AD) Server verwendet werden soll,
 dann muss wie oben in <<enable_security>> beschrieben zuerst der Spring Security Servlet-Filter aktiviert werden.
 Neben den Informationen zur Authentifizierung können über LDAP auch Autorisierungsinformationen wie Rollen- und Gruppenzugehörigkeiten
 abgerufen werden. Nur mit dieser Variante der Absicherung können Gruppenhierarchien (siehe Kapitel <<gruppenhierarchien>>) abgebildet werden.
@@ -165,7 +165,7 @@ Gruppenhierarchien genutzt werden (siehe <<gruppenhierarchien>>).
 
 Weitere Informationen zur LDAP/AD-Anbindung in der Referenzdokumentation von Spring Security im Kapitel:
 
-* https://docs.spring.io/spring-security/site/docs/4.2.20.RELEASE/reference/htmlsingle/#ldap[LDAP/AD-Anbindung]
+* https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html5/#ldap[LDAP/AD-Anbindung]
 
 [[rollenundgruppen]]
 ===== Rollen und Gruppen konfigurieren
@@ -267,7 +267,7 @@ muss der Gruppenhierarchie entsprechen. Dies kann wie im folgenden Beispiel 1 in
 der Konfiguration direkt erfolgen (das Beispiel konfiguriert HARBURG als
 Mitglied der Gruppe EDITOR) oder von der Anwendung aus dem
 ActiveDirectory ausgelesen werden, wie im folgenden Beispiel 2 gezeigt.
-* Sind keine Gruppenhierachien vorhanden, muss das vierte
+* Sind keine Gruppenhierarchien vorhanden, muss das vierte
 Konstruktorargument entfernt werden (dies sollte der einzige Fall sein,
 in dem der _grantedAuthoritiesMapper_ manipuliert wird).
 * Falls eine dynamische Rollenhierarchie wie in Beispiel 2 genutzt wird,
@@ -319,8 +319,8 @@ Beispiel 2 - Konfiguration einer dynamischen Rollenhierarchie:
 
 Weitere Informationen zur Konfiguration von Spring und Spring Security sind in der Online Dokumentation zu finden:
 
-* https://docs.spring.io/spring/docs/4.3.30.RELEASE/spring-framework-reference/htmlsingle/[Allgemeine Informationen zur Konfiguration von Spring]
-* https://docs.spring.io/spring-security/site/docs/4.2.20.RELEASE/reference/htmlsingle/[Konfiguration von Spring Security]
+* https://docs.spring.io/spring-framework/docs/5.2.x/spring-framework-reference/core.html#spring-core[Allgemeine Informationen zur Konfiguration von Spring]
+* https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html5/[Konfiguration von Spring Security]
 
 NOTE: Sowohl die dynamische als auch die statische Gruppenhierarchie wird
 während des Starts der Webapp einmalig ausgewertet. Wenn es zur Laufzeit
