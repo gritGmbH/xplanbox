@@ -2239,7 +2239,7 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:RP_NRW_Schienenverkehr</FeatureType>
+    <FeatureType>xplan:RP_NRW_SonstigeInfrastruktur</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
@@ -2274,7 +2274,7 @@
 
     <l:Name>rpnw_sonstinfrastrukt</l:Name>
     <d:Title>RP: NRW sonstige Infrastruktur</d:Title>
-    <d:Abstract>RP_NRW_Schienenverkehr</d:Abstract>
+    <d:Abstract>RP_NRW_SonstigeInfrastruktur</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>default/rp/rpnw_sonstinfrastrukt</l:StyleStoreId>

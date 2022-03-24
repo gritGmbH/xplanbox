@@ -2988,7 +2988,7 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_FoerderungsFlaeche</FeatureType>
+    <FeatureType>xplan:BP_FreiFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
         <ogc:And>
