@@ -99,7 +99,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  
 ---
 
-# Prüffall-05: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanwerkWMS
+### Prüffall-05: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanwerkWMS
 
 #### Vorbedingungen 
 
@@ -121,7 +121,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-# Prüffall-06: Bearbeitung von Ebenenbäumen
+### Prüffall-06: Bearbeitung von Ebenenbäumen
 
 #### Vorbedingungen 
 
@@ -145,7 +145,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-# Prüffall-07: Visualisierung von importierten XPlanGML-Rasterdaten 
+### Prüffall-07: Visualisierung von importierten XPlanGML-Rasterdaten 
 
 #### Vorbedingungen 
 
@@ -223,12 +223,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  
 ### Prüffall-03: Plan-Funktion: Import
 
-### Vorbedingungen 
+#### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt (XPlanArchive sind in der Datenbasis vorhanden).
  * Der Prüffall-02 wurde erfolgreich ausgeführt (Es sind valide und invalide XPlanArchive vorhanden).
  
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -694,12 +694,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  
 ### Prüffall-02: Validierungsoptionen
 
-### Vorbedingungen 
+#### Vorbedingungen 
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * XPlanArchive sind verfügbar.
  
  
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1093,7 +1093,7 @@ Die Ausgabe der Validierungsergebnisse erfolgt bei den folgenden Komponenten ent
 
 ### Prüffall-01: Hilfe aufrufen
 
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1110,10 +1110,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-02: Eingabeparameter
 
-### Vorbedingungen 
+#### Vorbedingungen 
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1127,7 +1127,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-01: Hilfe aufrufen
 
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1150,10 +1150,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-02: Eingabeparameter
 
-### Vorbedingungen 
+#### Vorbedingungen 
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1175,11 +1175,11 @@ Informationen, welche in die XPlanWerkWMS Capabilities geschrieben werden.
 
 ### Prüffall-01: Hilfe aufrufen
 
-### Vorbedingungen 
+#### Vorbedingungen 
  * Die Installation von HALE wurde erfolgreich abgeschlossen.
  * Die im Verzeichnis `~/xplan-transform-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1196,10 +1196,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-02: Eingabeparameter
 
-### Vorbedingungen 
+#### Vorbedingungen 
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1228,10 +1228,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-01: Hilfe aufrufen
 
-### Vorbedingungen 
+#### Vorbedingungen 
  * Die im Verzeichnis `~/xplan-evaluation-schema-synchronize-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1248,10 +1248,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-02: Eingabeparameter
 
-### Vorbedingungen 
+#### Vorbedingungen 
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
-### Prüffall 
+#### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
