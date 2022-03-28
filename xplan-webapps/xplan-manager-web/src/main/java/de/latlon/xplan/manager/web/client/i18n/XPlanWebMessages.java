@@ -350,6 +350,8 @@ public interface XPlanWebMessages extends Messages {
 
 	String editCaptionTextsTextOrUrl();
 
+	String editCaptionTextsDokumentOrLink();
+
 	String editCaptionNewText();
 
 	String editCaptionReferences();

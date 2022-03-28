@@ -110,8 +110,13 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 	private boolean validate() {
 		boolean valid = super.isValid();
 		List<String> validationFailures = new ArrayList<String>();
-		if (((text.getValue() != null && text.getValue().length() > 0)) && (reference.isFileSelected()
-				|| (referenceLink.getValue() != null && referenceLink.getValue().length() > 0))) {
+		if (reference.isFileSelected() && !isNullOrEmpty(referenceLink.getValue())) {
+			valid = false;
+			validationFailures.add(MESSAGES.editCaptionTextsDokumentOrLink());
+		}
+		boolean textIsEntered = !isNullOrEmpty(text.getValue());
+		boolean refTextIsEntered = reference.isFileSelected() || !isNullOrEmpty(referenceLink.getValue());
+		if ((textIsEntered && refTextIsEntered) || (!textIsEntered && !refTextIsEntered)) {
 			valid = false;
 			validationFailures.add(MESSAGES.editCaptionTextsTextOrUrl());
 		}
