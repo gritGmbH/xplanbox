@@ -1160,15 +1160,14 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer führt den Befehl [1] aus. | Aktualisiert die Datenbank.
 **02** | Der Benutzer führt den Befehl [2] aus. | Aktualisieren die Spalte 'district' der Tabelle 'xplanmgr.plans'.
 **03** | Der Benutzer führt den Befehl [3] aus. | Liest die XPlanGML und speichert die re-synthetisierten Pläne im Schema xplansyn.
-**04** | Der Benutzer führt den Befehl [4] aus. | Erstellt Service-Metadatensätze für alle oder einen einzelnen Plan und speichert zusätzliche
-Informationen, welche in die XPlanWerkWMS Capabilities geschrieben werden.
+**04** | Der Benutzer führt den Befehl [4] aus. | Erstellt Service-Metadatensätze für alle oder einen einzelnen Plan und speichert zusätzliche Informationen, welche in die XPlanWerkWMS Capabilities geschrieben werden.
 
 **Hinweis**
 
- * [1] `./databaseUpdate [-?] [-c <arg>] [-u <arg>] [-v] [-w <arg>]`
- * [2] `./districtUpdate [-?] [-c <arg>] [-v] [-w <arg>]`
- * [3] `./reSynthesizer [-?] -c <arg> [-i <arg>] [-v] [-w <arg>]`
- * [4] `./serviceMetadataRecordCreator [-?] -c <arg> [-i <arg>] [-v] [-w <arg>]`
+ * [1] `./databaseUpdate [-c <arg>] [-u <arg>] [-v] [-w <arg>]`
+ * [2] `./districtUpdate [-c <arg>] [-v] [-w <arg>]`
+ * [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
+ * [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
 
 
 # XPlanTransformCLI  
