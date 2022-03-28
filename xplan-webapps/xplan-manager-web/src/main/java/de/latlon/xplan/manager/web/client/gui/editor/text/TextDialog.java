@@ -31,6 +31,9 @@ import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
@@ -97,6 +100,28 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 	@Override
 	protected boolean isReferenceUrlMandatory() {
 		return false;
+	}
+
+	@Override
+	public boolean isValid() {
+		return validate();
+	}
+
+	private boolean validate() {
+		boolean valid = super.isValid();
+		List<String> validationFailures = new ArrayList<String>();
+		if (reference.isFileSelected() && !isNullOrEmpty(referenceLink.getValue())) {
+			valid = false;
+			validationFailures.add(MESSAGES.editCaptionTextsDokumentOrLink());
+		}
+		boolean textIsEntered = !isNullOrEmpty(text.getValue());
+		boolean refTextIsEntered = reference.isFileSelected() || !isNullOrEmpty(referenceLink.getValue());
+		if ((textIsEntered && refTextIsEntered) || (!textIsEntered && !refTextIsEntered)) {
+			valid = false;
+			validationFailures.add(MESSAGES.editCaptionTextsTextOrUrl());
+		}
+		showValidationError(validationFailures);
+		return valid;
 	}
 
 	private TextDialog(EditVersion version, Text textToEdit, String title) {
