@@ -3,7 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-manager-web</artifactId>
   <packaging>war</packaging>
-  <description>Webanwendung des XPlan Managers</description>
+  <name>xplan-manager-web</name>
+  <description>Webanwendung XPlanManagerWeb</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
