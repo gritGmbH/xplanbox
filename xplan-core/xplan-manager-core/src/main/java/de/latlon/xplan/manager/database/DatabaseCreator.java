@@ -109,7 +109,6 @@ public class DatabaseCreator {
 		try (Connection connection = DriverManager.getConnection(jdbcConnection + "/" + dbName, user, pw)) {
 			connection.setAutoCommit(true);
 			FileReader xplanMgr = new FileReader(wsDirectory.toString() + "/sql/xplanmgr/create.sql");
-			FileReader xplan3 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan3/create.sql");
 			FileReader xplan40 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan40/create.sql");
 			FileReader xplan41 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan41/create.sql");
 			FileReader xplan50 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan50/create.sql");
@@ -119,7 +118,6 @@ public class DatabaseCreator {
 			FileReader xplan54 = new FileReader(wsDirectory.toString() + "/sql/fix/xplan54/create.sql");
 			FileReader xplanSyn = new FileReader(wsDirectory.toString() + "/sql/fix/xplansyn/create.sql");
 
-			FileReader xplan3pre = new FileReader(wsDirectory.toString() + "/sql/pre/xplan3/create.sql");
 			FileReader xplan40pre = new FileReader(wsDirectory.toString() + "/sql/pre/xplan40/create.sql");
 			FileReader xplan41pre = new FileReader(wsDirectory.toString() + "/sql/pre/xplan41/create.sql");
 			FileReader xplan50pre = new FileReader(wsDirectory.toString() + "/sql/pre/xplan50/create.sql");
@@ -129,7 +127,6 @@ public class DatabaseCreator {
 			FileReader xplan54pre = new FileReader(wsDirectory.toString() + "/sql/pre/xplan54/create.sql");
 			FileReader xplanSynpre = new FileReader(wsDirectory.toString() + "/sql/pre/xplansyn/create.sql");
 
-			FileReader xplan3archive = new FileReader(wsDirectory.toString() + "/sql/archive/xplan3/create.sql");
 			FileReader xplan40archive = new FileReader(wsDirectory.toString() + "/sql/archive/xplan40/create.sql");
 			FileReader xplan41archive = new FileReader(wsDirectory.toString() + "/sql/archive/xplan41/create.sql");
 			FileReader xplan50archive = new FileReader(wsDirectory.toString() + "/sql/archive/xplan50/create.sql");
@@ -142,7 +139,6 @@ public class DatabaseCreator {
 			ScriptRunner runner = new ScriptRunner(connection);
 			runner.setStopOnError(true);
 			runner.setSendFullScript(true);
-			runner.runScript(xplan3);
 			runner.runScript(xplan40);
 			runner.runScript(xplan41);
 			runner.runScript(xplan50);
@@ -153,7 +149,6 @@ public class DatabaseCreator {
 			runner.runScript(xplanMgr);
 			runner.runScript(xplanSyn);
 
-			runner.runScript(xplan3pre);
 			runner.runScript(xplan40pre);
 			runner.runScript(xplan41pre);
 			runner.runScript(xplan50pre);
@@ -163,7 +158,6 @@ public class DatabaseCreator {
 			runner.runScript(xplan54pre);
 			runner.runScript(xplanSynpre);
 
-			runner.runScript(xplan3archive);
 			runner.runScript(xplan40archive);
 			runner.runScript(xplan41archive);
 			runner.runScript(xplan50archive);
