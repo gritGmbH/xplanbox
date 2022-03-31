@@ -13,17 +13,6 @@ Inhalt des Verzeichnisses:
             ├── hale
             │   └── xplan41nach51
             │       └── V4_1_ID_103.gml
-            ├── xplan3
-            │   ├── BP2070-Finkenwerder.zip
-            │   ├── BP2070.zip
-            │   ├── BP2135.zip
-            │   ├── Demo.zip
-            │   ├── FPlan.zip
-            │   ├── LA22.zip
-            │   ├── LA67.zip
-            │   ├── Plessa.zip
-            │   ├── Wuerdenhain.zip
-            │   └── hc7.zip
             ├── xplan40
             │   └── V4_1_ID_66.zip
             ├── xplan41
