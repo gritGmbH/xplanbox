@@ -24,7 +24,6 @@ import org.deegree.gml.GMLVersion;
 
 import java.net.URL;
 
-import static org.deegree.gml.GMLVersion.GML_30;
 import static org.deegree.gml.GMLVersion.GML_32;
 
 /**
@@ -35,11 +34,6 @@ import static org.deegree.gml.GMLVersion.GML_32;
  */
 public enum XPlanVersion {
 
-	/**
-	 * XPlan 3.x
-	 */
-	XPLAN_3("http://www.xplanung.de/xplangml/3/0", "/appschemas/XPlanGML_3_0/XPlanung-Operationen.xsd", "xplan3.syn",
-			GML_30),
 	/**
 	 * XPlan 4.0
 	 */

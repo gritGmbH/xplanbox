@@ -27,9 +27,7 @@ import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
-import static de.latlon.xplan.manager.codelists.XPlanCodeListsFactory.getXPlanSyn;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
 import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
 
@@ -63,13 +61,8 @@ public class Xplan2CodeLookup implements Expression {
 				for (TypedObjectNode o : codes.getElements()) {
 					String code = o.toString();
 					String desc;
-					if (version == XPLAN_3) {
-						desc = getXPlanSyn().getDescription(xplanSynCodeList, code);
-					}
-					else {
-						// TODO lookup xplanSynCodeList
-						desc = code;
-					}
+					// TODO lookup xplanSynCodeList
+					desc = code;
 					descriptions += "[" + escape(desc) + "]";
 				}
 				if (codes.getElements().length == 1) {

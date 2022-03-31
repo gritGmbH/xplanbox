@@ -61,13 +61,6 @@ public class PlanBasisdatenApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_getBasisdaten_returnsCorrectStatusCodeForUnsupportedPlanVersion() {
-		Response response = target("/plan/3/basisdaten").request(APPLICATION_JSON).get();
-
-		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
-	}
-
-	@Test
 	public void verifyThat_getBasisdaten_returnsCorrectStatusCodeForValidMediaType() {
 		Response response = target("/plan/2/basisdaten").request(APPLICATION_JSON).get();
 

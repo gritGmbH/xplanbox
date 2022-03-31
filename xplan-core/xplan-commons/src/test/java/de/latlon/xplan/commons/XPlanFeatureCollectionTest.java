@@ -20,18 +20,9 @@
  */
 package de.latlon.xplan.commons;
 
-import static org.deegree.cs.CRSUtils.EPSG_4326;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.text.SimpleDateFormat;
-
-import javax.xml.stream.XMLStreamReader;
-
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import org.deegree.feature.FeatureCollection;
@@ -40,88 +31,21 @@ import org.deegree.geometry.SimpleGeometryFactory;
 import org.deegree.gml.GMLStreamReader;
 import org.junit.Test;
 
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import javax.xml.stream.XMLStreamReader;
+import java.text.SimpleDateFormat;
+
+import static org.deegree.cs.CRSUtils.EPSG_4326;
+import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class XPlanFeatureCollectionTest {
-
-	@Test
-	public void testBP2070XPlan3() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan3/BP2070.zip");
-		Envelope expectedBbox = createEnvelopeIn4326(8.677866116091622, 53.13336118980635, 8.71389373561357,
-				53.149394465922974);
-
-		assertEquals("4011000", fc.getPlanGkz());
-		assertNull(fc.getPlanNummer());
-		assertEquals(351, fc.getFeatures().size());
-		assertThat(fc.getBboxIn4326().getMin().get0(), is(expectedBbox.getMin().get0()));
-		assertThat(fc.getBboxIn4326().getMin().get1(), is(expectedBbox.getMin().get1()));
-		assertThat(fc.getBboxIn4326().getMax().get0(), is(expectedBbox.getMax().get0()));
-		assertThat(fc.getBboxIn4326().getMax().get1(), is(expectedBbox.getMax().get1()));
-	}
-
-	@Test
-	public void testBP2135XPlan3() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan3/BP2135.zip");
-		Envelope expectedBbox = createEnvelopeIn4326(8.868225190603235, 53.02503052421284, 8.898393606163037,
-				53.03851016123366);
-
-		assertEquals("4011000", fc.getPlanGkz());
-		assertEquals("Bebauungsplan 2135", fc.getPlanName());
-		assertEquals("2135", fc.getPlanNummer());
-		assertEquals(241, fc.getFeatures().size());
-		assertThat(fc.getBboxIn4326().getMin().get0(), is(expectedBbox.getMin().get0()));
-		assertThat(fc.getBboxIn4326().getMin().get1(), is(expectedBbox.getMin().get1()));
-		assertThat(fc.getBboxIn4326().getMax().get0(), is(expectedBbox.getMax().get0()));
-		assertThat(fc.getBboxIn4326().getMax().get1(), is(expectedBbox.getMax().get1()));
-	}
-
-	@Test
-	public void testFPlanXPlan3() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan3/FPlan.zip");
-
-		assertEquals("FPlan Bad Liebenwerda", fc.getPlanName());
-		assertNull(fc.getPlanNummer());
-		assertEquals("12062024", fc.getPlanGkz());
-		assertEquals(3828, fc.getFeatures().size());
-		assertThat(fc.getBboxIn4326(), nullValue());
-	}
-
-	@Test
-	public void testPlessaXPlan3() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan3/Plessa.zip");
-		Envelope expectedBbox = createEnvelopeIn4326(13.601305277766333, 51.466146727282, 13.603502206068638,
-				51.46709229148047);
-
-		assertEquals("BP Plessa Gewerbegebiet, erste Aenderung", fc.getPlanName());
-		assertNull(fc.getPlanNummer());
-		assertEquals("12062372", fc.getPlanGkz());
-		assertEquals(17, fc.getFeatures().size());
-		assertThat(fc.getBboxIn4326().getMin().get0(), is(expectedBbox.getMin().get0()));
-		assertThat(fc.getBboxIn4326().getMin().get1(), is(expectedBbox.getMin().get1()));
-		assertThat(fc.getBboxIn4326().getMax().get0(), is(expectedBbox.getMax().get0()));
-		assertThat(fc.getBboxIn4326().getMax().get1(), is(expectedBbox.getMax().get1()));
-	}
-
-	@Test
-	public void testWuerdenhainXPlan3() throws Exception {
-		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan3/Wuerdenhain.zip");
-		Envelope expectedBbox = createEnvelopeIn4326(13.452766605622251, 51.47355832342167, 13.462083366729448,
-				51.476197930428064);
-
-		assertEquals("Klarstellungs-u. Ergänzungssatzung der Gemeinde Haida mit dem OT Würdenhain", fc.getPlanName());
-		assertEquals("KES - O4", fc.getPlanNummer());
-		assertEquals("12062410", fc.getPlanGkz());
-		assertEquals(28, fc.getFeatures().size());
-		assertThat(fc.getBboxIn4326().getMin().get0(), is(expectedBbox.getMin().get0()));
-		assertThat(fc.getBboxIn4326().getMin().get1(), is(expectedBbox.getMin().get1()));
-		assertThat(fc.getBboxIn4326().getMax().get0(), is(expectedBbox.getMax().get0()));
-		assertThat(fc.getBboxIn4326().getMax().get1(), is(expectedBbox.getMax().get1()));
-	}
 
 	@Test
 	public void testV4_1_ID_66_40() throws Exception {

@@ -971,7 +971,6 @@ components:
             type: string
             example: XPLAN_51
             enum:
-              - XPLAN_3
               - XPLAN_40
               - XPLAN_41
               - XPLAN_50
@@ -1085,7 +1084,6 @@ components:
           type: string
           example: XPLAN_51
           enum:
-            - XPLAN_3
             - XPLAN_40
             - XPLAN_41
             - XPLAN_50
@@ -1179,7 +1177,6 @@ components:
           type: string
           example: XPLAN_51
           enum:
-            - XPLAN_3
             - XPLAN_40
             - XPLAN_41
             - XPLAN_50

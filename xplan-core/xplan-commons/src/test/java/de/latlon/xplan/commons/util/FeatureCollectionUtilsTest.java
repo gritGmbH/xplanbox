@@ -28,17 +28,14 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLStreamReader;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.xml.stream.XMLStreamReader;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
@@ -53,20 +50,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @version $Revision: $, $Date: $
  */
 public class FeatureCollectionUtilsTest {
-
-	@Test
-	public void testFindPlanFeatureWithXPlan3() throws Exception {
-		FeatureCollection fc = getMainFileAsFeatureCollection("xplan3/Plessa.zip");
-		Feature planFeature = findPlanFeature(fc, BP_Plan);
-		String id = planFeature.getId();
-		String name = planFeature.getName().toString();
-		String envelope = planFeature.getEnvelope().toString();
-
-		assertThat(id, is("GML_59e52c0f-f079-41fd-b348-cf255a56f20b"));
-		assertThat(name, is("{http://www.xplanung.de/xplangml/3/0}BP_Plan"));
-		assertThat(envelope, is(
-				"min: (402844.959,5702591.938), max: (402995.658,5702694.252), span0: 150.69900000002235, span1: 102.31400000024587 , crs: {uri=EPSG:25833, resolved=true}"));
-	}
 
 	@Test
 	public void testFindPlanFeatureWithXPlan40() throws Exception {
@@ -110,31 +93,6 @@ public class FeatureCollectionUtilsTest {
 		String legislationStatus = retrieveRechtsstand(fc, BP_Plan);
 
 		assertThat(legislationStatus, nullValue());
-	}
-
-	@Ignore("No test data available!")
-	@Test
-	public void testRetrieveAdditionalType() throws Exception {
-		FeatureCollection fc = getMainFileAsFeatureCollection("INSERT TEST FILE");
-		String additionalType = retrieveAdditionalType(fc, BP_Plan);
-
-		assertThat(additionalType, is("INSERT ADDITIONAL TYPE"));
-	}
-
-	@Test
-	public void testRetrieveDistrictWithXPlan3ShouldReturnDistrict() throws Exception {
-		FeatureCollection fc = getMainFileAsFeatureCollection("xplan3/hc7.zip");
-		String district = retrieveDistrict(fc, BP_Plan, XPLAN_3);
-
-		assertThat(district, is("Bezirk Hamburg-Mitte / Ortsteil 103"));
-	}
-
-	@Test
-	public void testRetrieveDistrictWithXPlan3WithMissingDistrictShouldReturnNull() throws Exception {
-		FeatureCollection fc = getMainFileAsFeatureCollection("xplan3/Plessa.zip");
-		String district = retrieveDistrict(fc, BP_Plan, XPLAN_3);
-
-		assertThat(district, nullValue());
 	}
 
 	@Test
