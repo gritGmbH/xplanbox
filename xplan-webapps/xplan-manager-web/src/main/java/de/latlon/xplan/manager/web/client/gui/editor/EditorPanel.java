@@ -35,7 +35,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterHandler;
 import de.latlon.xplan.manager.web.client.gui.editor.basedata.BaseDataPanel;
-import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplan30Panel;
 import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplanPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.raster.RasterBasisPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.reference.ReferencesPanel;
@@ -53,7 +52,6 @@ import org.fusesource.restygwt.client.MethodCallback;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
 import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 
@@ -86,7 +84,7 @@ public class EditorPanel extends DecoratorPanel {
 	public EditorPanel(EditVersion version, HandlerManager eventBus) {
 		this.eventBus = eventBus;
 		baseDataPanel = new BaseDataPanel(version);
-		changesPanel = createChangePanel(version);
+		changesPanel = new ChangesXplanPanel(version);
 		textsPanel = new TextsPanel(version);
 		referencesPanel = new ReferencesPanel(version);
 		rasterBasisPanel = new RasterBasisPanel(version);
@@ -251,12 +249,6 @@ public class EditorPanel extends DecoratorPanel {
 		saving.center();
 		saving.show();
 		return saving;
-	}
-
-	private AbstractEditorSubPanelWithTable<Change> createChangePanel(EditVersion version) {
-		if (XPLAN_3.equals(version))
-			return new ChangesXplan30Panel();
-		return new ChangesXplanPanel(version);
 	}
 
 }
