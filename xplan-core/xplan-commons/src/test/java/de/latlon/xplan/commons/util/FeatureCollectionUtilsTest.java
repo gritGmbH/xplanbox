@@ -33,8 +33,6 @@ import org.junit.Test;
 import javax.xml.stream.XMLStreamReader;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
@@ -98,7 +96,7 @@ public class FeatureCollectionUtilsTest {
 	@Test
 	public void testRetrieveDistrictWithXPlan41ShouldReturnDistrict() throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection("xplan41/Eidelstedt_4_V4.zip");
-		String district = retrieveDistrict(fc, BP_Plan, XPLAN_41);
+		String district = retrieveDistrict(fc, BP_Plan);
 
 		assertThat(district, is("Bezirk Eimsbüttel Ortsteil 320"));
 	}
@@ -106,7 +104,7 @@ public class FeatureCollectionUtilsTest {
 	@Test
 	public void testRetrieveDistrictWithXPlan41WithMissingDistrictNameShouldReturnNull() throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection("xplan41/BP2070.zip");
-		String district = retrieveDistrict(fc, BP_Plan, XPLAN_41);
+		String district = retrieveDistrict(fc, BP_Plan);
 
 		assertThat(district, nullValue());
 	}
@@ -114,7 +112,7 @@ public class FeatureCollectionUtilsTest {
 	@Test
 	public void testRetrieveDistrictWithXPlan51WithMultipleDistricts() throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection("xplan51/BP2070_mehrererOrtsteile.zip");
-		String district = retrieveDistrict(fc, BP_Plan, XPLAN_51);
+		String district = retrieveDistrict(fc, BP_Plan);
 
 		assertThat(district, is("309"));
 	}

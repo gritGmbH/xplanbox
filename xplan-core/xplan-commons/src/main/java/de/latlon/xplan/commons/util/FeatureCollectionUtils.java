@@ -108,15 +108,13 @@ public class FeatureCollectionUtils {
 	}
 
 	/**
-	 * Retrieves the district (XPlan3: "ortsteil"; XPlan40 and XPlan41: "ortsteilName") of
-	 * a XPlan-FeatureCollection. XPlan3, XPlan40 and XPlan41 plans are considered. In
-	 * other cases <code>null</code> ist returned.
+	 * Retrieves the district ("ortsteilName") of a XPlan-FeatureCollection.
 	 * @param fc XPlan-FeatureCollection, never <code>null</code>
 	 * @param type XPlan-Type, never <code>null</code>
 	 * @param version XPlan-Version, never <code>null</code>
 	 * @return district value or <code>null</code> if no value was found
 	 */
-	public static String retrieveDistrict(FeatureCollection fc, XPlanType type, XPlanVersion version) {
+	public static String retrieveDistrict(FeatureCollection fc, XPlanType type) {
 		Feature planFeature = findPlanFeature(fc, type);
 		String ns = planFeature.getName().getNamespaceURI();
 		TypedObjectNode municipality = getPropertyValue(planFeature, new QName(ns, "gemeinde"));
