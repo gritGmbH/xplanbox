@@ -18,4 +18,4 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- #L%
 ---
-DROP SCHEMA xplan54archive CASCADE;
+DROP SCHEMA xplan60 CASCADE;
