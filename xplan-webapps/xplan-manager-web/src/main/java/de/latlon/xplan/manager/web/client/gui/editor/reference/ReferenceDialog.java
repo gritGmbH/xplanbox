@@ -109,11 +109,9 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
 		layout.setWidget(2, 1, new Label(MESSAGES.editCaptionReferencesReferenceLink()));
 		layout.setWidget(2, 2, referenceLink);
 		// #3305 - georeference is not needed.
-		// if ( !XPLAN_3.equals( version ) ) {
 		// layout.setWidget( 2, 1, new Label( MESSAGES.editCaptionReferencesGeoReference()
 		// ) );
 		// layout.setWidget( 2, 2, georeference );
-		// }
 		layout.setWidget(3, 1, new Label(MESSAGES.editCaptionReferencesType()));
 		layout.setWidget(3, 2, refType);
 

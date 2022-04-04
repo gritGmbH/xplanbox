@@ -69,7 +69,6 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 		addBasisColumn(textsList);
 		addTextColumn(textsList);
 		// #3305 - georeference is not needed.
-		// if ( !XPLAN_3.equals( version ) )
 		// addGeoReferenceColumn( textsList );
 		if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
 				|| XPLAN_53.equals(version)) {

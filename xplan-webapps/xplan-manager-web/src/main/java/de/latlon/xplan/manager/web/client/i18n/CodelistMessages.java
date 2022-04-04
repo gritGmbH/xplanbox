@@ -106,38 +106,6 @@ public interface CodelistMessages extends Messages {
 
 	String XP_ExterneReferenzArt_PlanMitGeoreferenz();
 
-	String XPLAN_3_BP_PlanArt_1000_BPlan();
-
-	String XPLAN_3_BP_PlanArt_2000_BPlanNachParag13();
-
-	String XPLAN_3_BP_PlanArt_3000_VorhabenbezogenerBPlan();
-
-	String XPLAN_3_BP_PlanArt_4000_InnenbereichsSatzung();
-
-	String XPLAN_3_BP_PlanArt_40000_KlarstellungsSatzung();
-
-	String XPLAN_3_BP_PlanArt_40001_EntwicklungsSatzung();
-
-	String XPLAN_3_BP_PlanArt_40002_ErgaenzungsSatzung();
-
-	String XPLAN_3_BP_PlanArt_5000_AussenbereichsSatzung();
-
-	String XPLAN_3_BP_PlanArt_6000_BPlan_Innenentwicklung();
-
-	String XPLAN_3_BP_PlanArt_7000_OertlicheBauvorschrift();
-
-	String XPLAN_3_BP_PlanArt_9999_Sonstiges();
-
-	String XPLAN_3_BP_Rechtsstand_1000_Aufstellungsbeschluss();
-
-	String XPLAN_3_BP_Rechtsstand_2000_Entwurf();
-
-	String XPLAN_3_BP_Rechtsstand_3000_Satzung();
-
-	String XPLAN_3_BP_Rechtsstand_4000_Rechtskraft();
-
-	String XPLAN_3_BP_Rechtsstand_5000_Untergegangen();
-
 	String XPLAN_41_BP_PlanArt_1000_BPlan();
 
 	String XPLAN_41_BP_PlanArt_10000_EinfacherBPlan();

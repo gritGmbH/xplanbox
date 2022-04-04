@@ -20,13 +20,6 @@
  */
 package de.latlon.xplan.manager.web.client.gui.editor.reference;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
-
-import java.util.List;
-
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -39,12 +32,16 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.ReferenceType;
+
+import java.util.List;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
 
 /**
  * Panel for references.
@@ -66,7 +63,6 @@ public class ReferencesPanel extends AbstractEditorSubPanelWithTable<Reference> 
 	protected void initColumns(CellTable<Reference> referencesList) {
 		addReferenceColumn(referencesList);
 		// #3305 - georeference is not needed.
-		// if ( !XPLAN_3.equals( version ) )
 		// addGeoReferenceColumn( referencesList );
 		addTypeColumn(referencesList);
 
@@ -161,11 +157,6 @@ public class ReferencesPanel extends AbstractEditorSubPanelWithTable<Reference> 
 	private boolean validateNewReferenceInContextOfAll(Reference newReference, List<Reference> references) {
 		if (GRUENORDNUNGSPLAN.equals(newReference.getType()) && alreadyExists(references, GRUENORDNUNGSPLAN)) {
 			Window.alert(MESSAGES.editCaptionReferencesGreenStructursReferenceAlreadyExists());
-			return false;
-		}
-		if (XPLAN_3.equals(version) && BEGRUENDUNG.equals(newReference.getType())
-				&& alreadyExists(references, BEGRUENDUNG)) {
-			Window.alert(MESSAGES.editCaptionReferencesReasonReferenceAlreadyExists());
 			return false;
 		}
 		return true;
