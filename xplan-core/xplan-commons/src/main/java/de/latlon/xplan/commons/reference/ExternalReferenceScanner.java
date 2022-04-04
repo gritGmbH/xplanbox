@@ -82,7 +82,7 @@ public class ExternalReferenceScanner {
 		case XPLAN_53:
 		case XPLAN_54:
 		case XPLAN_60:
-			scanXplan5or6( fc);
+			scanXplan5or6(fc);
 			break;
 		default:
 			throw new IllegalArgumentException("Unsupported XPlanGML Version: " + version);
@@ -152,7 +152,7 @@ public class ExternalReferenceScanner {
 		}
 	}
 
-	private void scanXplan5or6( FeatureCollection fc) {
+	private void scanXplan5or6(FeatureCollection fc) {
 		for (Feature feature : fc) {
 			String name = feature.getName().getLocalPart();
 			if ("XP_Rasterdarstellung".equals(name) || name.matches("(BP|LP|RP|FP|SO)_Bereich")) {
