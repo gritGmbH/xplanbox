@@ -70,6 +70,11 @@ public enum XPlanVersion {
 	XPLAN_54("http://www.xplanung.de/xplangml/5/4", "/appschemas/XPlanGML_5_4/XPlanung-Operationen.xsd", "xplan54.syn",
 			GML_32),
 	/**
+	 * XPlan 6.0
+	 */
+	XPLAN_60("http://www.xplanung.de/xplangml/6/0", "/appschemas/XPlanGML_6_0/XPlanung-Operationen.xsd", "xplan60.syn",
+			GML_32),
+	/**
 	 * XPlan Syn
 	 */
 	XPLAN_SYN("http://www.deegree.org/xplanung/1/0", "/appschemas/XPlanGML_Syn/XPlanSyn.xsd", null, GML_32);
