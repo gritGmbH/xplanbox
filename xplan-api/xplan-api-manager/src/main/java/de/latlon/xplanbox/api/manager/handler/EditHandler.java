@@ -85,7 +85,6 @@ public class EditHandler {
 		String version = xPlanById.getVersion();
 		XPlanVersion xPlanVersion = XPlanVersion.valueOf(version);
 		switch (xPlanVersion) {
-		case XPLAN_3:
 		case XPLAN_40:
 			throw new InvalidPlanToEdit(String.format(
 					"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions: 4.1 and heigher",

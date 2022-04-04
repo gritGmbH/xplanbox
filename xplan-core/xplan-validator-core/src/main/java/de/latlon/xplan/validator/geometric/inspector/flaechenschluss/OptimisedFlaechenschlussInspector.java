@@ -74,7 +74,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
@@ -486,8 +485,8 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	}
 
 	private boolean handleAsFailure() {
-		if (XPLAN_3.equals(xPlanVersion) || XPLAN_40.equals(xPlanVersion) || XPLAN_41.equals(xPlanVersion)
-				|| XPLAN_50.equals(xPlanVersion) || XPLAN_51.equals(xPlanVersion) || XPLAN_52.equals(xPlanVersion)) {
+		if (XPLAN_40.equals(xPlanVersion) || XPLAN_41.equals(xPlanVersion) || XPLAN_50.equals(xPlanVersion)
+				|| XPLAN_51.equals(xPlanVersion) || XPLAN_52.equals(xPlanVersion)) {
 			LOG.info(
 					"Loecher im Flaechenschluss sind in der Version {} zugelassen, werden aber als Warnung ausgegeben.",
 					xPlanVersion);

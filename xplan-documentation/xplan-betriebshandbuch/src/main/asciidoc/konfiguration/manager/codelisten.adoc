@@ -5,7 +5,6 @@ Externe Codelisten können im Verzeichnis _<XPLANBOX_CONFIG>/synthesizer_ abgele
 Dazu müssen für die Zuordnung zu dem Property im vereinfachten XPlanSyn Schema und dem komplexen XPlanGML Regeln konfiguriert werden.
 Die Regeln müssen abhängig von der XPlanGML-Version in einer der folgenden Dateien angelegt werden (die Dateinamen dürfen dabei nicht verändert werden):
 
-* xplan3.syn
 * xplan40.syn
 * xplan41.syn
 * xplan50.syn

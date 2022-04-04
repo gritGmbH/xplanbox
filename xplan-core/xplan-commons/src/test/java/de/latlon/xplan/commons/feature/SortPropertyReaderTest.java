@@ -37,8 +37,8 @@ import java.util.Date;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -73,7 +73,7 @@ public class SortPropertyReaderTest {
 	public void testReadSortDate_UnmatchingVersion() throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
-		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_3, readFeatureCollection());
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_50, readFeatureCollection());
 
 		assertThat(readSortDate, nullValue());
 	}
@@ -82,7 +82,7 @@ public class SortPropertyReaderTest {
 	public void testReadSortDate_UnavailableFeatureType() throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration("BP_PlanNotThere", "technHerstellDatum");
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
-		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_3, readFeatureCollection());
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_50, readFeatureCollection());
 
 		assertThat(readSortDate, nullValue());
 	}
@@ -91,7 +91,7 @@ public class SortPropertyReaderTest {
 	public void testReadSortDate_UnavailableProperty() throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "notThereDatum");
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
-		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_3, readFeatureCollection());
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_50, readFeatureCollection());
 
 		assertThat(readSortDate, nullValue());
 	}

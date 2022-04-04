@@ -146,7 +146,7 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
 
 			stmt.setString(1, retrieveRechtsstand(synFc, type));
 			stmt.setString(2, retrieveAdditionalType(synFc, type));
-			stmt.setString(3, retrieveDistrict(fc.getFeatures(), type, version));
+			stmt.setString(3, retrieveDistrict(fc.getFeatures(), type));
 			stmt.setString(4, createWktFromTransformedEnvelope(fc));
 			stmt.setInt(5, planId);
 

@@ -1218,7 +1218,7 @@ public class XPlanDao {
 			stmt.setTimestamp(9, convertToSqlTimestamp(fc.getPlanReleaseDate()));
 			stmt.setString(10, retrieveAdditionalType(synFc, archive.getType()));
 			stmt.setString(11, retrievePlanStatusMessage(planStatus));
-			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType(), archive.getVersion()));
+			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType()));
 			stmt.setTimestamp(13, convertToSqlTimestamp(sortDate));
 			stmt.setTimestamp(14, convertToSqlTimestamp(beginValidity));
 			stmt.setTimestamp(15, convertToSqlTimestamp(endValidity));

@@ -38,10 +38,6 @@ import static org.deegree.gml.GMLVersion.GML_30;
  */
 public class XPlanCodeListsFactory {
 
-	private static final String XPLAN_3_CODE_LISTS = "/appschemas/XPlanGML_3_0/XPlanGML_CodeLists.xml";
-
-	private static final String XPLAN_3_EXT_CODE_LISTS = "/appschemas/XPlanGML_3_0/XPlanGML_ExternalCodeLists.xml";
-
 	private static final String XPLAN_40_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_4_0.xml";
 
 	private static final String XPLAN_41_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_4_1.xml";
@@ -61,10 +57,6 @@ public class XPlanCodeListsFactory {
 	private static final String XPLAN_SYN_EXT_CODE_LISTS_XP2 = "/appschemas/XPlanGML_Syn/XPlanSyn_ExternalCodeLists_XP2.xml";
 
 	private static final String XPLAN_SYN_EXT_CODE_LISTS_XP3 = "/appschemas/XPlanGML_Syn/XPlanSyn_ExternalCodeLists_XP3.xml";
-
-	private static XPlanCodeLists xplan3CodeLists;
-
-	private static XPlanCodeLists xplan3ExtCodeLists;
 
 	private static XPlanCodeLists xplanSynCodeLists;
 
@@ -94,8 +86,6 @@ public class XPlanCodeListsFactory {
 	 */
 	public static XPlanCodeLists get(XPlanVersion version) {
 		switch (version) {
-		case XPLAN_3:
-			return getXPlan3();
 		case XPLAN_40:
 			return getXPlan40();
 		case XPLAN_41:
@@ -142,20 +132,6 @@ public class XPlanCodeListsFactory {
 		return xplanSynCodeLists;
 	}
 
-	public static synchronized XPlanCodeLists getXPlan3Ext() {
-		if (xplan3ExtCodeLists == null) {
-			try {
-				xplan3ExtCodeLists = xPlanCodeListParser
-						.parseCodelists(XPlanCodeLists.class.getResource(XPLAN_3_EXT_CODE_LISTS), GML_30);
-			}
-			catch (Exception e) {
-				String msg = "Internal error reading code lists file: " + e.getMessage();
-				throw new RuntimeException(msg);
-			}
-		}
-		return xplan3ExtCodeLists;
-	}
-
 	public static synchronized XPlanCodeLists getXPlanSynExt() {
 		if (xplanSynExtCodeLists == null) {
 			try {
@@ -171,20 +147,6 @@ public class XPlanCodeListsFactory {
 			}
 		}
 		return xplanSynExtCodeLists;
-	}
-
-	private static synchronized XPlanCodeLists getXPlan3() {
-		if (xplan3CodeLists == null) {
-			try {
-				xplan3CodeLists = xPlanCodeListParser
-						.parseCodelists(XPlanCodeLists.class.getResource(XPLAN_3_CODE_LISTS), GML_30);
-			}
-			catch (Exception e) {
-				String msg = "Internal error reading code lists file: " + e.getMessage();
-				throw new RuntimeException(msg, e);
-			}
-		}
-		return xplan3CodeLists;
 	}
 
 	private static synchronized XPlanCodeLists getXPlan40() {

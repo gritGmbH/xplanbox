@@ -112,8 +112,6 @@ public class ReportUtils {
 		if (version == null)
 			return "unbekannt";
 		switch (version) {
-		case XPLAN_3:
-			return "3";
 		case XPLAN_40:
 			return "4.0";
 		case XPLAN_41:
