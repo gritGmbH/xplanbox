@@ -21,7 +21,7 @@
 <wfs:StoredQueryDefinition id="urn:ogc:def:query:OGC-WFS::InternalId"
                            xmlns:wfs="http://www.opengis.net/wfs/2.0"
                            xmlns:fes="http://www.opengis.net/fes/2.0"
-                           xmlns:xplan54="http://www.xplanung.de/xplangml/5/4">
+                           xmlns:xplan60="http://www.xplanung.de/xplangml/6/0">
   <wfs:Title>internalId</wfs:Title>
   <wfs:Abstract>Es koennen vollstaendige XPlanGML Plaene anhand der InternalId heruntergeladen werden.</wfs:Abstract>
   <wfs:Parameter xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="internalId" type="xsd:string">
@@ -31,11 +31,11 @@
                            language="urn:ogc:def:queryLanguage:OGC-WFS::WFS_QueryExpression" isPrivate="false">
 
     <!-- BP_Plan -->
-    <wfs:Query typeNames="xplan54:BP_Plan">
+    <wfs:Query typeNames="xplan60:BP_Plan">
       <fes:Filter>
         <fes:PropertyIsEqualTo>
           <fes:ValueReference>
-            //xplan54:BP_Plan/xplan54:internalId
+            //xplan60:BP_Plan/xplan60:internalId
           </fes:ValueReference>
           <fes:Literal>${internalId}</fes:Literal>
         </fes:PropertyIsEqualTo>
@@ -43,11 +43,11 @@
     </wfs:Query>
 
     <!-- FP_Plan -->
-    <wfs:Query typeNames="xplan54:FP_Plan">
+    <wfs:Query typeNames="xplan60:FP_Plan">
       <fes:Filter>
         <fes:PropertyIsEqualTo>
           <fes:ValueReference>
-            //xplan54:FP_Plan/xplan54:internalId
+            //xplan60:FP_Plan/xplan60:internalId
           </fes:ValueReference>
           <fes:Literal>${internalId}</fes:Literal>
         </fes:PropertyIsEqualTo>
@@ -55,11 +55,11 @@
     </wfs:Query>
 
     <!-- LP_Plan -->
-    <wfs:Query typeNames="xplan54:LP_Plan">
+    <wfs:Query typeNames="xplan60:LP_Plan">
       <fes:Filter>
         <fes:PropertyIsEqualTo>
           <fes:ValueReference>
-            //xplan54:LP_Plan/xplan54:internalId
+            //xplan60:LP_Plan/xplan60:internalId
           </fes:ValueReference>
           <fes:Literal>${internalId}</fes:Literal>
         </fes:PropertyIsEqualTo>
@@ -67,11 +67,11 @@
     </wfs:Query>
 
     <!-- RP_Plan -->
-    <wfs:Query typeNames="xplan54:RP_Plan">
+    <wfs:Query typeNames="xplan60:RP_Plan">
       <fes:Filter>
         <fes:PropertyIsEqualTo>
           <fes:ValueReference>
-            //xplan54:RP_Plan/xplan54:internalId
+            //xplan60:RP_Plan/xplan60:internalId
           </fes:ValueReference>
           <fes:Literal>${internalId}</fes:Literal>
         </fes:PropertyIsEqualTo>
