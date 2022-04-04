@@ -115,7 +115,7 @@ public class XPlanCodeListsParser {
 	private void parseDefinition(URL codeListUrl, String codeListId, Definition def,
 			Map<String, Map<String, String>> codeListIdToMapping,
 			Map<String, Map<String, String>> codeListIdToReverseMapping) {
-		if (def.getNames().length == 1) {
+		if (def.getNames().length > 0) {
 			if (codeIsPartOfIdentifier(codeListId, def)) {
 				String codeWithCodelistId = def.getGMLProperties().getIdentifier().getCode();
 				String code = codeWithCodelistId.substring(codeWithCodelistId.indexOf(":") + 1);
@@ -140,7 +140,7 @@ public class XPlanCodeListsParser {
 		}
 		else {
 			String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
-					+ "' enthält Einträge mit keinem oder mehreren Codes.";
+					+ "' enthält Einträge mit keinem Code.";
 			throw new RuntimeException(msg);
 		}
 	}
