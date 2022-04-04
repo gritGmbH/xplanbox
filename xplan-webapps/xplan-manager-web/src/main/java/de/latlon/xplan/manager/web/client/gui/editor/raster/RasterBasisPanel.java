@@ -49,7 +49,6 @@ import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
 import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATION_ERROR;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 
 /**
@@ -75,9 +74,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		addTypeColumn(rasterBasisList);
 		addReferenceColumn(rasterBasisList);
 		addReferenceNameColumn(rasterBasisList);
-		if (!XPLAN_3.equals(version)) {
-			addGeoReferenceColumn(rasterBasisList);
-		}
+		addGeoReferenceColumn(rasterBasisList);
 		TextHeader actionHeader = new TextHeader(MESSAGES.actions());
 		addEditColumn(rasterBasisList, actionHeader);
 		addRemoveColumn(rasterBasisList, actionHeader);

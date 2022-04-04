@@ -716,10 +716,9 @@ public class PlanListPanel extends DecoratorPanel {
 	}
 
 	private boolean isVersionSupportedByEditor(XPlan xPlan) {
-		return "XPLAN_3".equals(xPlan.getVersion()) || "XPLAN_41".equals(xPlan.getVersion())
-				|| "XPLAN_50".equals(xPlan.getVersion()) || "XPLAN_51".equals(xPlan.getVersion())
-				|| "XPLAN_52".equals(xPlan.getVersion()) || "XPLAN_53".equals(xPlan.getVersion())
-				|| "XPLAN_54".equals(xPlan.getVersion());
+		return "XPLAN_41".equals(xPlan.getVersion()) || "XPLAN_50".equals(xPlan.getVersion())
+				|| "XPLAN_51".equals(xPlan.getVersion()) || "XPLAN_52".equals(xPlan.getVersion())
+				|| "XPLAN_53".equals(xPlan.getVersion()) || "XPLAN_54".equals(xPlan.getVersion());
 	}
 
 	private boolean isVersionSupportedByInpirePlu(XPlan xPlan) {
@@ -729,8 +728,6 @@ public class PlanListPanel extends DecoratorPanel {
 	}
 
 	private String translateVersion(String version) {
-		if ("XPLAN_3".equalsIgnoreCase(version))
-			return "3.0";
 		if ("XPLAN_40".equalsIgnoreCase(version))
 			return "4.0";
 		if ("XPLAN_41".equalsIgnoreCase(version))

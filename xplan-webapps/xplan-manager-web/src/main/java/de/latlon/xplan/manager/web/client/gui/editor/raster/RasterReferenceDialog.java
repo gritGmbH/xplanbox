@@ -42,19 +42,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_MSEXCEL;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_MSWORD;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_ODT;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_VND_OGC_GML;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_VND_OGC_SLD_XML;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_VND_OGC_WMS_XML;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.IMAGE_SVG_XML;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.TEXT_PLAIN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 
 /**
@@ -94,11 +85,11 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 	private RasterReferenceDialog(EditVersion version, RasterReference rasterReference, String title) {
 		super(version, title);
 		this.refType = createRefType();
-		this.refMimeType = createMimeTypeType(version);
-		this.georefMimeType = createMimeTypeType(version);
+		this.refMimeType = createMimeTypeType();
+		this.georefMimeType = createMimeTypeType();
 		this.artType = new TypeCodeListBox<ExterneReferenzArt>(ExterneReferenzArt.class, true);
 		this.originalRasterReference = rasterReference;
-		addChangeHandlers(version);
+		addChangeHandlers();
 		initDialog(createFormContent());
 		setRasterReferenceValues();
 	}
@@ -157,41 +148,20 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		layout.setWidget(rowIndex++, 2, georeference);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisGeorefMimeType()));
 		layout.setWidget(rowIndex++, 2, georefMimeType);
-		if (!XPLAN_3.equals(version)) {
-			layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisArt()));
-			layout.setWidget(rowIndex++, 2, artType);
-		}
+		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisArt()));
+		layout.setWidget(rowIndex++, 2, artType);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisInformationssystemURL()));
 		layout.setWidget(rowIndex++, 2, informationssystemURL);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisReferenzName()));
 		layout.setWidget(rowIndex++, 2, referenzName);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisBeschreibung()));
 		layout.setWidget(rowIndex++, 2, beschreibung);
-		if (!XPLAN_3.equals(version)) {
-			layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisDatum()));
-			layout.setWidget(rowIndex++, 2, datum);
-		}
+		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisDatum()));
+		layout.setWidget(rowIndex++, 2, datum);
 		return layout;
 	}
 
-	private void addChangeHandlers(EditVersion version) {
-		if (XPLAN_3.equals(version)) {
-			refType.addChangeHandler(new ChangeHandler() {
-				@Override
-				public void onChange(ChangeEvent changeEvent) {
-					if (RasterReferenceType.SCAN.equals(refType.getValueAsEnum())) {
-						georeference.setEnabled(true);
-						georefMimeType.setEnabled(true);
-					}
-					else {
-						georeference.setEnabled(false);
-						georefMimeType.setEnabled(false);
-						georeference.setTitle(MESSAGES.editUnsupportedPropertyRefType());
-						georefMimeType.setTitle(MESSAGES.editUnsupportedPropertyRefType());
-					}
-				}
-			});
-		}
+	private void addChangeHandlers() {
 		artType.addChangeHandler(new ClearValidationErrorsCH());
 		georeference.addChangeHandler(new ClearValidationErrorsCH());
 		georefMimeType.addChangeHandler(new ClearValidationErrorsCH());
@@ -230,19 +200,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		return codeListBox;
 	}
 
-	private TypeCodeListBox createMimeTypeType(EditVersion version) {
-		if (XPLAN_3.equals(version)) {
-			List<MimeTypes> disabledItems = new ArrayList<MimeTypes>();
-			disabledItems.add(APPLICATION_MSEXCEL);
-			disabledItems.add(APPLICATION_MSWORD);
-			disabledItems.add(APPLICATION_ODT);
-			disabledItems.add(APPLICATION_VND_OGC_GML);
-			disabledItems.add(APPLICATION_VND_OGC_SLD_XML);
-			disabledItems.add(APPLICATION_VND_OGC_WMS_XML);
-			disabledItems.add(IMAGE_SVG_XML);
-			disabledItems.add(TEXT_PLAIN);
-			return new TypeCodeListBox<MimeTypes>(MimeTypes.class, disabledItems, true);
-		}
+	private TypeCodeListBox createMimeTypeType() {
 		return new TypeCodeListBox(MimeTypes.class, true);
 	}
 
