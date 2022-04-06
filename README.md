@@ -36,12 +36,6 @@ Die Anwendungskomponenten der xPlanBox können mit folgendem Maven Befehl erstel
 mvn clean install
 ```
 
-Für die Erstellung von Docker Images mit den Anwendungskomponenten muss [Docker](https://www.docker.com/) installiert sein. Der folgende Aufruf erstellt die Dateien:
-
-```shell
-mvn clean install -Pdocker
-```
-
 ### Installation und Konfiguration
 
 Die Installation und Konfiguration der xPlanBox ist im Betriebshandbuch dokumentiert.
