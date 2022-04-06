@@ -182,50 +182,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:LP_SchutzobjektLandesrecht</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>lp_schutzobjlandesrechtsym</l:Name>
-    <d:Title>LP: Schutzobjekt Landesrecht Symbole</d:Title>
-    <d:Abstract>LP_SchutzobjektLandesrecht Symbole</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_schutzobjlandesrechtsym</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:LP_SchutzobjektInternatRecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -1790,53 +1746,6 @@
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_schutzobjbundesrecht</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-<l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:LP_SchutzobjektLandesrecht</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>lp_schutzobjlandesrecht</l:Name>
-    <d:Title>LP: Schutzobjekt Landesrecht</d:Title>
-    <d:Abstract>LP_SchutzobjektLandesrecht</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_schutzobjlandesrecht</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
 <l:StyleStoreId>transparent/transparent</l:StyleStoreId>

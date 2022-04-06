@@ -306,36 +306,6 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_Ausgleich">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_Ausgleich/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:BP_AusgleichsFlaeche">
       <fes:Filter>
         <fes:And>
@@ -372,36 +342,6 @@
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:BP_AusgleichsMassnahme/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_BahnVerkehr">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_BahnVerkehr/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -522,36 +462,6 @@
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:BP_BaugebietsTeilFlaeche/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_Bauschutzbereich">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_Bauschutzbereich/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -702,36 +612,6 @@
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:BP_DenkmalschutzEinzelanlage/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_DenkmalschutzEinzelanlagePunkt">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_DenkmalschutzEinzelanlagePunkt/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -936,72 +816,12 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_Fachgesetz">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_Fachgesetz/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:BP_FestsetzungNachLandesrecht">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:BP_FestsetzungNachLandesrecht/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_FestsetzungenBaugebiet">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_FestsetzungenBaugebiet/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -1266,72 +1086,12 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_GestaltungBaugebiet">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_GestaltungBaugebiet/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:BP_GewaesserFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:BP_GewaesserFlaeche/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_Grabungsschutzgebiet">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_Grabungsschutzgebiet/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -1392,36 +1152,6 @@
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:BP_HoehenMass/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_HoehenPunkt">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_HoehenPunkt/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -1536,36 +1266,6 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_Laermschutzbereich">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_Laermschutzbereich/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:BP_Landwirtschaft">
       <fes:Filter>
         <fes:And>
@@ -1626,72 +1326,13 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_LandwirtschaftsLinie">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_LandwirtschaftsLinie/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
+
     <wfs:Query typeNames="xplan:BP_LuftreinhalteFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:BP_LuftreinhalteFlaeche/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_LuftverkehrFlaeche">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_LuftverkehrFlaeche/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -2166,36 +1807,6 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_TechnikBestimmteFlaeche">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_TechnikBestimmteFlaeche/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:BP_TextAbschnitt">
       <fes:Filter>
         <fes:And>
@@ -2346,66 +1957,6 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_VerEntsorgungsFlaeche">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_VerEntsorgungsFlaeche/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_VerEntsorgungsleitungLinie">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_VerEntsorgungsleitungLinie/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:BP_Veraenderungssperre">
       <fes:Filter>
         <fes:And>
@@ -2466,72 +2017,12 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_VorbHochwSchutzFlaeche">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_VorbHochwSchutzFlaeche/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:BP_WaldFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:BP_WaldFlaeche/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:BP_WasserrechtlicheFestsetzungsFlaeche">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:BP_WasserrechtlicheFestsetzungsFlaeche/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -2796,66 +2287,6 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_Bahnverkehr">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_Bahnverkehr/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_Bauschutzbereich">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_Bauschutzbereich/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:FP_BebauungsFlaeche">
       <fes:Filter>
         <fes:And>
@@ -2976,96 +2407,6 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_DenkmalschutzEnsemble">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_DenkmalschutzEnsemble/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_Erhaltungssatzung">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_Erhaltungssatzung/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_Fachgesetz">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_Fachgesetz/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:FP_Gemeinbedarf">
       <fes:Filter>
         <fes:And>
@@ -3132,36 +2473,6 @@
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:FP_Gewaesser/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_Grabungsschutzgebiet">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_Grabungsschutzgebiet/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -3276,72 +2587,12 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_Laermschutzbereich">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_Laermschutzbereich/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:FP_LandwirtschaftsFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:FP_LandwirtschaftsFlaeche/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_Luftverkehr">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_Luftverkehr/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -3426,36 +2677,6 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_PriviligiertesVorhaben">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_PriviligiertesVorhaben/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:FP_RasterplanAenderung">
       <fes:Filter>
         <fes:And>
@@ -3492,36 +2713,6 @@
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:FP_SchutzPflegeEntwicklung/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_Schutzgebiet">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_Schutzgebiet/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -3726,36 +2917,6 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_VorbHochwSchutz">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_VorbHochwSchutz/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:FP_VorbehalteFlaeche">
       <fes:Filter>
         <fes:And>
@@ -3792,36 +2953,6 @@
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:FP_WaldFlaeche/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:FP_Wasserrecht">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:FP_Wasserrecht/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
@@ -5286,36 +4417,6 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
-    <wfs:Query typeNames="xplan:RP_Entwicklungsschwerpunkte">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:RP_Entwicklungsschwerpunkte/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
     <wfs:Query typeNames="xplan:RP_Forstwirtschaft">
       <fes:Filter>
         <fes:And>
@@ -6732,36 +5833,6 @@
           <fes:PropertyIsEqualTo>
             <fes:ValueReference>
               //xplan:RP_Wasserwirtschaft/xplan:xpPlanName
-            </fes:ValueReference>
-            <fes:Literal>${planName}</fes:Literal>
-          </fes:PropertyIsEqualTo>
-          <fes:Or>
-            <fes:PropertyIsLessThan>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsLessThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-          <fes:Or>
-            <fes:PropertyIsGreaterThan>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-              <fes:Function name="now" />
-            </fes:PropertyIsGreaterThan>
-            <fes:PropertyIsNull>
-              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
-            </fes:PropertyIsNull>
-          </fes:Or>
-        </fes:And>
-      </fes:Filter>
-    </wfs:Query>
-    <wfs:Query typeNames="xplan:RP_Windenergie">
-      <fes:Filter>
-        <fes:And>
-          <fes:PropertyIsEqualTo>
-            <fes:ValueReference>
-              //xplan:RP_Windenergie/xplan:xpPlanName
             </fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>

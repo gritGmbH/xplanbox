@@ -104,11 +104,6 @@
       <Layer>lp_schutzobjbundesrecht</Layer>
     </Theme>
     <Theme>
-      <Identifier>lp_schutzobjlandesrecht</Identifier>
-      <d:Title>LP: Schutzobjekt Landesrecht</d:Title>
-      <Layer>lp_schutzobjlandesrecht</Layer>
-    </Theme>
-    <Theme>
       <Identifier>lp_schutzobjinterrecht</Identifier>
       <d:Title>LP: Schutzobjekt Internationales Recht</d:Title>
       <Layer>lp_schutzobjinterrecht</Layer>

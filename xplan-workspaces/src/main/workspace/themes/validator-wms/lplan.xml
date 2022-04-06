@@ -169,15 +169,6 @@
       <Layer>lp_schutzobjbundesrecht</Layer>
     </Theme>
     <Theme>
-      <Identifier>lp_schutzobjlandesrecht</Identifier>
-      <d:Title>LP: Schutzobjekt Landesrecht</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <Layer>lp_schutzobjlandesrecht</Layer>
-    </Theme>
-    <Theme>
       <Identifier>lp_schutzobjinterrecht</Identifier>
       <d:Title>LP: Schutzobjekt Internationales Recht</d:Title>
     <s:Envelope crs="EPSG:4326">
