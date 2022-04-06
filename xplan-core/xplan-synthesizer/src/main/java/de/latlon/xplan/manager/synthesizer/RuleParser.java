@@ -32,9 +32,6 @@ import de.latlon.xplan.manager.synthesizer.expression.XPlanGmlDescription;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanName;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanType;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
-import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeLookup;
-import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeLookupExt;
-import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeNormalize;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBaugebietFlaechenteile;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBegruendungAbschnitte;
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookup;
@@ -114,27 +111,12 @@ class RuleParser {
 		return new XplanFlattenProperty(parse(args.get(0)));
 	}
 
-	private Expression parseXPlanCodeNormalize(List<String> args) {
-		// third argument is ignored
-		return new Xplan2CodeNormalize(parse(args.get(0)), trimString(args.get(1)));
-	}
-
 	private Expression parseXPlanCodeLookup(List<String> args) {
 		return new XplanCodeLookup(parse(args.get(0)), trimString(args.get(1)));
 	}
 
 	private Expression parseXPlanCodeLookupExt(List<String> args) {
 		return new XplanCodeLookupExt(parse(args.get(0)), trimString(args.get(1)));
-	}
-
-	private Expression parseXPlan2CodeLookup(List<String> args) {
-		// second argument is ignored
-		return new Xplan2CodeLookup(parse(args.get(0)), trimString(args.get(2)));
-	}
-
-	private Expression parseXPlan2CodeLookupExt(List<String> args) {
-		// second argument is ignored
-		return new Xplan2CodeLookupExt(parse(args.get(0)), trimString(args.get(2)));
 	}
 
 	private Expression parseXPlanTextSchluessel() {
@@ -188,12 +170,6 @@ class RuleParser {
 			return parseXPlanCodeLookup(args);
 		case "xplanCodeLookupExt":
 			return parseXPlanCodeLookupExt(args);
-		case "xplan2CodeNormalize":
-			return parseXPlanCodeNormalize(args);
-		case "xplan2CodeLookup":
-			return parseXPlan2CodeLookup(args);
-		case "xplan2CodeLookupExt":
-			return parseXPlan2CodeLookupExt(args);
 		case "xplanRefTextAbschnitte":
 			return new XplanRefTextAbschnitte();
 		case "xplanTextAbschnitte":

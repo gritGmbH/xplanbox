@@ -33,8 +33,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.CATEGORIES_TO_PARTS_KEY;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.DEFAULT_BBOX_IN_4326;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_CONFIG_CRS;
@@ -133,7 +133,7 @@ public class ManagerConfigurationTest {
 		SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = managerConfiguration
 				.getSemanticConformityLinkConfiguration();
 		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_50), is("http://link.de/to.pdf"));
-		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_3), nullValue());
+		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_51), nullValue());
 	}
 
 	@Test

@@ -63,17 +63,6 @@ public class XPlanCodeListsTest {
 	}
 
 	@Test
-	public void testParseXPlan3() throws Exception {
-		URL codeListFile = XPlanCodeListsTest.class
-				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan3.xml");
-		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile, GML_30);
-
-		Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
-		assertThat(codesToDescriptions.size(), is(1));
-		assertThat(codesToDescriptions.values().iterator().next().size(), is(14));
-	}
-
-	@Test
 	public void testParseXPlan4() throws Exception {
 		URL codeListFile = XPlanCodeListsTest.class
 				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml");
@@ -81,7 +70,7 @@ public class XPlanCodeListsTest {
 
 		Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
 		assertThat(codesToDescriptions.size(), is(1));
-		assertThat(codesToDescriptions.values().iterator().next().size(), is(3));
+		assertThat(codesToDescriptions.values().iterator().next().size(), is(5));
 	}
 
 	@Test

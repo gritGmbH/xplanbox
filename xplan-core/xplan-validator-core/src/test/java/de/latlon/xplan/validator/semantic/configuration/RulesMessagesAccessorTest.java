@@ -20,13 +20,12 @@
  */
 package de.latlon.xplan.validator.semantic.configuration;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import org.junit.Test;
+
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -55,12 +54,6 @@ public class RulesMessagesAccessorTest {
 	public void testRetrieveMessageForRule_UnknownRuleWithVersion() {
 		String message = RulesMessagesAccessor.retrieveMessageForRule("unknownRule", XPLAN_51);
 		assertThat(message, notNullValue());
-	}
-
-	@Test
-	public void testRetrieveMessageForRule_KnownRuleWithVersionInKey() {
-		String message = RulesMessagesAccessor.retrieveMessageForRule("3.1.3.1", XPLAN_3);
-		assertThat(message, is("Regel 3.1.3.1 muss erf\u00FCllt sein"));
 	}
 
 	@Test

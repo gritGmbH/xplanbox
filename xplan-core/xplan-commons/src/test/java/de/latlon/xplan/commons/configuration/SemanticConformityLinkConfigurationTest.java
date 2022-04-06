@@ -20,14 +20,14 @@
  */
 package de.latlon.xplan.commons.configuration;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import org.junit.Test;
+
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -43,7 +43,7 @@ public class SemanticConformityLinkConfigurationTest {
 
 		String firstLink = linkConfiguration.retrieveLink(XPLAN_40);
 		String overwrittenLink = linkConfiguration.retrieveLink(XPLAN_41);
-		String unconfiguredLink = linkConfiguration.retrieveLink(XPLAN_3);
+		String unconfiguredLink = linkConfiguration.retrieveLink(XPLAN_54);
 
 		assertThat(firstLink, is("link1"));
 		assertThat(overwrittenLink, is("link3"));

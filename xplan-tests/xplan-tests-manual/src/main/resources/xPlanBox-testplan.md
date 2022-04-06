@@ -258,22 +258,22 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **Hinweis**
 
 * [1] Zur Unterstützung des Arbeitsablaufs bietet die Oberfläche dem Nutzer:
-  * eine tabellarische Anzeige aller XPlanGML-Dokumente.
+    * eine tabellarische Anzeige aller XPlanGML-Dokumente.
 
 * [2] Die Liste enthält die folgenden Eigenschaften:  
-  * Name [sortierfähig]
-  * ID [sortierfähig]
-  * Nummer [sortierfähig]
-  * Gemeinde [sortierfähig]  
-  * XPlan GML Version [sortierfähig]
-  * Planart [sortierfähig]
-  * sonstige Planart [sortierfähig]
-  * Rechtsstand [sortierfähig]
-  * Datum Veröffentlichung [sortierfähig]
-  * Datum Import [sortierfähig]
-  * Planstatus [sortierfähig]
-  * Gültigkeit (rot, grün)
-  * Aktionen: Plan editieren, Kartenvorschau, Plan publizieren, Herunterladen, Entfernen.
+    * Name [sortierfähig]
+    * ID [sortierfähig]
+    * Nummer [sortierfähig]
+    * Gemeinde [sortierfähig]  
+    * XPlan GML Version [sortierfähig]
+    * Planart [sortierfähig]
+    * sonstige Planart [sortierfähig]
+    * Rechtsstand [sortierfähig]
+    * Datum Veröffentlichung [sortierfähig]
+    * Datum Import [sortierfähig]
+    * Planstatus [sortierfähig]
+    * Gültigkeit (rot, grün)
+    * Aktionen: Plan editieren, Kartenvorschau, Plan publizieren, Herunterladen, Entfernen.
  
 --- 
   
@@ -680,15 +680,15 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **Hinweis**
 
 * [1] ` cd ~/xplan-validator-cli-$VERSION/bin `
-  * Der Pfad kann variieren.
+    * Der Pfad kann variieren.
 * [2] Ohne Angabe einer Validierungsart: ` ./XPlanValidator -validate Plan.zip [-name Bezeichnung] `
-  * `Plan.zip` muss ggf. ersetzt werden.
+    * `Plan.zip` muss ggf. ersetzt werden.
 * [3] Syntaktische Überprüfung: `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype syntax`
-  * `Plan.zip` muss ggf. ersetzt werden.
+    * `Plan.zip` muss ggf. ersetzt werden.
 * [4] Geometrische Überprüfung: `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype geometric`
-  * ` Plan.zip` muss ggf. ersetzt werden.
+    * ` Plan.zip` muss ggf. ersetzt werden.
  * [5] Semantische Überprüfung: `./XPlanValidator -validate Plan.zip [-name Bezeichnung] -vtype semantic`
-   * ` Plan.zip` muss ggf. ersetzt werden.
+    * ` Plan.zip` muss ggf. ersetzt werden.
 
 ---
  
@@ -710,9 +710,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **Hinweis**
 
 * [1] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-flaechenschluss`
-  * `Plan.zip` muss ggf. ersetzt werden.
+    * `Plan.zip` muss ggf. ersetzt werden.
 * [2] `./XPlanValidator -validate Plan.zip [-name Name] -vo skip-geltungsbereich`
-  * `Plan.zip` muss ggf. ersetzt werden.
+    * `Plan.zip` muss ggf. ersetzt werden.
   
 ---
 
@@ -732,12 +732,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
- * [1] `cd ~/xplan-validator-cli-$VERSION/etc/`
-   * Der Pfad kann variieren.
- * [2] `validatorConfiguration.properties`
- * [3] `validationReportDirectory=<directory>`
- * [4] `cd ~/xplan-validator-cli-$VERSION/tmp/` 
-   * Der Pfad kann variieren.
+* [1] `cd ~/xplan-validator-cli-$VERSION/etc/`
+    * Der Pfad kann variieren.
+* [2] `validatorConfiguration.properties`
+* [3] `validationReportDirectory=<directory>`
+* [4] `cd ~/xplan-validator-cli-$VERSION/tmp/` 
+    * Der Pfad kann variieren.
 
 
 # XPlanValidatorWeb
@@ -1102,9 +1102,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
- * [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
-   * Der Pfad kann variieren.
- * [2] `./XPlanValidateDB-CLI -h [oder -help und --help]`
+* [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
+    * Der Pfad kann variieren.
+* [2] `./XPlanValidateDB-CLI -h [oder -help und --help]`
 
 ---
 
@@ -1139,12 +1139,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
- * [1] ` cd ~/xplan-update-database-cli-$VERSION/bin` 
-   * Der Pfad kann variieren.
- * [2] `./databaseUpdate -? [oder --help]`
- * [3] `./districtUpdate -? [oder --help]`
- * [4] `./reSynthesizer -? [oder --help]`
- * [5] `./serviceMetadataRecordCreator -? [oder --help]`
+* [1] ` cd ~/xplan-update-database-cli-$VERSION/bin` 
+    * Der Pfad kann variieren.
+* [2] `./databaseUpdate -? [oder --help]`
+* [3] `./districtUpdate -? [oder --help]`
+* [4] `./reSynthesizer -? [oder --help]`
+* [5] `./serviceMetadataRecordCreator -? [oder --help]`
 
 ---
 
@@ -1164,10 +1164,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
- * [1] `./databaseUpdate [-c <arg>] [-u <arg>] [-v] [-w <arg>]`
- * [2] `./districtUpdate [-c <arg>] [-v] [-w <arg>]`
- * [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
- * [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
+* [1] `./databaseUpdate [-c <arg>] [-u <arg>] [-v] [-w <arg>]`
+* [2] `./districtUpdate [-c <arg>] [-v] [-w <arg>]`
+* [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
+* [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
 
 
 # XPlanTransformCLI  
@@ -1187,9 +1187,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
- * [1] ` cd ~/xplan-transform-cli-$VERSION/bin` 
-   * Der Pfad kann variieren.
- * [2] `./XPlanTransformCLI -? [oder --help]`
+* [1] ` cd ~/xplan-transform-cli-$VERSION/bin` 
+    * Der Pfad kann variieren.
+* [2] `./XPlanTransformCLI -? [oder --help]`
 
 ---
 
@@ -1211,17 +1211,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
- * [1] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] VALIDATE`
-
- * [2] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] ALL`
-
- * [3] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] SYNC`
-
- * [4] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -f [oder --output] <PFAD/ZU/OUTPUTVERZEICHNIS>`
-
- * [5] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -v [oder --verbose]`
-
- * [6] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -w [oder --workspaceName] <PFAD/ZU/VERZEICHNIS/DES/WORKSPACE>`
+* [1] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] VALIDATE`
+* [2] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] ALL`
+* [3] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] SYNC`
+* [4] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -f [oder --output] <PFAD/ZU/OUTPUTVERZEICHNIS>`
+* [5] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -v [oder --verbose]`
+* [6] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -w [oder --workspaceName] <PFAD/ZU/VERZEICHNIS/DES/WORKSPACE>`
 
 # XPlanAuswerteschemaCLI
 
@@ -1239,9 +1234,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
- * [1] ` cd ~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin` 
-   * Der Pfad kann variieren.
- * [2] `./EvaluationSchemaSynchronizer -? [oder --help]`
+* [1] ` cd ~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin` 
+    * Der Pfad kann variieren.
+* [2] `./EvaluationSchemaSynchronizer -? [oder --help]`
 
 ---
 
@@ -1260,9 +1255,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
- * [1] `./EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] ALL -u [oder --user] <arg> -w [oder --password] <arg>`
-   * Der Befehl in [1] darf nur einmal, initial, ausgeführt werden!
- * [2] `../EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] SYNC -u [oder --user] <arg> -w [oder --password] <arg>`
+* [1] `./EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] ALL -u [oder --user] <arg> -w [oder --password] <arg>`
+    * Der Befehl in [1] darf nur einmal, initial, ausgeführt werden!
+* [2] `../EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] SYNC -u [oder --user] <arg> -w [oder --password] <arg>`
 
 # XPlanWMS
 
@@ -1508,12 +1503,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer ruft [1] (XPlanGML 2) auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
+**01** | Der Benutzer ruft [1] auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
 **02** | Der Benutzer startet ein Validations-tool.
 **03** | Der Benutzer ersetzt die SchemaLocation.
 **04** | Der Benutzer importiert die Response aus Schritt 01.
 **05** | Der Benutzer führt eine Schemavalidation durch. | Der GetFeature Request ist GML 3.1.1 konform.
-**06** | Der Benutzer ruft [2] (XPlanGML 3) auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
+**06** | Der Benutzer ruft [2] auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
 **07** | Der Benutzer startet ein Validations-tool.
 **08** | Der Benutzer ersetzt die SchemaLocation.
 **09** | Der Benutzer importiert die Response aus Schritt 06.

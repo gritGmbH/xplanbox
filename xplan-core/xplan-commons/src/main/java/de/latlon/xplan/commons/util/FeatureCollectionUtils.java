@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 
@@ -109,19 +108,20 @@ public class FeatureCollectionUtils {
 	}
 
 	/**
-	 * Retrieves the district (XPlan3: "ortsteil"; XPlan40 and XPlan41: "ortsteilName") of
-	 * a XPlan-FeatureCollection. XPlan3, XPlan40 and XPlan41 plans are considered. In
-	 * other cases <code>null</code> ist returned.
+	 * Retrieves the district ("ortsteilName") of a XPlan-FeatureCollection.
 	 * @param fc XPlan-FeatureCollection, never <code>null</code>
 	 * @param type XPlan-Type, never <code>null</code>
 	 * @param version XPlan-Version, never <code>null</code>
 	 * @return district value or <code>null</code> if no value was found
 	 */
-	public static String retrieveDistrict(FeatureCollection fc, XPlanType type, XPlanVersion version) {
-		if (version == XPLAN_3) {
-			return retrieveXPlan3District(fc, type);
+	public static String retrieveDistrict(FeatureCollection fc, XPlanType type) {
+		Feature planFeature = findPlanFeature(fc, type);
+		String ns = planFeature.getName().getNamespaceURI();
+		TypedObjectNode municipality = getPropertyValue(planFeature, new QName(ns, "gemeinde"));
+		if (municipality != null && municipality instanceof ElementNode) {
+			return scanMunicipalityChildren(ns, (ElementNode) municipality);
 		}
-		return retrieveXPlan4District(fc, type);
+		return null;
 	}
 
 	/**
@@ -170,20 +170,6 @@ public class FeatureCollectionUtils {
 			name = "Unbenannter XPlan (" + UUID.randomUUID().toString() + ")";
 		}
 		return name;
-	}
-
-	private static String retrieveXPlan3District(FeatureCollection fc, XPlanType type) {
-		return retrievePlanProperty(fc, type, "ortsteil");
-	}
-
-	private static String retrieveXPlan4District(FeatureCollection fc, XPlanType type) {
-		Feature planFeature = findPlanFeature(fc, type);
-		String ns = planFeature.getName().getNamespaceURI();
-		TypedObjectNode municipality = getPropertyValue(planFeature, new QName(ns, "gemeinde"));
-		if (municipality != null && municipality instanceof ElementNode) {
-			return scanMunicipalityChildren(ns, (ElementNode) municipality);
-		}
-		return null;
 	}
 
 	private static String scanMunicipalityChildren(String ns, ElementNode municipality) {

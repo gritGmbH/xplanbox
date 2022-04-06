@@ -30,7 +30,6 @@ import org.junit.Test;
 import javax.xml.namespace.QName;
 import java.util.Iterator;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
@@ -42,13 +41,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class XPlanVersionUtilsTest {
-
-	@Test
-	public void testDetermineBaseVersionFor3() {
-		QName element = new QName(XPLAN_3.getNamespace(), "element");
-		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(element);
-		assertThat(version, is(XPLAN_3));
-	}
 
 	@Test
 	public void testDetermineBaseVersionFor40() {
@@ -82,14 +74,6 @@ public class XPlanVersionUtilsTest {
 	public void testDetermineBaseVersionForUnknownNamespaceShouldFail() {
 		QName element = new QName("http://unknown.namespaceuri.de", "element");
 		XPlanVersionUtils.determineBaseVersion(element);
-	}
-
-	@Test
-	public void testRetrieveNamespaceBindingsFor3() {
-		QName element = new QName(XPLAN_3.getNamespace(), "element");
-		NamespaceBindings namespaceBindings = XPlanVersionUtils.retrieveNamespaceBindings(element);
-		assertThat(namespaceBindings, hasNamespace(XPLAN_3.getNamespace(), "xplan"));
-		assertThat(namespaceBindings, hasNamespace(XPLAN_3.getGmlVersion().getNamespace(), "gml"));
 	}
 
 	@Test

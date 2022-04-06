@@ -51,49 +51,6 @@ Die Rasterdaten müssen mit in dem XPlanArchiv enthalten sein und neben der Date
 Innerhalb des XPlanGML müssen die Rasterdateien wie folgt referenziert
 sein:
 
-*XPlanGML 3:*
-
-Rasterdateien werden im Feature Type XP_RasterplanBasis,
-XP_RasterplanAenderung, BP_RasterplanAenderung oder
-FP_RasterplanAenderung über einen _xlink_ referenziert:
-
-----
-gml:featureMember
-  xplan:XP_RasterplanBasis
-  (oder) xplan:XP_RasterplanAenderung
-  (oder) xplan:BP_RasterplanAenderung
-  (oder) xplan:FP_RasterplanAenderung
-    xplan:refScan (mit xlink Attribut)
-----
-
-_xlink_ zeigt auf den Feature Type XP_ExterneReferenz oder
-XP_ExterneReferenzPlan:
-
-----
-gml:featureMember
-  xplan:XP_ExterneReferenz
-  (oder) xplan:XP_ExterneReferenzPlan (nur XPlanGML 3) (jeweils mit id Attribut)
-    xplan:referenzName
-    xplan:referenzURL
-    xplan:referenzMimeType
-    xplan:georefURL (falls Feature Type XP_ExterneReferenzPlan, nur XPlanGML 3)
-    xplan:georefMimeType (falls Feature Type XP_ExterneReferenzPlan, nur XPlanGML 3)
-----
-
-Das Element `<referenzURL/>` beinhaltet die relative Referenz auf die
-Rasterdatei. Beispiel:
-
-[source,xml]
-----
-<gml:featureMember>
-    <xplan:XP_ExterneReferenzPlan gml:id="GML_1234567890">
-        <xplan:referenzName>rasterdatei</xplan:referenzName>
-        <xplan:referenzURL>rasterdatei.tif</xplan:referenzURL>
-        <xplan:georefURL>rasterdatei.tfw</xplan:georefURL>
-    </xplan:XP_ExterneReferenzPlan>
-</gml:featureMember>
-----
-
 *XPlanGML 4.x:*
 
 Rasterdateien werden im Feature Type XP_RasterplanBasis,

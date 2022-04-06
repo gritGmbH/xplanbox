@@ -23,7 +23,6 @@ package de.latlon.xplan.commons.reference;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
-import org.deegree.commons.tom.gml.GMLReference;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
@@ -73,10 +72,6 @@ public class ExternalReferenceScanner {
 
 	private void scanFc(FeatureCollection fc, XPlanVersion version) {
 		switch (version) {
-		case XPLAN_3:
-			Map<String, ExternalReference> fidToExternalRef = scanForExternalReferencesXplan2or3(fc);
-			scanForRasterplanFeaturesXplan2or3(fidToExternalRef, fc);
-			break;
 		case XPLAN_40:
 		case XPLAN_41:
 			scanXplan4(fc);
@@ -117,33 +112,6 @@ public class ExternalReferenceScanner {
 			}
 		}
 		return fidToExternalReference;
-	}
-
-	private void scanForRasterplanFeaturesXplan2or3(Map<String, ExternalReference> fidToExternalRef,
-			FeatureCollection fc) {
-		for (Feature feature : fc) {
-			String name = feature.getName().getLocalPart();
-			if ("XP_RasterplanBasis".equals(name)) {
-				List<Property> refScanProps = feature
-						.getProperties(new QName(feature.getName().getNamespaceURI(), "refScan"));
-				for (Property property : refScanProps) {
-					GMLReference<?> ref = (GMLReference<?>) property.getValue();
-					String gmlId = ref.getId();
-					ExternalReference externalRef = fidToExternalRef.get(gmlId);
-					rasterPlanBaseScans.add(externalRef);
-				}
-			}
-			else if (isRasterplanAenderungFeature(name)) {
-				List<Property> refScanProps = feature
-						.getProperties(new QName(feature.getName().getNamespaceURI(), "refScan"));
-				for (Property property : refScanProps) {
-					GMLReference<?> ref = (GMLReference<?>) property.getValue();
-					String gmlId = ref.getId();
-					ExternalReference externalRef = fidToExternalRef.get(gmlId);
-					rasterPlanUpdateScans.add(externalRef);
-				}
-			}
-		}
 	}
 
 	private void scanXplan4(FeatureCollection fc) {
