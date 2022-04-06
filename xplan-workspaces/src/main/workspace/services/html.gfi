@@ -133,10 +133,10 @@
 		</strong>
       </td>
 </tr>
-<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,externeReferenz,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme,texte,textAbschnitte,begruendungsTexte):property>
+<?property not(wirdDargestelltDurch,gmlId,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,wmsSortDate,praesentationsobjekt,raster*,ref*,externeReferenz,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,texte,begruendungsTexte):property>
 <?property externeReferenz:externeReferenzProperty>
-<?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme:complexproperty>
-<?property texte,textAbschnitte,begruendungsTexte:texteproperty>
+<?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung:complexproperty>
+<?property texte,begruendungsTexte:texteproperty>
 
 
 <tr>
@@ -533,7 +533,6 @@ erschliessungsVertrag=Erschliessungs-Vertrag
 erstellungsMassstab=Erstellungs-Ma&szlig;stab
 erstellungsMasstab=Erstellungs-Ma&szlig;stab
 externesSymbolURL=externesSymbolURL
-fachobjekt=Fachobjekt
 festlegungCode=festlegungCode
 festlegung=Festlegung
 flaechenschluss=Fl&auml;chenschluss
@@ -621,11 +620,6 @@ liegenschaftskarteGeorefURL=Liegenschaftskarte Georeferenz URL
 liegenschaftskarteURL=Liegenschaftskarte URL
 luftverkehrTypCode=luftverkehrTypCode
 luftverkehrTyp=Luftverkehr Typ
-massnahmeCode=massnahmeCode
-massnahmeKuerzel=Massnahme (K&uuml;rzel)
-massnahme=Ma&szlig;nahme
-massnahmen=Ma&szlig;nahmen
-massnahmenTextURL=Massnahmen Text URL
 massnahmeText=Massnahme Text
 MaxZahlWohnungen=Max. Zahl Wohnungen
 nachrichtlicheUebernahme=Nachrichtl. &uuml;bernahme
@@ -728,7 +722,6 @@ stylesheetId=stylesheetId
 symbolPosition=symbolPosition
 technHerstellDatum=Techn. Herstell. Datum
 teilabschnitt=Teilabschnitt
-textAbschnitte=Text Abschnitte
 texte=Texte
 textlicheErgaenzung=Textliche Erg&auml;nzung
 text=Text
