@@ -41,12 +41,6 @@
       <Layer>fp_bebausfl</Layer>
     </Theme>
     <Theme>
-      <Identifier>fp_bahnverk</Identifier>
-      <d:Title>FP: Bahnverkehr</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_bahnverk</Layer>
-    </Theme>
-    <Theme>
       <Identifier>fp_strverk</Identifier>
       <d:Title>FP: Straßenverkehr</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
@@ -149,28 +143,10 @@
       <Layer>fp_genobj</Layer>
     </Theme>
     <Theme>
-      <Identifier>fp_fachgesetz</Identifier>
-      <d:Title>FP: Fachgesetz</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_fachgesetz</Layer>
-    </Theme>
-    <Theme>
       <Identifier>fp_ausgleichsfl</Identifier>
       <d:Title>FP: Ausgleichsfläche</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_ausgleichsfl</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>fp_vorbhws</Identifier>
-      <d:Title>FP: Festgesetztes Überschwemmungsgebiet</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_vorbhws</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>fp_wr</Identifier>
-      <d:Title>FP: Wasserrecht</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_wr</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_wws</Identifier>
@@ -183,12 +159,6 @@
       <d:Title>FP: Ver- und Entsorgung</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_verentsorgung</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>fp_schutzgeb</Identifier>
-      <d:Title>FP: Schutzgebiet</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_schutzgeb</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_schutzpflentw</Identifier>
@@ -209,24 +179,6 @@
       <Layer>fp_spispoanl</Layer>
     </Theme>
     <Theme>
-      <Identifier>fp_luftverk</Identifier>
-      <d:Title>FP: Luftverkehr</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_luftverk</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>fp_denkmschens</Identifier>
-      <d:Title>FP: Denkmalensemble</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_denkmschens</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>fp_erhssatzung</Identifier>
-      <d:Title>FP: Erhaltungssatzung</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_erhssatzung</Layer>
-    </Theme>
-    <Theme>
       <Identifier>fp_ber</Identifier>
       <d:Title>FP: Bereich</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
@@ -245,12 +197,6 @@
       <Layer>fp_rasterplanaender</Layer>
     </Theme>
     <Theme>
-      <Identifier>fp_grabungsschutzgeb</Identifier>
-      <d:Title>FP: Grabungsschutzgebiet</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_grabungsschutzgeb</Layer>
-    </Theme>
-    <Theme>
       <Identifier>fp_unverbindlvormerk</Identifier>
       <d:Title>FP: Unverbindliche Vormerkung</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
@@ -263,18 +209,6 @@
       <Layer>fp_textldarstfl</Layer>
     </Theme>
     <Theme>
-      <Identifier>fp_laermschutzber</Identifier>
-      <d:Title>FP: Lärmschutzbereich</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_laermschutzber</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>fp_bauschutzber</Identifier>
-      <d:Title>FP: Bauschutzbereich</d:Title>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_bauschutzber</Layer>
-    </Theme>
-    <Theme>
       <Identifier>fp_keinezentrabwbesfl</Identifier>
       <d:Title>FP: ohne zentrale Abwasserbeseitigung</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
@@ -285,7 +219,6 @@
       <d:Title>FP: Privilegiertes Vorhaben</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_privvorh</Layer>
-      <Layer>fp_privivorh</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_vorbehaltefl</Identifier>
@@ -345,12 +278,6 @@
       <d:Title>FP: Symbole</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
-        <Identifier>fp_bahnverksym</Identifier>
-        <d:Title>FP: Bahnverkehr Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>fp_bahnverksym</Layer>
-      </Theme>
-      <Theme>
         <Identifier>fp_gembedarfsym</Identifier>
         <d:Title>FP: Gemeinbedarfsfläche Symbol</d:Title>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
@@ -361,18 +288,6 @@
         <d:Title>FP: Gewässer Symbol</d:Title>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
         <Layer>fp_gewflsym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>fp_vorbhwssym</Identifier>
-        <d:Title>FP: Festgesetztes Überschwemmungsgebiet Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>fp_vorbhwssym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>fp_wrsym</Identifier>
-        <d:Title>FP: Wasserrecht Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>fp_wrsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_lwflsym</Identifier>
@@ -421,24 +336,6 @@
         <d:Title>FP: Strassenverkehr Symbol</d:Title>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
         <Layer>fp_strverksym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>fp_denkmschenssym</Identifier>
-        <d:Title>FP: Denkmalensemble Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>fp_denkmschenssym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>fp_erhssatzungsym</Identifier>
-        <d:Title>FP: Erhaltungssatzung Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>fp_erhssatzungsym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>fp_schutzgebsym</Identifier>
-        <d:Title>FP: Schutzgebiet Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>fp_schutzgebsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_schutzpflentwsym</Identifier>

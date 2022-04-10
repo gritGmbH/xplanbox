@@ -64,11 +64,6 @@
       <Layer>rp_entsorgung</Layer>
     </Theme>
     <Theme>
-      <Identifier>rp_entwschwerpte</Identifier>
-      <d:Title>RP: Entwicklungsschwerpunkte</d:Title>
-      <Layer>rp_entwschwerpte</Layer>
-    </Theme>
-    <Theme>
       <Identifier>rp_erholung</Identifier>
       <d:Title>RP: Erholung</d:Title>
       <Layer>rp_erholung</Layer>
@@ -277,11 +272,6 @@
       <Identifier>rp_wws</Identifier>
       <d:Title>RP: Wasserwirtschaft</d:Title>
       <Layer>rp_wws</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>rp_windenergie</Identifier>
-      <d:Title>RP: Windenergie</d:Title>
-      <Layer>rp_windenergie</Layer>
     </Theme>
     <Theme>
       <Identifier>rp_windenergienutz</Identifier>

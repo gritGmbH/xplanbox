@@ -27,54 +27,6 @@
   <FeatureStoreId>xplansynarchive</FeatureStoreId>
   <!-- Layer enthält keine Geometry Property -->
   <!-- Anfang -->
-
-  <FeatureLayer>
-    <FeatureType>xplan:BP_FestsetzungenBaugebiet</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_festsbaugeb</l:Name>
-    <d:Title>BP: Festsetzungen Baugebiet</d:Title>
-    <d:Abstract>BP_FestsetzungenBaugebiet</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_festsbaugeb</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
   <FeatureLayer>
     <FeatureType>xplan:BP_FestsetzungNachLandesrecht</FeatureType>
     <Filter>
@@ -117,53 +69,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_festsland</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_GestaltungBaugebiet</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_gestbaugeb</l:Name>
-    <d:Title>BP: Gestaltung Baugebiet</d:Title>
-    <d:Abstract>BP_GestaltungBaugebiet</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gestbaugeb</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -499,49 +404,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_BahnVerkehr</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_bahnverksym</l:Name>
-    <d:Title>BP: Bahnverkehr Symbol</d:Title>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_bahnverksym</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_BaugebietsTeilFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -800,49 +662,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_FestsetzungenBaugebiet</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_festsbaugebsym</l:Name>
-    <d:Title>BP: Festsetzungen Baugebiet Symbol</d:Title>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_festsbaugebsym</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_GemeinbedarfsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -1058,49 +877,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_LuftverkehrFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_luftverkflsym</l:Name>
-    <d:Title>BP: Luftverkehrfläche Symbol</d:Title>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_luftverkflsym</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_NebenanlagenFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -1274,49 +1050,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_VerEntsorgungsFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_verentsorgungsflsym</l:Name>
-    <d:Title>BP: Ver- und Entsorgungsfläche Symbol</d:Title>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_verentsorgungsflsym</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_VerEntsorgung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -1404,49 +1137,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_VorbHochwSchutzFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_vorbhwsflsym</l:Name>
-    <d:Title>BP: Festgesetztes Überschwemmungsgebiet Symbol</d:Title>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_vorbhwsflsym</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_WaldFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -1487,49 +1177,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_waldflsym</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_WasserrechtlicheFestsetzungsFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_wrlfestsflsym</l:Name>
-    <d:Title>BP: Wasserrechtliche Festsetzungen Symbol</d:Title>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_wrlfestsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1812,53 +1459,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_Ausgleich</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_ausgleich</l:Name>
-    <d:Title>BP: Ausgleich</d:Title>
-    <d:Abstract>BP_Ausgleich</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_ausgleich</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_AusgleichsFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -1947,53 +1547,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_ausgleichsmassn</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_BahnVerkehr</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_bahnverk</l:Name>
-    <d:Title>BP: Bahnverkehr</d:Title>
-    <d:Abstract>BP_BahnVerkehr</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_bahnverk</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2183,53 +1736,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_baulin</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_Bauschutzbereich</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_bauschutzber</l:Name>
-    <d:Title>BP: Bauschutzbereich</d:Title>
-    <d:Abstract>BP_Bauschutzbereich</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_bauschutzber</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2465,53 +1971,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_bsfl</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_DenkmalschutzEinzelanlagePunkt</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_denkmscheinzanlpt</l:Name>
-    <d:Title>BP: Einzeldenkmal</d:Title>
-    <d:Abstract>BP_DenkmalschutzEinzelanlagePunkt</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_denkmscheinzanlpt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -2794,53 +2253,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_erneuerbenergiefl</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_Fachgesetz</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_fachgesetz</l:Name>
-    <d:Title>BP: Fachgesetz</d:Title>
-    <d:Abstract>BP_Fachgesetz</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_fachgesetz</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3319,53 +2731,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_Grabungsschutzgebiet</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_grabungsschutzgeb</l:Name>
-    <d:Title>BP: Grabungsschutzgebiet</d:Title>
-    <d:Abstract>BP_Grabungsschutzgebiet</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_grabungsschutzgeb</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_GruenFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -3408,53 +2773,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_gruenfl</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_HoehenPunkt</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_hoehenpt</l:Name>
-    <d:Title>BP: Höhenpunkt</d:Title>
-    <d:Abstract>BP_HoehenPunkt</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_hoehenpt</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -3696,53 +3014,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_Laermschutzbereich</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_laermschutzber</l:Name>
-    <d:Title>BP: Lärmschutzbereich</d:Title>
-    <d:Abstract>BP_Laermschutzbereich</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_laermschutzber</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_Landwirtschaft</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -3887,53 +3158,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_LandwirtschaftsLinie</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_lwlin</l:Name>
-    <d:Title>BP: Landwirtschaftslinie</d:Title>
-    <d:Abstract>BP_LandwirtschaftsLinie</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_lwlin</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_LuftreinhalteFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -3975,54 +3199,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_luftreinhfl</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_LuftverkehrFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_luftverkfl</l:Name>
-    <d:Title>BP: Luftverkehrfläche</d:Title>
-    <d:Abstract>BP_LuftverkehrFlaeche</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:ScaleDenominators min="0" max="100000"/>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_luftverkfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>
@@ -4736,53 +3912,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_TechnikBestimmteFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_techbestfl</l:Name>
-    <d:Title>BP: Alternativenergiefläche</d:Title>
-    <d:Abstract>BP_TechnikBestimmteFlaeche</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_techbestfl</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_TechnischeMassnahmenFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -5022,100 +4151,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_VerEntsorgungsFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_verentsorgungsfl</l:Name>
-    <d:Title>BP: Ver- und Entsorgungsfläche</d:Title>
-    <d:Abstract>BP_VerEntsorgungsFlaeche</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_verentsorgungsfl</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_VerEntsorgungsleitungLinie</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_verentsorgungsleitlin</l:Name>
-    <d:Title>BP: Ver- und Entsorgungsleitung</d:Title>
-    <d:Abstract>BP_VerEntsorgungsleitungLinie</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_verentsorgungsleitlin</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_VerkehrsflaecheBesondererZweckbestimmung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -5164,53 +4199,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType>xplan:BP_VorbHochwSchutzFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_vorbhwsfl</l:Name>
-    <d:Title>BP: Festgesetztes Überschwemmungsgebiet</d:Title>
-    <d:Abstract>BP_VorbHochwSchutzFlaeche</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_vorbhwsfl</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType>xplan:BP_WaldFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
@@ -5253,53 +4241,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_waldfl</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>invisible</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType>xplan:BP_WasserrechtlicheFestsetzungsFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc">
-        <SortProperty>
-          <PropertyName >xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_wrlfestsfl</l:Name>
-    <d:Title>BP: Wasserrechtliche Festsetzungen</d:Title>
-    <d:Abstract>BP_WasserrechtlicheFestsetzungsFlaeche</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_wrlfestsfl</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>invisible</l:StyleStoreId>

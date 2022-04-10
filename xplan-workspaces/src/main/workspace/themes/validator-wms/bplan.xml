@@ -184,16 +184,6 @@
       <Layer>bp_spispoanlfl</Layer>
     </Theme>
     <Theme>
-      <Identifier>bp_verentsorgungsfl</Identifier>
-      <d:Title>BP: Ver- und Entsorgungsfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_verentsorgungsfl</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_lwfl</Identifier>
       <d:Title>BP: Landwirtschaftsfläche</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -202,16 +192,6 @@
     </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_lwfl</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>bp_wrlfestsfl</Identifier>
-      <d:Title>BP: Wasserrechtliche Festsetzungen</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_wrlfestsfl</Layer>
     </Theme>
     <Theme>
       <Identifier>bp_textlfestsfl</Identifier>
@@ -364,16 +344,6 @@
       <Layer>bp_luftreinhfl</Layer>
     </Theme>
     <Theme>
-      <Identifier>bp_luftverkfl</Identifier>
-      <d:Title>BP: Luftverkehrfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_luftverkfl</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_nebenanlfl</Identifier>
       <d:Title>BP: Nebenanlagen</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -414,16 +384,6 @@
       <Layer>bp_schutzpflentwfl</Layer>
     </Theme>
     <Theme>
-      <Identifier>bp_techbestfl</Identifier>
-      <d:Title>BP: Alternativenergiefläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_techbestfl</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_techmassnfl</Identifier>
       <d:Title>BP: Technische Massnahmen Flaeche</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -454,16 +414,6 @@
       <Layer>bp_nichtueberbaubgrundstsfl</Layer>
     </Theme>
     <Theme>
-      <Identifier>bp_vorbhwsfl</Identifier>
-      <d:Title>BP: Festgesetztes Überschwemmungsgebiet</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_vorbhwsfl</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_nebenanlausschlfl</Identifier>
       <d:Title>BP: Nebenanlagenausschluss</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -483,17 +433,6 @@
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_abstandsmass</Layer>
     </Theme>
-    <Theme>
-      <Identifier>bp_ausgleich</Identifier>
-      <d:Title>BP: Ausgleich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_ausgleich</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_anpflanzbinderh</Identifier>
       <d:Title>BP: Anpflanzung, Erhalt und Bindung</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -514,26 +453,6 @@
       <Layer>bp_ausgleichsmassn</Layer>
     </Theme>
     <Theme>
-      <Identifier>bp_bahnverk</Identifier>
-      <d:Title>BP: Bahnverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_bahnverk</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>bp_bauschutzber</Identifier>
-      <d:Title>BP: Bauschutzbereich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_bauschutzber</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_berohneeinausflin</Identifier>
       <d:Title>BP: Bereich ohne Ein- oder Ausfahrt</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -552,16 +471,6 @@
     </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_denkmscheinzanl</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>bp_denkmscheinzanlpt</Identifier>
-      <d:Title>BP: Einzeldenkmal</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_denkmscheinzanlpt</Layer>
     </Theme>
     <Theme>
       <Identifier>bp_einfberlin</Identifier>
@@ -593,28 +502,6 @@
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_eingriffsber</Layer>
     </Theme>
-    <Theme>
-      <Identifier>bp_fachgesetz</Identifier>
-      <d:Title>BP: Fachgesetz</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_fachgesetz</Layer>
-    </Theme>
-    <!-- Layer enthalten keine Geometry Property (Anfang) -->
-    <Theme>
-      <Identifier>bp_festsbaugeb</Identifier>
-      <d:Title>BP: Festsetzungen Baugebiet</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_festsbaugeb</Layer>
-    </Theme>
-    <!-- Layer enthalten keine Geometry Property (Ende) -->
     <Theme>
       <Identifier>bp_festsland</Identifier>
       <d:Title>BP: Festsetzung nach Landesrecht</d:Title>
@@ -655,28 +542,6 @@
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_genobj</Layer>
     </Theme>
-    <!-- Layer enthalten keine Geometry Property (Anfang) -->
-    <Theme>
-      <Identifier>bp_gestbaugeb</Identifier>
-      <d:Title>BP: Gestaltung Baugebiett</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_gestbaugeb</Layer>
-    </Theme>
-    <!-- Layer enthalten keine Geometry Property (Ende) -->
-    <Theme>
-      <Identifier>bp_grabungsschutzgeb</Identifier>
-      <d:Title>BP: Grabungsschutzgebiet</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_grabungsschutzgeb</Layer>
-    </Theme>
     <Theme>
       <Identifier>bp_hoehenmass</Identifier>
       <d:Title>BP: Höhenmass</d:Title>
@@ -686,16 +551,6 @@
     </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_hoehenmass</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>bp_hoehenpt</Identifier>
-      <d:Title>BP: Höhenpunkt</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_hoehenpt</Layer>
     </Theme>
     <Theme>
       <Identifier>bp_immsschutz</Identifier>
@@ -708,16 +563,6 @@
       <Layer>bp_immsschutz</Layer>
     </Theme>
     <Theme>
-      <Identifier>bp_laermschutzber</Identifier>
-      <d:Title>BP: Lärmschutzbereich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_laermschutzber</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_lw</Identifier>
       <d:Title>BP: Landwirtschaft</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -726,16 +571,6 @@
     </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_lw</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>bp_lwlin</Identifier>
-      <d:Title>BP: Landwirtschaftslinie</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_lwlin</Layer>
     </Theme>
     <Theme>
       <Identifier>bp_nutzartgr</Identifier>
@@ -816,16 +651,6 @@
     </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_verentsorgung</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>bp_verentsorgungsleitlin</Identifier>
-      <d:Title>BP: Ver- und Entsorgungsleitung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_verentsorgungsleitlin</Layer>
     </Theme>
     <Theme>
       <Identifier>bp_wegerecht</Identifier>
@@ -946,16 +771,6 @@
         <Layer>bp_aufschuettsflsym</Layer>
       </Theme>
       <Theme>
-        <Identifier>bp_bahnverksym</Identifier>
-        <d:Title>BP: Bahnverkehr Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>bp_bahnverksym</Layer>
-      </Theme>
-      <Theme>
         <Identifier>bp_baugebteilflsym</Identifier>
         <d:Title>BP: Baugebietsteilfläche Symbol</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -994,16 +809,6 @@
     </s:Envelope>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
         <Layer>bp_erhsberflsym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>bp_festsbaugebsym</Identifier>
-        <d:Title>BP: Festsetzungen Baugebiet Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>bp_festsbaugebsym</Layer>
       </Theme>
       <Theme>
         <Identifier>bp_bsflsym</Identifier>
@@ -1056,16 +861,6 @@
         <Layer>bp_gruenflsym</Layer>
       </Theme>
       <Theme>
-        <Identifier>bp_luftverkflsym</Identifier>
-        <d:Title>BP: Luftverkehrfläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>bp_luftverkflsym</Layer>
-      </Theme>
-      <Theme>
         <Identifier>bp_lwflsym</Identifier>
         <d:Title>BP: Landwirtschaftsfläche Symbol</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -1116,16 +911,6 @@
         <Layer>bp_spispoanlflsym</Layer>
       </Theme>
       <Theme>
-        <Identifier>bp_verentsorgungsflsym</Identifier>
-        <d:Title>BP: Ver- und Entsorgungsfläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>bp_verentsorgungsflsym</Layer>
-      </Theme>
-      <Theme>
         <Identifier>bp_verentsorgungsym</Identifier>
         <d:Title>BP: Ver- und Entsorgung Symbol</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -1146,16 +931,6 @@
         <Layer>bp_verksflbeszwbsym</Layer>
       </Theme>
       <Theme>
-        <Identifier>bp_vorbhwsflsym</Identifier>
-        <d:Title>BP: Festgesetztes Überschwemmungsgebiet Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>bp_vorbhwsflsym</Layer>
-      </Theme>
-      <Theme>
         <Identifier>bp_waldflsym</Identifier>
         <d:Title>BP: Waldfläche Symbol</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -1164,16 +939,6 @@
     </s:Envelope>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
         <Layer>bp_waldflsym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>bp_wrlfestsflsym</Identifier>
-        <d:Title>BP: Wasserrechtliche Festsetzungen Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>bp_wrlfestsflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>bp_wwssflsym</Identifier>
