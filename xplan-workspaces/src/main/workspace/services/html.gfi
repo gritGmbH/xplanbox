@@ -136,7 +136,7 @@
 <?property not(wirdDargestelltDurch,gmlId,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,wmsSortDate,praesentationsobjekt,raster*,ref*,externeReferenz,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,texte,begruendungsTexte):property>
 <?property externeReferenz:externeReferenzProperty>
 <?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung:complexproperty>
-<?property texte,begruendungsTexte:texteproperty>
+<?property texte,begruendungsTexte,refBegruendungInhalt,refTextInhalt:texteproperty>
 
 
 <tr>
@@ -145,7 +145,7 @@
             <tr>
                 <td colspan="2" style="border: solid white 0px;"><strong>Weiterf&uuml;hrende Informationen/Links:</strong></td>
             </tr>
-            <?property raster*,ref*,externeReferenz:makeitalink>
+            <?property raster*,refBegruendung,refBeschluss,refBeschreibung,refErlaeuterung,refExternalCodeList,refGebaedequerschnitt,refGebaeudequerschnitt,refGruenordnungsplan,refGrundstuecksverzeichnis,refKoordinatenListe,refLandschaftsplan,refLegende,reflegendenBild,refMassnahmenText,refPflanzliste,refPlangrundlage,refRechtsplan,refSatzung,refScan,refText,refUmweltbericht,externeReferenz:makeitalink>
         </table>
     </td>
 </tr>
