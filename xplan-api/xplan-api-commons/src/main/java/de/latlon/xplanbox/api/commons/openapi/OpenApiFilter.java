@@ -35,8 +35,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import static org.apache.commons.lang3.StringUtils.ordinalIndexOf;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -64,20 +64,18 @@ public class OpenApiFilter extends AbstractSpecFilter {
 	private void filterPath(OpenAPI openAPI) {
 		Paths paths = openAPI.getPaths();
 		Map<String, PathItem> filteredPathItems = new HashMap<>();
-		paths.forEach((s, pathItem) -> {
-			String newKey = createNewKey(s);
+		paths.forEach((path, pathItem) -> {
+			String newKey = createNewKey(path);
 			filteredPathItems.put(newKey, pathItem);
 		});
 		paths.clear();
 		paths.putAll(filteredPathItems);
 	}
 
-	private String createNewKey(String s) {
-		if (s.startsWith("/xvalidator/api/v") || s.startsWith("/xmanager/api/v")) {
-			int index = ordinalIndexOf(s, "/", 4);
-			return s.substring(index);
-		}
-		return s;
+	private String createNewKey(String path) {
+		Pattern pattern = Pattern.compile("/(xvalidator|xmanager)/api/v[0-9_\\-\\.]*");
+		Matcher matcher = pattern.matcher(path);
+		return matcher.replaceFirst("");
 	}
 
 }
