@@ -36,7 +36,6 @@
       <Keyword>XPlanGML 5.0</Keyword>
       <Keyword>XPlanGML 4.1</Keyword>
       <Keyword>XPlanGML 4.0</Keyword>
-      <Keyword>XPlanGML 3.0</Keyword>
       <Keyword>WMS</Keyword>
       <Keyword>xPlanBox Version ${project.version}</Keyword>
     </Keywords>

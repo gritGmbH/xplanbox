@@ -65,8 +65,6 @@ public class TestFeaturesUtils {
 
 	private static FeatureCollection load(XPlanVersion version) {
 		switch (version) {
-		case XPLAN_3:
-			return load(version, "xplan3.xml");
 		case XPLAN_40:
 			return load(version, "xplan40.xml");
 		case XPLAN_41:

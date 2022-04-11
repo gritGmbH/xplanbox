@@ -22,16 +22,15 @@ package de.latlon.xplan.manager.edit;
 
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
-import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
+import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
 import de.latlon.xplan.manager.web.shared.edit.Text;
-import de.latlon.xplan.manager.web.shared.edit.ValidityPeriod;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -52,7 +51,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -62,12 +60,11 @@ import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.PLANMITGEOREFERENZ;
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.IMAGE_PNG;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.IMAGE_TIFF;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
-import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -254,120 +251,6 @@ public class XPlanToEditFactoryTest {
 		assertThat(legend.getBeschreibung(), is("beschreibung"));
 		assertThat(legend.getDatum(), is(asDate("2018-03-01")));
 		assertThat(legend.getArt(), is(DOKUMENT));
-	}
-
-	@Test
-	public void testCreateXPlanToEdit_XPlan3() throws Exception {
-		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain.gml");
-
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_3), featureCollection);
-
-		assertThat(xPlanToEdit.isHasBereich(), is(true));
-
-		BaseData baseData = xPlanToEdit.getBaseData();
-		assertThat(baseData.getPlanName(), is("Klarstellungs-u..."));
-		assertThat(baseData.getDescription(), is("BPlan Wuerdenhain"));
-
-		assertThat(baseData.getLegislationStatusCode(), is(3000));
-		assertThat(baseData.getPlanTypeCode(), is(40000));
-		assertThat(baseData.getMethodCode(), is(-1));
-		assertThat(baseData.getOtherPlanTypeCode(), is(-1));
-
-		assertThat(baseData.getCreationDate(), is(asDate("2000-07-20")));
-		assertThat(baseData.getLossDate(), is(asDate("2020-07-20")));
-		assertThat(baseData.getRegulationDate(), is(asDate("1988-01-01")));
-
-		List<Change> changes = xPlanToEdit.getChanges();
-		assertThat(changes.size(), is(2));
-
-		Change firstChange = changes.get(0);
-		assertThat(firstChange.getPlanName(), is("aendertText"));
-		assertThat(firstChange.getLegalNatureCode(), is(-1));
-		assertThat(firstChange.getNumber(), is(nullValue()));
-		assertThat(firstChange.getType(), is(CHANGES));
-
-		Change secondChange = changes.get(1);
-		assertThat(secondChange.getPlanName(), is("wurdeGeaendertVonText"));
-		assertThat(secondChange.getLegalNatureCode(), is(-1));
-		assertThat(secondChange.getNumber(), is(nullValue()));
-		assertThat(secondChange.getType(), is(CHANGED_BY));
-
-		List<Reference> references = xPlanToEdit.getReferences();
-		assertThat(references.size(), is(2));
-
-		Reference firstReference = references.get(0);
-		assertThat(firstReference.getGeoReference(), is("Klarstellungssatzung_Haida_Begruendung.tfw"));
-		assertThat(firstReference.getReference(), is("Klarstellungssatzung_Haida_Begruendung.tif"));
-		assertThat(firstReference.getReferenzName(), is("Klarstellungssatzung_Haida_Begruendung"));
-		assertThat(firstReference.getType(), is(BEGRUENDUNG));
-
-		Reference secondReference = references.get(1);
-		assertThat(secondReference.getGeoReference(), is(nullValue()));
-		assertThat(secondReference.getReference(), is("Klarstellungssatzung_Haida_Rechtsplan.tif"));
-		assertThat(secondReference.getReferenzName(), is("Klarstellungssatzung_Haida_Rechtsplan"));
-		assertThat(secondReference.getType(), is(RECHTSPLAN));
-
-		List<Text> texts = xPlanToEdit.getTexts();
-		assertThat(texts.size(), is(10));
-
-		Text firstText = texts.get(0);
-		assertThat(firstText.getFeatureId(), is("GML_05BD3F6F-70E4-4921-9399-42E5FBDFB6B4"));
-		assertThat(firstText.getKey(), is("Wuerdenhain"));
-		assertThat(firstText.getBasis(), is("Gesetz ABC"));
-		assertThat(firstText.getText(), is("Dies beschreibt..."));
-		assertThat(firstText.getGeoReference(), is(nullValue()));
-		assertThat(firstText.getReference(), is("Klarstellungssatzung_Haida_cut_v4.tif"));
-
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
-		assertThat(rasterBasis.getFeatureId(), is("GML_F042504B-0875-4470-A25D-DAFD0595E8FD"));
-
-		List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();
-		assertThat(rasterBasisReferences.size(), is(2));
-
-		RasterReference scan = getByType(rasterBasisReferences, SCAN);
-		assertThat(scan, is(notNullValue()));
-		assertThat(scan.getFeatureId(), is("GML_1D000019-0DE0-4667-A19C-6EC6ABDF000B"));
-		assertThat(scan.getReference(), is("Klarstellungssatzung_Wuerdenhain_cut_ergb.tif"));
-		assertThat(scan.getGeoReference(), is("Klarstellungssatzung_Wuerdenhain_cut_ergb.tfw"));
-
-		RasterReference legend = getByType(rasterBasisReferences, LEGEND);
-		assertThat(legend, is(notNullValue()));
-		assertThat(legend.getFeatureId(), is("GML_1D000019-0DE0-4667-A19C-6EC6ABDF000F"));
-		assertThat(legend.getReference(), is("Klarstellungssatzung_Wuerdenhain_cut_ergb_legende.tif"));
-		assertThat(legend.getReferenzMimeType(), is(IMAGE_TIFF));
-		assertThat(legend.getGeoReference(), is(nullValue()));
-		assertThat(legend.getGeorefMimeType(), is(nullValue()));
-		assertThat(legend.getInformationssystemURL(), is("informationssystemURL"));
-		assertThat(legend.getReferenzName(), is("Klarstellungssatzung_Wuerdenhain_cut_ergb_legende"));
-		assertThat(legend.getBeschreibung(), is("beschreibung"));
-		assertThat(legend.getDatum(), is(nullValue()));
-		assertThat(legend.getArt(), is(nullValue()));
-	}
-
-	@Test
-	public void testCreateXPlanToEdit_ValidityPeriod() throws Exception {
-		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain.gml");
-
-		Date startDateTime = asDate("2002-01-01");
-		Date endDateTime = asDate("2010-01-01");
-		XPlan xPlan = mockXPlan(XPLAN_3, startDateTime, endDateTime);
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(xPlan, featureCollection);
-		ValidityPeriod validityPeriod = xPlanToEdit.getValidityPeriod();
-
-		assertThat(validityPeriod.getStart(), is(startDateTime));
-		assertThat(validityPeriod.getEnd(), is(endDateTime));
-	}
-
-	@Test
-	public void testCreateXPlanToEdit_ValidityPeriod_Missing() throws Exception {
-		FeatureCollection featureCollection = readXPlanGml(XPLAN_3, "xplan30/Wuerdenhain.gml");
-
-		XPlan xPlan = mockXPlan(XPLAN_3);
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(xPlan, featureCollection);
-		ValidityPeriod validityPeriod = xPlanToEdit.getValidityPeriod();
-
-		assertThat(validityPeriod.getStart(), is(nullValue()));
-		assertThat(validityPeriod.getEnd(), is(nullValue()));
 	}
 
 	@Test

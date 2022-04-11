@@ -32,7 +32,6 @@ import java.io.InputStream;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
 import static de.latlon.xplan.commons.XPlanType.SO_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -44,44 +43,6 @@ import static org.mockito.Mockito.when;
  * @version $Revision: $, $Date: $
  */
 public class XPlanArchiveCreatorTest {
-
-	@Test
-	public void testMetadataBP2070XPlan3() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan3/BP2070.zip");
-		assertEquals(XPLAN_3, archive.getVersion());
-		assertEquals(BP_Plan, archive.getType());
-		assertEquals("EPSG:31467", archive.getCrs().getName());
-	}
-
-	@Test
-	public void testMetadataBP2135XPlan3() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan3/BP2135.zip");
-		assertEquals(XPLAN_3, archive.getVersion());
-		assertEquals(BP_Plan, archive.getType());
-		assertEquals("EPSG:31467", archive.getCrs().getName());
-	}
-
-	@Test
-	public void testMetadataFPlanXPlan3() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan3/FPlan.zip");
-		assertEquals(XPLAN_3, archive.getVersion());
-		assertEquals(FP_Plan, archive.getType());
-		assertEquals("EPSG:31467", archive.getCrs().getName());
-	}
-
-	@Test
-	public void testMetadataWuerdenhainXPlan3() throws IOException {
-		XPlanArchive archive = getTestArchive("xplan3/BP2070-Finkenwerder.zip");
-		assertEquals(XPLAN_3, archive.getVersion());
-		assertEquals("Finkenwerder", archive.getDistricts().get(0));
-	}
-
-	@Test
-	public void testMetadataWuerdenhainXPlan3WithMapper() throws IOException {
-		XPlanArchive archive = getTestArchiveWithMapper("xplan3/BP2070-Finkenwerder.zip");
-		assertEquals(XPLAN_3, archive.getVersion());
-		assertEquals("Hamburg-Mitte", archive.getDistricts().get(0));
-	}
 
 	@Test
 	public void testMetadataBP2070XPlan41() throws IOException {

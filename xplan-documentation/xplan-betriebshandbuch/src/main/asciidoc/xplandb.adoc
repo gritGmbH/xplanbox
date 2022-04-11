@@ -20,9 +20,6 @@ Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschemata und 
 | Datenbankschema
 | Komponente/Endpoint
 | Mapping-Typ
-| `xplan3`
-| <<xplanwfs>>/_wfs30_
-| BLOB
 | `xplan40`
 | <<xplanwfs>>/_wfs40_
 | BLOB

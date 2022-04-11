@@ -21,7 +21,6 @@
 package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
@@ -59,8 +58,7 @@ public class DistrictUpdater {
 			LOG.debug("Update district of plan with id {}", plan.getId());
 			FeatureCollection featureCollection = dao.retrieveFeatureCollection(plan);
 			XPlanType planType = XPlanType.valueOf(plan.getType());
-			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
-			String district = retrieveDistrict(featureCollection, planType, version);
+			String district = retrieveDistrict(featureCollection, planType);
 			dao.updateDistrict(plan, district);
 		}
 	}

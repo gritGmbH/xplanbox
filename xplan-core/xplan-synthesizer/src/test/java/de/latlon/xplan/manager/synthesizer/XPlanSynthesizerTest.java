@@ -103,7 +103,7 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 	@Test
 	public void testSynthesize_ConfigDirectoryWithRule() throws Exception {
 		Path configDirectory = createTmpDirectoryAndCopyRuleFile("xplan41.syn",
-				"XP_BesondereArtDerBaulNutzung-XPlan3.xml");
+				"XP_BesondereArtDerBaulNutzung-XPlan4.xml");
 		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(configDirectory);
 
 		XPlanArchive archive = getTestArchive("xplan41/LA22.zip");
@@ -117,11 +117,8 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 			if ("BP_BaugebietsTeilFlaeche".equals(feature.getName().getLocalPart())) {
 				List<Property> properties = feature
 						.getProperties(new QName(feature.getName().getNamespaceURI(), "besondereArtDerBaulNutzung"));
-
-				assertThat(properties.get(0).getValue().toString(),
-						anyOf(is("AllgWohngebietTest"), is("MischgebietTest")));
+				assertThat(properties.get(0).getValue().toString(), anyOf(is("Art2"), is("Art5")));
 			}
-
 		}
 	}
 

@@ -158,10 +158,8 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 		layout.setWidget(index, 1, new Label(MESSAGES.editCaptionTextsReferenceLink()));
 		layout.setWidget(index++, 2, referenceLink);
 		// #3305 - georeference is not needed.
-		// if ( !XPLAN_3.equals( version ) ) {
 		// layout.setWidget( 5, 1, new Label( MESSAGES.editCaptionTextsGeoReference() ) );
 		// layout.setWidget( 5, 2, georeference );
-		// }
 		return layout;
 	}
 

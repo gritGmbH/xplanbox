@@ -26,8 +26,6 @@ import de.latlon.xplan.commons.XPlanVersion;
 
 public enum VersionEnum {
 
-	XPLAN_3(String.valueOf("XPLAN_3")),
-
 	XPLAN_40(String.valueOf("XPLAN_40")),
 
 	XPLAN_41(String.valueOf("XPLAN_41")),

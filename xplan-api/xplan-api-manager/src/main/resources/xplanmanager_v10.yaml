@@ -311,7 +311,7 @@ components:
           items:
             type: string
             example: "XPLAN_51"
-            enum: [ XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52,XPLAN_53 ]
+            enum: [ XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52,XPLAN_53 ]
     Link:
       required:
         - href
@@ -350,7 +350,7 @@ components:
         version:
           type: string
           example: "XPLAN_51"
-          enum: [XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52,XPLAN_53]
+          enum: [XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52,XPLAN_53]
         planStatus:
           type: string
           example: "FESTGESTELLT"
@@ -435,7 +435,7 @@ components:
         version:
           type: string
           example: "XPLAN_51"
-          enum: [ XPLAN_3,XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52,XPLAN_53 ]
+          enum: [ XPLAN_40,XPLAN_41,XPLAN_50,XPLAN_51,XPLAN_52,XPLAN_53 ]
         date:
           type: string
           format: date-time

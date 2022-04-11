@@ -50,14 +50,10 @@ public class UpdateUtils {
 	 * @param version the version of the plan, never <code>null</code>
 	 * @return the blob database schema plans with the passed version are stored, never
 	 * <code>null</code>
-	 * @throws IllegalArgumentException if the version is not uspported
+	 * @throws IllegalArgumentException if the version is not supported
 	 */
 	public static String detectBlobSchemaByVersion(String version) {
 		switch (version) {
-		case "XPLAN_2":
-			return "xplan2";
-		case "XPLAN_3":
-			return "xplan3";
 		case "XPLAN_40":
 			return "xplan40";
 		case "XPLAN_41":
@@ -105,10 +101,6 @@ public class UpdateUtils {
 	 */
 	public static String detectNamespace(String schemaname) {
 		switch (schemaname) {
-		case "xplan2":
-			return "http://www.xplanung.de/xplangml/2";
-		case "xplan3":
-			return "http://www.xplanung.de/xplangml/3";
 		case "xplan40":
 			return "http://www.xplanung.de/xplangml/4";
 		case "xplan41":
