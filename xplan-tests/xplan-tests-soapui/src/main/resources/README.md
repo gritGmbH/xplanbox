@@ -60,3 +60,7 @@ Unter Windows kann es zu Encoding-Problemen kommen.
 Um diese zu beheben, muss in der <SoapUI>\bin\SoapUI-<Version>.vmoptions folgende Zeile ergänzt werden:
 
 > -Dfile.encoding=utf-8
+
+### Anpassungen an den SoapUI Projekten durchführen
+
+ACHTUNG: Vor jedem Commit sollte geprüft werden, dass keine Passwörter in den SoapUI Projekten gespeichert sind.
