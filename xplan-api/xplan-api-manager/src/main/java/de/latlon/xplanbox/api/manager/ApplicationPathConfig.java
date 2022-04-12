@@ -52,7 +52,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Application configuration for XPlanManager REST API. Example mapping for proxy mapping:
- * http://xplanbox.lat-lon.de/xmanager/api/vi/ ->
+ * http://xplanbox.lat-lon.de/xmanager/api/v1/ ->
  * http://host:8080/xplan-api-manager/xmanager/api/v1/ Public address:
  * http://xplanbox.lat-lon.de/xmanager/api/v1 Internal address:
  * http://host:8080/xplan-api-manager/xmanager/api/v1
