@@ -4006,23 +4006,23 @@ exists(/wfs:WFS_Capabilities)</path>
   <con:properties>
     <con:property>
       <con:name>baseUrl</con:name>
-      <con:value>https://xplanbox.lat-lon.de</con:value>
+      <con:value>http://localhost:8083</con:value>
     </con:property>
     <con:property>
       <con:name>baseUrlInspirePlu</con:name>
-      <con:value>https://xplanbox.lat-lon.de</con:value>
+      <con:value>http://localhost:8084</con:value>
     </con:property>
     <con:property>
       <con:name>baseUrlManagerApi</con:name>
-      <con:value>https://xplanbox.lat-lon.de</con:value>
+      <con:value>http://localhost:8086/xplan-api-manager</con:value>
     </con:property>
     <con:property>
       <con:name>username</con:name>
-      <con:value>xplanbox</con:value>
+      <con:value/>
     </con:property>
     <con:property>
       <con:name>password</con:name>
-      <con:value>xpl@n!secure9</con:value>
+      <con:value/>
     </con:property>
   </con:properties>
   <con:wssContainer/>
