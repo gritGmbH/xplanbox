@@ -47,12 +47,6 @@
 
   <profiles>
     <profile>
-      <id>docker</id>
-      <modules>
-        <module>xplan-docker</module>
-      </modules>
-    </profile>
-    <profile>
       <id>release</id>
       <build>
         <plugins>
@@ -324,7 +318,6 @@
           <configuration>
             <preparationGoals>clean install</preparationGoals>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <releaseProfiles>docker</releaseProfiles>
           </configuration>
         </plugin>
         <plugin>

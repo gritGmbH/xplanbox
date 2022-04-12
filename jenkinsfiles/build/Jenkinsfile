@@ -33,7 +33,7 @@ pipeline {
         }
       }
       steps{
-        sh 'mvn deploy -Dskip.unit.tests=true -Pdocker'
+        sh 'mvn deploy -Dskip.unit.tests=true'
       }
     }
   }
