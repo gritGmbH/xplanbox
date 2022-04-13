@@ -23,8 +23,6 @@ include::architektur.adoc[]
 
 include::installation/main.adoc[]
 
-include::installation/installation_docker.adoc[]
-
 include::konfiguration/manager/main.adoc[]
 
 include::konfiguration/validator/main.adoc[]
