@@ -25,8 +25,7 @@ import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -35,7 +34,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class OpenApiFilterTest {
 
 	@Test
-	public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_xvalidator() {
+	public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_xmanager() {
 		OpenApiFilter openApiFilter = new OpenApiFilter();
 		OpenAPI openApi = new OpenAPI();
 		openApi.setPaths(new Paths());
@@ -47,7 +46,7 @@ public class OpenApiFilterTest {
 	}
 
 	@Test
-	public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_xmanager() {
+	public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_xvalidator() {
 		OpenApiFilter openApiFilter = new OpenApiFilter();
 		OpenAPI openApi = new OpenAPI();
 		openApi.setPaths(new Paths());
@@ -56,6 +55,18 @@ public class OpenApiFilterTest {
 
 		assertThat(openApi.getPaths().get("/info/test"), is(notNullValue()));
 		assertThat(openApi.getPaths().get("/"), is(notNullValue()));
+	}
+
+	@Test
+	public void verifyFilterOpenAPI_ThatPathItemKeyIsCorrected_noPath() {
+		OpenApiFilter openApiFilter = new OpenApiFilter();
+		OpenAPI openApi = new OpenAPI();
+		openApi.setPaths(new Paths());
+		openApi.getPaths().addPathItem("/xmanager/api/v1.5-3_1", new PathItem());
+		openApiFilter.filterOpenAPI(openApi, null, null, null);
+
+		assertThat(openApi.getPaths().get("/"), is(notNullValue()));
+		assertThat(openApi.getPaths().get(""), is(nullValue()));
 	}
 
 	@Test
