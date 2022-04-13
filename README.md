@@ -35,7 +35,7 @@ Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.co
 ```shell
 git clone https://github.com/lat-lon/deegree3.git
 cd deegree3
-git switch -c xplanbox
+git switch xplanbox
 mvn clean install
 ```
 > **_Hinweis_**: Aktuell kann nicht eine offizielle Release Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11.
@@ -45,7 +45,6 @@ Die Erstellung der Binärdateien der Anwendung erfolgt dann im Basisverzeichnis 
 ```shell
 git clone git@gitlab.opencode.de:diplanung/ozgxplanung.git
 cd ozgxplanung
-git switch -c main
 mvn clean install
 ```
 
