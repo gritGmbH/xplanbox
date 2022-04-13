@@ -1,6 +1,6 @@
 # xPlanBox
 
-In diesem Repository ist der Quellcode für die Open Source Version der Anwendung "xPlanBox" der Firma [lat/lon](https://www.lat-lon.de) enthalten. Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung auf Basis des Standards [XPlanung](https://xleitstelle.de/xplanung/ueber_xplanung). Die Anwendung basiert zudem auf den Standards des [Open Geospatial Consortium](https://www.ogc.org/), den technischen Empfehlungen der [INSPIRE Richtlinie](https://inspire.ec.europa.eu/) und insbesondere der Abbildung des deutschen Planungsrechts durch das [GML-Anwendungsschema XPlanGML](https://xleitstelle.de/xplanung/releases-xplanung). Die Komponenten der Anwendung wurden u.a. unter der Verwendung der Open Source Software [deegree webservices](https://www.deegree.org) implementiert.
+In diesem Repository ist der Quellcode für die Open Source-Version der Anwendung "xPlanBox" der Firma [lat/lon](https://www.lat-lon.de) enthalten. Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung auf Basis des Standards [XPlanung](https://xleitstelle.de/xplanung/ueber_xplanung). Die Anwendung basiert zudem auf den Standards des [Open Geospatial Consortium](https://www.ogc.org/), den technischen Empfehlungen der [INSPIRE Richtlinie](https://inspire.ec.europa.eu/) und insbesondere der Abbildung des deutschen Planungsrechts durch das [GML-Anwendungsschema XPlanGML](https://xleitstelle.de/xplanung/releases-xplanung). Die Komponenten der Anwendung wurden u.a. unter der Verwendung der Open Source-Software [deegree webservices](https://www.deegree.org) implementiert.
 
 ## Lizenz
 
@@ -18,7 +18,7 @@ Personen, die an diesem Projekt mitgearbeitet haben, stehen in [contributors](CO
 
 ## Versionierung
 
-Die Versionierung der Software folgt dem Versionierungsschema von [SemVer](http://semver.org/). Eine Übersicht der bisher erstellten Versionen ist unter [Releases](../releases) zu finden. 
+Die Versionierung der Software folgt dem Versionierungsschema von [SemVer](http://semver.org/). Eine Übersicht der bisher erstellten Versionen ist unter [Releases](../../releases) zu finden. 
 
 ## Dokumentation
 
@@ -51,7 +51,7 @@ mvn clean install
 
 ### Installation und Konfiguration
 
-Die Installation und Konfiguration der Anwendung ist im Betriebshandbuch dokumentiert.
+Die Installation und Konfiguration der Anwendung ist im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc) dokumentiert.
 
 ----
 © 2022 lat/lon gesellschaft für raumbezogene informationssysteme mbH  
