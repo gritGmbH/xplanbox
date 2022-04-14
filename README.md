@@ -30,7 +30,7 @@ Die Dokumentation zur Anwendung liegt im Asciidoc-Format vor und sowohl das Benu
 
 Für die Erstellung der ausführbaren Binärdateien ist ein [JDK 11](https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot) und das Werkzeug [Apache Maven 3.8](https://maven.apache.org/) erforderlich.
 
-Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox) kompiliert werden:
+Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 5.0 der Anwendung muss deegree Version 3.4.27 verwendet werden:
 
 ```shell
 git clone https://github.com/lat-lon/deegree3.git
