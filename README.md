@@ -36,6 +36,7 @@ Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.co
 git clone https://github.com/lat-lon/deegree3.git
 cd deegree3
 git switch xplanbox
+git checkout tags/xplanbox-deegree-3.4.27
 mvn clean install
 ```
 > **_Hinweis_**: Aktuell kann nicht eine offizielle Release Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11.
