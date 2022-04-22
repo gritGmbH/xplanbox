@@ -30,16 +30,37 @@ Die Dokumentation zur Anwendung liegt im Asciidoc-Format vor und sowohl das Benu
 
 Für die Erstellung der ausführbaren Binärdateien ist ein [JDK 11](https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot) und das Werkzeug [Apache Maven 3.8](https://maven.apache.org/) erforderlich.
 
+#### Installation und Konfiguration von Maven. 
+
+Folgen Sie der [Installationsanleitung von Maven](https://maven.apache.org/install.html) und legen Sie anschliessend im Benutzerverzeichnis die Datei `${user.home}/.m2/settings.xml` mit folgendem Eintrag für einen Spiegelserver (_mirror_) an:
+```xml
+<settings>
+    <mirrors>
+        <mirror>
+            <id>deegree</id>
+            <mirrorOf>latlon</mirrorOf>
+            <url>https://repo.deegree.org/repository/public/</url>
+        </mirror>
+    </mirrors>
+</settings>
+```
+Weitere Informationen zu Konfiguration von Maven stehen in der [Referenzdokumentation zu den Maven Settings](https://maven.apache.org/settings.html).
+
+> **_Hinweis_**: Diese Konfiguration ist zur Zeit noch erforderlich, da die verwendetet Bibliotheken von Dritten noch nicht in einem Repository von GitLab auf der OpenCoDE-Plattform verfügbar sind.
+
+#### deegree webservices erstellen
+
 Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 5.0 der Anwendung muss deegree Version 3.4.27 verwendet werden:
 
 ```shell
 git clone https://github.com/lat-lon/deegree3.git
 cd deegree3
-git switch xplanbox
 git checkout tags/xplanbox-deegree-3.4.27
 mvn clean install
 ```
-> **_Hinweis_**: Aktuell kann nicht eine offizielle Release Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11.
+> **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11! Sobald eine Version von deegree mit Unterstützung von Java 11 verfügbar ist, entfällt dieser Schritt.
+
+#### Anwendung erstellen
 
 Die Erstellung der Binärdateien der Anwendung erfolgt dann im Basisverzeichnis mit folgendem Maven Aufruf:
 
