@@ -46,7 +46,7 @@ Folgen Sie der [Installationsanleitung von Maven](https://maven.apache.org/insta
 ```
 Weitere Informationen zu Konfiguration von Maven stehen in der [Referenzdokumentation zu den Maven Settings](https://maven.apache.org/settings.html).
 
-> **_Hinweis_**: Diese Konfiguration ist zur Zeit noch erforderlich, da die verwendetet Bibliotheken von Dritten noch nicht in einem Repository von GitLab auf der OpenCoDE-Plattform verfügbar sind.
+> **_Hinweis_**: Diese Konfiguration ist zurzeit noch erforderlich, da die verwendetet Bibliotheken von Dritten noch nicht in einem Repository von GitLab auf der OpenCoDE-Plattform verfügbar sind.
 
 #### deegree webservices erstellen
 
@@ -58,7 +58,7 @@ cd deegree3
 git checkout tags/xplanbox-deegree-3.4.27
 mvn clean install
 ```
-> **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11! Sobald eine Version von deegree mit Unterstützung von Java 11 verfügbar ist, entfällt dieser Schritt.
+> **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release-Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11! Sobald eine Version von deegree mit Unterstützung von Java 11 verfügbar ist, entfällt dieser Schritt.
 
 #### Anwendung erstellen
 
