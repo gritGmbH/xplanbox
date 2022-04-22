@@ -60,6 +60,14 @@ mvn clean install
 ```
 > **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release-Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11! Sobald eine Version von deegree mit Unterstützung von Java 11 verfügbar ist, entfällt dieser Schritt.
 
+#### XPlanung-Validierungsregeln einbinden
+
+Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des XPlanung-Standards aus dem [Bitbucket-Repository der Geowerkstatt Hamburg](https://bitbucket.org/geowerkstatt-hamburg/xplanung).
+Dazu muss die passende Version der XPlanung-Validierungsregeln ausgewählt werden. Für Version 5.0 der Anwendung muss Version 0.11.1 verwendet werden:
+
+* Download der Datei [v0.11.1.zip](https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.11.1.zip) aus dem [Download-Bereich](https://bitbucket.org/geowerkstatt-hamburg/xplanung/downloads/?tab=tags)
+* Installieren der Datei im lokalen Maven Repository mit `mvn install:install-file -DgroupId=de.geowerkstatt-hamburg -DartifactId=xplanung -Dversion=0.11.1 -Dpackaging=zip -DgeneratePom=true -Dfile=geowerkstatt-hamburg-xplanung.zip`
+
 #### Anwendung erstellen
 
 Die Erstellung der Binärdateien der Anwendung erfolgt dann im Basisverzeichnis mit folgendem Maven Aufruf:
