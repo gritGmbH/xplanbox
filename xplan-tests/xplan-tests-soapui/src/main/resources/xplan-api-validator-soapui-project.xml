@@ -631,6 +631,24 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="JsonPath Match path /">
+              <con:configuration>
+                <path>$.paths./</path>
+                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object"}}}}}}}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="JsonPath Match path /validate">
+              <con:configuration>
+                <path>$.paths./validate</path>
+                <content>{"post":{"tags":["validate"],"summary":"Validate XPlanGML or XPlanArchive","description":"Validates XPlanGML or XPlanArchive file","operationId":"validate","parameters":[{"name":"X-Filename","in":"header","description":"Name of the file to be uploaded","schema":{"pattern":"^[A-Za-z0-9.()_-]*$","type":"string"},"example":"File names such as xplan.gml, xplan.xml, xplan.zip"},{"name":"name","in":"query","description":"Name of the validation","schema":{"type":"string"},"example":"xplan-1, Prüfbericht_Torstrasse_10, report#4223"},{"name":"skipSemantisch","in":"query","description":"skip semantische Validierung","schema":{"type":"boolean","default":false}},{"name":"skipGeometrisch","in":"query","description":"skip geometrische Validierung","schema":{"type":"boolean","default":false}},{"name":"skipFlaechenschluss","in":"query","description":"skip Flaechenschluss Ueberpruefung","schema":{"type":"boolean","default":false}},{"name":"skipGeltungsbereich","in":"query","description":"skip Geltungsbereich Ueberpruefung","schema":{"type":"boolean","default":false}},{"name":"skipLaufrichtung","in":"query","description":"skip Laufrichtung Ueberpruefung","schema":{"type":"boolean","default":false}}],"requestBody":{"content":{"application/octet-stream":{"schema":{"type":"string","description":"XPlanGML or XPlanArchive (application/zip) file to upload","format":"binary"}},"application/zip":{"schema":{"type":"string","description":"XPlanGML or XPlanArchive (application/zip) file to upload","format":"binary"}},"application/x-zip":{"schema":{"type":"string","description":"XPlanGML or XPlanArchive (application/zip) file to upload","format":"binary"}},"application/x-zip-compressed":{"schema":{"type":"string","description":"XPlanGML or XPlanArchive (application/zip) file to upload","format":"binary"}},"text/xml":{"schema":{"type":"string","description":"XPlanGML to upload","format":"binary"}},"application/gml+xml":{"schema":{"type":"string","description":"XPlanGML to upload","format":"binary"}}}},"responses":{"200":{"description":"ValidationReport","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ValidationReport"}},"application/xml":{"schema":{"$ref":"#/components/schemas/ValidationReport"}},"text/xml":{"schema":{"$ref":"#/components/schemas/ValidationReport"}},"application/pdf":{"schema":{"type":"string","format":"binary"}},"application/zip":{"schema":{"type":"object","format":"binary"}}}},"400":{"description":"Invalid input"},"406":{"description":"Invalid content only XPlanGML or ZIP with XPlanGML is accepted"}}}}</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1593,9 +1611,6 @@ Validate XPlanGML or XPlanArchive</con:description>
     </con:testCase>
     <con:properties/>
   </con:testSuite>
-  <con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <con:endpoint mode="COMPLEMENT" username="xplanbox" password="xpl@n!secure9" domain="">https://xplanbox.lat-lon.de/xvalidator/api/v1</con:endpoint>
-  </con:endpointStrategy>
   <con:properties/>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>

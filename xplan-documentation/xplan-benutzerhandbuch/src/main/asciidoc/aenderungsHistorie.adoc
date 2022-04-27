@@ -5,7 +5,7 @@
 [[Aenderungshistorie-5.0]]
 === Version 5.0
 ==== Erweiterungen
-- Umstellung von Java 8 auf Java 11 sowie Tomcat 8.5 auf Tomcat 9.
+- Umstellung von Java 8 auf Java 11 sowie Tomcat 8.5 auf Tomcat 9.0
 - Unterstützung für XPlanGML 5.4 in allen Komponenten der xPlanBox
 - Import von Instanzdokumenten mit mehreren XP_Plan-Objekten
 - Editieren von BPlänen über XPlanManagerAPI
@@ -19,7 +19,7 @@
 - Klammern im Dateinamen erlaubt
 - Ausgabe und Reihenfolge der Textschlüssel in der HTML GFI verbessert
 - Verstöße gegen 2.2.2.1 (fehlerhafte Laufrichtung) als Fehler deklariert
-- Option zum ignorieren/korrigieren von Verstößen gegen KB 2.2.2.1 (Laufrichtung) ergänzt
+- Option zum Ignorieren/Korrigieren von Verstößen gegen KB 2.2.2.1 (Laufrichtung) ergänzt
 - Verbesserung der Darstellung des XPlanWMS und XPlanwerkWMS
 - Optimierung der geometrischen Validierung: Geltungsbereich (2.2.3.1)
 - Optimierung der geometrischen Validierung: Flächenschlussbedingung (2.2.1.1)

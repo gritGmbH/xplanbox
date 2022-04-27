@@ -21,7 +21,6 @@
 package de.latlon.xplanbox.api.manager;
 
 import de.latlon.xplanbox.api.commons.ObjectMapperContextResolver;
-import de.latlon.xplanbox.api.commons.openapi.OpenApiFilter;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
 import de.latlon.xplanbox.api.manager.openapi.ManagerOpenApiFilter;
 import de.latlon.xplanbox.api.manager.v1.DefaultApi;
@@ -33,9 +32,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
-import org.glassfish.jersey.media.multipart.MultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
-import org.glassfish.jersey.media.multipart.internal.MultiPartReaderClientSide;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 
@@ -52,7 +49,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Application configuration for XPlanManager REST API. Example mapping for proxy mapping:
- * http://xplanbox.lat-lon.de/xmanager/api/vi/ ->
+ * http://xplanbox.lat-lon.de/xmanager/api/v1/ ->
  * http://host:8080/xplan-api-manager/xmanager/api/v1/ Public address:
  * http://xplanbox.lat-lon.de/xmanager/api/v1 Internal address:
  * http://host:8080/xplan-api-manager/xmanager/api/v1
