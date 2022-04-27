@@ -1,33 +1,136 @@
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description"
-        xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        configVersion="3.4.0"
-        xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.4.0/themes.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
   <LayerStoreId>bplan</LayerStoreId>
   <Theme>
     <Identifier>BP_Planvektor</Identifier>
     <d:Title>BPlan Vektor</d:Title>
-    <d:Abstract>Vektordaten BPlan</d:Abstract>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+    <Theme>
+      <Identifier>bp_xp_ppo</Identifier>
+      <d:Title>bp_xp_ppo</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_xp_ppo</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_xp_lto</Identifier>
+      <d:Title>bp_xp_lto</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_xp_lto</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_xp_lpo</Identifier>
+      <d:Title>bp_xp_lpo</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_xp_lpo</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_xp_fpo</Identifier>
+      <d:Title>bp_xp_fpo</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_xp_fpo</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_wwssflsym</Identifier>
+      <d:Title>bp_wwssflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_wwssflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_waldflsym</Identifier>
+      <d:Title>bp_waldflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_waldflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_verksflbeszwbsym</Identifier>
+      <d:Title>bp_verksflbeszwbsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_verksflbeszwbsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_verentsorgungsym</Identifier>
+      <d:Title>bp_verentsorgungsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_verentsorgungsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_spispoanlflsym</Identifier>
+      <d:Title>bp_spispoanlflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_spispoanlflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_schutzpflentwmassnsym</Identifier>
+      <d:Title>bp_schutzpflentwmassnsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_schutzpflentwmassnsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_rasterplanaender</Identifier>
+      <d:Title>bp_rasterplanaender</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_rasterplanaender</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_nebenanlflsym</Identifier>
+      <d:Title>bp_nebenanlflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_nebenanlflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_lwflsym</Identifier>
+      <d:Title>bp_lwflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_lwflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_gruenflsym</Identifier>
+      <d:Title>bp_gruenflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_gruenflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_gewflsym</Identifier>
+      <d:Title>bp_gewflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_gewflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_gemanlflsym</Identifier>
+      <d:Title>bp_gemanlflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_gemanlflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_erhsberflsym</Identifier>
+      <d:Title>bp_erhsberflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_erhsberflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_bsflsym</Identifier>
+      <d:Title>bp_bsflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_bsflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_besnutzzweckflsym</Identifier>
+      <d:Title>bp_besnutzzweckflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_besnutzzweckflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_aufschuettsflsym</Identifier>
+      <d:Title>bp_aufschuettsflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_aufschuettsflsym</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_abgrabungsflsym</Identifier>
+      <d:Title>bp_abgrabungsflsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_abgrabungsflsym</Layer>
+    </Theme>
     <Theme>
       <Identifier>bp_strkoerper</Identifier>
       <d:Title>BP: Straßenkörper</d:Title>
@@ -81,7 +184,7 @@
       <d:Title>BP: WohngebaeudeFläche</d:Title>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_wohngebaeudeflaeche</Layer>
-    </Theme> 
+    </Theme>
     <Theme>
       <Identifier>bp_baugeb</Identifier>
       <d:Title>BP: Baugebiet</d:Title>
@@ -509,6 +612,7 @@
     <Theme>
       <Identifier>bp_plan</Identifier>
       <d:Title>BP: Plan</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_plan</Layer>
     </Theme>
   </Theme>

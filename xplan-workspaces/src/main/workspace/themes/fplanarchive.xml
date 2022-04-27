@@ -1,33 +1,16 @@
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description"
-        xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        configVersion="3.4.0"
-        xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.4.0/themes.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
   <LayerStoreId>fplanarchive</LayerStoreId>
   <Theme>
     <Identifier>FP_Planvektor</Identifier>
     <d:Title>FPlan Vektor</d:Title>
-    <d:Abstract>Vektordaten FPlan</d:Abstract>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+    <Theme>
+      <Identifier>fp_spispoanlsym</Identifier>
+      <d:Title>fp_spispoanlsym</d:Title>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>fp_spispoanlsym</Layer>
+    </Theme>
     <Theme>
       <Identifier>fp_plan</Identifier>
       <d:Title>FP: Plan</d:Title>
@@ -245,13 +228,13 @@
       <Theme>
         <Identifier>fp_xp_pto</Identifier>
         <d:Title>FP: XP: PTO</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_xp_pto</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_xp_lto</Identifier>
         <d:Title>FP: XP: LTO</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_xp_lto</Layer>
       </Theme>
       <Theme>
@@ -280,73 +263,55 @@
       <Theme>
         <Identifier>fp_gembedarfsym</Identifier>
         <d:Title>FP: Gemeinbedarfsfläche Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_gembedarfsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_gewflsym</Identifier>
         <d:Title>FP: Gewässer Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_gewflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_lwflsym</Identifier>
         <d:Title>FP: Landwirtschaftsfläche Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_lwflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_wsssym</Identifier>
         <d:Title>FP: Wasserwirtschaft Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_wsssym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>fp_bsflsym</Identifier>
-        <d:Title>FP: Bodenschätzefläche Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>fp_bsflsym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>fp_aufschuettsflsym</Identifier>
-        <d:Title>FP: Aufschüttungsfläche Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>fp_aufschuettsflsym</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>fp_abgrabungsflsym</Identifier>
-        <d:Title>FP: Abgrabungsfläche Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
-        <Layer>fp_abgrabungsflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_verentsorgungsym</Identifier>
         <d:Title>FP: Ver- und Entsorgung Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_verentsorgungsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_waldflsym</Identifier>
         <d:Title>FP: Waldfläche Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_waldflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_strverksym</Identifier>
         <d:Title>FP: Strassenverkehr Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_strverksym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_schutzpflentwsym</Identifier>
         <d:Title>FP: FP: Schutz-, Pflege- und Entwicklungsfläche Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_schutzpflentwsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_gruensym</Identifier>
         <d:Title>FP: Grünfläche Symbol</d:Title>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_gruensym</Layer>
       </Theme>
     </Theme>
