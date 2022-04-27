@@ -39,11 +39,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -77,11 +77,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -121,11 +121,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -141,11 +141,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -161,11 +161,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -192,11 +192,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -264,11 +264,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -301,11 +301,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -332,11 +332,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -368,11 +368,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -399,11 +399,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -437,11 +437,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -461,11 +461,11 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -498,11 +498,11 @@
         </con:representation>
         <con:request name="Request 1" mediaType="application/json" id="25889864-5f0f-451f-b6fc-471418aef40d">
           <con:settings/>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -529,11 +529,11 @@
         <con:parameters/>
         <con:request name="Request 1" mediaType="application/json" id="6eeef28d-de28-4b5b-8844-ce3a21a70d4d">
           <con:settings/>
-          <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username>xplanbox</con:username>
-            <con:password>xpl@n!secure9</con:password>
+            <con:username xsi:nil="true"/>
+            <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
@@ -558,7 +558,7 @@
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/plan</con:originalUri>
             <con:assertion type="Simple Contains" id="7c700cfb-fa0b-4e20-8382-11dab675df44" name="Contains">
@@ -574,8 +574,8 @@
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username>xplanbox</con:username>
-              <con:password>xpl@n!secure9</con:password>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -605,7 +605,7 @@
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/local/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="25c2d00d-efb0-4706-b7ba-f0a0f3808f29">
@@ -624,8 +624,8 @@
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username>xplanbox</con:username>
-              <con:password>xpl@n!secure9</con:password>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -658,7 +658,7 @@
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="0aac6135-cda1-40d1-8448-e0cc38a1f075">
@@ -697,8 +697,8 @@ count(//mgr:Response/*)</path>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username>xplanbox</con:username>
-              <con:password>xpl@n!secure9</con:password>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -723,7 +723,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/plan</con:originalUri>
             <con:assertion type="Simple Contains" id="b404a193-92c3-49a9-9125-6f1cba2913ee" name="Contains">
@@ -739,8 +739,8 @@ count(//mgr:Response/*)</path>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username>xplanbox</con:username>
-              <con:password>xpl@n!secure9</con:password>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -769,7 +769,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/local/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="d75d2380-59b1-44b6-a48e-bf7389b46084">
@@ -788,8 +788,8 @@ count(//mgr:Response/*)</path>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username>xplanbox</con:username>
-              <con:password>xpl@n!secure9</con:password>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -821,7 +821,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="0b89f7b9-e0fd-43f4-8b91-0aa2eb384064">
@@ -830,8 +830,8 @@ count(//mgr:Response/*)</path>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username>xplanbox</con:username>
-              <con:password>xpl@n!secure9</con:password>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -856,7 +856,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/plan</con:originalUri>
             <con:assertion type="Simple Contains" id="246a426e-0cf9-4e51-8941-d495d2656760" name="Contains">
@@ -872,8 +872,8 @@ count(//mgr:Response/*)</path>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username>xplanbox</con:username>
-              <con:password>xpl@n!secure9</con:password>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
               <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
@@ -902,7 +902,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/local/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="1d695eac-5d15-4da5-91d3-5d8a91cf7bac">
@@ -921,8 +921,8 @@ count(//mgr:Response/*)</path>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username>xplanbox</con:username>
-              <con:password>xpl@n!secure9</con:password>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -955,7 +955,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="9cb58c38-3688-45c0-aea2-fab9c1aadead">
@@ -1027,8 +1027,8 @@ count(//mgr:Response/*)</path>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username>xplanbox</con:username>
-              <con:password>xpl@n!secure9</con:password>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
@@ -1044,10 +1044,7 @@ count(//mgr:Response/*)</path>
     </con:testCase>
     <con:properties/>
   </con:testSuite>
-  <con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <con:endpoint mode="COMPLEMENT" username="xplanbox" password="xpl@n!secure9">https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
-  </con:endpointStrategy>
-  <con:properties></con:properties>
+  <con:properties/>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>

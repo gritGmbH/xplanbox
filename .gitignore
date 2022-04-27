@@ -19,5 +19,11 @@ nbactions.xml
 .DS_Store
 
 # Maven
-log/
 target/
+
+# Logs
+logs/
+log/
+*.log
+# But keep source files in log/
+!**/src/**/java/**/log/**/*.java
