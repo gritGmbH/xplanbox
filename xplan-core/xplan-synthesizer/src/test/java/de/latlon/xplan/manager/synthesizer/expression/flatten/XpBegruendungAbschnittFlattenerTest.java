@@ -18,8 +18,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression;
+package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
+import de.latlon.xplan.manager.synthesizer.expression.Xpath;
+import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -28,32 +30,22 @@ import org.junit.Test;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XplanRefTextAbschnitteTest {
+public class XpBegruendungAbschnittFlattenerTest {
 
 	@Test
 	public void testEvaluate() {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
-		Feature feature = getTestFeature(features, "BP_Plan_1");
-		XplanRefTextAbschnitte expr = new XplanRefTextAbschnitte();
+		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refBegruendungInhalt"), true);
 		PrimitiveValue abschnitte = expr.evaluate(feature, features);
-		assertThat(abschnitte.getAsText(), is(
-				"[/getAttachment?featureID=XP_TEXTABSCHNITT_1&filename=text1.pdf | Externe Referenz][/getAttachment?featureID=XP_TEXTABSCHNITT_2&filename=text2.pdf | Externe Referenz]"));
-	}
-
-	@Test
-	public void testEvaluate_NoXPlanTextAbschnitt() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
-		Feature feature = getTestFeature(features, "BP_Bereich_1");
-		XplanRefTextAbschnitte expr = new XplanRefTextAbschnitte();
-		PrimitiveValue abschnitte = expr.evaluate(feature, features);
-		assertThat(abschnitte, nullValue());
+		assertEquals(
+				"[begruendung1 | Das ist Begründungsabschnitt No 1][begruendung2 | Das ist Begründungsabschnitt No 2]",
+				abschnitte.toString());
 	}
 
 }

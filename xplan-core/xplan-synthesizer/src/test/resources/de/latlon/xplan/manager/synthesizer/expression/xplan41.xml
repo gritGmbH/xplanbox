@@ -591,8 +591,10 @@
           <xplan:h uom="meter">4</xplan:h>
         </xplan:XP_Hoehenangabe>  
       </xplan:hoehenangabe>
+      <xplan:refTextInhalt xlink:href="#XP_TEXTABSCHNITT_1"/>
       <xplan:refTextInhalt xlink:href="#XP_TEXTABSCHNITT_2"/>
-      <xplan:refBegruendungInhalt xlink:href="#XP_BEGRUENDUNGABSCHNITT_2"/>    
+      <xplan:refBegruendungInhalt xlink:href="#XP_BEGRUENDUNGABSCHNITT_1"/>
+      <xplan:refBegruendungInhalt xlink:href="#XP_BEGRUENDUNGABSCHNITT_2"/>
       <xplan:flaechenteil xlink:href="#BP_BaugebietsTeilFlaeche_1" />
       <xplan:flaechenteil xlink:href="#BP_BaugebietsTeilFlaeche_2" />
       <xplan:flaechenteil xlink:href="#BP_BaugebietsTeilFlaeche_3" />

@@ -1,4 +1,4 @@
-package de.latlon.xplan.manager.synthesizer.expression;
+package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
 /*-
  * #%L
@@ -33,9 +33,9 @@ import java.util.List;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public abstract class XPlanTexlicherAbschnitt implements Expression {
+public abstract class AbstractTextlicherAbschnittFlattener extends AbstractFlattener {
 
-	protected String toString(Feature f) {
+	protected String flatten(Feature f) {
 		String namespaceURI = f.getName().getNamespaceURI();
 		String text = getPropertyValue(f, namespaceURI, "text", "");
 		String gesetzlicheGrundlage = getPropertyValue(f, namespaceURI, "gesetzlicheGrundlage");
