@@ -20,18 +20,15 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import java.io.IOException;
-import java.nio.file.Path;
-
-import javax.xml.stream.XMLStreamException;
-
+import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import org.deegree.feature.Feature;
-import org.deegree.gml.GMLVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
-import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
+import javax.xml.stream.XMLStreamException;
+import java.io.IOException;
+import java.nio.file.Path;
 
 import static org.deegree.gml.GMLVersion.GML_30;
 
@@ -69,14 +66,11 @@ public class XPlanExternalCodeLookup extends AbstractXplanCodeLookup {
 	protected XPlanCodeLists getXplanCodeLists(Feature feature) {
 		if (configurationFilePath != null) {
 			Path codeList = configurationFilePath.resolve(codeListFile);
-			LOG.info("Use configured codelist  from {}.", codeList);
+			LOG.info("Use configured codelist from {}.", codeList);
 			try {
 				return XPlanCodeListsFactory.getXPlanCodeLists(codeList.toUri().toURL(), GML_30);
 			}
-			catch (XMLStreamException e) {
-				LOG.error("Could not parse code list " + codeList + ". Code will not be translated.", e);
-			}
-			catch (IOException e) {
+			catch (XMLStreamException | IOException e) {
 				LOG.error("Could not parse code list " + codeList + ". Code will not be translated.", e);
 			}
 		}

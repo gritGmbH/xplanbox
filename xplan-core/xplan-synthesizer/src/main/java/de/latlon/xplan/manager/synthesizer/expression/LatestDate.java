@@ -31,6 +31,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -45,7 +47,7 @@ public class LatestDate implements Expression {
 	@Override
 	public TypedObjectNode evaluate(Feature feature, FeatureCollection features) {
 		TypedObjectNode prop = expression.evaluate(feature, features);
-		TypedObjectNodeArray<TypedObjectNode> props = Expressions.castToArray(prop);
+		TypedObjectNodeArray<TypedObjectNode> props = castToArray(prop);
 		if (props == null || props.getElements().length == 0)
 			return null;
 

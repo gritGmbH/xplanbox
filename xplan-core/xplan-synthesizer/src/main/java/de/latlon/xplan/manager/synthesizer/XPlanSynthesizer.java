@@ -129,8 +129,6 @@ public class XPlanSynthesizer {
 
 		processRuleFile(version, xplanType.name(), xplanName);
 
-		// initialize lookup of XP_TextAbschnitt and XP_BegruendungAbschnitt features
-		XplanAbschnittLookup.init(fc);
 		// initialize lookup for all Fachobjekte that are referenced by XP_PPO features
 		XpPpoLookup.init(fc);
 

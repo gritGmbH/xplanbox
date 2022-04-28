@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression;
+package de.latlon.xplan.manager.synthesizer.utils;
 
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -30,7 +30,10 @@ import org.deegree.geometry.Geometry;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-class Expressions {
+public class CastUtils {
+
+	private CastUtils() {
+	}
 
 	public static PrimitiveValue castToPrimitive(TypedObjectNode node) {
 		if (node == null) {
