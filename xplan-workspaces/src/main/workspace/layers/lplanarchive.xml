@@ -122,7 +122,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_ausgleichsym</l:Name>
+    <l:Name>lp_ausgleich</l:Name>
     <d:Title>lp_ausgleich</d:Title>
     <d:Abstract>LP_Ausgleich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -130,7 +130,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_ausgleichsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_ausgleich</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -166,7 +166,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_ausgleich</l:Name>
+    <l:Name>lp_ausgleichsym</l:Name>
     <d:Title>lp_ausgleich</d:Title>
     <d:Abstract>LP_Ausgleich</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -174,7 +174,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_ausgleich</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_ausgleichsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -354,6 +354,50 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_Denkmalschutzrecht</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>lp_denkmschrechtsym</l:Name>
+    <d:Title>lp_denkmalschutzrecht</d:Title>
+    <d:Abstract>LP_Denkmalschutzrecht</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/lp/lp_denkmschrecht</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_ErholungFreizeit</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
@@ -430,7 +474,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_forstrechtsym</l:Name>
+    <l:Name>lp_forstrecht</l:Name>
     <d:Title>lp_forstrecht</d:Title>
     <d:Abstract>LP_Forstrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -438,7 +482,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_forstrechtsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_forstrecht</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -474,7 +518,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_forstrecht</l:Name>
+    <l:Name>lp_forstrechtsym</l:Name>
     <d:Title>lp_forstrecht</d:Title>
     <d:Abstract>LP_Forstrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -482,7 +526,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_forstrecht</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_forstrechtsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -606,7 +650,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_nutzerforderregelungsym</l:Name>
+    <l:Name>lp_nutzerforderregelung</l:Name>
     <d:Title>lp_nutzungserfordernisregelung</d:Title>
     <d:Abstract>LP_NutzungserfordernisRegelung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -614,7 +658,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_nutzerforderregelungsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_nutzerforderregelung</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -650,7 +694,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_nutzerforderregelung</l:Name>
+    <l:Name>lp_nutzerforderregelungsym</l:Name>
     <d:Title>lp_nutzungserfordernisregelung</d:Title>
     <d:Abstract>LP_NutzungserfordernisRegelung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -658,7 +702,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_nutzerforderregelung</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_nutzerforderregelungsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -750,50 +794,6 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_RasterplanAenderung</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>lp_rasterplanaenderung</l:Name>
-    <d:Title>lp_rasterplanaenderung</d:Title>
-    <d:Abstract>LP_RasterplanAenderung</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_rasterplanaender</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_SchutzPflegeEntwicklung</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
@@ -882,7 +882,7 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_SchutzobjektInternatRecht</FeatureType>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_SchutzobjektBundesrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
         <ogc:And>
@@ -914,15 +914,15 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_schutzobjinterrechtsym</l:Name>
-    <d:Title>lp_schutzobjektinternatrecht</d:Title>
-    <d:Abstract>LP_SchutzobjektInternatRecht</d:Abstract>
+    <l:Name>lp_schutzobjbundesrechtsym</l:Name>
+    <d:Title>lp_schutzobjektbundesrecht</d:Title>
+    <d:Abstract>LP_SchutzobjektBundesrecht</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_schutzobjinterrechtsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_schutzobjbundesrecht</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -970,6 +970,50 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_SchutzobjektInternatRecht</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>lp_schutzobjinterrechtsym</l:Name>
+    <d:Title>lp_schutzobjektinternatrecht</d:Title>
+    <d:Abstract>LP_SchutzobjektInternatRecht</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/lp/lp_schutzobjinterrechtsym</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_SonstigesRecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
@@ -1011,94 +1055,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_sonstsrecht</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_TextAbschnitt</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>lp_textabschnitt</l:Name>
-    <d:Title>lp_textabschnitt</d:Title>
-    <d:Abstract>LP_TextAbschnitt</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_textabschn</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutz</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>lp_wrgemgebreinschrnatssym</l:Name>
-    <d:Title>lp_wasserrechtgemeingebreinschraenkungnaturschutz</d:Title>
-    <d:Abstract>LP_WasserrechtGemeingebrEinschraenkungNaturschutz</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_wrgemgebreinschrnatssym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1146,7 +1102,7 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_WasserrechtSchutzgebiet</FeatureType>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutz</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
         <ogc:And>
@@ -1178,15 +1134,15 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_wrschutzgebsym</l:Name>
-    <d:Title>lp_wasserrechtschutzgebiet</d:Title>
-    <d:Abstract>LP_WasserrechtSchutzgebiet</d:Abstract>
+    <l:Name>lp_wrgemgebreinschrnatssym</l:Name>
+    <d:Title>lp_wasserrechtgemeingebreinschraenkungnaturschutz</d:Title>
+    <d:Abstract>LP_WasserrechtGemeingebrEinschraenkungNaturschutz</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_wrschutzgebsym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrgemgebreinschrnatssym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1231,6 +1187,50 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/lp/lp_wrschutzgeb</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:LP_WasserrechtSchutzgebiet</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>lp_wrschutzgebsym</l:Name>
+    <d:Title>lp_wasserrechtschutzgebiet</d:Title>
+    <d:Abstract>LP_WasserrechtSchutzgebiet</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/lp/lp_wrschutzgebsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1310,7 +1310,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_wrwirtschabflusshwssym</l:Name>
+    <l:Name>lp_wrwirtschabflusshws</l:Name>
     <d:Title>lp_wasserrechtwirtschaftabflusshochwschutz</d:Title>
     <d:Abstract>LP_WasserrechtWirtschaftAbflussHochwSchutz</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -1318,7 +1318,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_wrwirtschabflusshwssym</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrwirtschabflusshws</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1354,7 +1354,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>lp_wrwirtschabflusshws</l:Name>
+    <l:Name>lp_wrwirtschabflusshwssym</l:Name>
     <d:Title>lp_wasserrechtwirtschaftabflusshochwschutz</d:Title>
     <d:Abstract>LP_WasserrechtWirtschaftAbflussHochwSchutz</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -1362,7 +1362,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/lp/lp_wrwirtschabflusshws</l:StyleStoreId>
+      <l:StyleStoreId>default/lp/lp_wrwirtschabflusshwssym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>

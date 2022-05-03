@@ -34,7 +34,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_abgrabungsflsym</l:Name>
+    <l:Name>bp_abgrabungsfl</l:Name>
     <d:Title>bp_abgrabungsflaeche</d:Title>
     <d:Abstract>BP_AbgrabungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -42,7 +42,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_abgrabungsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abgrabungsfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -78,7 +78,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_abgrabungsfl</l:Name>
+    <l:Name>bp_abgrabungsflsym</l:Name>
     <d:Title>bp_abgrabungsflaeche</d:Title>
     <d:Abstract>BP_AbgrabungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -86,7 +86,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_abgrabungsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abgrabungsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -262,7 +262,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_abwueberbaubarergrundstuecksfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_abwueberbauberergrundstuecksfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -342,7 +342,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_aufschuettsflsym</l:Name>
+    <l:Name>bp_aufschuettsfl</l:Name>
     <d:Title>bp_aufschuettungsflaeche</d:Title>
     <d:Abstract>BP_AufschuettungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -350,7 +350,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_aufschuettsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_aufschuettsfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -386,7 +386,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_aufschuettsfl</l:Name>
+    <l:Name>bp_aufschuettsflsym</l:Name>
     <d:Title>bp_aufschuettungsflaeche</d:Title>
     <d:Abstract>BP_AufschuettungsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -394,7 +394,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_aufschuettsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_aufschuettsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -650,7 +650,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_baugebteilflsym</l:Name>
+    <l:Name>bp_baugebteilfl</l:Name>
     <d:Title>bp_baugebietsteilflaeche</d:Title>
     <d:Abstract>BP_BaugebietsTeilFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -658,7 +658,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_baugebteilflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baugebteilfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -694,7 +694,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_baugebteilfl</l:Name>
+    <l:Name>bp_baugebteilflsym</l:Name>
     <d:Title>bp_baugebietsteilflaeche</d:Title>
     <d:Abstract>BP_BaugebietsTeilFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -702,7 +702,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_baugebteilfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_baugebteilflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -826,7 +826,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_besnutzzweckflsym</l:Name>
+    <l:Name>bp_besnutzzweckfl</l:Name>
     <d:Title>bp_besonderernutzungszweckflaeche</d:Title>
     <d:Abstract>BP_BesondererNutzungszweckFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -834,7 +834,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_besnutzzweckflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_besnutzzweckfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -870,7 +870,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_besnutzzweckfl</l:Name>
+    <l:Name>bp_besnutzzweckflsym</l:Name>
     <d:Title>bp_besonderernutzungszweckflaeche</d:Title>
     <d:Abstract>BP_BesondererNutzungszweckFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -878,51 +878,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_besnutzzweckfl</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_BodenschaetzeFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_bsflsym</l:Name>
-    <d:Title>bp_bodenschaetzeflaeche</d:Title>
-    <d:Abstract>BP_BodenschaetzeFlaeche</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_bsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_besnutzzweckflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -967,6 +923,50 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_bsfl</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_BodenschaetzeFlaeche</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>bp_bsflsym</l:Name>
+    <d:Title>bp_bodenschaetzeflaeche</d:Title>
+    <d:Abstract>BP_BodenschaetzeFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/bp/bp_bsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1222,7 +1222,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_erhsberflsym</l:Name>
+    <l:Name>bp_erhsberfl</l:Name>
     <d:Title>bp_erhaltungsbereichflaeche</d:Title>
     <d:Abstract>BP_ErhaltungsBereichFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -1230,7 +1230,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_erhsberflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_erhsberfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1266,7 +1266,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_erhsberfl</l:Name>
+    <l:Name>bp_erhsberflsym</l:Name>
     <d:Title>bp_erhaltungsbereichflaeche</d:Title>
     <d:Abstract>BP_ErhaltungsBereichFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -1274,7 +1274,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_erhsberfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_erhsberflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1618,7 +1618,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_gembedarfsflsym</l:Name>
+    <l:Name>bp_gembedarfsfl</l:Name>
     <d:Title>bp_gemeinbedarfsflaeche</d:Title>
     <d:Abstract>BP_GemeinbedarfsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -1626,7 +1626,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gembedarfsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gembedarfsfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1662,7 +1662,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_gembedarfsfl</l:Name>
+    <l:Name>bp_gembedarfsflsym</l:Name>
     <d:Title>bp_gemeinbedarfsflaeche</d:Title>
     <d:Abstract>BP_GemeinbedarfsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -1670,51 +1670,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gembedarfsfl</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GemeinschaftsanlagenFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_gemanlflsym</l:Name>
-    <d:Title>bp_gemeinschaftsanlagenflaeche</d:Title>
-    <d:Abstract>BP_GemeinschaftsanlagenFlaeche</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gemanlflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gembedarfsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1759,6 +1715,50 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_gemanlfl</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GemeinschaftsanlagenFlaeche</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>bp_gemanlflsym</l:Name>
+    <d:Title>bp_gemeinschaftsanlagenflaeche</d:Title>
+    <d:Abstract>BP_GemeinschaftsanlagenFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/bp/bp_gemanlflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1882,7 +1882,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_gewflsym</l:Name>
+    <l:Name>bp_gewfl</l:Name>
     <d:Title>bp_gewaesserflaeche</d:Title>
     <d:Abstract>BP_GewaesserFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -1890,7 +1890,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gewflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gewfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -1926,7 +1926,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_gewfl</l:Name>
+    <l:Name>bp_gewflsym</l:Name>
     <d:Title>bp_gewaesserflaeche</d:Title>
     <d:Abstract>BP_GewaesserFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -1934,51 +1934,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gewfl</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GruenFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_gruenflsym</l:Name>
-    <d:Title>bp_gruenflaeche</d:Title>
-    <d:Abstract>BP_GruenFlaeche</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_gruenflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_gewflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2023,6 +1979,50 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_gruenfl</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_GruenFlaeche</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>bp_gruenflsym</l:Name>
+    <d:Title>bp_gruenflaeche</d:Title>
+    <d:Abstract>BP_GruenFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/bp/bp_gruenflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2278,7 +2278,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_lwflsym</l:Name>
+    <l:Name>bp_lwfl</l:Name>
     <d:Title>bp_landwirtschaftsflaeche</d:Title>
     <d:Abstract>BP_LandwirtschaftsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -2286,7 +2286,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_lwflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_lwfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2322,7 +2322,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_lwfl</l:Name>
+    <l:Name>bp_lwflsym</l:Name>
     <d:Title>bp_landwirtschaftsflaeche</d:Title>
     <d:Abstract>BP_LandwirtschaftsFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -2330,7 +2330,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_lwfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_lwflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2454,7 +2454,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_nebenanlflsym</l:Name>
+    <l:Name>bp_nebenanlfl</l:Name>
     <d:Title>bp_nebenanlagenflaeche</d:Title>
     <d:Abstract>BP_NebenanlagenFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -2462,7 +2462,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_nebenanlflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nebenanlfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2498,7 +2498,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_nebenanlfl</l:Name>
+    <l:Name>bp_nebenanlflsym</l:Name>
     <d:Title>bp_nebenanlagenflaeche</d:Title>
     <d:Abstract>BP_NebenanlagenFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -2506,7 +2506,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_nebenanlfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_nebenanlflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2683,50 +2683,6 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_plan</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_RasterplanAenderung</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_rasterplanaender</l:Name>
-    <d:Title>bp_rasterplanaenderung</d:Title>
-    <d:Abstract>BP_RasterplanAenderung</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_rasterplanaender</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2938,7 +2894,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_schutzpflentwmassnsym</l:Name>
+    <l:Name>bp_schutzpflentwmassn</l:Name>
     <d:Title>bp_schutzpflegeentwicklungsmassnahme</d:Title>
     <d:Abstract>BP_SchutzPflegeEntwicklungsMassnahme</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -2946,7 +2902,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_schutzpflentwmassnsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzpflentwmassn</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -2982,7 +2938,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_schutzpflentwmassn</l:Name>
+    <l:Name>bp_schutzpflentwmassnsym</l:Name>
     <d:Title>bp_schutzpflegeentwicklungsmassnahme</d:Title>
     <d:Abstract>BP_SchutzPflegeEntwicklungsMassnahme</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -2990,7 +2946,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_schutzpflentwmassn</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_schutzpflentwmassnsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3158,7 +3114,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_spispoanlflsym</l:Name>
+    <l:Name>bp_spispoanlfl</l:Name>
     <d:Title>bp_spielsportanlagenflaeche</d:Title>
     <d:Abstract>BP_SpielSportanlagenFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -3166,7 +3122,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_spispoanlflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_spispoanlfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3202,7 +3158,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_spispoanlfl</l:Name>
+    <l:Name>bp_spispoanlflsym</l:Name>
     <d:Title>bp_spielsportanlagenflaeche</d:Title>
     <d:Abstract>BP_SpielSportanlagenFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -3210,7 +3166,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_spispoanlfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_spispoanlflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3466,7 +3422,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_ueberbaubgrundstsflsym</l:Name>
+    <l:Name>bp_ueberbaubgrundstsfl</l:Name>
     <d:Title>bp_ueberbaubaregrundstuecksflaeche</d:Title>
     <d:Abstract>BP_UeberbaubareGrundstuecksFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -3474,7 +3430,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsfl</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3510,7 +3466,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_ueberbaubgrundstsfl</l:Name>
+    <l:Name>bp_ueberbaubgrundstsflsym</l:Name>
     <d:Title>bp_ueberbaubaregrundstuecksflaeche</d:Title>
     <d:Abstract>BP_UeberbaubareGrundstuecksFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -3518,7 +3474,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsfl</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_ueberbaubgrundstsflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3598,7 +3554,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_verentsorgungsym</l:Name>
+    <l:Name>bp_verentsorgung</l:Name>
     <d:Title>bp_verentsorgung</d:Title>
     <d:Abstract>BP_VerEntsorgung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -3606,7 +3562,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_verentsorgungsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verentsorgung</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3642,7 +3598,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_verentsorgung</l:Name>
+    <l:Name>bp_verentsorgungsym</l:Name>
     <d:Title>bp_verentsorgung</d:Title>
     <d:Abstract>BP_VerEntsorgung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -3650,7 +3606,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_verentsorgung</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verentsorgungsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3730,7 +3686,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_verksflbeszwbsym</l:Name>
+    <l:Name>bp_verksflbeszwb</l:Name>
     <d:Title>bp_verkehrsflaechebesondererzweckbestimmung</d:Title>
     <d:Abstract>BP_VerkehrsflaecheBesondererZweckbestimmung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -3738,7 +3694,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_verksflbeszwbsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verksflbeszwb</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3774,7 +3730,7 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_verksflbeszwb</l:Name>
+    <l:Name>bp_verksflbeszwbsym</l:Name>
     <d:Title>bp_verkehrsflaechebesondererzweckbestimmung</d:Title>
     <d:Abstract>BP_VerkehrsflaecheBesondererZweckbestimmung</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
@@ -3782,51 +3738,7 @@
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_verksflbeszwb</l:StyleStoreId>
-    </l:StyleRef>
-  </FeatureLayer>
-  <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_WaldFlaeche</FeatureType>
-    <Filter>
-      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <ogc:And>
-          <ogc:Or>
-            <ogc:PropertyIsLessThan>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsLessThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-          <ogc:Or>
-            <ogc:PropertyIsGreaterThan>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-              <ogc:Function name="now"/>
-            </ogc:PropertyIsGreaterThan>
-            <ogc:PropertyIsNull>
-              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
-            </ogc:PropertyIsNull>
-          </ogc:Or>
-        </ogc:And>
-      </ogc:Filter>
-    </Filter>
-    <SortBy reverseFeatureInfo="true">
-      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
-        <SortProperty>
-          <PropertyName>xplan:wmsSortDate</PropertyName>
-        </SortProperty>
-      </SortBy>
-    </SortBy>
-    <l:Name>bp_waldflsym</l:Name>
-    <d:Title>bp_waldflaeche</d:Title>
-    <d:Abstract>BP_WaldFlaeche</d:Abstract>
-    <s:CRS>EPSG:25832</s:CRS>
-    <l:StyleRef>
-      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
-    </l:StyleRef>
-    <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_waldflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_verksflbeszwbsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3874,7 +3786,7 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
-    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_WasserwirtschaftsFlaeche</FeatureType>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_WaldFlaeche</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
         <ogc:And>
@@ -3906,15 +3818,15 @@
         </SortProperty>
       </SortBy>
     </SortBy>
-    <l:Name>bp_wwssflsym</l:Name>
-    <d:Title>bp_wasserwirtschaftsflaeche</d:Title>
-    <d:Abstract>BP_WasserwirtschaftsFlaeche</d:Abstract>
+    <l:Name>bp_waldflsym</l:Name>
+    <d:Title>bp_waldflaeche</d:Title>
+    <d:Abstract>BP_WaldFlaeche</d:Abstract>
     <s:CRS>EPSG:25832</s:CRS>
     <l:StyleRef>
       <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
     </l:StyleRef>
     <l:StyleRef>
-      <l:StyleStoreId>default/bp/bp_wwssflsym</l:StyleStoreId>
+      <l:StyleStoreId>default/bp/bp_waldflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -3959,6 +3871,50 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/bp/bp_wwssfl</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:BP_WasserwirtschaftsFlaeche</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>bp_wwssflsym</l:Name>
+    <d:Title>bp_wasserwirtschaftsflaeche</d:Title>
+    <d:Abstract>BP_WasserwirtschaftsFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/bp/bp_wwssflsym</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
