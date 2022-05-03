@@ -117,6 +117,34 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche">
       <fes:Filter>
         <fes:And>
@@ -818,6 +846,34 @@
       </fes:Filter>
     </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GebaeudeFlaeche">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_GebaeudeStellung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -1797,6 +1853,34 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_TextAbschnittFlaeche">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_TextlicheFestsetzungsFlaeche">
       <fes:Filter>
         <fes:And>
@@ -2721,6 +2805,34 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_Nutzungsbeschraenkung">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_NutzungsbeschraenkungsFlaeche">
       <fes:Filter>
         <fes:And>
@@ -2918,6 +3030,34 @@
       </fes:Filter>
     </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_TextAbschnitt">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:FP_TextAbschnittFlaeche">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3281,6 +3421,34 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_BiotopverbundBiotopvernetzung">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Biotopverbundflaeche">
       <fes:Filter>
         <fes:And>
@@ -3338,6 +3506,34 @@
       </fes:Filter>
     </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Denkmalschutzrecht">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_Eingriffsregelung">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -3617,6 +3813,34 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_SchutzBestimmterTeileVonNaturUndLandschaft">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_SchutzPflegeEntwicklung">
       <fes:Filter>
         <fes:And>
@@ -3785,6 +4009,34 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_TextAbschnittObjekt">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_TextlicheFestsetzungsFlaeche">
       <fes:Filter>
         <fes:And>
@@ -3898,6 +4150,34 @@
       </fes:Filter>
     </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_WasserrechtWirtschaftAbflussHochwSchutz">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:LP_ZieleErfordernisseMassnahmen">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -5605,6 +5885,34 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Baubeschraenkung">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Bauverbotszone">
       <fes:Filter>
         <fes:And>
@@ -6109,7 +6417,63 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Sichtflaeche">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_SonstigesRecht">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Strassenverkehr">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
@@ -6193,7 +6557,63 @@
         </fes:And>
       </fes:Filter>
     </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_TextAbschnittFlaeche">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Wasserrecht">
+      <fes:Filter>
+        <fes:And>
+          <fes:PropertyIsEqualTo>
+            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:Literal>${planName}</fes:Literal>
+          </fes:PropertyIsEqualTo>
+          <fes:Or>
+            <fes:PropertyIsLessThan>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsLessThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitBeginn</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+          <fes:Or>
+            <fes:PropertyIsGreaterThan>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+              <fes:Function name="now"/>
+            </fes:PropertyIsGreaterThan>
+            <fes:PropertyIsNull>
+              <fes:ValueReference>xplan:gueltigkeitEnde</fes:ValueReference>
+            </fes:PropertyIsNull>
+          </fes:Or>
+        </fes:And>
+      </fes:Filter>
+    </wfs:Query>
+    <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:SO_Wasserwirtschaft">
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>

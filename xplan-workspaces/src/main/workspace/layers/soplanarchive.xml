@@ -2,6 +2,50 @@
 <FeatureLayers xmlns="http://www.deegree.org/layers/feature" xmlns:l="http://www.deegree.org/layers/base" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
   <FeatureStoreId>xplansynarchive</FeatureStoreId>
   <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:SO_Baubeschraenkung</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_baubeschraenkung</l:Name>
+    <d:Title>so_baubeschraenkung</d:Title>
+    <d:Abstract>SO_Baubeschraenkung</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/so/so_baubeschraenkung</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:SO_Bauverbotszone</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
@@ -662,6 +706,50 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:SO_Sichtflaeche</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_sichtflaeche</l:Name>
+    <d:Title>so_sichtflaeche</d:Title>
+    <d:Abstract>SO_Sichtflaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/so/so_sichtflaeche</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:SO_SonstigesRecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
@@ -703,6 +791,50 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/so/so_sonstigesrecht</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:SO_Strassenverkehr</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_strassenverkehr</l:Name>
+    <d:Title>so_strassenverkehr</d:Title>
+    <d:Abstract>SO_Strassenverkehr</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/so/so_strassenverkehr</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
@@ -750,6 +882,50 @@
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:SO_TextAbschnittFlaeche</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_textabschnittflaeche</l:Name>
+    <d:Title>so_textabschnittflaeche</d:Title>
+    <d:Abstract>SO_TextAbschnittFlaeche</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/so/so_textabschnittflaeche</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
     <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:SO_Wasserrecht</FeatureType>
     <Filter>
       <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
@@ -791,6 +967,50 @@
     </l:StyleRef>
     <l:StyleRef>
       <l:StyleStoreId>default/so/so_wasserrecht</l:StyleStoreId>
+    </l:StyleRef>
+  </FeatureLayer>
+  <FeatureLayer>
+    <FeatureType xmlns:xplan="http://www.deegree.org/xplanung/1/0">xplan:SO_Wasserwirtschaft</FeatureType>
+    <Filter>
+      <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <ogc:And>
+          <ogc:Or>
+            <ogc:PropertyIsLessThan>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsLessThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitBeginn</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+          <ogc:Or>
+            <ogc:PropertyIsGreaterThan>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+              <ogc:Function name="now"/>
+            </ogc:PropertyIsGreaterThan>
+            <ogc:PropertyIsNull>
+              <ogc:PropertyName>xplan:gueltigkeitEnde</ogc:PropertyName>
+            </ogc:PropertyIsNull>
+          </ogc:Or>
+        </ogc:And>
+      </ogc:Filter>
+    </Filter>
+    <SortBy reverseFeatureInfo="true">
+      <SortBy xmlns="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0">
+        <SortProperty>
+          <PropertyName>xplan:wmsSortDate</PropertyName>
+        </SortProperty>
+      </SortBy>
+    </SortBy>
+    <l:Name>so_wasserwirtschaft</l:Name>
+    <d:Title>so_wasserwirtschaft</d:Title>
+    <d:Abstract>SO_Wasserwirtschaft</d:Abstract>
+    <s:CRS>EPSG:25832</s:CRS>
+    <l:StyleRef>
+      <l:StyleStoreId>transparent/transparent</l:StyleStoreId>
+    </l:StyleRef>
+    <l:StyleRef>
+      <l:StyleStoreId>default/so/so_wasserwirtschaft</l:StyleStoreId>
     </l:StyleRef>
   </FeatureLayer>
   <FeatureLayer>
