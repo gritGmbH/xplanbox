@@ -26,11 +26,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
-  <FeatureTypeName>xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche</FeatureTypeName>
+  <FeatureTypeName>xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche</FeatureTypeName>
   <Rule>
     <Name>bp_abwueberbaubarergrundstuecksf</Name>
     <Description>
-      <Title>BP: AbweichungVonUeberbaubarerGrundstuecksFlaeche</Title>
+      <Title>BP: AbweichungVonUeberbaubererGrundstuecksFlaeche</Title>
     </Description>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
