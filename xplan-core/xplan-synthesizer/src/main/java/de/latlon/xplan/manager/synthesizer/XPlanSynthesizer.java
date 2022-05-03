@@ -144,16 +144,6 @@ public class XPlanSynthesizer {
 	}
 
 	/**
-	 * Retrieve the rules applied to the transformation. Invoke synthesize first,
-	 * otherwise no rules are available.
-	 * @return the rules of the last transformation. may be empty (if #synthesize() was
-	 * not invoked before) but never <code>null</code>
-	 */
-	public Map<String, Expression> getRules() {
-		return rules;
-	}
-
-	/**
 	 * Retrieve the directory containing the external rules configuration used for the
 	 * transformation.
 	 * @return the external rules configuration file of the transformation. may be
