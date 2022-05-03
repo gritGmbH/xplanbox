@@ -26,6 +26,8 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import org.apache.commons.io.IOUtils;
+import org.apache.xerces.xs.XSElementDeclaration;
+import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
@@ -246,7 +248,7 @@ public class XPlanSynthesizer {
 					newPropValue = toString(((TypedObjectNodeArray<?>) newPropValue));
 				}
 				if (newPropValue instanceof GenericXMLElement) {
-					newPropValue = new PrimitiveValue(newPropValue.getClass() + "");
+					newPropValue = getNewPropValue((GenericXMLElement) newPropValue);
 				}
 				Property newProp = new GenericProperty(propType, newPropValue);
 				newProps.add(newProp);
@@ -265,6 +267,39 @@ public class XPlanSynthesizer {
 			sBuilder.append(n);
 		}
 		return new PrimitiveValue(sBuilder.toString());
+	}
+
+	private TypedObjectNode getNewPropValue(GenericXMLElement valueNode) {
+		if (isCodeType(valueNode)) {
+			String s = toString(valueNode);
+			return new PrimitiveValue(s);
+		}
+		return new PrimitiveValue(valueNode.getClass() + "");
+	}
+
+	private boolean isCodeType(GenericXMLElement valueNode) {
+		XSElementDeclaration xsType = valueNode.getXSType();
+		return xsType != null && xsType.getTypeDefinition() != null
+				&& "CodeType".equals(xsType.getTypeDefinition().getName());
+	}
+
+	private String toString(TypedObjectNode value) {
+		if (value == null) {
+			return null;
+		}
+		if (value instanceof ElementNode) {
+			ElementNode el = (ElementNode) value;
+			String s = "";
+			PrimitiveValue codeSpace = el.getAttributes().get(new QName("codeSpace"));
+			if (codeSpace != null) {
+				s = "{" + codeSpace + "}";
+			}
+			for (TypedObjectNode child : el.getChildren()) {
+				s += child;
+			}
+			return s;
+		}
+		return value.toString();
 	}
 
 }

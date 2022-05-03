@@ -49,6 +49,9 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 import org.xmlunit.diff.Comparison;
 import org.xmlunit.diff.ComparisonResult;
+import org.xmlunit.diff.ComparisonType;
+import org.xmlunit.diff.DefaultNodeMatcher;
+import org.xmlunit.diff.ElementSelectors;
 import org.xmlunit.matchers.CompareMatcher;
 
 import javax.xml.stream.XMLOutputFactory;
@@ -80,12 +83,15 @@ public class XPlanSynthesizerComparisonTest {
 		FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
 		String synthesizedFeatures = writeFeatures(archive.getVersion(), synthesizedFeatureCollection);
+
 		String expectedFeatureCollection = IOUtils.toString(
 				XPlanSynthesizerComparisonTest.class.getResourceAsStream("plans/" + archiveName + ".xml"),
 				StandardCharsets.UTF_8);
 		assertThat(synthesizedFeatures, CompareMatcher.isSimilarTo(expectedFeatureCollection).ignoreWhitespace()
-				.ignoreComments().withDifferenceEvaluator(
-						(comparison, comparisonResult) -> ignoreGmlIdsAndXpPlanName(comparison, comparisonResult)));
+				.ignoreComments().ignoreElementContentWhitespace()
+				.withDifferenceEvaluator(
+						(comparison, comparisonResult) -> ignoreGmlIdsAndXpPlanName(comparison, comparisonResult))
+				.withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byName)));
 
 	}
 
@@ -104,6 +110,9 @@ public class XPlanSynthesizerComparisonTest {
 			if ("xpPlanName".equals(parentNode.getLocalName()) && textImpl.getNodeValue() != null
 					&& textImpl.getNodeValue().startsWith("Unbenannter XPlan"))
 				return ComparisonResult.SIMILAR;
+		}
+		if (comparison.getType() == ComparisonType.CHILD_NODELIST_SEQUENCE) {
+			return ComparisonResult.SIMILAR;
 		}
 		return comparisonResult;
 	}

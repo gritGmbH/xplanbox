@@ -23491,6 +23491,7 @@
       <flaechenschluss>true</flaechenschluss>
       <zweckbestimmung>SicherheitOrdnung</zweckbestimmung>
       <zweckbestimmungCode>2400</zweckbestimmungCode>
+      <besondereZweckbestimmung>Feuerwehr</besondereZweckbestimmung>
       <besondereZweckbestimmungCode>24000</besondereZweckbestimmungCode>
       <gehoertZuBP_Bereich>[GML_2040914d-4b28-487b-8201-fd8d262342e9]</gehoertZuBP_Bereich>
     </BP_GemeinbedarfsFlaeche>
@@ -23521,6 +23522,7 @@
       <flaechenschluss>true</flaechenschluss>
       <zweckbestimmung>Gesundheit</zweckbestimmung>
       <zweckbestimmungCode>1800</zweckbestimmungCode>
+      <besondereZweckbestimmung>Krankenhaus</besondereZweckbestimmung>
       <besondereZweckbestimmungCode>18000</besondereZweckbestimmungCode>
       <gehoertZuBP_Bereich>[GML_2040914d-4b28-487b-8201-fd8d262342e9]</gehoertZuBP_Bereich>
     </BP_GemeinbedarfsFlaeche>
