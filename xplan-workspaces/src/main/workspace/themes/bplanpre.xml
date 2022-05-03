@@ -13,13 +13,6 @@
       <Layer>bp_textabschnittflaeche</Layer>
     </Theme>
     <Theme>
-      <Identifier>bp_rasterplanaenderung</Identifier>
-      <d:Title>BP: Rasterplan Änderung</d:Title>
-      <d:Abstract>BP_RasterplanAenderung</d:Abstract>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_rasterplanaenderung</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_gebaeudestellung</Identifier>
       <d:Title>BP_GebaeudeStellung</d:Title>
       <d:Abstract>BP_GebaeudeStellung</d:Abstract>
