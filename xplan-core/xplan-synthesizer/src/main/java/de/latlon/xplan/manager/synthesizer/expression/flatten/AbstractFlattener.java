@@ -31,6 +31,8 @@ import org.deegree.commons.utils.Pair;
 import org.deegree.feature.Feature;
 
 import javax.xml.namespace.QName;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -55,10 +57,20 @@ abstract class AbstractFlattener implements Flattener {
 	 * @param acceptedElementNodeName never <code>null</code>
 	 * @return
 	 */
-	public boolean acceptsElementNode(TypedObjectNode node, String acceptedElementNodeName) {
+	public boolean acceptsElementNode(TypedObjectNode node, String... acceptedElementNodeName) {
+		return acceptsElementNode(node, Arrays.asList(acceptedElementNodeName));
+	}
+
+	/**
+	 * Checks if the node is an accepted ElementNode
+	 * @param node never <code>null</code>
+	 * @param acceptedElementNodeNames never <code>null</code>
+	 * @return
+	 */
+	public boolean acceptsElementNode(TypedObjectNode node, Collection<String> acceptedElementNodeNames) {
 		if (node instanceof ElementNode) {
 			String elName = ((ElementNode) node).getName().getLocalPart();
-			return acceptedElementNodeName.equals(elName);
+			return acceptedElementNodeNames.contains(elName);
 		}
 		return false;
 	}
