@@ -24,6 +24,8 @@
 \i fix/xplan50/drop.sql
 \i fix/xplan51/drop.sql
 \i fix/xplan52/drop.sql
+\i fix/xplan53/drop.sql
+\i fix/xplan54/drop.sql
 \i fix/xplansyn/drop.sql
 \i pre/xplan3/drop.sql
 \i pre/xplan40/drop.sql
@@ -31,6 +33,8 @@
 \i pre/xplan50/drop.sql
 \i pre/xplan51/drop.sql
 \i pre/xplan52/drop.sql
+\i pre/xplan53/drop.sql
+\i pre/xplan54/drop.sql
 \i pre/xplansyn/drop.sql
 \i archive/xplan3/drop.sql
 \i archive/xplan40/drop.sql
@@ -38,5 +42,7 @@
 \i archive/xplan50/drop.sql
 \i archive/xplan51/drop.sql
 \i archive/xplan52/drop.sql
+\i archive/xplan53/drop.sql
+\i archive/xplan54/drop.sql
 \i archive/xplansyn/drop.sql
 \i xplanmgr/drop.sql
