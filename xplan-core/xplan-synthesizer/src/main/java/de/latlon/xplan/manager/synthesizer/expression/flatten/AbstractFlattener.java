@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-abstract class AbstractFlattener implements Flattener {
+public abstract class AbstractFlattener implements Flattener {
 
 	/**
 	 * Checks if the node is an accepted ElementNode or Feature
@@ -89,7 +89,7 @@ abstract class AbstractFlattener implements Flattener {
 		return false;
 	}
 
-	TypedObjectNode getPropertyValue(TypedObjectNode xpVerfahrensmerkmal, String propName) {
+	public TypedObjectNode getPropertyValue(TypedObjectNode xpVerfahrensmerkmal, String propName) {
 		if (xpVerfahrensmerkmal instanceof Feature) {
 			Feature f = (Feature) xpVerfahrensmerkmal;
 			QName qName = new QName(f.getName().getNamespaceURI(), propName);
@@ -101,7 +101,7 @@ abstract class AbstractFlattener implements Flattener {
 		throw new IllegalArgumentException();
 	}
 
-	TypedObjectNode getPropertyValue(ElementNode xpVerfahrensmerkmal, String propName) {
+	public TypedObjectNode getPropertyValue(ElementNode xpVerfahrensmerkmal, String propName) {
 		for (TypedObjectNode child : xpVerfahrensmerkmal.getChildren()) {
 			if (child instanceof ElementNode) {
 				ElementNode childEl = (ElementNode) child;
@@ -120,7 +120,7 @@ abstract class AbstractFlattener implements Flattener {
 		return null;
 	}
 
-	String escape(String desc) {
+	public String escape(String desc) {
 		String result = desc;
 		if (result.startsWith("[") && result.endsWith("]")) {
 			result = result.substring(1, result.length() - 1);
@@ -129,7 +129,7 @@ abstract class AbstractFlattener implements Flattener {
 		return result;
 	}
 
-	protected String encode(List<Pair<String, String>> properties) {
+	public String encode(List<Pair<String, String>> properties) {
 		if (properties.isEmpty())
 			return "";
 		StringBuilder sb = new StringBuilder();
@@ -143,7 +143,7 @@ abstract class AbstractFlattener implements Flattener {
 		return sb.toString();
 	}
 
-	protected void append(String label, TypedObjectNode feature, String propertyName,
+	public void append(String label, TypedObjectNode feature, String propertyName,
 			List<Pair<String, String>> properties) {
 		String propertyValue = asString(feature, propertyName);
 		if (propertyValue != null) {
@@ -151,8 +151,8 @@ abstract class AbstractFlattener implements Flattener {
 		}
 	}
 
-	protected void appendTranslatedCode(String label, TypedObjectNode feature, String propertyName,
-			XPlanVersion version, String codeListName, List<Pair<String, String>> properties) {
+	public void appendTranslatedCode(String label, TypedObjectNode feature, String propertyName, XPlanVersion version,
+			String codeListName, List<Pair<String, String>> properties) {
 		String propertyValue = asString(feature, propertyName);
 		if (propertyValue != null) {
 			String translatedValue = XPlanCodeListsFactory.get(version).getDescription(codeListName, propertyValue);
@@ -160,7 +160,7 @@ abstract class AbstractFlattener implements Flattener {
 		}
 	}
 
-	protected String asString(TypedObjectNode property, String ags) {
+	public String asString(TypedObjectNode property, String ags) {
 		if (property instanceof Property) {
 			property = ((Property) property).getValue();
 		}
