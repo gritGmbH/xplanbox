@@ -3411,7 +3411,6 @@
     <Primitive path="xplan:aendert" mapping="xplan_aendert"/>
     <Primitive path="xplan:wurdeGeaendertVon" mapping="xplan_wurdegeaendertvon"/>
     <Primitive path="xplan:erstellungsMassstab" mapping="xplan_erstellungsmassstab"/>
-    <Primitive path="xplan:xPlanGMLVersion" mapping="xplan_xplangmlversion"/>
     <Primitive path="xplan:bezugshoehe" mapping="xplan_bezugshoehe"/>
     <Primitive path="xplan:bezugshoeheUOM" mapping="xplan_bezugshoeheuom"/>
     <Geometry path="xplan:raeumlicherGeltungsbereich" mapping="xplan_raeumlichergeltungsbereich"/>
@@ -6873,7 +6872,6 @@
     <Primitive path="xplan:aendert" mapping="xplan_aendert"/>
     <Primitive path="xplan:wurdeGeaendertVon" mapping="xplan_wurdegeaendertvon"/>
     <Primitive path="xplan:erstellungsMassstab" mapping="xplan_erstellungsmassstab"/>
-    <Primitive path="xplan:xPlanGMLVersion" mapping="xplan_xplangmlversion"/>
     <Primitive path="xplan:bezugshoehe" mapping="xplan_bezugshoehe"/>
     <Primitive path="xplan:bezugshoeheUOM" mapping="xplan_bezugshoeheuom"/>
     <Geometry path="xplan:raeumlicherGeltungsbereich" mapping="xplan_raeumlichergeltungsbereich"/>
@@ -8559,7 +8557,6 @@
     <Primitive path="xplan:aendert" mapping="xplan_aendert"/>
     <Primitive path="xplan:wurdeGeaendertVon" mapping="xplan_wurdegeaendertvon"/>
     <Primitive path="xplan:erstellungsMassstab" mapping="xplan_erstellungsmassstab"/>
-    <Primitive path="xplan:xPlanGMLVersion" mapping="xplan_xplangmlversion"/>
     <Primitive path="xplan:bezugshoehe" mapping="xplan_bezugshoehe"/>
     <Primitive path="xplan:bezugshoeheUOM" mapping="xplan_bezugshoeheuom"/>
     <Geometry path="xplan:raeumlicherGeltungsbereich" mapping="xplan_raeumlichergeltungsbereich"/>
@@ -11113,7 +11110,6 @@
     <Primitive path="xplan:aendert" mapping="xplan_aendert"/>
     <Primitive path="xplan:wurdeGeaendertVon" mapping="xplan_wurdegeaendertvon"/>
     <Primitive path="xplan:erstellungsMassstab" mapping="xplan_erstellungsmassstab"/>
-    <Primitive path="xplan:xPlanGMLVersion" mapping="xplan_xplangmlversion"/>
     <Primitive path="xplan:bezugshoehe" mapping="xplan_bezugshoehe"/>
     <Primitive path="xplan:bezugshoeheUOM" mapping="xplan_bezugshoeheuom"/>
     <Geometry path="xplan:raeumlicherGeltungsbereich" mapping="xplan_raeumlichergeltungsbereich"/>
@@ -13262,7 +13258,6 @@
     <Primitive path="xplan:aendert" mapping="xplan_aendert"/>
     <Primitive path="xplan:wurdeGeaendertVon" mapping="xplan_wurdegeaendertvon"/>
     <Primitive path="xplan:erstellungsMassstab" mapping="xplan_erstellungsmassstab"/>
-    <Primitive path="xplan:xPlanGMLVersion" mapping="xplan_xplangmlversion"/>
     <Primitive path="xplan:bezugshoehe" mapping="xplan_bezugshoehe"/>
     <Primitive path="xplan:bezugshoeheUOM" mapping="xplan_bezugshoeheuom"/>
     <Geometry path="xplan:raeumlicherGeltungsbereich" mapping="xplan_raeumlichergeltungsbereich"/>

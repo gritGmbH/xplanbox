@@ -3609,7 +3609,6 @@
             <element name="aendert" minOccurs="0" type="string"/>
             <element name="wurdeGeaendertVon" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="xPlanGMLVersion" minOccurs="0" type="string"/>
             <element name="bezugshoehe" minOccurs="0" type="string"/>
             <element name="bezugshoeheUOM" minOccurs="0" type="string"/>
             <element name="raeumlicherGeltungsbereich" type="gml:GeometryPropertyType"/>
@@ -7279,7 +7278,6 @@
             <element name="aendert" minOccurs="0" type="string"/>
             <element name="wurdeGeaendertVon" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="xPlanGMLVersion" minOccurs="0" type="string"/>
             <element name="bezugshoehe" minOccurs="0" type="string"/>
             <element name="bezugshoeheUOM" minOccurs="0" type="string"/>
             <element name="raeumlicherGeltungsbereich" type="gml:GeometryPropertyType"/>
@@ -9089,7 +9087,6 @@
             <element name="aendert" minOccurs="0" type="string"/>
             <element name="wurdeGeaendertVon" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="xPlanGMLVersion" minOccurs="0" type="string"/>
             <element name="bezugshoehe" minOccurs="0" type="string"/>
             <element name="bezugshoeheUOM" minOccurs="0" type="string"/>
             <element name="raeumlicherGeltungsbereich" type="gml:GeometryPropertyType"/>
@@ -11839,7 +11836,6 @@
             <element name="aendert" minOccurs="0" type="string"/>
             <element name="wurdeGeaendertVon" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="xPlanGMLVersion" minOccurs="0" type="string"/>
             <element name="bezugshoehe" minOccurs="0" type="string"/>
             <element name="bezugshoeheUOM" minOccurs="0" type="string"/>
             <element name="raeumlicherGeltungsbereich" type="gml:GeometryPropertyType"/>
@@ -14152,7 +14148,6 @@
             <element name="aendert" minOccurs="0" type="string"/>
             <element name="wurdeGeaendertVon" minOccurs="0" type="string"/>
             <element name="erstellungsMassstab" minOccurs="0" type="integer"/>
-            <element name="xPlanGMLVersion" minOccurs="0" type="string"/>
             <element name="bezugshoehe" minOccurs="0" type="string"/>
             <element name="bezugshoeheUOM" minOccurs="0" type="string"/>
             <element name="raeumlicherGeltungsbereich" type="gml:GeometryPropertyType"/>

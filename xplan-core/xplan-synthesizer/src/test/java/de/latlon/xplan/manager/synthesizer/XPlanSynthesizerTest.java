@@ -33,7 +33,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
@@ -54,53 +53,6 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 	}
 
 	@Test
-	public void testSynthesize_DefaultConfiguration() throws Exception {
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
-
-		XPlanArchive archive = getTestArchive("xplan41/LA22.zip");
-		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
-		xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
-
-		assertThat(xPlanSynthesizer.getRules().size(), is(7594));
-	}
-
-	@Test
-	public void testSynthesize_ConfigDirectoryIsInvalid() throws Exception {
-		Path notExist = Paths.get("/tmp/notExistDir");
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(notExist);
-
-		XPlanArchive archive = getTestArchive("xplan41/LA22.zip");
-		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
-		xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
-
-		assertThat(xPlanSynthesizer.getRules().size(), is(7594));
-	}
-
-	@Test
-	public void testSynthesize_ConfigDirectoryIsFile() throws Exception {
-		Path configFile = Files.createTempFile("synConfig", "");
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(configFile);
-
-		XPlanArchive archive = getTestArchive("xplan41/LA22.zip");
-		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
-		xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
-
-		assertThat(xPlanSynthesizer.getRules().size(), is(7594));
-	}
-
-	@Test
-	public void testSynthesize_ConfigDirectoryDoesNotContainRules() throws Exception {
-		Path configDirectory = createTmpDirectory();
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(configDirectory);
-
-		XPlanArchive archive = getTestArchive("xplan41/LA22.zip");
-		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
-		xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
-
-		assertThat(xPlanSynthesizer.getRules().size(), is(7594));
-	}
-
-	@Test
 	public void testSynthesize_ConfigDirectoryWithRule() throws Exception {
 		Path configDirectory = createTmpDirectoryAndCopyRuleFile("xplan41.syn",
 				"XP_BesondereArtDerBaulNutzung-XPlan4.xml");
@@ -110,7 +62,6 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		FeatureCollection synthesizedFeatures = xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
-		assertThat(xPlanSynthesizer.getRules().size(), is(7595));
 		Iterator<Feature> it = synthesizedFeatures.iterator();
 		while (it.hasNext()) {
 			Feature feature = it.next();
@@ -132,8 +83,6 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		FeatureCollection synthesizedFeatures = xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
 
-		assertThat(xPlanSynthesizer.getRules().size(), is(7594));
-
 		String firstPropertyValue = valueOfFirstProperty(synthesizedFeatures, "BP_BaugebietsTeilFlaeche",
 				"besondereArtDerBaulNutzung");
 		assertThat(firstPropertyValue, is("Art2"));
@@ -148,8 +97,6 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		XPlanArchive archive = getTestArchive("xplan41/BP2070-detailierteArtDerBaulNutzung.zip");
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
 		FeatureCollection synthesizedFeatures = xPlanSynthesizer.synthesize(archive.getVersion(), xplanFc);
-
-		assertThat(xPlanSynthesizer.getRules().size(), is(7594));
 
 		String firstPropertyValue = valueOfFirstProperty(synthesizedFeatures, "BP_BaugebietsTeilFlaeche",
 				"detaillierteArtDerBaulNutzung");

@@ -20,8 +20,8 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;

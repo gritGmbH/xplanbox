@@ -23,7 +23,6 @@ package de.latlon.xplan.manager.synthesizer.expression;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.synthesizer.XpPpoLookup;
-import de.latlon.xplan.manager.synthesizer.XplanAbschnittLookup;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLInputFactory;
@@ -43,14 +42,12 @@ public class TestFeaturesUtils {
 	public static FeatureCollection getTestFeatures(XPlanVersion version) {
 		FeatureCollection fc = load(version);
 		XpPpoLookup.init(fc);
-		XplanAbschnittLookup.init(fc);
 		return fc;
 	}
 
 	public static FeatureCollection getTestFeatures(XPlanVersion version, String resourceName) {
 		FeatureCollection fc = load(version, resourceName);
 		XpPpoLookup.init(fc);
-		XplanAbschnittLookup.init(fc);
 		return fc;
 	}
 

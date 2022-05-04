@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
-import de.latlon.xplan.manager.synthesizer.expression.XplanTextAbschnitte;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.feature.Feature;
 
@@ -30,7 +29,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XpTextAbschnittFlattener extends AbstractFlattener {
+public class XpTextAbschnittFlattener extends AbstractTextlicherAbschnittFlattener {
 
 	private static final List<String> ACCEPTEDELEMENTS = Arrays.asList(new String[] { "XP_TextAbschnitt",
 			"BP_TextAbschnitt", "FP_TextAbschnitt", "LP_TextAbschnitt", "RP_TextAbschnitt", "SO_TextAbschnitt" });
@@ -47,7 +46,7 @@ public class XpTextAbschnittFlattener extends AbstractFlattener {
 	@Override
 	public String flatten(TypedObjectNode xpTextAbschnitt) {
 		Feature feature = (Feature) xpTextAbschnitt;
-		return new XplanTextAbschnitte().toString(feature);
+		return flatten(feature);
 	}
 
 }

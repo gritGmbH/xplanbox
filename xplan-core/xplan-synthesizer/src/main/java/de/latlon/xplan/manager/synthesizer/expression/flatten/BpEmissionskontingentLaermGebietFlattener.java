@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class BP_EmissionskontingentLaermFlattener extends AbstractFlattener {
+public class BpEmissionskontingentLaermGebietFlattener extends AbstractFlattener {
 
 	@Override
 	public boolean accepts(TypedObjectNode element) {
@@ -38,15 +38,17 @@ public class BP_EmissionskontingentLaermFlattener extends AbstractFlattener {
 		if (element instanceof ElementNode) {
 			elName = ((ElementNode) element).getName().getLocalPart();
 		}
-		return "BP_EmissionskontingentLaerm".equals(elName);
+		return "BP_EmissionskontingentLaermGebiet".equals(elName);
 	}
 
 	@Override
-	public String flatten(TypedObjectNode bpEmissionskontingentLaerm) {
+	public String flatten(TypedObjectNode bpEmissionskontingentLaermGebiet) {
 		List<Pair<String, String>> properties = new ArrayList<>();
-		append("Emissionskontingent Tag [db]", bpEmissionskontingentLaerm, "ekwertTag", properties);
-		append("Emissionskontingent Nacht [db]", bpEmissionskontingentLaerm, "ekwertNacht", properties);
-		append("Erläuterung", bpEmissionskontingentLaerm, "erlaeuterung", properties);
+		append("Emissionskontingent Tag [db]", bpEmissionskontingentLaermGebiet, "ekwertTag", properties);
+		append("Emissionskontingent Nacht [db]", bpEmissionskontingentLaermGebiet, "ekwertNacht", properties);
+		append("Erläuterung", bpEmissionskontingentLaermGebiet, "erlaeuterung", properties);
+		append("Bezeichnung des Immissionsgebietes", bpEmissionskontingentLaermGebiet, "gebietsbezeichnung",
+				properties);
 		return encode(properties);
 	}
 

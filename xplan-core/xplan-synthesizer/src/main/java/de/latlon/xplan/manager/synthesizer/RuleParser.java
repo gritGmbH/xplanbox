@@ -24,8 +24,6 @@ import de.latlon.xplan.manager.synthesizer.expression.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.LatestDate;
 import de.latlon.xplan.manager.synthesizer.expression.StringConstant;
-import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbest;
-import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbestLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanExternalCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGeometry;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGmlDescription;
@@ -33,13 +31,9 @@ import de.latlon.xplan.manager.synthesizer.expression.XPlanName;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanType;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBaugebietFlaechenteile;
-import de.latlon.xplan.manager.synthesizer.expression.XplanBegruendungAbschnitte;
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookup;
-import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookupExt;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
 import de.latlon.xplan.manager.synthesizer.expression.XplanGmlName;
-import de.latlon.xplan.manager.synthesizer.expression.XplanRefTextAbschnitte;
-import de.latlon.xplan.manager.synthesizer.expression.XplanTextAbschnitte;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,27 +109,6 @@ class RuleParser {
 		return new XplanCodeLookup(parse(args.get(0)), trimString(args.get(1)));
 	}
 
-	private Expression parseXPlanCodeLookupExt(List<String> args) {
-		return new XplanCodeLookupExt(parse(args.get(0)), trimString(args.get(1)));
-	}
-
-	private Expression parseXPlanTextSchluessel() {
-		return new XplanTextAbschnitte();
-	}
-
-	private Expression parseXPlanTextSchluesselBegruendung() {
-		return new XplanBegruendungAbschnitte();
-	}
-
-	private Expression parseXPlanBesondZweckbestLookup(List<String> args) {
-		return new XPlanBesondZweckbestLookup(parse(args.get(0)), parse(args.get(1)), trimString(args.get(2)),
-				trimString(args.get(3)));
-	}
-
-	private Expression parseXPlanBesondZweckbest(List<String> args) {
-		return new XPlanBesondZweckbest(parse(args.get(0)), parse(args.get(1)), trimString(args.get(2)));
-	}
-
 	private Expression parseXPlanGeometry(List<String> args) {
 		return new XPlanGeometry(parseXPath(args));
 	}
@@ -168,18 +141,6 @@ class RuleParser {
 			return parseXPlanFlattenFeature(args);
 		case "xplanCodeLookup":
 			return parseXPlanCodeLookup(args);
-		case "xplanCodeLookupExt":
-			return parseXPlanCodeLookupExt(args);
-		case "xplanRefTextAbschnitte":
-			return new XplanRefTextAbschnitte();
-		case "xplanTextAbschnitte":
-			return parseXPlanTextSchluessel();
-		case "xplanBegruendungAbschnitte":
-			return parseXPlanTextSchluesselBegruendung();
-		case "xplanBesondZweckbest":
-			return parseXPlanBesondZweckbest(args);
-		case "xplanBesondZweckbestLookup":
-			return parseXPlanBesondZweckbestLookup(args);
 		case "xplanGeometry":
 			return parseXPlanGeometry(args);
 		case "xplanAggregateFlaechenteil":
