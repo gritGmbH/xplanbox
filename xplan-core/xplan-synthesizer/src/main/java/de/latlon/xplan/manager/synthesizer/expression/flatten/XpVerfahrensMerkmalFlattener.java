@@ -20,10 +20,8 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
-import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
-import org.deegree.feature.Feature;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -32,14 +30,7 @@ public class XpVerfahrensMerkmalFlattener extends AbstractFlattener {
 
 	@Override
 	public boolean accepts(TypedObjectNode node) {
-		String elName = null;
-		if (node instanceof Feature) {
-			elName = ((Feature) node).getName().getLocalPart();
-		}
-		else if (node instanceof ElementNode) {
-			elName = ((ElementNode) node).getName().getLocalPart();
-		}
-		return "XP_VerfahrensMerkmal".equals(elName);
+		return accepts(node, "XP_VerfahrensMerkmal");
 	}
 
 	@Override

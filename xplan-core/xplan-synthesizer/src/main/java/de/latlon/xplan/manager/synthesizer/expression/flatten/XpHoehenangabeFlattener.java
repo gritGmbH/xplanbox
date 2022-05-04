@@ -25,7 +25,6 @@ import de.latlon.xplan.commons.util.XPlanVersionUtils;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.utils.Pair;
-import org.deegree.feature.Feature;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +36,7 @@ public class XpHoehenangabeFlattener extends AbstractFlattener {
 
 	@Override
 	public boolean accepts(TypedObjectNode node) {
-		String elName = null;
-		if (node instanceof Feature) {
-			elName = ((Feature) node).getName().getLocalPart();
-		}
-		if (node instanceof ElementNode) {
-			elName = ((ElementNode) node).getName().getLocalPart();
-		}
-		return "XP_Hoehenangabe".equals(elName);
+		return accepts(node, "XP_Hoehenangabe");
 	}
 
 	@Override

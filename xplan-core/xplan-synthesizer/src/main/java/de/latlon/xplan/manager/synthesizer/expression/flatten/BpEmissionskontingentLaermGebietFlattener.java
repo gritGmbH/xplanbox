@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
-import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.utils.Pair;
 
@@ -33,12 +32,8 @@ import java.util.List;
 public class BpEmissionskontingentLaermGebietFlattener extends AbstractFlattener {
 
 	@Override
-	public boolean accepts(TypedObjectNode element) {
-		String elName = null;
-		if (element instanceof ElementNode) {
-			elName = ((ElementNode) element).getName().getLocalPart();
-		}
-		return "BP_EmissionskontingentLaermGebiet".equals(elName);
+	public boolean accepts(TypedObjectNode node) {
+		return acceptsElementNode(node, "BP_EmissionskontingentLaermGebiet");
 	}
 
 	@Override

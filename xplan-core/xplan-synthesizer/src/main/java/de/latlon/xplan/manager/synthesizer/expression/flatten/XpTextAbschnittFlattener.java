@@ -36,11 +36,11 @@ public class XpTextAbschnittFlattener extends AbstractTextlicherAbschnittFlatten
 
 	@Override
 	public boolean accepts(TypedObjectNode node) {
-		String elName = null;
 		if (node instanceof Feature) {
-			elName = ((Feature) node).getName().getLocalPart();
+			String elName = ((Feature) node).getName().getLocalPart();
+			return ACCEPTEDELEMENTS.contains(elName);
 		}
-		return ACCEPTEDELEMENTS.contains(elName);
+		return false;
 	}
 
 	@Override

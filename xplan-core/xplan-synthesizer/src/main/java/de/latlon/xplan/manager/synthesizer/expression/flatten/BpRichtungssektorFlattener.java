@@ -20,9 +20,6 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.util.XPlanVersionUtils;
-import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.utils.Pair;
 
@@ -35,12 +32,8 @@ import java.util.List;
 public class BpRichtungssektorFlattener extends AbstractFlattener {
 
 	@Override
-	public boolean accepts(TypedObjectNode element) {
-		String elName = null;
-		if (element instanceof ElementNode) {
-			elName = ((ElementNode) element).getName().getLocalPart();
-		}
-		return "BP_Richtungssektor".equals(elName);
+	public boolean accepts(TypedObjectNode node) {
+		return acceptsElementNode(node, "BP_Richtungssektor");
 	}
 
 	@Override

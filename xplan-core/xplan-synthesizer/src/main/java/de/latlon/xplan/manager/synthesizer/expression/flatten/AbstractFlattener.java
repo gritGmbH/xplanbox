@@ -38,6 +38,45 @@ import java.util.List;
  */
 abstract class AbstractFlattener implements Flattener {
 
+	/**
+	 * Checks if the node is an accepted ElementNode or Feature
+	 * @param node never <code>null</code>
+	 * @param acceptedFeatureTypeOrElementName never <code>null</code>
+	 * @return
+	 */
+	public boolean accepts(TypedObjectNode node, String acceptedFeatureTypeOrElementName) {
+		return acceptsElementNode(node, acceptedFeatureTypeOrElementName)
+				|| acceptsFeature(node, acceptedFeatureTypeOrElementName);
+	}
+
+	/**
+	 * Checks if the node is an accepted ElementNode
+	 * @param node never <code>null</code>
+	 * @param acceptedElementNodeName never <code>null</code>
+	 * @return
+	 */
+	public boolean acceptsElementNode(TypedObjectNode node, String acceptedElementNodeName) {
+		if (node instanceof ElementNode) {
+			String elName = ((ElementNode) node).getName().getLocalPart();
+			return acceptedElementNodeName.equals(elName);
+		}
+		return false;
+	}
+
+	/**
+	 * Checks if the node is an accepted Feature
+	 * @param node never <code>null</code>
+	 * @param acceptedFeatureTypeName never <code>null</code>
+	 * @return
+	 */
+	public boolean acceptsFeature(TypedObjectNode node, String acceptedFeatureTypeName) {
+		if (node instanceof Feature) {
+			String elName = ((Feature) node).getName().getLocalPart();
+			return acceptedFeatureTypeName.equals(elName);
+		}
+		return false;
+	}
+
 	TypedObjectNode getPropertyValue(TypedObjectNode xpVerfahrensmerkmal, String propName) {
 		if (xpVerfahrensmerkmal instanceof Feature) {
 			Feature f = (Feature) xpVerfahrensmerkmal;

@@ -36,11 +36,7 @@ public class XpVerbundenerPlanFlattener extends AbstractFlattener {
 
 	@Override
 	public boolean accepts(TypedObjectNode node) {
-		String elName = null;
-		if (node instanceof ElementNode) {
-			elName = ((ElementNode) node).getName().getLocalPart();
-		}
-		return "XP_VerbundenerPlan".equals(elName);
+		return acceptsElementNode(node, "XP_VerbundenerPlan");
 	}
 
 	@Override

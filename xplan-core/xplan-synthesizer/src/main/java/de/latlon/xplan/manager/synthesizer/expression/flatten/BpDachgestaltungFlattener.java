@@ -36,11 +36,7 @@ public class BpDachgestaltungFlattener extends AbstractFlattener {
 
 	@Override
 	public boolean accepts(TypedObjectNode node) {
-		String elName = null;
-		if (node instanceof ElementNode) {
-			elName = ((ElementNode) node).getName().getLocalPart();
-		}
-		return "BP_Dachgestaltung".equals(elName);
+		return acceptsElementNode(node, "BP_Dachgestaltung");
 	}
 
 	@Override
