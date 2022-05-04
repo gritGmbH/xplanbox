@@ -89,20 +89,20 @@ public abstract class AbstractFlattener implements Flattener {
 		return false;
 	}
 
-	public TypedObjectNode getPropertyValue(TypedObjectNode xpVerfahrensmerkmal, String propName) {
-		if (xpVerfahrensmerkmal instanceof Feature) {
-			Feature f = (Feature) xpVerfahrensmerkmal;
+	public TypedObjectNode getPropertyValue(TypedObjectNode node, String propName) {
+		if (node instanceof Feature) {
+			Feature f = (Feature) node;
 			QName qName = new QName(f.getName().getNamespaceURI(), propName);
 			return Features.getPropertyValue(f, qName);
 		}
-		else if (xpVerfahrensmerkmal instanceof ElementNode) {
-			return getPropertyValue((ElementNode) xpVerfahrensmerkmal, propName);
+		else if (node instanceof ElementNode) {
+			return getPropertyValue((ElementNode) node, propName);
 		}
 		throw new IllegalArgumentException();
 	}
 
-	public TypedObjectNode getPropertyValue(ElementNode xpVerfahrensmerkmal, String propName) {
-		for (TypedObjectNode child : xpVerfahrensmerkmal.getChildren()) {
+	public TypedObjectNode getPropertyValue(ElementNode node, String propName) {
+		for (TypedObjectNode child : node.getChildren()) {
 			if (child instanceof ElementNode) {
 				ElementNode childEl = (ElementNode) child;
 				if (!childEl.getName().getLocalPart().equals(propName)) {
@@ -160,14 +160,14 @@ public abstract class AbstractFlattener implements Flattener {
 		}
 	}
 
-	public String asString(TypedObjectNode property, String ags) {
-		if (property instanceof Property) {
-			property = ((Property) property).getValue();
+	public String asString(TypedObjectNode node, String ags) {
+		if (node instanceof Property) {
+			node = ((Property) node).getValue();
 		}
-		if (property instanceof PrimitiveValue) {
-			return ((PrimitiveValue) property).getAsText();
+		if (node instanceof PrimitiveValue) {
+			return ((PrimitiveValue) node).getAsText();
 		}
-		PrimitiveValue propertyValue = (PrimitiveValue) getPropertyValue(property, ags);
+		PrimitiveValue propertyValue = (PrimitiveValue) getPropertyValue(node, ags);
 		if (propertyValue != null)
 			return propertyValue.getAsText();
 		return null;
