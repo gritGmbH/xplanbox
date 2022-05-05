@@ -60,6 +60,8 @@ mvn clean install
 ```
 > **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release-Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11! Sobald eine Version von deegree mit Unterstützung von Java 11 verfügbar ist, entfällt dieser Schritt.
 
+> **_Hinweis_**: Unter dem Betriebssystem Windows kann es bei der Ausführung von Unit-Test zu Fehlern kommen. Es kann dann erforderlich sein, die Tests zu überspringen. Dazu muss die Option `-DskipTests` beim Aufruf von Maven zu ergänzen.
+
 #### XPlanung-Validierungsregeln einbinden
 
 Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des XPlanung-Standards aus dem [Bitbucket-Repository der Geowerkstatt Hamburg](https://bitbucket.org/geowerkstatt-hamburg/xplanung).
