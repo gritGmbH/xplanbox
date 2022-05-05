@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression.flatten;
+package de.latlon.xplan.manager.synthesizer.expression.flatten.xp;
 
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
@@ -35,16 +35,27 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class BpDachgestaltungFlattenerTest {
+public class XpVerbundenerPlanFlattenerTest {
 
 	@Test
-	public void testFlatten() {
-		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/BpDachgestaltung.xml");
-		Feature feature = getTestFeature(features, "BP_BAUGEBTF");
-		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:dachgestaltung"));
+	public void testFlattenAendert() {
+		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
+		Feature feature = getTestFeature(features, "BP_PLAN");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:aendert"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals(
-				"[Dachneigung: 7|Dachneigung Min: 9|Dachneigung Max: 90|Dachneigung Zwingend: 8|Dachform: Kegeldach]",
+				"[Verbundener Plan: Heideweg1|Rechtscharakter Planänderung: Ergaenzung|Nummer verbundener Plan: 42]",
+				value.toString());
+	}
+
+	@Test
+	public void testFlattenWurdeGeaendertVon() {
+		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
+		Feature feature = getTestFeature(features, "BP_PLAN");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:wurdeGeaendertVon"));
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals(
+				"[Verbundener Plan: Heideweg8|Rechtscharakter Planänderung: Aufhebung|Nummer verbundener Plan: 88]",
 				value.toString());
 	}
 

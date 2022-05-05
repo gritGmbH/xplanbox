@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression.flatten;
+package de.latlon.xplan.manager.synthesizer.expression.flatten.xp;
 
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
@@ -35,28 +35,15 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XpVerbundenerPlanFlattenerTest {
+public class XpSPEMassnahmenDatenFlattenerTest {
 
 	@Test
-	public void testFlattenAendert() {
-		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
-		Feature feature = getTestFeature(features, "BP_PLAN");
-		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:aendert"));
+	public void testFlatten() {
+		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpSPEMassnahmenDaten.xml");
+		Feature feature = getTestFeature(features, "BP_SCHUTZPFLENTWFLAECHE");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:massnahme"));
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals(
-				"[Verbundener Plan: Heideweg1|Rechtscharakter Planänderung: Ergaenzung|Nummer verbundener Plan: 42]",
-				value.toString());
-	}
-
-	@Test
-	public void testFlattenWurdeGeaendertVon() {
-		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
-		Feature feature = getTestFeature(features, "BP_PLAN");
-		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:wurdeGeaendertVon"));
-		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals(
-				"[Verbundener Plan: Heideweg8|Rechtscharakter Planänderung: Aufhebung|Nummer verbundener Plan: 88]",
-				value.toString());
+		assertEquals("[Maßnahme: Trockenrasen]", value.toString());
 	}
 
 }

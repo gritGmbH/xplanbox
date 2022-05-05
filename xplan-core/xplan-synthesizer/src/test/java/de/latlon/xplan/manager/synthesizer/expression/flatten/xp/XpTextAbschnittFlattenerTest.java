@@ -1,4 +1,4 @@
-package de.latlon.xplan.manager.synthesizer.expression.flatten;
+package de.latlon.xplan.manager.synthesizer.expression.flatten.xp;
 
 /*-
  * #%L

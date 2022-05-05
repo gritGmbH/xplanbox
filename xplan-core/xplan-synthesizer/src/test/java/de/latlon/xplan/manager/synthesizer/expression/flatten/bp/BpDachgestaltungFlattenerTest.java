@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression.flatten;
+package de.latlon.xplan.manager.synthesizer.expression.flatten.bp;
 
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
@@ -35,15 +35,17 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XpSPEMassnahmenDatenFlattenerTest {
+public class BpDachgestaltungFlattenerTest {
 
 	@Test
 	public void testFlatten() {
-		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpSPEMassnahmenDaten.xml");
-		Feature feature = getTestFeature(features, "BP_SCHUTZPFLENTWFLAECHE");
-		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:massnahme"));
+		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/BpDachgestaltung.xml");
+		Feature feature = getTestFeature(features, "BP_BAUGEBTF");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:dachgestaltung"));
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("[Maßnahme: Trockenrasen]", value.toString());
+		assertEquals(
+				"[Dachneigung: 7|Dachneigung Min: 9|Dachneigung Max: 90|Dachneigung Zwingend: 8|Dachform: Kegeldach]",
+				value.toString());
 	}
 
 }
