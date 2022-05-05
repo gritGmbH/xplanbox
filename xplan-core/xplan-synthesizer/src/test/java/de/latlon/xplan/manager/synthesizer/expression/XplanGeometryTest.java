@@ -39,9 +39,9 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 /**
@@ -50,7 +50,7 @@ import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 public class XplanGeometryTest {
 
 	@Test
-	public void testEvaluate() {
+	public void testEvaluate() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:raeumlicherGeltungsbereich"));
@@ -59,7 +59,7 @@ public class XplanGeometryTest {
 	}
 
 	@Test
-	public void testEvaluateEmptyProperty() {
+	public void testEvaluateEmptyProperty() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_3");
 		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:position"));

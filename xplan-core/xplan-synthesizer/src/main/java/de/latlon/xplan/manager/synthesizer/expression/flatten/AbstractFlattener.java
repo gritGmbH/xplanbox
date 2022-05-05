@@ -151,6 +151,15 @@ public abstract class AbstractFlattener implements Flattener {
 		}
 	}
 
+	public void appendBoolean(String label, TypedObjectNode feature, String propertyName,
+			List<Pair<String, String>> properties) {
+		String propertyValue = asString(feature, propertyName);
+		if (propertyValue != null) {
+			String value = Boolean.parseBoolean(propertyValue) ? "ja" : "nein";
+			properties.add(new Pair(label, value));
+		}
+	}
+
 	public void appendTranslatedCode(String label, TypedObjectNode feature, String propertyName, XPlanVersion version,
 			String codeListName, List<Pair<String, String>> properties) {
 		String propertyValue = asString(feature, propertyName);

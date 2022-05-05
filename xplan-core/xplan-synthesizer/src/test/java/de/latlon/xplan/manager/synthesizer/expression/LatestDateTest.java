@@ -39,7 +39,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class LatestDateTest {
 
 	@Test
-	public void testEvaluate_Empty() {
+	public void testEvaluate_Empty() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_51, "Praesentationsobjekte.gml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		LatestDate latestDate = new LatestDate(new Xpath("xplan:auslegungsStartDatum"));
@@ -48,7 +48,7 @@ public class LatestDateTest {
 	}
 
 	@Test
-	public void testEvaluate() {
+	public void testEvaluate() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_51, "MultipleDates.gml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		LatestDate latestDate = new LatestDate(new Xpath("xplan:auslegungsStartDatum"));

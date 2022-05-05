@@ -36,7 +36,7 @@ import static org.junit.Assert.assertEquals;
 public class XplanGmlNameTest {
 
 	@Test
-	public void testEvaluate() {
+	public void testEvaluate() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanGmlName expr = new XplanGmlName();

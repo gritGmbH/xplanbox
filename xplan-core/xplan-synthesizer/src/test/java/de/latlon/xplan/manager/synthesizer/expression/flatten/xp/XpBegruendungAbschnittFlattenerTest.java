@@ -38,7 +38,7 @@ import static org.junit.Assert.assertEquals;
 public class XpBegruendungAbschnittFlattenerTest {
 
 	@Test
-	public void testEvaluate() {
+	public void testEvaluate() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refBegruendungInhalt"), true);

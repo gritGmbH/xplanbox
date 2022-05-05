@@ -38,7 +38,7 @@ import static org.junit.Assert.assertEquals;
 public class XpVerbundenerPlanFlattenerTest {
 
 	@Test
-	public void testFlattenAendert() {
+	public void testFlattenAendert() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:aendert"));
@@ -49,7 +49,7 @@ public class XpVerbundenerPlanFlattenerTest {
 	}
 
 	@Test
-	public void testFlattenWurdeGeaendertVon() {
+	public void testFlattenWurdeGeaendertVon() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpVerbundenerPlanFlattener.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:wurdeGeaendertVon"));

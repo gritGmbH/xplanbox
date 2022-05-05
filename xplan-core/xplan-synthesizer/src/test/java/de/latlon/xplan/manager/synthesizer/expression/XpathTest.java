@@ -37,8 +37,8 @@ import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.g
 import static org.deegree.commons.tom.primitive.BaseType.DECIMAL;
 import static org.deegree.commons.tom.primitive.BaseType.DOUBLE;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -46,7 +46,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class XpathTest {
 
 	@Test
-	public void testSimpleProperty() {
+	public void testSimpleProperty() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		Xpath expr = new Xpath("xplan:beschreibung");
@@ -56,7 +56,7 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testGeometryProperty() {
+	public void testGeometryProperty() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		Xpath expr = new Xpath("xplan:raeumlicherGeltungsbereich");
@@ -66,7 +66,7 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testGmlIdAttribute() {
+	public void testGmlIdAttribute() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		Xpath expr = new Xpath("@gml:id");
@@ -75,7 +75,7 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testDrehwinkelDefaultValue() {
+	public void testDrehwinkelDefaultValue() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_4");
 		Xpath expr = new Xpath("xplan:drehwinkel/text()", 0.0);
@@ -85,7 +85,7 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testDrehwinkelValue() {
+	public void testDrehwinkelValue() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_1");
 		Xpath expr = new Xpath("xplan:drehwinkel/text()");
@@ -95,7 +95,7 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testDrehwinkelUomAttribute() {
+	public void testDrehwinkelUomAttribute() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_1");
 		Xpath expr = new Xpath("xplan:drehwinkel/@uom");
@@ -104,7 +104,7 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testMultiProperty() {
+	public void testMultiProperty() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Bereich_1");
 		Xpath expr = new Xpath("xplan:nachrichtlich");
@@ -117,7 +117,7 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testIntegerPropertyIndex() {
+	public void testIntegerPropertyIndex() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_1");
 		Xpath expr = new Xpath("xplan:index");

@@ -36,10 +36,6 @@ public class KomplexeZweckbestimmungFlattener extends AbstractFlattener {
 		acceptedZweckbestimmungenAndEnums.put("FP_KomplexeZweckbestLandwirtschaft", "XP_ZweckbestimmungLandwirtschaft");
 		acceptedZweckbestimmungenAndEnums.put("FP_KomplexeZweckbestWald", "XP_ZweckbestimmungWald");
 		acceptedZweckbestimmungenAndEnums.put("FP_KomplexeZweckbestVerEntsorgung", "XP_ZweckbestimmungVerEntsorgung");
-		acceptedZweckbestimmungenAndEnums.put("", "");
-		acceptedZweckbestimmungenAndEnums.put("", "");
-		acceptedZweckbestimmungenAndEnums.put("", "");
-		acceptedZweckbestimmungenAndEnums.put("", "");
 	}
 
 	@Override

@@ -40,7 +40,7 @@ import static org.junit.Assert.assertEquals;
 public class XpTextAbschnittFlattenerTest {
 
 	@Test
-	public void testFlattenTexte() {
+	public void testFlattenTexte() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpTextAbschnittFlattener.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"));
@@ -49,7 +49,7 @@ public class XpTextAbschnittFlattenerTest {
 	}
 
 	@Test
-	public void testFlattenTexte_sorted() {
+	public void testFlattenTexte_sorted() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpTextAbschnittFlattener.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"), true);
@@ -58,7 +58,7 @@ public class XpTextAbschnittFlattenerTest {
 	}
 
 	@Test
-	public void testFlattenTexte_refText() {
+	public void testFlattenTexte_refText() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpTextAbschnittWithRefText.xml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"), true);
@@ -69,7 +69,7 @@ public class XpTextAbschnittFlattenerTest {
 	}
 
 	@Test
-	public void testEvaluate() {
+	public void testEvaluate() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refTextInhalt"), true);

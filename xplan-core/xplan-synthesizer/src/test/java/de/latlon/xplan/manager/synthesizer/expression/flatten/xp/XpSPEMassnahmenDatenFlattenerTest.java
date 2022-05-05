@@ -38,7 +38,7 @@ import static org.junit.Assert.assertEquals;
 public class XpSPEMassnahmenDatenFlattenerTest {
 
 	@Test
-	public void testFlatten() {
+	public void testFlatten() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/XpSPEMassnahmenDaten.xml");
 		Feature feature = getTestFeature(features, "BP_SCHUTZPFLENTWFLAECHE");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:massnahme"));

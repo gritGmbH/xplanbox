@@ -38,7 +38,7 @@ import static org.junit.Assert.assertEquals;
 public class BpDachgestaltungFlattenerTest {
 
 	@Test
-	public void testFlatten() {
+	public void testFlatten() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_51, "flatten/BpDachgestaltung.xml");
 		Feature feature = getTestFeature(features, "BP_BAUGEBTF");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:dachgestaltung"));

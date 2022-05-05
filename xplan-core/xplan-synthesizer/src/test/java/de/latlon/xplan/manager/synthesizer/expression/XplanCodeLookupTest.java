@@ -37,7 +37,7 @@ import static org.junit.Assert.assertEquals;
 public class XplanCodeLookupTest {
 
 	@Test
-	public void testEvaluateXplan40() {
+	public void testEvaluateXplan40() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_40);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
@@ -46,7 +46,7 @@ public class XplanCodeLookupTest {
 	}
 
 	@Test
-	public void testEvaluateXplan41() {
+	public void testEvaluateXplan41() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
