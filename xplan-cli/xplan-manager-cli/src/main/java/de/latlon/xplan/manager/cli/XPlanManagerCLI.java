@@ -20,6 +20,25 @@
  */
 package de.latlon.xplan.manager.cli;
 
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
+import de.latlon.xplan.commons.configuration.PropertiesLoader;
+import de.latlon.xplan.manager.CategoryMapper;
+import de.latlon.xplan.manager.XPlanManager;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.log.SystemLog;
+import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.workspace.WorkspaceReloader;
+import de.latlon.xplan.manager.workspace.WorkspaceUtils;
+import org.deegree.commons.config.DeegreeWorkspace;
+import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.cs.exceptions.UnknownCRSException;
+import org.deegree.cs.persistence.CRSManager;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,26 +47,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.log.SystemLog;
-import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.workspace.WorkspaceUtils;
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.deegree.cs.coordinatesystems.ICRS;
-import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.cs.persistence.CRSManager;
-
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
-import de.latlon.xplan.commons.configuration.PropertiesLoader;
-import de.latlon.xplan.manager.CategoryMapper;
-import de.latlon.xplan.manager.XPlanManager;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
-import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 
 /**
  * Kommandozeilen-Frontend zum Verwalten von XPlanArchiven und zum Bearbeiten der
@@ -78,7 +77,7 @@ public class XPlanManagerCLI {
 			printUsage();
 			break;
 		case "-import":
-			importOption(args, instantiateManager(args), false);
+			importOption(args, instantiateManager(args));
 			break;
 		case "-export":
 			exportOption(args, instantiateManager(args));
@@ -151,11 +150,8 @@ public class XPlanManagerCLI {
 		}
 		String planId = args[1];
 		try {
-			if (args.length == 2)
+			if (args.length == 2) {
 				manager.delete(planId);
-			else if (args.length == 4 && "--workspace".equals(args[2])) {
-				File workspaceFolder = new File(args[3]);
-				manager.delete(planId, workspaceFolder);
 			}
 			else {
 				printUsage();
@@ -184,7 +180,7 @@ public class XPlanManagerCLI {
 		}
 	}
 
-	private static void importOption(String[] args, XPlanManager manager, boolean makeWMSConfig) {
+	private static void importOption(String[] args, XPlanManager manager) {
 		if (args.length < 2 || args.length > 7) {
 			printUsage();
 		}
@@ -219,12 +215,7 @@ public class XPlanManagerCLI {
 		try {
 			if (args.length == nextArg
 					|| (args.length >= nextArg + 1 && ("--managerconfiguration".equals(args[nextArg])))) {
-				importPlan(manager, makeWMSConfig, force, fileName, defaultCRS, null);
-			}
-			else if (args.length >= nextArg + 1 && "--workspace".equals(args[nextArg])) {
-				nextArg++;
-				File workspaceFolder = new File(args[nextArg]);
-				importPlan(manager, makeWMSConfig, force, fileName, defaultCRS, workspaceFolder);
+				importPlan(manager, force, fileName, defaultCRS);
 			}
 			else {
 				printUsage();
@@ -235,8 +226,8 @@ public class XPlanManagerCLI {
 		}
 	}
 
-	private static void importPlan(XPlanManager manager, boolean makeWMSConfig, boolean force, String fileName,
-			ICRS defaultCRS, File workspaceFolder) throws Exception {
+	private static void importPlan(XPlanManager manager, boolean force, String fileName, ICRS defaultCRS)
+			throws Exception {
 		List<RasterEvaluationResult> evaluateRasterdata = manager.evaluateRasterdata(fileName);
 		System.out.println("Evaluationsergebnis der referenzierten Rasterdaten: ");
 		boolean areAllValid = true;
@@ -249,7 +240,6 @@ public class XPlanManagerCLI {
 			if (!configuredCrs || !supportedImageFormat)
 				areAllValid = false;
 		}
-		boolean makeRasterConfig = true;
 		if (areAllValid) {
 			System.out.println("Es existieren keine invaliden Rasterdaten");
 		}
@@ -262,9 +252,8 @@ public class XPlanManagerCLI {
 			System.out.println("Es existieren invaliden Rasterdaten. Da die Option --force gesetzt ist, "
 					+ "wird der Plan importiert, es werden jedoch keine Konfigurationen für "
 					+ "Rasterdaten geschrieben.");
-			makeRasterConfig = true;
 		}
-		manager.importPlan(fileName, defaultCRS, force, makeWMSConfig, makeRasterConfig, workspaceFolder, null);
+		manager.importPlan(fileName, defaultCRS, force, true, null);
 	}
 
 	private static void createDBOption(String[] args, XPlanManager manager) {
@@ -382,10 +371,10 @@ public class XPlanManagerCLI {
 		System.out
 				.println(" -updateWmsSortDate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(
-				" -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+				" -import [--force] <xplanarchiv> [--crs <CRS>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(
 				" -export <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
-		System.out.println(" -delete <planid> [--workspace <workspace verzeichnis>]");
+		System.out.println(" -delete <planid>");
 		System.out.println();
 		System.out.println("Raster-Operationen:");
 		System.out.println();

@@ -59,7 +59,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -233,8 +232,8 @@ public class TestContext {
 			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
 			XPlanGmlTransformer xPlanGmlTransformer) throws Exception {
 		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
-		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(), anyBoolean(),
-				nullable(File.class), nullable(String.class), any())).thenReturn(Collections.singletonList(123));
+		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(),
+				nullable(String.class), any())).thenReturn(Collections.singletonList(123));
 		return xplanInsertManager;
 	}
 

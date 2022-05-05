@@ -28,8 +28,6 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -56,26 +54,12 @@ public class XPlanDeleteManager {
 	/**
 	 * Removes the plan with the given ID from the XPlanManager. Includes: Database and
 	 * raster data. WMS configuration is not removed.
-	 * @param planId
-	 */
-	public void delete(String planId) throws Exception {
-		delete(planId, null);
-	}
-
-	/**
-	 * @param planId the plan id to delete
-	 * @param workspaceFolder workspace folder, may be <code>null</code> if default path
-	 * should be used.
+	 * @param planId the plan id to delete should be used.
 	 * @throws Exception
 	 */
-	public void delete(String planId, File workspaceFolder) throws Exception {
+	public void delete(String planId) throws Exception {
 		xPlanDao.deletePlan(planId);
-		xPlanRasterManager.removeRasterLayers(planId); // may require path to workspace
-		// TODO workspace is passed by CLI but not used, if following is removed also
-		// if (workspaceFolder!=null && workspaceFolder.exists()) {
-		// new
-		// WmsWorkspaceManager(findWorkspaceDirectory(workspaceFolder)).deleteWmsWorkspaceFilesForId(planId);
-		// }
+		xPlanRasterManager.removeRasterLayers(planId);
 		reloadWorkspace();
 		LOG.info("XPlanArchiv mit Id {} wurde gelöscht", planId);
 	}
