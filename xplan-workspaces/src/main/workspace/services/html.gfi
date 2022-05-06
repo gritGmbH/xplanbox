@@ -133,10 +133,10 @@
 		</strong>
       </td>
 </tr>
-<?property not(wirdDargestelltDurch,gmlId,raster*,ref*,externeReferenz,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich,wmsSortDate,praesentationsobjekt,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme,texte,textAbschnitte,begruendungsTexte):property>
+<?property not(wirdDargestelltDurch,gmlId,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,wmsSortDate,praesentationsobjekt,raster*,ref*,externeReferenz,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,texte,begruendungsTexte):property>
 <?property externeReferenz:externeReferenzProperty>
-<?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,massnahme:complexproperty>
-<?property texte,textAbschnitte,begruendungsTexte:texteproperty>
+<?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung:complexproperty>
+<?property texte,begruendungsTexte,refBegruendungInhalt,refTextInhalt:texteproperty>
 
 
 <tr>
@@ -145,7 +145,7 @@
             <tr>
                 <td colspan="2" style="border: solid white 0px;"><strong>Weiterf&uuml;hrende Informationen/Links:</strong></td>
             </tr>
-            <?property raster*,ref*,externeReferenz:makeitalink>
+            <?property raster*,refBegruendung,refBeschluss,refBeschreibung,refErlaeuterung,refExternalCodeList,refGebaedequerschnitt,refGebaeudequerschnitt,refGruenordnungsplan,refGrundstuecksverzeichnis,refKoordinatenListe,refLandschaftsplan,refLegende,reflegendenBild,refMassnahmenText,refPflanzliste,refPlangrundlage,refRechtsplan,refSatzung,refScan,refText,refUmweltbericht,externeReferenz:makeitalink>
         </table>
     </td>
 </tr>
@@ -221,27 +221,21 @@ BP_AbgrabungsFlaeche=BP: Abgrabungsfl&auml;che
 BP_AbstandsFlaeche=BP: Abstandsfl&auml;che
 BP_AnpflanzungBindungErhaltung=BP: Anpflanzung, Erhalt und Bindung
 BP_AufschuettungsFlaeche=BP: Aufsch&uuml;ttungsfl&auml;che
-BP_Ausgleich=BP: Ausgleich
 BP_AusgleichsFlaeche=BP: Ausgleichsfl&auml;che
 BP_AusgleichsMassnahme=BP: Ausgleichsma&szlig;nahme
-BP_BahnVerkehr=BP: Bahnverkehr
 BP_BauGrenze=BP: Baugrenze
 BP_BauLinie=BP: Baulinie
 BP_Baugebiet=BP: Baugebiet
 BP_BaugebietsTeilFlaeche=BP: Baugebietsteilfl&auml;che
-BP_Bauschutzbereich=BP: Bauschutzbereich
 BP_Bereich=BP: Bereich
 BP_BereichOhneEinAusfahrtLinie=BP: ohne Ein- oder Ausfahrt
 BP_BesondererNutzungszweckFlaeche=BP: Fl&auml;che besonderer Nutzung
 BP_BodenschaetzeFlaeche=BP: Gewinnung von Bodensch&auml;tzen
-BP_DenkmalschutzEinzelanlagePunkt=BP: Einzeldenkmal
 BP_DenkmalschutzEnsembleFlaeche=BP: Denkmalensemble
 BP_EinfahrtPunkt=BP: Einfahrt
 BP_EinfahrtsbereichLinie=BP: Einfahrtsbereich
 BP_ErhaltungsBereichFlaeche=BP: Erhaltungsbereich
 BP_ErneuerbareEnergieFlaeche=BP: Erneuerbare Energie
-BP_Fachgesetz=BP: Fachgesetz
-BP_FestsetzungenBaugebiet=BP: Festsetzungen Baugebiet
 BP_FirstRichtungsLinie=BP: Firstrichtung
 BP_FoerderungsFlaeche=BP: Soziale Wohnraumf&ouml;rderung
 BP_FreiFlaeche=BP: Freifl&auml;che
@@ -249,18 +243,12 @@ BP_GebaeudeFlaeche=BP: Gebaeudefl&auml;che
 BP_GemeinbedarfsFlaeche=BP: Gemeinbedarfsfl&auml;che
 BP_GemeinschaftsanlagenFlaeche=BP: Gemeinschaftsanlagen
 BP_GenerischesObjekt=BP: Generisches Objekt
-BP_GestaltungBaugebiet=BP:Gestaltung Baugebiet
 BP_GewaesserFlaeche=BP: Gew&auml;sserfl&auml;che
-BP_Grabungsschutzgebiet=BP: Grabungsschutzgebiet
 BP_GruenFlaeche=BP: Gr&uuml;nfl&auml;che
-BP_HoehenPunkt=BP: H&ouml;henpunkt
 BP_Immissionsschutz=BP: Immissionsschutz
 BP_KennzeichnungsFlaeche=BP: Kennzeichnungsfl&auml;che
-BP_Laermschutzbereich=BP: L&auml;rmschutzbereich
 BP_LandwirtschaftsFlaeche=BP: Landwirtschaftsfl&auml;che
-BP_LandwirtschaftsLinie=BP: Landwirtschaftslinie
 BP_LuftreinhalteFlaeche=BP: Luftreinhaltefl&auml;che
-BP_LuftverkehrFlaeche=BP: Luftverkehrfl&auml;che
 BP_NebenanlagenAusschlussFlaeche=BP: Nebenanlagenausschluss
 BP_NebenanlagenFlaeche=BP: Nebenanlagen
 BP_NutzungsartenGrenze=BP: Nutzungsartengrenze
@@ -276,55 +264,38 @@ BP_SpielSportanlagenFlaeche=BP: Spiel- und Sportanlagen
 BP_StrassenVerkehrsFlaeche=BP: Stra&szlig;enverkehrsfl&auml;che
 BP_StrassenbegrenzungsLinie=BP: Stra&szlig;enbegrenzungslinie
 BP_Strassenkoerper=BP: Stra&szlig;enk&ouml;rper
-BP_TechnikBestimmteFlaeche=BP: Alternativenergiefl&auml;che
 BP_TextlicheFestsetzungsFlaeche=BP: Bereich textlicher Festsetzung
 BP_UeberbaubareGrundstuecksFlaeche=BP: &uuml;berbaubare Grundst&uuml;cksfl&auml;che
 BP_UnverbindlicheVormerkung=BP: Unverbindliche Vormerkung
 BP_VerEntsorgung=BP: Ver– und Entsorgung
-BP_VerEntsorgungsFlaeche=BP: Ver- und Entsorgungsfl&auml;che
-BP_VerEntsorgungsleitungLinie=BP: Ver- und Entsorgungsleitung
 BP_VerkehrsflaecheBesondererZweckbestimmung=BP: Verkehrsfl&auml;che besonderer Zweckbestimmung
-BP_VorbHochwSchutzFlaeche=BP: Festgesetztes &uuml;berschwemmungsgebiet
 BP_WaldFlaeche=BP: Waldfl&auml;che
-BP_WasserrechtlicheFestsetzungsFlaeche=BP: Wasserrechtliche Festsetzungen
 BP_WasserwirtschaftsFlaeche=BP: Wasserwirtschaftsfl&auml;che
 BP_Wegerecht=BP: Wegerecht
 FP_AbgrabungsFlaeche=FP: Abgrabungsfl&auml;che
 FP_AufschuettungsFlaeche=FP: Aufsch&uuml;ttungsfl&auml;che
 FP_AusgleichsFlaeche=FP: Ausgleichsfl&auml;che
-FP_Bahnverkehr=FP: Bahnverkehr
-FP_Bauschutzbereich=FP: Bauschutzbereich
 FP_BebauungsFlaeche=FP: Bebauungsfl&auml;che
 FP_Bereich=FP: Bereich
 FP_BodenschaetzeFlaeche=FP: Bodensch&auml;tze
-FP_DenkmalschutzEnsemble=FP: Denkmalensemble
-FP_Erhaltungssatzung=FP: Erhaltungssatzung
-FP_Fachgesetz=FP: Fachgesetz
 FP_Gemeinbedarf=FP: Gemeinbedarf
 FP_GenerischesObjekt=FP: Generisches Objekt
 FP_Gewaesser=FP: Gew&auml;sser
-FP_Grabungsschutzgebiet=FP: Grabungsschutzgebiet
 FP_Gruen=FP: Gr&uuml;nfl&auml;che
 FP_KeineZentrAbwasserBeseitigungFlaeche=FP: ohne zentrale Abwasserbeseitigung
 FP_Kennzeichnung=FP: Kennzeichnungsfl&auml;che
-FP_Laermschutzbereich=FP: L&auml;rmschutzbereich
 FP_LandwirtschaftsFlaeche=FP: Landwirtschaftsfl&auml;che
-FP_Luftverkehr=FP: Luftverkehr
 FP_NutzungsbeschraenkungsFlaeche=FP: Nutzungsbeschr&auml;nkung
 FP_Plan=FP: Plan
-FP_PriviligiertesVorhaben=FP: Priviligiertes Vorhaben
 FP_RasterplanAenderung=FP: Rasterplan&auml;nderung
 FP_SchutzPflegeEntwicklung=FP: Schutz-, Pflege- und Entwicklungsfl&auml;che
-FP_Schutzgebiet=FP: Schutzgebiet
 FP_SpielSportanlage=FP: Spiel- und Sportanlagen
 FP_Strassenverkehr=FP: Stra&szlig;enverkehr
 FP_TextlicheDarstellungsFlaeche=FP: Bereich textlicher Festsetzung
 FP_UnverbindlicheVormerkung=FP: Unverbindliche Vormerkung
 FP_VerEntsorgung=FP: Ver- und Entsorgung
-FP_VorbHochwSchutz=FP: Festgesetztes &uuml;berschwemmungsgebiet
 FP_VorbehalteFlaeche=FP:Vorbehaltfl&auml;che
 FP_WaldFlaeche=FP: Waldfl&auml;che
-FP_Wasserrecht=FP: Wasserrecht
 FP_Wasserwirtschaft=FP: Wasserwirtschaft
 LP_Abgrenzung=LP: Abgrenzung
 LP_AllgGruenflaeche=LP: Allgemeine Gr&uuml;nfl&auml;che
@@ -366,7 +337,6 @@ RP_Bereich=RP: Bereich
 RP_Bodenschutz=RP: Bodenschutz
 RP_Energieversorgung=RP: Energieversorgung
 RP_Entsorgung=RP: Entsorgung
-RP_Entwicklungsschwerpunkte=RP: Entwicklungsschwerpunkte
 RP_Forstwirtschaft=RP: Forstwirtschaft
 RP_FreizeitErholung=RP: Freizeit und Erholung
 RP_GemeindeFunktionSiedlungsentwicklung=RP: Gemeindefunktion
@@ -411,7 +381,6 @@ RP_Verkehr=RP: Verkehr
 RP_VorbHochwasserschutz=RP: Vorbeugender Hochwasserschutz
 RP_Wasserschutz=RP: Wasserschutz
 RP_Wasserwirtschaft=RP: Wasserwirtschaft
-RP_Windenergie=RP: Windenergie
 RP_Windenergienutzung=RP: Windenergienutzung
 RP_ZentralerOrt=RP: Zentrale Orte
 XP_BegruendungAbschnitt=XP: Abschnitt der Begr&uuml;ndung
@@ -564,7 +533,6 @@ erschliessungsVertrag=Erschliessungs-Vertrag
 erstellungsMassstab=Erstellungs-Ma&szlig;stab
 erstellungsMasstab=Erstellungs-Ma&szlig;stab
 externesSymbolURL=externesSymbolURL
-fachobjekt=Fachobjekt
 festlegungCode=festlegungCode
 festlegung=Festlegung
 flaechenschluss=Fl&auml;chenschluss
@@ -652,11 +620,6 @@ liegenschaftskarteGeorefURL=Liegenschaftskarte Georeferenz URL
 liegenschaftskarteURL=Liegenschaftskarte URL
 luftverkehrTypCode=luftverkehrTypCode
 luftverkehrTyp=Luftverkehr Typ
-massnahmeCode=massnahmeCode
-massnahmeKuerzel=Massnahme (K&uuml;rzel)
-massnahme=Ma&szlig;nahme
-massnahmen=Ma&szlig;nahmen
-massnahmenTextURL=Massnahmen Text URL
 massnahmeText=Massnahme Text
 MaxZahlWohnungen=Max. Zahl Wohnungen
 nachrichtlicheUebernahme=Nachrichtl. &uuml;bernahme
@@ -759,7 +722,6 @@ stylesheetId=stylesheetId
 symbolPosition=symbolPosition
 technHerstellDatum=Techn. Herstell. Datum
 teilabschnitt=Teilabschnitt
-textAbschnitte=Text Abschnitte
 texte=Texte
 textlicheErgaenzung=Textliche Erg&auml;nzung
 text=Text

@@ -6103,4 +6103,87 @@
       </definitionMember>
     </DefinitionCollection>
   </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_KlassifizSchutzgebietNaturschutzrecht">
+      <name>xplan:XP_KlassifizSchutzgebietNaturschutzrecht</name>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1000">
+          <description>Naturschutzgebiet</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1100">
+          <description>Nationalpark</description>
+          <name>1100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1200">
+          <description>Biosphaerenreservat</description>
+          <name>1200</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1300">
+          <description>Landschaftsschutzgebiet</description>
+          <name>1300</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1400">
+          <description>Naturpark</description>
+          <name>1400</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1500">
+          <description>Naturdenkmal</description>
+          <name>1500</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1600">
+          <description>GeschuetzterLandschaftsBestandteil</description>
+          <name>1600</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1700">
+          <description>GesetzlichGeschuetztesBiotop</description>
+          <name>1700</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1800">
+          <description>Natura2000</description>
+          <name>1800</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_18000">
+          <description>GebietGemeinschaftlicherBedeutung</description>
+          <name>18000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_18001">
+          <description>EuropaeischesVogelschutzgebiet</description>
+          <name>18001</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_2000">
+          <description>NationalesNaturmonument</description>
+          <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_9999">
+          <description>Sonstiges</description>
+          <name>9999</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
 </Dictionary>

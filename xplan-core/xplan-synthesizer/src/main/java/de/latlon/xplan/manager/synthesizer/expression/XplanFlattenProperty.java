@@ -20,9 +20,9 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import de.latlon.xplan.manager.synthesizer.expression.flatten.BP_EmissionskontingentLaermFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.BP_EmissionskontingentLaermGebietFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.BpDachgestaltungFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.BpEmissionskontingentLaermFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.BpEmissionskontingentLaermGebietFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.BpRichtungssektorFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.DefaultFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.Flattener;
@@ -56,8 +56,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 /**
  * {@link Expression} that returns a "flat" textual representation for properties that
@@ -104,8 +104,8 @@ public class XplanFlattenProperty implements Expression {
 		customFlatteners.add(new BpDachgestaltungFlattener());
 		customFlatteners.add(new XpSPEMassnahmenDatenFlattener());
 		customFlatteners.add(new BpRichtungssektorFlattener());
-		customFlatteners.add(new BP_EmissionskontingentLaermFlattener());
-		customFlatteners.add(new BP_EmissionskontingentLaermGebietFlattener());
+		customFlatteners.add(new BpEmissionskontingentLaermFlattener());
+		customFlatteners.add(new BpEmissionskontingentLaermGebietFlattener());
 	}
 
 	@Override

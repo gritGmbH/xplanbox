@@ -1,6 +1,6 @@
 # Mitarbeiter:innen
 
-An dem Projekt xPlanBox haben folgende Personen mitgearbeitet:
+An dem Projekt haben folgende Personen mitgearbeitet:
 
 - Dirk Stenger
 - Jens Fitzke

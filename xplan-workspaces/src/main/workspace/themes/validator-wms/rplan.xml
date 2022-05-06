@@ -98,15 +98,6 @@
       <Layer>rp_entsorgung</Layer>
     </Theme>
     <Theme>
-      <Identifier>rp_entwschwerpte</Identifier>
-      <d:Title>RP: Entwicklungsschwerpunkte</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <Layer>rp_entwschwerpte</Layer>
-    </Theme>
-    <Theme>
       <Identifier>rp_erholung</Identifier>
       <d:Title>RP: Erholung</d:Title>
     <s:Envelope crs="EPSG:4326">
@@ -483,15 +474,6 @@
       <s:UpperCorner>15.1 55.1</s:UpperCorner>
     </s:Envelope>
       <Layer>rp_wws</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>rp_windenergie</Identifier>
-      <d:Title>RP: Windenergie</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <Layer>rp_windenergie</Layer>
     </Theme>
     <Theme>
       <Identifier>rp_windenergienutz</Identifier>

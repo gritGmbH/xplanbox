@@ -64,7 +64,9 @@ public class XplanFlattenPropertyTest {
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refBegruendungInhalt"));
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("[begruendung2 | Das ist Begründungsabschnitt No 2]", value.toString());
+		assertEquals(
+				"[begruendung1 | Das ist Begründungsabschnitt No 1][begruendung2 | Das ist Begründungsabschnitt No 2]",
+				value.toString());
 	}
 
 	@Test

@@ -28,6 +28,7 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
@@ -65,6 +66,17 @@ public class XpTextAbschnittFlattenerTest {
 		assertEquals(
 				"[§2 Nr.9 | Externe Referenz: schluesseltest.pdf][§2 Nr.21 | text 3 | Externe Referenz: test.pdf][Externe Referenz: test.pdf]",
 				value.toString());
+	}
+
+	@Test
+	public void testEvaluate() {
+		FeatureCollection features = getTestFeatures(XPLAN_41);
+		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refTextInhalt"), true);
+		PrimitiveValue abschnitte = expr.evaluate(feature, features);
+		assertEquals(
+				"[text1 | Das ist Textabschnitt No 1 | Externe Referenz: text1.pdf][text2 | Das ist Textabschnitt No 2 (Gesetzliche Grundlage: BGB) | Externe Referenz: text2.pdf]",
+				abschnitte.toString());
 	}
 
 }
