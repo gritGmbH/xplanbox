@@ -50,7 +50,7 @@ Weitere Informationen zu Konfiguration von Maven stehen in der [Referenzdokument
 
 #### deegree webservices erstellen
 
-Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 5.0 der Anwendung muss deegree Version 3.4.27 verwendet werden:
+Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 5.0 der Anwendung muss deegree **Version 3.4.27** verwendet werden:
 
 ```shell
 git clone https://github.com/lat-lon/deegree3.git
@@ -60,15 +60,18 @@ mvn clean install
 ```
 > **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release-Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11! Sobald eine Version von deegree mit Unterstützung von Java 11 verfügbar ist, entfällt dieser Schritt.
 
-> **_Hinweis_**: Unter dem Betriebssystem Windows kann es bei der Ausführung von Unit-Test zu Fehlern kommen. Es kann dann erforderlich sein, die Tests zu überspringen. Dazu muss die Option `-DskipTests` beim Aufruf von Maven zu ergänzen.
+> **_Hinweis_**: Unter dem Betriebssystem Windows kann es bei der Ausführung von Unit-Test zu Fehlern kommen. Es kann dann erforderlich sein, die Tests zu überspringen. Dazu ist die Option `-DskipTests` beim Aufruf von Maven zu ergänzen.
 
 #### XPlanung-Validierungsregeln einbinden
 
 Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des XPlanung-Standards aus dem [Bitbucket-Repository der Geowerkstatt Hamburg](https://bitbucket.org/geowerkstatt-hamburg/xplanung).
-Dazu muss die passende Version der XPlanung-Validierungsregeln ausgewählt werden. Für Version 5.0 der Anwendung muss Version 0.11.1 verwendet werden:
+Dazu muss die passende Version der XPlanung-Validierungsregeln ausgewählt werden. Für Version 5.0 der Anwendung muss **Version 0.11.1** verwendet werden:
 
 * Download der Datei [v0.11.1.zip](https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.11.1.zip) aus dem [Download-Bereich](https://bitbucket.org/geowerkstatt-hamburg/xplanung/downloads/?tab=tags)
 * Installieren der Datei im lokalen Maven Repository mit `mvn install:install-file -DgroupId=de.geowerkstatt-hamburg -DartifactId=xplanung -Dversion=0.11.1 -Dpackaging=zip -DgeneratePom=true -Dfile=geowerkstatt-hamburg-xplanung.zip`
+
+> **_Hinweis_**: Um eine andere Version der XPlanung-Validierungsregeln zu installieren, folgen Sie der Anleitung im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc).
+
 
 #### Anwendung erstellen
 

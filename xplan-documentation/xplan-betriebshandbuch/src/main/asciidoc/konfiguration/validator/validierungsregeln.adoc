@@ -6,7 +6,7 @@ Um statt der mit dem xPlanBox ausgelieferten Regeln externen Regeln zu verwenden
 Der Pfad zu den semantischen Regeln muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ wie folgt konfiguriert werden:
 
 ----
-validationRulesDirectory=/home/xplanbox/semantischeRegeln/0.9/
+validationRulesDirectory=/home/xplanbox/semantischeRegeln/0.11.1/
 ----
 
 Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln verwendet.
@@ -45,7 +45,7 @@ IMPORTANT: Es müssen ggf. Zeilenumbrüche entfernt werden.
 Für jede XPlanGML-Version kann hier die Referenz auf eine externe
 Ressource konfiguriert werden. Ist für eine Version keine Ressource
 vorhanden, kann der Eintrag vollständig entfernt oder der Wert zu dem
-Schlüssel leer gelassen werden (wie im Beispiel für XPLAN_3). Es wird dann kein Hinweis im Validierungsbericht ausgegeben.
+Schlüssel leer gelassen werden (wie im Beispiel für `XPLAN_3`). Es wird dann kein Hinweis im Validierungsbericht ausgegeben.
 
 TIP: Es wird empfohlen die Dokumente über die Komponente XPlanRessourcen
 bereitzustellen, um die Unabhängigkeit von externen Ressourcen

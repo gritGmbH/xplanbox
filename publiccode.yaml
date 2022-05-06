@@ -18,10 +18,11 @@ description:
     documentation: |-
       https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main-v5.0.1/README.md
     features:
-      - Anbindung Bürgerkonto
-      - Anbindung Organisationskonto
-      - Explizite Anforderung eines Mindest-Vertrauensniveaus
-      - Explizite Anforderung des Organsationskonto-Logins
+      - XPlanValidator: Web-Oberfläche für den Validator
+      - XPlanManager: Web-Oberfläche für das Datenmanagement
+      - XPlanWMS: Standard-Karten-Dienst für die Auskunft
+      - XPlanWFS: Standard-Daten-Dienst für die Auskunft (originale Datenstruktur)
+      - XPlanSynWFS: Standard-Daten-Dienst für die Auskunft (vereinfachte Datenstruktur)
     genericName: ozgxplanung
     longDescription: |-
       TBD
