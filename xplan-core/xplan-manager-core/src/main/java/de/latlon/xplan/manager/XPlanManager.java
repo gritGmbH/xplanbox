@@ -199,23 +199,18 @@ public class XPlanManager {
 	 * @param defaultCRS the default crs, may be <code>null</code> if no default crs
 	 * should be set
 	 * @param force should import be forced?
-	 * @param makeWMSConfig <code>true</code> if the WMS configuration for the plan to
-	 * import should be created, <code>false</code> otherwise. To use this option it is
-	 * required, that makeRasterConfig is <code>true</code>
 	 * @param makeRasterConfig <code>true</code> if the configuration of raster files
 	 * should be created, <code>false</code> otherwise
-	 * @param workspaceFolder workspace folder, may be <code>null</code> if default path
-	 * should be used.
 	 * @param internalId is added to the feature collection of the plan, if
 	 * <code>null</code>, internalId property is not added to the feature collection
 	 */
-	public void importPlan(String archiveFileName, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
-			boolean makeRasterConfig, File workspaceFolder, String internalId) throws Exception {
+	public void importPlan(String archiveFileName, ICRS defaultCRS, boolean force, boolean makeRasterConfig,
+			String internalId) throws Exception {
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		if (archive.hasMultipleXPlanElements())
 			throw new IllegalArgumentException("Das XPlanGML enthält mehrere XP_Plan-Elemente.");
-		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, workspaceFolder,
-				internalId, new AdditionalPlanData());
+		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeRasterConfig, internalId,
+				new AdditionalPlanData());
 	}
 
 	/**
@@ -224,9 +219,6 @@ public class XPlanManager {
 	 * @param defaultCRS the default crs, may be <code>null</code> if no default crs
 	 * should be set
 	 * @param force should import be forced?
-	 * @param makeWMSConfig <code>true</code> if the WMS configuration for the plan to
-	 * import should be created, <code>false</code> otherwise. To use this option it is
-	 * required, that makeRasterConfig is <code>true</code>
 	 * @param makeRasterConfig <code>true</code> if the configuration of raster files
 	 * should be created, <code>false</code> otherwise
 	 * @param internalId is added to the feature collection of the plan, if
@@ -235,10 +227,9 @@ public class XPlanManager {
 	 * <code>null</code>
 	 */
 	@PreAuthorize("hasPermission(#archive, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
-	public void importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
-			boolean makeRasterConfig, String internalId, AdditionalPlanData xPlanMetadata) throws Exception {
-		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, null, internalId,
-				xPlanMetadata);
+	public void importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeRasterConfig,
+			String internalId, AdditionalPlanData xPlanMetadata) throws Exception {
+		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeRasterConfig, internalId, xPlanMetadata);
 	}
 
 	/**
@@ -433,21 +424,11 @@ public class XPlanManager {
 	}
 
 	/**
-	 * @param planId the plan id to delete
+	 * @param planId the plan id to delete should be used.
 	 * @throws Exception
 	 */
 	public void delete(String planId) throws Exception {
-		delete(planId, null);
-	}
-
-	/**
-	 * @param planId the plan id to delete
-	 * @param workspaceFolder workspace folder, may be <code>null</code> if default path
-	 * should be used.
-	 * @throws Exception
-	 */
-	public void delete(String planId, File workspaceFolder) throws Exception {
-		xPlanDeleteManager.delete(planId, workspaceFolder);
+		xPlanDeleteManager.delete(planId);
 	}
 
 	/**

@@ -28,8 +28,6 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
-import org.deegree.geometry.Envelope;
-import org.deegree.geometry.SimpleGeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,9 +39,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import static java.lang.Double.parseDouble;
-import static org.deegree.cs.CRSUtils.EPSG_4326;
 
 /**
  * Provides access to the manager configuration.
@@ -64,9 +59,6 @@ public class ManagerConfiguration {
 	static final String ACTIVATE_SEPARATED_DATAMANAGEMENT = "activateSeparatedDataManagement";
 
 	static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
-
-	@Deprecated
-	static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
 
 	static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
 
@@ -95,8 +87,6 @@ public class ManagerConfiguration {
 	private boolean isSeperatedDataManagementActived = false;
 
 	private WorkspaceReloaderConfiguration workspaceReloaderConfiguration = new WorkspaceReloaderConfiguration();
-
-	private Envelope defaultBboxIn4326 = null;
 
 	private InternalIdRetrieverConfiguration internalIdRetrieverConfiguration = new InternalIdRetrieverConfiguration();
 
@@ -173,14 +163,6 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return default BBOX in EPSG:4326, may be <code>null</code>
-	 */
-	@Deprecated
-	public Envelope getDefaultBboxIn4326() {
-		return defaultBboxIn4326;
-	}
-
-	/**
 	 * @return the {@link InternalIdRetrieverConfiguration}, never <code>null</code>
 	 */
 	public InternalIdRetrieverConfiguration getInternalIdRetrieverConfiguration() {
@@ -248,7 +230,6 @@ public class ManagerConfiguration {
 				isSeperatedDataManagementActived = parseBoolean(loadProperties, ACTIVATE_SEPARATED_DATAMANAGEMENT,
 						false);
 				workspaceReloaderConfiguration = parseWorkspaceReloaderConfiguration(loadProperties);
-				defaultBboxIn4326 = parseDefaultBboxIn4326(loadProperties);
 				internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration(loadProperties);
 				parseSortConfiguration(loadProperties);
 				parseSemanticConformityLinkConfiguration(loadProperties);
@@ -371,19 +352,6 @@ public class ManagerConfiguration {
 			return new WorkspaceReloaderConfiguration(urlList, user, password);
 		}
 		return new WorkspaceReloaderConfiguration();
-	}
-
-	@Deprecated
-	private Envelope parseDefaultBboxIn4326(Properties loadProperties) {
-		String defaultBbox = loadProperties.getProperty(DEFAULT_BBOX_IN_4326);
-		if (defaultBbox == null || defaultBbox.isEmpty())
-			return null;
-		String[] split = defaultBbox.split(",");
-		double minx = parseDouble(split[0].trim());
-		double miny = parseDouble(split[1].trim());
-		double maxx = parseDouble(split[2].trim());
-		double maxy = parseDouble(split[3].trim());
-		return new SimpleGeometryFactory().createEnvelope(minx, miny, maxx, maxy, EPSG_4326);
 	}
 
 	private InternalIdRetrieverConfiguration parseInternalIdRetrieverConfiguration(Properties properties) {

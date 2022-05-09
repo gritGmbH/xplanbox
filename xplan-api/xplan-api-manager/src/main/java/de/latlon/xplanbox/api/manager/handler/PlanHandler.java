@@ -102,8 +102,7 @@ public class PlanHandler {
 		}
 		LOG.info("Plan is valid. Importing plan into storage for '{}'", planStatus);
 		AdditionalPlanData metadata = createAdditionalPlanData(xPlanArchive, planStatus);
-		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, null, false, false, true, null, internalId,
-				metadata);
+		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, null, false, true, internalId, metadata);
 		List<XPlan> plansById = findPlansById(planIds);
 		LOG.info("Plan successfully imported. Ids: {}",
 				plansById.stream().map(plan -> plan.getId()).collect(Collectors.joining(",")));

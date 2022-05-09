@@ -29,16 +29,6 @@ Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
 _etc/_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
 Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
 
-So kann über das Property _defaultBboxIn4326_ konfiguriert werden, welche
-default Bounding-Box während
-der Konfigurationserzeugung für einen neuen Service genutzt werden
-soll. Dieser Wert wird genutzt, falls von dem zu importierenden GML
-keine Bounding-Box ermittelt werden kann. Häufige Gründe dafür sind zum
-Beispiel das Fehlen der CRS-Definition oder das Vorkommen von invaliden
-Geometrien. Das CRS der Bounding-Box muss in EPSG:4326 angegeben werden.
-Falls dieser Parameter nicht gesetzt oder leer ist, wird eine default
-Bounding-Box genutzt, welche die gesamte Welt abdeckt.
-
 [[xplanmanager-cli-hilfe]]
 ===== Hilfe
 
@@ -60,9 +50,9 @@ Usage: XPlanManager <options>
  -list
  -createdb <DB Name> <JDBC-Connection> -u <user> -p <passwort> [-t <PostGis Template>]
  -updatewmssortdate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
- -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ -import [--force] <xplanarchiv> [--crs <CRS>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
  -export <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
- -delete <planid> [--workspace <workspace verzeichnis>]
+ -delete <planid>
 
 Raster-Operationen:
 
