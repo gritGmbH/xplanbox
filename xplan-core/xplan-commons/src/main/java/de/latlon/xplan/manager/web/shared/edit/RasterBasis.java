@@ -33,6 +33,8 @@ public class RasterBasis {
 
 	private String featureId;
 
+	private String bereichId;
+
 	private List<RasterReference> rasterReferences;
 
 	public RasterBasis() {
@@ -86,9 +88,24 @@ public class RasterBasis {
 		this.rasterReferences = rasterReferences;
 	}
 
+	/**
+	 * @return the gml id of the bereich this RasterReference is assigned to
+	 */
+	public String getBereichId() {
+		return bereichId;
+	}
+
+	/**
+	 * @return the gml id of the bereich this RasterReference is assigned to
+	 */
+	public void setBereichId(String bereichId) {
+		this.bereichId = bereichId;
+	}
+
 	@Override
 	public String toString() {
-		return "RasterWithReferences {featureId=" + featureId + ", rasterReferences=" + rasterReferences + "}";
+		return "RasterWithReferences {featureId=" + featureId + ", rasterReferences=" + rasterReferences
+				+ ", bereichId=" + bereichId + "}";
 	}
 
 }

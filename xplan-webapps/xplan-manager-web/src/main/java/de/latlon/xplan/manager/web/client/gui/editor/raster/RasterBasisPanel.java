@@ -91,7 +91,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 	public void setRasterBasis(XPlanToEdit xPlanToEdit) {
 		if (xPlanToEdit.isHasBereich()) {
 			add(createGui());
-			this.rasterBasis = xPlanToEdit.getRasterBasis();
+			this.rasterBasis = xPlanToEdit.getFirstRasterBasis();
 			List<RasterReference> rasterBasisReferences = collectRasterReferences(this.rasterBasis);
 			setValues(rasterBasisReferences);
 		}

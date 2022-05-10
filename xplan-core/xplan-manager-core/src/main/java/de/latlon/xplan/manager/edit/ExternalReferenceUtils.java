@@ -114,7 +114,7 @@ public class ExternalReferenceUtils {
 	public static ExternalReferenceInfo createExternalRefAddedOrUpdated(XPlanToEdit planToEdit,
 			List<File> uploadedArtefacts) {
 		ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceInfo();
-		RasterBasis rasterBasis = planToEdit.getRasterBasis();
+		RasterBasis rasterBasis = planToEdit.getFirstRasterBasis();
 		if (rasterBasis != null) {
 			for (RasterReference rasterReference : rasterBasis.getRasterReferences()) {
 				String referenceUrl = rasterReference.getReference();

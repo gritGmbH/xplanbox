@@ -131,7 +131,7 @@ public class EditorPanel extends DecoratorPanel {
 		xPlanToEdit.setTexts(textsPanel.getValues());
 		xPlanToEdit.setReferences(referencesPanel.getValues());
 		xPlanToEdit.setValidityPeriod(validityPeriodPanel.retrieveValidityPeriodToEdit());
-		xPlanToEdit.setRasterBasis(rasterBasisPanel.retrieveRasterBasis());
+		xPlanToEdit.setFirstRasterBasis( rasterBasisPanel.retrieveRasterBasis());
 		return xPlanToEdit;
 	}
 

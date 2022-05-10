@@ -54,7 +54,7 @@ public class EditRasterbasisHandler extends EditHandler {
 	public List<Rasterbasis> retrieveRasterbasis(String planId) throws Exception {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
+		RasterBasis rasterBasis = xPlanToEdit.getFirstRasterBasis();
 		if (rasterBasis == null)
 			return Collections.emptyList();
 		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
@@ -88,7 +88,7 @@ public class EditRasterbasisHandler extends EditHandler {
 			throws Exception {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
+		RasterBasis rasterBasis = xPlanToEdit.getFirstRasterBasis();
 		if (rasterBasis == null)
 			rasterBasis = new RasterBasis();
 		RasterReference rasterReferenceToAdd = rasterbasisModel.toRasterReference();
@@ -114,7 +114,7 @@ public class EditRasterbasisHandler extends EditHandler {
 			File referenz, File geoReferenz) throws Exception {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
+		RasterBasis rasterBasis = xPlanToEdit.getFirstRasterBasis();
 		RasterReference rasterReferenceToReplace = getRasterReferenceById(planId, rasterbasisId, rasterBasis);
 		RasterReference rasterReferenceToAdd = rasterbasisModel.toRasterReference();
 		String newRasterbasisId = createRasterbasisId(rasterReferenceToAdd);
@@ -136,11 +136,11 @@ public class EditRasterbasisHandler extends EditHandler {
 	public Rasterbasis deleteRasterbasis(String planId, String rasterbasisId) throws Exception {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
+		RasterBasis rasterBasis = xPlanToEdit.getFirstRasterBasis();
 		RasterReference rasterReferenceToDelete = getRasterReferenceById(planId, rasterbasisId, rasterBasis);
 		rasterBasis.getRasterReferences().remove(rasterReferenceToDelete);
 		if (rasterBasis.getRasterReferences().isEmpty())
-			xPlanToEdit.setRasterBasis(null);
+			xPlanToEdit.setFirstRasterBasis( null);
 		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
 		return Rasterbasis.fromRasterReference(rasterbasisId, rasterReferenceToDelete);
 	}

@@ -153,7 +153,7 @@ public class XPlanManipulator {
 			Feature bpBereichFeature, XPlanToEdit changes, AppSchema schema, List<Feature> featuresToAdd,
 			List<Feature> featuresToRemove, List<String> referencesToRemove,
 			String previouslyReferencedRasterBasisFeatureId) {
-		modifyRasterBasis(context, version, planToEdit, bpBereichFeature, schema, changes.getRasterBasis(),
+		modifyRasterBasis(context, version, planToEdit, bpBereichFeature, schema, changes.getFirstRasterBasis(),
 				featuresToAdd, featuresToRemove, referencesToRemove, previouslyReferencedRasterBasisFeatureId);
 	}
 

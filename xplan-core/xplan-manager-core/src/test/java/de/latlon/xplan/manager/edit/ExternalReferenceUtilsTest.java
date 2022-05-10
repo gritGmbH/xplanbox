@@ -75,7 +75,7 @@ public class ExternalReferenceUtilsTest {
 				null);
 		rasterBasis.addRasterReference(rasterReference1);
 		rasterBasis.addRasterReference(rasterReference2);
-		planToEdit.setRasterBasis(rasterBasis);
+		planToEdit.setFirstRasterBasis( rasterBasis);
 
 		List<File> uploadedArtefacts = createUploadedFileList("A.tif", "B.jpg", "C.png");
 
