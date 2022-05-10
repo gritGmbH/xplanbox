@@ -24,6 +24,7 @@ import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Main Web UI class.
@@ -76,6 +77,8 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 	private AdditionalPlanData xplanMetadata;
 
 	private boolean hasMultipleXPlanElements;
+
+	private List<Bereich> bereiche;
 
 	public XPlan() {
 		this("N/A", "-", "NO TYPE");
@@ -257,6 +260,14 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
 	public boolean isHasMultipleXPlanElements() {
 		return this.hasMultipleXPlanElements;
+	}
+
+	public List<Bereich> getBereiche() {
+		return bereiche;
+	}
+
+	public void setBereiche(List<Bereich> bereiche) {
+		this.bereiche = bereiche;
 	}
 
 	@Override

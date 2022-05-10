@@ -72,3 +72,11 @@ CREATE TABLE planwerkwmsmetadata (
     servicemetadataurl text
 );
 COMMENT ON TABLE planwerkwmsmetadata IS 'Metadata of plans provided in the capabilities of the PlanwerkWMS';
+
+CREATE TABLE bereiche (
+    plan integer references plans ON DELETE CASCADE,
+    gmlid text NOT NULL,
+    nummer text,
+    name text
+);
+COMMENT ON TABLE bereiche IS 'Plan Bereiche';

@@ -26,6 +26,7 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -33,6 +34,7 @@ import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
 import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
 import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
@@ -65,7 +67,9 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
  */
 public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
-	private final TextBox bereichNummer = createTextInput();
+	private final ListBox bereichNummer;
+
+	private List<Bereich> bereiche;
 
 	private final TypeCodeListBox<RasterReferenceType> refType;
 
@@ -85,16 +89,19 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private final RasterReference originalRasterReference;
 
-	public RasterReferenceDialog(EditVersion version) {
-		this(version, null, MESSAGES.editCaptionRasterBasisDialogNew());
+	public RasterReferenceDialog(EditVersion version, List<Bereich> bereiche) {
+		this(version, bereiche, null, MESSAGES.editCaptionRasterBasisDialogNew());
 	}
 
-	public RasterReferenceDialog(EditVersion version, RasterReference rasterReference) {
-		this(version, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit());
+	public RasterReferenceDialog(EditVersion version, List<Bereich> bereiche, RasterReference rasterReference) {
+		this(version, bereiche, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit());
 	}
 
-	private RasterReferenceDialog(EditVersion version, RasterReference rasterReference, String title) {
+	private RasterReferenceDialog(EditVersion version, List<Bereich> bereiche, RasterReference rasterReference,
+			String title) {
 		super(version, title);
+		this.bereiche = bereiche;
+		this.bereichNummer = createBereichNummer();
 		this.refType = createRefType();
 		this.refMimeType = createMimeTypeType(version);
 		this.georefMimeType = createMimeTypeType(version);
@@ -126,7 +133,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			rasterReference = new RasterReference(originalRasterReference);
 		else
 			rasterReference = new RasterReference();
-		rasterReference.setBereichId(bereichNummer.getValue());
+		rasterReference.setBereichId(bereichNummer.getSelectedValue());
 		rasterReference.setType(refType.getValueAsEnum());
 		rasterReference.setReference(reference.getFilename());
 		rasterReference.setReferenzMimeType(refMimeType.getValueAsEnum());
@@ -206,7 +213,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private void setRasterReferenceValues() {
 		if (originalRasterReference != null) {
-			bereichNummer.setValue(originalRasterReference.getBereichId());
+			bereichNummer.setSelectedIndex(findIndex(originalRasterReference.getBereichId()));
 			refType.selectItem(originalRasterReference.getType());
 			reference.setNameOfExistingFile(originalRasterReference.getReference());
 			refMimeType.selectItem(originalRasterReference.getReferenzMimeType());
@@ -218,6 +225,26 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			beschreibung.setValue(originalRasterReference.getBeschreibung());
 			datum.setValue(originalRasterReference.getDatum());
 		}
+	}
+
+	private ListBox createBereichNummer() {
+		ListBox listBox = new ListBox();
+		for (Bereich bereich : bereiche) {
+			listBox.addItem(bereich.getName() != null ? bereich.getNummer() + "(" + bereich.getName() + ")"
+					: bereich.getNummer(), bereich.getGmlId());
+		}
+		return listBox;
+	}
+
+	private int findIndex(String bereichId) {
+		int index = 0;
+		for (Bereich bereich : bereiche) {
+			if (bereich.getGmlId().equals(bereichId)) {
+				return index;
+			}
+			index++;
+		}
+		return 0;
 	}
 
 	private TypeCodeListBox<RasterReferenceType> createRefType() {

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -39,6 +39,7 @@ import de.latlon.xplan.manager.web.client.gui.editor.codelist.TypeCodelistProvid
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
@@ -67,8 +68,11 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 
 	private List<RasterBasis> rasterBasis;
 
-	public RasterBasisPanel(EditVersion version) {
+	private List<Bereich> bereiche;
+
+	public RasterBasisPanel(EditVersion version, List<Bereich> bereiche) {
 		super(version, MESSAGES.editCaptionRasterBasis());
+		this.bereiche = bereiche;
 	}
 
 	@Override
@@ -199,8 +203,8 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 	private void addBereichIdColumn(CellTable<RasterReference> table) {
 		TextColumn<RasterReference> typeColumn = new TextColumn<RasterReference>() {
 			@Override
-			public String getValue(RasterReference rasterBasisData) {
-				return rasterBasisData.getBereichId();
+			public String getValue(RasterReference rasterReference) {
+				return rasterReference.getBereichId();
 			}
 		};
 		typeColumn.setCellStyleNames("editRasterReferenceColumn bereichNummerColumn");
@@ -210,7 +214,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 	private Button createNewButton() {
 		Button newButton = new Button(MESSAGES.editCaptionNewRasterBasis(), new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog(version);
+				final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog(version, bereiche);
 				rasterReferenceDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {
@@ -238,7 +242,8 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		};
 		editButtonColumn.setFieldUpdater(new FieldUpdater<RasterReference, String>() {
 			public void update(final int index, final RasterReference rasterReference, String value) {
-				final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog(version, rasterReference);
+				final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog(version, bereiche,
+						rasterReference);
 				rasterReferenceDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {

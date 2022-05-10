@@ -44,6 +44,7 @@ import de.latlon.xplan.manager.web.client.gui.editor.validityPeriod.ValidityPeri
 import de.latlon.xplan.manager.web.client.gui.event.EditorCanceledEvent;
 import de.latlon.xplan.manager.web.client.gui.event.EditorFinishedEvent;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -83,13 +84,13 @@ public class EditorPanel extends DecoratorPanel {
 
 	private String planId;
 
-	public EditorPanel(EditVersion version, HandlerManager eventBus) {
+	public EditorPanel(EditVersion version, List<Bereich> bereiche, HandlerManager eventBus) {
 		this.eventBus = eventBus;
 		baseDataPanel = new BaseDataPanel(version);
 		changesPanel = createChangePanel(version);
 		textsPanel = new TextsPanel(version);
 		referencesPanel = new ReferencesPanel(version);
-		rasterBasisPanel = new RasterBasisPanel(version);
+		rasterBasisPanel = new RasterBasisPanel(version, bereiche);
 		FormPanel form = createForm();
 		this.getElement().setId("editor-panel");
 		this.setWidget(form);
