@@ -1537,8 +1537,10 @@ public class XPlanDao {
 		List<String> referenceFileNames = new ArrayList<String>();
 		addReferences(referenceFileNames, xPlanToEdit.getTexts());
 		addReferences(referenceFileNames, xPlanToEdit.getReferences());
-		if ( xPlanToEdit.getFirstRasterBasis() != null)
-			addReferences(referenceFileNames, xPlanToEdit.getFirstRasterBasis().getRasterReferences());
+		xPlanToEdit.getRasterBasis().forEach(rasterBasis -> {
+			if (rasterBasis.getRasterReferences() != null)
+				addReferences(referenceFileNames, rasterBasis.getRasterReferences());
+		});
 		return referenceFileNames;
 	}
 
