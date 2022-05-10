@@ -65,6 +65,8 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
  */
 public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
+	private final TextBox bereichNummer = createTextInput();
+
 	private final TypeCodeListBox<RasterReferenceType> refType;
 
 	private final TypeCodeListBox<MimeTypes> refMimeType;
@@ -124,6 +126,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			rasterReference = new RasterReference(originalRasterReference);
 		else
 			rasterReference = new RasterReference();
+		rasterReference.setBereichId(bereichNummer.getValue());
 		rasterReference.setType(refType.getValueAsEnum());
 		rasterReference.setReference(reference.getFilename());
 		rasterReference.setReferenzMimeType(refMimeType.getValueAsEnum());
@@ -147,6 +150,8 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)) {
 			layout.setText(rowIndex++, 2, MESSAGES.editHintRasterBasisType());
 		}
+		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisBereichNummer()));
+		layout.setWidget(rowIndex++, 2, bereichNummer);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisType()));
 		layout.setWidget(rowIndex++, 2, refType);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisReference()));
@@ -201,6 +206,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private void setRasterReferenceValues() {
 		if (originalRasterReference != null) {
+			bereichNummer.setValue(originalRasterReference.getBereichId());
 			refType.selectItem(originalRasterReference.getType());
 			reference.setNameOfExistingFile(originalRasterReference.getReference());
 			refMimeType.selectItem(originalRasterReference.getReferenzMimeType());

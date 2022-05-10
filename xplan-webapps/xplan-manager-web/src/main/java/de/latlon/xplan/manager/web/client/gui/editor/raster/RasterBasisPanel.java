@@ -44,6 +44,7 @@ import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 
 	private static final TypeCodelistProvider CODELIST_PROVIDER = new TypeCodelistProvider();
 
-	private RasterBasis rasterBasis;
+	private List<RasterBasis> rasterBasis;
 
 	public RasterBasisPanel(EditVersion version) {
 		super(version, MESSAGES.editCaptionRasterBasis());
@@ -72,6 +73,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 
 	@Override
 	protected void initColumns(CellTable<RasterReference> rasterBasisList) {
+		addBereichIdColumn(rasterBasisList);
 		addTypeColumn(rasterBasisList);
 		addReferenceColumn(rasterBasisList);
 		addReferenceNameColumn(rasterBasisList);
@@ -91,8 +93,8 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 	public void setRasterBasis(XPlanToEdit xPlanToEdit) {
 		if (xPlanToEdit.isHasBereich()) {
 			add(createGui());
-			this.rasterBasis = xPlanToEdit.getFirstRasterBasis();
-			List<RasterReference> rasterBasisReferences = collectRasterReferences(this.rasterBasis);
+			this.rasterBasis = xPlanToEdit.getRasterBasis();
+			List<RasterReference> rasterBasisReferences = collectRasterReferences();
 			setValues(rasterBasisReferences);
 		}
 		else {
@@ -100,27 +102,35 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		}
 	}
 
-	public RasterBasis retrieveRasterBasis() {
+	public List<RasterBasis> retrieveRasterBasis() {
 		List<RasterReference> values = getValues();
 		if (values.isEmpty())
-			return null;
-		if (rasterBasis == null) {
-			rasterBasis = new RasterBasis();
+			return Collections.emptyList();
+		for (RasterReference rasterReference : values) {
+			RasterBasis rasterBasis = getRasterBasisByBereichId(rasterReference.getBereichId());
+			rasterBasis.setRasterReferences(values);
 		}
-		rasterBasis.setRasterReferences(values);
 		return rasterBasis;
 	}
 
 	private boolean validate() {
-		RasterBasis rasterBasis = retrieveRasterBasis();
-		if (rasterBasis == null || containsRasterReferenceOfType(SCAN)) {
+		List<RasterBasis> allRasterBasis = retrieveRasterBasis();
+		boolean allRasterBasisContainsScan = true;
+		for (RasterBasis rasterBasis : allRasterBasis) {
+			if (!containsRasterReferenceOfType(rasterBasis, SCAN)) {
+				allRasterBasisContainsScan = false;
+			}
+		}
+		if (!allRasterBasisContainsScan) {
+			addStyleName(EDITOR_VALIDATION_ERROR);
+			setTitle(MESSAGES.editCaptionRasterBasisInvalid());
+			return false;
+		}
+		else {
 			removeStyleName(EDITOR_VALIDATION_ERROR);
 			setTitle("");
 			return true;
 		}
-		addStyleName(EDITOR_VALIDATION_ERROR);
-		setTitle(MESSAGES.editCaptionRasterBasisInvalid());
-		return false;
 	}
 
 	private Widget createDisabledHint() {
@@ -184,6 +194,17 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		};
 		typeColumn.setCellStyleNames("editRasterReferenceColumn typeColumn");
 		table.addColumn(typeColumn, MESSAGES.editCaptionRasterBasisType());
+	}
+
+	private void addBereichIdColumn(CellTable<RasterReference> table) {
+		TextColumn<RasterReference> typeColumn = new TextColumn<RasterReference>() {
+			@Override
+			public String getValue(RasterReference rasterBasisData) {
+				return rasterBasisData.getBereichId();
+			}
+		};
+		typeColumn.setCellStyleNames("editRasterReferenceColumn bereichNummerColumn");
+		table.addColumn(typeColumn, MESSAGES.editCaptionRasterBasisBereichNummer());
 	}
 
 	private Button createNewButton() {
@@ -265,14 +286,21 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		table.addColumn(removeButtonColumn, columnHeader);
 	}
 
+	private List<RasterReference> collectRasterReferences() {
+		List<RasterReference> rasterReferences = new ArrayList<>();
+		for (RasterBasis rb : this.rasterBasis) {
+			rasterReferences.addAll(collectRasterReferences(rb));
+		}
+		return rasterReferences;
+	}
+
 	private List<RasterReference> collectRasterReferences(RasterBasis rasterBasis) {
 		if (rasterBasis != null)
 			return rasterBasis.getRasterReferences();
 		return Collections.emptyList();
 	}
 
-	private boolean containsRasterReferenceOfType(RasterReferenceType referenceType) {
-		RasterBasis rasterBasis = retrieveRasterBasis();
+	private boolean containsRasterReferenceOfType(RasterBasis rasterBasis, RasterReferenceType referenceType) {
 		if (rasterBasis != null) {
 			List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
 			for (RasterReference rasterReference : rasterReferences) {
@@ -281,6 +309,15 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 			}
 		}
 		return false;
+	}
+
+	private RasterBasis getRasterBasisByBereichId(String bereichId) {
+		for (RasterBasis rb : this.rasterBasis) {
+			if (bereichId.equals(rb.getBereichId())) {
+				return rb;
+			}
+		}
+		return null;
 	}
 
 }

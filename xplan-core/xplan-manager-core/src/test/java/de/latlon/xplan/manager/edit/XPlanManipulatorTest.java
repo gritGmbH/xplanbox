@@ -312,7 +312,7 @@ public class XPlanManipulatorTest {
 
 		RasterBasis rasterBasis = new RasterBasis("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6");
 		rasterBasis.addRasterReference(rasterBasisReference);
-		editedXplan.setFirstRasterBasis( rasterBasis);
+		editedXplan.setFirstRasterBasis(rasterBasis);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
 
@@ -357,7 +357,7 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(xPlanVersion, "xplan50/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		editedXplan.setFirstRasterBasis( null);
+		editedXplan.setFirstRasterBasis(null);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, xPlanVersion, BP_Plan, schema);
 
@@ -385,7 +385,7 @@ public class XPlanManipulatorTest {
 		RasterBasis rasterBasis = new RasterBasis();
 		rasterBasis.addRasterReference(scan);
 		rasterBasis.addRasterReference(legend);
-		editedXplan.setFirstRasterBasis( rasterBasis);
+		editedXplan.setFirstRasterBasis(rasterBasis);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, xPlanVersion, BP_Plan, schema);
 
@@ -438,7 +438,7 @@ public class XPlanManipulatorTest {
 
 		RasterBasis rasterBasis = new RasterBasis("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6");
 		rasterBasis.addRasterReference(rasterBasisReference);
-		editedXplan.setFirstRasterBasis( rasterBasis);
+		editedXplan.setFirstRasterBasis(rasterBasis);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, xPlanVersion, BP_Plan, schema);
 
@@ -701,7 +701,7 @@ public class XPlanManipulatorTest {
 				"beschreibung", asDate("2018-03-01"));
 		RasterBasis rasterBasis = new RasterBasis("GML_F042504B-0875-4470-A25D-DAFD0595E8FD");
 		rasterBasis.addRasterReference(rasterReference);
-		editedXplan.setFirstRasterBasis( rasterBasis);
+		editedXplan.setFirstRasterBasis(rasterBasis);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, xPlanVersion, BP_Plan, schema);
 
@@ -861,7 +861,7 @@ public class XPlanManipulatorTest {
 
 		RasterBasis rasterBasis = new RasterBasis("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6");
 		rasterBasis.addRasterReference(rasterBasisReference);
-		editedXplan.setFirstRasterBasis( rasterBasis);
+		editedXplan.setFirstRasterBasis(rasterBasis);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
 
