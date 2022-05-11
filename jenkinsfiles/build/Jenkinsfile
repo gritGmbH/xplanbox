@@ -33,7 +33,9 @@ pipeline {
         }
       }
       steps{
-        sh 'mvn deploy -Dskip.unit.tests=true'
+        withCredentials([usernamePassword(credentialsId: 'gnupg', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'KEYNAME_VAR')]) {
+            sh 'mvn deploy -Dskip.unit.tests=true -Dgpg.keyname=${KEYNAME_VAR} -Dgpg.passphrase=${PASSWORD_VAR}'
+        }
       }
     }
   }

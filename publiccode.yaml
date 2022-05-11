@@ -1,0 +1,59 @@
+# This repository adheres to the publiccode.yml standard by including this
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+applicationSuite: ozgxplanung
+categories:
+  - TBD
+dependsOn:
+  open:
+    - name: TBD
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: 1.2.3
+description:
+  de:
+    documentation: |-
+      https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main-v5.0.1/README.md
+    features:
+      - XPlanValidator: Web-Oberfläche für den Validator
+      - XPlanManager: Web-Oberfläche für das Datenmanagement
+      - XPlanWMS: Standard-Karten-Dienst für die Auskunft
+      - XPlanWFS: Standard-Daten-Dienst für die Auskunft (originale Datenstruktur)
+      - XPlanSynWFS: Standard-Daten-Dienst für die Auskunft (vereinfachte Datenstruktur)
+    genericName: ozgxplanung
+    longDescription: |-
+      TBD
+    shortDescription: |-
+      Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung auf Basis des Standards XPlanung.
+developmentStatus: stable
+intendedAudience:
+  countries:
+    - de
+legal:
+  license: AGPL-3.0
+  mainCopyrightOwner: lat/lon GmbH
+  repoOwner: Landesbetrieb Geoinformation und Vermessung, Hamburg
+localisation:
+  availableLanguages:
+    - de
+  localisationReady: true
+maintenance:
+  contacts:
+    - email: friebe@lat-lon.de
+      name: Torsten Friebe
+    - email: tobias.kraft@gv.hamburg.de
+      name: Tobias Kraft
+  type: internal
+name: ozgxplanung
+platforms:
+  - web
+releaseDate: '2022-05-05'
+softwareType: standalone/desktop
+softwareVersion: 5.0.1
+url: 'https://gitlab.opencode.de/diplanung/ozgxplanung.git'
+usedBy:
+  - XLeitstelle, Hamburg
+  - Landesbetrieb Geoinformation und Vermessung, Hamburg
