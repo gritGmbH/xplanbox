@@ -128,7 +128,7 @@ Beispiel:
 </gml:featureMember>
 ----
 
-In XPlanGML 5.1, 5.2, 5.3 und 5.4 ist diese Referenzierung als veraltet notiert. Stattdessen werden Rasterdateien über die von XP_Bereich abgeleiteten Feature Types über das Element `<refScan/>` referenziert (im folgendem Beispiel BP_Bereich):
+Ab XPlanGML 5.1 ist diese Referenzierung als veraltet notiert. Mit Version XPlanGML 6.0 wird diese nicht mehr unterstützt. Stattdessen werden Rasterdateien über die von XP_Bereich abgeleiteten Feature Types über das Element `<refScan/>` referenziert (im folgendem Beispiel BP_Bereich):
 
 ----
 gml:featureMember

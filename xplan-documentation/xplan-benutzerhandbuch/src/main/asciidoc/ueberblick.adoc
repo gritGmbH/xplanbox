@@ -21,8 +21,8 @@ folgenden Komponenten:
  * <<xplansynwfs,XPlanSynWFS>>: Standard-Daten-Dienst für die Auskunft (vereinfachte Datenstruktur)
  * <<xplantransform-cli, XPlanTransformCLI>>: Kommandozeilenwerkzeug für die Transformation von Plänen
 
-Aktuell werden für Bebauungspläne, Flächennutzungspläne, Landschaftspläne und Raumordnungspläne die XPlanGML Versionen 4.0, 4.1, 5.0, 5.1, 5.2, 5.3 und 5.4 durch die xPlanBox unterstützt.
-Für sonstige raumbezogene Planwerke werden die XPlanGML Versionen 5.0, 5.1, 5.2, 5.3 und 5.4 unterstützt.
+Aktuell werden für Bebauungspläne, Flächennutzungspläne, Landschaftspläne und Raumordnungspläne die XPlanGML Versionen 4.0, 4.1, 5.0, 5.1, 5.2, 5.3, 5.4 und 6.0 durch die xPlanBox unterstützt.
+Für sonstige raumbezogene Planwerke werden die XPlanGML Versionen 5.0, 5.1, 5.2, 5.3, 5.4 und 6.0 unterstützt.
 
 Die Komponenten der xPlanBox werden in diesem Benutzerhandbuch im
 Einzelnen erläutert.

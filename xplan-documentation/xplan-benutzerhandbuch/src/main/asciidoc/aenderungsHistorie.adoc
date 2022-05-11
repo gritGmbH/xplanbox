@@ -2,6 +2,14 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-6.0]]
+=== Version 6.0
+==== Erweiterungen
+- Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
+
+==== Fehlerbehebungen
+- Fehler beim Editieren von Plänen mit mehreren Bereichen behoben
+
 [[Aenderungshistorie-5.0]]
 === Version 5.0
 ==== Erweiterungen

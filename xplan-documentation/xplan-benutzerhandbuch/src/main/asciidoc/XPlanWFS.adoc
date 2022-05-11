@@ -39,6 +39,9 @@ Der XPlanWFS bietet verschiedene Dienste zur Abfrage von XPlanGML an:
 | 5.4
 | _wfs54_
 | 1.1.0 und 2.0.0
+| 6.0
+| _wfs60_
+| 1.1.0 und 2.0.0
 |===
 
 Die folgende Tabelle fasst die vom XPlanWFS unterstützten Operationen zusammen.

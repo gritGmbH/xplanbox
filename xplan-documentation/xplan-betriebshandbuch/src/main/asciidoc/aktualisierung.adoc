@@ -400,6 +400,11 @@ Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
 
+[[aktualisierung-auf-die-version-6.0-der-xplanbox]]
+=== Aktualisierung auf die Version 6.0 der xPlanBox
+
+TODO
+
 === Troubleshooting
 
 Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:

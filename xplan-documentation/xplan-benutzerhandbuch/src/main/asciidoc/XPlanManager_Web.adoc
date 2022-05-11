@@ -170,7 +170,7 @@ vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine
 Entscheidungsoption wie mit diesen Daten umgegangen werden soll.
 Anschließend erfolgt die Aktualisierung der Daten.
 
-Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
+Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 noch zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
 
 Die ebenfalls in diesem Abschnitt editierbaren Referenzen auf Texte (refText) und Legenden (refLegende) müssen in den Versionen 5.1, 5.2, 5.3 und 5.4 über die Abschnitte `Texte` und `Dokumente` editiert werden.
 
@@ -182,4 +182,4 @@ Abhängig von den Benutzerrechten können Pläne im Datenthema INSPIRE Planned L
 
 Durch Klick auf den Button __Bereitstellung als INSPIRE Datensatz__ wird der Plan in das INSPIRE PLU Datenschema überführt und in den INSPIRE konformen Download Service importiert. Anschließend kann der transformierte Plan über den INSPIRE Download Service (XPlanInspirePluWFS) und INSPIRE View Service (XPlanInspirePluWMS) abgerufen werden.
 
-NOTE: Die Bereitstellung als INSPIRE PLU Datensatz steht nur für BPläne in den XPlanGML Versionen 4.1, 5.0, 5.1, 5.2, 5.3 und 5.4 zur Verfügung.
+NOTE: Die Bereitstellung als INSPIRE PLU Datensatz steht nur für BPläne in den XPlanGML Versionen 4.1, 5.0, 5.1, 5.2, 5.3, 5.4 und 6.0 zur Verfügung.
