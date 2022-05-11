@@ -170,11 +170,9 @@ public class FeatureCollectionUtilsTest {
 		List<Bereich> bereiche = retrieveBereiche(fc);
 		assertThat(bereiche.size(), is(2));
 
-		assertThat(bereiche.get(0).getGmlId(), is("GML_a1587702-61cb-4dc7-a7fc-6b3d8ea2ebe3"));
 		assertThat(bereiche.get(0).getNummer(), is("0"));
 		assertThat(bereiche.get(0).getName(), is(nullValue()));
 
-		assertThat(bereiche.get(1).getGmlId(), is("Gml_1A345FC1-C010-43E1-8E55-3755CC94C54E"));
 		assertThat(bereiche.get(1).getNummer(), is("1"));
 		assertThat(bereiche.get(1).getName(), is(nullValue()));
 	}

@@ -25,19 +25,9 @@ package de.latlon.xplan.manager.web.shared;
  */
 public class Bereich {
 
-	private String gmlId;
-
 	private String name;
 
 	private String nummer;
-
-	public String getGmlId() {
-		return gmlId;
-	}
-
-	public void setGmlId(String gmlId) {
-		this.gmlId = gmlId;
-	}
 
 	public String getName() {
 		return name;

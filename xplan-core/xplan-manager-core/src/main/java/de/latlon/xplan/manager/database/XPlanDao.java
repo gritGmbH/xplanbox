@@ -984,12 +984,11 @@ public class XPlanDao {
 		ResultSet rs = null;
 		try {
 			List<Bereich> bereiche = new ArrayList<>();
-			stmt = conn.prepareStatement("SELECT gmlid,nummer, name FROM xplanmgr.bereiche WHERE plan=?");
+			stmt = conn.prepareStatement("SELECT nummer, name FROM xplanmgr.bereiche WHERE plan=?");
 			stmt.setInt(1, planId);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Bereich bereich = new Bereich();
-				bereich.setGmlId(rs.getString("gmlid"));
 				bereich.setNummer(rs.getString("nummer"));
 				bereich.setName(rs.getString("name"));
 				bereiche.add(bereich);
@@ -1275,12 +1274,11 @@ public class XPlanDao {
 			String nummer = bereich.getNummer();
 			LOG.info(String.format("- Einfügen von Bereich '%s'...", nummer));
 			try {
-				String insertStatement = "INSERT INTO xplanmgr.bereiche (plan,gmlid,nummer,name)" + " VALUES (?,?,?,?)";
+				String insertStatement = "INSERT INTO xplanmgr.bereiche (plan,nummer,name)" + " VALUES (?,?,?)";
 				stmt = conn.prepareStatement(insertStatement);
 				stmt.setInt(1, planId);
-				stmt.setString(2, bereich.getGmlId());
-				stmt.setString(3, bereich.getNummer());
-				stmt.setString(4, bereich.getName());
+				stmt.setString(2, bereich.getNummer());
+				stmt.setString(3, bereich.getName());
 				stmt.executeUpdate();
 				stmt.close();
 				long elapsed = System.currentTimeMillis() - begin;

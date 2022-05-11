@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -133,7 +133,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			rasterReference = new RasterReference(originalRasterReference);
 		else
 			rasterReference = new RasterReference();
-		rasterReference.setBereichId(bereichNummer.getSelectedValue());
+		rasterReference.setBereichNummer(bereichNummer.getSelectedValue());
 		rasterReference.setType(refType.getValueAsEnum());
 		rasterReference.setReference(reference.getFilename());
 		rasterReference.setReferenzMimeType(refMimeType.getValueAsEnum());
@@ -213,7 +213,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private void setRasterReferenceValues() {
 		if (originalRasterReference != null) {
-			bereichNummer.setSelectedIndex(findIndex(originalRasterReference.getBereichId()));
+			bereichNummer.setSelectedIndex(findIndex(originalRasterReference.getBereichNummer()));
 			refType.selectItem(originalRasterReference.getType());
 			reference.setNameOfExistingFile(originalRasterReference.getReference());
 			refMimeType.selectItem(originalRasterReference.getReferenzMimeType());
@@ -231,15 +231,15 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		ListBox listBox = new ListBox();
 		for (Bereich bereich : bereiche) {
 			listBox.addItem(bereich.getName() != null ? bereich.getNummer() + "(" + bereich.getName() + ")"
-					: bereich.getNummer(), bereich.getGmlId());
+					: bereich.getNummer(), bereich.getNummer());
 		}
 		return listBox;
 	}
 
-	private int findIndex(String bereichId) {
+	private int findIndex(String bereichNummer) {
 		int index = 0;
 		for (Bereich bereich : bereiche) {
-			if (bereich.getGmlId().equals(bereichId)) {
+			if (bereich.getNummer().equals(bereichNummer)) {
 				return index;
 			}
 			index++;

@@ -185,7 +185,6 @@ public class FeatureCollectionUtils {
 			if (featureName.getLocalPart().matches("(BP|FP|LP|RP|SO)_Bereich")) {
 				String ns = feature.getName().getNamespaceURI();
 				Bereich bereich = new Bereich();
-				bereich.setGmlId(feature.getId());
 				bereich.setNummer(getPropertyStringValue(feature, new QName(ns, "nummer")));
 				bereich.setName(getPropertyStringValue(feature, new QName(ns, "name")));
 				bereiche.add(bereich);

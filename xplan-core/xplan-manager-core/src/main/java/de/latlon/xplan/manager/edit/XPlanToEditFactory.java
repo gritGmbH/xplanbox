@@ -173,30 +173,31 @@ public class XPlanToEditFactory {
 
 	private void parseBPBereich(Feature feature, XPlanToEdit xPlanToEdit, String version) {
 		LOG.debug("Parse properties from BP_Bereich");
+		String bereichNummer = getPropertyByName(feature, "nummer");
 		for (Property property : feature.getProperties()) {
 			String propertyName = property.getName().getLocalPart();
 			if ("rasterBasis".equals(propertyName)) {
-				parseRasterBasis(feature.getId(), property, xPlanToEdit, version);
+				parseRasterBasis(bereichNummer, property, xPlanToEdit, version);
 			}
 			else if ("refScan".equals(propertyName)) {
-				parseRasterBasisRefScan(feature.getId(), xPlanToEdit, property);
+				parseRasterBasisRefScan(bereichNummer, xPlanToEdit, property);
 			}
 		}
 	}
 
-	private void parseRasterBasisRefScan(String bereichId, XPlanToEdit xPlanToEdit, Property property) {
-		RasterBasis rasterBasis = createOrGetRasterBasis(xPlanToEdit, bereichId, null);
+	private void parseRasterBasisRefScan(String bereichNummer, XPlanToEdit xPlanToEdit, Property property) {
+		RasterBasis rasterBasis = createOrGetRasterBasis(xPlanToEdit, bereichNummer, null);
 		if (rasterBasis == null) {
 			rasterBasis = new RasterBasis();
 		}
-		RasterReference rasterReference = parseRasterReference(bereichId, property, SCAN);
+		RasterReference rasterReference = parseRasterReference(bereichNummer, property, SCAN);
 		rasterBasis.addRasterReference(rasterReference);
 	}
 
-	private void parseRasterBasis(String bereichId, Property property, XPlanToEdit xPlanToEdit, String version) {
+	private void parseRasterBasis(String bereichNummer, Property property, XPlanToEdit xPlanToEdit, String version) {
 		TypedObjectNode propertyValue = property.getValue();
 		if (propertyValue instanceof FeatureReference) {
-			parseRasterWithReferences(bereichId, propertyValue, xPlanToEdit, version);
+			parseRasterWithReferences(bereichNummer, propertyValue, xPlanToEdit, version);
 		}
 	}
 
@@ -237,13 +238,13 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private RasterBasis createOrGetRasterBasis(XPlanToEdit xPlanToEdit, String bereichId, String featureId) {
+	private RasterBasis createOrGetRasterBasis(XPlanToEdit xPlanToEdit, String bereichNummer, String featureId) {
 		Optional<RasterBasis> rasterBasisWithBereichId = xPlanToEdit.getRasterBasis().stream()
-				.filter(rasterbasis -> bereichId.equals(rasterbasis.getBereichId())).findFirst();
+				.filter(rasterbasis -> bereichNummer.equals(rasterbasis.getBereichNummer())).findFirst();
 		if (rasterBasisWithBereichId.isPresent())
 			return rasterBasisWithBereichId.get();
 		RasterBasis rasterBasis = new RasterBasis(featureId);
-		rasterBasis.setBereichId(bereichId);
+		rasterBasis.setBereichNummer(bereichNummer);
 		xPlanToEdit.getRasterBasis().add(rasterBasis);
 		return rasterBasis;
 	}
@@ -259,10 +260,10 @@ public class XPlanToEditFactory {
 		reference.setInformationssystemURL(rasterReference.getInformationssystemURL());
 	}
 
-	private RasterReference parseRasterReference(String bereichId, Property prop,
+	private RasterReference parseRasterReference(String bereichNummer, Property prop,
 			RasterReferenceType rasterReferenceType) {
 		RasterReference rasterReference = new RasterReference();
-		rasterReference.setBereichId(bereichId);
+		rasterReference.setBereichNummer(bereichNummer);
 		rasterReference.setType(rasterReferenceType);
 		List<TypedObjectNode> children = prop.getChildren();
 		String featureId = parseReference(children, rasterReference);
@@ -490,6 +491,15 @@ public class XPlanToEditFactory {
 					return ReferenceType.getBySpezExterneReferenceType(type);
 				}
 			}
+		}
+		return null;
+	}
+
+	private String getPropertyByName(Feature feature, String propName) {
+		List<Property> properties = feature.getProperties(new QName(feature.getName().getNamespaceURI(), propName));
+		if (!properties.isEmpty()) {
+			Property property = properties.get(0);
+			return asString(property.getValue());
 		}
 		return null;
 	}

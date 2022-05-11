@@ -111,7 +111,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		if (values.isEmpty())
 			return Collections.emptyList();
 		for (RasterReference rasterReference : values) {
-			RasterBasis rasterBasis = getRasterBasisByBereichId(rasterReference.getBereichId());
+			RasterBasis rasterBasis = getRasterBasisByBereichNummer(rasterReference.getBereichNummer());
 			rasterBasis.setRasterReferences(values);
 		}
 		return rasterBasis;
@@ -204,7 +204,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		TextColumn<RasterReference> typeColumn = new TextColumn<RasterReference>() {
 			@Override
 			public String getValue(RasterReference rasterReference) {
-				return rasterReference.getBereichId();
+				return rasterReference.getBereichNummer();
 			}
 		};
 		typeColumn.setCellStyleNames("editRasterReferenceColumn bereichNummerColumn");
@@ -316,9 +316,9 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		return false;
 	}
 
-	private RasterBasis getRasterBasisByBereichId(String bereichId) {
+	private RasterBasis getRasterBasisByBereichNummer(String bereichNummer) {
 		for (RasterBasis rb : this.rasterBasis) {
-			if (bereichId.equals(rb.getBereichId())) {
+			if (bereichNummer.equals(rb.getBereichNummer())) {
 				return rb;
 			}
 		}

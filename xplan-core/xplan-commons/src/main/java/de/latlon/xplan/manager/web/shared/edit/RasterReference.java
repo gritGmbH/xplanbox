@@ -34,7 +34,7 @@ public class RasterReference extends AbstractReference {
 
 	private String featureId;
 
-	private String bereichId;
+	private String bereichNummer;
 
 	public RasterReference() {
 	}
@@ -108,22 +108,22 @@ public class RasterReference extends AbstractReference {
 	}
 
 	/**
-	 * @return the gml id of the bereich this RasterReference is assigned to
+	 * @return the nummer of the bereich this RasterReference is assigned to
 	 */
-	public String getBereichId() {
-		return bereichId;
+	public String getBereichNummer() {
+		return bereichNummer;
 	}
 
 	/**
-	 * @return the gml id of the bereich this RasterReference is assigned to
+	 * @return the nummer of the bereich this RasterReference is assigned to
 	 */
-	public void setBereichId(String bereichId) {
-		this.bereichId = bereichId;
+	public void setBereichNummer(String bereichId) {
+		this.bereichNummer = bereichId;
 	}
 
 	@Override
 	public String toString() {
-		return "RasterReference{" + "type=" + type + ", featureId=" + featureId + ", bereichId=" + bereichId + '}';
+		return "RasterReference{" + "type=" + type + ", featureId=" + featureId + ", bereichId=" + bereichNummer + '}';
 	}
 
 }

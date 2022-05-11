@@ -103,23 +103,23 @@ public class XPlanToEditFactoryTest {
 		assertThat(rasterBasis.size(), is(2));
 
 		// Bereich 0
-		String bereichId0 = "GML_a1587702-61cb-4dc7-a7fc-6b3d8ea2ebe3";
-		RasterBasis rasterBasis0 = getByBereichId(rasterBasis, bereichId0);
+		String bereichNummer0 = "0";
+		RasterBasis rasterBasis0 = getByBereichNummer(rasterBasis, bereichNummer0);
 		List<RasterReference> rasterReferences0 = rasterBasis0.getRasterReferences();
 
 		assertThat(rasterBasis0.getFeatureId(), is(nullValue()));
 		assertThat(rasterReferences0.size(), is(1));
-		assertThat(rasterReferences0.get(0).getBereichId(), is(bereichId0));
+		assertThat(rasterReferences0.get(0).getBereichNummer(), is(bereichNummer0));
 		assertThat(rasterReferences0.get(0).getReference(), is("BPlan001_5-2_Bereich0.png"));
 
 		// Bereich 1
-		String bereichId1 = "Gml_1A345FC1-C010-43E1-8E55-3755CC94C54E";
-		RasterBasis rasterBasis1 = getByBereichId(rasterBasis, bereichId1);
+		String bereichNummer1 = "1";
+		RasterBasis rasterBasis1 = getByBereichNummer(rasterBasis, bereichNummer1);
 		List<RasterReference> rasterReferences1 = rasterBasis1.getRasterReferences();
 
 		assertThat(rasterBasis1.getFeatureId(), is(nullValue()));
 		assertThat(rasterReferences1.size(), is(1));
-		assertThat(rasterReferences1.get(0).getBereichId(), is(bereichId1));
+		assertThat(rasterReferences1.get(0).getBereichNummer(), is(bereichNummer1));
 		assertThat(rasterReferences1.get(0).getReference(), is("BPlan001_5-2_Bereich1.png"));
 	}
 
@@ -131,17 +131,17 @@ public class XPlanToEditFactoryTest {
 
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
 
-		String bereichId = "FEATURE_02c85610-df24-47e6-b21e-b527cc30c0a6";
+		String bereichNummer = "0";
 		List<RasterBasis> allRasterBasis = xPlanToEdit.getRasterBasis();
 		assertThat(allRasterBasis.size(), is(1));
 
 		RasterBasis rasterBasis = allRasterBasis.get(0);
 		assertThat(rasterBasis.getFeatureId(), is(nullValue()));
-		assertThat(rasterBasis.getBereichId(), is(bereichId));
+		assertThat(rasterBasis.getBereichNummer(), is(bereichNummer));
 
 		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
 		assertThat(rasterReferences.size(), is(1));
-		assertThat(rasterReferences.get(0).getBereichId(), is(bereichId));
+		assertThat(rasterReferences.get(0).getBereichNummer(), is(bereichNummer));
 		assertThat(rasterReferences.get(0).getReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tif"));
 		assertThat(rasterReferences.get(0).getGeoReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tfw"));
 
@@ -155,17 +155,17 @@ public class XPlanToEditFactoryTest {
 
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
 
-		String bereichId = "FEATURE_02c85610-df24-47e6-b21e-b527cc30c0a6";
+		String bereichNummer = "0";
 		List<RasterBasis> allRasterBasis = xPlanToEdit.getRasterBasis();
 		assertThat(allRasterBasis.size(), is(1));
 
 		RasterBasis rasterBasis = allRasterBasis.get(0);
 		assertThat(rasterBasis.getFeatureId(), is("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6"));
-		assertThat(rasterBasis.getBereichId(), is(bereichId));
+		assertThat(rasterBasis.getBereichNummer(), is(bereichNummer));
 
 		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
 		assertThat(rasterReferences.size(), is(1));
-		assertThat(rasterReferences.get(0).getBereichId(), is(bereichId));
+		assertThat(rasterReferences.get(0).getBereichNummer(), is(bereichNummer));
 		assertThat(rasterReferences.get(0).getReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tif"));
 		assertThat(rasterReferences.get(0).getGeoReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tfw"));
 
@@ -280,12 +280,12 @@ public class XPlanToEditFactoryTest {
 		assertThat(text.getGeoReference(), is(nullValue()));
 		assertThat(text.getReference(), is("B-Plan_Klingmuehl_Heideweg_Text.pdf"));
 
-		String bereichId = "FEATURE_02c85610-df24-47e6-b21e-b527cc30c0a6";
+		String bereichNummer = "0";
 		List<RasterBasis> allRasterBasis = xPlanToEdit.getRasterBasis();
 		assertThat(allRasterBasis.size(), is(1));
 
 		RasterBasis rasterBasis = allRasterBasis.get(0);
-		assertThat(rasterBasis.getBereichId(), is(bereichId));
+		assertThat(rasterBasis.getBereichNummer(), is(bereichNummer));
 		assertThat(rasterBasis.getFeatureId(), is("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6"));
 
 		List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();
@@ -294,7 +294,7 @@ public class XPlanToEditFactoryTest {
 		RasterReference scan = getByType(rasterBasisReferences, SCAN);
 		assertThat(scan, is(notNullValue()));
 		assertThat(scan.getFeatureId(), nullValue());
-		assertThat(scan.getBereichId(), is(bereichId));
+		assertThat(scan.getBereichNummer(), is(bereichNummer));
 		assertThat(scan.getGeoReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tfw"));
 		assertThat(scan.getReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tif"));
 		assertThat(scan.getReferenzName(), is("B-Plan_Klingmuehl_Heideweg_Karte"));
@@ -303,7 +303,7 @@ public class XPlanToEditFactoryTest {
 		RasterReference legend = getByType(rasterBasisReferences, LEGEND);
 		assertThat(legend, is(notNullValue()));
 		assertThat(legend.getFeatureId(), nullValue());
-		assertThat(legend.getBereichId(), is(bereichId));
+		assertThat(legend.getBereichNummer(), is(bereichNummer));
 		assertThat(legend.getReference(), is("B-Plan_Klingmuehl_Heideweg_Legende.png"));
 		assertThat(legend.getReferenzMimeType(), is(IMAGE_PNG));
 		assertThat(legend.getGeoReference(), is(nullValue()));
@@ -377,12 +377,12 @@ public class XPlanToEditFactoryTest {
 		assertThat(firstText.getGeoReference(), is(nullValue()));
 		assertThat(firstText.getReference(), is("Klarstellungssatzung_Haida_cut_v4.tif"));
 
-		String bereichId = "GML_9E7B8311-7F02-4022-A1AD-7E46ACB58373";
+		String bereichNummer = "0";
 		List<RasterBasis> allRasterBasis = xPlanToEdit.getRasterBasis();
 		assertThat(allRasterBasis.size(), is(1));
 
 		RasterBasis rasterBasis = allRasterBasis.get(0);
-		assertThat(rasterBasis.getBereichId(), is(bereichId));
+		assertThat(rasterBasis.getBereichNummer(), is(bereichNummer));
 		assertThat(rasterBasis.getFeatureId(), is("GML_F042504B-0875-4470-A25D-DAFD0595E8FD"));
 
 		List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();
@@ -390,14 +390,14 @@ public class XPlanToEditFactoryTest {
 
 		RasterReference scan = getByType(rasterBasisReferences, SCAN);
 		assertThat(scan, is(notNullValue()));
-		assertThat(scan.getBereichId(), is(bereichId));
+		assertThat(scan.getBereichNummer(), is(bereichNummer));
 		assertThat(scan.getFeatureId(), is("GML_1D000019-0DE0-4667-A19C-6EC6ABDF000B"));
 		assertThat(scan.getReference(), is("Klarstellungssatzung_Wuerdenhain_cut_ergb.tif"));
 		assertThat(scan.getGeoReference(), is("Klarstellungssatzung_Wuerdenhain_cut_ergb.tfw"));
 
 		RasterReference legend = getByType(rasterBasisReferences, LEGEND);
 		assertThat(legend, is(notNullValue()));
-		assertThat(legend.getBereichId(), legend.getBereichId(), is(bereichId));
+		assertThat(legend.getBereichNummer(), legend.getBereichNummer(), is(bereichNummer));
 		assertThat(legend.getFeatureId(), is("GML_1D000019-0DE0-4667-A19C-6EC6ABDF000F"));
 		assertThat(legend.getReference(), is("Klarstellungssatzung_Wuerdenhain_cut_ergb_legende.tif"));
 		assertThat(legend.getReferenzMimeType(), is(IMAGE_TIFF));
@@ -453,9 +453,9 @@ public class XPlanToEditFactoryTest {
 		return null;
 	}
 
-	private RasterBasis getByBereichId(List<RasterBasis> rasterBasis, String bereichId) {
+	private RasterBasis getByBereichNummer(List<RasterBasis> rasterBasis, String bereichNummer) {
 		Optional<RasterBasis> rasterBasisWithNumber = rasterBasis.stream()
-				.filter(rb -> rb.getBereichId().equals(bereichId)).findFirst();
+				.filter(rb -> rb.getBereichNummer().equals(bereichNummer)).findFirst();
 		return rasterBasisWithNumber.isPresent() ? rasterBasisWithNumber.get() : null;
 	}
 

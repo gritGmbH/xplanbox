@@ -75,8 +75,7 @@ COMMENT ON TABLE planwerkwmsmetadata IS 'Metadata of plans provided in the capab
 
 CREATE TABLE bereiche (
     plan integer references plans ON DELETE CASCADE,
-    gmlid text NOT NULL,
-    nummer text,
+    nummer text NOT NULL,
     name text
 );
 COMMENT ON TABLE bereiche IS 'Plan Bereiche';
