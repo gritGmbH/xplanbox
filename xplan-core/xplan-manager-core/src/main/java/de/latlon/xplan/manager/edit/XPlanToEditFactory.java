@@ -245,7 +245,7 @@ public class XPlanToEditFactory {
 			return rasterBasisWithBereichId.get();
 		RasterBasis rasterBasis = new RasterBasis(featureId);
 		rasterBasis.setBereichNummer(bereichNummer);
-		xPlanToEdit.getRasterBasis().add(rasterBasis);
+		xPlanToEdit.addRasterBasis(rasterBasis);
 		return rasterBasis;
 	}
 
