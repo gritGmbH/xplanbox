@@ -157,7 +157,7 @@ public class XPlanManipulator {
 		String nummer = retrieveNummer(bpBereichFeature);
 		List<RasterBasis> rasterBasisOfBereich = rasterBasis.stream()
 				.filter(rb -> nummer == null || nummer.equals(rb.getBereichNummer())).collect(Collectors.toList());
-		if (rasterBasisOfBereich.isEmpty()) {
+		if (rasterBasisOfBereich.isEmpty() || countRasterReferences(rasterBasisOfBereich).isEmpty()) {
 			removeRasterBasis(version, planToEdit, bpBereichFeature, featuresToRemove, referencesToRemove,
 					previouslyReferencedRasterBasisFeatureId, bpBereichFeature.getName().getNamespaceURI());
 		}
@@ -973,7 +973,7 @@ public class XPlanManipulator {
 		List<Property> nummerProps = bpBereichFeature
 				.getProperties(new QName(bpBereichFeature.getName().getNamespaceURI(), "nummer"));
 		if (nummerProps != null && !nummerProps.isEmpty()) {
-			PropertyType nummerValue = nummerProps.get(0).getType();
+			TypedObjectNode nummerValue = nummerProps.get(0).getValue();
 			if (nummerValue instanceof PrimitiveValue) {
 				return ((PrimitiveValue) nummerValue).getAsText().trim();
 			}
@@ -984,6 +984,11 @@ public class XPlanManipulator {
 	private List<RasterReference> collectRasterReferencesByType(List<RasterReference> rasterReferences,
 			RasterReferenceType type) {
 		return rasterReferences.stream().filter(rasterReference -> type.equals(rasterReference.getType()))
+				.collect(Collectors.toList());
+	}
+
+	private List<RasterReference> countRasterReferences(List<RasterBasis> rasterBasisOfBereich) {
+		return rasterBasisOfBereich.stream().flatMap(rb -> rb.getRasterReferences().stream())
 				.collect(Collectors.toList());
 	}
 

@@ -174,19 +174,19 @@ public class XPlanToEditFactory {
 	private void parseBPBereich(Feature feature, XPlanToEdit xPlanToEdit, String version) {
 		LOG.debug("Parse properties from BP_Bereich");
 		String bereichNummer = getPropertyByName(feature, "nummer");
+		RasterBasis rasterBasis = createOrGetRasterBasis(xPlanToEdit, bereichNummer, null);
 		for (Property property : feature.getProperties()) {
 			String propertyName = property.getName().getLocalPart();
 			if ("rasterBasis".equals(propertyName)) {
-				parseRasterBasis(bereichNummer, property, xPlanToEdit, version);
+				parseRasterBasis(bereichNummer, property, xPlanToEdit, rasterBasis, version);
 			}
 			else if ("refScan".equals(propertyName)) {
-				parseRasterBasisRefScan(bereichNummer, xPlanToEdit, property);
+				parseRasterBasisRefScan(bereichNummer, rasterBasis, property);
 			}
 		}
 	}
 
-	private void parseRasterBasisRefScan(String bereichNummer, XPlanToEdit xPlanToEdit, Property property) {
-		RasterBasis rasterBasis = createOrGetRasterBasis(xPlanToEdit, bereichNummer, null);
+	private void parseRasterBasisRefScan(String bereichNummer, RasterBasis rasterBasis, Property property) {
 		if (rasterBasis == null) {
 			rasterBasis = new RasterBasis();
 		}
@@ -194,18 +194,19 @@ public class XPlanToEditFactory {
 		rasterBasis.addRasterReference(rasterReference);
 	}
 
-	private void parseRasterBasis(String bereichNummer, Property property, XPlanToEdit xPlanToEdit, String version) {
+	private void parseRasterBasis(String bereichNummer, Property property, XPlanToEdit xPlanToEdit,
+			RasterBasis rasterBasis, String version) {
 		TypedObjectNode propertyValue = property.getValue();
 		if (propertyValue instanceof FeatureReference) {
-			parseRasterWithReferences(bereichNummer, propertyValue, xPlanToEdit, version);
+			parseRasterWithReferences(bereichNummer, propertyValue, xPlanToEdit, rasterBasis, version);
 		}
 	}
 
 	private void parseRasterWithReferences(String bereichId, TypedObjectNode propertyValue, XPlanToEdit xPlanToEdit,
-			String version) {
+			RasterBasis rasterBasis, String version) {
 		Feature referencedObject = ((FeatureReference) propertyValue).getReferencedObject();
 		String featureId = referencedObject.getId();
-		RasterBasis rasterBasis = createOrGetRasterBasis(xPlanToEdit, bereichId, featureId);
+		rasterBasis.setFeatureId(featureId);
 		for (Property prop : referencedObject.getProperties()) {
 			String propName = prop.getName().getLocalPart();
 			if ("refLegende".equals(propName)) {

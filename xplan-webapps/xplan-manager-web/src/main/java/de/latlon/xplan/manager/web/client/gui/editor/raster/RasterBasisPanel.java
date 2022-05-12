@@ -110,9 +110,9 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		List<RasterReference> values = getValues();
 		if (values.isEmpty())
 			return Collections.emptyList();
-		for (RasterReference rasterReference : values) {
-			RasterBasis rasterBasis = getRasterBasisByBereichNummer(rasterReference.getBereichNummer());
-			rasterBasis.setRasterReferences(values);
+		for (RasterBasis rb : rasterBasis) {
+			List<RasterReference> editedRasterReferences = collectReferencesOfRasterBasis(rb, values);
+			rb.setRasterReferences(editedRasterReferences);
 		}
 		return rasterBasis;
 	}
@@ -121,7 +121,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		List<RasterBasis> allRasterBasis = retrieveRasterBasis();
 		boolean allRasterBasisContainsScan = true;
 		for (RasterBasis rasterBasis : allRasterBasis) {
-			if (!containsRasterReferenceOfType(rasterBasis, SCAN)) {
+			if (!containsRasterReferenceOfTypeOrNoRasterReferences(rasterBasis, SCAN)) {
 				allRasterBasisContainsScan = false;
 			}
 		}
@@ -248,6 +248,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 					@Override
 					public void changesSaved() {
 						RasterReference editedRasterReference = rasterReferenceDialog.getEditedRasterReference();
+						rasterReference.setBereichNummer(editedRasterReference.getBereichNummer());
 						rasterReference.setReference(editedRasterReference.getReference());
 						rasterReference.setGeoReference(editedRasterReference.getGeoReference());
 						rasterReference.setType(editedRasterReference.getType());
@@ -305,24 +306,29 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		return Collections.emptyList();
 	}
 
-	private boolean containsRasterReferenceOfType(RasterBasis rasterBasis, RasterReferenceType referenceType) {
-		if (rasterBasis != null) {
-			List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
-			for (RasterReference rasterReference : rasterReferences) {
-				if (referenceType.equals(rasterReference.getType()))
-					return true;
-			}
+	private boolean containsRasterReferenceOfTypeOrNoRasterReferences(RasterBasis rasterBasis,
+			RasterReferenceType referenceType) {
+		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+		if (rasterReferences.isEmpty()) {
+			return true;
+		}
+		for (RasterReference rasterReference : rasterReferences) {
+			if (referenceType.equals(rasterReference.getType()))
+				return true;
 		}
 		return false;
 	}
 
-	private RasterBasis getRasterBasisByBereichNummer(String bereichNummer) {
-		for (RasterBasis rb : this.rasterBasis) {
-			if (bereichNummer.equals(rb.getBereichNummer())) {
-				return rb;
+	private List<RasterReference> collectReferencesOfRasterBasis(RasterBasis rb,
+			List<RasterReference> rasterReferences) {
+		List<RasterReference> rasterReferencesOfRasterBasis = new ArrayList<RasterReference>();
+		for (RasterReference rasterReference : rasterReferences) {
+			if (rb != null && rb.getBereichNummer() != null
+					&& rb.getBereichNummer().equals(rasterReference.getBereichNummer())) {
+				rasterReferencesOfRasterBasis.add(rasterReference);
 			}
 		}
-		return null;
+		return rasterReferencesOfRasterBasis;
 	}
 
 }

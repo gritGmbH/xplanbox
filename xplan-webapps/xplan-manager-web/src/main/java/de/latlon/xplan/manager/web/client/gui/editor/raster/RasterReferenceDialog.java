@@ -90,18 +90,18 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 	private final RasterReference originalRasterReference;
 
 	public RasterReferenceDialog(EditVersion version, List<Bereich> bereiche) {
-		this(version, bereiche, null, MESSAGES.editCaptionRasterBasisDialogNew());
+		this(version, bereiche, null, MESSAGES.editCaptionRasterBasisDialogNew(), true);
 	}
 
 	public RasterReferenceDialog(EditVersion version, List<Bereich> bereiche, RasterReference rasterReference) {
-		this(version, bereiche, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit());
+		this(version, bereiche, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit(), false);
 	}
 
 	private RasterReferenceDialog(EditVersion version, List<Bereich> bereiche, RasterReference rasterReference,
-			String title) {
+			String title, boolean isBereichNummerEditable) {
 		super(version, title);
 		this.bereiche = bereiche;
-		this.bereichNummer = createBereichNummer();
+		this.bereichNummer = createBereichNummer(isBereichNummerEditable);
 		this.refType = createRefType();
 		this.refMimeType = createMimeTypeType(version);
 		this.georefMimeType = createMimeTypeType(version);
@@ -227,12 +227,13 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		}
 	}
 
-	private ListBox createBereichNummer() {
+	private ListBox createBereichNummer(boolean isBereichNummerEditable) {
 		ListBox listBox = new ListBox();
 		for (Bereich bereich : bereiche) {
 			listBox.addItem(bereich.getName() != null ? bereich.getNummer() + "(" + bereich.getName() + ")"
 					: bereich.getNummer(), bereich.getNummer());
 		}
+		listBox.setEnabled(isBereichNummerEditable);
 		return listBox;
 	}
 
@@ -307,6 +308,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			valid = false;
 		}
 		showValidationError(validationFailures);
+
 		return valid;
 	}
 

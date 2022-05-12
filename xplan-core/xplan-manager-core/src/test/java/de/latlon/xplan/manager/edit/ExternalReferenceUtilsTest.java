@@ -68,10 +68,10 @@ public class ExternalReferenceUtilsTest {
 	public void testCreateExternalRefAddedOrUpdated_XPlanToEdit() throws Exception {
 		XPlanToEdit planToEdit = new XPlanToEdit();
 		RasterBasis rasterBasis = new RasterBasis();
-		RasterReference rasterReference1 = new RasterReference("G.tif", null, LEGEND, null, null, null, null, null,
+		RasterReference rasterReference1 = new RasterReference("0", "G.tif", null, LEGEND, null, null, null, null, null,
 				null, null);
-		RasterReference rasterReference2 = new RasterReference("A.tif", null, SCAN, null, null, null, null, null, null,
-				null);
+		RasterReference rasterReference2 = new RasterReference("0", "A.tif", null, SCAN, null, null, null, null, null,
+				null, null);
 		rasterBasis.addRasterReference(rasterReference1);
 		rasterBasis.addRasterReference(rasterReference2);
 		planToEdit.addRasterBasis(rasterBasis);
