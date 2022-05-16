@@ -3647,7 +3647,6 @@
             <element name="satzungsbeschlussDatum" minOccurs="0" type="date"/>
             <element name="rechtsverordnungsDatum" minOccurs="0" type="date"/>
             <element name="inkrafttretensDatum" minOccurs="0" type="date"/>
-            <element name="veraenderungssperre" minOccurs="0" type="boolean"/>
             <element name="staedtebaulicherVertrag" minOccurs="0" type="boolean"/>
             <element name="erschliessungsVertrag" minOccurs="0" type="boolean"/>
             <element name="durchfuehrungsVertrag" minOccurs="0" type="boolean"/>
@@ -3678,6 +3677,7 @@
             <element name="wurdeGeaendertVonPlan" minOccurs="0" type="string"/>
             <element name="aendertPlanBereich" minOccurs="0" type="string"/>
             <element name="wurdeGeaendertVonPlanBereich" minOccurs="0" type="string"/>
+            <element name="veraenderungssperre" minOccurs="0" type="string"/>
             <element name="versionBauNVO" minOccurs="0" type="string"/>
             <element name="versionBauGB" minOccurs="0" type="string"/>
             <element name="versionSonstRechtsgrundlage" minOccurs="0" type="string"/>
@@ -11880,9 +11880,9 @@
             <element name="auslegungEndDatum" minOccurs="0" type="date"/>
             <element name="verfahren" minOccurs="0" type="string"/>
             <element name="verfahrenCode" minOccurs="0" type="string"/>
-            <element name="amtlicherSchluessel" minOccurs="0" type="integer"/>
             <element name="technischerPlanersteller" minOccurs="0" type="string"/>
             <element name="genehmigungsbehoerde" minOccurs="0" type="string"/>
+            <element name="amtlicherSchluessel" minOccurs="0" type="string"/>
             <element name="aendertPlan" minOccurs="0" type="string"/>
             <element name="wurdeGeaendertVonPlan" minOccurs="0" type="string"/>
             <element name="aendertPlanBereich" minOccurs="0" type="string"/>

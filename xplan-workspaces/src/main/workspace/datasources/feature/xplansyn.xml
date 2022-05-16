@@ -3449,7 +3449,6 @@
     <Primitive path="xplan:satzungsbeschlussDatum" mapping="xplan_satzungsbeschlussdatum"/>
     <Primitive path="xplan:rechtsverordnungsDatum" mapping="xplan_rechtsverordnungsdatum"/>
     <Primitive path="xplan:inkrafttretensDatum" mapping="xplan_inkrafttretensdatum"/>
-    <Primitive path="xplan:veraenderungssperre" mapping="xplan_veraenderungssperre"/>
     <Primitive path="xplan:staedtebaulicherVertrag" mapping="xplan_staedtebaulichervertrag"/>
     <Primitive path="xplan:erschliessungsVertrag" mapping="xplan_erschliessungsvertrag"/>
     <Primitive path="xplan:durchfuehrungsVertrag" mapping="xplan_durchfuehrungsvertrag"/>
@@ -3480,6 +3479,7 @@
     <Primitive path="xplan:wurdeGeaendertVonPlan" mapping="xplan_wurdegeaendertvonplan"/>
     <Primitive path="xplan:aendertPlanBereich" mapping="xplan_aendertplanbereich"/>
     <Primitive path="xplan:wurdeGeaendertVonPlanBereich" mapping="xplan_wurdegeaendertvonplanbereich"/>
+    <Primitive path="xplan:veraenderungssperre" mapping="xplan_veraenderungssperre"/>
     <Primitive path="xplan:versionBauNVO" mapping="xplan_versionbaunvo"/>
     <Primitive path="xplan:versionBauGB" mapping="xplan_versionbaugb"/>
     <Primitive path="xplan:versionSonstRechtsgrundlage" mapping="xplan_versionsonstrechtsgrundlage"/>
@@ -11154,9 +11154,9 @@
     <Primitive path="xplan:auslegungEndDatum" mapping="xplan_auslegungenddatum"/>
     <Primitive path="xplan:verfahren" mapping="xplan_verfahren"/>
     <Primitive path="xplan:verfahrenCode" mapping="xplan_verfahrencode"/>
-    <Primitive path="xplan:amtlicherSchluessel" mapping="xplan_amtlicherschluessel"/>
     <Primitive path="xplan:technischerPlanersteller" mapping="xplan_technischerplanersteller"/>
     <Primitive path="xplan:genehmigungsbehoerde" mapping="xplan_genehmigungsbehoerde"/>
+    <Primitive path="xplan:amtlicherSchluessel" mapping="xplan_amtlicherschluessel"/>
     <Primitive path="xplan:aendertPlan" mapping="xplan_aendertplan"/>
     <Primitive path="xplan:wurdeGeaendertVonPlan" mapping="xplan_wurdegeaendertvonplan"/>
     <Primitive path="xplan:aendertPlanBereich" mapping="xplan_aendertplanbereich"/>
