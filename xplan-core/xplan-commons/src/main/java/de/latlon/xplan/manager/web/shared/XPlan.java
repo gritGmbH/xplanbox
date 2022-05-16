@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.web.shared;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -263,6 +264,8 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 	}
 
 	public List<Bereich> getBereiche() {
+		if (bereiche == null)
+			return Collections.emptyList();
 		return bereiche;
 	}
 
