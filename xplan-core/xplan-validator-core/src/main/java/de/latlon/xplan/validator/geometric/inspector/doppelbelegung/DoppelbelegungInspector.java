@@ -21,6 +21,7 @@ package de.latlon.xplan.validator.geometric.inspector.doppelbelegung;
  * #L%
  */
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.gml.property.Property;
@@ -34,6 +35,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 
 /**
  * Implements 4.5.2.4 (since XPlanGML 6.0): Verbot der Doppelbelegung gleichnamiger
@@ -96,6 +99,11 @@ public class DoppelbelegungInspector implements GeometricFeatureInspector {
 	@Override
 	public List<BadGeometry> getBadGeometries() {
 		return Collections.emptyList();
+	}
+
+	@Override
+	public boolean applicableForVersion(XPlanVersion version) {
+		return XPLAN_60.equals(version);
 	}
 
 	private void checkFeature(Feature featureToCheck) {

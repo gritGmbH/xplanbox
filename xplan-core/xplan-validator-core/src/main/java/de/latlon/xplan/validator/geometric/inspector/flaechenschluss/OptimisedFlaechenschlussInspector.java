@@ -178,6 +178,11 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		return badGeometries;
 	}
 
+	@Override
+	public boolean applicableForVersion(XPlanVersion version) {
+		return true;
+	}
+
 	private void analyseFlaechenschlussFeaturePairs(List<FeatureUnderTest> featuresUnderTest) {
 		List<Pair<FeatureUnderTest, FeatureUnderTest>> flaechenschlussFeaturePairs = detectFlaechenschlussFeaturePairsToAnalyse(
 				featuresUnderTest);
