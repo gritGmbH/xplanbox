@@ -100,4 +100,5 @@ Ressource: `/plan/{planId}/rasterbasis/{id}`
 Zusätzliche Anforderungen an die im XPlanGML-Dokument verlinkten Referenzen:
 
 - Für alle Dokumente und Rasterbasis in der Version 4.1 bis 5.2 gilt, dass _referenzName_ oder _referenzURL_ belegt sein muss.
+- Für Pläne mit mehreren `BP_Bereich`-Elementen muss das Element `BP:nummer` für jeden `BP_Bereich` eindeutig sein.
 - Und zusätzlich gilt für alle Dokumente und Rasterbasis, dass die Kombination aus _referenzName-referenzURL_ innerhalb eines XPlanGML-Dokuments eindeutig sein muss.
