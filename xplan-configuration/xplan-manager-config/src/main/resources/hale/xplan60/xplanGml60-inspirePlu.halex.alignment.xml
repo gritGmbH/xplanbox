@@ -2542,105 +2542,6 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="C1a59a282-58ef-4fc1-bfec-e0d95074f8d1" priority="normal">
-        <source>
-            <class>
-                <type name="SO_GebietType" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </class>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="C019b6d3b-de62-4489-9e48-70c0c9fa5aca" priority="normal">
-        <source>
-            <class>
-                <type name="SO_GewaesserType" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </class>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="C071a2fef-450b-46e5-b9f1-719aaab55550" priority="normal">
-        <source>
-            <class>
-                <type name="SO_SichtflaecheType" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </class>
-        </target>
-        <parameter value="false" name="copyGeometries"/>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="Ce9dd3e0e-7a6f-4317-8991-1205bf886db0" priority="normal">
-        <source>
-            <class>
-                <type name="SO_SonstigesRechtType" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </class>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cdfcaf6e1-09c1-41ea-b510-1b8a823d1775" priority="normal">
-        <source>
-            <class>
-                <type name="SO_StrassenverkehrType" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </class>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cf66cdf8f-186a-4b8f-8b71-5274d770168d" priority="normal">
-        <source>
-            <class>
-                <type name="SO_StrassenverkehrType" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </class>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="C05deb4cb-93c6-41aa-9f34-03eb17b59efb" priority="normal">
-        <source>
-            <class>
-                <type name="SO_WasserwirtschaftType" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </class>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf44c7414-ef3b-4a88-ae54-f5fadfd082e1" priority="normal">
         <source>
             <property>
@@ -8422,45 +8323,6 @@ Process finished with exit code 0
             </core:message>
         </annotation>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C1afbea48-8d3d-4f61-99ee-6ea9901b52a3" priority="normal">
-        <source name="var">
-            <property>
-                <type name="SO_StrassenverkehrType" ns="http://www.xplanung.de/xplangml/6/0"/>
-                <child name="nutzungsform" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </property>
-        </source>
-        <target name="result">
-            <property>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="specificSupplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </property>
-        </target>
-        <complexParameter name="script">
-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( nutzungsform == '1000' ) {
-  _target{
-    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_44_1_Privat' ) 
-  }
-} else if ( nutzungsform == '2000' ) {
-  _target{
-    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_44_2_Oeffentlich' ) 
-  }
-} else {
-  _target{
-    href ( 'http://unknownregistry.xplanung.de/SupplementaryRegulationValue3_44_StrassenVerkehrsFlaeche' ) 
-  }
-}
-</core:text>
-        </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">The cell's entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
     <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C10521086-ffe7-4539-aad0-6e31aa4ebdca" priority="normal">
         <target name="result">
             <property>
@@ -10755,45 +10617,6 @@ if ( typ == '1000' ) {
             </core:message>
         </annotation>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="Cc66676fe-2fa8-42c4-8794-c144c34d1daa" priority="normal">
-        <source name="var">
-            <property>
-                <type name="SO_StrassenverkehrType" ns="http://www.xplanung.de/xplangml/6/0"/>
-                <child name="nutzungsform" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </property>
-        </source>
-        <target name="result">
-            <property>
-                <type name="SupplementaryRegulationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="supplementaryRegulation" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </property>
-        </target>
-        <complexParameter name="script">
-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( nutzungsform == '1000' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' ) 
-  }
-} else if ( nutzungsform == '2000' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' ) 
-  }
-} else {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_3_1_1_Road' ) 
-  }
-}
-</core:text>
-        </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">The cell's entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C0af59832-58b6-4c92-9366-208ea092aa73" priority="normal">
         <source>
             <property>
@@ -11525,34 +11348,6 @@ if ( nutzungsform == '1000' ) {
                 <type name="BP_WohngebaeudeFlaecheType" ns="http://www.xplanung.de/xplangml/6/0">
                     <condition lang="CQL">(ebene IS NULL OR ebene LIKE '0' ) AND flaechenschluss LIKE 'true'</condition>
                 </type>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </class>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="Ca6cf90fd-0188-4a69-aea0-10c2638914c5" priority="normal">
-        <source>
-            <class>
-                <type name="SO_SonstigesRechtType" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </class>
-        </source>
-        <target>
-            <class>
-                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </class>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.retype" id="C4124e89e-e9b8-4a9a-81ed-1ce4bdc0b905" priority="normal">
-        <source>
-            <class>
-                <type name="SO_StrassenverkehrType" ns="http://www.xplanung.de/xplangml/6/0"/>
             </class>
         </source>
         <target>
@@ -14503,45 +14298,6 @@ if ( zweckbestimmung == '1000' ) {
             </core:message>
         </annotation>
     </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C06001fe2-6502-49f1-9730-e96504ffd2e1" priority="normal">
-        <source name="var">
-            <property>
-                <type name="SO_StrassenverkehrType" ns="http://www.xplanung.de/xplangml/6/0"/>
-                <child name="nutzungsform" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </property>
-        </source>
-        <target name="result">
-            <property>
-                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="hilucsLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </property>
-        </target>
-        <complexParameter name="script">
-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( nutzungsform == '1000' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
-  }
-} else if ( nutzungsform == '2000' ) {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
-  }
-} else {
-  _target{
-    href ( 'http://inspire.ec.europa.eu/codelist/HILUCSValue/4_1_1_RoadTransport' ) 
-  }
-}
-</core:text>
-        </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">The cell's entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C4efcac08-6b59-4ca1-ba54-4b1dc556cec1" priority="normal">
         <source>
             <property>
@@ -16350,45 +16106,6 @@ if ( zweckbestimmung == '1000' ) {
 } else {
   _target{
     href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_54_WaldFlaeche' ) 
-  }
-}
-</core:text>
-        </complexParameter>
-        <parameter value="false" name="variablesAsInstances"/>
-        <annotation type="message">
-            <core:message xmlns:core="http://www.esdi-humboldt.eu/hale/core" category="migration">
-                <core:content>
-                    <core:text xml:space="preserve">The cell's entities have been replaced, the new entities may have a different structure and/or names and may require updating the Groovy script accordingly</core:text>
-                </core:content>
-            </core:message>
-        </annotation>
-    </cell>
-    <cell relation="eu.esdihumboldt.cst.functions.groovy" id="C801081e5-1fd2-49ca-a6e3-b55d45983569" priority="normal">
-        <source name="var">
-            <property>
-                <type name="SO_StrassenverkehrType" ns="http://www.xplanung.de/xplangml/6/0"/>
-                <child name="nutzungsform" ns="http://www.xplanung.de/xplangml/6/0"/>
-            </property>
-        </source>
-        <target name="result">
-            <property>
-                <type name="ZoningElementType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="specificLandUse" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-            </property>
-        </target>
-        <complexParameter name="script">
-            <core:text xmlns:core="http://www.esdi-humboldt.eu/hale/core" xml:space="preserve">
-if ( nutzungsform == '1000' ) {
-  _target{
-    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_44_1_Privat' ) 
-  }
-} else if ( nutzungsform == '2000' ) {
-  _target{
-    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_44_2_Oeffentlich' ) 
-  }
-} else {
-  _target{
-    href ( 'http://unknownregistry.xplanung.de/SpecificLandUseValue/3_44_StrassenVerkehrsFlaeche' ) 
   }
 }
 </core:text>
