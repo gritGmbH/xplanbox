@@ -36,11 +36,13 @@
         <include>storedqueries/xplan5*/**</include>
         <include>services/wfs4*</include>
         <include>services/wfs5*</include>
+        <include>services/wfs6*</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
         <exclude>services/wfs4*_metadata.xml</exclude>
         <exclude>services/wfs5*_metadata.xml</exclude>
+        <exclude>services/wfs6*_metadata.xml</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>
@@ -50,6 +52,7 @@
       <includes>
         <include>services/wfs4*_metadata.xml</include>
         <include>services/wfs5*_metadata.xml</include>
+        <include>services/wfs6*_metadata.xml</include>
       </includes>
       <outputDirectory>.</outputDirectory>
       <filtered>true</filtered>
