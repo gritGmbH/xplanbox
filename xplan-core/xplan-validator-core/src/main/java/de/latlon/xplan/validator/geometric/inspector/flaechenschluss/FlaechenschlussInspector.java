@@ -85,6 +85,7 @@ import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.Flae
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Deprecated
 public class FlaechenschlussInspector implements GeometricFeatureInspector {
 
 	private static final Logger LOG = LoggerFactory.getLogger(FlaechenschlussInspector.class);
