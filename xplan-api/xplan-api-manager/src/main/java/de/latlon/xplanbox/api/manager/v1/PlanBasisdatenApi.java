@@ -58,7 +58,8 @@ public class PlanBasisdatenApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Basisdaten.class))),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
 	public Basisdaten getBasisdaten(
 			@PathParam("planId") @Parameter(description = "planId of the plan basisdaten to be returned",
 					example = "123") String planId)
@@ -74,7 +75,8 @@ public class PlanBasisdatenApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Basisdaten.class))),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") },
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or Plan ID is not a valid int value") },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Basisdaten.class)) }))
 	public Basisdaten replaceBasisdaten(

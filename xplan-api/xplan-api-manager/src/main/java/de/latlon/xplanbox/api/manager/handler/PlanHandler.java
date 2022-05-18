@@ -39,6 +39,7 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
+import de.latlon.xplanbox.api.manager.exception.InvalidPlanIdSyntax;
 import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -138,8 +139,13 @@ public class PlanHandler {
 
 	public XPlan findPlanById(String planId) throws Exception {
 		LOG.info("Finding plan by Id '{}'", planId);
-		int id = Integer.parseInt(planId);
-		return findPlanById(id);
+		try {
+			int id = Integer.parseInt(planId);
+			return findPlanById(id);
+		}
+		catch (NumberFormatException e) {
+			throw new InvalidPlanIdSyntax(planId);
+		}
 	}
 
 	public List<XPlan> findPlansByName(String planName) throws Exception {

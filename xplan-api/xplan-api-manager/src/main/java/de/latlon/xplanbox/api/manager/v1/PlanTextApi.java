@@ -66,7 +66,8 @@ public class PlanTextApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(array = @ArraySchema(schema = @Schema(implementation = Text.class)))),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
 	public List<Text> getTexte(@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
 			example = "123") String planId) throws Exception {
 		return editTextHandler.retrieveTexte(planId);
@@ -75,13 +76,12 @@ public class PlanTextApi {
 	@POST
 	@Consumes({ "multipart/form-data" })
 	@Produces({ "application/json" })
-	@Operation(operationId = "addText", tags = { "edit" },
-			responses = {
-					@ApiResponse(responseCode = "200", description = "successful operation",
-							content = @Content(schema = @Schema(implementation = Text.class))),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan type or version or textmodel is missing") })
+	@Operation(operationId = "addText", tags = { "edit" }, responses = {
+			@ApiResponse(responseCode = "200", description = "successful operation",
+					content = @Content(schema = @Schema(implementation = Text.class))),
+			@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported Plan type or version or textmodel is missing or Plan ID is not a valid int value") })
 	public Text addText(
 			@PathParam("planId") @Parameter(description = "ID of the plan to add texte", example = "123") String planId,
 			@Parameter(schema = @Schema(implementation = Text.class),
@@ -103,7 +103,8 @@ public class PlanTextApi {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
 			@ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
-			@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
 	public Text getTextById(
 			@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
 					example = "123") String planId,
@@ -122,7 +123,7 @@ public class PlanTextApi {
 					content = @Content(schema = @Schema(implementation = Text.class))),
 			@ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan type or version  or textmodel is missing") })
+					description = "Unsupported Plan type or version  or textmodel is missing or Plan ID is not a valid int value") })
 	public Text replaceTextById(
 			@PathParam("planId") @Parameter(description = "planId of the plan to be updated",
 					example = "123") String planId,
@@ -147,7 +148,8 @@ public class PlanTextApi {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
 			@ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
-			@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
 	public Text deleteTextById(
 			@PathParam("planId") @Parameter(description = "planId of the plan to be deleted",
 					example = "123") String planId,
