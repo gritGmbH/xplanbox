@@ -76,13 +76,12 @@ public class PlanRasterbasisApi {
 	@POST
 	@Consumes({ "multipart/form-data" })
 	@Produces({ "application/json" })
-	@Operation(operationId = "addRasterBasis", tags = { "edit" },
-			responses = {
-					@ApiResponse(responseCode = "200", description = "successful operation",
-							content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan type or version or rasterbasismodel is missing") })
+	@Operation(operationId = "addRasterBasis", tags = { "edit" }, responses = {
+			@ApiResponse(responseCode = "200", description = "successful operation",
+					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
+			@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported Plan type or version, missing bereich nummer or rasterbasismodel is missing") })
 	public Rasterbasis addRasterBasis(
 			@PathParam("planId") @Parameter(description = "ID of the plan to add rasterbasis",
 					example = "123") String planId,
@@ -129,14 +128,13 @@ public class PlanRasterbasisApi {
 	@Path("/{id}")
 	@Consumes({ "multipart/form-data" })
 	@Produces({ "application/json" })
-	@Operation(operationId = "replaceRasterbasisById", tags = { "edit" },
-			responses = {
-					@ApiResponse(responseCode = "200", description = "successful operation",
-							content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
-					@ApiResponse(responseCode = "404",
-							description = "Invalid plan ID or rasterbasis ID, plan or rasterbasis not found"),
-					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan type or version or rasterbasismodel is missing") })
+	@Operation(operationId = "replaceRasterbasisById", tags = { "edit" }, responses = {
+			@ApiResponse(responseCode = "200", description = "successful operation",
+					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
+			@ApiResponse(responseCode = "404",
+					description = "Invalid plan ID or rasterbasis ID, plan or rasterbasis not found"),
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported Plan type or version, missing bereich nummer or rasterbasismodel is missing") })
 	public Rasterbasis replaceRasterbasisById(
 			@PathParam("planId") @Parameter(description = "planId of the plan to be updated",
 					example = "123") String planId,

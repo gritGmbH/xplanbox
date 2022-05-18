@@ -86,8 +86,8 @@ public class EditRasterbasisHandler extends EditHandler {
 	 */
 	public Rasterbasis addRasterbasis(String planId, Rasterbasis rasterbasisModel, File referenz, File geoReferenz)
 			throws Exception {
-		checkBereichNummer(planId, rasterbasisModel);
 		XPlan plan = findPlanById(planId);
+		checkBereichNummer(planId, rasterbasisModel);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
 		RasterBasis rasterBasis = getOrCreateRasterBasis(rasterbasisModel, xPlanToEdit);
 		RasterReference rasterReferenceToAdd = rasterbasisModel.toRasterReference();
@@ -111,8 +111,8 @@ public class EditRasterbasisHandler extends EditHandler {
 	 */
 	public Rasterbasis replaceRasterbasis(String planId, String rasterbasisId, Rasterbasis rasterbasisModel,
 			File referenz, File geoReferenz) throws Exception {
-		checkBereichNummer(planId, rasterbasisModel);
 		XPlan plan = findPlanById(planId);
+		checkBereichNummer(planId, rasterbasisModel);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
 		RasterBasis rasterBasis = getRasterBasisByBereichNummer(rasterbasisModel, xPlanToEdit);
 		if (rasterBasis == null)
