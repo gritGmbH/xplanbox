@@ -31,9 +31,11 @@
       <includes>
         <include>datasources/feature/xplan4*</include>
         <include>datasources/feature/xplan5*</include>
+        <include>datasources/feature/xplan6*</include>
         <include>jdbc/xplan.xml</include>
         <include>storedqueries/xplan4*/**</include>
         <include>storedqueries/xplan5*/**</include>
+        <include>storedqueries/xplan6*/**</include>
         <include>services/wfs4*</include>
         <include>services/wfs5*</include>
         <include>services/wfs6*</include>
