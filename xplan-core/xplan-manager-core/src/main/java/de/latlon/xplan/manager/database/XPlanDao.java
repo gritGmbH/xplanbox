@@ -707,6 +707,26 @@ public class XPlanDao {
 	}
 
 	/**
+	 * Updates the district column of the table xplanmgr.plans.
+	 * @param plan the plan to update, never <code>null</code>
+	 * @param bereiche the bereiche, never <code>null</code>
+	 * @throws Exception
+	 */
+	public void updateBereiche(XPlan plan, List<Bereich> bereiche) throws Exception {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			updateBereichInMgrSchema(conn, plan, bereiche);
+		}
+		catch (Exception e) {
+			conn.rollback();
+		}
+		finally {
+			closeQuietly(conn);
+		}
+	}
+
+	/**
 	 * @param planId of the plan to set the status
 	 * @throws SQLException if the sql could not be executed
 	 */
@@ -829,6 +849,30 @@ public class XPlanDao {
 		}
 		finally {
 			closeQuietly(updateStmt);
+		}
+	}
+
+	private void updateBereichInMgrSchema(Connection conn, XPlan plan, List<Bereich> bereiche) throws Exception {
+		StringBuilder updateSql = new StringBuilder();
+		updateSql.append("INSERT INTO xplanmgr.bereiche");
+		updateSql.append(" (plan, nummer, name)");
+		updateSql.append(" VALUES (?,?,?)");
+		updateSql.append(" ON CONFLICT");
+		updateSql.append(" DO NOTHING");
+
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(updateSql.toString());
+			for (Bereich bereich : bereiche) {
+				stmt.setInt(1, getXPlanIdAsInt(plan.getId()));
+				stmt.setString(2, bereich.getNummer());
+				stmt.setString(3, bereich.getName());
+				LOG.trace("SQL Update XPlan Manager bereich column: " + stmt);
+				stmt.executeUpdate();
+			}
+		}
+		finally {
+			closeQuietly(stmt);
 		}
 	}
 
@@ -1274,7 +1318,7 @@ public class XPlanDao {
 			String nummer = bereich.getNummer();
 			LOG.info(String.format("- Einfügen von Bereich '%s'...", nummer));
 			try {
-				String insertStatement = "INSERT INTO xplanmgr.bereiche (plan,nummer,name)" + " VALUES (?,?,?)";
+				String insertStatement = "INSERT INTO xplanmgr.bereiche (plan,nummer,name) VALUES (?,?,?)";
 				stmt = conn.prepareStatement(insertStatement);
 				stmt.setInt(1, planId);
 				stmt.setString(2, bereich.getNummer());
