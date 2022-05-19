@@ -61,6 +61,6 @@ Configuration:
       - name: org.reflections
         level: fatal
       - name: org.deegree.geometry.standard.AbstractDefaultGeometry
-        level: warn
+        level: error
       - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
-        level: warn
+        level: error
