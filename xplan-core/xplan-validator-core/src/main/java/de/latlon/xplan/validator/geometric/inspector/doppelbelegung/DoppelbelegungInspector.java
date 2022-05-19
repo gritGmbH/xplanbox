@@ -10,12 +10,12 @@ package de.latlon.xplan.validator.geometric.inspector.doppelbelegung;
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -24,10 +24,13 @@ package de.latlon.xplan.validator.geometric.inspector.doppelbelegung;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
-import org.deegree.geometry.Geometry;
+import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.IntersectionMatrix;
 
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
@@ -46,7 +49,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
  */
 public class DoppelbelegungInspector implements GeometricFeatureInspector {
 
-	private static final String ERROR_MSG = "4.5.2.4: Das Feature mit der gml id {} beinhaltet das Attribut {}, welches auch im überlagernden BP_UeberbaubareGrundstuecksFlaeche mit der gml id {} definiert ist.";
+	private static final String ERROR_MSG = "4.5.2.4: Das Feature mit der gml id %s beinhaltet das Attribut %s, welches auch im überlagernden BP_UeberbaubareGrundstuecksFlaeche mit der gml id %s definiert ist.";
 
 	private final List<String> errors = new ArrayList<>();
 
@@ -108,9 +111,7 @@ public class DoppelbelegungInspector implements GeometricFeatureInspector {
 
 	private void checkFeature(Feature featureToCheck) {
 		List<Feature> overlappingFeatures = findOverlappingFeatures(getGeometry(featureToCheck));
-		overlappingFeatures.forEach(overlappingFeature -> {
-			checkProperties(featureToCheck, overlappingFeature);
-		});
+		overlappingFeatures.forEach(overlappingFeature -> checkProperties(featureToCheck, overlappingFeature));
 	}
 
 	private void checkProperties(Feature featureToCheck, Feature overlappingFeature) {
@@ -133,12 +134,20 @@ public class DoppelbelegungInspector implements GeometricFeatureInspector {
 	private List<Feature> findOverlappingFeatures(Geometry geom) {
 		return ueberbaubareGrundstuecksflaecheFeatures.stream().filter(ueberbaubareGrundstuecksflaecheFeature -> {
 			Geometry ueberbaubareGrundstuecksflaecheGeom = getGeometry(ueberbaubareGrundstuecksflaecheFeature);
-			return ueberbaubareGrundstuecksflaecheGeom.overlaps(geom);
+			if (geom != null && ueberbaubareGrundstuecksflaecheGeom != null) {
+				IntersectionMatrix relate = ueberbaubareGrundstuecksflaecheGeom.relate(geom);
+				return relate.matches("T********");
+			}
+			return false;
 		}).collect(Collectors.toList());
 	}
 
-	private Geometry getGeometry(Feature ueberbaubareGrundstuecksflaecheFeature) {
-		return (Geometry) ueberbaubareGrundstuecksflaecheFeature.getGeometryProperties().get(0).getValue();
+	private Geometry getGeometry(Feature feature) {
+		TypedObjectNode value = feature.getGeometryProperties().get(0).getValue();
+		if (value instanceof AbstractDefaultGeometry) {
+			return ((AbstractDefaultGeometry) value).getJTSGeometry();
+		}
+		return null;
 	}
 
 	private void addError(String featureId, String propertyName, String overlappingFeatureid) {
