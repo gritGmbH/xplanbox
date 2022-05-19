@@ -258,9 +258,9 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
   * PNG-Dateien liegen in dem Koordinatenreferenzsystem vor, welches für
   den XPlanManager konfiguriert ist.
   * PNG-Dateien enthalten ihre räumliche Ausdehnung in einer
-  ausgelagerten pgw-Datei (PNG World File).
+  ausgelagerten PGW-Datei (PNG World File).
   * Wenn das Kommandozeilentool __XPlanManagerCLI__ verwendet wird, muss in
-  einer aux.xml-Datei das Koordinatenreferenzsystem der PNG-Datei definiert
+  der Datei _aux.xml_ das Koordinatenreferenzsystem der PNG-Datei definiert
   sein. Für den XPlanManagerWeb ist dies keine Voraussetzung, da der
   Nutzer beim Import der Daten das Koordinatenreferenzsystem der
   PNG-Datei über einen Dialog bestätigen kann.

@@ -37,7 +37,7 @@ mit dem Parameter `help` ausgeben.
 Aufruf:
 
 ----
-XPlanValidator -help
+./XPlanValidator -help
 ----
 
 Ausgabe:
@@ -64,7 +64,7 @@ des Parameters ist obligatorisch.
 Aufruf:
 
 ----
-XPlanValidator -validate Plan.zip
+./XPlanValidator -validate Plan.zip
 ----
 
 [[xplanvalidator-cli-bezeichnung-der-validierung]]
@@ -77,7 +77,7 @@ Fehlt dieser Parameter, wird der Name des XPlanArchivs verwendet.
 Aufruf:
 
 ----
-XPlanValidator -validate Plan.zip -name Validierung
+./XPlanValidator -validate Plan.zip -name Validierung
 ----
 
 [[xplanvalidator-cli-validierungsart]]
@@ -90,7 +90,7 @@ Parameters `-vtype` ist optional.
 Aufruf:
 
 ----
-XPlanValidator -validate Plan.zip -vtype [syntax|geometric|semantic]
+./XPlanValidator -validate Plan.zip -vtype [syntax|geometric|semantic]
 ----
 
 Zuordnung der Werte:
@@ -139,7 +139,7 @@ Angabe des Parameters `-vo` ist optional.
 Aufruf:
 
 ----
-XPlanValidator -validate Plan.zip -vo skip-flaechenschluss -vo skip-geltungsbereich
+./XPlanValidator -validate Plan.zip -vo skip-flaechenschluss -vo skip-geltungsbereich
 ----
 
 Zuordnung der Werte:
