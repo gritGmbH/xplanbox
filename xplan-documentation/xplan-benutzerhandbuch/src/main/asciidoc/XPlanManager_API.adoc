@@ -35,7 +35,6 @@ Die REST-API des XPlanManager stellt folgende Ressourcen bereit:
 |`/plan/{planId}/text` |`POST` |Hinzufügen von Texten zu einem Plan
 |`/plan/{planId}/text/{id}` |`GET` |Abfrage eines Texts zu einem Plan
 |`/plan/{planId}/text/{id}` |`PUT` |Hinzufügen/ersetzen eines Texts zu einem Plan
-|`/plan/{planId}/text/{id}` |`DELETE` |Entfernen eines Texts zu einem Plan
 |`/plan/{planId}/rasterbasis` |`GET` |Abfrage von Rasterbasisdateien zu einem Plan
 |`/plan/{planId}/rasterbasis` |`PUT` |Hinzufügen von Rasterbasisdateien zu einem Plan
 |`/plan/{planId}/rasterbasis/{id}` |`GET` |Abfrage einer Rasterbasisdatei zu einem Plan
