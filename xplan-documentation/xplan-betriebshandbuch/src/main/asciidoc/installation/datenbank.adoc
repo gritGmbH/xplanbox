@@ -6,7 +6,7 @@ Das Anlegen der Datenbank kann entweder über das XPlanManagerCLI oder manuell e
 ==== Initiales Aufsetzen der Datenbank über das XPlanManagerCLI
 
 Für die Konfiguration der Datenbank-Anbindung muss die
-__xplan-manager-cli__-Datei entpackt sein. Dabei spielt das Verzeichnis, in dem die Datei entpackt wurde, keine Rolle. Ist diese entpackt, kann die Datenbankerzeugung mittels des XPlanManagerCLI durchgeführt werden:
+Datei __xplan-manager-cli__ entpackt sein. Dabei spielt das Verzeichnis, in dem die Datei entpackt wurde, keine Rolle. Ist diese entpackt, kann die Datenbankerzeugung mittels des XPlanManagerCLI durchgeführt werden:
 
 ----
 XPlanManager -createdb 'xplanbox' jdbc:postgresql://localhost:5432 -u postgres -p postgres
@@ -24,8 +24,8 @@ Die Datenbankverbindungen in den XPlanDiensten müssen jedoch manuell angepasst 
 
 Dabei kann auf zwei verschiedene Arten vorgegangen werden:
 
- * Die __xplan.xml__-Datei aus dem XPlanManger Workspace _.deegree/xplan-manager-workspace/jdbc/_ wird kopiert und die bereits vorhandene Konfiguration damit überschrieben.
- * Alternativ ist auch eine direkte Anpassung in der bereits vorhandenen __xplan.xml__-Datei möglich.
+ * Die Datei __xplan.xml__ aus dem XPlanManger-Workspace _.deegree/xplan-manager-workspace/jdbc/_ wird kopiert und die bereits vorhandene Konfiguration damit überschrieben.
+ * Alternativ ist auch eine direkte Anpassung in der bereits vorhandenen Datei __xplan.xml__ möglich.
 
 ==== Manuelles Aufsetzen der Datenbank
 
@@ -56,7 +56,7 @@ Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als 
 
 ==== Weiterführende Informationen zur Konfiguration des Datenbankzugriffs
 
-In den __xplan.xml__-Datei werden die ConnectionsPools für den Zugriff auf die Datenbank konfiguriert. Diese beinhalten neben den Verbindungsdetails wie die URL, den Nutzernamen und das Passwort weitere Details, die ggf. bei einer Installation zu berücksichtigen sind. Darunter:
+In den Dateien __xplan.xml__ werden die ConnectionsPools für den Zugriff auf die Datenbank konfiguriert. Diese beinhalten neben den Verbindungsdetails wie die URL, den Nutzernamen und das Passwort weitere Details, die ggf. bei einer Installation zu berücksichtigen sind. Darunter:
 
 * `initialSize`: Die Anzahl der initialen Verbindungen, die beim Start geöffnet werden.
 * `maxActive`: Die maximale Anzahl von offenen Verbindungen die von Pool zeitgleich verwendet werden können.

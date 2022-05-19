@@ -98,8 +98,8 @@ IMPORTANT: Alle Konfigurationsänderungen in _xplan-manager-config_ und _xplan-v
 [[vollstaendige-aktualisierung]]
 ==== Vollständige Aktualisierung des Workspaces
 
-Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis
-_.deegree/_ kopiert werden. Diese ersetzen die bereits vorhandenen:
+Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis _<DEEGREE_DIR>_, z. B. _.deegree/_ kopiert werden.
+Diese ersetzen die bereits vorhandenen:
 
 ----
 cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
@@ -115,7 +115,7 @@ cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSIO
 ==== Teilweise Aktualisierung des Workspaces
 
 Es müssen die bereit gestellten Konfigurationsdateien mit Ausnahme des xplansyn-wms-workspace in das Verzeichnis
-_.deegree/_ kopiert werden. Diese ersetzen die bereits vorhanden:
+_<DEEGREE_DIR>_, z. B. _.deegree/_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
 cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
@@ -258,7 +258,7 @@ Mit der Version 2.7 bietet die xPlanBox die Möglichkeit die vom XPlanManager ve
  * Aktualisierung von _xplan-manager-workspace_ und _xplan-manager-config_ (s. <<teilweise-aktualisierung>>).
  * Aufsetzen des INSPIRE PLU Datenbankschemas (s. <<aufsetzen-plu-db-schema>>).
  * Anlegen des _xplan-inspireplu-workspace_ Workspaces (s. <<konfiguration>>).
- * Installation der _xplan-inspireplu.war_ Webanwendung (s. <<web-anwendungen>>). *Achtung:* Anschließend muss der _xplan-inspireplu-workspace_ Workspace initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
+ * Installation der _xplan-inspireplu.war_ Webanwendung (s. <<web-anwendungen>>). *Achtung:* Anschließend muss der _xplan-inspireplu-workspace_ Workspace initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt in der Datei _webapps.properties_ mit anschliessendem Neustart der Webanwendung geschehen.
  * Installation von HALE CLI, wie in <<installation-hale-cli>> beschrieben.
  * Konfiguration der neuen Option, wie in <<konfiguration-inspire-plu>> beschrieben.
 
