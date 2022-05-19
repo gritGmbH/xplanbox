@@ -36,7 +36,6 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -139,24 +138,6 @@ public class PlanTextApi {
 		Text text = textmodel.getValueAs(Text.class);
 		File file = editTextHandler.storeAsFile(datei, dateiMeta);
 		return editTextHandler.replaceText(planId, id, text, file);
-	}
-
-	@DELETE
-	@Path("/{id}")
-	@Produces({ "application/json" })
-	@Operation(operationId = "deleteTextById", tags = { "edit" }, responses = {
-			@ApiResponse(responseCode = "200", description = "successful operation",
-					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
-			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
-	public Text deleteTextById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be deleted",
-					example = "123") String planId,
-			@PathParam("id") @Parameter(description = "id of the Text to be deleted (GML Id of the feature)",
-					example = "GML_ID_123") String id)
-			throws Exception {
-		return editTextHandler.deleteText(planId, id);
 	}
 
 }
