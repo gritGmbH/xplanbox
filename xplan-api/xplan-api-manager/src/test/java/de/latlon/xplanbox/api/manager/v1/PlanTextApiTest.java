@@ -113,15 +113,6 @@ public class PlanTextApiTest extends JerseyTest {
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 	}
 
-	@Test
-	public void verifyThat_deleteTextById_returnsCorrectStatusCodeForValidMediaType() {
-		Response response = target("/plan/2/text/FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad")
-				.request(APPLICATION_JSON).delete();
-
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
-	}
-
 	private FileDataBodyPart createFileDataBodyPart(String name, String resource, MediaType mediaType)
 			throws URISyntaxException {
 		File datei = new File(getClass().getResource(resource).toURI());

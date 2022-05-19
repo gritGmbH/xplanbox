@@ -55,6 +55,7 @@ import de.latlon.xplan.manager.web.client.service.ManagerService;
 import de.latlon.xplan.manager.web.client.utils.DateTimeUtils;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -496,7 +497,7 @@ public class PlanListPanel extends DecoratorPanel {
 		};
 		editButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
 			public void update(int index, XPlan xplan, String value) {
-				editPlan(xplan.getVersion(), xplan.getId());
+				editPlan(xplan.getVersion(), xplan.getId(), xplan.getBereiche());
 			}
 		});
 		editButtonColumn.setCellStyleNames("planListColumn editButtonColumn");
@@ -624,7 +625,7 @@ public class PlanListPanel extends DecoratorPanel {
 		return columnSortHandler;
 	}
 
-	private void editPlan(final String version, final String id) {
+	private void editPlan(final String version, final String id, List<Bereich> bereiche) {
 		final DialogBox waitDialog = createAndShowDialogBox(messages.editingStarted());
 		ManagerService.Util.getService().getPlanToEdit(id, new MethodCallback<XPlanToEdit>() {
 
@@ -641,7 +642,7 @@ public class PlanListPanel extends DecoratorPanel {
 					waitDialog.hide();
 				try {
 					EditVersion codelistVersion = EditVersion.valueOf(version);
-					eventBus.fireEvent(new EditorStartedEvent(id, codelistVersion, xPlantoEdit));
+					eventBus.fireEvent(new EditorStartedEvent(id, bereiche, codelistVersion, xPlantoEdit));
 				}
 				catch (IllegalArgumentException e) {
 					Window.alert("Unsupported XPlan version for editing: " + version);

@@ -116,22 +116,6 @@ public class EditTextHandler extends EditHandler {
 		return textModel.id(textToReplace.getFeatureId());
 	}
 
-	/**
-	 * @param planId the ID of the plan, never <code>null</code>
-	 * @param textId the id of the Text to delete, never <code>null</code>
-	 * @return the deleted Text, never <code>null</code>
-	 * @throws Exception
-	 */
-	public Text deleteText(String planId, String textId) throws Exception {
-		XPlan plan = findPlanById(planId);
-		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		List<de.latlon.xplan.manager.web.shared.edit.Text> texts = xPlanToEdit.getTexts();
-		de.latlon.xplan.manager.web.shared.edit.Text text = getOldTextById(planId, textId, texts);
-		texts.remove(text);
-		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
-		return Text.fromText(textId, text);
-	}
-
 	private de.latlon.xplan.manager.web.shared.edit.Text getOldTextById(String planId, String textId,
 			List<de.latlon.xplan.manager.web.shared.edit.Text> texts) throws InvalidTextId {
 		List<de.latlon.xplan.manager.web.shared.edit.Text> textsById = texts.stream()

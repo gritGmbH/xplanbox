@@ -187,6 +187,7 @@ public class PlanApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = StatusMessage.class))),
+					@ApiResponse(responseCode = "400", description = "Plan ID is not a valid int value"),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
 	public Response delete(@PathParam("planId") @Parameter(description = "ID of the plan to be removed",
 			example = "123") String planId) throws Exception {
@@ -205,6 +206,7 @@ public class PlanApi {
 							@Content(mediaType = "application/xml", schema = @Schema(implementation = PlanInfo.class)),
 							@Content(mediaType = "application/zip",
 									schema = @Schema(type = "string", format = "binary")) }),
+					@ApiResponse(responseCode = "400", description = "Plan ID is not a valid int value"),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
 	public Response getById(@Context Request request,
 			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",

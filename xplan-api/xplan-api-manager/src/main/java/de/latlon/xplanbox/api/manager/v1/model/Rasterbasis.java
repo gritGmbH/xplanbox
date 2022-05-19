@@ -46,9 +46,12 @@ public class Rasterbasis extends Referenz {
 
 	private String id;
 
+	private String bereichNummer;
+
 	public static Rasterbasis fromRasterReference(String rasterbasisId, RasterReference rasterReference) {
 		Rasterbasis rasterbasis = new Rasterbasis().id(rasterbasisId);
-		rasterbasis.art(rasterReference.getArt() != null ? rasterReference.getArt().getCode() : null)
+		rasterbasis.bereichNummer(rasterReference.getBereichNummer())
+				.art(rasterReference.getArt() != null ? rasterReference.getArt().getCode() : null)
 				.beschreibung(rasterReference.getBeschreibung()).datum(rasterReference.getDatum())
 				.georefMimeType(rasterReference.getGeorefMimeType() != null
 						? rasterReference.getGeorefMimeType().getCode() : null)
@@ -63,6 +66,7 @@ public class Rasterbasis extends Referenz {
 	public RasterReference toRasterReference() {
 		RasterReference rasterReference = new RasterReference();
 		rasterReference.setType(SCAN);
+		rasterReference.setBereichNummer(getBereichNummer());
 		rasterReference.setReference(getReferenzURL());
 		rasterReference.setReferenzMimeType(MimeTypes.getByCode(getReferenzMimeType()));
 		rasterReference.setGeoReference(getGeorefURL());
@@ -88,6 +92,20 @@ public class Rasterbasis extends Referenz {
 		this.id = id;
 	}
 
+	public Rasterbasis bereichNummer(String bereichNummer) {
+		this.bereichNummer = bereichNummer;
+		return this;
+	}
+
+	@JsonProperty("bereichNummer")
+	public String getBereichNummer() {
+		return bereichNummer;
+	}
+
+	public void setBereichNummer(String bereichNummer) {
+		this.bereichNummer = bereichNummer;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
@@ -108,6 +126,7 @@ public class Rasterbasis extends Referenz {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("class Rasterbasis {\n");
+		sb.append("    bereichNummer: ").append(toIndentedString(getBereichNummer())).append("\n");
 		sb.append("    georefURL: ").append(toIndentedString(getGeorefURL())).append("\n");
 		sb.append("    georefMimeType: ").append(toIndentedString(getGeorefMimeType())).append("\n");
 		sb.append("    art: ").append(toIndentedString(getArt())).append("\n");

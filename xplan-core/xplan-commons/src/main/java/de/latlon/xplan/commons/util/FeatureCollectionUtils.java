@@ -22,6 +22,7 @@ package de.latlon.xplan.commons.util;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -170,6 +171,26 @@ public class FeatureCollectionUtils {
 			name = "Unbenannter XPlan (" + UUID.randomUUID().toString() + ")";
 		}
 		return name;
+	}
+
+	/**
+	 * Retrieves the Bereiche of the passed {@link Feature}.
+	 * @param fc XPlan-FeatureCollection, never <code>null</code>
+	 * @return list of the bereiche of the plan, may be empty but never <code>null</code>
+	 */
+	public static List<Bereich> retrieveBereiche(FeatureCollection fc) {
+		List<Bereich> bereiche = new ArrayList<>();
+		for (Feature feature : fc) {
+			QName featureName = feature.getName();
+			if (featureName.getLocalPart().matches("(BP|FP|LP|RP|SO)_Bereich")) {
+				String ns = feature.getName().getNamespaceURI();
+				Bereich bereich = new Bereich();
+				bereich.setNummer(getPropertyStringValue(feature, new QName(ns, "nummer")));
+				bereich.setName(getPropertyStringValue(feature, new QName(ns, "name")));
+				bereiche.add(bereich);
+			}
+		}
+		return bereiche;
 	}
 
 	private static String retrieveXPlan3District(FeatureCollection fc, XPlanType type) {

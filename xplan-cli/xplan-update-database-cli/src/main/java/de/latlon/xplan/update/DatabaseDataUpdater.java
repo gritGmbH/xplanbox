@@ -23,6 +23,7 @@ package de.latlon.xplan.update;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.update.from_1_0_to_1_3_1.UpdaterFrom1_0To1_3_1;
+import de.latlon.xplan.update.from_5_0_to_5_0_2.UpdaterFrom5_0To5_0_2;
 import de.latlon.xplan.update.from_pre1_0_to_1_0.UpdaterFromPre1_0To1_0;
 
 import java.sql.Connection;
@@ -43,7 +44,7 @@ public class DatabaseDataUpdater {
 
 	public enum UPDATE_VERSION {
 
-		FROM_PRE1_0_to_1_0, FROM_1_0_to_1_3_1
+		FROM_PRE1_0_to_1_0, FROM_1_0_to_1_3_1, FROM_5_0_to_5_0_2
 
 	}
 
@@ -78,6 +79,8 @@ public class DatabaseDataUpdater {
 				UpdaterFrom1_0To1_3_1 updaterFrom1_0To1_3_1 = new UpdaterFrom1_0To1_3_1(xplanDao);
 				updaterFrom1_0To1_3_1.update(conn);
 			}
+			UpdaterFrom5_0To5_0_2 updaterFrom5_0To5_0_2 = new UpdaterFrom5_0To5_0_2(xplanDao);
+			updaterFrom5_0To5_0_2.update(conn);
 		}
 		finally {
 			closeQuietly(conn);

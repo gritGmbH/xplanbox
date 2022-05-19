@@ -20,19 +20,18 @@
  */
 package de.latlon.xplan.manager.edit;
 
-import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
+import de.latlon.xplan.commons.reference.ExternalReference;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.manager.web.shared.edit.RasterReference;
+import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import net.sf.saxon.functions.Empty;
 
 import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import de.latlon.xplan.commons.reference.ExternalReference;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.manager.web.shared.edit.RasterReference;
-import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
-import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
-import net.sf.saxon.functions.Empty;
+import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 
 /**
  * Creates/Extracts {@link ExternalReferenceInfo} which are newly or not longer
@@ -114,15 +113,14 @@ public class ExternalReferenceUtils {
 	public static ExternalReferenceInfo createExternalRefAddedOrUpdated(XPlanToEdit planToEdit,
 			List<File> uploadedArtefacts) {
 		ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceInfo();
-		RasterBasis rasterBasis = planToEdit.getRasterBasis();
-		if (rasterBasis != null) {
+		planToEdit.getRasterBasis().forEach(rasterBasis -> {
 			for (RasterReference rasterReference : rasterBasis.getRasterReferences()) {
 				String referenceUrl = rasterReference.getReference();
 				if (SCAN.equals(rasterReference.getType()) && wasUploaded(referenceUrl, uploadedArtefacts)) {
 					externalReferenceInfo.addRasterPlanBaseScan(new ExternalReference(referenceUrl));
 				}
 			}
-		}
+		});
 		return externalReferenceInfo;
 	}
 

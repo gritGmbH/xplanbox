@@ -10,12 +10,12 @@ package de.latlon.xplanbox.api.manager.handler;
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -27,7 +27,10 @@ import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplanbox.api.manager.exception.DuplicateRasterbasis;
 import de.latlon.xplanbox.api.manager.exception.InvalidRasterbasisId;
+import de.latlon.xplanbox.api.manager.exception.MissingBereichNummer;
+import de.latlon.xplanbox.api.manager.exception.UnexpectedError;
 import de.latlon.xplanbox.api.manager.v1.model.Rasterbasis;
+import org.deegree.commons.utils.Pair;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
@@ -35,6 +38,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -54,15 +58,11 @@ public class EditRasterbasisHandler extends EditHandler {
 	public List<Rasterbasis> retrieveRasterbasis(String planId) throws Exception {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
-		if (rasterBasis == null)
-			return Collections.emptyList();
-		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
-
-		return rasterReferences.stream().map(rasterReference -> {
-			String rasterbasisId = createRasterbasisId(rasterReference);
-			return Rasterbasis.fromRasterReference(rasterbasisId, rasterReference);
-		}).collect(Collectors.toList());
+		return xPlanToEdit.getRasterBasis().stream().flatMap(rb -> rb.getRasterReferences().stream())
+				.map(rasterReference -> {
+					String rasterbasisId = createRasterbasisId(rasterReference);
+					return Rasterbasis.fromRasterReference(rasterbasisId, rasterReference);
+				}).collect(Collectors.toList());
 	}
 
 	/**
@@ -87,10 +87,9 @@ public class EditRasterbasisHandler extends EditHandler {
 	public Rasterbasis addRasterbasis(String planId, Rasterbasis rasterbasisModel, File referenz, File geoReferenz)
 			throws Exception {
 		XPlan plan = findPlanById(planId);
+		checkBereichNummer(planId, rasterbasisModel);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
-		if (rasterBasis == null)
-			rasterBasis = new RasterBasis();
+		RasterBasis rasterBasis = getOrCreateRasterBasis(rasterbasisModel, xPlanToEdit);
 		RasterReference rasterReferenceToAdd = rasterbasisModel.toRasterReference();
 		String newRasterbasisId = createRasterbasisId(rasterReferenceToAdd);
 		checkRasterbasisId(planId, rasterbasisModel, newRasterbasisId);
@@ -113,8 +112,12 @@ public class EditRasterbasisHandler extends EditHandler {
 	public Rasterbasis replaceRasterbasis(String planId, String rasterbasisId, Rasterbasis rasterbasisModel,
 			File referenz, File geoReferenz) throws Exception {
 		XPlan plan = findPlanById(planId);
+		checkBereichNummer(planId, rasterbasisModel);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
+		RasterBasis rasterBasis = getRasterBasisByBereichNummer(rasterbasisModel, xPlanToEdit);
+		if (rasterBasis == null)
+			throw new UnexpectedError("Could not find a RasterBasis assigned to Bereich with nummer "
+					+ rasterbasisModel.getBereichNummer());
 		RasterReference rasterReferenceToReplace = getRasterReferenceById(planId, rasterbasisId, rasterBasis);
 		RasterReference rasterReferenceToAdd = rasterbasisModel.toRasterReference();
 		String newRasterbasisId = createRasterbasisId(rasterReferenceToAdd);
@@ -136,13 +139,41 @@ public class EditRasterbasisHandler extends EditHandler {
 	public Rasterbasis deleteRasterbasis(String planId, String rasterbasisId) throws Exception {
 		XPlan plan = findPlanById(planId);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
-		RasterReference rasterReferenceToDelete = getRasterReferenceById(planId, rasterbasisId, rasterBasis);
+		Pair<RasterBasis, RasterReference> rasterBasisAndReference = getRasterReferenceById(planId, rasterbasisId,
+				xPlanToEdit);
+		RasterBasis rasterBasis = rasterBasisAndReference.first;
+		RasterReference rasterReferenceToDelete = rasterBasisAndReference.second;
 		rasterBasis.getRasterReferences().remove(rasterReferenceToDelete);
 		if (rasterBasis.getRasterReferences().isEmpty())
-			xPlanToEdit.setRasterBasis(null);
+			xPlanToEdit.addRasterBasis(null);
 		manager.editPlan(plan, xPlanToEdit, false, Collections.emptyList());
 		return Rasterbasis.fromRasterReference(rasterbasisId, rasterReferenceToDelete);
+	}
+
+	private RasterBasis getRasterBasisByBereichNummer(Rasterbasis rasterbasisModel, XPlanToEdit xPlanToEdit) {
+		Optional<RasterBasis> rasterBasisCandidate = xPlanToEdit.getRasterBasis().stream()
+				.filter(rb -> rb.getBereichNummer().equals(rasterbasisModel.getBereichNummer())).findFirst();
+		if (rasterBasisCandidate.isPresent())
+			return rasterBasisCandidate.get();
+		return null;
+	}
+
+	private RasterBasis getOrCreateRasterBasis(Rasterbasis rasterbasisModel, XPlanToEdit xPlanToEdit) {
+		RasterBasis rasterBasis = getRasterBasisByBereichNummer(rasterbasisModel, xPlanToEdit);
+		if (rasterBasis == null)
+			return null;
+		return rasterBasis;
+	}
+
+	private Pair<RasterBasis, RasterReference> getRasterReferenceById(String planId, String rasterbasisId,
+			XPlanToEdit xPlanToEdit) throws InvalidRasterbasisId {
+		for (RasterBasis rasterBasis : xPlanToEdit.getRasterBasis()) {
+			List<RasterReference> rasterReferencesById = rasterBasis.getRasterReferences().stream()
+					.filter(rasterReference -> rasterbasisId.equals(createRasterbasisId(rasterReference)))
+					.collect(Collectors.toList());
+			return new Pair<>(rasterBasis, rasterReferencesById.get(0));
+		}
+		throw new InvalidRasterbasisId(planId, rasterbasisId);
 	}
 
 	private RasterReference getRasterReferenceById(String planId, String rasterbasisId, RasterBasis rasterBasis)
@@ -205,6 +236,12 @@ public class EditRasterbasisHandler extends EditHandler {
 			return;
 		}
 		checkRasterbasisId(planId, rasterbasisModel, newRasterbasisId);
+	}
+
+	private void checkBereichNummer(String planId, Rasterbasis rasterbasisModel) throws MissingBereichNummer {
+		if (rasterbasisModel.getBereichNummer() == null) {
+			throw new MissingBereichNummer(planId, rasterbasisModel.getId());
+		}
 	}
 
 }

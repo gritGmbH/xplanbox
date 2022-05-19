@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -26,6 +26,7 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -33,6 +34,7 @@ import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
 import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
 import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
@@ -65,6 +67,10 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
  */
 public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
+	private final ListBox bereichNummer;
+
+	private List<Bereich> bereiche;
+
 	private final TypeCodeListBox<RasterReferenceType> refType;
 
 	private final TypeCodeListBox<MimeTypes> refMimeType;
@@ -83,16 +89,19 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private final RasterReference originalRasterReference;
 
-	public RasterReferenceDialog(EditVersion version) {
-		this(version, null, MESSAGES.editCaptionRasterBasisDialogNew());
+	public RasterReferenceDialog(EditVersion version, List<Bereich> bereiche) {
+		this(version, bereiche, null, MESSAGES.editCaptionRasterBasisDialogNew(), true);
 	}
 
-	public RasterReferenceDialog(EditVersion version, RasterReference rasterReference) {
-		this(version, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit());
+	public RasterReferenceDialog(EditVersion version, List<Bereich> bereiche, RasterReference rasterReference) {
+		this(version, bereiche, rasterReference, MESSAGES.editCaptionRasterBasisDialogEdit(), false);
 	}
 
-	private RasterReferenceDialog(EditVersion version, RasterReference rasterReference, String title) {
+	private RasterReferenceDialog(EditVersion version, List<Bereich> bereiche, RasterReference rasterReference,
+			String title, boolean isBereichNummerEditable) {
 		super(version, title);
+		this.bereiche = bereiche;
+		this.bereichNummer = createBereichNummer(isBereichNummerEditable);
 		this.refType = createRefType();
 		this.refMimeType = createMimeTypeType(version);
 		this.georefMimeType = createMimeTypeType(version);
@@ -124,6 +133,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			rasterReference = new RasterReference(originalRasterReference);
 		else
 			rasterReference = new RasterReference();
+		rasterReference.setBereichNummer(bereichNummer.getSelectedValue());
 		rasterReference.setType(refType.getValueAsEnum());
 		rasterReference.setReference(reference.getFilename());
 		rasterReference.setReferenzMimeType(refMimeType.getValueAsEnum());
@@ -147,6 +157,8 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)) {
 			layout.setText(rowIndex++, 2, MESSAGES.editHintRasterBasisType());
 		}
+		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisBereichNummer()));
+		layout.setWidget(rowIndex++, 2, bereichNummer);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisType()));
 		layout.setWidget(rowIndex++, 2, refType);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisReference()));
@@ -201,6 +213,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private void setRasterReferenceValues() {
 		if (originalRasterReference != null) {
+			bereichNummer.setSelectedIndex(findIndex(originalRasterReference.getBereichNummer()));
 			refType.selectItem(originalRasterReference.getType());
 			reference.setNameOfExistingFile(originalRasterReference.getReference());
 			refMimeType.selectItem(originalRasterReference.getReferenzMimeType());
@@ -212,6 +225,27 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			beschreibung.setValue(originalRasterReference.getBeschreibung());
 			datum.setValue(originalRasterReference.getDatum());
 		}
+	}
+
+	private ListBox createBereichNummer(boolean isBereichNummerEditable) {
+		ListBox listBox = new ListBox();
+		for (Bereich bereich : bereiche) {
+			listBox.addItem(bereich.getName() != null ? bereich.getNummer() + "(" + bereich.getName() + ")"
+					: bereich.getNummer(), bereich.getNummer());
+		}
+		listBox.setEnabled(isBereichNummerEditable);
+		return listBox;
+	}
+
+	private int findIndex(String bereichNummer) {
+		int index = 0;
+		for (Bereich bereich : bereiche) {
+			if (bereich.getNummer().equals(bereichNummer)) {
+				return index;
+			}
+			index++;
+		}
+		return 0;
 	}
 
 	private TypeCodeListBox<RasterReferenceType> createRefType() {
@@ -274,6 +308,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			valid = false;
 		}
 		showValidationError(validationFailures);
+
 		return valid;
 	}
 

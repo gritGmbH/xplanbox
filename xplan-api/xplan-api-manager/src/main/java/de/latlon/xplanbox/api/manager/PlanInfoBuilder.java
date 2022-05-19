@@ -23,21 +23,19 @@ package de.latlon.xplanbox.api.manager;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
+import de.latlon.xplanbox.api.commons.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.commons.v1.model.VersionEnum;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
+import de.latlon.xplanbox.api.manager.v1.model.Bereich;
 import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
-import de.latlon.xplanbox.api.commons.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfoXplanModelData;
 import de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum;
 import org.apache.http.client.utils.URIBuilder;
 import org.jfree.util.Log;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -86,7 +84,8 @@ public class PlanInfoBuilder {
 	private PlanInfoXplanModelData xPlanModelData() {
 		return new PlanInfoXplanModelData().name(xPlan.getName()).nummer(xPlan.getNumber())
 				.internalId(xPlan.getInternalId()).inkrafttretensDatum(xPlan.getReleaseDate())
-				.rechtsstand(xPlan.getLegislationStatus()).ags(xPlan.getGkz()).gemeindeName(xPlan.getDistrict());
+				.rechtsstand(xPlan.getLegislationStatus()).ags(xPlan.getGkz()).gemeindeName(xPlan.getDistrict())
+				.bereiche(bereiche());
 	}
 
 	private PlanStatusEnum planStatus() {
@@ -95,6 +94,11 @@ public class PlanInfoBuilder {
 			return PlanStatusEnum.valueOf(planStatus.name());
 		}
 		return null;
+	}
+
+	private List<Bereich> bereiche() {
+		return xPlan.getBereiche().stream().map(b -> new Bereich().name(b.getName()).nummer(b.getNummer()))
+				.collect(Collectors.toList());
 	}
 
 	private VersionEnum version() {
