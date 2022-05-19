@@ -89,7 +89,7 @@ public class XPlanValidatorCliSpringConfig {
 		if (validationRulesDirectory != null)
 			return validationRulesDirectory;
 		URL pathToRules = XPlanValidatorCliSpringConfig.class.getProtectionDomain().getCodeSource().getLocation();
-		return get(pathToRules.toURI()).getParent().resolve("etc/rules");
+		return get(pathToRules.toURI()).getParent().getParent().resolve("etc/rules");
 	}
 
 	@Bean
@@ -105,7 +105,7 @@ public class XPlanValidatorCliSpringConfig {
 
 	private Path retrieveEtcPath() throws URISyntaxException {
 		URL jarPath = XPlanValidatorCliSpringConfig.class.getProtectionDomain().getCodeSource().getLocation();
-		return get(jarPath.toURI()).getParent().resolve("etc");
+		return get(jarPath.toURI()).getParent().getParent().resolve("etc");
 	}
 
 }

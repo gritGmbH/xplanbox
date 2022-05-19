@@ -145,8 +145,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 	private void createAndAddRule(SemanticValidatorConfiguration config, Path path, XPlanVersion version,
 			SemanticValidationOptions option) {
 		LOG.debug("Parse rule {}", path);
-		String nameWithType = path.getFileName().toString();
-		String name = nameWithType.substring(0, nameWithType.lastIndexOf('.'));
+		final String name = path.getFileName().toFile().getName();
 		try {
 			XQuerySemanticValidatorRule rule = new XQuerySemanticValidatorRule(newInputStream(path), name, version,
 					option);
