@@ -19,14 +19,15 @@ Konfigurationsdatei __validatorConfiguration.properties__, welche
 genutzt werden kann, um generelle Konfigurationen an dem
 Kommandozeilentool durchzuführen.
 
-Falls der Parameter _managerconfiguration_ während eines Aufrufs des
-Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
-_etc/_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
-Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
-
 Über _validationReportDirectory=<directory>_ kann konfiguriert werden,
 wo die Reports mit dem Validierungsergebnis, die während der Ausführung
 des Tools generiert werden, abgespeichert werden sollen.
+
+Mit der Option _validationRulesDirectory=<directory>_ kann konfiguriert
+werden, in welchem Verzeichnis die semantischen Validierungsregeln liegen,
+die für die Validierung verwendet werden sollen. Erfolgt keine Angabe
+werden die unter  _<validator-cli-directory>/etc/rules_ liegenden
+semantischen Validierungsregeln verwendet.
 
 [[xplanvalidator-cli-hilfe]]
 ===== Hilfe
@@ -51,7 +52,6 @@ usage: XPlanValidator [-name <arg>] -validate <arg> [-vo <arg>] [-vtype
    -vo <arg>           validation options
    -vtype <arg>        values: syntax, geometric, semantic. multiple types must
                        be comma separated
-   -xq <arg>           xquery file path
 ----
 
 [[xplanvalidator-cli-auswahl-planarchiv]]
