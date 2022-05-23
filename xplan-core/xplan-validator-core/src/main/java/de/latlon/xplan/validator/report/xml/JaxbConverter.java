@@ -187,10 +187,10 @@ public class JaxbConverter {
 		}
 	}
 
-	private void addErroredFeatures(RuleType ruleXML, List<InvalidFeaturesResult> warnedFeatures) {
+	private void addErroredFeatures(RuleType ruleXML, List<InvalidFeaturesResult> erroredFeatures) {
 		ObjectFactory objectFactory = new ObjectFactory();
-		for (InvalidFeaturesResult warnedFeature : warnedFeatures) {
-			InvalidFeaturesType invalidFeaturesType = createInvalidFeaturesType(objectFactory, warnedFeature);
+		for (InvalidFeaturesResult erroredFeature : erroredFeatures) {
+			InvalidFeaturesType invalidFeaturesType = createInvalidFeaturesType(objectFactory, erroredFeature);
 			ruleXML.getErroredFeatures().add(invalidFeaturesType);
 		}
 	}
