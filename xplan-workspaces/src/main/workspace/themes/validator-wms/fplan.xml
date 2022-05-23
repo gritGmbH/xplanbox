@@ -1,58 +1,34 @@
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description"
-        xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        configVersion="3.4.0"
-        xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.4.0/themes.xsd">
-  <LayerStoreId>fplan</LayerStoreId>
-  <LayerStoreId>soplan</LayerStoreId>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
   <LayerStoreId>rplan</LayerStoreId>
   <LayerStoreId>bplan</LayerStoreId>
+  <LayerStoreId>soplan</LayerStoreId>
+  <LayerStoreId>fplan</LayerStoreId>
   <Theme>
     <Identifier>FP_Planvektor</Identifier>
     <d:Title>FPlan Vektor</d:Title>
-    <d:Abstract>Vektordaten FPlan</d:Abstract>
     <s:Envelope crs="EPSG:4326">
       <s:LowerCorner>5.7 47.2</s:LowerCorner>
       <s:UpperCorner>15.1 55.1</s:UpperCorner>
     </s:Envelope>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-    <!-- FP -->
     <Theme>
       <Identifier>fp_plan</Identifier>
       <d:Title>FP: Plan</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_plan</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_bebausfl</Identifier>
       <d:Title>FP: Bebauungsfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_bebausfl</Layer>
     </Theme>
@@ -69,300 +45,300 @@
     <Theme>
       <Identifier>fp_strverk</Identifier>
       <d:Title>FP: Straßenverkehr</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_strverk</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_kennz</Identifier>
       <d:Title>FP: Kennzeichnungsfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_kennz</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_bsfl</Identifier>
-      <d:Title>FP: Bodenschätze</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <d:Title>FP: BodenschätzeFläche</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_bsfl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_aufschuettung</Identifier>
       <d:Title>FP: Aufschüttung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_aufschuettung</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_aufschuettsfl</Identifier>
       <d:Title>FP: Aufschüttungsfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_aufschuettsfl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_abgrabung</Identifier>
       <d:Title>FP: Abgrabung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_abgrabung</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_abgrabungsfl</Identifier>
       <d:Title>FP: Abgrabungsfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_abgrabungsfl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_gew</Identifier>
       <d:Title>FP: Gewässer</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_gew</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_waldfl</Identifier>
       <d:Title>FP: Waldfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_waldfl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_gruen</Identifier>
       <d:Title>FP: Grünfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_gruen</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_lw</Identifier>
       <d:Title>FP: Landwirtschaft</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_lw</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_lwfl</Identifier>
       <d:Title>FP: Landwirtschaftsfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_lwfl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_zentrversber</Identifier>
       <d:Title>FP: Zentraler Versorgungsbereich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_zentrversber</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_textabschn</Identifier>
       <d:Title>FP: TextAbschnitt</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_textabschn</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_anpassklimaw</Identifier>
       <d:Title>FP: AnpassungKlimawandel</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_anpassklimaw</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_genobj</Identifier>
       <d:Title>FP: Generisches Objekt</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_genobj</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_ausgleichsfl</Identifier>
       <d:Title>FP: Ausgleichsfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_ausgleichsfl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_wws</Identifier>
       <d:Title>FP: Wasserwirtschaft</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_wws</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_verentsorgung</Identifier>
       <d:Title>FP: Ver- und Entsorgung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_verentsorgung</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_schutzpflentw</Identifier>
       <d:Title>FP: Schutz-, Pflege- und Entwicklungsfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_schutzpflentw</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_gembedarf</Identifier>
       <d:Title>FP: Gemeinbedarf</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_gembedarf</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_spispoanl</Identifier>
       <d:Title>FP: Spiel- und Sportanlagen</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_spispoanl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_ber</Identifier>
       <d:Title>FP: Bereich</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_ber</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_nutzbeschraenkfl</Identifier>
       <d:Title>FP: Nutzungsbeschränkung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_nutzbeschraenkfl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_rasterplanaender</Identifier>
       <d:Title>FP: Rasterplanänderung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_rasterplanaender</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_unverbindlvormerk</Identifier>
       <d:Title>FP: Unverbindliche Vormerkung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_unverbindlvormerk</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_textldarstfl</Identifier>
       <d:Title>FP: Bereich textlicher Festsetzungen</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_textldarstfl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_keinezentrabwbesfl</Identifier>
       <d:Title>FP: ohne zentrale Abwasserbeseitigung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_keinezentrabwbesfl</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_privvorh</Identifier>
-      <d:Title>FP: Priviligiertes Vorhaben</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <d:Title>FP: Privilegiertes Vorhaben</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_privvorh</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_vorbehaltefl</Identifier>
       <d:Title>FP: Vorbehaltfläche</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>fp_vorbehaltefl</Layer>
     </Theme>
@@ -373,199 +349,197 @@
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
       </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>rp_erneuerbareenergie</Layer>
     </Theme>
     <Theme>
       <Identifier>fp_beschriftung</Identifier>
       <d:Title>FP: Beschriftung</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
         <Identifier>fp_xp_pto</Identifier>
         <d:Title>FP: XP: PTO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_xp_pto</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_xp_lto</Identifier>
         <d:Title>FP: XP: LTO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_xp_lto</Layer>
       </Theme>
-
-    </Theme>
-    <Theme>
-      <Identifier>fp_xp_fpo</Identifier>
-      <d:Title>FP: XP: FPO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_xp_fpo</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>fp_xp_lpo</Identifier>
-      <d:Title>FP: XP: LPO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_xp_lpo</Layer>
-    </Theme>
-    <Theme>
-      <Identifier>fp_xp_ppo</Identifier>
-      <d:Title>FP: XP: PPO</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>fp_xp_ppo</Layer>
+      <Theme>
+        <Identifier>fp_xp_fpo</Identifier>
+        <d:Title>FP: XP: FPO</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>fp_xp_fpo</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>fp_xp_lpo</Identifier>
+        <d:Title>FP: XP: LPO</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>fp_xp_lpo</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>fp_xp_ppo</Identifier>
+        <d:Title>FP: XP: PPO</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>fp_xp_ppo</Layer>
+      </Theme>
     </Theme>
     <Theme>
       <Identifier>fp_symbole</Identifier>
       <d:Title>FP: Symbole</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
         <Identifier>fp_gembedarfsym</Identifier>
         <d:Title>FP: Gemeinbedarfsfläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_gembedarfsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_gewflsym</Identifier>
         <d:Title>FP: Gewässer Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_gewflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_lwflsym</Identifier>
         <d:Title>FP: Landwirtschaftsfläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_lwflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_wsssym</Identifier>
         <d:Title>FP: Wasserwirtschaft Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_wsssym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_bsflsym</Identifier>
         <d:Title>FP: Bodenschätzefläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_bsflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_aufschuettsflsym</Identifier>
         <d:Title>FP: Aufschüttungsfläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_aufschuettsflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_abgrabungsflsym</Identifier>
         <d:Title>FP: Abgrabungsfläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_abgrabungsflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_verentsorgungsym</Identifier>
         <d:Title>FP: Ver- und Entsorgung Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_verentsorgungsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_waldflsym</Identifier>
         <d:Title>FP: Waldfläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_waldflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_strverksym</Identifier>
         <d:Title>FP: Strassenverkehr Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_strverksym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_schutzpflentwsym</Identifier>
         <d:Title>FP: FP: Schutz-, Pflege- und Entwicklungsfläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_schutzpflentwsym</Layer>
       </Theme>
       <Theme>
         <Identifier>fp_gruensym</Identifier>
         <d:Title>FP: Grünfläche Symbol</d:Title>
-    <s:Envelope crs="EPSG:4326">
-      <s:LowerCorner>5.7 47.2</s:LowerCorner>
-      <s:UpperCorner>15.1 55.1</s:UpperCorner>
-    </s:Envelope>
-        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839    </s:CRS>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>fp_gruensym</Layer>
       </Theme>
     </Theme>
-
-    <!-- SO -->
     <Theme>
       <Identifier>so</Identifier>
       <d:Title>SO</d:Title>
@@ -575,30 +549,13 @@
       </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
-        <Identifier>so_objekt</Identifier>
-        <d:Title>SO: Objekt</d:Title>
-        <s:Envelope crs="EPSG:4326">
-          <s:LowerCorner>5.7 47.2</s:LowerCorner>
-          <s:UpperCorner>15.1 55.1</s:UpperCorner>
-        </s:Envelope>
-        <Layer>so_objekt</Layer>
-      </Theme>
-      <Theme>
-        <Identifier>so_linienobjekt</Identifier>
-        <d:Title>SO: Linienobjekt</d:Title>
-        <s:Envelope crs="EPSG:4326">
-          <s:LowerCorner>5.7 47.2</s:LowerCorner>
-          <s:UpperCorner>15.1 55.1</s:UpperCorner>
-        </s:Envelope>
-        <Layer>so_linienobjekt</Layer>
-      </Theme>
-      <Theme>
         <Identifier>so_sonstigesrecht</Identifier>
         <d:Title>SO: SonstigesRecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_sonstigesrecht</Layer>
       </Theme>
       <Theme>
@@ -608,6 +565,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_bodenschutzrecht</Layer>
       </Theme>
       <Theme>
@@ -617,6 +575,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_denkmalschutzrecht</Layer>
       </Theme>
       <Theme>
@@ -626,6 +585,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_forstrecht</Layer>
       </Theme>
       <Theme>
@@ -635,6 +595,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_luftverkehrsrecht</Layer>
       </Theme>
       <Theme>
@@ -644,6 +605,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_schienenverkehrsrecht</Layer>
       </Theme>
       <Theme>
@@ -653,6 +615,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_schutzgebietNaturschutzrecht</Layer>
       </Theme>
       <Theme>
@@ -662,6 +625,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_schutzgebietsonstigesrecht</Layer>
       </Theme>
       <Theme>
@@ -671,6 +635,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_schutzgebietwasserrecht</Layer>
       </Theme>
       <Theme>
@@ -680,6 +645,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_strassenverkehrsrecht</Layer>
       </Theme>
       <Theme>
@@ -689,6 +655,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_bauverbotszone</Layer>
       </Theme>
       <Theme>
@@ -698,6 +665,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_gewaesser</Layer>
       </Theme>
       <Theme>
@@ -707,6 +675,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_wasserrecht</Layer>
       </Theme>
       <Theme>
@@ -716,6 +685,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_gebiet</Layer>
       </Theme>
       <Theme>
@@ -725,6 +695,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_grenze</Layer>
       </Theme>
       <Theme>
@@ -734,6 +705,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_bereich</Layer>
       </Theme>
       <Theme>
@@ -743,6 +715,7 @@
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_plan</Layer>
       </Theme>
     </Theme>
