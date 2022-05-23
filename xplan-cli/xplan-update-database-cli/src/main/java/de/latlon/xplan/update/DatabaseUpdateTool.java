@@ -104,9 +104,7 @@ public class DatabaseUpdateTool {
 		opts.addOption(opt);
 
 		opt = new Option("u", OPT_VERSION, false,
-				"the update version(s), THIS IS IGNORED;: only the update from 5.0 to 5.02. is supported currently. "
-						+ "Old description: must be 1 (pre1.0 to 1.0) or 2 (1.0 to 1.3.1); "
-						+ "a comma separated list is possible; if missing all updates are executed.");
+				"update version (CURRENTLY THIS IS IGNORED): only the update from 5.0 to 5.0.2 is supported.");
 		opt.setRequired(false);
 		opts.addOption(opt);
 
