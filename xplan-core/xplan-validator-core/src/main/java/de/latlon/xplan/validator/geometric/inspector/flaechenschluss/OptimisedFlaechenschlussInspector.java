@@ -217,9 +217,13 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private void analyseFlaechenschlussUnionOfPlan(PlanFeature planFeature,
 			List<FeaturesUnderTest> featuresUnderTests) {
+		if (planFeature.isAenderungsPlan()) {
+			LOG.info("Plan {} is an Aenderungsplan. Complete covering is not checked for the plan.",
+					planFeature.getFeatureId());
+		}
 		boolean handleHolesAsFailure = handleAsFailure();
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion(featuresUnderTests);
-		LOG.debug("Union of all flaechenschluss geometries assgned to plan {}: {}", planFeature.getFeatureId(),
+		LOG.debug("Union of all flaechenschluss geometries assigned to plan {}: {}", planFeature.getFeatureId(),
 				WKTWriter.write(flaechenschlussUnion));
 
 		List<FeatureUnderTest> featureUnderTestOfPlan = featuresUnderTests.stream()

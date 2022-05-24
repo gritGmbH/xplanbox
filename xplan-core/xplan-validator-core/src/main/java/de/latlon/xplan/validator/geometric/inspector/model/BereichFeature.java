@@ -54,4 +54,12 @@ public class BereichFeature extends GeltungsbereichFeature {
 		return inspectorContext.getPlanFeatures().get(planId);
 	}
 
+	/**
+	 * @return <code>true</code> if this bereich has the property aendertPlanBereich,
+	 * <code>false</code> otherwise
+	 */
+	public boolean isAendertPlanBereich() {
+		return getPropertyValue("aendertPlanBereich") != null;
+	}
+
 }

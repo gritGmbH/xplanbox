@@ -104,4 +104,26 @@ public class OptimisedFlaechenschlussInspectorTest {
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
 	}
 
+	@Test
+	public void testCheckFlaechenschluss_TestAenderungsplanWithLuecke() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
+		readFeaturesFromGml("xplan60_Aenderungsplan_Luecke.gml", OptimisedFlaechenschlussInspectorTest.class,
+				flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_TestAenderungsplanValid() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
+		readFeaturesFromGml("xplan60_Aenderungsplan_valide.gml", OptimisedFlaechenschlussInspectorTest.class,
+				flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
+	}
+
 }
