@@ -7,11 +7,21 @@
 ==== Erweiterungen
 - Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
 
+[[Aenderungshistorie-5.0.2]]
+=== Version 5.0.2
+
 ==== Fehlerbehebungen
-- Fehler beim Editieren von Plänen mit mehreren Bereichen behoben
+- Fehler in XPlanManagerWeb und XPlanManagerAPI bei Änderungen von Rasterdaten in Instanzdokumenten mit mehreren Bereichen behoben
+
+[[Aenderungshistorie-5.0.1]]
+=== Version 5.0.1
+
+==== Fehlerbehebungen
+- Fehler in OpenAPI-Dokument für XPlanManagerAPI und XPlanValidatorAPI behoben
 
 [[Aenderungshistorie-5.0]]
 === Version 5.0
+
 ==== Erweiterungen
 - Umstellung von Java 8 auf Java 11 sowie Tomcat 8.5 auf Tomcat 9.0
 - Unterstützung für XPlanGML 5.4 in allen Komponenten der xPlanBox
@@ -48,7 +58,6 @@
 - Aktualisieren der Apache Log4J Abhängigkeiten
 
 ==== Fehlerbehebungen
-
 - Fehler in der Workspace Konfiguration des XPlanWMS behoben
 - Fehler "org.deegree.geometry.standard.multi.DefaultMultiPoint cannot be cast to class org.deegree.geometry.primitive.Point" beim Import eines Plans behoben
 

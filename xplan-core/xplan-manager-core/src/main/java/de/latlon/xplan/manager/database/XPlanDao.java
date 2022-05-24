@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
@@ -33,6 +34,7 @@ import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanArtefactIterator;
 import de.latlon.xplan.manager.export.XPlanExportException;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
@@ -167,6 +169,7 @@ public class XPlanDao {
 
 			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanSynTA = insertXPlanSyn(synFs, synFc);
 
+			insertBereiche(conn, planId, synFc);
 			insertArtefacts(fc, archive, conn, planId);
 
 			long begin = System.currentTimeMillis();
@@ -423,6 +426,8 @@ public class XPlanDao {
 			List<XPlan> xplanList = new ArrayList<>();
 			while (rs.next()) {
 				XPlan xPlan = retrieveXPlan(rs, includeNoOfFeature);
+				List<Bereich> bereiche = selectBereiche(mgrConn, getXPlanIdAsInt(xPlan.getId()));
+				xPlan.setBereiche(bereiche);
 				xplanList.add(xPlan);
 			}
 			return xplanList;
@@ -454,8 +459,12 @@ public class XPlanDao {
 					+ "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE id =?");
 			stmt.setInt(1, planId);
 			rs = stmt.executeQuery();
-			if (rs.next())
-				return retrieveXPlan(rs, false);
+			if (rs.next()) {
+				List<Bereich> bereiche = selectBereiche(mgrConn, planId);
+				XPlan xPlan = retrieveXPlan(rs, false);
+				xPlan.setBereiche(bereiche);
+				return xPlan;
+			}
 		}
 		catch (Exception e) {
 			throw new Exception(
@@ -698,6 +707,26 @@ public class XPlanDao {
 	}
 
 	/**
+	 * Updates the district column of the table xplanmgr.plans.
+	 * @param plan the plan to update, never <code>null</code>
+	 * @param bereiche the bereiche, never <code>null</code>
+	 * @throws Exception
+	 */
+	public void updateBereiche(XPlan plan, List<Bereich> bereiche) throws Exception {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			updateBereichInMgrSchema(conn, plan, bereiche);
+		}
+		catch (Exception e) {
+			conn.rollback();
+		}
+		finally {
+			closeQuietly(conn);
+		}
+	}
+
+	/**
 	 * @param planId of the plan to set the status
 	 * @throws SQLException if the sql could not be executed
 	 */
@@ -744,6 +773,8 @@ public class XPlanDao {
 			List<XPlan> xplanList = new ArrayList<>();
 			while (rs.next()) {
 				XPlan xPlan = retrieveXPlan(rs, false);
+				List<Bereich> bereiche = selectBereiche(mgrConn, getXPlanIdAsInt(xPlan.getId()));
+				xPlan.setBereiche(bereiche);
 				xplanList.add(xPlan);
 			}
 			return xplanList;
@@ -818,6 +849,30 @@ public class XPlanDao {
 		}
 		finally {
 			closeQuietly(updateStmt);
+		}
+	}
+
+	private void updateBereichInMgrSchema(Connection conn, XPlan plan, List<Bereich> bereiche) throws Exception {
+		StringBuilder updateSql = new StringBuilder();
+		updateSql.append("INSERT INTO xplanmgr.bereiche");
+		updateSql.append(" (plan, nummer, name)");
+		updateSql.append(" VALUES (?,?,?)");
+		updateSql.append(" ON CONFLICT");
+		updateSql.append(" DO NOTHING");
+
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(updateSql.toString());
+			for (Bereich bereich : bereiche) {
+				stmt.setInt(1, getXPlanIdAsInt(plan.getId()));
+				stmt.setString(2, bereich.getNummer());
+				stmt.setString(3, bereich.getName());
+				LOG.trace("SQL Update XPlan Manager bereich column: " + stmt);
+				stmt.executeUpdate();
+			}
+		}
+		finally {
+			closeQuietly(stmt);
 		}
 	}
 
@@ -966,6 +1021,27 @@ public class XPlanDao {
 			closeQuietly(stmt, rs);
 		}
 		return 0;
+	}
+
+	public List<Bereich> selectBereiche(Connection conn, int planId) throws SQLException {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			List<Bereich> bereiche = new ArrayList<>();
+			stmt = conn.prepareStatement("SELECT nummer, name FROM xplanmgr.bereiche WHERE plan=?");
+			stmt.setInt(1, planId);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Bereich bereich = new Bereich();
+				bereich.setNummer(rs.getString("nummer"));
+				bereich.setName(rs.getString("name"));
+				bereiche.add(bereich);
+			}
+			return bereiche;
+		}
+		finally {
+			closeQuietly(stmt, rs);
+		}
 	}
 
 	private void deletePlan(XPlanMetadata xPlanMetadata, String planId) throws Exception {
@@ -1232,6 +1308,30 @@ public class XPlanDao {
 			closeQuietly(stmt);
 		}
 		return planId;
+	}
+
+	private void insertBereiche(Connection conn, int planId, FeatureCollection fc) throws SQLException {
+		PreparedStatement stmt = null;
+		List<Bereich> bereiche = FeatureCollectionUtils.retrieveBereiche(fc);
+		for (Bereich bereich : bereiche) {
+			long begin = System.currentTimeMillis();
+			String nummer = bereich.getNummer();
+			LOG.info(String.format("- Einfügen von Bereich '%s'...", nummer));
+			try {
+				String insertStatement = "INSERT INTO xplanmgr.bereiche (plan,nummer,name) VALUES (?,?,?)";
+				stmt = conn.prepareStatement(insertStatement);
+				stmt.setInt(1, planId);
+				stmt.setString(2, bereich.getNummer());
+				stmt.setString(3, bereich.getName());
+				stmt.executeUpdate();
+				stmt.close();
+				long elapsed = System.currentTimeMillis() - begin;
+				LOG.info("OK [" + elapsed + " ms]");
+			}
+			finally {
+				closeQuietly(stmt);
+			}
+		}
 	}
 
 	private void insertOrReplacePlanWerkWmsMetadata(Connection conn, int planId, String title,
@@ -1537,8 +1637,10 @@ public class XPlanDao {
 		List<String> referenceFileNames = new ArrayList<String>();
 		addReferences(referenceFileNames, xPlanToEdit.getTexts());
 		addReferences(referenceFileNames, xPlanToEdit.getReferences());
-		if (xPlanToEdit.getRasterBasis() != null)
-			addReferences(referenceFileNames, xPlanToEdit.getRasterBasis().getRasterReferences());
+		xPlanToEdit.getRasterBasis().forEach(rasterBasis -> {
+			if (rasterBasis.getRasterReferences() != null)
+				addReferences(referenceFileNames, rasterBasis.getRasterReferences());
+		});
 		return referenceFileNames;
 	}
 

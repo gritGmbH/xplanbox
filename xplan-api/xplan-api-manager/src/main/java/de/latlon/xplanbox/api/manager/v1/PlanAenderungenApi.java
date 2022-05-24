@@ -58,7 +58,8 @@ public class PlanAenderungenApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Aenderungen.class))),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
 	public Aenderungen getAenderung(@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
 			example = "123") String planId) throws Exception {
 		return editAenderungenHandler.retrieveAenderungen(planId);
@@ -72,7 +73,8 @@ public class PlanAenderungenApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Aenderungen.class))),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") },
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or Plan ID is not a valid int value") },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Aenderungen.class)) }))
 	public Aenderungen replaceAenderung(

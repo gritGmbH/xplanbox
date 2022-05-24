@@ -29,7 +29,7 @@ Weiterhin sind zusätzliche SQL-Skripte auszuführen, die sich im Verzeichnis _s
 Beim XPlanTransformCLI handelt es sich um ein Kommandozeilenwerkzeug, das parametrisiert aufgerufen wird. Weitere Informationen über die verschiedenen Parameter gibt das Kommandozeilenwerkzeug aus, wenn der Parameter `-?` angehängt wird:
 
 -----
-XPlanTransformCLI -?
+./XPlanTransformCLI -?
 -----
 
 Das XPlanTransformCLI unterscheidet drei Modi:
@@ -44,7 +44,7 @@ Syntaktisch invalide Pläne werden nicht eingespielt.
 Beispiel für das initiale Einspielen der in XPlanGML 4.1 vorliegenden Pläne in die XPlan 5.1 Datenhaltung des XPlanWFS:
 
 -------
-XPlanTransformCLI -c /path/to/xplan-manager-config -t ALL
+./XPlanTransformCLI -c /path/to/xplan-manager-config -t ALL
 -------
 
 Empfohlen ist zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z. B. nachts mit Hilfe eines Cron-Jobs) die Option *SYNC* um einen tagesaktuellen Stand der über den XPlanWFS 5.1 anfragbaren Pläne zu erreichen.

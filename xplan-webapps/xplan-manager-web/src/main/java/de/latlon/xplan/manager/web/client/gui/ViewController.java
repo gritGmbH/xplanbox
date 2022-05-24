@@ -23,7 +23,6 @@ package de.latlon.xplan.manager.web.client.gui;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-
 import de.latlon.xplan.manager.web.client.gui.editor.EditorView;
 import de.latlon.xplan.manager.web.client.gui.event.EditorCanceledEvent;
 import de.latlon.xplan.manager.web.client.gui.event.EditorCanceledEventHandler;
@@ -94,7 +93,8 @@ public class ViewController {
 
 			@Override
 			public void onEditorStarted(EditorStartedEvent event) {
-				editPanel.setXPlanToEdit(event.getPlanId(), event.getVersion(), event.getxPlantoEdit());
+				editPanel.setXPlanToEdit(event.getPlanId(), event.getBereiche(), event.getVersion(),
+						event.getxPlantoEdit());
 				showEditModule();
 			}
 		});

@@ -22,8 +22,10 @@ package de.latlon.xplan.manager.web.client.gui.editor;
 
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+
+import java.util.List;
 
 /**
  * Encapsulated the view of the editor.
@@ -47,12 +49,13 @@ public class EditorView extends VerticalPanel {
 
 	/**
 	 * @param planId of the plan to edit
+	 * @param bereiche of the plan to edit
 	 * @param version of the xplan to edit. never <code>null</code>
 	 * @param xPlantoEdit the xplan to edit, never <code>null</code>
 	 */
-	public void setXPlanToEdit(String planId, EditVersion version, XPlanToEdit xPlantoEdit) {
+	public void setXPlanToEdit(String planId, List<Bereich> bereiche, EditVersion version, XPlanToEdit xPlantoEdit) {
 		clear();
-		EditorPanel editorPanel = new EditorPanel(version, eventBus);
+		EditorPanel editorPanel = new EditorPanel(version, bereiche, eventBus);
 		add(editorPanel);
 		editorPanel.setXPlanToEdit(planId, xPlantoEdit);
 	}

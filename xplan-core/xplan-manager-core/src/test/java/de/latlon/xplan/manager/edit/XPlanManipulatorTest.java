@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -305,13 +305,14 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(version, "xplan50/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		RasterReference rasterBasisReference = new RasterReference("ref1", "georef1", SCAN, IMAGE_PNG,
+		RasterReference rasterBasisReference = new RasterReference("0", "ref1", "georef1", SCAN, IMAGE_PNG,
 				PLANMITGEOREFERENZ, "informationssystemeURL", "refName", TEXT_HTML, "beschreibung",
 				asDate("2018-03-01"));
 
 		RasterBasis rasterBasis = new RasterBasis("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6");
+		rasterBasis.setBereichNummer("0");
 		rasterBasis.addRasterReference(rasterBasisReference);
-		editedXplan.setRasterBasis(rasterBasis);
+		editedXplan.addRasterBasis(rasterBasis);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
 
@@ -356,7 +357,7 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(xPlanVersion, "xplan50/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		editedXplan.setRasterBasis(null);
+		editedXplan.addRasterBasis(null);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, xPlanVersion, BP_Plan, schema);
 
@@ -376,15 +377,16 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(xPlanVersion, "xplan50/BP2070.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		RasterReference scan = new RasterReference("scanRef", "scanGeoRef", SCAN, null, null, null, null, null, null,
-				null);
-		RasterReference legend = new RasterReference("legendRef", null, LEGEND, null, PLANMITGEOREFERENZ,
+		RasterReference scan = new RasterReference("0", "scanRef", "scanGeoRef", SCAN, null, null, null, null, null,
+				null, null);
+		RasterReference legend = new RasterReference("0", "legendRef", null, LEGEND, null, PLANMITGEOREFERENZ,
 				"informationssystemeURL", "refName", IMAGE_PNG, "beschreibung", asDate("2018-03-01"));
 
 		RasterBasis rasterBasis = new RasterBasis();
+		rasterBasis.setBereichNummer("0");
 		rasterBasis.addRasterReference(scan);
 		rasterBasis.addRasterReference(legend);
-		editedXplan.setRasterBasis(rasterBasis);
+		editedXplan.addRasterBasis(rasterBasis);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, xPlanVersion, BP_Plan, schema);
 
@@ -432,12 +434,13 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(xPlanVersion, "xplan41/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		RasterReference rasterBasisReference = new RasterReference("ref1", "georef1", SCAN, null, null, null, null,
+		RasterReference rasterBasisReference = new RasterReference("0", "ref1", "georef1", SCAN, null, null, null, null,
 				null, null, null);
 
 		RasterBasis rasterBasis = new RasterBasis("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6");
+		rasterBasis.setBereichNummer("0");
 		rasterBasis.addRasterReference(rasterBasisReference);
-		editedXplan.setRasterBasis(rasterBasis);
+		editedXplan.addRasterBasis(rasterBasis);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, xPlanVersion, BP_Plan, schema);
 
@@ -577,13 +580,14 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(version, "xplan51/V4_1_ID_103.gml", schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		RasterReference rasterBasisReference = new RasterReference("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6",
+		RasterReference rasterBasisReference = new RasterReference("0", "FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6",
 				"B-Plan_Klingmuehl_Heideweg_Karte.png", "B-Plan_Klingmuehl_Heideweg_Karte.tfw", SCAN, null,
 				PLANMITGEOREFERENZ, null, "B-Plan_Klingmuehl_Heideweg_Karte", null, null, null);
 
 		RasterBasis rasterBasis = new RasterBasis("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6");
+		rasterBasis.setBereichNummer("0");
 		rasterBasis.addRasterReference(rasterBasisReference);
-		editedXplan.setRasterBasis(rasterBasis);
+		editedXplan.addRasterBasis(rasterBasis);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
 

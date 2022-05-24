@@ -67,7 +67,8 @@ public class PlanDokumentApi {
 							content = @Content(
 									array = @ArraySchema(schema = @Schema(implementation = Dokument.class)))),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
-					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
 	public List<Dokument> getDokumente(@PathParam("planId") @Parameter(
 			description = "planId of the plan to return dokumente", example = "123") String planId) throws Exception {
 		return editDokumentHandler.retrieveDokumente(planId);
@@ -76,14 +77,13 @@ public class PlanDokumentApi {
 	@POST
 	@Consumes({ "multipart/form-data" })
 	@Produces({ "application/json" })
-	@Operation(operationId = "addDokument", tags = { "edit" },
-			responses = {
-					@ApiResponse(responseCode = "200", description = "successful operation",
-							content = @Content(schema = @Schema(implementation = Dokument.class))),
-					@ApiResponse(responseCode = "404",
-							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan type or version or dokumentmodel is missing") })
+	@Operation(operationId = "addDokument", tags = { "edit" }, responses = {
+			@ApiResponse(responseCode = "200", description = "successful operation",
+					content = @Content(schema = @Schema(implementation = Dokument.class))),
+			@ApiResponse(responseCode = "404",
+					description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported Plan type or version or dokumentmodel is missing or Plan ID is not a valid int value") })
 	public Dokument addDokument(
 			@PathParam("planId") @Parameter(description = "ID of the plan to add dokumente",
 					example = "123") String planId,
@@ -108,7 +108,8 @@ public class PlanDokumentApi {
 							content = @Content(schema = @Schema(implementation = Dokument.class))),
 					@ApiResponse(responseCode = "404",
 							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
 	public Dokument getDokumentById(
 			@PathParam("planId") @Parameter(description = "planId of the plan to get dokument",
 					example = "123") String planId,
@@ -123,14 +124,13 @@ public class PlanDokumentApi {
 	@Path("/{id}")
 	@Consumes({ "multipart/form-data" })
 	@Produces({ "application/json" })
-	@Operation(operationId = "replaceDokumentById", tags = { "edit" },
-			responses = {
-					@ApiResponse(responseCode = "200", description = "successful operation",
-							content = @Content(schema = @Schema(implementation = Dokument.class))),
-					@ApiResponse(responseCode = "404",
-							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan type or version or dokumentmodel is missing") })
+	@Operation(operationId = "replaceDokumentById", tags = { "edit" }, responses = {
+			@ApiResponse(responseCode = "200", description = "successful operation",
+					content = @Content(schema = @Schema(implementation = Dokument.class))),
+			@ApiResponse(responseCode = "404",
+					description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported Plan type or version or dokumentmodel is missing or Plan ID is not a valid int value") })
 	public Dokument replaceDokumentById(
 			@PathParam("planId") @Parameter(description = "planId of the plan to replace dokument",
 					example = "123") String planId,
@@ -158,7 +158,8 @@ public class PlanDokumentApi {
 							content = @Content(schema = @Schema(implementation = Dokument.class))),
 					@ApiResponse(responseCode = "404",
 							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
-					@ApiResponse(responseCode = "400", description = "Unsupported Plan type or version") })
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
 	public Dokument deleteDokumentById(
 			@PathParam("planId") @Parameter(description = "planId of the plan to delete dokument",
 					example = "123") String planId,

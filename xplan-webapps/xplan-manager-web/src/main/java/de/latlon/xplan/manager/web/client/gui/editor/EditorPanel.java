@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -43,6 +43,7 @@ import de.latlon.xplan.manager.web.client.gui.editor.validityPeriod.ValidityPeri
 import de.latlon.xplan.manager.web.client.gui.event.EditorCanceledEvent;
 import de.latlon.xplan.manager.web.client.gui.event.EditorFinishedEvent;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -81,13 +82,13 @@ public class EditorPanel extends DecoratorPanel {
 
 	private String planId;
 
-	public EditorPanel(EditVersion version, HandlerManager eventBus) {
+	public EditorPanel(EditVersion version, List<Bereich> bereiche, HandlerManager eventBus) {
 		this.eventBus = eventBus;
 		baseDataPanel = new BaseDataPanel(version);
 		changesPanel = new ChangesXplanPanel(version);
 		textsPanel = new TextsPanel(version);
 		referencesPanel = new ReferencesPanel(version);
-		rasterBasisPanel = new RasterBasisPanel(version);
+		rasterBasisPanel = new RasterBasisPanel(version, bereiche);
 		FormPanel form = createForm();
 		this.getElement().setId("editor-panel");
 		this.setWidget(form);

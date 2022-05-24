@@ -341,7 +341,7 @@ public class ManagerController {
 				if (defaultCrs != null)
 					crs = CRSManager.getCRSRef(defaultCrs);
 				AdditionalPlanData xPlanMetadata = new AdditionalPlanData(planStatus, startDateTime, endDateTime);
-				manager.importPlan(archive, crs, false, false, makeRasterConfig, internalId, xPlanMetadata);
+				manager.importPlan(archive, crs, false, makeRasterConfig, internalId, xPlanMetadata);
 			}
 			catch (Exception e) {
 				String message = BUNDLE.getString("loadFailed") + ": " + e.getMessage();

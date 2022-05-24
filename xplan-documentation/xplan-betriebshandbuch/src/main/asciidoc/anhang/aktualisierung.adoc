@@ -3,7 +3,7 @@
 
 Im Folgenden wird für _Dienste-Tomcat_, _Anwendungs-Tomcat_ und _API-Tomcat_ jeweils das Verzeichnis _<CATALINA_HOME>_ der entsprechenden Tomcat-Instanz vorausgesetzt und angewendet (siehe Kapitel <<konfiguration-der-applikationsserver>>).
 
-Als Basisverzeichnis werden _<DEEGREE_WORKSPACE_ROOT>_, _<XPLANBOX_CONFIG>_ und temporär zur Ablage das Verzeichnis _<BACKUP_CONFIG>_ (z.B. _/home/user/tmp_) vorausgesetzt.
+Als Basisverzeichnis werden _<DEEGREE_DIR>_ (entspricht _<DEEGREE_WORKSPACE_ROOT>_), _<XPLANBOX_CONFIG>_ und temporär zur Ablage das Verzeichnis _<BACKUP_CONFIG>_ (z.B. _/home/user/tmp_) sowie _<WORK_DIR>_ vorausgesetzt.
 
 Alle Tomcat-Instanzen müssen vor der Aktualisierung gestoppt werden!
 
@@ -11,7 +11,7 @@ Alle Tomcat-Instanzen müssen vor der Aktualisierung gestoppt werden!
 
 Vorbereitung:
 
-1. Alle war-Dateien bzw. die entpackten Verzeichnisse aus _Dienste-Tomcat/webapps/_, _Anwendungs-Tomcat/webapps/_, _API-Tomcat/webapps/_ sichern und im Verzeichnis _<BACKUP_CONFIG>_ ablegen.
+1. Alle WAR-Dateien bzw. die entpackten Verzeichnisse aus _Dienste-Tomcat/webapps/_, _Anwendungs-Tomcat/webapps/_, _API-Tomcat/webapps/_ sichern und im Verzeichnis _<BACKUP_CONFIG>_ ablegen.
 
 Kopieren der folgenden Dateien nach _Dienste-Tomcat/webapps/_:
 

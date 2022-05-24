@@ -41,7 +41,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Die DB-Tabelle der Datenbasis ist leer, beinhaltet somit kein Datenbank-Schema.
  * Der Nutzer hat die Rechte, eine Datenbank anzulegen.
  
- 
 #### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
@@ -343,8 +342,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 #### Vorbedingungen 
 
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten.
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+ * Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten.
 
 #### Prüffall 1
 
@@ -402,7 +401,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.| Es öffnet sich ein neues Fenster mit einem Formular.
 **02** | Der Benutzer editiert bzw. löscht beliebig viele Stammdaten und bricht das Editieren durch **Abbruch** ab. | Die ursprünglichen Plandaten sind nicht verändert.
 
-
 #### Prüffall 8
 
 Schritt | Beschreibung | Erwartetes Ergebnis
@@ -415,7 +413,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 #### Vorbedingungen 
 
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
 
 #### Prüffall 1 
 
@@ -429,7 +427,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer sucht die Pläne eines bestimmten Status (Suchfilter **Planstatus**) in allen Gemeinden. | Es werden alle der Suchanfrage entsprechenden Pläne angezeigt.
 
-
 #### Prüffall 3 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
@@ -438,12 +435,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer wählt **Name** und gibt einen _Namen(steil)_ eines in der Planliste angezeigten Plans an. | Die zuvor angezeigte Liste ist auf die Pläne eingeschränkt, deren Namen mit der Nutzereingabe übereinstimmen.
 **03** | Der Benutzer wählt **Alle Pläne anzeigen** | Die zuvor gesetzten Auswahlkriterien werden zurückgesetzt, und es werden alle Pläne angezeigt.
 
+### Prüffall-11: Active Directory mit Gruppenhierarchien anbinden
 
-
-
-### Prüffall-11: AD mit Gruppenhierarchien anbinden
-
-### Vorbedingungen 
+### Vorbedingungen
+ * Optional, wenn Active Directory konfiguriert ist. 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
  * Es existiert ein Nutzer „A", dieser ist Mitglied der Gruppe „B-Plan“. Gruppe „B-Plan“ ist Mitglied der Gruppe „C“. Gruppe C ist berechtigt ausschließlich Pläne aus der Gemeinde XY zu importieren.
 
@@ -458,16 +453,14 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-
 ### Prüffall-12: Kopplung der Editierfunktion an das Active Directory
-
 
 #### Vorbedingungen 
 
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
-* Es existiert ein Nutzer „A“, dieser ist Mitglied der Gruppe „Editor“ (oder ähnliches). Die Gruppe „Editor“ (oder ähnliches) ist berechtigt Pläne des Bezirkes „XY“ zu editieren.
-* Es existiert ein Nutzer „B“, dieser ist Mitglied der Gruppe „B“. Die Gruppe „B“ ist nicht berechtigt zu editieren.
-
+ * Optional, wenn Active Directory konfiguriert ist.
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
+ * Es existiert ein Nutzer „A“, dieser ist Mitglied der Gruppe „Editor“ (oder ähnliches). Die Gruppe „Editor“ (oder ähnliches) ist berechtigt Pläne des Bezirkes „XY“ zu editieren.
+ * Es existiert ein Nutzer „B“, dieser ist Mitglied der Gruppe „B“. Die Gruppe „B“ ist nicht berechtigt zu editieren.
 
 #### Prüffall 1 
 
@@ -478,7 +471,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **03** | Der Benutzer überprüft die Schaltfläche „editieren“ der  Gemeinde „XY“ zugehörigen Pläne.| Die Schaltfläche ist farblich gefüllt und beim klicken auf die Schaltfläche öffnet sich ein neues Fenster mit einem Formular.
 **04** | Der Benutzer überprüft die Schaltfläche „editieren“ von Plänen einer anderen Gemeinde.| Die Schaltfläche ist ausgegraut und beim Klick auf die Schaltfläche passiert nichts.
 
-
 #### Prüffall 2 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
@@ -486,7 +478,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer öffnet die Web-basierte Benutzeroberfläche des XPlanManagers. | Es wird ein Anmeldefenster angezeigt.
 **02** | Der Benutzer meldet sich als Nutzer „B“ an.| Es öffnet sich die Web-basierte Benutzeroberfläche des XPlanManagers, bereits importierte Pläne werden aufgelistet.
 **03** | Der Benutzer überprüft die Möglichkeit der Editierbarkeit.| Hinter den Plänen wird je eine ausgegraute Schaltfläche „editieren“  angezeigt.
-
 
 #### Prüffall 3 
 
@@ -499,6 +490,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-13: Design der XPlanManager UI für unterschiedliche Bildschirmgrößen optimieren
 
 #### Vorbedingungen 
+ * Optional, wenn Active Directory konfiguriert ist.
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
 
 #### Prüffall 
@@ -515,9 +507,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 #### Vorbedingungen 
 
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
-* Es existiert ein Nutzer „A“, dieser ist Mitglied der Gruppe „Super-Administrator“. Die Gruppe „Super-Administrator“ ist berechtigt zu importieren und beim Import das Planverfahren manuell zu bestimmen, wenn keine automatische Zuordnung statt findet.
-* Es existiert ein Nutzer „B“, dieser ist Mitglied der Gruppe „B“. Die Gruppe „B“ ist berechtigt zu importieren jedoch können diese, beim Import, das Planverfahren nicht manuell bestimmen, wenn keine automatische Zuordnung statt findet.
+ * Optional, wenn Active Directory konfiguriert ist.
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
+ * Es existiert ein Nutzer „A“, dieser ist Mitglied der Gruppe „Super-Administrator“. Die Gruppe „Super-Administrator“ ist berechtigt zu importieren und beim Import das Planverfahren manuell zu bestimmen, wenn keine automatische Zuordnung statt findet.
+ * Es existiert ein Nutzer „B“, dieser ist Mitglied der Gruppe „B“. Die Gruppe „B“ ist berechtigt zu importieren jedoch können diese, beim Import, das Planverfahren nicht manuell bestimmen, wenn keine automatische Zuordnung statt findet.
 
 #### Prüffall 1
 
@@ -549,11 +542,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-15: Gültigkeitszeitraum für Rasterdaten in XPlanWMS unterstützen
 
-
 #### Vorbedingungen 
 
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer ist am XPlanManager-Web angemeldet und hat die Berechtigung zum Import von Planarchiven. 
+ * Optional, wenn Active Directory konfiguriert ist.
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+ * Der Benutzer ist am XPlanManager-Web angemeldet und hat die Berechtigung zum Import von Planarchiven. 
 
 #### Prüffall 
 
@@ -563,7 +556,7 @@ Schritt |Beschreibung |Erwartetes Ergebnis
 **02** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
 **03** | Der Benutzer öffnet die Kartenvorschau | Der Rasterplan wird abgebildet. 
 **04** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wurde gelöscht. 
-**05** | Der Benutzer importiert den gleichen Rasterplan erneut mit einem in der Vergangenheit liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". |Der Plan wird importiert. Der Gültigkeitszeitraum ist rot.
+**05** | Der Benutzer importiert den gleichen Rasterplan erneut mit einem in der Vergangenheit liegenden Gültigkeitszeitraum. Der Plan befindet sich "In Aufstellung". | Der Plan wird importiert. Der Gültigkeitszeitraum ist rot.
 **06** | Der Benutzer öffnet [1] und führt einen Workspace-Reload durch (wenn dieser nicht automatisch durchgeführt wird) | Der Workspace wird neu geladen. 
 **07** | Der Benutzer öffnet die Kartenvorschau | Es wird lediglich der Umring des Vektorplans abgebildet. 
 **08** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wurde gelöscht. 
@@ -574,13 +567,10 @@ Schritt |Beschreibung |Erwartetes Ergebnis
 **13** | Der Benutzer verändert den Gültigkeitszeitraum auf einen unbegrenzten Zeitraum und drückt auf speichern. | Der Gültigkeitszeitraum wird grün dargestellt.
 **14** | Der Benutzer öffnet die Kartenvorschau. | Der Rasterplan wird abgebildet. 
 
-
 **Hinweis:**
 
-Dieser Test wird sowohl für !GeoTiff-Rasterplänen als auch für PNG- Rasterplänen durchgeführt.
-
-[1] `http://<host>:<port>/xplan-wms`
-
+* Dieser Test wird sowohl für GeoTiff-Rasterplänen als auch für PNG- Rasterplänen durchgeführt.
+* [1] `http://<host>:<port>/xplan-wms`
 
 ---
 
@@ -588,8 +578,8 @@ Dieser Test wird sowohl für !GeoTiff-Rasterplänen als auch für PNG- Rasterpl�
 
 #### Vorbedingungen
 
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+ * Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
 
 #### Prüffall
 
@@ -597,18 +587,17 @@ Schritt |Beschreibung |Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer importiert einen Plan. | Der Plan wird erfolgreich importiert. 
 **02** | Der Benutzer bindet den WMS in QGIS ein. | Der importierte Plan wird angezeigt. 
-**03** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (!GetFeatureInfo Operation). | Die Objektinformationen werden angezeigt. Der Wert für die im nächsten Schritt zu übersetzende Codeliste ist leer oder enthält den nicht übersetzten Code. 
+**03** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (GetFeatureInfo Operation). | Die Objektinformationen werden angezeigt. Der Wert für die im nächsten Schritt zu übersetzende Codeliste ist leer oder enthält den nicht übersetzten Code. 
 **04** | Der Benutzer navigiert in den Ordner [1] und legt dort die Dateien `xplan[VERSION].syn` und `xplan_[CODELIST_NAME].xml` ab. 
 **05** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wird gelöscht. 
 **06** | Der Benutzer importiert den Plan erneut. | Der Plan wird erfolgreich importiert. 
 **07** | Der Benutzer bewegt das Kartenbild in QGIS. | Der WMS wird neu geladen. 
-**08** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (!GetFeatureInfo Operation). | Es werden die Objektinformationen der neuen Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die Übersetzung des Codes dar. 
+**08** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (GetFeatureInfo Operation). | Es werden die Objektinformationen der neuen Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die Übersetzung des Codes dar. 
 **09** | Der Benutzer navigiert in den Ordner [1] und editiert dort in {{{xplan_[CODELIST_NAME].xml}}} den übersetzten Wert (gml:description) des in Schritt 8 überprüften Codes in einen beliebigen anderen Wert.
 **10** | Der Benutzer löscht den zuvor importierten Plan. | Der Plan wird gelöscht. 
 **11** | Der Benutzer importiert den Plan erneut. |Der Plan wird erfolgreich importiert. 
 **12** | Der Benutzer bewegt das Kartenbild in QGIS. | Der WMS wird neu geladen. 
-**13** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (!GetFeatureInfo Operation). | Es werden die Objektinformationen der editierten Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die in Schritt 09 geänderte Übersetzung des Codes dar. 
-
+**13** | Der Benutzer führt eine Objektinformations-Abfrage in QGIS durch (GetFeatureInfo Operation). | Es werden die Objektinformationen der editierten Codeliste im entsprechenden Feld angezeigt. Dieser Wert stellt die in Schritt 09 geänderte Übersetzung des Codes dar. 
 
 **Hinweis**
 
@@ -654,8 +643,6 @@ BP_BaugebietsTeilFlaeche/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(x
 </gml:Dictionary>
 ```
 
-
-
 # XPlanValidatorCLI
 
 ### Prüffall-01: Validierungsart
@@ -698,14 +685,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * XPlanArchive sind verfügbar.
  
- 
 #### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer führt den Befehl [1] aus. | Der Benutzer erhält eine Validationsausgabe. Die geometrische Überprüfung der Flächenschlussbedingung wird übersprungen.
 **02** | Der Benutzer führt den Befehl [2] aus. | Der Benutzer erhält eine Validationsausgabe. Die geometrische Überprüfung des Geltungsbereich wird übersprungen.
-
 
 **Hinweis**
 
@@ -738,7 +723,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 * [3] `validationReportDirectory=<directory>`
 * [4] `cd ~/xplan-validator-cli-$VERSION/tmp/` 
     * Der Pfad kann variieren.
-
 
 # XPlanValidatorWeb
   
@@ -794,7 +778,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer klickt auf **Zur Validierung**. | Es öffnet sich ein neues Fenster mit den Validierungsoptionen.
 **03** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat ein Eingabefeld **Bezeichnung für den Report** 
 **04** | Der Benutzer gibt eine _Bezeichnung_ in das Eingabefeld ein. | Das Eingabefeld enthält die Bezeichnung. 
-
 
 ---
 
@@ -891,185 +874,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-09: Validierungsregeln für XPlanGML 4.0 BPlan
-
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Es wurde erfolgreich ein XPlan-Dokument (Planart: XPlanGML 4.0, BPlan) importiert.
- 
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wählt einen BPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
-
-**Hinweis**
-
- * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
-
----
-
-### Prüffall-10: Validierungsregeln für XPlanGML 4.0 FPlan
+### Prüffall-09: Optimierte Validatorreports
 
 #### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Es wurde erfolgreich ein XPlan-Dokument (Planart: XPlanGML 4.0, FPlan) importiert.
- 
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wählt einen FPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
-
-**Hinweis**
-
- * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
-
----
-
-### Prüffall-11: Validierungsregeln für XPlanGML 4.0 Basisschema 
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Es wurde erfolgreich ein XPlan-Dokument (Planart: XPlanGML 4.0, Basisschema XP_) importiert.
- 
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
-
-**Hinweis**
-
- * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
- 
- ---
- 
-### Prüffall-12: Validierungsregeln für XPlanGML 4.0 SO
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Es wurde erfolgreich ein XPlan-Dokument (Planart: XPlanGML 4.0, Sonstige Planwerk SO_) importiert.
- 
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
-
-**Hinweis**
-
- * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
- 
- ---
- 
- 
-### Prüffall-13: Validierungsregeln für XPlanGML 4.1 BPlan
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Es wurde erfolgreich ein XPlan-Dokument (Planart: XPlanGML 4.1, BPlan) importiert.
- 
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wählt einen BPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
-
-**Hinweis**
-
- * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
- 
- ---
- 
- 
-### Prüffall-14: Validierungsregeln für XPlanGML 4.1 FPlan
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Es wurde erfolgreich ein XPlan-Dokument (Planart: XPlanGML 4.1, FPlan) importiert.
- 
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wählt einen FPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
-
-**Hinweis**
-
- * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
- 
- ---
- 
- 
-### Prüffall-15: Validierungsregeln für XPlanGML 4.1 Basisschema
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Es wurde erfolgreich ein XPlan-Dokument (Planart: XPlanGML 4.1, Basisschema XP) importiert.
- 
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
-
-**Hinweis**
-
- * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
- 
- ---
- 
- 
-### Prüffall-16: Validierungsregeln für XPlanGML 4.1 SO
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Es wurde erfolgreich ein XPlan-Dokument (Planart: XPlanGML 4.1, Sonstige Planwerk SO) importiert.
- 
-#### Prüffall 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer wählt einen XPlan über **Hinzufügen** aus. | Der Dateiname wird dargestellt. 
-**02** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoption einstellen** aus. | Ein neues Fenster wird geöffnet. 
-**03** | Der Benutzer klickt auf den Button **Zur Validierung**. | Der Benutzer wird weiter geleitet. 
-**04** | Der Benutzer wählt die Einstellungen wie in Prüffall-03, Prüffall-04 beschrieben und klickt auf den Button **Validierung starten**. | Das Validierungsergebnis wird dargestellt. 
-
-**Hinweis**
-
- * Der Prüffall muss insgesamt drei mal mit je einem anderen Plan ausgeführt werden, sodass alle möglichen Ergebnisse eintreten können.
- 
- ---
- 
-### Prüffall-17: Optimierte Validatorreports
-
-#### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar.
-* Ein Planarchiv mit Syntaxfehlern, geometrischen und semantischen Fehlern in xplan.gml ist verfügbar.
+ * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar.
+ * Ein Planarchiv mit Syntaxfehlern, geometrischen und semantischen Fehlern in xplan.gml ist verfügbar.
 
 #### Prüffall 
 
@@ -1169,7 +978,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 * [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
 * [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
 
-
 # XPlanTransformCLI  
 
 ### Prüffall-01: Hilfe aufrufen
@@ -1252,7 +1060,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer führt den Befehl [1] aus. | Alle in der Datenbasis enthaltenen Pläne werden aus dem XPlanSyn-Schema in das Auswerteschema der xPlanBox überführt.
 **02** | Der Benutzer importiert einen neuen Plan in die xPlanBox und führt anschließend den Befehl [2] aus. | Alle in der Datenbasis enthaltenen Pläne, die seit der letzten Ausführung des XPlanAuswerteschemaCLI verändert oder hinzugefügt wurden, werden mit den Auswerteschmema synchronisiert und überführt.
 
-
 **Hinweis**
 
 * [1] `./EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] ALL -u [oder --user] <arg> -w [oder --password] <arg>`
@@ -1264,11 +1071,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-01: Transparente Zeichenvorschriften im XPlanWMS ermöglichen
 
 #### Vorbedingungen 
-
-* Eine geeignete !GetMap-Anfrage steht zur Verfügung.
-* Im WMSpre und im WMSarchive ist als default Style eine transparente Darstellung eingestellt.
-* Im WMS-Endpoint ist als default Style die vollflächige Darstellung eingestellt.
-
+ * Eine geeignete !GetMap-Anfrage steht zur Verfügung.
+ * Im WMSpre und im WMSarchive ist als default Style eine transparente Darstellung eingestellt.
+ * Im WMS-Endpoint ist als default Style die vollflächige Darstellung eingestellt.
 
 #### Prüffall 
 
@@ -1280,9 +1085,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **04** | Der Benutzer tauscht in der URL den WMS-Endpoint von WMSpre in WMS aus. Der Style ist default.| Die angezeigte Kartengraphik enthält eine vollflächige Darstellung.|
 **05** | Der Benutzer tauscht in der URL den WMS-Endpoint von WMSpre in WMS aus. Der Style ist transparent.| Die angezeigte Kartengraphik enthält eine transparente Darstellung.|
 
-
 #### Beispiel Prüffall 2: 
-
 
 * GetMap-Anfrage mit `Service = WMSpre` und `Style = / Style = default / Style = transparent`
 * **Hinweis:** Alle drei Styles entsprechen dem default des wmspre-Endpoint
@@ -1299,31 +1102,23 @@ http://<host>:<Port>/xplan-wms/services/wmspre?FORMAT=image%2Fpng&TRANSPARENT=tr
 
 **Antwort**: Eine transparente Kartendartsellung. Es erfolgt nur eine Darstellung der Geltungsbereiche der jeweiligen Planwerke.
 
-
 #### Beispiel Prüffall 3 
-
 
 Der Benutzer tauscht lediglich den Style aus.
 
-
 * GetMap-Anfrage mit `Service = WMSpre` und `Style= vollflächig`
-
 
 http://<host>:<Port>/xplan-wms/services/wmspre?FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=BP_Planvektor&STYLES=vollflaechig&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&SRS=EPSG%3A25832&BBOX=559063.243051755,5938015.832686279,560684.741896508,5939637.331531033&WIDTH=750&HEIGHT=750
 
 **Antwort**: Eine vollflächige Kartendartsellung
 
-
-
 #### Beispiel Prüffall 4: 
-
 
 * GetMap-Anfrage mit `Service = WMS` und `Style = / Style = default / Style = vollflaechig`
 
 * **Hinweis:** Alle drei Styles entsprechen dem default des wms-Endpoint
 
 http://<host>:<Port>/xplan-wms/services/wms?FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=BP_Planvektor&STYLES=&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&SRS=EPSG%3A25832&BBOX=559063.243051755,5938015.832686279,560684.741896508,5939637.331531033&WIDTH=750&HEIGHT=750
-
 
 bzw.
 
@@ -1333,37 +1128,27 @@ bzw.
 
 http://<host>:<Port>/xplan-wms/services/wms?FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=BP_Planvektor&STYLES=vollflaechig&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&SRS=EPSG%3A25832&BBOX=559063.243051755,5938015.832686279,560684.741896508,5939637.331531033&WIDTH=750&HEIGHT=750
 
-
 **Antwort**: Eine vollflächige Kartendartsellung
-
 
 #### Beispiel Prüffall 5: 
 
-
-
 Der Benutzer tauscht lediglich den Style aus.
-
 
 * GetMap-Anfrage mit `Service = WMS` und `Style = transparent`
 
 http://<host>:<Port>/xplan-wms/services/wms?FORMAT=image%2Fpng&TRANSPARENT=true&LAYERS=BP_Planvektor&STYLES=transparent&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&SRS=EPSG%3A25832&BBOX=559063.243051755,5938015.832686279,560684.741896508,5939637.331531033&WIDTH=750&HEIGHT=750
 
-
 **Antwort:** 
 
 Eine transparente Kartendarstellung. Es erfolgt nur eine Darstellung der Geltungsbereiche der jeweiligen Planwerke.
 
-
-
 ---
-
 
 ### Prüffall-02: Unterstützung von Planarchivierung
 
 #### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Der Benutzer hat die Berechtigung zum Import von Planarchiven.
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+ * Der Benutzer hat die Berechtigung zum Import von Planarchiven.
 
 #### Prüffall 1 
 
@@ -1373,11 +1158,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02**| Der Benutzer gibt einen Rechtsstand an.| Der Plan wird in der entsprechenden Datenhaltung abgelegt und nur in der Kartenansicht des entsprechenden WMS-Dienstes angezeigt.
 **03**| Der Benutzer führt die Schritte 01 und 02 mit unterschiedlichen Rechtsstand- Angaben durch.| Der Plan wird in der entsprechenden Datenhaltung abgelegt und nur in der Kartenansicht des entsprechenden WMS-Dienstes angezeigt.
 
-
 ---
 
 ### Prüffall-03: Umringe immer sichtbar
-
 
 #### Vorbedingungen 
 
@@ -1389,7 +1172,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer importiert einen Plan mit einem unbegrenzten Gültigkeitszeitraum.| Der Plan wird importiert. Der Gültigkeitszeitraum ist grün.
-**02** | Der Benutzer importiert einen Plan mit einem bereits abgelaufenen Gültigkeitszeitraum.|Der Plan wird importiert. Der Gültigkeitszeitraum ist rot.
+**02** | Der Benutzer importiert einen Plan mit einem bereits abgelaufenen Gültigkeitszeitraum.| Der Plan wird importiert. Der Gültigkeitszeitraum ist rot.
 **03** | Der Benutzer führt eine GetMap-Anfrage mit den Layer-Angaben bp_plan und bp_XYZ für das Gebiet des importierten Plans aus Schritt 01 aus.| Die Umringe des Plans sowie die Daten von bp_XYZ werden angezeigt.
 **04** | Der Benutzer führt eine GetMap-Anfrage mit den Layer-Angaben bp_plan und bp_XYZ für das Gebiet des importierten Plans aus Schritt 02 aus.| Es werden nur die Umringe des Plans angezeigt.
 
@@ -1397,35 +1180,31 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 * Zum Layer bp_XYZ müssen in der xplan.gml-Datei Daten enthalten sein.
 
-
 ---
+
 ### Prüffall-04: GetMap URL für spezifischen Plan über GetFeature zusammenstellen
 
-
 #### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet. 
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet. 
 
 #### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt hinter einem beliebigen Plan auf die Schaltfläche „Kartenvorschau“.|Es öffnet sich ein neues Fenster.
-**02** | Der Benutzer klickt im neu geöffneten Fenster auf „Plan in neuem Fenster öffnen“ (GetMap-Anfrage).|Es öffnet sich ein neues Browserfenster mit der entsprechenden Karte.
-**03** | Der Benutzer überprüft die Form der URL.|Die URL ist OGC-konform. (http...LAYERS=...)
-**04** | Der Benutzer überprüft die Anzahl der Layer in der URL.|Die Anzahl stimmt mit den im jeweiligen Plan enthaltenen Layern überein.
-
+**01** | Der Benutzer klickt hinter einem beliebigen Plan auf die Schaltfläche „Kartenvorschau“.| Es öffnet sich ein neues Fenster.
+**02** | Der Benutzer klickt im neu geöffneten Fenster auf „Plan in neuem Fenster öffnen“ (GetMap-Anfrage).| Es öffnet sich ein neues Browserfenster mit der entsprechenden Karte.
+**03** | Der Benutzer überprüft die Form der URL.| Die URL ist OGC-konform. (http...LAYERS=...)
+**04** | Der Benutzer überprüft die Anzahl der Layer in der URL.| Die Anzahl stimmt mit den im jeweiligen Plan enthaltenen Layern überein.
 
 ---
 
 ### Prüffall-05: Sortierung der Visualisierung nach anderem Datumsfeld
 
 #### Vorbedingungen 
-
-* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
-* Als Kriterium für die Sortierung in der Kartenansicht ist das Rechtsverordnungsdatum eingestellt.
-* Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten. 
-* Es ist bereits mindestens ein Plan importiert.
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+ * Als Kriterium für die Sortierung in der Kartenansicht ist das Rechtsverordnungsdatum eingestellt.
+ * Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten. 
+ * Es ist bereits mindestens ein Plan importiert.
 
 #### Prüffall 1 
 
@@ -1436,7 +1215,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **03** | Der Benutzer verändert das „Rechtsverordungsdatum“ in ein zurückliegendes Datum und verändert ein Attribut. Die Änderung ist valide.| Die geänderten Daten sind gespeichert.
 **04** | Der Benutzer überprüft die Änderung mit Hilfe einer GetMap-Anfrage.|Der geänderte Plan wird auf der Karte im Hintergrund angezeigt. 
 
-
 #### Prüffall 2 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
@@ -1446,16 +1224,15 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **03** | Der Benutzer verändert das „Rechtsverordungsdatum“ in ein zukünftiges Datum und verändert ein Attribut. Die Änderung erfolgt valide.| Speicherung der Änderung.
 **04** | Der Benutzer überprüft die Änderung mit Hilfe eines GetMap-Anfrage.| Der geänderte Plan wird auf der Karte im Vordergrund angezeigt. 
 
-
 ---
 
 ### Prüffall-06: Betrieb der Geo-Dienste mit Load Balancer
 
 #### Vorbedingungen 
-* Eine Instanz der Komponente XPlanManagerWeb und zwei Instanzen der Komponente XPlanWMS stehen zur Verfügung.
-* Die beiden WMS-Instanzen nutzen ein gemeinsames Workspace-Verzeichnis und ein gemeinsames Verzeichnis für die Speicherung der Rasterdaten in einem Netzwerk-Dateisystem.
-* Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
-* Der Systemadministrator hat Zugriff auf die Protokolldateien der o.g. Komponenten.
+ * Eine Instanz der Komponente XPlanManagerWeb und zwei Instanzen der Komponente XPlanWMS stehen zur Verfügung.
+ * Die beiden WMS-Instanzen nutzen ein gemeinsames Workspace-Verzeichnis und ein gemeinsames Verzeichnis für die Speicherung der Rasterdaten in einem Netzwerk-Dateisystem.
+ * Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
+ * Der Systemadministrator hat Zugriff auf die Protokolldateien der o.g. Komponenten.
 
 #### Prüffall 1 
 
@@ -1464,91 +1241,43 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Systemadministrator beobachtet das Verhalten des Systems, während ein Benutzer einen Plan mit Rasterdaten importiert.| In beiden WMS-Instanzen wird ein Workspace-Reload ausgeführt.  
 **02** | Der Benutzer überprüft die Kartenansichten beider WMS-Dienste im Bereich des importierten Plans mit einer geeigneten GetMap-Anfrage.| Beide WMS-Dienste geben die gleiche Kartenansicht aus. 
 
-
 ---
-
 
 ### Prüffall-07: GetFeatureInfo-Ausgaben des WMS
 
+#### Vorbedingungen 
+ * Der Benutzer hat den XPlanWMS in QGIS als Datenquelle eingebunden.
 
 #### Prüffall
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer öffnet die html.gfi - Datei [1]. | Die Datei wird geöffnet. 
-**02** | Der Benutzer ändert die Ausgabereihenfolge der Objektattribute in der GFI-Vorlage [2]. 
-**03** | Der Benutzer fügt eine neue Zeile hinzu [3] und speichert die Änderungen.
-**04** | Der Benutzer ruft [4] auf und kontrolliert die Ausgabe auf Lesbarkeit, richtige Wiedergabe der gewünschten Infos und Vollständigkeit. | Die Ausgabe ist lesbar und es werden die gewünschten Infos wiedergegeben.
-
-
-
-**Hinweis:**
-
-* [1] html.gfi ist unter » /.deegree/xplansyn-wms-workspace/services zufinden
-* [2] Auskommentieren von » <?property not(gmlId,raster*,ref*,fachobjekt,flaechenteil,*Code,gehoert*,begrenzungslinie,uuid,bereich):property>
-* [3] Hinzufügen von » <?property *:property>
-* [4] Eidelstedt_4: http://lgvxplanisk:8080/xplan-wms/services/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&QUery_Layers=BP_Planvektor&LAYERS=BP_Planvektor&STYLES=&FORMAT=image/png&TRANSPARENT=true&EXCEPTIONS=text/xml&SRS=epsg:25832&BBOX=559333.4928592138,5938286.082493738,560414.4920890492,5939367.081723574&WIDTH=750&HEIGHT=750&X=559&Y=593&INFO_FORMAT=text/html
-
+**01** | Der Benutzer wählt die GetFeatureInfo-Funktion in QGIS aus. 
+**02** | Der Benutzer klickt in der Karte auf sichtbares Fachobjekt. 
+**03** | Der Benutzer kontrolliert die Ausgabe auf Lesbarkeit, richtige Wiedergabe der gewünschten Infos und Vollständigkeit. | Die Ausgabe ist lesbar und es werden die gewünschten Infos wiedergegeben.
 
 ---
-
 
 # XPlanWFS/XPlanSynWFS
 
+### Prüffall-01: Unterstützung der Spezifikation WFS 2.0.0
 
-### Prüffall-01: Unterstützung der Spezifikation WFS 1.1.0 zur Abgabe von GML 3.1.1 und GML 3.2.1
-
+#### Vorbedingungen 
+ * Es liegen XPlanArchive mit dem Planstatus "Festgestellt" in der Datenhaltung vor.
 
 #### Prüffall
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer ruft [1] auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
-**02** | Der Benutzer startet ein Validations-tool.
-**03** | Der Benutzer ersetzt die SchemaLocation.
-**04** | Der Benutzer importiert die Response aus Schritt 01.
-**05** | Der Benutzer führt eine Schemavalidation durch. | Der GetFeature Request ist GML 3.1.1 konform.
-**06** | Der Benutzer ruft [2] auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
-**07** | Der Benutzer startet ein Validations-tool.
-**08** | Der Benutzer ersetzt die SchemaLocation.
-**09** | Der Benutzer importiert die Response aus Schritt 06.
-**10** | Der Benutzer führt eine Schemavalidation durch. | Der GetFeature Request ist GML 3.1.1 konform.
-
+**01** | Der Benutzer ruft [1] bzw. [2] auf. | Es öffnet sich ein neues Fenster, mit dem die GetFeature-Anfrage gespeichert bzw. geöffnet werden kann.
+**02** | Der Benutzer prüft, ob die in der GetFeature-Anfrage angezeigten Daten mit der Datenhaltung übereinstimmen. | Die Daten stimmen überein.
 
 **Hinweis:**
 
-* [1] http://<host:port>/xplan-wfs/services/wfs110?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F3.1.1&TYPENAME=xplan2:BP_Plan&NAMESPACE=xmlns%28xplan=http://www.xplanung.de/xplangml%29
-
-* [2] http://<host:port>/xplan-wfs/services/wfs110?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F3.1.1&TYPENAME=xplan3:BP_Plan&NAMESPACE=xmlns%28xplan3=http:%2F%2Fwww.xplanung.de%2Fxplangml%2F3%2F0%29
-
-
+* [1] http://<host:port>/xplan-wfs/services/wfs<XPlanGMLVersion>pre?service=WFS&version=2.0.0&REQUEST=getFeature&TypeName=BP_Plan
+* [2] http://<host:port>/xplansyn-wfs/services/xplansynwfspre?service=WFS&version=2.0.0&REQUEST=getFeature&TypeName=BP_Plan
 
 ---
-
-### Prüffall-02: Unterstützung der Spezifikation WFS 2.0.0 zur Abgabe von GML 3.2.1
-
-
-#### Prüffall
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer ruft [1] auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
-**02** | Der Benutzer startet ein Validations-tool.
-**03** | Der Benutzer ersetzt die SchemaLocation.
-**04** | Der Benutzer importiert die Response aus Schritt 01.
-**05** | Der Benutzer führt eine Schemavalidation durch. | Der GetFeature Request ist GML konform.
-**06** | Der Benutzer ruft [2] auf. | Es öffnet sich ein neues Fenster, mit dem der Request gespeichert bzw. geöffnet werden kann.
-**07** | Der Benutzer startet ein Validations-tool.
-**08** | Der Benutzer ersetzt die SchemaLocation. 
-**09** | Der Benutzer importiert die Response aus Schritt 05.
-**10** | Der Benutzer führt eine Schemavalidation durch. | Der GetFeature Request ist GML konform.
-
-**Hinweis:**
-
-* [1] http://<host:port>/xplan-wfs/services/dls?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F3.2.1&TYPENAME=xplan3:BP_Plan&NAMESPACE=xmlns%28xplan=http://www.xplanung.de/xplangml/4/1%29
-
-* [2] http://<host:port>/xplan-wfs/services/dls?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F3.2.1&TYPENAME=xplan4:BP_Plan&NAMESPACE=xmlns%28xplan=http://www.xplanung.de/xplangml/4/1%29
-
 
 # XPlanRessourcen (Landingpage)
 
