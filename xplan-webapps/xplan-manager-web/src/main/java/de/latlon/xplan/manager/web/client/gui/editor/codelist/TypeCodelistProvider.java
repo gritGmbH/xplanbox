@@ -62,6 +62,7 @@ import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.PLANGRUNDLAG
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSVERBINDLICH;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.SATZUNG;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.SCHUTZGEBIETSVERORDNUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.STAEDTEBAULICHERVERTRAG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.UMWELTBERICHT;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.UMWELTBEZOGENESTELLUNGNAHMEN;
@@ -162,6 +163,7 @@ public class TypeCodelistProvider {
 		codes.add(new Code(METADATENPLAN.name(), MESSAGES.ReferenceType_METADATENPLAN()));
 		codes.add(new Code(GENEHMIGUNG.name(), MESSAGES.ReferenceType_GENEHMIGUNG()));
 		codes.add(new Code(BEKANNTMACHUNG.name(), MESSAGES.ReferenceType_BEKANNTMACHUNG()));
+		codes.add(new Code(SCHUTZGEBIETSVERORDNUNG.name(), MESSAGES.ReferenceType_SCHUTZGEBIETSVERORDNUNG()));
 		codes.add(new Code(RECHTSVERBINDLICH.name(), MESSAGES.ReferenceType_RECHTSVERBINDLICH()));
 		codes.add(new Code(INFORMELL.name(), MESSAGES.ReferenceType_INFORMELL()));
 		typeCode.put(ReferenceType.class, codes);
