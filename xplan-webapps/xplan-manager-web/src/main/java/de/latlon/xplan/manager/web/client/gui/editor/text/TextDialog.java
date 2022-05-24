@@ -35,11 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_54;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 
 /**
  * Dialog to edit an existing or create a new {@link Text}
@@ -128,7 +124,7 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 	private TextDialog(EditVersion version, Text textToEdit, String title) {
 		super(version, title);
 		this.textToEdit = textToEdit;
-		if (isXPlanVersion5X()) {
+		if (!XPLAN_41.equals(version)) {
 			this.rechtscharakterType = new TypeCodeListBox<TextRechtscharacterType>(TextRechtscharacterType.class);
 		}
 		initDialog(createFormContent());
@@ -183,11 +179,6 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 				rechtscharakterType.selectItem(textToSet.getRechtscharakter());
 			}
 		}
-	}
-
-	private boolean isXPlanVersion5X() {
-		return XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
-				|| XPLAN_53.equals(version) || XPLAN_54.equals(version);
 	}
 
 }

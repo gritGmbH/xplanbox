@@ -42,10 +42,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 
 /**
  * Panel for texts.
@@ -71,8 +68,7 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 		// #3305 - georeference is not needed.
 		// if ( !XPLAN_3.equals( version ) )
 		// addGeoReferenceColumn( textsList );
-		if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
-				|| XPLAN_53.equals(version)) {
+		if (!XPLAN_41.equals(version)) {
 			addRechtscharakterColumn(textsList);
 		}
 		addReferenceColumn(textsList);

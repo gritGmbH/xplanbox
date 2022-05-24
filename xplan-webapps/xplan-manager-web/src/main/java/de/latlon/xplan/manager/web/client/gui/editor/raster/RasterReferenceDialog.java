@@ -45,9 +45,12 @@ import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_54;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_MSEXCEL;
 import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_MSWORD;
@@ -154,7 +157,8 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		formatter.setHorizontalAlignment(2, 1, ALIGN_LEFT);
 
 		int rowIndex = 1;
-		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)) {
+		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
+				|| XPLAN_54.equals(version)) {
 			layout.setText(rowIndex++, 2, MESSAGES.editHintRasterBasisType());
 		}
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisBereichNummer()));
@@ -249,17 +253,17 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 	}
 
 	private TypeCodeListBox<RasterReferenceType> createRefType() {
-		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)) {
-			List<RasterReferenceType> disabledItems = new ArrayList<RasterReferenceType>();
-			disabledItems.add(RasterReferenceType.LEGEND);
-			disabledItems.add(TEXT);
+		if (XPLAN_41.equals(version) || XPLAN_50.equals(version)) {
 			TypeCodeListBox<RasterReferenceType> codeListBox = new TypeCodeListBox<RasterReferenceType>(
-					RasterReferenceType.class, disabledItems, false);
+					RasterReferenceType.class);
 			codeListBox.selectItem(RasterReferenceType.SCAN);
 			return codeListBox;
 		}
+		List<RasterReferenceType> disabledItems = new ArrayList<RasterReferenceType>();
+		disabledItems.add(RasterReferenceType.LEGEND);
+		disabledItems.add(TEXT);
 		TypeCodeListBox<RasterReferenceType> codeListBox = new TypeCodeListBox<RasterReferenceType>(
-				RasterReferenceType.class);
+				RasterReferenceType.class, disabledItems, false);
 		codeListBox.selectItem(RasterReferenceType.SCAN);
 		return codeListBox;
 	}
