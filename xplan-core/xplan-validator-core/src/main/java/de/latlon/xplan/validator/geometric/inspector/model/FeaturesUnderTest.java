@@ -20,38 +20,42 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.model;
 
-import org.deegree.feature.Feature;
+import org.deegree.geometry.Geometry;
+
+import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class BereichFeature extends GeltungsbereichFeature {
+public class FeaturesUnderTest {
 
-	private InspectorContext inspectorContext;
+	private final Geometry flaechenschlussUnion;
+
+	private final List<FeatureUnderTest> featuresUnderTest;
 
 	/**
-	 * @param feature never <code>null</code>
-	 * @param inspectorContext never <code>null</code>
-	 * @param toleranceMetre
+	 * @param flaechenschlussUnion the union of the geometries of all featuresUnderTest,
+	 * never <code>null</code>
+	 * @param featuresUnderTest the featuresUnderTest, never <code>null</code>
 	 */
-	public BereichFeature(Feature feature, InspectorContext inspectorContext, double toleranceMetre) {
-		super(feature, toleranceMetre);
-		this.inspectorContext = inspectorContext;
+	public FeaturesUnderTest(Geometry flaechenschlussUnion, List<FeatureUnderTest> featuresUnderTest) {
+		this.flaechenschlussUnion = flaechenschlussUnion;
+		this.featuresUnderTest = featuresUnderTest;
 	}
 
 	/**
-	 * @return the id of the plan this bereich belongs to.
+	 * @return the union of the geometries of all featuresUnderTest, never
+	 * <code>null</code>
 	 */
-	public String getPlanId() {
-		return getPropertyValue("gehoertZuPlan");
+	public Geometry getFlaechenschlussUnion() {
+		return flaechenschlussUnion;
 	}
 
 	/**
-	 * @return the Plan feature of this BereichFeature, may not be <code>null</code>
+	 * @return the featuresUnderTest, never <code>null</code>
 	 */
-	public PlanFeature getPlanFeature() {
-		String planId = getPlanId();
-		return inspectorContext.getPlanFeatures().get(planId);
+	public List<FeatureUnderTest> getFeaturesUnderTest() {
+		return featuresUnderTest;
 	}
 
 }

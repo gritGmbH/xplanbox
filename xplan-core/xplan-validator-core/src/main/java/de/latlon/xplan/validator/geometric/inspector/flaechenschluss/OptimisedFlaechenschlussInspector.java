@@ -23,8 +23,11 @@ package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.model.AbstractGeltungsbereichFeature;
+import de.latlon.xplan.validator.geometric.inspector.model.BereichFeature;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
+import de.latlon.xplan.validator.geometric.inspector.model.FeaturesUnderTest;
 import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
+import de.latlon.xplan.validator.geometric.inspector.model.PlanFeature;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -69,6 +72,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -146,11 +150,16 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	public boolean checkGeometricRule() {
 		Map<GeltungsbereichFeature, List<FeatureUnderTest>> allFlaechenschlussFeaturesOfAPlan = flaechenschlussContext
 				.getAllFlaechenschlussFeaturesOfAPlan();
+		Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest = new HashMap<>();
 		allFlaechenschlussFeaturesOfAPlan.forEach((geltungsbereichFeature, featuresUnderTest) -> {
 			if (!featuresUnderTest.isEmpty()) {
 				analyseFlaechenschlussFeaturePairs(featuresUnderTest);
-				analyseFlaechenschlussUnion(geltungsbereichFeature, featuresUnderTest);
+				analyseFlaechenschlussUnion(geltungsbereichFeature, featuresUnderTest,
+						planFeaturesWithFeaturesUnderTest);
 			}
+		});
+		planFeaturesWithFeaturesUnderTest.forEach((planFeature, featuresUnderTest) -> {
+			analyseFlaechenschlussUnionOfPlan(planFeature, featuresUnderTest);
 		});
 
 		if (flaechenschlussErrors.isEmpty()) {
@@ -192,13 +201,31 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	}
 
 	private void analyseFlaechenschlussUnion(GeltungsbereichFeature geltungsbereichFeature,
-			List<FeatureUnderTest> featuresUnderTest) {
+			List<FeatureUnderTest> featuresUnderTest,
+			Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest) {
 		boolean handleHolesAsFailure = handleAsFailure();
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion(geltungsbereichFeature, featuresUnderTest);
 		LOG.debug("Union of all flaechenschluss geometries: " + WKTWriter.write(flaechenschlussUnion));
 		checkFlaechenschlussFeaturesIntersectingAnInteriorRing(geltungsbereichFeature, featuresUnderTest,
 				flaechenschlussUnion, handleHolesAsFailure);
 		checkFlaechenschlussFeaturesWithGeltungsbereich(geltungsbereichFeature, featuresUnderTest, flaechenschlussUnion,
+				handleHolesAsFailure);
+
+		addPlanFeature(planFeaturesWithFeaturesUnderTest, geltungsbereichFeature, featuresUnderTest,
+				flaechenschlussUnion);
+	}
+
+	private void analyseFlaechenschlussUnionOfPlan(PlanFeature planFeature,
+			List<FeaturesUnderTest> featuresUnderTests) {
+		boolean handleHolesAsFailure = handleAsFailure();
+		Geometry flaechenschlussUnion = createFlaechenschlussUnion(featuresUnderTests);
+		LOG.debug("Union of all flaechenschluss geometries assgned to plan {}: {}", planFeature.getFeatureId(),
+				WKTWriter.write(flaechenschlussUnion));
+
+		List<FeatureUnderTest> featureUnderTestOfPlan = featuresUnderTests.stream()
+				.flatMap(featuresUnderTest -> featuresUnderTest.getFeaturesUnderTest().stream())
+				.collect(Collectors.toList());
+		checkFlaechenschlussFeaturesWithGeltungsbereich(planFeature, featureUnderTestOfPlan, flaechenschlussUnion,
 				handleHolesAsFailure);
 	}
 
@@ -324,19 +351,32 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		List<ControlPoint> controlPointsWithInvalidFlaechenschluss = controlPoints.stream()
 				.filter(cp -> !cp.hasIdenticalControlPoint()).collect(Collectors.toList());
 		controlPointsWithInvalidFlaechenschluss.stream().forEach(cp -> {
-			if (handleHolesAsFailure) {
-				String error = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
-				BadGeometry badGeometry = new BadGeometry(cp.getPoint(), error);
+			String msg = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
+			BadGeometry badGeometry = new BadGeometry(cp.getPoint(), msg);
+			if (!badGeometries.contains(badGeometry)) {
 				badGeometries.add(badGeometry);
-				flaechenschlussErrors.add(error);
-			}
-			else {
-				String warning = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
-				flaechenschlussWarnings.add(warning);
-				BadGeometry badGeometry = new BadGeometry(cp.getPoint(), warning);
-				badGeometries.add(badGeometry);
+				if (handleHolesAsFailure) {
+					flaechenschlussErrors.add(msg);
+				}
+				else {
+					flaechenschlussWarnings.add(msg);
+				}
 			}
 		});
+	}
+
+	private void addPlanFeature(Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest,
+			GeltungsbereichFeature geltungsbereichFeature, List<FeatureUnderTest> featuresUnderTest,
+			Geometry flaechenschlussUnion) {
+		if (geltungsbereichFeature instanceof BereichFeature) {
+			FeaturesUnderTest featuresUnderTest1 = new FeaturesUnderTest(flaechenschlussUnion, featuresUnderTest);
+			if (!planFeaturesWithFeaturesUnderTest.containsKey(geltungsbereichFeature)) {
+				planFeaturesWithFeaturesUnderTest.put(((BereichFeature) geltungsbereichFeature).getPlanFeature(),
+						new ArrayList<>());
+			}
+			planFeaturesWithFeaturesUnderTest.get(((BereichFeature) geltungsbereichFeature).getPlanFeature())
+					.add(featuresUnderTest1);
+		}
 	}
 
 	private List<ControlPoint> collectControlPointsIntersectingTheInteriorRing(Ring interiorRing,
@@ -370,6 +410,21 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			geometries.add(flaechenschlussFeature.getJtsGeometry());
 		}
 		addHolesFromGeltungsbereich(geltungsbereichFeature, factory, geometries);
+		GeometryCollection geometryCollection = factory
+				.createGeometryCollection(geometries.toArray(new org.locationtech.jts.geom.Geometry[] {}));
+
+		org.locationtech.jts.geom.Geometry union = geometryCollection.buffer(0);
+		return DEFAULT_GEOM.createFromJTS(union, coordinateSystem);
+	}
+
+	private Geometry createFlaechenschlussUnion(List<FeaturesUnderTest> featuresUnderTests) {
+		ICRS coordinateSystem = null;
+		GeometryFactory factory = new GeometryFactory();
+		List<org.locationtech.jts.geom.Geometry> geometries = new ArrayList<>();
+		for (FeaturesUnderTest featuresUnderTest : featuresUnderTests) {
+			coordinateSystem = featuresUnderTest.getFlaechenschlussUnion().getCoordinateSystem();
+			geometries.add(((AbstractDefaultGeometry) featuresUnderTest.getFlaechenschlussUnion()).getJTSGeometry());
+		}
 		GeometryCollection geometryCollection = factory
 				.createGeometryCollection(geometries.toArray(new org.locationtech.jts.geom.Geometry[] {}));
 

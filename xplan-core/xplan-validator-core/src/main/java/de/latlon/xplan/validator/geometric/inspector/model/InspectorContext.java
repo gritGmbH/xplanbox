@@ -49,7 +49,7 @@ public abstract class InspectorContext {
 			planFeatures.put(feature.getId(), new PlanFeature(feature, TOLERANCE_METRE));
 		}
 		else if (isBereichFeature(feature)) {
-			bereichFeatures.put(feature.getId(), new BereichFeature(feature, TOLERANCE_METRE));
+			bereichFeatures.put(feature.getId(), new BereichFeature(feature, this, TOLERANCE_METRE));
 		}
 		else {
 			addFeatureUnderTest(feature);
