@@ -719,7 +719,8 @@ public class PlanListPanel extends DecoratorPanel {
 	private boolean isVersionSupportedByEditor(XPlan xPlan) {
 		return "XPLAN_41".equals(xPlan.getVersion()) || "XPLAN_50".equals(xPlan.getVersion())
 				|| "XPLAN_51".equals(xPlan.getVersion()) || "XPLAN_52".equals(xPlan.getVersion())
-				|| "XPLAN_53".equals(xPlan.getVersion()) || "XPLAN_54".equals(xPlan.getVersion());
+				|| "XPLAN_53".equals(xPlan.getVersion()) || "XPLAN_54".equals(xPlan.getVersion())
+				|| "XPLAN_60".equals(xPlan.getVersion());
 	}
 
 	private boolean isVersionSupportedByInpirePlu(XPlan xPlan) {
