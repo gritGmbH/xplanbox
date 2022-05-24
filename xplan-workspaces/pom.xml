@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>5.0.2</version>
+    <version>5.1-SNAPSHOT</version>
   </parent>
 
   <build>
