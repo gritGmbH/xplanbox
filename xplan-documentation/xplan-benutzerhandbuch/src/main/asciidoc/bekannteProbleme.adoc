@@ -67,6 +67,10 @@ Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständi
 
 Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeben, Multigeometrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geometrien nur, wenn diese nicht zu fehlerhaft sind, um gerendert zu werden.
 
+=== Änderungen der Rasterbasis über die Editorfunktion im XPlanManagerWeb werden nicht übernommen
+
+Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl" statt "Scan") der Eintrag nicht in das XPlanGML-Instanzdokument übernommen. Die Referenz auf die Rasterbasis wird beim Speichern nicht in das XPlanGML geschrieben, befindet sich aber in der ZIP-Datei.
+
 === Umsetzung von Präsentationsobjekte
 
 Im XPlanWMS ist der Umfang der Darstellung von Präsentationsobjekten nur eingeschränkt implementiert. Über die folgenden Layer werden diese angezeigt:

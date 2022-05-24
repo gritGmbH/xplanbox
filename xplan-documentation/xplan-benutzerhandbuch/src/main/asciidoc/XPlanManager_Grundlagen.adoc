@@ -262,5 +262,5 @@ Folgende Voraussetzung werden an die einzelnen Formate gestellt:
   * Wenn das Kommandozeilentool __XPlanManagerCLI__ verwendet wird, muss in
   der Datei _aux.xml_ das Koordinatenreferenzsystem der PNG-Datei definiert
   sein. Für den XPlanManagerWeb ist dies keine Voraussetzung, da der
-  Nutzer beim Import der Daten das Koordinatenreferenzsystem der
+  Fachadministrator beim Import der Daten das Koordinatenreferenzsystem der
   PNG-Datei über einen Dialog bestätigen kann.
