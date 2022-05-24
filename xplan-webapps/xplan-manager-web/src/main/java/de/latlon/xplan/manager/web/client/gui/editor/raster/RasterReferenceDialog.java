@@ -47,6 +47,7 @@ import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 
@@ -158,12 +159,16 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		layout.setWidget(rowIndex++, 2, refMimeType);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisGeoReference()));
 		layout.setWidget(rowIndex++, 2, georeference);
-		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisGeorefMimeType()));
-		layout.setWidget(rowIndex++, 2, georefMimeType);
+		if (!XPLAN_60.equals(version)) {
+			layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisGeorefMimeType()));
+			layout.setWidget(rowIndex++, 2, georefMimeType);
+		}
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisArt()));
 		layout.setWidget(rowIndex++, 2, artType);
-		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisInformationssystemURL()));
-		layout.setWidget(rowIndex++, 2, informationssystemURL);
+		if (!XPLAN_60.equals(version)) {
+			layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisInformationssystemURL()));
+			layout.setWidget(rowIndex++, 2, informationssystemURL);
+		}
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisReferenzName()));
 		layout.setWidget(rowIndex++, 2, referenzName);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisBeschreibung()));

@@ -37,6 +37,7 @@ import de.latlon.xplan.manager.web.shared.edit.BaseData;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static com.google.gwt.user.client.ui.HasVerticalAlignment.ALIGN_TOP;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_PlanArt;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_Rechtsstand;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_SonstPlanArt;
@@ -57,6 +58,8 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private static final String TEXTAREA_HEIGHT = "125px";
 
+	private final EditVersion version;
+
 	private final TextBox name = createTextInput();
 
 	private final TextArea description = createTextAreaInput();
@@ -76,6 +79,7 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 	private final CodeListBox legislationStatus;
 
 	public BaseDataPanel(EditVersion version) {
+		this.version = version;
 		setCaptionText(MASSAGE.editCaptionBasedata());
 		planType = createMandatoryCodeListInput(version, BP_PlanArt);
 		otherPlanType = createCodeListInput(version, BP_SonstPlanArt);
@@ -153,8 +157,11 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 		layout.setWidget(3, 1, new Label(MASSAGE.editCaptionBasedataLossDate()));
 		layout.setWidget(3, 2, lossDate);
-		layout.setWidget(3, 3, new Label(MASSAGE.editCaptionBasedataMethod()));
-		layout.setWidget(3, 4, method);
+
+		if (!XPLAN_60.equals(version)) {
+			layout.setWidget(3, 3, new Label(MASSAGE.editCaptionBasedataMethod()));
+			layout.setWidget(3, 4, method);
+		}
 
 		layout.setWidget(4, 1, new Label(MASSAGE.editCaptionBasedataRegulationDate()));
 		layout.setWidget(4, 2, regulationDate);
