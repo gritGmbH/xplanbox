@@ -27,7 +27,9 @@ import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -55,6 +57,8 @@ public class PlanInfoXplanModelData {
 	private @Valid String rechtsstand;
 
 	private @Valid Date inkrafttretensDatum;
+
+	private @Valid List<Bereich> bereiche = new ArrayList<Bereich>();
 
 	/**
 	 *
@@ -182,6 +186,24 @@ public class PlanInfoXplanModelData {
 		this.inkrafttretensDatum = inkrafttretensDatum;
 	}
 
+	/**
+	 * Bereiche related to the plan
+	 **/
+	public PlanInfoXplanModelData bereiche(List<Bereich> bereiche) {
+		this.bereiche = bereiche;
+		return this;
+	}
+
+	@Schema(description = "Bereiche related to the Plan")
+	@JsonProperty("bereiche")
+	public List<Bereich> getBereich() {
+		return bereiche;
+	}
+
+	public void setBereich(List<Bereich> bereiche) {
+		this.bereiche = bereiche;
+	}
+
 	@Override
 	public boolean equals(java.lang.Object o) {
 		if (this == o) {
@@ -197,12 +219,13 @@ public class PlanInfoXplanModelData {
 				&& Objects.equals(this.ags, planInfoXplanModelData.ags)
 				&& Objects.equals(this.gemeindeName, planInfoXplanModelData.gemeindeName)
 				&& Objects.equals(this.rechtsstand, planInfoXplanModelData.rechtsstand)
-				&& Objects.equals(this.inkrafttretensDatum, planInfoXplanModelData.inkrafttretensDatum);
+				&& Objects.equals(this.inkrafttretensDatum, planInfoXplanModelData.inkrafttretensDatum)
+				&& Objects.equals(this.bereiche, planInfoXplanModelData.bereiche);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, nummer, internalId, ags, gemeindeName, rechtsstand, inkrafttretensDatum);
+		return Objects.hash(name, nummer, internalId, ags, gemeindeName, rechtsstand, inkrafttretensDatum, bereiche);
 	}
 
 	@Override
@@ -217,6 +240,7 @@ public class PlanInfoXplanModelData {
 		sb.append("    gemeindeName: ").append(toIndentedString(gemeindeName)).append("\n");
 		sb.append("    rechtsstand: ").append(toIndentedString(rechtsstand)).append("\n");
 		sb.append("    inkrafttretensDatum: ").append(toIndentedString(inkrafttretensDatum)).append("\n");
+		sb.append("    bereiche: ").append(toIndentedString(bereiche)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}

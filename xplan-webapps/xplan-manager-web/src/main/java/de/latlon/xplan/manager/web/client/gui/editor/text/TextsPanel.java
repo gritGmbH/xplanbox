@@ -78,7 +78,6 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 
 		TextHeader actionHeader = new TextHeader(MESSAGES.actions());
 		addEditColumn(textsList, actionHeader);
-		addRemoveColumn(textsList, actionHeader);
 	}
 
 	@Override
@@ -216,24 +215,6 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 		});
 		editButtonColumn.setCellStyleNames("editTextsColumn editButtonColumn");
 		table.addColumn(editButtonColumn, columnHeader);
-	}
-
-	private void addRemoveColumn(final CellTable<Text> table, TextHeader columnHeader) {
-		ButtonCell downloadButtonCell = new ButtonCell();
-		final Column<Text, String> removeButtonColumn = new Column<Text, String>(downloadButtonCell) {
-			@Override
-			public String getValue(Text object) {
-				return "";
-			}
-		};
-		removeButtonColumn.setFieldUpdater(new FieldUpdater<Text, String>() {
-			public void update(int index, Text object, String value) {
-				List<Text> texts = getValues();
-				texts.remove(index);
-			}
-		});
-		removeButtonColumn.setCellStyleNames("editTextsColumn removeButtonColumn");
-		table.addColumn(removeButtonColumn, columnHeader);
 	}
 
 }

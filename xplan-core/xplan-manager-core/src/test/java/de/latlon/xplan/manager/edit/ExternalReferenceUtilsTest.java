@@ -20,6 +20,21 @@
  */
 package de.latlon.xplan.manager.edit;
 
+import de.latlon.xplan.commons.reference.ExternalReference;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
+import de.latlon.xplan.manager.web.shared.edit.RasterReference;
+import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
+import org.junit.Test;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
@@ -28,22 +43,6 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-import org.junit.Test;
-
-import de.latlon.xplan.commons.reference.ExternalReference;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.manager.web.shared.edit.RasterReference;
-import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
-import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -69,13 +68,13 @@ public class ExternalReferenceUtilsTest {
 	public void testCreateExternalRefAddedOrUpdated_XPlanToEdit() throws Exception {
 		XPlanToEdit planToEdit = new XPlanToEdit();
 		RasterBasis rasterBasis = new RasterBasis();
-		RasterReference rasterReference1 = new RasterReference("G.tif", null, LEGEND, null, null, null, null, null,
+		RasterReference rasterReference1 = new RasterReference("0", "G.tif", null, LEGEND, null, null, null, null, null,
 				null, null);
-		RasterReference rasterReference2 = new RasterReference("A.tif", null, SCAN, null, null, null, null, null, null,
-				null);
+		RasterReference rasterReference2 = new RasterReference("0", "A.tif", null, SCAN, null, null, null, null, null,
+				null, null);
 		rasterBasis.addRasterReference(rasterReference1);
 		rasterBasis.addRasterReference(rasterReference2);
-		planToEdit.setRasterBasis(rasterBasis);
+		planToEdit.addRasterBasis(rasterBasis);
 
 		List<File> uploadedArtefacts = createUploadedFileList("A.tif", "B.jpg", "C.png");
 

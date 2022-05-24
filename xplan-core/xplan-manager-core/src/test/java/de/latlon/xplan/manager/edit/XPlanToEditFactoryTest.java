@@ -20,8 +20,11 @@
  */
 package de.latlon.xplan.manager.edit;
 
+import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
@@ -35,6 +38,7 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.GeometryFactory;
@@ -44,16 +48,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
@@ -81,6 +89,38 @@ public class XPlanToEditFactoryTest {
 	private XPlanToEditFactory factory = new XPlanToEditFactory();
 
 	@Test
+	public void testCreateXPlanToEdit_XPlan52_multipleBereiche() throws Exception {
+		FeatureCollection featureCollection = readXPlanArchive(XPLAN_52, "xplan52/BPlan001_5-2_Bereiche.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_52), featureCollection);
+
+		assertThat(xPlanToEdit.isHasBereich(), is(true));
+
+		List<RasterBasis> rasterBasis = xPlanToEdit.getRasterBasis();
+		assertThat(rasterBasis.size(), is(2));
+
+		// Bereich 0
+		String bereichNummer0 = "0";
+		RasterBasis rasterBasis0 = getByBereichNummer(rasterBasis, bereichNummer0);
+		List<RasterReference> rasterReferences0 = rasterBasis0.getRasterReferences();
+
+		assertThat(rasterBasis0.getFeatureId(), is(nullValue()));
+		assertThat(rasterReferences0.size(), is(1));
+		assertThat(rasterReferences0.get(0).getBereichNummer(), is(bereichNummer0));
+		assertThat(rasterReferences0.get(0).getReference(), is("BPlan001_5-2_Bereich0.png"));
+
+		// Bereich 1
+		String bereichNummer1 = "1";
+		RasterBasis rasterBasis1 = getByBereichNummer(rasterBasis, bereichNummer1);
+		List<RasterReference> rasterReferences1 = rasterBasis1.getRasterReferences();
+
+		assertThat(rasterBasis1.getFeatureId(), is(nullValue()));
+		assertThat(rasterReferences1.size(), is(1));
+		assertThat(rasterReferences1.get(0).getBereichNummer(), is(bereichNummer1));
+		assertThat(rasterReferences1.get(0).getReference(), is("BPlan001_5-2_Bereich1.png"));
+	}
+
+	@Test
 	public void testCreateXPlanToEdit_XPlan51_refScan() throws Exception {
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_51, "xplan51/V4_1_ID_103_refScan.gml");
 
@@ -88,11 +128,17 @@ public class XPlanToEditFactoryTest {
 
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
 
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
-		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+		String bereichNummer = "0";
+		List<RasterBasis> allRasterBasis = xPlanToEdit.getRasterBasis();
+		assertThat(allRasterBasis.size(), is(1));
 
+		RasterBasis rasterBasis = allRasterBasis.get(0);
 		assertThat(rasterBasis.getFeatureId(), is(nullValue()));
+		assertThat(rasterBasis.getBereichNummer(), is(bereichNummer));
+
+		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
 		assertThat(rasterReferences.size(), is(1));
+		assertThat(rasterReferences.get(0).getBereichNummer(), is(bereichNummer));
 		assertThat(rasterReferences.get(0).getReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tif"));
 		assertThat(rasterReferences.get(0).getGeoReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tfw"));
 
@@ -106,11 +152,17 @@ public class XPlanToEditFactoryTest {
 
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
 
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
-		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+		String bereichNummer = "0";
+		List<RasterBasis> allRasterBasis = xPlanToEdit.getRasterBasis();
+		assertThat(allRasterBasis.size(), is(1));
 
+		RasterBasis rasterBasis = allRasterBasis.get(0);
 		assertThat(rasterBasis.getFeatureId(), is("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6"));
+		assertThat(rasterBasis.getBereichNummer(), is(bereichNummer));
+
+		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
 		assertThat(rasterReferences.size(), is(1));
+		assertThat(rasterReferences.get(0).getBereichNummer(), is(bereichNummer));
 		assertThat(rasterReferences.get(0).getReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tif"));
 		assertThat(rasterReferences.get(0).getGeoReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tfw"));
 
@@ -225,7 +277,12 @@ public class XPlanToEditFactoryTest {
 		assertThat(text.getGeoReference(), is(nullValue()));
 		assertThat(text.getReference(), is("B-Plan_Klingmuehl_Heideweg_Text.pdf"));
 
-		RasterBasis rasterBasis = xPlanToEdit.getRasterBasis();
+		String bereichNummer = "0";
+		List<RasterBasis> allRasterBasis = xPlanToEdit.getRasterBasis();
+		assertThat(allRasterBasis.size(), is(1));
+
+		RasterBasis rasterBasis = allRasterBasis.get(0);
+		assertThat(rasterBasis.getBereichNummer(), is(bereichNummer));
 		assertThat(rasterBasis.getFeatureId(), is("FEATURE_c2a83b1c-05f4-4dc0-a1b6-feb1a43328d6"));
 
 		List<RasterReference> rasterBasisReferences = rasterBasis.getRasterReferences();
@@ -234,6 +291,7 @@ public class XPlanToEditFactoryTest {
 		RasterReference scan = getByType(rasterBasisReferences, SCAN);
 		assertThat(scan, is(notNullValue()));
 		assertThat(scan.getFeatureId(), nullValue());
+		assertThat(scan.getBereichNummer(), is(bereichNummer));
 		assertThat(scan.getGeoReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tfw"));
 		assertThat(scan.getReference(), is("B-Plan_Klingmuehl_Heideweg_Karte.tif"));
 		assertThat(scan.getReferenzName(), is("B-Plan_Klingmuehl_Heideweg_Karte"));
@@ -241,7 +299,8 @@ public class XPlanToEditFactoryTest {
 
 		RasterReference legend = getByType(rasterBasisReferences, LEGEND);
 		assertThat(legend, is(notNullValue()));
-		assertThat(scan.getFeatureId(), nullValue());
+		assertThat(legend.getFeatureId(), nullValue());
+		assertThat(legend.getBereichNummer(), is(bereichNummer));
 		assertThat(legend.getReference(), is("B-Plan_Klingmuehl_Heideweg_Legende.png"));
 		assertThat(legend.getReferenzMimeType(), is(IMAGE_PNG));
 		assertThat(legend.getGeoReference(), is(nullValue()));
@@ -270,8 +329,28 @@ public class XPlanToEditFactoryTest {
 		return null;
 	}
 
+	private RasterBasis getByBereichNummer(List<RasterBasis> rasterBasis, String bereichNummer) {
+		Optional<RasterBasis> rasterBasisWithNumber = rasterBasis.stream()
+				.filter(rb -> rb.getBereichNummer().equals(bereichNummer)).findFirst();
+		return rasterBasisWithNumber.isPresent() ? rasterBasisWithNumber.get() : null;
+	}
+
 	private FeatureCollection readXPlanGml(XPlanVersion xplanVersion, String plan) throws Exception {
 		InputStream xplanGml = this.getClass().getResourceAsStream(plan);
+		return readXPlanGml(xplanVersion, xplanGml);
+	}
+
+	private FeatureCollection readXPlanArchive(XPlanVersion xplanVersion, String resource)
+			throws IOException, XMLStreamException, UnknownCRSException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		InputStream inputStream = ResourceAccessor.readResourceStream(resource);
+		XPlanArchive xPlanArchiveFromZip = archiveCreator.createXPlanArchiveFromZip(resource, inputStream);
+		InputStream mainFileInputStream = xPlanArchiveFromZip.getMainFileInputStream();
+		return readXPlanGml(xplanVersion, mainFileInputStream);
+	}
+
+	private FeatureCollection readXPlanGml(XPlanVersion xplanVersion, InputStream xplanGml)
+			throws XMLStreamException, UnknownCRSException {
 		XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(xplanGml);
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(reader, null);
 

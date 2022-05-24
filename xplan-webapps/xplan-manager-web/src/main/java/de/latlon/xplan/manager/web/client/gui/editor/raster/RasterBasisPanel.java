@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -39,11 +39,13 @@ import de.latlon.xplan.manager.web.client.gui.editor.codelist.TypeCodelistProvid
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.RasterReferenceType;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -63,14 +65,18 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 
 	private static final TypeCodelistProvider CODELIST_PROVIDER = new TypeCodelistProvider();
 
-	private RasterBasis rasterBasis;
+	private List<RasterBasis> rasterBasis;
 
-	public RasterBasisPanel(EditVersion version) {
+	private List<Bereich> bereiche;
+
+	public RasterBasisPanel(EditVersion version, List<Bereich> bereiche) {
 		super(version, MESSAGES.editCaptionRasterBasis());
+		this.bereiche = bereiche;
 	}
 
 	@Override
 	protected void initColumns(CellTable<RasterReference> rasterBasisList) {
+		addBereichIdColumn(rasterBasisList);
 		addTypeColumn(rasterBasisList);
 		addReferenceColumn(rasterBasisList);
 		addReferenceNameColumn(rasterBasisList);
@@ -89,7 +95,7 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		if (xPlanToEdit.isHasBereich()) {
 			add(createGui());
 			this.rasterBasis = xPlanToEdit.getRasterBasis();
-			List<RasterReference> rasterBasisReferences = collectRasterReferences(this.rasterBasis);
+			List<RasterReference> rasterBasisReferences = collectRasterReferences();
 			setValues(rasterBasisReferences);
 		}
 		else {
@@ -97,27 +103,35 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		}
 	}
 
-	public RasterBasis retrieveRasterBasis() {
+	public List<RasterBasis> retrieveRasterBasis() {
 		List<RasterReference> values = getValues();
 		if (values.isEmpty())
-			return null;
-		if (rasterBasis == null) {
-			rasterBasis = new RasterBasis();
+			return Collections.emptyList();
+		for (RasterBasis rb : rasterBasis) {
+			List<RasterReference> editedRasterReferences = collectReferencesOfRasterBasis(rb, values);
+			rb.setRasterReferences(editedRasterReferences);
 		}
-		rasterBasis.setRasterReferences(values);
 		return rasterBasis;
 	}
 
 	private boolean validate() {
-		RasterBasis rasterBasis = retrieveRasterBasis();
-		if (rasterBasis == null || containsRasterReferenceOfType(SCAN)) {
+		List<RasterBasis> allRasterBasis = retrieveRasterBasis();
+		boolean allRasterBasisContainsScan = true;
+		for (RasterBasis rasterBasis : allRasterBasis) {
+			if (!containsRasterReferenceOfTypeOrNoRasterReferences(rasterBasis, SCAN)) {
+				allRasterBasisContainsScan = false;
+			}
+		}
+		if (!allRasterBasisContainsScan) {
+			addStyleName(EDITOR_VALIDATION_ERROR);
+			setTitle(MESSAGES.editCaptionRasterBasisInvalid());
+			return false;
+		}
+		else {
 			removeStyleName(EDITOR_VALIDATION_ERROR);
 			setTitle("");
 			return true;
 		}
-		addStyleName(EDITOR_VALIDATION_ERROR);
-		setTitle(MESSAGES.editCaptionRasterBasisInvalid());
-		return false;
 	}
 
 	private Widget createDisabledHint() {
@@ -183,10 +197,21 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		table.addColumn(typeColumn, MESSAGES.editCaptionRasterBasisType());
 	}
 
+	private void addBereichIdColumn(CellTable<RasterReference> table) {
+		TextColumn<RasterReference> typeColumn = new TextColumn<RasterReference>() {
+			@Override
+			public String getValue(RasterReference rasterReference) {
+				return rasterReference.getBereichNummer();
+			}
+		};
+		typeColumn.setCellStyleNames("editRasterReferenceColumn bereichNummerColumn");
+		table.addColumn(typeColumn, MESSAGES.editCaptionRasterBasisBereichNummer());
+	}
+
 	private Button createNewButton() {
 		Button newButton = new Button(MESSAGES.editCaptionNewRasterBasis(), new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog(version);
+				final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog(version, bereiche);
 				rasterReferenceDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {
@@ -214,11 +239,13 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		};
 		editButtonColumn.setFieldUpdater(new FieldUpdater<RasterReference, String>() {
 			public void update(final int index, final RasterReference rasterReference, String value) {
-				final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog(version, rasterReference);
+				final RasterReferenceDialog rasterReferenceDialog = new RasterReferenceDialog(version, bereiche,
+						rasterReference);
 				rasterReferenceDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {
 						RasterReference editedRasterReference = rasterReferenceDialog.getEditedRasterReference();
+						rasterReference.setBereichNummer(editedRasterReference.getBereichNummer());
 						rasterReference.setReference(editedRasterReference.getReference());
 						rasterReference.setGeoReference(editedRasterReference.getGeoReference());
 						rasterReference.setType(editedRasterReference.getType());
@@ -262,22 +289,43 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 		table.addColumn(removeButtonColumn, columnHeader);
 	}
 
+	private List<RasterReference> collectRasterReferences() {
+		List<RasterReference> rasterReferences = new ArrayList<>();
+		for (RasterBasis rb : this.rasterBasis) {
+			rasterReferences.addAll(collectRasterReferences(rb));
+		}
+		return rasterReferences;
+	}
+
 	private List<RasterReference> collectRasterReferences(RasterBasis rasterBasis) {
 		if (rasterBasis != null)
 			return rasterBasis.getRasterReferences();
 		return Collections.emptyList();
 	}
 
-	private boolean containsRasterReferenceOfType(RasterReferenceType referenceType) {
-		RasterBasis rasterBasis = retrieveRasterBasis();
-		if (rasterBasis != null) {
-			List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
-			for (RasterReference rasterReference : rasterReferences) {
-				if (referenceType.equals(rasterReference.getType()))
-					return true;
-			}
+	private boolean containsRasterReferenceOfTypeOrNoRasterReferences(RasterBasis rasterBasis,
+			RasterReferenceType referenceType) {
+		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+		if (rasterReferences.isEmpty()) {
+			return true;
+		}
+		for (RasterReference rasterReference : rasterReferences) {
+			if (referenceType.equals(rasterReference.getType()))
+				return true;
 		}
 		return false;
+	}
+
+	private List<RasterReference> collectReferencesOfRasterBasis(RasterBasis rb,
+			List<RasterReference> rasterReferences) {
+		List<RasterReference> rasterReferencesOfRasterBasis = new ArrayList<RasterReference>();
+		for (RasterReference rasterReference : rasterReferences) {
+			if (rb != null && rb.getBereichNummer() != null
+					&& rb.getBereichNummer().equals(rasterReference.getBereichNummer())) {
+				rasterReferencesOfRasterBasis.add(rasterReference);
+			}
+		}
+		return rasterReferencesOfRasterBasis;
 	}
 
 }

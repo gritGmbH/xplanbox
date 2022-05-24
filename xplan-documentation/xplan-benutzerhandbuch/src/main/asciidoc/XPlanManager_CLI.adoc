@@ -38,7 +38,7 @@ mit dem Parameter `help` ausgeben.
 Aufruf:
 
 ----
-XPlanManager -help
+./XPlanManager -help
 ----
 
 Ausgabe:
@@ -49,9 +49,9 @@ Usage: XPlanManager <options>
  -help
  -list
  -createdb <DB Name> <JDBC-Connection> -u <user> -p <passwort> [-t <PostGis Template>]
- -updatewmssortdate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
- -import [--force] <xplanarchiv> [--crs <CRS>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
- -export <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ -updatewmssortdate [--managerconfiguration <XPLANBOX_CONFIG>]
+ -import [--force] <xplanarchiv> [--crs <CRS>] [--managerconfiguration <XPLANBOX_CONFIG>]
+ -export <planid> [<verzeichnis>] [--managerconfiguration <XPLANBOX_CONFIG>]
  -delete <planid>
 
 Raster-Operationen:
@@ -71,7 +71,7 @@ Der Parameter `list` gibt die Liste der geladenen Pläne aus. Durch die Angabe d
 Aufruf:
 
 ----
-XPlanManager -list
+./XPlanManager -list
 ----
 
 Beispiel Ausgabe:
@@ -96,7 +96,7 @@ werden. Der XPlanManager wird beim Erzeugen der Datenhaltung auf diese
 neue Datenbank eingestellt.
 
 ----
-XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres
+./XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres
 ----
 
 
@@ -111,7 +111,7 @@ Parameter in die Datenbasis geladen werden.
 Beispiel Aufruf:
 
 ----
-XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip
+./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip
 ----
 
 Während des Imports finden zahlreiche Konsistenz- und
@@ -142,7 +142,7 @@ Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin
 zu unerwarteten Verhalten der xPlanBox reichen.
 
 ----
-XPlanManager -import --force ../Input-Planverzeichnis/Infrastruktur.zip
+./XPlanManager -import --force ../Input-Planverzeichnis/Infrastruktur.zip
 ----
 
 _–crs_
@@ -153,7 +153,7 @@ dieses mit dem Parameter `crs` übergeben werden.
 Beispiel Aufruf:
 
 ----
-XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --crs EPSG:31467
+./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --crs EPSG:31467
 ----
 
 _–workspace_
@@ -163,7 +163,7 @@ Parameter `workspace` das entsprechende Verzeichnis übergeben
 werden.
 
 ----
-XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --workspace ~/.deegree/xplansyn-wms-workspace-test
+./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --workspace ~/.deegree/xplansyn-wms-workspace
 ----
 
 _–managerconfiguration_
@@ -173,7 +173,7 @@ Parameter `managerconfiguration` die entsprechende Konfiguration
 übergeben werden.
 
 ----
-XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --managerconfiguration ~/.deegree/managerConfiguration/
+./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --managerconfiguration <XPLANBOX_CONFIG>
 ----
 
 Beispiel Ausgabe für erfolgreichen Import
@@ -213,7 +213,7 @@ Konfiguration über Datei <<xplanmanager-cli-konfiguration-ueber-datei>> zu
 finden.
 
 ----
-XPlanManager -updatewmssortdate
+./XPlanManager -updatewmssortdate
 ----
 
 [[xplanmanager-cli-rasterdatenanalyse]]
@@ -228,7 +228,7 @@ Beim Import wird das CRS des Rasterplans überprüft.
 Beispiel Aufruf:
 
 ----
-./XPlanManager -import ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration .
+./XPlanManager -import ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration <XPLANBOX_CONFIG>
 ----
 
 Beispiel Ausgabe:
@@ -274,16 +274,16 @@ bereitgestellten Funktionen ergeben sich aus folgender Spezifikation:
 .  XPlanManager fügt eine Ebene in den Ebenenbaum ein. Wird der
 _<categoryname>_ weggelassen, wird die Ebene direkt unter der
 Wurzelebene eingefügt. Die `tiffid` ist hierbei der Datei-Basisname der
-gewünschten .tiff-Datei von dem Rasterplan.
+gewünschten TIFF-Datei von dem Rasterplan.
 +
 ----
-XPlanManager -addlayer <bplan|rplan|fplan|lplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]
+./XPlanManager -addlayer <bplan|rplan|fplan|lplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]
 ----
 
 .  XPlanManager entfernt eine Ebene aus der Ebenenkonfiguration.
 +
 ----
-XPlanManager -removelayer <bplan|rplan|fplan|lplan> <layername>
+./XPlanManager -removelayer <bplan|rplan|fplan|lplan> <layername>
 ----
 
 .  XPlanManager fügt eine Kategorieebene hinzu. Wird der
@@ -294,7 +294,7 @@ ist rekursiv, d.h. die Verschachtelung der Kategorieebenen kann beliebig
 tief erfolgen.
 +
 ----
-XPlanManager -addcategory <bplan|rplan|fplan|lplan> [<uppercategory>] <categoryname> <categorytitle>
+./XPlanManager -addcategory <bplan|rplan|fplan|lplan> [<uppercategory>] <categoryname> <categorytitle>
 ----
 
 .  XPlanManager löscht eine Kategorieebene. *Achtung:* Handelt es sich
@@ -302,13 +302,13 @@ bei der zu löschenden Kategorieebene um eine Ebene mit untergeordneten
 Kategorien, werden diese ebenfalls gelöscht!
 +
 ----
-XPlanManager -removecategory <bplan|rplan|fplan|lplan> <categoryname>
+./XPlanManager -removecategory <bplan|rplan|fplan|lplan> <categoryname>
 ----
 
 .  XPlanManager bewegt eine Ebene in eine andere Kategorieebene.
 +
 ----
-XPlanManager -movelayer <bplan|rplan|fplan|lplan> <layername> <categoryname>
+./XPlanManager -movelayer <bplan|rplan|fplan|lplan> <layername> <categoryname>
 ----
 
 [[xplanmanager-cli-export]]
@@ -321,7 +321,7 @@ und dem Ausgabeverzeichnis.
 Beispiel Aufruf:
 
 ----
-XPlanManager -export 9 outputverzeichnis
+./XPlanManager -export 9 outputverzeichnis
 ----
 
 Beispiel Ausgabe für erfolgreichen Export:
@@ -340,7 +340,7 @@ Beim Löschen wird dem Parameter `delete` die PlanID (diese kann zuvor mit
 Beispiel Aufruf:
 
 ----
-XPlanManager -delete 1
+./XPlanManager -delete 1
 ----
 
 Beispiel Ausgabe:

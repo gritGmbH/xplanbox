@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -144,8 +144,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 	private void createAndAddRule(SemanticValidatorConfiguration config, Path path, XPlanVersion version,
 			SemanticValidationOptions option) {
 		LOG.debug("Parse rule {}", path);
-		String nameWithType = path.getFileName().toString();
-		String name = nameWithType.substring(0, nameWithType.lastIndexOf('.'));
+		String name = getNameWithoutExtension(path);
 		try {
 			XQuerySemanticValidatorRule rule = new XQuerySemanticValidatorRule(newInputStream(path), name, version,
 					option);
@@ -165,6 +164,15 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 				return isDirectory(entry) || valueOf(entry.getFileName()).endsWith(".xq");
 			}
 		});
+	}
+
+	private String getNameWithoutExtension(Path path) {
+		String name = path.getFileName().toFile().getName();
+		int indexOfExtensionBegin = name.lastIndexOf(".");
+		if (indexOfExtensionBegin > 0) {
+			return name.substring(0, indexOfExtensionBegin);
+		}
+		return name;
 	}
 
 	private boolean isVersionDirectory(XPlanVersion planVersion) {

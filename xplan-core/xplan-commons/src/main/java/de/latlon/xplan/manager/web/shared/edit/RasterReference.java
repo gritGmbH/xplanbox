@@ -34,6 +34,8 @@ public class RasterReference extends AbstractReference {
 
 	private String featureId;
 
+	private String bereichNummer;
+
 	public RasterReference() {
 	}
 
@@ -42,9 +44,9 @@ public class RasterReference extends AbstractReference {
 	 * @param rasterReference to copy, never <code>null</code>
 	 */
 	public RasterReference(RasterReference rasterReference) {
-		this(rasterReference.getFeatureId(), rasterReference.getReference(), rasterReference.getGeoReference(),
-				rasterReference.getType(), rasterReference.getGeorefMimeType(), rasterReference.getArt(),
-				rasterReference.getInformationssystemURL(), rasterReference.getReferenzName(),
+		this(rasterReference.getBereichNummer(), rasterReference.getFeatureId(), rasterReference.getReference(),
+				rasterReference.getGeoReference(), rasterReference.getType(), rasterReference.getGeorefMimeType(),
+				rasterReference.getArt(), rasterReference.getInformationssystemURL(), rasterReference.getReferenzName(),
 				rasterReference.getReferenzMimeType(), rasterReference.getBeschreibung(), rasterReference.getDatum());
 	}
 
@@ -53,11 +55,11 @@ public class RasterReference extends AbstractReference {
 	 * @param geoReference geoReference, may be <code>null</code>
 	 * @param type type, should not be <code>null</code>
 	 */
-	public RasterReference(String reference, String geoReference, RasterReferenceType type, MimeTypes georefMimeType,
-			ExterneReferenzArt art, String informationssystemURL, String referenzName, MimeTypes referenzMimeType,
-			String beschreibung, Date datum) {
-		this(null, reference, geoReference, type, georefMimeType, art, informationssystemURL, referenzName,
-				referenzMimeType, beschreibung, datum);
+	public RasterReference(String bereichNummer, String reference, String geoReference, RasterReferenceType type,
+			MimeTypes georefMimeType, ExterneReferenzArt art, String informationssystemURL, String referenzName,
+			MimeTypes referenzMimeType, String beschreibung, Date datum) {
+		this(bereichNummer, null, reference, geoReference, type, georefMimeType, art, informationssystemURL,
+				referenzName, referenzMimeType, beschreibung, datum);
 	}
 
 	/**
@@ -67,11 +69,12 @@ public class RasterReference extends AbstractReference {
 	 * @param geoReference geoReference, may be <code>null</code>
 	 * @param type type, should not be <code>null</code>
 	 */
-	public RasterReference(String featureId, String reference, String geoReference, RasterReferenceType type,
-			MimeTypes georefMimeType, ExterneReferenzArt art, String informationssystemURL, String referenzName,
-			MimeTypes referenzMimeType, String beschreibung, Date datum) {
+	public RasterReference(String bereichNummer, String featureId, String reference, String geoReference,
+			RasterReferenceType type, MimeTypes georefMimeType, ExterneReferenzArt art, String informationssystemURL,
+			String referenzName, MimeTypes referenzMimeType, String beschreibung, Date datum) {
 		super(reference, geoReference, georefMimeType, art, informationssystemURL, referenzName, referenzMimeType,
 				beschreibung, datum);
+		this.bereichNummer = bereichNummer;
 		this.featureId = featureId;
 		this.type = type;
 	}
@@ -105,9 +108,23 @@ public class RasterReference extends AbstractReference {
 		this.featureId = featureId;
 	}
 
+	/**
+	 * @return the nummer of the bereich this RasterReference is assigned to
+	 */
+	public String getBereichNummer() {
+		return bereichNummer;
+	}
+
+	/**
+	 * @return the nummer of the bereich this RasterReference is assigned to
+	 */
+	public void setBereichNummer(String bereichId) {
+		this.bereichNummer = bereichId;
+	}
+
 	@Override
 	public String toString() {
-		return "RasterReference{" + "type=" + type + ", featureId='" + featureId + '\'' + '}';
+		return "RasterReference{" + "type=" + type + ", featureId=" + featureId + ", bereichId=" + bereichNummer + '}';
 	}
 
 }

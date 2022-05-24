@@ -22,14 +22,22 @@ package de.latlon.xplan.validator.cli.options;
 
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationType;
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static de.latlon.xplan.validator.cli.options.CliOptionsParser.CLIParams.*;
+import static de.latlon.xplan.validator.cli.options.CliOptionsParser.CLIParams.NAME;
+import static de.latlon.xplan.validator.cli.options.CliOptionsParser.CLIParams.VALIDATE;
+import static de.latlon.xplan.validator.cli.options.CliOptionsParser.CLIParams.VALIDATE_TYPE;
+import static de.latlon.xplan.validator.cli.options.CliOptionsParser.CLIParams.VO;
+import static de.latlon.xplan.validator.cli.options.CliOptionsParser.CLIParams.is;
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SEMANTIC;
 import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
@@ -79,16 +87,13 @@ public class CliOptionsParser {
 		Option zipFileNameOption = new Option(is(VALIDATE), HAS_ARG, "zip file path");
 		Option nameOption = new Option(is(NAME), HAS_ARG, "name of the validation");
 		Option voOption = new Option(is(VO), HAS_ARG, "validation options");
-		Option xqOption = new Option(is(XQUERY), HAS_ARG, "xquery file path");
 		Option vTypeOption = new Option(is(VALIDATE_TYPE), HAS_ARG,
 				"values: syntax, geometric, semantic. multiple types must be comma separated");
 		nameOption.setRequired(false);
 		zipFileNameOption.setRequired(true);
 		voOption.setRequired(false);
-		xqOption.setRequired(false);
 		vTypeOption.setRequired(false);
-		options.addOption(zipFileNameOption).addOption(nameOption).addOption(xqOption).addOption(vTypeOption)
-				.addOption(voOption);
+		options.addOption(zipFileNameOption).addOption(nameOption).addOption(vTypeOption).addOption(voOption);
 		return options;
 	}
 
@@ -131,7 +136,7 @@ public class CliOptionsParser {
 	 */
 	enum CLIParams {
 
-		NAME("name"), VALIDATE("validate"), VO("vo"), XQUERY("xq"), VALIDATE_TYPE("vtype");
+		NAME("name"), VALIDATE("validate"), VO("vo"), VALIDATE_TYPE("vtype");
 
 		private final String option;
 

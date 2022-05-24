@@ -25,15 +25,18 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.manager.web.shared.Bereich;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLStreamReader;
 import org.junit.Test;
 
 import javax.xml.stream.XMLStreamReader;
+import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.findPlanFeature;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveBereiche;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
@@ -115,6 +118,19 @@ public class FeatureCollectionUtilsTest {
 		String district = retrieveDistrict(fc, BP_Plan);
 
 		assertThat(district, is("309"));
+	}
+
+	@Test
+	public void testRetrieveBereicheWithXPlan41() throws Exception {
+		FeatureCollection fc = getMainFileAsFeatureCollection("xplan52/BPlan001_5-2_Bereiche.zip");
+		List<Bereich> bereiche = retrieveBereiche(fc);
+		assertThat(bereiche.size(), is(2));
+
+		assertThat(bereiche.get(0).getNummer(), is("0"));
+		assertThat(bereiche.get(0).getName(), is(nullValue()));
+
+		assertThat(bereiche.get(1).getNummer(), is("1"));
+		assertThat(bereiche.get(1).getName(), is(nullValue()));
 	}
 
 	private FeatureCollection getMainFileAsFeatureCollection(String name) throws Exception {

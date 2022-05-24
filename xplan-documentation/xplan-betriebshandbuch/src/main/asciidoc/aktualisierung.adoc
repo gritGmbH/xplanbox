@@ -24,7 +24,7 @@ abgeschlossen.
 [[austausch-der-web-archive]]
 === Austausch der Web-Archive
 
-Es müssen die bereitgestellten Web-Archive in das Verzeichnis _webapps/_
+Es müssen die bereitgestellten WAR-Dateien in das Verzeichnis _webapps/_
 der jeweiligen Tomcat-Instanz kopiert werden:
 
 ----
@@ -84,7 +84,7 @@ bereitgestellt. Für weitere Fragen zur Aktualisierung, insbesondere von Version
 | 4.1              | ja (<<aktualisierung-auf-die-version-4.1-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-4.1-der-xplanbox, Details>>)
 | 4.2              | ja (<<aktualisierung-auf-die-version-4.2-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-4.2-der-xplanbox, Details>>)
 | 4.3              | ja (<<aktualisierung-auf-die-version-4.3-der-xplanbox, Details>>)  |
-| 5.0              | ja (<<aktualisierung-auf-die-version-5.0-der-xplanbox, Details>>)  | ja (<<aktualisierung-auf-die-version-5.0-der-xplanbox, Details>>)
+| 5.0              | ja (<<aktualisierung-auf-die-version-5.0, Details>>)  | ja (<<aktualisierung-auf-die-version-5.0, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -98,8 +98,8 @@ IMPORTANT: Alle Konfigurationsänderungen in _xplan-manager-config_ und _xplan-v
 [[vollstaendige-aktualisierung]]
 ==== Vollständige Aktualisierung des Workspaces
 
-Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis
-_.deegree/_ kopiert werden. Diese ersetzen die bereits vorhandenen:
+Es müssen die bereitgestellten Konfigurationsdateien in das Verzeichnis _<DEEGREE_DIR>_, z. B. _.deegree/_ kopiert werden.
+Diese ersetzen die bereits vorhandenen:
 
 ----
 cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
@@ -115,7 +115,7 @@ cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSIO
 ==== Teilweise Aktualisierung des Workspaces
 
 Es müssen die bereit gestellten Konfigurationsdateien mit Ausnahme des xplansyn-wms-workspace in das Verzeichnis
-_.deegree/_ kopiert werden. Diese ersetzen die bereits vorhanden:
+_<DEEGREE_DIR>_, z. B. _.deegree/_ kopiert werden. Diese ersetzen die bereits vorhanden:
 
 ----
 cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-workspaces-${VERSION}-xplan-manager-workspace-${ENV}.zip
@@ -237,15 +237,15 @@ Dieser Schritt sollte bereits während der Anwendung des Kapitels <<aktualisieru
 Im Modul _xplan-update-database-cli_ wird das Programm __databaseUpdate__ für die
 Datenaktualisierung bestimmter xPlanBox-Versionen bereitgestellt. Eine
 Liste der für die Datenaktualisierung unterstützten Versionen wird beim
-Programmaufruf mit dem Parameter `help` angezeigt.
+Programmaufruf mit dem Parameter `--help` angezeigt.
 
 [[datenaktualisierung-auf-die-version-2.0-sowie-2.2-der-xplanbox]]
 ==== Datenaktualisierung auf die Version 2.0 sowie 2.2 der xPlanBox
 
 Bei der Aktualisierung der Daten auf die Version 2.0 sowie 2.2 (z. B. von
 1.8 auf 2.0 oder 2.1 auf 2.2) der xPlanBox ist abschließend die
-Ausführung des CLIs zur Aktualisierung des Sortierfeldes für die
-Visualisierung erforderlich. Informationen dazu finden sich im Abschnitt
+Ausführung des CLIs zur Aktualisierung des Sortierreihenfolge für den
+XPlanWMS erforderlich. Informationen dazu finden sich im Abschnitt
 _XPlanManagerCLI_ im XPlanBenutzerhandbuch. Die erforderliche
 Konfiguration ist im Abschnitt _Konfiguration_ -> _Sortierung der Daten
 in der Visualisierung_ in dieser Dokumentation beschrieben.
@@ -258,7 +258,7 @@ Mit der Version 2.7 bietet die xPlanBox die Möglichkeit die vom XPlanManager ve
  * Aktualisierung von _xplan-manager-workspace_ und _xplan-manager-config_ (s. <<teilweise-aktualisierung>>).
  * Aufsetzen des INSPIRE PLU Datenbankschemas (s. <<aufsetzen-plu-db-schema>>).
  * Anlegen des _xplan-inspireplu-workspace_ Workspaces (s. <<konfiguration>>).
- * Installation der _xplan-inspireplu.war_ Webanwendung (s. <<web-anwendungen>>). *Achtung:* Anschließend muss der _xplan-inspireplu-workspace_ Workspace initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt über die webapps.properties-Datei plus Neustart der Webanwendung geschehen.
+ * Installation der _xplan-inspireplu.war_ Webanwendung (s. <<web-anwendungen>>). *Achtung:* Anschließend muss der _xplan-inspireplu-workspace_ Workspace initialisiert werden. Dies kann beispielsweise über die deegree Console oder direkt in der Datei _webapps.properties_ mit anschliessendem Neustart der Webanwendung geschehen.
  * Installation von HALE CLI, wie in <<installation-hale-cli>> beschrieben.
  * Konfiguration der neuen Option, wie in <<konfiguration-inspire-plu>> beschrieben.
 
@@ -384,10 +384,11 @@ Für die Aktualisierung auf die Version 4.3 sind folgende Schritte auszuführen:
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 * Ausführen des Kommandozeilenwerkzeug _serviceMetadataRecordCreator_ im Modul _xplan-update-database-cli_ zur Aktualisierung der generierten Metadatensätze, da sich die URL des XPlanWerkWMS geändert hat. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
-[[aktualisierung-auf-die-version-5.0-der-xplanbox]]
-=== Aktualisierung auf die Version 5.0 der xPlanBox
+[[aktualisierung-auf-die-version-5.0]]
+=== Aktualisierung auf die Version 5.0
 
 Mit der Version 5.0 der xPlanBox kann die xPlanBox ausschließlich unter Java 11 mit Tomcat 9 betrieben werden, außerdem wird die Version XPlanGML 5.4 unterstützt. Weiterhin sind einige Erweiterungen und Verbesserungen am XPlanValidator, XPlanManagerWeb und den XPlanDiensten vorgenommen worden. Zwei Kommandozeilenwerkzeuge (XPlanAuswerteschemaCLI und XPlanValdiateDB) sind neu hinzugekommen.
+
 Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
@@ -399,6 +400,31 @@ Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
 ** Ausführen der Skripte im Verzeichnis _from_4.2_to_5.0_ im Modul _xplan-update-database-cli_ in der vorgegebenen Reihenfolge
 ** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
+
+IMPORTANT:  Java 1.8 wird nicht mehr unterstützt.
+
+[[aktualisierung-auf-die-version-5.0.1]]
+=== Aktualisierung auf die Version 5.0.1
+
+Für eine Installation der Bugfix-Version ist ein Austausch der beiden Webapps erforderlich:
+
+* _xplan-api-manager.war_
+* _xplan-api-validator.war_
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden. Anpassungen an den Konfigurationsdateien sind ebenfalls nicht erforderlich.
+
+[[aktualisierung-auf-die-version-5.0.2]]
+=== Aktualisierung auf die Version 5.0.2
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Austausch der beiden Webapps:
+** _xplan-api-manager.war_
+** _xplan-manager-web.war_
+* Ausführen der Skripte im Verzeichnis _from_5.0_to_5.0.2_ im Modul _xplan-update-database-cli_ in der vorgegebenen Reihenfolge
+* Ausführen des Kommandozeilenwerkzeug __databaseUpdate__ im Modul _xplan-update-database-cli_ zur Aktualisierung der XPlanSyn-Datenhaltung, z.B. mit `./databaseUpdate -c <XPLANBOX_CONFIG>/`
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
 === Troubleshooting
 

@@ -8,29 +8,26 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.update;
 
-import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_PRE1_0_to_1_0;
-import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_1_0_to_1_3_1;
-import static java.util.Arrays.asList;
-
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-
+import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
+import de.latlon.xplan.commons.configuration.PropertiesLoader;
+import de.latlon.xplan.manager.CategoryMapper;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
+import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -39,14 +36,16 @@ import org.apache.commons.cli.PosixParser;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.tools.CommandUtils;
-import org.deegree.workspace.Workspace;
 
-import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
-import de.latlon.xplan.manager.CategoryMapper;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_1_0_to_1_3_1;
+import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_PRE1_0_to_1_0;
+import static java.util.Arrays.asList;
 
 /**
  * Main entry point to update xplan data in databases. Schema must be updated already.
@@ -78,7 +77,7 @@ public class DatabaseUpdateTool {
 				List<UPDATE_VERSION> version = parseUpdateVersion(cmdline);
 
 				DatabaseUpdateTool tool = new DatabaseUpdateTool();
-				tool.run(workspaceName, configurationDirectory, version);
+				tool.run(workspaceName, configurationDirectory, Collections.emptyList());
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -104,9 +103,8 @@ public class DatabaseUpdateTool {
 		opt.setRequired(false);
 		opts.addOption(opt);
 
-		opt = new Option("u", OPT_VERSION, true,
-				"the update version(s), must be 1 (pre1.0 to 1.0) or 2 (1.0 to 1.3.1); "
-						+ "a comma separeated list is possible; if missing all updates are executed.");
+		opt = new Option("u", OPT_VERSION, false,
+				"update version (CURRENTLY THIS IS IGNORED): only the update from 5.0 to 5.0.2 is supported.");
 		opt.setRequired(false);
 		opts.addOption(opt);
 
@@ -122,20 +120,26 @@ public class DatabaseUpdateTool {
 	private void run(String workspaceName, String configurationFilePathVariable, List<UPDATE_VERSION> version)
 			throws Exception {
 		DeegreeWorkspace workspace = initWorkspace(workspaceName);
-		ManagerConfiguration managerConfiguration = new ManagerConfiguration(null);
+		ManagerConfiguration managerConfiguration = createManagerConfiguration(configurationFilePathVariable);
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
-		XPlanDao xplanDao = createXplanDao(configurationFilePathVariable, managerWorkspaceWrapper);
+		XPlanDao xplanDao = createXplanDao(managerConfiguration, managerWorkspaceWrapper);
 		DatabaseDataUpdater dataUpdater = new DatabaseDataUpdater(xplanDao, managerWorkspaceWrapper);
 		dataUpdater.updateData(version);
 	}
 
-	private static XPlanDao createXplanDao(String configurationFilePathVariable,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper) throws ConfigurationException {
-		Path file = configurationFilePathVariable != null ? Paths.get(configurationFilePathVariable) : null;
-		ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader(file);
-		ManagerConfiguration managerConfiguration = new ManagerConfiguration(loader);
+	private static XPlanDao createXplanDao(ManagerConfiguration managerConfiguration,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper) {
 		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
 		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+	}
+
+	private ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)
+			throws ConfigurationException {
+		Path directoryContainingTheManagerConfig = configurationFilePathVariable != null
+				? Paths.get(configurationFilePathVariable) : null;
+		PropertiesLoader propertiesLoader = new ConfigurationDirectoryPropertiesLoader(
+				directoryContainingTheManagerConfig, ManagerConfiguration.class);
+		return new ManagerConfiguration(propertiesLoader);
 	}
 
 	private static DeegreeWorkspace initWorkspace(String workspaceName) throws ResourceInitException {

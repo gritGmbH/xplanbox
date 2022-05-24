@@ -380,6 +380,10 @@ public interface XPlanWebMessages extends Messages {
 
 	String editHintRasterBasisType();
 
+	String editCaptionRasterBasisBereichNummer();
+
+	String editHintRasterBasisBereichNummer();
+
 	String editCaptionRasterBasisGeorefMimeType();
 
 	String editCaptionRasterBasisArt();

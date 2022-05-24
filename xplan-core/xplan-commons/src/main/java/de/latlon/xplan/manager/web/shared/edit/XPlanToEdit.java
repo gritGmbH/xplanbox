@@ -41,32 +41,11 @@ public class XPlanToEdit {
 
 	private List<Reference> references;
 
-	private RasterBasis rasterBasis;
+	private List<RasterBasis> rasterBasis;
 
 	private boolean hasBereich = false;
 
 	public XPlanToEdit() {
-	}
-
-	/**
-	 * @param baseData may be <code>null</code>
-	 * @param validityPeriod may be <code>null</code>
-	 * @param changes may be <code>null</code>
-	 * @param texts may be <code>null</code>
-	 * @param references may be <code>null</code>
-	 * @param rasterBasis may be <code>null</code>
-	 * @param hasBereich <code>true</code> if the plan has a BP_Bereich,
-	 * <code>false</code> otherwise
-	 */
-	public XPlanToEdit(BaseData baseData, ValidityPeriod validityPeriod, List<Change> changes, List<Text> texts,
-			List<Reference> references, RasterBasis rasterBasis, boolean hasBereich) {
-		this.baseData = baseData;
-		this.validityPeriod = validityPeriod;
-		this.changes = changes;
-		this.texts = texts;
-		this.references = references;
-		this.rasterBasis = rasterBasis;
-		this.hasBereich = hasBereich;
 	}
 
 	/**
@@ -176,14 +155,34 @@ public class XPlanToEdit {
 	/**
 	 * @return the rasterBasis, may be <code>null</code>
 	 */
-	public RasterBasis getRasterBasis() {
+	public RasterBasis getFirstRasterBasis() {
+		// TODO: remove
+		return rasterBasis != null ? rasterBasis.get(0) : null;
+	}
+
+	/**
+	 * @param rasterBasis the rasterBasis to add, may be <code>null</code> (nothing is
+	 * added)
+	 */
+	public void addRasterBasis(RasterBasis rasterBasis) {
+		if (rasterBasis != null) {
+			getRasterBasis().add(rasterBasis);
+		}
+	}
+
+	/**
+	 * @return all rasterBasis, may be empty but never <code>null</code>
+	 */
+	public List<RasterBasis> getRasterBasis() {
+		if (rasterBasis == null)
+			this.rasterBasis = new ArrayList<>();
 		return rasterBasis;
 	}
 
 	/**
 	 * @param rasterBasis the rasterBasis to set, may be <code>null</code>
 	 */
-	public void setRasterBasis(RasterBasis rasterBasis) {
+	public void setRasterBasis(List<RasterBasis> rasterBasis) {
 		this.rasterBasis = rasterBasis;
 	}
 
