@@ -254,7 +254,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 			disabledItems.add(RasterReferenceType.LEGEND);
 			disabledItems.add(TEXT);
 			TypeCodeListBox<RasterReferenceType> codeListBox = new TypeCodeListBox<RasterReferenceType>(
-					RasterReferenceType.class, disabledItems, true);
+					RasterReferenceType.class, disabledItems, false);
 			codeListBox.selectItem(RasterReferenceType.SCAN);
 			return codeListBox;
 		}
