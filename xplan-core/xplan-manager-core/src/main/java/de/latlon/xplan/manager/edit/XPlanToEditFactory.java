@@ -147,10 +147,10 @@ public class XPlanToEditFactory {
 			else if ("rechtsverordnungsDatum".equals(propertyName)) {
 				baseData.setRegulationDate(asDate(propertyValue));
 			}
-			else if ("aendert".equals(propertyName)) {
+			else if ("aendert".equals(propertyName) || "aendertPlan".equals(propertyName)) {
 				parseChange(property, xPlanToEdit, CHANGES);
 			}
-			else if ("wurdeGeaendertVon".equals(propertyName)) {
+			else if ("wurdeGeaendertVon".equals(propertyName) || "wurdeGeaendertVonPlan".equals(propertyName)) {
 				parseChange(property, xPlanToEdit, CHANGED_BY);
 			}
 			else if ("refBegruendung".equals(propertyName)) {
@@ -363,7 +363,8 @@ public class XPlanToEditFactory {
 						if ("planName".equals(childProperty.getName().getLocalPart())) {
 							change.setPlanName(asString(childProperty.getValue()));
 						}
-						else if ("rechtscharakter".equals(childProperty.getName().getLocalPart())) {
+						else if ("rechtscharakter".equals(childProperty.getName().getLocalPart())
+								|| "aenderungsArt".equals(childProperty.getName().getLocalPart())) {
 							change.setLegalNatureCode(asInteger(childProperty.getValue()));
 						}
 						else if ("nummer".equals(childProperty.getName().getLocalPart())) {
