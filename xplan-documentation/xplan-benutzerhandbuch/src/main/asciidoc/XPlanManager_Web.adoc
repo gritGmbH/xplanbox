@@ -11,7 +11,7 @@ kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer XPlanA
 Die Webanwendung XPlanManagerWeb dient der Verwaltung von <<xplanarchiv, XPlanArchiven>> und ist unter:
 
 ----
-http://<host>:<port>/xplan-manager/
+http://<host>:<port>/xplan-manager-web/
 ----
 
 verfügbar und kann mit einem Web-Browser aufgerufen werden.
@@ -27,7 +27,7 @@ Betätigen des Buttons _Hilfe_ ausgeben.
 [[xplanmanager-web-hinzufuegen]]
 ===== Hinzufügen
 
-Vor dem Importieren eines XPlanGML-Dokuments in die Datenbasis,
+Vor dem Importieren eines XPlanGML-Dokuments in die Datenhaltung,
 muss dieser über die Web-Oberfläche hochgeladen werden. Hierfür kann der Plan
 über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
 _Import_ hochgeladen werden. Der Benutzer wird
@@ -91,7 +91,7 @@ Benutzer keine Rechte, so wird der Button grau dargestellt.
 
 Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer
 die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt. 
-Die Editieransicht öffnet sich durch den Klick auf den Button __Editieren__. Die Ansicht ist in verschiedene Bereiche
+Die Editieransicht öffnet sich durch Klick auf den Button __Editieren__. Die Ansicht ist in verschiedene Bereiche
 aufgeteilt, die insgesamt die Bearbeitung folgender Elemente zulässt:
 
 *Basisdaten*
@@ -106,7 +106,7 @@ aufgeteilt, die insgesamt die Bearbeitung folgender Elemente zulässt:
  * rechtsstand
  * rechtsverordnungsDatum
 
-Das Editieren des Rechtsstands kann dazu führen, dass eine
+IMPORTANT: Das Editieren des Rechtsstands kann dazu führen, dass eine
 Zustandsänderung des Plans eintritt. Damit verbunden ist das Verschieben
 der Vektor- und Rasterdaten in die entsprechende Datenhaltung. Übergänge
 sind beliebig zwischen den drei Zuständen 'Festgestellt', 'In
@@ -114,16 +114,15 @@ Aufstellung' und 'Archiviert' möglich. Eine Zustandsänderung von
 'Festgestellt' nach 'In Aufstellung' tritt beispielsweise beim Ändern
 des Rechtsstands von 'InkraftGetreten' nach 'Untergegangen' ein.
 
-IMPORTANT: **Achtung**: Beim Import kann der Nutzer den Zustand eines Planes über eine
+WARNING: Beim Import kann der Nutzer den Zustand eines Planes über eine
 Auswahlliste mit den Optionen 'Festgestellt', 'In Aufstellung' und
 'Archiviert' ändern. Abhängig von dem im Plan gesetzten Rechtsstand wird
-eine Vorauswahl getroffen, die der Nutzer aber überschreiben kann. Beim
+eine Vorauswahl getroffen, die der Nutzer aber ändern kann. Beim
 Öffnen der Editieransicht wird der Rechtsstand aus dem Plan
-berücksichtigt, der vom Nutzer ausgewählte Zustand bleibt dagegen
-unberücksichtigt. Somit entspricht die Auswahl des Rechtsstands nicht
-dem Zustand des Plans, falls dieser beim Import manipuliert wurde. Beim
-Abspeichern eines Editiervorgangs ist hier somit Vorsicht geboten, da so
-unbeabsichtigt eine Zustandsänderung vorgenommen werden kann!
+angezeigt und nicht der vom Nutzer zum Zeitpunkt des Imports ausgewählte Rechtsstand. Somit entspricht die Anzeige des Rechtsstands im Editor nicht
+dem Zustand des Plans, falls dieser beim Import geändert wurde. Beim
+Abspeichern von Änderungen ist somit Vorsicht geboten, da es so
+unbeabsichtigt zu einer Zustandsänderung des Plans kommen kann!
 
 *Gültigkeitszeitraum*
 
@@ -162,15 +161,15 @@ Dabei kann der Benutzer wählen, ob er eine Datei über einen vollqualifizierten
 
 Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP_Bereich besitzt. Ist dies nicht der Fall, wird ein entsprechender Hinweis in der Oberfläche angegeben. Die Angabe einer Rasterbasis kann in diesem Fall nicht erfolgen.
 
-Werden Referenzen entfernt oder verändert, so werden die nicht mehr
-referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu
-einer Aktualisierung der XPlanWMS-Konfiguration. Klickt der Nutzer auf
+Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
+
+NOTE: Werden Referenzen auf Rasterbasisdateien entfernt oder verändert, so werden die nicht mehr referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu einer Aktualisierung der XPlanWMS-Konfiguration. Klickt der Nutzer auf
 __Speichern__, wird zunächst eine Validierung der Rasterdaten
 vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine
-Entscheidungsoption wie mit diesen Daten umgegangen werden soll.
+Entscheidungsoption wie mit diesen Daten umgegangen werden soll. Passt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so
+erhält der Nutzer die Option, den Plan ohne Erzeugung der
+Rasterkonfiguration zu importieren.
 Anschließend erfolgt die Aktualisierung der Daten.
-
-Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
 
 Die ebenfalls in diesem Abschnitt editierbaren Referenzen auf Texte (refText) und Legenden (refLegende) müssen in den Versionen 5.1, 5.2, 5.3 und 5.4 über die Abschnitte `Texte` und `Dokumente` editiert werden.
 
