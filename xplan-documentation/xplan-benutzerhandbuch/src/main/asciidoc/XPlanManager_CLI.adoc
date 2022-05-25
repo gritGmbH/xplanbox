@@ -252,7 +252,7 @@ WMS Konfiguration für Id 79 nach /home/user/.deegree/xplansyn-wms-workspace ges
 XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: 79
 ----
 
-Passt das CRS nicht mit dem CRS der Rasterdatenhaltung überein, so
+Passt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so
 erhält der Nutzer die Option, den Plan ohne Erzeugung der
 Rasterkonfiguration zu importieren:
 

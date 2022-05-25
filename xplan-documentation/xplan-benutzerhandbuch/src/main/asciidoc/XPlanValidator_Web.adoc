@@ -127,7 +127,7 @@ Bei der Prüfung der Laufrichtung werden Fehler bei der Orientierung von Polygon
 
 [NOTE]
 ====
-Wenn sich zwei aneinandergrenzene Flächenschlussobjekte an einer Geraden berühren und nur eines der Flächenschlussobjekte einen zusätzlichen Stützpunkt innerhalb dieser Geraden aufweist, wird der fehlende Stützpunkt des anderen Flächenschlussobjekt durch den XPlanValidator nicht gefunden.
+Wenn sich zwei aneinandergrenzende Flächenschlussobjekte an einer Geraden berühren und nur eines der Flächenschlussobjekte einen zusätzlichen Stützpunkt innerhalb dieser Geraden aufweist, wird der fehlende Stützpunkt des anderen Flächenschlussobjekt durch den XPlanValidator nicht gefunden.
 ====
 
 *3) Syntaktische Validierung (obligatorisch)*
