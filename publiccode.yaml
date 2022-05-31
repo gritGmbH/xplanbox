@@ -5,27 +5,41 @@
 publiccodeYmlVersion: '0.2'
 applicationSuite: ozgxplanung
 categories:
-  - TBD
+  - geographic-information-systems
 dependsOn:
   open:
-    - name: TBD
+    - name: OSGeo deegree
       optional: false
-      version: ''
-      versionMax: ''
-      versionMin: 1.2.3
+      version: '3.4'
+      versionMax: '3.4.27'
+      versionMin: '3.4.27'
+    - name: XPlanung-Validierungsregeln
+      optional: false
+      version: '0.11'
+      versionMax: '0.11.1'
+      versionMin: '0.11.0'
+    - name: PostgreSQL Datenbank mit PostGIS-Erweiterung
+      optional: false
+      version: '11.0'
+      versionMax: '12.0'
+      versionMin: '9.6'  
 description:
   de:
     documentation: |-
-      https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main-v5.0.1/README.md
+      https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main-v5.0.2/README.md
     features:
-      - XPlanValidator: Web-Oberfläche für den Validator
+      - XPlanValidator: Web-Oberfläche für den XPlanGML-Validator
       - XPlanManager: Web-Oberfläche für das Datenmanagement
       - XPlanWMS: Standard-Karten-Dienst für die Auskunft
-      - XPlanWFS: Standard-Daten-Dienst für die Auskunft (originale Datenstruktur)
+      - XPlanWFS: Standard-Daten-Dienst für die Auskunft (originale XPlanGML-Datenstruktur)
       - XPlanSynWFS: Standard-Daten-Dienst für die Auskunft (vereinfachte Datenstruktur)
+      - XPlanValidatorAPI: REST-Schnittstelle für den XPlanGML-Validator
+      - XPlanManagerAPI: REST-Schnittstelle für das Datenmanagement
     genericName: ozgxplanung
     longDescription: |-
-      TBD
+      Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung und basiert auf den Standards des 
+      Open Geospatial Consortium, der INSPIRE Richtlinie und insbesondere dem Standard XPlanung zur Abbildung des 
+      deutschen Planungsrechts durch ein GML-Anwendungsschema.
     shortDescription: |-
       Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung auf Basis des Standards XPlanung.
 developmentStatus: stable
@@ -50,9 +64,9 @@ maintenance:
 name: ozgxplanung
 platforms:
   - web
-releaseDate: '2022-05-05'
-softwareType: standalone/desktop
-softwareVersion: 5.0.1
+releaseDate: '2022-05-24'
+softwareType: standalone/depends
+softwareVersion: 5.0.2
 url: 'https://gitlab.opencode.de/diplanung/ozgxplanung.git'
 usedBy:
   - XLeitstelle, Hamburg
