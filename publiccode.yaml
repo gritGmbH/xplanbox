@@ -1,0 +1,73 @@
+# This repository adheres to the publiccode.yml standard by including this
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+applicationSuite: ozgxplanung
+categories:
+  - geographic-information-systems
+dependsOn:
+  open:
+    - name: OSGeo deegree
+      optional: false
+      version: '3.4'
+      versionMax: '3.4.27'
+      versionMin: '3.4.27'
+    - name: XPlanung-Validierungsregeln
+      optional: false
+      version: '0.11'
+      versionMax: '0.11.1'
+      versionMin: '0.11.0'
+    - name: PostgreSQL Datenbank mit PostGIS-Erweiterung
+      optional: false
+      version: '11.0'
+      versionMax: '12.0'
+      versionMin: '9.6'  
+description:
+  de:
+    documentation: |-
+      https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main-v5.0.2/README.md
+    features:
+      - XPlanValidator: Web-Oberfläche für den XPlanGML-Validator
+      - XPlanManager: Web-Oberfläche für das Datenmanagement
+      - XPlanWMS: Standard-Karten-Dienst für die Auskunft
+      - XPlanWFS: Standard-Daten-Dienst für die Auskunft (originale XPlanGML-Datenstruktur)
+      - XPlanSynWFS: Standard-Daten-Dienst für die Auskunft (vereinfachte Datenstruktur)
+      - XPlanValidatorAPI: REST-Schnittstelle für den XPlanGML-Validator
+      - XPlanManagerAPI: REST-Schnittstelle für das Datenmanagement
+    genericName: ozgxplanung
+    longDescription: |-
+      Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung und basiert auf den Standards des 
+      Open Geospatial Consortium, der INSPIRE Richtlinie und insbesondere dem Standard XPlanung zur Abbildung des 
+      deutschen Planungsrechts durch ein GML-Anwendungsschema.
+    shortDescription: |-
+      Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung auf Basis des Standards XPlanung.
+developmentStatus: stable
+intendedAudience:
+  countries:
+    - de
+legal:
+  license: AGPL-3.0
+  mainCopyrightOwner: lat/lon GmbH
+  repoOwner: Landesbetrieb Geoinformation und Vermessung, Hamburg
+localisation:
+  availableLanguages:
+    - de
+  localisationReady: true
+maintenance:
+  contacts:
+    - email: friebe@lat-lon.de
+      name: Torsten Friebe
+    - email: tobias.kraft@gv.hamburg.de
+      name: Tobias Kraft
+  type: internal
+name: ozgxplanung
+platforms:
+  - web
+releaseDate: '2022-05-24'
+softwareType: standalone/depends
+softwareVersion: 5.0.2
+url: 'https://gitlab.opencode.de/diplanung/ozgxplanung.git'
+usedBy:
+  - XLeitstelle, Hamburg
+  - Landesbetrieb Geoinformation und Vermessung, Hamburg

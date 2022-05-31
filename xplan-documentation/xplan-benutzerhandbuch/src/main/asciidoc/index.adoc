@@ -1,0 +1,42 @@
+:doctype: book
+:encoding: utf-8
+:toc: macro
+:chapter-label:
+:numbered:
+:toc-title: Inhaltsverzeichnis
+:docinfo: shared,private-head
+:icons: font
+:imagesdir: images
+:title-logo-image: images/logo_latlon.png
+
+= Benutzerhandbuch für die xPlanBox
+
+toc::[]
+
+include::praeambel.adoc[]
+
+include::ueberblick.adoc[]
+
+include::XPlanValidator.adoc[]
+
+include::XPlanManager.adoc[]
+
+include::XPlanTransform_CLI.adoc[]
+
+include::XPlanWMS.adoc[]
+
+include::XPlanWFS.adoc[]
+
+include::XPlanSynWFS.adoc[]
+
+include::XPlanInspirePluWMS.adoc[]
+
+include::XPlanInspirePluWFS.adoc[]
+
+include::bekannteProbleme.adoc[]
+
+include::ausblick.adoc
+
+include::aenderungsHistorie.adoc[]
+
+

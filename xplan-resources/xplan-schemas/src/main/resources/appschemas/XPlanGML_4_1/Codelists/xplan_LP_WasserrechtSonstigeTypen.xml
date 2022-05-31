@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 09.09.2013 11:08:18-->
+<Dictionary xmlns="http://www.opengis.net/gml/3.1.1" xmlns:gml="http://www.opengis.net/gml/3.1.1" gml:id="xplan_LP_WasserrechtSonstigeTypen">
+  <identifier codeSpace="urn:citgml">urn:citgml:def:codelist:xplan:LP_WasserrechtSonstigeTypen</identifier>
+  <name>xplan:LP_WasserrechtSonstigeTypen</name>
+</Dictionary>

@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--ADE-Erweiterung, Erstellungsdatum: 03/15/11-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/4/0"
+        elementFormDefault="qualified" targetNamespace="http://www.xplanung.de/xplangml/4/0" version="4.0.2">
+  <include schemaLocation="XPlanGML_Regionalplanung_Kernmodell.xsd"/>
+
+  <!--XML Schema document created by ShapeChange-->
+  <simpleType name="RP_RLP_SiedlungsNetzTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Grenze" substitutionGroup="xplan:RP_Grenze" type="xplan:RP_RLP_GrenzeType"/>
+  <complexType name="RP_RLP_GrenzeType">
+    <complexContent>
+      <extension base="xplan:RP_GrenzeType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Grenze" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Grenze" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Gruenzug" substitutionGroup="xplan:RP_GruenzugGruenzaesur" type="xplan:RP_RLP_GruenzugType"/>
+  <complexType name="RP_RLP_GruenzugType">
+    <complexContent>
+      <extension base="xplan:RP_GruenzugGruenzaesurType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Gruenzug" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Gruenzug" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_RLP_WasserschutzTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Gruenzaesur" substitutionGroup="xplan:RP_GruenzugGruenzaesur"
+           type="xplan:RP_RLP_GruenzaesurType"/>
+  <complexType name="RP_RLP_GruenzaesurType">
+    <complexContent>
+      <extension base="xplan:RP_GruenzugGruenzaesurType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Gruenzaesur" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Gruenzaesur" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Windenergienutzung" substitutionGroup="xplan:RP_Windenergienutzung"
+           type="xplan:RP_RLP_WindenergienutzungType"/>
+  <complexType name="RP_RLP_WindenergienutzungType">
+    <complexContent>
+      <extension base="xplan:RP_WindenergienutzungType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_RLP_WindenergienutzungTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Windenergienutzung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Windenergienutzung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_SonstigeWaldflaeche" substitutionGroup="xplan:RP_GenerischesObjekt"
+           type="xplan:RP_RLP_SonstigeWaldflaecheType"/>
+  <complexType name="RP_RLP_SonstigeWaldflaecheType">
+    <complexContent>
+      <extension base="xplan:RP_GenerischesObjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_SonstigeWaldflaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_SonstigeWaldflaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Siedlungsstruktur" substitutionGroup="xplan:RP_GemeindeFunktionSiedlungsentwicklung"
+           type="xplan:RP_RLP_SiedlungsstrukturType"/>
+  <complexType name="RP_RLP_SiedlungsstrukturType">
+    <complexContent>
+      <extension base="xplan:RP_GemeindeFunktionSiedlungsentwicklungType">
+        <sequence>
+          <element name="typ" type="xplan:RP_RLP_SiedlungsstrukturTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Siedlungsstruktur" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Siedlungsstruktur" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_RLP_RaumkategorieTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_RLP_KooperationsTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Welterbestaette" substitutionGroup="xplan:RP_SonstigerFreiraumstruktur"
+           type="xplan:RP_RLP_WelterbestaetteType"/>
+  <complexType name="RP_RLP_WelterbestaetteType">
+    <complexContent>
+      <extension base="xplan:RP_SonstigerFreiraumstrukturType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Welterbestaette" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Welterbestaette" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_ArtenBiotopschutz" substitutionGroup="xplan:RP_SonstigerFreiraumstruktur"
+           type="xplan:RP_RLP_ArtenBiotopschutzType"/>
+  <complexType name="RP_RLP_ArtenBiotopschutzType">
+    <complexContent>
+      <extension base="xplan:RP_SonstigerFreiraumstrukturType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_RLP_BiotopverbundTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_ArtenBiotopschutz" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_ArtenBiotopschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Siedlungszaesur" substitutionGroup="xplan:RP_GruenzugGruenzaesur"
+           type="xplan:RP_RLP_SiedlungszaesurType"/>
+  <complexType name="RP_RLP_SiedlungszaesurType">
+    <complexContent>
+      <extension base="xplan:RP_GruenzugGruenzaesurType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Siedlungszaesur" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Siedlungszaesur" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Wasserschutz" substitutionGroup="xplan:RP_Wasserschutz" type="xplan:RP_RLP_WasserschutzType"/>
+  <complexType name="RP_RLP_WasserschutzType">
+    <complexContent>
+      <extension base="xplan:RP_WasserschutzType">
+        <sequence>
+          <element name="typ" type="xplan:RP_RLP_WasserschutzTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Wasserschutz" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Wasserschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_RLP_SonderkulturTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Gewaesser" substitutionGroup="xplan:RP_Gewaesser" type="xplan:RP_RLP_GewaesserType"/>
+  <complexType name="RP_RLP_GewaesserType">
+    <complexContent>
+      <extension base="xplan:RP_GewaesserType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Gewaesser" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Gewaesser" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_VorbHochwasserschutz" substitutionGroup="xplan:RP_VorbHochwasserschutz"
+           type="xplan:RP_RLP_VorbHochwasserschutzType"/>
+  <complexType name="RP_RLP_VorbHochwasserschutzType">
+    <complexContent>
+      <extension base="xplan:RP_VorbHochwasserschutzType">
+        <sequence>
+          <element name="typ" type="xplan:RP_RLP_VorbHochwasserschutzTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_VorbHochwasserschutz" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_VorbHochwasserschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_RLP_WindenergienutzungTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Raumkategorie" substitutionGroup="xplan:RP_Raumkategorie"
+           type="xplan:RP_RLP_RaumkategorieType"/>
+  <complexType name="RP_RLP_RaumkategorieType">
+    <complexContent>
+      <extension base="xplan:RP_RaumkategorieType">
+        <sequence>
+          <element name="typ" type="xplan:RP_RLP_RaumkategorieTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Raumkategorie" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Raumkategorie" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_ZentralerOrtBesondFunktion" substitutionGroup="xplan:RP_ZentralerOrt"
+           type="xplan:RP_RLP_ZentralerOrtBesondFunktionType"/>
+  <complexType name="RP_RLP_ZentralerOrtBesondFunktionType">
+    <complexContent>
+      <extension base="xplan:RP_ZentralerOrtType">
+        <sequence>
+          <element minOccurs="0" name="netzTyp" type="xplan:RP_RLP_SiedlungsNetzTypenType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="gemeindeFunktion" type="xplan:RP_GemeindefunktionenType"/>
+          <element minOccurs="0" name="kooperation" type="xplan:RP_RLP_KooperationsTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_ZentralerOrtBesondFunktion" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_ZentralerOrtBesondFunktion" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Landschaftsbild" substitutionGroup="xplan:RP_NaturLandschaft"
+           type="xplan:RP_RLP_LandschaftsbildType"/>
+  <complexType name="RP_RLP_LandschaftsbildType">
+    <complexContent>
+      <extension base="xplan:RP_NaturLandschaftType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Landschaftsbild" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Landschaftsbild" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Verkehr" substitutionGroup="xplan:RP_Verkehr" type="xplan:RP_RLP_VerkehrType"/>
+  <complexType name="RP_RLP_VerkehrType">
+    <complexContent>
+      <extension base="xplan:RP_VerkehrType">
+        <sequence>
+          <element minOccurs="0" name="verbindungsTyp" type="xplan:RP_RLP_VerkehrsVerbindungsTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Verkehr" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Verkehr" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_SonstigeFreiflaeche" substitutionGroup="xplan:RP_GenerischesObjekt"
+           type="xplan:RP_RLP_SonstigeFreiflaecheType"/>
+  <complexType name="RP_RLP_SonstigeFreiflaecheType">
+    <complexContent>
+      <extension base="xplan:RP_GenerischesObjektType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_SonstigeFreiflaeche" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_SonstigeFreiflaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Klimaschutz" substitutionGroup="xplan:RP_Klimaschutz" type="xplan:RP_RLP_KlimaschutzType"/>
+  <complexType name="RP_RLP_KlimaschutzType">
+    <complexContent>
+      <extension base="xplan:RP_KlimaschutzType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Klimaschutz" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Klimaschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_RLP_RohstoffLageType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_RLP_VerkehrsVerbindungsTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Forstwirtschaft" substitutionGroup="xplan:RP_Forstwirtschaft"
+           type="xplan:RP_RLP_ForstwirtschaftType"/>
+  <complexType name="RP_RLP_ForstwirtschaftType">
+    <complexContent>
+      <extension base="xplan:RP_ForstwirtschaftType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Forstwirtschaft" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Forstwirtschaft" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_RLP_SiedlungsstrukturTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Sonderflaeche" substitutionGroup="xplan:RP_GenerischesObjekt"
+           type="xplan:RP_RLP_SonderflaecheType"/>
+  <complexType name="RP_RLP_SonderflaecheType">
+    <complexContent>
+      <extension base="xplan:RP_GenerischesObjektType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_RLP_SonderflaecheTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Sonderflaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Sonderflaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_FreizeitErholung" substitutionGroup="xplan:RP_FreizeitErholung"
+           type="xplan:RP_RLP_FreizeitErholungType"/>
+  <complexType name="RP_RLP_FreizeitErholungType">
+    <complexContent>
+      <extension base="xplan:RP_FreizeitErholungType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_FreizeitErholung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_FreizeitErholung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Rohstoffsicherung" substitutionGroup="xplan:RP_Rohstoffsicherung"
+           type="xplan:RP_RLP_RohstoffsicherungType"/>
+  <complexType name="RP_RLP_RohstoffsicherungType">
+    <complexContent>
+      <extension base="xplan:RP_RohstoffsicherungType">
+        <sequence>
+          <element minOccurs="0" name="lage" type="xplan:RP_RLP_RohstoffLageType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Rohstoffsicherung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Rohstoffsicherung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Ressourcenschutz" substitutionGroup="xplan:RP_SonstigerFreiraumstruktur"
+           type="xplan:RP_RLP_RessourcenschutzType"/>
+  <complexType name="RP_RLP_RessourcenschutzType">
+    <complexContent>
+      <extension base="xplan:RP_SonstigerFreiraumstrukturType">
+        <sequence>
+          <element minOccurs="0" name="typ" type="xplan:RP_RLP_RessourcenschutzTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Ressourcenschutz" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Ressourcenschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_RLP_VorbHochwasserschutzTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Landwirtschaft" substitutionGroup="xplan:RP_Landwirtschaft"
+           type="xplan:RP_RLP_LandwirtschaftType"/>
+  <complexType name="RP_RLP_LandwirtschaftType">
+    <complexContent>
+      <extension base="xplan:RP_LandwirtschaftType">
+        <sequence>
+          <element minOccurs="0" name="kultur" type="xplan:RP_RLP_SonderkulturTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Landwirtschaft" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Landwirtschaft" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_RLP_SonderflaecheTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RP_RLP_RessourcenschutzTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="4000"/>
+      <enumeration value="5000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Laermschutzzone" substitutionGroup="xplan:RP_Laermschutzbereich"
+           type="xplan:RP_RLP_LaermschutzzoneType"/>
+  <complexType name="RP_RLP_LaermschutzzoneType">
+    <complexContent>
+      <extension base="xplan:RP_LaermschutzbereichType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Laermschutzzone" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Laermschutzzone" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="RP_RLP_Rohstoffabbau" substitutionGroup="xplan:RP_Rohstoffsicherung"
+           type="xplan:RP_RLP_RohstoffabbauType"/>
+  <complexType name="RP_RLP_RohstoffabbauType">
+    <complexContent>
+      <extension base="xplan:RP_RohstoffsicherungType">
+        <sequence>
+          <element minOccurs="0" name="lage" type="xplan:RP_RLP_RohstoffLageType"/>
+          <element minOccurs="0" name="genehmigt" type="boolean"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Rohstoffabbau" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Rohstoffabbau" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="RP_RLP_BiotopverbundTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+    </restriction>
+  </simpleType>
+  <element name="RP_RLP_Schutzgebiet" substitutionGroup="xplan:RP_NaturschutzrechtlichesSchutzgebiet"
+           type="xplan:RP_RLP_SchutzgebietType"/>
+  <complexType name="RP_RLP_SchutzgebietType">
+    <complexContent>
+      <extension base="xplan:RP_NaturschutzrechtlichesSchutzgebietType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfRP_RLP_Schutzgebiet" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfRP_RLP_Schutzgebiet" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+</schema>

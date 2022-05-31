@@ -1,0 +1,113 @@
+package de.latlon.xplanbox.api.manager.handler;
+
+/*-
+ * #%L
+ * xplan-api-manager - xplan-api-manager
+ * %%
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * #L%
+ */
+
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.manager.XPlanManager;
+import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
+import de.latlon.xplanbox.api.manager.exception.InvalidPlanIdSyntax;
+import de.latlon.xplanbox.api.manager.exception.InvalidPlanToEdit;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+
+import static org.slf4j.LoggerFactory.getLogger;
+
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ */
+public class EditHandler {
+
+	private static final Logger LOG = getLogger(EditHandler.class);
+
+	@Autowired
+	protected XPlanManager manager;
+
+	public XPlan findPlanById(String planId) throws Exception {
+		LOG.info("Find plan by Id '{}'", planId);
+		try {
+			int id = Integer.parseInt(planId);
+			return findPlanById(id);
+		}
+		catch (NumberFormatException e) {
+			throw new InvalidPlanIdSyntax(planId);
+		}
+	}
+
+	/**
+	 * Stores the passed content as tmp file with the passed filename.
+	 * @param content may be <code>null</code>
+	 * @param fileMetadata name of the file, never <code>null</code> if content is
+	 * <code>not null</code>
+	 * @return the file, <code>null</code> if content is <code>null</code>
+	 * @throws IOException
+	 */
+	public File storeAsFile(InputStream content, FormDataContentDisposition fileMetadata) throws IOException {
+		if (content == null)
+			return null;
+		java.nio.file.Path tmpDir = Files.createTempDirectory("postDokument");
+		java.nio.file.Path targetFile = tmpDir.resolve(fileMetadata.getFileName());
+		Files.copy(content, targetFile);
+		content.close();
+		return targetFile.toFile();
+	}
+
+	private XPlan findPlanById(int id) throws Exception {
+		XPlan xPlanById = manager.getXPlanById(id);
+		if (xPlanById == null) {
+			throw new InvalidPlanId(id);
+		}
+		checkIfPlanIsSupported(xPlanById);
+		return xPlanById;
+	}
+
+	private void checkIfPlanIsSupported(XPlan xPlanById) throws InvalidPlanToEdit {
+		String version = xPlanById.getVersion();
+		XPlanVersion xPlanVersion = XPlanVersion.valueOf(version);
+		switch (xPlanVersion) {
+		case XPLAN_3:
+		case XPLAN_40:
+			throw new InvalidPlanToEdit(String.format(
+					"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions: 4.1 and heigher",
+					xPlanById.getId(), xPlanVersion));
+		}
+		String type = xPlanById.getType();
+		XPlanType xPlanType = XPlanType.valueOf(type);
+		switch (xPlanType) {
+		case FP_Plan:
+		case RP_Plan:
+		case LP_Plan:
+		case SO_Plan:
+			throw new InvalidPlanToEdit(String.format(
+					"Plan with ID %s can not be edited, because the type (%s) is not supported. Supported types: BP_Plan",
+					xPlanById.getId(), xPlanType));
+		}
+	}
+
+}

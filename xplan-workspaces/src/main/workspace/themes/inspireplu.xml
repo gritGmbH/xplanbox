@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<Themes configVersion="3.4.0"
+        xmlns="http://www.deegree.org/themes/standard"
+        xmlns:d="http://www.deegree.org/metadata/description"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.deegree.org/themes/standard http://schemas.deegree.org/themes/3.4.0/themes.xsd">
+
+  <LayerStoreId>inspireplu</LayerStoreId>
+
+  <Theme>
+    <d:Title>INSPIRE Planned Land Use</d:Title>
+    <Theme>
+      <Identifier>LU.SpatialPlan</Identifier>
+      <d:Title>LU.SpatialPlan</d:Title>
+      <d:Keywords>
+        <d:Keyword>Land Use</d:Keyword>
+        <d:Keyword>Spatial Plan</d:Keyword>
+      </d:Keywords>
+      <Layer>LU.SpatialPlan</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>LU.ZoningElement</Identifier>
+      <d:Title>LU.ZoningElement</d:Title>
+      <d:Keywords>
+        <d:Keyword>Land Use</d:Keyword>
+        <d:Keyword>Spatial Plan</d:Keyword>
+        <d:Keyword>zoning</d:Keyword>
+      </d:Keywords>
+      <Layer>LU.ZoningElement</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>LU.SupplementaryRegulation</Identifier>
+      <d:Title>LU.SupplementaryRegulation</d:Title>
+      <d:Keywords>
+        <d:Keyword>Land Use</d:Keyword>
+        <d:Keyword>Spatial Plan</d:Keyword>
+        <d:Keyword>regulation zone</d:Keyword>
+      </d:Keywords>
+      <Layer>LU.SupplementaryRegulation</Layer>
+    </Theme>
+  </Theme>
+
+</Themes>

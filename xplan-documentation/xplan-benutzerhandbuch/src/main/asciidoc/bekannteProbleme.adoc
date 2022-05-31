@@ -1,0 +1,142 @@
+[[bekannte-probleme]]
+== Bekannte Probleme
+
+[[internet-explorer]]
+=== Internet Explorer
+
+Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb mit Microsoft Internet Explorer 9/10/11 kann es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisystem blockiert wird.
+
+Der Fehler ist Microsoft bekannt und es wird folgender Workaround empfohlen:
+
+    - Neu-Laden der Seite mit "Refresh/F5" oder
+    - Schließen des Browser-Fenster/Tabs mit "Ctrl+w"
+
+Referenzen:
+
+    - https://connect.microsoft.com/IE/feedback/details/817183/ie10-and-ie11-keep-files-locked-after-uploading[IE10 and IE11 keep files locked after uploading]
+    - https://connect.microsoft.com/IE/feedback/details/794708/uploaded-file-is-locked-on-file-system-after-upload[Uploaded file is locked on file system after upload]
+
+[[xplanbox---durch-kartenvorschau-generierter-getmap-request]]
+=== xPlanBox - Durch Kartenvorschau generierter GetMap-Request
+
+Der durch den Button "Plan im neuen Fenster öffnen" unterhalb der Kartenvorschau im XPlanManagerWeb generierte WMS GetMap-Request gibt im Fall, dass noch kein Rasterplan in das System importiert wurde, folgende erwartete Meldung aus:
+
+----
+Style default is not defined for layer *P_Planraster
+----
+
+Dieses Verhalten resultiert daraus, dass der Raster-Layer wegen
+fehlender Rasterpläne noch nicht von dem WMS angeboten wird.
+
+Wenn die URL dennoch genutzt werden soll, muss der Layer [*]P_Planraster
+manuell aus der Request URL entfernt werden (Wert des Parameters "LAYERS").
+
+Dies gilt für jeden einzeln Plan-Typ: Für die URL für BPläne muss z. B.
+mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
+ein FPlan mit Rasterdaten.
+
+=== XPlanManagerCLI - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
+
+Für die Erzeugung der deegree Konfigurationsdateien muss zwingend die Bibliothek Apache Xalan 2.7.2 verwendet werden.
+Zusätzlich muss sichergestellt sein, dass im Java Classpath des Prozesses, der den XPlanManagerCLI aufruft, keine anderen JAXP (SAX/DOM) Implementierungen vorhanden sind als die Dateien _Saxon-HE-9.9.x.jar_ und _xalan-2.7.2.jar_.
+
+Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML Namespace Attribute in Form von `xmlns=""` aufweisen.
+Diese Konfigurationsdateien können nicht von deegree geparst werden. Und führen zu einem Systemfehler und verhindern den Start der Dienste.
+Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namespace-Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
+
+=== Transformation in das INSPIRE Planned Land Use Datenschema
+
+Bei der Transformation von XPlanGML in das INSPIRE Planned Land Use Datenschema können in der vorliegenden Version der xPlanBox nicht alle Daten vollständig transformiert werden.
+So fehlen u.a. Transformationsregeln für Werte aus Codelisten als auch konfigurierbare Abbildungsregeln für Elemente wie z. B. der INSPIRE ID.
+Zugesichert werden kann, dass das über den XPlanInspirePluWFS abgegebene GML gegen das GML-Applikationsschema validiert.
+Nicht zugesichert werden kann, dass das GML alle Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use erfüllt sowie dass alle Daten aus dem XPlanGML in das
+Zielschema INSPIRE PLU transformiert werden.
+
+=== Löschen von einzelnen Plänen aus dem InspirePLU Diensten
+
+Aktuell kann über den XPlanManager ein XPlanArchiv nur aus der XPlanDB-Datenhaltung entfernt werden. Wird ein Plan von XPlanGML nach INSPIRE PLU transformiert und in die InspirePLUDB-Datenhaltung
+übertragen, kann dieser Datensatz nicht mehr über den XPlanManager aus der InspirePLUDB-Datenhaltung entfernt werden.
+
+Eine Umgehung ist das Löschen des Datensatzes aus der InspirePLUDB-Datenhaltung über die WFS-T Schnittstelle des InspirePLUWFS. Zum Löschen eines oder mehrerer Datensätze muss an den InspirePLUWFS eine WFS-T 2.0.0 DELETE Aktion geschickt werden.
+
+=== Darstellungsvorschriften für Raumordnungspläne
+
+Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den XPlanWMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
+
+=== Darstellung von geometrischen Fehlern in einer Grafik und im Shapefile
+
+Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeben, Multigeometrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geometrien nur, wenn diese nicht zu fehlerhaft sind, um gerendert zu werden.
+
+=== Änderungen der Rasterbasis über die Editorfunktion im XPlanManagerWeb werden nicht übernommen
+
+Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl" statt "Scan") der Eintrag nicht in das XPlanGML-Instanzdokument übernommen. Die Referenz auf die Rasterbasis wird beim Speichern nicht in das XPlanGML geschrieben, befindet sich aber in der ZIP-Datei.
+
+=== Umsetzung von Präsentationsobjekte
+
+Im XPlanWMS ist der Umfang der Darstellung von Präsentationsobjekten nur eingeschränkt implementiert. Über die folgenden Layer werden diese angezeigt:
+
+ * BP_Plan
+ ** bp_xp_fpo
+ ** bp_xp_lpo
+ ** bp_xp_lto
+ ** bp_xp_ppo
+ ** bp_xp_pto
+ * FP_Plan
+ ** fp_xp_fpo
+ ** fp_xp_lpo
+ ** fp_xp_lto
+ ** fp_xp_ppo
+ ** fp_xp_pto
+ * LP_Plan
+ ** lp_xp_fpo
+ ** lp_xp_lpo
+ ** lp_xp_lto
+ ** lp_xp_ppo
+ ** lp_xp_pto
+ * RP_Plan
+ ** rp_xp_fpo
+ ** rp_xp_lpo
+ ** rp_xp_lto
+ ** rp_xp_ppo
+ ** rp_xp_pto
+ * SO_Plan
+ ** so_xp_fpo
+ ** so_xp_lpo
+ ** so_xp_lto
+ ** so_xp_ppo
+ ** so_xp_pto
+
+Derzeit werden die folgenden Attribute bei der Visualisierung berücksichtigt:
+
+ * XP_LTO
+ ** schriftinhalt
+ ** position
+ * XP_PTO
+ ** schriftinhalt
+ ** skalierung
+ ** drehwinkel
+ ** horizontaleAusrichtung
+ ** vertikaleAusrichtung
+ ** position
+ * XP_FPO
+ ** Polygon wird mit grauem Umring dargestellt
+ ** position
+ * XP_LPO
+ ** Linie wird grau dargestellt
+ ** position
+ * XP_PPO
+ ** Darstellung erfolgt als Kreis mit grauem Umring
+ ** position
+
+Nicht umgesetzt ist dagegen insbesondere die Auswertung der Attribute _art_ und _index_.
+
+[[fehler-melden]]
+== Fehler melden
+
+Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten finden, schicken Sie bitte eine E-mail an das Support-Postfach: ​support@lat-lon.de​ oder Sie öffnen ein Ticket unter https://bitbucket.org/latlon/xplanbox-ep/issues.
+
+[[support]]
+== Support
+
+Professionellen Support per Telefon oder E-Mail bieten Ihnen die Entwickler von https://www.lat-lon.de[lat/lon] an.
+Ihre Supportanfragen schicken Sie bitte an: ​support@lat-lon.de​.

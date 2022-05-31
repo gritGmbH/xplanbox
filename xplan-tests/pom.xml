@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>xplan-tests</artifactId>
+  <packaging>pom</packaging>
+  <description>Modul zur Gruppierung aller Module zum testen</description>
+
+  <parent>
+    <groupId>de.latlon.product.xplanbox</groupId>
+    <artifactId>xplanbox</artifactId>
+    <version>5.1-SNAPSHOT</version>
+  </parent>
+
+  <modules>
+    <module>xplan-tests-resources</module>
+    <module>xplan-tests-soapui</module>
+    <module>xplan-tests-manual</module>
+  </modules>
+
+</project>

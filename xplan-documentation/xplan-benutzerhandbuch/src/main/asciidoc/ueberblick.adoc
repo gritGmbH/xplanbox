@@ -1,0 +1,28 @@
+[[ueberblick]]
+== Überblick
+
+
+Die xPlanBox dient der Abbildung der Bauleit- und der
+Landschaftsplanung. Die xPlanBox basiert auf den Standards des
+http://www.opengeospatial.org[Open Geospatial Consortium], der
+http://inspire.ec.europa.eu[INSPIRE Richtlinie] und insbesondere dem
+Standard http://www.xplanung.de[XPlanung] zur Abbildung des deutschen
+Planungsrechts durch ein GML-Anwendungsschema.
+
+Zur Implementierung der Komponenten der xPlanBox wurde die Open Source
+Software http://www.deegree.org[deegree] eingesetzt, das ein
+Projekt der OSGeo Foundation ist. Die xPlanBox besteht aus den
+folgenden Komponenten:
+
+ * <<xplanvalidator,XPlanValidator>>: Web-Oberfläche für den Validator
+ * <<xplanmanager,XPlanManager>>: Web-Oberfläche für das Datenmanagement
+ * <<xplanwms,XPlanWMS>>: Standard-Karten-Dienst für die Auskunft
+ * <<xplanwfs,XPlanWFS>>: Standard-Daten-Dienst für die Auskunft (originale Datenstruktur)
+ * <<xplansynwfs,XPlanSynWFS>>: Standard-Daten-Dienst für die Auskunft (vereinfachte Datenstruktur)
+ * <<xplantransform-cli, XPlanTransformCLI>>: Kommandozeilenwerkzeug für die Transformation von Plänen
+
+Aktuell werden für Bebauungspläne, Flächennutzungspläne, Landschaftspläne und Raumordnungspläne die XPlanGML Versionen 2.0, 3.0, 4.0, 4.1, 5.0, 5.1, 5.2, 5.3 und 5.4 durch die xPlanBox unterstützt.
+Für sonstige raumbezogene Planwerke werden die XPlanGML Versionen 5.0, 5.1, 5.2, 5.3 und 5.4 unterstützt.
+
+Die Komponenten der xPlanBox werden in diesem Benutzerhandbuch im
+Einzelnen erläutert.

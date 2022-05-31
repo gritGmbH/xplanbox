@@ -1,0 +1,18 @@
+[[massstabsbereich]]
+=== Massstabsbereich
+
+Für die Rasterdaten empfiehlt es sich, einen Massstabsbereich anzugeben,
+in dem diese durch den XPlanWMS und XPlanWerkWMS angezeigt werden.
+
+Der Massstabsbereich kann in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ konfiguriert werden.
+Sollen die Rasterdaten beispielsweise im Massstabsbereich 1 : 100 bis 1 : 50.000
+angezeigt werden, ist folgendes zu konfigurieren:
+
+----
+rasterLayerMinScaleDenominator=100
+rasterLayerMaxScaleDenominator=50000
+----
+
+NOTE: Der Massstabsbereich wird direkt in die generierte deegree Konfiguration geschrieben.
+Somit wirkt sich eine solche Konfiguration nur auf neu importierte Rasterdaten aus.
+Auf alle bereits importierten Pläne hat diese Konfigurationsoption keine Auswirkungen.

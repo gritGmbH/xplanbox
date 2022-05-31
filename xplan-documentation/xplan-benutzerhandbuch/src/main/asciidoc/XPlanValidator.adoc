@@ -1,0 +1,13 @@
+[[xplanvalidator]]
+== XPlanValidator
+
+include::XPlanValidator-Einleitung.adoc[]
+
+[[xplanvalidator-web]]
+=== XPlanValidatorWeb
+
+include::XPlanValidator_Web.adoc[]
+
+include::XPlanValidator_API.adoc[]
+
+include::XPlanValidator_CLI.adoc[]

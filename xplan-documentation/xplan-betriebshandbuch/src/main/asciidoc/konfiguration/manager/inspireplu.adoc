@@ -1,0 +1,10 @@
+[[konfiguration-inspire-plu]]
+=== Bereitstellung als INSPIRE PLU
+
+Die xPlanBox bietet die Möglichkeit die vom XPlanManager verwalteten Pläne im Datenthema Planned Land Use (PLU) bereitzustellen. Voraussetzung ist die erfolgreiche Installation und Konfiguration des HALE CLI wie im Abschnitt <<konfiguration-hale>> beschrieben.
+
+Um dem Nutzer des XPlanManagerWebs die Veröffentlichung von Plänen in INSPIRE PLU zu erlauben, muss zusätzlich in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ diese Option aktiviert werden:
+
+----
+activatePublishingInspirePlu=[true|false]
+----

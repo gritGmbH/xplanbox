@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>xplan-benutzerhandbuch</artifactId>
+  <packaging>pom</packaging>
+  <name>xplan-benutzerhandbuch</name>
+  <description>Benutzerhandbuch fuer XPlanManager und XPlanValidator</description>
+
+  <parent>
+    <groupId>de.latlon.product.xplanbox</groupId>
+    <artifactId>xplan-documentation</artifactId>
+    <version>5.1-SNAPSHOT</version>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.asciidoctor</groupId>
+        <artifactId>asciidoctor-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>validator-html</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>process-asciidoc</goal>
+            </goals>
+            <configuration>
+              <doctype>book</doctype>
+              <backend>html</backend>
+              <attributes>
+                <toc>left</toc>
+                <linkcss>false</linkcss>
+                <revnumber>${project.version}</revnumber>
+                <revdate>${maven.build.timestamp}</revdate>
+              </attributes>
+              <sourceDocumentName>index-xPlanValidator.adoc</sourceDocumentName>
+              <outputDirectory>target/validator/html</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>validator-pdf</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>process-asciidoc</goal>
+            </goals>
+            <configuration>
+              <backend>pdf</backend>
+              <attributes>
+                <revnumber>${project.version}</revnumber>
+                <revdate>${maven.build.timestamp}</revdate>
+              </attributes>
+              <sourceDocumentName>index-xPlanValidator.adoc</sourceDocumentName>
+              <outputDirectory>target/validator/pdf</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptors>
+            <descriptor>src/assembly/assembly-html.xml</descriptor>
+            <descriptor>src/assembly/assembly-pdf.xml</descriptor>
+            <descriptor>src/assembly/assembly-validator-html.xml</descriptor>
+            <descriptor>src/assembly/assembly-validator-pdf.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>assemble-html</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <appendAssemblyId>true</appendAssemblyId>
+              <ignoreMissingDescriptor>true</ignoreMissingDescriptor>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

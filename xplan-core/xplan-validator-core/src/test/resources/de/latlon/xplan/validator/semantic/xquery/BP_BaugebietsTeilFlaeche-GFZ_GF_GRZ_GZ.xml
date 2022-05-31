@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+  #%L
+  xplan-validator-core - XPlan Validator Core Komponente
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<!--Erzeugt mit FZK (www.iai.fzk.de) XPlanGML-Toolbox, Erstellungsdatum: 03/25/10-->
+<XPlanAuszug xmlns="http://www.xplanung.de/xplangml/4/1"
+             xmlns:xplan="http://www.xplanung.de/xplangml/4/1" xmlns:gml="http://www.opengis.net/gml/3.2"
+             xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.xplanung.de/xplangml/4/1 ../../../../../../../.././../../xplan-schemas/src/main/resources/appschemas/XPlanGML_4_1/XPlanung-Operationen.xsd"
+             gml:id="GML_3aebe595-a72f-43b9-8dd3-c3c757edd558">
+  <gml:boundedBy>
+    <gml:Envelope srsName="EPSG:31467">
+      <gml:lowerCorner>3478519.018 5889194.887</gml:lowerCorner>
+      <gml:upperCorner>3480922.418 5890728.997</gml:upperCorner>
+    </gml:Envelope>
+  </gml:boundedBy>
+  <gml:featureMember>
+    <xplan:BP_BaugebietsTeilFlaeche gml:id="GML_4b89c4c3-b41c-4af5-831e-d85d5a471ab3">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:31467">
+          <gml:lowerCorner>3479885.853 5889387.398</gml:lowerCorner>
+          <gml:upperCorner>3480289.585 5889616.581</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBP_Bereich xlink:href="#GML_7af470e9-0167-43ae-823d-56e4241eab9d" />
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_3372de37-96c9-4042-a15c-8db31e36dac3">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="44">3480252.383 5889479.270 3480253.487
+                5889482.061 3479913.008 5889616.581 3479887.245 5889551.380 3479886.675 5889549.731
+                3479886.251 5889548.038 3479885.976 5889546.315 3479885.853 5889544.575 3479885.881
+                5889542.830 3479886.062 5889541.095 3479886.126 5889540.690 3479886.757 5889537.769
+                3479887.640 5889534.914 3479888.768 5889532.147 3479890.133 5889529.489 3479891.725
+                5889526.960 3479893.531 5889524.579 3479895.537 5889522.365 3479897.729 5889520.334
+                3479900.090 5889518.502 3479902.601 5889516.883 3479905.244 5889515.488 3479907.376
+                5889514.567 3480223.166 5889389.782 3480225.990 5889388.806 3480228.888 5889388.080
+                3480231.839 5889387.610 3480234.819 5889387.398 3480237.807 5889387.447 3480240.779
+                5889387.756 3480243.712 5889388.323 3480246.586 5889389.143 3480249.376 5889390.211
+                3480252.063 5889391.518 3480254.626 5889393.054 3480257.045 5889394.808 3480259.302
+                5889396.766 3480261.380 5889398.913 3480263.263 5889401.233 3480264.936 5889403.708
+                3480266.388 5889406.320 3480267.599 5889409.030 3480289.585 5889464.571 3480252.383
+                5889479.270
+              </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:GFZ>1.0</xplan:GFZ>
+      <xplan:GF>0.9</xplan:GF>
+      <xplan:GRZ>0.8</xplan:GRZ>
+      <xplan:GR>0.7</xplan:GR>
+      <xplan:besondereArtDerBaulNutzung>1700</xplan:besondereArtDerBaulNutzung>
+      <xplan:bauweise>3000</xplan:bauweise>
+      <xplan:vertikaleDifferenzierung>false</xplan:vertikaleDifferenzierung>
+    </xplan:BP_BaugebietsTeilFlaeche>
+  </gml:featureMember>
+</XPlanAuszug>

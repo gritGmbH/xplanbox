@@ -1,0 +1,1183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="lyn (generated)" id="1422975502900-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_bereich">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_bodenschutz">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_energieversorgung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_entsorgung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_entwicklungsschwerpunkte">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-6" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_forstwirtschaft">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_freizeiterholung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-8" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_gemeindefunktionsiedlungsentwicklung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_generischesobjekt">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-10" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_gewaesser">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-11" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_grenze">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-12" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_gruenzuggruenzaesur">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-13" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_klimaschutz">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-14" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_kommunikation">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-15" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_kulturellessachgut">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-16" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_laermschutzbereich">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-17" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_landwirtschaft">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-18" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_naturlandschaft">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-19" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_naturschutzrechtlichesschutzgebiet">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-20" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_asb">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-21" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_aufschuettungablagerung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-22" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_forstwirtschaft">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-23" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_freiraumagrarbereich">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-24" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_gib">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-25" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_grundwassergewaesserschutz">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-26" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_laermschutzzone">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-27" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_landschaftsschutz">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-28" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_luftverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-29" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_naturschutz">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-30" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_oberflaechengewaesser">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-31" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_oberflaechennahebodenschaetze">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-32" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_schienenverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-33" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_sonstigeinfrastruktur">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-34" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_sonstigersiedlungsbereich">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-35" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_sonstigezweckbindung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-36" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_sonstverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-37" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_strassenverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-38" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_ueberschwemmungsbereich">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-39" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_wasserverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-40" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nrw_zeitlinie">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-41" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_abfallentsorgung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-42" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_abwasser">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-43" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_asb">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-44" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_erholung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-45" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_gib">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-46" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_landschaftsschutz">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-47" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_luftverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-48" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_naturschutz">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-49" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_oberflaechennahebodenschaetze">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-50" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_regionalbedeutsamerwanderweg">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-51" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_regionalbedeutsamesportanlage">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-52" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_schienenverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-53" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_sonstverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-54" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_strassenverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-55" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_tiefliegenderohstoffe">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-56" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_tourismus">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-57" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_nsm_wasserverkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-58" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_raumkategorie">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-59" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_rohstoffsicherung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-60" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sonstigeinfrastruktur">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-61" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sonstigerfreiraumstruktur">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-62" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sonstigesiedlungsstruktur">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-63" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sozialeinfrastruktur">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-64" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_sperrgebiet">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-65" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_textabschnitt">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-66" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_verkehr">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-67" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_vorbhochwasserschutz">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-68" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_wasserschutz">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-69" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_wasserwirtschaft">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-70" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_windenergie">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-71" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_windenergienutzung">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-72" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_rp_zentralerort">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-73" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_so_bereich">
+            <column name="xplan_datumdesinkrafttretens" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-74" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_abgrenzung">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-75" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_allggruenflaeche">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-76" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_anpflanzungbindungerhaltung">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-77" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_ausgleich">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-78" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_bereich">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-79" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_biotopverbundflaeche">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-80" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_bodenschutzrecht">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-81" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_denkmalschutzrecht">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-82" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_erholungfreizeit">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-83" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_forstrecht">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-84" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_generischesobjekt">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-85" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_landschaftsbild">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-86" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_biotopschutz">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-87" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_brachflaeche">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-88" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_elementekulturlandschaft">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-89" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_forstlichefestsetzung">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-90" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_herrichtunggrundstueck">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-91" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_pflegeanpflanzung">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-92" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_pflegelandschaftsbild">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-93" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_schutzobjektlandesrecht">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-94" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_sonstigemassnahme">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-95" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_strukturenelementebesiedelterbereich">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-96" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_temporaererlandschaftsschutz">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-97" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nrw_verpflichtungwrrl">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-98" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nutzungsausschluss">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-99" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_nutzungserfordernisregelung">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-100" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_planerischevertiefung">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-101" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_schutzobjektbundesrecht">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-102" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_schutzobjektinternatrecht">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-103" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_schutzpflegeentwicklung">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-104" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_sonstigeabgrenzuung">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-105" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_sonstigesrecht">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-106" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_textabschnitt">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-107" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_textlichefestsetzungsflaeche">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-108" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-109" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_wasserrechtschutzgebiet">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-110" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_wasserrechtsonstige">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-111" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_wasserrechtwirtschaftabflusshochwschutz">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-112" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_zubegruenendegrundstueckflaeche">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-113" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_lp_zwischennutzung">
+            <column name="xplan_inkrafttretendatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-114" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_abgrabungsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-115" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_abstandsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-116" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_abstandsmass">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-117" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_anpflanzungbindungerhaltung">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-118" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_aufschuettungsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-119" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_ausgleich">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-120" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_ausgleichsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-121" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_ausgleichsmassnahme">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-122" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bahnverkehr">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-123" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_baugebiet">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-124" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_baugebietsteilflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-125" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_baugrenze">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-126" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_baulinie">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-127" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bauschutzbereich">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-128" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bereich">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-129" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bereichohneeinausfahrtlinie">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-130" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_besonderernutzungszweckflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-131" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_bodenschaetzeflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-132" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_denkmalschutzeinzelanlage">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-133" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_denkmalschutzeinzelanlagepunkt">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-134" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_denkmalschutzensembleflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-135" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_einfahrtpunkt">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-136" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_einfahrtsbereichlinie">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-137" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_eingriffsbereich">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-138" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_erhaltungsbereichflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-139" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_erneuerbareenergieflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-140" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_fachgesetz">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-141" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_festsetzungenbaugebiet">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-142" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_festsetzungnachlandesrecht">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-143" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_firstrichtungslinie">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-144" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_foerderungsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-145" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_freiflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-146" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gebaeudeflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-147" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gemeinbedarfsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-148" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-149" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gemeinschaftsanlagenzuordnung">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-150" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_generischesobjekt">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-151" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gestaltungbaugebiet">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-152" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gewaesserflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-153" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_grabungsschutzgebiet">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-154" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_gruenflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-155" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_hoehenmass">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-156" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_hoehenpunkt">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-157" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_immissionsschutz">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-158" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_kennzeichnungsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-159" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_kleintierhaltungflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-160" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_laermschutzbereich">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-161" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_landwirtschaft">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-162" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_landwirtschaftsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-163" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_landwirtschaftslinie">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-164" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_luftreinhalteflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-165" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_luftverkehrflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-166" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nebenanlagenausschlussflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-167" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nebenanlagenflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-168" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_nutzungsartengrenze">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-169" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_persgruppenbestimmteflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-170" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_regelungvergnuegungsstaetten">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-171" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_rekultivierungsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-172" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_schutzgebiet">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-173" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-174" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_schutzpflegeentwicklungsmassnahme">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-175" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_speziellebauweise">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-176" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_spielsportanlagenflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-177" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_strassenbegrenzungslinie">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-178" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_strassenkoerper">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-179" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_strassenverkehrsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-180" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_technikbestimmteflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-181" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_textabschnitt">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-182" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_textlichefestsetzungsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-183" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_ueberbaubaregrundstuecksflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-184" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_unverbindlichevormerkung">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-185" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_veraenderungssperre">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-186" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_verentsorgung">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-187" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_verentsorgungsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-188" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_verentsorgungsleitunglinie">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-189" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_verkehrsflaechebesondererzweckbestimmung">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-190" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_vorbhochwschutzflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-191" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_waldflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-192" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_wasserrechtlichefestsetzungsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-193" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_wasserwirtschaftsflaeche">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-194" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_bp_wegerecht">
+            <column name="xplan_inkrafttretensdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-195" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_abgrabung">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-196" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_abgrabungsflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-197" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_anpassungklimawandel">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-198" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_aufschuettung">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-199" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_aufschuettungsflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-200" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_ausgleichsflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-201" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bahnverkehr">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-202" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bauschutzbereich">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-203" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bebauungsflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-204" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bereich">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-205" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bodenschaetze">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-206" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_bodenschaetzeflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-207" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_denkmalschutzensemble">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-208" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_erhaltungssatzung">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-209" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_fachgesetz">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-210" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_gemeinbedarf">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-211" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_generischesobjekt">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-212" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_gewaesser">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-213" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_grabungsschutzgebiet">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-214" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_gruen">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-215" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_keinezentrabwasserbeseitigungflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-216" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_kennzeichnung">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-217" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_laermschutzbereich">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-218" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_landwirtschaftsflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-219" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_luftverkehr">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-220" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_nutzungsbeschraenkungsflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-221" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_privilegiertesvorhaben">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-222" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_priviligiertesvorhaben">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-223" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_schutzgebiet">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-224" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_schutzpflegeentwicklung">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-225" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_spielsportanlage">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-226" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_strassenverkehr">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-227" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_textabschnitt">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-228" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_textlichedarstellungsflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-229" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_unverbindlichevormerkung">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-230" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_verentsorgung">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-231" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_vorbehalteflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-232" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_vorbhochwschutz">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-233" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_waldflaeche">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-234" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_wasserrecht">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-235" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_wasserwirtschaft">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1422975502900-236" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addColumn tableName="xplan_fp_zentralerversorgungsbereich">
+            <column name="xplan_wirksamkeitsdatum" type="date(13)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

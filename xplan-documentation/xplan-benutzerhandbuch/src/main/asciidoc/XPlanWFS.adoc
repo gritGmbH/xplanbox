@@ -1,0 +1,196 @@
+[[xplanwfs]]
+== XPlanWFS
+
+Der XPlanWFS ist ein auf der Open Source Software https://www.deegree.org[deegree] basierender Dienst zur Abfrage von Vektordaten und ist konform zum Standard Web Feature Service (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC).
+
+[[xplanwfs-benutzung-des-xplanwfs]]
+=== Benutzung des XPlanWFS
+
+Der XPlanWFS unterstützt Anfragen per HTTP GET (KVP) und POST (XML). Die Einbindung in WFS Client Anwendungen ist möglich, die die o.g. Versionen für OGC WFS Dienste unterstützen.
+
+Der XPlanWFS bietet verschiedene Dienste zur Abfrage von XPlanGML an:
+
+[width="100%",cols="30%,30%,40%",options="header"]
+|===
+| XPlanGML Version
+| Service Endpoint
+| WFS Protokollversion
+| 3
+| _wfs30_
+| 1.1.0
+| 4.0
+| _wfs40_
+| 1.1.0 und 2.0.0
+| 4.1
+| _wfs41_
+| 1.1.0 und 2.0.0
+| 5.0
+| _wfs50_
+| 1.1.0 und 2.0.0
+| 5.1
+| _wfs51_
+| 1.1.0 und 2.0.0
+| 5.2
+| _wfs52_
+| 1.1.0 und 2.0.0
+| 5.3
+| _wfs53_
+| 1.1.0 und 2.0.0
+| 5.4
+| _wfs54_
+| 1.1.0 und 2.0.0
+|===
+
+Die folgende Tabelle fasst die vom XPlanWFS unterstützten Operationen zusammen.
+
+[width="97%",cols="30%,70%",options="header",]
+|=========================================================
+|WFS Operation |Inhalt
+|GetCapabilities |Abfrage der Fähigkeiten des Dienstes
+|DescribeFeatureType |Abfrage der Struktur von Objektarten
+|GetFeature |Abfrage von Planobjekten
+|ListStoredQueries |Abfrage der verfügbaren StoredQueries
+|DescribeStoredQueries |Beschreibung einer StoredQuery
+|=========================================================
+
+[[xplanwfs-adresse-des-dienstes]]
+==== Adresse des Dienstes
+
+----
+http://<host>:<port>/xplan-wfs/services/wfs30?
+http://<host>:<port>/xplan-wfs/services/wfs40?
+http://<host>:<port>/xplan-wfs/services/wfs41?
+http://<host>:<port>/xplan-wfs/services/wfs50?
+http://<host>:<port>/xplan-wfs/services/wfs51?
+http://<host>:<port>/xplan-wfs/services/wfs52?
+http://<host>:<port>/xplan-wfs/services/wfs53?
+http://<host>:<port>/xplan-wfs/services/wfs54?
+----
+
+[[xplanwfs-inhalte-des-datendienstes]]
+=== Inhalte des Datendienstes
+
+[[xplanwfs-operationen]]
+=== Operationen
+
+Das folgende Kapitel beschreibt die Operationen, die mit dem XPlanWFS
+durchführbar sind.
+
+[[xplanwfs-getcapabilities]]
+==== GetCapabilities
+
+Die GetCapabilities Abfrage dient der Auskunft über die Fähigkeiten des
+WFS Dienstes. Dabei handelt es sich beispielsweise um Informationen zum
+Dienstbetreiber, zu den unterstützten Operationen sowie zu den durch den
+WFS angebotenen WFS Objektarten.
+
+----
+http://<host>:<port>/xplan-wfs/services/wfs30?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs40?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs41?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs50?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs51?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs52?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs53?request=GetCapabilities&Service=WFS
+http://<host>:<port>/xplan-wfs/services/wfs54?request=GetCapabilities&Service=WFS
+----
+
+[[xplanwfs-getfeature]]
+==== GetFeature
+
+Die Operation GetFeature stellt die Kernfunktionalität des XPlanWFS dar.
+Die Operation ermöglicht es, die angebotenen Ebene zu den Planinhalten
+mit GIS Clients zu nutzen, die die Schnittstellen WFS 1.1.0 bzw. WFS
+2.0.0 unterstützen.
+
+----
+http://<host>:<port>/xplan-wfs/services/wfs30?request=GetFeature&Service=WFS&Version=1.1.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-wfs/services/wfs40?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-wfs/services/wfs41?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-wfs/services/wfs50?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-wfs/services/wfs51?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-wfs/services/wfs52?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-wfs/services/wfs53?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+http://<host>:<port>/xplan-wfs/services/wfs54?request=GetFeature&Service=WFS&Version=2.0.0&typename=xplan:BP_Bereich
+----
+
+[[xplanwfs-describefeaturetype]]
+==== DescribeFeatureType
+
+Die Operation DescribeFeatureType gibt Informationen zur Struktur der
+einzelnen Feature Types wieder.
+
+----
+http://<host>:<port>/xplan-wfs/services/wfs30?request=DescribeFeatureType&Service=WFS&Version=1.1.0
+http://<host>:<port>/xplan-wfs/services/wfs40?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs41?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs50?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs51?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs52?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs53?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs54?request=DescribeFeatureType&Service=WFS&Version=2.0.0
+----
+
+[[xplanwfs-liststoredqueries]]
+==== ListStoredQueries
+
+Die Operation ListStoredQueries gibt Informationen über die verfügbaren
+StoredQueries zurück. Diese Operation steht nur in der Protokollversion
+2.0.0 über die Endpunkte __wfs40__, __wfs41__, __wfs50__, __wfs51__, __wfs52__, __wfs53__ und __wfs54__ zur Verfügung.
+
+----
+http://<host>:<port>/xplan-wfs/services/wfs40?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs41?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs50?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs51?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs52?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs53?request=ListStoredQueries&Service=WFS&Version=2.0.0
+http://<host>:<port>/xplan-wfs/services/wfs54?request=ListStoredQueries&Service=WFS&Version=2.0.0
+----
+
+==== StoredQueries
+
+Neben den üblichen StoredQueries urn:ogc:def:query:OGC-WFS::GetFeatureById
+und urn:ogc:def:query:OGC-WFS::GetFeatureByType bieten die Endpunkte __wfs40__, __wfs41__, __wfs50__, __wfs51__, __wfs52__, __wfs53__ und __wfs54__
+drei weitere StoredQueries an. Darüber lassen sich die Vektordaten eines einzelnen Plans anhand im XPlanGML gesetzten Eigenschaften anfragen:
+
+
+ * urn:ogc:def:query:OGC-WFS::PlanName
+   - Filter auf XP_Plan/name
+
+ * urn:ogc:def:query:OGC-WFS::PlanId
+   - Filter auf XP_Plan/nummer
+
+ * urn:ogc:def:query:OGC-WFS::InternalId
+   - Filter auf XP_Plan/internalId
+   - Die internalId kann, bei entsprechender Aktivierung durch den Adminstrator, beim Import eines Plans aus einer Verfahrensdatenbank ausgelesen werden
+
+
+Diese Eigenschaften sollten bei den importierten Plänen eindeutig sein, nur dann liefert die StoredQuery exakt ein Anfrageergebnis. Pläne ohne Rechtsstand werden generell nicht über die StoredQueries ausgegeben.
+
+//Ist die getrennte Datenhaltung nicht aktiviert, gilt folgende Einschränkung: Sind mehrere Pläne mit der gleichen Eigenschaft importiert, wird der Plan mit dem aktuellsten Verfahrensstatus zurückgegeben. Zum Beispiel wird der Plan im Rechtsstand __inkraft getreten__ zurückgegeben, wenn daneben der Plan im Rechtstand __Entwurf__ existiert.
+
+Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage für
+den Plan mit dem Namen _Musterdorf_ in der XPlanGML Version 5.4:
+
+----
+http://<host>:<port>/xplan-wfs/services/wfs54?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf
+----
+
+[[xplanwfs-koordinatenreferenzsysteme]]
+=== Koordinatenreferenzsysteme
+
+Der XPlanWFS unterstützt die folgenden
+Koordinatenreferenzsysteme:
+
+ * EPSG:25832,
+ * EPSG:25833,
+ * EPSG:325833,
+ * EPSG:31466,
+ * EPSG:31467,
+ * EPSG:31468,
+ * EPSG:31469,
+ * EPSG:4258,
+ * EPSG:4326,
+ * EPSG:4839,
+ * CRS:84.

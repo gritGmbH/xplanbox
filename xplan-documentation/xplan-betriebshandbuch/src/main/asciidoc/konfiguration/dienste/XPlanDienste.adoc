@@ -1,0 +1,27 @@
+[[konfiguration_xplandienste]]
+=== XPlanDienste
+
+Die folgenden Informationen gelten für alle von der xPlanBox bereitgestellten XPlanDienste: <<xplanwms, XPlanWMS/XPlanWerkWMS>>, <<xplanwfs, XPlanWFS>> und <<xplansynwfs, XPlanSynWFS>>.
+
+[[manuelle-anpassung-der-bbox_cache.properties]]
+==== Manuelle Anpassung der bbox_cache.properties
+
+Aktuell kann es dazu kommen, dass die in den Capabilities-Dokumenten angegebene BoundingBox nicht alle in der xPlanBox importierten Daten umfasst. Dies kann unter anderem zur Folge haben, dass die Daten durch Clients nicht oder nur unvollständig angezeigt werden. Betroffen sind sowohl der XPlanWMS/XPlanWerkWMS, XPlanWFS sowie XPlanSynWFS.
+
+Es wird daher empfohlen, die BoundingBox manuell auf den Bereich zu konfigurieren, der den gesamten zu erfassenden Bereich umfasst. Dieser kann sowohl bereits importierte als auch zukünftig noch einzupflegende Planwerke beinhalten.
+
+Die BoundingBox wird für jeden Workspace in der Datei _bbox_cache.properties_ in dem Verzeichnis _.deegree/<XPlanDienst-Workspace>/datasources/feature_ konfiguriert. Sollte die Datei noch nicht existieren, ist diese manuell anzulegen. Andernfalls kann der Inhalt ausgetauscht werden, sofern keine weiteren manuellen Anpassungen erfolgt sind. Die Dienste dürfen beim Anlegen und Anpassen der Datei nicht gestartet sein.
+
+Beispiel: Ausschnitt aus der _bbox_cache.properties_ Datei (ein vollständiges Beispiel findet sich im <<bbox_cache.properties, Anhang>>)
+
+----
+....
+{http\://www.deegree.org/xplanung/1/0}FP_Strassenverkehr=epsg\:4326,8.0,53.0,9.0,54.0
+{http\://www.deegree.org/xplanung/1/0}BP_EinfahrtPunkt=epsg\:4326,8.0,53.0,9.0,54.0
+{http\://www.deegree.org/xplanung/1/0}BP_SchutzPflegeEntwicklungsMassnahme=epsg\:4326,8.0,53.0,9.0,54.0
+{http\://www.deegree.org/xplanung/1/0}FP_Plan=epsg\:4326,8.0,53.0,9.0,54.0
+{http\://www.deegree.org/xplanung/1/0}XP_Grenze=epsg\:4326,8.0,53.0,9.0,54.0
+{http\://www.deegree.org/xplanung/1/0}FP_Luftverkehr=epsg\:4326,8.0,53.0,9.0,54.0
+{http\://www.deegree.org/xplanung/1/0}BP_UeberbaubareGrundstuecksFlaeche=epsg\:4326,8.0,53.0,9.0,54.0
+....
+----

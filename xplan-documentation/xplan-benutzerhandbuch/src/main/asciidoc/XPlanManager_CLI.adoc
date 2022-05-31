@@ -1,0 +1,381 @@
+[[xplanmanager-cli]]
+=== XPlanManagerCLI
+
+Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
+dem Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
+kontrollieren. Dabei ist das Kommandozeilenwerkzeug in der Lage,
+XPlanGML-Dokumente in die Datenhaltung zu Laden, zu Löschen,
+Listenausgaben zu erzeugen sowie eingebettete Rasterpläne zu
+importieren.
+
+[[xplanmanager-cli-benutzungsanleitung]]
+==== Benutzungsanleitung
+
+Beim XPlanManagerCLI handelt es sich um ein Kommandozeilentool, das
+parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
+in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
+Ort aufrufbar.
+
+[[xplanmanager-cli-konfiguration-ueber-datei]]
+===== Konfiguration über Datei
+
+In dem Verzeichnis _<manager-cli-directory>/etc/_ befindet sich die
+Konfigurationsdatei __managerConfiguration.properties__, welche genutzt
+werden kann, um generelle Konfigurationen an dem Kommandozeilentool
+durchzuführen.
+
+Falls der Parameter `managerconfiguration` während eines Aufrufs des
+Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
+_etc/_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
+Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
+
+So kann über das Property _defaultBboxIn4326_ konfiguriert werden, welche
+default Bounding-Box während
+der Konfigurationserzeugung für einen neuen Service genutzt werden
+soll. Dieser Wert wird genutzt, falls von dem zu importierenden GML
+keine Bounding-Box ermittelt werden kann. Häufige Gründe dafür sind zum
+Beispiel das Fehlen der CRS-Definition oder das Vorkommen von invaliden
+Geometrien. Das CRS der Bounding-Box muss in EPSG:4326 angegeben werden.
+Falls dieser Parameter nicht gesetzt oder leer ist, wird eine default
+Bounding-Box genutzt, welche die gesamte Welt abdeckt.
+
+[[xplanmanager-cli-hilfe]]
+===== Hilfe
+
+Die Hilfe mit den Angaben zu den möglichen Eingabeparametern lässt sich
+mit dem Parameter `help` ausgeben.
+
+Aufruf:
+
+----
+./XPlanManager -help
+----
+
+Ausgabe:
+
+----
+Usage: XPlanManager <options>
+
+ -help
+ -list
+ -createdb <DB Name> <JDBC-Connection> -u <user> -p <passwort> [-t <PostGis Template>]
+ -updatewmssortdate [--managerconfiguration <XPLANBOX_CONFIG>]
+ -import [--force] <xplanarchiv> [--crs <CRS>] [--workspace <workspace verzeichnis>] [--managerconfiguration <XPLANBOX_CONFIG>]
+ -export <planid> [<verzeichnis>] [--managerconfiguration <XPLANBOX_CONFIG>]
+ -delete <planid> [--workspace <workspace verzeichnis>]
+
+Raster-Operationen:
+
+ -addlayer <bplan|lplan|rplan|fplan|soplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]
+ -removelayer <bplan|lplan|rplan|fplan|soplan> <layername>
+ -addcategory <bplan|lplan|rplan|fplan|soplan> [<uppercategory>] <categoryname> <categorytitle>
+ -removecategory <bplan|lplan|rplan|fplan|soplan> <categoryname>
+ -movelayer <bplan|lplan|rplan|fplan|soplan> <layername> <categoryname>
+----
+
+[[xplanmanager-cli-auflistung]]
+===== Auflistung
+
+Der Parameter `list` gibt die Liste der geladenen Pläne aus. Durch die Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ kann der Pfad zum Workspace der xPlanBox gesetzt werden.
+
+Aufruf:
+
+----
+./XPlanManager -list
+----
+
+Beispiel Ausgabe:
+
+----
+Id: 3, Version: XPLAN_3, Typ: FP_Plan, Name: Gesamtgeltungsbereich Flächennutzungsplan, Nummer: 12062024, GKZ: 12062024, Features: 2808, Importiert: 2010-02-18 17:57:11.669
+Id: 6, Version: XPLAN_3, Typ: BP_Plan, Name: Lokstedt, Nummer: 56, GKZ: 02000000, Features: 251, Importiert: 2010-02-18 17:58:57.2
+Id: 7, Version: XPLAN_3, Typ: BP_Plan, Name: Unbenannter Plan (3d099551-1f49-4b77-9008-68237a60426b), Nummer: -, GKZ: 4011000, Features: 351, Importiert: 2010-02-18 17:59:38.704
+Id: 8, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan 2135, Nummer: 2135, GKZ: 4011000, Features: 241, Importiert: 2010-02-18 18:00:45.077
+Id: 9, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22, GKZ: 1234567, Features: 146, Importiert: 2010-02-18 18:01:41.563
+Id: 10, Version: XPLAN_3, Typ: RP_Plan, Name: Regionalplanbeispiel Bereich Siedlungsstruktur, Nummer: Siedlungsstruktur 1, Features: 282, Importiert: 2010-02-18 18:02:25.616
+Id: 11, Version: XPLAN_3, Typ: LP_Plan, Name: Landschaftsplan 16 Gemeinde XYZ", Nummer: 16, Features: 1659, Importiert: 2010-02-18 18:03:22.091
+Id: 12, Version: XPLAN_3, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22, GKZ: 02000000, Features: 1350, Importiert: 2010-02-18 21:16:06.753
+Anzahl Pläne: 11
+----
+
+[[xplanmanager-cli-create]]
+===== XPlanDB-Datenbank erzeugen
+
+Mit dem XPlanManagerCLI kann die Datenhaltung XPlanDB erzeugt
+werden. Der XPlanManager wird beim Erzeugen der Datenhaltung auf diese
+neue Datenbank eingestellt.
+
+----
+./XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres
+----
+
+
+[[xplanmanager-cli-import]]
+===== Import
+
+Ein Import kann durch Angabe des Parameters `import` gefolgt vom Pfad
+zum XPlanArchiv angestoßen werden. Bei dem Import können
+XPlanGML-Vektordaten und XPlanGML-Rasterdaten ohne zusätzlichen
+Parameter in die Datenbasis geladen werden.
+
+Beispiel Aufruf:
+
+----
+./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip
+----
+
+Während des Imports finden zahlreiche Konsistenz- und
+Korrektheitsüberprüfungen statt. Dies betrifft u.a. Schemavalidität,
+Geometrievalidität, Korrektheit von Links, Angabe von
+Koordinatenreferenzsystemen, u.v.m.
+
+Folgende Parameter können mit angegeben werden, um z. B. fehlende
+Informationen anzugeben.
+
+----
+--force
+--crs
+--workspace
+--managerconfiguration
+----
+
+Bitte beachten Sie die korrekte Reihenfolge der Parameterangabe.
+
+_-force_
+
+Enthält das XPlanGML-Dokument Geometriefehler o.ä., ist es
+dringend angeraten, diese vor einem Import zu bereinigen. Der Import eines Planes kann mit dem Parameter `force` erzwungen werden.
+
+CAUTION: Bitte beachten Sie, dass dabei vorliegenden Geometriefehler o.ä.
+übernommen werden und der importierte Plan dadurch fehlerhaft ist. Die
+Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin
+zu unerwarteten Verhalten der xPlanBox reichen.
+
+----
+./XPlanManager -import --force ../Input-Planverzeichnis/Infrastruktur.zip
+----
+
+_–crs_
+
+Fehlt die Angabe des Koordinatenreferenzsystems in den Daten, so kann
+dieses mit dem Parameter `crs` übergeben werden.
+
+Beispiel Aufruf:
+
+----
+./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --crs EPSG:31467
+----
+
+_–workspace_
+
+Sind mehrere Workspace-Verzeichnisse vorhanden, so kann durch den
+Parameter `workspace` das entsprechende Verzeichnis übergeben
+werden.
+
+----
+./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --workspace ~/.deegree/xplansyn-wms-workspace
+----
+
+_–managerconfiguration_
+
+Sind mehrere Konfigurationen für den XPlanManager vorhanden, so kann durch den
+Parameter `managerconfiguration` die entsprechende Konfiguration
+übergeben werden.
+
+----
+./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --managerconfiguration <XPLANBOX_CONFIG>
+----
+
+Beispiel Ausgabe für erfolgreichen Import
+
+----
+Analyse des XPlanArchivs
+('../../resources/testdata/XPlanGML_3_0/Infrastruktur.zip')...OK.
+- Analyse des Dokuments...OK [1167 ms]: XPLAN_3, RP_Plan, EPSG:31466
+- Schema-Validierung...OK [5135 ms]
+- Einlesen der Features (+ Geometrievalidierung)...OK [6486 ms]: 492 Features
+
+Geometrie-Warnungen: 20
+- LineString (Ende in Zeile 33698, Spalte 26): Geschlossene Kurve verwendet falsche Laufrichtung (CW).
+
+- Überprüfung der XLink-Integrität...OK [3 ms]
+- Überprüfung der externen Referenzen...OK [1 ms]
+- Erzeugen der XPlan-Syn Features...Keine Beschreibung für externen Code 'RpTextDefaultSymbol' (CodeList XP_StylesheetListe) gefunden. Verwende Code als Beschreibung. Keine Beschreibung für externen Code 'RpTextDefaultSymbol' (CodeList XP_StylesheetListe) gefunden. Verwende Code als Beschreibung.
+...
+OK [6376 ms]
+- Einfügen der Features in den FeatureStore (XPLAN_3)...OK [9873 ms].
+- Einfügen der Features in den FeatureStore (XPLAN_SYN)...OK [9217 ms].
+- Einfügen in Manager-DB...OK [49 ms].
+- Einfügen von Plan-Artefakt 'xplan.gml'...OK.
+- Persistierung...OK [109 ms].
+Plan wurde eingefügt. Zugewiesene Id: 13
+----
+
+[[xplanmanager-cli-sortwms]]
+===== Aktualisierung des Sortierfeldes für die Visualisierung
+
+Mit dem XPlanManagerCLI können die Werte der Sortierfelder in der
+Datenbank anhand einer bestehenden _managerConfiguration.properties_
+Datei aktualisiert werden. Der Aufruf kann ohne Parameter oder mit dem
+optionalen Parameter `managerconfiguration` erfolgen. Details zu
+diesem Parameter sind im Abschnitt
+Konfiguration über Datei <<xplanmanager-cli-konfiguration-ueber-datei>> zu
+finden.
+
+----
+./XPlanManager -updatewmssortdate
+----
+
+[[xplanmanager-cli-rasterdatenanalyse]]
+===== Rasterdatenanalyse
+
+Die Rasterdaten können beim Import auf Nutzbarkeit überprüft werden,
+damit sichergestellt ist, dass diese korrekt in den XPlanWMS
+eingebettet werden können.
+
+Beim Import wird das CRS des Rasterplans überprüft.
+
+Beispiel Aufruf:
+
+----
+./XPlanManager -import ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration <XPLANBOX_CONFIG>
+----
+
+Beispiel Ausgabe:
+
+----
+Evaluationsergebniss von referenzierten Rasterdaten:
+  - Name: B-Plan_Klingmuehl_Heideweg_Karte.tif Unterstütztes CRS: Ja Unterstütztes Bildformat: Ja
+Es existieren keine invaliden Rasterdaten
+- Einlesen der Features (+ Geometrievalidierung)...OK [839 ms]: 500 Features
+- Überprüfung der XLink-Integrität...OK [2 ms]
+
+- Erzeugen/Einsortieren der Rasterkonfigurationen (Veröffentlichungsdatum: 01.02.2002)...Succeeding plan id: null
+73_B-Plan_Klingmuehl_Heideweg_Karte
+77_B-Plan_Klingmuehl_Heideweg_Karte
+79_B-Plan_Klingmuehl_Heideweg_Karte
+OK [1591 ms]
+
+Rasterscans:
+ - B-Plan_Klingmuehl_Heideweg_Karte.tif
+WMS Konfiguration für Id 79 nach /home/user/.deegree/xplansyn-wms-workspace geschrieben.
+XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: 79
+----
+
+Passt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so
+erhält der Nutzer die Option, den Plan ohne Erzeugung der
+Rasterkonfiguration zu importieren:
+
+----
+Evaluationsergebniss von referenzierten Rasterdaten:
+  - Name: Abrundungssatzung_Gruhno_ergb.tif Unterstütztes CRS: Kein Unterstütztes Bildformat: Ja
+Aufgrund invalider Rasterdaten wird der Import abgebrochen. Sie können den Import ohne die Erzeugung von Rasterkonfigurationen erzwingen, indem Sie die Option --force angeben.
+----
+
+[[xplanmanager-cli-bearbeitung-von-ebenenbaeumen]]
+===== Bearbeitung von Ebenenbäumen
+
+Die Bearbeitung von Ebenenbäumen wird als Erweiterung des XPlanManagers
+bereitgestellt. Hiermit ist es möglich, Rasterlayer zusätzlich zur
+sortierten Kategorieebene auch noch thematisch zu organisieren. Die
+sortierte Kategorieebene kann nicht manuell bearbeitet werden. Die
+bereitgestellten Funktionen ergeben sich aus folgender Spezifikation:
+
+.  XPlanManager fügt eine Ebene in den Ebenenbaum ein. Wird der
+_<categoryname>_ weggelassen, wird die Ebene direkt unter der
+Wurzelebene eingefügt. Die `tiffid` ist hierbei der Datei-Basisname der
+gewünschten TIFF-Datei von dem Rasterplan.
++
+----
+./XPlanManager -addlayer <bplan|rplan|fplan|lplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]
+----
+
+.  XPlanManager entfernt eine Ebene aus der Ebenenkonfiguration.
++
+----
+./XPlanManager -removelayer <bplan|rplan|fplan|lplan> <layername>
+----
+
+.  XPlanManager fügt eine Kategorieebene hinzu. Wird der
+_<uppercategory>_ weggelassen, wird die Ebene direkt unter der
+Wurzelebene eingefügt, andernfalls wird diese unterhalb der mit
+_<uppercategory>_ angegebenen Kategorieebene eingefügt. Das Verhalten
+ist rekursiv, d.h. die Verschachtelung der Kategorieebenen kann beliebig
+tief erfolgen.
++
+----
+./XPlanManager -addcategory <bplan|rplan|fplan|lplan> [<uppercategory>] <categoryname> <categorytitle>
+----
+
+.  XPlanManager löscht eine Kategorieebene. *Achtung:* Handelt es sich
+bei der zu löschenden Kategorieebene um eine Ebene mit untergeordneten
+Kategorien, werden diese ebenfalls gelöscht!
++
+----
+./XPlanManager -removecategory <bplan|rplan|fplan|lplan> <categoryname>
+----
+
+.  XPlanManager bewegt eine Ebene in eine andere Kategorieebene.
++
+----
+./XPlanManager -movelayer <bplan|rplan|fplan|lplan> <layername> <categoryname>
+----
+
+[[xplanmanager-cli-export]]
+===== Export
+
+Der Export eines Planes erfolgt unter Angabe des Parameters `export`
+gefolgt von der PlanID (diese kann zuvor mit dem Parameter `list` herausgefunden werden)
+und dem Ausgabeverzeichnis.
+
+Beispiel Aufruf:
+
+----
+./XPlanManager -export 9 outputverzeichnis
+----
+
+Beispiel Ausgabe für erfolgreichen Export:
+
+----
+- Schreibe Artefakt 'xplan.gml'...OK.
+Plan 9 wurde nach 'xplan-exported-9.zip' exportiert.
+----
+
+[[xplanmanager-cli-loeschen]]
+===== Löschen
+
+Beim Löschen wird dem Parameter `delete` die PlanID (diese kann zuvor mit
+`list` herausgefunden werden) übergeben.
+
+Beispiel Aufruf:
+
+----
+./XPlanManager -delete 1
+----
+
+Beispiel Ausgabe:
+
+----
+- Entferne Plan 1 aus dem FeatureStore (XPLAN_3)...OK
+- Entferne Plan 1 aus dem FeatureStore (XPLAN_SYN)...OK
+- Entferne Plan 1 aus der Manager-DB...OK
+- Persistierung...OK
+Plan 1 wurde gelöscht.
+----
+
+[[xplanmanager-cli-troubleshooting]]
+===== Troubleshooting
+
+Beim Import sehr großer Archive, kann es zu einem _OutOfMemoryError_
+Laufzeitfehler kommen, da die Java Virtual Machine keinen weiteren
+freien Speicher allokieren kann. Wenn der Server noch über freien
+Arbeitsspeicher verfügt, dann kann dieser über die Umgebungsvariable
+`JAVA_OPTS` unter Linux wie folgt erhöht werden:
+
+----
+export JAVA_OPTS='-Xmx4096m'
+----
+
+Weitere Informationen zur Konfiguration des Servers im Kapitel
+<<bekannte-probleme,Bekannte Probleme - Kapazitätsbezogene Einschränkungen>> und
+im Betriebshandbuch.

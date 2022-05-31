@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+  #%L
+  xplan-validator-core - XPlan Validator Core Komponente
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<!--Erzeugt mit FZK (www.iai.fzk.de) XPlanGML-Toolbox, Erstellungsdatum: 03/25/10-->
+<XPlanAuszug xmlns="http://www.xplanung.de/xplangml/4/1"
+             xmlns:xplan="http://www.xplanung.de/xplangml/4/1" xmlns:gml="http://www.opengis.net/gml/3.2"
+             xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.xplanung.de/xplangml/4/1 ../../../../../../../.././../../xplan-schemas/src/main/resources/appschemas/XPlanGML_4_1/XPlanung-Operationen.xsd"
+             gml:id="GML_3aebe595-a72f-43b9-8dd3-c3c757edd558">
+  <gml:boundedBy>
+    <gml:Envelope srsName="EPSG:31467">
+      <gml:lowerCorner>3478519.018 5889194.887</gml:lowerCorner>
+      <gml:upperCorner>3480922.418 5890728.997</gml:upperCorner>
+    </gml:Envelope>
+  </gml:boundedBy>
+  <gml:featureMember>
+    <xplan:BP_Bereich gml:id="GML_7af470e9-0167-43ae-823d-56e4241eab9d">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:31467">
+          <gml:lowerCorner>3478519.018 5889194.887</gml:lowerCorner>
+          <gml:upperCorner>3480922.418 5890728.997</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:nummer>0</xplan:nummer>
+      <xplan:name>defaultBereich</xplan:name>
+      <xplan:bedeutung>9999</xplan:bedeutung>
+      <xplan:inhaltBPlan xlink:href="#GML_999-so-textabschnitt" />
+    </xplan:BP_Bereich>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:SO_TextAbschnitt gml:id="GML_999-so-textabschnitt">
+      <xplan:rechtscharakter>3000</xplan:rechtscharakter>
+    </xplan:SO_TextAbschnitt>
+  </gml:featureMember>
+</XPlanAuszug>

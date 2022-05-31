@@ -1,0 +1,8 @@
+[[editieren-von-plänen]]
+=== Editieren von Plänen
+
+Die Möglichkeit Pläne zu editieren, kann in der Datei_<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder deaktiviert werden:
+
+----
+activateEditor=[true|false]
+----

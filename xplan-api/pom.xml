@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>xplan-api</artifactId>
+  <packaging>pom</packaging>
+  <description>Modul zur Gruppierung der REST-API</description>
+
+  <parent>
+    <groupId>de.latlon.product.xplanbox</groupId>
+    <artifactId>xplanbox</artifactId>
+    <version>5.1-SNAPSHOT</version>
+  </parent>
+
+  <modules>
+    <module>xplan-api-commons</module>
+    <module>xplan-api-validator</module>
+    <module>xplan-api-manager</module>
+  </modules>
+
+  <properties>
+    <base.package.name>de.latlon.xplanbox</base.package.name>
+    <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+    <jakarta.ws.rs-api.version>2.1.2</jakarta.ws.rs-api.version>
+    <jersey.version>2.35</jersey.version>
+    <swagger.version>2.1.12</swagger.version>
+    <swagger-ui.version>3.17.0</swagger-ui.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/gen/java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.1</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+        </plugin>
+    </plugins>
+  </build>
+</project>

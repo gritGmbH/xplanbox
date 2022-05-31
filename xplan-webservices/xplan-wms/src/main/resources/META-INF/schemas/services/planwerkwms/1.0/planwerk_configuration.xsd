@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  xplan-wms - deegree XPlan WebMapService
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.lat-lon.de/services/planwerk" elementFormDefault="qualified"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        jaxb:version="2.1">
+
+  <annotation>
+    <appinfo>
+      <jaxb:schemaBindings>
+        <jaxb:package name="de.latlon.xplan.planwerkwms.jaxb"/>
+      </jaxb:schemaBindings>
+    </appinfo>
+  </annotation>
+
+  <element name="Planwerk">
+    <complexType>
+      <sequence>
+        <element name="PlanwerkWms" type="string"/>
+        <element name="Name" type="string"/>
+        <element name="Envelope" type="string"/>
+        <element name="ManagerId" type="int" maxOccurs="unbounded"/>
+        <element name="WmsTitle" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        <element name="ResourceIdentifier" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        <element name="DataMetadataUrl" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        <element name="ServiceMetadataUrl" type="string" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+
+</schema>

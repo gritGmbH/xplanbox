@@ -1,0 +1,297 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="lyn (generated)" id="1647585418942-1">
+        <createTable tableName="xplan_bp_wohngebaeudeflaeche">
+            <column name="attr_gml_id" type="TEXT">
+                <constraints primaryKey="true" primaryKeyName="xplan_bp_wohngebaeudeflaeche_pkey"/>
+            </column>
+            <column name="xplan_gmlid" type="TEXT"/>
+            <column name="xplan_gmlname" type="TEXT"/>
+            <column name="xplan_gmldescription" type="TEXT"/>
+            <column name="xplan_xpversion" type="TEXT"/>
+            <column name="xplan_xpplantype" type="TEXT"/>
+            <column name="xplan_xpplanname" type="TEXT"/>
+            <column name="xplan_mgr_planid" type="INTEGER"/>
+            <column name="xplan_gueltigkeitbeginn" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_gueltigkeitende" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="xplan_wmssortdate" type="date"/>
+            <column name="xplan_uuid" type="TEXT"/>
+            <column name="xplan_text" type="TEXT"/>
+            <column name="xplan_rechtsstand" type="TEXT"/>
+            <column name="xplan_rechtsstandcode" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlage" type="TEXT"/>
+            <column name="xplan_gesetzlichegrundlagecode" type="TEXT"/>
+            <column name="xplan_textabschnitte" type="TEXT"/>
+            <column name="xplan_begruendungabschnitte" type="TEXT"/>
+            <column name="xplan_gliederung1" type="TEXT"/>
+            <column name="xplan_gliederung2" type="TEXT"/>
+            <column name="xplan_ebene" type="INTEGER"/>
+            <column name="xplan_gehoertzubereich" type="TEXT"/>
+            <column name="xplan_hatgenerattribut" type="TEXT"/>
+            <column name="xplan_aufschrift" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchflaeche" type="TEXT"/>
+            <column name="xplan_laermkontingent" type="TEXT"/>
+            <column name="xplan_laermkontingentgebiet" type="TEXT"/>
+            <column name="xplan_zusatzkontingent" type="TEXT"/>
+            <column name="xplan_zusatzkontingentflaeche" type="TEXT"/>
+            <column name="xplan_richtungssektorgrenze" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchmassnahme" type="TEXT"/>
+            <column name="xplan_hoehenangabe" type="TEXT"/>
+            <column name="xplan_externereferenz" type="TEXT"/>
+            <column name="xplan_flaechenschluss" type="TEXT"/>
+            <column name="xplan_dnmin" type="numeric"/>
+            <column name="xplan_dnminuom" type="TEXT"/>
+            <column name="xplan_dnmax" type="numeric"/>
+            <column name="xplan_dnmaxuom" type="TEXT"/>
+            <column name="xplan_dn" type="numeric"/>
+            <column name="xplan_dnuom" type="TEXT"/>
+            <column name="xplan_dnzwingend" type="numeric"/>
+            <column name="xplan_dnzwingenduom" type="TEXT"/>
+            <column name="xplan_fr" type="numeric"/>
+            <column name="xplan_fruom" type="TEXT"/>
+            <column name="xplan_dachform" type="TEXT"/>
+            <column name="xplan_dachformcode" type="TEXT"/>
+            <column name="xplan_detailliertedachform" type="TEXT"/>
+            <column name="xplan_detailliertedachformcode" type="TEXT"/>
+            <column name="xplan_maxzahlwohnungen" type="INTEGER"/>
+            <column name="xplan_fmin" type="numeric"/>
+            <column name="xplan_fminuom" type="TEXT"/>
+            <column name="xplan_fmax" type="numeric"/>
+            <column name="xplan_fmaxuom" type="TEXT"/>
+            <column name="xplan_bmin" type="numeric"/>
+            <column name="xplan_bminuom" type="TEXT"/>
+            <column name="xplan_bmax" type="numeric"/>
+            <column name="xplan_bmaxuom" type="TEXT"/>
+            <column name="xplan_tmin" type="numeric"/>
+            <column name="xplan_tminuom" type="TEXT"/>
+            <column name="xplan_tmax" type="numeric"/>
+            <column name="xplan_tmaxuom" type="TEXT"/>
+            <column name="xplan_gfzmin" type="numeric"/>
+            <column name="xplan_gfzmax" type="numeric"/>
+            <column name="xplan_gfz" type="numeric"/>
+            <column name="xplan_gfz_ausn" type="numeric"/>
+            <column name="xplan_gfmin" type="numeric"/>
+            <column name="xplan_gfminuom" type="TEXT"/>
+            <column name="xplan_gfmax" type="numeric"/>
+            <column name="xplan_gfmaxuom" type="TEXT"/>
+            <column name="xplan_gf" type="numeric"/>
+            <column name="xplan_gfuom" type="TEXT"/>
+            <column name="xplan_gf_ausn" type="numeric"/>
+            <column name="xplan_gf_ausnuom" type="TEXT"/>
+            <column name="xplan_bmz" type="numeric"/>
+            <column name="xplan_bmz_ausn" type="numeric"/>
+            <column name="xplan_bmmin" type="numeric"/>
+            <column name="xplan_bmminuom" type="TEXT"/>
+            <column name="xplan_bmmax" type="numeric"/>
+            <column name="xplan_bmmaxuom" type="TEXT"/>
+            <column name="xplan_bm" type="numeric"/>
+            <column name="xplan_bmuom" type="TEXT"/>
+            <column name="xplan_bm_ausn" type="numeric"/>
+            <column name="xplan_bm_ausnuom" type="TEXT"/>
+            <column name="xplan_grzmin" type="numeric"/>
+            <column name="xplan_grzmax" type="numeric"/>
+            <column name="xplan_grz" type="numeric"/>
+            <column name="xplan_grz_ausn" type="numeric"/>
+            <column name="xplan_grmin" type="numeric"/>
+            <column name="xplan_grminuom" type="TEXT"/>
+            <column name="xplan_grmax" type="numeric"/>
+            <column name="xplan_grmaxuom" type="TEXT"/>
+            <column name="xplan_gr" type="numeric"/>
+            <column name="xplan_gruom" type="TEXT"/>
+            <column name="xplan_gr_ausn" type="numeric"/>
+            <column name="xplan_gr_ausnuom" type="TEXT"/>
+            <column name="xplan_zmin" type="INTEGER"/>
+            <column name="xplan_zmax" type="INTEGER"/>
+            <column name="xplan_zzwingend" type="INTEGER"/>
+            <column name="xplan_z" type="INTEGER"/>
+            <column name="xplan_z_ausn" type="INTEGER"/>
+            <column name="xplan_abweichungbaunvo" type="TEXT"/>
+            <column name="xplan_abweichungbaunvocode" type="TEXT"/>
+            <column name="xplan_bauweise" type="TEXT"/>
+            <column name="xplan_bauweisecode" type="TEXT"/>
+            <column name="xplan_abweichendebauweise" type="TEXT"/>
+            <column name="xplan_abweichendebauweisecode" type="TEXT"/>
+            <column name="xplan_vertikaledifferenzierung" type="TEXT"/>
+            <column name="xplan_bebauungsart" type="TEXT"/>
+            <column name="xplan_bebauungsartcode" type="TEXT"/>
+            <column name="xplan_bebauungvorderegrenze" type="TEXT"/>
+            <column name="xplan_bebauungvorderegrenzecode" type="TEXT"/>
+            <column name="xplan_bebauungrueckwaertigegrenze" type="TEXT"/>
+            <column name="xplan_bebauungrueckwaertigegrenzecode" type="TEXT"/>
+            <column name="xplan_bebauungseitlichegrenze" type="TEXT"/>
+            <column name="xplan_bebauungseitlichegrenzecode" type="TEXT"/>
+            <column name="xplan_abweichungtext" type="TEXT"/>
+            <column name="xplan_refgebaeudequerschnitt" type="TEXT"/>
+            <column name="xplan_artderbaulichennutzung" type="TEXT"/>
+            <column name="xplan_artderbaulichennutzungcode" type="TEXT"/>
+            <column name="xplan_wirddargestelltdurch" type="TEXT"/>
+            <column name="xplan_rechtscharakter" type="TEXT"/>
+            <column name="xplan_rechtscharaktercode" type="TEXT"/>
+            <column name="xplan_startbedingung" type="TEXT"/>
+            <column name="xplan_endebedingung" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchabe" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspemassnahme" type="TEXT"/>
+            <column name="xplan_wirdausgeglichendurchspeflaeche" type="TEXT"/>
+            <column name="xplan_zumin" type="INTEGER"/>
+            <column name="xplan_zumax" type="INTEGER"/>
+            <column name="xplan_zuzwingend" type="INTEGER"/>
+            <column name="xplan_zu" type="INTEGER"/>
+            <column name="xplan_zu_ausn" type="INTEGER"/>
+            <column name="xplan_zugunstenvon" type="TEXT"/>
+            <column name="xplan_z_staffel" type="INTEGER"/>
+            <column name="xplan_wohnnutzungwgstrasse" type="TEXT"/>
+            <column name="xplan_wohnnutzungwgstrassecode" type="TEXT"/>
+            <column name="xplan_zwohn" type="INTEGER"/>
+            <column name="xplan_gfantwohnen" type="numeric"/>
+            <column name="xplan_gfantwohnenuom" type="TEXT"/>
+            <column name="xplan_gfwohnen" type="numeric"/>
+            <column name="xplan_gfwohnenuom" type="TEXT"/>
+            <column name="xplan_gfantgewerbe" type="numeric"/>
+            <column name="xplan_gfantgewerbeuom" type="TEXT"/>
+            <column name="xplan_gfgewerbe" type="numeric"/>
+            <column name="xplan_gfgewerbeuom" type="TEXT"/>
+            <column name="xplan_dachgestaltung" type="TEXT"/>
+            <column name="xplan_vf" type="numeric"/>
+            <column name="xplan_vfuom" type="TEXT"/>
+            <column name="xplan_mingrwohneinheit" type="numeric"/>
+            <column name="xplan_mingrwohneinheituom" type="TEXT"/>
+            <column name="xplan_typ" type="TEXT"/>
+            <column name="xplan_typcode" type="TEXT"/>
+            <column name="xplan_position" type="&quot;PUBLIC&quot;.&quot;GEOMETRY&quot;"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-2">
+        <createIndex indexName="spatial_idx_501" tableName="xplan_bp_wohngebaeudeflaeche">
+            <column name="xplan_position"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-3">
+        <dropTable tableName="xplan_rp_nsm_abfallentsorgung"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-4">
+        <dropTable tableName="xplan_rp_nsm_abwasser"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-5">
+        <dropTable tableName="xplan_rp_nsm_asb"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-6">
+        <dropTable tableName="xplan_rp_nsm_erholung"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-7">
+        <dropTable tableName="xplan_rp_nsm_gib"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-8">
+        <dropTable tableName="xplan_rp_nsm_landschaftsschutz"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-9">
+        <dropTable tableName="xplan_rp_nsm_luftverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-10">
+        <dropTable tableName="xplan_rp_nsm_naturschutz"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-11">
+        <dropTable tableName="xplan_rp_nsm_oberflaechennahebodenschaetze"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-12">
+        <dropTable tableName="xplan_rp_nsm_regionalbedeutsamerwanderweg"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-13">
+        <dropTable tableName="xplan_rp_nsm_regionalbedeutsamesportanlage"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-14">
+        <dropTable tableName="xplan_rp_nsm_schienenverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-15">
+        <dropTable tableName="xplan_rp_nsm_sonstverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-16">
+        <dropTable tableName="xplan_rp_nsm_strassenverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-17">
+        <dropTable tableName="xplan_rp_nsm_tiefliegenderohstoffe"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-18">
+        <dropTable tableName="xplan_rp_nsm_tourismus"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-19">
+        <dropTable tableName="xplan_rp_nsm_wasserverkehr"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-20">
+        <dropColumn columnName="xplan_besonderezweckbestimmungnsg_nsm" tableName="xplan_rp_naturschutzrechtlichesschutzgebiet"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-21">
+        <dropColumn columnName="xplan_besonderezweckbestimmungnsg_nsmcode" tableName="xplan_rp_naturschutzrechtlichesschutzgebiet"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-22">
+        <dropColumn columnName="xplan_detailfunktion_nsm" tableName="xplan_rp_zentralerort"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-23">
+        <dropColumn columnName="xplan_detailfunktion_nsmcode" tableName="xplan_rp_zentralerort"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-24">
+        <dropColumn columnName="xplan_detailtyp_nsm" tableName="xplan_rp_energieversorgung"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-25">
+        <dropColumn columnName="xplan_detailtyp_nsmcode" tableName="xplan_rp_energieversorgung"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-26">
+        <dropColumn columnName="xplan_sperrgebiettyp_nsm" tableName="xplan_rp_sperrgebiet"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-27">
+        <dropColumn columnName="xplan_sperrgebiettyp_nsmcode" tableName="xplan_rp_sperrgebiet"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-28">
+        <dropColumn columnName="xplan_status_nsm" tableName="xplan_rp_energieversorgung"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-29">
+        <dropColumn columnName="xplan_status_nsmcode" tableName="xplan_rp_energieversorgung"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-30">
+        <dropColumn columnName="xplan_typls_nsm" tableName="xplan_rp_laermschutzbereich"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-31">
+        <dropColumn columnName="xplan_typls_nsmcode" tableName="xplan_rp_laermschutzbereich"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-32">
+        <dropColumn columnName="xplan_typlw_nsm" tableName="xplan_rp_landwirtschaft"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-33">
+        <dropColumn columnName="xplan_typlw_nsmcode" tableName="xplan_rp_landwirtschaft"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-34">
+        <dropColumn columnName="xplan_typrk_nsm" tableName="xplan_rp_raumkategorie"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-35">
+        <dropColumn columnName="xplan_typrk_nsmcode" tableName="xplan_rp_raumkategorie"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-36">
+        <dropColumn columnName="xplan_weitererachsentyp_nsm" tableName="xplan_rp_achse"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-37">
+        <dropColumn columnName="xplan_weitererachsentyp_nsmcode" tableName="xplan_rp_achse"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-38">
+        <dropColumn columnName="xplan_zweckbestimmungbs_nsm" tableName="xplan_rp_bodenschutz"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-39">
+        <dropColumn columnName="xplan_zweckbestimmungbs_nsmcode" tableName="xplan_rp_bodenschutz"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-40">
+        <dropColumn columnName="xplan_zweckbestimmungfw_nsm" tableName="xplan_rp_forstwirtschaft"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-41">
+        <dropColumn columnName="xplan_zweckbestimmungfw_nsmcode" tableName="xplan_rp_forstwirtschaft"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-42">
+        <dropColumn columnName="xplan_zweckbestimmunghws_nsm" tableName="xplan_rp_vorbhochwasserschutz"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-43">
+        <dropColumn columnName="xplan_zweckbestimmunghws_nsmcode" tableName="xplan_rp_vorbhochwasserschutz"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-44">
+        <dropColumn columnName="xplan_zweckbestimmungws_nsm" tableName="xplan_rp_wasserschutz"/>
+    </changeSet>
+    <changeSet author="lyn (generated)" id="1647585418942-45">
+        <dropColumn columnName="xplan_zweckbestimmungws_nsmcode" tableName="xplan_rp_wasserschutz"/>
+    </changeSet>
+</databaseChangeLog>
