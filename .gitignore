@@ -23,7 +23,6 @@ target/
 
 # Logs
 logs/
-log/
 *.log
 # But keep source files in log/
 !**/src/**/java/**/log/**/*.java
