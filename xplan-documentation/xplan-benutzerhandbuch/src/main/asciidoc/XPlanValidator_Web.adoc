@@ -30,9 +30,9 @@ Bitte beachten Sie die Anforderungen an den Dateinamen. Der Dateiname darf nur f
 Sonderzeichen wie z.B. Umlaute, Zeilenumbrüche und Leerzeichen sind nicht erlaubt.
 ====
 
-CAUTION: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
+WARNING: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
 
-
+[[xplanvalidator-web-validieren]]
 ===== Schritt 2 – Bezeichnung des Validierungsberichts und Validierungstyp wählen
 
 Wenn Sie einen Plan hochgeladen haben, steht im Feld „Bezeichnung für den Report“ der Name der Datei ohne Endung.
@@ -70,7 +70,7 @@ Die semantische Validierung überprüft die fachlich-inhaltliche Kohärenz der X
  * 5.2 (191 Regeln)
  * 5.3 (195 Regeln)
  * 5.4 (198 Regeln)
- * 6.0 (153 Regeln)
+ * 6.0 (181 Regeln)
 
 [NOTE]
 ====

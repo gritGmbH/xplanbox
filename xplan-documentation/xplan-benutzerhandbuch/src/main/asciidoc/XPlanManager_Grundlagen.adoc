@@ -15,7 +15,7 @@ Das XPlanArchiv ist eine ZIP-Datei mit folgendem Aufbau:
  * Rasterdaten, die im __xplan.gml__ referenziert sind, müssen ebenfalls im Basisverzeichnis der ZIP-Datei liegen, siehe dazu auch <<referenzierung-von-rasterdaten-im-xplangml>>.
  * Alle anderen im __xplan.gml__ referenzierten Anhänge müssen entweder im Basisverzeichnis der ZIP-Datei liegen oder werden über einen Link auf eine externe Datei (URL) referenziert.
 
-IMPORTANT: *Wichtig*: Dateinamen dürfen keine Sonderzeichen wie z. B. `&`, `#` , `/`, `\`, `"`, `'` (doppeltes oder einfaches Anführungszeichen),
+IMPORTANT: Dateinamen dürfen keine Sonderzeichen wie z. B. `&`, `#` , `/`, `\`, `"`, `'` (doppeltes oder einfaches Anführungszeichen),
 Leerzeichen oder auch Umlaute beinhalten. Gross- und Kleinschreibung in den Dateinamen (auch der Dateiendung) werden berücksichtigt
 und müssen vollständig mit den Referenzen im Dokument übereinstimmen!
 
@@ -24,14 +24,12 @@ und müssen vollständig mit den Referenzen im Dokument übereinstimmen!
 Das XPlanGML-Dokument muss folgende Eigenschaften aufweisen:
 
  * Das XPlanGML-Dokument ist wohlgeformt und hat den Dateinamen __xplan.gml__.
- * Das XPlanGML-Dokument beinhaltet nur ein oder mehrere Elemente vom Typ `<xplan:XP_PLAN/>`. Beinhaltet eine Datei mehrere dieser Elemente, so dürfen keine nicht referenzierte Features im XPlanGML-Dokument vorkommen, wie z.B. ein freies Präsentationsobjekt ohne Bezug zum Bereich!
+ * Das XPlanGML-Dokument beinhaltet nur ein oder mehrere Elemente vom Typ `<xplan:XP_PLAN/>`. Beinhaltet eine Datei mehrere dieser Elemente, so dürfen keine nicht referenzierte Features im XPlanGML-Dokument vorkommen, wie z.B. ein freies Präsentationsobjekt ohne Bezug zu einem Bereich!
 
 [[anlegen-von-deegree-konfigurationsstrukturen-fuer-rasterdaten]]
 ==== Anlegen von deegree Konfigurationsstrukturen für Rasterdaten
 
-Beim Import von XPlanGML-Rasterdaten werden in der Datenbasis
-Konfigurationen angelegt, welche die Visualisierung der Rasterdaten im
-XPlanWMS ermöglichen.
+Beim Import von Planarchiven mit Rasterdaten werden Konfigurationsdateien für den XPlanWMS automatisch angelegt, die eine Visualisierung im XPlanWMS ermöglichen.
 
 Für jede importierte Rasterdatei werden folgende Konfigurationen
 angelegt:
@@ -128,7 +126,7 @@ Beispiel:
 </gml:featureMember>
 ----
 
-Ab XPlanGML 5.1 ist diese Referenzierung als veraltet notiert. Mit Version XPlanGML 6.0 wird diese nicht mehr unterstützt. Stattdessen werden Rasterdateien über die von XP_Bereich abgeleiteten Feature Types über das Element `<refScan/>` referenziert (im folgendem Beispiel BP_Bereich):
+Ab XPlanGML 5.1 ist diese Referenzierung als veraltet notiert. Mit Version XPlanGML 6.0 wird diese auch nicht mehr unterstützt. Stattdessen werden Rasterdateien über die von XP_Bereich abgeleiteten Feature Types und dort über das Element `<refScan/>` referenziert (im folgendem Beispiel BP_Bereich):
 
 ----
 gml:featureMember
@@ -177,8 +175,7 @@ stellen zu können, müssen die Daten folgende Anforderungen erfüllen.
 Die Unterstützung verschiedener Rasterdatenformate ist vom gesetzten
 Raster-Konfigurationstyp abhängig.
 
-IMPORTANT: *Wichtig*: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden.
-Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.
+IMPORTANT: Dies kann nur zentral für die xPlanBox konfiguriert und nicht durch den Nutzer geändert werden. Hinweise zur Konfiguration sind im Betriebshandbuch zu finden.
 
 Unterschieden wird dabei zwischen den Konfigurationstypen _GeoTiff_ und
 __GDAL__:
@@ -190,8 +187,7 @@ __GDAL__:
 
 *GDAL* - Konfigurationstyp:
 
-  * Grundsätzlich können alle durch https://gdal.org/drivers/raster/index.html[GDAL] unterstützten
-  Rasterdatenformate auch durch deegree und somit dem XPlanManager
+  * Grundsätzlich können alle durch https://gdal.org/drivers/raster/index.html[GDAL] unterstützten Rasterdatenformate auch durch deegree und somit dem XPlanManager
   verarbeitet werden.
   * Getestet wurden bisher nur die Formate GeoTiff und PNG.
 

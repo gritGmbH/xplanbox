@@ -106,7 +106,7 @@ neue Datenbank eingestellt.
 Ein Import kann durch Angabe des Parameters `import` gefolgt vom Pfad
 zum XPlanArchiv angestoßen werden. Bei dem Import können
 XPlanGML-Vektordaten und XPlanGML-Rasterdaten ohne zusätzlichen
-Parameter in die Datenbasis geladen werden.
+Parameter in die Datenhaltung geladen werden.
 
 Beispiel Aufruf:
 

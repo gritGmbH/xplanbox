@@ -6,6 +6,7 @@
 === Version 6.0
 ==== Erweiterungen
 - Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
+- Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden.
 
 [[Aenderungshistorie-5.0.2]]
 === Version 5.0.2
