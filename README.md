@@ -31,7 +31,7 @@ Personen, die an diesem Projekt mitgearbeitet haben, stehen in [contributors](CO
 </p>
 
 
-### Weitere Sponsoren
+### Kooperationspartner
 
 <p align="center">
   <a href="https://geoinfo.hamburg.de/" target="_blank">
