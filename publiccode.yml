@@ -6,6 +6,7 @@ publiccodeYmlVersion: '0.2'
 applicationSuite: ozgxplanung
 categories:
   - geographic-information-systems
+  - data-collection
 dependsOn:
   open:
     - name: OSGeo deegree
@@ -58,8 +59,10 @@ maintenance:
   contacts:
     - email: friebe@lat-lon.de
       name: Torsten Friebe
+      affiliation: "lat/lon GmbH"
     - email: tobias.kraft@gv.hamburg.de
       name: Tobias Kraft
+      affiliation: "Landesbetrieb Geoinformation und Vermessung, Hamburg"
   type: internal
 name: ozgxplanung
 platforms:
@@ -71,3 +74,9 @@ url: 'https://gitlab.opencode.de/diplanung/ozgxplanung.git'
 usedBy:
   - XLeitstelle, Hamburg
   - Landesbetrieb Geoinformation und Vermessung, Hamburg
+de:
+  leika:
+    - themenfeld: "Bauen & Wohnen"
+      lebenslage: "Bauen und Immobilien"
+      ozg-id: "10734"
+      leika-id: "77000000008034"
