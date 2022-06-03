@@ -58,7 +58,7 @@ public class HaleCliInspirePluTransformator implements InspirePluTransformator {
 					new SimpleEntry<>(XPLAN_52, "xplan52/xplanGml52-inspirePlu.halex"),
 					new SimpleEntry<>(XPLAN_53, "xplan53/xplanGml53-inspirePlu.halex"),
 					new SimpleEntry<>(XPLAN_54, "xplan54/xplanGml54-inspirePlu.halex"),
-					new SimpleEntry<>(XPLAN_60, "xplan54/xplanGml60-inspirePlu.halex"))
+					new SimpleEntry<>(XPLAN_60, "xplan60/xplanGml60-inspirePlu.halex"))
 			.collect(Collectors.toMap((e) -> e.getKey(), (e) -> e.getValue())));
 
 	public HaleCliInspirePluTransformator(String haleCli, Path haleProjectDirectory) {
