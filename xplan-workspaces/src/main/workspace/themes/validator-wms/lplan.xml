@@ -11,6 +11,56 @@
     </s:Envelope>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
+      <Identifier>lp_zieleerfordernissemassnahmen</Identifier>
+      <d:Title>LP: ZieleErfordernisseMassnahmen</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_zieleerfordernissemassnahmen</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>lp_textabschnittobjekt</Identifier>
+      <d:Title>LP: TextAbschnittObjekt</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_textabschnittobjekt</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>lp_schutzbestimmterteilevonnaturundlandschaft</Identifier>
+      <d:Title>LP: SchutzBestimmterTeileVonNaturUndLandschaft</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_schutzbestimmterteilevonnaturundlandschaft</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>lp_eingriffsregelung</Identifier>
+      <d:Title>LP: Eingriffsregelung</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_eingriffsregelung</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>lp_biotopverbundbiotopvernetzung</Identifier>
+      <d:Title>LP_BiotopverbundBiotopvernetzung</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_biotopverbundbiotopvernetzung</Layer>
+    </Theme>
+    <Theme>
       <Identifier>lp_plan</Identifier>
       <d:Title>LP: Plan</d:Title>
       <s:Envelope crs="EPSG:4326">
@@ -416,6 +466,56 @@
       </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
+        <Identifier>so_wasserwirtschaft</Identifier>
+        <d:Title>SO: Wasserwirtschaft</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_wasserwirtschaft</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_textabschnittflaeche</Identifier>
+        <d:Title>SO: TextAbschnittFläche</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_textabschnittflaeche</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_strassenverkehr</Identifier>
+        <d:Title>SO: Strassenverkehr</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_strassenverkehr</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_sichtflaeche</Identifier>
+        <d:Title>SO: Sichtflaeche</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_sichtflaeche</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_baubeschraenkung</Identifier>
+        <d:Title>SO: Baubeschraenkung</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_baubeschraenkung</Layer>
+      </Theme>
+      <Theme>
         <Identifier>so_sonstigesrecht</Identifier>
         <d:Title>SO: SonstigesRecht</d:Title>
         <s:Envelope crs="EPSG:4326">
@@ -564,6 +664,16 @@
         </s:Envelope>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_grenze</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_gelaendemorphologie</Identifier>
+        <d:Title>SO: Geländemorphologie</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_gelaendemorphologie</Layer>
       </Theme>
       <Theme>
         <Identifier>so_bereich</Identifier>

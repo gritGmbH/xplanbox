@@ -11,6 +11,36 @@
     </s:Envelope>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
+      <Identifier>bp_textabschnittflaeche</Identifier>
+      <d:Title>BP: TextAbschnittFläche</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_textabschnittflaeche</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_gebaeudestellung</Identifier>
+      <d:Title>BP_GebaeudeStellung</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_gebaeudestellung</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_abweichungvonueberbaubarergrundstuecksflaeche</Identifier>
+      <d:Title>BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_abweichungvonueberbaubarergrundstuecksflaeche</Layer>
+    </Theme>
+    <Theme>
       <Identifier>bp_strkoerper</Identifier>
       <d:Title>BP: Straßenkörper</d:Title>
       <s:Envelope crs="EPSG:4326">
@@ -91,6 +121,16 @@
       <Layer>bp_baugebteilfl</Layer>
     </Theme>
     <Theme>
+      <Identifier>bp_wohngebaeudeflaeche</Identifier>
+      <d:Title>BP: WohngebaeudeFläche</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_wohngebaeudeflaeche</Layer>
+    </Theme>
+    <Theme>
       <Identifier>bp_baugeb</Identifier>
       <d:Title>BP: Baugebiet</d:Title>
       <s:Envelope crs="EPSG:4326">
@@ -159,6 +199,16 @@
       </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>bp_spispoanlfl</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_zentralerversorgungsbereich</Identifier>
+      <d:Title>BP: Zentraler Versorgungsbereich</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_zentralerversorgungsbereich</Layer>
     </Theme>
     <Theme>
       <Identifier>bp_lwfl</Identifier>
@@ -721,6 +771,16 @@
       <Layer>bp_sichtflaeche</Layer>
     </Theme>
     <Theme>
+      <Identifier>bp_flaecheohnefestsetzung</Identifier>
+      <d:Title>BP: Fläche ohne Festsetzung</d:Title>
+      <s:Envelope crs="EPSG:4326">
+        <s:LowerCorner>5.7 47.2</s:LowerCorner>
+        <s:UpperCorner>15.1 55.1</s:UpperCorner>
+      </s:Envelope>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_flaecheohnefestsetzung</Layer>
+    </Theme>
+    <Theme>
       <Identifier>bp_symbole</Identifier>
       <d:Title>bp_symbole</d:Title>
       <s:Envelope crs="EPSG:4326">
@@ -757,6 +817,16 @@
         </s:Envelope>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>bp_baugebteilflsym</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>bp_ueberbaubgrundstsflsym</Identifier>
+        <d:Title>BP: Überbaubare Grundstücksfläche Symbol</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>bp_ueberbaubgrundstsflsym</Layer>
       </Theme>
       <Theme>
         <Identifier>bp_besnutzzweckflsym</Identifier>
@@ -918,6 +988,56 @@
       </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
+        <Identifier>so_wasserwirtschaft</Identifier>
+        <d:Title>SO: Wasserwirtschaft</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_wasserwirtschaft</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_textabschnittflaeche</Identifier>
+        <d:Title>SO: TextAbschnittFläche</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_textabschnittflaeche</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_strassenverkehr</Identifier>
+        <d:Title>SO: Strassenverkehr</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_strassenverkehr</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_sichtflaeche</Identifier>
+        <d:Title>SO: Sichtflaeche</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_sichtflaeche</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_baubeschraenkung</Identifier>
+        <d:Title>SO: Baubeschraenkung</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_baubeschraenkung</Layer>
+      </Theme>
+      <Theme>
         <Identifier>so_sonstigesrecht</Identifier>
         <d:Title>SO: SonstigesRecht</d:Title>
         <s:Envelope crs="EPSG:4326">
@@ -1066,6 +1186,16 @@
         </s:Envelope>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
         <Layer>so_grenze</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>so_gelaendemorphologie</Identifier>
+        <d:Title>SO: Geländemorphologie</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>so_gelaendemorphologie</Layer>
       </Theme>
       <Theme>
         <Identifier>so_bereich</Identifier>
