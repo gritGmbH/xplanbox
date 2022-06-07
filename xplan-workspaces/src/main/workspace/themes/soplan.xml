@@ -6,6 +6,41 @@
     <d:Title>SOPlan Vektor</d:Title>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
+      <Identifier>so_wasserwirtschaft</Identifier>
+      <d:Title>SO: Wasserwirtschaft</d:Title>
+      <d:Abstract>SO_Wasserwirtschaft</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>so_wasserwirtschaft</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_textabschnittflaeche</Identifier>
+      <d:Title>SO: TextAbschnittFläche</d:Title>
+      <d:Abstract>SO_TextAbschnittFlaeche</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>so_textabschnittflaeche</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_strassenverkehr</Identifier>
+      <d:Title>SO: Strassenverkehr</d:Title>
+      <d:Abstract>SO_Strassenverkehr</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>so_strassenverkehr</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_sichtflaeche</Identifier>
+      <d:Title>SO: Sichtflaeche</d:Title>
+      <d:Abstract>SO_Sichtflaeche</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>so_sichtflaeche</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>so_baubeschraenkung</Identifier>
+      <d:Title>SO: Baubeschraenkung</d:Title>
+      <d:Abstract>SO_Baubeschraenkung</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>so_baubeschraenkung</Layer>
+    </Theme>
+    <Theme>
       <Identifier>so_sonstigesrecht</Identifier>
       <d:Title>SO: SonstigesRecht</d:Title>
       <d:Abstract>SO_SonstigesRecht</d:Abstract>

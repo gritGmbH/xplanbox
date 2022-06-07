@@ -115,12 +115,13 @@ public class XPlanCodeListsParser {
 	private void parseDefinition(URL codeListUrl, String codeListId, Definition def,
 			Map<String, Map<String, String>> codeListIdToMapping,
 			Map<String, Map<String, String>> codeListIdToReverseMapping) {
-		if (def.getNames().length == 1) {
+		if (def.getNames().length > 0) {
+			String descriptionFromCode = getCode(def);
 			if (codeIsPartOfIdentifier(codeListId, def)) {
 				String codeWithCodelistId = def.getGMLProperties().getIdentifier().getCode();
 				String code = codeWithCodelistId.substring(codeWithCodelistId.indexOf(":") + 1);
-				String description = def.getNames()[0].getCode();
-				addCodeAndDescription(codeListId, code, description, codeListIdToMapping, codeListIdToReverseMapping);
+				addCodeAndDescription(codeListId, code, descriptionFromCode, codeListIdToMapping,
+						codeListIdToReverseMapping);
 			}
 			else if (def.getDescription() != null) {
 				String description = def.getDescription().getString();
@@ -129,20 +130,29 @@ public class XPlanCodeListsParser {
 							+ "' definiert mehrerere Codes für '" + description + "'.";
 					throw new RuntimeException(msg);
 				}
-				addCodeAndDescription(codeListId, def.getNames()[0].getCode(), description, codeListIdToMapping,
+				addCodeAndDescription(codeListId, descriptionFromCode, description, codeListIdToMapping,
 						codeListIdToReverseMapping);
 			}
 			else {
 				// no description -> treat
-				addCodeAndDescription(codeListId, def.getNames()[0].getCode(), def.getNames()[0].getCode(),
-						codeListIdToMapping, codeListIdToReverseMapping);
+				addCodeAndDescription(codeListId, descriptionFromCode, descriptionFromCode, codeListIdToMapping,
+						codeListIdToReverseMapping);
 			}
 		}
 		else {
 			String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
-					+ "' enthält Einträge mit keinem oder mehreren Codes.";
+					+ "' enthält Einträge ohne Code.";
 			throw new RuntimeException(msg);
 		}
+	}
+
+	private String getCode(Definition def) {
+		CodeType[] names = def.getNames();
+		for (CodeType name : names) {
+			if (name.getCodeSpace() == null)
+				return name.getCode();
+		}
+		return names[0].getCode();
 	}
 
 	void addCodeAndDescription(String codeListId, String code, String description,

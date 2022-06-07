@@ -38,7 +38,9 @@ public enum VersionEnum {
 
 	XPLAN_53(String.valueOf("XPLAN_53")),
 
-	XPLAN_54(String.valueOf("XPLAN_54"));
+	XPLAN_54(String.valueOf("XPLAN_54")),
+
+	XPLAN_60(String.valueOf("XPLAN_60"));
 
 	private String value;
 

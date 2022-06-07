@@ -39,9 +39,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class AusrichtungTest {
 
 	@Test
-	public void testEvaluate_Empty() {
-		FeatureCollection features = (FeatureCollection) TestFeaturesUtils.getTestFeatures(XPLAN_51,
-				"Praesentationsobjekte.gml");
+	public void testEvaluate_Empty() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.getTestFeatures(XPLAN_51, "Praesentationsobjekte.gml");
 		Feature feature = TestFeaturesUtils.getTestFeature(features, "XP_PTO_EMPTY");
 		Ausrichtung horzontaleAusrichtung = new Ausrichtung(new Xpath("xplan:horizontaleAusrichtung"));
 		TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate(feature, features);
@@ -53,9 +52,8 @@ public class AusrichtungTest {
 	}
 
 	@Test
-	public void testEvaluate() {
-		FeatureCollection features = (FeatureCollection) TestFeaturesUtils.getTestFeatures(XPLAN_51,
-				"Praesentationsobjekte.gml");
+	public void testEvaluate() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.getTestFeatures(XPLAN_51, "Praesentationsobjekte.gml");
 		Feature feature = TestFeaturesUtils.getTestFeature(features, "XP_PTO");
 		Ausrichtung horzontaleAusrichtung = new Ausrichtung(new Xpath("xplan:horizontaleAusrichtung"));
 		TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate(feature, features);

@@ -20,10 +20,11 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.InvalidGeometryException;
-import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
+import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.composite.CompositeGeometry;
@@ -135,6 +136,11 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	@Override
 	public List<BadGeometry> getBadGeometries() {
 		return badGeometries;
+	}
+
+	@Override
+	public boolean applicableForVersion(XPlanVersion version) {
+		return true;
 	}
 
 	private void addPointOutsideGeltungsbereich(List<String> points, org.deegree.geometry.Geometry featureGeom) {

@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -194,6 +195,11 @@ public class FlaechenschlussInspector implements GeometricFeatureInspector {
 		if (invalidGeltungsbereich != null)
 			return Collections.singletonList(invalidGeltungsbereich);
 		return flaechenschlussErrors;
+	}
+
+	@Override
+	public boolean applicableForVersion(XPlanVersion version) {
+		return true;
 	}
 
 	private org.locationtech.jts.geom.Geometry createJtsGeltungsbereichWithBuffer(

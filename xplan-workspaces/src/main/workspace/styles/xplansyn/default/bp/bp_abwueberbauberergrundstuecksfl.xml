@@ -28,7 +28,7 @@
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche</FeatureTypeName>
   <Rule>
-    <Name>bp_abwueberbaubarergrundstuecksf</Name>
+    <Name>bp_abwueberbauberergrundstuecksfl</Name>
     <Description>
       <Title>BP: AbweichungVonUeberbaubererGrundstuecksFlaeche</Title>
     </Description>

@@ -6,6 +6,20 @@
     <d:Title>FPlan Vektor</d:Title>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
+      <Identifier>fp_textabschnittflaeche</Identifier>
+      <d:Title>FP: TextAbschnittFläche</d:Title>
+      <d:Abstract>FP_TextAbschnittFlaeche</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>fp_textabschnittflaeche</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>fp_nutzungsbeschraenkung</Identifier>
+      <d:Title>FP: Nutzungsbeschränkung</d:Title>
+      <d:Abstract>FP_Nutzungsbeschraenkung</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>fp_nutzungsbeschraenkung</Layer>
+    </Theme>
+    <Theme>
       <Identifier>fp_plan</Identifier>
       <d:Title>FP: Plan</d:Title>
       <d:Abstract>FP_Plan</d:Abstract>

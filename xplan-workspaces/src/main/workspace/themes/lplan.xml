@@ -6,6 +6,41 @@
     <d:Title>LPlan Vektor</d:Title>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
+      <Identifier>lp_zieleerfordernissemassnahmen</Identifier>
+      <d:Title>LP: ZieleErfordernisseMassnahmen</d:Title>
+      <d:Abstract>LP_ZieleErfordernisseMassnahmen</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_zieleerfordernissemassnahmen</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>lp_textabschnittobjekt</Identifier>
+      <d:Title>LP: TextAbschnittObjekt</d:Title>
+      <d:Abstract>LP_TextAbschnittObjekt</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_textabschnittobjekt</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>lp_schutzbestimmterteilevonnaturundlandschaft</Identifier>
+      <d:Title>LP: SchutzBestimmterTeileVonNaturUndLandschaft</d:Title>
+      <d:Abstract>LP_SchutzBestimmterTeileVonNaturUndLandschaft</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_schutzbestimmterteilevonnaturundlandschaft</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>lp_eingriffsregelung</Identifier>
+      <d:Title>LP: Eingriffsregelung</d:Title>
+      <d:Abstract>LP_Eingriffsregelung</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_eingriffsregelung</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>lp_biotopverbundbiotopvernetzung</Identifier>
+      <d:Title>LP_BiotopverbundBiotopvernetzung</d:Title>
+      <d:Abstract>LP_BiotopverbundBiotopvernetzung</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>lp_biotopverbundbiotopvernetzung</Layer>
+    </Theme>
+    <Theme>
       <Identifier>lp_plan</Identifier>
       <d:Title>LP: Plan</d:Title>
       <d:Abstract>LP_Plan</d:Abstract>

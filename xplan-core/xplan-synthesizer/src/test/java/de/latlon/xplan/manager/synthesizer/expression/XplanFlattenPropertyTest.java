@@ -38,7 +38,7 @@ import static org.junit.Assert.assertEquals;
 public class XplanFlattenPropertyTest {
 
 	@Test
-	public void testEvaluateWithGenericFeature() {
+	public void testEvaluateWithGenericFeature() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:flaechenteil"));
@@ -48,7 +48,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithGenericReference() {
+	public void testEvaluateWithGenericReference() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Bereich_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:inhaltBPlan"));
@@ -59,7 +59,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpBegruendungAbschnitt() {
+	public void testEvaluateWithXpBegruendungAbschnitt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refBegruendungInhalt"));
@@ -70,7 +70,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpExterneReferenz() {
+	public void testEvaluateWithXpExterneReferenz() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refLegende"));
@@ -81,7 +81,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpExterneReferenzPlan() {
+	public void testEvaluateWithXpExterneReferenzPlan() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refRechtsplan"));
@@ -92,7 +92,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpGenerAttribut() {
+	public void testEvaluateWithXpGenerAttribut() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:hatGenerAttribut"));
@@ -101,7 +101,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpHoehenangabe() {
+	public void testEvaluateWithXpHoehenangabe() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:hoehenangabe"));
@@ -112,7 +112,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpRasterplanBasis() {
+	public void testEvaluateWithXpRasterplanBasis() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Bereich_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:rasterBasis"));
@@ -123,7 +123,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpRasterplanAenderung() {
+	public void testEvaluateWithXpRasterplanAenderung() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Bereich_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:rasterAenderung"));
@@ -134,7 +134,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpTextAbschnitt() {
+	public void testEvaluateWithXpTextAbschnitt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"));
@@ -145,7 +145,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateWithXpGemeinde() {
+	public void testEvaluateWithXpGemeinde() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:gemeinde"));
@@ -155,7 +155,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateXpVerfahrensMerkmal() {
+	public void testEvaluateXpVerfahrensMerkmal() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:verfahrensMerkmale"));
@@ -166,7 +166,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluateXpTextAbschnitte() {
+	public void testEvaluateXpTextAbschnitte() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"));
@@ -177,7 +177,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluate50WithXpBegruendungAbschnitt() {
+	public void testEvaluate50WithXpBegruendungAbschnitt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_50);
 		Feature feature = getTestFeature(features, "BP_VerEntsorgung");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:refBegruendungInhalt"));
@@ -186,7 +186,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluate50XpTextAbschnitt() {
+	public void testEvaluate50XpTextAbschnitt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_50);
 		Feature feature = getTestFeature(features, "BP_Plan");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:texte"));
@@ -195,7 +195,7 @@ public class XplanFlattenPropertyTest {
 	}
 
 	@Test
-	public void testEvaluate53XpSpezExterneReferenz() {
+	public void testEvaluate53XpSpezExterneReferenz() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_53);
 		Feature feature = getTestFeature(features, "BP_Plan");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:externeReferenz"));

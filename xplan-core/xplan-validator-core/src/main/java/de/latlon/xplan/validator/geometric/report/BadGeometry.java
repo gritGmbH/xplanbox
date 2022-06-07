@@ -20,12 +20,13 @@
  */
 package de.latlon.xplan.validator.geometric.report;
 
+import org.deegree.geometry.Geometry;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.deegree.geometry.Geometry;
+import java.util.Objects;
 
 /**
  * contains a defect geometry and its error-Strings
@@ -80,6 +81,23 @@ public class BadGeometry {
 
 	public void addMarkerGeometry(String error, Geometry markerGeometry) {
 		markerGeometries.put(error, markerGeometry);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		BadGeometry that = (BadGeometry) o;
+		return Objects.equals(getOriginalGeometry(), that.getOriginalGeometry())
+				&& Objects.equals(getErrors(), that.getErrors())
+				&& Objects.equals(getMarkerGeometries(), that.getMarkerGeometries());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getOriginalGeometry(), getErrors(), getMarkerGeometries());
 	}
 
 }

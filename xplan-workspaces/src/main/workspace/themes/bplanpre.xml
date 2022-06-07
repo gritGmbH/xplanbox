@@ -6,6 +6,27 @@
     <d:Title>BPlan Vektor</d:Title>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
+      <Identifier>bp_textabschnittflaeche</Identifier>
+      <d:Title>BP: TextAbschnittFläche</d:Title>
+      <d:Abstract>BP_TextAbschnittFlaeche</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_textabschnittflaeche</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_gebaeudestellung</Identifier>
+      <d:Title>BP_GebaeudeStellung</d:Title>
+      <d:Abstract>BP_GebaeudeStellung</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_gebaeudestellung</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>bp_abweichungvonueberbaubarergrundstuecksflaeche</Identifier>
+      <d:Title>BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche</d:Title>
+      <d:Abstract>BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>bp_abweichungvonueberbaubarergrundstuecksflaeche</Layer>
+    </Theme>
+    <Theme>
       <Identifier>bp_strkoerper</Identifier>
       <d:Title>BP: Straßenkörper</d:Title>
       <d:Abstract>BP_Strassenkoerper</d:Abstract>

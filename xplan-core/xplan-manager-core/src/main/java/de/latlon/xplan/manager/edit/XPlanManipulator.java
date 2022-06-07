@@ -69,6 +69,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
@@ -138,8 +139,14 @@ public class XPlanManipulator {
 		modifyCode(version, feature, "rechtsstand", changes.getBaseData().getLegislationStatusCode());
 		modifyCode(version, feature, "sonstPlanArt", changes.getBaseData().getOtherPlanTypeCode());
 		modifyCode(version, feature, "planArt", changes.getBaseData().getPlanTypeCode());
-		modifyChanges(version, feature, schema, "wurdeGeaendertVon", changes.getChanges(), CHANGED_BY);
-		modifyChanges(version, feature, schema, "aendert", changes.getChanges(), CHANGES);
+		if (XPLAN_60.equals(version)) {
+			modifyChanges(version, feature, schema, "wurdeGeaendertVonPlan", changes.getChanges(), CHANGED_BY);
+			modifyChanges(version, feature, schema, "aendertPlan", changes.getChanges(), CHANGES);
+		}
+		else {
+			modifyChanges(version, feature, schema, "wurdeGeaendertVon", changes.getChanges(), CHANGED_BY);
+			modifyChanges(version, feature, schema, "aendert", changes.getChanges(), CHANGES);
+		}
 		modifyTexts(context, version, planToEdit, feature, schema, changes.getTexts(), featuresToAdd, featuresToRemove,
 				referencesToRemove, previouslyReferencedTextFeatureIds);
 		if (XPLAN_41.equals(version) || XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
@@ -191,8 +198,9 @@ public class XPlanManipulator {
 		for (Change change : changes) {
 			if (changedType.equals(change.getType())) {
 				if (XPLAN_41.equals(version) || XPLAN_50.equals(version) || XPLAN_51.equals(version)
-						|| XPLAN_52.equals(version) || XPLAN_53.equals(version) || XPLAN_54.equals(version)) {
-					addProperty(properties, createVerbundenerPlanProperty(feature, schema, change, propName));
+						|| XPLAN_52.equals(version) || XPLAN_53.equals(version) || XPLAN_54.equals(version)
+						|| XPLAN_60.equals(version)) {
+					addProperty(properties, createVerbundenerPlanProperty(version, feature, schema, change, propName));
 				}
 			}
 		}
@@ -237,10 +245,11 @@ public class XPlanManipulator {
 			Feature bpBereichFeature, AppSchema schema, RasterBasis rasterBasis, List<Feature> featuresToAdd,
 			List<Feature> featuresToRemove) {
 		String namespaceUri = bpBereichFeature.getName().getNamespaceURI();
-		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
-				|| XPLAN_54.equals(version)) {
-			modifyRasterBasis_XPlan51(context, version, planToEdit, bpBereichFeature, schema, rasterBasis,
-					featuresToRemove, namespaceUri);
+		// XP_Rasterdarstellung.refScan --> XP_Bereich.refScan
+		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version) || XPLAN_54.equals(version)
+				|| XPLAN_60.equals(version)) {
+			modifyRasterBasis_XPlan5X(version, planToEdit, bpBereichFeature, schema, rasterBasis, featuresToRemove,
+					namespaceUri);
 		}
 		else {
 			modifyRasterBasis(context, version, planToEdit, bpBereichFeature, schema, rasterBasis, featuresToAdd,
@@ -252,6 +261,9 @@ public class XPlanManipulator {
 	private void removeRasterBasis(XPlanVersion version, FeatureCollection planToEdit, Feature bpBereichFeature,
 			List<Feature> featuresToRemove, List<String> referencesToRemove,
 			String previouslyReferencedRasterBasisFeatureId, String namespaceUri) {
+		if (XPLAN_60.equals(version)) {
+			return;
+		}
 		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
 				|| XPLAN_54.equals(version)) {
 			QName rasterBasisElementName = getRasterBasisElementName(version, namespaceUri);
@@ -282,9 +294,8 @@ public class XPlanManipulator {
 				featuresToRemove, namespaceUri, gmlid, rasterBasis);
 	}
 
-	private void modifyRasterBasis_XPlan51(GmlDocumentIdContext context, XPlanVersion version,
-			FeatureCollection planToEdit, Feature bpBereichFeature, AppSchema schema, RasterBasis rasterBasis,
-			List<Feature> featuresToRemove, String namespaceUri) {
+	private void modifyRasterBasis_XPlan5X(XPlanVersion version, FeatureCollection planToEdit, Feature bpBereichFeature,
+			AppSchema schema, RasterBasis rasterBasis, List<Feature> featuresToRemove, String namespaceUri) {
 		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
 
 		// XP_Rasterdarstellung.refScan --> XP_Bereich.refScan
@@ -297,6 +308,27 @@ public class XPlanManipulator {
 			if (oldRasterBasisFeature != null)
 				featuresToRemove.add(oldRasterBasisFeature);
 		}
+
+		if (!scans.isEmpty()) {
+			QName bereichFeatureTypeName = new QName(namespaceUri, "BP_Bereich");
+			FeatureType bereichFeatureType = schema.getFeatureType(bereichFeatureTypeName);
+			List<Property> properties = new ArrayList<>();
+			for (RasterReference scan : scans) {
+				QName refPropName = new QName(namespaceUri, "refScan");
+				String externeReferenzFeatureTypeName = "XP_ExterneReferenz";
+				createAndAddExterneReferenz(schema, scan, bereichFeatureType, properties, refPropName,
+						externeReferenzFeatureTypeName, null);
+			}
+			QName propName = new QName(namespaceUri, "refScan");
+			addOrReplaceProperties(version, bpBereichFeature, propName, properties);
+		}
+		removeProperties(bpBereichFeature, new QName(namespaceUri, "rasterBasis"));
+	}
+
+	private void modifyRasterBasis_XPlan6X(XPlanVersion version, FeatureCollection planToEdit, Feature bpBereichFeature,
+			AppSchema schema, RasterBasis rasterBasis, List<Feature> featuresToRemove, String namespaceUri) {
+		List<RasterReference> rasterReferences = rasterBasis.getRasterReferences();
+		List<RasterReference> scans = collectRasterReferencesByType(rasterReferences, SCAN);
 
 		QName rasterBasisFeatureTypeName = getRasterBasisElementName(version, namespaceUri);
 		FeatureType rasterBasisFeatureType = schema.getFeatureType(rasterBasisFeatureTypeName);
@@ -312,7 +344,6 @@ public class XPlanManipulator {
 			QName propName = new QName(namespaceUri, "refScan");
 			addOrReplaceProperties(version, bpBereichFeature, propName, properties);
 		}
-		removeProperties(bpBereichFeature, new QName(namespaceUri, "rasterBasis"));
 	}
 
 	private void modifyRasterBasisReferences(GmlDocumentIdContext context, XPlanVersion version,
@@ -369,7 +400,7 @@ public class XPlanManipulator {
 						GRUENORDNUNGSPLAN);
 		}
 		else if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
-				|| XPLAN_53.equals(version) || XPLAN_54.equals(version)) {
+				|| XPLAN_53.equals(version) || XPLAN_54.equals(version) || XPLAN_60.equals(version)) {
 			modifyReferences_XPlan50(version, feature, changes, schema);
 		}
 	}
@@ -460,8 +491,9 @@ public class XPlanManipulator {
 		QName refPropName = new QName(namespaceUri, "refText");
 		createAndAddExterneReferenz(schema, text, textFeatureType, props, refPropName, "XP_ExterneReferenz", null);
 
-		if (text.getRechtscharakter() != null && (XPLAN_50.equals(version) || XPLAN_51.equals(version)
-				|| XPLAN_52.equals(version) || XPLAN_53.equals(version) || XPLAN_54.equals(version))) {
+		if (text.getRechtscharakter() != null
+				&& (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version)
+						|| XPLAN_53.equals(version) || XPLAN_54.equals(version) || XPLAN_60.equals(version))) {
 			addProperty(props, createRechtscharakterProperty(namespaceUri, text.getRechtscharakter().getCode()));
 		}
 		if (props.isEmpty())
@@ -543,11 +575,11 @@ public class XPlanManipulator {
 		addProperty(props, refProperty);
 	}
 
-	private GenericProperty createExterneReferenzProperty_XPlan41_XPlan50(AppSchema schema, FeatureType textFeatureType,
+	private GenericProperty createExterneReferenzProperty_XPlan41_XPlan50(AppSchema schema, FeatureType featureType,
 			QName propName, AbstractReference reference, String externeReferenzElementName,
 			String spezExterneReferenzTyp) {
-		String namespaceUri = textFeatureType.getName().getNamespaceURI();
-		PropertyType propType = textFeatureType.getPropertyDeclaration(propName);
+		String namespaceUri = featureType.getName().getNamespaceURI();
+		PropertyType propType = featureType.getPropertyDeclaration(propName);
 		GenericProperty newProperty = new GenericProperty(propType, null);
 
 		List<TypedObjectNode> subElementChilds = new ArrayList<>();
@@ -574,15 +606,20 @@ public class XPlanManipulator {
 		return newProperty;
 	}
 
-	private GenericProperty createVerbundenerPlanProperty(Feature feature, AppSchema schema, Change change,
-			QName propName) {
+	private GenericProperty createVerbundenerPlanProperty(XPlanVersion version, Feature feature, AppSchema schema,
+			Change change, QName propName) {
 		String namespaceUri = feature.getName().getNamespaceURI();
 		PropertyType propType = feature.getType().getPropertyDeclaration(propName);
 		GenericProperty newProperty = new GenericProperty(propType, null);
 
 		List<TypedObjectNode> subElementChilds = new ArrayList<TypedObjectNode>();
 		add(subElementChilds, createPlanNameProperty(namespaceUri, change.getPlanName()));
-		add(subElementChilds, createRechtscharakterProperty(namespaceUri, change.getLegalNatureCode()));
+		if (XPLAN_60.equals(version)) {
+			add(subElementChilds, createAenderungsArtProperty(namespaceUri, change.getLegalNatureCode()));
+		}
+		else {
+			add(subElementChilds, createRechtscharakterProperty(namespaceUri, change.getLegalNatureCode()));
+		}
 		add(subElementChilds, createNumberProperty(namespaceUri, change.getNumber()));
 		if (subElementChilds.isEmpty())
 			return null;
@@ -597,6 +634,11 @@ public class XPlanManipulator {
 
 	private GenericProperty createPlanNameProperty(String namespaceUri, String value) {
 		QName propName = new QName(namespaceUri, "planName");
+		return createProperty(propName, value, 1, 1);
+	}
+
+	private GenericProperty createAenderungsArtProperty(String namespaceUri, int value) {
+		QName propName = new QName(namespaceUri, "aenderungsArt");
 		return createProperty(propName, value, 1, 1);
 	}
 
@@ -891,7 +933,8 @@ public class XPlanManipulator {
 
 	private void checkVersionAndType(XPlanVersion version, XPlanType type) {
 		if (!XPLAN_41.equals(version) && !XPLAN_50.equals(version) && !XPLAN_51.equals(version)
-				&& !XPLAN_52.equals(version) && !XPLAN_53.equals(version) && !XPLAN_54.equals(version))
+				&& !XPLAN_52.equals(version) && !XPLAN_53.equals(version) && !XPLAN_54.equals(version)
+				&& !XPLAN_60.equals(version))
 			throw new IllegalArgumentException("Unsupported Version: " + version);
 		if (!XPlanType.BP_Plan.equals(type))
 			throw new IllegalArgumentException("Unsupported Plan, only BP_Plan is supported yet.");

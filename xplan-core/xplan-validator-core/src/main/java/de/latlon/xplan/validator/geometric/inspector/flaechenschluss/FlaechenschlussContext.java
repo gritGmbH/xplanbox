@@ -48,15 +48,15 @@ public class FlaechenschlussContext extends InspectorContext {
 	 * @return all flaechenschluss features assigned to a plan
 	 */
 	public Map<GeltungsbereichFeature, List<FeatureUnderTest>> getAllFlaechenschlussFeaturesOfAPlan() {
-		Map<GeltungsbereichFeature, List<FeatureUnderTest>> gealtungsbereichFeatureToFeaturesUnderTest = new HashMap();
+		Map<GeltungsbereichFeature, List<FeatureUnderTest>> geltungsbereichFeatureToFeaturesUnderTest = new HashMap();
 		for (FeatureUnderTest featureUnderTest : featuresUnderTest) {
 			GeltungsbereichFeature geltungsbereichFeature = featureUnderTest.getGeltungsbereichFeature();
-			if (!gealtungsbereichFeatureToFeaturesUnderTest.containsKey(geltungsbereichFeature)) {
-				gealtungsbereichFeatureToFeaturesUnderTest.put(geltungsbereichFeature, new ArrayList<>());
+			if (!geltungsbereichFeatureToFeaturesUnderTest.containsKey(geltungsbereichFeature)) {
+				geltungsbereichFeatureToFeaturesUnderTest.put(geltungsbereichFeature, new ArrayList<>());
 			}
-			gealtungsbereichFeatureToFeaturesUnderTest.get(geltungsbereichFeature).add(featureUnderTest);
+			geltungsbereichFeatureToFeaturesUnderTest.get(geltungsbereichFeature).add(featureUnderTest);
 		}
-		return gealtungsbereichFeatureToFeaturesUnderTest;
+		return geltungsbereichFeatureToFeaturesUnderTest;
 	}
 
 }

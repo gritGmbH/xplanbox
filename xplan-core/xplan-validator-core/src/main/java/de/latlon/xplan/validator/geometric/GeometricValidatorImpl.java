@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
+import de.latlon.xplan.validator.geometric.inspector.doppelbelegung.DoppelbelegungInspector;
 import de.latlon.xplan.validator.geometric.inspector.flaechenschluss.OptimisedFlaechenschlussInspector;
 import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
@@ -161,6 +162,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 			inspectors.add(new OptimisedFlaechenschlussInspector(version));
 		if (!isOptionTrue(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
 			inspectors.add(new GeltungsbereichInspector());
+		inspectors.add(new DoppelbelegungInspector());
 		return inspectors;
 	}
 
@@ -176,8 +178,11 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		gmlStream.setGeometryFactory(geomFac);
 		gmlStream.setApplicationSchema(schema);
 		gmlStream.setSkipBrokenGeometries(true);
-		for (GeometricFeatureInspector featureInspector : featureInspectors)
-			gmlStream.addInspector(featureInspector);
+		for (GeometricFeatureInspector featureInspector : featureInspectors) {
+			if (featureInspector.applicableForVersion(archive.getVersion())) {
+				gmlStream.addInspector(featureInspector);
+			}
+		}
 		gmlStream.addInspector(aenderungenInspector);
 		return gmlStream;
 	}
