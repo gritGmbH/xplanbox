@@ -108,7 +108,6 @@ public class XPlanManipulator {
 		context.setApplicationSchema(schema);
 
 		List<String> previouslyReferencedTextFeatureIds = parseReferencedTextFeatureIds(planToEdit);
-		String previouslyReferencedRasterBasisFeatureId = parseReferencedRasterBasisFeatureId(planToEdit);
 
 		List<Feature> featuresToAdd = new ArrayList<>();
 		List<Feature> featuresToRemove = new ArrayList<>();
@@ -120,7 +119,7 @@ public class XPlanManipulator {
 						featuresToRemove, referencesToRemove, previouslyReferencedTextFeatureIds);
 			if (isBPBereich(featureName))
 				modifyBPBereich(context, version, planToEdit, feature, planWithChanges, schema, featuresToAdd,
-						featuresToRemove, referencesToRemove, previouslyReferencedRasterBasisFeatureId);
+						featuresToRemove, referencesToRemove);
 		}
 		removeAllPropertiesWithReferences(planToEdit, referencesToRemove);
 		planToEdit.removeAll(featuresToRemove);
@@ -157,15 +156,14 @@ public class XPlanManipulator {
 
 	private void modifyBPBereich(GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
 			Feature bpBereichFeature, XPlanToEdit changes, AppSchema schema, List<Feature> featuresToAdd,
-			List<Feature> featuresToRemove, List<String> referencesToRemove,
-			String previouslyReferencedRasterBasisFeatureId) {
+			List<Feature> featuresToRemove, List<String> referencesToRemove) {
 		List<RasterBasis> rasterBasis = changes.getRasterBasis();
 		String nummer = retrieveNummer(bpBereichFeature);
 		List<RasterBasis> rasterBasisOfBereich = rasterBasis.stream()
 				.filter(rb -> nummer == null || nummer.equals(rb.getBereichNummer())).collect(Collectors.toList());
 		if (rasterBasisOfBereich.isEmpty() || countRasterReferences(rasterBasisOfBereich).isEmpty()) {
-			removeRasterBasis(version, planToEdit, bpBereichFeature, featuresToRemove, referencesToRemove,
-					previouslyReferencedRasterBasisFeatureId, bpBereichFeature.getName().getNamespaceURI());
+			removeRasterBasis(version, planToEdit, bpBereichFeature, rasterBasis, featuresToRemove, referencesToRemove,
+					bpBereichFeature.getName().getNamespaceURI());
 		}
 		else {
 			rasterBasisOfBereich.forEach(rb -> modifyRasterBasis(context, version, planToEdit, bpBereichFeature, schema,
@@ -259,11 +257,12 @@ public class XPlanManipulator {
 	}
 
 	private void removeRasterBasis(XPlanVersion version, FeatureCollection planToEdit, Feature bpBereichFeature,
-			List<Feature> featuresToRemove, List<String> referencesToRemove,
-			String previouslyReferencedRasterBasisFeatureId, String namespaceUri) {
+			List<RasterBasis> allRasterBasis, List<Feature> featuresToRemove, List<String> referencesToRemove,
+			String namespaceUri) {
 		if (XPLAN_60.equals(version)) {
 			return;
 		}
+		String previouslyReferencedRasterBasisFeatureId = parseReferencedRasterBasisFeatureId(bpBereichFeature);
 		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
 				|| XPLAN_54.equals(version)) {
 			QName rasterBasisElementName = getRasterBasisElementName(version, namespaceUri);
@@ -278,12 +277,23 @@ public class XPlanManipulator {
 			QName rasterBasisElementName = getRasterBasisElementName(version, namespaceUri);
 			Feature oldRasterBasisFeature = detectFeatureById(planToEdit, rasterBasisElementName,
 					previouslyReferencedRasterBasisFeatureId);
-			if (oldRasterBasisFeature != null) {
+			if (oldRasterBasisFeature != null
+					&& !rasterBasisFeatureIsStillReferenced(oldRasterBasisFeature.getId(), allRasterBasis)) {
 				featuresToRemove.add(oldRasterBasisFeature);
 				referencesToRemove.add(previouslyReferencedRasterBasisFeatureId);
 			}
 		}
 		removeProperties(bpBereichFeature, new QName(namespaceUri, "refScan"));
+	}
+
+	private boolean rasterBasisFeatureIsStillReferenced(String oldRasterBasisFeatureId,
+			List<RasterBasis> allRasterBasis) {
+		return allRasterBasis.stream().anyMatch(rasterBasis -> {
+			if (oldRasterBasisFeatureId.equals(rasterBasis.getFeatureId())) {
+				return !rasterBasis.getRasterReferences().isEmpty();
+			}
+			return false;
+		});
 	}
 
 	private void modifyRasterBasis(GmlDocumentIdContext context, XPlanVersion version, FeatureCollection planToEdit,
@@ -458,13 +468,13 @@ public class XPlanManipulator {
 		}
 	}
 
-	private void removeAllPropertiesWithReferences(FeatureCollection planToEdit, List<String> featuresToRemove) {
+	private void removeAllPropertiesWithReferences(FeatureCollection planToEdit, List<String> referencesToRemove) {
 		for (Feature feature : planToEdit) {
 			List<Property> propertiesToRemove = new ArrayList<>();
 			for (Property property : feature.getProperties()) {
 				if (!isPropertySecured(feature, property)) {
 					PrimitiveValue hrefValue = property.getAttributes().get(XLINK_HREF_ATTRIBUTE);
-					if (hrefValue != null && featuresToRemove.contains(hrefValue.toString().substring(1)))
+					if (hrefValue != null && referencesToRemove.contains(hrefValue.toString().substring(1)))
 						propertiesToRemove.add(property);
 				}
 			}
@@ -781,18 +791,13 @@ public class XPlanManipulator {
 		return previouslyReferencedTextsFeatureIds;
 	}
 
-	private String parseReferencedRasterBasisFeatureId(FeatureCollection planToEdit) {
-		for (Feature feature : planToEdit) {
-			QName featureName = feature.getName();
-			if (isBPBereich(featureName)) {
-				QName propName = new QName(featureName.getNamespaceURI(), "rasterBasis");
-				List<Property> properties = feature.getProperties(propName);
-				for (Property property : properties) {
-					PrimitiveValue hrefValue = property.getAttributes().get(XLINK_HREF_ATTRIBUTE);
-					if (hrefValue != null)
-						return hrefValue.toString().substring(1);
-				}
-			}
+	private String parseReferencedRasterBasisFeatureId(Feature bpBereichFeature) {
+		QName propName = new QName(bpBereichFeature.getName().getNamespaceURI(), "rasterBasis");
+		List<Property> properties = bpBereichFeature.getProperties(propName);
+		for (Property property : properties) {
+			PrimitiveValue hrefValue = property.getAttributes().get(XLINK_HREF_ATTRIBUTE);
+			if (hrefValue != null)
+				return hrefValue.toString().substring(1);
 		}
 		return null;
 	}
