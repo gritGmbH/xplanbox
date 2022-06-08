@@ -18,7 +18,7 @@
     <java.version>11</java.version>
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
-    <deegree3.version>3.4.27</deegree3.version>
+    <deegree3.version>3.4.28-2ab4793-1</deegree3.version>
     <geowerkstatt-hamburg.xplanung.version>0.11.1</geowerkstatt-hamburg.xplanung.version>
     <gwt.version>2.9.0</gwt.version>
     <geotools.version>26.1</geotools.version>
@@ -141,6 +141,8 @@
   </reporting>
   <build>
     <plugins>
+      <!-- format validation does not pass on windows -->
+      <!--
       <plugin>
         <groupId>io.spring.javaformat</groupId>
         <artifactId>spring-javaformat-maven-plugin</artifactId>
@@ -155,6 +157,7 @@
           </execution>
         </executions>
       </plugin>
+      -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
@@ -1119,9 +1122,31 @@
   </scm>
 
   <repositories>
+    <!--
     <repository>
       <id>latlon</id>
       <url>https://repo.lat-lon.de/repository/maven-public/</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    -->
+    <repository>
+      <id>xplanbox-repos</id>
+      <url>https://maven.werne.grit.de/artifactory/xplanbox-repos</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>deegree-repo</id>
+      <url>https://repo.deegree.org/content/groups/public/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
@@ -1152,13 +1177,16 @@
   </repositories>
 
   <pluginRepositories>
+    <!--
     <pluginRepository>
       <id>latlon</id>
       <url>https://repo.lat-lon.de/repository/maven-public/</url>
     </pluginRepository>
+    -->
   </pluginRepositories>
 
   <distributionManagement>
+    <!--
     <repository>
       <id>latlon-deploy</id>
       <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
@@ -1167,8 +1195,18 @@
       <id>latlon-deploy</id>
       <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
     </snapshotRepository>
+    -->
+    <repository>
+        <id>xplanbox-release</id>
+        <name>xplanbox-release</name>
+        <url>http://maven.werne.grit.de/artifactory/xplanbox-release</url>
+    </repository>
+    <snapshotRepository>
+        <id>xplanbox-snapshot</id>
+        <name>xplanbox-snapshot</name>
+        <url>http://maven.werne.grit.de/artifactory/xplanbox-snapshot</url>
+    </snapshotRepository>
   </distributionManagement>
-
   <licenses>
     <license>
       <name>GNU Affero General Public License (AGPL), version 3</name>
