@@ -36,6 +36,7 @@ import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
 
 /**
  * Dialog to edit an existing or create a new {@link Text}
@@ -90,6 +91,10 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 		editedText.setGeoReference(georeference.getFilename());
 		if (rechtscharakterType != null) {
 			editedText.setRechtscharakter(rechtscharakterType.getValueAsEnum());
+		}
+		if (XPLAN_60.equals(version) && (textToEdit == null || textToEdit.getReferenzName() == null)) {
+			String referenzName = parseReferenzNameFromRefrenzUrl();
+			editedText.setReferenzName(referenzName);
 		}
 		return editedText;
 	}
