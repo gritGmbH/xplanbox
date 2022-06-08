@@ -51,8 +51,7 @@ Ist ein Import nicht möglich und soll ein anderer Plan importiert werden, dann 
 ===== Auflistung
 
 Standardmäßig werden alle importierten Pläne in einer Liste angezeigt.
-Diese Liste kann nach den angezeigten Spaltennamen
-auf- oder absteigend sortiert werden.
+Diese Liste kann nach den angezeigten Spaltennamen auf- oder absteigend sortiert werden. Sind mehr als 15 Pläne in der Auswahl, so wird unterhalb der Liste eine Navigation angezeigt, die ein seitenweises Vor- und Zurückblättern innerhalb der Ergebnismenge erlaubt.
 
 [[xplanmanager-filter]]
 ===== Filter
