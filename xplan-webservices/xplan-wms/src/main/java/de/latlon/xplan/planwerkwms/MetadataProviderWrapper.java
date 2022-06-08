@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.planwerkwms;
 
+import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
 import org.apache.axiom.om.util.XMLStreamWriterFilterBase;
@@ -31,7 +32,6 @@ import org.deegree.commons.ows.metadata.ServiceProvider;
 import org.deegree.commons.ows.metadata.layer.ExternalIdentifier;
 import org.deegree.commons.tom.ows.LanguageString;
 import org.deegree.services.metadata.OWSMetadataProvider;
-import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 import org.deegree.workspace.Resource;
 import org.deegree.workspace.ResourceMetadata;
 import org.slf4j.Logger;
@@ -128,7 +128,7 @@ public class MetadataProviderWrapper implements OWSMetadataProvider {
 		}
 		List<DatasetMetadata> datasetMetadatas = new ArrayList<>();
 		DatasetMetadata datasetMetadata = new DatasetMetadata(name, null, null, null, metadataUrls, externalIds, null,
-				null, null);
+				null, null, null);
 		datasetMetadatas.add(datasetMetadata);
 		return datasetMetadatas;
 	}
