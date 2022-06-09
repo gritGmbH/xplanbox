@@ -20,8 +20,11 @@
  */
 package de.latlon.xplan.manager.edit;
 
+import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.Change;
@@ -62,6 +65,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
@@ -621,6 +625,72 @@ public class XPlanManipulatorTest {
 				hasXPath("count(//xp:XP_Rasterdarstellung)", is("0")).withNamespaceContext(nsContext(version)));
 	}
 
+	/**
+	 * https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-961 (Testfall 1)
+	 */
+	@Test
+	public void testModifyXPlan_RasterBasis_Bereiche() throws Exception {
+		XPlanVersion version = XPlanVersion.XPLAN_41;
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan41/BPlan001_4-1_Bereiche.zip");
+
+		FeatureCollection featureCollection = readXPlanGmlFromZip(version, inputStream, schema);
+
+		XPlanToEditFactory xPlanToEditFactory = new XPlanToEditFactory();
+		XPlan xPlan = mockXPlan(version);
+		XPlanToEdit editedXplan = xPlanToEditFactory.createXPlanToEdit(xPlan, featureCollection);
+		RasterBasis rasterBasisBereich0 = editedXplan.getRasterBasis().stream()
+				.filter(rasterBasis -> "0".equals(rasterBasis.getBereichNummer())).findFirst().get();
+		rasterBasisBereich0.getRasterReferences().clear();
+		// editedXplan.getRasterBasis().remove(rasterBasisBereich0);
+
+		// remove rasterbasis from Bereich 0
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+
+		String exportedPlanUpdate1 = exportPlan(featureCollection, version);
+
+		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xplan:nummer = '0']/xp:rasterBasis)", is("0"))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xplan:nummer = '0']/xp:refScan)", is("0"))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xplan:nummer = '1']/xp:rasterBasis)", is("1"))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xplan:nummer = '1']/xp:refScan)", is("0"))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlanUpdate1,
+				hasXPath("count(//xp:XP_RasterplanBasis)", is("1")).withNamespaceContext(nsContext(version)));
+
+		assertThatPlanIsSchemaValid(featureCollection, version);
+
+		RasterReference scan = new RasterReference("0", "scanRef", "scanGeoRef", SCAN, null, null, null, null, null,
+				null, null);
+
+		RasterBasis rasterBasisBereich1 = editedXplan.getRasterBasis().stream()
+				.filter(rasterBasis -> "1".equals(rasterBasis.getBereichNummer())).collect(Collectors.toList()).stream()
+				.findFirst().get();
+		rasterBasisBereich1.addRasterReference(scan);
+
+		// add rasterbasis to Bereich 1
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+
+		String exportedPlanUpdate2 = exportPlan(featureCollection, version);
+
+		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:BP_Bereich[xp:nummer = '0']/xp:rasterBasis)", is("0"))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:BP_Bereich[xp:nummer = '0']/xp:refScan)", is("0"))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:rasterBasis)", is("1"))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:refScan)", is("0"))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlanUpdate2,
+				hasXPath("count(//xp:XP_RasterplanBasis)", is("1")).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:XP_RasterplanBasis/xp:refScan)", is("2"))
+				.withNamespaceContext(nsContext(version)));
+
+		assertThatPlanIsSchemaValid(featureCollection, version);
+	}
+
 	private XPlanToEdit createSimpleXPlan() {
 		XPlanToEdit editedXplan = new XPlanToEdit();
 		editedXplan.getBaseData().setPlanName("planName");
@@ -899,9 +969,21 @@ public class XPlanManipulatorTest {
 		InputStream xplanGml = this.getClass().getResourceAsStream(plan);
 		XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(xplanGml);
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(reader, null);
+		return readXPlan(xplanVersion, schema, xmlStream);
+	}
 
+	private FeatureCollection readXPlanGmlFromZip(XPlanVersion version, InputStream resourceAsStream, AppSchema schema)
+			throws Exception {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip("test", resourceAsStream);
+		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
+		return readXPlan(version, schema, xmlStream);
+	}
+
+	private FeatureCollection readXPlan(XPlanVersion xPlanVersion, AppSchema schema, XMLStreamReaderWrapper xmlStream)
+			throws Exception {
 		GeometryFactory geomFac = new GeometryFactory();
-		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(xplanVersion.getGmlVersion(), xmlStream);
+		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(xPlanVersion.getGmlVersion(), xmlStream);
 		gmlStream.setApplicationSchema(schema);
 		gmlStream.setGeometryFactory(geomFac);
 		return (FeatureCollection) gmlStream.readFeature();
