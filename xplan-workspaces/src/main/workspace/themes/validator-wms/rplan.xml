@@ -532,7 +532,7 @@
     </Theme>
     <Theme>
       <Identifier>so</Identifier>
-      <d:Title>SO</d:Title>
+      <d:Title>SO Objekte</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
