@@ -4,7 +4,7 @@
   <wfs:Parameter name="planName" xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string">
     <wfs:Abstract>planName (Mandatory)</wfs:Abstract>
   </wfs:Parameter>
-  <wfs:QueryExpressionText returnFeatureTypes=":${deegreewfs:ServedFeatureTypes}" language="urn:ogc:def:queryLanguage:OGC-WFS::WFS_QueryExpression" isPrivate="false">
+  <wfs:QueryExpressionText returnFeatureTypes="${deegreewfs:ServedFeatureTypes}" language="urn:ogc:def:queryLanguage:OGC-WFS::WFS_QueryExpression" isPrivate="false">
     <wfs:Query xmlns:fes="http://www.opengis.net/fes/2.0" xmlns:xplan="http://www.deegree.org/xplanung/1/0" typeNames="xplan:BP_AbgrabungsFlaeche">
       <fes:Filter>
         <fes:And>
