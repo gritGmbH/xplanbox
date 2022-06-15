@@ -20,10 +20,8 @@
  */
 package de.latlon.xplan.manager.web.client.gui.editor.reference;
 
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
@@ -37,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
 
 /**
  * Dialog to edit an existing or create a new {@link Reference}
@@ -74,6 +73,10 @@ public class ReferenceDialog extends EditDialogBoxWithRasterUpload {
 		}
 		ref.setGeoReference(georeference.getFilename());
 		ref.setType(refType.getValueAsEnum());
+		if (XPLAN_60.equals(version)) {
+			String referenzName = parseReferenzNameFromRefrenzUrl();
+			ref.setReferenzName(referenzName);
+		}
 		return ref;
 	}
 

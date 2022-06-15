@@ -33,6 +33,7 @@ import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
+import de.latlon.xplan.manager.web.client.gui.widget.MandatoryTextBox;
 import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
@@ -74,7 +75,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private final TypeCodeListBox<ExterneReferenzArt> artType;
 
-	private final TextBox referenzName = createTextInput();
+	private final TextBox referenzName;
 
 	private final TextBox informationssystemURL = createTextInput();
 
@@ -100,6 +101,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		this.refType = createRefType();
 		this.refMimeType = createMimeTypeType();
 		this.georefMimeType = createMimeTypeType();
+		this.referenzName = createRasterName(version);
 		this.artType = new TypeCodeListBox<ExterneReferenzArt>(ExterneReferenzArt.class, true);
 		this.originalRasterReference = rasterReference;
 		addChangeHandlers();
@@ -247,14 +249,33 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		return new TypeCodeListBox(MimeTypes.class, true);
 	}
 
+	private TextBox createRasterName(EditVersion version) {
+		if (XPLAN_60.equals(version)) {
+			return createMandatoryTextInput();
+		}
+		return createTextInput();
+	}
+
 	private boolean validate(boolean includeReferences) {
 		boolean valid = super.isValid();
 		List<String> validationFailures = new ArrayList<String>();
 
-		if ((referenzName.getValue() == null || !(referenzName.getValue().length() > 0))
-				&& !reference.isFileSelected()) {
-			valid = false;
-			validationFailures.add(MESSAGES.editCaptionRasterBasisReferenceNameOrUrl());
+		if (XPLAN_60.equals(version)) {
+			if (referenzName instanceof MandatoryTextBox && !((MandatoryTextBox) referenzName).isValid()) {
+				valid = false;
+				validationFailures.add(MESSAGES.editCaptionRasterBasisReferenceNameMissing());
+			}
+			if (!reference.isFileSelected()) {
+				valid = false;
+				validationFailures.add(MESSAGES.editCaptionRasterBasisReferenceUrlMissing());
+			}
+		}
+		else {
+			if ((referenzName.getValue() == null || !(referenzName.getValue().length() > 0))
+					&& !reference.isFileSelected()) {
+				valid = false;
+				validationFailures.add(MESSAGES.editCaptionRasterBasisReferenceNameOrUrl());
+			}
 		}
 		if (artType.getValueAsEnum() != null && DOKUMENT.equals(artType.getValueAsEnum())) {
 			if (georefMimeType.getValueAsEnum() != null) {
