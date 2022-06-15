@@ -9,9 +9,9 @@ Der Pfad zu den semantischen Regeln muss in der Datei _<XPLANBOX_CONFIG>/validat
 validationRulesDirectory=/home/xplanbox/semantischeRegeln/0.11.1/
 ----
 
-NOTE: DieSE Konfiguration wirkt sich auf die Teilkomponenten XPlanManagerAPI, XPlanManagerWeb und XPlanManagerCLI sowie XPlanValidatorAPI, XPlanValidatorWeb und XPlanValidatorCLI aus.
+NOTE: Diese Konfiguration wirkt sich auf die Komponenten XPlanManagerAPI, XPlanManagerWeb und XPlanManagerCLI sowie XPlanValidatorAPI, XPlanValidatorWeb und XPlanValidatorCLI aus.
 
-NOTE: Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln für alle Komponenten verwendet.
+NOTE: Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln für die genannten Komponenten verwendet.
 
 IMPORTANT: Das Basisverzeichnis _rules/_ darf nur Unterverzeichnisse enthalten, die der Namenskonvention _xplangml<VERSION>_ entsprechen, wobei der Bezeichner _<VERSION>_ eine Versionsnummer ohne Trennzeichen enthält z. B. _54_ für XPlanGML 5.4. Des Weiteren dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML Version von der xPlanBox unterstützt werden.
 
