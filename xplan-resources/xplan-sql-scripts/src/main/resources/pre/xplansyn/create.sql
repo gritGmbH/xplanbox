@@ -1,3 +1,4 @@
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 16.06.2022, 09:20:14 --- */
 CREATE SCHEMA xplansynpre; 
 SET search_path TO xplansynpre,public;
 CREATE TABLE xplansynpre.xplan_bp_abgrabungsflaeche (
