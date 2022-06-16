@@ -172,7 +172,7 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
 		if (indexOfLastPath > 0 && indexOfSuffix > 0 && indexOfLastPath < indexOfSuffix) {
 			return referenzLinkValue.substring(indexOfLastPath + 1, indexOfSuffix);
 		}
-		else if (indexOfLastPath > 0) {
+		else if (indexOfLastPath > 0 && indexOfLastPath < referenzLinkValue.length() - 1) {
 			return referenzLinkValue.substring(indexOfLastPath + 1);
 		}
 		return referenzLinkValue;
