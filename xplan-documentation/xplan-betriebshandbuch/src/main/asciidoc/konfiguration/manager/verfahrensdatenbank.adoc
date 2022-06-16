@@ -57,5 +57,5 @@ Konfigurationsdatei können wie zuvor beschrieben geändert werden):
 <Property name="url" value="jdbc:postgresql://<host>:<port>/<dbname>"/>
 <Property name="username" value="postgres"/>
 <Property name="password" value="postgres"/>
-<Property name="maxActive" value="10"/>
+<Property name="maxTotal" value="10"/>
 ----

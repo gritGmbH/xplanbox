@@ -59,8 +59,8 @@ Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als 
 In den Dateien __xplan.xml__ werden die ConnectionsPools für den Zugriff auf die Datenbank konfiguriert. Diese beinhalten neben den Verbindungsdetails wie die URL, den Nutzernamen und das Passwort weitere Details, die ggf. bei einer Installation zu berücksichtigen sind. Darunter:
 
 * `initialSize`: Die Anzahl der initialen Verbindungen, die beim Start geöffnet werden.
-* `maxActive`: Die maximale Anzahl von offenen Verbindungen die von Pool zeitgleich verwendet werden können.
-* `maxIdle`: Die maximale Anzahl der  Verbindungen, die sich ungenutzt im Pool befinden können.
+* `maxTotal`: Die maximale Anzahl von offenen Verbindungen, die von Pool zeitgleich verwendet werden können.
+* `maxIdle`: Die maximale Anzahl der Verbindungen, die sich ungenutzt im Pool befinden können.
 
 Da die Anzahl der zugelassenen Verbindungen des Datenbankservers begrenzt sein kann, ist es abhängig von der Installation der xPlanBox, der Anzahl der Nutzer und gegebenenfalls weiterer Faktoren sinnvoll, die vordefinierten Werte an die Installationsumgebung anzupassen.
 

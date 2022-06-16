@@ -26,7 +26,7 @@
                               xsi:schemaLocation="http://www.deegree.org/connectionprovider/datasource http://schemas.deegree.org/jdbc/datasource/3.4.0/datasource.xsd">
 
     <!-- Creation / lookup of javax.sql.DataSource instance -->
-    <DataSource javaClass="org.apache.commons.dbcp.BasicDataSource"/>
+    <DataSource javaClass="org.apache.commons.dbcp2.BasicDataSource" destroyMethod="close"/>
 
     <!-- Configuration of DataSource properties -->
     <Property name="driverClassName" value="org.postgresql.Driver"/>
@@ -34,14 +34,12 @@
     <Property name="username" value="xplanbox"/>
     <Property name="password" value="xplanbox"/>
     <Property name="initialSize" value="1"/>
-    <Property name="maxActive" value="10"/>
+    <Property name="maxTotal" value="10"/>
     <Property name="maxIdle" value="1"/>
-    <Property name="maxWait" value="5000"/>
+    <Property name="maxWaitMillis" value="5000"/>
     <Property name="defaultReadOnly" value="false"/>
     <Property name="testOnReturn" value="true"/>
     <Property name="testOnBorrow" value="true"/>
     <Property name="validationQuery" value="select 1"/>
-    <Property name="removeAbandoned" value="true"/>
-    <Property name="removeAbandonedTimeout" value="300"/>
 
 </DataSourceConnectionProvider>

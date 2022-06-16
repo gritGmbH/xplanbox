@@ -156,7 +156,7 @@ Für einige Aktualisierungen sind Aktualisierungsskripte im Modul
 _xplan-update-database-cli_ verfügbar.
 
 TIP: Es gibt sowohl SQL-Update-Skripte als auch Liquibase-Skripte, die mit
-der Software http://www.liquibase.org/[Liquibase] ausgeführt werden
+der Software https://www.liquibase.org/[Liquibase] ausgeführt werden
 können. Falls beide Skript-Typen vorhanden sind, kann der Nutzer wählen,
 ob das Update per SQL oder Liquibase durchgeführt werden soll.
 
@@ -330,11 +330,16 @@ TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert w
 [[aktualisierung-auf-die-version-6.0-der-xplanbox]]
 === Aktualisierung auf die Version 6.0 der xPlanBox
 
-Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6. unterstützt. Weiterhin sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden.
+Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neben der Aktualisierung auf deegree webservices Version 3.5 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden.
 
 Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+** Anpassung der Konfigurationsdateien _xplan.xml_, _vfdb.xml_ und _inspireplu.xml_ im Unterverzeichnis _jdbc/_ für alle deegree Workspaces mit folgenden Änderungen:
+*** den Wert für die Eigenschaft `driverClassName` von `org.apache.commons.dbcp.BasicDataSource` auf `org.apache.commons.dbcp2.BasicDataSource` ändern.
+*** die Eigenschaft `maxActive` umbenennen in `maxTotal`
+*** die Eigenschaft `maxWait` umbenennen in `maxWaitMillis`
+*** die Eigenschaft `removeAbandoned` ersetzen entweder durch `removeAbandonedOnBorrow` (empfohlen) oder `removeAbandonedOnMaintenance` (weitere Informationen unter https://commons.apache.org/proper/commons-dbcp/configuration.html[Apache DBCP Konfigurationsoptionen])
 * Aktualisierung der Datenbank:
 ** Ausführen der Skripte für die Erstellung der Datenhaltung für 6.0 aus dem Modul _xplan-manager-workspace_:
 *** _fix/xplan60/create.sql_
