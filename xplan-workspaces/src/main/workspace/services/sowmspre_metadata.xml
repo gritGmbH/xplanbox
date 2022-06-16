@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<deegreeServicesMetadata configVersion="3.4.0" xmlns="http://www.deegree.org/services/metadata"
+                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                         xmlns:inspire_vs="http://inspire.europa.eu/networkservice/view/1.0"
+                         xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.4.0/metadata.xsd">
+  <ServiceIdentification>
+    <Title>XPlanWMSPre</Title>
+    <Abstract>Dieser WMS Dienst stellt auf dem Standard XPlanung basierende WMS Ebenen bereit. Dargestellt werden jeweils nur die zu einer Planart gehörenden Objekte. Die umfangreiche Attributierung kann mittels GetFeatureInfo abgefragt werden. Objekte mit Referenzen auf weitere Dateien können über GetFeatureInfo abgefragt werden.</Abstract>
+    <Keywords>
+      <Keyword>XPlanung</Keyword>
+      <Keyword>SOPlan</Keyword>
+      <Keyword>XPlanGML 6.0</Keyword>
+      <Keyword>XPlanGML 5.4</Keyword>
+      <Keyword>XPlanGML 5.3</Keyword>
+      <Keyword>XPlanGML 5.2</Keyword>
+      <Keyword>XPlanGML 5.1</Keyword>
+      <Keyword>XPlanGML 5.0</Keyword>
+      <Keyword>XPlanGML 4.1</Keyword>
+      <Keyword>XPlanGML 4.0</Keyword>
+      <Keyword>WMS</Keyword>
+      <Keyword>xPlanBox Version ${project.version}</Keyword>
+    </Keywords>
+    <Fees/>
+    <AccessConstraints/>
+  </ServiceIdentification>
+  <ServiceProvider>
+    <ProviderName>lat/lon GmbH</ProviderName>
+    <ProviderSite>http://www.lat-lon.de</ProviderSite>
+    <ServiceContact>
+      <IndividualName>-</IndividualName>
+      <PositionName/>
+      <Phone>+49(0)22894779877</Phone>
+      <Facsimile/>
+      <ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>
+      <Address>
+        <DeliveryPoint>Aennchenstraße 19</DeliveryPoint>
+        <City>Bonn</City>
+        <AdministrativeArea>Nordrhein-Westfalen</AdministrativeArea>
+        <PostalCode>53177</PostalCode>
+        <Country>Germany</Country>
+      </Address>
+      <OnlineResource>http://www.deegree.org</OnlineResource>
+      <HoursOfService>24x7</HoursOfService>
+      <ContactInstructions>Do not hesitate to call</ContactInstructions>
+      <Role>PointOfContact</Role>
+    </ServiceContact>
+  </ServiceProvider>
+
+
+  <ExtendedCapabilities protocolVersions="1.3.0">
+    <inspire_vs:ExtendedCapabilities xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
+                                     xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
+                                     xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd http://inspire.ec.europa.eu/schemas/inspire_vs/1.0 http://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd">
+      <inspire_common:MetadataUrl>
+        <inspire_common:URL>
+          http://www.metadaten-serviceportal.de/
+        </inspire_common:URL>
+        <inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType>
+      </inspire_common:MetadataUrl>
+      <inspire_common:SupportedLanguages>
+        <inspire_common:DefaultLanguage>
+          <inspire_common:Language>ger</inspire_common:Language>
+        </inspire_common:DefaultLanguage>
+      </inspire_common:SupportedLanguages>
+      <inspire_common:ResponseLanguage>
+        <inspire_common:Language>ger</inspire_common:Language>
+      </inspire_common:ResponseLanguage>
+    </inspire_vs:ExtendedCapabilities>
+  </ExtendedCapabilities>
+</deegreeServicesMetadata>
