@@ -1,8 +1,7 @@
 [[bekannte-probleme]]
 == Bekannte Probleme
 
-[[internet-explorer]]
-=== Internet Explorer
+=== Verwendung von Internet Explorer
 
 Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb mit Microsoft Internet Explorer 9/10/11 kann es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisystem blockiert wird.
 
@@ -11,13 +10,9 @@ Der Fehler ist Microsoft bekannt und es wird folgender Workaround empfohlen:
     - Neu-Laden der Seite mit "Refresh/F5" oder
     - Schließen des Browser-Fenster/Tabs mit "Ctrl+w"
 
-Referenzen:
+IMPORTANT: Die Unterstützung von Microsoft Internet Explorer 9/10/11 ist mit Version 4.2 der xPlanBox abgekündigt worden. Bitte nutzen Sie einen anderen Browser wie z. B. Microsoft Edge, Firefox oder Google Chrome.
 
-    - https://connect.microsoft.com/IE/feedback/details/817183/ie10-and-ie11-keep-files-locked-after-uploading[IE10 and IE11 keep files locked after uploading]
-    - https://connect.microsoft.com/IE/feedback/details/794708/uploaded-file-is-locked-on-file-system-after-upload[Uploaded file is locked on file system after upload]
-
-[[xplanbox---durch-kartenvorschau-generierter-getmap-request]]
-=== xPlanBox - Durch Kartenvorschau generierter GetMap-Request
+=== XPlanWMS - Mit Kartenvorschau im XPlanManagerWeb generierter GetMap-Request
 
 Der durch den Button "Plan im neuen Fenster öffnen" unterhalb der Kartenvorschau im XPlanManagerWeb generierte WMS GetMap-Request gibt im Fall, dass noch kein Rasterplan in das System importiert wurde, folgende erwartete Meldung aus:
 
@@ -44,34 +39,38 @@ Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree
 Diese Konfigurationsdateien können nicht von deegree geparst werden. Und führen zu einem Systemfehler und verhindern den Start der Dienste.
 Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namespace-Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
 
-=== Transformation in das INSPIRE Planned Land Use Datenschema
+=== XPlanManagerWeb - Anzeige der Pläne auf der letzten Seite
+
+Die Ansicht der Pläne im XPlanManagerWeb zeigt auf der letzten Seite immer die letzten 15 Pläne an. Dieses Verhalten tritt sowohl mit oder ohne Auswahl eines Filters auf (siehe dazu die Funktionsbeschreibung in <<xplanmanager-web-auflistung>>).
+
+=== XPlanManagerWeb - Transformation in das INSPIRE Planned Land Use Datenschema
 
 Bei der Transformation von XPlanGML in das INSPIRE Planned Land Use Datenschema können in der vorliegenden Version der xPlanBox nicht alle Daten vollständig transformiert werden.
 So fehlen u.a. Transformationsregeln für Werte aus Codelisten als auch konfigurierbare Abbildungsregeln für Elemente wie z. B. der INSPIRE ID.
 Zugesichert werden kann, dass das über den XPlanInspirePluWFS abgegebene GML gegen das GML-Applikationsschema validiert.
-Nicht zugesichert werden kann, dass das GML alle Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use erfüllt sowie dass alle Daten aus dem XPlanGML in das
+Nicht zugesichert werden kann, dass das GML alle Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use erfüllt, sowie dass alle Daten aus dem XPlanGML in das
 Zielschema INSPIRE PLU transformiert werden.
 
-=== Löschen von einzelnen Plänen aus dem InspirePLU Diensten
+=== XPlanManagerWeb - Löschen von einzelnen Plänen aus dem InspirePLU Diensten
 
 Aktuell kann über den XPlanManager ein XPlanArchiv nur aus der XPlanDB-Datenhaltung entfernt werden. Wird ein Plan von XPlanGML nach INSPIRE PLU transformiert und in die InspirePLUDB-Datenhaltung
 übertragen, kann dieser Datensatz nicht mehr über den XPlanManager aus der InspirePLUDB-Datenhaltung entfernt werden.
 
 Eine Umgehung ist das Löschen des Datensatzes aus der InspirePLUDB-Datenhaltung über die WFS-T Schnittstelle des InspirePLUWFS. Zum Löschen eines oder mehrerer Datensätze muss an den InspirePLUWFS eine WFS-T 2.0.0 DELETE Aktion geschickt werden.
 
-=== Darstellungsvorschriften für Raumordnungspläne
+=== XPlanWMS - Darstellungsvorschriften für Raumordnungspläne
 
 Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den XPlanWMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
 
-=== Darstellung von geometrischen Fehlern in einer Grafik und im Shapefile
+=== XPlanValidator - Darstellung von geometrischen Fehlern in einer Grafik und im Shapefile
 
-Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeben, Multigeometrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geometrien nur, wenn diese nicht zu fehlerhaft sind, um gerendert zu werden.
+Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) im Validierungsbericht des XPlanValidator ausgegeben, Multigeometrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geometrien nur, wenn diese nicht zu fehlerhaft sind, um gerendert zu werden.
 
-=== Änderungen der Rasterbasis über die Editorfunktion im XPlanManagerWeb werden nicht übernommen
+=== XPlanManagerWeb - Änderungen der Rasterbasis über die Editorfunktion im XPlanManagerWeb werden nicht übernommen
 
 Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl" statt "Scan") der Eintrag nicht in das XPlanGML-Instanzdokument übernommen. Die Referenz auf die Rasterbasis wird beim Speichern nicht in das XPlanGML geschrieben, befindet sich aber in der ZIP-Datei.
 
-=== Umsetzung von Präsentationsobjekte
+=== XPlanWMS - Umsetzung von Präsentationsobjekte
 
 Im XPlanWMS ist der Umfang der Darstellung von Präsentationsobjekten nur eingeschränkt implementiert. Über die folgenden Layer werden diese angezeigt:
 
