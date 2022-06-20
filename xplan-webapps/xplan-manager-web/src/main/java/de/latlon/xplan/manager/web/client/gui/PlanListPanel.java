@@ -488,7 +488,7 @@ public class PlanListPanel extends DecoratorPanel {
 		final Column<XPlan, String> editButtonColumn = new Column<XPlan, String>(editButtonCell) {
 			@Override
 			public String getValue(XPlan xPlan) {
-				if ("BP_Plan".equals(xPlan.getType()) && isVersionSupportedByEditor(xPlan) && isEditingPermitted(xPlan))
+				if (isTypeAndVersionSupportedByEditor(xPlan) && isEditingPermitted(xPlan))
 					editButtonCell.setEnabled();
 				else
 					editButtonCell.setDisabled();
@@ -508,9 +508,9 @@ public class PlanListPanel extends DecoratorPanel {
 				XPlan xPlan = event.getValue();
 				if (!isEditingPermitted(xPlan))
 					return messages.editButtonTooltipPermissionDenied();
-				else if (!"BP_Plan".equals(xPlan.getType()))
+				else if (!isTypeSupportedByEditor(xPlan))
 					return messages.editButtonTooltipIncorrectPlanType();
-				else if (!(isVersionSupportedByEditor(xPlan)))
+				else if (!(isTypeAndVersionSupportedByEditor(xPlan)))
 					return messages.editButtonTooltipIncorrectVersion();
 				return messages.editButtonTooltip();
 			}
@@ -716,11 +716,21 @@ public class PlanListPanel extends DecoratorPanel {
 		return dialog;
 	}
 
-	private boolean isVersionSupportedByEditor(XPlan xPlan) {
-		return "XPLAN_41".equals(xPlan.getVersion()) || "XPLAN_50".equals(xPlan.getVersion())
-				|| "XPLAN_51".equals(xPlan.getVersion()) || "XPLAN_52".equals(xPlan.getVersion())
-				|| "XPLAN_53".equals(xPlan.getVersion()) || "XPLAN_54".equals(xPlan.getVersion())
-				|| "XPLAN_60".equals(xPlan.getVersion());
+	private boolean isTypeAndVersionSupportedByEditor(XPlan xPlan) {
+		if ("BP_Plan".equals(xPlan.getType()))
+			return "XPLAN_41".equals(xPlan.getVersion()) || "XPLAN_50".equals(xPlan.getVersion())
+					|| "XPLAN_51".equals(xPlan.getVersion()) || "XPLAN_52".equals(xPlan.getVersion())
+					|| "XPLAN_53".equals(xPlan.getVersion()) || "XPLAN_54".equals(xPlan.getVersion())
+					|| "XPLAN_60".equals(xPlan.getVersion());
+		else if ("FP_Plan".equals(xPlan.getType()))
+			return "XPLAN_50".equals(xPlan.getVersion()) || "XPLAN_51".equals(xPlan.getVersion())
+					|| "XPLAN_52".equals(xPlan.getVersion()) || "XPLAN_53".equals(xPlan.getVersion())
+					|| "XPLAN_54".equals(xPlan.getVersion()) || "XPLAN_60".equals(xPlan.getVersion());
+		return false;
+	}
+
+	private boolean isTypeSupportedByEditor(XPlan xPlan) {
+		return "BP_Plan".equals(xPlan.getType()) || "FP_Plan".equals(xPlan.getType());
 	}
 
 	private boolean isVersionSupportedByInpirePlu(XPlan xPlan) {
