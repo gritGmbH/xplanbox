@@ -92,12 +92,12 @@ public class XPlanToEditFactory {
 		while (iterator.hasNext()) {
 			Feature feature = iterator.next();
 			String nameOfFeature = feature.getName().getLocalPart();
-			if ("BP_Plan".equals(nameOfFeature)) {
-				parseBPPlan(feature, xPlanToEdit);
+			if ("BP_Plan".equals(nameOfFeature) || "FP_Plan".equals(nameOfFeature)) {
+				parsePlan(feature, xPlanToEdit);
 			}
-			else if ("BP_Bereich".equals(nameOfFeature)) {
+			else if ("BP_Bereich".equals(nameOfFeature) || "FP_Bereich".equals(nameOfFeature)) {
 				xPlanToEdit.setHasBereich(true);
-				parseBPBereich(feature, xPlanToEdit, xPlan.getVersion());
+				parseBereich(feature, xPlanToEdit, xPlan.getVersion());
 			}
 		}
 		setValidityPeriod(xPlan, xPlanToEdit);
@@ -114,7 +114,7 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parseBPPlan(Feature feature, XPlanToEdit xPlanToEdit) {
+	private void parsePlan(Feature feature, XPlanToEdit xPlanToEdit) {
 		LOG.debug("Parse properties from BP_Plan");
 		BaseData baseData = xPlanToEdit.getBaseData();
 		for (Property property : feature.getProperties()) {
@@ -171,7 +171,7 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parseBPBereich(Feature feature, XPlanToEdit xPlanToEdit, String version) {
+	private void parseBereich(Feature feature, XPlanToEdit xPlanToEdit, String version) {
 		LOG.debug("Parse properties from BP_Bereich");
 		String bereichNummer = getPropertyByName(feature, "nummer");
 		RasterBasis rasterBasis = createOrGetRasterBasis(xPlanToEdit, bereichNummer, null);

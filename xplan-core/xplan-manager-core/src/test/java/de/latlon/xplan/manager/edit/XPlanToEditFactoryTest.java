@@ -321,6 +321,25 @@ public class XPlanToEditFactoryTest {
 		assertThat(xPlanToEdit.isHasBereich(), is(false));
 	}
 
+	@Test
+	public void testCreateXPlanToEdit_XPlan51_FPlan() throws Exception {
+		FeatureCollection featureCollection = readXPlanArchive(XPLAN_51, "xplan51/FPlan.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51), featureCollection);
+		assertThat(xPlanToEdit.isHasBereich(), is(true));
+
+		BaseData baseData = xPlanToEdit.getBaseData();
+		assertThat(baseData.getPlanName(), is("FPlan Bad Liebenwerda"));
+		assertThat(baseData.getPlanTypeCode(), is(9999));
+		assertThat(baseData.getCreationDate(), is(asDate("2004-12-01")));
+
+		assertThat(xPlanToEdit.getRasterBasis().size(), is(1));
+		assertThat(xPlanToEdit.getRasterBasis().get(0).getRasterReferences().size(), is(0));
+		assertThat(xPlanToEdit.getTexts().size(), is(0));
+		assertThat(xPlanToEdit.getReferences().size(), is(0));
+		assertThat(xPlanToEdit.getChanges().size(), is(0));
+	}
+
 	private RasterReference getByType(List<RasterReference> rasterBasisReferences, RasterReferenceType type) {
 		for (RasterReference rasterReference : rasterBasisReferences) {
 			if (type.equals(rasterReference.getType()))
