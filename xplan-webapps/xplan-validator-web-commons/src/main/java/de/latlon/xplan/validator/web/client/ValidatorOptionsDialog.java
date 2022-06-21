@@ -279,7 +279,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 						@Override
 						public void onFailure(Throwable caught) {
-							Window.alert("Fehler beim erstellen der Konfiguration der Kartenvorschau: "
+							Window.alert("Fehler beim Erstellen der Konfiguration der Kartenvorschau: "
 									+ caught.getMessage());
 						}
 					});
