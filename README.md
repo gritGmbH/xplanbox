@@ -6,6 +6,10 @@ In diesem Repository ist der Quellcode für die Open Source-Version der Anwendun
 
 Dieses Projekt ist unter der GNU Affero General Public License, Version 3 oder jeder späteren Version veröffentlicht. Weitere Informationen zur Lizenz stehen in [LICENSE.txt](LICENSE.txt).
 
+## Versionierung
+
+Die Versionierung der Software folgt dem Versionierungsschema von [SemVer](http://semver.org/). Eine Übersicht der bisher erstellten Versionen ist unter [Releases](../../releases) zu finden. 
+
 ## Mitarbeit
 
 Regeln für die Mitarbeit finden Sie in [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -16,9 +20,24 @@ Regeln für die Mitarbeit finden Sie in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Personen, die an diesem Projekt mitgearbeitet haben, stehen in [contributors](CONTRIBUTORS.md).
 
-## Versionierung
+## Sponsoren 
 
-Die Versionierung der Software folgt dem Versionierungsschema von [SemVer](http://semver.org/). Eine Übersicht der bisher erstellten Versionen ist unter [Releases](../../releases) zu finden. 
+### Initialer Sponsor und Implementierungspartner
+
+<p align="center">
+  <a href="https://www.hamburg.de/bsw/" target="_blank">
+    <img width="260px" src="sponsor_bsw.png">
+  </a>
+</p>
+
+
+### Weitere Sponsoren
+
+<p align="center">
+  <a href="https://geoinfo.hamburg.de/" target="_blank">
+    <img width="130px" src="sponsor_lgv.png">
+  </a>
+</p>
 
 ## Dokumentation
 
@@ -71,7 +90,6 @@ Dazu muss die passende Version der XPlanung-Validierungsregeln ausgewählt werde
 * Installieren der Datei im lokalen Maven Repository mit `mvn install:install-file -DgroupId=de.geowerkstatt-hamburg -DartifactId=xplanung -Dversion=0.11.1 -Dpackaging=zip -DgeneratePom=true -Dfile=geowerkstatt-hamburg-xplanung.zip`
 
 > **_Hinweis_**: Um eine andere Version der XPlanung-Validierungsregeln zu installieren, folgen Sie der Anleitung im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc).
-
 
 #### Anwendung erstellen
 

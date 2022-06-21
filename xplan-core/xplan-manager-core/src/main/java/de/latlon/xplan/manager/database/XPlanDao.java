@@ -183,6 +183,9 @@ public class XPlanDao {
 			LOG.info("OK [" + elapsed + " ms].");
 			return planId;
 		}
+		catch (AmbiguousBereichNummernException e) {
+			throw e;
+		}
 		catch (Exception e) {
 			throw new Exception("Fehler beim Einfügen: " + e.getMessage(), e);
 		}
@@ -1310,9 +1313,11 @@ public class XPlanDao {
 		return planId;
 	}
 
-	private void insertBereiche(Connection conn, int planId, FeatureCollection fc) throws SQLException {
+	private void insertBereiche(Connection conn, int planId, FeatureCollection fc)
+			throws SQLException, AmbiguousBereichNummernException {
 		PreparedStatement stmt = null;
 		List<Bereich> bereiche = FeatureCollectionUtils.retrieveBereiche(fc);
+		checkBereichNummern(bereiche);
 		for (Bereich bereich : bereiche) {
 			long begin = System.currentTimeMillis();
 			String nummer = bereich.getNummer();
@@ -1758,6 +1763,16 @@ public class XPlanDao {
 		if (planStatus != null)
 			return planStatus.getMessage();
 		return FESTGESTELLT.getMessage();
+	}
+
+	private void checkBereichNummern(List<Bereich> bereiche) throws AmbiguousBereichNummernException {
+		List<String> bereichNummern = new ArrayList<>();
+		for (Bereich bereich : bereiche) {
+			String nummer = bereich.getNummer();
+			if (bereichNummern.contains(nummer))
+				throw new AmbiguousBereichNummernException(nummer);
+			bereichNummern.add(nummer);
+		}
 	}
 
 	private Date convertToDate(java.sql.Date dateToConvert) {
