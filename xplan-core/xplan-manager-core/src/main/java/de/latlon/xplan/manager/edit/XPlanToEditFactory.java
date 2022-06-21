@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -92,10 +92,13 @@ public class XPlanToEditFactory {
 		while (iterator.hasNext()) {
 			Feature feature = iterator.next();
 			String nameOfFeature = feature.getName().getLocalPart();
-			if ("BP_Plan".equals(nameOfFeature) || "FP_Plan".equals(nameOfFeature)) {
+			if ("BP_Plan".equals(nameOfFeature) || "FP_Plan".equals(nameOfFeature) || "SO_Plan".equals(nameOfFeature)
+					|| "RP_Plan".equals(nameOfFeature) || "LP_Plan".equals(nameOfFeature)) {
 				parsePlan(xPlan, feature, xPlanToEdit);
 			}
-			else if ("BP_Bereich".equals(nameOfFeature) || "FP_Bereich".equals(nameOfFeature)) {
+			else if ("BP_Bereich".equals(nameOfFeature) || "FP_Bereich".equals(nameOfFeature)
+					|| "SO_Bereich".equals(nameOfFeature) || "RP_Bereich".equals(nameOfFeature)
+					|| "LP_Bereich".equals(nameOfFeature)) {
 				xPlanToEdit.setHasBereich(true);
 				parseBereich(feature, xPlanToEdit, xPlan.getVersion());
 			}
