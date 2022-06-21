@@ -508,8 +508,6 @@ public class PlanListPanel extends DecoratorPanel {
 				XPlan xPlan = event.getValue();
 				if (!isEditingPermitted(xPlan))
 					return messages.editButtonTooltipPermissionDenied();
-				else if (!isTypeSupportedByEditor(xPlan))
-					return messages.editButtonTooltipIncorrectPlanType();
 				else if (!(isTypeAndVersionSupportedByEditor(xPlan)))
 					return messages.editButtonTooltipIncorrectVersion();
 				return messages.editButtonTooltip();
@@ -730,12 +728,6 @@ public class PlanListPanel extends DecoratorPanel {
 		else if ("LP_Plan".equals(xPlan.getType()))
 			return "XPLAN_60".equals(xPlan.getVersion());
 		return false;
-	}
-
-	private boolean isTypeSupportedByEditor(XPlan xPlan) {
-		return "BP_Plan".equals(xPlan.getType()) || "FP_Plan".equals(xPlan.getType())
-				|| "SO_Plan".equals(xPlan.getType()) || "RP_Plan".equals(xPlan.getType())
-				|| "LP_Plan".equals(xPlan.getType());
 	}
 
 	private boolean isVersionSupportedByInpirePlu(XPlan xPlan) {
