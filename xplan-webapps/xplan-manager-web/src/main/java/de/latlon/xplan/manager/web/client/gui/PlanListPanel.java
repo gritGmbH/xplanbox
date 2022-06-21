@@ -497,7 +497,7 @@ public class PlanListPanel extends DecoratorPanel {
 		};
 		editButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
 			public void update(int index, XPlan xplan, String value) {
-				editPlan(xplan.getVersion(), xplan.getId(), xplan.getBereiche());
+				editPlan(xplan.getVersion(), xplan.getType(), xplan.getId(), xplan.getBereiche());
 			}
 		});
 		editButtonColumn.setCellStyleNames("planListColumn editButtonColumn");
@@ -625,7 +625,7 @@ public class PlanListPanel extends DecoratorPanel {
 		return columnSortHandler;
 	}
 
-	private void editPlan(final String version, final String id, List<Bereich> bereiche) {
+	private void editPlan(final String version, final String planType, final String id, List<Bereich> bereiche) {
 		final DialogBox waitDialog = createAndShowDialogBox(messages.editingStarted());
 		ManagerService.Util.getService().getPlanToEdit(id, new MethodCallback<XPlanToEdit>() {
 
@@ -641,8 +641,8 @@ public class PlanListPanel extends DecoratorPanel {
 				if (waitDialog != null)
 					waitDialog.hide();
 				try {
-					EditVersion codelistVersion = EditVersion.valueOf(version);
-					eventBus.fireEvent(new EditorStartedEvent(id, bereiche, codelistVersion, xPlantoEdit));
+					EditVersion editVersion = EditVersion.valueOf(version);
+					eventBus.fireEvent(new EditorStartedEvent(id, bereiche, editVersion, planType, xPlantoEdit));
 				}
 				catch (IllegalArgumentException e) {
 					Window.alert("Unsupported XPlan version for editing: " + version);

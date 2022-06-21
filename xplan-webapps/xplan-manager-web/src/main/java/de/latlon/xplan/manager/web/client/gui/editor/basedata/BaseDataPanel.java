@@ -60,6 +60,8 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private final EditVersion version;
 
+	private String type;
+
 	private final TextBox name = createTextInput();
 
 	private final TextArea description = createTextAreaInput();
@@ -78,13 +80,14 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private final CodeListBox legislationStatus;
 
-	public BaseDataPanel(EditVersion version) {
+	public BaseDataPanel(EditVersion version, String type) {
 		this.version = version;
+		this.type = type;
 		setCaptionText(MASSAGE.editCaptionBasedata());
-		planType = createMandatoryCodeListInput(version, BP_PlanArt);
-		otherPlanType = createCodeListInput(version, BP_SonstPlanArt);
-		method = createMethodInput(version);
-		legislationStatus = createCodeListInput(version, BP_Rechtsstand);
+		this.planType = createMandatoryCodeListInput(version, BP_PlanArt);
+		this.otherPlanType = createCodeListInput(version, BP_SonstPlanArt);
+		this.method = createMethodInput(version);
+		this.legislationStatus = createCodeListInput(version, BP_Rechtsstand);
 		add(createBaseDataLayout());
 	}
 
@@ -163,11 +166,12 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 			layout.setWidget(3, 4, method);
 		}
 
-		layout.setWidget(4, 1, new Label(MASSAGE.editCaptionBasedataRegulationDate()));
-		layout.setWidget(4, 2, regulationDate);
+		if ("BP_Plan".equals(type)) {
+			layout.setWidget(4, 1, new Label(MASSAGE.editCaptionBasedataRegulationDate()));
+			layout.setWidget(4, 2, regulationDate);
+		}
 		layout.setWidget(4, 3, new Label(MASSAGE.editCaptionBasedataLegislationStatus()));
 		layout.setWidget(4, 4, legislationStatus);
-
 		layout.setWidget(5, 1, new Label(MASSAGE.editCaptionBasedataDescription()));
 		layout.setWidget(5, 2, description);
 

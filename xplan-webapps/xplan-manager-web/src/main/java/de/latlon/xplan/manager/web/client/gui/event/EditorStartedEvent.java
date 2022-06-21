@@ -43,18 +43,23 @@ public class EditorStartedEvent extends GwtEvent<EditorStartedEventHandler> {
 
 	private final EditVersion version;
 
+	private final String planType;
+
 	private final XPlanToEdit xPlantoEdit;
 
 	/**
 	 * @param planId of the plan to edit
 	 * @param bereiche of the plan to edit
 	 * @param version of the plan to edit, never <code>null</code>
+	 * @param planType of the plan to edit, never <code>null</code>
 	 * @param xPlantoEdit never <code>null</code>
 	 */
-	public EditorStartedEvent(String planId, List<Bereich> bereiche, EditVersion version, XPlanToEdit xPlantoEdit) {
+	public EditorStartedEvent(String planId, List<Bereich> bereiche, EditVersion version, String planType,
+			XPlanToEdit xPlantoEdit) {
 		this.planId = planId;
 		this.bereiche = bereiche;
 		this.version = version;
+		this.planType = planType;
 		this.xPlantoEdit = xPlantoEdit;
 	}
 
@@ -80,6 +85,13 @@ public class EditorStartedEvent extends GwtEvent<EditorStartedEventHandler> {
 	 */
 	public EditVersion getVersion() {
 		return version;
+	}
+
+	/**
+	 * @return the type of the plan to edit, never <code>null</code>
+	 */
+	public String getPlanType() {
+		return planType;
 	}
 
 	/**
