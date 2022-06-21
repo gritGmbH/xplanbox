@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -155,13 +155,15 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 		layout.setWidget(2, 1, new Label(MASSAGE.editCaptionBasedataCreationDate()));
 		layout.setWidget(2, 2, creationDate);
-		layout.setWidget(2, 3, new Label(MASSAGE.editCaptionBasedataOtherPlanType()));
-		layout.setWidget(2, 4, otherPlanType);
 
+		if (!"SO_Plan".equals(type)) {
+			layout.setWidget(2, 3, new Label(MASSAGE.editCaptionBasedataOtherPlanType()));
+			layout.setWidget(2, 4, otherPlanType);
+		}
 		layout.setWidget(3, 1, new Label(MASSAGE.editCaptionBasedataLossDate()));
 		layout.setWidget(3, 2, lossDate);
 
-		if (!XPLAN_60.equals(version)) {
+		if (!XPLAN_60.equals(version) && !"SO_Plan".equals(type)) {
 			layout.setWidget(3, 3, new Label(MASSAGE.editCaptionBasedataMethod()));
 			layout.setWidget(3, 4, method);
 		}
@@ -170,8 +172,11 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 			layout.setWidget(4, 1, new Label(MASSAGE.editCaptionBasedataRegulationDate()));
 			layout.setWidget(4, 2, regulationDate);
 		}
-		layout.setWidget(4, 3, new Label(MASSAGE.editCaptionBasedataLegislationStatus()));
-		layout.setWidget(4, 4, legislationStatus);
+
+		if (!"SO_Plan".equals(type)) {
+			layout.setWidget(4, 3, new Label(MASSAGE.editCaptionBasedataLegislationStatus()));
+			layout.setWidget(4, 4, legislationStatus);
+		}
 		layout.setWidget(5, 1, new Label(MASSAGE.editCaptionBasedataDescription()));
 		layout.setWidget(5, 2, description);
 
