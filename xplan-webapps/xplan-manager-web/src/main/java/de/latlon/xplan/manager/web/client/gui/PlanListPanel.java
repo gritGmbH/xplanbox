@@ -727,12 +727,15 @@ public class PlanListPanel extends DecoratorPanel {
 			return "XPLAN_50".equals(xPlan.getVersion()) || "XPLAN_51".equals(xPlan.getVersion())
 					|| "XPLAN_52".equals(xPlan.getVersion()) || "XPLAN_53".equals(xPlan.getVersion())
 					|| "XPLAN_54".equals(xPlan.getVersion()) || "XPLAN_60".equals(xPlan.getVersion());
+		else if ("LP_Plan".equals(xPlan.getType()))
+			return "XPLAN_60".equals(xPlan.getVersion());
 		return false;
 	}
 
 	private boolean isTypeSupportedByEditor(XPlan xPlan) {
 		return "BP_Plan".equals(xPlan.getType()) || "FP_Plan".equals(xPlan.getType())
-				|| "SO_Plan".equals(xPlan.getType()) || "RP_Plan".equals(xPlan.getType());
+				|| "SO_Plan".equals(xPlan.getType()) || "RP_Plan".equals(xPlan.getType())
+				|| "LP_Plan".equals(xPlan.getType());
 	}
 
 	private boolean isVersionSupportedByInpirePlu(XPlan xPlan) {
