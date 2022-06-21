@@ -691,6 +691,90 @@ public class XPlanManipulatorTest {
 		assertThatPlanIsSchemaValid(featureCollection, version);
 	}
 
+	@Test
+	public void testModifyXPlan_FP() throws Exception {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/FNP_Test_60.zip");
+
+		FeatureCollection featureCollection = readXPlanGmlFromZip(version, inputStream, schema);
+
+		String planName = "newPlanName";
+		String description = "newDescription";
+		Date creationDate = asDate("2010-01-01");
+		Date lossDate = asDate("2020-01-01");
+		int legislationStatusCode = 3000;
+		int methodCode = 1000;
+		int planTypeCode = 9999;
+		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null,
+				legislationStatusCode, methodCode, -1, planTypeCode);
+
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+
+		String exportedPlan = exportPlan(featureCollection, version);
+
+		assertThat(exportedPlan,
+				hasXPath("//xp:FP_Plan/xp:name", is(planName)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				hasXPath("//xp:FP_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:technHerstellDatum", is(asString(creationDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:untergangsDatum", is(asString(lossDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:rechtsstand", is(Integer.toString(legislationStatusCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:FP_Plan/xp:verfahren").withNamespaceContext(nsContext(version))));
+		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:planArt", is(Integer.toString(planTypeCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:FP_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
+
+		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
+	}
+
+	@Test
+	public void testModifyXPlan_LP() throws Exception {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/LP-Test_60.zip");
+
+		FeatureCollection featureCollection = readXPlanGmlFromZip(version, inputStream, schema);
+
+		String planName = "newPlanName";
+		String description = "newDescription";
+		Date creationDate = asDate("2010-01-01");
+		Date lossDate = asDate("2020-01-01");
+		int legislationStatusCode = 3000;
+		int methodCode = 1000;
+		int planTypeCode = 9999;
+		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null,
+				legislationStatusCode, methodCode, -1, planTypeCode);
+
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+
+		String exportedPlan = exportPlan(featureCollection, version);
+
+		assertThat(exportedPlan,
+				hasXPath("//xp:LP_Plan/xp:name", is(planName)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				hasXPath("//xp:LP_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:technHerstellDatum", is(asString(creationDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:untergangsDatum", is(asString(lossDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:rechtsstand", is(Integer.toString(legislationStatusCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:LP_Plan/xp:verfahren").withNamespaceContext(nsContext(version))));
+		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:planArt", is(Integer.toString(planTypeCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:LP_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
+
+		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
+	}
+
 	private XPlanToEdit createSimpleXPlan() {
 		XPlanToEdit editedXplan = new XPlanToEdit();
 		editedXplan.getBaseData().setPlanName("planName");
@@ -1006,6 +1090,11 @@ public class XPlanManipulatorTest {
 	private Date asDate(String string) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		return simpleDateFormat.parse(string);
+	}
+
+	private String asString(Date date) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		return simpleDateFormat.format(date);
 	}
 
 	private interface PropertyMatcher {
