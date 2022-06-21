@@ -89,7 +89,7 @@ public class EditorPanel extends DecoratorPanel {
 		this.eventBus = eventBus;
 		baseDataPanel = new BaseDataPanel(version, planType);
 		changesPanel = new ChangesXplanPanel(version);
-		textsPanel = new TextsPanel(version);
+		textsPanel = new TextsPanel(version, planType);
 		referencesPanel = new ReferencesPanel(version);
 		rasterBasisPanel = new RasterBasisPanel(version, bereiche);
 		FormPanel form = createForm();

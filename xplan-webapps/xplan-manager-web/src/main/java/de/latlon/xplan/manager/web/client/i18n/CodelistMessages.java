@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -92,17 +92,121 @@ public interface CodelistMessages extends Messages {
 
 	String RasterReferenceType_TEXT();
 
-	String TextAbschnitt_Festsetzung();
+	String TextAbschnitt_BP_Festsetzung();
 
-	String TextAbschnitt_Hinweis();
+	String TextAbschnitt_BP_Hinweis();
 
-	String TextAbschnitt_Kennzeichnung();
+	String TextAbschnitt_BP_Kennzeichnung();
 
-	String TextAbschnitt_NachrichtlicheUebernahme();
+	String TextAbschnitt_BP_NachrichtlicheUebernahme();
 
-	String TextAbschnitt_Vermerk();
+	String TextAbschnitt_BP_Vermerk();
 
-	String TextAbschnitt_Unbekannt();
+	String TextAbschnitt_BP_Unbekannt();
+
+	String TextAbschnitt_FP_Darstellung();
+
+	String TextAbschnitt_FP_NachrichtlicheUebernahme();
+
+	String TextAbschnitt_FP_Hinweis();
+
+	String TextAbschnitt_FP_Vermerk();
+
+	String TextAbschnitt_FP_Kennzeichnung();
+
+	String TextAbschnitt_FP_Unbekannt();
+
+	String TextAbschnitt_LP_Festsetzung();
+
+	String TextAbschnitt_LP_Geplant();
+
+	String TextAbschnitt_LP_NachrichtlicheUebernahme();
+
+	String TextAbschnitt_LP_DarstellungKennzeichnung();
+
+	String TextAbschnitt_LP_FestsetzungInBPlan();
+
+	String TextAbschnitt_LP_Unbekannt();
+
+	String TextAbschnitt_LP_SonstigerStatus();
+
+	String TextAbschnitt_RP_ZielDerRaumordnung();
+
+	String TextAbschnitt_RP_GrundsatzDerRaumordnung();
+
+	String TextAbschnitt_RP_NachrichtlicheUebernahme();
+
+	String TextAbschnitt_RP_NachrichtlicheUebernahmeZiel();
+
+	String TextAbschnitt_RP_NachrichtlicheUebernahmeGrundsatz();
+
+	String TextAbschnitt_RP_NurInformatinsGehalt();
+
+	String TextAbschnitt_RP_TextlichesZiel();
+
+	String TextAbschnitt_RP_ZielUndGrundsatz();
+
+	String TextAbschnitt_RP_Vorschlag();
+
+	String TextAbschnitt_RP_Unbekannt();
+
+	String TextAbschnitt_SO_FestsetzungBPlan();
+
+	String TextAbschnitt_SO_DarstellungFPlan();
+
+	String TextAbschnitt_SO_InhaltLPlan();
+
+	String TextAbschnitt_SO_NachrichtlicheUebernahme();
+
+	String TextAbschnitt_SO_Hinweis();
+
+	String TextAbschnitt_SO_Vermerk();
+
+	String TextAbschnitt_SO_Kennzeichnung();
+
+	String TextAbschnitt_SO_Unbekannt();
+
+	String TextAbschnitt_SO_Sonstiges();
+
+	String TextAbschnitt_XP_FestsetzungBPlan();
+
+	String TextAbschnitt_XP_NachrichtlicheUebernahme();
+
+	String TextAbschnitt_XP_DarstellungFPlan();
+
+	String TextAbschnitt_XP_ZielDerRaumordnung();
+
+	String TextAbschnitt_XP_GrundsatzDerRaumordnung();
+
+	String TextAbschnitt_XP_NachrichtlicheUebernahmeZiel();
+
+	String TextAbschnitt_XP_NachrichtlicheUebernahmeGrundsatz();
+
+	String TextAbschnitt_XP_NurInformatinsGehalt();
+
+	String TextAbschnitt_XP_TextlichesZielRaumordnung();
+
+	String TextAbschnitt_XP_ZielUndGrundsatzDerRaumordnung();
+
+	String TextAbschnitt_XP_VorschlagRaumordnung();
+
+	String TextAbschnitt_XP_FestsetzungImLP();
+
+	String TextAbschnitt_XP_GeplanteFestsetzungImLP();
+
+	String TextAbschnitt_XP_DarstellungKennzeichnungImLP();
+
+	String TextAbschnitt_XP_LandschaftsplanungsInhaltZurBeruecksichtigung();
+
+	String TextAbschnitt_XP_Hinweis();
+
+	String TextAbschnitt_XP_Kennzeichnung();
+
+	String TextAbschnitt_XP_Vermerk();
+
+	String TextAbschnitt_XP_Unbekannt();
+
+	String TextAbschnitt_XP_Sonstiges();
 
 	String XP_ExterneReferenzArt_Dokument();
 

@@ -61,15 +61,15 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 	 * @param textToEdit the text to edit, should not <code>null</code> (a new change is
 	 * created)
 	 */
-	public TextDialog(EditVersion version, Text textToEdit) {
-		this(version, textToEdit, MESSAGES.editCaptionTextsDialogEdit());
+	public TextDialog(EditVersion version, String planType, Text textToEdit) {
+		this(version, planType, textToEdit, MESSAGES.editCaptionTextsDialogEdit());
 	}
 
 	/**
 	 * Instantiates a {@link TextDialog} to create a new {@link Change}
 	 */
-	public TextDialog(EditVersion version) {
-		this(version, null, MESSAGES.editCaptionTextsDialogNew());
+	public TextDialog(EditVersion version, String planType) {
+		this(version, planType, null, MESSAGES.editCaptionTextsDialogNew());
 	}
 
 	/**
@@ -126,11 +126,17 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 		return valid;
 	}
 
-	private TextDialog(EditVersion version, Text textToEdit, String title) {
+	private TextDialog(EditVersion version, String planType, Text textToEdit, String title) {
 		super(version, title);
 		this.textToEdit = textToEdit;
 		if (!XPLAN_41.equals(version)) {
-			this.rechtscharakterType = new TypeCodeListBox<TextRechtscharacterType>(TextRechtscharacterType.class);
+			List<TextRechtscharacterType> entriesFromOtherPlanTypeOrVersion = new ArrayList<>();
+			for (TextRechtscharacterType textRechtscharacterType : TextRechtscharacterType.values()) {
+				if (!textRechtscharacterType.isCodeFor(version.name(), planType))
+					entriesFromOtherPlanTypeOrVersion.add(textRechtscharacterType);
+			}
+			this.rechtscharakterType = new TypeCodeListBox<TextRechtscharacterType>(TextRechtscharacterType.class,
+					entriesFromOtherPlanTypeOrVersion);
 		}
 		initDialog(createFormContent());
 		setText(textToEdit);

@@ -58,6 +58,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -389,6 +390,7 @@ public class XPlanToEditFactoryTest {
 	private XPlan mockXPlan(XPlanVersion version) {
 		XPlan mock = mock(XPlan.class);
 		when(mock.getVersion()).thenReturn(version.toString());
+		when(mock.getType()).thenReturn(BP_Plan.name());
 		return mock;
 	}
 

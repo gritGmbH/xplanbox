@@ -93,7 +93,7 @@ public class XPlanToEditFactory {
 			Feature feature = iterator.next();
 			String nameOfFeature = feature.getName().getLocalPart();
 			if ("BP_Plan".equals(nameOfFeature) || "FP_Plan".equals(nameOfFeature)) {
-				parsePlan(feature, xPlanToEdit);
+				parsePlan(xPlan, feature, xPlanToEdit);
 			}
 			else if ("BP_Bereich".equals(nameOfFeature) || "FP_Bereich".equals(nameOfFeature)) {
 				xPlanToEdit.setHasBereich(true);
@@ -114,7 +114,7 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parsePlan(Feature feature, XPlanToEdit xPlanToEdit) {
+	private void parsePlan(XPlan xPlan, Feature feature, XPlanToEdit xPlanToEdit) {
 		LOG.debug("Parse properties from BP_Plan");
 		BaseData baseData = xPlanToEdit.getBaseData();
 		for (Property property : feature.getProperties()) {
@@ -166,7 +166,7 @@ public class XPlanToEditFactory {
 				parseExterneReference(property, xPlanToEdit);
 			}
 			else if ("texte".equals(propertyName)) {
-				parseTextReference(property, xPlanToEdit);
+				parseTextReference(xPlan, property, xPlanToEdit);
 			}
 		}
 	}
@@ -321,7 +321,7 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parseTextReference(Property property, XPlanToEdit xPlanToEdit) {
+	private void parseTextReference(XPlan xPlan, Property property, XPlanToEdit xPlanToEdit) {
 		TypedObjectNode propertyValue = property.getValue();
 		if (propertyValue instanceof FeatureReference) {
 			Feature referencedObject = ((FeatureReference) propertyValue).getReferencedObject();
@@ -343,7 +343,8 @@ public class XPlanToEditFactory {
 					parseReference(prop.getChildren(), text);
 				}
 				else if ("rechtscharakter".equals(propName)) {
-					text.setRechtscharakter(TextRechtscharacterType.fromCode(asInteger(propValue)));
+					text.setRechtscharakter(TextRechtscharacterType.fromCode(asInteger(propValue), xPlan.getVersion(),
+							xPlan.getType()));
 				}
 			}
 			xPlanToEdit.addText(text);

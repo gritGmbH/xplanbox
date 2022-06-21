@@ -52,11 +52,15 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41
  */
 public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 
+	private String planType;
+
 	/**
 	 * @param version of the plan to edit, never <code>null</code>
+	 * @param planType
 	 */
-	public TextsPanel(EditVersion version) {
+	public TextsPanel(EditVersion version, String planType) {
 		super(version, MESSAGES.editCaptionTexts());
+		this.planType = planType;
 		add(createGui());
 	}
 
@@ -100,7 +104,7 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 	private Button createNewButton() {
 		Button newButton = new Button(MESSAGES.editCaptionNewText(), new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				final TextDialog textDialog = new TextDialog(version);
+				final TextDialog textDialog = new TextDialog(version, planType);
 				textDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {
@@ -194,7 +198,7 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 		};
 		editButtonColumn.setFieldUpdater(new FieldUpdater<Text, String>() {
 			public void update(final int index, Text text, String value) {
-				final TextDialog textDialog = new TextDialog(version, text);
+				final TextDialog textDialog = new TextDialog(version, planType, text);
 				textDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {

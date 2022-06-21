@@ -81,8 +81,8 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
-import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.HINWEIS;
-import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.VERMERK;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.BP_HINWEIS;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.BP_VERMERK;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -165,8 +165,10 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		editedXplan.getTexts().add(new Text("id1", "key1", "basis1", "text1", HINWEIS, "reference1", "geoReference1"));
-		editedXplan.getTexts().add(new Text("id2", "key2", "basis2", "text2", VERMERK, "reference2", "geoReference2"));
+		editedXplan.getTexts()
+				.add(new Text("id1", "key1", "basis1", "text1", BP_HINWEIS, "reference1", "geoReference1"));
+		editedXplan.getTexts()
+				.add(new Text("id2", "key2", "basis2", "text2", BP_VERMERK, "reference2", "geoReference2"));
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
 
@@ -184,7 +186,7 @@ public class XPlanManipulatorTest {
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
 		String featureIdUnderTest = "FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad";
-		editedXplan.getTexts().add(new Text(featureIdUnderTest, "key", "base", "BeschreibungstextNeu", HINWEIS,
+		editedXplan.getTexts().add(new Text(featureIdUnderTest, "key", "base", "BeschreibungstextNeu", BP_HINWEIS,
 				"B-Plan_Klingmuehl_Heideweg_Text", "B-Plan_Klingmuehl_Heideweg_Text.pdf"));
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
@@ -221,7 +223,7 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		Text text = new Text("id1", "key1", "basis1", "text1", VERMERK, "reference1", "geoReference1");
+		Text text = new Text("id1", "key1", "basis1", "text1", BP_VERMERK, "reference1", "geoReference1");
 		editedXplan.getTexts().add(text);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
