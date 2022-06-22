@@ -92,13 +92,10 @@ public class XPlanToEditFactory {
 		while (iterator.hasNext()) {
 			Feature feature = iterator.next();
 			String nameOfFeature = feature.getName().getLocalPart();
-			if ("BP_Plan".equals(nameOfFeature) || "FP_Plan".equals(nameOfFeature) || "SO_Plan".equals(nameOfFeature)
-					|| "RP_Plan".equals(nameOfFeature) || "LP_Plan".equals(nameOfFeature)) {
+			if (nameOfFeature.matches("(BP|FP|LP|RP|SO)_Plan")) {
 				parsePlan(xPlan, feature, xPlanToEdit);
 			}
-			else if ("BP_Bereich".equals(nameOfFeature) || "FP_Bereich".equals(nameOfFeature)
-					|| "SO_Bereich".equals(nameOfFeature) || "RP_Bereich".equals(nameOfFeature)
-					|| "LP_Bereich".equals(nameOfFeature)) {
+			else if (nameOfFeature.matches("(BP|FP|LP|RP|SO)_Bereich")) {
 				xPlanToEdit.setHasBereich(true);
 				parseBereich(feature, xPlanToEdit, xPlan.getVersion());
 			}
