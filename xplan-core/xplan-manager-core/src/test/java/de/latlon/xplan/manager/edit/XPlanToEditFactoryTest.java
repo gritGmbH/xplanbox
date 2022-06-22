@@ -64,6 +64,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
@@ -337,6 +338,24 @@ public class XPlanToEditFactoryTest {
 		assertThat(xPlanToEdit.getRasterBasis().size(), is(1));
 		assertThat(xPlanToEdit.getRasterBasis().get(0).getRasterReferences().size(), is(0));
 		assertThat(xPlanToEdit.getTexts().size(), is(0));
+		assertThat(xPlanToEdit.getReferences().size(), is(0));
+		assertThat(xPlanToEdit.getChanges().size(), is(0));
+	}
+
+	@Test
+	public void testCreateXPlanToEdit_XPlan60_LPlan() throws Exception {
+		FeatureCollection featureCollection = readXPlanArchive(XPLAN_60, "xplan60/LP-Test_60_mod.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_60), featureCollection);
+		assertThat(xPlanToEdit.isHasBereich(), is(true));
+
+		BaseData baseData = xPlanToEdit.getBaseData();
+		assertThat(baseData.getPlanName(), is("LP-Test 60"));
+		assertThat(baseData.getPlanTypeCode(), is(3000));
+
+		assertThat(xPlanToEdit.getRasterBasis().size(), is(1));
+		assertThat(xPlanToEdit.getRasterBasis().get(0).getRasterReferences().size(), is(0));
+		assertThat(xPlanToEdit.getTexts().size(), is(1));
 		assertThat(xPlanToEdit.getReferences().size(), is(0));
 		assertThat(xPlanToEdit.getChanges().size(), is(0));
 	}
