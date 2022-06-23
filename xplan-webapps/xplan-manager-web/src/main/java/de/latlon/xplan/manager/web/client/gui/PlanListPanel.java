@@ -46,6 +46,7 @@ import de.latlon.xplan.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.comparator.ColumnComparator;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.gui.dialog.MapPreviewDialog;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.event.EditorStartedEvent;
 import de.latlon.xplan.manager.web.client.gui.filter.FilterPanel;
@@ -640,7 +641,8 @@ public class PlanListPanel extends DecoratorPanel {
 					waitDialog.hide();
 				try {
 					EditVersion editVersion = EditVersion.valueOf(version);
-					eventBus.fireEvent(new EditorStartedEvent(id, bereiche, editVersion, planType, xPlantoEdit));
+					EditPlanType editPlanType = EditPlanType.valueOf(planType);
+					eventBus.fireEvent(new EditorStartedEvent(id, bereiche, editVersion, editPlanType, xPlantoEdit));
 				}
 				catch (IllegalArgumentException e) {
 					Window.alert("Unsupported XPlan version for editing: " + version);

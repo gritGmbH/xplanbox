@@ -642,4 +642,142 @@ public interface CodelistMessages extends Messages {
 
 	String XPLAN_60_XP_RechtscharakterPlanaenderung_3000_Ueberplanung();
 
+	String XPLAN_FP_PlanArt_1000_FPlan();
+
+	String XPLAN_FP_PlanArt_2000_GemeinsamerFPlan();
+
+	String XPLAN_FP_PlanArt_3000_RegFPlan();
+
+	String XPLAN_FP_PlanArt_4000_FPlanRegPlan();
+
+	String XPLAN_FP_PlanArt_5000_SachlicherTeilplan();
+
+	String XPLAN_FP_PlanArt_9999_Sonstiges();
+
+	String XPLAN_FP_Verfahren_1000_Normal();
+
+	String XPLAN_FP_Verfahren_2000_Parag13();
+
+	String XPLAN_FP_Rechtsstand_1000_Aufstellungsbeschluss();
+
+	String XPLAN_FP_Rechtsstand_2000_Entwurf();
+
+	String XPLAN_FP_Rechtsstand_2100_FruehzeitigeBehoerdenBeteiligung();
+
+	String XPLAN_FP_Rechtsstand_2200_FruehzeitigeOeffentlichkeitsBeteiligung();
+
+	String XPLAN_FP_Rechtsstand_2300_BehoerdenBeteiligung();
+
+	String XPLAN_FP_Rechtsstand_2400_OeffentlicheAuslegung();
+
+	String XPLAN_FP_Rechtsstand_3000_Plan();
+
+	String XPLAN_FP_Rechtsstand_4000_Wirksamkeit();
+
+	String XPLAN_FP_Rechtsstand_5000_Untergegangen();
+
+	String XPLAN_FP_Rechtsstand_50000_Aufgehoben();
+
+	String XPLAN_FP_Rechtsstand_50001_AusserKraft();
+
+	String XPLAN_60_FP_Rechtsstand_1000_Aufstellungsbeschluss();
+
+	String XPLAN_60_FP_Rechtsstand_2000_ImVerfahren();
+
+	String XPLAN_60_FP_Rechtsstand_2100_FruehzeitigeBehoerdenBeteiligung();
+
+	String XPLAN_60_FP_Rechtsstand_2200_FruehzeitigeOeffentlichkeitsBeteiligung();
+
+	String XPLAN_60_FP_Rechtsstand_2250_Entwurfsbeschluss();
+
+	String XPLAN_60_FP_Rechtsstand_2300_BehoerdenBeteiligung();
+
+	String XPLAN_60_FP_Rechtsstand_2400_OeffentlicheAuslegung();
+
+	String XPLAN_60_FP_Rechtsstand_3000_Plan();
+
+	String XPLAN_60_FP_Rechtsstand_4000_Wirksamkeit();
+
+	String XPLAN_60_FP_Rechtsstand_5000_Untergegangen();
+
+	String XPLAN_60_FP_Rechtsstand_50000_Aufgehoben();
+
+	String XPLAN_60_FP_Rechtsstand_50001_AusserKraft();
+
+	String XPLAN_RP_PlanArt_1000_Regionalplan();
+
+	String XPLAN_RP_PlanArt_2000_SachlicherTeilplanRegionalebene();
+
+	String XPLAN_RP_PlanArt_2001_SachlicherTeilplanLandesebene();
+
+	String XPLAN_RP_PlanArt_3000_Braunkohlenplan();
+
+	String XPLAN_RP_PlanArt_4000_LandesweiterRaumordnungsplan();
+
+	String XPLAN_RP_PlanArt_5000_StandortkonzeptBund();
+
+	String XPLAN_RP_PlanArt_5001_AWZPlan();
+
+	String XPLAN_RP_PlanArt_5000_RaeumlicherTeilplan();
+
+	String XPLAN_RP_PlanArt_9999_Sonstiges();
+
+	String XPLAN_RP_Rechtsstand_1000_Aufstellungsbeschluss();
+
+	String XPLAN_RP_Rechtsstand_2000_Entwurf();
+
+	String XPLAN_RP_Rechtsstand_2001_EntwurfGenehmigt();
+
+	String XPLAN_RP_Rechtsstand_2002_EntwurfGeaendert();
+
+	String XPLAN_RP_Rechtsstand_2003_EntwurfAufgegeben();
+
+	String XPLAN_RP_Rechtsstand_2004_EntwurfRuht();
+
+	String XPLAN_RP_Rechtsstand_3000_Plan();
+
+	String XPLAN_RP_Rechtsstand_4000_Inkraftgetreten();
+
+	String XPLAN_RP_Rechtsstand_5000_AllgemeinePlanungsabsicht();
+
+	String XPLAN_RP_Rechtsstand_5500_TeilweiseAusserKraft();
+
+	String XPLAN_RP_Rechtsstand_6000_AusserKraft();
+
+	String XPLAN_RP_Rechtsstand_7000_PlanUngueltig();
+
+	String XPLAN_RP_Verfahren_1000_Aenderung();
+
+	String XPLAN_RP_Verfahren_2000_Teilfortschreibung();
+
+	String XPLAN_RP_Verfahren_3000_Neuaufstellung();
+
+	String XPLAN_RP_Verfahren_4000_Gesamtfortschreibung();
+
+	String XPLAN_RP_Verfahren_5000_Aktualisierung();
+
+	String XPLAN_RP_Verfahren_6000_Neubekanntmachung();
+
+	String XPLAN_LP_PlanArt_1000_Landschaftsprogramm();
+
+	String XPLAN_LP_PlanArt_2000_Landschaftsrahmenplan();
+
+	String XPLAN_LP_PlanArt_3000_Landschaftsplan();
+
+	String XPLAN_LP_PlanArt_4000_Gruenordnungsplan();
+
+	String XPLAN_LP_PlanArt_9999_Sonstiges();
+
+	String XPLAN_LP_Rechtsstand_1000_Aufstellungsbeschluss();
+
+	String XPLAN_LP_Rechtsstand_2000_Entwurf();
+
+	String XPLAN_LP_Rechtsstand_3000_Plan();
+
+	String XPLAN_LP_Rechtsstand_4000_Wirksamkeit();
+
+	String XPLAN_LP_Rechtsstand_5000_Untergegangen();
+
+	String XPLAN_LP_Rechtsstand_6000_InFortschreibung();
+
 }

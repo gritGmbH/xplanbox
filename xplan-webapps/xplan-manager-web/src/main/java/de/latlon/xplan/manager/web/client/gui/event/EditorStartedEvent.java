@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.web.client.gui.event;
 
 import com.google.gwt.event.shared.GwtEvent;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -43,7 +44,7 @@ public class EditorStartedEvent extends GwtEvent<EditorStartedEventHandler> {
 
 	private final EditVersion version;
 
-	private final String planType;
+	private final EditPlanType planType;
 
 	private final XPlanToEdit xPlantoEdit;
 
@@ -54,7 +55,7 @@ public class EditorStartedEvent extends GwtEvent<EditorStartedEventHandler> {
 	 * @param planType of the plan to edit, never <code>null</code>
 	 * @param xPlantoEdit never <code>null</code>
 	 */
-	public EditorStartedEvent(String planId, List<Bereich> bereiche, EditVersion version, String planType,
+	public EditorStartedEvent(String planId, List<Bereich> bereiche, EditVersion version, EditPlanType planType,
 			XPlanToEdit xPlantoEdit) {
 		this.planId = planId;
 		this.bereiche = bereiche;
@@ -90,7 +91,7 @@ public class EditorStartedEvent extends GwtEvent<EditorStartedEventHandler> {
 	/**
 	 * @return the type of the plan to edit, never <code>null</code>
 	 */
-	public String getPlanType() {
+	public EditPlanType getPlanType() {
 		return planType;
 	}
 

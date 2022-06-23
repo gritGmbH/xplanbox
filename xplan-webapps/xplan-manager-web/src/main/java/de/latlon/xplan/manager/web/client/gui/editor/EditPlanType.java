@@ -8,26 +8,25 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.web.client.gui.editor.codelist;
+package de.latlon.xplan.manager.web.client.gui.editor;
 
 /**
- * Discriminates between different codelists.
+ * Discriminates between different XPlan Types supported by the Editor.
  *
- * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
- * @version $Revision: $, $Date: $
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public enum CodelistType {
+public enum EditPlanType {
 
-	PlanArt, SonstPlanArt, Rechtsstand, Verfahren, XP_RechtscharakterPlanaenderung;
+	BP_Plan, FP_Plan, RP_Plan, LP_Plan, SO_Plan;
 
 }

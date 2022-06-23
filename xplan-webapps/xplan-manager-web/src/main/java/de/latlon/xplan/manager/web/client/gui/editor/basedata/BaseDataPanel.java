@@ -26,6 +26,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType;
 import de.latlon.xplan.manager.web.client.gui.widget.CodeListBox;
@@ -37,11 +38,13 @@ import de.latlon.xplan.manager.web.shared.edit.BaseData;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static com.google.gwt.user.client.ui.HasVerticalAlignment.ALIGN_TOP;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.SO_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_PlanArt;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_Rechtsstand;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_SonstPlanArt;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_Verfahren;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.PlanArt;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.Rechtsstand;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.SonstPlanArt;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.Verfahren;
 import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 
 /**
@@ -57,10 +60,6 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 	private static final String DEFAULT_WIDTH = "175px";
 
 	private static final String TEXTAREA_HEIGHT = "125px";
-
-	private final EditVersion version;
-
-	private String type;
 
 	private final TextBox name = createTextInput();
 
@@ -80,15 +79,13 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private final CodeListBox legislationStatus;
 
-	public BaseDataPanel(EditVersion version, String type) {
-		this.version = version;
-		this.type = type;
+	public BaseDataPanel(EditVersion version, EditPlanType type) {
 		setCaptionText(MASSAGE.editCaptionBasedata());
-		this.planType = createMandatoryCodeListInput(version, BP_PlanArt);
-		this.otherPlanType = createCodeListInput(version, BP_SonstPlanArt);
-		this.method = createMethodInput(version);
-		this.legislationStatus = createCodeListInput(version, BP_Rechtsstand);
-		add(createBaseDataLayout());
+		this.planType = createMandatoryCodeListInput(version, type, PlanArt);
+		this.otherPlanType = createCodeListInput(version, type, SonstPlanArt);
+		this.method = createMethodInput(version, type);
+		this.legislationStatus = createCodeListInput(version, type, Rechtsstand);
+		add(createBaseDataLayout(version, type));
 	}
 
 	public void setBaseData(BaseData baseData) {
@@ -131,7 +128,7 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 		return areComponentsValid(planType, creationDate, lossDate, regulationDate);
 	}
 
-	private FlexTable createBaseDataLayout() {
+	private FlexTable createBaseDataLayout(EditVersion version, EditPlanType type) {
 		FlexTable layout = new FlexTable();
 		FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
 		formatter.setHorizontalAlignment(1, 1, ALIGN_LEFT);
@@ -156,24 +153,24 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 		layout.setWidget(2, 1, new Label(MASSAGE.editCaptionBasedataCreationDate()));
 		layout.setWidget(2, 2, creationDate);
 
-		if (!"SO_Plan".equals(type)) {
+		if (!SO_Plan.equals(type)) {
 			layout.setWidget(2, 3, new Label(MASSAGE.editCaptionBasedataOtherPlanType()));
 			layout.setWidget(2, 4, otherPlanType);
 		}
 		layout.setWidget(3, 1, new Label(MASSAGE.editCaptionBasedataLossDate()));
 		layout.setWidget(3, 2, lossDate);
 
-		if (!XPLAN_60.equals(version) && !"SO_Plan".equals(type)) {
+		if (!XPLAN_60.equals(version) && !SO_Plan.equals(type)) {
 			layout.setWidget(3, 3, new Label(MASSAGE.editCaptionBasedataMethod()));
 			layout.setWidget(3, 4, method);
 		}
 
-		if ("BP_Plan".equals(type)) {
+		if (BP_Plan.equals(type)) {
 			layout.setWidget(4, 1, new Label(MASSAGE.editCaptionBasedataRegulationDate()));
 			layout.setWidget(4, 2, regulationDate);
 		}
 
-		if (!"SO_Plan".equals(type)) {
+		if (!SO_Plan.equals(type)) {
 			layout.setWidget(4, 3, new Label(MASSAGE.editCaptionBasedataLegislationStatus()));
 			layout.setWidget(4, 4, legislationStatus);
 		}
@@ -183,20 +180,22 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 		return layout;
 	}
 
-	private CodeListBox createMethodInput(EditVersion version) {
-		return createCodeListInput(version, BP_Verfahren);
+	private CodeListBox createMethodInput(EditVersion version, EditPlanType planType) {
+		return createCodeListInput(version, planType, Verfahren);
 	}
 
-	private CodeListBox createMandatoryCodeListInput(EditVersion version, CodelistType codelistType) {
-		return createCodeListInput(version, codelistType, true);
+	private CodeListBox createMandatoryCodeListInput(EditVersion version, EditPlanType planType,
+			CodelistType codelistType) {
+		return createCodeListInput(version, planType, codelistType, true);
 	}
 
-	private CodeListBox createCodeListInput(EditVersion version, CodelistType codelistType) {
-		return createCodeListInput(version, codelistType, false);
+	private CodeListBox createCodeListInput(EditVersion version, EditPlanType planType, CodelistType codelistType) {
+		return createCodeListInput(version, planType, codelistType, false);
 	}
 
-	private CodeListBox createCodeListInput(EditVersion version, CodelistType codelistType, boolean isMandatory) {
-		CodeListBox codeListBox = new CodeListBox(version, codelistType, isMandatory);
+	private CodeListBox createCodeListInput(EditVersion version, EditPlanType planType, CodelistType codelistType,
+			boolean isMandatory) {
+		CodeListBox codeListBox = new CodeListBox(version, planType, codelistType, isMandatory);
 		codeListBox.setWidth(DEFAULT_WIDTH);
 		return codeListBox;
 	}

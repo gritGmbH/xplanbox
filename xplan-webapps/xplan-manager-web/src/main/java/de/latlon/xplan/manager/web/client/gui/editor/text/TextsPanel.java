@@ -32,6 +32,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.shared.edit.Text;
@@ -52,15 +53,12 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41
  */
 public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 
-	private String planType;
-
 	/**
 	 * @param version of the plan to edit, never <code>null</code>
 	 * @param planType
 	 */
-	public TextsPanel(EditVersion version, String planType) {
-		super(version, MESSAGES.editCaptionTexts());
-		this.planType = planType;
+	public TextsPanel(EditVersion version, EditPlanType planType) {
+		super(version, planType, MESSAGES.editCaptionTexts());
 		add(createGui());
 	}
 

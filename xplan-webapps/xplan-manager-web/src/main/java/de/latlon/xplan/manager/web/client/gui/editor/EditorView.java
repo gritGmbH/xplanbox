@@ -54,7 +54,7 @@ public class EditorView extends VerticalPanel {
 	 * @param planType of the xplan to edit. never <code>null</code>
 	 * @param xPlantoEdit the xplan to edit, never <code>null</code>
 	 */
-	public void setXPlanToEdit(String planId, List<Bereich> bereiche, EditVersion version, String planType,
+	public void setXPlanToEdit(String planId, List<Bereich> bereiche, EditVersion version, EditPlanType planType,
 			XPlanToEdit xPlantoEdit) {
 		clear();
 		EditorPanel editorPanel = new EditorPanel(version, planType, bereiche, eventBus);

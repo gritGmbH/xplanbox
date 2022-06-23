@@ -20,20 +20,20 @@
  */
 package de.latlon.xplan.manager.web.client.gui.widget;
 
-import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATION_ERROR;
-
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.ListBox;
-
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.Code;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistProvider;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+
+import java.util.List;
+
+import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATION_ERROR;
 
 /**
  * {@link ListBox} representing only Codes.
@@ -50,24 +50,15 @@ public class CodeListBox extends ListBox implements Validable {
 	private boolean isMandatory;
 
 	/**
-	 * Instantiates a CodeListBox which is not mandatory.
-	 * @param version of the XPlan, never <code>null</code>
-	 * @param codelistType of this CodeListBox, never <code>null</code>
-	 */
-	public CodeListBox(EditVersion version, CodelistType codelistType) {
-		this(version, codelistType, false);
-	}
-
-	/**
 	 * @param version of the XPlan, never <code>null</code>
 	 * @param codelistType of this CodeListBox, never <code>null</code>
 	 * @param isMandatory <code>true</code> if a selection is required, <code>false</code>
 	 * otherwise
 	 */
-	public CodeListBox(EditVersion version, CodelistType codelistType, boolean isMandatory) {
+	public CodeListBox(EditVersion version, EditPlanType editPlanType, CodelistType codelistType, boolean isMandatory) {
 		this.isMandatory = isMandatory;
 		addMandatoryChangeHandler();
-		initListBoxItems(version, codelistType);
+		initListBoxItems(version, editPlanType, codelistType);
 		selectItem(-1);
 	}
 
@@ -101,9 +92,9 @@ public class CodeListBox extends ListBox implements Validable {
 		return validate();
 	}
 
-	private void initListBoxItems(EditVersion version, CodelistType codelistType) {
+	private void initListBoxItems(EditVersion version, EditPlanType editPlanType, CodelistType codelistType) {
 		clear();
-		List<Code> items = CODELISTPROVIDER.retrieveItems(version, codelistType);
+		List<Code> items = CODELISTPROVIDER.retrieveItems(version, editPlanType, codelistType);
 		addItem("Keine Auswahl");
 		for (Code item : items) {
 			addItem(item.getItem(), item.getCode());
