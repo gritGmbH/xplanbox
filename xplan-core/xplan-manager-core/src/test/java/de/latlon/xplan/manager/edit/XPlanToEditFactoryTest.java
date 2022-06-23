@@ -344,7 +344,7 @@ public class XPlanToEditFactoryTest {
 
 	@Test
 	public void testCreateXPlanToEdit_XPlan60_LPlan() throws Exception {
-		FeatureCollection featureCollection = readXPlanArchive(XPLAN_60, "xplan60/LP-Test_60_mod.zip");
+		FeatureCollection featureCollection = readXPlanArchive(XPLAN_60, "xplan60/LP-Test_60.zip");
 
 		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_60), featureCollection);
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
