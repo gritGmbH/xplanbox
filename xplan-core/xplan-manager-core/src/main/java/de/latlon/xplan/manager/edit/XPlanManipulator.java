@@ -186,6 +186,11 @@ public class XPlanManipulator {
 				Property prop = createSimpleProperty(feature, propName, Integer.toString(newCodeValue));
 				addOrReplaceProperty(version, feature, propName, prop);
 			}
+			else if (propertyDeclaration instanceof CustomPropertyType) {
+				Property prop = new GenericProperty(propertyDeclaration,
+						new PrimitiveValue(Integer.toString(newCodeValue)));
+				addOrReplaceProperty(version, feature, propName, prop);
+			}
 			else {
 				LOG.warn("Editing of " + propertyDeclaration.getClass() + " (PropertyName: " + propertyName
 						+ ") is not supported yet.");
