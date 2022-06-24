@@ -515,18 +515,14 @@ public class XPlanToEditFactory {
 	}
 
 	private int asInteger(TypedObjectNode value) {
-		if (value instanceof PrimitiveValue) {
-			if (BaseType.INTEGER.equals(((PrimitiveValue) value).getType().getBaseType()))
-				return (int) ((PrimitiveValue) value).getValue();
-			String valueAsText = ((PrimitiveValue) value).getAsText();
-			try {
-				return Integer.parseInt(valueAsText);
-			}
-			catch (NumberFormatException e) {
-				LOG.warn("Could not parse {} as integer.", valueAsText);
-			}
+		String valueAsText = value.toString();
+		try {
+			return Integer.parseInt(valueAsText);
 		}
-		return -1;
+		catch (NumberFormatException e) {
+			LOG.warn("Could not parse {} as integer.", valueAsText);
+			return -1;
+		}
 	}
 
 	private Date asDate(TypedObjectNode value) {
