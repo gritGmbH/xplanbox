@@ -115,7 +115,7 @@ public class XPlanToEditFactory {
 	}
 
 	private void parsePlan(XPlan xPlan, Feature feature, XPlanToEdit xPlanToEdit) {
-		LOG.debug("Parse properties from BP_Plan");
+		LOG.debug("Parse properties from Plan");
 		BaseData baseData = xPlanToEdit.getBaseData();
 		for (Property property : feature.getProperties()) {
 			String propertyName = property.getName().getLocalPart();
@@ -172,7 +172,7 @@ public class XPlanToEditFactory {
 	}
 
 	private void parseBereich(Feature feature, XPlanToEdit xPlanToEdit, String version) {
-		LOG.debug("Parse properties from BP_Bereich");
+		LOG.debug("Parse properties from Bereich");
 		String bereichNummer = getPropertyByName(feature, "nummer");
 		RasterBasis rasterBasis = createOrGetRasterBasis(xPlanToEdit, bereichNummer, null);
 		for (Property property : feature.getProperties()) {
