@@ -61,6 +61,7 @@ import java.util.Optional;
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
 import static de.latlon.xplan.commons.XPlanType.LP_Plan;
+import static de.latlon.xplan.commons.XPlanType.RP_Plan;
 import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
@@ -426,6 +427,27 @@ public class XPlanToEditFactoryTest {
 		assertThat(reference.getReferenzName(), is(nullValue()));
 		assertThat(reference.getType(), is(VERORDNUNG));
 
+		assertThat(xPlanToEdit.getChanges().size(), is(0));
+	}
+
+	@Test
+	public void testCreateXPlanToEdit_XPlan51_RPlan() throws Exception {
+		FeatureCollection featureCollection = readXPlanArchive(XPLAN_51, "xplan51/RROP_Landkreis_Test_51.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51, RP_Plan), featureCollection);
+		assertThat(xPlanToEdit.isHasBereich(), is(true));
+
+		BaseData baseData = xPlanToEdit.getBaseData();
+		assertThat(baseData.getPlanName(), is("Regionales Raumordnungsprogramm Landkreis Test 2019"));
+		assertThat(baseData.getDescription(), is(nullValue()));
+		assertThat(baseData.getPlanTypeCode(), is(1000));
+		assertThat(baseData.getCreationDate(), is(nullValue()));
+		assertThat(baseData.getMethodCode(), is(3000));
+
+		assertThat(xPlanToEdit.getRasterBasis().size(), is(1));
+		assertThat(xPlanToEdit.getRasterBasis().get(0).getRasterReferences().size(), is(0));
+		assertThat(xPlanToEdit.getTexts().size(), is(0));
+		assertThat(xPlanToEdit.getReferences().size(), is(0));
 		assertThat(xPlanToEdit.getChanges().size(), is(0));
 	}
 
