@@ -781,7 +781,7 @@ public class XPlanManipulatorTest {
 	public void testModifyXPlan_RP() throws Exception {
 		XPlanVersion version = XPLAN_51;
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan51/RPlan.zip");
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan51/RROP_Landkreis_Test_51.zip");
 
 		FeatureCollection featureCollection = readXPlanGmlFromZip(version, inputStream, schema);
 
