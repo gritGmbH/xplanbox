@@ -86,7 +86,7 @@ public class XPlanToEditFactory {
 	 * @param featureCollection to parse the editable values from, never <code>null</code>
 	 * @return the xPlanToEdit, never <code>null</code>
 	 */
-	public XPlanToEdit createXPlanToEdit(XPlan xPlan, FeatureCollection featureCollection) {
+	public XPlanToEdit createXPlanToEdit(XPlan xPlan, FeatureCollection featureCollection) throws EditException {
 		Iterator<Feature> iterator = featureCollection.iterator();
 		XPlanToEdit xPlanToEdit = new XPlanToEdit();
 		while (iterator.hasNext()) {
@@ -114,7 +114,7 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parsePlan(XPlan xPlan, Feature feature, XPlanToEdit xPlanToEdit) {
+	private void parsePlan(XPlan xPlan, Feature feature, XPlanToEdit xPlanToEdit) throws EditException {
 		LOG.debug("Parse properties from Plan");
 		BaseData baseData = xPlanToEdit.getBaseData();
 		for (Property property : feature.getProperties()) {
@@ -321,7 +321,7 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parseTextReference(XPlan xPlan, Property property, XPlanToEdit xPlanToEdit) {
+	private void parseTextReference(XPlan xPlan, Property property, XPlanToEdit xPlanToEdit) throws EditException {
 		TypedObjectNode propertyValue = property.getValue();
 		if (propertyValue instanceof FeatureReference) {
 			Feature referencedObject = ((FeatureReference) propertyValue).getReferencedObject();
@@ -351,7 +351,7 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parseChange(Property property, XPlanToEdit xPlanToEdit, ChangeType changeType) {
+	private void parseChange(Property property, XPlanToEdit xPlanToEdit, ChangeType changeType) throws EditException {
 		if (property instanceof GenericProperty) {
 			List<TypedObjectNode> children = property.getChildren();
 			if (children.size() == 1 && children.get(0) instanceof GenericXMLElement) {
@@ -514,14 +514,13 @@ public class XPlanToEditFactory {
 		return null;
 	}
 
-	private int asInteger(TypedObjectNode value) {
+	private int asInteger(TypedObjectNode value) throws EditException {
 		String valueAsText = value.toString();
 		try {
 			return Integer.parseInt(valueAsText);
 		}
 		catch (NumberFormatException e) {
-			LOG.warn("Could not parse {} as integer.", valueAsText);
-			return -1;
+			throw new EditException("Could not parse " + valueAsText + " as integer.");
 		}
 	}
 
