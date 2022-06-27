@@ -22,8 +22,8 @@ package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.InvalidGeometryException;
-import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
+import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.composite.CompositeGeometry;
@@ -39,6 +39,7 @@ import org.deegree.geometry.primitive.Surface;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
 import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.IntersectionMatrix;
 import org.locationtech.jts.geom.TopologyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -284,7 +285,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 				throw new InvalidGeometryException("Geometry of feature with ID "
 						+ inGeltungsbereichFeature.getFeatureId() + " could not be parsed (or is empty)");
 			}
-			return geltungsbereich.covers(geometry);
+			IntersectionMatrix relate = geltungsbereich.relate(geometry);
+			return relate.matches("***F**FFT");
 		}
 		catch (TopologyException | IllegalArgumentException e) {
 			throw new InvalidGeometryException(e);
