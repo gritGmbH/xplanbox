@@ -417,7 +417,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		GeometryCollection geometryCollection = factory
 				.createGeometryCollection(geometries.toArray(new org.locationtech.jts.geom.Geometry[] {}));
 
-		org.locationtech.jts.geom.Geometry union = geometryCollection.buffer(0);
+		org.locationtech.jts.geom.Geometry union = geometryCollection.union();
 		return DEFAULT_GEOM.createFromJTS(union, coordinateSystem);
 	}
 
@@ -432,7 +432,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		GeometryCollection geometryCollection = factory
 				.createGeometryCollection(geometries.toArray(new org.locationtech.jts.geom.Geometry[] {}));
 
-		org.locationtech.jts.geom.Geometry union = geometryCollection.buffer(0);
+		org.locationtech.jts.geom.Geometry union = geometryCollection.union();
 		return DEFAULT_GEOM.createFromJTS(union, coordinateSystem);
 	}
 
