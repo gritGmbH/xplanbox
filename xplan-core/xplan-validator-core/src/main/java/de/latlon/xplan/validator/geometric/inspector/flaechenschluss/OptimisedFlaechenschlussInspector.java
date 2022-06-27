@@ -26,6 +26,7 @@ import de.latlon.xplan.validator.geometric.inspector.model.AbstractGeltungsberei
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
 import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import org.deegree.commons.uom.Measure;
 import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
@@ -68,6 +69,7 @@ import org.locationtech.jts.geom.Polygon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -579,12 +581,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 						"Surfaces with segments of type " + segmentType + " are currently not supported.");
 			}
 		}
+		Geometry intersectionWithBuffer = intersection
+				.getBuffer(new Measure(new BigDecimal(FlaechenschlussTolerance.ALLOWEDDISTANCE_METRE), "m"));
 		List<ControlPoint> allPoints = new ArrayList<>();
 		for (Points points : pointsList) {
 			Iterator<Point> iterator = points.iterator();
 			while (iterator.hasNext()) {
 				Point point = iterator.next();
-				if (intersection.intersects(point)) {
+				if (intersectionWithBuffer.intersects(point)) {
 					allPoints.add(new ControlPoint(featureId, point, handleAsHasIdenticalControlPoints));
 				}
 			}
