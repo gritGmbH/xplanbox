@@ -79,7 +79,10 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private final CodeListBox legislationStatus;
 
+	private EditPlanType type;
+
 	public BaseDataPanel(EditVersion version, EditPlanType type) {
+		this.type = type;
 		setCaptionText(MASSAGE.editCaptionBasedata());
 		this.planType = createMandatoryCodeListInput(version, type, PlanArt);
 		this.otherPlanType = createCodeListInput(version, type, SonstPlanArt);
@@ -125,6 +128,8 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	@Override
 	public boolean isValid() {
+		if (SO_Plan.equals(type))
+			return areComponentsValid(creationDate, lossDate, regulationDate);
 		return areComponentsValid(planType, creationDate, lossDate, regulationDate);
 	}
 
@@ -147,8 +152,10 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 		layout.setWidget(1, 1, new Label(MASSAGE.editCaptionBasedataName()));
 		layout.setWidget(1, 2, name);
-		layout.setWidget(1, 3, new Label(MASSAGE.editCaptionBasedataPlanType()));
-		layout.setWidget(1, 4, planType);
+		if (!SO_Plan.equals(type)) {
+			layout.setWidget(1, 3, new Label(MASSAGE.editCaptionBasedataPlanType()));
+			layout.setWidget(1, 4, planType);
+		}
 
 		layout.setWidget(2, 1, new Label(MASSAGE.editCaptionBasedataCreationDate()));
 		layout.setWidget(2, 2, creationDate);

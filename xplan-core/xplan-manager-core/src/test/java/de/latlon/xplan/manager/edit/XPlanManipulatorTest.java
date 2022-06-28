@@ -68,6 +68,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.XPlanType.FP_Plan;
+import static de.latlon.xplan.commons.XPlanType.LP_Plan;
+import static de.latlon.xplan.commons.XPlanType.RP_Plan;
+import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -711,7 +715,7 @@ public class XPlanManipulatorTest {
 		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null,
 				legislationStatusCode, methodCode, -1, planTypeCode);
 
-		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, FP_Plan, schema);
 
 		String exportedPlan = exportPlan(featureCollection, version);
 
@@ -753,7 +757,7 @@ public class XPlanManipulatorTest {
 		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null,
 				legislationStatusCode, methodCode, -1, planTypeCode);
 
-		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, LP_Plan, schema);
 
 		String exportedPlan = exportPlan(featureCollection, version);
 
@@ -795,7 +799,7 @@ public class XPlanManipulatorTest {
 		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null,
 				legislationStatusCode, methodCode, -1, planTypeCode);
 
-		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, RP_Plan, schema);
 
 		String exportedPlan = exportPlan(featureCollection, version);
 
@@ -835,7 +839,7 @@ public class XPlanManipulatorTest {
 		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null, -1, -1, -1,
 				planTypeCode);
 
-		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, SO_Plan, schema);
 
 		String exportedPlan = exportPlan(featureCollection, version);
 
@@ -851,8 +855,8 @@ public class XPlanManipulatorTest {
 				not(HasXPathMatcher.hasXPath("//xp:SO_Plan/xp:rechtsstand").withNamespaceContext(nsContext(version))));
 		assertThat(exportedPlan,
 				not(HasXPathMatcher.hasXPath("//xp:SO_Plan/xp:verfahren").withNamespaceContext(nsContext(version))));
-		assertThat(exportedPlan, hasXPath("//xp:SO_Plan/xp:planArt", is(Integer.toString(planTypeCode)))
-				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				hasXPath("//xp:SO_Plan/xp:planArt", is("17200")).withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,
 				not(HasXPathMatcher.hasXPath("//xp:SO_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
 

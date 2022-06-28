@@ -63,6 +63,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -137,7 +138,9 @@ public class XPlanManipulator {
 		modify(version, feature, "rechtsverordnungsDatum", changes.getBaseData().getRegulationDate());
 		modifyCode(version, feature, "rechtsstand", changes.getBaseData().getLegislationStatusCode());
 		modifyCode(version, feature, "sonstPlanArt", changes.getBaseData().getOtherPlanTypeCode());
-		modifyCode(version, feature, "planArt", changes.getBaseData().getPlanTypeCode());
+		if (!SO_Plan.equals(type)) {
+			modifyCode(version, feature, "planArt", changes.getBaseData().getPlanTypeCode());
+		}
 		if (XPLAN_60.equals(version)) {
 			modifyChanges(version, feature, schema, "wurdeGeaendertVonPlan", changes.getChanges(), CHANGED_BY);
 			modifyChanges(version, feature, schema, "aendertPlan", changes.getChanges(), CHANGES);
