@@ -71,6 +71,10 @@ Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeb
 
 Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl" statt "Scan") der Eintrag nicht in das XPlanGML-Instanzdokument übernommen. Die Referenz auf die Rasterbasis wird beim Speichern nicht in das XPlanGML geschrieben, befindet sich aber in der ZIP-Datei.
 
+=== XPlanManagerWeb - Hinzufügen von einer Datei xplan.gml über die Editorfunktion im XPlanManagerWeb resultiert in korrupten XPlanArchiv
+
+Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über die Editorfunktion des XPlanManagerWeb hinzugefügt, kann dieses XPlanArchiv nicht mehr geöffnet werden. Das System zeigt dann den Fehler "500" an. Der Fehler kann nicht behoben werden. Das XPlanArchiv muss aus der Datenhaltung entfernt werden.
+
 === Umsetzung von Präsentationsobjekte
 
 Im XPlanWMS ist der Umfang der Darstellung von Präsentationsobjekten nur eingeschränkt implementiert. Über die folgenden Layer werden diese angezeigt:
