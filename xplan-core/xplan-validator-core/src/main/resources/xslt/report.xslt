@@ -188,7 +188,7 @@
                 <ul>
                     <li><xsl:value-of select="count(./Rule)" /> Validierungsregeln überprüft</li>
                     <li><xsl:value-of select="count(./Rule[isValid='false'])" /> Validierungsregeln nicht erfüllt</li>
-                    <li><xsl:value-of select="count(./Rule[isValid='true'])" /> Validierungsregeln erfüllt (<span style="text-decoration: underline; cursor:pointer" onclick="javascript:hideOrShowByClass('validSemanticRule', this); return false;">anzeigen</span> )</li>
+                    <li><xsl:value-of select="count(./Rule[isValid='true'])" /> Validierungsregeln erfüllt (<span style="text-decoration: underline; cursor:pointer" onclick="javascript:hideOrShowByClass('validSemanticRule', this); return false;">anzeigen</span>)</li>
                 </ul>
                 <table border="1">
                     <tr>
@@ -287,7 +287,7 @@
                         Benachrichtigungen
                     </xsl:when>
                     <xsl:when test="local-name()='Warnings'">
-                        <xsl:value-of select="count(./warning)" /> Warnungen (<span style="text-decoration: underline; cursor:pointer" onclick="javascript:hideOrShow('WarningsDetails', this); return false;">anzeigen</span> )
+                        <xsl:value-of select="count(./warning)" /> Warnungen (<span style="text-decoration: underline; cursor:pointer" onclick="javascript:hideOrShow('WarningsDetails', this); return false;">ausblenden</span>)
                     </xsl:when>
                     <xsl:when test="local-name()='Errors'">
                         Fehler
@@ -297,7 +297,7 @@
                   <xsl:attribute name="border">1</xsl:attribute>
                   <xsl:attribute name="id"><xsl:value-of select="local-name()" />Details</xsl:attribute>
                   <xsl:if test="local-name()='Warnings'">
-                    <xsl:attribute name="style">display:none</xsl:attribute>
+                    <xsl:attribute name="style">display:block</xsl:attribute>
                   </xsl:if>
                   <xsl:for-each select="*">
                     <tr>
