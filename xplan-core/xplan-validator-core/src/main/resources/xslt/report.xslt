@@ -287,7 +287,7 @@
                         Benachrichtigungen
                     </xsl:when>
                     <xsl:when test="local-name()='Warnings'">
-                        <xsl:value-of select="count(./warning)" /> Warnungen (<span style="text-decoration: underline; cursor:pointer" onclick="javascript:hideOrShow('WarningsDetails', this); return false;">anzeigen</span>)
+                        <xsl:value-of select="count(./warning)" /> Warnungen (<span style="text-decoration: underline; cursor:pointer" onclick="javascript:hideOrShow('WarningsDetails', this); return false;">ausblenden</span>)
                     </xsl:when>
                     <xsl:when test="local-name()='Errors'">
                         Fehler
@@ -296,6 +296,9 @@
                 <xsl:element name="table">
                   <xsl:attribute name="border">1</xsl:attribute>
                   <xsl:attribute name="id"><xsl:value-of select="local-name()" />Details</xsl:attribute>
+                  <xsl:if test="local-name()='Warnings'">
+                    <xsl:attribute name="style">display:block</xsl:attribute>
+                  </xsl:if>
                   <xsl:for-each select="*">
                     <tr>
                       <td>
