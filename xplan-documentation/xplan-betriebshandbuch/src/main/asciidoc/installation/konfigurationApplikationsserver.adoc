@@ -31,7 +31,7 @@ In dieser Datei wird die Variable `CATALINA_OPTS` wie folgt erweitert:
 export CATALINA_OPTS='-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
 ----
 
-Falls bereits einen Export von `CATALINA_OPTS` in dieser Datei vorhanden ist, muss die Variable `CATALINA_OPTS` erweitert werden.
+Falls bereits ein Export von `CATALINA_OPTS` in dieser Datei vorhanden ist, muss die Variable `CATALINA_OPTS` erweitert werden.
 
 [[anwendungs-tomcat-windows]]
 ===== Windows
@@ -44,7 +44,7 @@ In dieser Datei wird die Variable `CATALINA_OPTS` wie folgt erweitert:
 export CATALINA_OPTS='-DXPLANBOX_CONFIG=C:\.deegree\xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=C:\pfad\zu\den\workspaces -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
 ----
 
-Falls bereits einen Export von `CATALINA_OPTS` in dieser Datei vorhanden ist, muss die Variable  `CATALINA_OPTS` erweitert werden.
+Falls bereits ein Export von `CATALINA_OPTS` in dieser Datei vorhanden ist, muss die Variable  `CATALINA_OPTS` erweitert werden.
 
 IMPORTANT: Der _Anwendungs-Tomcat_ muss mindestens über 4GB Arbeitsspeicher verfügen, dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 

@@ -426,6 +426,20 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
+[[aktualisierung-auf-die-version-5.0.3]]
+=== Aktualisierung auf die Version 5.0.3
+
+Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt werden:
+
+* Setzen der Variable `jts.overlay=ng` im _Anwendungs-Tomcat_ und _API-Tomcat_, siehe auch Kapitel <<anwendungs-tomcat>>.
+* Austausch der beiden Webapps:
+** _xplan-api-validator.war_
+** _xplan-api-manager.war_
+** _xplan-validator-web.war_
+** _xplan-manager-web.war_
+
+TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
+
 === Troubleshooting
 
 Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
