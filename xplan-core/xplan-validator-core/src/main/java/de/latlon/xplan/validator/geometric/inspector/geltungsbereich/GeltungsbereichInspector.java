@@ -40,6 +40,7 @@ import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.geometry.standard.multi.DefaultMultiGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
 import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.IntersectionMatrix;
 import org.locationtech.jts.geom.TopologyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -299,7 +300,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 				throw new InvalidGeometryException("Geometry of feature with ID "
 						+ inGeltungsbereichFeature.getFeatureId() + " could not be parsed (or is empty)");
 			}
-			return geltungsbereich.covers(geometry);
+			IntersectionMatrix relate = geltungsbereich.relate(geometry);
+			return relate.matches("***F**FFT");
 		}
 		catch (TopologyException | IllegalArgumentException e) {
 			throw new InvalidGeometryException(e);

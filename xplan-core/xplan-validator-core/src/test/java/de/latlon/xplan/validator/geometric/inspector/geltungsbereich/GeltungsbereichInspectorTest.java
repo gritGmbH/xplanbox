@@ -125,6 +125,15 @@ public class GeltungsbereichInspectorTest {
 		assertThat(isValid, is(true));
 	}
 
+	@Test
+	public void testCheck_LinienPolygon() throws Exception {
+		XPlanArchive archive = getLokalArchive("BPlan001_5-4_Sliver-Polygon.gml");
+		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+	}
+
 	private GeltungsbereichInspector readFeatures(XPlanArchive archive) throws XMLStreamException, UnknownCRSException {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
 		XPlanVersion version = archive.getVersion();
