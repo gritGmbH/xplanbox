@@ -229,7 +229,9 @@ Der Validierungsbericht kann in den Formaten:
 
 exportiert werden.
 
-Geometriefehler können zusätzlich auch als Shapefile gespeichert werden.
+Geometriefehler können zusätzlich auch als Shape-Datei gespeichert werden.
+
+NOTE: Derzeit werden ausschließlich Schnittpunkte in der Shape-Datei ausgegeben, also die Punkte an denen sich die Umgrenzungslinie der betroffenen Geometrie und die des Geltungsbereichs schneiden. Linienförmige Schnittbereiche werden derzeit nicht ausgegeben.
 
 Alle Ergebnisdateien, selektierte Reports und Geometriefehler,  werden in einer ZIP-Datei gespeichert. Der Dateiname entspricht der Bezeichnung des Validierungsdurchlaufs.
 
