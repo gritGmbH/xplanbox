@@ -153,7 +153,7 @@ Dabei kann der Benutzer wählen, ob er eine Datei über einen vollqualifizierten
 
  * rasterbasis
 
-Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP_Bereich besitzt. Ist dies nicht der Fall, wird ein entsprechender Hinweis in der Oberfläche angegeben. Die Angabe einer Rasterbasis kann in diesem Fall nicht erfolgen.
+Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP|FP|LP|RP|SO_Bereich besitzt. Ist dies nicht der Fall, wird ein entsprechender Hinweis in der Oberfläche angegeben. Die Angabe einer Rasterbasis kann in diesem Fall nicht erfolgen.
 
 Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
 
