@@ -73,7 +73,7 @@ Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl"
 
 === XPlanManagerWeb - Hinzufügen von einer Datei xplan.gml über die Editorfunktion im XPlanManagerWeb resultiert in korrupten XPlanArchiv
 
-Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über die Editorfunktion des XPlanManagerWeb hinzugefügt, kann dieses XPlanArchiv nicht mehr geöffnet werden. Das System zeigt dann den Fehler "500" an. Der Fehler kann nicht behoben werden. Das XPlanArchiv muss aus der Datenhaltung entfernt werden.
+Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über die Editorfunktion des XPlanManagerWeb hinzugefügt und gespeichert, kann dieses XPlanArchiv danach nicht mehr geöffnet werden. Beim wiederholten Aufruf der Editorfunktion zeigt das System dann den Fehler "500" an. Der Fehler kann nicht in der xPlanBox behoben werden. Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
 
 === Umsetzung von Präsentationsobjekte
 
