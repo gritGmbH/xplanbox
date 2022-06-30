@@ -95,11 +95,6 @@ public abstract class EditHandler {
 		XPlanVersion xPlanVersion = XPlanVersion.valueOf(version);
 		String type = xPlanById.getType();
 		XPlanType xPlanType = XPlanType.valueOf(type);
-		if (LP_Plan.equals(xPlanType) && !XPLAN_60.equals(xPlanVersion)) {
-			throw new InvalidPlanToEdit(String.format(
-					"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for LPlan: 6.0",
-					xPlanById.getId(), xPlanType));
-		}
 		switch (xPlanVersion) {
 		case XPLAN_40:
 			throw new InvalidPlanToEdit(String.format(
