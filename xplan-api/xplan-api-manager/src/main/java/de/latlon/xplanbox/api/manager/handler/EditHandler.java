@@ -97,23 +97,23 @@ public abstract class EditHandler {
 		XPlanType xPlanType = XPlanType.valueOf(type);
 		if (LP_Plan.equals(xPlanType) && !XPLAN_60.equals(xPlanVersion)) {
 			throw new InvalidPlanToEdit(String.format(
-					"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported types versions for LPlan: 6.0",
+					"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for LPlan: 6.0",
 					xPlanById.getId(), xPlanType));
 		}
 		switch (xPlanVersion) {
 		case XPLAN_40:
 			throw new InvalidPlanToEdit(String.format(
-					"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions: 4.1 and heigher",
+					"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions: 4.1 and higher",
 					xPlanById.getId(), xPlanVersion));
 		case XPLAN_41:
 			if (LP_Plan.equals(xPlanType)) {
 				throw new InvalidPlanToEdit(String.format(
-						"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for %s: 6.0 and heigher",
+						"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for %s: 6.0 and higher",
 						xPlanById.getId(), xPlanVersion, xPlanType));
 			}
 			else if (!BP_Plan.equals(xPlanType)) {
 				throw new InvalidPlanToEdit(String.format(
-						"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for %s: 5.0 and heigher",
+						"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for %s: 5.0 and higher",
 						xPlanById.getId(), xPlanVersion, xPlanType));
 			}
 			return;
@@ -123,7 +123,7 @@ public abstract class EditHandler {
 		case XPLAN_53:
 			if (LP_Plan.equals(xPlanType)) {
 				throw new InvalidPlanToEdit(String.format(
-						"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for %s: 6.0 and heigher",
+						"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for %s: 6.0 and higher",
 						xPlanById.getId(), xPlanVersion, xPlanType));
 			}
 			return;
