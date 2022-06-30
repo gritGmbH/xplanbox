@@ -45,7 +45,7 @@
         <include>layers/lplan*</include>
         <include>layers/rplan*</include>
         <include>layers/soplan*</include>
-        <include>layers/planspezifisch-wms/**</include>
+        <include>layers/planart-wms/**</include>
         <include>layers/dummyrasterlayer.ignore</include>
         <include>services/wms*</include>
         <include>themes/bplan*</include>
@@ -53,7 +53,7 @@
         <include>themes/lplan*</include>
         <include>themes/rplan*</include>
         <include>themes/soplan*</include>
-        <include>themes/planspezifisch-wms/**</include>
+        <include>themes/planart-wms/**</include>
         <include>gdal.ignore</include>
       </includes>
       <excludes>

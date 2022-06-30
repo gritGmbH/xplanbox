@@ -27,7 +27,7 @@
     <wms:DefaultLayerOptions>
       <wms:FeatureInfoRadius>10</wms:FeatureInfoRadius>
     </wms:DefaultLayerOptions>
-    <wms:ThemeId>planspezifisch-wms/soplanpre</wms:ThemeId>
+    <wms:ThemeId>planart-wms/soplanpre</wms:ThemeId>
   </wms:ServiceConfiguration>
   <wms:FeatureInfoFormats>
     <wms:GetFeatureInfoFormat>
