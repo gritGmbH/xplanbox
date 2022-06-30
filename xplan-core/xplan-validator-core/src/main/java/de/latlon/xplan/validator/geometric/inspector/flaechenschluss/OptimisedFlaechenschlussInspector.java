@@ -84,6 +84,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
+import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.FlaechenschlussTolerance.ALLOWEDDISTANCE_METRE;
 
 /**
  * Inspector for 2.2.1 Flaechenschlussbedingung:
@@ -114,7 +115,9 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private static final String ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht: %s";
 
-	private static final String LUECKE_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
+	private static final String POSSIBLE_LUECKE_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
+
+	private static final String LUECKE_MSG = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfüllt, es wurde ein Luecke identifizert. Die Geoemtrie der Luecke wird in der Shape-Datei ausgegeben.";
 
 	private static final String EQUAL_ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s überdeckt das Flaechenschlussobjekt mit der gml id %s vollständig.";
 
@@ -296,7 +299,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		// The exterior of the flaechenschluss feature geometry must have at least one
 		// point in common with the exterior of the geltungsbereich geometry
 		LOG.debug("Intersection matrix: {}", relate);
-		if (relate.matches("TTT*TT**T")) {
+		if (relate.matches("TTT*T***T")) {
 			List<? extends SurfacePatch> patches = diffGeltungsbereich.getPatches();
 			PolygonPatch patch = (PolygonPatch) patches.get(0);
 			Ring exteriorRing = patch.getExteriorRing();
@@ -311,11 +314,30 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 							.collect(Collectors.joining("\n  ")));
 			List<ControlPoint> controlPointsInIntersection = collectControlPointsIntersectingTheInteriorRing(
 					exteriorRing, geltungsbereichFeature, intersectingFlaechenschlussFeatures);
-			checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
+			boolean foundInvalidControlPoints = checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
+			if (!foundInvalidControlPoints) {
+				if (isDiffInTolerance(diffGeltungsbereich))
+					return;
+				boolean handleAsFailure = handleAsFailure(testStep);
+				BadGeometry badGeometry = new BadGeometry(diffGeltungsbereich, LUECKE_MSG);
+				badGeometries.add(badGeometry);
+				if (handleAsFailure) {
+					flaechenschlussErrors.add(LUECKE_MSG);
+				}
+				else {
+					flaechenschlussWarnings.add(LUECKE_MSG);
+				}
+			}
 		}
 	}
 
-	private void checkControlPointsAndAddFailures(List<ControlPoint> controlPoints, TestStep testStep) {
+	private boolean isDiffInTolerance(DefaultSurface diffGeltungsbereich) {
+		org.locationtech.jts.geom.Geometry diffGeltungsbereichBufferAllowedTolerance = diffGeltungsbereich
+				.getJTSGeometry().buffer(ALLOWEDDISTANCE_METRE / 2 * -1);
+		return diffGeltungsbereichBufferAllowedTolerance.isEmpty();
+	}
+
+	private boolean checkControlPointsAndAddFailures(List<ControlPoint> controlPoints, TestStep testStep) {
 		List<ControlPoint> controlPointsInIntersectionTmp = new ArrayList<>(controlPoints);
 		controlPoints.forEach(cpToCheck -> {
 			controlPointsInIntersectionTmp.remove(cpToCheck);
@@ -327,7 +349,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			boolean handleAsFailure = handleAsFailure(testStep);
 			String msg;
 			if (!handleAsFailure && !TestStep.FLAECHENSCHLUSSPAIRS.equals(testStep)) {
-				msg = String.format(LUECKE_MSG, cp.getFeatureGmlId(), cp.getPoint());
+				msg = String.format(POSSIBLE_LUECKE_MSG, cp.getFeatureGmlId(), cp.getPoint());
 			}
 			else {
 				msg = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
@@ -341,6 +363,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				flaechenschlussWarnings.add(msg);
 			}
 		});
+		return !controlPointsWithInvalidFlaechenschluss.isEmpty();
 	}
 
 	private List<ControlPoint> collectControlPointsIntersectingTheInteriorRing(Ring interiorRing,
@@ -591,7 +614,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			}
 		}
 		Geometry intersectionWithBuffer = intersection
-				.getBuffer(new Measure(new BigDecimal(FlaechenschlussTolerance.ALLOWEDDISTANCE_METRE), "m"));
+				.getBuffer(new Measure(new BigDecimal(ALLOWEDDISTANCE_METRE), "m"));
 		List<ControlPoint> allPoints = new ArrayList<>();
 		for (Points points : pointsList) {
 			Iterator<Point> iterator = points.iterator();
