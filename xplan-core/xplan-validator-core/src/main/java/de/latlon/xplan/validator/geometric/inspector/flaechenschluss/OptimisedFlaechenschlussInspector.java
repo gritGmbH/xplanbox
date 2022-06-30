@@ -296,8 +296,9 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			GeltungsbereichFeature geltungsbereichFeature, DefaultSurface diffGeltungsbereich, TestStep testStep) {
 		IntersectionMatrix relate = geltungsbereichFeature.getJtsGeometry()
 				.relate(diffGeltungsbereich.getJTSGeometry());
-		// The exterior of the flaechenschluss feature geometry must have at least one
-		// point in common with the exterior of the geltungsbereich geometry
+		// The feature geometry must have at least one point in common with the interior
+		// of the geltungsbereich geometry. Also the boundaries and exteriors of the
+		// feature and geltungsbereich geometry.
 		LOG.debug("Intersection matrix: {}", relate);
 		if (relate.matches("TTT*T***T")) {
 			List<? extends SurfacePatch> patches = diffGeltungsbereich.getPatches();
@@ -332,8 +333,9 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	}
 
 	private boolean isDiffInTolerance(DefaultSurface diffGeltungsbereich) {
+		double negativeAllowedTolerance = ALLOWEDDISTANCE_METRE / 2 * -1;
 		org.locationtech.jts.geom.Geometry diffGeltungsbereichBufferAllowedTolerance = diffGeltungsbereich
-				.getJTSGeometry().buffer(ALLOWEDDISTANCE_METRE / 2 * -1);
+				.getJTSGeometry().buffer(negativeAllowedTolerance);
 		return diffGeltungsbereichBufferAllowedTolerance.isEmpty();
 	}
 
