@@ -2,7 +2,6 @@
 
 Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschiedene Testfälle definiert wurden.
 
-
 * [1. XPlanManagerCLI](#xplanmanagercli)
 * [2. XPlanManagerWeb](#xplanmanagerweb)
 * [3. XPlanValidatorCLI](#xplanvalidatorcli)
@@ -14,7 +13,6 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 * [9. XPlanWMS](#xplanwms)
 * [10. XPlanWFS/XPlanSynWFS](#xplanwfsxplansynwfs)
 * [11. XPlanRessourcen](#xplanresssourcen)
-
 
 # 1. XPlanManagerCLI 
 
@@ -39,7 +37,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * Die DB-Tabelle der Datenbasis ist leer, beinhaltet somit kein Datenbank-Schema.
- * Der Nutzer hat die Rechte, eine Datenbank anzulegen.
+ * Der Nutzer hat die Rechte, eine Datenbank anzulegen. 
  
 #### Prüffall 
 
@@ -244,7 +242,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-04: Plan-Liste
 
-
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  
@@ -306,45 +303,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-07: Plan-Funktion: Export
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
- 
-#### Prüffall 
- 
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer klickt neben einen Plan auf den Button **Herunterladen**. | Es öffnet sich ein neues Fenster zur Auswahl des Speicherplatzes. 
-**02** | Der Benutzer wählt ein Verzeichnis zum Speichern des Plans. | Das Verzeichnis wird im Fenster dargestellt. 
-**03** | Der Benutzer klickt auf den Button **Speichern**. | Das Fenster schließt sich. Der Plan wird von der Datenbasis lokal gespeichert. 
-
----
-
-### Prüffall-08: Plan-Funktion: Entfernen
-
-#### Vorbedingungen 
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
- 
-#### Prüffall 
- 
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer klickt neben einen Plan auf den Button **Entfernen**. | Es öffnet sich ein neues Fenster zur Bestätigung des Vorgangs. 
-**02** | Der Benutzer bestätigt mit **OK**. | Es öffnet sich ein Dialog mit dem Inhalt `Plan wird entfernt...`. 
-**03** | Der Benutzer wartet während der Löschvorgang durchgeführt wird. | Das Dialog-Fenster schließt sich. Der Plan wird aus der Datenbasis gelöscht und nicht mehr in der Plan-Liste dargestellt. 
-**04** | Der Benutzer überprüft mit dem XPlanManager CLI (Parameter: `-list`), ob der zuvor ausgewählte Plan gelöscht wurde. | Der zuvor ausgewählte Plan wurde gelöscht. 
-
----
-
-### Prüffall-09: Plan-Funktion: Editieren
+### Prüffall-07: Plan-Funktion: Editieren
 
 #### Vorbedingungen 
 
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
- * Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten.
+* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+* Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten.
 
 #### Prüffall 1
 
@@ -379,7 +343,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.| Es öffnet sich ein neues Fenster mit einem Formular.
 **02** | Der Benutzer editiert die Angaben unter **Rasterbasis** ohne dabei falsche Eingaben zu machen und bestätigt das Ergebnis durch die Schaltfläche **Speichern**.| Speicherung der Veränderungen.
 
-
 #### Prüffall 5
 
 Schritt | Beschreibung | Erwartetes Ergebnis
@@ -410,6 +373,39 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
+### Prüffall-08: Plan-Funktion: Export
+
+#### Vorbedingungen 
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
+ * Der Prüffall-01 wurde erfolgreich ausgeführt.
+ 
+#### Prüffall 
+ 
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer klickt neben einen Plan auf den Button **Herunterladen**. | Es öffnet sich ein neues Fenster zur Auswahl des Speicherplatzes. 
+**02** | Der Benutzer wählt ein Verzeichnis zum Speichern des Plans. | Das Verzeichnis wird im Fenster dargestellt. 
+**03** | Der Benutzer klickt auf den Button **Speichern**. | Das Fenster schließt sich. Der Plan wird von der Datenbasis lokal gespeichert. 
+
+---
+
+### Prüffall-09: Plan-Funktion: Entfernen
+
+#### Vorbedingungen 
+ * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
+ * Der Prüffall-01 wurde erfolgreich ausgeführt.
+ 
+#### Prüffall 
+ 
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer klickt neben einen Plan auf den Button **Entfernen**. | Es öffnet sich ein neues Fenster zur Bestätigung des Vorgangs. 
+**02** | Der Benutzer bestätigt mit **OK**. | Es öffnet sich ein Dialog mit dem Inhalt `Plan wird entfernt...`. 
+**03** | Der Benutzer wartet während der Löschvorgang durchgeführt wird. | Das Dialog-Fenster schließt sich. Der Plan wird aus der Datenbasis gelöscht und nicht mehr in der Plan-Liste dargestellt. 
+**04** | Der Benutzer überprüft mit dem XPlanManager CLI (Parameter: `-list`), ob der zuvor ausgewählte Plan gelöscht wurde. | Der zuvor ausgewählte Plan wurde gelöscht. 
+
+---
+
 ### Prüffall-10: XPlanManager-Funktion: Anzeigefilter
 
 #### Vorbedingungen 
@@ -435,6 +431,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **01** | Der Benutzer sucht die Pläne einer bestimmten Gemeinde (Suchfilter **Gemeindeauswahl**) und einem bestimmten Planstatus (Suchfilter **Planstatus**). | Es werden alle der Suchanfrage entsprechenden Pläne angezeigt.
 **02** | Der Benutzer wählt **Name** und gibt einen _Namen(steil)_ eines in der Planliste angezeigten Plans an. | Die zuvor angezeigte Liste ist auf die Pläne eingeschränkt, deren Namen mit der Nutzereingabe übereinstimmen.
 **03** | Der Benutzer wählt **Alle Pläne anzeigen** | Die zuvor gesetzten Auswahlkriterien werden zurückgesetzt, und es werden alle Pläne angezeigt.
+
+---
 
 ### Prüffall-11: Active Directory mit Gruppenhierarchien anbinden
 
@@ -685,7 +683,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * XPlanArchive sind verfügbar.
- 
+
 #### Prüffall 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
@@ -742,7 +740,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-02: Planarchiv auswählen
 
-
 #### Vorbedingungen
  * Der Prüffall-01 wurde erfolgreich ausgeführt. 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
@@ -756,7 +753,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **03** | Der Benutzer wählt ein Planarchiv (`*.zip`) aus und klickt auf **OK**. | Das Fenster schließt sich. Der Planname wird in der Web-basierten Benutzeroberfläche des XPlanValidators angezeigt. |
 
 ---
-
 
 ### Prüffall-03: Eingabe einer Bezeichnung für den Validierungsdurchlauf 
 
@@ -927,9 +923,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
+ * [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
     * Der Pfad kann variieren.
-* [2] `./XPlanValidateDB -h [oder -help und --help]`
+ * [2] `./XPlanValidateDB -h [oder -help und --help]`
 
 ---
 
@@ -956,7 +952,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateDataCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-data-cli-$VERSION/bin`.
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateDatabase-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-database-cli-$VERSION/bin`.
 **02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe für den databaseUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des databaseUpdate.
 **03** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den districtUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des districtUpdate.
 **04** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den reSynthesizer aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des reSynthesizer.
@@ -964,12 +960,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] ` cd ~/xplan-update-data-cli-$VERSION/bin` 
-    * Der Pfad kann variieren.
-* [2] `./databaseUpdate -? [oder --help]`
-* [3] `./districtUpdate -? [oder --help]`
-* [4] `./reSynthesizer -? [oder --help]`
-* [5] `./serviceMetadataRecordCreator -? [oder --help]`
+ * [1] ` cd ~/xplan-update-data-cli-$VERSION/bin` 
+   * Der Pfad kann variieren.
+ * [2] `./databaseUpdate -? [oder --help]`
+ * [3] `./districtUpdate -? [oder --help]`
+ * [4] `./reSynthesizer -? [oder --help]`
+ * [5] `./serviceMetadataRecordCreator -? [oder --help]`
 
 ---
 
@@ -989,10 +985,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] `./databaseUpdate [-c <arg>] [-u <arg>] [-v] [-w <arg>]`
-* [2] `./districtUpdate [-c <arg>] [-v] [-w <arg>]`
-* [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
-* [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
+ * [1] `./databaseUpdate [-c <arg>] [-u <arg>] [-v] [-w <arg>]`
+ * [2] `./districtUpdate [-c <arg>] [-v] [-w <arg>]`
+ * [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
+ * [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
 
 # 7. XPlanTransformCLI  
 
@@ -1011,9 +1007,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] ` cd ~/xplan-transform-cli-$VERSION/bin` 
-    * Der Pfad kann variieren.
-* [2] `./XPlanTransformCLI -? [oder --help]`
+ * [1] ` cd ~/xplan-transform-cli-$VERSION/bin` 
+   * Der Pfad kann variieren.
+ * [2] `./XPlanTransformCLI -? [oder --help]`
 
 ---
 
@@ -1035,12 +1031,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] VALIDATE`
-* [2] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] ALL`
-* [3] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] SYNC`
-* [4] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -f [oder --output] <PFAD/ZU/OUTPUTVERZEICHNIS>`
-* [5] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -v [oder --verbose]`
-* [6] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -w [oder --workspaceName] <PFAD/ZU/VERZEICHNIS/DES/WORKSPACE>`
+ * [1] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] VALIDATE`
+ * [2] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] ALL`
+ * [3] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] SYNC`
+ * [4] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -f [oder --output] <PFAD/ZU/OUTPUTVERZEICHNIS>`
+ * [5] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -v [oder --verbose]`
+ * [6] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -w [oder --workspaceName] <PFAD/ZU/VERZEICHNIS/DES/WORKSPACE>`
 
 # 8. XPlanAuswerteschemaCLI
 
@@ -1058,9 +1054,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] ` cd ~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin` 
-    * Der Pfad kann variieren.
-* [2] `./EvaluationSchemaSynchronizer -? [oder --help]`
+ * [1] ` cd ~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin` 
+   * Der Pfad kann variieren.
+ * [2] `./EvaluationSchemaSynchronizer -? [oder --help]`
 
 ---
 
@@ -1078,9 +1074,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] `./EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] ALL -u [oder --user] <arg> -w [oder --password] <arg>`
-    * Der Befehl in [1] darf nur einmal, initial, ausgeführt werden!
-* [2] `../EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] SYNC -u [oder --user] <arg> -w [oder --password] <arg>`
+ * [1] `./EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] ALL -u [oder --user] <arg> -w [oder --password] <arg>`
+   * Der Befehl in [1] darf nur einmal, initial, ausgeführt werden!
+ * [2] `../EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] SYNC -u [oder --user] <arg> -w [oder --password] <arg>`
 
 # 9. XPlanWMS
 
@@ -1179,7 +1175,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-03: Umringe immer sichtbar
 
 #### Vorbedingungen 
-
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
 * Der Benutzer hat die Berechtigung zum Import von Planarchiven.
 
@@ -1260,9 +1255,6 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ---
 
 ### Prüffall-07: GetFeatureInfo-Ausgaben des WMS
-
-#### Vorbedingungen 
- * Der Benutzer hat den XPlanWMS in QGIS als Datenquelle eingebunden.
 
 #### Prüffall
 
