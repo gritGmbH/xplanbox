@@ -117,7 +117,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private static final String POSSIBLE_LUECKE_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
 
-	private static final String LUECKE_MSG = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfüllt, es wurde ein Luecke identifizert. Die Geoemtrie der Luecke wird in der Shape-Datei ausgegeben.";
+	private static final String LUECKE_MSG = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke identifizert. Die Geoemtrie der Luecke wird in der Shape-Datei ausgegeben.";
 
 	private static final String EQUAL_ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s überdeckt das Flaechenschlussobjekt mit der gml id %s vollständig.";
 
@@ -294,6 +294,8 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private void checkFlaechenschlussFeaturesIntersectingGeltungsbereich(List<FeatureUnderTest> flaechenschlussFeatures,
 			GeltungsbereichFeature geltungsbereichFeature, DefaultSurface diffGeltungsbereich, TestStep testStep) {
+		if (isDiffInTolerance(diffGeltungsbereich))
+			return;
 		IntersectionMatrix relate = geltungsbereichFeature.getJtsGeometry()
 				.relate(diffGeltungsbereich.getJTSGeometry());
 		// The feature geometry must have at least one point in common with the interior
@@ -317,8 +319,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 					exteriorRing, geltungsbereichFeature, intersectingFlaechenschlussFeatures);
 			boolean foundInvalidControlPoints = checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
 			if (!foundInvalidControlPoints) {
-				if (isDiffInTolerance(diffGeltungsbereich))
-					return;
 				boolean handleAsFailure = handleAsFailure(testStep);
 				BadGeometry badGeometry = new BadGeometry(diffGeltungsbereich, LUECKE_MSG);
 				badGeometries.add(badGeometry);

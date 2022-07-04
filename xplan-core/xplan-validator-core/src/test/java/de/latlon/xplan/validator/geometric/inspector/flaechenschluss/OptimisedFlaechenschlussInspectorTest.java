@@ -89,7 +89,19 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		assertThat(flaechenschlussInspector.getWarnings().size(), is(3));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Luecken() throws Exception {
+		// same plan as xplan52_Flaechenschlussfehler_Luecke_Geltungsbereich.gml but
+		// XPlanGML 5.4
+		XPlanArchive archive = getLocalTestArchive("xplan54_Flaechenschlussfehler_Luecken.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
 	}
 
 	@Test
