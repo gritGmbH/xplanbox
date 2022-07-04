@@ -104,6 +104,40 @@ import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.Flae
  * sind, dass sie nicht gleichzeitig rechtswirksam sind.</li>
  * </ul>
  *
+ * Algorithmus:
+ *
+ * <pre>
+ * 1. Hinzufügen aller relevanten Features zum Kontext:
+ *    - XP_Plan Features
+ *    - XP_Bereich Features
+ *    - FlächenschlussFeatures (ebene==0, flaechenschluss==true, wirksamkeit ist gegegen)
+ * 2. Prüfung des Flächenschluss, für alle identifizierten FlächenschlussFeatures
+ * 	  1. Identifiziere überlappende FlächenschlussFeatures
+ *    2. Für alle überlappenden FlächenschlussFeatures
+ *       1. Bilden des Schnittbereichs,
+ *          1. Wenn es sich um ein Polygon handelt
+ *          2. Identifizieren der Stützpunkte der beiden betroffenen FlächenschlussFeatures
+ *          3. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
+ *          4. => Wenn nicht, Ausgabe eines Fehlers
+ *    3. Prüfen der Vereinigung des Flächenschluss
+ *       1. Bilden der Vereinigung der Geometrien aller FlächenschlussFeatures inkl. der Löcher aus dem Geltungsbereich
+ *       2. Prüfen innerer Lücken in der Vereinigung aller FlächenschlussFeatures
+ *          1. Für alle inneren Polygone
+ *             1. Identifizieren aller FlächenschlussFeatures, die an diesem Polygon liegen
+ *             2. Identifizieren der Stützpunkte der beiden FlächenschlussFeatures
+ *             3. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
+ *             4. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Lücke
+ *       3. Prüfen von Lücken im Vergleich mit dem Geltungsbereich
+ *          1. Bilden des Schnittbereichs der Vereinigung aller FlächenschlussFeatures mit dem Geltungsbereich
+ *          2. Für alle Polygone im Schnittbereich
+ *              1. Identifizieren der Stützpunkte der beiden betroffenen FlächenschlussFeatures
+ *              2. Prüfe ob das Polygon im Toleranzbereich liegt (Buffer mit -1 ergibt leeres Polygon)
+ *              3. Wenn ja
+ *                 1. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
+ *                 2. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Lücke
+ *                 3. => Wenn ja, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf eine Lücke
+ * </pre>
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspector {
