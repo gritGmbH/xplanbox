@@ -176,18 +176,15 @@ Eine valide geometrische Prüfung wird wie folgt angezeigt.
 image::validator/Validierung_geometrisch-valide.png[Validerung geometrisch valide]
 
 Eine geometrische Validierung kann valide sein, aber dennoch Warnungen enthalten.
+Warnungen werden angezeigt, wenn z. B. Lücken bei Prüfung der Flächenschlussbedingung gefunden werden.
 
 [.bordered]
 image::validator/Validierung_geometrisch-warnung.png[Validerung geometrisch Warnungen]
 
-Warnungen werden angezeigt, wenn bei Polygonen
-
- * der äußere Ring eine Orientierung gegen den Uhrzeigersinn oder
- * der innere Ring eine Orientierung im Uhrzeigersinn
-
-aufweist.
 
 *5) Geometrische Validierung – nicht valide*
+
+Fehler werden angezeigt, wenn die <<xplanvalidator-web-geometrisch, geometrischen Validierungsregeln>> nicht erfüllt sind.
 
 Am Beispiel der nachfolgenden Abbildung sehen Sie, welche Validierungsregeln nicht erfüllt sind.
 
