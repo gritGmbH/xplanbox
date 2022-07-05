@@ -465,7 +465,8 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		for (int j = 0; j < polygon.getNumInteriorRing(); j++) {
 			LinearRing interiorRingN = polygon.getInteriorRingN(j);
 			Polygon hole = factory.createPolygon(interiorRingN);
-			geometries.add(hole);
+			org.locationtech.jts.geom.Geometry bufferedHole = hole.buffer(ALLOWEDDISTANCE_METRE);
+			geometries.add(bufferedHole);
 		}
 	}
 
