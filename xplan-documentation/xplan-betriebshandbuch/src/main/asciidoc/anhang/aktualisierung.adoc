@@ -136,7 +136,7 @@ include::../downloads/bbox_cache_syn.properties[]
 [[appendix_bbox_cache_properties_gml]]
 == bbox_cache.properties Konfiguration für XPlanWFS
 
-Im Folgenden befindet sich eine vollständige __bbox_cache.properties__ für die Komponente XPlanWFS der auf der jeweiligen Version des XPlanGML-Schema basiert und den Namensraum _http://www.xplanung.de/xplangml_ verwendet. Diese ist vorkonfiguriert auf ganz Deutschland:
+Im Folgenden befindet sich eine vollständige __bbox_cache.properties__ für die Komponente XPlanWFS der auf der jeweiligen Version des XPlanGML-Schemas basiert und den Namensraum _http://www.xplanung.de/xplangml_ verwendet. Diese ist vorkonfiguriert auf ganz Deutschland:
 
 link:../downloads/bbox_cache_gml.properties[bbox_cache.properties für XPlanWFS]
 ----
