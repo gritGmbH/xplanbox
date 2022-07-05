@@ -111,16 +111,16 @@ import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.Flae
  *    - XP_Plan Features
  *    - XP_Bereich Features
  *    - FlächenschlussFeatures (ebene==0, flaechenschluss==true, wirksamkeit ist gegegen)
- * 2. Prüfung des Flächenschluss, für alle identifizierten FlächenschlussFeatures
- * 	  1. Identifiziere überlappende FlächenschlussFeatures
- *    2. Für alle überlappenden FlächenschlussFeatures
+ * 2. Prüfung des Flächenschluss, für alle Geltungsbereiche und die zugehörigen identifizierten FlächenschlussFeatures
+ * 	  1. Identifiziere Paare von einander überlappenden FlächenschlussFeatures
+ *    2. Für alle Paare
  *       1. Bilden des Schnittbereichs,
  *          1. Wenn es sich um ein Polygon handelt
- *          2. Identifizieren der Stützpunkte der beiden betroffenen FlächenschlussFeatures
+ *          2. Identifizieren der Stützpunkte der beiden betroffenen FlächenschlussFeatures im Schnittbereich
  *          3. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
  *          4. => Wenn nicht, Ausgabe eines Fehlers
  *    3. Prüfen der Vereinigung des Flächenschluss
- *       1. Bilden der Vereinigung der Geometrien aller FlächenschlussFeatures inkl. der Löcher aus dem Geltungsbereich
+ *       1. Bilden der Vereinigung der Geometrien aller FlächenschlussFeatures inkl. der Löcher aus dem Geltungsbereich mit einem Puffer von 2mm
  *       2. Prüfen innerer Lücken in der Vereinigung aller FlächenschlussFeatures
  *          1. Für alle inneren Polygone
  *             1. Identifizieren aller FlächenschlussFeatures, die an diesem Polygon liegen
@@ -131,7 +131,7 @@ import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.Flae
  *          1. Bilden des Schnittbereichs der Vereinigung aller FlächenschlussFeatures mit dem Geltungsbereich
  *          2. Für alle Polygone im Schnittbereich
  *              1. Identifizieren der Stützpunkte der beiden betroffenen FlächenschlussFeatures
- *              2. Prüfe ob das Polygon im Toleranzbereich liegt (Buffer mit -1 ergibt leeres Polygon)
+ *              2. Prüfe ob das Polygon im Toleranzbereich liegt (Wenn das Polygon mit einem Puffer von -1 kein leeres Polygon ergibt)
  *              3. Wenn ja
  *                 1. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
  *                 2. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Lücke
