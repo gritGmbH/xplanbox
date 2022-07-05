@@ -151,7 +151,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private static final String POSSIBLE_LUECKE_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
 
-	private static final String LUECKE_MSG = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke identifizert. Die Geoemtrie der Luecke wird in der Shape-Datei ausgegeben.";
+	private static final String LUECKE_MSG = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke identifizert. Die Geometrie der Luecke wird in der Shape-Datei ausgegeben.";
 
 	private static final String EQUAL_ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s überdeckt das Flaechenschlussobjekt mit der gml id %s vollständig.";
 
