@@ -84,6 +84,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
+import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.FlaechenschlussTolerance.ALLOWEDDISTANCE_METRE;
 
 /**
  * Inspector for 2.2.1 Flaechenschlussbedingung:
@@ -103,6 +104,40 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
  * sind, dass sie nicht gleichzeitig rechtswirksam sind.</li>
  * </ul>
  *
+ * Algorithmus:
+ *
+ * <pre>
+ * 1. Hinzufügen aller relevanten Features zum Kontext:
+ *    - XP_Plan Features
+ *    - XP_Bereich Features
+ *    - FlächenschlussFeatures (ebene==0, flaechenschluss==true, wirksamkeit ist gegegen)
+ * 2. Prüfung des Flächenschluss, für alle identifizierten FlächenschlussFeatures
+ * 	  1. Identifiziere überlappende FlächenschlussFeatures
+ *    2. Für alle überlappenden FlächenschlussFeatures
+ *       1. Bilden des Schnittbereichs,
+ *          1. Wenn es sich um ein Polygon handelt
+ *          2. Identifizieren der Stützpunkte der beiden betroffenen FlächenschlussFeatures
+ *          3. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
+ *          4. => Wenn nicht, Ausgabe eines Fehlers
+ *    3. Prüfen der Vereinigung des Flächenschluss
+ *       1. Bilden der Vereinigung der Geometrien aller FlächenschlussFeatures inkl. der Löcher aus dem Geltungsbereich
+ *       2. Prüfen innerer Lücken in der Vereinigung aller FlächenschlussFeatures
+ *          1. Für alle inneren Polygone
+ *             1. Identifizieren aller FlächenschlussFeatures, die an diesem Polygon liegen
+ *             2. Identifizieren der Stützpunkte der beiden FlächenschlussFeatures
+ *             3. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
+ *             4. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Lücke
+ *       3. Prüfen von Lücken im Vergleich mit dem Geltungsbereich
+ *          1. Bilden des Schnittbereichs der Vereinigung aller FlächenschlussFeatures mit dem Geltungsbereich
+ *          2. Für alle Polygone im Schnittbereich
+ *              1. Identifizieren der Stützpunkte der beiden betroffenen FlächenschlussFeatures
+ *              2. Prüfe ob das Polygon im Toleranzbereich liegt (Buffer mit -1 ergibt leeres Polygon)
+ *              3. Wenn ja
+ *                 1. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
+ *                 2. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Lücke
+ *                 3. => Wenn ja, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf eine Lücke
+ * </pre>
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspector {
@@ -114,7 +149,9 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private static final String ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht: %s";
 
-	private static final String LUECKE_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
+	private static final String POSSIBLE_LUECKE_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
+
+	private static final String LUECKE_MSG = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke identifizert. Die Geoemtrie der Luecke wird in der Shape-Datei ausgegeben.";
 
 	private static final String EQUAL_ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s überdeckt das Flaechenschlussobjekt mit der gml id %s vollständig.";
 
@@ -291,12 +328,15 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private void checkFlaechenschlussFeaturesIntersectingGeltungsbereich(List<FeatureUnderTest> flaechenschlussFeatures,
 			GeltungsbereichFeature geltungsbereichFeature, DefaultSurface diffGeltungsbereich, TestStep testStep) {
+		if (isDiffInTolerance(diffGeltungsbereich))
+			return;
 		IntersectionMatrix relate = geltungsbereichFeature.getJtsGeometry()
 				.relate(diffGeltungsbereich.getJTSGeometry());
-		// The exterior of the flaechenschluss feature geometry must have at least one
-		// point in common with the exterior of the geltungsbereich geometry
+		// The feature geometry must have at least one point in common with the interior
+		// of the geltungsbereich geometry. Also the boundaries and exteriors of the
+		// feature and geltungsbereich geometry.
 		LOG.debug("Intersection matrix: {}", relate);
-		if (relate.matches("TTT*TT**T")) {
+		if (relate.matches("TTT*T***T")) {
 			List<? extends SurfacePatch> patches = diffGeltungsbereich.getPatches();
 			PolygonPatch patch = (PolygonPatch) patches.get(0);
 			Ring exteriorRing = patch.getExteriorRing();
@@ -311,11 +351,29 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 							.collect(Collectors.joining("\n  ")));
 			List<ControlPoint> controlPointsInIntersection = collectControlPointsIntersectingTheInteriorRing(
 					exteriorRing, geltungsbereichFeature, intersectingFlaechenschlussFeatures);
-			checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
+			boolean foundInvalidControlPoints = checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
+			if (!foundInvalidControlPoints) {
+				boolean handleAsFailure = handleAsFailure(testStep);
+				BadGeometry badGeometry = new BadGeometry(diffGeltungsbereich, LUECKE_MSG);
+				badGeometries.add(badGeometry);
+				if (handleAsFailure) {
+					flaechenschlussErrors.add(LUECKE_MSG);
+				}
+				else {
+					flaechenschlussWarnings.add(LUECKE_MSG);
+				}
+			}
 		}
 	}
 
-	private void checkControlPointsAndAddFailures(List<ControlPoint> controlPoints, TestStep testStep) {
+	private boolean isDiffInTolerance(DefaultSurface diffGeltungsbereich) {
+		double negativeAllowedTolerance = ALLOWEDDISTANCE_METRE / 2 * -1;
+		org.locationtech.jts.geom.Geometry diffGeltungsbereichBufferAllowedTolerance = diffGeltungsbereich
+				.getJTSGeometry().buffer(negativeAllowedTolerance);
+		return diffGeltungsbereichBufferAllowedTolerance.isEmpty();
+	}
+
+	private boolean checkControlPointsAndAddFailures(List<ControlPoint> controlPoints, TestStep testStep) {
 		List<ControlPoint> controlPointsInIntersectionTmp = new ArrayList<>(controlPoints);
 		controlPoints.forEach(cpToCheck -> {
 			controlPointsInIntersectionTmp.remove(cpToCheck);
@@ -327,7 +385,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			boolean handleAsFailure = handleAsFailure(testStep);
 			String msg;
 			if (!handleAsFailure && !TestStep.FLAECHENSCHLUSSPAIRS.equals(testStep)) {
-				msg = String.format(LUECKE_MSG, cp.getFeatureGmlId(), cp.getPoint());
+				msg = String.format(POSSIBLE_LUECKE_MSG, cp.getFeatureGmlId(), cp.getPoint());
 			}
 			else {
 				msg = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
@@ -341,6 +399,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				flaechenschlussWarnings.add(msg);
 			}
 		});
+		return !controlPointsWithInvalidFlaechenschluss.isEmpty();
 	}
 
 	private List<ControlPoint> collectControlPointsIntersectingTheInteriorRing(Ring interiorRing,
@@ -591,7 +650,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			}
 		}
 		Geometry intersectionWithBuffer = intersection
-				.getBuffer(new Measure(new BigDecimal(FlaechenschlussTolerance.ALLOWEDDISTANCE_METRE), "m"));
+				.getBuffer(new Measure(new BigDecimal(ALLOWEDDISTANCE_METRE), "m"));
 		List<ControlPoint> allPoints = new ArrayList<>();
 		for (Points points : pointsList) {
 			Iterator<Point> iterator = points.iterator();
