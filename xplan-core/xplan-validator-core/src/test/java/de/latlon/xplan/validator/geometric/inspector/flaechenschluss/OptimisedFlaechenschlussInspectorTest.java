@@ -184,6 +184,16 @@ public class OptimisedFlaechenschlussInspectorTest {
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
 	}
 
+	@Test
+	public void testCheckFlaechenschluss_Luecke_LochGeltungsbereichImToleranzbereich() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("BPlan001_5-4_Toleranz_Geltungsbereich_0008.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
+	}
+
 	private OptimisedFlaechenschlussInspector readFeatures(XPlanArchive archive)
 			throws XMLStreamException, UnknownCRSException {
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
