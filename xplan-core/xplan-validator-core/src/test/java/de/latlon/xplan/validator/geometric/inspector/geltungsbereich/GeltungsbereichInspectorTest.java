@@ -106,7 +106,7 @@ public class GeltungsbereichInspectorTest {
 
 		BadGeometry badGeometry2 = geltungsbereichInspector.getBadGeometries().get(1);
 		assertThat(badGeometry2.getOriginalGeometry(), is(notNullValue()));
-		assertThat(badGeometry2.getMarkerGeometries().size(), is(1));
+		assertThat(badGeometry2.getMarkerGeometries().size(), is(2));
 	}
 
 	@Test
@@ -188,7 +188,7 @@ public class GeltungsbereichInspectorTest {
 		assertThat(error, not(containsString("(574748.851,5947140.899)")));
 		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
-		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(2));
 	}
 
 	@Test
@@ -299,7 +299,7 @@ public class GeltungsbereichInspectorTest {
 
 		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
-		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(2));
 	}
 
 	private GeltungsbereichInspector readFeatures(XPlanArchive archive) throws XMLStreamException, UnknownCRSException {

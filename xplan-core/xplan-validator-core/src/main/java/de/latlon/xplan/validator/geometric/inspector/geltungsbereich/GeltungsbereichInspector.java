@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
@@ -239,9 +240,11 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
 	private void addGeometryOutsideGeltungsbereich(String featureId,
 			List<AbstractDefaultGeometry> geometriesOutsideGeltungsbereich, BadGeometry badGeometry) {
+		AtomicInteger index = new AtomicInteger();
 		geometriesOutsideGeltungsbereich.forEach(geomOutside -> {
-			geomOutside.setId(featureId + "_OutsideGeltungsbereich");
-			String error = String.format(SCHNITTPUNKT_MSG, featureId);
+			String featureIdWithIndex = featureId + "_" + index.getAndIncrement();
+			geomOutside.setId(featureIdWithIndex + "_OutsideGeltungsbereich");
+			String error = String.format(SCHNITTPUNKT_MSG, featureIdWithIndex);
 			badGeometry.addMarkerGeometry(error, geomOutside);
 		});
 	}
