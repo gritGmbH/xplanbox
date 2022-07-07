@@ -63,7 +63,7 @@ import java.util.stream.Collectors;
  */
 public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
-	private static final Logger LOG = LoggerFactory.getLogger(GeltungsbereichInspector2.class);
+	private static final Logger LOG = LoggerFactory.getLogger(GeltungsbereichInspector.class);
 
 	private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht vollstaendig im Geltungsbereich des Bereichs/Plans. Schnittpunkte mit dem Umring des Geltungsbereich: %s";
 
