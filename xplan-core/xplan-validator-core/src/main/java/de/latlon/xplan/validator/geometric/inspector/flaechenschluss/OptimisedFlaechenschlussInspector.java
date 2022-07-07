@@ -104,41 +104,43 @@ import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.Flae
  * sind, dass sie nicht gleichzeitig rechtswirksam sind.</li>
  * </ul>
  *
- * Algorithmus:
+ * Algorithmus in Pseudocode mit Vereinfachungen:
  *
  * <pre>
- * 1. Hinzufügen aller relevanten Features zum Kontext:
+ * 1. Hinzufuegen aller relevanten Features zum Kontext:
  *    - XP_Plan Features
  *    - XP_Bereich Features
- *    - FlächenschlussFeatures (ebene==0, flaechenschluss==true, wirksamkeit ist gegegen)
- * 2. Prüfung des Flächenschluss, für alle Geltungsbereiche und die zugehörigen identifizierten FlächenschlussFeatures
- * 	  1. Identifiziere Paare von einander überlappenden FlächenschlussFeatures
- *    2. Für alle Paare
+ *    - FlaechenschlussFeatures (ebene==0, flaechenschluss==true, wirksamkeit ist gegeben)
+ * 2. Pruefung des Flaechenschluss, fuer alle Geltungsbereiche und die zugehoerigen identifizierten FlaechenschlussFeatures
+ * 	  1. Identifiziere Paare von einander ueberlappenden FlaechenschlussFeatures
+ *    2. Fuer alle Paare
  *       1. Bilden des Schnittbereichs,
  *          1. Wenn es sich um ein Polygon handelt
- *          2. Identifizieren der Stützpunkte der beiden betroffenen FlächenschlussFeatures im Schnittbereich
- *          3. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
+ *          2. Identifizieren der Stuetzpunkte der beiden betroffenen FlaechenschlussFeatures im Schnittbereich
+ *          3. Pruefen ob jeder Stuetzpunkt einen korrespondieren Stuetzpunkt besitzt
  *          4. => Wenn nicht, Ausgabe eines Fehlers
- *    3. Prüfen der Vereinigung des Flächenschluss
- *       1. Bilden der Vereinigung der Geometrien aller FlächenschlussFeatures inkl. der Löcher aus dem Geltungsbereich mit einem Puffer von 2mm
- *       2. Prüfen innerer Lücken in der Vereinigung aller FlächenschlussFeatures
- *          1. Für alle inneren Polygone
- *             1. Identifizieren aller FlächenschlussFeatures, die an diesem Polygon liegen
- *             2. Identifizieren der Stützpunkte der beiden FlächenschlussFeatures
- *             3. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
- *             4. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Lücke
- *       3. Prüfen von Lücken im Vergleich mit dem Geltungsbereich
- *          1. Bilden des Schnittbereichs der Vereinigung aller FlächenschlussFeatures mit dem Geltungsbereich
- *          2. Für alle Polygone im Schnittbereich
- *              1. Identifizieren der Stützpunkte der beiden betroffenen FlächenschlussFeatures
- *              2. Prüfe ob das Polygon im Toleranzbereich liegt (Wenn das Polygon mit einem Puffer von -1 kein leeres Polygon ergibt)
+ *    3. Pruefen der Vereinigung des Flaechenschluss
+ *       1. Bilden der Vereinigung der Geometrien aller FlaechenschlussFeatures inkl. der Loecher aus dem Geltungsbereich mit einem Puffer von 2mm
+ *       2. Pruefen innerer Luecken in der Vereinigung aller FlaechenschlussFeatures
+ *          1. Fuer alle inneren Polygone
+ *             1. Identifizieren aller FlaechenschlussFeatures, die an diesem Polygon liegen
+ *             2. Identifizieren der Stuetzpunkte der beiden FlaechenschlussFeatures
+ *             3. Pruefen ob jeder Stuetzpunkt einen korrespondieren Stuetzpunkt besitzt
+ *             4. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Luecke
+ *       3. Pruefen von Luecken im Vergleich mit dem Geltungsbereich
+ *          1. Bilden des Schnittbereichs der Vereinigung aller FlaechenschlussFeatures mit dem Geltungsbereich
+ *          2. Fuer alle Polygone im Schnittbereich
+ *              1. Identifizieren der Stuetzpunkte der beiden betroffenen FlaechenschlussFeatures
+ *              2. Pruefe ob das Polygon im Toleranzbereich liegt (Wenn das Polygon mit einem Puffer von -1 kein leeres Polygon ergibt)
  *              3. Wenn ja
- *                 1. Prüfen ob jeder Stützpunkt einen korrespondieren Stützpunkt besitzt
- *                 2. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Lücke
- *                 3. => Wenn ja, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf eine Lücke
+ *                 1. Pruefen ob jeder Stuetzpunkt einen korrespondieren Stuetzpunkt besitzt
+ *                 2. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Luecke
+ *                 3. => Wenn ja, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf eine Luecke
  * </pre>
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @see OptimisedFlaechenschlussInspector#inspect(Feature)
+ * @see OptimisedFlaechenschlussInspector#checkGeometricRule()
  */
 public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspector {
 
@@ -151,9 +153,9 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private static final String POSSIBLE_LUECKE_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
 
-	private static final String LUECKE_MSG = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke identifizert. Die Geometrie der Luecke wird in der Shape-Datei ausgegeben.";
+	private static final String LUECKE_MSG = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben.";
 
-	private static final String EQUAL_ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s überdeckt das Flaechenschlussobjekt mit der gml id %s vollständig.";
+	private static final String EQUAL_ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s ueberdeckt das Flaechenschlussobjekt mit der gml id %s vollstaendig.";
 
 	private final List<String> flaechenschlussErrors = new ArrayList<>();
 
