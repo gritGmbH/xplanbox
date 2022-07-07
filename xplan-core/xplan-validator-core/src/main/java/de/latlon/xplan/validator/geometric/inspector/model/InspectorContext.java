@@ -41,15 +41,24 @@ public abstract class InspectorContext {
 	protected List<FeatureUnderTest> featuresUnderTest = new ArrayList<>();
 
 	/**
-	 * Adss a new feature to the context.
+	 * Adds a new feature to the context.
 	 * @param feature to add, never <code>null</code>
 	 */
 	public void addToContext(Feature feature) {
+		addToContext(feature, TOLERANCE_METRE);
+	}
+
+	/**
+	 * Adds a new feature to the context.
+	 * @param feature to add, never <code>null</code>
+	 * @param toleranceInMeter allowed tolerance in meter, never <code>null</code>
+	 */
+	public void addToContext(Feature feature, double toleranceInMeter) {
 		if (isPlanFeature(feature)) {
-			planFeatures.put(feature.getId(), new PlanFeature(feature, TOLERANCE_METRE));
+			planFeatures.put(feature.getId(), new PlanFeature(feature, toleranceInMeter));
 		}
 		else if (isBereichFeature(feature)) {
-			bereichFeatures.put(feature.getId(), new BereichFeature(feature, TOLERANCE_METRE));
+			bereichFeatures.put(feature.getId(), new BereichFeature(feature, toleranceInMeter));
 		}
 		else {
 			addFeatureUnderTest(feature);
