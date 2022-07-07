@@ -12,6 +12,27 @@ include::XPlanValidator-Einleitung.adoc[]
 
 include::XPlanValidator_Web.adoc[leveloffset=-2]
 
+== Änderungshistorie
+=== XPlanValidator Version 5.0
+
+In der Version 5.0 sind umfangreiche Änderungen an den semantischen und geometrischen Prüfungen im XPlanValidator vorgenommen worden. Die folgende Liste stellt diese Änderungen zusammen:
+
+* Verstöße gegen die Konformitätsbedingung 2.2.2.1 (fehlerhafte Laufrichtung) werden als Fehler anstelle von Warnungen im Validierungsbericht ausgegeben
+    ** Die Prüfung kann über eine neue Option im Dialog des XPlanValidator übersprungen werden
+* Prüfung der Geltungsbereichsbedingung (2.2.3.1) optimiert
+* Prüfung der Flächenschlussbedingung (2.2.1.1) optimiert
+    ** Neuimplementierung des Algorithmus zur Verbesserung der Performanz
+    ** Doppelte (vollständig überlagernde) Flächenschlussflächen werden jetzt erkannt
+* Verbesserung der Linearisierung von komplexen Geometrien
+* Berührungspunkte zwischen Polygon-Membern von Multiflächen erlaubt
+* Berührungspunkte zwischen Außen- und Innenkontur erlaubt
+* Geometrischen Fehler "Die XLink-Integrität konnte nicht sichergestellt werden" werden als Warnung anstelle eines Fehlers im Validierungsbericht ausgegeben
+* Verstöße gegen Konformitätsbedingung 3.2.6.2 (Relation verbundenerPlan darf nur auf Instanzen von XP_Plan verweisen) werden als Warnung anstelle eines Fehlers im Validierungsbericht ausgeben
+
+Die Dokumentation des Algorithmus zur geometrischen Prüfung ist im https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main-v5.0.2/xplan-core/xplan-validator-core/src/main/java/de/latlon/xplan/validator/geometric/inspector/flaechenschluss/OptimisedFlaechenschlussInspector.java[JavaDoc der Klasse OptimisedFlaechenschlussInspector] zu finden.
+
+Eine vollständige Änderungshistorie der xPlanBox ist im <<Aenderungshistorie,Anhang>> zu finden.
+
 == Kontakt und Lizenz
 
 === Kontakt
@@ -60,3 +81,5 @@ Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
 ==== Nutzungsbedingungen
 
 Die Binärprogramme der xPlanBox werden von lat/lon hergestellt und stehen unter https://repo.lat-lon.de/ als Distributionsdatei zum Download zur Verfügung. Die Nutzungsbedingungen ergeben sich aus der https://www.gnu.org/licenses/agpl-3.0.en.html[GNU Affero General Public License, Version 3 oder jeder späteren Version].
+
+include::aenderungsHistorie.adoc[]
