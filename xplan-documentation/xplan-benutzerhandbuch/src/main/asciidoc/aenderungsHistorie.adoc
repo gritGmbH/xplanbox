@@ -4,12 +4,13 @@
 
 [[Aenderungshistorie-5.0.3]]
 === Version 5.0.3
+
+==== Fehlerbehebungen
 - Ausgabe von Schnittpunkten bei Geltungsbereichsfehlern im XPlanValidator verbessert
 - Fehlermeldung bei Abbruch der geometrischen Validierung im XPlanValidator verbessert
 - Abweichungen von Stützpunkten unterhalb von 2mm werden bei der geometrischen Validierung ignoriert
-
-==== Fehlerbehebungen
-
+- Lücken bei Flächenschlussprüfung werden als Warnungen ausgegeben
+- Korrekturen in der Benutzerdokumentation für den XPlanValidator vorgenommen
 
 [[Aenderungshistorie-5.0.2]]
 === Version 5.0.2
