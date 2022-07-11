@@ -274,28 +274,27 @@ public class XPlanManipulator {
 	private void removeRasterBasis(XPlanVersion version, FeatureCollection planToEdit, Feature bereichFeature,
 			List<RasterBasis> allRasterBasis, List<Feature> featuresToRemove, List<String> referencesToRemove,
 			String namespaceUri) {
-		if (XPLAN_60.equals(version)) {
-			return;
-		}
-		String previouslyReferencedRasterBasisFeatureId = parseReferencedRasterBasisFeatureId(bereichFeature);
-		if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
-				|| XPLAN_54.equals(version)) {
-			QName rasterBasisElementName = getRasterBasisElementName(version, namespaceUri);
-			Feature oldRasterBasisFeature = detectFeatureById(planToEdit, rasterBasisElementName,
-					previouslyReferencedRasterBasisFeatureId);
-			if (oldRasterBasisFeature != null) {
-				featuresToRemove.add(oldRasterBasisFeature);
-				referencesToRemove.add(previouslyReferencedRasterBasisFeatureId);
+		if (!XPLAN_60.equals(version)) {
+			String previouslyReferencedRasterBasisFeatureId = parseReferencedRasterBasisFeatureId(bereichFeature);
+			if (XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
+					|| XPLAN_54.equals(version)) {
+				QName rasterBasisElementName = getRasterBasisElementName(version, namespaceUri);
+				Feature oldRasterBasisFeature = detectFeatureById(planToEdit, rasterBasisElementName,
+						previouslyReferencedRasterBasisFeatureId);
+				if (oldRasterBasisFeature != null) {
+					featuresToRemove.add(oldRasterBasisFeature);
+					referencesToRemove.add(previouslyReferencedRasterBasisFeatureId);
+				}
 			}
-		}
-		else {
-			QName rasterBasisElementName = getRasterBasisElementName(version, namespaceUri);
-			Feature oldRasterBasisFeature = detectFeatureById(planToEdit, rasterBasisElementName,
-					previouslyReferencedRasterBasisFeatureId);
-			if (oldRasterBasisFeature != null
-					&& !rasterBasisFeatureIsStillReferenced(oldRasterBasisFeature.getId(), allRasterBasis)) {
-				featuresToRemove.add(oldRasterBasisFeature);
-				referencesToRemove.add(previouslyReferencedRasterBasisFeatureId);
+			else {
+				QName rasterBasisElementName = getRasterBasisElementName(version, namespaceUri);
+				Feature oldRasterBasisFeature = detectFeatureById(planToEdit, rasterBasisElementName,
+						previouslyReferencedRasterBasisFeatureId);
+				if (oldRasterBasisFeature != null
+						&& !rasterBasisFeatureIsStillReferenced(oldRasterBasisFeature.getId(), allRasterBasis)) {
+					featuresToRemove.add(oldRasterBasisFeature);
+					referencesToRemove.add(previouslyReferencedRasterBasisFeatureId);
+				}
 			}
 		}
 		removeProperties(bereichFeature, new QName(namespaceUri, "refScan"));
