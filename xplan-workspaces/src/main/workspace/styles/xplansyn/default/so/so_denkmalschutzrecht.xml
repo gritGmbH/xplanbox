@@ -147,7 +147,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -214,7 +214,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>

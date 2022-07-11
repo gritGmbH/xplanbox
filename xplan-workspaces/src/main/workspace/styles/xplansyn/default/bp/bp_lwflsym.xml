@@ -39,7 +39,7 @@
       <Label>
         <Recode fallbackValue="">
           <LookupValue>
-            <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           </LookupValue>
           <!-- LandwirtschaftAllgemein -->
           <MapItem>

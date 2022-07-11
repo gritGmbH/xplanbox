@@ -38,7 +38,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -94,7 +94,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -149,7 +149,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -219,11 +219,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -283,11 +283,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -357,11 +357,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -421,11 +421,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -495,11 +495,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -533,11 +533,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -576,11 +576,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -633,11 +633,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -700,11 +700,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -757,11 +757,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -824,11 +824,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -862,11 +862,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -906,11 +906,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -948,11 +948,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -986,11 +986,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1050,11 +1050,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1124,11 +1124,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1188,11 +1188,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1262,11 +1262,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1300,11 +1300,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1343,11 +1343,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1400,11 +1400,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1467,11 +1467,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1524,11 +1524,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1591,11 +1591,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1629,11 +1629,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1673,11 +1673,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1715,11 +1715,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1753,11 +1753,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1817,11 +1817,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1891,11 +1891,11 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1934,7 +1934,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>5000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1996,10 +1996,10 @@
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           </ogc:PropertyIsNull>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           </ogc:PropertyIsNull>
         </ogc:Or>
       </ogc:And>
@@ -2038,14 +2038,14 @@
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           </ogc:PropertyIsNull>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           </ogc:PropertyIsNull>
         </ogc:Or>
         <ogc:PropertyIsNotEqualTo>
-          <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           <ogc:Literal>5000</ogc:Literal>
         </ogc:PropertyIsNotEqualTo>
       </ogc:And>
@@ -2081,10 +2081,10 @@
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:gegenstandCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:gegenstand</ogc:PropertyName>
           </ogc:PropertyIsNull>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
           </ogc:PropertyIsNull>
         </ogc:Or>
       </ogc:And>

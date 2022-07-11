@@ -43,15 +43,15 @@
         <ogc:Not>
           <ogc:Or>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
               <ogc:Literal>1000</ogc:Literal>
             </ogc:PropertyIsEqualTo>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
               <ogc:Literal>10000</ogc:Literal>
             </ogc:PropertyIsEqualTo>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
               <ogc:Literal>10001</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Or>
@@ -161,15 +161,15 @@
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
             <ogc:Literal>1000</ogc:Literal>
           </ogc:PropertyIsEqualTo>
           <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
             <ogc:Literal>10000</ogc:Literal>
           </ogc:PropertyIsEqualTo>
           <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:massnahmeCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:massnahme</ogc:PropertyName>
             <ogc:Literal>10001</ogc:Literal>
           </ogc:PropertyIsEqualTo>
         </ogc:Or>

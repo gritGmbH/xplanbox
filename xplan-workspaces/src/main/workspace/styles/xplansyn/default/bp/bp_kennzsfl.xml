@@ -43,7 +43,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -91,7 +91,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -139,7 +139,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -187,7 +187,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -245,7 +245,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>5000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -299,7 +299,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>6000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -348,7 +348,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>7000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -405,7 +405,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>8000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -457,7 +457,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>9999</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>

@@ -37,7 +37,7 @@
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
-        <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+        <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
         <ogc:Literal>1100</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
@@ -73,7 +73,7 @@
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
-        <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+        <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
         <ogc:Literal>1000</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>

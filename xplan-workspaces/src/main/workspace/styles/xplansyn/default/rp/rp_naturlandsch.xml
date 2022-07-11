@@ -43,11 +43,11 @@
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           </ogc:PropertyIsNull>
           <ogc:Not>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:typ</ogc:PropertyName>
               <ogc:Literal>2600</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Not>
@@ -83,11 +83,11 @@
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           </ogc:PropertyIsNull>
           <ogc:Not>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:typ</ogc:PropertyName>
               <ogc:Literal>2600</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Not>
@@ -160,7 +160,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>2600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -208,7 +208,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>2600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>

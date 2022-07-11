@@ -58,19 +58,19 @@
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:gebietsArtCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:gebietsArt</ogc:PropertyName>
             <ogc:Literal>1999</ogc:Literal>
           </ogc:PropertyIsEqualTo>
 		  <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:gebietsArtCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:gebietsArt</ogc:PropertyName>
             <ogc:Literal>2000</ogc:Literal>
           </ogc:PropertyIsEqualTo>
 		  <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:gebietsArtCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:gebietsArt</ogc:PropertyName>
             <ogc:Literal>2100</ogc:Literal>
           </ogc:PropertyIsEqualTo>
 		  <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:gebietsArtCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:gebietsArt</ogc:PropertyName>
             <ogc:Literal>2200</ogc:Literal>
           </ogc:PropertyIsEqualTo>
         </ogc:Or>

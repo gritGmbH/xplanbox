@@ -36,7 +36,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zielCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:ziel</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
@@ -107,7 +107,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zielCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:ziel</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
@@ -279,7 +279,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zielCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:ziel</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
@@ -338,7 +338,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zielCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:ziel</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
@@ -409,7 +409,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zielCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:ziel</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
@@ -582,7 +582,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zielCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:ziel</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>

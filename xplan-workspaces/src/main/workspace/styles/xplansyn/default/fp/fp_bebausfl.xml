@@ -35,7 +35,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -77,7 +77,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -120,7 +120,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -163,7 +163,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -205,7 +205,7 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>9999</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -248,10 +248,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -292,10 +292,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -336,10 +336,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -380,10 +380,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1300</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -424,10 +424,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -468,10 +468,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1450</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -512,10 +512,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -556,10 +556,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -600,10 +600,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1700</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -644,10 +644,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>1800</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -688,10 +688,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
@@ -732,15 +732,15 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:Or>
           <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:artDerBaulichenNutzungCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:artDerBaulichenNutzung</ogc:PropertyName>
             <ogc:Literal>2100</ogc:Literal>
           </ogc:PropertyIsEqualTo>
           <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
             <ogc:Literal>2100</ogc:Literal>
           </ogc:PropertyIsEqualTo>
         </ogc:Or>
@@ -783,10 +783,10 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:Literal>9999</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:Or>

@@ -34,11 +34,11 @@
       <ogc:And>
         <ogc:Not>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
           </ogc:PropertyIsNull>
         </ogc:Not>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
       </ogc:And>
     </ogc:Filter>
@@ -51,7 +51,7 @@
       <Label>
         <Recode fallbackValue="">
           <LookupValue>
-            <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
           </LookupValue>
           <MapItem>
             <Data>1000</Data>
@@ -123,7 +123,7 @@
         <ogc:Literal> </ogc:Literal>
         <Recode fallbackValue="">
           <LookupValue>
-            <ogc:PropertyName>xplan:bauweiseCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:bauweise</ogc:PropertyName>
           </LookupValue>
           <MapItem>
             <Data>1000</Data>
@@ -159,7 +159,7 @@
           <SvgParameter name="fill">
             <Recode fallbackValue="">
               <LookupValue>
-                <ogc:PropertyName>xplan:allgArtDerBaulNutzungCode</ogc:PropertyName>
+                <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
               </LookupValue>
               <MapItem>
                 <Data>1000</Data>
@@ -197,7 +197,7 @@
     <ogc:Filter>
       <ogc:Not>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
       </ogc:Not>
     </ogc:Filter>
@@ -208,7 +208,7 @@
       <Label>
         <Recode fallbackValue="">
           <LookupValue>
-            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzungCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
           </LookupValue>
           <MapItem>
             <Data>1000</Data>
@@ -300,7 +300,7 @@
     <ogc:Filter>
       <ogc:Not>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
       </ogc:Not>
     </ogc:Filter>
@@ -313,7 +313,7 @@
       <Label>
         <Recode fallbackValue="">
           <LookupValue>
-            <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           </LookupValue>
           <MapItem>
             <Data>1000</Data>
@@ -421,7 +421,7 @@
         <ogc:Literal> </ogc:Literal>
         <Recode fallbackValue="">
           <LookupValue>
-            <ogc:PropertyName>xplan:bauweiseCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:bauweise</ogc:PropertyName>
           </LookupValue>
           <MapItem>
             <Data>1000</Data>
@@ -457,7 +457,7 @@
           <SvgParameter name="fill">
             <Recode fallbackValue="">
               <LookupValue>
-                <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+                <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
               </LookupValue>
               <MapItem>
                 <Data>1000</Data>
@@ -573,7 +573,7 @@
           <SvgParameter name="fill">
             <Recode fallbackValue="">
               <LookupValue>
-                <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+                <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
               </LookupValue>
               <MapItem>
                 <Data>1000</Data>
@@ -646,7 +646,7 @@
     <ogc:Filter>
       <ogc:Not>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:bauweiseCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:bauweise</ogc:PropertyName>
         </ogc:PropertyIsNull>
       </ogc:Not>
     </ogc:Filter>
@@ -659,7 +659,7 @@
       <Label>
         <Recode fallbackValue="">
           <LookupValue>
-            <ogc:PropertyName>xplan:bauweiseCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:bauweise</ogc:PropertyName>
           </LookupValue>
           <MapItem>
             <Data>1000</Data>
@@ -695,7 +695,7 @@
           <SvgParameter name="fill">
             <Recode fallbackValue="">
               <LookupValue>
-                <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+                <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
               </LookupValue>
               <MapItem>
                 <Data>1000</Data>
@@ -853,7 +853,7 @@
           <SvgParameter name="fill">
             <Recode fallbackValue="">
               <LookupValue>
-                <ogc:PropertyName>xplan:besondereArtDerBaulNutzungCode</ogc:PropertyName>
+                <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
               </LookupValue>
               <MapItem>
                 <Data>1000</Data>
