@@ -20,6 +20,9 @@ In der Version 5.0 sind umfangreiche Änderungen an den semantischen und geometr
 * Verstöße gegen die Konformitätsbedingung 2.2.2.1 (fehlerhafte Laufrichtung) werden als Fehler anstelle von Warnungen im Validierungsbericht ausgegeben
     ** Die Prüfung kann über eine neue Option im Dialog des XPlanValidator übersprungen werden
 * Prüfung der Geltungsbereichsbedingung (2.2.3.1) optimiert
+    ** Verbesserung der Performanz
+    ** Ausgabe von Schnittpunkten im Validierungsreport verbessert
+    ** Prüfung von linien- oder punktförmigen Geometrien korrigiert
 * Prüfung der Flächenschlussbedingung (2.2.1.1) optimiert
     ** Neuimplementierung des Algorithmus zur Verbesserung der Performanz
     ** Doppelte (vollständig überlagernde) Flächenschlussflächen werden jetzt erkannt
