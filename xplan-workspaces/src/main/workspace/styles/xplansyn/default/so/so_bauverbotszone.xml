@@ -50,7 +50,7 @@
           <Graphic>
             <ExternalGraphic>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink"
-                              xlink:href="../../symbols/bauverbotszone.png" />
+                              xlink:href="../../symbols/bauverbotszone.png"/>
               <Format>image/png</Format>
             </ExternalGraphic>
             <Size>25</Size>

@@ -21,10 +21,10 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:sed="http://www.deegree.org/se"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:sed="http://www.deegree.org/se"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_SpezielleBauweise</FeatureTypeName>
   <!-- TODO: platzhalter -->
@@ -51,35 +51,35 @@
       <Title>Durchgang, Durchfahrt, Luftgeschoss, Überbauung, Brücke, Tunnel</Title>
     </Description>
     <ogc:Filter>
-	  <ogc:Or>
+      <ogc:Or>
         <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-		<ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-		<ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-		<ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-		<ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-		<ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1700</ogc:Literal>
         </ogc:PropertyIsEqualTo>
-	  </ogc:Or>
+      </ogc:Or>
     </ogc:Filter>
     <MaxScaleDenominator>1000</MaxScaleDenominator>
-	<PolygonSymbolizer uom="meter">
+    <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -88,7 +88,7 @@
           <Graphic>
             <ExternalGraphic>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/speziellebauweise_bruecke.png" />
+                              xlink:href="../../symbols/speziellebauweise_bruecke.png"/>
               <Format>image/png</Format>
             </ExternalGraphic>
             <!--Size>26.3</Size-->
@@ -103,10 +103,10 @@
       <Title>Auskragung</Title>
     </Description>
     <ogc:Filter>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
-          <ogc:Literal>1300</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>1300</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
     </ogc:Filter>
     <MaxScaleDenominator>1000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -118,7 +118,7 @@
           <Graphic>
             <ExternalGraphic>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/speziellebauweise_auskragung.png" />
+                              xlink:href="../../symbols/speziellebauweise_auskragung.png"/>
               <Format>image/png</Format>
             </ExternalGraphic>
             <!--Size>26.3</Size-->
@@ -133,10 +133,10 @@
       <Title>Arkade</Title>
     </Description>
     <ogc:Filter>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
-          <ogc:Literal>1400</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:typ</ogc:PropertyName>
+        <ogc:Literal>1400</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
     </ogc:Filter>
     <MaxScaleDenominator>1000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -148,7 +148,7 @@
           <Graphic>
             <ExternalGraphic>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/speziellebauweise_arkade.png" />
+                              xlink:href="../../symbols/speziellebauweise_arkade.png"/>
               <Format>image/png</Format>
             </ExternalGraphic>
             <!--Size>26.3</Size-->

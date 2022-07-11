@@ -21,10 +21,10 @@
   -->
 
 <FeatureTypeStyle xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.opengis.net/se"
-  xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_GemeinbedarfsFlaeche</FeatureTypeName>
   <Rule>
@@ -34,11 +34,11 @@
     </Description>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <ogc:Filter>
-        <ogc:Not>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:Z</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Not>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:Z</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
     </ogc:Filter>
     <TextSymbolizer uom="meter">
       <Geometry>
@@ -134,11 +134,11 @@
     </Description>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <ogc:Filter>
-        <ogc:Not>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:Zmin</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Not>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:Zmin</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
     </ogc:Filter>
     <TextSymbolizer uom="meter">
       <Geometry>
@@ -297,7 +297,7 @@
         </ogc:Function>
       </Geometry>
       <Label>
-        <ogc:Literal>GRZ </ogc:Literal>
+        <ogc:Literal>GRZ</ogc:Literal>
         <FormatNumber fallbackValue="" decimalPoint=",">
           <NumericValue>
             <ogc:PropertyName>xplan:GRZ</ogc:PropertyName>

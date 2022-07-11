@@ -20,7 +20,10 @@
   #L%
   -->
 
-<FeatureTypeStyle xmlns="http://www.opengis.net/se"  xmlns:ogc="http://www.opengis.net/ogc"  xmlns:xplan="http://www.deegree.org/xplanung/1/0"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_BaugebietsTeilFlaeche</FeatureTypeName>
   <Description>
@@ -34,40 +37,40 @@
     </Description>
     <ogc:Filter>
       <!--ogc:And-->
-        <ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
+      <ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsBetween>
+          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
+          <ogc:LowerBoundary>
             <ogc:Literal>1000</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>1000</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>1300</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>1000</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>1300</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
-        </ogc:Or>
-        <!--ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
-            <ogc:Literal>0</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Or>
-      </ogc:And-->
+          </ogc:LowerBoundary>
+          <ogc:UpperBoundary>
+            <ogc:Literal>1300</ogc:Literal>
+          </ogc:UpperBoundary>
+        </ogc:PropertyIsBetween>
+        <ogc:PropertyIsBetween>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:LowerBoundary>
+            <ogc:Literal>1000</ogc:Literal>
+          </ogc:LowerBoundary>
+          <ogc:UpperBoundary>
+            <ogc:Literal>1300</ogc:Literal>
+          </ogc:UpperBoundary>
+        </ogc:PropertyIsBetween>
+      </ogc:Or>
+      <!--ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+          <ogc:Literal>0</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Or>
+    </ogc:And-->
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -162,40 +165,40 @@
     </Description>
     <ogc:Filter>
       <!--ogc:And-->
-        <ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
-            <ogc:Literal>2000</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>1400</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>1600</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>1400</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>1600</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
-        </ogc:Or>
-        <!--ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
-            <ogc:Literal>0</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Or>
-      </ogc:And-->
+      <ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:Literal>2000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsBetween>
+          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
+          <ogc:LowerBoundary>
+            <ogc:Literal>1400</ogc:Literal>
+          </ogc:LowerBoundary>
+          <ogc:UpperBoundary>
+            <ogc:Literal>1600</ogc:Literal>
+          </ogc:UpperBoundary>
+        </ogc:PropertyIsBetween>
+        <ogc:PropertyIsBetween>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:LowerBoundary>
+            <ogc:Literal>1400</ogc:Literal>
+          </ogc:LowerBoundary>
+          <ogc:UpperBoundary>
+            <ogc:Literal>1600</ogc:Literal>
+          </ogc:UpperBoundary>
+        </ogc:PropertyIsBetween>
+      </ogc:Or>
+      <!--ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+          <ogc:Literal>0</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Or>
+    </ogc:And-->
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -290,40 +293,40 @@
     </Description>
     <ogc:Filter>
       <!--ogc:And-->
-        <ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
-            <ogc:Literal>3000</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>1700</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>1800</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>1700</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>1800</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
-        </ogc:Or>
-        <!--ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
-            <ogc:Literal>0</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Or>
-      </ogc:And-->
+      <ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:Literal>3000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsBetween>
+          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
+          <ogc:LowerBoundary>
+            <ogc:Literal>1700</ogc:Literal>
+          </ogc:LowerBoundary>
+          <ogc:UpperBoundary>
+            <ogc:Literal>1800</ogc:Literal>
+          </ogc:UpperBoundary>
+        </ogc:PropertyIsBetween>
+        <ogc:PropertyIsBetween>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:LowerBoundary>
+            <ogc:Literal>1700</ogc:Literal>
+          </ogc:LowerBoundary>
+          <ogc:UpperBoundary>
+            <ogc:Literal>1800</ogc:Literal>
+          </ogc:UpperBoundary>
+        </ogc:PropertyIsBetween>
+      </ogc:Or>
+      <!--ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+          <ogc:Literal>0</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Or>
+    </ogc:And-->
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -418,40 +421,40 @@
     </Description>
     <ogc:Filter>
       <!--ogc:And-->
-        <ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
+      <ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:Literal>4000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsBetween>
+          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
+          <ogc:LowerBoundary>
+            <ogc:Literal>2000</ogc:Literal>
+          </ogc:LowerBoundary>
+          <ogc:UpperBoundary>
             <ogc:Literal>4000</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>2000</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>4000</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>2000</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>4000</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
-        </ogc:Or>
-        <!--ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
-            <ogc:Literal>0</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Or>
-      </ogc:And-->
+          </ogc:UpperBoundary>
+        </ogc:PropertyIsBetween>
+        <ogc:PropertyIsBetween>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:LowerBoundary>
+            <ogc:Literal>2000</ogc:Literal>
+          </ogc:LowerBoundary>
+          <ogc:UpperBoundary>
+            <ogc:Literal>4000</ogc:Literal>
+          </ogc:UpperBoundary>
+        </ogc:PropertyIsBetween>
+      </ogc:Or>
+      <!--ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+          <ogc:Literal>0</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:ebene</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Or>
+    </ogc:And-->
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">

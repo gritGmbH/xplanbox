@@ -50,7 +50,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/gelaendemorphologie-terrassenkanten.svg" />
+                              xlink:href="../../symbols/gelaendemorphologie-terrassenkanten.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#ff3333</SvgParameter>
@@ -103,7 +103,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/gelaendemorphologie-rinne.svg" />
+                              xlink:href="../../symbols/gelaendemorphologie-rinne.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#b85b00</SvgParameter>
@@ -155,7 +155,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/verentsorgabfall_sym.svg" />
+                              xlink:href="../../symbols/verentsorgabfall_sym.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#b85b00</SvgParameter>
