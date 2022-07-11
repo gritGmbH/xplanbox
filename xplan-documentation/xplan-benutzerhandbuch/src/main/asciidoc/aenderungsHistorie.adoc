@@ -17,7 +17,7 @@
 * Verbesserte Ausgabe von potentiellen Lücken als Warnungen
 
 - Fehlermeldung bei Abbruch der geometrischen Validierung im XPlanValidator verbessert
-- Verbesserte Darstellung von geometrischen Warnungen im XPlanValidator
+- Verbesserte Darstellung von geometrischen Warnungen im HTML-Format des Reports des XPlanValidator
 - Korrekturen in der Benutzerdokumentation für den XPlanValidator vorgenommen
 
 [[Aenderungshistorie-5.0.2]]
