@@ -85,7 +85,7 @@ Benutzer keine entsprechende Rechte, so wird der Button grau dargestellt.
 ===== Editieren
 
 Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt.
-Die Editieransicht öffnet sich durch Klick auf den Button __Editieren__. Die Ansicht ist in verschiedene Bereiche aufgeteilt, die insgesamt die Bearbeitung folgender Elemente im XPlanGML über die Oberfläche zulässt. Je nach Planart kann die Liste der änderbaren Element variieren. Unterstützt werden Bebauungspläne, Flächennutzungspläne, Regionalpläne und Sonstige Pläne sowie Landschaftspläne ab der Version 6.0.
+Die Editieransicht öffnet sich durch Klick auf den Button __Editieren__. Die Ansicht ist in verschiedene Bereiche aufgeteilt, die insgesamt die Bearbeitung folgender Elemente im XPlanGML über die Oberfläche zulässt. Je nach Planart kann die Liste der änderbaren Element variieren. Unterstützt werden Bebauungspläne ab der Version 4.1, Flächennutzungspläne, Regionalpläne und Sonstige Pläne ab der Version 5.0 sowie Landschaftspläne ab der Version 6.0.
 
 *Basisdaten*
 
