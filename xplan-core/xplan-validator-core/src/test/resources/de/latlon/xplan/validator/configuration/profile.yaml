@@ -1,0 +1,3 @@
+- name: "Berlin"
+  description: "Berliner Profil"
+  xqueryRulesDirectory: "/tmp/Berlin"
