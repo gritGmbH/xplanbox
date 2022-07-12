@@ -2484,7 +2484,7 @@
       <flaechenschluss>false</flaechenschluss>
       <gehoertZuBP_Bereich>[GML_b0e2f18c-1254-489d-a4d9-c9e6d553387c]</gehoertZuBP_Bereich>
       <zweckbestimmung>{D:/XPlanung/XPlanGML.3.0/Schema/XPlanGml_CodeLists.xml}9999</zweckbestimmung>
-      <zweckbestimmungCode>{D:/XPlanung/XPlanGML.3.0/Schema/XPlanGml_CodeLists.xml}9999</zweckbestimmungCode>
+      <zweckbestimmungWert>{D:/XPlanung/XPlanGML.3.0/Schema/XPlanGml_CodeLists.xml}9999</zweckbestimmungWert>
     </BP_GenerischesObjekt>
   </gml:featureMember>
   <gml:featureMember>

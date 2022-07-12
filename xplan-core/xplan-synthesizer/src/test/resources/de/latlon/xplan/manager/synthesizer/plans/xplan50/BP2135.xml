@@ -2236,7 +2236,7 @@
       <rechtscharakter>9998</rechtscharakter>
       <rechtscharakterWert>Unbekannt</rechtscharakterWert>
       <zweckbestimmung>9999</zweckbestimmung>
-      <zweckbestimmungCode>9999</zweckbestimmungCode>
+      <zweckbestimmungWert>9999</zweckbestimmungWert>
     </BP_GenerischesObjekt>
   </gml:featureMember>
   <gml:featureMember>
