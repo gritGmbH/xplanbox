@@ -21,9 +21,9 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_NebenanlagenFlaeche</FeatureTypeName>
   <Rule>
@@ -42,9 +42,9 @@
         <SvgParameter name="stroke-dasharray">2 2</SvgParameter>
         <SvgParameter name="stroke-width">0.8</SvgParameter>
       </Stroke>
-	  <PerpendicularOffset>-0.5</PerpendicularOffset>
+      <PerpendicularOffset>-0.5</PerpendicularOffset>
     </PolygonSymbolizer>
-	<PolygonSymbolizer uom="meter">
+    <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>

@@ -20,7 +20,10 @@
   #L%
   -->
 
-<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:sed="http://www.deegree.org/se" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:sed="http://www.deegree.org/se" xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_UeberbaubareGrundstuecksFlaeche</FeatureTypeName>
   <Rule>
@@ -91,7 +94,7 @@
             <Data>11</Data>
             <Value>XI</Value>
           </MapItem>
-                    <MapItem>
+          <MapItem>
             <Data>12</Data>
             <Value>XII</Value>
           </MapItem>
@@ -204,7 +207,7 @@
             <Data>11</Data>
             <Value>XI</Value>
           </MapItem>
-                    <MapItem>
+          <MapItem>
             <Data>12</Data>
             <Value>XII</Value>
           </MapItem>
@@ -218,7 +221,7 @@
       </Font>
       <LabelPlacement>
         <PointPlacement>
-                          <AnchorPoint>
+          <AnchorPoint>
             <AnchorPointX>1</AnchorPointX>
             <AnchorPointY>0.5</AnchorPointY>
           </AnchorPoint>
@@ -351,7 +354,7 @@
             <Data>11</Data>
             <Value>XI</Value>
           </MapItem>
-                    <MapItem>
+          <MapItem>
             <Data>12</Data>
             <Value>XII</Value>
           </MapItem>
@@ -365,7 +368,7 @@
       </Font>
       <LabelPlacement>
         <PointPlacement>
-                          <AnchorPoint>
+          <AnchorPoint>
             <AnchorPointX>1</AnchorPointX>
             <AnchorPointY>0.5</AnchorPointY>
           </AnchorPoint>

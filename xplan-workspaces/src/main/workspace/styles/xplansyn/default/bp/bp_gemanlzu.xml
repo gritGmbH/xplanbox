@@ -21,9 +21,9 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_GemeinschaftsanlagenZuordnung</FeatureTypeName>
   <!-- TODO: platzhalter -->
@@ -32,8 +32,8 @@
     <Description>
       <Title>BP: Gemeinschaftsanlagen Zuordnung</Title>
     </Description>
-	<MaxScaleDenominator>2500</MaxScaleDenominator>
-	<PolygonSymbolizer uom="meter">
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -44,7 +44,7 @@
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
-	  <PerpendicularOffset>-1.5</PerpendicularOffset>
+      <PerpendicularOffset>-1.5</PerpendicularOffset>
     </PolygonSymbolizer>
     <PolygonSymbolizer uom="meter">
       <Geometry>
@@ -57,9 +57,9 @@
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
-	  <PerpendicularOffset>-0.8</PerpendicularOffset>
+      <PerpendicularOffset>-0.8</PerpendicularOffset>
     </PolygonSymbolizer>
-	<PolygonSymbolizer uom="meter">
+    <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>

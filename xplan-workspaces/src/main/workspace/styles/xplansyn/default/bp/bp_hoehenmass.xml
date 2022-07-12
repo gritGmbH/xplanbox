@@ -20,7 +20,10 @@
   #L%
   -->
 
-<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_HoehenMass</FeatureTypeName>
   <Rule>
@@ -35,7 +38,8 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/hoehenpt_sym.svg"/>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/hoehenpt_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>

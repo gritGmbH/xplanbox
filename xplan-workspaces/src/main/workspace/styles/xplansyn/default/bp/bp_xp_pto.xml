@@ -20,7 +20,10 @@
   #L%
   -->
 
-<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:se="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:se="http://www.opengis.net/se"
+                  xmlns:ogc="http://www.opengis.net/ogc" xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:XP_PTO</FeatureTypeName>
   <Rule>
@@ -29,11 +32,11 @@
       <Title>BP: Beschriftung</Title>
     </Description>
     <ogc:Filter>
-        <ogc:Not>
-          <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
-          </ogc:PropertyIsNull>
-        </ogc:Not>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
     </ogc:Filter>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <se:TextSymbolizer uom="meter">
