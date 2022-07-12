@@ -21,10 +21,10 @@
   -->
 
 <FeatureTypeStyle xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.opengis.net/se"
-  xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:FP_WaldFlaeche</FeatureTypeName>
   <!-- Naturwald -->
@@ -34,11 +34,11 @@
       <Title>FP: Naturwald</Title>
     </Description>
     <ogc:Filter>
-        <!-- Filter auf symbolPosition entfernt -->
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>1000</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
+      <!-- Filter auf symbolPosition entfernt -->
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+        <ogc:Literal>1000</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
     </ogc:Filter>
     <MaxScaleDenominator>10000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
@@ -48,7 +48,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/todo.svg" />
+                          xlink:href="../../symbols/todo.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -70,11 +70,11 @@
       <Title>FP: Nutzwald</Title>
     </Description>
     <ogc:Filter>
-        <!-- Filter auf symbolPosition entfernt -->
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>1200</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
+      <!-- Filter auf symbolPosition entfernt -->
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+        <ogc:Literal>1200</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
     </ogc:Filter>
     <MaxScaleDenominator>10000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
@@ -84,7 +84,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/todo.svg" />
+                          xlink:href="../../symbols/todo.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -112,11 +112,11 @@
       <Title>FP: Sonstiges</Title>
     </Description>
     <ogc:Filter>
-        <!-- Filter auf symbolPosition entfernt -->
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>9999</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
+      <!-- Filter auf symbolPosition entfernt -->
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+        <ogc:Literal>9999</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
     </ogc:Filter>
     <MaxScaleDenominator>10000</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
@@ -126,7 +126,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/todo.svg" />
+                          xlink:href="../../symbols/todo.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -160,7 +160,7 @@
       </Geometry>
       <Graphic>
         <Mark>
-          <OnlineResource xlink:href="../../symbols/FreeSans.ttf" />
+          <OnlineResource xlink:href="../../symbols/FreeSans.ttf"/>
           <Format>ttf</Format>
           <MarkIndex>55</MarkIndex>
           <Fill>

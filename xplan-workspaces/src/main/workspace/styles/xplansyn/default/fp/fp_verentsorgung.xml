@@ -21,9 +21,9 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:FP_VerEntsorgung</FeatureTypeName>
   <!-- surface -->
@@ -280,7 +280,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/verentsorgelektr_sym.svg" />
+                          xlink:href="../../symbols/verentsorgelektr_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
@@ -338,7 +338,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/verentsorggas_sym.svg" />
+                          xlink:href="../../symbols/verentsorggas_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
@@ -381,7 +381,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/todo.svg" />
+                          xlink:href="../../symbols/todo.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -424,7 +424,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/todo.svg" />
+                          xlink:href="../../symbols/todo.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -482,7 +482,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/verentsorgabwa_sym.svg" />
+                          xlink:href="../../symbols/verentsorgabwa_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
@@ -525,7 +525,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/todo.svg" />
+                          xlink:href="../../symbols/todo.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -583,7 +583,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/verentsorgabfall_sym.svg" />
+                          xlink:href="../../symbols/verentsorgabfall_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
@@ -641,7 +641,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/verentsorgablag_sym.svg" />
+                          xlink:href="../../symbols/verentsorgablag_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
@@ -684,7 +684,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/todo.svg" />
+                          xlink:href="../../symbols/todo.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -727,7 +727,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/todo.svg" />
+                          xlink:href="../../symbols/todo.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -785,7 +785,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/verentsorgwasser_sym.svg" />
+                          xlink:href="../../symbols/verentsorgwasser_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#FFFFFF</SvgParameter>
