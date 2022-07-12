@@ -29,11 +29,17 @@
       <Title>BP: Beschriftung</Title>
     </Description>
     <ogc:Filter>
+      <ogc:And>
         <ogc:Not>
           <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
           </ogc:PropertyIsNull>
         </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <se:TextSymbolizer uom="meter">
@@ -66,13 +72,6 @@
           </se:Rotation>
         </se:PointPlacement>
       </se:LabelPlacement>
-      <!--se:Halo>
-        <se:Radius>0.3</se:Radius>
-        <se:Fill>
-          <se:SvgParameter name="fill">#ffffff</se:SvgParameter>
-          <se:SvgParameter name="fill-opacity">1</se:SvgParameter>
-        </se:Fill>
-      </se:Halo-->
       <se:Fill>
         <se:SvgParameter name="fill">#000000</se:SvgParameter>
       </se:Fill>
@@ -85,6 +84,10 @@
     </se:Description>
     <ogc:Filter>
       <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsLike wildCard="%" singleChar="#" escapeChar="\">
           <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
           <ogc:Literal>%bebauungsArt%</ogc:Literal>
@@ -131,46 +134,4 @@
       </se:Graphic>
     </se:PointSymbolizer>
   </se:Rule>
-  <!--Rule>
-    <Name>bp_xp_pto</Name>
-    <Description>
-      <Title>BP: Beschriftung</Title>
-    </Description>
-    <ElseFilter/>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <se:TextSymbolizer uom="meter">
-      <se:Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </se:Geometry>
-      <se:Label>
-        <ogc:Literal>?</ogc:Literal>
-      </se:Label>
-      <se:Font>
-        <se:SvgParameter name="font-family">Arial</se:SvgParameter>
-        <se:SvgParameter name="font-size">
-          <ogc:Mul>
-            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>3</ogc:Literal>
-          </ogc:Mul>
-        </se:SvgParameter>
-      </se:Font>
-      <se:LabelPlacement>
-        <se:PointPlacement>
-          <se:AnchorPoint>
-            <se:AnchorPointX>0.5</se:AnchorPointX>
-            <se:AnchorPointY>0.5</se:AnchorPointY>
-          </se:AnchorPoint>
-          <se:Rotation>
-            <ogc:Mul>
-              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
-              <ogc:Literal>-1</ogc:Literal>
-            </ogc:Mul>
-          </se:Rotation>
-        </se:PointPlacement>
-      </se:LabelPlacement>
-      <se:Fill>
-        <se:SvgParameter name="fill">#000000</se:SvgParameter>
-      </se:Fill>
-    </se:TextSymbolizer>
-  </Rule-->
 </FeatureTypeStyle>

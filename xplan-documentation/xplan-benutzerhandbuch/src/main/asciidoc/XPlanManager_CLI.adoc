@@ -184,10 +184,7 @@ Analyse des XPlanArchivs
 - Analyse des Dokuments...OK [1167 ms]: XPLAN_53, RP_Plan, EPSG:31466
 - Schema-Validierung...OK [5135 ms]
 - Einlesen der Features (+ Geometrievalidierung)...OK [6486 ms]: 492 Features
-
-Geometrie-Warnungen: 20
-- LineString (Ende in Zeile 33698, Spalte 26): Geschlossene Kurve verwendet falsche Laufrichtung (CW).
-
+...
 - Überprüfung der XLink-Integrität...OK [3 ms]
 - Überprüfung der externen Referenzen...OK [1 ms]
 - Erzeugen der XPlan-Syn Features...Keine Beschreibung für externen Code 'RpTextDefaultSymbol' (CodeList XP_StylesheetListe) gefunden. Verwende Code als Beschreibung. Keine Beschreibung für externen Code 'RpTextDefaultSymbol' (CodeList XP_StylesheetListe) gefunden. Verwende Code als Beschreibung.

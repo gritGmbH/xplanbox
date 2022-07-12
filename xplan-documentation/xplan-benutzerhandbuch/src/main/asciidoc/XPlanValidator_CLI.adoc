@@ -101,32 +101,38 @@ Zuordnung der Werte:
 
 Wird kein `vtype` Parameter gewählt, werden alle Validierungsarten durchgeführt.
 
-Ausgabe:
+Beispiel für eine Ausgabe:
 
 ----
-[16:13:34]  INFO: [CRSManager] --------------------------------------------------------------------------------
-[16:13:34]  INFO: [CRSManager] No 'crs' directory -- use default configuration.
-[16:13:34]  INFO: [CRSManager] --------------------------------------------------------------------------------
-[16:13:34]  INFO: [CRSManager] Setting up crs store 'default' from file 'file:/home/xplanbox/install-packages/1.0-RC2/workspace/cli/xplan-validator-cli-1.0-RC2/repo/deegree-core-cs-3.2.5.jar!/org/deegree/cs/persistence/default.xml'...
-[16:13:36]  INFO: [CRSManager] Registering global crs store with id 'default', type: 'org.deegree.cs.persistence.deegree.d3.DeegreeCRSStore'
-- Einlesen der Features (+ Geometrievalidierung)...Fehler.
-
-Geometrie-Warnungen: 6
- - Polygon (Zeile 30, Spalte 7): Äußerer Ring verwendet falsche Laufrichtung (CW).
- - Polygon (Zeile 55, Spalte 7): Äußerer Ring verwendet falsche Laufrichtung (CW).
- - Polygon (Zeile 1031, Spalte 5): Äußerer Ring verwendet falsche Laufrichtung (CW).
- - Polygon (Zeile 1054, Spalte 5): Äußerer Ring verwendet falsche Laufrichtung (CW).
- - Polygon (Zeile 1077, Spalte 5): Äußerer Ring verwendet falsche Laufrichtung (CW).
- - Polygon (Zeile 1100, Spalte 5): Äußerer Ring verwendet falsche Laufrichtung (CW).
-
-Geometrie-Fehler: 5
- - Polygon (Zeile 55, Spalte 7): Äußerer Ring schneidet den inneren Ring mit Index 0.
- - Polygon (Zeile 55, Spalte 7): Innerer Ring mit Index 0 befindet sich nicht innerhalb des äußeren Rings.
- - Polygon (Zeile 55, Spalte 7): Äußerer Ring schneidet den inneren Ring mit Index 1.
- - Polygon (Zeile 55, Spalte 7): Innerer Ring mit Index 1 befindet sich nicht innerhalb des äußeren Rings.
- - Polygon (Zeile 55, Spalte 7): Der innere Ring 0 schneidet den inneren Ring mit Index 1.
+ Configuration directory is ./xplan-validator-cli-5.1-SNAPSHOT/etc
+ Configuration is read from file ./xplan-validator-cli-5.1-SNAPSHOT/etc/validatorConfiguration.properties
+ -------------------------------------------
+ Configuration of the XPlanValidator:
+ -------------------------------------------
+   validation report directory
+    - /var/folders/s5/hwytkj2j2170hx3l29ncw6hh0000gn/T/validationReport12531021004621205039
+   validation rules directory
+    - internal rules are used
+   XPlanValidatorWMS Endpoint
+    - null
+ -------------------------------------------
+...
+Ergebnisse der geometrischen Validierung:
+Warnungen: 3
+   - 2.2.1.1: Das Flaechenschlussobjekt mit der gml id GML_4c5557e0-2015-4ccf-a87a-9d6ef125c8d2 erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: (572703.5953,5938215.9377)
+   - 2.2.1.1: Das Flaechenschlussobjekt mit der gml id GML_4c5557e0-2015-4ccf-a87a-9d6ef125c8d2 erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: (572755.21,5938248.4235)
+   - 2.2.1.1: Das Flaechenschlussobjekt mit der gml id GML_4c5557e0-2015-4ccf-a87a-9d6ef125c8d2 erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: (572662.528,5938214.726)
+...
+Geometrie-Fehler: 2
+  - Polygon (Zeile 163, Spalte 9): 2.2.2.1: Äußerer Ring verwendet falsche Laufrichtung (CW).
+  - Polygon (Zeile 163, Spalte 9): 2.2.2.1: Innerer Ring verwendet falsche Laufrichtung (CCW).
 Fortsetzung trotz Geometrie-Fehlern (--force).
-- Überprüfung der XLink-Integrität...OK [1 ms]
+...
+Geometrische Validierung hat ergeben: Dokument ist nicht valide
+Semantische Validierung hat ergeben: Dokument ist valide
+Syntaktische Validierung hat ergeben: Dokument ist valide
+Archiv mit Validierungsergebnissen wird erstellt.
+Archiv mit Validierungsergebnissen wurde unter /var/folders/s5/hwytkj2j2170hx3l29ncw6hh0000gn/T/validationReport12531021004621205039 abgelegt.
 ----
 
 [[xplanvalidator-cli-validierungsoption]]

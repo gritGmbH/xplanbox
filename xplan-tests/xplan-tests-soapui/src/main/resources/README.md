@@ -17,7 +17,7 @@ Die zu testenden Endpunkte können folgendermaßen geändert werden:
 7. Auswahl mit `OK` bestätigen.
 8. Nun kann die `XPlanManagerAPI TestSuite` über die üblichen Wege ausgeführt werden.
 
-Hinweise zur Nutzung der TestSuite:
+**Hinweise zur Nutzung der TestSuite:**
 
 - Die TestCases dieser TestSuite bauen teilweise aufeinander auf. Dies bedeutet, dass die TestSuite immer komplett ausgeführt werden sollte.
 - Die TestSuite kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
@@ -26,7 +26,7 @@ Hinweise zur Nutzung der TestSuite:
 
 Diese TestSuite testet die Komponente XPlanValidatorAPI.
 
-Die TestSuite teilt alle dokumentierten Eigenschaften der xplan-api-manager TestSuite.
+Die TestSuite teilt alle dokumentierten Eigenschaften der [xplan-api-manager TestSuite](#xplan-api-manager-testsuite).
 
 ### xplan-webservices TestSuite
 
@@ -41,7 +41,7 @@ Die zu testenden Endpunkte können folgendermaßen geändert werden:
    * Weitere Hinweise zu den einzelnen Parametern gibt es, wenn das Projekt geöffnet wird, `Overview` und anschließend `Description` (ganz unten) ausgewählt werden.
 5. Anschließend können die verschiedenen TestSuites über die üblichen Wege ausgeführt werden.
 
-Hinweise zur Nutzung der TestSuite:
+**Hinweise zur Nutzung der TestSuite:**
 
 - Die TestCases aller TestSuites können individuell genutzt werden und es gibt keine Abhängigkeiten zwischen diesen. Nur die einzelnen TestSteps bauen teilweise aufeinander auf.
 - Die TestSuite kann gegen eine frische Installation ausgeführt werden, welche keinerlei Daten beinhaltet. Somit eignet sich diese zum Verifizieren einer Neuinstallation.
@@ -50,17 +50,27 @@ Hinweise zur Nutzung der TestSuite:
 
 Diese TestSuite testet Teile der REST API des XPlanManagerWeb.
 
-Die Ausführung der TestSuite erfolgt, wie in der xplan-api-manager TestSuite beschrieben.
+Die Ausführung der TestSuite erfolgt, wie in der [xplan-api-manager TestSuite](#xplan-api-manager-testsuite) beschrieben.
 
 ## Hinweise
 
 ### Nutzung von SoapUI mit Windows
 
 Unter Windows kann es zu Encoding-Problemen kommen.
-Um diese zu beheben, muss in der <SoapUI>\bin\SoapUI-<Version>.vmoptions folgende Zeile ergänzt werden:
+Um diese zu beheben, muss in der Datei _<SoapUI>\bin\SoapUI-<Version>.vmoptions_ folgende Zeile ergänzt werden:
 
 > -Dfile.encoding=utf-8
 
+### Verwendung von HTTP BASIC Authentication
+
+Sind für den Zugriff auf den Server Credentials erforderlich, so müssen diese je TestSuite angegeben werden.
+
+Für die TestSuites [xplan-api-manager](#xplan-api-manager-testsuite) und [xplan-api-validator](#xplan-api-validator-testsuite) in SoapUI die Ansicht "Show Service Viewer > Service Endpoints" öffnen. Dort müssen Username und Password für den Endpoint eingetragen und dann mit `All Requests and TestRequests` aus der Drop-Down-Liste auf alle Test angewendet werden. 
+
+Für die TestSuite [xplan-webservices](#xplan-webservices-testsuite) in SoapUI das Projekt auswählen und den Reiter `Custom Properties` auswählen. Dort die Properties `username` und `password` setzen. 
+
 ### Anpassungen an den SoapUI Projekten durchführen
 
-ACHTUNG: Vor jedem Commit sollte geprüft werden, dass keine Passwörter in den SoapUI Projekten gespeichert sind.
+Wenn Änderungen an einem SoapUI Projekt vorgenommen werden, dann muss die Datei gespeichert und anschliessend auf dem aktuellen Entwicklungszweig eingecheckt werden.
+
+> **_ACHTUNG:_** Vor jedem Commit muss geprüft werden, dass keine Passwörter in den SoapUI Projekten gespeichert sind.

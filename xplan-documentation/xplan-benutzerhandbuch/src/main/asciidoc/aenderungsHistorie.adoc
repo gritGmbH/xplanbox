@@ -8,6 +8,24 @@
 - Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
 - Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden.
 
+[[Aenderungshistorie-5.0.3]]
+=== Version 5.0.3
+
+==== Fehlerbehebungen
+- Verbesserung der Geltungsbereichsprüfung im XPlanValidator
+
+ * Ausgabe von Schnittpunkten verbessert
+ * Prüfung von linien- oder punktförmigen Geometrien korrigiert
+
+- Verbesserungen der Flächenschlussprüfung im XPlanValidator
+
+* Abweichungen von Stützpunkten unterhalb von 2mm im Bereich von Lücken werden erkannt
+* Verbesserte Ausgabe von potentiellen Lücken als Warnungen
+
+- Fehlermeldung bei Abbruch der geometrischen Validierung im XPlanValidator verbessert
+- Verbesserte Darstellung von geometrischen Warnungen im HTML-Format des Reports des XPlanValidator
+- Korrekturen in der Benutzerdokumentation für den XPlanValidator vorgenommen
+
 [[Aenderungshistorie-5.0.2]]
 === Version 5.0.2
 

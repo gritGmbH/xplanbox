@@ -145,7 +145,7 @@ public class ValidationReportBuilder {
 		if (validatorReport != null && validatorReport.getGeometricValidatorResult() != null) {
 			GeometricValidatorResult result = validatorReport.getGeometricValidatorResult();
 			return new ValidationReportValidationResultGeometrisch().valid(result.isValid()).errors(result.getErrors())
-					.warnings(result.getWarnings());
+					.warnings(result.getWarnings().stream().sorted().collect(Collectors.toList()));
 		}
 		return null;
 	}

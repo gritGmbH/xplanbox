@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import de.latlon.xplan.commons.archive.XPlanArchive;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -80,7 +81,19 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		assertThat(flaechenschlussInspector.getWarnings().size(), is(3));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Luecken() throws Exception {
+		// same plan as xplan52_Flaechenschlussfehler_Luecke_Geltungsbereich.gml but
+		// XPlanGML 5.4
+		XPlanArchive archive = getLocalTestArchive("xplan54_Flaechenschlussfehler_Luecken.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
 	}
 
 	@Test
@@ -120,6 +133,76 @@ public class OptimisedFlaechenschlussInspectorTest {
 		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
 		readFeaturesFromGml("xplan60_Aenderungsplan_valide.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Toleranz() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("Flaechenschluss-Test_1mm.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Toleranz_nichtUeberlappend() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("Flaechenschluss-Test_1mm-nichtUeberlappend.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Luecke_Ebene1() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("xplan51-5_1_4_1_Flaechenschlussfehler.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Luecke_Missing() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("xplan51-5_1_4_2_Flaechenschlussfehler.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Luecke_FlaechenschlussFalse() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("xplan51-5_5_4_2_Flaechenschlussfehler.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Luecke_RandGeltungsbereich() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("xplan53-4_1_7_1_Flaechenschlussfehler.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Luecke_LochGeltungsbereichImToleranzbereich() throws Exception {
+		XPlanArchive archive = getLocalTestArchive("BPlan001_5-4_Toleranz_Geltungsbereich_0008.gml");
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = readFeatures(archive);
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
