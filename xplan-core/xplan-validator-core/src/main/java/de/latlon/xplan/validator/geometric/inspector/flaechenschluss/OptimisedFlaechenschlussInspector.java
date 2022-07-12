@@ -250,7 +250,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	}
 
 	private void analyseFlaechenschlussUnion(GeltungsbereichFeature geltungsbereichFeature,
-			List<FeatureUnderTest> featuresUnderTest) {
 			List<FeatureUnderTest> featuresUnderTest,
 			Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest) {
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion(geltungsbereichFeature, featuresUnderTest);
@@ -259,7 +258,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				flaechenschlussUnion, TestStep.FLAECHENSCHLUSSUNION);
 		checkFlaechenschlussFeaturesWithGeltungsbereich(geltungsbereichFeature, featuresUnderTest, flaechenschlussUnion,
 				TestStep.GELTUNGSBEREICH);
-				handleHolesAsFailure);
 
 		addPlanFeature(planFeaturesWithFeaturesUnderTest, geltungsbereichFeature, featuresUnderTest,
 				flaechenschlussUnion);
@@ -271,7 +269,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			LOG.info("Plan {} is an Aenderungsplan. Complete covering is not checked for the plan.",
 					planFeature.getFeatureId());
 		}
-		boolean handleHolesAsFailure = handleAsFailure();
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion(featuresUnderTests);
 		LOG.debug("Union of all flaechenschluss geometries assigned to plan {}: {}", planFeature.getFeatureId(),
 				WKTWriter.write(flaechenschlussUnion));
@@ -280,7 +277,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				.flatMap(featuresUnderTest -> featuresUnderTest.getFeaturesUnderTest().stream())
 				.collect(Collectors.toList());
 		checkFlaechenschlussFeaturesWithGeltungsbereich(planFeature, featureUnderTestOfPlan, flaechenschlussUnion,
-				handleHolesAsFailure);
+				TestStep.GELTUNGSBEREICH);
 	}
 
 	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(GeltungsbereichFeature geltungsbereichFeature,
@@ -430,12 +427,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				msg = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
 			}
 			BadGeometry badGeometry = new BadGeometry(cp.getPoint(), msg);
-			badGeometries.add(badGeometry);
-			if (handleAsFailure) {
-				flaechenschlussErrors.add(msg);
-			}
-			else {
-				flaechenschlussWarnings.add(msg);
+			if (!badGeometries.contains(badGeometry)) {
+				badGeometries.add(badGeometry);
+				if (handleAsFailure) {
+					flaechenschlussErrors.add(msg);
+				}
+				else {
+					flaechenschlussWarnings.add(msg);
+				}
 			}
 		});
 		return !controlPointsWithInvalidFlaechenschluss.isEmpty();
@@ -625,8 +624,8 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	private boolean handleAsFailure(TestStep testStep) {
 		if (TestStep.FLAECHENSCHLUSSPAIRS.equals(testStep))
 			return true;
-		if (XPLAN_40.equals(xPlanVersion) || XPLAN_41.equals(xPlanVersion)
-				|| XPLAN_50.equals(xPlanVersion) || XPLAN_51.equals(xPlanVersion) || XPLAN_52.equals(xPlanVersion)) {
+		if (XPLAN_40.equals(xPlanVersion) || XPLAN_41.equals(xPlanVersion) || XPLAN_50.equals(xPlanVersion)
+				|| XPLAN_51.equals(xPlanVersion) || XPLAN_52.equals(xPlanVersion)) {
 			LOG.info(
 					"Loecher im Flaechenschluss sind in der Version {} zugelassen, werden aber als Warnung ausgegeben.",
 					xPlanVersion);

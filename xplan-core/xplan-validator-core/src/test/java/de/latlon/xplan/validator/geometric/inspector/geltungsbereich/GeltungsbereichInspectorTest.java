@@ -25,9 +25,6 @@ import org.junit.Test;
 
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromGml;
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromZip;
-import javax.xml.stream.XMLStreamException;
-import java.io.IOException;
-
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -120,8 +117,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_LinienPolygon() throws Exception {
-		XPlanArchive archive = getLokalArchive("BPlan001_5-4_Sliver-Polygon.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("BPlan001_5-4_Sliver-Polygon.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
@@ -129,8 +127,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_ZweiSchnittpunkteGeltungsbereich_Polygon() throws Exception {
-		XPlanArchive archive = getLokalArchive("BPlan002_5-2_Schnittpunkt_Geltungsbereich.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("BPlan002_5-2_Schnittpunkt_Geltungsbereich.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
@@ -144,8 +143,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_1_Schnittpunkte_Geltungsbereich_Polygon() throws Exception {
-		XPlanArchive archive = getLokalArchive("1_Schnittpunkte_Geltungsbereich_Polygon.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("1_Schnittpunkte_Geltungsbereich_Polygon.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
@@ -163,8 +163,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_2_Schnittpunkte_Geltungsbereich_Polygon() throws Exception {
-		XPlanArchive archive = getLokalArchive("2_Schnittpunkte_Geltungsbereich_Polygon.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("2_Schnittpunkte_Geltungsbereich_Polygon.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
@@ -184,8 +185,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_3_Schnittpunkte_Geltungsbereich_Polygon() throws Exception {
-		XPlanArchive archive = getLokalArchive("3_Schnittpunkte_Geltungsbereich_Polygon.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("3_Schnittpunkte_Geltungsbereich_Polygon.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
@@ -203,8 +205,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_4_Schnittpunkte_Geltungsbereich_Polygon() throws Exception {
-		XPlanArchive archive = getLokalArchive("4_Schnittpunkte_Geltungsbereich_Polygon.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("4_Schnittpunkte_Geltungsbereich_Polygon.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
@@ -221,8 +224,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_5_Schnittpunkte_Geltungsbereich_Linie() throws Exception {
-		XPlanArchive archive = getLokalArchive("5_Schnittpunkte_Geltungsbereich_Linie.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("5_Schnittpunkte_Geltungsbereich_Linie.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
@@ -238,8 +242,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_6_Schnittpunkte_Geltungsbereich_Linie() throws Exception {
-		XPlanArchive archive = getLokalArchive("6_Schnittpunkte_Geltungsbereich_Linie.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("6_Schnittpunkte_Geltungsbereich_Linie.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
@@ -257,8 +262,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_7_Schnittpunkte_Geltungsbereich_Linie() throws Exception {
-		XPlanArchive archive = getLokalArchive("7_Schnittpunkte_Geltungsbereich_Linie.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("7_Schnittpunkte_Geltungsbereich_Linie.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
@@ -274,8 +280,9 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_8_Schnittpunkte_Geltungsbereich_Linie() throws Exception {
-		XPlanArchive archive = getLokalArchive("8_Schnittpunkte_Geltungsbereich_Linie.gml");
-		GeltungsbereichInspector geltungsbereichInspector = readFeatures(archive);
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("8_Schnittpunkte_Geltungsbereich_Linie.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
@@ -291,35 +298,6 @@ public class GeltungsbereichInspectorTest {
 		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(2));
-	}
-
-	private GeltungsbereichInspector readFeatures(XPlanArchive archive) throws XMLStreamException, UnknownCRSException {
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
-		XPlanVersion version = archive.getVersion();
-		GMLVersion gmlVersion = version.getGmlVersion();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-
-		GeometryFactory geomFac = new GeometryFactory();
-		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(gmlVersion, xmlStream);
-		gmlStream.setGeometryFactory(geomFac);
-		gmlStream.setApplicationSchema(schema);
-		gmlStream.setSkipBrokenGeometries(true);
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
-		gmlStream.addInspector(geltungsbereichInspector);
-		gmlStream.readFeature();
-
-		return geltungsbereichInspector;
-	}
-
-	private XPlanArchive getTestArchive(String name) throws IOException {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
-	}
-
-	private XPlanArchive getLokalArchive(String name) throws IOException {
-		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		return archiveCreator.createXPlanArchiveFromGml(name,
-				GeltungsbereichInspectorTest.class.getResourceAsStream(name));
 	}
 
 }
