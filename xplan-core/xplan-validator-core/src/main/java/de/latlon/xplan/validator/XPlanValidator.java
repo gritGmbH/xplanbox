@@ -235,10 +235,10 @@ public class XPlanValidator {
 
 	private void validateSemanticProfiles(XPlanArchive archive, ValidatorReport report) {
 		if (!report.getSyntacticValidatorResult().isValid()) {
-			// TODO: report.setSemanticValidatorResult(new
-			// SemanticValidatorResult(SYNTAX_ERRORS));
+			// TODO: report
 		}
 		else {
+			// TODO: report
 			semanticProfileValidators.forEach(semanticProfileValidator -> semanticProfileValidator
 					.validateSemantic(archive, Collections.emptyList()));
 		}

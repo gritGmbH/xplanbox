@@ -32,6 +32,8 @@ import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
@@ -63,7 +65,9 @@ public class XPlanValidatorCliSpringConfig {
 	@Lazy
 	@Scope("prototype")
 	public SemanticValidator semanticValidator(Path rulesPath) throws ValidatorException {
-		return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath));
+		RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
+		RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata(rulesPath);
+		return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata));
 	}
 
 	@Bean
@@ -71,9 +75,11 @@ public class XPlanValidatorCliSpringConfig {
 			throws URISyntaxException, ValidatorException {
 		List<SemanticValidator> semanticValidators = new ArrayList<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
+			RulesMetadata rulesMetadata = new RulesMetadata(validatorProfile.getName(),
+					validatorProfile.getDescription(), null, null);
 			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
-					rulesPath);
+					rulesPath, rulesMetadata);
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
 			semanticValidators.add(xQuerySemanticValidator);

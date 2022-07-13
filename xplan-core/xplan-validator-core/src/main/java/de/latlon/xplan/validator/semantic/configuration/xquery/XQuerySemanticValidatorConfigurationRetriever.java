@@ -25,7 +25,6 @@ import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOption
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,18 +64,17 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
 	private final Path rulesPath;
 
-	private final RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
+	private RulesMetadata rulesMetadata;
 
-	public XQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
+	public XQuerySemanticValidatorConfigurationRetriever(Path rulesPath, RulesMetadata rulesMetadata) {
 		this.rulesPath = rulesPath;
+		this.rulesMetadata = rulesMetadata;
 	}
 
 	@Override
 	public SemanticValidatorConfiguration retrieveConfiguration() throws IOException {
 		SemanticValidatorConfiguration config = new SemanticValidatorConfiguration();
-
 		if (rulesPath != null && isDirectory(rulesPath)) {
-			RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata(rulesPath);
 			config.setRulesMetadata(rulesMetadata);
 			try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules(rulesPath)) {
 				for (Path path : directoryStream) {

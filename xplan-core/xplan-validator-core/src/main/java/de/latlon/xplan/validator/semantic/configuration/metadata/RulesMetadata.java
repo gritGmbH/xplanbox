@@ -29,6 +29,10 @@ public class RulesMetadata {
 
 	private static final String UNKNOWN = "unbekannt";
 
+	private final String name;
+
+	private final String description;
+
 	private final String version;
 
 	private final String source;
@@ -42,8 +46,35 @@ public class RulesMetadata {
 	 * @param source the source of the rules, may be <code>null</code> if not known
 	 */
 	public RulesMetadata(String version, String source) {
+		this(null, null, version, source);
+	}
+
+	/**
+	 * @param name name of the rules (the profile), may be <code>null</code>
+	 * @param description description of the rules (e.g. the profile), may be
+	 * <code>null</code>
+	 * @param version the version of the rules, may be <code>null</code> if not known
+	 * @param source the source of the rules, may be <code>null</code> if not known
+	 */
+	public RulesMetadata(String name, String description, String version, String source) {
+		this.name = name;
+		this.description = description;
 		this.version = StringUtils.isEmpty(version) ? UNKNOWN : version;
 		this.source = StringUtils.isEmpty(source) ? UNKNOWN : source;
+	}
+
+	/**
+	 * @return the name of the rules, may be <code>null</code>
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @return the description of the rules, may be <code>null</code>
+	 */
+	public String getDescription() {
+		return description;
 	}
 
 	/**
