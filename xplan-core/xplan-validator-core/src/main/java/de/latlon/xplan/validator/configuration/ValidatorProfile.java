@@ -29,6 +29,10 @@ public class ValidatorProfile {
 
 	private String description;
 
+	private String version;
+
+	private String source;
+
 	private String xqueryRulesDirectory;
 
 	public String getName() {
@@ -45,6 +49,22 @@ public class ValidatorProfile {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
 	}
 
 	public String getXqueryRulesDirectory() {

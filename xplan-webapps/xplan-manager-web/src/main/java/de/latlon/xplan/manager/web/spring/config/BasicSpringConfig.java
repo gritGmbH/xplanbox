@@ -113,7 +113,7 @@ public class BasicSpringConfig {
 		List<SemanticValidator> semanticValidators = new ArrayList<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
 			RulesMetadata rulesMetadata = new RulesMetadata(validatorProfile.getName(),
-					validatorProfile.getDescription(), null, null);
+					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
 			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
 					rulesPath, rulesMetadata);
