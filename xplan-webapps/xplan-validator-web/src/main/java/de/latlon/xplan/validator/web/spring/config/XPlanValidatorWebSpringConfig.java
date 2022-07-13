@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 import de.latlon.xplan.validator.configuration.ValidatorConfigurationParser;
+import de.latlon.xplan.validator.configuration.ValidatorProfile;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
@@ -38,8 +39,8 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
-import de.latlon.xplan.validator.wms.MapPreviewManager;
 import de.latlon.xplan.validator.wms.MapPreviewCreationException;
+import de.latlon.xplan.validator.wms.MapPreviewManager;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
@@ -52,6 +53,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.nio.file.Paths.get;
 
@@ -86,14 +89,31 @@ public class XPlanValidatorWebSpringConfig {
 	}
 
 	@Bean
+	public List<SemanticValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
+			throws ValidatorException {
+		List<SemanticValidator> semanticValidators = new ArrayList<>();
+		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
+			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
+			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
+					rulesPath);
+			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
+					xQuerySemanticValidatorConfigurationRetriever);
+			semanticValidators.add(xQuerySemanticValidator);
+		}
+		return semanticValidators;
+	}
+
+	@Bean
 	public XQuerySemanticValidatorConfigurationRetriever configurationRetriever(Path rulesPath) {
 		return new XQuerySemanticValidatorConfigurationRetriever(rulesPath);
 	}
 
 	@Bean
 	public XPlanValidator xplanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-			SemanticValidator semanticValidator, ReportArchiveGenerator reportArchiveGenerator) {
-		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator);
+			SemanticValidator semanticValidator, List<SemanticValidator> profileValidators,
+			ReportArchiveGenerator reportArchiveGenerator) {
+		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, profileValidators,
+				reportArchiveGenerator);
 	}
 
 	@Bean

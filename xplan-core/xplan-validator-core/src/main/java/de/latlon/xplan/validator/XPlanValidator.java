@@ -85,6 +85,8 @@ public class XPlanValidator {
 
 	private final SemanticValidator semanticValidator;
 
+	private final List<SemanticValidator> semanticProfileValidators;
+
 	private final ReportArchiveGenerator reportArchiveGenerator;
 
 	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
@@ -94,10 +96,12 @@ public class XPlanValidator {
 	private XPlanSchemas schemas;
 
 	public XPlanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-			SemanticValidator semanticValidator, ReportArchiveGenerator reportArchiveGenerator) {
+			SemanticValidator semanticValidator, List<SemanticValidator> semanticProfileValidators,
+			ReportArchiveGenerator reportArchiveGenerator) {
 		this.geometricValidator = geometricValidator;
 		this.syntacticValidator = syntacticValidator;
 		this.semanticValidator = semanticValidator;
+		this.semanticProfileValidators = semanticProfileValidators;
 		this.reportArchiveGenerator = reportArchiveGenerator;
 		this.schemas = XPlanSchemas.getInstance();
 	}
@@ -189,6 +193,9 @@ public class XPlanValidator {
 			validateGeometric(archive, voOptions, report);
 		if (validationType.contains(SEMANTIC))
 			validateSemantic(archive, semanticValidationOptions, report);
+		if (!semanticProfileValidators.isEmpty()) {
+			validateSemanticProfiles(archive, report);
+		}
 		return report;
 	}
 
@@ -223,6 +230,17 @@ public class XPlanValidator {
 			SemanticValidatorResult semanticallyResult = validateSemanticallyAndWriteResult(archive,
 					semanticValidationOptions);
 			report.setSemanticValidatorResult(semanticallyResult);
+		}
+	}
+
+	private void validateSemanticProfiles(XPlanArchive archive, ValidatorReport report) {
+		if (!report.getSyntacticValidatorResult().isValid()) {
+			// TODO: report.setSemanticValidatorResult(new
+			// SemanticValidatorResult(SYNTAX_ERRORS));
+		}
+		else {
+			semanticProfileValidators.forEach(semanticProfileValidator -> semanticProfileValidator
+					.validateSemantic(archive, Collections.emptyList()));
 		}
 	}
 

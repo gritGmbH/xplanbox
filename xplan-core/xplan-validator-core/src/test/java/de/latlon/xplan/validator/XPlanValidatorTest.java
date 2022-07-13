@@ -190,6 +190,17 @@ public class XPlanValidatorTest {
 	}
 
 	@Test
+	public void testValidateWithProfile() throws Exception {
+		ValidationSettings semanticSettings = new ValidationSettings("", singletonList(SEMANTIC), emptyList());
+		SemanticValidator profileValidator = mockSemanticValidator();
+		List<SemanticValidator> profileValidators = Collections.singletonList(profileValidator);
+
+		executeValidator(geoVal, semVal, synVal, profileValidators, semanticSettings);
+
+		verify(profileValidator, times(1)).validateSemantic(archive(), list());
+	}
+
+	@Test
 	public void testWriteReport_Invalid() throws Exception {
 		List<ValidationType> validationTypes = Arrays.asList(new ValidationType[] { SYNTACTIC, SEMANTIC, GEOMETRIC });
 		ValidationSettings settings = new ValidationSettings("", validationTypes, emptyList());
@@ -266,10 +277,17 @@ public class XPlanValidatorTest {
 	}
 
 	private ValidatorReport executeValidator(GeometricValidator geomVal, SemanticValidator semVal,
+			SyntacticValidator synVal, List<SemanticValidator> profileValidators, ValidationSettings settings)
+			throws IOException, ValidatorException, ReportGenerationException {
+		XPlanValidator validator = new XPlanValidator(geomVal, synVal, semVal, profileValidators,
+				mock(ReportArchiveGenerator.class));
+		return validator.validate(settings, planToValidate, "archiveName");
+	}
+
+	private ValidatorReport executeValidator(GeometricValidator geomVal, SemanticValidator semVal,
 			SyntacticValidator synVal, ValidationSettings settings)
 			throws IOException, ValidatorException, ParseException, ReportGenerationException {
-		XPlanValidator validator = new XPlanValidator(geomVal, synVal, semVal, mock(ReportArchiveGenerator.class));
-		return validator.validate(settings, planToValidate, "archiveName");
+		return executeValidator(geomVal, semVal, synVal, Collections.emptyList(), settings);
 	}
 
 	private SemanticValidator mockSemanticValidator() {
