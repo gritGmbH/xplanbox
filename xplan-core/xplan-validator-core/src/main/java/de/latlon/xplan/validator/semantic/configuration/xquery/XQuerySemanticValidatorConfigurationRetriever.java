@@ -74,8 +74,8 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 	@Override
 	public SemanticValidatorConfiguration retrieveConfiguration() throws IOException {
 		SemanticValidatorConfiguration config = new SemanticValidatorConfiguration();
+		config.setRulesMetadata(rulesMetadata);
 		if (rulesPath != null && isDirectory(rulesPath)) {
-			config.setRulesMetadata(rulesMetadata);
 			try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules(rulesPath)) {
 				for (Path path : directoryStream) {
 					if (isDirectory(path)) {

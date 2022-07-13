@@ -227,7 +227,7 @@ public class XPlanValidator {
 			report.setSemanticValidatorResult(new SemanticValidatorResult(SYNTAX_ERRORS));
 		}
 		else {
-			SemanticValidatorResult semanticallyResult = validateSemanticallyAndWriteResult(archive,
+			SemanticValidatorResult semanticallyResult = validateSemanticallyAndWriteResult(semanticValidator, archive,
 					semanticValidationOptions);
 			report.setSemanticValidatorResult(semanticallyResult);
 		}
@@ -235,12 +235,14 @@ public class XPlanValidator {
 
 	private void validateSemanticProfiles(XPlanArchive archive, ValidatorReport report) {
 		if (!report.getSyntacticValidatorResult().isValid()) {
-			// TODO: report
+			report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
 		}
 		else {
-			// TODO: report
-			semanticProfileValidators.forEach(semanticProfileValidator -> semanticProfileValidator
-					.validateSemantic(archive, Collections.emptyList()));
+			semanticProfileValidators.forEach(semanticProfileValidator -> {
+				SemanticValidatorResult semanticProfileValidatorResult = validateSemanticallyAndWriteResult(
+						semanticProfileValidator, archive, Collections.emptyList());
+				report.addSemanticProfileValidatorResults(semanticProfileValidatorResult);
+			});
 		}
 	}
 
@@ -275,8 +277,8 @@ public class XPlanValidator {
 	 * considered by the validation, may be empty, but never <code>null</code>
 	 * @return the created report
 	 */
-	SemanticValidatorResult validateSemanticallyAndWriteResult(SemanticValidableXPlanArchive archive,
-			List<SemanticValidationOptions> semanticValidationOptions) {
+	SemanticValidatorResult validateSemanticallyAndWriteResult(SemanticValidator semanticValidator,
+			SemanticValidableXPlanArchive archive, List<SemanticValidationOptions> semanticValidationOptions) {
 		ValidatorResult result = semanticValidator.validateSemantic(archive, semanticValidationOptions);
 		SemanticValidatorResult validatorResult = (SemanticValidatorResult) result;
 		log(validatorResult);
@@ -356,6 +358,10 @@ public class XPlanValidator {
 		RulesMetadata rulesMetadata = validatorResult.getRulesMetadata();
 		if (rulesMetadata != null) {
 			LOG.info("Informationen zur semantischen Validierung:");
+			if (rulesMetadata.getName() != null)
+				LOG.info("  - Name: {}", rulesMetadata.getName());
+			if (rulesMetadata.getDescription() != null)
+				LOG.info("  - Beschreibung: {}", rulesMetadata.getDescription());
 			LOG.info("  - Version: {}", rulesMetadata.getVersion());
 			LOG.info("  - Quelle: {}", rulesMetadata.getSource());
 		}

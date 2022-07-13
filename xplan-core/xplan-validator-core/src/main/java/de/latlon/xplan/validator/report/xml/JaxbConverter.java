@@ -107,6 +107,9 @@ public class JaxbConverter {
 			convertResultToJaxb(report.getSemanticValidatorResult(), jaxbValidation);
 		if (report.getSyntacticValidatorResult() != null)
 			convertResultToJaxb(report.getSyntacticValidatorResult(), jaxbValidation);
+		if (!report.getSemanticProfileValidatorResults().isEmpty()) {
+			convertResultToJaxb(report.getSemanticProfileValidatorResults(), jaxbValidation);
+		}
 		return jaxbValidation;
 	}
 
@@ -142,13 +145,28 @@ public class JaxbConverter {
 		val.setGeom(geomType);
 	}
 
-	private void convertResultToJaxb(SemanticValidatorResult result, ValidationType val) {
+	private void convertResultToJaxb(SemanticValidatorResult result, ValidationType validationType) {
+		SemType semType = convertToSemType(result);
+		validationType.setSem(semType);
+	}
+
+	private void convertResultToJaxb(List<SemanticValidatorResult> semanticProfileValidatorResults,
+			ValidationType validationType) {
+		semanticProfileValidatorResults.forEach(semanticValidatorResult -> {
+			SemType semType = convertToSemType(semanticValidatorResult);
+			validationType.getProfiles().add(semType);
+		});
+	}
+
+	private SemType convertToSemType(SemanticValidatorResult result) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		SemType semType = objectFactory.createSemType();
 
 		RulesMetadata rulesMetadata = result.getRulesMetadata();
 		if (rulesMetadata != null) {
 			RulesMetadataType rulesMetadataType = objectFactory.createRulesMetadataType();
+			rulesMetadataType.setName(rulesMetadata.getName());
+			rulesMetadataType.setDescription(rulesMetadata.getDescription());
 			rulesMetadataType.setVersion(rulesMetadata.getVersion());
 			rulesMetadataType.setSource(rulesMetadata.getSource());
 			semType.setRulesMetadata(rulesMetadataType);
@@ -175,8 +193,7 @@ public class JaxbConverter {
 			if (result.getValidatorDetail() != null)
 				semType.setDetails(result.getValidatorDetail().toString());
 		}
-
-		val.setSem(semType);
+		return semType;
 	}
 
 	private void addWarnedFeatures(RuleType ruleXML, List<InvalidFeaturesResult> warnedFeatures) {
