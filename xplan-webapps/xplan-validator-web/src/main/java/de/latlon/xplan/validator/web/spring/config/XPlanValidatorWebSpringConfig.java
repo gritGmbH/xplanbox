@@ -47,6 +47,7 @@ import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -91,6 +92,7 @@ public class XPlanValidatorWebSpringConfig {
 	}
 
 	@Bean
+	@Qualifier("Profiles")
 	public List<SemanticValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
 			throws ValidatorException {
 		List<SemanticValidator> semanticValidators = new ArrayList<>();
@@ -116,7 +118,7 @@ public class XPlanValidatorWebSpringConfig {
 
 	@Bean
 	public XPlanValidator xplanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-			SemanticValidator semanticValidator, List<SemanticValidator> profileValidators,
+			SemanticValidator semanticValidator, @Qualifier("Profiles") List<SemanticValidator> profileValidators,
 			ReportArchiveGenerator reportArchiveGenerator) {
 		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, profileValidators,
 				reportArchiveGenerator);
