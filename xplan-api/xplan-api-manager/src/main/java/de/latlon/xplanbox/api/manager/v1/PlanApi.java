@@ -151,6 +151,8 @@ public class PlanApi {
 					description = "skip Geltungsbereich Ueberpruefung") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") @Parameter(
 					description = "skip Laufrichtung Ueberpruefung") Boolean skipLaufrichtung,
+			@QueryParam("profiles") @Parameter(
+					description = "Angabe der Profile, gegen die validiert werden soll") List<String> profiles,
 			@QueryParam("internalId") @Parameter(description = "internalId links to VerfahrensId") String internalId,
 			@QueryParam("planStatus") @Parameter(
 					description = "target for data storage, overrides the default derived from xplan:rechtsstand",
@@ -163,7 +165,7 @@ public class PlanApi {
 				overwriteByRequest(skipSemantisch, validationConfig.isSkipSemantisch()),
 				overwriteByRequest(skipFlaechenschluss, validationConfig.isSkipFlaechenschluss()),
 				overwriteByRequest(skipGeltungsbereich, validationConfig.isSkipGeltungsbereich()),
-				overwriteByRequest(skipLaufrichtung, validationConfig.isSkipLaufrichtung()));
+				overwriteByRequest(skipLaufrichtung, validationConfig.isSkipLaufrichtung()), profiles);
 		List<XPlan> xPlans = planHandler.importPlan(body, xFilename, validationSettings, internalId, planStatus);
 		MediaType requestedMediaType = requestedMediaType(request);
 		if (XPLANBOX_V2_JSON_TYPE.equals(requestedMediaType)) {

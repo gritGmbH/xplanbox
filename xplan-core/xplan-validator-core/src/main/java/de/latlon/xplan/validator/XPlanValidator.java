@@ -40,6 +40,7 @@ import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
@@ -85,7 +86,7 @@ public class XPlanValidator {
 
 	private final SemanticValidator semanticValidator;
 
-	private final List<SemanticValidator> semanticProfileValidators;
+	private final List<SemanticProfileValidator> semanticProfileValidators;
 
 	private final ReportArchiveGenerator reportArchiveGenerator;
 
@@ -96,7 +97,7 @@ public class XPlanValidator {
 	private XPlanSchemas schemas;
 
 	public XPlanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-			SemanticValidator semanticValidator, List<SemanticValidator> semanticProfileValidators,
+			SemanticValidator semanticValidator, List<SemanticProfileValidator> semanticProfileValidators,
 			ReportArchiveGenerator reportArchiveGenerator) {
 		this.geometricValidator = geometricValidator;
 		this.syntacticValidator = syntacticValidator;
@@ -194,7 +195,8 @@ public class XPlanValidator {
 		if (validationType.contains(SEMANTIC))
 			validateSemantic(archive, semanticValidationOptions, report);
 		if (!semanticProfileValidators.isEmpty()) {
-			validateSemanticProfiles(archive, report);
+			List<String> profiles = validationSettings.getProfiles();
+			validateSemanticProfiles(archive, profiles, report);
 		}
 		return report;
 	}
@@ -233,16 +235,18 @@ public class XPlanValidator {
 		}
 	}
 
-	private void validateSemanticProfiles(XPlanArchive archive, ValidatorReport report) {
+	private void validateSemanticProfiles(XPlanArchive archive, List<String> profiles, ValidatorReport report) {
 		if (!report.getSyntacticValidatorResult().isValid()) {
 			report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
 		}
 		else {
-			semanticProfileValidators.forEach(semanticProfileValidator -> {
-				SemanticValidatorResult semanticProfileValidatorResult = validateSemanticallyAndWriteResult(
-						semanticProfileValidator, archive, Collections.emptyList());
-				report.addSemanticProfileValidatorResults(semanticProfileValidatorResult);
-			});
+			semanticProfileValidators.stream()
+					.filter(semanticProfileValidator -> profiles.contains(semanticProfileValidator.getId()))
+					.forEach(semanticProfileValidator -> {
+						SemanticValidatorResult semanticProfileValidatorResult = validateSemanticallyAndWriteResult(
+								semanticProfileValidator, archive, Collections.emptyList());
+						report.addSemanticProfileValidatorResults(semanticProfileValidatorResult);
+					});
 		}
 	}
 

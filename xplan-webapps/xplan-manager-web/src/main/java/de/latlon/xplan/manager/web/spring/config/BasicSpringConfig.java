@@ -52,12 +52,13 @@ import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
+import de.latlon.xplan.validator.semantic.profile.DelegatingSemanticProfileValidator;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import org.deegree.commons.config.DeegreeWorkspace;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -107,10 +108,9 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	@Qualifier("Profiles")
-	public List<SemanticValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
+	public List<SemanticProfileValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
 			throws ValidatorException {
-		List<SemanticValidator> semanticValidators = new ArrayList<>();
+		List<SemanticProfileValidator> semanticValidators = new ArrayList<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
 			RulesMetadata rulesMetadata = new RulesMetadata(validatorProfile.getName(),
 					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
@@ -119,14 +119,15 @@ public class BasicSpringConfig {
 					rulesPath, rulesMetadata);
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
-			semanticValidators.add(xQuerySemanticValidator);
+			semanticValidators
+					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getName(), xQuerySemanticValidator));
 		}
 		return semanticValidators;
 	}
 
 	@Bean
 	public XPlanValidator xplanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-			SemanticValidator semanticValidator, @Qualifier("Profiles") List<SemanticValidator> profileValidators,
+			SemanticValidator semanticValidator, List<SemanticProfileValidator> profileValidators,
 			ReportArchiveGenerator reportArchiveGenerator) {
 		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, profileValidators,
 				reportArchiveGenerator);

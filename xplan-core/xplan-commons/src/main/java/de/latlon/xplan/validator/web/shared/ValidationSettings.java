@@ -21,6 +21,7 @@
 package de.latlon.xplan.validator.web.shared;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,6 +39,8 @@ public class ValidationSettings implements Serializable {
 	private List<ValidationType> validationTypes;
 
 	private List<ValidationOption> extendedOptions;
+
+	private List<String> profiles;
 
 	public ValidationSettings() {
 	}
@@ -73,10 +76,20 @@ public class ValidationSettings implements Serializable {
 		this.extendedOptions = extendedOptions;
 	}
 
+	public void setProfiles(List<String> profiles) {
+		this.profiles = profiles;
+	}
+
+	public List<String> getProfiles() {
+		if (profiles == null)
+			return Collections.emptyList();
+		return profiles;
+	}
+
 	@Override
 	public String toString() {
 		return "ValidationSettings{" + "validationName='" + validationName + '\'' + ", validationTypes="
-				+ validationTypes + ", extendedOptions=" + extendedOptions + '}';
+				+ validationTypes + ", extendedOptions=" + extendedOptions + ", profiles=" + profiles + '}';
 	}
 
 }
