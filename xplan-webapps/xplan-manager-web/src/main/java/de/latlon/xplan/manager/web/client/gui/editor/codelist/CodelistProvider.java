@@ -35,6 +35,7 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.FP_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.LP_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.RP_Plan;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.SO_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
@@ -206,7 +207,16 @@ public class CodelistProvider {
 	}
 
 	private static void add_41_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists) {
-		CodelistKey key = new CodelistKey(XPLAN_41, BP_Plan, XP_RechtscharakterPlanaenderung);
+		add_41_XP_RechtscharakterPlanaenderung(codeLists, BP_Plan);
+		add_41_XP_RechtscharakterPlanaenderung(codeLists, LP_Plan);
+		add_41_XP_RechtscharakterPlanaenderung(codeLists, FP_Plan);
+		add_41_XP_RechtscharakterPlanaenderung(codeLists, RP_Plan);
+		add_41_XP_RechtscharakterPlanaenderung(codeLists, SO_Plan);
+	}
+
+	private static void add_41_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists,
+			EditPlanType planType) {
+		CodelistKey key = new CodelistKey(XPLAN_41, planType, XP_RechtscharakterPlanaenderung);
 		List<Code> codes = new ArrayList<Code>();
 		codes.add(new Code(1000, MESSAGES.XPLAN_41_XP_RechtscharakterPlanaenderung_1000_Aenderung()));
 		codes.add(new Code(1100, MESSAGES.XPLAN_41_XP_RechtscharakterPlanaenderung_1100_Ergaenzung()));
@@ -335,7 +345,16 @@ public class CodelistProvider {
 	}
 
 	private static void add_50_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists) {
-		CodelistKey key = new CodelistKey(XPLAN_50, BP_Plan, XP_RechtscharakterPlanaenderung);
+		add_50_XP_RechtscharakterPlanaenderung(codeLists, BP_Plan);
+		add_50_XP_RechtscharakterPlanaenderung(codeLists, LP_Plan);
+		add_50_XP_RechtscharakterPlanaenderung(codeLists, FP_Plan);
+		add_50_XP_RechtscharakterPlanaenderung(codeLists, RP_Plan);
+		add_50_XP_RechtscharakterPlanaenderung(codeLists, SO_Plan);
+	}
+
+	private static void add_50_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists,
+			EditPlanType planType) {
+		CodelistKey key = new CodelistKey(XPLAN_50, planType, XP_RechtscharakterPlanaenderung);
 		List<Code> codes = new ArrayList<Code>();
 		codes.add(new Code(1000, MESSAGES.XPLAN_50_XP_RechtscharakterPlanaenderung_1000_Aenderung()));
 		codes.add(new Code(1100, MESSAGES.XPLAN_50_XP_RechtscharakterPlanaenderung_1100_Ergaenzung()));
@@ -465,7 +484,16 @@ public class CodelistProvider {
 	}
 
 	private static void add_51_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists) {
-		CodelistKey key = new CodelistKey(XPLAN_51, BP_Plan, XP_RechtscharakterPlanaenderung);
+		add_51_XP_RechtscharakterPlanaenderung(codeLists, BP_Plan);
+		add_51_XP_RechtscharakterPlanaenderung(codeLists, LP_Plan);
+		add_51_XP_RechtscharakterPlanaenderung(codeLists, FP_Plan);
+		add_51_XP_RechtscharakterPlanaenderung(codeLists, RP_Plan);
+		add_51_XP_RechtscharakterPlanaenderung(codeLists, SO_Plan);
+	}
+
+	private static void add_51_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists,
+			EditPlanType planType) {
+		CodelistKey key = new CodelistKey(XPLAN_51, planType, XP_RechtscharakterPlanaenderung);
 		List<Code> codes = new ArrayList<Code>();
 		codes.add(new Code(1000, MESSAGES.XPLAN_51_XP_RechtscharakterPlanaenderung_1000_Aenderung()));
 		codes.add(new Code(1100, MESSAGES.XPLAN_51_XP_RechtscharakterPlanaenderung_1100_Ergaenzung()));
@@ -598,7 +626,16 @@ public class CodelistProvider {
 	}
 
 	private static void add_52_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists) {
-		CodelistKey key = new CodelistKey(XPLAN_52, BP_Plan, XP_RechtscharakterPlanaenderung);
+		add_52_XP_RechtscharakterPlanaenderung(codeLists, BP_Plan);
+		add_52_XP_RechtscharakterPlanaenderung(codeLists, LP_Plan);
+		add_52_XP_RechtscharakterPlanaenderung(codeLists, FP_Plan);
+		add_52_XP_RechtscharakterPlanaenderung(codeLists, RP_Plan);
+		add_52_XP_RechtscharakterPlanaenderung(codeLists, SO_Plan);
+	}
+
+	private static void add_52_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists,
+			EditPlanType planType) {
+		CodelistKey key = new CodelistKey(XPLAN_52, planType, XP_RechtscharakterPlanaenderung);
 		List<Code> codes = new ArrayList<Code>();
 		codes.add(new Code(1000, MESSAGES.XPLAN_52_XP_RechtscharakterPlanaenderung_1000_Aenderung()));
 		codes.add(new Code(1100, MESSAGES.XPLAN_52_XP_RechtscharakterPlanaenderung_1100_Ergaenzung()));
@@ -734,7 +771,16 @@ public class CodelistProvider {
 	}
 
 	private static void add_53_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists) {
-		CodelistKey key = new CodelistKey(XPLAN_53, BP_Plan, XP_RechtscharakterPlanaenderung);
+		add_53_XP_RechtscharakterPlanaenderung(codeLists, BP_Plan);
+		add_53_XP_RechtscharakterPlanaenderung(codeLists, LP_Plan);
+		add_53_XP_RechtscharakterPlanaenderung(codeLists, FP_Plan);
+		add_53_XP_RechtscharakterPlanaenderung(codeLists, RP_Plan);
+		add_53_XP_RechtscharakterPlanaenderung(codeLists, SO_Plan);
+	}
+
+	private static void add_53_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists,
+			EditPlanType planType) {
+		CodelistKey key = new CodelistKey(XPLAN_53, planType, XP_RechtscharakterPlanaenderung);
 		List<Code> codes = new ArrayList<Code>();
 		codes.add(new Code(1000, MESSAGES.XPLAN_53_XP_RechtscharakterPlanaenderung_1000_Aenderung()));
 		codes.add(new Code(1100, MESSAGES.XPLAN_53_XP_RechtscharakterPlanaenderung_1100_Ergaenzung()));
@@ -873,7 +919,16 @@ public class CodelistProvider {
 	}
 
 	private static void add_54_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists) {
-		CodelistKey key = new CodelistKey(XPLAN_54, BP_Plan, XP_RechtscharakterPlanaenderung);
+		add_54_XP_RechtscharakterPlanaenderung(codeLists, BP_Plan);
+		add_54_XP_RechtscharakterPlanaenderung(codeLists, LP_Plan);
+		add_54_XP_RechtscharakterPlanaenderung(codeLists, FP_Plan);
+		add_54_XP_RechtscharakterPlanaenderung(codeLists, RP_Plan);
+		add_54_XP_RechtscharakterPlanaenderung(codeLists, SO_Plan);
+	}
+
+	private static void add_54_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists,
+			EditPlanType planType) {
+		CodelistKey key = new CodelistKey(XPLAN_54, planType, XP_RechtscharakterPlanaenderung);
 		List<Code> codes = new ArrayList<Code>();
 		codes.add(new Code(1000, MESSAGES.XPLAN_54_XP_RechtscharakterPlanaenderung_1000_Aenderung()));
 		codes.add(new Code(1100, MESSAGES.XPLAN_54_XP_RechtscharakterPlanaenderung_1100_Ergaenzung()));
@@ -1040,7 +1095,16 @@ public class CodelistProvider {
 	}
 
 	private static void add_60_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists) {
-		CodelistKey key = new CodelistKey(XPLAN_60, BP_Plan, XP_RechtscharakterPlanaenderung);
+		add_60_XP_RechtscharakterPlanaenderung(codeLists, BP_Plan);
+		add_60_XP_RechtscharakterPlanaenderung(codeLists, LP_Plan);
+		add_60_XP_RechtscharakterPlanaenderung(codeLists, FP_Plan);
+		add_60_XP_RechtscharakterPlanaenderung(codeLists, RP_Plan);
+		add_60_XP_RechtscharakterPlanaenderung(codeLists, SO_Plan);
+	}
+
+	private static void add_60_XP_RechtscharakterPlanaenderung(HashMap<CodelistKey, List<Code>> codeLists,
+			EditPlanType planType) {
+		CodelistKey key = new CodelistKey(XPLAN_60, planType, XP_RechtscharakterPlanaenderung);
 		List<Code> codes = new ArrayList<Code>();
 		codes.add(new Code(1000, MESSAGES.XPLAN_60_XP_RechtscharakterPlanaenderung_1000_Aenderung()));
 		codes.add(new Code(10000, MESSAGES.XPLAN_60_XP_RechtscharakterPlanaenderung_10000_Ersetzung()));
