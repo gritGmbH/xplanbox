@@ -20,17 +20,21 @@
  */
 package de.latlon.xplanbox.api.validator.config;
 
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplanbox.api.validator.v1.DefaultApi;
 import de.latlon.xplanbox.api.validator.v1.InfoApi;
 import de.latlon.xplanbox.api.validator.v1.ValidateApi;
+import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.glassfish.jersey.server.ResourceConfig;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
+import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -60,6 +64,12 @@ public class TestContext {
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
 		LOG.trace("JUL logging enabled");
+	}
+
+	@Primary
+	@Bean
+	public List<RulesMetadata> profileMetadata() {
+		return Collections.singletonList(new RulesMetadata("test", "description", "0.1", "unbekannt"));
 	}
 
 }

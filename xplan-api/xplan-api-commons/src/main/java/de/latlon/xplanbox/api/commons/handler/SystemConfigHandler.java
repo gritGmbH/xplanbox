@@ -38,24 +38,44 @@ public class SystemConfigHandler {
 
 	private XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever;
 
+	private List<de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata> profileMetadata;
+
 	public SystemConfigHandler(
-			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever) {
+			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever,
+			List<de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata> profileMetadata) {
 		this.xQuerySemanticValidatorConfigurationRetriever = xQuerySemanticValidatorConfigurationRetriever;
+		this.profileMetadata = profileMetadata;
 	}
 
 	public RulesMetadata getRulesMetadata() throws IOException {
 		SemanticValidatorConfiguration semanticValidatorConfiguration = xQuerySemanticValidatorConfigurationRetriever
 				.retrieveConfiguration();
-		RulesMetadata rulesMetadata = new RulesMetadata();
-		if (semanticValidatorConfiguration != null && semanticValidatorConfiguration.getRulesMetadata() != null)
-			rulesMetadata.source(semanticValidatorConfiguration.getRulesMetadata().getSource())
-					.version(semanticValidatorConfiguration.getRulesMetadata().getVersion());
-		return rulesMetadata;
+		if (semanticValidatorConfiguration == null) {
+			return new RulesMetadata();
+		}
+		de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata defaultRulesMetadata = semanticValidatorConfiguration
+				.getRulesMetadata();
+		return createRulesMetadata(defaultRulesMetadata);
+	}
+
+	public List<RulesMetadata> getProfiles() {
+		return profileMetadata.stream().map(profileMetadata -> createRulesMetadata(profileMetadata))
+				.collect(Collectors.toList());
 	}
 
 	public List<VersionEnum> allSupportedVersions() {
 		return Arrays.stream(XPlanVersion.values()).filter(xPlanVersion -> !XPlanVersion.XPLAN_SYN.equals(xPlanVersion))
 				.map(xPlanVersion -> VersionEnum.fromValue(xPlanVersion.name())).collect(Collectors.toList());
+	}
+
+	private RulesMetadata createRulesMetadata(
+			de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata sourceRulesMetadata) {
+		RulesMetadata rulesMetadata = new RulesMetadata();
+		if (sourceRulesMetadata != null) {
+			rulesMetadata.name(sourceRulesMetadata.getName()).description(sourceRulesMetadata.getDescription())
+					.source(sourceRulesMetadata.getSource()).version(sourceRulesMetadata.getVersion());
+		}
+		return rulesMetadata;
 	}
 
 }

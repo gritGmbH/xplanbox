@@ -102,9 +102,9 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public SystemConfigHandler systemConfigHandler(
-			XQuerySemanticValidatorConfigurationRetriever configurationRetriever) {
-		return new SystemConfigHandler(configurationRetriever);
+	public SystemConfigHandler systemConfigHandler(XQuerySemanticValidatorConfigurationRetriever configurationRetriever,
+			List<RulesMetadata> profileMetadata) {
+		return new SystemConfigHandler(configurationRetriever, profileMetadata);
 	}
 
 	@Bean
@@ -131,13 +131,23 @@ public class ApplicationContext {
 	}
 
 	@Bean
+	public List<RulesMetadata> profileMetadata(ValidatorConfiguration validatorConfiguration)
+			throws ValidatorException {
+		List<RulesMetadata> rulesMetadata = new ArrayList<>();
+		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
+			RulesMetadata newRulesMetadata = createFromConfig(validatorProfile);
+			rulesMetadata.add(newRulesMetadata);
+		}
+		return rulesMetadata;
+	}
+
+	@Bean
 	@Qualifier("Profiles")
 	public List<SemanticValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
 			throws ValidatorException {
 		List<SemanticValidator> semanticValidators = new ArrayList<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			RulesMetadata rulesMetadata = new RulesMetadata(validatorProfile.getName(),
-					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
+			RulesMetadata rulesMetadata = createFromConfig(validatorProfile);
 			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
 					rulesPath, rulesMetadata);
@@ -302,6 +312,11 @@ public class ApplicationContext {
 		if (managerConfiguration != null)
 			return managerConfiguration.getSortConfiguration();
 		return new SortConfiguration();
+	}
+
+	private RulesMetadata createFromConfig(ValidatorProfile validatorProfile) {
+		return new RulesMetadata(validatorProfile.getName(), validatorProfile.getDescription(),
+				validatorProfile.getVersion(), validatorProfile.getSource());
 	}
 
 	private XPlanSynthesizer xPlanSynthesizer(ManagerConfiguration managerConfiguration) {

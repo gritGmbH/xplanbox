@@ -76,9 +76,9 @@ public class ApplicationContext {
 	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-workspace";
 
 	@Bean
-	public SystemConfigHandler systemConfigHandler(
-			XQuerySemanticValidatorConfigurationRetriever configurationRetriever) {
-		return new SystemConfigHandler(configurationRetriever);
+	public SystemConfigHandler systemConfigHandler(XQuerySemanticValidatorConfigurationRetriever configurationRetriever,
+			List<RulesMetadata> profileMetadata) {
+		return new SystemConfigHandler(configurationRetriever, profileMetadata);
 	}
 
 	@Bean
@@ -105,6 +105,17 @@ public class ApplicationContext {
 	public SemanticValidator semanticValidator(XQuerySemanticValidatorConfigurationRetriever configurationRetriever)
 			throws ValidatorException {
 		return new XQuerySemanticValidator(configurationRetriever);
+	}
+
+	@Bean
+	public List<RulesMetadata> profileMetadata(ValidatorConfiguration validatorConfiguration)
+			throws ValidatorException {
+		List<RulesMetadata> rulesMetadata = new ArrayList<>();
+		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
+			RulesMetadata newRulesMetadata = createFromConfig(validatorProfile);
+			rulesMetadata.add(newRulesMetadata);
+		}
+		return rulesMetadata;
 	}
 
 	@Bean
@@ -195,6 +206,11 @@ public class ApplicationContext {
 			return validationRulesDirectory;
 		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
+	}
+
+	private RulesMetadata createFromConfig(ValidatorProfile validatorProfile) {
+		return new RulesMetadata(validatorProfile.getName(), validatorProfile.getDescription(),
+				validatorProfile.getVersion(), validatorProfile.getSource());
 	}
 
 }
