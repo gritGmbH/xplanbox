@@ -502,11 +502,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>94</con:value>
+          <con:value>33</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_5ac08606-04d2-420b-8fdd-b07c4c5cfab5</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -727,7 +727,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>95</con:value>
+          <con:value>34</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -959,7 +959,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>96</con:value>
+          <con:value>35</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1243,6 +1243,72 @@ exists(/wms:WMS_Capabilities)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="rechtscharakter">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:rechtscharakter</path>
+              <content>1000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="rechtscharakterWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:rechtscharakterWert</path>
+              <content>Festsetzung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="allgArtDerBaulNutzung">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:allgArtDerBaulNutzung</path>
+              <content>3000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="allgArtDerBaulNutzungWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:allgArtDerBaulNutzungWert</path>
+              <content>GewerblicheBauflaeche</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="besondereArtDerBaulNutzung">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:besondereArtDerBaulNutzung</path>
+              <content>1800</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="besondereArtDerBaulNutzungWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:besondereArtDerBaulNutzungWert</path>
+              <content>Industriegebiet</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
             <con:password>${#Project#password}</con:password>
@@ -1365,6 +1431,94 @@ exists(/wms:WMS_Capabilities)</path>
 //xplanung:externeReferenz</path>
               <content>[/getAttachment?featureID=*&amp;filename=Test_Auskr.gml | Satzung]</content>
               <allowWildcards>true</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="verlaengerungVeraenderungssperre">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:verlaengerungVeraenderungssperre</path>
+              <content>2000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="verlaengerungVeraenderungssperreWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:verlaengerungVeraenderungssperreWert</path>
+              <content>ErsteVerlaengerung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="planArt">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:planArt</path>
+              <content>1000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:planArtWert</path>
+              <content>BPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="verfahren">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:verfahren</path>
+              <content>1000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="verfahrenWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:verfahrenWert</path>
+              <content>Normal</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:rechtsstand</path>
+              <content>4000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:rechtsstandWert</path>
+              <content>InkraftGetreten</content>
+              <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
@@ -1556,11 +1710,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>97</con:value>
+          <con:value>36</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>98</con:value>
+          <con:value>37</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1990,7 +2144,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>99</con:value>
+          <con:value>38</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -2086,6 +2240,54 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArt</path>
+              <content>1000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>BPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>4000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>InkraftGetreten</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
             <con:password>${#Project#password}</con:password>
@@ -2169,7 +2371,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>100</con:value>
+          <con:value>39</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3947,7 +4149,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>102</con:value>
+          <con:value>40</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
