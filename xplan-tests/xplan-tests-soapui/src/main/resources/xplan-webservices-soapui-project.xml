@@ -3468,11 +3468,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>116</con:value>
+          <con:value>32</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_1ef9735c-f812-4b45-a08a-5dd646940803</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_32c28b24-9e5b-4b6f-a078-ec235241b303</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3693,7 +3693,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>117</con:value>
+          <con:value>33</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3782,15 +3782,6 @@ exists(/wms:WMS_Capabilities)</path>
               <token>PNG</token>
               <ignoreCase>false</ignoreCase>
               <useRegEx>false</useRegEx>
-            </con:configuration>
-          </con:assertion>
-          <con:assertion type="XPath Match" id="b60c029a-9cf1-4d92-890b-2262d723e7e5" name="XPath Match">
-            <con:configuration>
-              <path>//data/@contentLength</path>
-              <content>793**</content>
-              <allowWildcards>true</allowWildcards>
-              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-              <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -3934,7 +3925,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>118</con:value>
+          <con:value>34</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4531,11 +4522,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>119</con:value>
+          <con:value>35</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>120</con:value>
+          <con:value>36</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4965,7 +4956,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>121</con:value>
+          <con:value>29</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5144,7 +5135,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>122</con:value>
+          <con:value>30</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -6922,7 +6913,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>123</con:value>
+          <con:value>31</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
