@@ -137,7 +137,7 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 					entriesFromOtherPlanTypeOrVersion.add(textRechtscharacterType);
 			}
 			this.rechtscharakterType = new TypeCodeListBox<TextRechtscharacterType>(TextRechtscharacterType.class,
-					entriesFromOtherPlanTypeOrVersion);
+					entriesFromOtherPlanTypeOrVersion, false);
 		}
 		initDialog(createFormContent());
 		setText(textToEdit);
