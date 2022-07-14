@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -117,6 +117,20 @@ public class ValidateApiTest extends JerseyTest {
 
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_XML));
 		assertThat(response.readEntity(String.class), containsString("valid"));
+	}
+
+	@Test
+	public void verifyThat_validationXZipCompressedWithProfile_Response_ContainsJsonEncoding()
+			throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").queryParam("profiles", "test1").request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		String actual = response.readEntity(String.class);
+		System.out.println(actual);
+		assertThat(actual, containsString("profil"));
 	}
 
 }
