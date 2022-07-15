@@ -33,6 +33,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.shared.edit.Change;
@@ -54,8 +55,8 @@ public class ChangesXplanPanel extends AbstractEditorSubPanelWithTable<Change> {
 	/**
 	 * Instantiates a panel to edit changes of XPlan version 4.1
 	 */
-	public ChangesXplanPanel(EditVersion version) {
-		super(version, MESSAGES.editCaptionChanges());
+	public ChangesXplanPanel(EditVersion version, EditPlanType planType) {
+		super(version, planType, MESSAGES.editCaptionChanges());
 		add(createGui());
 	}
 
@@ -83,7 +84,7 @@ public class ChangesXplanPanel extends AbstractEditorSubPanelWithTable<Change> {
 	private Button createNewButton() {
 		Button newButton = new Button(MESSAGES.editCaptionNewChange(), new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				final ChangesXplanDialog changesDialog = new ChangesXplanDialog(version);
+				final ChangesXplanDialog changesDialog = new ChangesXplanDialog(version, planType);
 				changesDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {
@@ -121,7 +122,7 @@ public class ChangesXplanPanel extends AbstractEditorSubPanelWithTable<Change> {
 			@Override
 			public String getValue(Change changeData) {
 				if (changeData.getLegalNatureCode() > 0)
-					return CODELIST_PROVIDER.translate(version, XP_RechtscharakterPlanaenderung,
+					return CODELIST_PROVIDER.translate(version, planType, XP_RechtscharakterPlanaenderung,
 							changeData.getLegalNatureCode());
 				return "";
 			}
@@ -163,7 +164,7 @@ public class ChangesXplanPanel extends AbstractEditorSubPanelWithTable<Change> {
 		final EditVersion version = this.version;
 		editButtonColumn.setFieldUpdater(new FieldUpdater<Change, String>() {
 			public void update(final int index, Change change, String value) {
-				final ChangesXplanDialog changesDialog = new ChangesXplanDialog(version, change);
+				final ChangesXplanDialog changesDialog = new ChangesXplanDialog(version, planType, change);
 				changesDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {

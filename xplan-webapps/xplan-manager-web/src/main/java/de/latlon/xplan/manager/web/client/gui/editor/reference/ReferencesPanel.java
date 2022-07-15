@@ -33,6 +33,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.shared.edit.Reference;
@@ -54,8 +55,8 @@ public class ReferencesPanel extends AbstractEditorSubPanelWithTable<Reference> 
 	/**
 	 * @param version of the plan to edit, never <code>null</code>
 	 */
-	public ReferencesPanel(EditVersion version) {
-		super(version, MESSAGES.editCaptionReferences());
+	public ReferencesPanel(EditVersion version, EditPlanType planType) {
+		super(version, planType, MESSAGES.editCaptionReferences());
 		add(createGui());
 	}
 

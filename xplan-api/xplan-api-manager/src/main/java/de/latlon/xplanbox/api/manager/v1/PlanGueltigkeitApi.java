@@ -59,7 +59,7 @@ public class PlanGueltigkeitApi {
 							content = @Content(schema = @Schema(implementation = Zeitraum.class))),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan type or version or Plan ID is not a valid int value") })
+							description = "Unsupported Plan version or Plan ID is not a valid int value") })
 	public Zeitraum getGueltigkeit(
 			@PathParam("planId") @Parameter(description = "planId of the plan gueltigkeit to be returned",
 					example = "123") String planId)
@@ -76,7 +76,7 @@ public class PlanGueltigkeitApi {
 							content = @Content(schema = @Schema(implementation = Zeitraum.class))),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan type or version or Plan ID is not a valid int value") },
+							description = "Unsupported Plan version or Plan ID is not a valid int value") },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Zeitraum.class)) }))
 	public Zeitraum replaceGueltigkeit(

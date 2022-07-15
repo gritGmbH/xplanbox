@@ -68,6 +68,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.XPlanType.FP_Plan;
+import static de.latlon.xplan.commons.XPlanType.LP_Plan;
+import static de.latlon.xplan.commons.XPlanType.RP_Plan;
+import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -81,8 +85,8 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
-import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.HINWEIS;
-import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.VERMERK;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.BP_HINWEIS;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.BP_VERMERK;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -165,8 +169,10 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		editedXplan.getTexts().add(new Text("id1", "key1", "basis1", "text1", HINWEIS, "reference1", "geoReference1"));
-		editedXplan.getTexts().add(new Text("id2", "key2", "basis2", "text2", VERMERK, "reference2", "geoReference2"));
+		editedXplan.getTexts()
+				.add(new Text("id1", "key1", "basis1", "text1", BP_HINWEIS, "reference1", "geoReference1"));
+		editedXplan.getTexts()
+				.add(new Text("id2", "key2", "basis2", "text2", BP_VERMERK, "reference2", "geoReference2"));
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
 
@@ -184,7 +190,7 @@ public class XPlanManipulatorTest {
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
 		String featureIdUnderTest = "FEATURE_0f870967-bd6f-4367-9150-8a255f0290ad";
-		editedXplan.getTexts().add(new Text(featureIdUnderTest, "key", "base", "BeschreibungstextNeu", HINWEIS,
+		editedXplan.getTexts().add(new Text(featureIdUnderTest, "key", "base", "BeschreibungstextNeu", BP_HINWEIS,
 				"B-Plan_Klingmuehl_Heideweg_Text", "B-Plan_Klingmuehl_Heideweg_Text.pdf"));
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
@@ -221,7 +227,7 @@ public class XPlanManipulatorTest {
 		FeatureCollection featureCollection = readXPlanGml(version, planResource, schema);
 
 		XPlanToEdit editedXplan = createSimpleXPlan();
-		Text text = new Text("id1", "key1", "basis1", "text1", VERMERK, "reference1", "geoReference1");
+		Text text = new Text("id1", "key1", "basis1", "text1", BP_VERMERK, "reference1", "geoReference1");
 		editedXplan.getTexts().add(text);
 
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
@@ -649,13 +655,13 @@ public class XPlanManipulatorTest {
 
 		String exportedPlanUpdate1 = exportPlan(featureCollection, version);
 
-		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xplan:nummer = '0']/xp:rasterBasis)", is("0"))
+		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xp:nummer = '0']/xp:rasterBasis)", is("0"))
 				.withNamespaceContext(nsContext(version)));
-		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xplan:nummer = '0']/xp:refScan)", is("0"))
+		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xp:nummer = '0']/xp:refScan)", is("0"))
 				.withNamespaceContext(nsContext(version)));
-		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xplan:nummer = '1']/xp:rasterBasis)", is("1"))
+		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:rasterBasis)", is("1"))
 				.withNamespaceContext(nsContext(version)));
-		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xplan:nummer = '1']/xp:refScan)", is("0"))
+		assertThat(exportedPlanUpdate1, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:refScan)", is("0"))
 				.withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate1,
 				hasXPath("count(//xp:XP_RasterplanBasis)", is("1")).withNamespaceContext(nsContext(version)));
@@ -687,6 +693,215 @@ public class XPlanManipulatorTest {
 				hasXPath("count(//xp:XP_RasterplanBasis)", is("1")).withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlanUpdate2, hasXPath("count(//xp:XP_RasterplanBasis/xp:refScan)", is("2"))
 				.withNamespaceContext(nsContext(version)));
+
+		assertThatPlanIsSchemaValid(featureCollection, version);
+	}
+
+	@Test
+	public void testModifyXPlan_FP() throws Exception {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/FNP_Test_60.zip");
+
+		FeatureCollection featureCollection = readXPlanGmlFromZip(version, inputStream, schema);
+
+		String planName = "newPlanName";
+		String description = "newDescription";
+		Date creationDate = asDate("2010-01-01");
+		Date lossDate = asDate("2020-01-01");
+		int legislationStatusCode = 3000;
+		int methodCode = 1000;
+		int planTypeCode = 9999;
+		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null,
+				legislationStatusCode, methodCode, -1, planTypeCode);
+
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, FP_Plan, schema);
+
+		String exportedPlan = exportPlan(featureCollection, version);
+
+		assertThat(exportedPlan,
+				hasXPath("//xp:FP_Plan/xp:name", is(planName)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				hasXPath("//xp:FP_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:technHerstellDatum", is(asString(creationDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:untergangsDatum", is(asString(lossDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:rechtsstand", is(Integer.toString(legislationStatusCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:FP_Plan/xp:verfahren").withNamespaceContext(nsContext(version))));
+		assertThat(exportedPlan, hasXPath("//xp:FP_Plan/xp:planArt", is(Integer.toString(planTypeCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:FP_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
+
+		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
+	}
+
+	@Test
+	public void testModifyXPlan_LP() throws Exception {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/LP-Test_60.zip");
+
+		FeatureCollection featureCollection = readXPlanGmlFromZip(version, inputStream, schema);
+
+		String planName = "newPlanName";
+		String description = "newDescription";
+		Date creationDate = asDate("2010-01-01");
+		Date lossDate = asDate("2020-01-01");
+		int legislationStatusCode = 3000;
+		int methodCode = 1000;
+		int planTypeCode = 9999;
+		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null,
+				legislationStatusCode, methodCode, -1, planTypeCode);
+
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, LP_Plan, schema);
+
+		String exportedPlan = exportPlan(featureCollection, version);
+
+		assertThat(exportedPlan,
+				hasXPath("//xp:LP_Plan/xp:name", is(planName)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				hasXPath("//xp:LP_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:technHerstellDatum", is(asString(creationDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:untergangsDatum", is(asString(lossDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:rechtsstand", is(Integer.toString(legislationStatusCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:LP_Plan/xp:verfahren").withNamespaceContext(nsContext(version))));
+		assertThat(exportedPlan, hasXPath("//xp:LP_Plan/xp:planArt", is(Integer.toString(planTypeCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:LP_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
+
+		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
+	}
+
+	@Test
+	public void testModifyXPlan_RP() throws Exception {
+		XPlanVersion version = XPLAN_51;
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan51/RROP_Landkreis_Test_51.zip");
+
+		FeatureCollection featureCollection = readXPlanGmlFromZip(version, inputStream, schema);
+
+		String planName = "newPlanName";
+		String description = "newDescription";
+		Date creationDate = asDate("2010-01-01");
+		Date lossDate = asDate("2020-01-01");
+		int legislationStatusCode = 3000;
+		int methodCode = 1000;
+		int planTypeCode = 9999;
+		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null,
+				legislationStatusCode, methodCode, -1, planTypeCode);
+
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, RP_Plan, schema);
+
+		String exportedPlan = exportPlan(featureCollection, version);
+
+		assertThat(exportedPlan,
+				hasXPath("//xp:RP_Plan/xp:name", is(planName)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				hasXPath("//xp:RP_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:technHerstellDatum", is(asString(creationDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:untergangsDatum", is(asString(lossDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:rechtsstand", is(Integer.toString(legislationStatusCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:verfahren", is(Integer.toString(methodCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:RP_Plan/xp:planArt", is(Integer.toString(planTypeCode)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:RP_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
+
+		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
+	}
+
+	@Test
+	public void testModifyXPlan_SO() throws Exception {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/StErhVO_Hamm_60.zip");
+
+		FeatureCollection featureCollection = readXPlanGmlFromZip(version, inputStream, schema);
+
+		String planName = "newPlanName";
+		String description = "newDescription";
+		Date creationDate = asDate("2010-01-01");
+		Date lossDate = asDate("2020-01-01");
+		int planTypeCode = 9999;
+		XPlanToEdit editedXplan = createEditedXplan(planName, description, creationDate, lossDate, null, -1, -1, -1,
+				planTypeCode);
+
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, SO_Plan, schema);
+
+		String exportedPlan = exportPlan(featureCollection, version);
+
+		assertThat(exportedPlan,
+				hasXPath("//xp:SO_Plan/xp:name", is(planName)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				hasXPath("//xp:SO_Plan/xp:beschreibung", is(description)).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:SO_Plan/xp:technHerstellDatum", is(asString(creationDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan, hasXPath("//xp:SO_Plan/xp:untergangsDatum", is(asString(lossDate)))
+				.withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:SO_Plan/xp:rechtsstand").withNamespaceContext(nsContext(version))));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:SO_Plan/xp:verfahren").withNamespaceContext(nsContext(version))));
+		assertThat(exportedPlan,
+				hasXPath("//xp:SO_Plan/xp:planArt", is("17200")).withNamespaceContext(nsContext(version)));
+		assertThat(exportedPlan,
+				not(HasXPathMatcher.hasXPath("//xp:SO_Plan/xp:sonstPlanArt").withNamespaceContext(nsContext(version))));
+
+		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
+	}
+
+	/**
+	 * https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-961 (Testfall 1)
+	 */
+	@Test
+	public void testModifyXPlan_RasterBasis_BP_60() throws Exception {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/BPlan001_6-0.zip");
+
+		FeatureCollection featureCollection = readXPlanGmlFromZip(version, inputStream, schema);
+
+		XPlanToEditFactory xPlanToEditFactory = new XPlanToEditFactory();
+		XPlan xPlan = mockXPlan(version);
+
+		XPlanToEdit editedXplan = xPlanToEditFactory.createXPlanToEdit(xPlan, featureCollection);
+
+		// add rasterbasis
+		RasterReference scan = new RasterReference("0", "scanRef", "scanGeoRef", SCAN, null, null, null, "test", null,
+				null, null);
+		RasterBasis rasterBasis = editedXplan.getRasterBasis().get(0);
+		rasterBasis.addRasterReference(scan);
+
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+
+		String exportedPlanAddRasterBasis = exportPlan(featureCollection, version);
+		assertThat(exportedPlanAddRasterBasis, hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:refScan)", is("1"))
+				.withNamespaceContext(nsContext(version)));
+
+		assertThatPlanIsSchemaValid(featureCollection, version);
+
+		// remove rasterbasis
+		editedXplan.getRasterBasis().clear();
+		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
+
+		String exportedPlanRemoveRasterBasis = exportPlan(featureCollection, version);
+
+		assertThat(exportedPlanRemoveRasterBasis,
+				hasXPath("count(//xp:BP_Bereich[xp:nummer = '1']/xp:refScan)", is("0"))
+						.withNamespaceContext(nsContext(version)));
 
 		assertThatPlanIsSchemaValid(featureCollection, version);
 	}
@@ -1006,6 +1221,11 @@ public class XPlanManipulatorTest {
 	private Date asDate(String string) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		return simpleDateFormat.parse(string);
+	}
+
+	private String asString(Date date) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		return simpleDateFormat.format(date);
 	}
 
 	private interface PropertyMatcher {

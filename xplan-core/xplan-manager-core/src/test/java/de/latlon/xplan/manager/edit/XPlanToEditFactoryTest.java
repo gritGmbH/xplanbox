@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -22,10 +22,10 @@ package de.latlon.xplan.manager.edit;
 
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
@@ -58,11 +58,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.XPlanType.FP_Plan;
+import static de.latlon.xplan.commons.XPlanType.LP_Plan;
+import static de.latlon.xplan.commons.XPlanType.RP_Plan;
+import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
@@ -73,6 +79,10 @@ import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.BEGRUENDUNG;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.GRUENORDNUNGSPLAN;
 import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.RECHTSPLAN;
+import static de.latlon.xplan.manager.web.shared.edit.ReferenceType.VERORDNUNG;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.SO_SONSTIGES;
+import static de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType.XP_FESTSETZUNGBPLAN;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -92,7 +102,7 @@ public class XPlanToEditFactoryTest {
 	public void testCreateXPlanToEdit_XPlan52_multipleBereiche() throws Exception {
 		FeatureCollection featureCollection = readXPlanArchive(XPLAN_52, "xplan52/BPlan001_5-2_Bereiche.zip");
 
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_52), featureCollection);
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_52, BP_Plan), featureCollection);
 
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
 
@@ -124,7 +134,7 @@ public class XPlanToEditFactoryTest {
 	public void testCreateXPlanToEdit_XPlan51_refScan() throws Exception {
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_51, "xplan51/V4_1_ID_103_refScan.gml");
 
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51), featureCollection);
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51, BP_Plan), featureCollection);
 
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
 
@@ -148,7 +158,7 @@ public class XPlanToEditFactoryTest {
 	public void testCreateXPlanToEdit_XPlan51_rasterdarstellung() throws Exception {
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_51, "xplan51/V4_1_ID_103.gml");
 
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51), featureCollection);
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51, BP_Plan), featureCollection);
 
 		assertThat(xPlanToEdit.isHasBereich(), is(true));
 
@@ -174,7 +184,7 @@ public class XPlanToEditFactoryTest {
 	public void testCreateXPlanToEdit_XPlan50_BaseData_Changes() throws Exception {
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_50, "xplan50/BP2070.gml");
 
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_50), featureCollection);
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_50, BP_Plan), featureCollection);
 
 		BaseData baseData = xPlanToEdit.getBaseData();
 		assertThat(baseData.getPlanName(), is("BP2070"));
@@ -197,7 +207,7 @@ public class XPlanToEditFactoryTest {
 	public void testCreateXPlanToEdit_XPlan41_BaseData_Changes() throws Exception {
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_41, "xplan41/Eidelstedt_4_V4-Blankenese.gml");
 
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_41), featureCollection);
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_41, BP_Plan), featureCollection);
 
 		BaseData baseData = xPlanToEdit.getBaseData();
 		assertThat(baseData.getPlanName(), is("Eidelstedt 4"));
@@ -234,7 +244,7 @@ public class XPlanToEditFactoryTest {
 		XPlanVersion version = XPlanVersion.valueOf(xplanVersion);
 		FeatureCollection featureCollection = readXPlanGml(version, planResource);
 
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(version), featureCollection);
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(version, BP_Plan), featureCollection);
 
 		BaseData baseData = xPlanToEdit.getBaseData();
 		assertThat(baseData.getPlanName(), is("\"Heideweg\""));
@@ -316,9 +326,129 @@ public class XPlanToEditFactoryTest {
 	public void testCreateXPlanToEdit_XPlan53_withoutBereich() throws Exception {
 		FeatureCollection featureCollection = readXPlanGml(XPLAN_53, "xplan53/BPlan_ohneBereich.gml");
 
-		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_53), featureCollection);
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_53, BP_Plan), featureCollection);
 
 		assertThat(xPlanToEdit.isHasBereich(), is(false));
+	}
+
+	@Test
+	public void testCreateXPlanToEdit_XPlan51_FPlan() throws Exception {
+		FeatureCollection featureCollection = readXPlanArchive(XPLAN_51, "xplan51/FPlan.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51, FP_Plan), featureCollection);
+		assertThat(xPlanToEdit.isHasBereich(), is(true));
+
+		BaseData baseData = xPlanToEdit.getBaseData();
+		assertThat(baseData.getPlanName(), is("FPlan Bad Liebenwerda"));
+		assertThat(baseData.getPlanTypeCode(), is(9999));
+		assertThat(baseData.getCreationDate(), is(asDate("2004-12-01")));
+
+		assertThat(xPlanToEdit.getRasterBasis().size(), is(1));
+		assertThat(xPlanToEdit.getRasterBasis().get(0).getRasterReferences().size(), is(0));
+		assertThat(xPlanToEdit.getTexts().size(), is(0));
+		assertThat(xPlanToEdit.getReferences().size(), is(0));
+		assertThat(xPlanToEdit.getChanges().size(), is(0));
+	}
+
+	@Test
+	public void testCreateXPlanToEdit_XPlan60_LPlan() throws Exception {
+		FeatureCollection featureCollection = readXPlanArchive(XPLAN_60, "xplan60/LP-Test_60.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_60, LP_Plan), featureCollection);
+		assertThat(xPlanToEdit.isHasBereich(), is(true));
+
+		BaseData baseData = xPlanToEdit.getBaseData();
+		assertThat(baseData.getPlanName(), is("LP-Test 60"));
+		assertThat(baseData.getPlanTypeCode(), is(3000));
+
+		assertThat(xPlanToEdit.getRasterBasis().size(), is(1));
+		assertThat(xPlanToEdit.getRasterBasis().get(0).getRasterReferences().size(), is(0));
+
+		List<Text> texts = xPlanToEdit.getTexts();
+		assertThat(texts.size(), is(1));
+
+		Text text = texts.get(0);
+		assertThat(text.getFeatureId(), is("Gml_1234"));
+		assertThat(text.getText(), is("Test"));
+		assertThat(text.getRechtscharakter(), is(XP_FESTSETZUNGBPLAN));
+
+		assertThat(xPlanToEdit.getReferences().size(), is(0));
+		assertThat(xPlanToEdit.getChanges().size(), is(0));
+	}
+
+	@Test
+	public void testCreateXPlanToEdit_XPlan51_SOPlan() throws Exception {
+		FeatureCollection featureCollection = readXPlanArchive(XPLAN_51, "xplan51/StErhVO_Heidberg_51.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51, SO_Plan), featureCollection);
+		assertThat(xPlanToEdit.isHasBereich(), is(true));
+
+		BaseData baseData = xPlanToEdit.getBaseData();
+		assertThat(baseData.getPlanName(), is("StErhVO_Heidberg"));
+		assertThat(baseData.getDescription(), is("siehe Lageplan"));
+		assertThat(baseData.getPlanTypeCode(), is(17200));
+		assertThat(baseData.getCreationDate(), is(asDate("2019-06-07")));
+
+		assertThat(xPlanToEdit.getRasterBasis().size(), is(1));
+		assertThat(xPlanToEdit.getRasterBasis().get(0).getRasterReferences().size(), is(0));
+
+		List<Text> texts = xPlanToEdit.getTexts();
+		assertThat(texts.size(), is(3));
+
+		Text firstText = texts.get(0);
+		assertThat(firstText.getFeatureId(), is("Gml_2413F6CD-7CCF-4F69-B2A9-9C34D6FB5EFA"));
+		assertThat(firstText.getKey(), is("1"));
+		assertThat(firstText.getText(), containsString(
+				"Diese Verordnung gilt für die in der anliegenden Karte durch eine schwarze Linie abgegrenzte"));
+		assertThat(firstText.getGeoReference(), is(nullValue()));
+		assertThat(firstText.getRechtscharakter(), is(SO_SONSTIGES));
+
+		Text secondText = texts.get(1);
+		assertThat(secondText.getFeatureId(), is("Gml_A903B546-00F6-47CD-8627-E50D9B0DD250"));
+		assertThat(secondText.getKey(), is("2"));
+		assertThat(secondText.getText(), containsString(
+				"die Errichtung baulicher Anlagen der Genehmigung, und zwar auch dann, wenn nach den bauordnungsrechtlichen Vorschriften"));
+		assertThat(secondText.getGeoReference(), is(nullValue()));
+		assertThat(secondText.getRechtscharakter(), is(SO_SONSTIGES));
+
+		Text thirdText = texts.get(2);
+		assertThat(thirdText.getFeatureId(), is("Gml_C5992598-EF43-4EA2-AA00-2D431081A4F7"));
+		assertThat(thirdText.getKey(), is("3"));
+		assertThat(thirdText.getText(), containsString("Es wird auf Folgendes hingewiesen:"));
+		assertThat(thirdText.getGeoReference(), is(nullValue()));
+		assertThat(thirdText.getRechtscharakter(), is(SO_SONSTIGES));
+
+		List<Reference> references = xPlanToEdit.getReferences();
+		assertThat(references.size(), is(1));
+
+		Reference reference = references.get(0);
+		assertThat(reference.getGeoReference(), is(nullValue()));
+		assertThat(reference.getReference(), is("StErhVO_Heidberg.pdf"));
+		assertThat(reference.getReferenzName(), is(nullValue()));
+		assertThat(reference.getType(), is(VERORDNUNG));
+
+		assertThat(xPlanToEdit.getChanges().size(), is(0));
+	}
+
+	@Test
+	public void testCreateXPlanToEdit_XPlan51_RPlan() throws Exception {
+		FeatureCollection featureCollection = readXPlanArchive(XPLAN_51, "xplan51/RROP_Landkreis_Test_51.zip");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_51, RP_Plan), featureCollection);
+		assertThat(xPlanToEdit.isHasBereich(), is(true));
+
+		BaseData baseData = xPlanToEdit.getBaseData();
+		assertThat(baseData.getPlanName(), is("Regionales Raumordnungsprogramm Landkreis Test 2019"));
+		assertThat(baseData.getDescription(), is(nullValue()));
+		assertThat(baseData.getPlanTypeCode(), is(1000));
+		assertThat(baseData.getCreationDate(), is(nullValue()));
+		assertThat(baseData.getMethodCode(), is(3000));
+
+		assertThat(xPlanToEdit.getRasterBasis().size(), is(1));
+		assertThat(xPlanToEdit.getRasterBasis().get(0).getRasterReferences().size(), is(0));
+		assertThat(xPlanToEdit.getTexts().size(), is(0));
+		assertThat(xPlanToEdit.getReferences().size(), is(0));
+		assertThat(xPlanToEdit.getChanges().size(), is(0));
 	}
 
 	private RasterReference getByType(List<RasterReference> rasterBasisReferences, RasterReferenceType type) {
@@ -367,17 +497,10 @@ public class XPlanToEditFactoryTest {
 		return simpleDateFormat.parse(string);
 	}
 
-	private XPlan mockXPlan(XPlanVersion version) {
+	private XPlan mockXPlan(XPlanVersion version, XPlanType xPlanType) {
 		XPlan mock = mock(XPlan.class);
 		when(mock.getVersion()).thenReturn(version.toString());
-		return mock;
-	}
-
-	private XPlan mockXPlan(XPlanVersion version, Date startDateTime, Date endDateTime) {
-		AdditionalPlanData xplanMetadata = new AdditionalPlanData(startDateTime, endDateTime);
-		XPlan mock = mock(XPlan.class);
-		when(mock.getVersion()).thenReturn(version.toString());
-		when(mock.getXplanMetadata()).thenReturn(xplanMetadata);
+		when(mock.getType()).thenReturn(xPlanType.name());
 		return mock;
 	}
 
