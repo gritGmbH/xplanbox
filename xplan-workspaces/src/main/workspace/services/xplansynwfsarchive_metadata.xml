@@ -24,7 +24,7 @@
                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                          xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.4.0/metadata.xsd">
   <ServiceIdentification>
-    <Title>XPlanSynWFS</Title>
+    <Title>XPlanSynWFSArchive</Title>
     <Abstract>Dieser WFS Dienst stellt versionsübergreifende auf dem Standard XPlanung basierende FeatureTypes bereit.</Abstract>
     <Keywords>
       <Keyword>XPlanung</Keyword>

@@ -41,6 +41,9 @@ Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschemata und 
 | `xplan54`
 | <<xplanwfs>>/_wfs54_
 | BLOB
+| `xplan60`
+| <<xplanwfs>>/_wfs60_
+| BLOB
 | `xplansyn`
 | <<xplansynwfs>>/_xplansynwfs_, <<xplanwms>>/_wms_
 | Relational <<appendix_xplandb_xplansyn,(Schema)>>
@@ -54,7 +57,7 @@ Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschemata und 
 
 Bei separater Datenhaltung existiert für alle in Aufstellung befindlichen Pläne zusätzlich ein Datenbankschema mit der Namenskonvention `xplan*pre` und den Endpoints <<xplanwfs>>/_wfs*pre_ sowie für die archivierten Pläne mit `xplan*archive` und den Endpoints <<xplanwfs>>/_wfs*archive_.
 
-Die Datenbankstruktur für die Schema `xplan*` wird im Anhang <<appendix_xplandb>> beschrieben.
+Die Datenbankstruktur für die Schemata `xplan*` wird im Anhang <<appendix_xplandb>> beschrieben.
 
 
 

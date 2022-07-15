@@ -45,6 +45,6 @@ kommunizieren.
 
 *Anpassungen in der Datei html.gfi:*
 
-Dazu muss der Wert des Variable `WMS_URL` in der Datei angepasst werden.
+Dazu muss der Wert der Variable `WMS_URL` in der Datei angepasst werden.
 
 Für mehr Details siehe Kapitel <<konfiguration_xplanwms>>.

@@ -1,8 +1,8 @@
 [[konfiguration-dienste]]
-== Konfiguration des XPlanWMS und XPlanWFS
+== XPlanDienste
 
-In den nachfolgenden Kapiteln wird die Konfiguration der WFS- und WMS-Dienste der xPlanBox erläutert:
+In den nachfolgenden Kapiteln wird die Konfiguration der von der xPlanBox bereitgestellten XPlanDienste: <<xplanwms, XPlanWMS/XPlanWerkWMS>>, <<xplanwfs, XPlanWFS>> und <<xplansynwfs, XPlanSynWFS>>.
 
-include::XPlanDienste.adoc[]
+include::bbox_cache.adoc[]
 
-include::XPlanWMS.adoc[]
+include::html_gfi.adoc[]
