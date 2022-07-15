@@ -91,7 +91,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.apache.commons.io.IOUtils.closeQuietly;
@@ -1290,7 +1290,7 @@ public class XPlanDao {
 			stmt.setString(5, fc.getPlanNummer());
 			stmt.setString(6, fc.getPlanGkz());
 			stmt.setBoolean(7, fc.getHasRaster());
-			stmt.setString(8, retrieveRechtsstand(synFc, archive.getType()));
+			stmt.setString(8, retrieveRechtsstandWert(synFc, archive.getType()));
 			stmt.setTimestamp(9, convertToSqlTimestamp(fc.getPlanReleaseDate()));
 			stmt.setString(10, retrieveAdditionalType(synFc, archive.getType()));
 			stmt.setString(11, retrievePlanStatusMessage(planStatus));
@@ -1374,7 +1374,7 @@ public class XPlanDao {
 			XPlanType type = XPlanType.valueOf(xplan.getType());
 			stmt = conn.prepareStatement(updateSql);
 			stmt.setString(1, fc.getPlanName());
-			stmt.setString(2, retrieveRechtsstand(synFc, type));
+			stmt.setString(2, retrieveRechtsstandWert(synFc, type));
 			stmt.setString(3, retrieveAdditionalType(synFc, type));
 			stmt.setTimestamp(4, convertToSqlTimestamp(sortDate));
 			stmt.setTimestamp(5, convertToSqlTimestamp(newXPlanMetadata.getStartDateTime()));
