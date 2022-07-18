@@ -4056,9 +4056,9 @@ exists(/wms:WMS_Capabilities)</path>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetFeatureInfo-html" id="1094d6a2-2566-4f60-940f-33760270271d">
+      <con:testStep type="httprequest" name="GetFeatureInfo-html BP_BaugebietsTeilFlaeche" id="1094d6a2-2566-4f60-940f-33760270271d">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-html" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-html BP_BaugebietsTeilFlaeche" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -4081,6 +4081,15 @@ exists(/wms:WMS_Capabilities)</path>
               <token>Eidelstedt 4 soapui-webservices</token>
               <ignoreCase>false</ignoreCase>
               <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="3d387826-ddf7-4f0d-b54b-18ad0f1951b1" name="Rechtscharacter ist Festsetzung">
+            <con:configuration>
+              <path>//table/tr[td/strong = 'Rechtscharakter']/td[2]</path>
+              <content>Festsetzung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -4185,9 +4194,9 @@ exists(/wms:WMS_Capabilities)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetFeatureInfo-xml" id="d4d34559-facc-4bb7-8129-b01b5ed3dc0f">
+      <con:testStep type="httprequest" name="GetFeatureInfo-xml BP_BaugebietsTeilFlaeche" id="d4d34559-facc-4bb7-8129-b01b5ed3dc0f">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-xml BP_BaugebietsTeilFlaeche" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -4198,7 +4207,7 @@ exists(/wms:WMS_Capabilities)</path>
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="XPath Match">
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="xpPlanName">
             <con:configuration>
               <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
 
@@ -4377,9 +4386,9 @@ exists(/wms:WMS_Capabilities)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetFeatureInfo-xml Dokumenttyp" id="3c2ad88a-22b9-435d-b25a-eac4b292905b">
+      <con:testStep type="httprequest" name="GetFeatureInfo-xml BP_Plan" id="3c2ad88a-22b9-435d-b25a-eac4b292905b">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-xml Dokumenttyp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-xml BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -4390,7 +4399,7 @@ exists(/wms:WMS_Capabilities)</path>
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="XPath Match">
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="externeReferenz">
             <con:configuration>
               <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
 
@@ -5354,7 +5363,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match">
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
