@@ -1666,8 +1666,8 @@ Validate XPlanGML or XPlanArchive</con:description>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="rule 2.1.4">
               <con:configuration>
-                <path>$.validationResult.semantisch.rules[4].name</path>
-                <content>2.1.4</content>
+                <path>$.validationResult.semantisch.rules[?(@.name == '2.1.4')]</path>
+                <content>[{"name":"2.1.4","isValid":true,"message":"Datumsangaben","warnedFeatures":[],"erroredFeatures":[]}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>

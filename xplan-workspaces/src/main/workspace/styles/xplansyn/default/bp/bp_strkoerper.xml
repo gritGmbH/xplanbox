@@ -21,10 +21,10 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:sed="http://www.deegree.org/se"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xmlns:sed="http://www.deegree.org/se"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_Strassenkoerper</FeatureTypeName>
   <!-- Flaechendarstellung -->
@@ -43,7 +43,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -58,7 +58,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/strkoerperauf_rs.svg" />
+                              xlink:href="../../symbols/strkoerperauf_rs.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -105,7 +105,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -120,7 +120,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/strkoerperauf_rs.svg" />
+                              xlink:href="../../symbols/strkoerperauf_rs.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -168,7 +168,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -183,7 +183,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/strkoerperstuetz_rs.svg" />
+                              xlink:href="../../symbols/strkoerperstuetz_rs.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -245,7 +245,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -260,7 +260,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/strkoerperauf_rs.svg" />
+                              xlink:href="../../symbols/strkoerperauf_rs.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -307,7 +307,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -322,7 +322,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/strkoerperauf_rs.svg" />
+                              xlink:href="../../symbols/strkoerperauf_rs.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -370,7 +370,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -385,7 +385,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/strkoerperstuetz_rs.svg" />
+                              xlink:href="../../symbols/strkoerperstuetz_rs.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#000000</SvgParameter>
@@ -447,7 +447,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -460,7 +460,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/strkoerperauf_rs.svg" />
+                          xlink:href="../../symbols/strkoerperauf_rs.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -491,7 +491,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -504,7 +504,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/strkoerperauf_rs.svg" />
+                          xlink:href="../../symbols/strkoerperauf_rs.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -536,7 +536,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -549,7 +549,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/strkoerperstuetz_rs.svg" />
+                          xlink:href="../../symbols/strkoerperstuetz_rs.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>

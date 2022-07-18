@@ -21,10 +21,10 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:sed="http://www.deegree.org/se"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xmlns:sed="http://www.deegree.org/se"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_Schutzgebiet</FeatureTypeName>
   <!-- TODO: Linien & Punkte -->
@@ -92,12 +92,12 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/naturschutzrecht.svg" />
+                              xlink:href="../../symbols/naturschutzrecht.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill-opacity">0</SvgParameter>
               </Fill>
-               <Stroke>
+              <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
                 <SvgParameter name="stroke-width">0.1</SvgParameter>
@@ -176,12 +176,12 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/naturschutzrecht.svg" />
+                              xlink:href="../../symbols/naturschutzrecht.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill-opacity">0</SvgParameter>
               </Fill>
-               <Stroke>
+              <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
                 <SvgParameter name="stroke-width">0.1</SvgParameter>
@@ -211,7 +211,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -224,7 +224,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/FreeSans.ttf" />
+                          xlink:href="../../symbols/FreeSans.ttf"/>
           <Format>ttf</Format>
           <MarkIndex>49</MarkIndex>
           <Fill>
@@ -274,7 +274,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -287,7 +287,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebnatpark_sym.svg" />
+                          xlink:href="../../symbols/schutzgebnatpark_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -301,7 +301,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -338,7 +338,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -351,7 +351,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebbiosph_sym.svg" />
+                          xlink:href="../../symbols/schutzgebbiosph_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -382,7 +382,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1300</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -395,7 +395,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/FreeSans.ttf" />
+                          xlink:href="../../symbols/FreeSans.ttf"/>
           <Format>ttf</Format>
           <MarkIndex>47</MarkIndex>
           <Fill>
@@ -445,7 +445,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -458,7 +458,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebnaturpark_sym.svg" />
+                          xlink:href="../../symbols/schutzgebnaturpark_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -472,7 +472,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -509,7 +509,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -522,7 +522,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebnaturdenk_sym.svg" />
+                          xlink:href="../../symbols/schutzgebnaturdenk_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -536,7 +536,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -573,7 +573,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -586,7 +586,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebgeschla_sym.svg" />
+                          xlink:href="../../symbols/schutzgebgeschla_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -600,7 +600,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -637,7 +637,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1700</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -650,7 +650,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebgeschbio_sym.svg" />
+                          xlink:href="../../symbols/schutzgebgeschbio_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -664,7 +664,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -701,7 +701,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1800</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -714,7 +714,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebgembed_sym.svg" />
+                          xlink:href="../../symbols/schutzgebgembed_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -745,7 +745,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
           <ogc:Literal>1900</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -758,7 +758,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebeurvog_sym.svg" />
+                          xlink:href="../../symbols/schutzgebeurvog_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>

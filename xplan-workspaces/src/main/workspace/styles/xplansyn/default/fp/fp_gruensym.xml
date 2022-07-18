@@ -21,9 +21,9 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:FP_Gruen</FeatureTypeName>
   <!-- XP_ZweckbestimmungGruen -->
@@ -54,7 +54,7 @@
   <!-- ParkanlageHistorisch -->
   <!--
       <Rule> <Name>ParkanlageHistorisch</Name> <Description> <Title>FP: Historische Parkanlage</Title> </Description>
-      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>10000</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -66,7 +66,7 @@
   <!-- ParkanlageNaturnah -->
   <!--
       <Rule> <Name>ParkanlageNaturnah</Name> <Description> <Title>FP: Naturnahe Parkanlage</Title> </Description>
-      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>10001</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -78,7 +78,7 @@
   <!-- ParkanlageWaldcharakter -->
   <!--
       <Rule> <Name>ParkanlageWaldcharakter</Name> <Description> <Title>FP: Parkanlage mit Waldcharakter</Title> </Description>
-      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>10002</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -90,7 +90,7 @@
   <!-- NaturnaheUferParkanlage -->
   <!--
       <Rule> <Name>NaturnaheUferParkanlage</Name> <Description> <Title>FP: Naturnahe Uferparkanlage</Title> </Description>
-      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>10003</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -104,7 +104,7 @@
   <!-- Reitsportanlage -->
   <!--
       <Rule> <Name>Reitsportanlage</Name> <Description> <Title>FP: Reitsportanlage</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>14000</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -116,7 +116,7 @@
   <!-- Hundesportanlage -->
   <!--
       <Rule> <Name>Hundesportanlage</Name> <Description> <Title>FP: Hundesportanlage</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>14001</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -128,7 +128,7 @@
   <!-- Wassersportanlage -->
   <!--
       <Rule> <Name>Wassersportanlage</Name> <Description> <Title>FP: Wassersportanlage</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>14002</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -140,7 +140,7 @@
   <!-- Schiessstand -->
   <!--
       <Rule> <Name>Schiessstand</Name> <Description> <Title>FP: Schiessstand</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>14003</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -154,7 +154,7 @@
   <!-- Skisport -->
   <!--
       <Rule> <Name>Skisport</Name> <Description> <Title>FP: Skisport</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>14005</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -166,7 +166,7 @@
   <!-- Tennisanlage -->
   <!--
       <Rule> <Name>Tennisanlage</Name> <Description> <Title>FP: Tennisanlage</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>14006</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -178,7 +178,7 @@
   <!-- SonstigerSoprtplatz -->
   <!--
       <Rule> <Name>SonstigerSoprtplatz</Name> <Description> <Title>FP: Sonstiger Sportplatz</Title> </Description>
-      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>14007</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -192,7 +192,7 @@
   <!-- Abenteuerspielplatz -->
   <!--
       <Rule> <Name>Abenteuerspielplatz</Name> <Description> <Title>FP: Abenteuerspielplatz</Title> </Description>
-      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>16001</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -204,7 +204,7 @@
   <!-- Campingplatz -->
   <!--
       <Rule> <Name>Campingplatz</Name> <Description> <Title>FP: Campingplatz</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>18000</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -218,7 +218,7 @@
   <!-- Festplatz -->
   <!--
       <Rule> <Name>Festplatz</Name> <Description> <Title>FP: Festplatz</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>22001</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -234,7 +234,7 @@
   <!-- FeldWaldWiese -->
   <!--
       <Rule> <Name>FeldWaldWiese</Name> <Description> <Title>FP: Feld Wald Wiese</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>24002</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -246,7 +246,7 @@
   <!-- Uferschutzstreifen -->
   <!--
       <Rule> <Name>Uferschutzstreifen</Name> <Description> <Title>FP: Uferschutzstreifen</Title> </Description>
-      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:Filter> <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>24003</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -258,7 +258,7 @@
   <!-- Abschirmgruen -->
   <!--
       <Rule> <Name>Abschirmgruen</Name> <Description> <Title>FP: Abschirmgrün</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>24004</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -271,7 +271,7 @@
   <!--
       <Rule> <Name>UmweltbildungsparkSchaugatter</Name> <Description> <Title>FP: Umweltbildungspark Schaugatter</Title>
       </Description> <ogc:Filter> <ogc:PropertyIsEqualTo>
-      <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName> <ogc:Literal>24005</ogc:Literal>
+      <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName> <ogc:Literal>24005</ogc:Literal>
       </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -283,7 +283,7 @@
   <!-- RuhenderVerkehr -->
   <!--
       <Rule> <Name>RuhenderVerkehr</Name> <Description> <Title>FP: Ruhender Verkehr</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>24006</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
@@ -295,7 +295,7 @@
   <!-- Gaertnerei -->
   <!--
       <Rule> <Name>Gaertnerei</Name> <Description> <Title>FP: Gärtnerei</Title> </Description> <ogc:Filter>
-      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmungCode</ogc:PropertyName>
+      <ogc:PropertyIsEqualTo> <ogc:PropertyName>xplan:besondereZweckbestimmung</ogc:PropertyName>
       <ogc:Literal>99990</ogc:Literal> </ogc:PropertyIsEqualTo> </ogc:Filter> <MaxScaleDenominator>10000</MaxScaleDenominator> <PointSymbolizer uom="meter"> <Geometry>
       <ogc:PropertyName>xplan:symbolPosition</ogc:PropertyName> </Geometry> <Graphic> <Mark> <OnlineResource
       xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="../../symbols/todo.svg" />
