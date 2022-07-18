@@ -134,7 +134,7 @@ public class ValidatorConfigurationParserTest {
 	private PropertiesLoader mockPropertiesLoaderWithProfile(String validationReportDirectory)
 			throws ConfigurationException {
 		PropertiesLoader propertiesLoader = mockPropertiesLoader(validationReportDirectory);
-		when(propertiesLoader.resolveDirectory(eq("profile"))).thenReturn(tempFolder.getRoot().toPath());
+		when(propertiesLoader.resolveDirectory(eq("profiles"))).thenReturn(tempFolder.getRoot().toPath());
 		return propertiesLoader;
 	}
 

@@ -128,7 +128,7 @@ public class ValidatorConfigurationParser {
 	}
 
 	private List<ValidatorProfile> parseValidatorProfiles(PropertiesLoader propertiesLoader) throws IOException {
-		Path profileDirectory = propertiesLoader.resolveDirectory("profile");
+		Path profileDirectory = propertiesLoader.resolveDirectory("profiles");
 		List<ValidatorProfile> validatorProfiles = new ArrayList<>();
 		if (profileDirectory != null && Files.exists(profileDirectory)) {
 			List<Path> profileConfigs = Files.find(profileDirectory, 1, (path, basicFileAttributes) -> {
