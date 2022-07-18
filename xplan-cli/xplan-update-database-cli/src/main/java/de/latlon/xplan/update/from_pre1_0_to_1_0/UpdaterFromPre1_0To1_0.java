@@ -47,7 +47,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
@@ -145,7 +145,7 @@ public class UpdaterFromPre1_0To1_0 extends AbstractUpdater {
 			stmt = conn.prepareStatement(updateSql);
 
 			stmt.setString(1, retrieveRechtsstandWert(synFc, type));
-			stmt.setString(2, retrieveAdditionalType(synFc, type));
+			stmt.setString(2, retrieveAdditionalTypeWert(synFc, type));
 			stmt.setString(3, retrieveDistrict(fc.getFeatures(), type));
 			stmt.setString(4, createWktFromTransformedEnvelope(fc));
 			stmt.setInt(5, planId);

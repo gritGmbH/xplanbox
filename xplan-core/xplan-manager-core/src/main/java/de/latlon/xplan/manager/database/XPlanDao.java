@@ -89,7 +89,7 @@ import java.util.zip.GZIPOutputStream;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
@@ -1292,7 +1292,7 @@ public class XPlanDao {
 			stmt.setBoolean(7, fc.getHasRaster());
 			stmt.setString(8, retrieveRechtsstandWert(synFc, archive.getType()));
 			stmt.setTimestamp(9, convertToSqlTimestamp(fc.getPlanReleaseDate()));
-			stmt.setString(10, retrieveAdditionalType(synFc, archive.getType()));
+			stmt.setString(10, retrieveAdditionalTypeWert(synFc, archive.getType()));
 			stmt.setString(11, retrievePlanStatusMessage(planStatus));
 			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType()));
 			stmt.setTimestamp(13, convertToSqlTimestamp(sortDate));
@@ -1375,7 +1375,7 @@ public class XPlanDao {
 			stmt = conn.prepareStatement(updateSql);
 			stmt.setString(1, fc.getPlanName());
 			stmt.setString(2, retrieveRechtsstandWert(synFc, type));
-			stmt.setString(3, retrieveAdditionalType(synFc, type));
+			stmt.setString(3, retrieveAdditionalTypeWert(synFc, type));
 			stmt.setTimestamp(4, convertToSqlTimestamp(sortDate));
 			stmt.setTimestamp(5, convertToSqlTimestamp(newXPlanMetadata.getStartDateTime()));
 			stmt.setTimestamp(6, convertToSqlTimestamp(newXPlanMetadata.getEndDateTime()));

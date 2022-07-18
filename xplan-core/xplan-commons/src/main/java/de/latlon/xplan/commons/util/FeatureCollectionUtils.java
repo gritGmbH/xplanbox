@@ -98,23 +98,27 @@ public class FeatureCollectionUtils {
 	}
 
 	/**
-	 * Retrieves rechtsstandWert of a XPlan-FeatureCollection.
-	 * @param fc XPlan-FeatureCollection, never <code>null</code>
+	 * Retrieves the translated rechtsstand ("rechtsstandWert") of a synthesized
+	 * XPlan-FeatureCollection.
+	 * @param fc synthesized XPlan-FeatureCollection, never <code>null</code>
 	 * @param type XPlan-Type, never <code>null</code>
-	 * @return rechtsstandWert of the plan or <code>null</code> if no value was found
+	 * @return translated rechtsstand ("rechtsstandWert") of the plan or <code>null</code>
+	 * if no value was found
 	 */
 	public static String retrieveRechtsstandWert(FeatureCollection fc, XPlanType type) {
 		return retrievePlanProperty(fc, type, "rechtsstandWert");
 	}
 
 	/**
-	 * Retrieves the additional type ("sonstPlanArt") of a XPlan-FeatureCollection.
-	 * @param fc XPlan-FeatureCollection, never <code>null</code>
+	 * Retrieves the translated additional type ("sonstPlanArtWert") of a synthesized
+	 * XPlan-FeatureCollection.
+	 * @param fc synthesized XPlan-FeatureCollection, never <code>null</code>
 	 * @param type XPlan-Type, never <code>null</code>
-	 * @return additional type value or <code>null</code> if no value was found
+	 * @return translated sonstPlanArtWert value or <code>null</code> if no value was
+	 * found
 	 */
-	public static String retrieveAdditionalType(FeatureCollection fc, XPlanType type) {
-		return retrievePlanProperty(fc, type, "sonstPlanArt");
+	public static String retrieveAdditionalTypeWert(FeatureCollection fc, XPlanType type) {
+		return retrievePlanProperty(fc, type, "sonstPlanArtWert");
 	}
 
 	/**
