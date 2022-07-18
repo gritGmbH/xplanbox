@@ -47,8 +47,14 @@ public class ValidationSettings implements Serializable {
 
 	public ValidationSettings(String validationName, List<ValidationType> validationTypes,
 			List<ValidationOption> extendedOptions) {
+		this(validationName, validationTypes, Collections.emptyList(), extendedOptions);
+	}
+
+	public ValidationSettings(String validationName, List<ValidationType> validationTypes, List<String> profiles,
+			List<ValidationOption> extendedOptions) {
 		this.validationName = validationName;
 		this.validationTypes = validationTypes;
+		this.profiles = profiles;
 		this.extendedOptions = extendedOptions;
 	}
 

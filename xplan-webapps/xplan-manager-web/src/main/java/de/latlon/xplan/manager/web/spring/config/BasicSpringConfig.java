@@ -108,12 +108,22 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
+	public List<RulesMetadata> profileMetadata(ValidatorConfiguration validatorConfiguration)
+			throws ValidatorException {
+		List<RulesMetadata> rulesMetadata = new ArrayList<>();
+		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
+			RulesMetadata newRulesMetadata = createFromConfig(validatorProfile);
+			rulesMetadata.add(newRulesMetadata);
+		}
+		return rulesMetadata;
+	}
+
+	@Bean
 	public List<SemanticProfileValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
 			throws ValidatorException {
 		List<SemanticProfileValidator> semanticValidators = new ArrayList<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			RulesMetadata rulesMetadata = new RulesMetadata(validatorProfile.getName(),
-					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
+			RulesMetadata rulesMetadata = createFromConfig(validatorProfile);
 			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
 					rulesPath, rulesMetadata);
@@ -253,6 +263,11 @@ public class BasicSpringConfig {
 			return validationRulesDirectory;
 		URI rulesPath = BasicSpringConfig.class.getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
+	}
+
+	private RulesMetadata createFromConfig(ValidatorProfile validatorProfile) {
+		return new RulesMetadata(validatorProfile.getName(), validatorProfile.getDescription(),
+				validatorProfile.getVersion(), validatorProfile.getSource());
 	}
 
 }
