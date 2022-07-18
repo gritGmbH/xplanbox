@@ -1742,7 +1742,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch errors">
               <con:configuration>
                 <path>$.validationResult.geometrisch.errors</path>
-                <content>["LinearRing (Zeile 96, Spalte 13): 2.2.2.1: Ring nicht geschlossen: (563233.311,5929068.039) != (563243.311,5929078.039), Abstand: 14.142135623730951","Polygon (Zeile 98, Spalte 9): Points of LinearRing do not form a closed linestring","Die geometrische Validierung wurde aufgrund von schwerwiegenden Fehlern abgebrochen. Das XPlanGML-Dokument (xplan.gml) entspricht nicht dem GML-Schema."]</content>
+                <content>["LinearRing (Zeile 96, Spalte 13): 2.2.2.1: Ring nicht geschlossen: (563233.311,5929068.039) != (563243.311,5929078.039), Abstand: 14.142135623730951","Polygon (Zeile 98, Spalte 9): Points of LinearRing do not form a closed linestring","Die geometrische Validierung wurde aufgrund von schwerwiegenden Geometriefehlern abgebrochen."]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
