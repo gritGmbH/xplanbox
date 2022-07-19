@@ -33,6 +33,7 @@ import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import de.latlon.xplan.validator.semantic.configuration.message.FileRulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
@@ -110,8 +111,10 @@ public class XPlanValidatorWebSpringConfig {
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
 			RulesMetadata rulesMetadata = createFromConfig(validatorProfile);
 			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
+			FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(
+					validatorProfile.getRulesDescription());
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
-					rulesPath, rulesMetadata);
+					rulesPath, rulesMetadata, messagesAccessor);
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
 			semanticValidators

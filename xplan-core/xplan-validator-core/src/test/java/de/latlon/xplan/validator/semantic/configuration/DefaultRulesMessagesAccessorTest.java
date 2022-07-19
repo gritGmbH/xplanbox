@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.semantic.configuration;
 
+import de.latlon.xplan.validator.semantic.configuration.message.DefaultRulesMessagesAccessor;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -30,41 +31,43 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
-public class RulesMessagesAccessorTest {
+public class DefaultRulesMessagesAccessorTest {
+
+	private DefaultRulesMessagesAccessor rulesMessagesAccessor = new DefaultRulesMessagesAccessor();
 
 	@Test
 	public void testRetrieveMessageForRule_KnownRuleWithoutVersion() {
-		String message = RulesMessagesAccessor.retrieveMessageForRule("3.1.2.3", null);
+		String message = rulesMessagesAccessor.retrieveMessageForRule("3.1.2.3", null);
 		assertThat(message, is("Regel 3.1.2.3 muss erf\u00FCllt sein"));
 	}
 
 	@Test
 	public void testRetrieveMessageForRule_UnknownRuleWithoutVersion() {
-		String message = RulesMessagesAccessor.retrieveMessageForRule("unknownRule", null);
+		String message = rulesMessagesAccessor.retrieveMessageForRule("unknownRule", null);
 		assertThat(message, notNullValue());
 	}
 
 	@Test
 	public void testRetrieveMessageForRule_KnownRuleWithVersion() {
-		String message = RulesMessagesAccessor.retrieveMessageForRule("3.1.2.3", XPLAN_51);
+		String message = rulesMessagesAccessor.retrieveMessageForRule("3.1.2.3", XPLAN_51);
 		assertThat(message, is("XP_Bereich: Relation auf Basis-Rasterplan"));
 	}
 
 	@Test
 	public void testRetrieveMessageForRule_UnknownRuleWithVersion() {
-		String message = RulesMessagesAccessor.retrieveMessageForRule("unknownRule", XPLAN_51);
+		String message = rulesMessagesAccessor.retrieveMessageForRule("unknownRule", XPLAN_51);
 		assertThat(message, notNullValue());
 	}
 
 	@Test
 	public void testRetrieveMessageForRule_EmptyRule() {
-		String message = RulesMessagesAccessor.retrieveMessageForRule("", null);
+		String message = rulesMessagesAccessor.retrieveMessageForRule("", null);
 		assertThat(message, notNullValue());
 	}
 
 	@Test
 	public void testRetrieveMessageForRule_NullRule() {
-		String message = RulesMessagesAccessor.retrieveMessageForRule(null, null);
+		String message = rulesMessagesAccessor.retrieveMessageForRule(null, null);
 		assertThat(message, notNullValue());
 	}
 
