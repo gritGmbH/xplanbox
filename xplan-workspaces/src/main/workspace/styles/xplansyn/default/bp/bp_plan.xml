@@ -21,10 +21,10 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:sed="http://www.deegree.org/se"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xmlns:sed="http://www.deegree.org/se"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_Plan</FeatureTypeName>
   <Rule>
@@ -32,7 +32,7 @@
     <Description>
       <Title>BP: Plan</Title>
     </Description>
-	<MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:raeumlicherGeltungsbereich</ogc:PropertyName>
@@ -44,7 +44,7 @@
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
-	  <sed:PerpendicularOffset type="Edged">1.5</sed:PerpendicularOffset>
+      <sed:PerpendicularOffset type="Edged">1.5</sed:PerpendicularOffset>
     </PolygonSymbolizer>
     <PolygonSymbolizer uom="meter">
       <Geometry>
@@ -64,7 +64,7 @@
     <Description>
       <Title>BP: Plan</Title>
     </Description>
-	<MinScaleDenominator>25000</MinScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
     <PolygonSymbolizer uom="pixel">
       <Geometry>
         <ogc:PropertyName>xplan:raeumlicherGeltungsbereich</ogc:PropertyName>

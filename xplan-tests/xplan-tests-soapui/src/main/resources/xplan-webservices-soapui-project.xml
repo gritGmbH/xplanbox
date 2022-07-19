@@ -88,6 +88,123 @@ exists(/wms:WMS_Capabilities)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="fb59ead5-3bd6-4757-bee0-644ca36d9c63">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>BP_Planvektor,FP_Planvektor,LP_Planvektor,RP_Planvektor,SO_Planvektor</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
       <con:properties/>
     </con:testCase>
     <con:testCase id="b578a780-8249-44ea-9b0e-9c3159938e1e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="wmspre" searchProperties="true">
@@ -141,6 +258,123 @@ exists(/wms:WMS_Capabilities)</path>
               <con:default>GetCapabilities</con:default>
               <con:path xsi:nil="true"/>
               <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="50c1a176-ee35-4135-9303-0f267ab2d851">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>BP_Planvektor,FP_Planvektor,LP_Planvektor,RP_Planvektor,SO_Planvektor</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
             </con:parameter>
           </con:parameters>
         </con:config>
@@ -199,6 +433,2738 @@ exists(/wms:WMS_Capabilities)</path>
               <con:default>GetCapabilities</con:default>
               <con:path xsi:nil="true"/>
               <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="cb512698-470d-4025-82a5-6e099766f495">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/wmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>BP_Planvektor,FP_Planvektor,LP_Planvektor,RP_Planvektor,SO_Planvektor</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="8c91b135-32c2-451e-93ca-b0b5fa898c59" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="bpwms" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="c1b36314-548a-4b85-87e5-5bcd8613baff">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="5d93782a-7f3e-4998-8cd5-c89c665c7701">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="9f0b3a32-a0a9-4310-b0c7-d0c7f1330fb6" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="fpwms" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="4f9dd4a3-c6ee-49d2-9d84-7b991696f992">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="4a375baf-7c68-4665-887e-2499dbd56ff3">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="66c3a34e-1964-4f2a-baa2-4cb2a0d9d5bd" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="lpwms" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="5536713c-eeb8-40c2-8d29-f7d95ca2a229">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="0cefe82d-2a42-4bc5-ade1-b8cf3e04f220">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="3850e181-bea2-46a7-957f-9b0fb6fead83" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="rpwms" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="9a0853c9-9945-4cca-8c63-6df81ab467f5">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="b89ced3c-5106-4020-9098-69b21aa9e0fa">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="94caef61-3de5-4d54-b215-964385882331" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="sowms" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="9cda3ff1-d320-456f-b2ad-52ee5976c3d8">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="39afd5fc-fd05-49f4-9d09-49d2a39bf42f">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowms</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="ec2e2efc-507d-481f-b952-d12712bea68c" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="bpwmspre" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="8069df78-94c7-4f94-abc1-10349aa35370">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="737c53f1-5555-4f06-9b02-a9ce6d992d47" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="239fb717-306f-4f66-becd-b995f8d4324d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="9bda72c7-23ad-453f-a53e-364b5167f2b5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="fpwmspre" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="be4813ad-bf8a-47e9-80ee-6b0227954aa8">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="737c53f1-5555-4f06-9b02-a9ce6d992d47" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="880beb98-4366-4658-b529-30985ab8d0c4">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="fdbc137a-3b18-44c1-9f97-d27564b0b8aa" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="lpwmspre" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="d8f0dbc9-02d4-459b-8c92-4d4be0201f35">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="737c53f1-5555-4f06-9b02-a9ce6d992d47" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="81ff94b9-1972-4797-93ae-7c12eaaab7f4">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="1f06bd4a-a7c7-48dc-962d-ba23c23929a0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="rpwmspre" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="9b67ff6d-940d-4af9-b4af-c030139ba908">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="737c53f1-5555-4f06-9b02-a9ce6d992d47" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="8d2d7d53-0fb4-4935-a579-0e73c3316d3c">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="819fbe74-6a9a-4a24-9765-9c86001db249" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="sowmspre" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="81260445-9b19-4c02-a008-c265ae6f47d5">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="737c53f1-5555-4f06-9b02-a9ce6d992d47" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="0f00986a-6f80-4e94-82b9-e57ff2755639" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="cba69f2f-6780-406b-bf63-64ec6ab4623e">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowmspre</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="20217e97-dbdd-4ddf-af40-9a07d2fca91e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="bpwmsarchive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="d7a8304f-ee18-4a19-8006-6f6e17ae6a37">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="1aa96199-3dfe-48cb-a784-acc137e9febc" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:encoding xsi:nil="true"/>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="21afea9d-5c9c-4efd-947d-975d582c3e0d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/bpwmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="4987cdce-931b-410c-adef-ae2169695122" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="fpwmsarchive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="45ef45cb-7760-4f7a-9726-c60902fb2466">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="1aa96199-3dfe-48cb-a784-acc137e9febc" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:encoding xsi:nil="true"/>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="7c8b1e8b-ac9e-478d-a81f-fd0f75ed37ae">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/fpwmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="80356b1f-8781-4d2c-923c-4b64a72dff65" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="lpwmsarchive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="84766e48-889a-4e65-8fc7-0696a6ee50fb">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="1aa96199-3dfe-48cb-a784-acc137e9febc" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:encoding xsi:nil="true"/>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="693bb19e-f559-44d8-bef3-20877570678d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/lpwmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="04acac5a-424d-4163-9cda-8fc6b049fd5a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="rpwmsarchive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="1f63cdf8-869b-4ac1-9e5a-0e3304b05089">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="1aa96199-3dfe-48cb-a784-acc137e9febc" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:encoding xsi:nil="true"/>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="cace66c2-a65f-4e22-bf20-9aabeae010b0">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/rpwmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="b4147e8e-5fa0-426a-b5c7-fdbb26475c43" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="sowmsarchive" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="httprequest" name="GetCapabilities" id="298bae7f-fa79-432f-8024-80cccd0b8fa0">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="1aa96199-3dfe-48cb-a784-acc137e9febc" name="GetCapabilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:encoding xsi:nil="true"/>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="1aff7249-968d-48e0-95c5-26a240c6492e" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(/wms:WMS_Capabilities)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetMap" id="3572025b-9618-404e-9570-afd565c22840">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetMap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/sowmsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="Simple Contains" id="2d84ae43-1da4-4670-a19f-09ec1756da30" name="Contains">
+            <con:configuration>
+              <token>PNG</token>
+              <ignoreCase>false</ignoreCase>
+              <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>SERVICE</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>VERSION</con:name>
+              <con:value>1.3.0</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>1.3.0</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>REQUEST</con:name>
+              <con:value>GetMap</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetMap</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>BBOX</con:name>
+              <con:value>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>559353.370312843821,5938419.563309948891,560301.9464769054903,5939194.931326406077</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>CRS</con:name>
+              <con:value>EPSG:25832</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>EPSG:25832</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>WIDTH</con:name>
+              <con:value>817</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>817</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>HEIGHT</con:name>
+              <con:value>667</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>667</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>LAYERS</con:name>
+              <con:value>bp,fp,lp,rp,so</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>BP_Planvektor</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>STYLES</con:name>
+              <con:value>,,,,</con:value>
+              <con:style>QUERY</con:style>
+              <con:default/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT</con:name>
+              <con:value>image/png</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>image/png</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>DPI</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>MAP_RESOLUTION</con:name>
+              <con:value>96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>FORMAT_OPTIONS</con:name>
+              <con:value>dpi:96</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>dpi:96</con:default>
+            </con:parameter>
+            <con:parameter>
+              <con:name>TRANSPARENT</con:name>
+              <con:value>TRUE</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>TRUE</con:default>
             </con:parameter>
           </con:parameters>
         </con:config>
@@ -502,11 +3468,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>117</con:value>
+          <con:value>32</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_a48fc789-6ecf-466f-bbbb-894fa12b24d0</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_32c28b24-9e5b-4b6f-a078-ec235241b303</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -727,7 +3693,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>118</con:value>
+          <con:value>33</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -959,7 +3925,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>119</con:value>
+          <con:value>34</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -1090,9 +4056,9 @@ exists(/wms:WMS_Capabilities)</path>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetFeatureInfo-html" id="1094d6a2-2566-4f60-940f-33760270271d">
+      <con:testStep type="httprequest" name="GetFeatureInfo-html BP_BaugebietsTeilFlaeche" id="1094d6a2-2566-4f60-940f-33760270271d">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-html" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-html BP_BaugebietsTeilFlaeche" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -1115,6 +4081,15 @@ exists(/wms:WMS_Capabilities)</path>
               <token>Eidelstedt 4 soapui-webservices</token>
               <ignoreCase>false</ignoreCase>
               <useRegEx>false</useRegEx>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="3d387826-ddf7-4f0d-b54b-18ad0f1951b1" name="Rechtscharacter ist Festsetzung">
+            <con:configuration>
+              <path>//table/tr[td/strong = 'Rechtscharakter']/td[2]</path>
+              <content>Festsetzung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
           <con:credentials>
@@ -1219,9 +4194,9 @@ exists(/wms:WMS_Capabilities)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetFeatureInfo-xml" id="d4d34559-facc-4bb7-8129-b01b5ed3dc0f">
+      <con:testStep type="httprequest" name="GetFeatureInfo-xml BP_BaugebietsTeilFlaeche" id="d4d34559-facc-4bb7-8129-b01b5ed3dc0f">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-xml BP_BaugebietsTeilFlaeche" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -1232,12 +4207,78 @@ exists(/wms:WMS_Capabilities)</path>
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="XPath Match">
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="xpPlanName">
             <con:configuration>
               <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
 
 //xplanung:xpPlanName</path>
               <content>Eidelstedt 4 soapui-webservices</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="rechtscharakter">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:rechtscharakter</path>
+              <content>1000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="rechtscharakterWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:rechtscharakterWert</path>
+              <content>Festsetzung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="allgArtDerBaulNutzung">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:allgArtDerBaulNutzung</path>
+              <content>3000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="allgArtDerBaulNutzungWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:allgArtDerBaulNutzungWert</path>
+              <content>GewerblicheBauflaeche</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="besondereArtDerBaulNutzung">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:besondereArtDerBaulNutzung</path>
+              <content>1800</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="besondereArtDerBaulNutzungWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:besondereArtDerBaulNutzungWert</path>
+              <content>Industriegebiet</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -1345,9 +4386,9 @@ exists(/wms:WMS_Capabilities)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetFeatureInfo-xml Dokumenttyp" id="3c2ad88a-22b9-435d-b25a-eac4b292905b">
+      <con:testStep type="httprequest" name="GetFeatureInfo-xml BP_Plan" id="3c2ad88a-22b9-435d-b25a-eac4b292905b">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-xml Dokumenttyp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetFeatureInfo-xml BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -1358,13 +4399,101 @@ exists(/wms:WMS_Capabilities)</path>
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="XPath Match">
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="externeReferenz">
             <con:configuration>
               <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
 
 //xplanung:externeReferenz</path>
               <content>[/getAttachment?featureID=*&amp;filename=Test_Auskr.gml | Satzung]</content>
               <allowWildcards>true</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="verlaengerungVeraenderungssperre">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:verlaengerungVeraenderungssperre</path>
+              <content>2000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="verlaengerungVeraenderungssperreWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:verlaengerungVeraenderungssperreWert</path>
+              <content>ErsteVerlaengerung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="planArt">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:planArt</path>
+              <content>1000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:planArtWert</path>
+              <content>BPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="verfahren">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:verfahren</path>
+              <content>1000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="verfahrenWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:verfahrenWert</path>
+              <content>Normal</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:rechtsstand</path>
+              <content>4000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="6d95571d-c82e-41d4-9086-cfd5d1e8527b" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace xplanung='http://www.deegree.org/xplanung/1/0';
+
+//xplanung:rechtsstandWert</path>
+              <content>InkraftGetreten</content>
+              <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
@@ -1556,11 +4685,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>120</con:value>
+          <con:value>35</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>121</con:value>
+          <con:value>36</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -2150,7 +5279,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>122</con:value>
+          <con:value>29</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -2234,13 +5363,61 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <codes>200</codes>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match">
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
 //wfs:member/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
               <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArt</path>
+              <content>1000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>BPlan</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>4000</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>InkraftGetreten</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -2329,7 +5506,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>123</con:value>
+          <con:value>30</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4267,7 +7444,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>124</con:value>
+          <con:value>31</con:value>
         </con:property>
       </con:properties>
     </con:testCase>

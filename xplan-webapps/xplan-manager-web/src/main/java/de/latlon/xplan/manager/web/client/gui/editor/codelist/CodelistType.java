@@ -28,6 +28,6 @@ package de.latlon.xplan.manager.web.client.gui.editor.codelist;
  */
 public enum CodelistType {
 
-	BP_PlanArt, BP_SonstPlanArt, BP_Rechtsstand, BP_Verfahren, XP_RechtscharakterPlanaenderung;
+	PlanArt, SonstPlanArt, Rechtsstand, Verfahren, XP_RechtscharakterPlanaenderung;
 
 }

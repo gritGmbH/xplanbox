@@ -20,15 +20,11 @@
  */
 package de.latlon.xplan.manager.web.client.gui.editor.change;
 
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.XP_RechtscharakterPlanaenderung;
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
-
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
-
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBox;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
@@ -37,6 +33,10 @@ import de.latlon.xplan.manager.web.client.gui.widget.MandatoryTextBox;
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.XP_RechtscharakterPlanaenderung;
+import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 
 /**
  * Dialog to edit an existing or create a new {@link Change} of XPlan version 4.1 or 5.0.
@@ -60,16 +60,16 @@ public class ChangesXplanDialog extends EditDialogBox implements Validable {
 	 * @param changeToEdit the change to edit, should not <code>null</code> (a new change
 	 * is created)
 	 */
-	public ChangesXplanDialog(EditVersion version, Change changeToEdit) {
-		this(version, MESSAGES.editCaptionChangesDialogEdit());
+	public ChangesXplanDialog(EditVersion version, EditPlanType planType, Change changeToEdit) {
+		this(version, planType, MESSAGES.editCaptionChangesDialogEdit());
 		setChange(changeToEdit);
 	}
 
 	/**
 	 * Instantiates a {@link ChangesXplanDialog} to create a new {@link Change}
 	 */
-	public ChangesXplanDialog(EditVersion version) {
-		this(version, MESSAGES.editCaptionChangesDialogNew());
+	public ChangesXplanDialog(EditVersion version, EditPlanType planType) {
+		this(version, planType, MESSAGES.editCaptionChangesDialogNew());
 	}
 
 	@Override
@@ -89,9 +89,9 @@ public class ChangesXplanDialog extends EditDialogBox implements Validable {
 		return change;
 	}
 
-	private ChangesXplanDialog(EditVersion version, String title) {
+	private ChangesXplanDialog(EditVersion version, EditPlanType planType, String title) {
 		super(title);
-		this.legalNature = createMandatoryCodeListInput(version, XP_RechtscharakterPlanaenderung);
+		this.legalNature = createMandatoryCodeListInput(version, planType, XP_RechtscharakterPlanaenderung);
 		initDialog(createGui());
 	}
 

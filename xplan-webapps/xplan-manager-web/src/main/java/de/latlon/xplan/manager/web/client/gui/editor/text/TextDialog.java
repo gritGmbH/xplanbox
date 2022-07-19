@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
@@ -61,15 +62,15 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 	 * @param textToEdit the text to edit, should not <code>null</code> (a new change is
 	 * created)
 	 */
-	public TextDialog(EditVersion version, Text textToEdit) {
-		this(version, textToEdit, MESSAGES.editCaptionTextsDialogEdit());
+	public TextDialog(EditVersion version, EditPlanType planType, Text textToEdit) {
+		this(version, planType, textToEdit, MESSAGES.editCaptionTextsDialogEdit());
 	}
 
 	/**
 	 * Instantiates a {@link TextDialog} to create a new {@link Change}
 	 */
-	public TextDialog(EditVersion version) {
-		this(version, null, MESSAGES.editCaptionTextsDialogNew());
+	public TextDialog(EditVersion version, EditPlanType planType) {
+		this(version, planType, null, MESSAGES.editCaptionTextsDialogNew());
 	}
 
 	/**
@@ -126,11 +127,17 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 		return valid;
 	}
 
-	private TextDialog(EditVersion version, Text textToEdit, String title) {
+	private TextDialog(EditVersion version, EditPlanType planType, Text textToEdit, String title) {
 		super(version, title);
 		this.textToEdit = textToEdit;
 		if (!XPLAN_41.equals(version)) {
-			this.rechtscharakterType = new TypeCodeListBox<TextRechtscharacterType>(TextRechtscharacterType.class);
+			List<TextRechtscharacterType> entriesFromOtherPlanTypeOrVersion = new ArrayList<>();
+			for (TextRechtscharacterType textRechtscharacterType : TextRechtscharacterType.values()) {
+				if (!textRechtscharacterType.isCodeFor(version.name(), planType.name()))
+					entriesFromOtherPlanTypeOrVersion.add(textRechtscharacterType);
+			}
+			this.rechtscharakterType = new TypeCodeListBox<TextRechtscharacterType>(TextRechtscharacterType.class,
+					entriesFromOtherPlanTypeOrVersion, false);
 		}
 		initDialog(createFormContent());
 		setText(textToEdit);

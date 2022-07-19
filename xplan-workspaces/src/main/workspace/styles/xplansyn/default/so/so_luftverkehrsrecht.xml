@@ -32,10 +32,10 @@
       <Title>SO: Luftverkehrsrecht</Title>
     </Description>
     <ogc:Filter>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:flaechenschluss</ogc:PropertyName>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
+      <ogc:PropertyIsEqualTo>
+        <ogc:PropertyName>xplan:flaechenschluss</ogc:PropertyName>
+        <ogc:Literal>true</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -56,10 +56,10 @@
       <Title>SO: Luftverkehrsrecht</Title>
     </Description>
     <ogc:Filter>
-		<ogc:PropertyIsNotEqualTo>
-			<ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
-			<ogc:Literal>7000</ogc:Literal>
-		</ogc:PropertyIsNotEqualTo>
+      <ogc:PropertyIsNotEqualTo>
+        <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
+        <ogc:Literal>7000</ogc:Literal>
+      </ogc:PropertyIsNotEqualTo>
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -79,16 +79,16 @@
       <Title>SO: Luftverkehrsrecht</Title>
     </Description>
     <ogc:Filter>
-	  <ogc:And>
-		  <ogc:PropertyIsNotEqualTo>
-			<ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
-			<ogc:Literal>6000</ogc:Literal>
-		  </ogc:PropertyIsNotEqualTo>
-		  <ogc:PropertyIsNotEqualTo>
-			<ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
-			<ogc:Literal>7000</ogc:Literal>
-		  </ogc:PropertyIsNotEqualTo>
-	  </ogc:And>
+      <ogc:And>
+        <ogc:PropertyIsNotEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
+          <ogc:Literal>6000</ogc:Literal>
+        </ogc:PropertyIsNotEqualTo>
+        <ogc:PropertyIsNotEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
+          <ogc:Literal>7000</ogc:Literal>
+        </ogc:PropertyIsNotEqualTo>
+      </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -108,16 +108,16 @@
       <Title>Lärmschutzbereich</Title>
     </Description>
     <ogc:Filter>
-		<ogc:And>
-			<ogc:PropertyIsEqualTo>
-				<ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-				<ogc:Literal>BP_Plan</ogc:Literal>
-			</ogc:PropertyIsEqualTo>
-			<ogc:PropertyIsEqualTo>
-				<ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
-				<ogc:Literal>6000</ogc:Literal>
-			</ogc:PropertyIsEqualTo>
-		</ogc:And>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
+          <ogc:Literal>6000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -129,7 +129,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                xlink:href="../../symbols/laermschutzbereich.svg" />
+                              xlink:href="../../symbols/laermschutzbereich.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill-opacity">0</SvgParameter>
@@ -138,8 +138,8 @@
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
                 <SvgParameter name="stroke-width">0.2</SvgParameter>
-				<SvgParameter name="stroke-linecap">butt</SvgParameter>
-				<SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+                <SvgParameter name="stroke-linecap">butt</SvgParameter>
+                <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
               </Stroke>
             </Mark>
             <Size>3</Size>
@@ -156,16 +156,16 @@
       <Title>Bauschutzbereich</Title>
     </Description>
     <ogc:Filter>
-		<ogc:And>
-			<ogc:PropertyIsEqualTo>
-				<ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-				<ogc:Literal>BP_Plan</ogc:Literal>
-			</ogc:PropertyIsEqualTo>
-			<ogc:PropertyIsEqualTo>
-				<ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
-				<ogc:Literal>7000</ogc:Literal>
-			</ogc:PropertyIsEqualTo>
-		</ogc:And>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
+          <ogc:Literal>7000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
@@ -175,7 +175,7 @@
       <Stroke>
         <SvgParameter name="stroke">#806798</SvgParameter>
         <SvgParameter name="stroke-width">2</SvgParameter>
-		<SvgParameter name="stroke-dasharray">6 3</SvgParameter>
+        <SvgParameter name="stroke-dasharray">6 3</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>

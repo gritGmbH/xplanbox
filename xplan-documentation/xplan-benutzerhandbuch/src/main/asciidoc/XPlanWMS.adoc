@@ -1,9 +1,9 @@
 [[xplanwms]]
-== XPlanWMS und XPlanWerkWMS
+== XPlanWMS, XPlanArtWMS und XPlanWerkWMS
 
-Der XPlanWMS und XPlanWerkWMS basieren auf der Open Source Software http://www.deegree.org[deegree] und sind zu dem Standard Web Map Service (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC) konforme Kartendienste. Diese bieten die Möglichkeit Visualisierungen von Plandaten sowie Sachinformationsabfragen zu einzelnen Planinhalten abzufragen.
+Der XPlanWMS, XPlanArtWMS und XPlanWerkWMS basieren auf der Open Source Software http://www.deegree.org[deegree] und sind zu dem Standard Web Map Service (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC) konforme Kartendienste. Diese bieten die Möglichkeit Visualisierungen von Plandaten sowie Sachinformationsabfragen zu einzelnen Planinhalten abzufragen.
 
-Während der XPlanWMS die Inhalte planübergreifend dargestellt, visualisiert der XPlanWerkWMS genau ein einzelnes Planwerk. Der XPlanWMS stellt genau einen Endpunkt mit allen Planwerken bereit, der XPlanWerkWMS je einen Endpunkt pro importiertem Plan.
+Während der XPlanWMS die Inhalte planübergreifend dargestellt, visualisiert der XPlanWerkWMS genau ein einzelnes Planwerk. Der XPlanWMS stellt genau einen Endpunkt mit allen Planwerken bereit, der XPlanWerkWMS je einen Endpunkt pro importiertem Plan. Der XPlanArtWMS stellt je einen Endpunkt für jede Planart wie z. B. BPlan oder FPlan zur Verfügung.
 
 [[xplanwms-benutzung-des-xplanwms]]
 === Benutzung des XPlanWMS und XPlanWerkWMS
@@ -43,6 +43,85 @@ http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>
 
 TIP: Alternativ kann die URL auch ohne Sonderzeichen verwendet werden. Dafür müssen alle anderen Zeichen als `a-zA-Z0-9-_` aus <PLANNAME> entfernt werden. Die so erstellte URL liefert eine identische Response wie die dazugehörige, kodierte URL.
 
+==== Adresse des XPlanArtWMS
+
+Die Adresse des XPlanWerkWMS ist abhängig von der Planart die angefragt werden soll.
+Neben der Planart ist auch der Planstatus bei der Nutzung des XPlanArtWMS entscheidend, so setzt sich der Name nach folgendem Schema zusammen _XPlanArtWMS<PLANART><PLANSTATUS>_, z.B. _XPlanArtWMSBPlanArchive_. Die URL des WMS ist wie folgt aufgebaut:
+
+----
+http://<host>:<port>/xplan-wms/services/<PLANART>wms<PLANSTATUS>?
+----
+
+Die folgende Tabelle liested die Endpunkte des XPlanArtWMS auf:
+
+[width="100%",cols="30%,10%,10%,50%",options="header"]
+|===
+|XPlanArtWMS
+|Planart
+|Planstatus
+|URL
+|XPlanArtWMSBPlan
+|BPlan
+|Festgestellt
+|http://<host>:<port>/xplan-wms/services/bpwms?
+|XPlanArtWMSBPlanPre
+|BPlan
+|In Aufstellung
+|http://<host>:<port>/xplan-wms/services/bpwmspre?
+|XPlanArtWMSBPlanArchive
+|BPlan
+|Archiviert
+|http://<host>:<port>/xplan-wms/services/bpwmsarchive?
+|XPlanArtWMSFPlan
+|FPlan
+|Festgestellt
+|http://<host>:<port>/xplan-wms/services/fpwms?
+|XPlanArtWMSFPlanPre
+|FPlan
+|In Aufstellung
+|http://<host>:<port>/xplan-wms/services/fpwmspre?
+|XPlanArtWMSFPlanArchive
+|FPlan
+|Archiviert
+|http://<host>:<port>/xplan-wms/services/fpwmsarchive?
+|XPlanArtWMSLPlan
+|LPlan
+|Festgestellt
+|http://<host>:<port>/xplan-wms/services/lpwms?
+|XPlanArtWMSLPlanPre
+|LPlan
+|In Aufstellung
+|http://<host>:<port>/xplan-wms/services/lpwmspre?
+|XPlanArtWMSLPlanArchive
+|LPlan
+|Archiviert
+|http://<host>:<port>/xplan-wms/services/lpwmsarchive?
+|XPlanArtWMSRPlan
+|RPlan
+|Festgestellt
+|http://<host>:<port>/xplan-wms/services/rpwms?
+|XPlanArtWMSRPlanPre
+|RPlan
+|In Aufstellung
+|http://<host>:<port>/xplan-wms/services/rlpwmspre?
+|XPlanArtWMSRPlanArchive
+|RPlan
+|Archiviert
+|http://<host>:<port>/xplan-wms/services/rpwmsarchive?
+|XPlanArtWMSSOPlan
+|SOPlan
+|Festgestellt
+|http://<host>:<port>/xplan-wms/services/sowms?
+|XPlanArtWMSSOPlanPre
+|SOPlan
+|In Aufstellung
+|http://<host>:<port>/xplan-wms/services/sowmspre?
+|XPlanArtWMSSOPlanArchive
+|SOPlan
+|Archiviert
+|http://<host>:<port>/xplan-wms/services/sowmsarchive?
+|===
+
 [[xplanwms-inhalte-des-kartendienstes]]
 === Inhalte des Kartendienstes
 
@@ -68,10 +147,15 @@ http://<host>:<port>/xplan-wms/services/wms?request=GetCapabilities&service=WMS&
 ----
 
 *XPlanWerkWMS*
-
 ----
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetCapabilities&service=WMS&version=1.1.1
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetCapabilities&service=WMS&version=1.3.0
+----
+
+*XPlanArtWMS*
+----
+http://<host>:<port>/xplan-wms/services/<PLANART>wms<PLANSTATUS>?request=GetCapabilities&service=WMS&version=1.1.1
+http://<host>:<port>/xplan-wms/services/<PLANART>wms<PLANSTATUS>?request=GetCapabilities&service=WMS&version=1.3.0
 ----
 
 [[xplanwms-getmap]]
@@ -89,7 +173,6 @@ http://<host>:<port>/xplan-wms/services/wms?request=GetMap&Service=WMS&Version=1
 ----
 
 *XPlanWerkWMS*
-
 ----
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.1.1&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Srs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetMap&Service=WMS&Version=1.3.0&Layers=bp_plan&Format=image/png&Transparent=true&Styles=&Crs=EPSG%3A25833&Bbox=377814.52931834,5697447.998419,381059.6791237,5698548.3070248&Width=1280&Height=434
@@ -163,7 +246,6 @@ http://<host>:<port>/xplan-wms/services/wms?request=GetFeatureInfo&Service=WMS&V
 ----
 
 *XPlanWerkWMS*
-
 ----
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&Info_format=text/html
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetFeatureInfo&Service=WMS&Version=1.3.0&Width=460&Height=348&Layers=fp_bebausfl&Transparent=TRUE&Format=image%2Fpng&BBox=381754.08781343646,5716831.670553746,382351.0673120646,5717283.298522273&Crs=EPSG:25833&Styles=&Query_layers=fp_bebausfl&I=217&J=94&Feature_count=10&info_format=application/vnd.ogc.gml
@@ -183,7 +265,6 @@ http://<host>:<port>/xplan-wms/services/wms?request=GetLegendGraphic&Service=WMS
 ----
 
 *XPlanWerkWMS*
-
 ----
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetLegendGraphic&Service=WMS&Version=1.1.1&layer=bp_gruenfl&format=image/png
 http://<host>:<port>/xplan-wms/services/planwerkwms/planname/<PLANNAME>?request=GetLegendGraphic&Service=WMS&Version=1.3.0&layer=bp_gruenfl&format=image/png
@@ -210,16 +291,16 @@ http://<host>:<port>/xplan-wms/getAttachment?featureID=XPLAN_XP_RASTERPLANBASIS_
 
 Der XPlanWMS und XPlanWerkWMS unterstützt die folgenden Koordinatenreferenzsysteme für Vektordaten:
 
-* EPSG:25832,
-* EPSG:25833,
-* EPSG:325833,
-* EPSG:31466,
-* EPSG:31467,
-* EPSG:31468,
-* EPSG:31469,
-* EPSG:4258,
-* EPSG:4326,
-* EPSG:4839,
-* CRS:84.
+* EPSG:25832
+* EPSG:25833
+* EPSG:325833
+* EPSG:31466
+* EPSG:31467
+* EPSG:31468
+* EPSG:31469
+* EPSG:4258
+* EPSG:4326
+* EPSG:4839
+* CRS:84
 
 Für Rasterdaten wird dagegen nur eines dieser Koordinatenreferenzsysteme unterstützt. Der Vorgabewert ist EPSG:25832 und kann über die Konfiguration der xPlanBox geändert werden. Die Konfiguration ist im Betriebshandbuch der xPlanBox beschrieben. Weitere Informationen zu den Anforderungen an die Rasterdaten stehen im Kapitel <<voraussetzungen-fuer-die-rasterdaten>>.

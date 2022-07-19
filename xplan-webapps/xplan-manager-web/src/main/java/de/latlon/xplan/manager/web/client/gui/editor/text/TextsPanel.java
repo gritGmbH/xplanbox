@@ -32,6 +32,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
 import de.latlon.xplan.manager.web.shared.edit.Text;
@@ -54,9 +55,10 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 
 	/**
 	 * @param version of the plan to edit, never <code>null</code>
+	 * @param planType
 	 */
-	public TextsPanel(EditVersion version) {
-		super(version, MESSAGES.editCaptionTexts());
+	public TextsPanel(EditVersion version, EditPlanType planType) {
+		super(version, planType, MESSAGES.editCaptionTexts());
 		add(createGui());
 	}
 
@@ -100,7 +102,7 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 	private Button createNewButton() {
 		Button newButton = new Button(MESSAGES.editCaptionNewText(), new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				final TextDialog textDialog = new TextDialog(version);
+				final TextDialog textDialog = new TextDialog(version, planType);
 				textDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {
@@ -194,7 +196,7 @@ public class TextsPanel extends AbstractEditorSubPanelWithTable<Text> {
 		};
 		editButtonColumn.setFieldUpdater(new FieldUpdater<Text, String>() {
 			public void update(final int index, Text text, String value) {
-				final TextDialog textDialog = new TextDialog(version, text);
+				final TextDialog textDialog = new TextDialog(version, planType, text);
 				textDialog.addSaveHandler(new SavedHandler() {
 					@Override
 					public void changesSaved() {

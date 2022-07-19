@@ -34,6 +34,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.AbstractEditorSubPanelWithTable;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.TypeCodelistProvider;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.SavedHandler;
@@ -69,8 +70,8 @@ public class RasterBasisPanel extends AbstractEditorSubPanelWithTable<RasterRefe
 
 	private List<Bereich> bereiche;
 
-	public RasterBasisPanel(EditVersion version, List<Bereich> bereiche) {
-		super(version, MESSAGES.editCaptionRasterBasis());
+	public RasterBasisPanel(EditVersion version, EditPlanType planType, List<Bereich> bereiche) {
+		super(version, planType, MESSAGES.editCaptionRasterBasis());
 		this.bereiche = bereiche;
 	}
 

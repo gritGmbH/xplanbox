@@ -11,7 +11,7 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * <<xplanvalidator-cli, XPlanValidatorCLI>>
 * <<xplantransform-cli, XPlanTransformCLI>>
 * <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>>
-* <<xplanwms, XPlanWMS und XPlanWerkWMS>>
+* <<xplanwms, XPlanWMS, XPlanArtWMS und XPlanWerkWMS>>
 * <<xplanwfs, XPlanWFS>>
 * <<xplansynwfs, XPlanSynWFS>>
 * <<xplaninspirepluwms, XPlanInspirePluWMS>>
@@ -85,9 +85,9 @@ Die Komponente XPlanAuswerteschemaCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator der xPlanBox ermöglicht, ein weiteres Datenbankschema für die Auswertung zu erzeugen und die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas zu synchronisieren.
 
 [[xplanwms]]
-=== XPlanWMS und XPlanWerkWMS
+=== XPlanWMS, XPlanArtWMS und XPlanWerkWMS
 
-Der XPlanWMS und XPlanWerkWMS sind auf dem Standard Web Map Service
+Der XPlanWMS, XPlanArtWMS und XPlanWerkWMS sind auf dem Standard Web Map Service
 (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC)
 basierende Kartendienste. Diese bieten die Möglichkeit,
 Visualisierungen von Plandaten sowie Sachinformationsabfragen zu
@@ -100,7 +100,7 @@ durch die Auswahl des Planstatus, die dazugehörige Datenhaltung und
 somit der entsprechende XPlanWMS-Endpoint angesprochen. Der XPlanWMS greift auf dasselbe Datenbankschema wie der <<xplansynwfs>> in der <<xplandb>> zu. Rasterdaten werden im Workspace-Verzeichnis des XPlanWMS hinterlegt. Die Verzeichnisstruktur des Workspace <<appendix_xplanwms-workspace>> ist im Anhang dokumentiert.
 
 Während der XPlanWMS planübergreifend arbeitet, beschränkt sich der
-XPlanWerkWMS auf einzelne Planwerke.
+XPlanWerkWMS auf einzelne Planwerke. Der XPlanArtWMS stellt je einen Endpunkt für jede Planart wie z. B. BPlan oder FPlan zur Verfügung.
 
 Die folgende Tabelle zeigt die vom XPlanWMS bereitgestellten Daten nach Planstatus.
 
@@ -120,7 +120,7 @@ Die folgende Tabelle zeigt die vom XPlanWMS bereitgestellten Daten nach Planstat
 |_archive_
 |===
 
-NOTE: Gleiches gilt für den XPlanWerkWMS, XPlanWFS und XPlanSynWFS
+NOTE: Gleiches gilt für den XPlanWerkWMS, XPlanArtWMS, XPlanWFS und XPlanSynWFS
 
 [[xplanwfs]]
 === XPlanWFS

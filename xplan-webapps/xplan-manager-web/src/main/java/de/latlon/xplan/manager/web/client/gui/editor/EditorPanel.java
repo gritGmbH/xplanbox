@@ -66,6 +66,8 @@ public class EditorPanel extends DecoratorPanel {
 
 	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
+	private EditPlanType planType;
+
 	private final HandlerManager eventBus;
 
 	private final BaseDataPanel baseDataPanel;
@@ -82,13 +84,14 @@ public class EditorPanel extends DecoratorPanel {
 
 	private String planId;
 
-	public EditorPanel(EditVersion version, List<Bereich> bereiche, HandlerManager eventBus) {
+	public EditorPanel(EditVersion version, EditPlanType planType, List<Bereich> bereiche, HandlerManager eventBus) {
+		this.planType = planType;
 		this.eventBus = eventBus;
-		baseDataPanel = new BaseDataPanel(version);
-		changesPanel = new ChangesXplanPanel(version);
-		textsPanel = new TextsPanel(version);
-		referencesPanel = new ReferencesPanel(version);
-		rasterBasisPanel = new RasterBasisPanel(version, bereiche);
+		baseDataPanel = new BaseDataPanel(version, planType);
+		changesPanel = new ChangesXplanPanel(version, planType);
+		textsPanel = new TextsPanel(version, planType);
+		referencesPanel = new ReferencesPanel(version, planType);
+		rasterBasisPanel = new RasterBasisPanel(version, planType, bereiche);
 		FormPanel form = createForm();
 		this.getElement().setId("editor-panel");
 		this.setWidget(form);
@@ -160,7 +163,9 @@ public class EditorPanel extends DecoratorPanel {
 		panel.setSpacing(10);
 		panel.setHorizontalAlignment(ALIGN_CENTER);
 		panel.add(baseDataPanel);
-		panel.add(validityPeriodPanel);
+		if ("BP_Plan".equals(planType)) {
+			panel.add(validityPeriodPanel);
+		}
 		panel.add(changesPanel);
 		panel.add(textsPanel);
 		panel.add(referencesPanel);

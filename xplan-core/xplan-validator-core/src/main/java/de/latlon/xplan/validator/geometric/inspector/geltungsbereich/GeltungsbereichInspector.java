@@ -26,6 +26,7 @@ import de.latlon.xplan.validator.geometric.inspector.InvalidGeometryException;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
 import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import org.deegree.commons.uom.Measure;
 import org.deegree.feature.Feature;
 import org.deegree.geometry.multi.MultiGeometry;
 import org.deegree.geometry.multi.MultiPolygon;
@@ -47,6 +48,7 @@ import org.locationtech.jts.geom.TopologyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -224,12 +226,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 			boolean isInDiff = difference.stream().anyMatch(diff -> {
 				// buffer with tolerance is used to ensure that control points and
 				// intersection points are identified!
-				// org.deegree.geometry.Geometry buffer = diff.getBuffer(new Measure(new
-				// BigDecimal(0.001), "m"));
-				// boolean contains = buffer.contains(intersection);
-				Geometry buffer = diff.getJTSGeometry().buffer(0.001);
-				boolean contains = buffer.contains(createJtsPoint((Point) intersection));
-				return contains;
+				org.deegree.geometry.Geometry buffer = diff.getBuffer(new Measure(new BigDecimal(0.001), "m"));
+				return buffer.contains(intersection);
 			});
 			if (isInDiff)
 				points.add(pointAsReadableString((Point) intersection));

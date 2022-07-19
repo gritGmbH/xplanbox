@@ -37,12 +37,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.XPlanType.LP_Plan;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class EditHandler {
+public abstract class EditHandler {
 
 	private static final Logger LOG = getLogger(EditHandler.class);
 
@@ -90,22 +93,35 @@ public class EditHandler {
 	private void checkIfPlanIsSupported(XPlan xPlanById) throws InvalidPlanToEdit {
 		String version = xPlanById.getVersion();
 		XPlanVersion xPlanVersion = XPlanVersion.valueOf(version);
+		String type = xPlanById.getType();
+		XPlanType xPlanType = XPlanType.valueOf(type);
 		switch (xPlanVersion) {
 		case XPLAN_40:
 			throw new InvalidPlanToEdit(String.format(
-					"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions: 4.1 and heigher",
+					"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions: 4.1 and higher",
 					xPlanById.getId(), xPlanVersion));
-		}
-		String type = xPlanById.getType();
-		XPlanType xPlanType = XPlanType.valueOf(type);
-		switch (xPlanType) {
-		case FP_Plan:
-		case RP_Plan:
-		case LP_Plan:
-		case SO_Plan:
-			throw new InvalidPlanToEdit(String.format(
-					"Plan with ID %s can not be edited, because the type (%s) is not supported. Supported types: BP_Plan",
-					xPlanById.getId(), xPlanType));
+		case XPLAN_41:
+			if (LP_Plan.equals(xPlanType)) {
+				throw new InvalidPlanToEdit(String.format(
+						"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for %s: 6.0 and higher",
+						xPlanById.getId(), xPlanVersion, xPlanType));
+			}
+			else if (!BP_Plan.equals(xPlanType)) {
+				throw new InvalidPlanToEdit(String.format(
+						"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for %s: 5.0 and higher",
+						xPlanById.getId(), xPlanVersion, xPlanType));
+			}
+			return;
+		case XPLAN_50:
+		case XPLAN_51:
+		case XPLAN_52:
+		case XPLAN_53:
+			if (LP_Plan.equals(xPlanType)) {
+				throw new InvalidPlanToEdit(String.format(
+						"Plan with ID %s can not be edited, because the version (%s) is not supported. Supported versions for %s: 6.0 and higher",
+						xPlanById.getId(), xPlanVersion, xPlanType));
+			}
+			return;
 		}
 	}
 
