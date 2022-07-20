@@ -111,9 +111,6 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 				}
 			}
 		}
-		else {
-			createAndAddRule(config, rulesPath, UNKNOWN_VERSION, UNKNOWN_OPTION);
-		}
 
 		return config;
 	}

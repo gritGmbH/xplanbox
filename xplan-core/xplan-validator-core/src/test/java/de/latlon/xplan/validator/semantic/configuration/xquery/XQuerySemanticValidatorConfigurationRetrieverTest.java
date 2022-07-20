@@ -69,6 +69,16 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
 		assertThat(configuration.getRules(XPLAN_40, singletonList(NONE)).size(), is(8));
 	}
 
+	@Test
+	public void testRetrieveConfigurationWithInvalidRulesPath() throws Exception {
+		Path rulesPath = get("/does/not/exist");
+		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
+				rulesPath, rulesMatadata(rulesPath));
+		SemanticValidatorConfiguration configuration = retriever.retrieveConfiguration();
+
+		assertThat(configuration.getAllRules().size(), is(0));
+	}
+
 	private RulesMetadata rulesMatadata(Path rulesPath) {
 		RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
 		return rulesMetadataParser.parserMetadata(rulesPath);

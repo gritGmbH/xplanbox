@@ -29,13 +29,13 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.Files.isDirectory;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -57,14 +57,34 @@ public class ValidatorConfigurationParserTest {
 	@ClassRule
 	public static TemporaryFolder tempFolder = new TemporaryFolder();
 
+	private static Path valid;
+
+	private static Path invalidName;
+
+	private static Path invalidPath;
+
 	@BeforeClass
 	public static void copyProfiles() throws IOException {
-		File profile = tempFolder.newFile("profile.yaml");
-		File profiles = tempFolder.newFile("profiles.yaml");
-		FileOutputStream profileOS = new FileOutputStream(profile);
-		IOUtils.copy(ValidatorConfigurationParser.class.getResourceAsStream("profile.yaml"), profileOS);
-		FileOutputStream profilesOS = new FileOutputStream(profiles);
-		IOUtils.copy(ValidatorConfigurationParser.class.getResourceAsStream("profiles.yaml"), profilesOS);
+		valid = tempFolder.newFolder("valid").toPath();
+		Path profile = valid.resolve("profile.yaml");
+		Path profiles = valid.resolve("profiles.yaml");
+
+		copy("/de/latlon/xplan/validator/configuration/profile.yaml", profile);
+		copy("/de/latlon/xplan/validator/configuration/profiles.yaml", profiles);
+
+		invalidName = tempFolder.newFolder("invalidName").toPath();
+		Path invalidName = ValidatorConfigurationParserTest.invalidName.resolve("profile-invalidName.yaml");
+		copy("/de/latlon/xplan/validator/configuration/profile-invalidName.yaml", invalidName);
+
+		invalidPath = tempFolder.newFolder("invalidPath").toPath();
+		Path invalidPath = ValidatorConfigurationParserTest.invalidPath.resolve("profile-invalidName.yaml");
+		copy("/de/latlon/xplan/validator/configuration/profile-invalidPath.yaml", invalidPath);
+	}
+
+	private static void copy(String name, Path profiles) throws IOException {
+		String contentProfiles = IOUtils.resourceToString(name, UTF_8);
+		String paths = contentProfiles.replaceAll("PATH", tempFolder.getRoot().getAbsolutePath());
+		Files.write(profiles, paths.getBytes(UTF_8));
 	}
 
 	@Test
@@ -115,11 +135,18 @@ public class ValidatorConfigurationParserTest {
 
 	@Test
 	public void testParseProfile() throws Exception {
-		PropertiesLoader propertiesLoader = mockPropertiesLoaderWithProfile("/home/xplanbox/report/");
+		PropertiesLoader propertiesLoader = mockPropertiesLoaderWithProfile("/home/xplanbox/report/", valid);
 		ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
 		ValidatorConfiguration validatorConfiguration = validatorConfigurationParser.parse(propertiesLoader);
 
 		assertThat(validatorConfiguration.getValidatorProfiles().size(), is(3));
+	}
+
+	@Test(expected = ConfigurationException.class)
+	public void testParseInvalidProfile() throws Exception {
+		PropertiesLoader propertiesLoader = mockPropertiesLoaderWithProfile("/home/xplanbox/report/", invalidPath);
+		ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
+		validatorConfigurationParser.parse(propertiesLoader);
 	}
 
 	private PropertiesLoader mockPropertiesLoader(String validationReportDirectory) throws ConfigurationException {
@@ -131,10 +158,10 @@ public class ValidatorConfigurationParserTest {
 		return propertiesLoader;
 	}
 
-	private PropertiesLoader mockPropertiesLoaderWithProfile(String validationReportDirectory)
+	private PropertiesLoader mockPropertiesLoaderWithProfile(String validationReportDirectory, Path profileFolder)
 			throws ConfigurationException {
 		PropertiesLoader propertiesLoader = mockPropertiesLoader(validationReportDirectory);
-		when(propertiesLoader.resolveDirectory(eq("profiles"))).thenReturn(tempFolder.getRoot().toPath());
+		when(propertiesLoader.resolveDirectory(eq("profiles"))).thenReturn(profileFolder);
 		return propertiesLoader;
 	}
 

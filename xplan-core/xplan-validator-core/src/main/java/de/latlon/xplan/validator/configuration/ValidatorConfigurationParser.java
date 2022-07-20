@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,7 +102,8 @@ public class ValidatorConfigurationParser {
 		if (!configuration.getValidatorProfiles().isEmpty()) {
 			LOG.info("  validation profiles");
 			configuration.getValidatorProfiles().forEach(profile -> {
-				LOG.info("   - {}: {}", profile.getName(), profile.getDescription());
+				LOG.info("   - {}: {}, {}", profile.getName(), profile.getDescription(),
+						profile.getXqueryRulesDirectory());
 			});
 			LOG.info("-------------------------------------------");
 		}
@@ -127,7 +129,8 @@ public class ValidatorConfigurationParser {
 		return validatorWmsEndpoint == null || validatorWmsEndpoint.trim().isEmpty() ? null : validatorWmsEndpoint;
 	}
 
-	private List<ValidatorProfile> parseValidatorProfiles(PropertiesLoader propertiesLoader) throws IOException {
+	private List<ValidatorProfile> parseValidatorProfiles(PropertiesLoader propertiesLoader)
+			throws IOException, ConfigurationException {
 		Path profileDirectory = propertiesLoader.resolveDirectory("profiles");
 		List<ValidatorProfile> validatorProfiles = new ArrayList<>();
 		if (profileDirectory != null && Files.exists(profileDirectory)) {
@@ -136,8 +139,9 @@ public class ValidatorConfigurationParser {
 				return file.isFile() && file.getName().endsWith("yaml");
 			}).collect(Collectors.toList());
 			for (Path profileConfig : profileConfigs) {
-				List<ValidatorProfile> profile = parseProfiles(profileConfig);
-				validatorProfiles.addAll(profile);
+				List<ValidatorProfile> profiles = parseProfiles(profileConfig);
+				checkProfiles(profiles);
+				validatorProfiles.addAll(profiles);
 			}
 		}
 		return validatorProfiles;
@@ -148,6 +152,18 @@ public class ValidatorConfigurationParser {
 			ObjectMapper om = new ObjectMapper(new YAMLFactory());
 			CollectionType javaType = om.getTypeFactory().constructCollectionType(List.class, ValidatorProfile.class);
 			return om.readValue(configFile, javaType);
+		}
+	}
+
+	private void checkProfiles(List<ValidatorProfile> profiles) throws ConfigurationException {
+		for (ValidatorProfile profile : profiles) {
+			if (StringUtils.isEmpty(profile.getName()) || StringUtils.isEmpty(profile.getDescription())
+					|| StringUtils.isEmpty(profile.getXqueryRulesDirectory()))
+				throw new ConfigurationException("Profile name, description and xqueryRulesDirectory must not be null");
+			Path xqueryRulesDirectory = Paths.get(profile.getXqueryRulesDirectory());
+			if (!Files.exists(xqueryRulesDirectory) || !Files.isDirectory(xqueryRulesDirectory))
+				throw new ConfigurationException("Profile xqueryRulesDirectory " + xqueryRulesDirectory
+						+ " does not exist or is not a directory");
 		}
 	}
 

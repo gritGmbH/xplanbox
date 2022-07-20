@@ -20,19 +20,24 @@
  */
 package de.latlon.xplan.validator.configuration;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class ValidatorProfile {
 
+	@JsonProperty(required = true)
 	private String name;
 
+	@JsonProperty(required = true)
 	private String description;
 
 	private String version;
 
 	private String source;
 
+	@JsonProperty(required = true)
 	private String xqueryRulesDirectory;
 
 	private String rulesDescription;
