@@ -195,7 +195,7 @@ public class XPlanValidator {
 		if (validationType.contains(SEMANTIC))
 			validateSemantic(archive, semanticValidationOptions, report);
 		if (!semanticProfileValidators.isEmpty()) {
-			List<String> profiles = validationSettings.getProfiles();
+			List<Integer> profiles = validationSettings.getProfiles();
 			validateSemanticProfiles(archive, profiles, report);
 		}
 		return report;
@@ -235,7 +235,7 @@ public class XPlanValidator {
 		}
 	}
 
-	private void validateSemanticProfiles(XPlanArchive archive, List<String> profiles, ValidatorReport report) {
+	private void validateSemanticProfiles(XPlanArchive archive, List<Integer> profiles, ValidatorReport report) {
 		if (!report.getSyntacticValidatorResult().isValid()) {
 			report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
 		}

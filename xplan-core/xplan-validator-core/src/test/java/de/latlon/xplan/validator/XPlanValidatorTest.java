@@ -193,7 +193,7 @@ public class XPlanValidatorTest {
 	@Test
 	public void testValidateWithProfile() throws Exception {
 		ValidationSettings semanticSettings = new ValidationSettings("", singletonList(SEMANTIC), emptyList());
-		String profileId = "id";
+		Integer profileId = 10;
 		semanticSettings.setProfiles(Collections.singletonList(profileId));
 		SemanticProfileValidator profileValidator = mockSemanticProfileValidator(profileId);
 		List<SemanticProfileValidator> profileValidators = Collections.singletonList(profileValidator);
@@ -206,7 +206,7 @@ public class XPlanValidatorTest {
 	@Test
 	public void testValidateWithoutProfile() throws Exception {
 		ValidationSettings semanticSettings = new ValidationSettings("", singletonList(SEMANTIC), emptyList());
-		SemanticProfileValidator profileValidator = mockSemanticProfileValidator("id");
+		SemanticProfileValidator profileValidator = mockSemanticProfileValidator(42);
 		List<SemanticProfileValidator> profileValidators = Collections.singletonList(profileValidator);
 
 		executeValidator(geoVal, semVal, synVal, profileValidators, semanticSettings);
@@ -304,7 +304,7 @@ public class XPlanValidatorTest {
 		return executeValidator(geomVal, semVal, synVal, Collections.emptyList(), settings);
 	}
 
-	private SemanticProfileValidator mockSemanticProfileValidator(String profileId) {
+	private SemanticProfileValidator mockSemanticProfileValidator(Integer profileId) {
 		SemanticProfileValidator mock = mock(SemanticProfileValidator.class);
 		SemanticValidatorResult toBeReturned = new SemanticValidatorResult();
 		toBeReturned.addRule("name", "message", Collections.emptyList());

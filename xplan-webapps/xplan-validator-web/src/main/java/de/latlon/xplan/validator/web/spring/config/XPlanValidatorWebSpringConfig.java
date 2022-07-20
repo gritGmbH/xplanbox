@@ -59,7 +59,10 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.nio.file.Paths.get;
 
@@ -94,22 +97,29 @@ public class XPlanValidatorWebSpringConfig {
 	}
 
 	@Bean
-	public List<RulesMetadata> profileMetadata(ValidatorConfiguration validatorConfiguration)
+	public Map<ValidatorProfile, RulesMetadata> profilesAndMetadata(ValidatorConfiguration validatorConfiguration)
 			throws ValidatorException {
-		List<RulesMetadata> rulesMetadata = new ArrayList<>();
+		Map<ValidatorProfile, RulesMetadata> profilesAndMetadata = new HashMap<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			RulesMetadata newRulesMetadata = createFromConfig(validatorProfile);
-			rulesMetadata.add(newRulesMetadata);
+			RulesMetadata newRulesMetadata = new RulesMetadata(validatorProfile.getName(),
+					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
+			profilesAndMetadata.put(validatorProfile, newRulesMetadata);
 		}
-		return rulesMetadata;
+		return profilesAndMetadata;
 	}
 
 	@Bean
-	public List<SemanticProfileValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
+	public List<RulesMetadata> profileMetadata(Map<ValidatorProfile, RulesMetadata> profilesAndMetadata) {
+		return profilesAndMetadata.values().stream().collect(Collectors.toList());
+	}
+
+	@Bean
+	public List<SemanticProfileValidator> profileValidators(Map<ValidatorProfile, RulesMetadata> profilesAndMetadata)
 			throws ValidatorException {
 		List<SemanticProfileValidator> semanticValidators = new ArrayList<>();
-		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			RulesMetadata rulesMetadata = createFromConfig(validatorProfile);
+		for (Map.Entry<ValidatorProfile, RulesMetadata> profileAndMetadata : profilesAndMetadata.entrySet()) {
+			RulesMetadata rulesMetadata = profileAndMetadata.getValue();
+			ValidatorProfile validatorProfile = profileAndMetadata.getKey();
 			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
 			FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(
 					validatorProfile.getRulesDescription());
@@ -118,7 +128,7 @@ public class XPlanValidatorWebSpringConfig {
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
 			semanticValidators
-					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getName(), xQuerySemanticValidator));
+					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
 		}
 		return semanticValidators;
 	}
@@ -191,11 +201,6 @@ public class XPlanValidatorWebSpringConfig {
 		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
 		Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
 		return new ValidatorWmsManager(synthesizer, workspaceLocation);
-	}
-
-	private RulesMetadata createFromConfig(ValidatorProfile validatorProfile) {
-		return new RulesMetadata(validatorProfile.getName(), validatorProfile.getDescription(),
-				validatorProfile.getVersion(), validatorProfile.getSource());
 	}
 
 }

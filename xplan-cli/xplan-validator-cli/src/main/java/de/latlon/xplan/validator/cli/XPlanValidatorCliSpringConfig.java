@@ -88,7 +88,7 @@ public class XPlanValidatorCliSpringConfig {
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
 			semanticValidators
-					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getName(), xQuerySemanticValidator));
+					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
 		}
 		return semanticValidators;
 	}

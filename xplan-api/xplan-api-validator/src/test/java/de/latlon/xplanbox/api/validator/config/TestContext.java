@@ -87,7 +87,7 @@ public class TestContext {
 	public List<SemanticProfileValidator> profileValidators(List<RulesMetadata> profileMetadata) {
 		return profileMetadata.stream().map(profile -> {
 			SemanticProfileValidator semanticProfileValidator = mock(SemanticProfileValidator.class);
-			when(semanticProfileValidator.getId()).thenReturn(profile.getName());
+			when(semanticProfileValidator.getId()).thenReturn(profile.getId());
 			SemanticValidatorResult result = mock(SemanticValidatorResult.class);
 			when(result.getRulesMetadata()).thenReturn(profile);
 			when(semanticProfileValidator.validateSemantic(any(SemanticValidableXPlanArchive.class), anyList()))

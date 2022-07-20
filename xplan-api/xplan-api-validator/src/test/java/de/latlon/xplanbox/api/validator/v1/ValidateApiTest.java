@@ -20,6 +20,7 @@
  */
 package de.latlon.xplanbox.api.validator.v1;
 
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplanbox.api.validator.config.ApplicationContext;
 import de.latlon.xplanbox.api.validator.config.TestContext;
 import org.apache.http.HttpHeaders;
@@ -27,6 +28,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.ws.rs.client.Entity;
@@ -36,6 +38,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_X_ZIP_COMPRESSED;
@@ -53,6 +56,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ValidateApiTest extends JerseyTest {
 
+	@Autowired
+	private List<RulesMetadata> profileMetadata;
+
 	@Override
 	protected Application configure() {
 		enable(TestProperties.LOG_TRAFFIC);
@@ -60,6 +66,7 @@ public class ValidateApiTest extends JerseyTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
 				TestContext.class);
 		resourceConfig.property("contextConfig", context);
+		resourceConfig.register(this);
 		return resourceConfig;
 	}
 
@@ -124,12 +131,11 @@ public class ValidateApiTest extends JerseyTest {
 			throws URISyntaxException, IOException {
 		final byte[] data = Files
 				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
-		final Response response = target("/validate").queryParam("profiles", "test1").request().accept(APPLICATION_JSON)
-				.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+		final Response response = target("/validate").queryParam("profiles", profileMetadata.get(0).getId()).request()
+				.accept(APPLICATION_JSON).post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 		String actual = response.readEntity(String.class);
-		System.out.println(actual);
 		assertThat(actual, containsString("profil"));
 	}
 

@@ -192,7 +192,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 			for (ValidationProfile profile : validationConfig.getProfiles()) {
 				CheckBox checkBox = new CheckBox(profile.getName());
 				checkBox.setTitle(profile.getDescription());
-				checkBox.setName(profile.getId());
+				checkBox.setName(profile.getId().toString());
 				profileCheckBoxes.add(checkBox);
 			}
 		}
@@ -254,10 +254,10 @@ public class ValidatorOptionsDialog extends FormPanel {
 			options.add(new ValidationOption(SKIP_GELTUNGSBEREICH, Boolean.TRUE.toString()));
 		if (skipLaufrichtung.getValue())
 			options.add(new ValidationOption(SKIP_LAUFRICHTUNG, Boolean.TRUE.toString()));
-		List<String> selectedProfiles = new ArrayList<String>();
+		List<Integer> selectedProfiles = new ArrayList<Integer>();
 		for (CheckBox profileCheckBox : profileCheckBoxes) {
 			if (profileCheckBox.getValue()) {
-				selectedProfiles.add(profileCheckBox.getName());
+				selectedProfiles.add(Integer.parseInt(profileCheckBox.getName()));
 			}
 		}
 		return new ValidationSettings(name, validationType, selectedProfiles, options);

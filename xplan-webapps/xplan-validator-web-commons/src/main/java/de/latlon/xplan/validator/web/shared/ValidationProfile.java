@@ -32,7 +32,7 @@ public class ValidationProfile implements Serializable {
 
 	private static final long serialVersionUID = -4058602240732626680L;
 
-	private String id;
+	private Integer id;
 
 	private String name;
 
@@ -41,17 +41,17 @@ public class ValidationProfile implements Serializable {
 	public ValidationProfile() {
 	}
 
-	public ValidationProfile(String id, String name, String description) {
+	public ValidationProfile(Integer id, String name, String description) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

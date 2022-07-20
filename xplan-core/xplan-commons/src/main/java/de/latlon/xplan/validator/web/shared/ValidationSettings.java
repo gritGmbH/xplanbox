@@ -40,7 +40,7 @@ public class ValidationSettings implements Serializable {
 
 	private List<ValidationOption> extendedOptions;
 
-	private List<String> profiles;
+	private List<Integer> profiles;
 
 	public ValidationSettings() {
 	}
@@ -50,7 +50,7 @@ public class ValidationSettings implements Serializable {
 		this(validationName, validationTypes, Collections.emptyList(), extendedOptions);
 	}
 
-	public ValidationSettings(String validationName, List<ValidationType> validationTypes, List<String> profiles,
+	public ValidationSettings(String validationName, List<ValidationType> validationTypes, List<Integer> profiles,
 			List<ValidationOption> extendedOptions) {
 		this.validationName = validationName;
 		this.validationTypes = validationTypes;
@@ -82,11 +82,11 @@ public class ValidationSettings implements Serializable {
 		this.extendedOptions = extendedOptions;
 	}
 
-	public void setProfiles(List<String> profiles) {
+	public void setProfiles(List<Integer> profiles) {
 		this.profiles = profiles;
 	}
 
-	public List<String> getProfiles() {
+	public List<Integer> getProfiles() {
 		if (profiles == null)
 			return Collections.emptyList();
 		return profiles;

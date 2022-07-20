@@ -63,12 +63,12 @@ public class ValidatorConverterTest {
 	@Test
 	public void verifyThat_CreateValidationSettings_ReturnsCompleteSettings() {
 		ValidationSettings validationSettings = ValidatorConverter.createValidationSettings("foo", false, true, true,
-				false, true, Collections.singletonList("test"));
+				false, true, Collections.singletonList(10));
 		assertThat(validationSettings.getValidationName(), containsString("foo"));
 		assertThat(validationSettings.getValidationTypes(), hasItem(ValidationType.GEOMETRIC));
 		assertThat(validationSettings.getExtendedOptions(), hasItem(GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS));
 		assertThat(validationSettings.getExtendedOptions(), hasItem(GeometricValidatorImpl.SKIP_LAUFRICHTUNG));
-		assertThat(validationSettings.getProfiles(), hasItem("test"));
+		assertThat(validationSettings.getProfiles(), hasItem(10));
 	}
 
 }

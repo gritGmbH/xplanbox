@@ -59,7 +59,10 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.nio.file.Files.createTempDirectory;
 import static java.nio.file.Paths.get;
@@ -110,17 +113,6 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public List<RulesMetadata> profileMetadata(ValidatorConfiguration validatorConfiguration)
-			throws ValidatorException {
-		List<RulesMetadata> rulesMetadata = new ArrayList<>();
-		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			RulesMetadata newRulesMetadata = createFromConfig(validatorProfile);
-			rulesMetadata.add(newRulesMetadata);
-		}
-		return rulesMetadata;
-	}
-
-	@Bean
 	public XQuerySemanticValidatorConfigurationRetriever configurationRetriever(Path rulesPath) {
 		RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
 		RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata(rulesPath);
@@ -128,12 +120,29 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public List<SemanticProfileValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
+	public Map<ValidatorProfile, RulesMetadata> profilesAndMetadata(ValidatorConfiguration validatorConfiguration)
+			throws ValidatorException {
+		Map<ValidatorProfile, RulesMetadata> profilesAndMetadata = new HashMap<>();
+		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
+			RulesMetadata newRulesMetadata = new RulesMetadata(validatorProfile.getName(),
+					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
+			profilesAndMetadata.put(validatorProfile, newRulesMetadata);
+		}
+		return profilesAndMetadata;
+	}
+
+	@Bean
+	public List<RulesMetadata> profileMetadata(Map<ValidatorProfile, RulesMetadata> profilesAndMetadata) {
+		return profilesAndMetadata.values().stream().collect(Collectors.toList());
+	}
+
+	@Bean
+	public List<SemanticProfileValidator> profileValidators(Map<ValidatorProfile, RulesMetadata> profilesAndMetadata)
 			throws ValidatorException {
 		List<SemanticProfileValidator> semanticValidators = new ArrayList<>();
-		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			RulesMetadata rulesMetadata = new RulesMetadata(validatorProfile.getName(),
-					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
+		for (Map.Entry<ValidatorProfile, RulesMetadata> profileAndMetadata : profilesAndMetadata.entrySet()) {
+			RulesMetadata rulesMetadata = profileAndMetadata.getValue();
+			ValidatorProfile validatorProfile = profileAndMetadata.getKey();
 			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
 			FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(
 					validatorProfile.getRulesDescription());
@@ -142,7 +151,7 @@ public class ApplicationContext {
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
 			semanticValidators
-					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getName(), xQuerySemanticValidator));
+					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
 		}
 		return semanticValidators;
 	}
@@ -210,11 +219,6 @@ public class ApplicationContext {
 			return validationRulesDirectory;
 		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
-	}
-
-	private RulesMetadata createFromConfig(ValidatorProfile validatorProfile) {
-		return new RulesMetadata(validatorProfile.getName(), validatorProfile.getDescription(),
-				validatorProfile.getVersion(), validatorProfile.getSource());
 	}
 
 }

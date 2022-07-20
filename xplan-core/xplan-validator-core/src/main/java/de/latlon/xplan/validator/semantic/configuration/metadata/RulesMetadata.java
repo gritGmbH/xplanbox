@@ -29,6 +29,8 @@ public class RulesMetadata {
 
 	private static final String UNKNOWN = "unbekannt";
 
+	private final Integer id;
+
 	private final String name;
 
 	private final String description;
@@ -61,6 +63,15 @@ public class RulesMetadata {
 		this.description = description;
 		this.version = StringUtils.isEmpty(version) ? UNKNOWN : version;
 		this.source = StringUtils.isEmpty(source) ? UNKNOWN : source;
+		this.id = System.identityHashCode(this);
+	}
+
+	/**
+	 * @return the id of the rules, may be <code>null</code> if the rules metadata has no
+	 * name
+	 */
+	public Integer getId() {
+		return id;
 	}
 
 	/**

@@ -57,7 +57,7 @@ public class DefaultValidationConfigService extends RemoteServiceServlet impleme
 		ValidationConfig validationConfig = new ValidationConfig();
 		if (profileMetadata != null) {
 			for (RulesMetadata profile : profileMetadata) {
-				ValidationProfile validationProfile = new ValidationProfile(profile.getName(), profile.getName(),
+				ValidationProfile validationProfile = new ValidationProfile(profile.getId(), profile.getName(),
 						profile.getDescription());
 				validationConfig.addProfile(validationProfile);
 			}

@@ -35,11 +35,11 @@ import java.util.List;
  */
 public class DelegatingSemanticProfileValidator implements SemanticProfileValidator {
 
-	private String id;
+	private int id;
 
 	private SemanticValidator semanticValidator;
 
-	public DelegatingSemanticProfileValidator(String id, SemanticValidator semanticValidator) {
+	public DelegatingSemanticProfileValidator(int id, SemanticValidator semanticValidator) {
 		this.id = id;
 		this.semanticValidator = semanticValidator;
 	}
@@ -51,7 +51,7 @@ public class DelegatingSemanticProfileValidator implements SemanticProfileValida
 	}
 
 	@Override
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 

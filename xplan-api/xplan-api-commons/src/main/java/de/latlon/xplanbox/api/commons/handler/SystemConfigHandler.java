@@ -72,8 +72,9 @@ public class SystemConfigHandler {
 			de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata sourceRulesMetadata) {
 		RulesMetadata rulesMetadata = new RulesMetadata();
 		if (sourceRulesMetadata != null) {
-			rulesMetadata.name(sourceRulesMetadata.getName()).description(sourceRulesMetadata.getDescription())
-					.source(sourceRulesMetadata.getSource()).version(sourceRulesMetadata.getVersion());
+			rulesMetadata.id(sourceRulesMetadata.getId()).name(sourceRulesMetadata.getName())
+					.description(sourceRulesMetadata.getDescription()).source(sourceRulesMetadata.getSource())
+					.version(sourceRulesMetadata.getVersion());
 		}
 		return rulesMetadata;
 	}
