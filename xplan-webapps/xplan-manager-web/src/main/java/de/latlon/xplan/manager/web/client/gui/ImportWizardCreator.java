@@ -42,9 +42,9 @@ import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 
@@ -295,10 +295,7 @@ public class ImportWizardCreator {
 
 			@Override
 			public void onSuccess(Method method, List<PlanNameWithStatusResult> planNameWithStatusResults) {
-				Map<String, PlanStatus> alreadyInserted = planNameWithStatusResults.stream().filter(
-						planNameWithStatusResult -> planNameWithStatusResult.isPlanWithSameNameAndStatusExists())
-						.collect(Collectors.toMap(planNameWithStatusResult -> planNameWithStatusResult.getName(),
-								planNameWithStatusResult -> planNameWithStatusResult.getStatus()));
+				Map<String, PlanStatus> alreadyInserted = collectAlreadInsertedPlans(planNameWithStatusResults);
 				if (alreadyInserted.size() == 0) {
 					importPlan(id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime, endDateTime);
 				}
@@ -311,6 +308,17 @@ public class ImportWizardCreator {
 					planNameAndStatusDialogBox.show();
 
 				}
+			}
+
+			private Map<String, PlanStatus> collectAlreadInsertedPlans(
+					List<PlanNameWithStatusResult> planNameWithStatusResults) {
+				Map<String, PlanStatus> alreadyInserted = new HashMap<String, PlanStatus>();
+				for (PlanNameWithStatusResult planNameWithStatusResult : planNameWithStatusResults) {
+					if (planNameWithStatusResult.isPlanWithSameNameAndStatusExists()) {
+						alreadyInserted.put(planNameWithStatusResult.getName(), planNameWithStatusResult.getStatus());
+					}
+				}
+				return alreadyInserted;
 			}
 
 			private NextSubmittedHandler createNextSubmittedHandler(
