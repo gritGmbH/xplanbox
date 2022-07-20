@@ -64,6 +64,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.INTERNAL_ERRORS;
@@ -235,18 +236,24 @@ public class XPlanValidator {
 		}
 	}
 
-	private void validateSemanticProfiles(XPlanArchive archive, List<Integer> profiles, ValidatorReport report) {
+	private void validateSemanticProfiles(XPlanArchive archive, List<Integer> profiles, ValidatorReport report)
+			throws ValidatorException {
 		if (!report.getSyntacticValidatorResult().isValid()) {
 			report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
 		}
 		else {
-			semanticProfileValidators.stream()
-					.filter(semanticProfileValidator -> profiles.contains(semanticProfileValidator.getId()))
-					.forEach(semanticProfileValidator -> {
-						SemanticValidatorResult semanticProfileValidatorResult = validateSemanticallyAndWriteResult(
-								semanticProfileValidator, archive, Collections.emptyList());
-						report.addSemanticProfileValidatorResults(semanticProfileValidatorResult);
-					});
+			for (Integer profileId : profiles) {
+				Optional<SemanticProfileValidator> profileValidator = semanticProfileValidators.stream()
+						.filter(semanticProfileValidator -> profileId == semanticProfileValidator.getId()).findFirst();
+				if (profileValidator.isPresent()) {
+					SemanticValidatorResult semanticValidatorResult = validateSemanticallyAndWriteResult(
+							profileValidator.get(), archive, Collections.emptyList());
+					report.addSemanticProfileValidatorResults(semanticValidatorResult);
+				}
+				else {
+					throw new ValidatorException("Profile with id " + profileId + " does not exist");
+				}
+			}
 		}
 	}
 

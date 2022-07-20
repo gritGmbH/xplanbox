@@ -227,6 +227,16 @@ public class XPlanValidatorTest {
 		assertThat(report.getGeometricValidatorResult(), containsGeometricResult());
 	}
 
+	@Test(expected = ValidatorException.class)
+	public void testValidateWithInvalidProfile() throws Exception {
+		ValidationSettings semanticSettings = new ValidationSettings("", singletonList(SEMANTIC), emptyList());
+		semanticSettings.setProfiles(Collections.singletonList(99));
+		SemanticProfileValidator profileValidator = mockSemanticProfileValidator(42);
+		List<SemanticProfileValidator> profileValidators = Collections.singletonList(profileValidator);
+
+		executeValidator(geoVal, semVal, synVal, profileValidators, semanticSettings);
+	}
+
 	private Matcher<SyntacticValidatorResult> containsSyntaticResult(final String messageToCheck) {
 		return new TypeSafeMatcher<SyntacticValidatorResult>() {
 			@Override

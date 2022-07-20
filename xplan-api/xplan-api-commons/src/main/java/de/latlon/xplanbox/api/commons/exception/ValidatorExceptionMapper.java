@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplanbox.api.manager.exception;
+package de.latlon.xplanbox.api.commons.exception;
 
 import de.latlon.xplan.validator.ValidatorException;
 
