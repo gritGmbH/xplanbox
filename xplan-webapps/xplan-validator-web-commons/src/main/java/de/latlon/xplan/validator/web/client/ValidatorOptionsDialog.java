@@ -169,12 +169,6 @@ public class ValidatorOptionsDialog extends FormPanel {
 		mainPanel.add(validationTypeSyn);
 		if (!profileCheckBoxes.isEmpty()) {
 			mainPanel.add(createLabel(messages.selectionProfileLabel()));
-			profileCheckBoxes.sort(new Comparator<CheckBox>() {
-				@Override
-				public int compare(CheckBox o1, CheckBox o2) {
-					return o1.getName().compareTo(o2.getName());
-				}
-			});
 			for (CheckBox profileCheckBox : profileCheckBoxes) {
 				mainPanel.add(profileCheckBox);
 			}
@@ -196,6 +190,12 @@ public class ValidatorOptionsDialog extends FormPanel {
 		skipGeltungsbereich.setStyleName("valOption");
 		skipLaufrichtung.setStyleName("valOption");
 		if (validationConfig != null && !validationConfig.getProfiles().isEmpty()) {
+			validationConfig.getProfiles().sort(new Comparator<ValidationProfile>() {
+				@Override
+				public int compare(ValidationProfile o1, ValidationProfile o2) {
+					return o1.getName().compareTo(o2.getName());
+				}
+			});
 			for (ValidationProfile profile : validationConfig.getProfiles()) {
 				CheckBox checkBox = new CheckBox(profile.getName());
 				checkBox.setTitle(profile.getDescription());

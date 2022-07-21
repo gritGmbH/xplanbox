@@ -46,6 +46,7 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -152,6 +153,7 @@ public class JaxbConverter {
 
 	private void convertResultToJaxb(List<SemanticValidatorResult> semanticProfileValidatorResults,
 			ValidationType validationType) {
+		semanticProfileValidatorResults.sort(Comparator.comparing(o -> o.getRulesMetadata().getName()));
 		semanticProfileValidatorResults.forEach(semanticValidatorResult -> {
 			SemType semType = convertToSemType(semanticValidatorResult);
 			validationType.getProfiles().add(semType);

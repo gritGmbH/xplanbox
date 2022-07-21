@@ -45,6 +45,7 @@ import net.sf.jasperreports.engine.JasperReport;
 
 import java.io.InputStream;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -140,6 +141,7 @@ class ReportBuilder {
 		}
 		List<SemanticValidatorResult> semanticProfileValidatorResults = report.getSemanticProfileValidatorResults();
 		if (!semanticProfileValidatorResults.isEmpty()) {
+			semanticProfileValidatorResults.sort(Comparator.comparing(o -> o.getRulesMetadata().getName()));
 			for (SemanticValidatorResult profileSemanticValidatorResult : semanticProfileValidatorResults) {
 				verticalList = verticalList.add(appendHeaderAndResultOfProfile(profileSemanticValidatorResult));
 				verticalList = appendSemanticValidatorResult(verticalList, profileSemanticValidatorResult);
@@ -276,7 +278,7 @@ class ReportBuilder {
 	}
 
 	private ComponentBuilder<?, ?> appendHeaderAndResultOfProfile(SemanticValidatorResult result) {
-		String text = "Validierung gegen das Profil " + result.getRulesMetadata().getName();
+		String text = "Profil " + result.getRulesMetadata().getName();
 		ComponentBuilder<?, ?> rulesHead = cmp.text(text).setStyle(bold14LeftStyle);
 		TextFieldBuilder<String> validString = cmp.text(getResultMessage(result))
 				.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
