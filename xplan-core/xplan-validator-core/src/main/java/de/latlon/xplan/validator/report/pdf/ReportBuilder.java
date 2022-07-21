@@ -276,7 +276,7 @@ class ReportBuilder {
 	}
 
 	private ComponentBuilder<?, ?> appendHeaderAndResultOfProfile(SemanticValidatorResult result) {
-		String text = result.getType() + "- " + result.getRulesMetadata().getName();
+		String text = "Validierung gegen das Profil " + result.getRulesMetadata().getName();
 		ComponentBuilder<?, ?> rulesHead = cmp.text(text).setStyle(bold14LeftStyle);
 		TextFieldBuilder<String> validString = cmp.text(getResultMessage(result))
 				.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
