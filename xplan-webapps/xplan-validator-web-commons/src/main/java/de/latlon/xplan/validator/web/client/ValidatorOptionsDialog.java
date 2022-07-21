@@ -49,6 +49,7 @@ import de.latlon.xplan.validator.web.shared.ValidationSummary;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
@@ -168,6 +169,12 @@ public class ValidatorOptionsDialog extends FormPanel {
 		mainPanel.add(validationTypeSyn);
 		if (!profileCheckBoxes.isEmpty()) {
 			mainPanel.add(createLabel(messages.selectionProfileLabel()));
+			profileCheckBoxes.sort(new Comparator<CheckBox>() {
+				@Override
+				public int compare(CheckBox o1, CheckBox o2) {
+					return o1.getName().compareTo(o2.getName());
+				}
+			});
 			for (CheckBox profileCheckBox : profileCheckBoxes) {
 				mainPanel.add(profileCheckBox);
 			}
