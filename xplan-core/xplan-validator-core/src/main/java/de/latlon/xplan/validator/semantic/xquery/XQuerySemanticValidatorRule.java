@@ -162,13 +162,13 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 					return Collections.emptyList();
 				if (resultOrGmlId.equalsIgnoreCase("false"))
 					return Collections.singletonList(new InvalidFeaturesResult(message));
-				evaludateInvalidGmlIdResult(resultOrGmlId, results);
+				evaluateInvalidGmlIdResult(resultOrGmlId, results);
 			}
 		}
 		return results.values().stream().collect(Collectors.toList());
 	}
 
-	private void evaludateInvalidGmlIdResult(String gmlId, MultiKeyMap<String, InvalidFeaturesResult> results) {
+	private void evaluateInvalidGmlIdResult(String gmlId, MultiKeyMap<String, InvalidFeaturesResult> results) {
 		if (results.containsKey(ERROR.name(), message)) {
 			results.get(ERROR.name(), message).addGmlId(gmlId);
 		}
