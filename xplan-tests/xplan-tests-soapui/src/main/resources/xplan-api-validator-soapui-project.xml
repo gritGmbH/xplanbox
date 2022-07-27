@@ -1770,6 +1770,70 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="XPlanGML 6.0, Validierungsregel 4.5.2.4" id="07e9f2f5-f6d3-4b0d-b249-c45d863f70f7">
+        <con:settings/>
+        <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="XPlanGML 6.0, Validierungsregel 4.5.2.4" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="7d16e282-0f06-406d-9b34-d11a52136ce3" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="filename">
+              <con:configuration>
+                <path>$.filename</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="invalid">
+              <con:configuration>
+                <path>$.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="rule 4.5.2.4">
+              <con:configuration>
+                <path>$.validationResult.geometrisch.errors</path>
+                <content>["4.5.2.4: Das Feature mit der gml id GML_1ceb3413-e1db-4284-953c-4ca527fcf01c beinhaltet das Attribut Z, welches auch im überlagernden BP_UeberbaubareGrundstuecksFlaeche mit der gml id GML_89bf84bc-3686-467d-b144-895a1e432dce definiert ist.","4.5.2.4: Das Feature mit der gml id GML_1ceb3413-e1db-4284-953c-4ca527fcf01c beinhaltet das Attribut Z, welches auch im überlagernden BP_UeberbaubareGrundstuecksFlaeche mit der gml id GML_e7ff3715-6e8c-4a75-833f-776331abf102 definiert ist.","4.5.2.4: Das Feature mit der gml id GML_1ceb3413-e1db-4284-953c-4ca527fcf01c beinhaltet das Attribut Z, welches auch im überlagernden BP_UeberbaubareGrundstuecksFlaeche mit der gml id GML_a2bfce95-4dc2-43b7-9837-c445164c1b24 definiert ist."]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>HafenCity13_Test_53.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>Blankenese29_Test_60.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator-plans/Blankenese29_Test_60.zip</con:url>
+              <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:properties/>
     </con:testCase>
     <con:properties/>
