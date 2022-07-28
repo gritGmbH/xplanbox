@@ -62,6 +62,8 @@ public class XPlanGmlReader {
 
 	private boolean hasMultipleXPlanElements = false;
 
+	private boolean hasVerbundenerPlanBereich;
+
 	/**
 	 * Reads the XPlan GML, pareses required information.
 	 * @param entry XPlanGML to read, never <code>null</code>
@@ -81,7 +83,8 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, districts, hasMultipleXPlanElements);
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, districts, hasVerbundenerPlanBereich,
+				hasMultipleXPlanElements);
 		return new Pair<>(new MainZipEntry(bos.toByteArray(), entry.getName()), archiveMetadata);
 	}
 
@@ -105,7 +108,8 @@ public class XPlanGmlReader {
 		finally {
 			closeQuietly(reader);
 		}
-		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, districts, hasMultipleXPlanElements);
+		ArchiveMetadata archiveMetadata = new ArchiveMetadata(version, type, crs, districts, hasVerbundenerPlanBereich,
+				hasMultipleXPlanElements);
 		return new Pair<>(new MainZipEntry(bos.toByteArray(), name), archiveMetadata);
 	}
 
@@ -188,6 +192,7 @@ public class XPlanGmlReader {
 		setVersion(namespaceURI);
 		setType(localName);
 		setCrs(reader);
+		setHasVerbundenerPlanBereich(localName);
 
 		if (namespaceURI != null && !namespaceURI.isEmpty()) {
 			String prefix = reader.getPrefix();
@@ -255,6 +260,12 @@ public class XPlanGmlReader {
 			else if (!crs.getName().equals(srsName)) {
 				throwCrsInConflictException(reader.getLocation(), srsName);
 			}
+		}
+	}
+
+	private void setHasVerbundenerPlanBereich(String localName) {
+		if ("verbundenerPlan".equals(localName) || "verbundenerPlanBereich".equals(localName)) {
+			this.hasVerbundenerPlanBereich = true;
 		}
 	}
 

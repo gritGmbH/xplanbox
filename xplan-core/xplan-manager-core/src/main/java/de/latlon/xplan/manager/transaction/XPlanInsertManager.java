@@ -86,6 +86,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 	 */
 	public List<Integer> importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeRasterConfig,
 			String internalId, AdditionalPlanData xPlanMetadata) throws Exception {
+		checkArchive(archive);
 		LOG.info("- Importiere Plan " + archive);
 		ICRS crs = CrsUtils.determineActiveCrs(defaultCRS, archive, LOG);
 		XPlanFeatureCollections xPlanInstances = readAndValidateMainDocument(archive, crs, force);
@@ -177,7 +178,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		}
 	}
 
-	private void performSchemaValidation(XPlanArchive archive) throws Exception {
+	private void performSchemaValidation(XPlanArchive archive) throws UnsupportPlanException {
 		long begin = System.currentTimeMillis();
 		LOG.info("- Schema-Validierung (Hauptdokument)...");
 		SyntacticValidatorResult result;
@@ -185,7 +186,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			result = (SyntacticValidatorResult) new SyntacticValidatorImpl().validateSyntax(archive);
 		}
 		catch (Exception e) {
-			throw new Exception(e.getMessage());
+			throw new UnsupportPlanException(e.getMessage());
 		}
 
 		long elapsed = System.currentTimeMillis() - begin;
@@ -198,7 +199,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			for (String message : messages) {
 				LOG.info(message);
 			}
-			throw new Exception("Das Hauptdokument ist nicht schema-valide.");
+			throw new UnsupportPlanException("Das Hauptdokument ist nicht schema-valide.");
 		}
 	}
 
@@ -216,6 +217,12 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			LOG.warn("Could not parse legislation status code {} as integer", rechtsstand);
 		}
 		return PlanStatus.FESTGESTELLT;
+	}
+
+	private void checkArchive(XPlanArchive archive) throws UnsupportPlanException {
+		if (archive.hasVerbundenerPlanBereich())
+			throw new UnsupportPlanException(
+					"Das XPlan GML Dokument beinhaltet Referenzen auf andere Plaene ueber die Relation verbundenerPlan. Der Import wird derzeit nicht unterstuetzt.");
 	}
 
 }
