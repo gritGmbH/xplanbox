@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -68,6 +69,18 @@ public class OptimisedFlaechenschlussInspectorTest {
 		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
 		readFeaturesFromGml("equalFlaechenschlussGeometries.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(flaechenschlussInspector.getErrors().size(), is(1));
+	}
+
+	@Ignore
+	@Test
+	public void testCheckFlaechenschluss_vollstaendigeUeberlappungFlaechenschlussGeometries() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
+		readFeaturesFromGml("xplan52_Flaechenschlussfehler_vollstaendige_Ueberlappung.gml",
+				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(false));
