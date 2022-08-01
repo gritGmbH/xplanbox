@@ -72,23 +72,23 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsreg
 
 * Anlegen einer Konfigurationsdatei im YAML-Dateiformat im Verzeichnis _<XPLANBOX_CONFIG>/profiles_
 * Die YAML-Datei kann die Konfiguration für ein oder mehrere Profile beinhalten, der Dateiname ist frei wählbar, die Dateiendung muss _.yaml_ sein.
-* Die YAML-Datei beinhaltet die Konfiguration für ein Profil, das durch folgende Eigenschaften beschrieben wird:
-** *name*: Der Name des Profils, dieser wird im XPlanValidatorWeb und XPlanManagerWeb angezeigt (Angabe ist verpflichtend)
+* Ein Profil wird durch folgende Eigenschaften beschrieben:
+** *name*: Der Name des Profils, dieser wird im XPlanValidatorWeb und XPlanManagerWeb angezeigt (verpflichtend)
 ** *description*: Beschreibung des Profils, wird als Tooltip im XPlanValidatorWeb und XPlanManagerWeb angezeigt, (verpflichtend)
 ** *version*: Version der Regeln (optional)
 ** *source*: Quelle der Regeln (optional)
 ** *xqueryRulesDirectory*: absolute Pfadangabe auf das Verzeichnis in dem die XQuery-Regeln abgelegt sind (verpflichtend)
 ** *rulesDescription*: absolute Pfadangabe zu einer Properties-Datei, in der die Beschreibung der einzelnen Regeln angegeben sind (optional)
 
-.Beispiel: profile.yaml:
+.Beispiel profile.yaml:
 [source,yaml]
 ----
 - name: Pflichtenheft NRW
   description: Vorgaben aus Musterpflichtenheft zur Erstellung XPlanung-konformer Bebauungspläne in NRW
   version: 12.01.2022
   source: https://www.bauportal.nrw/system/files/media/document/file/22-01-12-musterpflichtenheft-xplanung-nrw.pdf
-  xqueryRulesDirectory: /root/xplan-validator-config/profiles/nrw <1>
-  rulesDescription: /root/xplan-validator-config/profiles/nrw/rules.properties <2>
+  xqueryRulesDirectory: /pathto/xplan-validator-config/profiles/nrw <1>
+  rulesDescription: /pathto/xplan-validator-config/profiles/nrw/rules.properties <2>
 ----
 <1> Die Verzeichnisstruktur unterhalb dieses Verzeichnisses mit den XQuery-Regeln muss folgende Vorgaben erfüllen:
 ** Die Dateien mit den XQuery-Regeln müssen je XPlanGML-Version in getrennten Verzeichnissen abgelegt werden. Der Verzeichnisname setzt sich zusammen aus _xplangml<XPLANGML-VERSION>_, z. B. _xplangml54_, _xplangml60_.
@@ -101,7 +101,18 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsreg
 *** `VERSION`: XPlanGML-Version der Regel, z.B. XPLAN_50, XPLAN_51
 *** `Beschreibung`: Beschreibung der Regel
 
-.Beispiel: Verzeichnisstruktur eines Profils:
+.Beispiel rules.properties:
+[source,properties]
+----
+01_gemeinde_XPLAN_54=Der gemeindeName ist anzugeben.
+02_plangeber_XPLAN_54=Das Attribut plangeber darf nicht unbelegt sein, f\u00FCr XP_Plangeber/name ist der Name der planaufstellenden Beh\u00F6rde anzugeben.
+03_verfahren_XPLAN_54=Das Attribut verfahren darf nicht unbelegt sein.
+04_rechtsstand_XPLAN_54=Das Attribut rechtsstand darf nicht unbelegt sein.
+05_beschreibung_XPLAN_54=Das Attribut beschreibung darf nicht unbelegt sein.
+06_technHerstellDatum_XPLAN_54=Das Attribut technHerstellDatum darf nicht unbelegt sein.
+----
+
+.Beispiel Verzeichnisstruktur eines Profils:
 ----
 nrw
 ├── rules.properties        # <1>
