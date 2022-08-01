@@ -98,9 +98,9 @@ public class ApplicationPathConfig extends ResourceConfig {
 	}
 
 	private void addContact(OpenAPI openApi, ValidatorApiConfiguration validatorApiConfiguration) {
-		if (validatorApiConfiguration != null && validatorApiConfiguration.getContactEMailAdress() != null) {
-			String contactEMailAdress = validatorApiConfiguration.getContactEMailAdress();
-			openApi.getInfo().setContact(new Contact().email(contactEMailAdress));
+		if (validatorApiConfiguration != null && validatorApiConfiguration.getContactEMailAddress() != null) {
+			String contactEMailAddress = validatorApiConfiguration.getContactEMailAddress();
+			openApi.getInfo().setContact(new Contact().email(contactEMailAddress));
 		}
 	}
 

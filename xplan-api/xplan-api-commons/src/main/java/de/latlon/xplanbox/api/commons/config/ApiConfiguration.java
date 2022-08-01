@@ -35,7 +35,7 @@ public abstract class ApiConfiguration {
 
 	private static final String API_URL = "apiUrl";
 
-	private static final String CONTACT_EMAIL = "contactEMailAdress";
+	private static final String CONTACT_EMAIL = "contactEMailAddress";
 
 	private static final String TERMS_OF_SERVICES_URL = "termsOfServiceUrl";
 
@@ -45,7 +45,7 @@ public abstract class ApiConfiguration {
 
 	private URI apiUrl;
 
-	private String contactEMailAdress;
+	private String contactEMailAddress;
 
 	private String termsOfServiceUrl;
 
@@ -74,8 +74,8 @@ public abstract class ApiConfiguration {
 	/**
 	 * @return the configured e-mail address, may be <code>null</code>
 	 */
-	public String getContactEMailAdress() {
-		return contactEMailAdress;
+	public String getContactEMailAddress() {
+		return contactEMailAddress;
 	}
 
 	/**
@@ -97,7 +97,7 @@ public abstract class ApiConfiguration {
 			Properties properties = propertiesLoader.loadProperties(propertiesFileName);
 			if (properties != null) {
 				apiUrl = parseUri(properties, API_URL);
-				contactEMailAdress = properties.getProperty(CONTACT_EMAIL);
+				contactEMailAddress = properties.getProperty(CONTACT_EMAIL);
 				termsOfServiceUrl = properties.getProperty(TERMS_OF_SERVICES_URL);
 				documentationUrl = properties.getProperty(DOCUMENTATION_URL);
 				loadProperties(properties);
