@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 12.07.2022, 07:38:10 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 01.08.2022, 02:53:27 -->
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
   <LayerStoreId>bplan</LayerStoreId>
   <LayerStoreId>soplan</LayerStoreId>
@@ -13,7 +13,7 @@
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
       <Identifier>bp_textabschnittflaeche</Identifier>
-      <d:Title>BP: TextAbschnittFläche</d:Title>
+      <d:Title>BP_TextAbschnittFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -43,7 +43,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_strkoerper</Identifier>
-      <d:Title>BP: Straßenkörper</d:Title>
+      <d:Title>BP_Strassenkoerper</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -53,7 +53,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_strbegrlin</Identifier>
-      <d:Title>BP: Straßenbegrenzungslinie</d:Title>
+      <d:Title>BP_StrassenbegrenzungsLinie</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -63,7 +63,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_ber</Identifier>
-      <d:Title>BP: Bereich</d:Title>
+      <d:Title>BP_Bereich</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -73,7 +73,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_gebaeudefl</Identifier>
-      <d:Title>BP: Gebäudefläche</d:Title>
+      <d:Title>BP_GebaeudeFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -83,7 +83,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_gewfl</Identifier>
-      <d:Title>BP: Gewässerfläche</d:Title>
+      <d:Title>BP_GewaesserFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -93,7 +93,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_wwssfl</Identifier>
-      <d:Title>BP: Wasserwirtschaftsfläche</d:Title>
+      <d:Title>BP_WasserwirtschaftsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -103,7 +103,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_gruenfl</Identifier>
-      <d:Title>BP: Grünfläche</d:Title>
+      <d:Title>BP_GruenFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -113,7 +113,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_baugebteilfl</Identifier>
-      <d:Title>BP: Baugebietsteilfläche</d:Title>
+      <d:Title>BP_BaugebietsTeilFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -123,7 +123,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_wohngebaeudeflaeche</Identifier>
-      <d:Title>BP: WohngebaeudeFläche</d:Title>
+      <d:Title>BP_WohngebaeudeFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -133,7 +133,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_baugeb</Identifier>
-      <d:Title>BP: Baugebiet</d:Title>
+      <d:Title>BP_Baugebiet</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -143,7 +143,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_gembedarfsfl</Identifier>
-      <d:Title>BP: Gemeinbedarfsfläche</d:Title>
+      <d:Title>BP_GemeinbedarfsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -153,7 +153,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_strverksfl</Identifier>
-      <d:Title>BP: Straßenverkehrsfläche</d:Title>
+      <d:Title>BP_StrassenVerkehrsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -163,7 +163,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_verksflbeszwb</Identifier>
-      <d:Title>BP: Verkehrsfläche besonderer Zweckbestimmung</d:Title>
+      <d:Title>BP_VerkehrsflaecheBesondererZweckbestimmung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -173,7 +173,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_waldfl</Identifier>
-      <d:Title>BP: Waldfläche</d:Title>
+      <d:Title>BP_WaldFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -183,7 +183,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_freifl</Identifier>
-      <d:Title>BP: Freifläche</d:Title>
+      <d:Title>BP_FreiFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -193,7 +193,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_spispoanlfl</Identifier>
-      <d:Title>BP: Spiel- und Sportanlagen</d:Title>
+      <d:Title>BP_SpielSportanlagenFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -203,7 +203,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_zentralerversorgungsbereich</Identifier>
-      <d:Title>BP: Zentraler Versorgungsbereich</d:Title>
+      <d:Title>BP_ZentralerVersorgungsbereich</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -213,7 +213,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_lwfl</Identifier>
-      <d:Title>BP: Landwirtschaftsfläche</d:Title>
+      <d:Title>BP_LandwirtschaftsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -223,7 +223,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_textlfestsfl</Identifier>
-      <d:Title>BP: Bereich textlicher Festsetzung</d:Title>
+      <d:Title>BP_TextlicheFestsetzungsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -233,7 +233,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_erneuerbenergiefl</Identifier>
-      <d:Title>BP: Erneuerbare Energie</d:Title>
+      <d:Title>BP_ErneuerbareEnergieFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -243,7 +243,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_abgrabungsfl</Identifier>
-      <d:Title>BP: Abgrabungsfläche</d:Title>
+      <d:Title>BP_AbgrabungsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -253,7 +253,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_abstandsfl</Identifier>
-      <d:Title>BP: Abstandsfläche</d:Title>
+      <d:Title>BP_AbstandsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -263,7 +263,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_aufschuettsfl</Identifier>
-      <d:Title>BP: Aufschüttungsfläche</d:Title>
+      <d:Title>BP_AufschuettungsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -273,7 +273,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_ausgleichsfl</Identifier>
-      <d:Title>BP: Ausgleichsfläche</d:Title>
+      <d:Title>BP_AusgleichsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -283,7 +283,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_bsfl</Identifier>
-      <d:Title>BP: Gewinnung von Bodenschätzen</d:Title>
+      <d:Title>BP_BodenschaetzeFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -293,7 +293,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_besnutzzweckfl</Identifier>
-      <d:Title>BP: Fläche besonderer Nutzung</d:Title>
+      <d:Title>BP_BesondererNutzungszweckFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -303,7 +303,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_denkmschensfl</Identifier>
-      <d:Title>BP: Denkmalensemble</d:Title>
+      <d:Title>BP_DenkmalschutzEnsembleFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -313,7 +313,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_erhsberfl</Identifier>
-      <d:Title>BP: Erhaltungsbereich</d:Title>
+      <d:Title>BP_ErhaltungsBereichFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -323,7 +323,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_foerderfl</Identifier>
-      <d:Title>BP: Soziale Wohnraumförderung</d:Title>
+      <d:Title>BP_FoerderungsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -333,7 +333,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_gemanlfl</Identifier>
-      <d:Title>BP: Gemeinschaftsanlagen</d:Title>
+      <d:Title>BP_GemeinschaftsanlagenFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -343,7 +343,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_kennzsfl</Identifier>
-      <d:Title>BP: Kennzeichnungsfläche</d:Title>
+      <d:Title>BP_KennzeichnungsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -353,7 +353,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_kleintierhfl</Identifier>
-      <d:Title>BP: Kleintierhaltungsfläche</d:Title>
+      <d:Title>BP_KleintierhaltungFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -363,7 +363,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_luftreinhfl</Identifier>
-      <d:Title>BP: Luftreinhaltefläche</d:Title>
+      <d:Title>BP_LuftreinhalteFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -373,7 +373,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_nebenanlfl</Identifier>
-      <d:Title>BP: Nebenanlagen</d:Title>
+      <d:Title>BP_NebenanlagenFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -383,7 +383,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_persgrbestfl</Identifier>
-      <d:Title>BP: Personengruppen bestimmte Fläche</d:Title>
+      <d:Title>BP_PersGruppenBestimmteFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -393,7 +393,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_rekultivierungsfl</Identifier>
-      <d:Title>BP: Rekultivierungsfläche</d:Title>
+      <d:Title>BP_RekultivierungsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -403,7 +403,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_schutzpflentwfl</Identifier>
-      <d:Title>BP: Schutz-, Pflege- und Entwicklungsfläche</d:Title>
+      <d:Title>BP_SchutzPflegeEntwicklungsFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -413,7 +413,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_techmassnfl</Identifier>
-      <d:Title>BP: Technische Massnahmen Flaeche</d:Title>
+      <d:Title>BP_TechnischeMassnahmenFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -423,7 +423,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_ueberbaubgrundstsfl</Identifier>
-      <d:Title>BP: Überbaubare Grundstücksfläche</d:Title>
+      <d:Title>BP_UeberbaubareGrundstuecksFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -433,7 +433,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_nichtueberbaubgrundstsfl</Identifier>
-      <d:Title>BP: Nichtüberbaubare Grundstücksfläche</d:Title>
+      <d:Title>BP_NichtUeberbaubareGrundstuecksflaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -443,7 +443,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_nebenanlausschlfl</Identifier>
-      <d:Title>BP: Nebenanlagenausschluss</d:Title>
+      <d:Title>BP_NebenanlagenAusschlussFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -453,7 +453,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_abstandsmass</Identifier>
-      <d:Title>BP: Abstands Maß</d:Title>
+      <d:Title>BP_AbstandsMass</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -463,7 +463,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_anpflanzbinderh</Identifier>
-      <d:Title>BP: Anpflanzung, Erhalt und Bindung</d:Title>
+      <d:Title>BP_AnpflanzungBindungErhaltung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -473,7 +473,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_ausgleichsmassn</Identifier>
-      <d:Title>BP: Ausgleichsmassnahme</d:Title>
+      <d:Title>BP_AusgleichsMassnahme</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -483,7 +483,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_berohneeinausflin</Identifier>
-      <d:Title>BP: Bereich ohne Ein- oder Ausfahrt</d:Title>
+      <d:Title>BP_BereichOhneEinAusfahrtLinie</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -493,7 +493,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_denkmscheinzanl</Identifier>
-      <d:Title>BP: Denkmalschutz Einzelanlage</d:Title>
+      <d:Title>BP_DenkmalschutzEinzelanlage</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -503,7 +503,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_einfberlin</Identifier>
-      <d:Title>BP: Einfahrtsbereich</d:Title>
+      <d:Title>BP_EinfahrtsbereichLinie</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -513,7 +513,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_einfpt</Identifier>
-      <d:Title>BP: Einfahrt</d:Title>
+      <d:Title>BP_EinfahrtPunkt</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -523,7 +523,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_eingriffsber</Identifier>
-      <d:Title>BP: Eingriffsbereich</d:Title>
+      <d:Title>BP_EingriffsBereich</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -533,7 +533,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_festsland</Identifier>
-      <d:Title>BP: Festsetzung nach Landesrecht</d:Title>
+      <d:Title>BP_FestsetzungNachLandesrecht</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -543,7 +543,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_firstrilin</Identifier>
-      <d:Title>BP: Firstrichtung</d:Title>
+      <d:Title>BP_FirstRichtungsLinie</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -553,7 +553,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_gemanlzu</Identifier>
-      <d:Title>BP: GemeinschaftsanlagenZuordnung</d:Title>
+      <d:Title>BP_GemeinschaftsanlagenZuordnung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -563,7 +563,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_genobj</Identifier>
-      <d:Title>BP: Generisches Objekt</d:Title>
+      <d:Title>BP_GenerischesObjekt</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -573,7 +573,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_hoehenmass</Identifier>
-      <d:Title>BP: Höhenmass</d:Title>
+      <d:Title>BP_HoehenMass</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -583,7 +583,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_immsschutz</Identifier>
-      <d:Title>BP: Immissionsschutz</d:Title>
+      <d:Title>BP_Immissionsschutz</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -593,7 +593,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_lw</Identifier>
-      <d:Title>BP: Landwirtschaft</d:Title>
+      <d:Title>BP_Landwirtschaft</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -603,7 +603,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_nutzartgr</Identifier>
-      <d:Title>BP: Nutzungsartengrenze</d:Title>
+      <d:Title>BP_NutzungsartenGrenze</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -613,7 +613,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_regvergstaett</Identifier>
-      <d:Title>BP: Regelung Vergnügungsstätten</d:Title>
+      <d:Title>BP_RegelungVergnuegungsstaetten</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -623,7 +623,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_schutzgeb</Identifier>
-      <d:Title>BP: Schutzgebiet</d:Title>
+      <d:Title>BP_Schutzgebiet</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -633,7 +633,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_schutzpflentwmassn</Identifier>
-      <d:Title>BP: Schutz-, Pflege- und Entwicklungsmaßnahme</d:Title>
+      <d:Title>BP_SchutzPflegeEntwicklungsMassnahme</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -643,7 +643,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_speziellebauweise</Identifier>
-      <d:Title>BP: Spezielle Bauweise</d:Title>
+      <d:Title>BP_SpezielleBauweise</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -653,7 +653,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_unverbindlvormerk</Identifier>
-      <d:Title>BP: Unverbindliche Vormerkung</d:Title>
+      <d:Title>BP_UnverbindlicheVormerkung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -663,7 +663,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_veraendsper</Identifier>
-      <d:Title>BP: Veränderungssperre</d:Title>
+      <d:Title>BP_Veraenderungssperre</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -673,7 +673,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_verentsorgung</Identifier>
-      <d:Title>BP: Ver- und Entsorgung</d:Title>
+      <d:Title>BP_VerEntsorgung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -683,7 +683,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_wegerecht</Identifier>
-      <d:Title>BP: Wegerecht</d:Title>
+      <d:Title>BP_Wegerecht</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -693,7 +693,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_baugr</Identifier>
-      <d:Title>BP: Baugrenze</d:Title>
+      <d:Title>BP_BauGrenze</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -703,7 +703,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_baulin</Identifier>
-      <d:Title>BP: Baulinie</d:Title>
+      <d:Title>BP_BauLinie</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -713,7 +713,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_abweichungenvonbaugrenze</Identifier>
-      <d:Title>BP: AbweichungVonBaugrenze</d:Title>
+      <d:Title>BP_AbweichungVonBaugrenze</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -722,18 +722,8 @@
       <Layer>bp_abweichungenvonbaugrenze</Layer>
     </Theme>
     <Theme>
-      <Identifier>bp_abweichungvonueberbauberergrundstuecksflaeche</Identifier>
-      <d:Title>BP: AbweichungVonUeberbaubererGrundstuecksFlaeche</d:Title>
-      <s:Envelope crs="EPSG:4326">
-        <s:LowerCorner>5.7 47.2</s:LowerCorner>
-        <s:UpperCorner>15.1 55.1</s:UpperCorner>
-      </s:Envelope>
-      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-      <Layer>bp_abweichungvonueberbauberergrundstuecksflaeche</Layer>
-    </Theme>
-    <Theme>
       <Identifier>bp_richtungssektorgrenze</Identifier>
-      <d:Title>BP: RichtungssektorGrenze</d:Title>
+      <d:Title>BP_RichtungssektorGrenze</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -743,7 +733,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_zusatzkontingentlaerm</Identifier>
-      <d:Title>BP: ZusatzkontingentLaerm</d:Title>
+      <d:Title>BP_ZusatzkontingentLaerm</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -753,7 +743,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_zusatzkontingentlaermflaeche</Identifier>
-      <d:Title>BP: ZusatzkontingentLaermFlaeche</d:Title>
+      <d:Title>BP_ZusatzkontingentLaermFlaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -763,7 +753,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_sichtflaeche</Identifier>
-      <d:Title>BP: Sichtflaeche</d:Title>
+      <d:Title>BP_Sichtflaeche</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -773,7 +763,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_flaecheohnefestsetzung</Identifier>
-      <d:Title>BP: Fläche ohne Festsetzung</d:Title>
+      <d:Title>BP_FlaecheOhneFestsetzung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -783,7 +773,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_symbole</Identifier>
-      <d:Title>bp_symbole</d:Title>
+      <d:Title>BP Symbole</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -791,7 +781,7 @@
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
         <Identifier>bp_abgrabungsflsym</Identifier>
-        <d:Title>BP_AbgrabungsFlaeche</d:Title>
+        <d:Title>BP_AbgrabungsFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -801,7 +791,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_aufschuettsflsym</Identifier>
-        <d:Title>BP_AufschuettungsFlaeche</d:Title>
+        <d:Title>BP_AufschuettungsFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -811,7 +801,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_baugebteilflsym</Identifier>
-        <d:Title>BP: Baugebietsteilfläche Symbol</d:Title>
+        <d:Title>BP_BaugebietsTeilFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -821,7 +811,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_ueberbaubgrundstsflsym</Identifier>
-        <d:Title>BP: Überbaubare Grundstücksfläche Symbol</d:Title>
+        <d:Title>BP_UeberbaubareGrundstuecksFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -831,7 +821,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_besnutzzweckflsym</Identifier>
-        <d:Title>BP_BesondererNutzungszweckFlaeche</d:Title>
+        <d:Title>BP_BesondererNutzungszweckFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -841,7 +831,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_erhsberflsym</Identifier>
-        <d:Title>BP_ErhaltungsBereichFlaeche</d:Title>
+        <d:Title>BP_ErhaltungsBereichFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -851,7 +841,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_bsflsym</Identifier>
-        <d:Title>BP_BodenschaetzeFlaeche</d:Title>
+        <d:Title>BP_BodenschaetzeFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -861,7 +851,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_gemanlflsym</Identifier>
-        <d:Title>BP_GemeinschaftsanlagenFlaeche</d:Title>
+        <d:Title>BP_GemeinschaftsanlagenFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -871,7 +861,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_gembedarfsflsym</Identifier>
-        <d:Title>BP: Gemeinbedarfsfläche Symbol</d:Title>
+        <d:Title>BP_GemeinbedarfsFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -881,7 +871,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_gewflsym</Identifier>
-        <d:Title>BP_GewaesserFlaeche</d:Title>
+        <d:Title>BP_GewaesserFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -891,7 +881,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_gruenflsym</Identifier>
-        <d:Title>BP_GruenFlaeche</d:Title>
+        <d:Title>BP_GruenFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -901,7 +891,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_lwflsym</Identifier>
-        <d:Title>BP_LandwirtschaftsFlaeche</d:Title>
+        <d:Title>BP_LandwirtschaftsFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -911,7 +901,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_nebenanlflsym</Identifier>
-        <d:Title>BP_NebenanlagenFlaeche</d:Title>
+        <d:Title>BP_NebenanlagenFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -921,7 +911,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_schutzpflentwmassnsym</Identifier>
-        <d:Title>BP_SchutzPflegeEntwicklungsMassnahme</d:Title>
+        <d:Title>BP_SchutzPflegeEntwicklungsMassnahme Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -931,7 +921,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_spispoanlflsym</Identifier>
-        <d:Title>BP_SpielSportanlagenFlaeche</d:Title>
+        <d:Title>BP_SpielSportanlagenFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -941,7 +931,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_verentsorgungsym</Identifier>
-        <d:Title>BP_VerEntsorgung</d:Title>
+        <d:Title>BP_VerEntsorgung Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -951,7 +941,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_verksflbeszwbsym</Identifier>
-        <d:Title>BP_VerkehrsflaecheBesondererZweckbestimmung</d:Title>
+        <d:Title>BP_VerkehrsflaecheBesondererZweckbestimmung Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -961,7 +951,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_waldflsym</Identifier>
-        <d:Title>BP_WaldFlaeche</d:Title>
+        <d:Title>BP_WaldFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -971,7 +961,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_wwssflsym</Identifier>
-        <d:Title>BP_WasserwirtschaftsFlaeche</d:Title>
+        <d:Title>BP_WasserwirtschaftsFlaeche Symbol</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -990,7 +980,7 @@
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
         <Identifier>so_wasserwirtschaft</Identifier>
-        <d:Title>SO: Wasserwirtschaft</d:Title>
+        <d:Title>SO_Wasserwirtschaft</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1000,7 +990,7 @@
       </Theme>
       <Theme>
         <Identifier>so_textabschnittflaeche</Identifier>
-        <d:Title>SO: TextAbschnittFläche</d:Title>
+        <d:Title>SO_TextAbschnittFlaeche</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1010,7 +1000,7 @@
       </Theme>
       <Theme>
         <Identifier>so_strassenverkehr</Identifier>
-        <d:Title>SO: Strassenverkehr</d:Title>
+        <d:Title>SO_Strassenverkehr</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1020,7 +1010,7 @@
       </Theme>
       <Theme>
         <Identifier>so_sichtflaeche</Identifier>
-        <d:Title>SO: Sichtflaeche</d:Title>
+        <d:Title>SO_Sichtflaeche</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1030,7 +1020,7 @@
       </Theme>
       <Theme>
         <Identifier>so_baubeschraenkung</Identifier>
-        <d:Title>SO: Baubeschraenkung</d:Title>
+        <d:Title>SO_Baubeschraenkung</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1040,7 +1030,7 @@
       </Theme>
       <Theme>
         <Identifier>so_sonstigesrecht</Identifier>
-        <d:Title>SO: SonstigesRecht</d:Title>
+        <d:Title>SO_SonstigesRecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1050,7 +1040,7 @@
       </Theme>
       <Theme>
         <Identifier>so_bodenschutzrecht</Identifier>
-        <d:Title>SO: Bodenschutzrecht</d:Title>
+        <d:Title>SO_Bodenschutzrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1060,7 +1050,7 @@
       </Theme>
       <Theme>
         <Identifier>so_denkmalschutzrecht</Identifier>
-        <d:Title>SO: Denkmalschutzrecht</d:Title>
+        <d:Title>SO_Denkmalschutzrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1070,7 +1060,7 @@
       </Theme>
       <Theme>
         <Identifier>so_forstrecht</Identifier>
-        <d:Title>SO: Forstrecht</d:Title>
+        <d:Title>SO_Forstrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1080,7 +1070,7 @@
       </Theme>
       <Theme>
         <Identifier>so_luftverkehrsrecht</Identifier>
-        <d:Title>SO: Luftverkehrsrecht</d:Title>
+        <d:Title>SO_Luftverkehrsrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1090,7 +1080,7 @@
       </Theme>
       <Theme>
         <Identifier>so_schienenverkehrsrecht</Identifier>
-        <d:Title>SO: Schienenverkehrsrecht</d:Title>
+        <d:Title>SO_Schienenverkehrsrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1100,7 +1090,7 @@
       </Theme>
       <Theme>
         <Identifier>so_schutzgebietNaturschutzrecht</Identifier>
-        <d:Title>SO: SchutzgebietNaturschutzrecht</d:Title>
+        <d:Title>SO_SchutzgebietNaturschutzrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1110,7 +1100,7 @@
       </Theme>
       <Theme>
         <Identifier>so_schutzgebietsonstigesrecht</Identifier>
-        <d:Title>SO: SchutzgebietSonstigesRecht</d:Title>
+        <d:Title>SO_SchutzgebietSonstigesRecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1120,7 +1110,7 @@
       </Theme>
       <Theme>
         <Identifier>so_schutzgebietwasserrecht</Identifier>
-        <d:Title>SO: SchutzgebietWasserrecht</d:Title>
+        <d:Title>SO_SchutzgebietWasserrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1130,7 +1120,7 @@
       </Theme>
       <Theme>
         <Identifier>so_strassenverkehrsrecht</Identifier>
-        <d:Title>SO: Strassenverkehrsrecht</d:Title>
+        <d:Title>SO_Strassenverkehrsrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1140,7 +1130,7 @@
       </Theme>
       <Theme>
         <Identifier>so_bauverbotszone</Identifier>
-        <d:Title>SO: Bauverbotszone</d:Title>
+        <d:Title>SO_Bauverbotszone</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1150,7 +1140,7 @@
       </Theme>
       <Theme>
         <Identifier>so_gewaesser</Identifier>
-        <d:Title>SO: Gewaesser</d:Title>
+        <d:Title>SO_Gewaesser</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1160,7 +1150,7 @@
       </Theme>
       <Theme>
         <Identifier>so_wasserrecht</Identifier>
-        <d:Title>SO: Wasserrecht</d:Title>
+        <d:Title>SO_Wasserrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1170,7 +1160,7 @@
       </Theme>
       <Theme>
         <Identifier>so_gebiet</Identifier>
-        <d:Title>SO: Gebiet</d:Title>
+        <d:Title>SO_Gebiet</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1180,7 +1170,7 @@
       </Theme>
       <Theme>
         <Identifier>so_grenze</Identifier>
-        <d:Title>SO: Grenze</d:Title>
+        <d:Title>SO_Grenze</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1190,7 +1180,7 @@
       </Theme>
       <Theme>
         <Identifier>so_gelaendemorphologie</Identifier>
-        <d:Title>SO: Geländemorphologie</d:Title>
+        <d:Title>SO_Gelaendemorphologie</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1200,7 +1190,7 @@
       </Theme>
       <Theme>
         <Identifier>so_bereich</Identifier>
-        <d:Title>SO: Bereich</d:Title>
+        <d:Title>SO_Bereich</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1210,7 +1200,7 @@
       </Theme>
       <Theme>
         <Identifier>so_plan</Identifier>
-        <d:Title>SO: Plan</d:Title>
+        <d:Title>SO Plan</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1221,7 +1211,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_beschriftung</Identifier>
-      <d:Title>BP: Beschriftung</d:Title>
+      <d:Title>BP Beschriftung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1269,7 +1259,7 @@
       </Theme>
       <Theme>
         <Identifier>bp_xp_pto</Identifier>
-        <d:Title>BP: XP: PTO</d:Title>
+        <d:Title>XP_PTO</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -1280,7 +1270,7 @@
     </Theme>
     <Theme>
       <Identifier>bp_plan</Identifier>
-      <d:Title>BP: Plan</d:Title>
+      <d:Title>BP_Plan</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>

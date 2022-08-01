@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 12.07.2022, 07:38:10 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 01.08.2022, 02:53:27 -->
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
   <LayerStoreId>rplan</LayerStoreId>
   <LayerStoreId>soplan</LayerStoreId>
@@ -13,7 +13,7 @@
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
       <Identifier>rp_plan</Identifier>
-      <d:Title>RP: Plan</d:Title>
+      <d:Title>RP_Plan</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -23,7 +23,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_ber</Identifier>
-      <d:Title>RP: Bereich</d:Title>
+      <d:Title>RP_Bereich</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -33,7 +33,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_achse</Identifier>
-      <d:Title>RP: Achse</d:Title>
+      <d:Title>RP_Achse</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -43,7 +43,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_bodenschutz</Identifier>
-      <d:Title>RP: Bodenschutz</d:Title>
+      <d:Title>RP_Bodenschutz</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -53,7 +53,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_einzelhandel</Identifier>
-      <d:Title>RP: Einzelhandel</d:Title>
+      <d:Title>RP_Einzelhandel</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -63,7 +63,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_energieversorgung</Identifier>
-      <d:Title>RP: Energieversorgung</d:Title>
+      <d:Title>RP_Energieversorgung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -73,7 +73,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_entsorgung</Identifier>
-      <d:Title>RP: Entsorgung</d:Title>
+      <d:Title>RP_Entsorgung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -83,7 +83,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_erholung</Identifier>
-      <d:Title>RP: Erholung</d:Title>
+      <d:Title>RP_Erholung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -93,7 +93,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_erneuerbareenergie</Identifier>
-      <d:Title>RP: ErneuerbareEnergie</d:Title>
+      <d:Title>RP_ErneuerbareEnergie</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -103,7 +103,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_forstwirtsch</Identifier>
-      <d:Title>RP: Forstwirtschaft</d:Title>
+      <d:Title>RP_Forstwirtschaft</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -113,7 +113,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_freiraum</Identifier>
-      <d:Title>RP: Freiraum</d:Title>
+      <d:Title>RP_Freiraum</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -123,7 +123,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_freizeiterholung</Identifier>
-      <d:Title>RP: Freizeit und Erholung</d:Title>
+      <d:Title>RP_FreizeitErholung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -133,7 +133,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_funktionszuweisung</Identifier>
-      <d:Title>RP: Funktionszuweisung</d:Title>
+      <d:Title>RP_Funktionszuweisung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -143,7 +143,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_gemfunktsiedlentw</Identifier>
-      <d:Title>RP: Gemeindefunktion</d:Title>
+      <d:Title>RP_GemeindeFunktionSiedlungsentwicklung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -153,7 +153,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_genobj</Identifier>
-      <d:Title>RP: Generisches Objekt</d:Title>
+      <d:Title>RP_GenerischesObjekt</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -163,7 +163,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_gr</Identifier>
-      <d:Title>RP: Grenze</d:Title>
+      <d:Title>RP_Grenze</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -173,7 +173,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_gruenzuggruenzaesur</Identifier>
-      <d:Title>RP: Grünzug und - zäsur</d:Title>
+      <d:Title>RP_GruenzugGruenzaesur</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -183,7 +183,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_hochwasserschutz</Identifier>
-      <d:Title>RP: Hochwasserschutz</d:Title>
+      <d:Title>RP_Hochwasserschutz</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -193,7 +193,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_industriegewerbe</Identifier>
-      <d:Title>RP: IndustrieGewerbe</d:Title>
+      <d:Title>RP_IndustrieGewerbe</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -203,7 +203,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_klimaschutz</Identifier>
-      <d:Title>RP: Klimaschutz</d:Title>
+      <d:Title>RP_Klimaschutz</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -213,7 +213,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_kommunikation</Identifier>
-      <d:Title>RP: Kommunikation</d:Title>
+      <d:Title>RP_Kommunikation</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -223,7 +223,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_kulturlandschaft</Identifier>
-      <d:Title>RP: Kulturlandschaft</d:Title>
+      <d:Title>RP_Kulturlandschaft</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -233,7 +233,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_laermschutzbauschutz</Identifier>
-      <d:Title>RP: LärmschutzBauschutz</d:Title>
+      <d:Title>RP_LaermschutzBauschutz</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -243,7 +243,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_laermschutzber</Identifier>
-      <d:Title>RP: Lärmschutzbereich</d:Title>
+      <d:Title>RP_Laermschutzbereich</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -253,7 +253,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_luftverkehr</Identifier>
-      <d:Title>RP: Luftverkehr</d:Title>
+      <d:Title>RP_Luftverkehr</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -263,7 +263,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_lw</Identifier>
-      <d:Title>RP: Landwirtschaft</d:Title>
+      <d:Title>RP_Landwirtschaft</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -273,7 +273,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_naturlandsch</Identifier>
-      <d:Title>RP: Natur und Landschaft</d:Title>
+      <d:Title>RP_NaturLandschaft</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -283,7 +283,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_natsrechtlschutzgeb</Identifier>
-      <d:Title>RP: Naturschutzgebiete</d:Title>
+      <d:Title>RP_NaturschutzrechtlichesSchutzgebiet</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -293,7 +293,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_planungsraum</Identifier>
-      <d:Title>RP: Planungsraum</d:Title>
+      <d:Title>RP_Planungsraum</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -303,7 +303,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_radwegwanderweg</Identifier>
-      <d:Title>RP: RadwegWanderweg</d:Title>
+      <d:Title>RP_RadwegWanderweg</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -313,7 +313,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_raumkategorie</Identifier>
-      <d:Title>RP: Raumkategorie</d:Title>
+      <d:Title>RP_Raumkategorie</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -323,7 +323,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_rohstoff</Identifier>
-      <d:Title>RP: Rohstoff</d:Title>
+      <d:Title>RP_Rohstoff</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -333,7 +333,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_rohstoffsicherung</Identifier>
-      <d:Title>RP: Rohstoffsicherung</d:Title>
+      <d:Title>RP_Rohstoffsicherung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -343,7 +343,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_schienenverkehr</Identifier>
-      <d:Title>RP: Schienenverkehr</d:Title>
+      <d:Title>RP_Schienenverkehr</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -353,7 +353,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_siedlung</Identifier>
-      <d:Title>RP: Siedlung</d:Title>
+      <d:Title>RP_Siedlung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -363,7 +363,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_sonstinfrastrukt</Identifier>
-      <d:Title>RP: sonstige Infrastruktur</d:Title>
+      <d:Title>RP_SonstigeInfrastruktur</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -373,7 +373,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_sonstrfreiraumstrukt</Identifier>
-      <d:Title>RP: sonstige Freiraumstruktur</d:Title>
+      <d:Title>RP_SonstigerFreiraumstruktur</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -383,7 +383,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_sonstsiedlstrukt</Identifier>
-      <d:Title>RP: sonstige Siedlungsstruktur</d:Title>
+      <d:Title>RP_SonstigeSiedlungsstruktur</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -393,7 +393,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_sonstfreiraumschutz</Identifier>
-      <d:Title>RP: Sonstiger Freiraumschutz</d:Title>
+      <d:Title>RP_SonstigerFreiraumschutz</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -403,7 +403,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_sonstsiedlbereich</Identifier>
-      <d:Title>RP: Sonstiger Siedlungsbereich</d:Title>
+      <d:Title>RP_SonstigerSiedlungsbereich</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -413,7 +413,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_sonstverkehr</Identifier>
-      <d:Title>RP: Sonstiger Verkehr</d:Title>
+      <d:Title>RP_SonstVerkehr</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -423,7 +423,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_sozinfrastrukt</Identifier>
-      <d:Title>RP: soziale Infrastruktur</d:Title>
+      <d:Title>RP_SozialeInfrastruktur</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -433,7 +433,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_sportanlage</Identifier>
-      <d:Title>RP: Sportanlage</d:Title>
+      <d:Title>RP_Sportanlage</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -443,7 +443,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_strassenverkehr</Identifier>
-      <d:Title>RP: Strassenverkehr</d:Title>
+      <d:Title>RP_Strassenverkehr</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -453,7 +453,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_verk</Identifier>
-      <d:Title>RP: Verkehr</d:Title>
+      <d:Title>RP_Verkehr</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -463,7 +463,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_vorbhwschutz</Identifier>
-      <d:Title>RP: vorbeugender Hochwasserschutz</d:Title>
+      <d:Title>RP_VorbHochwasserschutz</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -473,7 +473,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_wasserschutz</Identifier>
-      <d:Title>RP: Wasserschutz</d:Title>
+      <d:Title>RP_Wasserschutz</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -483,7 +483,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_wasserverkehr</Identifier>
-      <d:Title>RP: Wasserverkehr</d:Title>
+      <d:Title>RP_Wasserverkehr</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -493,7 +493,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_wws</Identifier>
-      <d:Title>RP: Wasserwirtschaft</d:Title>
+      <d:Title>RP_Wasserwirtschaft</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -503,7 +503,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_windenergienutz</Identifier>
-      <d:Title>RP: Windenergienutzung</d:Title>
+      <d:Title>RP_Windenergienutzung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -513,7 +513,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_wohnensiedlung</Identifier>
-      <d:Title>RP: Wohnen Siedlung</d:Title>
+      <d:Title>RP_WohnenSiedlung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -523,7 +523,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_zentralerort</Identifier>
-      <d:Title>RP: Zentrale Orte</d:Title>
+      <d:Title>RP_ZentralerOrt</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -541,7 +541,7 @@
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
         <Identifier>so_wasserwirtschaft</Identifier>
-        <d:Title>SO: Wasserwirtschaft</d:Title>
+        <d:Title>SO_Wasserwirtschaft</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -551,7 +551,7 @@
       </Theme>
       <Theme>
         <Identifier>so_textabschnittflaeche</Identifier>
-        <d:Title>SO: TextAbschnittFläche</d:Title>
+        <d:Title>SO_TextAbschnittFlaeche</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -561,7 +561,7 @@
       </Theme>
       <Theme>
         <Identifier>so_strassenverkehr</Identifier>
-        <d:Title>SO: Strassenverkehr</d:Title>
+        <d:Title>SO_Strassenverkehr</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -571,7 +571,7 @@
       </Theme>
       <Theme>
         <Identifier>so_sichtflaeche</Identifier>
-        <d:Title>SO: Sichtflaeche</d:Title>
+        <d:Title>SO_Sichtflaeche</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -581,7 +581,7 @@
       </Theme>
       <Theme>
         <Identifier>so_baubeschraenkung</Identifier>
-        <d:Title>SO: Baubeschraenkung</d:Title>
+        <d:Title>SO_Baubeschraenkung</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -591,7 +591,7 @@
       </Theme>
       <Theme>
         <Identifier>so_sonstigesrecht</Identifier>
-        <d:Title>SO: SonstigesRecht</d:Title>
+        <d:Title>SO_SonstigesRecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -601,7 +601,7 @@
       </Theme>
       <Theme>
         <Identifier>so_bodenschutzrecht</Identifier>
-        <d:Title>SO: Bodenschutzrecht</d:Title>
+        <d:Title>SO_Bodenschutzrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -611,7 +611,7 @@
       </Theme>
       <Theme>
         <Identifier>so_denkmalschutzrecht</Identifier>
-        <d:Title>SO: Denkmalschutzrecht</d:Title>
+        <d:Title>SO_Denkmalschutzrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -621,7 +621,7 @@
       </Theme>
       <Theme>
         <Identifier>so_forstrecht</Identifier>
-        <d:Title>SO: Forstrecht</d:Title>
+        <d:Title>SO_Forstrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -631,7 +631,7 @@
       </Theme>
       <Theme>
         <Identifier>so_luftverkehrsrecht</Identifier>
-        <d:Title>SO: Luftverkehrsrecht</d:Title>
+        <d:Title>SO_Luftverkehrsrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -641,7 +641,7 @@
       </Theme>
       <Theme>
         <Identifier>so_schienenverkehrsrecht</Identifier>
-        <d:Title>SO: Schienenverkehrsrecht</d:Title>
+        <d:Title>SO_Schienenverkehrsrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -651,7 +651,7 @@
       </Theme>
       <Theme>
         <Identifier>so_schutzgebietNaturschutzrecht</Identifier>
-        <d:Title>SO: SchutzgebietNaturschutzrecht</d:Title>
+        <d:Title>SO_SchutzgebietNaturschutzrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -661,7 +661,7 @@
       </Theme>
       <Theme>
         <Identifier>so_schutzgebietsonstigesrecht</Identifier>
-        <d:Title>SO: SchutzgebietSonstigesRecht</d:Title>
+        <d:Title>SO_SchutzgebietSonstigesRecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -671,7 +671,7 @@
       </Theme>
       <Theme>
         <Identifier>so_schutzgebietwasserrecht</Identifier>
-        <d:Title>SO: SchutzgebietWasserrecht</d:Title>
+        <d:Title>SO_SchutzgebietWasserrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -681,7 +681,7 @@
       </Theme>
       <Theme>
         <Identifier>so_strassenverkehrsrecht</Identifier>
-        <d:Title>SO: Strassenverkehrsrecht</d:Title>
+        <d:Title>SO_Strassenverkehrsrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -691,7 +691,7 @@
       </Theme>
       <Theme>
         <Identifier>so_bauverbotszone</Identifier>
-        <d:Title>SO: Bauverbotszone</d:Title>
+        <d:Title>SO_Bauverbotszone</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -701,7 +701,7 @@
       </Theme>
       <Theme>
         <Identifier>so_gewaesser</Identifier>
-        <d:Title>SO: Gewaesser</d:Title>
+        <d:Title>SO_Gewaesser</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -711,7 +711,7 @@
       </Theme>
       <Theme>
         <Identifier>so_wasserrecht</Identifier>
-        <d:Title>SO: Wasserrecht</d:Title>
+        <d:Title>SO_Wasserrecht</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -721,7 +721,7 @@
       </Theme>
       <Theme>
         <Identifier>so_gebiet</Identifier>
-        <d:Title>SO: Gebiet</d:Title>
+        <d:Title>SO_Gebiet</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -731,7 +731,7 @@
       </Theme>
       <Theme>
         <Identifier>so_grenze</Identifier>
-        <d:Title>SO: Grenze</d:Title>
+        <d:Title>SO_Grenze</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -741,7 +741,7 @@
       </Theme>
       <Theme>
         <Identifier>so_gelaendemorphologie</Identifier>
-        <d:Title>SO: Geländemorphologie</d:Title>
+        <d:Title>SO_Gelaendemorphologie</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -751,7 +751,7 @@
       </Theme>
       <Theme>
         <Identifier>so_bereich</Identifier>
-        <d:Title>SO: Bereich</d:Title>
+        <d:Title>SO_Bereich</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -761,7 +761,7 @@
       </Theme>
       <Theme>
         <Identifier>so_plan</Identifier>
-        <d:Title>SO: Plan</d:Title>
+        <d:Title>SO Plan</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -772,7 +772,7 @@
     </Theme>
     <Theme>
       <Identifier>rp_beschriftung</Identifier>
-      <d:Title>RP: Beschriftung</d:Title>
+      <d:Title>RP Beschriftung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -780,7 +780,7 @@
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
         <Identifier>rp_xp_pto</Identifier>
-        <d:Title>RP: XP: PTO</d:Title>
+        <d:Title>XP_PTO</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -790,7 +790,7 @@
       </Theme>
       <Theme>
         <Identifier>rp_xp_lto</Identifier>
-        <d:Title>RP: XP: LTO</d:Title>
+        <d:Title>XP_LTO</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -800,7 +800,7 @@
       </Theme>
       <Theme>
         <Identifier>rp_xp_fpo</Identifier>
-        <d:Title>RP: XP: FPO</d:Title>
+        <d:Title>XP_FPO</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -810,7 +810,7 @@
       </Theme>
       <Theme>
         <Identifier>rp_xp_lpo</Identifier>
-        <d:Title>RP: XP: LPO</d:Title>
+        <d:Title>XP_LPO</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
@@ -820,7 +820,7 @@
       </Theme>
       <Theme>
         <Identifier>rp_xp_ppo</Identifier>
-        <d:Title>RP: XP: PPO</d:Title>
+        <d:Title>XP_PPO</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
