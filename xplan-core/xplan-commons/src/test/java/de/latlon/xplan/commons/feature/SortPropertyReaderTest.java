@@ -1,0 +1,132 @@
+/*-
+ * #%L
+ * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
+ * %%
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * #L%
+ */
+package de.latlon.xplan.commons.feature;
+
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.XPlanSchemas;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.configuration.SortConfiguration;
+import org.deegree.feature.FeatureCollection;
+import org.deegree.gml.GMLStreamReader;
+import org.junit.Test;
+
+import javax.xml.stream.XMLStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
+import static de.latlon.xplan.commons.XPlanType.FP_Plan;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
+import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+/**
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ */
+public class SortPropertyReaderTest {
+
+	@Test
+	public void testReadSortDate() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_40, readFeatureCollection());
+
+		assertThat(readSortDate, is(asDate("2001-08-06")));
+	}
+
+	@Test
+	public void testReadSortDate_UnmatchingType() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(FP_Plan, XPLAN_40, readFeatureCollection());
+
+		assertThat(readSortDate, nullValue());
+	}
+
+	@Test
+	public void testReadSortDate_UnmatchingVersion() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "technHerstellDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_3, readFeatureCollection());
+
+		assertThat(readSortDate, nullValue());
+	}
+
+	@Test
+	public void testReadSortDate_UnavailableFeatureType() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_PlanNotThere", "technHerstellDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_3, readFeatureCollection());
+
+		assertThat(readSortDate, nullValue());
+	}
+
+	@Test
+	public void testReadSortDate_UnavailableProperty() throws Exception {
+		SortConfiguration sortConfiguration = createSortConfiguration("BP_Plan", "notThereDatum");
+		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
+		Date readSortDate = sortPropertyReader.readSortDate(BP_Plan, XPLAN_3, readFeatureCollection());
+
+		assertThat(readSortDate, nullValue());
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testReadSortDate_NullSortConfiguration() throws Exception {
+		new SortPropertyReader(null);
+	}
+
+	private SortConfiguration createSortConfiguration(String featureType, String propertyName) {
+		SortConfiguration mockedSortConfig = mock(SortConfiguration.class);
+		when(mockedSortConfig.retrieveFeatureType(BP_Plan, XPLAN_40)).thenReturn(featureType);
+		when(mockedSortConfig.retrievePropertyName(BP_Plan, XPLAN_40)).thenReturn(propertyName);
+		return mockedSortConfig;
+	}
+
+	private FeatureCollection readFeatureCollection() throws Exception {
+		String name = "xplan51/BP2070.zip";
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
+				ResourceAccessor.readResourceStream(name));
+		XPlanVersion version = archive.getVersion();
+		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
+		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
+		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
+		FeatureCollection fc = gmlReader.readFeatureCollection();
+		gmlReader.getIdContext().resolveLocalRefs();
+		gmlReader.close();
+		xmlReader.close();
+		return fc;
+	}
+
+	private Date asDate(String string) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		return simpleDateFormat.parse(string);
+	}
+
+}

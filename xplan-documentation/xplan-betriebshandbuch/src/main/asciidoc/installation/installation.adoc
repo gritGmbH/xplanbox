@@ -1,0 +1,115 @@
+[[anwendung-installieren]]
+=== Anwendung installieren
+
+[[konfiguration]]
+==== Konfigurationsdateien der Anwendungskomponenten
+
+Die ZIP-Archive mit den Konfigurationen (s. <<installationskomponenten>>) müssen in das
+Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (Vorgabewert ist das _.deegree_ im Home-Verzeichnis des Nutzers, s. <<vorbereitung-der-installation>>) kopiert und entpackt werden:
+
+* _xplan-wfs-workspace_
+* _xplansyn-wfs-workspace_
+* _xplansyn-wms-workspace_
+* _xplan-inspireplu-workspace_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
+* _xplan-validator-wms-workspace_
+* _xplan-manager-workspace_
+* _xplan-manager-config_
+* _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
+
+NOTE: Die Konfigurationen müssen alle unterhalb desselben Basis-Verzeichnisses liegen.
+
+[[web-anwendungen]]
+==== Web-Anwendungen
+
+Um den Betrieb der verschiedenen im Abschnitt
+<<systemarchitektur-und-schnittstellen, Systemarchitektur und Schnittstellen>> beschriebenen
+Komponenten zu gewährleisten, wird eine Trennung der Dienste,
+Anwendungskomponenten und der REST-API empfohlen. Zwingend erforderlich ist die Trennung beim
+Einsatz von GDAL (s. <<installation-gdal>>). Dann müssen die Web-Anwendungen getrennt voneinander
+betrieben werden. Im Folgenden ist beschrieben, wie eine Installation der Komponenten auf drei Tomcat-Instanzen erfolgen kann. Werden drei Tomcat-Instanzen auf einem Server betrieben, dann sollte der Server die im Kapitel <<empfohlene-systemkonfiguration>> beschriebenen Anforderungen erfüllen.
+
+Die folgenden WAR-Archive (s. <<installationskomponenten>>) müssen in das Verzeichnis _<CATALINA_HOME>/webapps_ der Tomcat-Instanz _Dienste-Tomcat_ (z. B. auf Port: 8080) kopiert werden:
+
+* _xplan-wms.war_ (XPlanWMS und XPlanWerkWMS)
+* _xplan-wfs.war_ (XPlanWFS)
+* _xplansyn-wfs.war_ (XPlanSynWFS)
+* _xplan-inspireplu.war_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
+* _xplan-validator-wms.war_ (XPlanValidatorWMS)
+
+Die WAR-Archive der Anwendungskomponenten XPlanManagerWeb und XPlanValidatorWeb werden über eine
+weitere Tomcat-Instanz _Anwendungs-Tomcat_ (z. B. auf Port: 8081) bereitgestellt:
+
+* _xplan-manager-web.war_ (XPlanManagerWeb)
+* _xplan-validator-web.war_ (XPlanValidatorWeb)
+* _xplan-root.war_ (XPlanRessourcen)
+
+Die WAR-Archive der REST-API werden über eine weitere Tomcat-Instanz _API-Tomcat_ (z. B. auf Port: 8082) bereitgestellt:
+
+* _xplan-api-manager.war_ (XPlanManagerAPI)
+* _xplan-api-validator.war_ (XPlanValidatorAPI)
+
+
+TIP: Da die Komponente XPlanRessourcen eine Einstiegsseite bereitstellt, bietet es sich an, diese als ROOT-Webapp der Instanz _Anwendungs-Tomcat_ zu installieren. Das WAR-Archiv _xplan-root.war_ muss dafür im Verzeichnis _ROOT_ entpackt werden.
+
+[[kommandozeilen-anwendungen]]
+==== Kommandozeilen-Anwendungen
+
+Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an beliebiger Stelle entpackt werden. Im jeweiligen _bin/_ Verzeichnis des Kommandozeilenwerkzeugs befindet sich das Ausführungsskript. Folgende Kommandozeilenwerkzeuge sind Teil der xPlanBox:
+
+* XPlanManagerCLI: _xplan-manager-cli/bin/XPlanManager_ - Beschreibung der Funktionalität im Kapitel "XPlanManagerCLI" des XPlanBenutzerhandbuchs.
+* XPlanValidatorCLI: _xplan-validator-cli/bin/XPlanValidator_ - Beschreibung der Funktionalität im Kapitel "XPlanValidatorCLI" des XPlanBenutzerhandbuchs.
+* XPlanTransformCLI: _xplan-transform-cli/bin/XPlanTransformCLI_ - Beschreibung der Funktionalität im Kapitel "XPlanTransformCLI" des XPlanBenutzerhandbuchs.
+* XPlanValidateDB: _xplan-validatedb-cli/bin/XPlanValidateDB_ - ermöglicht die **semantische** Validierung von bereits in die XPlanDB importierten Plänen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+* XPlanAuswerteschemaCLI: _xplan-evaluation-schema-synchronize-cli/bin/EvaluationSchemaSynchronizer_ - Beschreibung der Funktionalität im  folgenden Kapitel <<install-xplanevaluationschemasynchronize-cli>>.
+* XPlanUpdateDatabaseCLI: _xplan-update-database-cli/bin/databaseUpdate_ - wird  für eine Aktualisierung des Datenbestands der xPlanBox benötigt, weitere Informationen befinden sich im Abschnitt <<aktualisierung>>). Die Funktionen im Überblick:
+** _xplan-update-database-cli/bin/districtUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-database-cli/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-database-cli/bin/serviceMetadataRecordCreator_ - erstellt Metadatensätze für den XPlanWerkWMS. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt der Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert. Der Aufruf des Tools mit `serviceMetadataRecordCreator --help` liefert Hinweise zur Verwendung.
+
+[[install-xplanevaluationschemasynchronize-cli]]
+===== XPlanAuswerteschemaCLI
+
+Das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI erzeugt ein weiteres Datenbankschema für die Auswertung und kann die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas synchronisieren. Das Auswerteschema unterscheidet sich zum XPlanSyn-Schema dadurch, dass die GML-Geometrien (wie z.B. Kreisbögen) wie im Original-XPlanGML zusätzlich zu den https://www.ogc.org/standards/sfa[Simple Features Geometrien] abgelegt sind.
+
+====== Installation
+
+Die Installation dieses Kommandozeilenwerkzeugs sowie das Anlegen des zusätzlichen Datenbankschemas ist optional. Für den Betrieb der xPlanBox sind diese nicht erforderlich.
+Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte aus dem Ordner _scripts/_ angelegt werden. Folgende Reihenfolge muss beibehalten werden:
+
+. _00_create_schema.sql_
+. _01_create_function.sql_
+. _02_create_tables.sql_
+. _03_create_trigger-function.sql_
+. _04_create_trigger.sql_
+
+Die Skripte erstellen eine Kopie der drei XPlanSyn-Schemas in den Schemas _xplanevaluationxplansynpre_, _xplanevaluationxplansyn_ und _xplanevaluationxplansynarchive_ sowie eine Log-Tabelle _xplanevaluation.planTableLog_.
+
+Die Log-Tabelle wird beim Importieren, Editieren und Löschen von Plänen über den XPlanManager mit einer Historie der ausgeführten Operationen auf die einzelnen Pläne gefüllt und dient als Basis für die regelmäßige Synchronisierung des XPlanSyn-Schema und des Auswerteschemas.
+
+Damit das Tool ausgeführt werden kann, muss GDAL installiert werden, wie in Kapitel <<installation-gdal>> beschrieben.
+
+====== Nutzung
+
+Das CLI _EvaluationSchemaSynchronizer_ unterstützt zwei Modi, die über die Option `-t` aufgerufen werden können:
+
+* Option *ALL* zur Überführung aller Pläne aus dem XPlanSyn-Schema der xPlanBox in das Auswerteschema.
+* Option *SYNC* um die Synchronisierung der seit der letzten Ausführung des Werkzeuges geänderten Pläne aus dem XPlanSyn-Schema in das Auswerteschema durchzuführen.
+
+Üblicherweise erfolgt zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z.B. mit Hilfe eines Cron-Jobs) die Option *SYNC* um einen tagesaktuellen Stand im Auswerteschema zu erreichen.
+
+Die einzelnen Parameter des Werkzeuges können durch folgenden Aufruf abgerufen werden:
+
+-------
+EvaluationSchemaSynchronizer -?
+-------
+
+Beispiel für den Aufruf mit den Parametern `-h` für den Hostnamen des PostgreSQL-Servers, `-p` den Port, `-d` der Datenbank, `-u` dem Benutzer, `-t` der Angabe zur Synchronisierung:
+
+-------
+EvaluationSchemaSynchronizer -h localhost -p 5432 -d xplanbox -u postgres -w postgres -t ALL
+-------
+
+[[dokumentation]]
+==== Dokumentation
+
+Das XPlanBenutzerhandbuch und XPlanBetriebshandbuch (s. <<installationskomponenten>>) zu den verschiedenen Komponenten der xPlanBox liegt in den Formaten HTML und PDF vor.

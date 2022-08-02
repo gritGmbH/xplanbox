@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<se:FeatureTypeStyle version="1.1.0"
+                     xmlns:se="http://www.opengis.net/se"
+                     xmlns:ogc="http://www.opengis.net/ogc"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xmlns:app="http://www.deegree.org/app"
+                     xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <se:Name>LandUse.SupplementaryRegulation.Default</se:Name>
+  <se:Description>
+    <se:Title>Supplementary Regulation Default Style</se:Title>
+    <se:Abstract>Contour or line of the Supplementary regulation depicted by a colour line of two pixels,
+      colour depending of the value of the attribute supplementaryRegulation...
+    </se:Abstract>
+  </se:Description>
+  <se:FeatureTypeName>app:SupplementaryRegulation</se:FeatureTypeName>
+
+  <!--ImpactOnEnvironment-->
+  <se:Rule>
+    <se:Name>Impact on Environment</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/1_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#b4e66e</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+  <!--RiskExposure-->
+  <se:Rule>
+    <se:Name>Risk Exposure</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/2_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#646464</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+  <!--HeritageProtection-->
+  <se:Rule>
+    <se:Name>Heritage Proection</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/3_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#949494</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+  <!--GeneralInterest-->
+  <se:Rule>
+    <se:Name>General Interest</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/4_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#B478F0</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+  <!--LandPropertyRight-->
+  <se:Rule>
+    <se:Name>Land Property Right</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/5_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#F07864</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+  <!--RegulationsOnBuildings-->
+  <se:Rule>
+    <se:Name>Regulations on Building</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/6_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#DCDCDC</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+  <!--LocalRegionalStateDevelopmentPolicies-->
+  <se:Rule>
+    <se:Name>Local-regional-state development policies</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/7_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#E6E66E</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+  <!--SocialHealthChoices-->
+  <se:Rule>
+    <se:Name>Social Health Choices</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/8_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#C8FFC8</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+  <!--RegulatedActivities-->
+  <se:Rule>
+    <se:Name>Regulated Activities</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/9_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#C8C8FF</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+  <!--OtherSupplementaryRegulation-->
+  <se:Rule>
+    <se:Name>Other Supplementary Regulation</se:Name>
+    <ogc:Filter>
+      <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+        <ogc:PropertyName>app:supplementaryregulations</ogc:PropertyName>
+        <ogc:Literal>*http://inspire.ec.europa.eu/codelist/SupplementaryRegulationValue/10_*</ogc:Literal>
+      </ogc:PropertyIsLike>
+    </ogc:Filter>
+    <se:LineSymbolizer>
+      <se:Geometry>
+        <ogc:PropertyName>app:geometry</ogc:PropertyName>
+      </se:Geometry>
+      <se:Stroke>
+        <se:SvgParameter name="stroke">#8C78F0</se:SvgParameter>
+        <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+      </se:Stroke>
+    </se:LineSymbolizer>
+  </se:Rule>
+
+</se:FeatureTypeStyle>

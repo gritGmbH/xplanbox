@@ -1,0 +1,50 @@
+[[xplantransform-cli]]
+== XPlanTransformCLI
+
+Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug, welches dem Fachadministrator der xPlanBox ermöglicht, bereits über den XPlanManagerWeb, XPlanManagerAPI oder das XPlanManagerCLI importierte Pläne in eine aktuellere XPlanGML Version zu transformieren.
+
+Die transformierten Pläne können entweder syntaktisch validiert und das Validierungsergebnis in eine CSV-Datei geschrieben werden oder die transformierten Pläne werden in die entsprechende Datenhaltung eingespielt.
+
+[NOTE]
+====
+
+Unterstützt wird derzeit die Transformation von XPlanGML 4.1 nach XPlanGML 5.1
+
+====
+
+[[xplantransform-cli-installation]]
+=== Installation
+
+Für die Nutzung des Tools muss die Installation der Software https://github.com/halestudio/hale-cli/[HALE CLI] erfolgreich abgeschlossen sein. Weitere Informationen zur Installation finden Sie im Betriebshandbuch der xPlanBox.
+
+Weiterhin sind zusätzliche SQL-Skripte auszuführen, die sich im Verzeichnis _scripts/_ befinden. Die Ausführung muss in der festgelegten Reihenfolge erfolgen:
+
+ 1. 01_create_tables.sql
+ 2. 02_create_trigger-functions.sql
+ 3. 03_create_trigger.sql
+
+[[xplantransform-cli-benutzungsanleitung]]
+=== Benutzungshinweise
+
+Beim XPlanTransformCLI handelt es sich um ein Kommandozeilenwerkzeug, das parametrisiert aufgerufen wird. Weitere Informationen über die verschiedenen Parameter gibt das Kommandozeilenwerkzeug aus, wenn der Parameter `-?` angehängt wird:
+
+-----
+./XPlanTransformCLI -?
+-----
+
+Das XPlanTransformCLI unterscheidet drei Modi:
+
+ * Option *VALIDATE* zur Transformation und Validierung der transformierten Pläne. Das Ergebnis wird in einer CSV-Datei zusammengefasst und die transformierten Pläne können eingesehen werden. Es erfolgt keine Übertragung der transformierten Pläne in die Datenhaltung.
+ * Option *ALL* zur Transformation aller Pläne und Übertragung in die Datenhaltung. Die Option kann ebenfalls genutzt werden, wenn bereits Pläne über das Werkzeug eingespielt wurden. In diesem Fall werden die bereits eingespielten Pläne zunächst aus der Ziel-Datenhaltung entfernt.
+  * Option *SYNC* um die Synchronisation der seit der letzten Ausführung des Werkzeuges geänderten Pläne zu transformieren und in die Ziel-Datenhaltung des XPlanWFS einzuspielen.
+
+Durch die Ausführung von *ALL* oder *SYNC* werden die transformierten Pläne, wenn sie syntaktisch valide sind, in die Ziel-Datenhaltung des XPlanWFS eingespielt. Es erfolgt keinerlei Anpassung an anderen Datenhaltungen (z. B. XPlanSyn-Datenhaltung). Die transformierten Pläne sind weiterhin in der alten Version über den XPlanWFS für XPlanGML 4.1 anfragbar und zusätzlich in der neuen Version über den XPlanWFS für 5.1.
+Syntaktisch invalide Pläne werden nicht eingespielt.
+
+Beispiel für das initiale Einspielen der in XPlanGML 4.1 vorliegenden Pläne in die XPlan 5.1 Datenhaltung des XPlanWFS:
+
+-------
+./XPlanTransformCLI -c /path/to/xplan-manager-config -t ALL
+-------
+
+Empfohlen ist zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z. B. nachts mit Hilfe eines Cron-Jobs) die Option *SYNC* um einen tagesaktuellen Stand der über den XPlanWFS 5.1 anfragbaren Pläne zu erreichen.

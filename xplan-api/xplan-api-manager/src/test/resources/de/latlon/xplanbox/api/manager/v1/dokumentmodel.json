@@ -1,0 +1,12 @@
+{
+  "georefURL": "string",
+  "georefMimeType": "text/plain",
+  "art": "1000",
+  "informationssystemURL": "string",
+  "referenzName": "string",
+  "referenzURL": "string",
+  "referenzMimeType": "image/png",
+  "beschreibung": "string",
+  "datum": "2021-08-31T14:19:35.752+0000",
+  "typ": 1000
+}

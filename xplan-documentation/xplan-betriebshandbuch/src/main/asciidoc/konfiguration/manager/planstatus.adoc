@@ -1,0 +1,8 @@
+[[planstatus]]
+=== Planstatus
+
+Der Dialog zur Auswahl des Planstatus, in den ein Plan einsortiert werden soll, kann in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder deaktiviert werden:
+
+----
+activateLegislationStatusDialog=[true|false]
+----

@@ -1,0 +1,44 @@
+:doctype: book
+:encoding: utf-8
+:toc: macro
+:chapter-label:
+:numbered:
+:toc-title: Inhaltsverzeichnis
+:appendix-caption: Anhang
+:table-caption: Tabelle
+:icons: font
+:imagesdir: images
+:title-logo-image: images/logo_latlon.png
+:figure-caption: Abbildung
+
+= Betriebshandbuch für die xPlanBox
+
+toc::[]
+
+include::praeambel.adoc[]
+
+include::ueberblick.adoc[]
+
+include::architektur.adoc[]
+
+include::installation/main.adoc[]
+
+include::konfiguration/manager/main.adoc[]
+
+include::konfiguration/validator/main.adoc[]
+
+include::konfiguration/rest-api/main.adoc[]
+
+include::konfiguration/dienste/main.adoc[]
+
+include::xplandb.adoc[]
+
+include::logging.adoc[]
+
+include::bekannteProbleme.adoc[]
+
+include::aktualisierung.adoc[]
+
+include::migration.adoc[]
+
+include::anhang.adoc[]

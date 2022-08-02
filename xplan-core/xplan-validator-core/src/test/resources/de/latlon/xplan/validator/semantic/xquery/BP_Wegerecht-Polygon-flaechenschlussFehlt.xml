@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+  #%L
+  xplan-validator-core - XPlan Validator Core Komponente
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<!--Erzeugt mit FZK (www.iai.fzk.de) XPlanGML-Toolbox, Erstellungsdatum: 03/25/10-->
+<XPlanAuszug xmlns="http://www.xplanung.de/xplangml/4/1"
+             xmlns:xplan="http://www.xplanung.de/xplangml/4/1" xmlns:gml="http://www.opengis.net/gml/3.2"
+             xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.xplanung.de/xplangml/4/1 ../../../../../../../.././../../xplan-schemas/src/main/resources/appschemas/XPlanGML_4_1/XPlanung-Operationen.xsd"
+             gml:id="GML_3aebe595-a72f-43b9-8dd3-c3c757edd558">
+  <gml:boundedBy>
+    <gml:Envelope srsName="EPSG:31467">
+      <gml:lowerCorner>3478519.018 5889194.887</gml:lowerCorner>
+      <gml:upperCorner>3480922.418 5890728.997</gml:upperCorner>
+    </gml:Envelope>
+  </gml:boundedBy>
+  <gml:featureMember>
+    <xplan:BP_Wegerecht gml:id="GML_9591bc56-45c2-46f5-8cf7-5d34cd356866">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:31467">
+          <gml:lowerCorner>3479682.131 5890103.604</gml:lowerCorner>
+          <gml:upperCorner>3479762.688 5890278.598</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:rechtscharakter>1000</xplan:rechtscharakter>
+      <xplan:gehoertZuBP_Bereich xlink:href="#GML_7af470e9-0167-43ae-823d-56e4241eab9d" />
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:31467" gml:id="GML_3e2e8601-ce42-48fa-8a06-03fe0e041cb4">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="5">3479682.131 5890109.853 3479729.428 5890229.489
+                3479729.785 5890230.519 3479730.051 5890231.577 3479730.223 5890232.653 3479730.302
+                5890233.741 3479730.285 5890234.831 3479730.173 5890235.915 3479729.967 5890236.986
+                3479729.668 5890238.034 3479729.280 5890239.052 3479725.801 5890247.079 3479725.800
+                5890247.081 3479725.411 5890248.099 3479725.112 5890249.148 3479724.906 5890250.218
+                3479724.794 5890251.302 3479724.776 5890252.392 3479724.854 5890253.480 3479725.026
+                5890254.556 3479725.291 5890255.614 3479725.648 5890256.644 3479734.327 5890278.598
+                3479762.688 5890267.386 3479756.989 5890252.970 3479697.937 5890103.604 3479682.131 5890109.853
+              </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:typ>4100</xplan:typ>
+      <xplan:thema>zugunsten der Anlieger und Versorgungsträger</xplan:thema>
+      <xplan:breite uom="m">3.0</xplan:breite>
+    </xplan:BP_Wegerecht>
+  </gml:featureMember>
+</XPlanAuszug>
+

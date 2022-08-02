@@ -1,0 +1,28 @@
+# Eclipse
+.classpath
+.project
+.settings/
+.bin/
+
+# IDEA
+.idea/
+*.iml
+*.iws
+
+# VS Code
+*.factorypath
+
+# Netbeans
+nbactions.xml
+
+# Mac
+.DS_Store
+
+# Maven
+target/
+
+# Logs
+logs/
+*.log
+# But keep source files in log/
+!**/src/**/java/**/log/**/*.java

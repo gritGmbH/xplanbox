@@ -1,0 +1,62 @@
+[[semantische-validierungsregeln-validiator]]
+=== Semantische Validierungsregeln
+
+Die als XQuery-Dateien vorliegenden semantischen Validierungsregeln können in einem externen Verzeichnis abgelegt und durch entsprechende Konfiguration im XPlanManagerWeb und XPlanValidatorWeb verwendet werden, wenn z. B. die semantischen Validierungsregeln angepasst, erweitert oder durch eine aktuellere Version ersetzt werden sollen.
+Um statt der mit dem xPlanBox ausgelieferten Regeln externen Regeln zu verwenden, muss das Verzeichnis für den XPlanManagerWeb und XPlanValidatorWeb konfiguriert werden.
+Der Pfad zu den semantischen Regeln muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ wie folgt konfiguriert werden:
+
+----
+validationRulesDirectory=/home/xplanbox/semantischeRegeln/0.11.1/
+----
+
+Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln verwendet.
+
+Wenn innerhalb des Validierungsbericht die Version und die Quelle der semantischen Validierungsregeln angezeigt werden sollen, dann muss im übergeordneten Verzeichnis aus _validationRulesDirectory_ eine Textdatei mit dem Dateinamen _VERSION.txt_ und folgendem Inhalt angelegt werden:
+
+----
+version=0.11.1
+source=https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.11.1.zip
+----
+
+[[weiterfuehrende-informationen-zur-semantischen-validierung]]
+==== Weiterführende Informationen zur semantischen Validierung
+
+Die Regeln für die semantische Validierung von XPlanGML-Dokumenten sind als XQuery-Abfragen implementiert.
+Die Dateien mit den XQuery-Abfragen sind im XPlanValidatorCLI und dem XPlanValidatorWeb enthalten und entsprechend der Nummer der Regel aus den Konformitätsbedingungen benannt.
+
+===== Referenzen auf externe Ressourcen
+
+Bei der Ausgabe des Ergebnisses der semantischen Validierung kann eine
+Referenz auf eine externe Ressource gesetzt werden, die weiterführenden
+Informationen bereitstellt. Die Referenzen können in der Datei
+_<XPLANBOX_CONFIG>/managerConfiguration.properties_ konfiguriert werden.
+
+----
+linkSemanticConformity_XPLAN_3=
+linkSemanticConformity_XPLAN_40=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_4.pdf
+linkSemanticConformity_XPLAN_41=http://localhost:8080/external/documentation/Konformitaetsbedingungen-XPlanGML_4_1.pdf
+linkSemanticConformity_XPLAN_50=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5.pdf
+linkSemanticConformity_XPLAN_51=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5_1.pdf
+linkSemanticConformity_XPLAN_52=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5_2.pdf
+----
+
+IMPORTANT: Es müssen ggf. Zeilenumbrüche entfernt werden.
+
+Für jede XPlanGML-Version kann hier die Referenz auf eine externe
+Ressource konfiguriert werden. Ist für eine Version keine Ressource
+vorhanden, kann der Eintrag vollständig entfernt oder der Wert zu dem
+Schlüssel leer gelassen werden (wie im Beispiel für `XPLAN_3`). Es wird dann kein Hinweis im Validierungsbericht ausgegeben.
+
+TIP: Es wird empfohlen die Dokumente über die Komponente XPlanRessourcen
+bereitzustellen, um die Unabhängigkeit von externen Ressourcen
+sicherzustellen.
+
+===== Schnittstelle zu XQuery-Statements
+
+Der Rückgabewert der XQuery-Statements wird vom XPlanValidator ausgewertet und im Validierungsbericht ausgegeben. Dabei kann der XPlanValidator zwischen Fehlern und Warnungen unterscheiden. Neben der GML-ID des betroffenen Elements kann optional noch eine Meldung mit ausgelesen werden.
+
+Damit der XPlanValidator den Rückgabewert verarbeiten kann, muss dieser wie folgt strukturiert sein:
+
+`GML_ID`
+oder
+`[GML_ID, 'W', 'NACHRICHT']`

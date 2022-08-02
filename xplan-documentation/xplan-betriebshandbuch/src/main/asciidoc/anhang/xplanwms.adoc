@@ -1,0 +1,116 @@
+[appendix]
+[[appendix_xplanwms-workspace]]
+== XPlanWMS Workspace
+
+Der Workspace _xplansyn-wms-workspace_ wird durch den XPlanManager verwaltet. Werden XPlanArchive mit Rasterdaten über den XPlanManager importiert, dann werden die Rasterdateien im Dateisystem abgespeichert und entsprechende Konfigurationsdateien erzeugt bzw. erweitert.
+Die folgende Übersicht der Verzeichnisstruktur und der darin enthaltenen Dateien erläutert, wo die Rasterdateien abgelegt und die entsprechenden Konfigurationsdateien generiert werden. Dies sind die mit den Ziffern <2>, <3>, <4>, <7> und <13> markierten Verzeichnisse.
+
+----
+.
+├── appschemas              <1>
+│   ├── XPlanGML_3_0
+│   │   ├── *.xsd
+│   ├── XPlanGML_4_0
+│   │   ├── *.xsd
+│   ├── XPlanGML_4_1
+│   │   ├── *.xsd
+│   ├── XPlanGML_5_0
+│   │   ├── *.xsd
+│   ├── XPlanGML_5_1
+│   │   ├── *.xsd
+│   ├── XPlanGML_5_2
+│   │   ├── *.xsd
+│   └── XPlanGML_5_3
+│       └── *.xsd
+├── data                    <2>
+│   ├── *.[png|pgw|tif|tfw]
+├── datasources/tile        <3>
+│   ├── *.xml
+│   └── tilematrixset <4>
+│       └── *.xml
+├── gdal.ignore             <5>
+├── gdal.xml                <5>
+├── jdbc                    <6>
+│   └── xplan.xml
+├── layers                  <7>
+│   ├── bplan.xml
+│   ├── bplanarchive.xml
+│   ├── bplanpre.xml
+│   ├── fplan.xml
+│   ├── fplanarchive.xml
+│   ├── fplanpre.xml
+│   ├── lplan.xml
+│   ├── lplanarchive.xml
+│   ├── lplanpre.xml
+│   ├── rplan.xml
+│   ├── rplanarchive.xml
+│   ├── rplanpre.xml
+│   ├── soplan.xml
+│   ├── soplanarchive.xml
+│   └── soplanpre.xml
+├── legends                 <8>
+│   └── *.png
+├── services                <9>
+│   ├── html.gfi      <10>
+│   ├── wms.xml
+│   ├── wms_metadata.xml
+│   ├── wmsarchive.xml
+│   ├── wmsarchive_metadata.xml
+│   ├── wmspre.xml
+│   └── wmspre_metadata.xml
+├── styles                  <11>
+│   └── *.xml
+├── symbols                 <12>
+│   ├── *.ttf
+│   ├── LROP
+│   │   ├──*.svg
+│   ├── ROK
+│   │   ├── *.svg
+│   ├── RROP
+│   │   ├── *.svg
+│   └── *.svg
+└── themes                  <13>
+    ├── bplan.xml
+    ├── bplanarchive.xml
+    ├── bplanarchiveraster.xml
+    ├── bplanpre.xml
+    ├── bplanpreraster.xml
+    ├── bplanraster.xml
+    ├── fplan.xml
+    ├── fplanarchive.xml
+    ├── fplanarchiveraster.xml
+    ├── fplanpre.xml
+    ├── fplanpreraster.xml
+    ├── fplanraster.xml
+    ├── lplan.xml
+    ├── lplanarchive.xml
+    ├── lplanarchiveraster.xml
+    ├── lplanpre.xml
+    ├── lplanpreraster.xml
+    ├── lplanraster.xml
+    ├── rplan.xml
+    ├── rplanarchive.xml
+    ├── rplanarchiveraster.xml
+    ├── rplanpre.xml
+    ├── rplanpreraster.xml
+    ├── rplanraster.xml
+    ├── soplan.xml
+    ├── soplanarchive.xml
+    ├── soplanarchiveraster.xml
+    ├── soplanpre.xml
+    ├── soplanpreraster.xml
+    └── soplanraster.xml
+----
+<1> Im Verzeichnis _appschemas/_ liegen alle von der xPlanBox unterstützten XPlanGML-Schemadateien.
+<2> Im Verzeichnis _data/_ werden die Rasterdaten (PNG oder GeoTIFF) aus dem XPlanArchiv abgelegt.
+<3> Im Verzeichnis _datasources/tile/_ werden zu jeder Konfigurationsdatei aus <4> durch den XPlanManager Konfigurationsdateien nach dem Muster __<planId>_<rasterdatei>.xml__ automatisch erzeugt.
+<4> Im Verzeichnis _datasources/tile/tilematrixset/_ werden zu jeder Rasterdatei aus <2> durch den <<xplanmanager-web, XPlanManager>> Konfigurationsdateien nach dem Muster __<planId>_<rasterdatei>.xml__ automatisch erzeugt.
+<5> Die Datei _gdal.ignore_ ist nur erforderlich, wenn kein <<konfiguration-gdal, GDAL>> verwendet wird. Wird GDAL verwendet, dann muss die Konfigurationsdatei _gdal.xml_ angelegt werden.
+<6> Im Verzeichnis _jdbc/_ liegt die Konfigurationsdatei mit der Datenbankverbindung zur <<XPlanDB>>.
+<7> Im Verzeichnis _layers/_ werden zu jeder Rasterdatei durch den <<xplanmanager-web, XPlanManager>> eine Konfigurationsdatei passend zu <3> nach dem Muster __<planId>_<rasterdatei>.xml__ automatisch erzeugt.
+<8> Im Verzeichnis _legends/_ liegen die Legendensymbole.
+<9> Im Verzeichnis _services/_ liegen die Konfigurationsdateien für den <<xplanwms, XPlanWMS>>.
+<10> Die Datei _html.gfi_ beinhaltet die Konfiguration der HTML-Ausgabe der GetFeatureInfo-Operation des <<xplanwms, XPlanWMS>>.
+<11> Im Verzeichnis _styles/_ liegen die Zeichenvorschriften für den <<xplanwms, XPlanWMS>>.
+<12> Im Verzeichnis _symbols/_ liegen die Symbole, die in den Zeichenvorschriften verwendet werden.
+<13> Im Verzeichnis _themes/_ liegen die Konfigurationsdateien für den <<xplanwms, XPlanWMS>>, die den Ebenenbaum definieren. Die unter <6> generierten Konfigurationsdateien für die einzelnen Ebenen werden beim Import vom XPlanManager automatisch erweitert. Dies sind nach Planart und Planstatus die Dateien mit der Dateiendung `*raster.xml`.

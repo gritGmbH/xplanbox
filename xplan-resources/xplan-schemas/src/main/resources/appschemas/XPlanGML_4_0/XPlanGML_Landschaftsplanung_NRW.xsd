@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--ADE-Erweiterung, Erstellungsdatum: 03/15/11-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2"
+        xmlns:xplan="http://www.xplanung.de/xplangml/4/0" elementFormDefault="qualified"
+        targetNamespace="http://www.xplanung.de/xplangml/4/0" version="">
+  <include schemaLocation="XPlanGML_Landschaftsplanung_Kernmodell.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="gmlProfile/gmlProfilexplan.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="LP_NRW_PflegeAnpflanzung" substitutionGroup="xplan:LP_SchutzPflegeEntwicklung"
+           type="xplan:LP_NRW_PflegeAnpflanzungType"/>
+  <complexType name="LP_NRW_PflegeAnpflanzungType">
+    <complexContent>
+      <extension base="xplan:LP_SchutzPflegeEntwicklungType">
+        <sequence>
+          <element minOccurs="0" name="element" type="xplan:LP_NRW_LandschaftsstrukturElementeType"/>
+          <element minOccurs="0" name="weiteresElement1" type="xplan:LP_NRW_LandschaftsstrukturElementeType"/>
+          <element minOccurs="0" name="weiteresElement2" type="xplan:LP_NRW_LandschaftsstrukturElementeType"/>
+          <element minOccurs="0" name="detailElement" type="gml:CodeType"/>
+          <element minOccurs="0" name="detailWeiteresElement1" type="gml:CodeType"/>
+          <element minOccurs="0" name="detailWeiteresElement2" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_PflegeAnpflanzung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_PflegeAnpflanzung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="LP_NRW_ZweckbestimmungForstlicheFestsetzungType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="3000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="LP_NRW_PflegeLandschaftsbild" substitutionGroup="xplan:LP_SchutzPflegeEntwicklung"
+           type="xplan:LP_NRW_PflegeLandschaftsbildType"/>
+  <complexType name="LP_NRW_PflegeLandschaftsbildType">
+    <complexContent>
+      <extension base="xplan:LP_SchutzPflegeEntwicklungType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_PflegeLandschaftsbild" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_PflegeLandschaftsbild" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="LP_NRW_TemporaererLandschaftsschutz" substitutionGroup="xplan:LP_Zwischennutzung"
+           type="xplan:LP_NRW_TemporaererLandschaftsschutzType"/>
+  <complexType name="LP_NRW_TemporaererLandschaftsschutzType">
+    <complexContent>
+      <extension base="xplan:LP_ZwischennutzungType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_TemporaererLandschaftsschutz" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_TemporaererLandschaftsschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="LP_NRW_SchutzobjektLandesrecht" substitutionGroup="xplan:LP_SchutzobjektLandesrecht"
+           type="xplan:LP_NRW_SchutzobjektLandesrechtType"/>
+  <complexType name="LP_NRW_SchutzobjektLandesrechtType">
+    <complexContent>
+      <extension base="xplan:LP_SchutzobjektLandesrechtType">
+        <sequence>
+          <element minOccurs="0" name="speziellerTyp" type="xplan:LP_NRW_LandesrechtSchutzobjektTypenType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_SchutzobjektLandesrecht" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_SchutzobjektLandesrecht" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="LP_NRW_HerrichtungGrundstueck" substitutionGroup="xplan:LP_SchutzPflegeEntwicklung"
+           type="xplan:LP_NRW_HerrichtungGrundstueckType"/>
+  <complexType name="LP_NRW_HerrichtungGrundstueckType">
+    <complexContent>
+      <extension base="xplan:LP_SchutzPflegeEntwicklungType">
+        <sequence>
+          <element minOccurs="0" name="massnahmeGrundstueck" type="xplan:LP_NRW_GrundstuecksMassnahmenType"/>
+          <element minOccurs="0" name="weitereMassnahmeGrundstueck" type="xplan:LP_NRW_GrundstuecksMassnahmenType"/>
+          <element minOccurs="0" name="detailMassnahme" type="gml:CodeType"/>
+          <element minOccurs="0" name="detailWeitereMassnahme" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_HerrichtungGrundstueck" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_HerrichtungGrundstueck" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="LP_NRW_LandesrechtSchutzobjektTypenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1500"/>
+      <enumeration value="2000"/>
+      <enumeration value="2500"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="LP_NRW_StrukturenElementeBesiedelterBereich" substitutionGroup="xplan:LP_SchutzPflegeEntwicklung"
+           type="xplan:LP_NRW_StrukturenElementeBesiedelterBereichType"/>
+  <complexType name="LP_NRW_StrukturenElementeBesiedelterBereichType">
+    <complexContent>
+      <extension base="xplan:LP_SchutzPflegeEntwicklungType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_StrukturenElementeBesiedelterBereich" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_StrukturenElementeBesiedelterBereich" type="anyType"
+           abstract="true"/>
+  <!--==========================================================================-->
+  <element name="LP_NRW_ForstlicheFestsetzung" substitutionGroup="xplan:LP_NutzungserfordernisRegelung"
+           type="xplan:LP_NRW_ForstlicheFestsetzungType"/>
+  <complexType name="LP_NRW_ForstlicheFestsetzungType">
+    <complexContent>
+      <extension base="xplan:LP_NutzungserfordernisRegelungType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:LP_NRW_ZweckbestimmungForstlicheFestsetzungType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="verwendeteBaumart" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="ausgeschlosseneBaumart" type="string"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_ForstlicheFestsetzung" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_ForstlicheFestsetzung" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="LP_NRW_Brachflaeche" substitutionGroup="xplan:LP_NutzungserfordernisRegelung"
+           type="xplan:LP_NRW_BrachflaecheType"/>
+  <complexType name="LP_NRW_BrachflaecheType">
+    <complexContent>
+      <extension base="xplan:LP_NutzungserfordernisRegelungType">
+        <sequence>
+          <element minOccurs="0" name="zweckbestimmung" type="xplan:LP_NRW_ZweckbestimmungBrachflaecheType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_Brachflaeche" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_Brachflaeche" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="LP_NRW_LandschaftsstrukturElementeType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="1500"/>
+      <enumeration value="2000"/>
+      <enumeration value="2500"/>
+      <enumeration value="3000"/>
+      <enumeration value="3500"/>
+      <enumeration value="4000"/>
+      <enumeration value="4500"/>
+      <enumeration value="5000"/>
+      <enumeration value="5500"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="LP_NRW_SonstigeMassnahme" substitutionGroup="xplan:LP_SchutzPflegeEntwicklung"
+           type="xplan:LP_NRW_SonstigeMassnahmeType"/>
+  <complexType name="LP_NRW_SonstigeMassnahmeType">
+    <complexContent>
+      <extension base="xplan:LP_SchutzPflegeEntwicklungType">
+        <sequence>
+          <element minOccurs="0" name="detailMassnahme" type="gml:CodeType"/>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_SonstigeMassnahme" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_SonstigeMassnahme" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="LP_NRW_ElementeKulturlandschaft" substitutionGroup="xplan:LP_SchutzPflegeEntwicklung"
+           type="xplan:LP_NRW_ElementeKulturlandschaftType"/>
+  <complexType name="LP_NRW_ElementeKulturlandschaftType">
+    <complexContent>
+      <extension base="xplan:LP_SchutzPflegeEntwicklungType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_ElementeKulturlandschaft" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_ElementeKulturlandschaft" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <element name="LP_NRW_Biotopschutz" substitutionGroup="xplan:LP_SchutzPflegeEntwicklung"
+           type="xplan:LP_NRW_BiotopschutzType"/>
+  <complexType name="LP_NRW_BiotopschutzType">
+    <complexContent>
+      <extension base="xplan:LP_SchutzPflegeEntwicklungType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_Biotopschutz" minOccurs="0" maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_Biotopschutz" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="LP_NRW_GrundstuecksMassnahmenType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+  <element name="LP_NRW_VerpflichtungWRRL" substitutionGroup="xplan:LP_SchutzPflegeEntwicklung"
+           type="xplan:LP_NRW_VerpflichtungWRRLType"/>
+  <complexType name="LP_NRW_VerpflichtungWRRLType">
+    <complexContent>
+      <extension base="xplan:LP_SchutzPflegeEntwicklungType">
+        <sequence>
+          <!--== ADE ===================================================================-->
+          <element ref="xplan:_GenericApplicationPropertyOfLP_NRW_VerpflichtungWRRL" minOccurs="0"
+                   maxOccurs="unbounded"/>
+          <!--==========================================================================-->
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <!--== ADE ===================================================================-->
+  <element name="_GenericApplicationPropertyOfLP_NRW_VerpflichtungWRRL" type="anyType" abstract="true"/>
+  <!--==========================================================================-->
+  <simpleType name="LP_NRW_ZweckbestimmungBrachflaecheType">
+    <restriction base="string">
+      <enumeration value="1000"/>
+      <enumeration value="2000"/>
+      <enumeration value="9999"/>
+    </restriction>
+  </simpleType>
+</schema>

@@ -1,0 +1,62 @@
+[appendix]
+[[appendix_xplandb]]
+== Datenbankmodell der XPlanDB
+
+Die XPlanDB enthält für jede unterstützte XPlanGML-Version ein eigenes Datenbankschema.
+Die Datenbankschema je XPlanGML-Version unterscheiden sich nur im Namen des Schemas und nutzen das BLOB-Mapping von deegree (siehe https://download.deegree.org/documentation/current/html/#anchor-blob-mode[deegree webservices BLOB mapping]) für die Ablage von XPlanGML-Dokumenten.
+
+[[appendix_xplandb_xplan53]]
+=== Datenbankschema für XPlanGML 5.3
+
+Das folgende Diagramm zeigt exemplarisch die Tabellenstruktur aus dem Datenbankschema `xplan53` für die Ablage von XPlanGML-Dokumenten in der Version 5.3.
+In der Tabelle `feature_types` werden die in XPlanGML 5.3 enthaltenen Feature Types gespeichert. In der Tabelle `gml_objects` werden die in den XPlanGML-Dokumenten enthaltenen Features in `xplan53.gml_objects.binary_object` gespeichert.
+
+.Datenbankschema 'xplan53' für XPlanGML Version 5.3
+image::xplandb_schema_53.png[Schema xplan53]
+
+Die Tabellenstruktur aus diesem Schema unterscheidet sich nicht zu den anderen von der xPlanBox unterstützten XPlanGML-Versionen. Nur die Inhalte in den jeweiligen `feature_types` Tabellen der anderen Schemata unterscheiden sich je nach XPlanGML-Version.
+
+[[appendix_xplandb_xplansyn]]
+=== Datenbankschema für XPlanSyn
+
+Das XPlanSyn-Schema wird aus den von der xPlanBox unterstützten XPlanGML-Versionen abgeleitet. Dabei wird ein versionsübergreifendes Schema erzeugt.
+In der aktuellen Version der xPlanBox sind dies die XPlanGML-Versionen 3.0 bis 5.4 und das Datenbankschema `xplansyn` umfasst 324 Tabellen. XPlanGML-Dokumente werden im XPlanSyn-Schema unter Verwendung des relationalen Mappings von deegree (siehe https://download.deegree.org/documentation/current/html/#_mapping_gml_application_schemas[deegree webservices relational mapping]) gespeichert.
+
+IMPORTANT: Wird eine ältere XPlanGML-Version abgekündigt oder eine neue XPlanGML-Version hinzugefügt, ändert sich das XPlanSyn-Schema!
+
+Die folgenden Diagramme zeigen die Tabellenstruktur für ausgewählte Fachdatenobjekte (abgeleitete Feature Types aus den XPlanGML-Schema) aus dem Schema `xplansyn`.
+
+.Datenbankschema 'xplansyn' - BPlan (Ausschnitt 1 - BP_Baugebiet)
+image::xplandb_xplansyn_bplan1.png[Schema xplansyn - BPlan (Ausschnitt 1 - PB_Baugebiet)]
+
+.Datenbankschema 'xplansyn' - BPlan (Ausschnitt 2 - BP_Bereich)
+image::xplandb_xplansyn_bplan2.png[Schema xplansyn - BPlan (Ausschnitt 2 - BP_Bereich)]
+
+.Datenbankschema 'xplansyn' - BPlan (Ausschnitt 3 - BP_Plan)
+image::xplandb_xplansyn_bplan3.png[Schema xplansyn - BPlan (Ausschnitt 3 - BP_Plan)]
+
+.Datenbankschema 'xplansyn' - BPlan (Ausschnitt 4 - BP_UeberbaubareGrundstuecksflaeche)
+image::xplandb_xplansyn_bplan4.png[Schema xplansyn - BPlan (Ausschnitt 4 - BP_UeberbaubareGrundstuecksflaeche)]
+
+.Datenbankschema 'xplansyn' - XP (Ausschnitt 1 - XP_Nutzungsschablone)
+image::xplandb_xplansyn_xp1.png[Schema xplansyn - XP (Ausschnitt 1 - XP_Nutzungsschablone)]
+
+.Datenbankschema 'xplansyn' - XP (Ausschnitt 2 - XP_Grenze)
+image::xplandb_xplansyn_xp2.png[Schema xplansyn - XP (Ausschnitt 2 - XP_Grenze)]
+
+.Datenbankschema 'xplansyn' - XP (Ausschnitt 3 - XP_Textabschnitt)
+image::xplandb_xplansyn_xp3.png[Schema xplansyn - XP (Ausschnitt 3 - XP_Textabschnitt)]
+
+[[appendix_xplandb_xplanmgr]]
+=== Datenbankschema für XPlanManager
+
+Das Datenbankschema für den XPlanManager enthält neben einigen Informationen aus dem XPlanGML-Dokument auch alle mit dem XPlanArchiv importierten Anhänge.
+
+Das folgende Diagramm zeigt die Tabellenstruktur für das Schema `xplanmgr`.
+
+In der Tabelle `xplanmgr.plans.artefacts` werden alle im XPlanArchiv enthaltenen Dokumente gespeichert. Die Tabelle `xplanmgr.plans.planwerkwmsmetadata` beinhaltet Informationen zum <<xplanwms, XPlanWerkWMS>>.
+
+.Datenbankschema 'xplanmgr'
+image::xplandb_xplanmgr.png[Schema xplanmgr]
+
+NOTE: Die Rasterdateien werden zusätzlich für die Bereitstellung über den XPlanWMS auch im Workspace des XPlanWMS abgelegt. Die Verzeichnisstruktur im Kapitel <<appendix_xplanwms-workspace>> beschrieben.

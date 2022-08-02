@@ -1,0 +1,85 @@
+<!--
+  #%L
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+<?template start>
+<html>
+  <head>
+    <title>XPlanInspirePluWMS</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  </head>
+  
+  <body>
+    <table style='font-family:Arial; font-size: 0.9em;'>
+      <?feature *:feature>
+    </table>
+  </body>
+</html>
+
+<?template feature>
+<tr style="background-color: white;">
+      <td colspan="2" style="font-size: 1.1em; border-bottom: solid black 1px; padding-top: 10px; padding-bottom: 5px;">
+		<strong>
+            <?name:map ftname>
+		</strong>
+      </td>
+</tr>
+<?property *:property>
+
+<?template property>
+<tr>
+  <td <?even:maybegray> valign="top" style="width:20%;">
+        <strong> 
+          <?name:map propname>
+        </strong>
+  </td>
+  <td <?even:maybegray>>
+    <?value>
+  </td>
+</tr>
+
+<?template oddcolor>style="background-color: #F2F2F2;"
+<?template evencolor>style="background-color: white;"
+<?template maybegray>style="background-color: #F2F2F2;"
+
+<?map ftname>
+SpatialPlan=SpatialPlan
+SupplementaryRegulation=SupplementaryRegulation
+ZoningElement=ZoningElement
+
+<?map propname>
+inspireid=Inspire ID
+levelofspatialplan=Level of spatial plan
+officialtitle=Official title
+alternativetitle=Alternative title
+ordinances=Ordinances
+regulationnature=Regulationnature
+dimensioningindications=Dimensioning indications
+supplementaryregulations=Supplementaryregulations
+inheritedfromotherplans=Inherited from other plans
+names=Names
+specificregulationnature=Specific regulationnature
+specificsupplementaryregulations=Specific supplementaryregulations
+hilucs=HILUCS
+specificlanduse=Specific land use
+processstepgeneral=Processstepgeneral
+validfrom=Valid from
+validto=Valid to
+beginlifespanversion=Begin lifespanversion
+endlifespanversion=End lifespanversion

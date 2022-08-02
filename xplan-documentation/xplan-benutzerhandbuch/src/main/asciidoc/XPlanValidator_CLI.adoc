@@ -1,0 +1,163 @@
+[[xplanvalidator-cli]]
+=== XPlanValidatorCLI
+
+Analog zum XPlanManagerWeb können XPlanGML-Dokumente mit der Komponente XPlanValidatorCLI über ein Kommandozeilenwerkzeug validiert werden.
+
+[[xplanvalidator-cli-benutzungsanleitung]]
+==== Benutzungsanleitung
+
+Beim XPlanValidatorCLI handelt es sich um ein Kommandozeilentool, das
+parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
+in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
+Ort aufrufbar.
+
+[[xplanvalidator-cli-konfiguration-ueber-datei]]
+===== Konfiguration über Datei
+
+In dem Verzeichnis _<validator-cli-directory>/etc/_ befindet sich die
+Konfigurationsdatei __validatorConfiguration.properties__, welche
+genutzt werden kann, um generelle Konfigurationen an dem
+Kommandozeilentool durchzuführen.
+
+Über _validationReportDirectory=<directory>_ kann konfiguriert werden,
+wo die Reports mit dem Validierungsergebnis, die während der Ausführung
+des Tools generiert werden, abgespeichert werden sollen.
+
+Mit der Option _validationRulesDirectory=<directory>_ kann konfiguriert
+werden, in welchem Verzeichnis die semantischen Validierungsregeln liegen,
+die für die Validierung verwendet werden sollen. Erfolgt keine Angabe
+werden die unter  _<validator-cli-directory>/etc/rules_ liegenden
+semantischen Validierungsregeln verwendet.
+
+[[xplanvalidator-cli-hilfe]]
+===== Hilfe
+
+Die Hilfe mit den Angaben zu den möglichen Eingabeparametern lässt sich
+mit dem Parameter `help` ausgeben.
+
+Aufruf:
+
+----
+./XPlanValidator -help
+----
+
+Ausgabe:
+
+----
+usage: XPlanValidator [-name <arg>] -validate <arg> [-vo <arg>] [-vtype
+       <arg>] [-xq <arg>]
+
+   -name <arg>         name of the validation
+   -validate <arg>     zip file path
+   -vo <arg>           validation options
+   -vtype <arg>        values: syntax, geometric, semantic. multiple types must
+                       be comma separated
+----
+
+[[xplanvalidator-cli-auswahl-planarchiv]]
+===== Auswahl XPlanArchiv
+
+Über den Parameter `validate <planarchiv>` kann der Pfad zum XPlanArchiv
+ auswählt werden, welcher validiert werden soll. Die Angabe
+des Parameters ist obligatorisch.
+
+Aufruf:
+
+----
+./XPlanValidator -validate Plan.zip
+----
+
+[[xplanvalidator-cli-bezeichnung-der-validierung]]
+===== Bezeichnung für den Report
+
+Über den Parameter `name <bezeichnung>` kann eine Bezeichnung für den generierten
+Report vergeben werden. Die Angabe des Parameters `-name` ist optional.
+Fehlt dieser Parameter, wird der Name des XPlanArchivs verwendet.
+
+Aufruf:
+
+----
+./XPlanValidator -validate Plan.zip -name Validierung
+----
+
+[[xplanvalidator-cli-validierungsart]]
+===== Validierungsart
+
+Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl der
+Validierungsart parametrisiert aufgerufen werden. Die Angabe des
+Parameters `-vtype` ist optional.
+
+Aufruf:
+
+----
+./XPlanValidator -validate Plan.zip -vtype [syntax|geometric|semantic]
+----
+
+Zuordnung der Werte:
+
+* syntax = Syntaktisch
+* geometric = Geometrisch
+* semantic = Semantisch
+
+Wird kein `vtype` Parameter gewählt, werden alle Validierungsarten durchgeführt.
+
+Beispiel für eine Ausgabe:
+
+----
+ Configuration directory is ./xplan-validator-cli-5.1-SNAPSHOT/etc
+ Configuration is read from file ./xplan-validator-cli-5.1-SNAPSHOT/etc/validatorConfiguration.properties
+ -------------------------------------------
+ Configuration of the XPlanValidator:
+ -------------------------------------------
+   validation report directory
+    - /var/folders/s5/hwytkj2j2170hx3l29ncw6hh0000gn/T/validationReport12531021004621205039
+   validation rules directory
+    - internal rules are used
+   XPlanValidatorWMS Endpoint
+    - null
+ -------------------------------------------
+...
+Ergebnisse der geometrischen Validierung:
+Warnungen: 3
+   - 2.2.1.1: Das Flaechenschlussobjekt mit der gml id GML_4c5557e0-2015-4ccf-a87a-9d6ef125c8d2 erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: (572703.5953,5938215.9377)
+   - 2.2.1.1: Das Flaechenschlussobjekt mit der gml id GML_4c5557e0-2015-4ccf-a87a-9d6ef125c8d2 erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: (572755.21,5938248.4235)
+   - 2.2.1.1: Das Flaechenschlussobjekt mit der gml id GML_4c5557e0-2015-4ccf-a87a-9d6ef125c8d2 erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: (572662.528,5938214.726)
+...
+Geometrie-Fehler: 2
+  - Polygon (Zeile 163, Spalte 9): 2.2.2.1: Äußerer Ring verwendet falsche Laufrichtung (CW).
+  - Polygon (Zeile 163, Spalte 9): 2.2.2.1: Innerer Ring verwendet falsche Laufrichtung (CCW).
+Fortsetzung trotz Geometrie-Fehlern (--force).
+...
+Geometrische Validierung hat ergeben: Dokument ist nicht valide
+Semantische Validierung hat ergeben: Dokument ist valide
+Syntaktische Validierung hat ergeben: Dokument ist valide
+Archiv mit Validierungsergebnissen wird erstellt.
+Archiv mit Validierungsergebnissen wurde unter /var/folders/s5/hwytkj2j2170hx3l29ncw6hh0000gn/T/validationReport12531021004621205039 abgelegt.
+----
+
+[[xplanvalidator-cli-validierungsoption]]
+===== Validierungsoption
+
+Die Kommandozeilenschnittstelle des XPlanValidator kann zur Auswahl von
+zusätzlichen Validierungsoptionen parametrisiert aufgerufen werden. Die
+Angabe des Parameters `-vo` ist optional.
+
+Aufruf:
+
+----
+./XPlanValidator -validate Plan.zip -vo skip-flaechenschluss -vo skip-geltungsbereich
+----
+
+Zuordnung der Werte:
+
+  * skip-flaechenschluss -> Geometrische Überprüfung der Flächenschlussbedingung (2.2.1.1) überspringen [ja]
+  * skip-geltungsbereich -> Geometrische Überprüfung des Geltungsbereich (2.2.3.1) überspringen [ja]
+
+[[xplanvalidator-cli-validierungsergebnis]]
+===== Validierungsergebnis
+
+Am Ende des Validierungsdurchlaufs wird dem Benutzer der Pfad zu dem
+Validierungsergebnis ausgegeben. Das Validierungsergebnis wird als HTML,
+XML sowie PDF in einem Archiv gespeichert. Das Archiv ist nach dem
+Validierungsdurchlaufs benannt und kann somit leicht identifiziert
+werden.

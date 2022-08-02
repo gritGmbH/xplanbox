@@ -1,0 +1,7 @@
+include::anhang/aktualisierung.adoc[]
+
+include::anhang/xplanwms.adoc[]
+
+include::anhang/xplandb.adoc[]
+
+include::anhang/lizenzen.adoc[]

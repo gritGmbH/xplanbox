@@ -1,0 +1,25 @@
+
+Der XPlanValidator ist ein Tool zur technischen Validierung von
+
+* Bebauungsplänen (B-Pläne),
+* Flächennutzungsplänen (F-Pläne),
+* Raumordnungsplänen (R-Pläne),
+* Landschaftsplänen (L-Pläne) und
+* Sonstigen Plänen (SO-Pläne)
+
+in den XPlanGML Versionen 4.0, 4.1, 5.0, 5.1, 5.2, 5.3 und 5.4.
+
+[NOTE]
+====
+Die Konformitätsregeln sind für die Version 5.0 und höher optimiert!
+====
+
+https://xleitstelle.de/xplanung/[XPlanung ist der Standard] für die Struktur, den Inhalt und die Form von Daten und Informationen zur Bereitstellung von räumlichen Planwerken der Raumordnung, Landes- und Regionalplanung, Bauleitplanung und Landschaftsplanung. Durch die Anwendung des Standards kann ein verlustfreier Datenaustausch zwischen unterschiedlichen IT-Systemen und Anwendungen gewährleistet werden.
+
+Um die Einhaltung des Standards zu gewährleisten und damit einen Austausch zu ermöglichen, muss eine Validierung der Daten erfolgen.
+
+[NOTE]
+====
+Der XPlanValidator kann prüfen, ob Daten der XPlanung technisch fehlerfrei sind. Dies ersetzt aber keine inhaltliche und fachliche Prüfung.
+====
+

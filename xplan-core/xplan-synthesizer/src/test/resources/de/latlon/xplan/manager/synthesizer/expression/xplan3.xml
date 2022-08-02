@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+  #%L
+  xplan-synthesizer - XPlan Manager Synthesizer Komponente
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<!--Erzeugt mit FZK (www.iai.fzk.de) XPlanGML-Toolbox, Erstellungsdatum: 07/17/08-->
+<XPlanAuszug xmlns="http://www.xplanung.de/xplangml/3/0" 
+  xmlns:xplan="http://www.xplanung.de/xplangml/3/0" 
+  xmlns:gml="http://www.opengis.net/gml" 
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:wfs="http://www.opengis.net/wfs"
+  xsi:schemaLocation="http://www.xplanung.de/xplangml/3/0 ../../../../../../../main/resources/schemas/XPlanGML_3_0/XPlanung-Operationen.xsd">
+  <gml:boundedBy>
+    <gml:Envelope srsName="EPSG:31467">
+      <gml:pos>3478519.018 5889194.887</gml:pos>
+      <gml:pos>3480922.418 5890728.997</gml:pos>
+    </gml:Envelope>
+  </gml:boundedBy>  
+  <gml:featureMember>
+    <BP_Plan gml:id="BP_Plan_1">
+      <xplan:beschreibung>Testdatensatz XPlabGML</xplan:beschreibung>
+      <xplan:technHerstellDatum>2001-08-06</xplan:technHerstellDatum>
+      <xplan:xPlanGMLVersion>3.0</xplan:xPlanGMLVersion>
+      <xplan:raeumlicherGeltungsbereich>
+        <gml:Polygon srsName="EPSG:31467">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:pos>3479367.656 5889625.167</gml:pos>
+              <gml:pos>3479364.766 5889617.858</gml:pos>
+              <gml:pos>3479361.087 5889608.551</gml:pos>
+              <gml:pos>3479392.706 5889596.055</gml:pos>
+              <gml:pos>3479457.758 5889511.227</gml:pos>
+              <gml:pos>3479573.376 5889465.541</gml:pos>
+              <gml:pos>3479574.249 5889465.196</gml:pos>
+              <gml:pos>3479578.025 5889463.704</gml:pos>
+              <gml:pos>3480237.382 5889203.160</gml:pos>
+              <gml:pos>3480258.319 5889194.887</gml:pos>
+              <gml:pos>3480266.396 5889215.351</gml:pos>
+              <gml:pos>3480286.381 5889267.290</gml:pos>
+              <gml:pos>3480312.598 5889332.402</gml:pos>
+              <gml:pos>3480314.433 5889337.052</gml:pos>
+              <gml:pos>3480603.948 5889222.652</gml:pos>
+              <gml:pos>3480607.590 5889228.202</gml:pos>
+              <gml:pos>3480340.743 5889333.644</gml:pos>
+              <gml:pos>3480321.469 5889341.260</gml:pos>
+              <gml:pos>3480366.984 5889456.572</gml:pos>
+              <gml:pos>3480377.069 5889452.587</gml:pos>
+              <gml:pos>3480405.002 5889523.156</gml:pos>
+              <gml:pos>3480415.073 5889521.440</gml:pos>
+              <gml:pos>3480465.316 5889512.879</gml:pos>
+              <gml:pos>3480489.609 5889503.281</gml:pos>
+              <gml:pos>3480490.182 5889503.055</gml:pos>
+              <gml:pos>3480498.444 5889499.790</gml:pos>
+              <gml:pos>3480503.548 5889497.908</gml:pos>
+              <gml:pos>3480531.106 5889488.451</gml:pos>
+              <gml:pos>3480532.277 5889488.105</gml:pos>
+              <gml:pos>3480533.474 5889487.863</gml:pos>
+              <gml:pos>3480534.688 5889487.726</gml:pos>
+              <gml:pos>3480535.909 5889487.695</gml:pos>
+              <gml:pos>3480537.128 5889487.771</gml:pos>
+              <gml:pos>3480538.336 5889487.953</gml:pos>
+              <gml:pos>3480539.523 5889488.239</gml:pos>
+              <gml:pos>3480540.681 5889488.628</gml:pos>
+              <gml:pos>3480541.332 5889488.898</gml:pos>
+              <gml:pos>3480542.426 5889489.442</gml:pos>
+              <gml:pos>3480543.468 5889490.079</gml:pos>
+              <gml:pos>3480544.450 5889490.805</gml:pos>
+              <gml:pos>3480545.365 5889491.613</gml:pos>
+              <gml:pos>3480546.207 5889492.498</gml:pos>
+              <gml:pos>3480546.968 5889493.453</gml:pos>
+              <gml:pos>3480547.643 5889494.471</gml:pos>
+              <gml:pos>3480548.227 5889495.544</gml:pos>
+              <gml:pos>3480548.521 5889496.185</gml:pos>
+              <gml:pos>3480549.881 5889499.628</gml:pos>
+              <gml:pos>3480574.277 5889489.997</gml:pos>
+              <gml:pos>3480572.947 5889486.630</gml:pos>
+              <gml:pos>3480572.548 5889485.475</gml:pos>
+              <gml:pos>3480572.252 5889484.291</gml:pos>
+              <gml:pos>3480572.059 5889483.084</gml:pos>
+              <gml:pos>3480571.973 5889481.866</gml:pos>
+              <gml:pos>3480571.993 5889480.645</gml:pos>
+              <gml:pos>3480572.120 5889479.430</gml:pos>
+              <gml:pos>3480572.352 5889478.231</gml:pos>
+              <gml:pos>3480572.687 5889477.056</gml:pos>
+              <gml:pos>3480572.801 5889476.728</gml:pos>
+              <gml:pos>3480573.266 5889475.598</gml:pos>
+              <gml:pos>3480573.827 5889474.514</gml:pos>
+              <gml:pos>3480574.481 5889473.482</gml:pos>
+              <gml:pos>3480575.222 5889472.511</gml:pos>
+              <gml:pos>3480576.046 5889471.609</gml:pos>
+              <gml:pos>3480576.944 5889470.781</gml:pos>
+              <gml:pos>3480577.911 5889470.036</gml:pos>
+              <gml:pos>3480578.940 5889469.377</gml:pos>
+              <gml:pos>3480579.243 5889469.206</gml:pos>
+              <gml:pos>3480579.486 5889469.076</gml:pos>
+              <gml:pos>3480687.901 5889426.550</gml:pos>
+              <gml:pos>3480690.272 5889425.596</gml:pos>
+              <gml:pos>3480704.322 5889419.094</gml:pos>
+              <gml:pos>3480717.752 5889411.392</gml:pos>
+              <gml:pos>3480730.460 5889402.549</gml:pos>
+              <gml:pos>3480742.349 5889392.633</gml:pos>
+              <gml:pos>3480753.328 5889381.718</gml:pos>
+              <gml:pos>3480763.314 5889369.887</gml:pos>
+              <gml:pos>3480763.454 5889369.720</gml:pos>
+              <gml:pos>3480763.608 5889369.566</gml:pos>
+              <gml:pos>3480763.775 5889369.426</gml:pos>
+              <gml:pos>3480763.953 5889369.301</gml:pos>
+              <gml:pos>3480764.142 5889369.193</gml:pos>
+              <gml:pos>3480764.339 5889369.101</gml:pos>
+              <gml:pos>3480764.544 5889369.026</gml:pos>
+              <gml:pos>3480764.754 5889368.970</gml:pos>
+              <gml:pos>3480764.969 5889368.932</gml:pos>
+              <gml:pos>3480765.186 5889368.913</gml:pos>
+              <gml:pos>3480765.403 5889368.913</gml:pos>
+              <gml:pos>3480765.620 5889368.932</gml:pos>
+              <gml:pos>3480765.835 5889368.970</gml:pos>
+              <gml:pos>3480766.045 5889369.027</gml:pos>
+              <gml:pos>3480766.250 5889369.101</gml:pos>
+              <gml:pos>3480766.447 5889369.193</gml:pos>
+              <gml:pos>3480766.636 5889369.302</gml:pos>
+              <gml:pos>3480766.814 5889369.427</gml:pos>
+              <gml:pos>3480766.823 5889369.433</gml:pos>
+              <gml:pos>3480768.750 5889370.921</gml:pos>
+              <gml:pos>3480768.770 5889370.936</gml:pos>
+              <gml:pos>3480774.151 5889363.261</gml:pos>
+              <gml:pos>3480781.666 5889350.720</gml:pos>
+              <gml:pos>3480786.272 5889343.052</gml:pos>
+              <gml:pos>3480791.378 5889336.004</gml:pos>
+              <gml:pos>3480791.486 5889335.858</gml:pos>
+              <gml:pos>3480791.626 5889335.637</gml:pos>
+              <gml:pos>3480791.746 5889335.405</gml:pos>
+              <gml:pos>3480791.846 5889335.163</gml:pos>
+              <gml:pos>3480791.924 5889334.913</gml:pos>
+              <gml:pos>3480791.981 5889334.658</gml:pos>
+              <gml:pos>3480792.014 5889334.399</gml:pos>
+              <gml:pos>3480792.025 5889334.137</gml:pos>
+              <gml:pos>3480792.013 5889333.876</gml:pos>
+              <gml:pos>3480791.979 5889333.617</gml:pos>
+              <gml:pos>3480791.922 5889333.361</gml:pos>
+              <gml:pos>3480791.843 5889333.112</gml:pos>
+              <gml:pos>3480791.742 5889332.871</gml:pos>
+              <gml:pos>3480791.621 5889332.639</gml:pos>
+              <gml:pos>3480791.480 5889332.418</gml:pos>
+              <gml:pos>3480791.321 5889332.211</gml:pos>
+              <gml:pos>3480791.144 5889332.018</gml:pos>
+              <gml:pos>3480790.951 5889331.842</gml:pos>
+              <gml:pos>3480790.743 5889331.683</gml:pos>
+              <gml:pos>3480790.522 5889331.543</gml:pos>
+              <gml:pos>3480776.045 5889323.561</gml:pos>
+              <gml:pos>3480789.389 5889325.300</gml:pos>
+              <gml:pos>3480807.971 5889326.581</gml:pos>
+              <gml:pos>3480838.403 5889326.203</gml:pos>
+              <gml:pos>3480851.806 5889324.664</gml:pos>
+              <gml:pos>3480859.563 5889324.378</gml:pos>
+              <gml:pos>3480853.214 5889325.971</gml:pos>
+              <gml:pos>3480850.489 5889326.705</gml:pos>
+              <gml:pos>3480843.843 5889328.941</gml:pos>
+              <gml:pos>3480837.417 5889331.748</gml:pos>
+              <gml:pos>3480831.260 5889335.105</gml:pos>
+              <gml:pos>3480825.420 5889338.985</gml:pos>
+              <gml:pos>3480819.939 5889343.359</gml:pos>
+              <gml:pos>3480817.657 5889345.427</gml:pos>
+              <gml:pos>3480812.768 5889350.452</gml:pos>
+              <gml:pos>3480812.487 5889350.740</gml:pos>
+              <gml:pos>3480812.182 5889351.003</gml:pos>
+              <gml:pos>3480811.855 5889351.238</gml:pos>
+              <gml:pos>3480811.509 5889351.444</gml:pos>
+              <gml:pos>3480811.146 5889351.619</gml:pos>
+              <gml:pos>3480811.056 5889351.657</gml:pos>
+              <gml:pos>3480806.569 5889356.339</gml:pos>
+              <gml:pos>3480797.079 5889367.576</gml:pos>
+              <gml:pos>3480784.874 5889383.377</gml:pos>
+              <gml:pos>3480785.037 5889383.522</gml:pos>
+              <gml:pos>3480785.186 5889383.681</gml:pos>
+              <gml:pos>3480785.321 5889383.852</gml:pos>
+              <gml:pos>3480785.441 5889384.034</gml:pos>
+              <gml:pos>3480785.544 5889384.227</gml:pos>
+              <gml:pos>3480785.630 5889384.427</gml:pos>
+              <gml:pos>3480785.699 5889384.634</gml:pos>
+              <gml:pos>3480785.744 5889384.822</gml:pos>
+              <gml:pos>3480785.777 5889385.037</gml:pos>
+              <gml:pos>3480785.792 5889385.255</gml:pos>
+              <gml:pos>3480785.788 5889385.473</gml:pos>
+              <gml:pos>3480785.764 5889385.690</gml:pos>
+              <gml:pos>3480785.722 5889385.904</gml:pos>
+              <gml:pos>3480785.661 5889386.113</gml:pos>
+              <gml:pos>3480785.582 5889386.317</gml:pos>
+              <gml:pos>3480785.498 5889386.491</gml:pos>
+              <gml:pos>3480776.541 5889401.630</gml:pos>
+              <gml:pos>3480766.299 5889415.930</gml:pos>
+              <gml:pos>3480754.849 5889429.283</gml:pos>
+              <gml:pos>3480742.279 5889441.588</gml:pos>
+              <gml:pos>3480728.684 5889452.750</gml:pos>
+              <gml:pos>3480714.168 5889462.685</gml:pos>
+              <gml:pos>3480698.842 5889471.317</gml:pos>
+              <gml:pos>3480690.202 5889475.443</gml:pos>
+              <gml:pos>3480599.917 5889515.958</gml:pos>
+              <gml:pos>3480598.780 5889516.404</gml:pos>
+              <gml:pos>3480597.608 5889516.749</gml:pos>
+              <gml:pos>3480596.411 5889516.990</gml:pos>
+              <gml:pos>3480595.197 5889517.127</gml:pos>
+              <gml:pos>3480593.976 5889517.157</gml:pos>
+              <gml:pos>3480592.757 5889517.080</gml:pos>
+              <gml:pos>3480591.550 5889516.898</gml:pos>
+              <gml:pos>3480590.362 5889516.611</gml:pos>
+              <gml:pos>3480589.205 5889516.221</gml:pos>
+              <gml:pos>3480588.086 5889515.733</gml:pos>
+              <gml:pos>3480587.013 5889515.148</gml:pos>
+              <gml:pos>3480586.553 5889514.858</gml:pos>
+              <gml:pos>3480559.705 5889525.623</gml:pos>
+              <gml:pos>3480563.349 5889534.846</gml:pos>
+              <gml:pos>3480563.710 5889536.013</gml:pos>
+              <gml:pos>3480563.969 5889537.206</gml:pos>
+              <gml:pos>3480564.122 5889538.418</gml:pos>
+              <gml:pos>3480564.169 5889539.638</gml:pos>
+              <gml:pos>3480564.109 5889540.858</gml:pos>
+              <gml:pos>3480563.944 5889542.068</gml:pos>
+              <gml:pos>3480563.673 5889543.259</gml:pos>
+              <gml:pos>3480563.300 5889544.422</gml:pos>
+              <gml:pos>3480562.827 5889545.548</gml:pos>
+              <gml:pos>3480562.258 5889546.628</gml:pos>
+              <gml:pos>3480561.596 5889547.655</gml:pos>
+              <gml:pos>3480560.848 5889548.620</gml:pos>
+              <gml:pos>3480560.018 5889549.516</gml:pos>
+              <gml:pos>3480559.114 5889550.337</gml:pos>
+              <gml:pos>3480558.141 5889551.075</gml:pos>
+              <gml:pos>3480557.108 5889551.726</gml:pos>
+              <gml:pos>3480556.022 5889552.284</gml:pos>
+              <gml:pos>3480555.313 5889552.587</gml:pos>
+              <gml:pos>3480515.974 5889568.130</gml:pos>
+              <gml:pos>3480515.399 5889568.357</gml:pos>
+              <gml:pos>3480490.839 5889578.061</gml:pos>
+              <gml:pos>3480448.018 5889604.655</gml:pos>
+              <gml:pos>3480439.382 5889610.018</gml:pos>
+              <gml:pos>3480466.320 5889678.068</gml:pos>
+              <gml:pos>3480513.676 5889797.699</gml:pos>
+              <gml:pos>3480498.610 5889803.664</gml:pos>
+              <gml:pos>3480505.218 5889820.404</gml:pos>
+              <gml:pos>3480566.545 5889976.011</gml:pos>
+              <gml:pos>3480561.519 5889990.680</gml:pos>
+              <gml:pos>3480553.559 5890009.123</gml:pos>
+              <gml:pos>3480552.471 5890011.338</gml:pos>
+              <gml:pos>3480560.477 5890010.889</gml:pos>
+              <gml:pos>3480566.736 5890011.684</gml:pos>
+              <gml:pos>3480573.957 5890010.458</gml:pos>
+              <gml:pos>3480584.437 5890007.877</gml:pos>
+              <gml:pos>3480594.653 5890004.393</gml:pos>
+              <gml:pos>3480604.526 5890000.031</gml:pos>
+              <gml:pos>3480607.245 5889998.643</gml:pos>
+              <gml:pos>3480616.572 5889993.205</gml:pos>
+              <gml:pos>3480625.389 5889986.974</gml:pos>
+              <gml:pos>3480633.630 5889979.999</gml:pos>
+              <gml:pos>3480641.232 5889972.331</gml:pos>
+              <gml:pos>3480648.136 5889964.031</gml:pos>
+              <gml:pos>3480693.838 5889903.933</gml:pos>
+              <gml:pos>3480702.555 5889893.453</gml:pos>
+              <gml:pos>3480712.152 5889883.772</gml:pos>
+              <gml:pos>3480722.557 5889874.965</gml:pos>
+              <gml:pos>3480733.689 5889867.098</gml:pos>
+              <gml:pos>3480745.465 5889860.231</gml:pos>
+              <gml:pos>3480757.794 5889854.417</gml:pos>
+              <gml:pos>3480761.069 5889853.087</gml:pos>
+              <gml:pos>3480871.876 5889809.548</gml:pos>
+              <gml:pos>3480877.340 5889807.671</gml:pos>
+              <gml:pos>3480882.947 5889806.278</gml:pos>
+              <gml:pos>3480888.653 5889805.379</gml:pos>
+              <gml:pos>3480891.663 5889805.108</gml:pos>
+              <gml:pos>3480912.327 5889803.720</gml:pos>
+              <gml:pos>3480912.218 5889813.094</gml:pos>
+              <gml:pos>3480913.040 5889826.022</gml:pos>
+              <gml:pos>3480913.372 5889828.320</gml:pos>
+              <gml:pos>3480914.176 5889832.016</gml:pos>
+              <gml:pos>3480915.298 5889835.628</gml:pos>
+              <gml:pos>3480916.731 5889839.129</gml:pos>
+              <gml:pos>3480918.464 5889842.491</gml:pos>
+              <gml:pos>3480920.483 5889845.690</gml:pos>
+              <gml:pos>3480922.418 5889852.129</gml:pos>
+              <gml:pos>3480912.166 5889852.360</gml:pos>
+              <gml:pos>3480872.254 5889857.245</gml:pos>
+              <gml:pos>3480861.348 5889859.562</gml:pos>
+              <gml:pos>3480835.307 5889868.066</gml:pos>
+              <gml:pos>3480804.206 5889880.544</gml:pos>
+              <gml:pos>3480801.004 5889881.587</gml:pos>
+              <gml:pos>3480795.512 5889883.802</gml:pos>
+              <gml:pos>3480790.234 5889886.487</gml:pos>
+              <gml:pos>3480785.210 5889889.622</gml:pos>
+              <gml:pos>3480776.181 5889895.165</gml:pos>
+              <gml:pos>3480773.658 5889896.528</gml:pos>
+              <gml:pos>3480773.233 5889896.753</gml:pos>
+              <gml:pos>3480762.910 5889902.824</gml:pos>
+              <gml:pos>3480753.156 5889909.771</gml:pos>
+              <gml:pos>3480738.079 5889921.715</gml:pos>
+              <gml:pos>3480728.665 5889929.619</gml:pos>
+              <gml:pos>3480714.555 5889942.000</gml:pos>
+              <gml:pos>3480714.081 5889942.406</gml:pos>
+              <gml:pos>3480704.614 5889951.284</gml:pos>
+              <gml:pos>3480695.958 5889960.954</gml:pos>
+              <gml:pos>3480673.876 5889986.698</gml:pos>
+              <gml:pos>3480661.950 5889996.493</gml:pos>
+              <gml:pos>3480654.713 5890001.615</gml:pos>
+              <gml:pos>3480628.112 5890023.901</gml:pos>
+              <gml:pos>3480616.923 5890031.346</gml:pos>
+              <gml:pos>3480613.017 5890021.479</gml:pos>
+              <gml:pos>3480601.242 5890026.499</gml:pos>
+              <gml:pos>3480589.074 5890030.474</gml:pos>
+              <gml:pos>3480576.607 5890033.373</gml:pos>
+              <gml:pos>3480563.934 5890035.174</gml:pos>
+              <gml:pos>3480551.152 5890035.865</gml:pos>
+              <gml:pos>3480539.112 5890035.494</gml:pos>
+              <gml:pos>3480538.893 5890036.351</gml:pos>
+              <gml:pos>3480538.581 5890038.250</gml:pos>
+              <gml:pos>3480538.503 5890040.066</gml:pos>
+              <gml:pos>3480539.193 5890041.198</gml:pos>
+              <gml:pos>3480541.451 5890042.751</gml:pos>
+              <gml:pos>3480571.397 5890061.061</gml:pos>
+              <gml:pos>3480571.932 5890060.712</gml:pos>
+              <gml:pos>3480610.966 5890084.774</gml:pos>
+              <gml:pos>3480605.713 5890090.796</gml:pos>
+              <gml:pos>3480534.942 5890047.830</gml:pos>
+              <gml:pos>3480516.552 5890036.666</gml:pos>
+              <gml:pos>3480515.871 5890038.128</gml:pos>
+              <gml:pos>3480515.065 5890039.526</gml:pos>
+              <gml:pos>3480514.140 5890040.848</gml:pos>
+              <gml:pos>3480513.104 5890042.084</gml:pos>
+              <gml:pos>3480511.963 5890043.225</gml:pos>
+              <gml:pos>3480510.728 5890044.263</gml:pos>
+              <gml:pos>3480509.407 5890045.189</gml:pos>
+              <gml:pos>3480509.141 5890045.355</gml:pos>
+              <gml:pos>3480500.618 5890050.590</gml:pos>
+              <gml:pos>3480473.856 5890067.026</gml:pos>
+              <gml:pos>3480456.659 5890077.588</gml:pos>
+              <gml:pos>3480451.435 5890080.796</gml:pos>
+              <gml:pos>3480410.555 5890096.929</gml:pos>
+              <gml:pos>3480224.796 5890170.246</gml:pos>
+              <gml:pos>3480195.304 5890181.886</gml:pos>
+              <gml:pos>3480172.052 5890191.064</gml:pos>
+              <gml:pos>3480076.300 5890228.856</gml:pos>
+              <gml:pos>3479956.498 5890276.141</gml:pos>
+              <gml:pos>3479930.205 5890286.518</gml:pos>
+              <gml:pos>3479906.952 5890295.696</gml:pos>
+              <gml:pos>3479800.272 5890337.802</gml:pos>
+              <gml:pos>3479793.238 5890340.578</gml:pos>
+              <gml:pos>3479778.820 5890346.269</gml:pos>
+              <gml:pos>3479665.107 5890391.152</gml:pos>
+              <gml:pos>3479659.404 5890393.403</gml:pos>
+              <gml:pos>3479641.854 5890400.330</gml:pos>
+              <gml:pos>3479528.615 5890445.023</gml:pos>
+              <gml:pos>3479525.080 5890446.418</gml:pos>
+              <gml:pos>3479521.677 5890447.761</gml:pos>
+              <gml:pos>3479511.126 5890451.921</gml:pos>
+              <gml:pos>3479506.813 5890453.622</gml:pos>
+              <gml:pos>3479440.825 5890479.672</gml:pos>
+              <gml:pos>3479300.343 5890535.122</gml:pos>
+              <gml:pos>3479268.389 5890547.733</gml:pos>
+              <gml:pos>3479259.725 5890551.152</gml:pos>
+              <gml:pos>3479245.135 5890556.910</gml:pos>
+              <gml:pos>3479161.110 5890590.071</gml:pos>
+              <gml:pos>3478970.145 5890665.449</gml:pos>
+              <gml:pos>3478940.044 5890677.328</gml:pos>
+              <gml:pos>3478930.982 5890680.904</gml:pos>
+              <gml:pos>3478897.130 5890694.264</gml:pos>
+              <gml:pos>3478809.119 5890728.997</gml:pos>
+              <gml:pos>3478717.844 5890723.600</gml:pos>
+              <gml:pos>3478703.136 5890718.101</gml:pos>
+              <gml:pos>3478688.963 5890711.342</gml:pos>
+              <gml:pos>3478675.434 5890703.372</gml:pos>
+              <gml:pos>3478662.650 5890694.254</gml:pos>
+              <gml:pos>3478650.710 5890684.057</gml:pos>
+              <gml:pos>3478639.704 5890672.857</gml:pos>
+              <gml:pos>3478631.196 5890662.678</gml:pos>
+              <gml:pos>3478616.814 5890626.287</gml:pos>
+              <gml:pos>3478606.118 5890599.223</gml:pos>
+              <gml:pos>3478589.337 5890556.764</gml:pos>
+              <gml:pos>3478578.678 5890529.795</gml:pos>
+              <gml:pos>3478530.761 5890408.550</gml:pos>
+              <gml:pos>3478528.008 5890401.584</gml:pos>
+              <gml:pos>3478519.018 5890363.689</gml:pos>
+              <gml:pos>3478537.084 5890356.559</gml:pos>
+              <gml:pos>3478566.462 5890344.954</gml:pos>
+              <gml:pos>3478622.118 5890322.975</gml:pos>
+              <gml:pos>3478738.369 5890277.067</gml:pos>
+              <gml:pos>3478752.723 5890271.399</gml:pos>
+              <gml:pos>3478775.974 5890262.217</gml:pos>
+              <gml:pos>3478873.148 5890223.843</gml:pos>
+              <gml:pos>3478990.720 5890177.413</gml:pos>
+              <gml:pos>3479109.891 5890130.352</gml:pos>
+              <gml:pos>3479243.842 5890077.454</gml:pos>
+              <gml:pos>3479275.279 5890065.046</gml:pos>
+              <gml:pos>3479282.771 5890062.087</gml:pos>
+              <gml:pos>3479333.624 5890042.000</gml:pos>
+              <gml:pos>3479342.760 5890038.392</gml:pos>
+              <gml:pos>3479354.774 5890033.647</gml:pos>
+              <gml:pos>3479310.819 5889924.592</gml:pos>
+              <gml:pos>3479316.229 5889922.452</gml:pos>
+              <gml:pos>3479434.441 5889875.696</gml:pos>
+              <gml:pos>3479462.342 5889864.660</gml:pos>
+              <gml:pos>3479445.646 5889822.429</gml:pos>
+              <gml:pos>3479422.492 5889763.864</gml:pos>
+              <gml:pos>3479420.654 5889759.215</gml:pos>
+              <gml:pos>3479416.132 5889747.778</gml:pos>
+              <gml:pos>3479414.402 5889743.404</gml:pos>
+              <gml:pos>3479412.564 5889738.754</gml:pos>
+              <gml:pos>3479383.141 5889664.334</gml:pos>
+              <gml:pos>3479372.858 5889638.326</gml:pos>
+              <gml:pos>3479367.656 5889625.167</gml:pos>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:raeumlicherGeltungsbereich>
+      <xplan:bereich xlink:href="urn:GML_2cfe6c0a-2c9e-435a-bcc5-232d1b5e8133" />
+      <xplan:gkz>4011000</xplan:gkz>
+      <xplan:planArt>1000</xplan:planArt>
+      <xplan:stadt>Bremen</xplan:stadt>
+      <xplan:veraenderungssperre>false</xplan:veraenderungssperre>
+      <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
+      <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>
+    </BP_Plan>
+  </gml:featureMember>
+</XPlanAuszug>

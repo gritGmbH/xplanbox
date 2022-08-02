@@ -1,0 +1,26 @@
+[
+  ${SERVICESCONFIG},
+  {
+    "id": "452",
+    "name": "Basiskarte",
+    "url": "http://sg.geodatenzentrum.de/wms_dtk250",
+    "typ": "WMS",
+    "layers": "dtk250",
+    "format": "image/png",
+    "version": "1.1.1",
+    "singleTile": false,
+    "transparent": true,
+    "transparency": 0,
+    "tilesize": "512",
+    "gutter": "0",
+    "minScale": "0",
+    "maxScale": "2500000",
+    "gfiAttributes": "ignore",
+    "gfiTheme": "default",
+    "layerAttribution": "nicht vorhanden",
+    "legendURL": "ignore",
+    "cache": true,
+    "featureCount": "1"
+  }
+]
+

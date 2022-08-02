@@ -1,0 +1,39 @@
+[[bekannte-probleme]]
+== Bekannte Probleme
+
+[[troubleshooting-http-sessiontimeout]]
+=== HTTP Session Timeout bei lang andauernden HTTP-Anfragen
+
+==== Problembeschreibung
+Bei lang andauernden Validierungsanfragen im XPlanManagerWeb kann es dazu kommen, dass in der Oberfläche des XPlanManagerWeb der Import-Button nach Abschluss der Validierung nicht mehr angezeigt wird.
+
+==== Lösungsansätze
+
+- Für den Import eines XPlanArchivs über den XPlanManagerWeb wird eine HTTP-Session genutzt. Der Vorgabewert des Apache Tomcat-Servers liegt bei 30 Minuten. Dieser Wert muss bei Bedarf in der Konfiguration des Servers angepasst werden. Es wird empfohlen den Wert auf 120 Minuten hochzusetzen.
+- siehe auch <<troubleshooting-http-timeout>>
+- siehe auch <<troubleshooting-resources>>
+
+TIP: Für eine vollständige Validierung kann bei einer <<minimale-systemvoraussetzung>> eine Dauer von ca. 30 Minuten je 5 MB XPlanGML-Dateigröße angenommen werden, je nach Komplexität und Umfang der enthaltenen Geometrien.
+
+[[troubleshooting-http-timeout]]
+=== HTTP Timeout bei lang andauernden HTTP-Anfragen
+
+==== Problembeschreibung
+
+Bei lang andauernden Anfragen im XPlanValidatorWeb oder XPlanManagerWeb kann es zu einem Verbindungsabbruch kommen. Dies kann u.a. durch Fehlermeldungen im Browser wie z.B. HTTP-Statusfehler 408 oder 502 bzw. 504 angezeigt werden.
+
+==== Lösungsansätze
+
+- Erhöhen der HTTP Timeout und Keepalive Zeiten in der Konfiguration der eingesetzten Webserver wie z.B. Apache httpd oder nginx sowie sonstiger Netzwerkkomponenten, die den Webkomponenten vorgeschaltet sind.
+
+[[troubleshooting-resources]]
+=== Kapazitätsbezogene Einschränkungen
+
+==== Problembeschreibung
+Sowohl für den XPlanManagerWeb als auch den XPlanManagerAPI gelten Obergrenzen beim Import von XPlanArchiven. XPlanArchive (ZIP-Datei inklusive Anhänge) größer als 50 MB und XPlanGML-Dateien größer als 2 MB können die Systemstabilität beeinträchtigen. Wenn XPlanArchive mit größeren Anhängen importiert werden sollen, so müssen Server-seitig entsprechende <<systemvoraussetzungen>> erfüllt sein.
+
+==== Lösungsansätze
+- Für die Bereitstellung von mehr als 500 XPlanArchiven über die Dienste
+XPlanWMS, XPlanWFS oder XPlanSynWFS müssen Server-seitig dann die Systemvoraussetzungen wie in der <<empfohlene-systemkonfiguration>>
+ erfüllt sein. Das Antwortzeitverhalten der Dienste ist von den verfügbaren System-Ressourcen abhängig.
+- Die Anwendungskomponenten der xPlanBox benötigt min. 1,5 GB freien Festplattenspeicherplatz. Anwachsende Daten über die Dauer der Laufzeit der Anwendung sind die Datenhaltung für die Pläne inkl. der Anhänge und die Systemlogdateien. Zur Kapazitätsplanung kann folgende Abschätzung gegeben werden: Der Festplattenspeicherplatz für die Daten ist erforderlich auf dem Server mit der <<XPlanDB>> und der Tomcat-Instanz mit dem <<XPlanManager>>. Folgende Formel kann bei der Kapazitätsplanung zur Hilfe gezogen werden: _Größe eines XPlanArchivs (inkl. der Anhänge) * Anzahl der XPlanArchive * 2_. Wenn also zum Beispiel 500 Pläne mit einer durchschnittlichen Größe von 50 MB inkl. der Anhänge importiert werden sollen, dann sind ca. 50 GB Festplattenspeicherplatz je Server notwendig.

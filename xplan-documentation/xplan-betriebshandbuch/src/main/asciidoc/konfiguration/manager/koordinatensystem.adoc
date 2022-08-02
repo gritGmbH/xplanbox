@@ -1,0 +1,34 @@
+[[standard-crs-import]]
+=== Standard-Koordinatenreferenzsystem (Import)
+
+[[vektordaten]]
+==== Vektordaten
+
+Die nachfolgenden Konfigurationen müssen in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ angepasst werden.
+
+Das Standard-Koordinatenreferenzsystem kann über den Schlüssel
+_defaultCrs_ konfiguriert werden:
+
+----
+defaultCrs=EPSG:25832
+----
+
+Der Benutzer kann ein weiteres Koordinatenreferenzsystem aus einer Liste
+auswählen. Die Koordinatenreferenzsystem können über den Schlüssel
+_chooseCrs_ konfiguriert werden:
+
+----
+chooseCrs=EPSG:4326,EPSG:25833,EPSG:31466,EPSG:31467,EPSG:31468,EPSG:31469
+----
+
+[[rasterdaten]]
+==== Rasterdaten
+
+Die nachfolgende Konfiguration muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ angepasst werden.
+
+Das Standard-Koordinatenreferenzsystem kann über den Schlüssel
+_rasterConfigurationCrs_ konfiguriert werden:
+
+----
+rasterConfigurationCrs=epsg:25832
+----
