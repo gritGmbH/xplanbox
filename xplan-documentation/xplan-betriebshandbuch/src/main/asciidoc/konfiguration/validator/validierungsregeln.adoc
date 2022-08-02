@@ -105,7 +105,7 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsreg
 [source,properties]
 ----
 ruleA_XPLAN_54=Das Attribut A darf nicht unbelegt sein.
-ruleB_XPLAN_54=Das Attribut B darf nicht unbelegt sein, f\u00FCr B ist der Name der planaufstellenden Beh\u00F6rde anzugeben.
+ruleB_XPLAN_54=Das Attribut B darf nicht unbelegt sein, wenn f\u00FCr das Attribut A der Wert 1000 angegeben ist.
 rule1_XPLAN_60=Das Attribut 1 darf nicht unbelegt sein.
 rule2_XPLAN_60=Das Attribut 2 darf nicht unbelegt sein.
 ----
