@@ -153,14 +153,6 @@ public class XPlanToEdit {
 	}
 
 	/**
-	 * @return the rasterBasis, may be <code>null</code>
-	 */
-	public RasterBasis getFirstRasterBasis() {
-		// TODO: remove
-		return rasterBasis != null ? rasterBasis.get(0) : null;
-	}
-
-	/**
 	 * @param rasterBasis the rasterBasis to add, may be <code>null</code> (nothing is
 	 * added)
 	 */
