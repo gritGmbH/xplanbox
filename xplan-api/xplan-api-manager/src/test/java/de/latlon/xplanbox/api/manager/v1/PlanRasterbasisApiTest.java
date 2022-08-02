@@ -164,6 +164,37 @@ public class PlanRasterbasisApiTest extends JerseyTest {
 		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 
+	@Test
+	public void verifyThat_addRasterbasis_PlanOhneBereich_returnInvalidPlanToEdit() throws URISyntaxException {
+		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel", "rasterbasismodel.json",
+				APPLICATION_JSON_TYPE);
+		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
+		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
+				TEXT_PLAIN_TYPE);
+		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
+				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
+
+		Response response = target("/plan/7/rasterbasis").request()
+				.post(Entity.entity(multipart, multipart.getMediaType()));
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+	}
+
+	@Test
+	public void verifyThat_replaceRasterbasis_PlanOhneBereich_returnInvalidPlanToEdit() throws URISyntaxException {
+		FileDataBodyPart rasterbasismodel = createFileDataBodyPart("rasterbasismodel", "rasterbasismodel.json",
+				APPLICATION_JSON_TYPE);
+		FileDataBodyPart rasterFilePart = createFileDataBodyPart("rasterdatei", "datei.pdf", null);
+		FileDataBodyPart geoRefFilePart = createFileDataBodyPart("georeferenzdatei", "georeferenz.txt",
+				TEXT_PLAIN_TYPE);
+		FormDataMultiPart multipart = (FormDataMultiPart) new FormDataMultiPart().bodyPart(rasterbasismodel)
+				.bodyPart(rasterFilePart).bodyPart(geoRefFilePart);
+
+		Response response = target(
+				"/plan/7/rasterbasis/B-Plan_Klingmuehl_Heideweg_Karte-B-Plan_Klingmuehl_Heideweg_Kartetif").request()
+						.put(Entity.entity(multipart, multipart.getMediaType()));
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+	}
+
 	private FileDataBodyPart createFileDataBodyPart(String name, String resource, MediaType mediaType)
 			throws URISyntaxException {
 		File datei = new File(getClass().getResource(resource).toURI());
