@@ -47,6 +47,16 @@ public class DoppelbelegungInspectorTest {
 	@Test
 	public void test_InspectDoppelbelegungWithFailures() throws Exception {
 		DoppelbelegungInspector doppelbelegungInspector = new DoppelbelegungInspector();
+		readFeaturesFromZip("xplan60/Blankenese29_Test_60.zip", doppelbelegungInspector);
+		doppelbelegungInspector.checkGeometricRule();
+
+		List<String> errors = doppelbelegungInspector.getErrors();
+		assertThat(errors.size(), is(3));
+	}
+
+	@Test
+	public void test_InspectDoppelbelegungGmlWithFailures() throws Exception {
+		DoppelbelegungInspector doppelbelegungInspector = new DoppelbelegungInspector();
 		readFeaturesFromGml("xplan60-4_5_2_4.gml", DoppelbelegungInspectorTest.class, doppelbelegungInspector);
 		doppelbelegungInspector.checkGeometricRule();
 
