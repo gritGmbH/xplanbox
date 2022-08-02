@@ -104,12 +104,10 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsreg
 .Beispiel rules.properties:
 [source,properties]
 ----
-01_gemeinde_XPLAN_54=Der gemeindeName ist anzugeben.
-02_plangeber_XPLAN_54=Das Attribut plangeber darf nicht unbelegt sein, f\u00FCr XP_Plangeber/name ist der Name der planaufstellenden Beh\u00F6rde anzugeben.
-03_verfahren_XPLAN_54=Das Attribut verfahren darf nicht unbelegt sein.
-04_rechtsstand_XPLAN_54=Das Attribut rechtsstand darf nicht unbelegt sein.
-05_beschreibung_XPLAN_54=Das Attribut beschreibung darf nicht unbelegt sein.
-06_technHerstellDatum_XPLAN_54=Das Attribut technHerstellDatum darf nicht unbelegt sein.
+ruleA_XPLAN_54=Das Attribut A darf nicht unbelegt sein.
+ruleB_XPLAN_54=Das Attribut B darf nicht unbelegt sein, f\u00FCr B ist der Name der planaufstellenden Beh\u00F6rde anzugeben.
+rule1_XPLAN_60=Das Attribut 1 darf nicht unbelegt sein.
+rule2_XPLAN_60=Das Attribut 2 darf nicht unbelegt sein.
 ----
 
 .Beispiel Verzeichnisstruktur eines Profils:
