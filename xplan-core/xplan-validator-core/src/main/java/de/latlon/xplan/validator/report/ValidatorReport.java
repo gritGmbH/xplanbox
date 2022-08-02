@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
 import org.deegree.geometry.Envelope;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -44,6 +45,8 @@ public class ValidatorReport {
 	private SyntacticValidatorResult syntacticValidatorResult;
 
 	private SemanticValidatorResult semanticValidatorResult;
+
+	private final List<SemanticValidatorResult> semanticProfileValidatorResults = new ArrayList<>();
 
 	private ExternalReferenceReport externalReferenceReport;
 
@@ -107,6 +110,21 @@ public class ValidatorReport {
 	 */
 	public void setSemanticValidatorResult(SemanticValidatorResult result) {
 		semanticValidatorResult = result;
+	}
+
+	/**
+	 * @return result of semantic validation profiles, may be empty but never
+	 * <code>null</code>.
+	 */
+	public List<SemanticValidatorResult> getSemanticProfileValidatorResults() {
+		return semanticProfileValidatorResults;
+	}
+
+	/**
+	 * @param semanticProfileValidatorResult to add, never <code>null</code>.
+	 */
+	public void addSemanticProfileValidatorResults(SemanticValidatorResult semanticProfileValidatorResult) {
+		this.semanticProfileValidatorResults.add(semanticProfileValidatorResult);
 	}
 
 	/**
@@ -248,6 +266,9 @@ public class ValidatorReport {
 			finalResult = finalResult && semanticValidatorResult.isValid();
 		if (syntacticValidatorResult != null)
 			finalResult = finalResult && syntacticValidatorResult.isValid();
+		if (!semanticProfileValidatorResults.isEmpty())
+			finalResult = finalResult
+					&& semanticProfileValidatorResults.stream().allMatch(profileResult -> profileResult.isValid());
 
 		return finalResult;
 	}

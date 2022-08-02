@@ -20,7 +20,8 @@
   #L%
   -->
 
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="ValidationReport" type="ValidationReportType"/>
   <xs:complexType name="ErrorsType">
     <xs:sequence>
@@ -54,11 +55,12 @@
       <xs:element type="SemType" name="Sem"/>
       <xs:element type="GeomType" name="Geom"/>
       <xs:element type="SynType" name="Syn"/>
+      <xs:element type="SemType" name="Profile" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="RuleType">
     <xs:sequence>
-      <xs:element type="xs:string" name="name" />
+      <xs:element type="xs:string" name="name"/>
       <xs:element type="xs:boolean" name="isValid"/>
       <xs:element type="xs:string" name="message"/>
       <xs:element type="InvalidFeaturesType" name="WarnedFeatures" minOccurs="0" maxOccurs="unbounded"/>
@@ -113,6 +115,8 @@
   </xs:complexType>
   <xs:complexType name="RulesMetadataType">
     <xs:sequence>
+      <xs:element type="xs:string" name="name"/>
+      <xs:element type="xs:string" name="description"/>
       <xs:element type="xs:string" name="version"/>
       <xs:element type="xs:string" name="source"/>
     </xs:sequence>

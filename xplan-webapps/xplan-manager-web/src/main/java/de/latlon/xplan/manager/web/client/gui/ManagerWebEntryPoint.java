@@ -20,23 +20,24 @@
  */
 package de.latlon.xplan.manager.web.client.gui;
 
-import org.fusesource.restygwt.client.Defaults;
-import org.fusesource.restygwt.client.Method;
-import org.fusesource.restygwt.client.MethodCallback;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
-
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationService;
 import de.latlon.xplan.manager.web.client.service.ManagerWebConfigurationServiceAsync;
 import de.latlon.xplan.manager.web.client.service.SecurityService;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
+import de.latlon.xplan.validator.web.client.service.ValidationConfigService;
+import de.latlon.xplan.validator.web.client.service.ValidationConfigServiceAsync;
+import de.latlon.xplan.validator.web.shared.ValidationConfig;
+import org.fusesource.restygwt.client.Defaults;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
 
 /**
  * Main Web UI class.
@@ -50,6 +51,8 @@ public class ManagerWebEntryPoint implements EntryPoint {
 
 	private final ManagerWebConfigurationServiceAsync configurationService = GWT
 			.create(ManagerWebConfigurationService.class);
+
+	private final ValidationConfigServiceAsync validationConfigService = GWT.create(ValidationConfigService.class);
 
 	private final XPlanWebMessages messages = GWT.create(XPlanWebMessages.class);
 
@@ -83,9 +86,25 @@ public class ManagerWebEntryPoint implements EntryPoint {
 
 					@Override
 					public void onSuccess(Method method, AuthorizationInfo authorizationInfo) {
-						HandlerManager eventBus = new HandlerManager(null);
-						ViewController viewController = new ViewController(eventBus, configuration, authorizationInfo);
-						viewController.init(RootPanel.get());
+						validationConfigService.retrieveValidationConfig(new AsyncCallback<ValidationConfig>() {
+							@Override
+							public void onFailure(Throwable throwable) {
+								Window.alert("Profile konnten nicht abgerufen werden: " + throwable.getMessage());
+								init(new ValidationConfig());
+							}
+
+							@Override
+							public void onSuccess(ValidationConfig validationConfig) {
+								init(validationConfig);
+							}
+
+							private void init(ValidationConfig validationConfig) {
+								HandlerManager eventBus = new HandlerManager(null);
+								ViewController viewController = new ViewController(eventBus, configuration,
+										validationConfig, authorizationInfo);
+								viewController.init(RootPanel.get());
+							}
+						});
 					}
 				});
 			}

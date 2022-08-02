@@ -21,6 +21,7 @@
 package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromGml;
@@ -34,6 +35,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+@Ignore
 public class GeltungsbereichInspectorTest {
 
 	@Test

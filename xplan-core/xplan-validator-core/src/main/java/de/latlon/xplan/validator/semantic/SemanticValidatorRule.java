@@ -64,4 +64,9 @@ public interface SemanticValidatorRule {
 	 */
 	boolean isIgnoredByOption(SemanticValidationOptions option);
 
+	/**
+	 * @return message describing this rules, never <code>null</code>
+	 */
+	String getMessage();
+
 }

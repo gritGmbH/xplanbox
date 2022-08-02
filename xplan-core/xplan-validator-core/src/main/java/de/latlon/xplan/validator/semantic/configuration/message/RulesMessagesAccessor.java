@@ -8,53 +8,32 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.semantic.configuration;
+package de.latlon.xplan.validator.semantic.configuration.message;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
+import de.latlon.xplan.commons.XPlanVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.XPlanVersion;
+import java.util.Properties;
 
 /**
- * Allows access to messages assigned to a specific rule.
- *
- * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public final class RulesMessagesAccessor {
+public abstract class RulesMessagesAccessor {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RulesMessagesAccessor.class);
 
-	private static final String RULES_MESSAGES_PROPERTIES = "rulesMessages.properties";
-
-	static final String DEFAULT_MESSAGE = "Regel %s muss erf\u00FCllt sein";
-
-	private static final Properties PROPERTIES = new Properties();
-
-	static {
-		try (InputStream propsStream = RulesMessagesAccessor.class.getResourceAsStream(RULES_MESSAGES_PROPERTIES)) {
-			PROPERTIES.load(propsStream);
-		}
-		catch (IOException | NullPointerException e) {
-			LOG.error("Could not load properties file " + "" + RULES_MESSAGES_PROPERTIES, e);
-		}
-	}
-
-	private RulesMessagesAccessor() {
-	}
+	private static final String DEFAULT_MESSAGE = "Regel %s muss erf\u00FCllt sein";
 
 	/**
 	 * @param rule to retrieve message for, may be <code>null</code> (default message is
@@ -64,20 +43,26 @@ public final class RulesMessagesAccessor {
 	 * version is <code>null</code> or not known, a default message if a property with
 	 * this name could not be found, never <code>null</code>
 	 */
-	public static String retrieveMessageForRule(String rule, XPlanVersion version) {
+	public String retrieveMessageForRule(String rule, XPlanVersion version) {
+		Properties properties = getProperties();
+		if (properties == null) {
+			return String.format(DEFAULT_MESSAGE, rule);
+		}
 		if (rule != null) {
 			if (version != null) {
 				String key = rule + "_" + version;
-				String propertyByRuleAndVersion = PROPERTIES.getProperty(key);
+				String propertyByRuleAndVersion = properties.getProperty(key);
 				if (propertyByRuleAndVersion != null)
 					return propertyByRuleAndVersion;
 			}
-			String propertyByRule = PROPERTIES.getProperty(rule);
+			String propertyByRule = properties.getProperty(rule);
 			if (propertyByRule != null)
 				return propertyByRule;
 		}
 		LOG.warn("Message for rule {} and version {} is missing in properties file.", rule, version);
 		return String.format(DEFAULT_MESSAGE, rule);
 	}
+
+	protected abstract Properties getProperties();
 
 }

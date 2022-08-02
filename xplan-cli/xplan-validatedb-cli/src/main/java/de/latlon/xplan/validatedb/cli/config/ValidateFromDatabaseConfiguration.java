@@ -24,6 +24,8 @@ import de.latlon.xplan.validatedb.cli.domain.ValidationResultSummary;
 import de.latlon.xplan.validatedb.cli.domain.XPlanWithFeatureCollection;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -101,7 +103,10 @@ public class ValidateFromDatabaseConfiguration {
 		try {
 			LOG.info("Rules are read from: {}", rulesDirectory);
 			Path rulesPath = get(rulesDirectory);
-			return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath));
+			RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
+			RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata(rulesPath);
+			return new XQuerySemanticValidator(
+					new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata));
 		}
 		catch (Exception e) {
 			LOG.error("Rules could not be read", e);
