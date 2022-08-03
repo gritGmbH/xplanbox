@@ -139,7 +139,7 @@ public class ValidateApi {
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") @Parameter(
 					description = "skip Laufrichtung Ueberpruefung") Boolean skipLaufrichtung,
 			@QueryParam("profiles") @Parameter(
-					description = "Angabe der Profile, gegen die validiert werden soll") List<Integer> profiles)
+					description = "Angabe der Profile, gegen die validiert werden soll") List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromGml(body, validationName);
@@ -160,7 +160,7 @@ public class ValidateApi {
 			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") Boolean skipLaufrichtung,
 			@QueryParam("profiles") @Parameter(
-					description = "Angabe der Profile, gegen die validiert werden soll") List<Integer> profiles)
+					description = "Angabe der Profile, gegen die validiert werden soll") List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromZip(body, validationName);
@@ -171,7 +171,7 @@ public class ValidateApi {
 
 	private Response validate(Request request, String xFileName, String validationName, Boolean skipSemantisch,
 			Boolean skipGeometrisch, Boolean skipFlaechenschluss, Boolean skipGeltungsbereich, Boolean skipLaufrichtung,
-			List<Integer> profiles, XPlanArchive archive) throws ValidatorException, IOException {
+			List<String> profiles, XPlanArchive archive) throws ValidatorException, IOException {
 		MediaType mediaType = detectRequestedMediaType(request);
 
 		ValidationSettings settings = createValidationSettings(validationName, skipGeometrisch, skipSemantisch,

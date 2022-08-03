@@ -152,7 +152,7 @@ public class PlanApi {
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") @Parameter(
 					description = "skip Laufrichtung Ueberpruefung") Boolean skipLaufrichtung,
 			@QueryParam("profiles") @Parameter(
-					description = "Angabe der Profile, gegen die validiert werden soll") List<Integer> profiles,
+					description = "Angabe der Profile, gegen die validiert werden soll") List<String> profiles,
 			@QueryParam("internalId") @Parameter(description = "internalId links to VerfahrensId") String internalId,
 			@QueryParam("planStatus") @Parameter(
 					description = "target for data storage, overrides the default derived from xplan:rechtsstand",
