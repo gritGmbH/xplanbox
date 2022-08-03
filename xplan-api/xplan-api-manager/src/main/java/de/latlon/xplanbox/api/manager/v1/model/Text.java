@@ -88,7 +88,7 @@ public class Text {
 			oldText.setReference(refText.getReferenzURL());
 			oldText.setReferenzName(refText.getReferenzName());
 			oldText.setReferenzMimeType(MimeTypes.getByCode(refText.getReferenzMimeType()));
-			oldText.setGeoReference(refText.getGeorefMimeType());
+			oldText.setGeoReference(refText.getGeorefURL());
 			oldText.setGeorefMimeType(MimeTypes.getByCode(refText.getGeorefMimeType()));
 			oldText.setArt(ExterneReferenzArt.getByCode(refText.getArt()));
 			oldText.setBeschreibung(refText.getBeschreibung());
