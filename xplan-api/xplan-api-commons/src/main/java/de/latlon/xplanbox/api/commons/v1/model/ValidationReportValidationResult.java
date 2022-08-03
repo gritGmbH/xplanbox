@@ -20,11 +20,15 @@
  */
 package de.latlon.xplanbox.api.commons.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Objects;
+
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2020-08-27T12:32:04\n" + "@XmlRootElement\n"
@@ -36,6 +40,9 @@ public class ValidationReportValidationResult {
 	private @Valid ValidationReportValidationResultGeometrisch geometrisch;
 
 	private @Valid ValidationReportValidationResultSyntaktisch syntaktisch;
+
+	@JsonInclude(NON_EMPTY)
+	private @Valid List<ValidationReportValidationResultSemantischProfil> profile;
 
 	/**
 	 *
@@ -91,6 +98,24 @@ public class ValidationReportValidationResult {
 		this.syntaktisch = syntaktisch;
 	}
 
+	/**
+	 *
+	 **/
+	public ValidationReportValidationResult profile(List<ValidationReportValidationResultSemantischProfil> profile) {
+		this.profile = profile;
+		return this;
+	}
+
+	@Schema
+	@JsonProperty("profile")
+	public List<ValidationReportValidationResultSemantischProfil> getProfile() {
+		return profile;
+	}
+
+	public void setProfile(List<ValidationReportValidationResultSemantischProfil> syntaktisch) {
+		this.profile = profile;
+	}
+
 	@Override
 	public boolean equals(java.lang.Object o) {
 		if (this == o) {
@@ -102,12 +127,13 @@ public class ValidationReportValidationResult {
 		ValidationReportValidationResult validationReportValidationResult = (ValidationReportValidationResult) o;
 		return Objects.equals(this.semantisch, validationReportValidationResult.semantisch)
 				&& Objects.equals(this.geometrisch, validationReportValidationResult.geometrisch)
-				&& Objects.equals(this.syntaktisch, validationReportValidationResult.syntaktisch);
+				&& Objects.equals(this.syntaktisch, validationReportValidationResult.syntaktisch)
+				&& Objects.equals(this.profile, validationReportValidationResult.profile);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(semantisch, geometrisch, syntaktisch);
+		return Objects.hash(semantisch, geometrisch, syntaktisch, profile);
 	}
 
 	@Override
@@ -118,6 +144,7 @@ public class ValidationReportValidationResult {
 		sb.append("    semantisch: ").append(toIndentedString(semantisch)).append("\n");
 		sb.append("    geometrisch: ").append(toIndentedString(geometrisch)).append("\n");
 		sb.append("    syntaktisch: ").append(toIndentedString(syntaktisch)).append("\n");
+		sb.append("    profile: ").append(toIndentedString(profile)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}

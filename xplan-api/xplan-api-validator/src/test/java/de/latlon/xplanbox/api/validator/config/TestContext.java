@@ -20,18 +20,30 @@
  */
 package de.latlon.xplanbox.api.validator.config;
 
+import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
+import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplanbox.api.validator.v1.DefaultApi;
 import de.latlon.xplanbox.api.validator.v1.InfoApi;
 import de.latlon.xplanbox.api.validator.v1.ValidateApi;
+import org.glassfish.jersey.server.ResourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.glassfish.jersey.server.ResourceConfig;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -60,6 +72,28 @@ public class TestContext {
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
 		LOG.trace("JUL logging enabled");
+	}
+
+	@Primary
+	@Bean
+	public List<RulesMetadata> profileMetadata() {
+		RulesMetadata profile1 = new RulesMetadata("test1", "description1", "0.1", "unbekannt");
+		RulesMetadata profile2 = new RulesMetadata("test2", "description2", "0.2", "lokal");
+		return Arrays.asList(profile1, profile2);
+	}
+
+	@Primary
+	@Bean
+	public List<SemanticProfileValidator> profileValidators(List<RulesMetadata> profileMetadata) {
+		return profileMetadata.stream().map(profile -> {
+			SemanticProfileValidator semanticProfileValidator = mock(SemanticProfileValidator.class);
+			when(semanticProfileValidator.getId()).thenReturn(profile.getId());
+			SemanticValidatorResult result = mock(SemanticValidatorResult.class);
+			when(result.getRulesMetadata()).thenReturn(profile);
+			when(semanticProfileValidator.validateSemantic(any(SemanticValidableXPlanArchive.class), anyList()))
+					.thenReturn(result);
+			return semanticProfileValidator;
+		}).collect(Collectors.toList());
 	}
 
 }

@@ -49,6 +49,7 @@ import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import de.latlon.xplan.manager.jdbcconfig.JaxbJdbcConfigWriter;
 import de.latlon.xplan.manager.jdbcconfig.JdbcConfigWriter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.transaction.UnsupportPlanException;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
@@ -208,7 +209,7 @@ public class XPlanManager {
 			String internalId) throws Exception {
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		if (archive.hasMultipleXPlanElements())
-			throw new IllegalArgumentException("Das XPlanGML enthält mehrere XP_Plan-Elemente.");
+			throw new UnsupportPlanException("Das XPlanGML enthält mehrere XP_Plan-Elemente.");
 		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeRasterConfig, internalId,
 				new AdditionalPlanData());
 	}

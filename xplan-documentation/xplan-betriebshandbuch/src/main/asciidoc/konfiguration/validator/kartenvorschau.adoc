@@ -20,11 +20,11 @@ include::../../downloads/services-internet.template.json[]
 Um die Hintergrundkarte anzupassen, müssen folgende Schritte ausgeführt werden:
 
 . Ablegen der Datei unter _masterportal/template/services-internet.template.json_ im Dateisystem (Pfad und Dateiname müssen beibehalten werden).
-. Anpassen der URL des Dienstes (Zeile 6, "url") und des Layers (Zeile 8, "layers")
+. Anpassen der URL des WMS-Dienstes (Property `url`) und des Layers (Property `layers`)
 . Austausch der Datei im _xplan-validator-web.war_, z.B. durch Ausführen des folgenden Kommandos:
 
 ----
 jar uf xplan-validator-web.war masterportal/template/services-internet.template.json
 ----
 
-NOTE: Die Zeilen 2, 4 und 5 dürfen nicht angepasst werden!
+NOTE: Die Zeilen mit den Angaben für `${SERVICESCONFIG}`, `id` und `name` dürfen nicht angepasst werden!

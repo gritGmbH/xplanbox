@@ -46,6 +46,7 @@ public class ConfigHandler {
 	public SystemConfig describeSystem() throws IOException {
 		LOG.debug("Generating validator config information");
 		return new SystemConfig().version(parseVersion()).rulesMetadata(systemConfigHandler.getRulesMetadata())
+				.profiles(systemConfigHandler.getProfiles())
 				.supportedXPlanGmlVersions(systemConfigHandler.allSupportedVersions());
 	}
 

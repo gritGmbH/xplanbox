@@ -35,7 +35,9 @@ import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 /**
@@ -148,13 +150,24 @@ public class XPlanArchiveCreatorTest {
 	}
 
 	@Test
-	public void testCreateXPlanArchive_51_GmlFile() throws IOException, UnknownCRSException {
+	public void testCreateXPlanArchive_51_GmlFile() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
 		InputStream gmlAsStream = ResourceAccessor.readResourceStream("xplan51/V4_1_ID_103.gml");
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103.gml", gmlAsStream);
 		assertEquals(XPLAN_51, archive.getVersion());
 		assertEquals(null, archive.getDistricts().get(0));
 		assertEquals(BP_Plan, archive.getType());
+	}
+
+	@Test
+	public void testCreateXPlanArchive_withVerbundenerPlan() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
+				.getResourceAsStream("../feature/xplan-multipleInstances-withVerbundenerPlan.gml");
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103.gml", gmlAsStream);
+		assertEquals(XPLAN_52, archive.getVersion());
+		assertEquals(BP_Plan, archive.getType());
+		assertTrue(archive.hasVerbundenerPlanBereich());
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {

@@ -39,14 +39,17 @@ public class ArchiveMetadata {
 
 	private final List<String> districts;
 
+	private boolean hasVerbundenerPlanBereich;
+
 	private final boolean hasMultipleXPlanElements;
 
 	public ArchiveMetadata(XPlanVersion version, XPlanType type, ICRS crs, List<String> districts,
-			boolean hasMultipleXPlanElements) {
+			boolean hasVerbundenerPlanBereich, boolean hasMultipleXPlanElements) {
 		this.version = version;
 		this.type = type;
 		this.crs = crs;
 		this.districts = districts;
+		this.hasVerbundenerPlanBereich = hasVerbundenerPlanBereich;
 		this.hasMultipleXPlanElements = hasMultipleXPlanElements;
 	}
 
@@ -64,6 +67,10 @@ public class ArchiveMetadata {
 
 	public XPlanVersion getVersion() {
 		return version;
+	}
+
+	public boolean hasVerbundenerPlanBereich() {
+		return hasVerbundenerPlanBereich;
 	}
 
 	public boolean hasMultipleXPlanElements() {
