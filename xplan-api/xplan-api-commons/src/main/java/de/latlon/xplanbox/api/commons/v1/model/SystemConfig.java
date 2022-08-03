@@ -20,6 +20,7 @@
  */
 package de.latlon.xplanbox.api.commons.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
+
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
 public class SystemConfig {
@@ -36,6 +39,9 @@ public class SystemConfig {
 	private @Valid String version;
 
 	private @Valid RulesMetadata rulesMetadata;
+
+	@JsonInclude(NON_EMPTY)
+	private @Valid List<RulesMetadata> profiles = new ArrayList<>();
 
 	private @Valid List<VersionEnum> supportedXPlanGmlVersions = new ArrayList<VersionEnum>();
 
@@ -78,6 +84,24 @@ public class SystemConfig {
 	/**
 	 *
 	 **/
+	public SystemConfig profiles(List<RulesMetadata> profiles) {
+		this.profiles = profiles;
+		return this;
+	}
+
+	@ArraySchema(schema = @Schema(description = "Suported validation profiles"))
+	@JsonProperty("profiles")
+	public List<RulesMetadata> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(List<RulesMetadata> profiles) {
+		this.profiles = profiles;
+	}
+
+	/**
+	 *
+	 **/
 	public SystemConfig supportedXPlanGmlVersions(List<VersionEnum> supportedXPlanGmlVersions) {
 		this.supportedXPlanGmlVersions = supportedXPlanGmlVersions;
 		return this;
@@ -104,12 +128,13 @@ public class SystemConfig {
 		SystemConfig systemConfig = (SystemConfig) o;
 		return Objects.equals(this.version, systemConfig.version)
 				&& Objects.equals(this.rulesMetadata, systemConfig.rulesMetadata)
+				&& Objects.equals(this.profiles, systemConfig.profiles)
 				&& Objects.equals(this.supportedXPlanGmlVersions, systemConfig.supportedXPlanGmlVersions);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(version, rulesMetadata, supportedXPlanGmlVersions);
+		return Objects.hash(version, rulesMetadata, profiles, supportedXPlanGmlVersions);
 	}
 
 	@Override
@@ -119,6 +144,7 @@ public class SystemConfig {
 
 		sb.append("    version: ").append(toIndentedString(version)).append("\n");
 		sb.append("    rulesMetadata: ").append(toIndentedString(rulesMetadata)).append("\n");
+		sb.append("    profiles: ").append(toIndentedString(profiles)).append("\n");
 		sb.append("    supportedXPlanGmlVersions: ").append(toIndentedString(supportedXPlanGmlVersions)).append("\n");
 		sb.append("}");
 		return sb.toString();

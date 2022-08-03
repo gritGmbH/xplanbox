@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-api-manager - xplan-api-manager
+ * xplan-validator-core - XPlan Validator Core Komponente
  * %%
  * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
@@ -18,25 +18,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplanbox.api.manager.exception;
+package de.latlon.xplan.validator.semantic.profile;
 
-import de.latlon.xplan.validator.ValidatorException;
-
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
-
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import de.latlon.xplan.validator.semantic.SemanticValidator;
 
 /**
- * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * Validates <link>XPlanArchives</link> semantically
+ *
+ * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
+ * @version $Revision: $, $Date: $
  */
-@Provider
-public class ValidatorExceptionMapper implements ExceptionMapper<ValidatorException> {
+public interface SemanticProfileValidator extends SemanticValidator {
 
-	@Override
-	public Response toResponse(ValidatorException exception) {
-		return Response.status(BAD_REQUEST).entity(exception.getMessage()).build();
-	}
+	/**
+	 * @return the unique id of the validator, never <code>null</code>
+	 */
+	int getId();
 
 }

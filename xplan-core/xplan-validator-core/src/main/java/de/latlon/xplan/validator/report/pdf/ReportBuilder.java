@@ -45,6 +45,7 @@ import net.sf.jasperreports.engine.JasperReport;
 
 import java.io.InputStream;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -122,13 +123,7 @@ class ReportBuilder {
 		SemanticValidatorResult semanticValidatorResult = report.getSemanticValidatorResult();
 		if (semanticValidatorResult != null) {
 			verticalList = verticalList.add(appendHeaderAndResult(semanticValidatorResult));
-			verticalList = appendDetailsHint(verticalList, semanticValidatorResult);
-			verticalList = appendRulesMetadata(verticalList, semanticValidatorResult);
-			verticalList = verticalList.add(appendNumberOfRules(semanticValidatorResult));
-			verticalList = verticalList.add(appendNumberOfFailedRules(semanticValidatorResult));
-			verticalList = verticalList.add(appendNumberOfValidRules(semanticValidatorResult));
-			verticalList = verticalList.add(appendDetailsSection());
-			verticalList = verticalList.add(createSemanticRules(semanticValidatorResult)).add(cmp.verticalGap(10));
+			verticalList = appendSemanticValidatorResult(verticalList, semanticValidatorResult);
 		}
 
 		GeometricValidatorResult geometricValidatorResult = report.getGeometricValidatorResult();
@@ -144,7 +139,27 @@ class ReportBuilder {
 			verticalList = appendDetailsHint(verticalList, syntacticValidatorResult);
 			verticalList = verticalList.add(createSyntacticRules(syntacticValidatorResult)).add(cmp.verticalGap(10));
 		}
+		List<SemanticValidatorResult> semanticProfileValidatorResults = report.getSemanticProfileValidatorResults();
+		if (!semanticProfileValidatorResults.isEmpty()) {
+			semanticProfileValidatorResults.sort(Comparator.comparing(o -> o.getRulesMetadata().getName()));
+			for (SemanticValidatorResult profileSemanticValidatorResult : semanticProfileValidatorResults) {
+				verticalList = verticalList.add(appendHeaderAndResultOfProfile(profileSemanticValidatorResult));
+				verticalList = appendSemanticValidatorResult(verticalList, profileSemanticValidatorResult);
+			}
+		}
 
+		return verticalList;
+	}
+
+	private VerticalListBuilder appendSemanticValidatorResult(VerticalListBuilder verticalList,
+			SemanticValidatorResult profileSemanticValidatorResult) {
+		verticalList = appendDetailsHint(verticalList, profileSemanticValidatorResult);
+		verticalList = appendRulesMetadata(verticalList, profileSemanticValidatorResult);
+		verticalList = verticalList.add(appendNumberOfRules(profileSemanticValidatorResult));
+		verticalList = verticalList.add(appendNumberOfFailedRules(profileSemanticValidatorResult));
+		verticalList = verticalList.add(appendNumberOfValidRules(profileSemanticValidatorResult));
+		verticalList = verticalList.add(appendDetailsSection());
+		verticalList = verticalList.add(createSemanticRules(profileSemanticValidatorResult)).add(cmp.verticalGap(10));
 		return verticalList;
 	}
 
@@ -192,6 +207,14 @@ class ReportBuilder {
 			SemanticValidatorResult semanticValidatorResult) {
 		RulesMetadata rulesMetadata = semanticValidatorResult.getRulesMetadata();
 		if (rulesMetadata != null) {
+			if (rulesMetadata.getName() != null) {
+				String name = String.format(" Name: %s", rulesMetadata.getName());
+				verticalList = verticalList.add(addTextString(name));
+			}
+			if (rulesMetadata.getDescription() != null) {
+				String description = String.format(" Beschreibung: %s", rulesMetadata.getDescription());
+				verticalList = verticalList.add(addTextString(description));
+			}
 			String version = String.format(" Version der Regeln: %s", rulesMetadata.getVersion());
 			verticalList = verticalList.add(addTextString(version));
 			String source = String.format("  Quelle der Regeln: %s", rulesMetadata.getSource());
@@ -249,6 +272,14 @@ class ReportBuilder {
 
 	private ComponentBuilder<?, ?> appendHeaderAndResult(ValidatorResult result) {
 		ComponentBuilder<?, ?> rulesHead = cmp.text(result.getType()).setStyle(bold14LeftStyle);
+		TextFieldBuilder<String> validString = cmp.text(getResultMessage(result))
+				.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
+		return cmp.horizontalList().add(rulesHead).add(validString);
+	}
+
+	private ComponentBuilder<?, ?> appendHeaderAndResultOfProfile(SemanticValidatorResult result) {
+		String text = "Profil " + result.getRulesMetadata().getName();
+		ComponentBuilder<?, ?> rulesHead = cmp.text(text).setStyle(bold14LeftStyle);
 		TextFieldBuilder<String> validString = cmp.text(getResultMessage(result))
 				.setStyle(bold14LeftStyle.setBottomBorder(stl.pen1Point()));
 		return cmp.horizontalList().add(rulesHead).add(validString);

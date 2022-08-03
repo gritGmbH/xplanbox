@@ -71,6 +71,7 @@ public class Dokument extends Referenz {
 		ReferenceType type = ReferenceType.getBySpezExterneReferenceType(dokumentModel.getTyp());
 		Reference reference = new Reference(dokumentModel.getReferenzURL(), dokumentModel.getGeorefURL(), type);
 		reference.setReferenzMimeType(MimeTypes.getByCode(dokumentModel.getReferenzMimeType()));
+		reference.setReferenzName(dokumentModel.getReferenzName());
 		reference.setGeorefMimeType(MimeTypes.getByCode(dokumentModel.getGeorefMimeType()));
 		reference.setArt(ExterneReferenzArt.getByCode(dokumentModel.getArt()));
 		reference.setBeschreibung(dokumentModel.getBeschreibung());

@@ -48,6 +48,10 @@ public class RulesMetadataParser {
 	 * @return never <code>null</code>
 	 */
 	public RulesMetadata parserMetadata(Path rulesPath) {
+		if (rulesPath == null) {
+			LOG.info("No rulesPath {} available, metadata are unknown", rulesPath);
+			return new RulesMetadata();
+		}
 		Path metadataFile = rulesPath.resolve(RELATIVE_PATH_TO_FILE);
 		if (!Files.exists(metadataFile)) {
 			LOG.info("No file {} in {} available, metadata are unknown", RELATIVE_PATH_TO_FILE, rulesPath);

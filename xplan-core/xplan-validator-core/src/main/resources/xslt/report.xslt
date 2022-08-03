@@ -141,7 +141,7 @@
       </p>
     </xsl:template>
 
-    <xsl:template match="ValidationReport/Validation/*">
+    <xsl:template match="ValidationReport/Validation/Sem | ValidationReport/Validation/Geom | ValidationReport/Validation/Syn">
         <p>
             Ergebnis der
             <xsl:choose>
@@ -171,6 +171,28 @@
         </p>
     </xsl:template>
 
+    <xsl:template match="ValidationReport/Validation/Profile">
+      <p>
+        Ergebnis der Validierung gegen das Profil <xsl:value-of select="RulesMetadata/name"/>:
+        <i>
+          <xsl:value-of select="result"/>
+        </i>
+        <div>
+          <xsl:value-of select="RulesMetadata/description"/>
+        </div>
+        <div>
+          <xsl:call-template name="tokenize">
+            <xsl:with-param name="string" select="normalize-space(details)"/>
+          </xsl:call-template>
+        </div>
+        <xsl:apply-templates select="RulesMetadata"/>
+        <xsl:apply-templates select="Rules">
+          <xsl:with-param name="rulesPosition" select="position()" tunnel="yes"/>
+        </xsl:apply-templates>
+        <hr/>
+      </p>
+    </xsl:template>
+
     <xsl:template match="RulesMetadata">
       <div>Informationen zu den Regeln:</div>
       <p>Version: <xsl:value-of select="version"/></p>
@@ -182,13 +204,23 @@
     </xsl:template>
 
     <xsl:template match="Rules">
+        <xsl:param name="rulesPosition" tunnel="yes"/>
+        <xsl:variable name="apos" select='"&apos;"'/>
         <xsl:if test="*">
             <p>
                 Zusammenfassung
                 <ul>
                     <li><xsl:value-of select="count(./Rule)" /> Validierungsregeln überprüft</li>
                     <li><xsl:value-of select="count(./Rule[isValid='false'])" /> Validierungsregeln nicht erfüllt</li>
-                    <li><xsl:value-of select="count(./Rule[isValid='true'])" /> Validierungsregeln erfüllt (<span style="text-decoration: underline; cursor:pointer" onclick="javascript:hideOrShowByClass('validSemanticRule', this); return false;">anzeigen</span>)</li>
+                    <li><xsl:value-of select="count(./Rule[isValid='true'])" /> Validierungsregeln erfüllt (
+                      <xsl:element name="span">
+                        <xsl:attribute name="style">text-decoration: underline; cursor:pointer</xsl:attribute>
+                        <xsl:attribute name="onclick">
+                          <xsl:value-of select="concat('javascript:hideOrShowByClass(', $apos, 'validSemanticRule_', $rulesPosition, $apos, ' , this); return false;')"/>
+                        </xsl:attribute>
+                        anzeigen
+                      </xsl:element> )
+                    </li>
                 </ul>
                 <table border="1">
                     <tr>
@@ -201,7 +233,9 @@
                         <xsl:choose>
                             <xsl:when test="not(current()/WarnedFeatures or current()/ErroredFeatures)">
                                 <xsl:element name="tr">
-                                    <xsl:attribute name="class">validSemanticRule</xsl:attribute>
+                                    <xsl:attribute name="class">
+                                      <xsl:value-of select="concat('validSemanticRule_', $rulesPosition)"/>
+                                    </xsl:attribute>
                                     <xsl:attribute name="style">display:none</xsl:attribute>
                                   <td>
                                     <xsl:value-of select="current()/name"/>

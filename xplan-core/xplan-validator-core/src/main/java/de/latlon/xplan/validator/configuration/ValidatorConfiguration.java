@@ -21,6 +21,7 @@
 package de.latlon.xplan.validator.configuration;
 
 import java.nio.file.Path;
+import java.util.List;
 
 /**
  * Encapsulates the validator configuration.
@@ -36,19 +37,24 @@ public class ValidatorConfiguration {
 
 	private String validatorWmsEndpoint;
 
+	private List<ValidatorProfile> validatorProfiles;
+
 	/**
 	 * @param validationReportDirectory directory where validation reports are saved,
 	 * never <code>null</code>
 	 * @param validationRulesDirectory directory where validation rules are stored, never
 	 * <code>null</code>
 	 * @param validatorWmsEndpoint XPlanValidatorWMS endpoint, may be <code>null</code>
+	 * @param validatorProfiles configured validator profiles, may be <code>empty</code>
+	 * but never <code>null</code>
 	 */
 	public ValidatorConfiguration(Path validationReportDirectory, Path validationRulesDirectory,
-			String validatorWmsEndpoint) {
+			String validatorWmsEndpoint, List<ValidatorProfile> validatorProfiles) {
 		this.validatorWmsEndpoint = validatorWmsEndpoint;
 		checkParameters(validationReportDirectory);
 		this.validationReportDirectory = validationReportDirectory;
 		this.validationRulesDirectory = validationRulesDirectory;
+		this.validatorProfiles = validatorProfiles;
 	}
 
 	/**
@@ -74,6 +80,14 @@ public class ValidatorConfiguration {
 	 */
 	public String getValidatorWmsEndpoint() {
 		return validatorWmsEndpoint;
+	}
+
+	/**
+	 * Returns the configured validator profiles
+	 * @return validatorProfiles may be <code>empty</code> but never <code>null</code>
+	 */
+	public List<ValidatorProfile> getValidatorProfiles() {
+		return validatorProfiles;
 	}
 
 	private void checkParameters(Path validationReportDirectory) {
