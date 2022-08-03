@@ -157,6 +157,7 @@ public class ValidatorConfigurationParser {
 
 	private void checkProfiles(List<ValidatorProfile> profiles) throws ConfigurationException {
 		List<String> configuredProfileIds = new ArrayList<>();
+		List<String> configuredProfileNames = new ArrayList<>();
 		for (ValidatorProfile profile : profiles) {
 			String profileId = profile.getId();
 			if (profileId != null) {
@@ -165,6 +166,14 @@ public class ValidatorConfigurationParser {
 							+ " is configured multiple times. The ids of all configured profiles must be unique.");
 				}
 				configuredProfileIds.add(profileId);
+			}
+			String profileName = profile.getName();
+			if (profileName != null) {
+				if (configuredProfileNames.contains(profileName)) {
+					throw new ConfigurationException("Profile name " + profileName
+							+ " is configured multiple times. The names of all configured profiles must be unique.");
+				}
+				configuredProfileNames.add(profileName);
 			}
 			if (StringUtils.isEmpty(profile.getName()) || StringUtils.isEmpty(profile.getDescription())
 					|| StringUtils.isEmpty(profile.getXqueryRulesDirectory()))
