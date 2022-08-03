@@ -626,6 +626,12 @@ Validate XPlanGML or XPlanArchive</con:description>
           <con:status>400</con:status>
           <con:params/>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
         <con:request name="Request 1" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/json" postQueryString="false">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
@@ -2021,8 +2027,8 @@ Validate XPlanGML or XPlanArchive</con:description>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="geometrisch errors">
               <con:configuration>
-                <path>$.validationResult.geometrisch.errors</path>
-                <content>["LinearRing (Zeile 96, Spalte 13): 2.2.2.1: Ring nicht geschlossen: (563233.311,5929068.039) != (563243.311,5929078.039), Abstand: 14.142135623730951","Polygon (Zeile 98, Spalte 9): Points of LinearRing do not form a closed linestring","Die geometrische Validierung wurde aufgrund von schwerwiegenden Geometriefehlern abgebrochen."]</content>
+                <path>$.validationResult.geometrisch.errors.length()</path>
+                <content>3</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
