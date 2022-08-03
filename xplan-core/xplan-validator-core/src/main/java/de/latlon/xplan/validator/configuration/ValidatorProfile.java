@@ -40,8 +40,6 @@ public class ValidatorProfile {
 	@JsonProperty(required = true)
 	private String xqueryRulesDirectory;
 
-	private String rulesDescription;
-
 	public String getName() {
 		return name;
 	}
@@ -80,14 +78,6 @@ public class ValidatorProfile {
 
 	public void setXqueryRulesDirectory(String xqueryRulesDirectory) {
 		this.xqueryRulesDirectory = xqueryRulesDirectory;
-	}
-
-	public String getRulesDescription() {
-		return rulesDescription;
-	}
-
-	public void setRulesDescription(String rulesDescription) {
-		this.rulesDescription = rulesDescription;
 	}
 
 }

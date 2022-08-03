@@ -120,11 +120,10 @@ public class XPlanValidatorWebSpringConfig {
 		for (Map.Entry<ValidatorProfile, RulesMetadata> profileAndMetadata : profilesAndMetadata.entrySet()) {
 			RulesMetadata rulesMetadata = profileAndMetadata.getValue();
 			ValidatorProfile validatorProfile = profileAndMetadata.getKey();
-			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
-			FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(
-					validatorProfile.getRulesDescription());
+			Path rulesDirectory = Paths.get(validatorProfile.getXqueryRulesDirectory());
+			FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(rulesDirectory);
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
-					rulesPath, rulesMetadata, messagesAccessor);
+					rulesDirectory, rulesMetadata, messagesAccessor);
 			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
 					xQuerySemanticValidatorConfigurationRetriever);
 			semanticValidators
