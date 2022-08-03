@@ -77,8 +77,8 @@ public class TestContext {
 	@Primary
 	@Bean
 	public List<RulesMetadata> profileMetadata() {
-		RulesMetadata profile1 = new RulesMetadata("test1", "description1", "0.1", "unbekannt");
-		RulesMetadata profile2 = new RulesMetadata("test2", "description2", "0.2", "lokal");
+		RulesMetadata profile1 = new RulesMetadata("id1", "test1", "description1", "0.1", "unbekannt");
+		RulesMetadata profile2 = new RulesMetadata("id2", "test2", "description2", "0.2", "lokal");
 		return Arrays.asList(profile1, profile2);
 	}
 

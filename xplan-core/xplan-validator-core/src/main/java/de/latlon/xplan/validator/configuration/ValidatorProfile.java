@@ -27,6 +27,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ValidatorProfile {
 
+	private String id;
+
 	@JsonProperty(required = true)
 	private String name;
 
@@ -39,6 +41,14 @@ public class ValidatorProfile {
 
 	@JsonProperty(required = true)
 	private String xqueryRulesDirectory;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

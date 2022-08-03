@@ -101,7 +101,7 @@ public class XPlanValidatorWebSpringConfig {
 			throws ValidatorException {
 		Map<ValidatorProfile, RulesMetadata> profilesAndMetadata = new HashMap<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			RulesMetadata newRulesMetadata = new RulesMetadata(validatorProfile.getName(),
+			RulesMetadata newRulesMetadata = new RulesMetadata(validatorProfile.getId(), validatorProfile.getName(),
 					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
 			profilesAndMetadata.put(validatorProfile, newRulesMetadata);
 		}
