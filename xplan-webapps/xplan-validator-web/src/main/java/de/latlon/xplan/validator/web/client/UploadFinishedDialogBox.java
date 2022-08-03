@@ -20,11 +20,11 @@
  */
 package de.latlon.xplan.validator.web.client;
 
-import static de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener.FinishStatus.NEXT;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
@@ -32,8 +32,12 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener;
+import de.latlon.xplan.validator.web.client.service.ValidationConfigService;
+import de.latlon.xplan.validator.web.client.service.ValidationConfigServiceAsync;
+import de.latlon.xplan.validator.web.shared.ValidationConfig;
+
+import static de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener.FinishStatus.NEXT;
 
 /**
  * Extends the {@link DialogBox} with a button to close the dialog
@@ -44,6 +48,8 @@ import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListene
 class UploadFinishedDialogBox extends DialogBox {
 
 	private final ValidatorWebCommonsMessages messages = GWT.create(ValidatorWebCommonsMessages.class);
+
+	private final ValidationConfigServiceAsync validationConfigService = GWT.create(ValidationConfigService.class);
 
 	private final String fileName;
 
@@ -90,23 +96,39 @@ class UploadFinishedDialogBox extends DialogBox {
 		ClickHandler nextListener = new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				UploadFinishedDialogBox.this.hide();
-				ClickHandler cancelHandler = new ClickHandler() {
+				validationConfigService.retrieveValidationConfig(new AsyncCallback<ValidationConfig>() {
 					@Override
-					public void onClick(ClickEvent clickEvent) {
-						xPlanValidatorWeb.resetPanelToUpload();
+					public void onFailure(Throwable throwable) {
+						Window.alert("Profile konnten nicht abgerufen werden: " + throwable.getMessage());
+						validate(new ValidationConfig());
 					}
-				};
-				ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog(
-						new ReportDownloadFinishedListener() {
-							@Override
-							public void downloadFinished(FinishStatus finishStatus) {
-								if (NEXT.equals(finishStatus))
-									xPlanValidatorWeb.resetPanelToUpload();
-							}
 
-						}, fileName, true, cancelHandler, true);
-				xPlanValidatorWeb.setPanel(xPlanValidatorSettings);
+					@Override
+					public void onSuccess(ValidationConfig validationConfig) {
+						validate(validationConfig);
+					}
+
+					private void validate(ValidationConfig validationConfig) {
+						UploadFinishedDialogBox.this.hide();
+						ClickHandler cancelHandler = new ClickHandler() {
+							@Override
+							public void onClick(ClickEvent clickEvent) {
+								xPlanValidatorWeb.resetPanelToUpload();
+							}
+						};
+						ValidatorOptionsDialog xPlanValidatorSettings = new ValidatorOptionsDialog(validationConfig,
+								new ReportDownloadFinishedListener() {
+									@Override
+									public void downloadFinished(FinishStatus finishStatus) {
+										if (NEXT.equals(finishStatus))
+											xPlanValidatorWeb.resetPanelToUpload();
+									}
+
+								}, fileName, true, cancelHandler, true);
+						xPlanValidatorWeb.setPanel(xPlanValidatorSettings);
+					}
+				});
+
 			}
 		};
 		nextButton.addClickHandler(nextListener);

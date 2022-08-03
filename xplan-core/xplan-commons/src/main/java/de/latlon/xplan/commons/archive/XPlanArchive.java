@@ -64,20 +64,25 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
 	private final List<String> districts;
 
+	private boolean hasVerbundenerPlanBereich;
+
 	private final boolean hasMultipleXPlanElements;
 
 	XPlanArchive(List<ZipEntryWithContent> zipEntries, String fileName, XPlanVersion version, XPlanType type, ICRS crs,
-			List<String> districts, boolean hasMultipleXPlanElements) {
-		this(zipEntries, null, fileName, version, type, crs, districts, hasMultipleXPlanElements);
+			List<String> districts, boolean hasVerbundenerPlanBereich, boolean hasMultipleXPlanElements) {
+		this(zipEntries, null, fileName, version, type, crs, districts, hasVerbundenerPlanBereich,
+				hasMultipleXPlanElements);
 	}
 
 	public XPlanArchive(MainZipEntry mainEntry, String fileName, XPlanVersion version, XPlanType type, ICRS crs,
-			List<String> districts, boolean hasMultipleXPlanElements) {
-		this(Collections.emptyList(), mainEntry, fileName, version, type, crs, districts, hasMultipleXPlanElements);
+			List<String> districts, boolean hasVerbundenerPlanBereich, boolean hasMultipleXPlanElements) {
+		this(Collections.emptyList(), mainEntry, fileName, version, type, crs, districts, hasVerbundenerPlanBereich,
+				hasMultipleXPlanElements);
 	}
 
 	private XPlanArchive(List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String fileName,
-			XPlanVersion version, XPlanType type, ICRS crs, List<String> districts, boolean hasMultipleXPlanElements) {
+			XPlanVersion version, XPlanType type, ICRS crs, List<String> districts, boolean hasVerbundenerPlanBereich,
+			boolean hasMultipleXPlanElements) {
 		this.zipFileEntries = zipEntries;
 		this.mainEntry = mainEntry;
 		this.fileName = fileName;
@@ -85,6 +90,7 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 		this.type = type;
 		this.crs = crs;
 		this.districts = districts;
+		this.hasVerbundenerPlanBereich = hasVerbundenerPlanBereich;
 		this.hasMultipleXPlanElements = hasMultipleXPlanElements;
 	}
 
@@ -119,6 +125,14 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 	 */
 	public List<String> getDistricts() {
 		return districts;
+	}
+
+	/**
+	 * @return <code>true</code> if the XPLanArchive contains at least one Plan with
+	 * verbundenerPlan or verbundenerPlanBereich, <code>false</code> otherwise
+	 */
+	public boolean hasVerbundenerPlanBereich() {
+		return hasVerbundenerPlanBereich;
 	}
 
 	/**

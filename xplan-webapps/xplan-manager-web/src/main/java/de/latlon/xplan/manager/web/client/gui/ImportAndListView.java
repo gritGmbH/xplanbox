@@ -22,9 +22,9 @@ package de.latlon.xplan.manager.web.client.gui;
 
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
+import de.latlon.xplan.validator.web.shared.ValidationConfig;
 
 /**
  * Summarizes the PlanListPanel and UploadPanel in one view.
@@ -39,12 +39,13 @@ public class ImportAndListView extends VerticalPanel {
 	/**
 	 * @param eventBus required to control overall view events, never <code>null</code>
 	 * @param configuration never <code>null</code>
+	 * @param validationConfig
 	 * @param authorizationInfo never <code>null</code>
 	 */
 	public ImportAndListView(HandlerManager eventBus, final ManagerWebConfiguration configuration,
-			AuthorizationInfo authorizationInfo) {
+			ValidationConfig validationConfig, AuthorizationInfo authorizationInfo) {
 		planListPanel = new PlanListPanel(eventBus, configuration, authorizationInfo);
-		UploadPanel uploadPanel = new UploadPanel(configuration, planListPanel);
+		UploadPanel uploadPanel = new UploadPanel(configuration, validationConfig, planListPanel);
 		createGUI(planListPanel, uploadPanel);
 	}
 

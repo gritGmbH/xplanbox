@@ -35,7 +35,7 @@ import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
@@ -61,10 +61,11 @@ public class InfoApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsSupportedXplanGmlVersions() {
+	public void verifyThat_Response_ContainsSupportedXplanGmlVersionsAndProfiles() {
 		final String response = target("/info").request(APPLICATION_JSON).get(String.class);
 
 		assertThat(response, containsString("supportedXPlanGmlVersions"));
+		assertThat(response, containsString("profiles"));
 	}
 
 }

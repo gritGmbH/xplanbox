@@ -30,6 +30,7 @@ import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
@@ -190,6 +191,30 @@ public class XPlanValidatorTest {
 	}
 
 	@Test
+	public void testValidateWithProfile() throws Exception {
+		ValidationSettings semanticSettings = new ValidationSettings("", singletonList(SEMANTIC), emptyList());
+		Integer profileId = 10;
+		semanticSettings.setProfiles(Collections.singletonList(profileId));
+		SemanticProfileValidator profileValidator = mockSemanticProfileValidator(profileId);
+		List<SemanticProfileValidator> profileValidators = Collections.singletonList(profileValidator);
+
+		executeValidator(geoVal, semVal, synVal, profileValidators, semanticSettings);
+
+		verify(profileValidator, times(1)).validateSemantic(archive(), list());
+	}
+
+	@Test
+	public void testValidateWithoutProfile() throws Exception {
+		ValidationSettings semanticSettings = new ValidationSettings("", singletonList(SEMANTIC), emptyList());
+		SemanticProfileValidator profileValidator = mockSemanticProfileValidator(42);
+		List<SemanticProfileValidator> profileValidators = Collections.singletonList(profileValidator);
+
+		executeValidator(geoVal, semVal, synVal, profileValidators, semanticSettings);
+
+		verify(profileValidator, times(0)).validateSemantic(archive(), list());
+	}
+
+	@Test
 	public void testWriteReport_Invalid() throws Exception {
 		List<ValidationType> validationTypes = Arrays.asList(new ValidationType[] { SYNTACTIC, SEMANTIC, GEOMETRIC });
 		ValidationSettings settings = new ValidationSettings("", validationTypes, emptyList());
@@ -200,6 +225,16 @@ public class XPlanValidatorTest {
 		assertThat(report.getSemanticValidatorResult(), containsSemanticResult("message", "name"));
 		assertThat(report.getSyntacticValidatorResult(), containsSyntaticResult("message"));
 		assertThat(report.getGeometricValidatorResult(), containsGeometricResult());
+	}
+
+	@Test(expected = ValidatorException.class)
+	public void testValidateWithInvalidProfile() throws Exception {
+		ValidationSettings semanticSettings = new ValidationSettings("", singletonList(SEMANTIC), emptyList());
+		semanticSettings.setProfiles(Collections.singletonList(99));
+		SemanticProfileValidator profileValidator = mockSemanticProfileValidator(42);
+		List<SemanticProfileValidator> profileValidators = Collections.singletonList(profileValidator);
+
+		executeValidator(geoVal, semVal, synVal, profileValidators, semanticSettings);
 	}
 
 	private Matcher<SyntacticValidatorResult> containsSyntaticResult(final String messageToCheck) {
@@ -266,10 +301,26 @@ public class XPlanValidatorTest {
 	}
 
 	private ValidatorReport executeValidator(GeometricValidator geomVal, SemanticValidator semVal,
+			SyntacticValidator synVal, List<SemanticProfileValidator> profileValidators, ValidationSettings settings)
+			throws IOException, ValidatorException, ReportGenerationException {
+		XPlanValidator validator = new XPlanValidator(geomVal, synVal, semVal, profileValidators,
+				mock(ReportArchiveGenerator.class));
+		return validator.validate(settings, planToValidate, "archiveName");
+	}
+
+	private ValidatorReport executeValidator(GeometricValidator geomVal, SemanticValidator semVal,
 			SyntacticValidator synVal, ValidationSettings settings)
 			throws IOException, ValidatorException, ParseException, ReportGenerationException {
-		XPlanValidator validator = new XPlanValidator(geomVal, synVal, semVal, mock(ReportArchiveGenerator.class));
-		return validator.validate(settings, planToValidate, "archiveName");
+		return executeValidator(geomVal, semVal, synVal, Collections.emptyList(), settings);
+	}
+
+	private SemanticProfileValidator mockSemanticProfileValidator(Integer profileId) {
+		SemanticProfileValidator mock = mock(SemanticProfileValidator.class);
+		SemanticValidatorResult toBeReturned = new SemanticValidatorResult();
+		toBeReturned.addRule("name", "message", Collections.emptyList());
+		doReturn(toBeReturned).when(mock).validateSemantic(archive(), list());
+		doReturn(profileId).when(mock).getId();
+		return mock;
 	}
 
 	private SemanticValidator mockSemanticValidator() {

@@ -6,21 +6,23 @@ Um statt der mit dem xPlanBox ausgelieferten Regeln externen Regeln zu verwenden
 Der Pfad zu den semantischen Regeln muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ wie folgt konfiguriert werden:
 
 ----
-validationRulesDirectory=/home/xplanbox/semantischeRegeln/0.11.1/
+validationRulesDirectory=/home/xplanbox/semantischeRegeln/0.12.1/
 ----
 
 NOTE: Diese Konfiguration wirkt sich auf die Komponenten XPlanManagerAPI, XPlanManagerWeb und XPlanManagerCLI sowie XPlanValidatorAPI, XPlanValidatorWeb und XPlanValidatorCLI aus.
 
 NOTE: Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln für die genannten Komponenten verwendet.
 
-IMPORTANT: Das Basisverzeichnis _rules/_ darf nur Unterverzeichnisse enthalten, die der Namenskonvention _xplangml<VERSION>_ entsprechen, wobei der Bezeichner _<VERSION>_ eine Versionsnummer ohne Trennzeichen enthält z. B. _54_ für XPlanGML 5.4. Des Weiteren dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML Version von der xPlanBox unterstützt werden.
+IMPORTANT: Das Basisverzeichnis _rules/_ darf nur Unterverzeichnisse enthalten, die der Namenskonvention _xplangml<VERSION>_ entsprechen, wobei der Bezeichner _<VERSION>_ eine Versionsnummer ohne Trennzeichen enthält z. B. _54_ für XPlanGML Version 5.4. Des Weiteren dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
 
 Wenn innerhalb des Validierungsbericht die Version und die Quelle der semantischen Validierungsregeln angezeigt werden sollen, dann muss im übergeordneten Verzeichnis aus _validationRulesDirectory_ eine Textdatei mit dem Dateinamen _VERSION.txt_ und folgendem Inhalt angelegt werden:
 
 ----
-version=0.11.1
-source=https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.11.1.zip
+version=0.12.1 <1>
+source=https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.12.1.zip <2>
 ----
+<1> Angabe zur Version der Validierungsregeln
+<2> Angabe zur Quelle der Validierungsregeln
 
 [[weiterfuehrende-informationen-zur-semantischen-validierung]]
 ==== Weiterführende Informationen zur semantischen Validierung
@@ -63,3 +65,62 @@ Damit der XPlanValidator den Rückgabewert verarbeiten kann, muss dieser wie fol
 `GML_ID`
 oder
 `[GML_ID, 'W', 'NACHRICHT']`
+
+==== Validierungsprofile
+
+Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsregeln können ergänzende Prüfungen als XQuery-Abfragen definiert und über ein Profil in den XPlanValidator eingebunden werden. Dazu sind folgende Schritte erforderlich:
+
+* Anlegen einer Konfigurationsdatei im YAML-Dateiformat im Verzeichnis _<XPLANBOX_CONFIG>/profiles_
+* Die YAML-Datei kann die Konfiguration für ein oder mehrere Profile beinhalten, der Dateiname ist frei wählbar, die Dateiendung muss _.yaml_ sein.
+* Ein Profil wird durch folgende Eigenschaften beschrieben:
+** *name*: Der Name des Profils, dieser wird im XPlanValidatorWeb und XPlanManagerWeb angezeigt (verpflichtend)
+** *description*: Beschreibung des Profils, wird als Tooltip im XPlanValidatorWeb und XPlanManagerWeb angezeigt, (verpflichtend)
+** *version*: Version der Regeln (optional)
+** *source*: Quelle der Regeln (optional)
+** *xqueryRulesDirectory*: absolute Pfadangabe auf das Verzeichnis in dem die XQuery-Regeln abgelegt sind (verpflichtend)
+** *rulesDescription*: absolute Pfadangabe zu einer Properties-Datei, in der die Beschreibung der einzelnen Regeln angegeben sind (optional)
+
+.Beispiel profile.yaml:
+[source,yaml]
+----
+- name: Pflichtenheft NRW
+  description: Vorgaben aus Musterpflichtenheft zur Erstellung XPlanung-konformer Bebauungspläne in NRW
+  version: 12.01.2022
+  source: https://www.bauportal.nrw/system/files/media/document/file/22-01-12-musterpflichtenheft-xplanung-nrw.pdf
+  xqueryRulesDirectory: /pathto/xplan-validator-config/profiles/nrw <1>
+  rulesDescription: /pathto/xplan-validator-config/profiles/nrw/rules.properties <2>
+----
+<1> Die Verzeichnisstruktur unterhalb dieses Verzeichnisses mit den XQuery-Regeln muss folgende Vorgaben erfüllen:
+** Die Dateien mit den XQuery-Regeln müssen je XPlanGML-Version in getrennten Verzeichnissen abgelegt werden. Der Verzeichnisname setzt sich zusammen aus _xplangml<XPLANGML-VERSION>_, z. B. _xplangml54_, _xplangml60_.
+** Es dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
+** Jede XQuery-Regel muss in einer Datei mit dem Namen _<DATEINAME>.xq_ abgelegt sein.
+** Es wird nur XQuery 3.0 oder 3.1 verwendet.
+<2> Die Beschreibung der Regeln in der Properties-Datei muss folgende Vorgaben erfüllen:
+** Ein Eintrag besteht aus einem Namen und einem Wert, wobei der Name sich aus dem Dateinamen und der XPlanGML-Version zusammensetzt. Der Wert legt die Beschreibung fest. Das Name/Wert-Paar `<DATEINAME>_<VERSION>=<Beschreibung>` besteht aus:
+*** `DATEINAME`: Name der Datei ohne die Dateiendung _.xq_
+*** `VERSION`: XPlanGML-Version der Regel, z.B. XPLAN_50, XPLAN_51
+*** `Beschreibung`: Beschreibung der Regel
+
+.Beispiel rules.properties:
+[source,properties]
+----
+ruleA_XPLAN_54=Das Attribut A darf nicht unbelegt sein.
+ruleB_XPLAN_54=Das Attribut B darf nicht unbelegt sein, wenn f\u00FCr das Attribut A der Wert 1000 angegeben ist.
+rule1_XPLAN_60=Das Attribut 1 darf nicht unbelegt sein.
+rule2_XPLAN_60=Das Attribut 2 darf nicht unbelegt sein.
+----
+
+.Beispiel Verzeichnisstruktur eines Profils:
+----
+nrw
+├── rules.properties        # <1>
+├── xplangml54              # <2>
+│   ├── ruleA.xq
+│   └── ruleB.xq
+└── xplangml60              # <3>
+    ├── rule1.xq
+    └── rule2.xq
+----
+<1> Datei mit der *rulesDescription*
+<2> Verzeichnis mit Validierungsregeln für die XPlanGML-Version 5.4
+<3> Verzeichnis mit Validierungsregeln für die XPlanGML-Version 6.0
