@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 24.01.2022 09:22:37-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 16:07:12-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.1">
   <include schemaLocation="XPlanGML_Basisschema.xsd" />
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />
   <!--=========================================================================================-->
@@ -20,6 +20,7 @@
                 <gml:targetElement>xplan:FP_Plan</gml:targetElement>
                 <gml:reversePropertyName>xplan:bereich</gml:reversePropertyName>
               </appinfo>
+              <documentation>Referenz auf den Flächennutzungsplan, zu dem das Bereichsobjekt gehört.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Bereich" minOccurs="0" maxOccurs="unbounded" />
@@ -39,8 +40,16 @@
     <complexContent>
       <extension base="xplan:FP_ObjektType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
-          <element name="flaechenschluss" type="boolean" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Flächenhafter Raumbezug des Objektes (Eine Einzelfläche oder eine Menge von Flächen, die sich nicht überlappen dürfen). </documentation>
+            </annotation>
+          </element>
+          <element name="flaechenschluss" type="boolean">
+            <annotation>
+              <documentation>Zeigt an, ob das Objekt als Flächenschlussobjekt oder Überlagerungsobjekt gebildet werden soll. Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Flächenrändern berühren, wobei die jeweiligen Stützpunkte der Randkurven übereinander liegen müssen. Die Vereinigung der Flächenschlussobjekte überdeckt den Geltungsbereich des Flächennutzungsplans vollständig. </documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Flaechenobjekt" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -76,10 +85,28 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_ObjektType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
-          <element name="flaechenschluss" minOccurs="0" default="false" type="boolean" />
-          <element name="flussrichtung" minOccurs="0" type="boolean" />
-          <element name="nordwinkel" minOccurs="0" type="gml:AngleType" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Raumbezug - Entweder punktförmig, linienförmig oder flächenhaft, gemischte Geometrie ist nicht zugelassen.</documentation>
+            </annotation>
+          </element>
+          <element name="flaechenschluss" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Zeigt bei flächenhaftem Raumbezug an, ob das Objekt als Flächenschlussobjekt oder Überlagerungsobjekt gebildet werden soll.
+Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Flächenrändern berühren, wobei die jeweiligen Stützpunkte der Randkurven übereinander liegen müssen. Die Vereinigung der Flächenschlussobjekte überdeckt den Geltungsbereich des Flächennutzungsplans vollständig. </documentation>
+            </annotation>
+          </element>
+          <element name="flussrichtung" minOccurs="0" type="boolean">
+            <annotation>
+              <documentation>Das Attribut ist nur relevant, wenn ein Geometrieobjekt einen linienhaften Raumbezug hat. Ist es mit dem Wert &lt;i&gt;true &lt;/i&gt;belegt, wird damit ausgedrückt, dass der Linie eine &lt;b&gt;Flussrichtung &lt;/b&gt; &lt;b&gt;in Digitalisierungsrichtung&lt;/b&gt; zugeordnet ist. In diesem Fall darf bei Im- und Export die Digitalisierungsreihenfolge der Stützpunkte nicht geändert werden. Wie eine definierte Flussrichtung  zu interpretieren oder bei einer Plandarstellung zu visualisieren ist, bleibt der Implementierung überlassen.
+Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, ist die Digitalisierungsreihenfolge der Stützpunkte &lt;b&gt;irrelevant&lt;/b&gt;.</documentation>
+            </annotation>
+          </element>
+          <element name="nordwinkel" minOccurs="0" type="gml:AngleType">
+            <annotation>
+              <documentation>Orientierung des Objektes bei punkförmigem Raumbezug als Winkel gegen die Nordrichtung. Zählweise im geographischen Sinn (von Nord über Ost nach Süd und West).</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Geometrieobjekt" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -98,7 +125,11 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_ObjektType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Linienförmiger Raumbezug (Einzelne zusammenhängende Kurve, die aus Linienstücken und Kreisbögen aufgebaut ist, oder eine Menge derartiger Kurven).</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Linienobjekt" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -118,17 +149,20 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
         <sequence>
           <element name="spezifischePraegung" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:FP_SpezifischePraegungTypen</referenzierteCodelist>
-              </appinfo>
+              <documentation>Über eine Codeliste definierte spezifische bauliche Prägung einer Darstellung.</documentation>
             </annotation>
           </element>
-          <element name="vonGenehmigungAusgenommen" minOccurs="0" default="false" type="boolean" />
+          <element name="vonGenehmigungAusgenommen" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Angabe, ob Teile des Flächennutzungsplans nach §6 Abs. 3 BauGB von der Genehmigung ausgenommen sind</documentation>
+            </annotation>
+          </element>
           <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:FP_AusgleichsFlaeche</gml:targetElement>
               </appinfo>
+              <documentation>Referenz auf eine Ausgleichsfläche, die den Eingriff ausgleicht.</documentation>
             </annotation>
           </element>
           <element name="wirdAusgeglichenDurchSPE" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
@@ -136,6 +170,7 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
               <appinfo>
                 <gml:targetElement>xplan:FP_SchutzPflegeEntwicklung</gml:targetElement>
               </appinfo>
+              <documentation>Referenz auf eine Schutz-,Pflege- oder Entwicklungsmaßnahme, die den Eingriff ausgleicht.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Objekt" minOccurs="0" maxOccurs="unbounded" />
@@ -155,45 +190,119 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:XP_PlanType">
         <sequence>
-          <element name="gemeinde" maxOccurs="unbounded" type="xplan:XP_GemeindePropertyType" />
-          <element name="planaufstellendeGemeinde" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GemeindePropertyType" />
-          <element name="plangeber" minOccurs="0" type="xplan:XP_PlangeberPropertyType" />
-          <element name="planArt" type="xplan:FP_PlanArt" />
+          <element name="gemeinde" maxOccurs="unbounded" type="xplan:XP_GemeindePropertyType">
+            <annotation>
+              <documentation>Zuständige Gemeinde</documentation>
+            </annotation>
+          </element>
+          <element name="planaufstellendeGemeinde" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GemeindePropertyType">
+            <annotation>
+              <documentation>Die für die ursprüngliche Planaufstellung zuständige Gemeinde, falls diese nicht unter dem Attribut &lt;i&gt;gemeinde &lt;/i&gt;aufgeführt ist. Dies kann z.B. nach Gemeindefusionen der Fall sein.</documentation>
+            </annotation>
+          </element>
+          <element name="plangeber" minOccurs="0" type="xplan:XP_PlangeberPropertyType">
+            <annotation>
+              <documentation>Für die Planung zuständige Institution
+</documentation>
+            </annotation>
+          </element>
+          <element name="planArt" type="xplan:FP_PlanArt">
+            <annotation>
+              <documentation>Typ des FPlans</documentation>
+            </annotation>
+          </element>
           <element name="sonstPlanArt" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:FP_SonstPlanArt</referenzierteCodelist>
-              </appinfo>
+              <documentation>Sonstiger Typ des FPlans bei "&lt;i&gt;planArt" &lt;/i&gt;== &lt;i&gt;9999&lt;/i&gt;.</documentation>
             </annotation>
           </element>
-          <element name="sachgebiet" minOccurs="0" type="string" />
-          <element name="verfahren" minOccurs="0" type="xplan:FP_Verfahren" />
-          <element name="rechtsstand" minOccurs="0" type="xplan:FP_Rechtsstand" />
+          <element name="sachgebiet" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Sachgebiet eines Teilflächennutzungsplans.</documentation>
+            </annotation>
+          </element>
+          <element name="verfahren" minOccurs="0" type="xplan:FP_Verfahren">
+            <annotation>
+              <documentation>Verfahren nach dem ein FPlan aufgestellt oder geändert wird.</documentation>
+            </annotation>
+          </element>
+          <element name="rechtsstand" minOccurs="0" type="xplan:FP_Rechtsstand">
+            <annotation>
+              <documentation>Aktueller Rechtsstand des Plans.</documentation>
+            </annotation>
+          </element>
           <element name="status" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:FP_Status</referenzierteCodelist>
-              </appinfo>
+              <documentation>Über eine Codeliste definierter Status des Plans.</documentation>
             </annotation>
           </element>
-          <element name="aufstellungsbeschlussDatum" minOccurs="0" type="date" />
-          <element name="auslegungsStartDatum" minOccurs="0" maxOccurs="unbounded" type="date" />
-          <element name="auslegungsEndDatum" minOccurs="0" maxOccurs="unbounded" type="date" />
-          <element name="traegerbeteiligungsStartDatum" minOccurs="0" maxOccurs="unbounded" type="date" />
-          <element name="traegerbeteiligungsEndDatum" minOccurs="0" maxOccurs="unbounded" type="date" />
-          <element name="aenderungenBisDatum" minOccurs="0" type="date" />
-          <element name="entwurfsbeschlussDatum" minOccurs="0" type="date" />
-          <element name="planbeschlussDatum" minOccurs="0" type="date" />
-          <element name="wirksamkeitsDatum" minOccurs="0" type="date" />
-          <element name="versionBauNVO" minOccurs="0" type="xplan:XP_GesetzlicheGrundlagePropertyType" />
-          <element name="versionBauGB" minOccurs="0" type="xplan:XP_GesetzlicheGrundlagePropertyType" />
-          <element name="versionSonstRechtsgrundlage" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GesetzlicheGrundlagePropertyType" />
+          <element name="aufstellungsbeschlussDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum des Plan-Aufstellungsbeschlusses.</documentation>
+            </annotation>
+          </element>
+          <element name="auslegungsStartDatum" minOccurs="0" maxOccurs="unbounded" type="date">
+            <annotation>
+              <documentation>Start-Datum der öffentlichen Auslegung. Bei mehrfacher öffentlicher Auslegung können mehrere Datumsangaben spezifiziert werden.</documentation>
+            </annotation>
+          </element>
+          <element name="auslegungsEndDatum" minOccurs="0" maxOccurs="unbounded" type="date">
+            <annotation>
+              <documentation>End-Datum der öffentlichen Auslegung. Bei mehrfacher öffentlicher Auslegung können mehrere Datumsangaben spezifiziert werden.</documentation>
+            </annotation>
+          </element>
+          <element name="traegerbeteiligungsStartDatum" minOccurs="0" maxOccurs="unbounded" type="date">
+            <annotation>
+              <documentation>Start-Datum der Trägerbeteiligung. Bei mehrfacher Trägerbeteiligung können mehrere Datumsangaben spezifiziert werden.</documentation>
+            </annotation>
+          </element>
+          <element name="traegerbeteiligungsEndDatum" minOccurs="0" maxOccurs="unbounded" type="date">
+            <annotation>
+              <documentation>End-Datum der Trägerbeteiligung. Bei mehrfacher Trägerbeteiligung  können mehrere Datumsangaben spezifiziert werden.</documentation>
+            </annotation>
+          </element>
+          <element name="aenderungenBisDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum, bis zu dem Änderungen des Plans berücksichtigt wurden.</documentation>
+            </annotation>
+          </element>
+          <element name="entwurfsbeschlussDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum des Entwurfsbeschlusses</documentation>
+            </annotation>
+          </element>
+          <element name="planbeschlussDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum des Planbeschlusses</documentation>
+            </annotation>
+          </element>
+          <element name="wirksamkeitsDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum der Wirksamkeit</documentation>
+            </annotation>
+          </element>
+          <element name="versionBauNVO" minOccurs="0" type="xplan:XP_GesetzlicheGrundlagePropertyType">
+            <annotation>
+              <documentation>Spezifikation der dem Gesamtplan zugrunde liegenden Version der BauNVO</documentation>
+            </annotation>
+          </element>
+          <element name="versionBauGB" minOccurs="0" type="xplan:XP_GesetzlicheGrundlagePropertyType">
+            <annotation>
+              <documentation>Spezifikation der dem Gesamtplan zugrunde liegenden Version des BauGB</documentation>
+            </annotation>
+          </element>
+          <element name="versionSonstRechtsgrundlage" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GesetzlicheGrundlagePropertyType">
+            <annotation>
+              <documentation>Spezifikation sonstiger Rechtsgrundlagen des Gesamtplans</documentation>
+            </annotation>
+          </element>
           <element name="bereich" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:FP_Bereich</gml:targetElement>
                 <gml:reversePropertyName>xplan:gehoertZuPlan</gml:reversePropertyName>
               </appinfo>
+              <documentation>Referenz auf einen Bereich des Flächennutzungsplans</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Plan" minOccurs="0" maxOccurs="unbounded" />
@@ -260,8 +369,16 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_ObjektType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
-          <element name="nordwinkel" minOccurs="0" type="gml:AngleType" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Punktförmiger Raumbezug (Einzelpunkt oder Punktmenge).</documentation>
+            </annotation>
+          </element>
+          <element name="nordwinkel" minOccurs="0" type="gml:AngleType">
+            <annotation>
+              <documentation>Orientierung des Punktobjektes als Winkel gegen die Nordrichtung. Zählweise im geographischen Sinn (von Nord über Ost nach Süd und West).</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Punktobjekt" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -394,7 +511,11 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="abbaugut" minOccurs="0" type="string" />
+          <element name="abbaugut" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Bezeichnung des Abbauguts.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Abgrabung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -412,7 +533,11 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="aufschuettungsmaterial" minOccurs="0" type="string" />
+          <element name="aufschuettungsmaterial" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Bezeichnung des aufgeschütteten Materials</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Aufschuettung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -430,23 +555,61 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_FlaechenschlussobjektType">
         <sequence>
-          <element name="GFZ" minOccurs="0" type="double" />
-          <element name="GFZmin" minOccurs="0" type="double" />
-          <element name="GFZmax" minOccurs="0" type="double" />
-          <element name="GFZdurchschnittlich" minOccurs="0" type="double" />
-          <element name="BMZ" minOccurs="0" type="double" />
-          <element name="GRZ" minOccurs="0" type="double" />
-          <element name="allgArtDerBaulNutzung" minOccurs="0" type="xplan:XP_AllgArtDerBaulNutzung" />
-          <element name="besondereArtDerBaulNutzung" minOccurs="0" type="xplan:XP_BesondereArtDerBaulNutzung" />
-          <element name="sondernutzung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeSondernutzungPropertyType" />
-          <element name="detaillierteArtDerBaulNutzung" minOccurs="0" type="gml:CodeType">
+          <element name="GFZ" minOccurs="0" type="double">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:FP_DetailArtDerBaulNutzung</referenzierteCodelist>
-              </appinfo>
+              <documentation>Angabe einer maximalen Geschossflächenzahl als Maß der baulichen Nutzung.</documentation>
             </annotation>
           </element>
-          <element name="abweichungBauNVO" minOccurs="0" type="xplan:XP_AbweichungBauNVOTypen" />
+          <element name="GFZmin" minOccurs="0" type="double">
+            <annotation>
+              <documentation>Minimale Geschossflächenzahl bei einer Bereichsangabe (GFZmax muss ebenfalls spezifiziert werden).</documentation>
+            </annotation>
+          </element>
+          <element name="GFZmax" minOccurs="0" type="double">
+            <annotation>
+              <documentation>Maximale Geschossflächenzahl bei einer Bereichsangabe (GFZmin muss ebenfalls spezifiziert werden).</documentation>
+            </annotation>
+          </element>
+          <element name="GFZdurchschnittlich" minOccurs="0" type="double">
+            <annotation>
+              <documentation>Durchschnittliche GFZ im Baugebiet</documentation>
+            </annotation>
+          </element>
+          <element name="BMZ" minOccurs="0" type="double">
+            <annotation>
+              <documentation>Angabe einer maximalen Baumassenzahl als Maß der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element name="GRZ" minOccurs="0" type="double">
+            <annotation>
+              <documentation>Angabe einer maximalen Grundflächenzahl als Maß der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element name="allgArtDerBaulNutzung" minOccurs="0" type="xplan:XP_AllgArtDerBaulNutzung">
+            <annotation>
+              <documentation>Angabe der allgemeinen Art der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element name="besondereArtDerBaulNutzung" minOccurs="0" type="xplan:XP_BesondereArtDerBaulNutzung">
+            <annotation>
+              <documentation>Angabe der besonderen Art der baulichen Nutzung.</documentation>
+            </annotation>
+          </element>
+          <element name="sondernutzung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeSondernutzungPropertyType">
+            <annotation>
+              <documentation>&lt;u&gt;Differenziert Sondernutzungen nach §10 und §11 der BauNVO von 1977 und 1990. Das Attribut wird nur benutzt, wenn &lt;/u&gt;&lt;i&gt;&lt;u&gt;besondereArtDerBaulNutzung &lt;/u&gt;&lt;/i&gt;&lt;u&gt;unbelegt ist oder einen der Werte 2000 bzw. 2100 h&lt;/u&gt;at</documentation>
+            </annotation>
+          </element>
+          <element name="detaillierteArtDerBaulNutzung" minOccurs="0" type="gml:CodeType">
+            <annotation>
+              <documentation>Über eine Codeliste definierte detailliertere Art der baulichen Nutzung, mit der die allgemeine und/oder besondere Art der baulichen Nutzung näher detailliert werden</documentation>
+            </annotation>
+          </element>
+          <element name="abweichungBauNVO" minOccurs="0" type="xplan:XP_AbweichungBauNVOTypen">
+            <annotation>
+              <documentation>Art der zulässigen Abweichung von der BauNVO.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_BebauungsFlaeche" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -479,16 +642,26 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
       <documentation>Spezifikation einer Sondernutzung</documentation>
     </annotation>
     <sequence>
-      <element name="allgemein" type="xplan:XP_Sondernutzungen" />
-      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+      <element name="allgemein" type="xplan:XP_Sondernutzungen">
         <annotation>
-          <appinfo>
-            <referenzierteCodelist>xplan:FP_DetailSondernutzung</referenzierteCodelist>
-          </appinfo>
+          <documentation>Allgemeine Festlegung der Sondernutzung</documentation>
         </annotation>
       </element>
-      <element name="nutzungText" minOccurs="0" type="string" />
-      <element name="aufschrift" minOccurs="0" type="string" />
+      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+        <annotation>
+          <documentation>Über eine Codeliste definierte Sondernutzung, die die allgemeine Sondernutzung näher detaillieren.</documentation>
+        </annotation>
+      </element>
+      <element name="nutzungText" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textliche Spezifikation der Sondernutzung.</documentation>
+        </annotation>
+      </element>
+      <element name="aufschrift" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Aufschrift</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfFP_KomplexeSondernutzung" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -509,9 +682,21 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestGemeinbedarfPropertyType" />
-          <element name="traeger" minOccurs="0" type="xplan:XP_Traegerschaft" />
-          <element name="zugunstenVon" minOccurs="0" type="string" />
+          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestGemeinbedarfPropertyType">
+            <annotation>
+              <documentation>Zweckbestimmung der Fläche</documentation>
+            </annotation>
+          </element>
+          <element name="traeger" minOccurs="0" type="xplan:XP_Traegerschaft">
+            <annotation>
+              <documentation>Trägerschaft einer Gemeinbedarfs-Fläche</documentation>
+            </annotation>
+          </element>
+          <element name="zugunstenVon" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Angabe des Begünstigten der Ausweisung.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Gemeinbedarf" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -527,16 +712,26 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
       <documentation>Spezifikation der Zweckbestimmung der Fläche</documentation>
     </annotation>
     <sequence>
-      <element name="allgemein" type="xplan:XP_ZweckbestimmungGemeinbedarf" />
-      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+      <element name="allgemein" type="xplan:XP_ZweckbestimmungGemeinbedarf">
         <annotation>
-          <appinfo>
-            <referenzierteCodelist>xplan:FP_DetailZweckbestGemeinbedarf</referenzierteCodelist>
-          </appinfo>
+          <documentation>Allgemeine Zweckbestimmung der Fläche</documentation>
         </annotation>
       </element>
-      <element name="textlicheErgaenzung" minOccurs="0" type="string" />
-      <element name="aufschrift" minOccurs="0" type="string" />
+      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+        <annotation>
+          <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
+        </annotation>
+      </element>
+      <element name="textlicheErgaenzung" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textliche Ergänzung der spezifizierten Zweckbestimmung(en).</documentation>
+        </annotation>
+      </element>
+      <element name="aufschrift" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Aufschrift</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfFP_KomplexeZweckbestGemeinbedarf" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -555,16 +750,26 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
       <documentation>Spezifikation der Zweckbestimmung einer Spiel- und Sportanlage.</documentation>
     </annotation>
     <sequence>
-      <element name="allgemein" type="xplan:XP_ZweckbestimmungSpielSportanlage" />
-      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+      <element name="allgemein" type="xplan:XP_ZweckbestimmungSpielSportanlage">
         <annotation>
-          <appinfo>
-            <referenzierteCodelist>xplan:FP_DetailZweckbestSpielSportanlage</referenzierteCodelist>
-          </appinfo>
+          <documentation>Allgemeine Zweckbestimmung der Fläche</documentation>
         </annotation>
       </element>
-      <element name="textlicheErgaenzung" minOccurs="0" type="string" />
-      <element name="aufschrift" minOccurs="0" type="string" />
+      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+        <annotation>
+          <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
+        </annotation>
+      </element>
+      <element name="textlicheErgaenzung" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textliche Ergänzung der spezifizierten Zweckbestimmung(en).</documentation>
+        </annotation>
+      </element>
+      <element name="aufschrift" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Aufschrift</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfFP_KomplexeZweckbestSpielSportanlage" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -585,8 +790,16 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestSpielSportanlagePropertyType" />
-          <element name="zugunstenVon" minOccurs="0" type="string" />
+          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestSpielSportanlagePropertyType">
+            <annotation>
+              <documentation>Allgemeine Zweckbestimmung der Fläche.</documentation>
+            </annotation>
+          </element>
+          <element name="zugunstenVon" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Bebünstigter der Ausweisung</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_SpielSportanlage" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -604,9 +817,21 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestGruenPropertyType" />
-          <element name="nutzungsform" minOccurs="0" type="xplan:XP_Nutzungsform" />
-          <element name="zugunstenVon" minOccurs="0" type="string" />
+          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestGruenPropertyType">
+            <annotation>
+              <documentation>Zweckbestimmung der Grünfläche.</documentation>
+            </annotation>
+          </element>
+          <element name="nutzungsform" minOccurs="0" type="xplan:XP_Nutzungsform">
+            <annotation>
+              <documentation>Nutzungsform der Grünfläche.</documentation>
+            </annotation>
+          </element>
+          <element name="zugunstenVon" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Begünstigter der Ausweisung</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Gruen" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -622,16 +847,26 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
       <documentation>Spezifikation der Zweckbestimmung einer Grünfläche</documentation>
     </annotation>
     <sequence>
-      <element name="allgemein" type="xplan:XP_ZweckbestimmungGruen" />
-      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+      <element name="allgemein" type="xplan:XP_ZweckbestimmungGruen">
         <annotation>
-          <appinfo>
-            <referenzierteCodelist>xplan:FP_DetailZweckbestGruen</referenzierteCodelist>
-          </appinfo>
+          <documentation>Allgemeine Zweckbestimmung der Fläche</documentation>
         </annotation>
       </element>
-      <element name="textlicheErgaenzung" minOccurs="0" type="string" />
-      <element name="aufschrift" minOccurs="0" type="string" />
+      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+        <annotation>
+          <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
+        </annotation>
+      </element>
+      <element name="textlicheErgaenzung" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textliche Ergänzung der spezifizierten Zweckbestimmung(en).</documentation>
+        </annotation>
+      </element>
+      <element name="aufschrift" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Aufschrift</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfFP_KomplexeZweckbestGruen" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -650,16 +885,26 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
       <documentation>Spezifikation der Zweckbestimmung einer Fläche für die Landwirtschaft.</documentation>
     </annotation>
     <sequence>
-      <element name="allgemein" type="xplan:XP_ZweckbestimmungLandwirtschaft" />
-      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+      <element name="allgemein" type="xplan:XP_ZweckbestimmungLandwirtschaft">
         <annotation>
-          <appinfo>
-            <referenzierteCodelist>xplan:FP_DetailZweckbestLandwirtschaftsFlaeche</referenzierteCodelist>
-          </appinfo>
+          <documentation>Allgemeine Zweckbestimmung der Fläche</documentation>
         </annotation>
       </element>
-      <element name="textlicheErgaenzung" minOccurs="0" type="string" />
-      <element name="aufschrift" minOccurs="0" type="string" />
+      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+        <annotation>
+          <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
+        </annotation>
+      </element>
+      <element name="textlicheErgaenzung" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textliche Ergänzung der spezifizierten Zweckbestimmung(en).</documentation>
+        </annotation>
+      </element>
+      <element name="aufschrift" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Aufschrift</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfFP_KomplexeZweckbestLandwirtschaft" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -678,16 +923,26 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
       <documentation>Spezifikation der Zweckbestimmung einer Waldfläche.</documentation>
     </annotation>
     <sequence>
-      <element name="allgemein" type="xplan:XP_ZweckbestimmungWald" />
-      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+      <element name="allgemein" type="xplan:XP_ZweckbestimmungWald">
         <annotation>
-          <appinfo>
-            <referenzierteCodelist>xplan:FP_DetailZweckbestWaldFlaeche</referenzierteCodelist>
-          </appinfo>
+          <documentation>Allgemeine Zweckbestimmung der Fläche</documentation>
         </annotation>
       </element>
-      <element name="textlicheErgaenzung" minOccurs="0" type="string" />
-      <element name="aufschrift" minOccurs="0" type="string" />
+      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+        <annotation>
+          <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
+        </annotation>
+      </element>
+      <element name="textlicheErgaenzung" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textliche Ergänzung der spezifizierten Zweckbestimmung(en).</documentation>
+        </annotation>
+      </element>
+      <element name="aufschrift" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Aufschrift</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfFP_KomplexeZweckbestWald" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -708,7 +963,11 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestLandwirtschaftPropertyType" />
+          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestLandwirtschaftPropertyType">
+            <annotation>
+              <documentation>Zweckbestimmungen der Ausweisung</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Landwirtschaft" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -726,9 +985,21 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_FlaechenschlussobjektType">
         <sequence>
-          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestWaldPropertyType" />
-          <element name="eigentumsart" minOccurs="0" type="xplan:XP_EigentumsartWald" />
-          <element name="betreten" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_WaldbetretungTyp" />
+          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestWaldPropertyType">
+            <annotation>
+              <documentation>Funktion der Waldfläche.</documentation>
+            </annotation>
+          </element>
+          <element name="eigentumsart" minOccurs="0" type="xplan:XP_EigentumsartWald">
+            <annotation>
+              <documentation>Festlegung der Eigentumsart des Waldes</documentation>
+            </annotation>
+          </element>
+          <element name="betreten" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_WaldbetretungTyp">
+            <annotation>
+              <documentation>Festlegung zusätzlicher, normalerweise nicht-gestatteter Aktivitäten, die in dem Wald ausgeführt werden dürfen, nach §14 Abs. 2 Bundeswaldgesetz.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_WaldFlaeche" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -746,12 +1017,14 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="massnahme" minOccurs="0" type="xplan:FP_MassnahmeKlimawandelTypen" />
+          <element name="massnahme" minOccurs="0" type="xplan:FP_MassnahmeKlimawandelTypen">
+            <annotation>
+              <documentation>Klassifikation der Massnahme</documentation>
+            </annotation>
+          </element>
           <element name="detailMassnahme" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:FP_DetailMassnahmeKlimawandel</referenzierteCodelist>
-              </appinfo>
+              <documentation>Detaillierung der durch das Attribut &lt;i&gt;massnahme &lt;/i&gt;festgelegten Maßnahme über eine Codeliste.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_AnpassungKlimawandel" minOccurs="0" maxOccurs="unbounded" />
@@ -771,11 +1044,31 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_FlaechenobjektType">
         <sequence>
-          <element name="ziel" minOccurs="0" type="xplan:XP_SPEZiele" />
-          <element name="sonstZiel" minOccurs="0" type="string" />
-          <element name="massnahme" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_SPEMassnahmenDatenPropertyType" />
-          <element name="refMassnahmenText" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType" />
-          <element name="refLandschaftsplan" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType" />
+          <element name="ziel" minOccurs="0" type="xplan:XP_SPEZiele">
+            <annotation>
+              <documentation>Ziel der auf der Fläche durchzuführenden Maßnahmen.</documentation>
+            </annotation>
+          </element>
+          <element name="sonstZiel" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Textlich formuliertes Ziel, wenn das Attribut &lt;i&gt;ziel &lt;/i&gt;den Wert &lt;i&gt;9999 &lt;/i&gt;(&lt;i&gt;Sonstiges&lt;/i&gt;) hat.</documentation>
+            </annotation>
+          </element>
+          <element name="massnahme" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_SPEMassnahmenDatenPropertyType">
+            <annotation>
+              <documentation>Auf der Fläche durchzuführende Maßnahme.</documentation>
+            </annotation>
+          </element>
+          <element name="refMassnahmenText" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf ein Dokument in dem die Massnahmen beschrieben werden.</documentation>
+            </annotation>
+          </element>
+          <element name="refLandschaftsplan" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf den Landschaftsplan.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_AusgleichsFlaeche" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -830,10 +1123,26 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="ziel" minOccurs="0" type="xplan:XP_SPEZiele" />
-          <element name="sonstZiel" minOccurs="0" type="string" />
-          <element name="massnahme" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_SPEMassnahmenDatenPropertyType" />
-          <element name="istAusgleich" minOccurs="0" default="false" type="boolean" />
+          <element name="ziel" minOccurs="0" type="xplan:XP_SPEZiele">
+            <annotation>
+              <documentation>Ziel der Maßnahmen</documentation>
+            </annotation>
+          </element>
+          <element name="sonstZiel" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Textlich formuliertes Ziel, wenn das Attribut &lt;i&gt;ziel &lt;/i&gt;den Wert &lt;i&gt;9999 &lt;/i&gt;(&lt;i&gt;Sonstiges&lt;/i&gt;) hat.</documentation>
+            </annotation>
+          </element>
+          <element name="massnahme" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_SPEMassnahmenDatenPropertyType">
+            <annotation>
+              <documentation>Durchzuführende Maßnahme.</documentation>
+            </annotation>
+          </element>
+          <element name="istAusgleich" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob die Maßnahme zum Ausgleich eines Eingriffs benutzt wird.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_SchutzPflegeEntwicklung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -853,12 +1162,14 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
         <sequence>
           <element name="detailZweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:FP_DetailZweckbestimmungNachLandesrecht</referenzierteCodelist>
-              </appinfo>
+              <documentation>Über eine Codeliste definierte detaillierte Zweckbestimmung der Planinhalts-</documentation>
             </annotation>
           </element>
-          <element name="kurzbeschreibung" minOccurs="0" type="string" />
+          <element name="kurzbeschreibung" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Textuelle Beschreibung des Planinhalts.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_DarstellungNachLandesrecht" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -895,9 +1206,7 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
         <sequence>
           <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:FP_ZweckbestimmungGenerischeObjekte</referenzierteCodelist>
-              </appinfo>
+              <documentation>Über eine Codeliste definierte Zweckbestimmung des Generischen Objekts.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_GenerischesObjekt" minOccurs="0" maxOccurs="unbounded" />
@@ -917,9 +1226,21 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_ZweckbestimmungKennzeichnung" />
-          <element name="istVerdachtsflaeche" minOccurs="0" type="boolean" />
-          <element name="nummer" minOccurs="0" type="string" />
+          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_ZweckbestimmungKennzeichnung">
+            <annotation>
+              <documentation>Zweckbestimmung der Kennzeichnung.</documentation>
+            </annotation>
+          </element>
+          <element name="istVerdachtsflaeche" minOccurs="0" type="boolean">
+            <annotation>
+              <documentation>Legt fest, ob eine Altlast-Verdachtsfläche vorliegt</documentation>
+            </annotation>
+          </element>
+          <element name="nummer" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Nummer in einem Altlastkataster</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Kennzeichnung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -937,14 +1258,24 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="nutzung" minOccurs="0" type="string" />
-          <element name="typ" minOccurs="0" type="xplan:XP_ImmissionsschutzTypen" />
-          <element name="technVorkehrung" minOccurs="0" type="xplan:XP_TechnVorkehrungenImmissionsschutz" />
+          <element name="nutzung" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Festgesetzte Nutzung der Fläche</documentation>
+            </annotation>
+          </element>
+          <element name="typ" minOccurs="0" type="xplan:XP_ImmissionsschutzTypen">
+            <annotation>
+              <documentation>Differenzierung der Fläche gemäß BauGB</documentation>
+            </annotation>
+          </element>
+          <element name="technVorkehrung" minOccurs="0" type="xplan:XP_TechnVorkehrungenImmissionsschutz">
+            <annotation>
+              <documentation>Klassifizierung der auf der Fläche zu treffenden baulichen oder sonstigen technischen Vorkehrungen</documentation>
+            </annotation>
+          </element>
           <element name="detaillierteTechnVorkehrung" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:XP_DetailTechnVorkehrungImmissionsschutz</referenzierteCodelist>
-              </appinfo>
+              <documentation>Detaillierte Klassifizierung der auf der Fläche zu treffenden baulichen oder sonstigen technischen Vorkehrungen.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_Nutzungsbeschraenkung" minOccurs="0" maxOccurs="unbounded" />
@@ -964,8 +1295,16 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_ZweckbestimmungPrivilegiertesVorhaben" />
-          <element name="vorhaben" minOccurs="0" type="string" />
+          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_ZweckbestimmungPrivilegiertesVorhaben">
+            <annotation>
+              <documentation>Zweckbestimmungen des Vorhabens.</documentation>
+            </annotation>
+          </element>
+          <element name="vorhaben" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Nähere Beschreibung des Vorhabens.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_PrivilegiertesVorhaben" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -1001,7 +1340,11 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="vormerkung" minOccurs="0" type="string" />
+          <element name="vormerkung" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Text der Vormerkung.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_UnverbindlicheVormerkung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -1019,7 +1362,11 @@ Flächenschlussobjekte dürfen sich nicht überlappen, sondern nur an den Fläch
     <complexContent>
       <extension base="xplan:FP_FlaechenobjektType">
         <sequence>
-          <element name="vorbehalt" minOccurs="0" type="string" />
+          <element name="vorbehalt" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Textliche Formulierung des Vorbehalts.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_VorbehalteFlaeche" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -1217,16 +1564,26 @@ Telekommunikationsdienstleistungen, Wärme und Wasser, der Abwasserwirtschaft" .
       <documentation>Spezifikation der Zweckbestimmung einer Fläche für Ver- oder Entsorgung</documentation>
     </annotation>
     <sequence>
-      <element name="allgemein" type="xplan:XP_ZweckbestimmungVerEntsorgung" />
-      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+      <element name="allgemein" type="xplan:XP_ZweckbestimmungVerEntsorgung">
         <annotation>
-          <appinfo>
-            <referenzierteCodelist>xplan:FP_DetailZweckbestVerEntsorgung</referenzierteCodelist>
-          </appinfo>
+          <documentation>Allgemeine Zweckbestimmung der Fläche</documentation>
         </annotation>
       </element>
-      <element name="textlicheErgaenzung" minOccurs="0" type="string" />
-      <element name="aufschrift" minOccurs="0" type="string" />
+      <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
+        <annotation>
+          <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
+        </annotation>
+      </element>
+      <element name="textlicheErgaenzung" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textliche Ergänzung der spezifizierten Zweckbestimmung(en).</documentation>
+        </annotation>
+      </element>
+      <element name="aufschrift" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Aufschrift</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfFP_KomplexeZweckbestVerEntsorgung" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -1247,8 +1604,16 @@ Telekommunikationsdienstleistungen, Wärme und Wasser, der Abwasserwirtschaft" .
     <complexContent>
       <extension base="xplan:FP_GeometrieobjektType">
         <sequence>
-          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestVerEntsorgungPropertyType" />
-          <element name="zugunstenVon" minOccurs="0" type="string" />
+          <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="xplan:FP_KomplexeZweckbestVerEntsorgungPropertyType">
+            <annotation>
+              <documentation>Zweckbestimmung der Fläche.</documentation>
+            </annotation>
+          </element>
+          <element name="zugunstenVon" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Angabe des Begünstigten der Ausweisung.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_VerEntsorgung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -1269,9 +1634,7 @@ Telekommunikationsdienstleistungen, Wärme und Wasser, der Abwasserwirtschaft" .
         <sequence>
           <element name="auspraegung" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:FP_ZentralerVersorgungsbereichAuspraegung</referenzierteCodelist>
-              </appinfo>
+              <documentation>Über eine Codeliste definierte Ausprägung eines zentralen Versorgungsbereiches.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfFP_ZentralerVersorgungsbereich" minOccurs="0" maxOccurs="unbounded" />
