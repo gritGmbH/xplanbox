@@ -36,7 +36,7 @@ public class RulesVersionParser {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RulesVersionParser.class);
 
-	private static final String RELATIVE_PATH_TO_FILE = "VERSION.txt";
+	private static final String RELATIVE_PATH_TO_FILE = "version.properties";
 
 	private static final String VERSION = "version";
 
@@ -44,8 +44,9 @@ public class RulesVersionParser {
 
 	/**
 	 * Parses the rule metadata from the VERSION.txt file in the rulesPath if available
-	 * @param rulesPath Path to rules, nevre <code>null</code>
-	 * @return never <code>null</code>
+	 * @param rulesPath Path to rules, may be <code>null</code>
+	 * @return never <code>null</code>, if the rulesPath is null or does not exist or the
+	 * version.properties file could not be parsed an empty RulesVersion is returned
 	 */
 	public RulesVersion parserRulesVersion(Path rulesPath) {
 		if (rulesPath == null) {
