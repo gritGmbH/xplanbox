@@ -164,7 +164,7 @@ public abstract class AbstractFlattener implements Flattener {
 			String codeListName, List<Pair<String, String>> properties) {
 		String propertyValue = asString(feature, propertyName);
 		if (propertyValue != null) {
-			String translatedValue = XPlanCodeListsFactory.get(version).getName(codeListName, propertyValue);
+			String translatedValue = XPlanCodeListsFactory.get(version).getTranslation(codeListName, propertyValue);
 			properties.add(new Pair(label, translatedValue));
 		}
 	}

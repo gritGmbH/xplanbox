@@ -22,7 +22,7 @@ public class SoKomplexeZweckbestStrassenverkehrFlattenerTest {
 		Feature feature = getTestFeature(features, "GML_2F2B7735-5081-24D2-6BFB-FF4545106711D");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:artDerFestlegung"));
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("[Allgemeine Zweckbestimmung: RuhenderVerkehr]", value.toString());
+		assertEquals("[Allgemeine Zweckbestimmung: Ruhender Verkehr]", value.toString());
 	}
 
 }

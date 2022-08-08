@@ -96,7 +96,7 @@ public class XpExterneReferenzFlattener extends AbstractFlattener {
 			return null;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
 		String code = toString(typ);
-		return xPlanCodeLists.getName("XP_ExterneReferenzTyp", code);
+		return xPlanCodeLists.getTranslation("XP_ExterneReferenzTyp", code);
 	}
 
 	private String toString(TypedObjectNode o) {

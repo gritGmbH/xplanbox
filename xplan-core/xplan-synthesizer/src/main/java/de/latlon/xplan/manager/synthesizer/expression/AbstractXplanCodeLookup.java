@@ -66,7 +66,7 @@ public abstract class AbstractXplanCodeLookup implements Expression {
 				translation = "";
 				for (TypedObjectNode o : codes.getElements()) {
 					String code = toString(o);
-					String desc = xPlanCodeLists.getName(codeListName, code);
+					String desc = xPlanCodeLists.getTranslation(codeListName, code);
 					translation += "[" + escape(desc) + "]";
 				}
 				if (codes.getElements().length == 1) {

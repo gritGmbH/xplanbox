@@ -35,43 +35,52 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class XPlanCodeListsTest {
 
 	@Test
-	public void testGetDescription_XPlan41() {
+	public void testGetTranslation_XPlan41() {
 		XPlanVersion version = XPlanVersion.XPLAN_41;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getName("BP_Rechtsstand", "4000");
+		String translation = xPlanCodeLists.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+		assertThat(translation, is("InkraftGetreten"));
 	}
 
 	@Test
-	public void testGetDescription_XPlan52() {
+	public void testGetTranslation_XPlan52() {
 		XPlanVersion version = XPlanVersion.XPLAN_52;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getName("BP_Rechtsstand", "4000");
+		String translation = xPlanCodeLists.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+		assertThat(translation, is("InkraftGetreten"));
 	}
 
 	@Test
-	public void testGetDescription_XPlan53() {
+	public void testGetTranslation_XPlan53() {
 		XPlanVersion version = XPlanVersion.XPLAN_53;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getName("BP_Rechtsstand", "4000");
+		String translation = xPlanCodeLists.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+		assertThat(translation, is("InkraftGetreten"));
 	}
 
 	@Test
-	public void testGetDescription_XPlan60() {
+	public void testGetTranslation_XPlan60() {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getName("BP_Rechtsstand", "4000");
+		String translation = xPlanCodeLists.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(legislationStatusTranslation, is("InKraftGetreten"));
+		assertThat(translation, is("In Kraft getreten"));
 	}
 
 	@Test
-	public void testGetDescription_XPlan60_kuerzelAndLesbarerName() {
+	public void testGetTranslation_XPlan60_lesbarereName() {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		String translation = xPlanCodeLists.getTranslation("XP_ArtHoehenbezug", "1000");
+
+		assertThat(translation, is("Absolut NHN"));
+	}
+
+	@Test
+	public void testGetCodeEntry_XPlan60_kuerzelAndLesbarerName() {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
 		XPlanCodeList codeList = xPlanCodeLists.getCodeList("XP_ArtHoehenbezug");
@@ -83,7 +92,7 @@ public class XPlanCodeListsTest {
 	}
 
 	@Test
-	public void testParseXPlan4() throws Exception {
+	public void testParseCodelist_GML3() throws Exception {
 		URL codeListFile = XPlanCodeListsTest.class
 				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml");
 		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile, GML_30);
@@ -94,7 +103,7 @@ public class XPlanCodeListsTest {
 	}
 
 	@Test
-	public void testParseXPlan5() throws Exception {
+	public void testParseCodelist_GML32() throws Exception {
 		URL codeListFile = XPlanCodeListsTest.class
 				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan5.xml");
 		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile);

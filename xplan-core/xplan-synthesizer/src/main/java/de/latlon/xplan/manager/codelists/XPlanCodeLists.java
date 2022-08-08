@@ -121,10 +121,14 @@ public class XPlanCodeLists {
 	 * @throws IllegalArgumentException if no codeList or codeEntry with the passed
 	 * codeListId exists
 	 */
-	public String getName(String codeListId, String code) {
+	public String getTranslation(String codeListId, String code) {
 		String codeListIdOrFirst = checkCodeListIdForNull(codeListId);
 		XPlanCodeList codeList = getCodeList(codeListIdOrFirst);
 		XPlanCodeEntry codeEntry = codeList.getCodeEntry(code);
+		String lesbarerName = codeEntry.getLesbarerName();
+		if (lesbarerName != null && !lesbarerName.isEmpty()) {
+			return lesbarerName;
+		}
 		return codeEntry.getName();
 	}
 

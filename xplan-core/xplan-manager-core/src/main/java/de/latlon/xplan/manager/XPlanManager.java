@@ -519,7 +519,7 @@ public class XPlanManager {
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
 		String codeListId = findCodeListId(type);
 		try {
-			return xPlanCodeLists.getName(codeListId, Integer.toString(rechtsstandCode));
+			return xPlanCodeLists.getTranslation(codeListId, Integer.toString(rechtsstandCode));
 		}
 		catch (Exception e) {
 			LOG.error("Could not translate rechtsstand code {}: {}", rechtsstandCode, e.getMessage());
