@@ -32,11 +32,11 @@ import java.util.Properties;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class RulesMetadataParser {
+public class RulesVersionParser {
 
-	private static final Logger LOG = LoggerFactory.getLogger(RulesMetadataParser.class);
+	private static final Logger LOG = LoggerFactory.getLogger(RulesVersionParser.class);
 
-	private static final String RELATIVE_PATH_TO_FILE = "../VERSION.txt";
+	private static final String RELATIVE_PATH_TO_FILE = "VERSION.txt";
 
 	private static final String VERSION = "version";
 
@@ -47,26 +47,26 @@ public class RulesMetadataParser {
 	 * @param rulesPath Path to rules, nevre <code>null</code>
 	 * @return never <code>null</code>
 	 */
-	public RulesMetadata parserMetadata(Path rulesPath) {
+	public RulesVersion parserRulesVersion(Path rulesPath) {
 		if (rulesPath == null) {
 			LOG.info("No rulesPath {} available, metadata are unknown", rulesPath);
-			return new RulesMetadata();
+			return new RulesVersion();
 		}
 		Path metadataFile = rulesPath.resolve(RELATIVE_PATH_TO_FILE);
 		if (!Files.exists(metadataFile)) {
 			LOG.info("No file {} in {} available, metadata are unknown", RELATIVE_PATH_TO_FILE, rulesPath);
-			return new RulesMetadata();
+			return new RulesVersion();
 		}
 		Properties properties = new Properties();
 		try (InputStream props = Files.newInputStream(metadataFile)) {
 			properties.load(props);
 			String version = properties.getProperty(VERSION);
 			String source = properties.getProperty(SOURCE);
-			return new RulesMetadata(version, source);
+			return new RulesVersion(version, source);
 		}
 		catch (IOException e) {
 			LOG.warn("{} in {} could not be read: {}", RELATIVE_PATH_TO_FILE, rulesPath, e.getMessage());
-			return new RulesMetadata();
+			return new RulesVersion();
 		}
 	}
 

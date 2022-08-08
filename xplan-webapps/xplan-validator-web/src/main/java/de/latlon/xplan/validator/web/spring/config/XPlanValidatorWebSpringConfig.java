@@ -35,7 +35,8 @@ import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.message.FileRulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.profile.DelegatingSemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
@@ -101,8 +102,11 @@ public class XPlanValidatorWebSpringConfig {
 			throws ValidatorException {
 		Map<ValidatorProfile, RulesMetadata> profilesAndMetadata = new HashMap<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
+			Path rulesDirectory = Paths.get(validatorProfile.getXqueryRulesDirectory());
+			RulesVersionParser rulesVersionParser = new RulesVersionParser();
+			RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesDirectory);
 			RulesMetadata newRulesMetadata = new RulesMetadata(validatorProfile.getId(), validatorProfile.getName(),
-					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
+					validatorProfile.getDescription(), rulesVersion.getVersion(), rulesVersion.getSource());
 			profilesAndMetadata.put(validatorProfile, newRulesMetadata);
 		}
 		return profilesAndMetadata;
@@ -134,8 +138,9 @@ public class XPlanValidatorWebSpringConfig {
 
 	@Bean
 	public XQuerySemanticValidatorConfigurationRetriever configurationRetriever(Path rulesPath) {
-		RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
-		RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata(rulesPath);
+		RulesVersionParser rulesVersionParser = new RulesVersionParser();
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
 		return new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata);
 	}
 

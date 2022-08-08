@@ -27,7 +27,8 @@ import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import junitparams.JUnitParamsRunner;
@@ -133,8 +134,9 @@ public class XQuerySemanticValidatorTest {
 	}
 
 	private RulesMetadata rulesMatadata(Path rulesPath) {
-		RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
-		return rulesMetadataParser.parserMetadata(rulesPath);
+		RulesVersionParser rulesVersionParser = new RulesVersionParser();
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+		return new RulesMetadata(rulesVersion);
 	}
 
 	private XPlanArchive getTestArchive(String name) throws Exception {

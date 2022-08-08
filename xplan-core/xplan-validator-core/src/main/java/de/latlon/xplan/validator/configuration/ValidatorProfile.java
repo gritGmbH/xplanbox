@@ -35,10 +35,6 @@ public class ValidatorProfile {
 	@JsonProperty(required = true)
 	private String description;
 
-	private String version;
-
-	private String source;
-
 	@JsonProperty(required = true)
 	private String xqueryRulesDirectory;
 
@@ -64,22 +60,6 @@ public class ValidatorProfile {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
-	public String getSource() {
-		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
 	}
 
 	public String getXqueryRulesDirectory() {

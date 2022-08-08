@@ -23,7 +23,8 @@ package de.latlon.xplan.validator.semantic.configuration.xquery;
 import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import org.junit.Test;
 
 import java.nio.file.Path;
@@ -80,8 +81,10 @@ public class XQuerySemanticValidatorConfigurationRetrieverTest {
 	}
 
 	private RulesMetadata rulesMatadata(Path rulesPath) {
-		RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
-		return rulesMetadataParser.parserMetadata(rulesPath);
+		RulesVersionParser rulesVersionParser = new RulesVersionParser();
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+		return new RulesMetadata(rulesVersion);
+
 	}
 
 }
