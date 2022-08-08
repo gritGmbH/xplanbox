@@ -1,4 +1,4 @@
-/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 01.08.2022, 02:53:27 --- */
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 08.08.2022, 07:04:51 --- */
 CREATE SCHEMA xplansynarchive; 
 SET search_path TO xplansynarchive,public;
 CREATE TABLE xplansynarchive.xplan_bp_abgrabungsflaeche (
@@ -238,9 +238,6 @@ CREATE TABLE xplansynarchive.xplan_bp_abweichungvonueberbaubarergrundstuecksflae
     xplan_wmssortdate timestamp,
     xplan_uuid text,
     xplan_text text,
-    xplan_rechtsstand text,
-    xplan_rechtsstandwert text,
-    xplan_gesetzlichegrundlage text,
     xplan_gliederung1 text,
     xplan_gliederung2 text,
     xplan_ebene integer,
@@ -253,8 +250,6 @@ CREATE TABLE xplansynarchive.xplan_bp_abweichungvonueberbaubarergrundstuecksflae
     xplan_startbedingung text,
     xplan_endebedingung text,
     xplan_aufschrift text,
-    xplan_rechtscharakter text,
-    xplan_rechtscharakterwert text,
     xplan_reftextinhalt text,
     xplan_wirdausgeglichendurchflaeche text,
     xplan_wirdausgeglichendurchabe text,
@@ -267,6 +262,12 @@ CREATE TABLE xplansynarchive.xplan_bp_abweichungvonueberbaubarergrundstuecksflae
     xplan_zusatzkontingentflaeche text,
     xplan_richtungssektorgrenze text,
     xplan_flaechenschluss boolean,
+    xplan_rechtsstand text,
+    xplan_rechtsstandwert text,
+    xplan_gesetzlichegrundlage text,
+    xplan_gesetzlichegrundlagewert text,
+    xplan_rechtscharakter text,
+    xplan_rechtscharakterwert text,
     CONSTRAINT xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
