@@ -63,6 +63,7 @@ import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF_TYPE;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP_TYPE;
+import static io.swagger.v3.oas.annotations.enums.Explode.FALSE;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
@@ -138,8 +139,8 @@ public class ValidateApi {
 					description = "skip Geltungsbereich Ueberpruefung") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") @Parameter(
 					description = "skip Laufrichtung Ueberpruefung") Boolean skipLaufrichtung,
-			@QueryParam("profiles") @Parameter(
-					description = "Angabe der Profile, gegen die validiert werden soll") List<String> profiles)
+			@QueryParam("profiles") @Parameter(description = "Angabe der Profile, gegen die validiert werden soll",
+					explode = FALSE) List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromGml(body, validationName);
@@ -159,8 +160,8 @@ public class ValidateApi {
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
 			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") Boolean skipLaufrichtung,
-			@QueryParam("profiles") @Parameter(
-					description = "Angabe der Profile, gegen die validiert werden soll") List<String> profiles)
+			@QueryParam("profiles") @Parameter(description = "Angabe der Profile, gegen die validiert werden soll",
+					explode = FALSE) List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromZip(body, validationName);
