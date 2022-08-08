@@ -1,4 +1,4 @@
-/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 12.07.2022, 07:38:10 --- */
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 08.08.2022, 07:04:51 --- */
 CREATE SCHEMA xplansynpre; 
 SET search_path TO xplansynpre,public;
 CREATE TABLE xplansynpre.xplan_bp_abgrabungsflaeche (
@@ -238,53 +238,6 @@ CREATE TABLE xplansynpre.xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche 
     xplan_wmssortdate timestamp,
     xplan_uuid text,
     xplan_text text,
-    xplan_rechtsstand text,
-    xplan_rechtsstandwert text,
-    xplan_gesetzlichegrundlage text,
-    xplan_gliederung1 text,
-    xplan_gliederung2 text,
-    xplan_ebene integer,
-    xplan_hatgenerattribut text,
-    xplan_hoehenangabe text,
-    xplan_externereferenz text,
-    xplan_gehoertzubereich text,
-    xplan_wirddargestelltdurch text,
-    xplan_refbegruendunginhalt text,
-    xplan_startbedingung text,
-    xplan_endebedingung text,
-    xplan_aufschrift text,
-    xplan_rechtscharakter text,
-    xplan_rechtscharakterwert text,
-    xplan_reftextinhalt text,
-    xplan_wirdausgeglichendurchflaeche text,
-    xplan_wirdausgeglichendurchabe text,
-    xplan_wirdausgeglichendurchspemassnahme text,
-    xplan_wirdausgeglichendurchspeflaeche text,
-    xplan_wirdausgeglichendurchmassnahme text,
-    xplan_laermkontingent text,
-    xplan_laermkontingentgebiet text,
-    xplan_zusatzkontingent text,
-    xplan_zusatzkontingentflaeche text,
-    xplan_richtungssektorgrenze text,
-    xplan_flaechenschluss boolean,
-    CONSTRAINT xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
-);
-SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche__0 ON xplansynpre.xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche USING GIST (xplan_position ); ;
-CREATE TABLE xplansynpre.xplan_bp_abweichungvonueberbauberergrundstuecksflaeche (
-    attr_gml_id text,
-    xplan_gmlid text,
-    xplan_gmlname text,
-    xplan_gmldescription text,
-    xplan_xpversion text,
-    xplan_xpplantype text,
-    xplan_xpplanname text,
-    xplan_mgr_planid integer,
-    xplan_gueltigkeitbeginn timestamp,
-    xplan_gueltigkeitende timestamp,
-    xplan_wmssortdate timestamp,
-    xplan_uuid text,
-    xplan_text text,
     xplan_gliederung1 text,
     xplan_gliederung2 text,
     xplan_ebene integer,
@@ -315,10 +268,10 @@ CREATE TABLE xplansynpre.xplan_bp_abweichungvonueberbauberergrundstuecksflaeche 
     xplan_gesetzlichegrundlagewert text,
     xplan_rechtscharakter text,
     xplan_rechtscharakterwert text,
-    CONSTRAINT xplan_bp_abweichungvonueberbauberergrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
+    CONSTRAINT xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
-SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_abweichungvonueberbauberergrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_bp_abweichungvonueberbauberergrundstuecksflaeche__1 ON xplansynpre.xplan_bp_abweichungvonueberbauberergrundstuecksflaeche USING GIST (xplan_position ); ;
+SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
+CREATE INDEX spidx_xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche__0 ON xplansynpre.xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_bp_anpflanzungbindungerhaltung (
     attr_gml_id text,
     xplan_gmlid text,
@@ -3222,7 +3175,7 @@ CREATE TABLE xplansynpre.xplan_bp_nichtueberbaubaregrundstuecksflaeche (
     CONSTRAINT xplan_bp_nichtueberbaubaregrundstuecksflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_nichtueberbaubaregrundstuecksflaeche','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_bp_nichtueberbaubaregrundstuecksflaeche_xplan_pos_2 ON xplansynpre.xplan_bp_nichtueberbaubaregrundstuecksflaeche USING GIST (xplan_position ); ;
+CREATE INDEX spidx_xplan_bp_nichtueberbaubaregrundstuecksflaeche_xplan_pos_1 ON xplansynpre.xplan_bp_nichtueberbaubaregrundstuecksflaeche USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_bp_nutzungsartengrenze (
     attr_gml_id text,
     xplan_gmlid text,
@@ -3464,7 +3417,7 @@ CREATE TABLE xplansynpre.xplan_bp_rasterplanaenderung (
     CONSTRAINT xplan_bp_rasterplanaenderung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_rasterplanaenderung','xplan_geltungsbereichaenderung','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_bp_rasterplanaenderung_xplan_geltungsbereichaende_3 ON xplansynpre.xplan_bp_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
+CREATE INDEX spidx_xplan_bp_rasterplanaenderung_xplan_geltungsbereichaende_2 ON xplansynpre.xplan_bp_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
 CREATE TABLE xplansynpre.xplan_bp_regelungvergnuegungsstaetten (
     attr_gml_id text,
     xplan_gmlid text,
@@ -3752,7 +3705,7 @@ CREATE TABLE xplansynpre.xplan_bp_schutzpflegeentwicklungsmassnahme (
     CONSTRAINT xplan_bp_schutzpflegeentwicklungsmassnahme_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_schutzpflegeentwicklungsmassnahme','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_bp_schutzpflegeentwicklungsmassnahme_xplan_positi_4 ON xplansynpre.xplan_bp_schutzpflegeentwicklungsmassnahme USING GIST (xplan_position ); ;
+CREATE INDEX spidx_xplan_bp_schutzpflegeentwicklungsmassnahme_xplan_positi_3 ON xplansynpre.xplan_bp_schutzpflegeentwicklungsmassnahme USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_bp_schutzgebiet (
     attr_gml_id text,
     xplan_gmlid text,
@@ -5016,7 +4969,7 @@ CREATE TABLE xplansynpre.xplan_bp_verkehrsflaechebesondererzweckbestimmung (
     CONSTRAINT xplan_bp_verkehrsflaechebesondererzweckbestimmung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_bp_verkehrsflaechebesondererzweckbestimmung','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_bp_verkehrsflaechebesondererzweckbestimmung_xplan_5 ON xplansynpre.xplan_bp_verkehrsflaechebesondererzweckbestimmung USING GIST (xplan_position ); ;
+CREATE INDEX spidx_xplan_bp_verkehrsflaechebesondererzweckbestimmung_xplan_4 ON xplansynpre.xplan_bp_verkehrsflaechebesondererzweckbestimmung USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_bp_waldflaeche (
     attr_gml_id text,
     xplan_gmlid text,
@@ -6465,7 +6418,7 @@ CREATE TABLE xplansynpre.xplan_fp_keinezentrabwasserbeseitigungflaeche (
     CONSTRAINT xplan_fp_keinezentrabwasserbeseitigungflaeche_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_fp_keinezentrabwasserbeseitigungflaeche','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_fp_keinezentrabwasserbeseitigungflaeche_xplan_pos_6 ON xplansynpre.xplan_fp_keinezentrabwasserbeseitigungflaeche USING GIST (xplan_position ); ;
+CREATE INDEX spidx_xplan_fp_keinezentrabwasserbeseitigungflaeche_xplan_pos_5 ON xplansynpre.xplan_fp_keinezentrabwasserbeseitigungflaeche USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_fp_kennzeichnung (
     attr_gml_id text,
     xplan_gmlid text,
@@ -6921,7 +6874,7 @@ CREATE TABLE xplansynpre.xplan_fp_rasterplanaenderung (
     CONSTRAINT xplan_fp_rasterplanaenderung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_fp_rasterplanaenderung','xplan_geltungsbereichaenderung','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_fp_rasterplanaenderung_xplan_geltungsbereichaende_7 ON xplansynpre.xplan_fp_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
+CREATE INDEX spidx_xplan_fp_rasterplanaenderung_xplan_geltungsbereichaende_6 ON xplansynpre.xplan_fp_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
 CREATE TABLE xplansynpre.xplan_fp_schutzpflegeentwicklung (
     attr_gml_id text,
     xplan_gmlid text,
@@ -8557,7 +8510,7 @@ CREATE TABLE xplansynpre.xplan_lp_rasterplanaenderung (
     CONSTRAINT xplan_lp_rasterplanaenderung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_lp_rasterplanaenderung','xplan_geltungsbereichaenderung','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_lp_rasterplanaenderung_xplan_geltungsbereichaende_8 ON xplansynpre.xplan_lp_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
+CREATE INDEX spidx_xplan_lp_rasterplanaenderung_xplan_geltungsbereichaende_7 ON xplansynpre.xplan_lp_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
 CREATE TABLE xplansynpre.xplan_lp_schutzbestimmterteilevonnaturundlandschaft (
     attr_gml_id text,
     xplan_gmlid text,
@@ -8619,7 +8572,7 @@ CREATE TABLE xplansynpre.xplan_lp_schutzbestimmterteilevonnaturundlandschaft (
     CONSTRAINT xplan_lp_schutzbestimmterteilevonnaturundlandschaft_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_lp_schutzbestimmterteilevonnaturundlandschaft','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_lp_schutzbestimmterteilevonnaturundlandschaft_xpl_9 ON xplansynpre.xplan_lp_schutzbestimmterteilevonnaturundlandschaft USING GIST (xplan_position ); ;
+CREATE INDEX spidx_xplan_lp_schutzbestimmterteilevonnaturundlandschaft_xpl_8 ON xplansynpre.xplan_lp_schutzbestimmterteilevonnaturundlandschaft USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_lp_schutzpflegeentwicklung (
     attr_gml_id text,
     xplan_gmlid text,
@@ -9003,7 +8956,7 @@ CREATE TABLE xplansynpre.xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz
     CONSTRAINT xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_lp_wasserrechtgemeingebreinschraenkungnaturschut_10 ON xplansynpre.xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz USING GIST (xplan_position ); ;
+CREATE INDEX spidx_xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz_9 ON xplansynpre.xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_lp_wasserrechtschutzgebiet (
     attr_gml_id text,
     xplan_gmlid text,
@@ -9161,7 +9114,7 @@ CREATE TABLE xplansynpre.xplan_lp_wasserrechtwirtschaftabflusshochwschutz (
     CONSTRAINT xplan_lp_wasserrechtwirtschaftabflusshochwschutz_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_lp_wasserrechtwirtschaftabflusshochwschutz','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_lp_wasserrechtwirtschaftabflusshochwschutz_xplan_11 ON xplansynpre.xplan_lp_wasserrechtwirtschaftabflusshochwschutz USING GIST (xplan_position ); ;
+CREATE INDEX spidx_xplan_lp_wasserrechtwirtschaftabflusshochwschutz_xplan_10 ON xplansynpre.xplan_lp_wasserrechtwirtschaftabflusshochwschutz USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_lp_zieleerfordernissemassnahmen (
     attr_gml_id text,
     xplan_gmlid text,
@@ -10007,7 +9960,7 @@ CREATE TABLE xplansynpre.xplan_rp_gemeindefunktionsiedlungsentwicklung (
     CONSTRAINT xplan_rp_gemeindefunktionsiedlungsentwicklung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_gemeindefunktionsiedlungsentwicklung','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_rp_gemeindefunktionsiedlungsentwicklung_xplan_po_12 ON xplansynpre.xplan_rp_gemeindefunktionsiedlungsentwicklung USING GIST (xplan_position ); ;
+CREATE INDEX spidx_xplan_rp_gemeindefunktionsiedlungsentwicklung_xplan_po_11 ON xplansynpre.xplan_rp_gemeindefunktionsiedlungsentwicklung USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_rp_generischesobjekt (
     attr_gml_id text,
     xplan_gmlid text,
@@ -10892,7 +10845,7 @@ CREATE TABLE xplansynpre.xplan_rp_naturschutzrechtlichesschutzgebiet (
     CONSTRAINT xplan_rp_naturschutzrechtlichesschutzgebiet_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_naturschutzrechtlichesschutzgebiet','xplan_position','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_rp_naturschutzrechtlichesschutzgebiet_xplan_posi_13 ON xplansynpre.xplan_rp_naturschutzrechtlichesschutzgebiet USING GIST (xplan_position ); ;
+CREATE INDEX spidx_xplan_rp_naturschutzrechtlichesschutzgebiet_xplan_posi_12 ON xplansynpre.xplan_rp_naturschutzrechtlichesschutzgebiet USING GIST (xplan_position ); ;
 CREATE TABLE xplansynpre.xplan_rp_plan (
     attr_gml_id text,
     xplan_gmlid text,
@@ -11104,7 +11057,7 @@ CREATE TABLE xplansynpre.xplan_rp_rasterplanaenderung (
     CONSTRAINT xplan_rp_rasterplanaenderung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_rp_rasterplanaenderung','xplan_geltungsbereichaenderung','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_rp_rasterplanaenderung_xplan_geltungsbereichaend_14 ON xplansynpre.xplan_rp_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
+CREATE INDEX spidx_xplan_rp_rasterplanaenderung_xplan_geltungsbereichaend_13 ON xplansynpre.xplan_rp_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
 CREATE TABLE xplansynpre.xplan_rp_raumkategorie (
     attr_gml_id text,
     xplan_gmlid text,
@@ -13081,7 +13034,7 @@ CREATE TABLE xplansynpre.xplan_so_rasterplanaenderung (
     CONSTRAINT xplan_so_rasterplanaenderung_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynpre', 'xplan_so_rasterplanaenderung','xplan_geltungsbereichaenderung','0','GEOMETRY', 2);
-CREATE INDEX spidx_xplan_so_rasterplanaenderung_xplan_geltungsbereichaend_15 ON xplansynpre.xplan_so_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
+CREATE INDEX spidx_xplan_so_rasterplanaenderung_xplan_geltungsbereichaend_14 ON xplansynpre.xplan_so_rasterplanaenderung USING GIST (xplan_geltungsbereichaenderung ); ;
 CREATE TABLE xplansynpre.xplan_so_schienenverkehrsrecht (
     attr_gml_id text,
     xplan_gmlid text,
