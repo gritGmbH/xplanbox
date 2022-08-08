@@ -24,7 +24,6 @@ import de.latlon.xplan.commons.XPlanVersion;
 import org.junit.Test;
 
 import java.net.URL;
-import java.util.Map;
 
 import static org.deegree.gml.GMLVersion.GML_30;
 import static org.hamcrest.CoreMatchers.is;
@@ -39,7 +38,7 @@ public class XPlanCodeListsTest {
 	public void testGetDescription_XPlan41() {
 		XPlanVersion version = XPlanVersion.XPLAN_41;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
+		String legislationStatusTranslation = xPlanCodeLists.getName("BP_Rechtsstand", "4000");
 
 		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
 	}
@@ -48,7 +47,7 @@ public class XPlanCodeListsTest {
 	public void testGetDescription_XPlan52() {
 		XPlanVersion version = XPlanVersion.XPLAN_52;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
+		String legislationStatusTranslation = xPlanCodeLists.getName("BP_Rechtsstand", "4000");
 
 		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
 	}
@@ -57,7 +56,7 @@ public class XPlanCodeListsTest {
 	public void testGetDescription_XPlan53() {
 		XPlanVersion version = XPlanVersion.XPLAN_53;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
+		String legislationStatusTranslation = xPlanCodeLists.getName("BP_Rechtsstand", "4000");
 
 		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
 	}
@@ -66,7 +65,7 @@ public class XPlanCodeListsTest {
 	public void testGetDescription_XPlan60() {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
+		String legislationStatusTranslation = xPlanCodeLists.getName("BP_Rechtsstand", "4000");
 
 		assertThat(legislationStatusTranslation, is("InKraftGetreten"));
 	}
@@ -76,10 +75,10 @@ public class XPlanCodeListsTest {
 		URL codeListFile = XPlanCodeListsTest.class
 				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml");
 		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile, GML_30);
+		XPlanCodeList codeList = codeLists.getCodeList("xplan_XP_BesondereArtDerBaulNutzung");
 
-		Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
-		assertThat(codesToDescriptions.size(), is(1));
-		assertThat(codesToDescriptions.values().iterator().next().size(), is(5));
+		assertThat(codeLists.getCodeLists().size(), is(1));
+		assertThat(codeList.getCodeEntries().size(), is(5));
 	}
 
 	@Test
@@ -87,10 +86,10 @@ public class XPlanCodeListsTest {
 		URL codeListFile = XPlanCodeListsTest.class
 				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan5.xml");
 		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile);
+		XPlanCodeList codeList = codeLists.getCodeList("XP_BesondereArtDerBaulNutzung");
 
-		Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
-		assertThat(codesToDescriptions.size(), is(1));
-		assertThat(codesToDescriptions.values().iterator().next().size(), is(15));
+		assertThat(codeLists.getCodeLists().size(), is(1));
+		assertThat(codeList.getCodeEntries().size(), is(15));
 	}
 
 }

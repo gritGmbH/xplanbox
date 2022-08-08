@@ -116,20 +116,6 @@ public class XPlanCodeListsFactory {
 		return xPlanCodeListParser.parseCodelists(codeListUrl, gmlVersion);
 	}
 
-	public static synchronized XPlanCodeLists getXPlanSyn() {
-		if (xplanSynCodeLists == null) {
-			try {
-				xplanSynCodeLists = xPlanCodeListParser
-						.parseCodelists(XPlanCodeLists.class.getResource(XPLAN_SYN_CODE_LISTS), GML_30);
-			}
-			catch (Exception e) {
-				String msg = "Internal error reading code lists file: " + e.getMessage();
-				throw new RuntimeException(msg);
-			}
-		}
-		return xplanSynCodeLists;
-	}
-
 	private static synchronized XPlanCodeLists getXPlan40() {
 		if (xplan40CodeLists == null) {
 			xplan40CodeLists = createGml30Codelist(XPLAN_40_CODE_LISTS);
