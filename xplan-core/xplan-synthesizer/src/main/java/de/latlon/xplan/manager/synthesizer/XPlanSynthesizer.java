@@ -52,7 +52,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static org.apache.commons.io.IOUtils.closeQuietly;
@@ -71,19 +70,17 @@ public class XPlanSynthesizer {
 
 	private final static String SYN_NS = XPLAN_SYN.getNamespace();
 
-	private static final Properties renamedFeatureTypes = new Properties();
-
 	private static final AppSchema synSchema;
 
 	private final Map<String, Expression> rules = new HashMap<String, Expression>();
 
 	private final Path rulesDirectory;
+
+	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
+
 	static {
 		try {
 			synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
-			InputStream renamedFeatureTypesResource = XPlanSynthesizer.class
-					.getResourceAsStream("/featuretypes/renamedFeatureTypes.properties");
-			renamedFeatureTypes.load(renamedFeatureTypesResource);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -220,7 +217,7 @@ public class XPlanSynthesizer {
 
 	private Feature synthesize(Feature feature, FeatureCollection features) {
 		List<Property> newProps = new ArrayList<Property>();
-		String synFeatureTypeName = detectSynFeatureTypeName(feature.getType().getName());
+		String synFeatureTypeName = featureTypeNameSynthesizer.detectSynFeatureTypeName(feature.getType().getName());
 		QName synFeatureName = new QName(SYN_NS, synFeatureTypeName);
 
 		FeatureType synFeatureType = synSchema.getFeatureType(synFeatureName);
@@ -232,7 +229,7 @@ public class XPlanSynthesizer {
 		List<PropertyType> propTypes = synFeatureType.getPropertyDeclarations();
 		for (PropertyType propType : propTypes) {
 			// the rule keys are specified in "<featureName>/<propName>" format
-			String key = feature.getName().getLocalPart() + "/" + propType.getName().getLocalPart();
+			String key = synFeatureTypeName + "/" + propType.getName().getLocalPart();
 			if (rules.containsKey(key)) {
 				TypedObjectNode newPropValue = rules.get(key).evaluate(feature, features);
 				if (newPropValue == null) {
@@ -255,11 +252,6 @@ public class XPlanSynthesizer {
 			}
 		}
 		return synFeatureType.newFeature(feature.getId(), newProps, null);
-	}
-
-	private static String detectSynFeatureTypeName(QName featureTypeName) {
-		String localPart = featureTypeName.getLocalPart();
-		return renamedFeatureTypes.getProperty(localPart, localPart);
 	}
 
 	private PrimitiveValue toString(TypedObjectNodeArray<?> array) {
