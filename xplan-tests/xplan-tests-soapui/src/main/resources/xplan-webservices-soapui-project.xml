@@ -59,6 +59,39 @@ exists(/wms:WMS_Capabilities)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
             <con:password>${#Project#password}</con:password>
@@ -228,6 +261,39 @@ exists(/wms:WMS_Capabilities)</path>
 
 exists(/wms:WMS_Capabilities)</path>
               <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -403,6 +469,39 @@ exists(/wms:WMS_Capabilities)</path>
 
 exists(/wms:WMS_Capabilities)</path>
               <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -3468,11 +3567,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>32</con:value>
+          <con:value>22</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_32c28b24-9e5b-4b6f-a078-ec235241b303</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_8b24c2a0-6e62-4d98-878b-8f4b11667f0e</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3693,7 +3792,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>33</con:value>
+          <con:value>23</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3925,7 +4024,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>34</con:value>
+          <con:value>24</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4685,11 +4784,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>35</con:value>
+          <con:value>25</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>36</con:value>
+          <con:value>26</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4720,6 +4819,39 @@ exists(/wms:WMS_Capabilities)</path>
 
 exists(/wfs:WFS_Capabilities)</path>
               <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -4782,6 +4914,39 @@ exists(/wfs:WFS_Capabilities)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="630bd269-b9c1-412f-8797-85ef62a97937" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="630bd269-b9c1-412f-8797-85ef62a97937" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="630bd269-b9c1-412f-8797-85ef62a97937" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
             <con:password>${#Project#password}</con:password>
@@ -4834,6 +4999,39 @@ exists(/wfs:WFS_Capabilities)</path>
 
 exists(/wfs:WFS_Capabilities)</path>
               <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="951a177f-4355-43e7-8939-537217c1236d" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="951a177f-4355-43e7-8939-537217c1236d" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="951a177f-4355-43e7-8939-537217c1236d" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -5279,7 +5477,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>29</con:value>
+          <con:value>27</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5506,7 +5704,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>30</con:value>
+          <con:value>28</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -7444,7 +7642,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>31</con:value>
+          <con:value>29</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
