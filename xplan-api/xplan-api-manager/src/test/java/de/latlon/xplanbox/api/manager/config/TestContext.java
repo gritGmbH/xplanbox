@@ -201,27 +201,32 @@ public class TestContext {
 	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			ManagerConfiguration managerConfiguration) throws Exception {
 		XPlanDao xplanDao = mock(XPlanDao.class);
-		XPlan mockPlan53 = new XPlan("bplan_53", "3", "BP_Plan", "XPLAN_53");
-		XPlan mockPlan41 = new XPlan("bplan_41", "123", "BP_Plan", "XPLAN_41");
-		XPlan mockPlan51 = new XPlan("bplan_51", "2", "BP_Plan", "XPLAN_51");
-		XPlan mockFPlan51 = new XPlan("fplan_51", "2", "FP_Plan", "XPLAN_51");
-		XPlan mockLPlan51 = new XPlan("lplan_51", "2", "LP_Plan", "XPLAN_51");
-		XPlan mockSOPlan40 = new XPlan("soplan_40", "2", "SO_Plan", "XPLAN_40");
-		mockPlan53.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
-		mockPlan41.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
-		mockPlan51.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
-		when(xplanDao.getXPlanById(1)).thenReturn(mockPlan41);
-		when(xplanDao.getXPlanById(123)).thenReturn(mockPlan41);
-		when(xplanDao.getXPlanById(2)).thenReturn(mockPlan51);
-		when(xplanDao.getXPlanById(3)).thenReturn(mockPlan53);
-		when(xplanDao.getXPlanById(4)).thenReturn(mockFPlan51);
-		when(xplanDao.getXPlanById(5)).thenReturn(mockLPlan51);
-		when(xplanDao.getXPlanById(6)).thenReturn(mockSOPlan40);
+		XPlan mockPlan_1 = new XPlan("bplan_41", "1", "BP_Plan", "XPLAN_41");
+		XPlan mockPlan_123 = new XPlan("bplan_41", "123", "BP_Plan", "XPLAN_41");
+		XPlan mockPlan_2 = new XPlan("bplan_51", "2", "BP_Plan", "XPLAN_51");
+		XPlan mockPlan_3 = new XPlan("bplan_53", "3", "BP_Plan", "XPLAN_53");
+		XPlan mockPlan_4 = new XPlan("fplan_51", "4", "FP_Plan", "XPLAN_51");
+		XPlan mockPlan_5 = new XPlan("lplan_51", "5", "LP_Plan", "XPLAN_51");
+		XPlan mockPlan_6 = new XPlan("soplan_40", "6", "SO_Plan", "XPLAN_40");
+		XPlan mockPlan_7 = new XPlan("bplan_51", "7", "BP_Plan", "XPLAN_51");
+		mockPlan_123.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
+		mockPlan_2.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
+		mockPlan_3.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
+		when(xplanDao.getXPlanById(1)).thenReturn(mockPlan_1);
+		when(xplanDao.getXPlanById(123)).thenReturn(mockPlan_123);
+		when(xplanDao.getXPlanById(2)).thenReturn(mockPlan_2);
+		when(xplanDao.getXPlanById(3)).thenReturn(mockPlan_3);
+		when(xplanDao.getXPlanById(4)).thenReturn(mockPlan_4);
+		when(xplanDao.getXPlanById(5)).thenReturn(mockPlan_5);
+		when(xplanDao.getXPlanById(6)).thenReturn(mockPlan_6);
+		when(xplanDao.getXPlanById(7)).thenReturn(mockPlan_7);
 		when(xplanDao.retrieveXPlanArtefact("2")).thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
 				.thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
 				.thenReturn(getClass().getResourceAsStream("/xplan51-edited.gml"));
+		when(xplanDao.retrieveXPlanArtefact("7")).thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"))
+				.thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"));
 		List<XPlan> mockList = new ArrayList<>();
-		mockList.add(mockPlan41);
+		mockList.add(mockPlan_123);
 		when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);
 		when(xplanDao.getXPlansLikeName("bplan_41")).thenReturn(mockList);
 		when(xplanDao.getXPlanList(anyBoolean())).thenReturn(mockList);

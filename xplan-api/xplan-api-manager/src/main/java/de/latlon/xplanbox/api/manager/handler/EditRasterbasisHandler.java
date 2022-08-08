@@ -26,6 +26,7 @@ import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplanbox.api.manager.exception.DuplicateRasterbasis;
+import de.latlon.xplanbox.api.manager.exception.InvalidPlanToEdit;
 import de.latlon.xplanbox.api.manager.exception.InvalidRasterbasisId;
 import de.latlon.xplanbox.api.manager.exception.MissingBereichNummer;
 import de.latlon.xplanbox.api.manager.exception.UnexpectedError;
@@ -89,7 +90,7 @@ public class EditRasterbasisHandler extends EditHandler {
 		XPlan plan = findPlanById(planId);
 		checkBereichNummer(planId, rasterbasisModel);
 		XPlanToEdit xPlanToEdit = manager.getXPlanToEdit(plan);
-		RasterBasis rasterBasis = getOrCreateRasterBasis(rasterbasisModel, xPlanToEdit);
+		RasterBasis rasterBasis = getRasterBasisByBereichNummer(rasterbasisModel, xPlanToEdit);
 		RasterReference rasterReferenceToAdd = rasterbasisModel.toRasterReference();
 		String newRasterbasisId = createRasterbasisId(rasterReferenceToAdd);
 		checkRasterbasisId(planId, rasterbasisModel, newRasterbasisId);
@@ -150,19 +151,14 @@ public class EditRasterbasisHandler extends EditHandler {
 		return Rasterbasis.fromRasterReference(rasterbasisId, rasterReferenceToDelete);
 	}
 
-	private RasterBasis getRasterBasisByBereichNummer(Rasterbasis rasterbasisModel, XPlanToEdit xPlanToEdit) {
+	private RasterBasis getRasterBasisByBereichNummer(Rasterbasis rasterbasisModel, XPlanToEdit xPlanToEdit)
+			throws InvalidPlanToEdit {
+		String bereichNummer = rasterbasisModel.getBereichNummer();
 		Optional<RasterBasis> rasterBasisCandidate = xPlanToEdit.getRasterBasis().stream()
-				.filter(rb -> rb.getBereichNummer().equals(rasterbasisModel.getBereichNummer())).findFirst();
+				.filter(rb -> rb.getBereichNummer().equals(bereichNummer)).findFirst();
 		if (rasterBasisCandidate.isPresent())
 			return rasterBasisCandidate.get();
-		return null;
-	}
-
-	private RasterBasis getOrCreateRasterBasis(Rasterbasis rasterbasisModel, XPlanToEdit xPlanToEdit) {
-		RasterBasis rasterBasis = getRasterBasisByBereichNummer(rasterbasisModel, xPlanToEdit);
-		if (rasterBasis == null)
-			return null;
-		return rasterBasis;
+		throw new InvalidPlanToEdit("Could not find bereich with nummer " + bereichNummer);
 	}
 
 	private Pair<RasterBasis, RasterReference> getRasterReferenceById(String planId, String rasterbasisId,

@@ -38,6 +38,7 @@ import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
+import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -100,6 +101,8 @@ public abstract class XPlanTransactionManager {
 	protected final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final MetadataCouplingHandler metadataCouplingHandler;
+
+	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
 	public XPlanTransactionManager(XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
 			XPlanDao xplanDao, XPlanExporter xPlanExporter, XPlanRasterManager xPlanRasterManager,
@@ -165,7 +168,8 @@ public abstract class XPlanTransactionManager {
 
 	protected void reassignFids(XPlanFeatureCollection fc) {
 		for (Feature f : fc.getFeatures()) {
-			String prefix = "XPLAN_" + f.getName().getLocalPart().toUpperCase() + "_";
+			String synFeatureTypeName = featureTypeNameSynthesizer.detectSynFeatureTypeName(f.getName());
+			String prefix = "XPLAN_" + synFeatureTypeName.toUpperCase() + "_";
 			String uuid = UUID.randomUUID().toString();
 			f.setId(prefix + uuid);
 		}

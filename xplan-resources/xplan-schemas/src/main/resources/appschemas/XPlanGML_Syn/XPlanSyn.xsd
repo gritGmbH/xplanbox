@@ -1,4 +1,4 @@
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 12.07.2022, 07:38:10-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 08.08.2022, 07:04:51-->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.deegree.org/xplanung/1/0" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <element name="BP_AbgrabungsFlaeche" substitutionGroup="gml:AbstractFeature">
@@ -245,58 +245,6 @@
     </complexType>
   </element>
   <element name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche" substitutionGroup="gml:AbstractFeature">
-    <complexType>
-      <complexContent>
-        <extension base="gml:AbstractFeatureType">
-          <sequence>
-            <element name="gmlId" minOccurs="0" type="string"/>
-            <element name="gmlName" minOccurs="0" type="string"/>
-            <element name="gmlDescription" minOccurs="0" type="string"/>
-            <element name="xpVersion" minOccurs="0" type="string"/>
-            <element name="xpPlanType" minOccurs="0" type="string"/>
-            <element name="xpPlanName" minOccurs="0" type="string"/>
-            <element name="xplanMgrPlanId" minOccurs="0" type="integer"/>
-            <element name="gueltigkeitBeginn" minOccurs="0" type="dateTime"/>
-            <element name="gueltigkeitEnde" minOccurs="0" type="dateTime"/>
-            <element name="wmsSortDate" minOccurs="0" type="dateTime"/>
-            <element name="uuid" minOccurs="0" type="string"/>
-            <element name="text" minOccurs="0" type="string"/>
-            <element name="rechtsstand" minOccurs="0" type="string"/>
-            <element name="rechtsstandWert" minOccurs="0" type="string"/>
-            <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>
-            <element name="gliederung1" minOccurs="0" type="string"/>
-            <element name="gliederung2" minOccurs="0" type="string"/>
-            <element name="ebene" minOccurs="0" type="integer"/>
-            <element name="hatGenerAttribut" minOccurs="0" type="string"/>
-            <element name="hoehenangabe" minOccurs="0" type="string"/>
-            <element name="externeReferenz" minOccurs="0" type="string"/>
-            <element name="gehoertZuBereich" minOccurs="0" type="string"/>
-            <element name="wirdDargestelltDurch" minOccurs="0" type="string"/>
-            <element name="refBegruendungInhalt" minOccurs="0" type="string"/>
-            <element name="startBedingung" minOccurs="0" type="string"/>
-            <element name="endeBedingung" minOccurs="0" type="string"/>
-            <element name="aufschrift" minOccurs="0" type="string"/>
-            <element name="rechtscharakter" minOccurs="0" type="string"/>
-            <element name="rechtscharakterWert" minOccurs="0" type="string"/>
-            <element name="refTextInhalt" minOccurs="0" type="string"/>
-            <element name="wirdAusgeglichenDurchFlaeche" minOccurs="0" type="string"/>
-            <element name="wirdAusgeglichenDurchABE" minOccurs="0" type="string"/>
-            <element name="wirdAusgeglichenDurchSPEMassnahme" minOccurs="0" type="string"/>
-            <element name="wirdAusgeglichenDurchSPEFlaeche" minOccurs="0" type="string"/>
-            <element name="wirdAusgeglichenDurchMassnahme" minOccurs="0" type="string"/>
-            <element name="laermkontingent" minOccurs="0" type="string"/>
-            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
-            <element name="zusatzkontingent" minOccurs="0" type="string"/>
-            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
-            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
-            <element name="position" type="gml:GeometryPropertyType"/>
-            <element name="flaechenschluss" minOccurs="0" type="boolean"/>
-          </sequence>
-        </extension>
-      </complexContent>
-    </complexType>
-  </element>
-  <element name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche" substitutionGroup="gml:AbstractFeature">
     <complexType>
       <complexContent>
         <extension base="gml:AbstractFeatureType">
