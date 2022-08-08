@@ -39,14 +39,6 @@ public class XPlanCodeEntry {
 	/**
 	 * @param code of the codeEntry, e.g "1000", never <code>null</code>
 	 * @param name of the codeEntry, e.g "absolutNHN", never <code>null</code>
-	 */
-	public XPlanCodeEntry(String code, String name) {
-		this(code, name, null, null);
-	}
-
-	/**
-	 * @param code of the codeEntry, e.g "1000", never <code>null</code>
-	 * @param name of the codeEntry, e.g "absolutNHN", never <code>null</code>
 	 * @param lesbarerName of the codeEntry, e.g "Absolut NHN", may be <code>null</code>
 	 * @param kuerzel of the codeEntry, e.g "NHN", may be <code>null</code>
 	 */

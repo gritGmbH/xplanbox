@@ -71,6 +71,18 @@ public class XPlanCodeListsTest {
 	}
 
 	@Test
+	public void testGetDescription_XPlan60_kuerzelAndLesbarerName() {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		XPlanCodeList codeList = xPlanCodeLists.getCodeList("XP_ArtHoehenbezug");
+		XPlanCodeEntry codeEntry = codeList.getCodeEntry("1000");
+
+		assertThat(codeEntry.getName(), is("absolutNHN"));
+		assertThat(codeEntry.getLesbarerName(), is("Absolut NHN"));
+		assertThat(codeEntry.getKuerzel(), is("NHN"));
+	}
+
+	@Test
 	public void testParseXPlan4() throws Exception {
 		URL codeListFile = XPlanCodeListsTest.class
 				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml");

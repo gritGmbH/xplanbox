@@ -56,6 +56,18 @@ public class XPlanCodeLists {
 	 * @param name the name of the entry to add, never <code>null</code>
 	 */
 	public void addNewCodeEntry(String codeListId, String code, String name) {
+		addNewCodeEntry(codeListId, code, name, null, null);
+	}
+
+	/**
+	 * @param codeListId the id of the codeList to add the new codeEntry to, never
+	 * <code>null</code>
+	 * @param code the code of the entry to add, never <code>null</code>
+	 * @param name the name of the entry to add, never <code>null</code>
+	 * @param lesbarerName of the codeEntry, may be <code>null</code>
+	 * @param kuerzel of the codeEntry, may be <code>null</code>
+	 */
+	public void addNewCodeEntry(String codeListId, String code, String name, String lesbarerName, String kuerzel) {
 		Optional<XPlanCodeList> codeListWithId = codeLists.stream()
 				.filter(codeList -> codeList.getCodelistId().equals(codeListId)).findFirst();
 		XPlanCodeList codeList;
@@ -65,7 +77,7 @@ public class XPlanCodeLists {
 		else {
 			codeList = codeListWithId.get();
 		}
-		codeList.addNewCode(code, name);
+		codeList.addNewCode(code, name, lesbarerName, kuerzel);
 	}
 
 	/**

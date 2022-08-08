@@ -53,12 +53,14 @@ public class XPlanCodeList {
 	/**
 	 * @param code of the codeEntry to add, never <code>null</code>
 	 * @param name of the codeEntry to add, never <code>null</code>
+	 * @param lesbarerName of the codeEntry, may be <code>null</code>
+	 * @param kuerzel of the codeEntry, may be <code>null</code>
 	 * @throws IllegalArgumentException if a codeEntry with the passed code or name
 	 * already exists
 	 */
-	public void addNewCode(String code, String name) {
+	public void addNewCode(String code, String name, String lesbarerName, String kuerzel) {
 		checkExistingCodes(code, name);
-		XPlanCodeEntry newCode = new XPlanCodeEntry(code, name);
+		XPlanCodeEntry newCode = new XPlanCodeEntry(code, name, lesbarerName, kuerzel);
 		codeEntries.add(newCode);
 	}
 

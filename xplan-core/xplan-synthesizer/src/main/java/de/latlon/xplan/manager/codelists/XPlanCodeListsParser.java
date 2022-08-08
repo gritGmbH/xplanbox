@@ -104,11 +104,13 @@ public class XPlanCodeListsParser {
 
 	private void parseDefinition(URL codeListUrl, String codeListId, Definition def, XPlanCodeLists xPlanCodeLists) {
 		if (def.getNames().length > 0) {
-			String name = getCode(def);
+			String name = getNameWithoutCodeSpaceOrFirst(def);
 			if (codeIsPartOfIdentifier(codeListId, def)) {
 				String codeWithCodelistId = def.getGMLProperties().getIdentifier().getCode();
 				String code = codeWithCodelistId.substring(codeWithCodelistId.indexOf(":") + 1);
-				xPlanCodeLists.addNewCodeEntry(codeListId, code, name);
+				String lesbarerName = getName(def, "lesbarerName");
+				String kuerzel = getName(def, "kuerzel");
+				xPlanCodeLists.addNewCodeEntry(codeListId, code, name, lesbarerName, kuerzel);
 			}
 			else if (def.getDescription() != null) {
 				String description = def.getDescription().getString();
@@ -131,13 +133,22 @@ public class XPlanCodeListsParser {
 		}
 	}
 
-	private String getCode(Definition def) {
+	private String getNameWithoutCodeSpaceOrFirst(Definition def) {
 		CodeType[] names = def.getNames();
 		for (CodeType name : names) {
 			if (name.getCodeSpace() == null)
 				return name.getCode();
 		}
 		return names[0].getCode();
+	}
+
+	private String getName(Definition def, String codeSpace) {
+		CodeType[] names = def.getNames();
+		for (CodeType name : names) {
+			if (codeSpace.equals(name.getCodeSpace()) || (codeSpace == null && name.getCodeSpace() == null))
+				return name.getCode();
+		}
+		return null;
 	}
 
 	private boolean codeIsPartOfIdentifier(String codeListId, Definition def) {
