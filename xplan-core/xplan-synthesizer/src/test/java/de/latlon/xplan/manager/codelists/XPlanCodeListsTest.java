@@ -36,7 +36,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class XPlanCodeListsTest {
 
 	@Test
-	public void testGetDescription_XPlan42() {
+	public void testGetDescription_XPlan41() {
 		XPlanVersion version = XPlanVersion.XPLAN_41;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
 		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
@@ -60,6 +60,15 @@ public class XPlanCodeListsTest {
 		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
 
 		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+	}
+
+	@Test
+	public void testGetDescription_XPlan60() {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
+
+		assertThat(legislationStatusTranslation, is("InKraftGetreten"));
 	}
 
 	@Test
