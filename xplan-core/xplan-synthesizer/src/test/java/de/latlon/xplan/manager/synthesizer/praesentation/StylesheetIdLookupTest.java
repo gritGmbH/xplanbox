@@ -60,20 +60,16 @@ public class StylesheetIdLookupTest {
 		assertThat(evaluate3.getAsText(), is("BP_BaugebietsTeilFlaeche[besondereArtDerBaulNutzung=1700]_F"));
 
 		PrimitiveValue evaluate4 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3");
-		assertThat(evaluate4.getAsText(),
-				is("SO_Gebiet[gebietsArt=1999][gemeindeName=Freie und Hansestadt Hamburg][ags=02000000]_F"));
+		assertThat(evaluate4.getAsText(), is("SO_Gebiet[gebietsArt=1999][sonstGebietsArt=4242]_F"));
 
 		PrimitiveValue evaluate5 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3_1");
-		assertThat(evaluate5.getAsText(),
-				is("SO_Gebiet[gebietsArt=1999][gemeindeName=Freie und Hansestadt Hamburg][ags=02000000]_F"));
+		assertThat(evaluate5.getAsText(), is("SO_Gebiet[gebietsArt=1999]_F"));
 
 		PrimitiveValue evaluate6 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3_2");
-		assertThat(evaluate6.getAsText(),
-				is("SO_Gebiet[gebietsArt=1999][gemeindeName=Freie und Hansestadt Hamburg][ags=02000000]_F"));
+		assertThat(evaluate6.getAsText(), is("SO_Gebiet[gebietsArt=1999]_F"));
 
 		PrimitiveValue evaluate7 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3_3");
-		assertThat(evaluate7.getAsText(),
-				is("SO_Gebiet[gebietsArt=1999][gemeindeName=Freie und Hansestadt Hamburg][ags=02000000]_F"));
+		assertThat(evaluate7.getAsText(), is("SO_Gebiet[gebietsArt=1999]_F"));
 	}
 
 	@Test

@@ -287,6 +287,7 @@
         </xplan:XP_Gemeinde>
       </xplan:gemeinde>
       <xplan:gebietsArt>1999</xplan:gebietsArt>
+      <xplan:sonstGebietsArt>4242</xplan:sonstGebietsArt>
     </xplan:SO_Gebiet>
   </gml:featureMember>
   <gml:featureMember>
@@ -298,6 +299,7 @@
         </gml:Envelope>
       </gml:boundedBy>
       <xplan:art>gebietsArt[0]</xplan:art>
+      <xplan:art>sonstGebietsArt[0]</xplan:art>
       <xplan:art>gemeinde[0]/gemeindeName[0]</xplan:art>
       <xplan:art>gemeinde[0]/ags[0]</xplan:art>
       <xplan:index>0</xplan:index>

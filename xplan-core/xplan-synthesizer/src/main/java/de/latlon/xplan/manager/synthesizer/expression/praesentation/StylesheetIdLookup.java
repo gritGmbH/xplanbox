@@ -22,10 +22,14 @@ package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
+import org.apache.xerces.xs.XSConstants;
+import org.apache.xerces.xs.XSElementDeclaration;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.gml.property.Property;
+import org.deegree.commons.tom.primitive.BaseType;
+import org.deegree.commons.tom.primitive.PrimitiveType;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -91,7 +95,7 @@ public class StylesheetIdLookup implements Expression {
 			Feature referencedFeature = resolveDientZurDarstellungVon(feature, features);
 			if (referencedFeature != null) {
 				List<AttributeProperty> attributeProperty = parseArtProperties(feature, features, referencedFeature);
-				if (!attributeProperty.isEmpty()) {
+				if (attributeProperty != null) {
 					GeometryTypeAbbreviation geomTypeAbbr = parseGeometryType(referencedFeature);
 					String objectClass = referencedFeature.getType().getName().getLocalPart();
 					String stylesheetId = createStylesheetId(objectClass, attributeProperty, geomTypeAbbr);
@@ -137,16 +141,22 @@ public class StylesheetIdLookup implements Expression {
 
 	private List<AttributeProperty> parseArtProperties(Feature feature, FeatureCollection features,
 			Feature referencedFeature) {
-		List<AttributeProperty> attributeProperties = new ArrayList<>();
 		TypedObjectNodeArray<TypedObjectNode> propertiesArray = castToArray(artXPath.evaluate(feature, features));
 		if (propertiesArray != null) {
-			TypedObjectNode[] artProperties = propertiesArray.getElements();
-			for (TypedObjectNode artProperty : artProperties) {
-				List<Step> artPropertySteps = parseArtAsXPath(artProperty);
-				AttributeProperty attributeProperty = parseArtProperty(referencedFeature, artPropertySteps);
-				if (attributeProperty != null)
-					attributeProperties.add(attributeProperty);
-			}
+			return convertToAttributeOProperties(referencedFeature, propertiesArray);
+		}
+		return null;
+	}
+
+	private List<AttributeProperty> convertToAttributeOProperties(Feature referencedFeature,
+			TypedObjectNodeArray<TypedObjectNode> propertiesArray) {
+		List<AttributeProperty> attributeProperties = new ArrayList<>();
+		TypedObjectNode[] artProperties = propertiesArray.getElements();
+		for (TypedObjectNode artProperty : artProperties) {
+			List<Step> artPropertySteps = parseArtAsXPath(artProperty);
+			AttributeProperty attributeProperty = parseArtProperty(referencedFeature, artPropertySteps);
+			if (attributeProperty != null)
+				attributeProperties.add(attributeProperty);
 		}
 		return attributeProperties;
 	}
@@ -158,7 +168,7 @@ public class StylesheetIdLookup implements Expression {
 			List<Property> properties = referencedFeature
 					.getProperties(new QName(referencedFeature.getName().getNamespaceURI(), firstStep.name));
 			Property propertyStep = properties.get(firstStep.index);
-			AttributeProperty attributeProperty = parseArtProperty(firstStep, artPropertySteps, 1, propertyStep);
+			AttributeProperty attributeProperty = parseArtProperty(firstStep, artPropertySteps, 1, propertyStep, null);
 			if (attributeProperty != null)
 				return attributeProperty;
 		}
@@ -166,18 +176,21 @@ public class StylesheetIdLookup implements Expression {
 	}
 
 	private static AttributeProperty parseArtProperty(Step currentStep, List<Step> allSteps, int nextStepIndex,
-			TypedObjectNode stepValue) {
+			TypedObjectNode stepValue, TypedObjectNode parentStep) {
 		if (stepValue instanceof PrimitiveValue) {
-			String primitiveValue = ((PrimitiveValue) stepValue).getAsText();
-			return new AttributeProperty(currentStep.name, primitiveValue);
+			if (isCodeOrEnumValue((PrimitiveValue) stepValue, parentStep)) {
+				String primitiveValue = ((PrimitiveValue) stepValue).getAsText();
+				return new AttributeProperty(currentStep.name, primitiveValue);
+			}
+			return null;
 		}
 		else if (stepValue instanceof GenericProperty) {
 			TypedObjectNode propertyStepValue = ((GenericProperty) stepValue).getValue();
-			return parseArtProperty(currentStep, allSteps, nextStepIndex, propertyStepValue);
+			return parseArtProperty(currentStep, allSteps, nextStepIndex, propertyStepValue, stepValue);
 		}
 		else if (stepValue instanceof SimpleProperty) {
 			TypedObjectNode propertyStepValue = ((SimpleProperty) stepValue).getValue();
-			return parseArtProperty(currentStep, allSteps, nextStepIndex, propertyStepValue);
+			return parseArtProperty(currentStep, allSteps, nextStepIndex, propertyStepValue, stepValue);
 		}
 		else if (stepValue instanceof GenericXMLElement) {
 			GenericXMLElement stepValueGenericXml = (GenericXMLElement) stepValue;
@@ -190,19 +203,35 @@ public class StylesheetIdLookup implements Expression {
 					return false;
 				}).collect(Collectors.toList());
 				if (!childrenWithStepName.isEmpty()) {
-					return parseArtProperty(nextStep, allSteps, nextStepIndex + 1, childrenWithStepName.get(0));
+					return parseArtProperty(nextStep, allSteps, nextStepIndex + 1, childrenWithStepName.get(0),
+							stepValueGenericXml);
 				}
 				else if (!children.isEmpty()) {
-					return parseArtProperty(nextStep, allSteps, nextStepIndex,
-							stepValueGenericXml.getChildren().get(0));
+					return parseArtProperty(nextStep, allSteps, nextStepIndex, stepValueGenericXml.getChildren().get(0),
+							stepValueGenericXml);
 				}
 			}
 			else if (stepValueGenericXml.getChildren().size() == 1) {
 				List<TypedObjectNode> children = stepValueGenericXml.getChildren();
-				return parseArtProperty(currentStep, allSteps, nextStepIndex, children.get(0));
+				return parseArtProperty(currentStep, allSteps, nextStepIndex, children.get(0), stepValueGenericXml);
 			}
 		}
 		return new AttributeProperty(currentStep.name);
+	}
+
+	private static boolean isCodeOrEnumValue(PrimitiveValue stepValue, TypedObjectNode parentStep) {
+		PrimitiveType type = stepValue.getType();
+		if (!BaseType.STRING.equals(type.getBaseType()))
+			return false;
+		if (parentStep instanceof GenericXMLElement) {
+			XSElementDeclaration xsType = ((GenericXMLElement) parentStep).getXSType();
+			boolean isCodeList = xsType.getTypeDefinition().derivedFrom("http://www.opengis.net/gml/3.2", "CodeType",
+					XSConstants.DERIVATION_NONE);
+			if (isCodeList)
+				return true;
+		}
+		String namespace = type.getXSType().getNamespace();
+		return namespace.startsWith("http://www.xplanung.de/xplangml");
 	}
 
 	private List<Step> parseArtAsXPath(TypedObjectNode art) {
