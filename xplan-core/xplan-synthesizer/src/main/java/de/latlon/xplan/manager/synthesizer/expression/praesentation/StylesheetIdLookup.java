@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import org.deegree.commons.tom.TypedObjectNode;
+import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -72,30 +73,36 @@ public class StylesheetIdLookup implements Expression {
 
 	private static final Logger LOG = LoggerFactory.getLogger(StylesheetIdLookup.class);
 
+	private final Xpath artXPath;
+
 	private final Xpath dientZurDarstellungVonXPath;
 
-	private final Xpath artXPath;
+	private final Xpath stylesheetId;
 
 	public StylesheetIdLookup() {
 		this.dientZurDarstellungVonXPath = new Xpath("xplan:dientZurDarstellungVon");
 		this.artXPath = new Xpath("xplan:art");
+		this.stylesheetId = new Xpath("xplan:stylesheetId");
 	}
 
 	@Override
 	public TypedObjectNode evaluate(Feature feature, FeatureCollection features) {
 		try {
 			Feature referencedFeature = resolveDientZurDarstellungVon(feature, features);
-			String objectClass = referencedFeature.getType().getName().getLocalPart();
-			List<AttributeProperty> attributeProperty = parseArtProperties(feature, features, referencedFeature);
-			GeometryTypeAbbreviation geomTypeAbbr = parseGeometryType(referencedFeature);
-
-			String stylesheetId = createStylesheetId(objectClass, attributeProperty, geomTypeAbbr);
-			return toPrimitiveValue(stylesheetId);
+			if (referencedFeature != null) {
+				List<AttributeProperty> attributeProperty = parseArtProperties(feature, features, referencedFeature);
+				if (!attributeProperty.isEmpty()) {
+					GeometryTypeAbbreviation geomTypeAbbr = parseGeometryType(referencedFeature);
+					String objectClass = referencedFeature.getType().getName().getLocalPart();
+					String stylesheetId = createStylesheetId(objectClass, attributeProperty, geomTypeAbbr);
+					return toPrimitiveValue(stylesheetId);
+				}
+			}
 		}
 		catch (FilterEvaluationException e) {
-			LOG.warn("");
-			return null;
+			LOG.warn("Could not evaluate stylesheetId of feature with ID {}", feature.getId());
 		}
+		return stylesheetId.evaluate(feature, features);
 	}
 
 	private Feature resolveDientZurDarstellungVon(Feature feature, FeatureCollection features)
@@ -109,7 +116,7 @@ public class StylesheetIdLookup implements Expression {
 		else if (dientZurDarstellungVonProperty instanceof FeatureReference) {
 			return ((FeatureReference) dientZurDarstellungVonProperty).getReferencedObject();
 		}
-		throw new FilterEvaluationException("Referenced feature could not be resolved!");
+		return null;
 	}
 
 	private String createStylesheetId(String objectClass, List<AttributeProperty> attributeProperties,
@@ -130,13 +137,16 @@ public class StylesheetIdLookup implements Expression {
 
 	private List<AttributeProperty> parseArtProperties(Feature feature, FeatureCollection features,
 			Feature referencedFeature) {
-		TypedObjectNode[] artProperties = castToArray(artXPath.evaluate(feature, features)).getElements();
 		List<AttributeProperty> attributeProperties = new ArrayList<>();
-		for (TypedObjectNode artProperty : artProperties) {
-			List<Step> artPropertySteps = parseArtAsXPath(artProperty);
-			AttributeProperty attributeProperty = parseArtProperty(referencedFeature, artPropertySteps);
-			if (attributeProperty != null)
-				attributeProperties.add(attributeProperty);
+		TypedObjectNodeArray<TypedObjectNode> propertiesArray = castToArray(artXPath.evaluate(feature, features));
+		if (propertiesArray != null) {
+			TypedObjectNode[] artProperties = propertiesArray.getElements();
+			for (TypedObjectNode artProperty : artProperties) {
+				List<Step> artPropertySteps = parseArtAsXPath(artProperty);
+				AttributeProperty attributeProperty = parseArtProperty(referencedFeature, artPropertySteps);
+				if (attributeProperty != null)
+					attributeProperties.add(attributeProperty);
+			}
 		}
 		return attributeProperties;
 	}

@@ -24,9 +24,11 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.StylesheetIdLookup;
+import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
+import org.deegree.feature.property.GenericProperty;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -35,6 +37,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -73,11 +76,44 @@ public class StylesheetIdLookupTest {
 				is("SO_Gebiet[gebietsArt=1999][gemeindeName=Freie und Hansestadt Hamburg][ags=02000000]_F"));
 	}
 
+	@Test
+	public void testEvaluate_missing_dientZurDarstellungVon() throws Exception {
+		FeatureCollection features = getTestFeatures(XPLAN_54,
+				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+
+		PrimitiveValue evaluate = getEvaluate(features,
+				"GML_22989f35-59e8-4260-8c60-e706b916a886_dientZurDarstellungVon");
+		assertThat(evaluate, is(nullValue()));
+	}
+
+	@Test
+	public void testEvaluate_missing_art() throws Exception {
+		FeatureCollection features = getTestFeatures(XPLAN_54,
+				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+
+		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_art");
+		assertThat(evaluate, is(nullValue()));
+	}
+
+	@Test
+	public void testEvaluate_stylesheetId() throws Exception {
+		FeatureCollection features = getTestFeatures(XPLAN_54,
+				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+
+		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_stylesheetId");
+		assertThat(evaluate.getAsText(), is("Freier Text"));
+	}
+
 	private static PrimitiveValue getEvaluate(FeatureCollection features, String gmlId) {
 		Feature feature = getTestFeature(features, gmlId);
 		StylesheetIdLookup expr = new StylesheetIdLookup();
-		PrimitiveValue evaluate = (PrimitiveValue) expr.evaluate(feature, features);
-		return evaluate;
+		TypedObjectNode evaluate = expr.evaluate(feature, features);
+		if (evaluate instanceof GenericProperty) {
+			GenericProperty genericProperty = (GenericProperty) evaluate;
+			TypedObjectNode child = genericProperty.getChildren().get(0);
+			return (PrimitiveValue) child;
+		}
+		return (PrimitiveValue) evaluate;
 	}
 
 	protected XPlanArchive getTestArchive(String name) throws IOException {
