@@ -2,7 +2,6 @@ package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
-import org.apache.xerces.xs.XSConstants;
 import org.apache.xerces.xs.XSElementDeclaration;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
@@ -20,16 +19,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.AttributePropertyType.CODE_OR_ENUM;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.AttributePropertyType.OTHER;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.AttributePropertyType.STRING;
 import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
+import static org.apache.xerces.xs.XSConstants.DERIVATION_NONE;
+import static org.deegree.commons.xml.CommonNamespaces.GML3_2_NS;
 
 /**
  * Abstract Lookup class for Praesentationsobjekte.
@@ -40,13 +41,15 @@ public abstract class PraesentationsobjektLookup implements Expression {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PraesentationsobjektLookup.class);
 
-	protected final Xpath artXPath;
+	public static final String XPLAN_GML_NS_PREFIX = "http://www.xplanung.de/xplangml";
 
 	protected final Xpath dientZurDarstellungVonXPath;
 
+	protected final Xpath artXPath;
+
 	public PraesentationsobjektLookup() {
-		this.artXPath = new Xpath("xplan:art");
 		this.dientZurDarstellungVonXPath = new Xpath("xplan:dientZurDarstellungVon");
+		this.artXPath = new Xpath("xplan:art");
 	}
 
 	@Override
@@ -86,29 +89,24 @@ public abstract class PraesentationsobjektLookup implements Expression {
 
 	private List<AttributeProperty> parseArtProperties(Feature feature, FeatureCollection features,
 			Feature referencedFeature) {
-		if (referencedFeature != null) {
-			TypedObjectNodeArray<TypedObjectNode> propertiesArray = castToArray(artXPath.evaluate(feature, features));
-			if (propertiesArray != null) {
-				return convertToAttributeOProperties(referencedFeature, propertiesArray);
-			}
-		}
+		if (referencedFeature == null)
+			return null;
+		TypedObjectNodeArray<TypedObjectNode> propertiesArray = castToArray(artXPath.evaluate(feature, features));
+		if (propertiesArray != null)
+			return convertToAttributeOProperties(referencedFeature, propertiesArray);
 		return null;
 	}
 
 	private List<AttributeProperty> convertToAttributeOProperties(Feature referencedFeature,
 			TypedObjectNodeArray<TypedObjectNode> propertiesArray) {
-		List<AttributeProperty> attributeProperties = new ArrayList<>();
 		TypedObjectNode[] artProperties = propertiesArray.getElements();
-		for (TypedObjectNode artProperty : artProperties) {
-			List<Step> artPropertySteps = parseArtAsXPath(artProperty);
-			AttributeProperty attributeProperty = parseArtProperty(referencedFeature, artPropertySteps);
-			if (attributeProperty != null)
-				attributeProperties.add(attributeProperty);
-		}
-		return attributeProperties;
+		return Arrays.stream(artProperties).map(artProperty -> {
+			List<Step> steps = parseXPath(artProperty);
+			return parseSteps(referencedFeature, steps);
+		}).filter(Objects::nonNull).collect(Collectors.toList());
 	}
 
-	private List<Step> parseArtAsXPath(TypedObjectNode art) {
+	private List<Step> parseXPath(TypedObjectNode art) {
 		if (art instanceof SimpleProperty && ((SimpleProperty) art).getValue() instanceof PrimitiveValue) {
 			String artProperty = ((SimpleProperty) art).getValue().getAsText();
 			String[] split = artProperty.split("/");
@@ -132,28 +130,27 @@ public abstract class PraesentationsobjektLookup implements Expression {
 		return Collections.emptyList();
 	}
 
-	private static AttributeProperty parseArtProperty(Feature referencedFeature, List<Step> artPropertySteps) {
-		if (!artPropertySteps.isEmpty()) {
+	private static AttributeProperty parseSteps(Feature referencedFeature, List<Step> steps) {
+		if (!steps.isEmpty()) {
 			int firstStepIndex = 0;
-			Step firstStep = artPropertySteps.get(firstStepIndex);
+			Step firstStep = steps.get(firstStepIndex);
 			List<Property> properties = referencedFeature
 					.getProperties(new QName(referencedFeature.getName().getNamespaceURI(), firstStep.name));
 			if (properties.size() > firstStep.index) {
 				Property propertyStep = properties.get(firstStep.index);
-				AttributeProperty attributeProperty = parseArtProperty(firstStep, artPropertySteps, 1, propertyStep,
-						null);
+				AttributeProperty attributeProperty = parseSteps(firstStep, steps, 1, propertyStep, null);
 				if (attributeProperty != null)
 					return attributeProperty;
 			}
 			else {
-				LOG.warn("Referenced feature with id {} contains not property with name {} on index {}",
+				LOG.warn("Referenced feature with id {} contains no property with name {} on index {}",
 						referencedFeature.getId(), firstStep.name, firstStep.index);
 			}
 		}
 		return null;
 	}
 
-	private static AttributeProperty parseArtProperty(Step currentStep, List<Step> allSteps, int nextStepIndex,
+	private static AttributeProperty parseSteps(Step currentStep, List<Step> allSteps, int nextStepIndex,
 			TypedObjectNode stepValue, TypedObjectNode parentStep) {
 		if (stepValue instanceof PrimitiveValue) {
 			AttributePropertyType attributePropertyType = detectAttributePropertyType((PrimitiveValue) stepValue,
@@ -163,11 +160,11 @@ public abstract class PraesentationsobjektLookup implements Expression {
 		}
 		else if (stepValue instanceof GenericProperty) {
 			TypedObjectNode propertyStepValue = ((GenericProperty) stepValue).getValue();
-			return parseArtProperty(currentStep, allSteps, nextStepIndex, propertyStepValue, stepValue);
+			return parseSteps(currentStep, allSteps, nextStepIndex, propertyStepValue, stepValue);
 		}
 		else if (stepValue instanceof SimpleProperty) {
 			TypedObjectNode propertyStepValue = ((SimpleProperty) stepValue).getValue();
-			return parseArtProperty(currentStep, allSteps, nextStepIndex, propertyStepValue, stepValue);
+			return parseSteps(currentStep, allSteps, nextStepIndex, propertyStepValue, stepValue);
 		}
 		else if (stepValue instanceof GenericXMLElement) {
 			GenericXMLElement stepValueGenericXml = (GenericXMLElement) stepValue;
@@ -180,17 +177,17 @@ public abstract class PraesentationsobjektLookup implements Expression {
 					return false;
 				}).collect(Collectors.toList());
 				if (!childrenWithStepName.isEmpty()) {
-					return parseArtProperty(nextStep, allSteps, nextStepIndex + 1, childrenWithStepName.get(0),
+					return parseSteps(nextStep, allSteps, nextStepIndex + 1, childrenWithStepName.get(0),
 							stepValueGenericXml);
 				}
 				else if (!children.isEmpty()) {
-					return parseArtProperty(nextStep, allSteps, nextStepIndex, stepValueGenericXml.getChildren().get(0),
+					return parseSteps(nextStep, allSteps, nextStepIndex, stepValueGenericXml.getChildren().get(0),
 							stepValueGenericXml);
 				}
 			}
 			else if (stepValueGenericXml.getChildren().size() == 1) {
 				List<TypedObjectNode> children = stepValueGenericXml.getChildren();
-				return parseArtProperty(currentStep, allSteps, nextStepIndex, children.get(0), stepValueGenericXml);
+				return parseSteps(currentStep, allSteps, nextStepIndex, children.get(0), stepValueGenericXml);
 			}
 		}
 		return new AttributeProperty(currentStep.name, STRING);
@@ -203,19 +200,18 @@ public abstract class PraesentationsobjektLookup implements Expression {
 			return OTHER;
 		if (parentStep instanceof GenericXMLElement) {
 			XSElementDeclaration xsType = ((GenericXMLElement) parentStep).getXSType();
-			boolean isCodeList = xsType.getTypeDefinition().derivedFrom("http://www.opengis.net/gml/3.2", "CodeType",
-					XSConstants.DERIVATION_NONE);
+			boolean isCodeList = xsType.getTypeDefinition().derivedFrom(GML3_2_NS, "CodeType", DERIVATION_NONE);
 			if (isCodeList)
 				return CODE_OR_ENUM;
 		}
 		String namespace = type.getXSType().getNamespace();
-		if (namespace.startsWith("http://www.xplanung.de/xplangml")) {
+		if (namespace.startsWith(XPLAN_GML_NS_PREFIX)) {
 			return CODE_OR_ENUM;
 		}
 		return STRING;
 	}
 
-	protected class Step {
+	private class Step {
 
 		String name;
 

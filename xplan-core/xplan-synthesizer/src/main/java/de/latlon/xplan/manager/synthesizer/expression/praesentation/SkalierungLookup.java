@@ -23,8 +23,6 @@ package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
-import org.deegree.commons.tom.primitive.BaseType;
-import org.deegree.commons.tom.primitive.PrimitiveType;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -37,6 +35,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToPrimitive;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 /**
  * Calculates the skalierung dependent of the type of the referenced feature (via
@@ -76,7 +75,7 @@ public class SkalierungLookup extends PraesentationsobjektLookup {
 			int planScale = detectPlanScale(features);
 			int objectScale = detectObjectScale(referencedFeature);
 			double skalierung = Double.valueOf(planScale) / Double.valueOf(objectScale);
-			return new PrimitiveValue(skalierung, new PrimitiveType(BaseType.DECIMAL));
+			return toPrimitiveValue(skalierung);
 		}
 		return null;
 	}
