@@ -19,7 +19,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 	@Test
 	public void testEvaluate_calculatedWithErstellungsMassstab() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		SkalierungLookup lookup = new SkalierungLookup();
 
 		PrimitiveValue evaluate1 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3_1", lookup);
@@ -29,7 +29,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 	@Test
 	public void testEvaluate_calculatedWithoutErstellungsMassstab() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4_ohneErstellungsMassstab.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4_ohneErstellungsMassstab.gml");
 		SkalierungLookup lookup = new SkalierungLookup();
 
 		PrimitiveValue evaluate1 = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_FP", lookup);
@@ -39,7 +39,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 	@Test
 	public void testEvaluate_missing_dientZurDarstellungVon() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SkalierungLookup lookup = new SkalierungLookup();
 		PrimitiveValue evaluate = getEvaluate(features,
@@ -50,17 +50,17 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 	@Test
 	public void testEvaluate_missing_art() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SkalierungLookup lookup = new SkalierungLookup();
 		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_art", lookup);
-		assertThat(evaluate, is(10));
+		assertThat(evaluate, is(nullValue()));
 	}
 
 	@Test
 	public void testEvaluate_existing_skalierung() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SkalierungLookup lookup = new SkalierungLookup();
 		PrimitiveValue evaluate = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3", lookup);

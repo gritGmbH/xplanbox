@@ -72,10 +72,13 @@ public class SkalierungLookup extends PraesentationsobjektLookup {
 		TypedObjectNode originalSkalierung = skalierung.evaluate(feature, features);
 		if (originalSkalierung != null)
 			return originalSkalierung;
-		int planScale = detectPlanScale(features);
-		int objectScale = detectObjectScale(referencedFeature);
-		double skalierung = Double.valueOf(planScale) / Double.valueOf(objectScale);
-		return new PrimitiveValue(skalierung, new PrimitiveType(BaseType.DECIMAL));
+		if (referencedFeature != null && attributeProperty != null) {
+			int planScale = detectPlanScale(features);
+			int objectScale = detectObjectScale(referencedFeature);
+			double skalierung = Double.valueOf(planScale) / Double.valueOf(objectScale);
+			return new PrimitiveValue(skalierung, new PrimitiveType(BaseType.DECIMAL));
+		}
+		return null;
 	}
 
 	private int detectPlanScale(FeatureCollection features) {

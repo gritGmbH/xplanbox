@@ -39,7 +39,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 	@Test
 	public void testEvaluate() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 
 		PrimitiveValue evaluate1 = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886", lookup);
@@ -67,7 +67,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 	@Test
 	public void testEvaluate_missing_dientZurDarstellungVon() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate = getEvaluate(features,
@@ -78,7 +78,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 	@Test
 	public void testEvaluate_missing_art() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_art", lookup);
@@ -88,7 +88,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 	@Test
 	public void testEvaluate_existing_stylesheetId() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_stylesheetId",

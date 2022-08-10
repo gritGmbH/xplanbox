@@ -39,7 +39,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 	@Test
 	public void testEvaluate_textFromArt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
 
 		PrimitiveValue evaluate1 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82e77", lookup);
@@ -49,7 +49,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 	@Test
 	public void testEvaluate_textFromArtCodeValue() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
 
 		PrimitiveValue evaluate = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82e78", lookup);
@@ -59,7 +59,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 	@Test
 	public void testEvaluate_missing_dientZurDarstellungVon() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
 		PrimitiveValue evaluate = getEvaluate(features,
@@ -70,7 +70,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 	@Test
 	public void testEvaluate_missing_art() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
 		PrimitiveValue evaluate = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82e77_art", lookup);
@@ -80,7 +80,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 	@Test
 	public void testEvaluate_existing_schriftinhalt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
-				"/de/latlon/xplan/manager/synthesizer/plans/xplan54/BPlan002_5-4.gml");
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
 		PrimitiveValue evaluate = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82e77_schriftinhalt",

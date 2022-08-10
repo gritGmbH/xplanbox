@@ -52,11 +52,8 @@ public abstract class PraesentationsobjektLookup implements Expression {
 	@Override
 	public TypedObjectNode evaluate(Feature feature, FeatureCollection features) {
 		Feature referencedFeature = resolveDientZurDarstellungVon(feature, features);
-		if (referencedFeature != null) {
-			List<AttributeProperty> attributeProperty = parseArtProperties(feature, features, referencedFeature);
-			return evaluate(feature, features, referencedFeature, attributeProperty);
-		}
-		return null;
+		List<AttributeProperty> attributeProperty = parseArtProperties(feature, features, referencedFeature);
+		return evaluate(feature, features, referencedFeature, attributeProperty);
 	}
 
 	/**
@@ -66,8 +63,8 @@ public abstract class PraesentationsobjektLookup implements Expression {
 	 * <code>null</code>
 	 * @param referencedFeature the feature referenced by "dientZurDarstellungVon", may be
 	 * <code>null</code> if not available
-	 * @param attributeProperty the parsed art attribute, may be <code>null</code> if not
-	 * available
+	 * @param attributeProperty the parsed "art" attribute, may be <code>null</code> if
+	 * "art" or "dientZurDarstellungVon" is not available
 	 * @return expression value, suitable as property value, can be <code>null</code> (no
 	 * value, omit property)
 	 */
@@ -89,9 +86,11 @@ public abstract class PraesentationsobjektLookup implements Expression {
 
 	private List<AttributeProperty> parseArtProperties(Feature feature, FeatureCollection features,
 			Feature referencedFeature) {
-		TypedObjectNodeArray<TypedObjectNode> propertiesArray = castToArray(artXPath.evaluate(feature, features));
-		if (propertiesArray != null) {
-			return convertToAttributeOProperties(referencedFeature, propertiesArray);
+		if (referencedFeature != null) {
+			TypedObjectNodeArray<TypedObjectNode> propertiesArray = castToArray(artXPath.evaluate(feature, features));
+			if (propertiesArray != null) {
+				return convertToAttributeOProperties(referencedFeature, propertiesArray);
+			}
 		}
 		return null;
 	}
@@ -139,10 +138,17 @@ public abstract class PraesentationsobjektLookup implements Expression {
 			Step firstStep = artPropertySteps.get(firstStepIndex);
 			List<Property> properties = referencedFeature
 					.getProperties(new QName(referencedFeature.getName().getNamespaceURI(), firstStep.name));
-			Property propertyStep = properties.get(firstStep.index);
-			AttributeProperty attributeProperty = parseArtProperty(firstStep, artPropertySteps, 1, propertyStep, null);
-			if (attributeProperty != null)
-				return attributeProperty;
+			if (properties.size() > firstStep.index) {
+				Property propertyStep = properties.get(firstStep.index);
+				AttributeProperty attributeProperty = parseArtProperty(firstStep, artPropertySteps, 1, propertyStep,
+						null);
+				if (attributeProperty != null)
+					return attributeProperty;
+			}
+			else {
+				LOG.warn("Referenced feature with id {} contains not property with name {} on index {}",
+						referencedFeature.getId(), firstStep.name, firstStep.index);
+			}
 		}
 		return null;
 	}

@@ -70,7 +70,7 @@ public class StylesheetIdLookup extends PraesentationsobjektLookup {
 	@Override
 	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, Feature referencedFeature,
 			List<AttributeProperty> attributeProperty) {
-		if (attributeProperty != null) {
+		if (referencedFeature != null && attributeProperty != null) {
 			GeometryTypeAbbreviation geomTypeAbbr = parseGeometryType(referencedFeature);
 			String objectClass = referencedFeature.getType().getName().getLocalPart();
 			String stylesheetId = createStylesheetId(objectClass, attributeProperty, geomTypeAbbr);

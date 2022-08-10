@@ -52,11 +52,11 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 		TypedObjectNode originalSchriftinhalt = schriftinhalt.evaluate(feature, features);
 		if (originalSchriftinhalt != null)
 			return originalSchriftinhalt;
-		if (attributeProperty != null) {
+		if (referencedFeature != null && attributeProperty != null) {
 			String stylesheetId = createSchriftinhalt(attributeProperty);
 			return toPrimitiveValue(stylesheetId);
 		}
-		return schriftinhalt.evaluate(feature, features);
+		return null;
 	}
 
 	private String createSchriftinhalt(List<AttributeProperty> attributeProperties) {
