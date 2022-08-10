@@ -504,4 +504,108 @@
       <xplan:drehwinkel uom="grad">0.0</xplan:drehwinkel>
     </xplan:XP_PPO>
   </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_PTO gml:id="GML_a81f7f4e-071f-44fd-af3e-826e80b82e77">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>565027.244 5940470.916</gml:lowerCorner>
+          <gml:upperCorner>565028.244 5940471.916</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:art>gemeinde[0]/gemeindeName[0]</xplan:art>
+      <xplan:art>gemeinde[0]/ags[0]</xplan:art>
+      <xplan:index>0</xplan:index>
+      <xplan:index>0</xplan:index>
+      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+      <xplan:dientZurDarstellungVon xlink:href="#GML_c8fa8ddd-d5de-4111-9489-03967eec715e" />
+      <xplan:position>
+        <gml:Point srsName="EPSG:25832" gml:id="GML_9c0ff9d5-5736-4e21-a30c-ee5c459f7c78">
+          <gml:pos>565027.244 5940470.916</gml:pos>
+        </gml:Point>
+      </xplan:position>
+      <xplan:drehwinkel uom="grad">0.00</xplan:drehwinkel>
+    </xplan:XP_PTO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_PTO gml:id="GML_a81f7f4e-071f-44fd-af3e-826e80b82e78">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>565027.244 5940470.916</gml:lowerCorner>
+          <gml:upperCorner>565028.244 5940471.916</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:art>gebietsArt</xplan:art>
+      <xplan:index>0</xplan:index>
+      <xplan:index>0</xplan:index>
+      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+      <xplan:position>
+        <gml:Point srsName="EPSG:25832" gml:id="GML_9c0ff9d5-5736-4e21-a30c-ee5c459f7c78">
+          <gml:pos>565027.244 5940470.916</gml:pos>
+        </gml:Point>
+      </xplan:position>
+      <xplan:drehwinkel uom="grad">0.00</xplan:drehwinkel>
+    </xplan:XP_PTO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_PTO gml:id="GML_a81f7f4e-071f-44fd-af3e-826e80b82e77_dientZurDarstellungVon">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>565027.244 5940470.916</gml:lowerCorner>
+          <gml:upperCorner>565028.244 5940471.916</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:art>gemeinde[0]/gemeindeName[0]</xplan:art>
+      <xplan:art>gemeinde[0]/ags[0]</xplan:art>
+      <xplan:index>0</xplan:index>
+      <xplan:index>0</xplan:index>
+      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+      <xplan:position>
+        <gml:Point srsName="EPSG:25832" gml:id="GML_9c0ff9d5-5736-4e21-a30c-ee5c459f7c78">
+          <gml:pos>565027.244 5940470.916</gml:pos>
+        </gml:Point>
+      </xplan:position>
+      <xplan:drehwinkel uom="grad">0.00</xplan:drehwinkel>
+    </xplan:XP_PTO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_PTO gml:id="GML_a81f7f4e-071f-44fd-af3e-826e80b82e77_art">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>565027.244 5940470.916</gml:lowerCorner>
+          <gml:upperCorner>565028.244 5940471.916</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+      <xplan:dientZurDarstellungVon xlink:href="#GML_c8fa8ddd-d5de-4111-9489-03967eec715e" />
+      <xplan:position>
+        <gml:Point srsName="EPSG:25832" gml:id="GML_9c0ff9d5-5736-4e21-a30c-ee5c459f7c78">
+          <gml:pos>565027.244 5940470.916</gml:pos>
+        </gml:Point>
+      </xplan:position>
+      <xplan:drehwinkel uom="grad">0.00</xplan:drehwinkel>
+    </xplan:XP_PTO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_PTO gml:id="GML_a81f7f4e-071f-44fd-af3e-826e80b82e77_schriftinhalt">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>565027.244 5940470.916</gml:lowerCorner>
+          <gml:upperCorner>565028.244 5940471.916</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:art>gemeinde[0]/gemeindeName[0]</xplan:art>
+      <xplan:art>gemeinde[0]/ags[0]</xplan:art>
+      <xplan:index>0</xplan:index>
+      <xplan:index>0</xplan:index>
+      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+      <xplan:dientZurDarstellungVon xlink:href="#GML_c8fa8ddd-d5de-4111-9489-03967eec715e" />
+      <xplan:schriftinhalt>Test mit Schriftinhalt</xplan:schriftinhalt>
+      <xplan:position>
+        <gml:Point srsName="EPSG:25832" gml:id="GML_9c0ff9d5-5736-4e21-a30c-ee5c459f7c78">
+          <gml:pos>565027.244 5940470.916</gml:pos>
+        </gml:Point>
+      </xplan:position>
+      <xplan:drehwinkel uom="grad">0.00</xplan:drehwinkel>
+    </xplan:XP_PTO>
+  </gml:featureMember>
 </xplan:XPlanAuszug>
