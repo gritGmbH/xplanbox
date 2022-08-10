@@ -34,6 +34,7 @@ import de.latlon.xplan.manager.synthesizer.expression.XplanBaugebietFlaechenteil
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
 import de.latlon.xplan.manager.synthesizer.expression.XplanGmlName;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.SkalierungLookup;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.StylesheetIdLookup;
 
 import java.util.ArrayList;
@@ -130,6 +131,10 @@ class RuleParser {
 		return new StylesheetIdLookup();
 	}
 
+	private Expression parseSkalierungLookup() {
+		return new SkalierungLookup();
+	}
+
 	private Expression parseLatest(List<String> args) {
 		return new LatestDate(parse(args.get(0)));
 	}
@@ -161,6 +166,8 @@ class RuleParser {
 			return parseAusrichtungLookup(args);
 		case "stylesheetIdLookup":
 			return parseStylesheetIdLookup();
+		case "skalierungLookup":
+			return parseSkalierungLookup();
 		case "latest":
 			return parseLatest(args);
 		default:
