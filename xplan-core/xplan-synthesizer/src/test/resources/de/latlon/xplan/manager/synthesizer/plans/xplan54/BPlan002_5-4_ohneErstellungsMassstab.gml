@@ -17,7 +17,6 @@
       <xplan:name>BPlan001_5-4</xplan:name>
       <xplan:beschreibung>Testdaten</xplan:beschreibung>
       <xplan:technHerstellDatum>2021-07-01</xplan:technHerstellDatum>
-      <xplan:erstellungsMassstab>10000</xplan:erstellungsMassstab>
       <xplan:raeumlicherGeltungsbereich>
         <gml:MultiSurface srsName="EPSG:25832" gml:id="GML_a4b76c05-e841-441f-9284-0d28c0bd2502">
           <gml:surfaceMember>
@@ -47,6 +46,35 @@
       <xplan:gruenordnungsplan>false</xplan:gruenordnungsplan>
       <xplan:bereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
     </xplan:BP_Plan>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:FP_BebauungsFlaeche gml:id="Gml_AB37AF69-516B-46FF-A302-8C4664B6F3D2">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>574374.031 5947122.642</gml:lowerCorner>
+          <gml:upperCorner>574428.001 5947186.997</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:rechtsstand>1000</xplan:rechtsstand>
+      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+      <xplan:rechtscharakter>1000</xplan:rechtscharakter>
+      <xplan:position>
+        <gml:Polygon gml:id="Gml_7ED8D93A-4CF3-4374-89E8-FE4D1EC82C1F" srsName="EPSG:25832">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsName="EPSG:25832">574428.001 5947123.528 574427.68 5947142.413 574427.4063 5947158.4949
+                574427.377 5947160.216 574427.029 5947183.999 574426.985 5947186.997
+                574380.149 5947186.502 574374.156 5947186.439 574374.031 5947180.518
+                574374.351 5947161.562 574374.689 5947141.507 574375.008 5947122.642
+                574428.001 5947123.528 </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:GFZ>0.6</xplan:GFZ>
+      <xplan:GRZ>0.4</xplan:GRZ>
+    </xplan:FP_BebauungsFlaeche>
   </gml:featureMember>
   <gml:featureMember>
     <xplan:BP_Bereich gml:id="GML_95a8b21b-8754-4350-9041-213259262fd8">
@@ -449,6 +477,26 @@
     </xplan:XP_PPO>
   </gml:featureMember>
   <gml:featureMember>
+    <xplan:XP_PPO gml:id="GML_22989f35-59e8-4260-8c60-e706b916a886_FP">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>565043.676 5940476.202</gml:lowerCorner>
+          <gml:upperCorner>565044.676 5940476.202</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:art>GFZ[0]</xplan:art>
+      <xplan:art>GRZ[0]</xplan:art>
+      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+      <xplan:dientZurDarstellungVon xlink:href="#Gml_AB37AF69-516B-46FF-A302-8C4664B6F3D2" />
+      <xplan:position>
+        <gml:Point srsName="EPSG:25832" gml:id="GML_27888432-2c29-41c0-b6bc-d857207dced4">
+          <gml:pos>565043.676 5940476.202</gml:pos>
+        </gml:Point>
+      </xplan:position>
+      <xplan:drehwinkel uom="grad">0.0</xplan:drehwinkel>
+    </xplan:XP_PPO>
+  </gml:featureMember>
+  <gml:featureMember>
     <xplan:XP_PPO gml:id="GML_22989f35-59e8-4260-8c60-e706b916a886_dientZurDarstellungVon">
       <gml:boundedBy>
         <gml:Envelope srsName="EPSG:25832">
@@ -475,25 +523,6 @@
           <gml:upperCorner>565044.676 5940476.202</gml:upperCorner>
         </gml:Envelope>
       </gml:boundedBy>
-      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
-      <xplan:dientZurDarstellungVon xlink:href="#GML_51e17233-d921-46cb-83b9-af28451186a1" />
-      <xplan:position>
-        <gml:Point srsName="EPSG:25832" gml:id="GML_27888432-2c29-41c0-b6bc-d857207dced4">
-          <gml:pos>565043.676 5940476.202</gml:pos>
-        </gml:Point>
-      </xplan:position>
-      <xplan:drehwinkel uom="grad">0.0</xplan:drehwinkel>
-    </xplan:XP_PPO>
-  </gml:featureMember>
-  <gml:featureMember>
-    <xplan:XP_PPO gml:id="GML_22989f35-59e8-4260-8c60-e706b916a886_stylesheetId">
-      <gml:boundedBy>
-        <gml:Envelope srsName="EPSG:25832">
-          <gml:lowerCorner>565043.676 5940476.202</gml:lowerCorner>
-          <gml:upperCorner>565044.676 5940476.202</gml:upperCorner>
-        </gml:Envelope>
-      </gml:boundedBy>
-      <xplan:stylesheetId>Freier Text</xplan:stylesheetId>
       <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
       <xplan:dientZurDarstellungVon xlink:href="#GML_51e17233-d921-46cb-83b9-af28451186a1" />
       <xplan:position>
