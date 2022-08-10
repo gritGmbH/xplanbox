@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
@@ -35,7 +36,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.AttributePropertyType.CODE_OR_ENUM;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE_OR_ENUM;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.LINE;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.POINT;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.POLYGON;

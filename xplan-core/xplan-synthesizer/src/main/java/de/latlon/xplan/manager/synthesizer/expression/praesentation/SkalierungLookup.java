@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;

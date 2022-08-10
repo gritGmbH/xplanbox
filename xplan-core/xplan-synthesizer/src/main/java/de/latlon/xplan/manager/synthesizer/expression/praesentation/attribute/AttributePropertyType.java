@@ -1,4 +1,4 @@
-package de.latlon.xplan.manager.synthesizer.expression.praesentation;
+package de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute;
 
 /**
  * Discriminates between types of attribute properties.

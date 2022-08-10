@@ -37,7 +37,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTest {
 
 	@Test
-	public void testEvaluate() throws Exception {
+	public void testEvaluate_artWithOneCode() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
@@ -50,10 +50,22 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 
 		PrimitiveValue evaluate3 = getEvaluate(features, "GML_458852b4-0f35-4405-b3be-90bb70688ddd", lookup);
 		assertThat(evaluate3.getAsText(), is("BP_BaugebietsTeilFlaeche[besondereArtDerBaulNutzung=1700]_F"));
+	}
 
+	@Test
+	public void testEvaluate_artWithCodeAndEnum() throws Exception {
+		FeatureCollection features = getTestFeatures(XPLAN_54,
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
+		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate4 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3", lookup);
 		assertThat(evaluate4.getAsText(), is("SO_Gebiet[gebietsArt=1999][sonstGebietsArt=4242]_F"));
+	}
 
+	@Test
+	public void testEvaluate_artMultipleTimesDifferentXPath() throws Exception {
+		FeatureCollection features = getTestFeatures(XPLAN_54,
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
+		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate5 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3_1", lookup);
 		assertThat(evaluate5.getAsText(), is("SO_Gebiet[gebietsArt=1999]_F"));
 

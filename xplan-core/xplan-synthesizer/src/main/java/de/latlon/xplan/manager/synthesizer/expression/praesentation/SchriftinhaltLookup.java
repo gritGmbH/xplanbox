@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -28,7 +29,7 @@ import org.deegree.feature.FeatureCollection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.AttributePropertyType.STRING;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.STRING;
 import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 /**

@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression.praesentation;
+package de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute;
 
 /**
  * Encapsulates an Attribute/Value Pair for the stylesheetId
