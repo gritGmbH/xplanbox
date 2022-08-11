@@ -77,7 +77,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 	}
 
 	@Test
-	public void testEvaluate_missing_dientZurDarstellungVon() throws Exception {
+	public void testEvaluate_missingDientZurDarstellungVon() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
@@ -88,24 +88,24 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 	}
 
 	@Test
-	public void testEvaluate_missing_art() throws Exception {
+	public void testEvaluate_missingArt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_art", lookup);
-		assertThat(evaluate, is(nullValue()));
+		assertThat(evaluate.getAsText(), is("BP_BaugebietsTeilFlaeche_F"));
 	}
 
 	@Test
-	public void testEvaluate_existing_stylesheetId() throws Exception {
+	public void testEvaluate_missingArt_existingStylesheetId() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_stylesheetId",
 				lookup);
-		assertThat(evaluate.getAsText(), is("Freier Text"));
+		assertThat(evaluate.getAsText(), is("BP_BaugebietsTeilFlaeche_F"));
 	}
 
 }

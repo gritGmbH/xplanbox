@@ -57,7 +57,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 	}
 
 	@Test
-	public void testEvaluate_missing_dientZurDarstellungVon() throws Exception {
+	public void testEvaluate_missingDientZurDarstellungVon() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
@@ -68,7 +68,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 	}
 
 	@Test
-	public void testEvaluate_missing_art() throws Exception {
+	public void testEvaluate_missingArt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
@@ -78,7 +78,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 	}
 
 	@Test
-	public void testEvaluate_existing_schriftinhalt() throws Exception {
+	public void testEvaluate_existingSchriftinhalt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 

@@ -36,11 +36,11 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Optional;
 
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE_OR_ENUM;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.LINE;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.POINT;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.POLYGON;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.UNKNOWN;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE_OR_ENUM;
 import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 /**
@@ -71,7 +71,7 @@ public class StylesheetIdLookup extends PraesentationsobjektLookup {
 	@Override
 	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, Feature referencedFeature,
 			List<AttributeProperty> attributeProperty) {
-		if (referencedFeature != null && attributeProperty != null) {
+		if (referencedFeature != null) {
 			GeometryTypeAbbreviation geomTypeAbbr = parseGeometryType(referencedFeature);
 			String objectClass = referencedFeature.getType().getName().getLocalPart();
 			String stylesheetId = createStylesheetId(objectClass, attributeProperty, geomTypeAbbr);
@@ -84,13 +84,15 @@ public class StylesheetIdLookup extends PraesentationsobjektLookup {
 			GeometryTypeAbbreviation geomTypeAbbr) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(objectClass);
-		for (AttributeProperty attributeProperty : attributeProperties) {
-			if (attributeProperty.getAttributePropertyType().equals(CODE_OR_ENUM)) {
-				sb.append("[");
-				sb.append(attributeProperty.getAttribute());
-				if (attributeProperty.getValue() != null)
-					sb.append("=").append(attributeProperty.getValue());
-				sb.append("]");
+		if (attributeProperties != null) {
+			for (AttributeProperty attributeProperty : attributeProperties) {
+				if (attributeProperty.getAttributePropertyType().equals(CODE_OR_ENUM)) {
+					sb.append("[");
+					sb.append(attributeProperty.getAttribute());
+					if (attributeProperty.getValue() != null)
+						sb.append("=").append(attributeProperty.getValue());
+					sb.append("]");
+				}
 			}
 		}
 		sb.append("_");

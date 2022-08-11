@@ -37,7 +37,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 	}
 
 	@Test
-	public void testEvaluate_missing_dientZurDarstellungVon() throws Exception {
+	public void testEvaluate_missingDientZurDarstellungVon() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
@@ -48,7 +48,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 	}
 
 	@Test
-	public void testEvaluate_missing_art() throws Exception {
+	public void testEvaluate_missingArt() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
@@ -58,7 +58,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 	}
 
 	@Test
-	public void testEvaluate_existing_skalierung() throws Exception {
+	public void testEvaluate_existingSkalierung() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
