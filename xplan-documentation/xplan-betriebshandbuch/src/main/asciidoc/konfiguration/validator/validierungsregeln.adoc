@@ -73,8 +73,8 @@ oder
 
 Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsregeln können ergänzende Prüfungen als XQuery-Abfragen definiert und über ein Profil in den XPlanValidator eingebunden werden. Dazu sind folgende Schritte erforderlich:
 
-* Anlegen einer Konfigurationsdatei im YAML-Dateiformat im Verzeichnis _<XPLANBOX_CONFIG>/profiles_
-* Die YAML-Datei kann die Konfiguration für ein oder mehrere Profile beinhalten, der Dateiname ist frei wählbar, die Dateiendung muss _.yaml_ sein.
+* Anlegen einer Konfigurationsdatei im YAML-Dateiformat im Verzeichnis _<XPLANBOX_CONFIG>/profiles_ (verpflichtend)
+* Die YAML-Datei kann die Konfiguration für ein oder mehrere Profile beinhalten, der Dateiname ist frei wählbar, die Dateiendung muss _.yaml_ sein. (verpflichtend)
 * Ein Profil wird durch folgende Eigenschaften beschrieben:
 ** *id*: Ein eindeutiger Bezeichner für das Profil, wenn dieser nicht angegeben wird, dann wird dieser aus `name` und `description` zusammengesetzt. (optional)
 ** *name*: Der Name des Profils, dieser wird im XPlanValidatorWeb und XPlanManagerWeb angezeigt. (verpflichtend)
@@ -94,7 +94,7 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsreg
 ** Es dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
 ** Jede XQuery-Regel muss in einer Datei mit dem Namen _<DATEINAME>.xq_ abgelegt sein.
 ** Es wird nur XQuery 3.0 oder 3.1 verwendet.
-** Im Verzeichnis muss eine Datei mit dem Namen _rules.properties_ liegen.
+** Im Verzeichnis muss eine Datei mit dem Namen _rules.properties_ liegen. (optional)
 ** Die Beschreibung der Regeln in der Properties-Datei muss folgende Vorgaben erfüllen:
 ** Ein Eintrag besteht aus einem Namen und einem Wert, wobei der Name sich aus dem Dateinamen und der XPlanGML-Version zusammensetzt. Der Wert legt die Beschreibung fest. Das Name/Wert-Paar `<DATEINAME>_<VERSION>=<Beschreibung>` besteht aus:
 *** `DATEINAME`: Name der Datei ohne die Dateiendung _.xq_
