@@ -38,8 +38,10 @@
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+      </Stroke>
     </PolygonSymbolizer>
   </Rule>
 
 </FeatureTypeStyle>
-
