@@ -75,23 +75,19 @@ public class AttributePropertyParser {
 					if (indexOfPredicateBegin > 1) {
 						String name = step.substring(0, indexOfPredicateBegin);
 						String position = step.substring(indexOfPredicateBegin + 1, step.length() - 1);
-						return new Step(name, parseAsInteger(position));
+						try {
+							return new Step(name, Integer.parseInt(position));
+						}
+						catch (NumberFormatException e) {
+							LOG.warn("Could not parse " + position + " as integer.");
+							return new Step(step, 0);
+						}
 					}
 				}
 				return new Step(step);
 			}).collect(Collectors.toList());
 		}
 		return Collections.emptyList();
-	}
-
-	private int parseAsInteger(String position) {
-		try {
-			return Integer.parseInt(position);
-		}
-		catch (NumberFormatException e) {
-			LOG.warn("Could not parse " + position + " as integer, assume 0.");
-			return 0;
-		}
 	}
 
 	private static AttributeProperty parseSteps(Feature referencedFeature, List<Step> steps) {
@@ -103,15 +99,10 @@ public class AttributePropertyParser {
 			if (properties.size() > firstStep.index) {
 				return parseSteps(properties, firstStep.index, firstStep, steps);
 			}
-			else if (!properties.isEmpty()) {
+			else {
 				LOG.warn(
 						"Referenced feature with id {} contains no property with name {} on index {}. Use first property.",
 						referencedFeature.getId(), firstStep.name, firstStep.index);
-				return parseSteps(properties, 0, firstStep, steps);
-			}
-			else {
-				LOG.warn("Referenced feature with id {} contains no property with name {}", referencedFeature.getId(),
-						firstStep.name);
 			}
 		}
 		return null;
@@ -128,7 +119,7 @@ public class AttributePropertyParser {
 
 	private static AttributeProperty parseSteps(Step currentStep, List<Step> allSteps, int nextStepIndex,
 			TypedObjectNode stepValue, TypedObjectNode parentStep) {
-		if (stepValue instanceof PrimitiveValue && isCurrentStep(currentStep, parentStep)) {
+		if (stepValue instanceof PrimitiveValue) {
 			AttributePropertyType attributePropertyType = detectAttributePropertyType((PrimitiveValue) stepValue,
 					parentStep);
 			String primitiveValue = ((PrimitiveValue) stepValue).getAsText();
@@ -154,10 +145,6 @@ public class AttributePropertyParser {
 				}).collect(Collectors.toList());
 				if (!childrenWithStepName.isEmpty()) {
 					return parseSteps(nextStep, allSteps, nextStepIndex + 1, childrenWithStepName.get(0),
-							stepValueGenericXml);
-				}
-				else if (!children.isEmpty()) {
-					return parseSteps(nextStep, allSteps, nextStepIndex, stepValueGenericXml.getChildren().get(0),
 							stepValueGenericXml);
 				}
 			}

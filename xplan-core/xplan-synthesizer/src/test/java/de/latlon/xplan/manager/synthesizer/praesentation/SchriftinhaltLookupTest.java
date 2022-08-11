@@ -42,8 +42,8 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
 
-		PrimitiveValue evaluate1 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82e77", lookup);
-		assertThat(evaluate1.getAsText(), is("Freie und Hansestadt Hamburg 02000000"));
+		PrimitiveValue evaluate = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82e77", lookup);
+		assertThat(evaluate, is(nullValue()));
 	}
 
 	@Test

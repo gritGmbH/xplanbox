@@ -144,10 +144,7 @@ public class AttributePropertyParserTest {
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/gemeindeName[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
 				artNodes);
-		assertThat(attributeProperties.size(), is(1));
-		assertThat(attributeProperties.get(0).getAttribute(), is("gemeindeName"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
-		assertThat(attributeProperties.get(0).getValue(), is("Freie und Hansestadt Hamburg"));
+		assertThat(attributeProperties.size(), is(0));
 	}
 
 	@Test
@@ -157,26 +154,17 @@ public class AttributePropertyParserTest {
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/ags[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
 				artNodes);
-		assertThat(attributeProperties.size(), is(1));
-		assertThat(attributeProperties.get(0).getAttribute(), is("ags"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
-		assertThat(attributeProperties.get(0).getValue(), is("02000000"));
+		assertThat(attributeProperties.size(), is(0));
 	}
 
 	@Test
-	public void testParseAttributeProperties_multipleArtProperties() {
+	public void testParseAttributeProperties_multipleArtProperties_withMissingSteps() {
 		Feature feature = getTestFeature(features, "GML_bf2168c4-c292-4340-bc50-7a2aa2cab5be");
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/ags[0]", "gemeinde[0]/gemeindeName[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
 				artNodes);
-		assertThat(attributeProperties.size(), is(2));
-		assertThat(attributeProperties.get(0).getAttribute(), is("ags"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
-		assertThat(attributeProperties.get(0).getValue(), is("02000000"));
-		assertThat(attributeProperties.get(1).getAttribute(), is("gemeindeName"));
-		assertThat(attributeProperties.get(1).getAttributePropertyType(), is(STRING));
-		assertThat(attributeProperties.get(1).getValue(), is("Freie und Hansestadt Hamburg"));
+		assertThat(attributeProperties.size(), is(0));
 	}
 
 	@Test
@@ -186,10 +174,7 @@ public class AttributePropertyParserTest {
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("planArt[o]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
 				artNodes);
-		assertThat(attributeProperties.size(), is(1));
-		assertThat(attributeProperties.get(0).getAttribute(), is("planArt"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(CODE_OR_ENUM));
-		assertThat(attributeProperties.get(0).getValue(), is("1000"));
+		assertThat(attributeProperties.size(), is(0));
 	}
 
 	@Test
@@ -199,10 +184,7 @@ public class AttributePropertyParserTest {
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("planArt[2]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
 				artNodes);
-		assertThat(attributeProperties.size(), is(1));
-		assertThat(attributeProperties.get(0).getAttribute(), is("planArt"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(CODE_OR_ENUM));
-		assertThat(attributeProperties.get(0).getValue(), is("1000"));
+		assertThat(attributeProperties.size(), is(0));
 	}
 
 	@Test
@@ -212,10 +194,7 @@ public class AttributePropertyParserTest {
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/ags[o]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
 				artNodes);
-		assertThat(attributeProperties.size(), is(1));
-		assertThat(attributeProperties.get(0).getAttribute(), is("ags"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
-		assertThat(attributeProperties.get(0).getValue(), is("02000000"));
+		assertThat(attributeProperties.size(), is(0));
 	}
 
 	@Test
@@ -225,10 +204,7 @@ public class AttributePropertyParserTest {
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/ags[2]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
 				artNodes);
-		assertThat(attributeProperties.size(), is(1));
-		assertThat(attributeProperties.get(0).getAttribute(), is("ags"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
-		assertThat(attributeProperties.get(0).getValue(), is("02000000"));
+		assertThat(attributeProperties.size(), is(0));
 	}
 
 	@Test

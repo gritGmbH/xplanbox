@@ -27,10 +27,11 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.STRING;
 import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.joining;
 
 /**
  * Creates the schriftinhalt dependent on the referenced feature (via
@@ -63,7 +64,12 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 	private String createSchriftinhalt(List<AttributeProperty> attributeProperties) {
 		return attributeProperties.stream()
 				.filter(attributeProperty -> STRING.equals(attributeProperty.getAttributePropertyType()))
-				.map(attributeProperty -> attributeProperty.getValue()).collect(Collectors.joining(" "));
+				.map(attributeProperty -> attributeProperty.getValue())
+				.collect(collectingAndThen(joining(" "), schriftinhalt -> {
+					if (schriftinhalt.isEmpty())
+						return null;
+					return schriftinhalt;
+				}));
 	}
 
 }
