@@ -2222,7 +2222,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:name>profilesSecondId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>Request 1</con:sourceStep>
-            <con:sourcePath>$.profiles[0].id</con:sourcePath>
+            <con:sourcePath>$.profiles[1].id</con:sourcePath>
             <con:targetType>profilesSecondId</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:type>JSONPATH</con:type>
@@ -2317,7 +2317,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="getProfilesId" id="a99e442f-4e9c-4758-b479-0c4262783c59">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" methodName="validate" resourcePath="/validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="getProfilesId exploded" id="c6f9a486-2252-4934-aa53-bfdfd986768e" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="getProfilesId" id="c6f9a486-2252-4934-aa53-bfdfd986768e" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -2429,7 +2429,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       </con:property>
       <con:property>
         <con:name>profilesSecondId</con:name>
-        <con:value>p2</con:value>
+        <con:value>p1</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
