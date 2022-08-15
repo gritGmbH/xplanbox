@@ -125,6 +125,34 @@ public class AttributePropertyParserTest {
 	}
 
 	@Test
+	public void testParseAttributeProperties_multipleSteps_withNamespacePrefix() {
+		Feature feature = getTestFeature(features, "GML_bf2168c4-c292-4340-bc50-7a2aa2cab5be");
+
+		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt(
+				"xplan:gemeinde[0]/xplan:XP_Gemeinde/xplan:gemeindeName[0]");
+		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
+				artNodes);
+		assertThat(attributeProperties.size(), is(1));
+		assertThat(attributeProperties.get(0).getAttribute(), is("gemeindeName"));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
+		assertThat(attributeProperties.get(0).getValue(), is("Freie und Hansestadt Hamburg"));
+	}
+
+	@Test
+	public void testParseAttributeProperties_multipleSteps_withInvalidNamespacePrefix() {
+		Feature feature = getTestFeature(features, "GML_bf2168c4-c292-4340-bc50-7a2aa2cab5be");
+
+		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt(
+				"xplan:gemeinde[0]/invalid:XP_Gemeinde/xplan:gemeindeName[0]");
+		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
+				artNodes);
+		assertThat(attributeProperties.size(), is(1));
+		assertThat(attributeProperties.get(0).getAttribute(), is("gemeindeName"));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
+		assertThat(attributeProperties.get(0).getValue(), is("Freie und Hansestadt Hamburg"));
+	}
+
+	@Test
 	public void testParseAttributeProperties_multipleSteps_ags() {
 		Feature feature = getTestFeature(features, "GML_bf2168c4-c292-4340-bc50-7a2aa2cab5be");
 

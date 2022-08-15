@@ -60,12 +60,12 @@ public class AttributePropertyParser {
 			TypedObjectNodeArray<TypedObjectNode> propertiesArray) {
 		TypedObjectNode[] artProperties = propertiesArray.getElements();
 		return Arrays.stream(artProperties).map(artProperty -> {
-			List<Step> steps = parseXPath(artProperty);
+			List<Step> steps = parseXPath(artProperty, referencedFeature);
 			return parseSteps(referencedFeature, steps);
 		}).filter(Objects::nonNull).collect(Collectors.toList());
 	}
 
-	private List<Step> parseXPath(TypedObjectNode art) {
+	private List<Step> parseXPath(TypedObjectNode art, Feature referencedFeature) {
 		if (art instanceof SimpleProperty && ((SimpleProperty) art).getValue() instanceof PrimitiveValue) {
 			String artProperty = ((SimpleProperty) art).getValue().getAsText();
 			String[] split = artProperty.split("/");
@@ -73,21 +73,47 @@ public class AttributePropertyParser {
 				if (step.endsWith("]")) {
 					int indexOfPredicateBegin = step.indexOf("[");
 					if (indexOfPredicateBegin > 1) {
-						String name = step.substring(0, indexOfPredicateBegin);
+						String nameWithPrefix = step.substring(0, indexOfPredicateBegin);
+						String name = parseStepNameAndCheckPrefix(referencedFeature, nameWithPrefix);
 						String position = step.substring(indexOfPredicateBegin + 1, step.length() - 1);
 						try {
 							return new Step(name, Integer.parseInt(position));
 						}
 						catch (NumberFormatException e) {
 							LOG.warn("Could not parse " + position + " as integer.");
-							return new Step(step, 0);
+							String nameWithoutPrefix = parseStepNameAndCheckPrefix(referencedFeature, step);
+							return new Step(nameWithoutPrefix, 0);
 						}
 					}
 				}
-				return new Step(step);
+				String name = parseStepNameAndCheckPrefix(referencedFeature, step);
+				return new Step(name);
 			}).collect(Collectors.toList());
 		}
 		return Collections.emptyList();
+	}
+
+	private String parseStepNameAndCheckPrefix(Feature referencedFeature, String nameWithPrefix) {
+		if (nameWithPrefix.contains(":")) {
+			int indexOfPrefixBegin = nameWithPrefix.indexOf(":");
+			String prefix = nameWithPrefix.substring(0, indexOfPrefixBegin);
+			checkPrefix(prefix, referencedFeature);
+			return nameWithPrefix.substring(indexOfPrefixBegin + 1);
+		}
+		return nameWithPrefix;
+	}
+
+	private void checkPrefix(String prefix, Feature referencedFeature) {
+		String referencedFeaturePrefix = referencedFeature.getName().getPrefix();
+		if (referencedFeaturePrefix != null)
+			if (!referencedFeaturePrefix.equals(prefix))
+				LOG.warn(
+						"Prefix in xplan:art {} does not match the prefix of the referenced feature {]. Prefix will be ignored/default prefix assumed.",
+						prefix, referencedFeaturePrefix);
+			else if (prefix != null)
+				LOG.warn(
+						"Prefix in xplan:art {} but prefix of the referenced feature is null. Prefix will be ignored/default prefix assumed.",
+						prefix);
 	}
 
 	private static AttributeProperty parseSteps(Feature referencedFeature, List<Step> steps) {
@@ -197,9 +223,9 @@ public class AttributePropertyParser {
 			this(name, 0);
 		}
 
-		public Step(String name, int position) {
+		public Step(String name, int index) {
 			this.name = name;
-			this.index = position;
+			this.index = index;
 		}
 
 	}
