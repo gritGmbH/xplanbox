@@ -67,6 +67,7 @@ public class ValidateApiTest extends JerseyTest {
 				TestContext.class);
 		resourceConfig.property("contextConfig", context);
 		resourceConfig.register(this);
+		resourceConfig.packages("de.latlon.xplanbox.api.commons.converter");
 		return resourceConfig;
 	}
 
@@ -132,6 +133,34 @@ public class ValidateApiTest extends JerseyTest {
 		final byte[] data = Files
 				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
 		final Response response = target("/validate").queryParam("profiles", profileMetadata.get(0).getId()).request()
+				.accept(APPLICATION_JSON).post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		String actual = response.readEntity(String.class);
+		assertThat(actual, containsString("profil"));
+	}
+
+	@Test
+	public void verifyThat_validationXZipCompressedWithProfiles_Response_ContainsJsonEncoding()
+			throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").queryParam("profiles", profileMetadata.get(0).getId())
+				.queryParam("profiles", profileMetadata.get(1).getId()).request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		String actual = response.readEntity(String.class);
+		assertThat(actual, containsString("profil"));
+	}
+
+	@Test
+	public void verifyThat_validationXZipCompressedWithProfilesCommaseparated_Response_ContainsJsonEncoding()
+			throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate")
+				.queryParam("profiles", profileMetadata.get(0).getId() + "," + profileMetadata.get(1).getId()).request()
 				.accept(APPLICATION_JSON).post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
 
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));

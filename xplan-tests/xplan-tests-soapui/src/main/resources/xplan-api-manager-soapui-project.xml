@@ -49,11 +49,15 @@ OpenAPI document</con:description>
         <con:request name="Request 1" id="e8223f9a-1c6b-40dd-b28d-ce2681af9b55" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
+            <con:authType>No Authorization</con:authType>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -127,6 +131,12 @@ Import the plan</con:description>
             <con:style>QUERY</con:style>
             <con:default/>
             <con:description xsi:nil="true"/>
+          </con:parameter>
+          <con:parameter>
+            <con:name>profiles</con:name>
+            <con:value/>
+            <con:style>QUERY</con:style>
+            <con:default/>
           </con:parameter>
         </con:parameters>
         <con:representation type="RESPONSE">
@@ -226,7 +236,9 @@ Import the plan</con:description>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
-          <con:parameters/>
+          <con:parameters>
+            <entry key="profiles" value="" xmlns="http://eviware.com/soapui/config"/>
+          </con:parameters>
           <con:parameterOrder>
             <con:entry>X-Filename</con:entry>
             <con:entry>skipSemantisch</con:entry>
@@ -235,6 +247,7 @@ Import the plan</con:description>
             <con:entry>internalId</con:entry>
             <con:entry>planStatus</con:entry>
             <con:entry>skipLaufrichtung</con:entry>
+            <con:entry>profiles</con:entry>
           </con:parameterOrder>
         </con:request>
       </con:method>
@@ -1603,6 +1616,15 @@ Search for plan by name</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan profiles parameter">
+              <con:configuration>
+                <path>$.paths./plan.post.parameters.[?(@.name == 'profiles')]</path>
+                <content>[{"name":"profiles","in":"query","description":"Angabe der Profile, gegen die validiert werden soll","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -1721,6 +1743,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
             </con:parameters>
@@ -1732,6 +1755,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -1796,6 +1820,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipGeltungsbereich" value="true"/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
@@ -1808,6 +1833,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -1871,7 +1897,8 @@ assert actualHeader != null</scriptText>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
-              <entry key="skipLaufrichtung" value="" xmlns="http://eviware.com/soapui/config"/>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="skipLaufrichtung" value=""/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>X-Filename</con:entry>
@@ -1881,6 +1908,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -1954,6 +1982,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2017,7 +2046,8 @@ assert actualHeader != null</scriptText>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
-              <entry key="skipLaufrichtung" value="" xmlns="http://eviware.com/soapui/config"/>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="skipLaufrichtung" value=""/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>X-Filename</con:entry>
@@ -2027,6 +2057,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2090,7 +2121,8 @@ assert actualHeader != null</scriptText>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
-              <entry key="skipLaufrichtung" value="" xmlns="http://eviware.com/soapui/config"/>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="skipLaufrichtung" value=""/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>X-Filename</con:entry>
@@ -2100,6 +2132,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2164,6 +2197,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipGeltungsbereich" value="true"/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
@@ -2176,6 +2210,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2240,6 +2275,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipGeltungsbereich" value="true"/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
@@ -2252,6 +2288,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2316,6 +2353,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipGeltungsbereich" value="true"/>
               <con:entry key="skipLaufrichtung" value="true"/>
             </con:parameters>
@@ -2327,6 +2365,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2391,6 +2430,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipGeltungsbereich" value="true"/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
@@ -2403,6 +2443,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2467,6 +2508,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipGeltungsbereich" value="true"/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
@@ -2479,6 +2521,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2552,6 +2595,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipGeltungsbereich" value="true"/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
@@ -2564,6 +2608,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2630,6 +2675,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
             </con:parameters>
@@ -2641,6 +2687,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2705,6 +2752,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value="true"/>
             </con:parameters>
@@ -2716,6 +2764,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -2780,6 +2829,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
             </con:parameters>
@@ -2791,6 +2841,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -3032,7 +3083,8 @@ assert actualHeader != null</scriptText>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
-              <entry key="skipLaufrichtung" value="" xmlns="http://eviware.com/soapui/config"/>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="skipLaufrichtung" value=""/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>X-Filename</con:entry>
@@ -3042,6 +3094,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -3081,6 +3134,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
             </con:parameters>
@@ -3092,6 +3146,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -3140,6 +3195,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipGeltungsbereich" value="true"/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
@@ -3152,6 +3208,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -3200,6 +3257,7 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value="false"/>
             </con:parameters>
@@ -3211,6 +3269,7 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -3256,7 +3315,8 @@ assert actualHeader != null</scriptText>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
-              <entry key="skipFlaechenschluss" value="true" xmlns="http://eviware.com/soapui/config"/>
+              <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>X-Filename</con:entry>
@@ -3266,6 +3326,66 @@ assert actualHeader != null</scriptText>
               <con:entry>internalId</con:entry>
               <con:entry>planStatus</con:entry>
               <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Import invalid profile expect 400" id="7af25837-133e-4e6b-a373-277b1d9cda31">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Import invalid profile expect 400" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="861724a7-7e8c-4da4-8d52-3c753738a637" name="Contains">
+              <con:configuration>
+                <token>Profile with id invalid does not exist</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>XPlanManagerAPI-Test.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager-plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value="invalid"/>
+              <con:entry key="skipSemantisch" value="true"/>
+              <con:entry key="skipLaufrichtung" value=""/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
             </con:parameterOrder>
           </con:restRequest>
         </con:config>
@@ -11096,87 +11216,413 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>118</con:value>
+        <con:value>61</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>119</con:value>
+        <con:value>62</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML53</con:name>
-        <con:value>120</con:value>
+        <con:value>63</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdText</con:name>
-        <con:value>122</con:value>
+        <con:value>65</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdAenderung</con:name>
-        <con:value>123</con:value>
+        <con:value>66</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdDokument</con:name>
-        <con:value>124</con:value>
+        <con:value>67</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdFPlan</con:name>
-        <con:value>125</con:value>
+        <con:value>68</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-        <con:value>130</con:value>
+        <con:value>73</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-        <con:value>131</con:value>
+        <con:value>74</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdV2</con:name>
-        <con:value>132</con:value>
+        <con:value>75</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-        <con:value>133</con:value>
+        <con:value>76</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBereiche</con:name>
-        <con:value>134</con:value>
+        <con:value>77</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60</con:name>
-        <con:value>121</con:value>
+        <con:value>64</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSOPlan</con:name>
-        <con:value>126</con:value>
+        <con:value>69</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdRPlan</con:name>
-        <con:value>127</con:value>
+        <con:value>70</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdLPlan</con:name>
-        <con:value>128</con:value>
+        <con:value>71</con:value>
       </con:property>
       <con:property>
         <con:name>textIdSOPlan</con:name>
-        <con:value>XPLAN_texte_103fc37e-fda7-4cdc-8018-478fb32b3979</con:value>
+        <con:value>XPLAN_texte_70796f73-6d1b-47d7-8d07-5bf22036b61f</con:value>
       </con:property>
       <con:property>
         <con:name>textIdLPlan</con:name>
-        <con:value>XPLAN_texte_a5281bca-c246-4ebe-8d30-da943a0f4eac</con:value>
+        <con:value>XPLAN_texte_ab7a4ade-f5de-489a-8a2d-45bc384fa2ce</con:value>
       </con:property>
       <con:property>
         <con:name>textIdFPlan</con:name>
-        <con:value>XPLAN_texte_b3efe1e7-9dde-4897-a397-93f3f2f5bc68</con:value>
+        <con:value>XPLAN_texte_d8a2cb6b-1939-4cc2-8446-4b6933d83028</con:value>
       </con:property>
       <con:property>
         <con:name>textIdRPlan</con:name>
-        <con:value>XPLAN_texte_aa72e8e0-498f-4c91-8fa0-d3586b87b780</con:value>
+        <con:value>XPLAN_texte_8d54ffac-e10a-46b8-874a-3db7fe1d7f2e</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBPlanOhneBereich</con:name>
-        <con:value>129</con:value>
+        <con:value>72</con:value>
+      </con:property>
+    </con:properties>
+  </con:testSuite>
+  <con:testSuite id="0b9ba577-517d-4770-ae8b-842f1a09f403" name="Profiles TestSuite">
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="d85d5258-e301-44d8-ab37-b8bfae32ec8d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/info TestCase" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="restrequest" name="showConfig" id="e6a87004-ca2f-4aa8-b721-f61ed8060d6c">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="showConfig" id="e9ab8dcf-b755-40af-baf7-aa17a2ca4cdc" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://xplanbox.lat-lon.de/xmanager/api/v1/info</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="8738532e-3368-48bb-a866-0b35c62f3643" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="9705d513-0993-43b9-9759-99e38583dfd5" name="JsonPath Existence Match id">
+              <con:configuration>
+                <path>$.profiles[0].id</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="9705d513-0993-43b9-9759-99e38583dfd5" name="JsonPath Existence Match name">
+              <con:configuration>
+                <path>$.profiles[0].name</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="9705d513-0993-43b9-9759-99e38583dfd5" name="JsonPath Existence Match description">
+              <con:configuration>
+                <path>$.profiles[0].description</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="9705d513-0993-43b9-9759-99e38583dfd5" name="JsonPath Existence Match version">
+              <con:configuration>
+                <path>$.profiles[0].version</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="9705d513-0993-43b9-9759-99e38583dfd5" name="JsonPath Existence Match source">
+              <con:configuration>
+                <path>$.profiles[0].source</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="35c10770-7e76-448c-873a-6e998e802208">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>profilesId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>showConfig</con:sourceStep>
+            <con:sourcePath>$.profiles[0].id</con:sourcePath>
+            <con:targetType>profilesId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>profilesSecondId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>showConfig</con:sourceStep>
+            <con:sourcePath>$.profiles[1].id</con:sourcePath>
+            <con:targetType>profilesSecondId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="08dc4218-1cab-418d-a881-a9d3d90eec06" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan TestCase" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="restrequest" name="postProfileId" id="70e48894-fd11-4425-b586-146f2f1fd0b9">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="postProfileId" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>201,400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>XPlanManagerAPI-Test.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager-plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value="${#TestSuite#profilesId}"/>
+              <con:entry key="skipSemantisch" value="true"/>
+              <con:entry key="skipLaufrichtung" value=""/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="postProfilesId" id="b9689ea9-3487-4658-b9df-b22cce6d3c04">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="postProfilesId" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>201,400</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>XPlanManagerAPI-Test.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager-plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value="${#TestSuite#profilesId},${#TestSuite#profilesSecondId}"/>
+              <con:entry key="skipSemantisch" value="true"/>
+              <con:entry key="skipLaufrichtung" value=""/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="b23cc84c-19f3-4ee9-9924-d6a5f72d877f">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdProfile</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>postProfileId</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdProfile</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdProfiles</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>postProfilesId</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdProfiles</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="387666a7-3721-4a64-849f-9b8e20c83581" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId} TestCase" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="restrequest" name="deleteProfileId" id="5a05a8ff-fbd1-4621-b965-2905c8431ae7">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="deleteProfileId" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200,404</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#planIdProfile}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="deleteProfilesId" id="b7df5aa0-7277-4365-aa1e-a445281fa238">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="deleteProfilesId" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200,404</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#planIdProfiles}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:properties>
+      <con:property>
+        <con:name>profilesId</con:name>
+        <con:value>p1</con:value>
+      </con:property>
+      <con:property>
+        <con:name>profilesSecondId</con:name>
+        <con:value>p2</con:value>
+      </con:property>
+      <con:property>
+        <con:name>planIdProfile</con:name>
+        <con:value>78</con:value>
+      </con:property>
+      <con:property>
+        <con:name>planIdProfiles</con:name>
+        <con:value>79</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>

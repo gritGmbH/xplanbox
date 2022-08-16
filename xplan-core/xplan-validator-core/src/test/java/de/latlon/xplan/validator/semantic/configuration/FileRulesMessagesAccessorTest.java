@@ -48,12 +48,11 @@ public class FileRulesMessagesAccessorTest {
 
 	@BeforeClass
 	public static void initFileRulesMessagesAccessor() throws IOException {
-		File file = tempFolder.newFile("rulesMessages.properties");
+		File file = tempFolder.newFile("rules.properties");
 		Files.delete(file.toPath());
-		InputStream properties = FileRulesMessagesAccessorTest.class
-				.getResourceAsStream("/rules/rulesMessages.properties");
+		InputStream properties = FileRulesMessagesAccessorTest.class.getResourceAsStream("/rules/rules.properties");
 		Files.copy(properties, file.toPath());
-		rulesMessagesAccessor = new FileRulesMessagesAccessor(file.getAbsolutePath());
+		rulesMessagesAccessor = new FileRulesMessagesAccessor(tempFolder.getRoot().toPath());
 	}
 
 	@Test

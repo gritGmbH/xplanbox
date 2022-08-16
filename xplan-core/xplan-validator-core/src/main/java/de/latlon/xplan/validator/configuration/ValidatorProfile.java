@@ -27,20 +27,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ValidatorProfile {
 
+	private String id;
+
 	@JsonProperty(required = true)
 	private String name;
 
 	@JsonProperty(required = true)
 	private String description;
 
-	private String version;
-
-	private String source;
-
 	@JsonProperty(required = true)
 	private String xqueryRulesDirectory;
 
-	private String rulesDescription;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -58,36 +62,12 @@ public class ValidatorProfile {
 		this.description = description;
 	}
 
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
-	public String getSource() {
-		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
-	}
-
 	public String getXqueryRulesDirectory() {
 		return xqueryRulesDirectory;
 	}
 
 	public void setXqueryRulesDirectory(String xqueryRulesDirectory) {
 		this.xqueryRulesDirectory = xqueryRulesDirectory;
-	}
-
-	public String getRulesDescription() {
-		return rulesDescription;
-	}
-
-	public void setRulesDescription(String rulesDescription) {
-		this.rulesDescription = rulesDescription;
 	}
 
 }
