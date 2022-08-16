@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 /**
@@ -39,20 +38,22 @@ public final class FileRulesMessagesAccessor extends RulesMessagesAccessor {
 
 	private static final Logger LOG = LoggerFactory.getLogger(FileRulesMessagesAccessor.class);
 
+	private static final String RULESMESSAGE_FILE_NAME = "rules.properties";
+
 	private final Properties properties = new Properties();
 
 	/**
-	 * @param rulesMessagesFile may be empty (results in a default message)
+	 * @param rulesDirectory the directory containing the rules.properties, never
+	 * <code>null</code>. A file with this name may exists. If no file with this name
+	 * exists, a default message will be created.
 	 */
-	public FileRulesMessagesAccessor(String rulesMessagesFile) {
-		if (rulesMessagesFile == null) {
+	public FileRulesMessagesAccessor(Path rulesDirectory) {
+		Path rulesMessagesFile = rulesDirectory.resolve(RULESMESSAGE_FILE_NAME);
+		if (!Files.exists(rulesMessagesFile) || !Files.isRegularFile(rulesMessagesFile)) {
+			LOG.info("Rules messages file {} does not exist or is not a file.", rulesMessagesFile);
 			return;
 		}
-		Path path = Paths.get(rulesMessagesFile);
-		if (!Files.exists(path) || !Files.isRegularFile(path)) {
-			LOG.warn("Configured rules messages file {} does not exist or is not a file.", rulesMessagesFile);
-		}
-		try (InputStream propsStream = Files.newInputStream(path)) {
+		try (InputStream propsStream = Files.newInputStream(rulesMessagesFile)) {
 			properties.load(propsStream);
 		}
 		catch (IOException | NullPointerException e) {

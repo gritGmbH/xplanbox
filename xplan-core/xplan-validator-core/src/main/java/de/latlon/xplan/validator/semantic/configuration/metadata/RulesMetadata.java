@@ -22,6 +22,8 @@ package de.latlon.xplan.validator.semantic.configuration.metadata;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.util.Objects;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -29,7 +31,7 @@ public class RulesMetadata {
 
 	private static final String UNKNOWN = "unbekannt";
 
-	private final Integer id;
+	private final String id;
 
 	private final String name;
 
@@ -39,16 +41,11 @@ public class RulesMetadata {
 
 	private final String source;
 
-	public RulesMetadata() {
-		this(null, null);
-	}
-
 	/**
-	 * @param version the version of the rules, may be <code>null</code> if not known
-	 * @param source the source of the rules, may be <code>null</code> if not known
+	 * @param rulesVersion containing the version and source, never <code>null</code>
 	 */
-	public RulesMetadata(String version, String source) {
-		this(null, null, version, source);
+	public RulesMetadata(RulesVersion rulesVersion) {
+		this(null, null, null, rulesVersion.getVersion(), rulesVersion.getSource());
 	}
 
 	/**
@@ -58,19 +55,23 @@ public class RulesMetadata {
 	 * @param version the version of the rules, may be <code>null</code> if not known
 	 * @param source the source of the rules, may be <code>null</code> if not known
 	 */
-	public RulesMetadata(String name, String description, String version, String source) {
+	public RulesMetadata(String id, String name, String description, String version, String source) {
 		this.name = name;
 		this.description = description;
 		this.version = StringUtils.isEmpty(version) ? UNKNOWN : version;
 		this.source = StringUtils.isEmpty(source) ? UNKNOWN : source;
-		this.id = System.identityHashCode(this);
+		if (id == null)
+			this.id = createIdFromHashCode();
+		else {
+			this.id = id;
+		}
 	}
 
 	/**
 	 * @return the id of the rules, may be <code>null</code> if the rules metadata has no
 	 * name
 	 */
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -100,6 +101,10 @@ public class RulesMetadata {
 	 */
 	public String getSource() {
 		return source;
+	}
+
+	private String createIdFromHashCode() {
+		return Integer.toString(Objects.hash(getName(), getDescription()));
 	}
 
 }

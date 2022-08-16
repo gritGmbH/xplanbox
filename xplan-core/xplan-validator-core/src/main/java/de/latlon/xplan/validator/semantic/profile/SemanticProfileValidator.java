@@ -33,6 +33,6 @@ public interface SemanticProfileValidator extends SemanticValidator {
 	/**
 	 * @return the unique id of the validator, never <code>null</code>
 	 */
-	int getId();
+	String getId();
 
 }
