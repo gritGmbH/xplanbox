@@ -1,4 +1,4 @@
-/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 10.08.2022, 12:35:01 --- */
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 16.08.2022, 16:49:39 --- */
 CREATE SCHEMA xplansynarchive; 
 SET search_path TO xplansynarchive,public;
 CREATE TABLE xplansynarchive.xplan_bp_abgrabungsflaeche (
@@ -13720,13 +13720,12 @@ CREATE TABLE xplansynarchive.xplan_xp_fpo (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
     xplan_dientzurdarstellungvon text,
     xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
     CONSTRAINT xplan_xp_fpo_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_xp_fpo','xplan_position','0','GEOMETRY', 2);
@@ -13743,13 +13742,12 @@ CREATE TABLE xplansynarchive.xplan_xp_lpo (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
     xplan_dientzurdarstellungvon text,
     xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
     CONSTRAINT xplan_xp_lpo_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_xp_lpo','xplan_position','0','GEOMETRY', 2);
@@ -13766,6 +13764,7 @@ CREATE TABLE xplansynarchive.xplan_xp_lto (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
@@ -13777,8 +13776,6 @@ CREATE TABLE xplansynarchive.xplan_xp_lto (
     xplan_anchorx text,
     xplan_anchory text,
     xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
     xplan_horizontaleausrichtung text,
     xplan_horizontaleausrichtungwert text,
     xplan_vertikaleausrichtung text,
@@ -13836,6 +13833,7 @@ CREATE TABLE xplansynarchive.xplan_xp_ppo (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
@@ -13843,8 +13841,6 @@ CREATE TABLE xplansynarchive.xplan_xp_ppo (
     xplan_skalierung numeric,
     xplan_hat text,
     xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
     xplan_drehwinkel text,
     xplan_drehwinkeluom text,
     CONSTRAINT xplan_xp_ppo_pkey PRIMARY KEY (attr_gml_id)
@@ -13863,6 +13859,7 @@ CREATE TABLE xplansynarchive.xplan_xp_pto (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
@@ -13874,8 +13871,6 @@ CREATE TABLE xplansynarchive.xplan_xp_pto (
     xplan_anchorx text,
     xplan_anchory text,
     xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
     xplan_horizontaleausrichtung text,
     xplan_horizontaleausrichtungwert text,
     xplan_vertikaleausrichtung text,
