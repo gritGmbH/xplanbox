@@ -49,11 +49,15 @@ OpenAPI document</con:description>
         <con:request name="Request 1" id="e8223f9a-1c6b-40dd-b28d-ce2681af9b55" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
+            <con:authType>No Authorization</con:authType>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1615,7 +1619,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan profiles parameter">
               <con:configuration>
                 <path>$.paths./plan.post.parameters.[?(@.name == 'profiles')]</path>
-                <content>[{"name":"profiles","in":"query","description":"Angabe der Profile, gegen die validiert werden soll","schema":{"type":"array","items":{"type":"string"}}}]</content>
+                <content>[{"name":"profiles","in":"query","description":"Angabe der Profile, gegen die validiert werden soll","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -3330,7 +3334,7 @@ assert actualHeader != null</scriptText>
       <con:testStep type="restrequest" name="Import invalid profile expect 400" id="7af25837-133e-4e6b-a373-277b1d9cda31">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Import invalid Profile expect 400" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="Import invalid profile expect 400" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -11212,87 +11216,87 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>252</con:value>
+        <con:value>61</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>253</con:value>
+        <con:value>62</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML53</con:name>
-        <con:value>254</con:value>
+        <con:value>63</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdText</con:name>
-        <con:value>256</con:value>
+        <con:value>65</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdAenderung</con:name>
-        <con:value>257</con:value>
+        <con:value>66</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdDokument</con:name>
-        <con:value>258</con:value>
+        <con:value>67</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdFPlan</con:name>
-        <con:value>259</con:value>
+        <con:value>68</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-        <con:value>264</con:value>
+        <con:value>73</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-        <con:value>265</con:value>
+        <con:value>74</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdV2</con:name>
-        <con:value>266</con:value>
+        <con:value>75</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-        <con:value>267</con:value>
+        <con:value>76</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBereiche</con:name>
-        <con:value>268</con:value>
+        <con:value>77</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60</con:name>
-        <con:value>255</con:value>
+        <con:value>64</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSOPlan</con:name>
-        <con:value>260</con:value>
+        <con:value>69</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdRPlan</con:name>
-        <con:value>261</con:value>
+        <con:value>70</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdLPlan</con:name>
-        <con:value>262</con:value>
+        <con:value>71</con:value>
       </con:property>
       <con:property>
         <con:name>textIdSOPlan</con:name>
-        <con:value>XPLAN_texte_899d8f33-db39-40ef-b98d-70164a05882e</con:value>
+        <con:value>XPLAN_texte_70796f73-6d1b-47d7-8d07-5bf22036b61f</con:value>
       </con:property>
       <con:property>
         <con:name>textIdLPlan</con:name>
-        <con:value>XPLAN_texte_af7b348b-3f0c-4e92-b678-9790ffef377b</con:value>
+        <con:value>XPLAN_texte_ab7a4ade-f5de-489a-8a2d-45bc384fa2ce</con:value>
       </con:property>
       <con:property>
         <con:name>textIdFPlan</con:name>
-        <con:value>XPLAN_texte_06f3e0d9-3125-4303-bae5-4ebdddca6b64</con:value>
+        <con:value>XPLAN_texte_d8a2cb6b-1939-4cc2-8446-4b6933d83028</con:value>
       </con:property>
       <con:property>
         <con:name>textIdRPlan</con:name>
-        <con:value>XPLAN_texte_372326bb-3a76-481f-be15-483496a61c0a</con:value>
+        <con:value>XPLAN_texte_8d54ffac-e10a-46b8-874a-3db7fe1d7f2e</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBPlanOhneBereich</con:name>
-        <con:value>263</con:value>
+        <con:value>72</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
@@ -11304,7 +11308,7 @@ assert expectedHeader == actualHeader</scriptText>
       <con:testStep type="restrequest" name="showConfig" id="e6a87004-ca2f-4aa8-b721-f61ed8060d6c">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/info" methodName="showConfig" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GetInfo" id="e9ab8dcf-b755-40af-baf7-aa17a2ca4cdc" mediaType="application/json">
+          <con:restRequest name="showConfig" id="e9ab8dcf-b755-40af-baf7-aa17a2ca4cdc" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -11407,7 +11411,7 @@ assert expectedHeader == actualHeader</scriptText>
       <con:testStep type="restrequest" name="postProfileId" id="70e48894-fd11-4425-b586-146f2f1fd0b9">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Import with profile" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="postProfileId" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -11614,11 +11618,11 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>planIdProfile</con:name>
-        <con:value>269</con:value>
+        <con:value>78</con:value>
       </con:property>
       <con:property>
         <con:name>planIdProfiles</con:name>
-        <con:value>270</con:value>
+        <con:value>79</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
