@@ -4,36 +4,23 @@ pipeline {
     maven 'maven-3.8'
     jdk 'openjdk11'
   }
-  parameters {
-    string(defaultValue: "master", description: 'Set git branch', name: 'BRANCH')
-  }
   stages {
     stage('Preparation') {
-      steps{
+      steps {
         deleteDir()
-        git credentialsId: 'latlon-CI-bitbucket', url: 'https://bitbucket.org/latlon/xplanbox.git', branch: '${BRANCH}'
         sh 'mvn --version'
       }
     }
     stage('Build') {
-      steps{
-        sh 'mvn -B -C -q clean install'
+      steps {
+        withMaven(mavenLocalRepo: '.repository') {
+            sh 'mvn -B -C -q clean install'
+        }
       }
       post {
         always {
           junit '**/target/surefire-reports/*.xml'
         }
-      }
-    }
-    stage('Deploy') {
-      when {
-        anyOf {
-          branch '${BRANCH}'
-          environment name: 'DEPLOY_STEP', value: 'true'
-        }
-      }
-      steps{
-        sh 'mvn deploy -Dskip.unit.tests=true'
       }
     }
   }
