@@ -142,8 +142,7 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		// TODO: assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
-		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
 	}
 
 	@Test
@@ -154,8 +153,7 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		// TODO: assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
-		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
 	}
 
 	@Test

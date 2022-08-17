@@ -268,6 +268,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		if (planFeature.isAenderungsPlan()) {
 			LOG.info("Plan {} is an Aenderungsplan. Complete covering is not checked for the plan.",
 					planFeature.getFeatureId());
+			return;
 		}
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion(featuresUnderTests);
 		LOG.debug("Union of all flaechenschluss geometries assigned to plan {}: {}", planFeature.getFeatureId(),
