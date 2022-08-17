@@ -108,8 +108,8 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 				.filter(attributeProperty -> ENUM.equals(attributeProperty.getAttributePropertyType()))
 				.map(attributeProperty -> {
 					XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(xPlanVersion);
-					return xPlanCodeLists.getCode(attributeProperty.getCodeListId(), attributeProperty.getValue());
-				});
+					return xPlanCodeLists.getKuerzel(attributeProperty.getCodeListId(), attributeProperty.getValue());
+				}).filter(kuerzel -> kuerzel != null);
 	}
 
 }

@@ -47,6 +47,17 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 	}
 
 	@Test
+	public void testEvaluate_textFromArtEnum() throws Exception {
+		FeatureCollection features = getTestFeatures(XPLAN_54,
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
+		SchriftinhaltLookup lookup = new SchriftinhaltLookup("ENUM");
+
+		PrimitiveValue evaluate = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3", lookup);
+		// Kuerzel are not available for XPLan 5.4
+		assertThat(evaluate, is(nullValue()));
+	}
+
+	@Test
 	public void testEvaluate_textFromArtCodeValue() throws Exception {
 		FeatureCollection features = getTestFeatures(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
