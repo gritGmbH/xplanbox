@@ -132,8 +132,10 @@ class RuleParser {
 		return new StylesheetIdLookup();
 	}
 
-	private Expression parseSchriftinhaltLookup() {
-		return new SchriftinhaltLookup();
+	private Expression parseSchriftinhaltLookup(List<String> args) {
+		if (args.isEmpty() || args.get(0) == null || args.get(0).trim().isEmpty())
+			return new SchriftinhaltLookup();
+		return new SchriftinhaltLookup(args.get(0));
 	}
 
 	private Expression parseSkalierungLookup() {
@@ -172,7 +174,7 @@ class RuleParser {
 		case "stylesheetIdLookup":
 			return parseStylesheetIdLookup();
 		case "schriftinhaltLookup":
-			return parseSchriftinhaltLookup();
+			return parseSchriftinhaltLookup(args);
 		case "skalierungLookup":
 			return parseSkalierungLookup();
 		case "latest":

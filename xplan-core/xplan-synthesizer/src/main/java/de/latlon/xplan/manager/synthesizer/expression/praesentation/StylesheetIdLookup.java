@@ -40,7 +40,8 @@ import static de.latlon.xplan.manager.synthesizer.expression.praesentation.Geome
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.POINT;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.POLYGON;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.UNKNOWN;
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE_OR_ENUM;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
 import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 /**
@@ -86,7 +87,8 @@ public class StylesheetIdLookup extends PraesentationsobjektLookup {
 		sb.append(objectClass);
 		if (attributeProperties != null) {
 			for (AttributeProperty attributeProperty : attributeProperties) {
-				if (attributeProperty.getAttributePropertyType().equals(CODE_OR_ENUM)) {
+				if (attributeProperty.getAttributePropertyType().equals(ENUM)
+						|| attributeProperty.getAttributePropertyType().equals(CODE)) {
 					sb.append("[");
 					sb.append(attributeProperty.getAttribute());
 					if (attributeProperty.getValue() != null)

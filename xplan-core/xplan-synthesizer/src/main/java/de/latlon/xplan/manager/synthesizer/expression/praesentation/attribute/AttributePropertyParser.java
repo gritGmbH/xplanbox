@@ -41,7 +41,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE_OR_ENUM;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.OTHER;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.STRING;
 import static org.apache.xerces.xs.XSConstants.DERIVATION_NONE;
@@ -148,8 +149,9 @@ public class AttributePropertyParser {
 		if (stepValue instanceof PrimitiveValue) {
 			AttributePropertyType attributePropertyType = detectAttributePropertyType((PrimitiveValue) stepValue,
 					parentStep);
+			String codeListId = detectCodelistId((PrimitiveValue) stepValue, attributePropertyType);
 			String primitiveValue = ((PrimitiveValue) stepValue).getAsText();
-			return new AttributeProperty(currentStep.name, attributePropertyType, primitiveValue);
+			return new AttributeProperty(currentStep.name, attributePropertyType, primitiveValue, codeListId);
 		}
 		else if (stepValue instanceof GenericProperty) {
 			TypedObjectNode propertyStepValue = ((GenericProperty) stepValue).getValue();
@@ -182,19 +184,6 @@ public class AttributePropertyParser {
 		return null;
 	}
 
-	private static boolean isCurrentStep(Step currentStep, TypedObjectNode parentStep) {
-		if (parentStep instanceof GenericXMLElement) {
-			return currentStep.name.equals(((GenericXMLElement) parentStep).getName().getLocalPart());
-		}
-		if (parentStep instanceof GenericProperty) {
-			return currentStep.name.equals(((GenericProperty) parentStep).getName().getLocalPart());
-		}
-		if (parentStep instanceof SimpleProperty) {
-			return currentStep.name.equals(((SimpleProperty) parentStep).getName().getLocalPart());
-		}
-		return true;
-	}
-
 	private static AttributePropertyType detectAttributePropertyType(PrimitiveValue stepValue,
 			TypedObjectNode parentStep) {
 		PrimitiveType type = stepValue.getType();
@@ -204,13 +193,21 @@ public class AttributePropertyParser {
 			XSElementDeclaration xsType = ((GenericXMLElement) parentStep).getXSType();
 			boolean isCodeList = xsType.getTypeDefinition().derivedFrom(GML3_2_NS, "CodeType", DERIVATION_NONE);
 			if (isCodeList)
-				return CODE_OR_ENUM;
+				return CODE;
 		}
 		String namespace = type.getXSType().getNamespace();
 		if (namespace.startsWith(XPLAN_GML_NS_PREFIX)) {
-			return CODE_OR_ENUM;
+			return ENUM;
 		}
 		return STRING;
+	}
+
+	private static String detectCodelistId(PrimitiveValue stepValue, AttributePropertyType attributePropertyType) {
+		if (ENUM.equals(attributePropertyType)) {
+			PrimitiveType type = stepValue.getType();
+			return type.getXSType().getName();
+		}
+		return null;
 	}
 
 	private class Step {

@@ -20,9 +20,14 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
+import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.SchriftinhaltLookup;
 import org.junit.Test;
 
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.STRING;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -46,6 +51,24 @@ public class RuleParserTest {
 		Xpath xpath = (Xpath) ruleParser.parse("xpath('xplan:drehwinkel/text()', 42.0)");
 
 		assertThat(xpath.getDefaultValue(), is(42.0));
+	}
+
+	@Test
+	public void testParse_SchriftinhaltLookup() {
+		RuleParser ruleParser = new RuleParser("BP_Plan", "Name", null);
+		Expression expression = ruleParser.parse("schriftinhaltLookup()");
+
+		assertThat(expression, is(instanceOf(SchriftinhaltLookup.class)));
+		assertThat(((SchriftinhaltLookup) expression).getPropertyType(), is(STRING));
+	}
+
+	@Test
+	public void testParse_SchriftinhaltLookupWithType() {
+		RuleParser ruleParser = new RuleParser("BP_Plan", "Name", null);
+		Expression expression = ruleParser.parse("schriftinhaltLookup(ENUM)");
+
+		assertThat(expression, is(instanceOf(SchriftinhaltLookup.class)));
+		assertThat(((SchriftinhaltLookup) expression).getPropertyType(), is(ENUM));
 	}
 
 }

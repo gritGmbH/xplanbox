@@ -20,14 +20,20 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
 import java.util.List;
+import java.util.stream.Stream;
 
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.STRING;
 import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 import static java.util.stream.Collectors.collectingAndThen;
@@ -43,33 +49,67 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 
 	private final Xpath schriftinhalt;
 
+	private AttributePropertyType propertyType = STRING;
+
 	public SchriftinhaltLookup() {
 		super();
 		this.schriftinhalt = new Xpath("xplan:schriftinhalt");
 	}
 
+	public SchriftinhaltLookup(String type) {
+		super();
+		if (type != null) {
+			propertyType = AttributePropertyType.valueOf(type);
+		}
+		this.schriftinhalt = new Xpath("xplan:schriftinhalt");
+	}
+
+	public AttributePropertyType getPropertyType() {
+		return propertyType;
+	}
+
 	@Override
 	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, Feature referencedFeature,
 			List<AttributeProperty> attributeProperty) {
+		XPlanVersion xPlanVersion = XPlanVersion.valueOfNamespace(feature.getName().getNamespaceURI());
 		TypedObjectNode originalSchriftinhalt = schriftinhalt.evaluate(feature, features);
 		if (originalSchriftinhalt != null)
 			return originalSchriftinhalt;
 		if (referencedFeature != null && attributeProperty != null) {
-			String stylesheetId = createSchriftinhalt(attributeProperty);
-			return toPrimitiveValue(stylesheetId);
+			String text = createSchriftinhalt(attributeProperty, xPlanVersion);
+			return toPrimitiveValue(text);
 		}
 		return null;
 	}
 
-	private String createSchriftinhalt(List<AttributeProperty> attributeProperties) {
+	private String createSchriftinhalt(List<AttributeProperty> attributeProperties, XPlanVersion xPlanVersion) {
+		Stream<String> schriftinhaltParts = filterProperties(attributeProperties, xPlanVersion);
+		return schriftinhaltParts.collect(collectingAndThen(joining(" "), schriftinhalt -> {
+			if (schriftinhalt.isEmpty())
+				return null;
+			return schriftinhalt;
+		}));
+	}
+
+	private Stream<String> filterProperties(List<AttributeProperty> attributeProperties, XPlanVersion xPlanVersion) {
+		if (ENUM.equals(propertyType))
+			return filterEnums(attributeProperties, xPlanVersion);
+		return filterStrings(attributeProperties);
+	}
+
+	private Stream<String> filterStrings(List<AttributeProperty> attributeProperties) {
 		return attributeProperties.stream()
 				.filter(attributeProperty -> STRING.equals(attributeProperty.getAttributePropertyType()))
-				.map(attributeProperty -> attributeProperty.getValue())
-				.collect(collectingAndThen(joining(" "), schriftinhalt -> {
-					if (schriftinhalt.isEmpty())
-						return null;
-					return schriftinhalt;
-				}));
+				.map(attributeProperty -> attributeProperty.getValue());
+	}
+
+	private Stream<String> filterEnums(List<AttributeProperty> attributeProperties, XPlanVersion xPlanVersion) {
+		return attributeProperties.stream()
+				.filter(attributeProperty -> ENUM.equals(attributeProperty.getAttributePropertyType()))
+				.map(attributeProperty -> {
+					XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(xPlanVersion);
+					return xPlanCodeLists.getCode(attributeProperty.getCodeListId(), attributeProperty.getValue());
+				});
 	}
 
 }

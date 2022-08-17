@@ -39,7 +39,8 @@ import java.util.stream.Collectors;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE_OR_ENUM;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.OTHER;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.STRING;
 import static org.hamcrest.CoreMatchers.is;
@@ -68,8 +69,9 @@ public class AttributePropertyParserTest {
 				artNodes);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("planArt"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(CODE_OR_ENUM));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(ENUM));
 		assertThat(attributeProperties.get(0).getValue(), is("1000"));
+		assertThat(attributeProperties.get(0).getCodeListId(), is("BP_PlanArt"));
 	}
 
 	@Test
@@ -81,7 +83,7 @@ public class AttributePropertyParserTest {
 				artNodes);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("sonstGebietsArt"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(CODE_OR_ENUM));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(CODE));
 		assertThat(attributeProperties.get(0).getValue(), is("4242"));
 	}
 

@@ -122,7 +122,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -139,7 +138,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -156,7 +154,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -173,7 +170,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -190,7 +186,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -207,7 +202,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -224,7 +218,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -241,7 +234,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -258,7 +250,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -275,7 +266,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -292,7 +282,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -309,7 +298,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -326,7 +314,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -343,7 +330,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -360,7 +346,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -377,7 +362,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -394,7 +378,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -411,7 +394,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -428,7 +410,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -445,7 +426,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -462,7 +442,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -479,7 +458,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -496,7 +474,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -513,7 +490,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -530,7 +506,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -547,7 +522,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -564,7 +538,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -581,7 +554,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -598,7 +570,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -615,7 +586,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -632,7 +602,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -649,7 +618,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -666,7 +634,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -683,7 +650,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -700,7 +666,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -717,7 +682,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -734,7 +698,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -751,7 +714,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -768,7 +730,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>
@@ -785,7 +746,6 @@
         </gml:LineString>
       </position>
       <stylesheetId>LinieDefault</stylesheetId>
-      <stylesheetIdWert>LinieDefault</stylesheetIdWert>
     </XP_LPO>
   </gml:featureMember>
   <gml:featureMember>

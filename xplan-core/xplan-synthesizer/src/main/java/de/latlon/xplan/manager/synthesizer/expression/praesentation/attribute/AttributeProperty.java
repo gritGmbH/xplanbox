@@ -33,24 +33,22 @@ public class AttributeProperty {
 
 	private String value;
 
-	/**
-	 * @param attribute name of the attribute, never <code>null</code>
-	 * @param attributePropertyType type of the attribute, never <code>null</code>
-	 */
-	public AttributeProperty(String attribute, AttributePropertyType attributePropertyType) {
-		this(attribute, attributePropertyType, null);
-	}
+	private String codeListId;
 
 	/**
 	 * @param
 	 * @param attribute name of the attribute, never <code>null</code>
-	 * @param value of the attribute, may be <code>null</code>
 	 * @param attributePropertyType type of the attribute, never <code>null</code>
+	 * @param value of the attribute, may be <code>null</code>
+	 * @param codeListId of the attribute if attributePropertyType is ENUM, may be
+	 * <code>null</code> if attributePropertyType is not ENUM
 	 */
-	public AttributeProperty(String attribute, AttributePropertyType attributePropertyType, String value) {
+	public AttributeProperty(String attribute, AttributePropertyType attributePropertyType, String value,
+			String codeListId) {
 		this.attribute = attribute;
 		this.value = value;
 		this.attributePropertyType = attributePropertyType;
+		this.codeListId = codeListId;
 	}
 
 	/**
@@ -72,6 +70,14 @@ public class AttributeProperty {
 	 */
 	public String getValue() {
 		return value;
+	}
+
+	/**
+	 * @return the codeListId, must not be <code>null</code> if the
+	 * {@link AttributePropertyType} is ENUM, otherwise <code>null</code>
+	 */
+	public String getCodeListId() {
+		return codeListId;
 	}
 
 }
