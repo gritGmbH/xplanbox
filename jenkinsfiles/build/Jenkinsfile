@@ -1,13 +1,18 @@
 pipeline {
   agent any
+  options {
+      disableConcurrentBuilds()
+  }
   tools {
     maven 'maven-3.8'
     jdk 'openjdk11'
   }
+  environment {
+      MAVEN_OPTS='-Djava.awt.headless=true -Xmx4096m'
+  }
   stages {
     stage('Preparation') {
       steps {
-        deleteDir()
         sh 'mvn --version'
       }
     }
@@ -23,5 +28,10 @@ pipeline {
         }
       }
     }
+  }
+  post {
+      always {
+          cleanWs notFailBuild: true
+      }
   }
 }
