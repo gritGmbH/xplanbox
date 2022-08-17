@@ -1,4 +1,4 @@
-/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 16.08.2022, 16:49:39 --- */
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 17.08.2022, 13:18:56 --- */
 CREATE SCHEMA xplansyn; 
 SET search_path TO xplansyn,public;
 CREATE TABLE xplansyn.xplan_bp_abgrabungsflaeche (
@@ -13840,6 +13840,7 @@ CREATE TABLE xplansyn.xplan_xp_ppo (
     xplan_dientzurdarstellungvon text,
     xplan_skalierung numeric,
     xplan_hat text,
+    xplan_schriftinhalt text,
     xplan_index text,
     xplan_drehwinkel text,
     xplan_drehwinkeluom text,

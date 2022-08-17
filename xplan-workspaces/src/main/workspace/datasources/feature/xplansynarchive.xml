@@ -1,4 +1,4 @@
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 16.08.2022, 16:49:39-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 17.08.2022, 13:18:56-->
 <SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
   <JDBCConnId>xplan</JDBCConnId>
   <StorageCRS srid="0" dim="2D">EPSG:25832</StorageCRS>
@@ -14096,6 +14096,7 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:skalierung" mapping="xplan_skalierung"/>
     <Primitive path="xplan:hat" mapping="xplan_hat"/>
+    <Primitive path="xplan:schriftinhalt" mapping="xplan_schriftinhalt"/>
     <Primitive path="xplan:index" mapping="xplan_index"/>
     <Primitive path="xplan:drehwinkel" mapping="xplan_drehwinkel"/>
     <Primitive path="xplan:drehwinkelUOM" mapping="xplan_drehwinkeluom"/>
