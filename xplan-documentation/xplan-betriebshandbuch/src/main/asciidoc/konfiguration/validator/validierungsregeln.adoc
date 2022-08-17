@@ -40,13 +40,14 @@ Informationen bereitstellt. Die Referenzen können in der Datei
 _<XPLANBOX_CONFIG>/managerConfiguration.properties_ konfiguriert werden.
 
 ----
-linkSemanticConformity_XPLAN_40=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_4.pdf
+linkSemanticConformity_XPLAN_40=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_4_0.pdf
 linkSemanticConformity_XPLAN_41=http://localhost:8080/external/documentation/Konformitaetsbedingungen-XPlanGML_4_1.pdf
-linkSemanticConformity_XPLAN_50=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5.pdf
+linkSemanticConformity_XPLAN_50=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5_0.pdf
 linkSemanticConformity_XPLAN_51=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5_1.pdf
 linkSemanticConformity_XPLAN_52=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5_2.pdf
 linkSemanticConformity_XPLAN_53=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5_3.pdf
 linkSemanticConformity_XPLAN_54=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_5_4.pdf
+linkSemanticConformity_XPLAN_60=http://localhost:8080/external/documentation/Konformitaetsbedingungen_XPlanGML_6_0.pdf
 ----
 
 IMPORTANT: Es müssen ggf. Zeilenumbrüche entfernt werden.
