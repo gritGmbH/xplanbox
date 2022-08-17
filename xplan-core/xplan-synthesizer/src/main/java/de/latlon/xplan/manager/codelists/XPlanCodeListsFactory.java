@@ -50,7 +50,7 @@ public class XPlanCodeListsFactory {
 
 	private static final String XPLAN_54_CODE_LISTS = "/codelists/XPlanGML_5_4_Enumerationen.xml";
 
-	private static final String XPLAN_60_CODE_LISTS = "/codelists/XPlanGML_6_0_Enumerationen.xml";
+	private static final String XPLAN_60_CODE_LISTS = "/codelists/XPlanGML_6_0_1_Enumerationen.xml";
 
 	private static final String XPLAN_SYN_CODE_LISTS = "/appschemas/XPlanGML_Syn/XPlanSyn_CodeLists.xml";
 
@@ -117,20 +117,6 @@ public class XPlanCodeListsFactory {
 	public static XPlanCodeLists getXPlanCodeLists(URL codeListUrl, GMLVersion gmlVersion)
 			throws IOException, XMLStreamException {
 		return xPlanCodeListParser.parseCodelists(codeListUrl, gmlVersion);
-	}
-
-	public static synchronized XPlanCodeLists getXPlanSyn() {
-		if (xplanSynCodeLists == null) {
-			try {
-				xplanSynCodeLists = xPlanCodeListParser
-						.parseCodelists(XPlanCodeLists.class.getResource(XPLAN_SYN_CODE_LISTS), GML_30);
-			}
-			catch (Exception e) {
-				String msg = "Internal error reading code lists file: " + e.getMessage();
-				throw new RuntimeException(msg);
-			}
-		}
-		return xplanSynCodeLists;
 	}
 
 	private static synchronized XPlanCodeLists getXPlan40() {

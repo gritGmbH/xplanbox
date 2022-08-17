@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 24.01.2022 09:22:05-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 16:06:31-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.1">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />
   <!--=========================================================================================-->
   <!--XP_Aenderungsarten-->
@@ -86,7 +86,7 @@
       <enumeration value="3000">
         <!--relativBezugshoehe-->
         <annotation>
-          <documentation>Höhenangabe relativ zu der auf Planebene festgelegten absoluten Bezugshöhe (Attribut &lt;i&gt;bezugshoehe &lt;/i&gt;von &lt;i&gt;XP_Plan&lt;/i&gt;).
+          <documentation>H&amp;#246;henangabe relativ zu der auf Planebene festgelegten absoluten Bezugsh&amp;#246;he (Attribut &lt;i&gt;bezugshoehe&lt;/i&gt; von&lt;i&gt; XP_Plan&lt;/i&gt;).
 </documentation>
         </annotation>
       </enumeration>
@@ -228,9 +228,21 @@
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="schluessel" minOccurs="0" type="string" />
-          <element name="text" minOccurs="0" type="string" />
-          <element name="refText" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType" />
+          <element name="schluessel" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Schlüssel zur Referenzierung des Abschnitts von einem Fachobjekt aus.</documentation>
+            </annotation>
+          </element>
+          <element name="text" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Inhalt eines Abschnitts der Begründung.</documentation>
+            </annotation>
+          </element>
+          <element name="refText" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf ein externes Dokument das den Begründungs-Abschnitt enthält.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_BegruendungAbschnitt" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -248,19 +260,50 @@
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="nummer" default="0" type="int" />
-          <element name="name" minOccurs="0" type="string" />
-          <element name="bedeutung" minOccurs="0" type="xplan:XP_BedeutungenBereich" />
-          <element name="detaillierteBedeutung" minOccurs="0" type="string" />
-          <element name="erstellungsMassstab" minOccurs="0" type="int" />
-          <element name="geltungsbereich" minOccurs="0" type="gml:GeometryPropertyType" />
-          <element name="refScan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_ExterneReferenzPropertyType" />
+          <element name="nummer" default="0" type="int">
+            <annotation>
+              <documentation>Nummer des Bereichs. Bereichsnummern beginnen standardmäßig mit 0.</documentation>
+            </annotation>
+          </element>
+          <element name="name" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Bezeichnung des Bereiches</documentation>
+            </annotation>
+          </element>
+          <element name="bedeutung" minOccurs="0" type="xplan:XP_BedeutungenBereich">
+            <annotation>
+              <documentation>Spezifikation der semantischen Bedeutung eines Bereiches.</documentation>
+            </annotation>
+          </element>
+          <element name="detaillierteBedeutung" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Detaillierte Erklärung der semantischen Bedeutung eines Bereiches, in Ergänzung des Attributs "&lt;i&gt;bedeutung&lt;/i&gt;".</documentation>
+            </annotation>
+          </element>
+          <element name="erstellungsMassstab" minOccurs="0" type="int">
+            <annotation>
+              <documentation>Der bei der Erstellung der Inhalte des Bereichs benutzte Kartenmaßstab. Wenn dieses Attribut nicht spezifiziert ist, gilt für den Bereich der auf Planebene (&lt;i&gt;XP_Plan&lt;/i&gt;) spezifizierte Maßstab.</documentation>
+            </annotation>
+          </element>
+          <element name="geltungsbereich" minOccurs="0" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Räumliche Abgrenzung des Bereiches. Wenn dieses Attribut nicht spezifiziert ist, gilt für den Bereich der auf Planebene (&lt;i&gt;XP_Plan&lt;/i&gt;) spezifizierte Geltungsbereich.</documentation>
+            </annotation>
+          </element>
+          <element name="refScan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf einen georeferenzierte Rasterplan, der die Inhalte des Bereichs wiedergibt. Das über &lt;i&gt;refScan &lt;/i&gt;referierte Rasterbild zeigt einen Plan, dessen Geltungsbereich durch den Geltungsbereich des Bereiches (Attribut &lt;i&gt;geltungsbereich &lt;/i&gt;von &lt;i&gt;XP_Bereich&lt;/i&gt;) oder, wenn &lt;i&gt;geltungsbereich &lt;/i&gt;nicht belegt ist, den Geltungsbereich des Gesamtplans (Attribut &lt;i&gt;raeumlicherGeltungsbereich &lt;/i&gt;von XP_Plan) definiert ist. 
+
+Im Standard sind nur georeferenzierte Rasterpläne zugelassen. Die über &lt;i&gt;refScan &lt;/i&gt;referierte externe Referenz muss deshalb entweder von der Art "&lt;i&gt;PlanMitGeoreferenz&lt;/i&gt;" sein oder die URL eines Geodienstes enthalten.</documentation>
+            </annotation>
+          </element>
           <element name="planinhalt" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_Objekt</gml:targetElement>
                 <gml:reversePropertyName>xplan:gehoertZuBereich</gml:reversePropertyName>
               </appinfo>
+              <documentation>Verweis auf einen Planinhalt des Bereichs</documentation>
             </annotation>
           </element>
           <element name="praesentationsobjekt" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
@@ -269,17 +312,43 @@
                 <gml:targetElement>xplan:XP_AbstraktesPraesentationsobjekt</gml:targetElement>
                 <gml:reversePropertyName>xplan:gehoertZuBereich</gml:reversePropertyName>
               </appinfo>
+              <documentation>Referenz auf ein Präsentationsbereich, das zum Bereich gehört.</documentation>
             </annotation>
           </element>
-          <element name="aendertPlan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanPropertyType" />
-          <element name="wurdeGeaendertVonPlan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanPropertyType" />
-          <element name="aendertPlanBereich" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanBereichPropertyType" />
-          <element name="wurdeGeaendertVonPlanBereich" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanBereichPropertyType" />
+          <element name="aendertPlan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanPropertyType">
+            <annotation>
+              <documentation>Verweis auf einen anderen Plan, der durch den vorliegenden Planbereich geändert wird.
+
+Dies Konzept befindet sich noch in der &lt;b&gt;Erprobung&lt;/b&gt;. Es wird in nachfolgenden Versionen des Standards voraussichtlich geändert oder erweitert.</documentation>
+            </annotation>
+          </element>
+          <element name="wurdeGeaendertVonPlan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanPropertyType">
+            <annotation>
+              <documentation>Verweis auf einen anderen Plan, durch den der vorliegende Planbereich geändert wurde.
+
+Dies Konzept befindet sich noch in der &lt;b&gt;Erprobung&lt;/b&gt;. Es wird in nachfolgenden Versionen des Standards voraussichtlich geändert oder erweitert.</documentation>
+            </annotation>
+          </element>
+          <element name="aendertPlanBereich" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanBereichPropertyType">
+            <annotation>
+              <documentation>Verweis auf einen Planbereich eines anderen Plans, der durch den vorliegenden Planbereich geändert wird.
+
+Dies Konzept befindet sich noch in der &lt;b&gt;Erprobung&lt;/b&gt;. Es wird in nachfolgenden Versionen des Standards voraussichtlich geändert oder erweitert.</documentation>
+            </annotation>
+          </element>
+          <element name="wurdeGeaendertVonPlanBereich" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanBereichPropertyType">
+            <annotation>
+              <documentation>Verweis auf einen Planbereich eines anderen Plan, durch den der vorliegende Planbereich geändert wurde.
+
+Dies Konzept befindet sich noch in der &lt;b&gt;Erprobung&lt;/b&gt;. Es wird in nachfolgenden Versionen des Standards voraussichtlich geändert oder erweitert.</documentation>
+            </annotation>
+          </element>
           <element name="texte" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_TextAbschnitt</gml:targetElement>
               </appinfo>
+              <documentation>Referenz auf einen textlich formulierten Planinhalt.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_Bereich" minOccurs="0" maxOccurs="unbounded" />
@@ -300,7 +369,11 @@
     <complexContent>
       <extension base="xplan:XP_GenerAttributType">
         <sequence>
-          <element name="wert" type="date" />
+          <element name="wert" type="date">
+            <annotation>
+              <documentation>Attributwert</documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -322,7 +395,11 @@
     <complexContent>
       <extension base="xplan:XP_GenerAttributType">
         <sequence>
-          <element name="wert" type="double" />
+          <element name="wert" type="double">
+            <annotation>
+              <documentation>Attributwert</documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -338,22 +415,45 @@
   <element name="XP_ExterneReferenz" type="xplan:XP_ExterneReferenzType" />
   <complexType name="XP_ExterneReferenzType">
     <annotation>
-      <documentation>Verweis auf ein extern gespeichertes Dokument oder einen extern gespeicherten, georeferenzierten Plan. Einer der beiden Attribute "&lt;i&gt;referenzName&lt;/i&gt;" bzw. "&lt;i&gt;referenzURL&lt;/i&gt;" muss belegt sein.</documentation>
+      <documentation>Verweis auf ein extern gespeichertes Dokument oder einen extern gespeicherten, georeferenzierten Plan.</documentation>
     </annotation>
     <sequence>
-      <element name="georefURL" minOccurs="0" type="anyURI" />
-      <element name="art" minOccurs="0" type="xplan:XP_ExterneReferenzArt" />
-      <element name="referenzName" type="string" />
-      <element name="referenzURL" type="anyURI" />
-      <element name="referenzMimeType" minOccurs="0" type="gml:CodeType">
+      <element name="georefURL" minOccurs="0" type="anyURI">
         <annotation>
-          <appinfo>
-            <referenzierteCodelist>xplan:XP_MimeTypes</referenzierteCodelist>
-          </appinfo>
+          <documentation>Referenz auf eine Georeferenzierungs-Datei. Das Attribut ist nur relevant bei Verweisen auf georeferenzierte Rasterbilder. Wenn der XPlanGML Datensatz und das referierte Dokument in einem hierarchischen Ordnersystem gespeichert sind, kann die URI auch einen &lt;b&gt;relativen Pfad&lt;/b&gt; vom XPlanGML-Datensatz zum Dokument enthalten.</documentation>
         </annotation>
       </element>
-      <element name="beschreibung" minOccurs="0" type="string" />
-      <element name="datum" minOccurs="0" type="date" />
+      <element name="art" minOccurs="0" type="xplan:XP_ExterneReferenzArt">
+        <annotation>
+          <documentation>Typisierung der referierten Dokumente: Beliebiges Dokument oder georeferenzierter Plan.</documentation>
+        </annotation>
+      </element>
+      <element name="referenzName" type="string">
+        <annotation>
+          <documentation>Name bzw. Titel des referierten Dokuments. Der Standardname ist "Unbekannt".</documentation>
+        </annotation>
+      </element>
+      <element name="referenzURL" type="anyURI">
+        <annotation>
+          <documentation>URI des referierten Dokuments, über den auf das Dokument lesend zugegriffen werden kann. Wenn der XPlanGML Datensatz und das referierte Dokument in einem hierarchischen Ordnersystem gespeichert sind, kann die URI auch einen &lt;b&gt;relativen Pfad&lt;/b&gt; vom XPlanGML-Datensatz zum Dokument enthalten. 
+Standardmäßig wird der Wert des Attributes &lt;i&gt;referenzName &lt;/i&gt;verwendet.</documentation>
+        </annotation>
+      </element>
+      <element name="referenzMimeType" minOccurs="0" type="gml:CodeType">
+        <annotation>
+          <documentation>Mime-Type des referierten Dokuments</documentation>
+        </annotation>
+      </element>
+      <element name="beschreibung" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Beschreibung des referierten Dokuments</documentation>
+        </annotation>
+      </element>
+      <element name="datum" minOccurs="0" type="date">
+        <annotation>
+          <documentation>Datum des referierten Dokuments</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfXP_ExterneReferenz" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -393,7 +493,11 @@
 </documentation>
     </annotation>
     <sequence>
-      <element name="name" type="string" />
+      <element name="name" type="string">
+        <annotation>
+          <documentation>Name des Generischen Attributs</documentation>
+        </annotation>
+      </element>
     </sequence>
   </complexType>
   <complexType name="XP_GenerAttributPropertyType">
@@ -410,9 +514,21 @@
       <documentation>Angeben zur Spezifikation der gesetzlichen Grundlage eines Planinhalts</documentation>
     </annotation>
     <sequence>
-      <element name="name" minOccurs="0" type="string" />
-      <element name="datum" minOccurs="0" type="date" />
-      <element name="detail" minOccurs="0" type="string" />
+      <element name="name" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Name / Titel des Gesetzes</documentation>
+        </annotation>
+      </element>
+      <element name="datum" minOccurs="0" type="date">
+        <annotation>
+          <documentation>Bekanntmachungs-Datum des Gesetzes</documentation>
+        </annotation>
+      </element>
+      <element name="detail" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Detaillierte Spezifikation der gesetzlichen Grundlage mit Angabe einer Paragraphennummer</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfXP_GesetzlicheGrundlage" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -431,15 +547,52 @@
       <documentation>Spezifikation einer Angabe zur vertikalen Höhe oder zu einem Bereich vertikaler Höhen. Es ist möglich, spezifische Höhenangaben (z.B. die First- oder Traufhöhe eines Gebäudes) vorzugeben oder einzuschränken, oder den Gültigkeitsbereich eines Planinhalts auf eine bestimmte Höhe (&lt;i&gt;hZwingend&lt;/i&gt;) bzw. einen Höhenbereich (&lt;i&gt;hMin &lt;/i&gt;- &lt;i&gt;hMax&lt;/i&gt;) zu beschränken, was vor allem bei der höhenabhängigen Festsetzung einer überbaubaren Grundstücksfläche (&lt;i&gt;BP_UeberbaubareGrundstuecksflaeche&lt;/i&gt;), einer Baulinie (&lt;i&gt;BP_Baulinie&lt;/i&gt;) oder einer Baugrenze (&lt;i&gt;BP_Baugrenze&lt;/i&gt;) relevant ist. In diesem Fall bleiben die Attribute &lt;i&gt;bezugspunkt und abweichenderBezugspunkt &lt;/i&gt;unbelegt.</documentation>
     </annotation>
     <sequence>
-      <element name="abweichenderHoehenbezug" minOccurs="0" type="string" />
-      <element name="hoehenbezug" minOccurs="0" type="xplan:XP_ArtHoehenbezug" />
-      <element name="abweichenderBezugspunkt" minOccurs="0" type="string" />
-      <element name="bezugspunkt" minOccurs="0" type="xplan:XP_ArtHoehenbezugspunkt" />
-      <element name="bezugspunktText" minOccurs="0" type="string" />
-      <element name="hMin" minOccurs="0" type="gml:LengthType" />
-      <element name="hMax" minOccurs="0" type="gml:LengthType" />
-      <element name="hZwingend" minOccurs="0" type="gml:LengthType" />
-      <element name="h" minOccurs="0" type="gml:LengthType" />
+      <element name="abweichenderHoehenbezug" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textuelle Spezifikation des Höhenbezuges wenn das Attribut "&lt;i&gt;hoehenbezug" &lt;/i&gt;nicht belegt ist.</documentation>
+        </annotation>
+      </element>
+      <element name="hoehenbezug" minOccurs="0" type="xplan:XP_ArtHoehenbezug">
+        <annotation>
+          <documentation>Art des Höhenbezuges.
+</documentation>
+        </annotation>
+      </element>
+      <element name="abweichenderBezugspunkt" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textuelle Spezifikation eines Höhenbezugspunktes wenn das Attribut "&lt;i&gt;bezugspunkt" &lt;/i&gt;nicht belegt ist.</documentation>
+        </annotation>
+      </element>
+      <element name="bezugspunkt" minOccurs="0" type="xplan:XP_ArtHoehenbezugspunkt">
+        <annotation>
+          <documentation>Bestimmung des Bezugspunktes der Höhenangaben. Wenn weder dies Attribut noch das Attribut "&lt;i&gt;abweichenderBezugspunkt" &lt;/i&gt;belegt sind, soll die Höhenangabe als vertikale Einschränkung des zugeordneten Planinhalts interpretiert werden.</documentation>
+        </annotation>
+      </element>
+      <element name="bezugspunktText" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Das Attribut spezifiziert  oder ergänzt den Bezug des Höhenbezugspunktes (insbesondere der Traufhöhe), z. B. als "bergseitig, "talseitig", "straßenseitig" oder "gartenseitig". </documentation>
+        </annotation>
+      </element>
+      <element name="hMin" minOccurs="0" type="gml:LengthType">
+        <annotation>
+          <documentation>Minimal zulässige Höhe des Bezugspunktes (&lt;i&gt;bezugspunkt&lt;/i&gt;) bei einer Bereichsangabe, bzw. untere Grenze des vertikalen Gültigkeitsbereiches eines Planinhalts, wenn "&lt;i&gt;bezugspunkt" &lt;/i&gt;nicht belegt ist. In diesem Fall gilt: Ist  "&lt;i&gt;hMax" &lt;/i&gt;nicht belegt, gilt die Festlegung ab der Höhe "&lt;i&gt;hMin"&lt;/i&gt;.</documentation>
+        </annotation>
+      </element>
+      <element name="hMax" minOccurs="0" type="gml:LengthType">
+        <annotation>
+          <documentation>Maximal zulässige Höhe des Bezugspunktes (&lt;i&gt;bezugspunkt&lt;/i&gt;) bei einer Bereichsangabe, bzw. obere Grenze des vertikalen Gültigkeitsbereiches eines Planinhalts, wenn "&lt;i&gt;bezugspunkt" &lt;/i&gt;nicht belegt ist.  In diesem Fall gilt: Ist  "&lt;i&gt;hMin" &lt;/i&gt;nicht belegt, gilt die Festlegung bis zur Höhe "&lt;i&gt;hMax"&lt;/i&gt;.</documentation>
+        </annotation>
+      </element>
+      <element name="hZwingend" minOccurs="0" type="gml:LengthType">
+        <annotation>
+          <documentation>Zwingend einzuhaltende Höhe des Bezugspunktes (&lt;i&gt;bezugspunkt&lt;/i&gt;) , bzw. Beschränkung der vertikalen Gültigkeitsbereiches eines Planinhalts auf eine bestimmte Höhe.</documentation>
+        </annotation>
+      </element>
+      <element name="h" minOccurs="0" type="gml:LengthType">
+        <annotation>
+          <documentation>Maximal zulässige Höhe des Bezugspunktes (&lt;i&gt;bezugspunkt&lt;/i&gt;) .</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfXP_Hoehenangabe" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -461,7 +614,11 @@
     <complexContent>
       <extension base="xplan:XP_GenerAttributType">
         <sequence>
-          <element name="wert" type="int" />
+          <element name="wert" type="int">
+            <annotation>
+              <documentation>Attributwert</documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -482,22 +639,64 @@
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="uuid" minOccurs="0" type="string" />
-          <element name="text" minOccurs="0" type="string" />
-          <element name="rechtsstand" minOccurs="0" type="xplan:XP_Rechtsstand" />
-          <element name="gesetzlicheGrundlage" minOccurs="0" type="xplan:XP_GesetzlicheGrundlagePropertyType" />
-          <element name="gliederung1" minOccurs="0" type="string" />
-          <element name="gliederung2" minOccurs="0" type="string" />
-          <element name="ebene" minOccurs="0" default="0" type="int" />
-          <element name="hatGenerAttribut" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GenerAttributPropertyType" />
-          <element name="hoehenangabe" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_HoehenangabePropertyType" />
-          <element name="externeReferenz" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_SpezExterneReferenzPropertyType" />
+          <element name="uuid" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Eindeutiger Identifier des Objektes.</documentation>
+            </annotation>
+          </element>
+          <element name="text" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Beliebiger Text</documentation>
+            </annotation>
+          </element>
+          <element name="rechtsstand" minOccurs="0" type="xplan:XP_Rechtsstand">
+            <annotation>
+              <documentation>Angabe, ob der Planinhalt bereits besteht, geplant ist, oder zukünftig wegfallen soll. 
+Das Attribut sollte nur verwendet werden, wenn es für die planerische Aussage notwendig ist. Eine generelle Belegung für jedes Objekt ist nicht hilfreich.</documentation>
+            </annotation>
+          </element>
+          <element name="gesetzlicheGrundlage" minOccurs="0" type="xplan:XP_GesetzlicheGrundlagePropertyType">
+            <annotation>
+              <documentation>Angabe der gesetzlichen Grundlage des Planinhalts.</documentation>
+            </annotation>
+          </element>
+          <element name="gliederung1" minOccurs="0" type="string">
+            <annotation>
+              <documentation> Die „gliederung1“ beinhaltet bei einer Nummerierung der Baugebietsteilfläche oder Baufläche die Gliederungszahl, unter Umständen zusätzlich ein Kürzel für eingeschränkte Nutzungen, z.B. gliederung1=2 bei WA 2, gliederung1=-E 3 bei GE-E 3; bei einer überlagernde Festlegung beinhaltet „gliederung1“ ein Kürzel und eine Gliederungszahl, z.B. gliederung1 = AP 1 bei AP 1.</documentation>
+            </annotation>
+          </element>
+          <element name="gliederung2" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Die `gliederung2` kommt bei weitergehenden, besonderen Festsetzungen für Texteinschriebe mit Zahlen-, Buchstabencodes oder Paragrafenbezügen im Plan zum Einsatz. Beispiele: (A), (A, B, G) oder Zone 1.</documentation>
+            </annotation>
+          </element>
+          <element name="ebene" minOccurs="0" default="0" type="int">
+            <annotation>
+              <documentation>Zuordnung des Objektes zu einer vertikalen Ebene. Der Standard-Ebene 0 sind Objekte auf der Erdoberfl&amp;#228;che zugeordnet. Nur unter diesen Objekten wird der Fl&amp;#228;chenschluss hergestellt. Bei Plan-Objekten, die im wesentlichen unterhalb der Erdoberfl&amp;#228;che liegen  (z.B. Tunnel), ist ebene &amp;lt; 0. Bei  Objekten, die im wesentlichen oberhalb der Erdoberfl&amp;#228;che liegen (z.B. Festsetzungen auf Br&amp;#252;cken), ist ebene &amp;gt; 0. Zwischen Objekten auf Ebene 0 und einer Ebene &amp;lt;&amp;gt; 0 muss nicht unbedingt eine (vollst&amp;#228;ndige) physikalische Trennung bestehen.</documentation>
+            </annotation>
+          </element>
+          <element name="hatGenerAttribut" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GenerAttributPropertyType">
+            <annotation>
+              <documentation>Erweiterung des definierten Attributsatzes eines Objektes durch generische Attribute.</documentation>
+            </annotation>
+          </element>
+          <element name="hoehenangabe" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_HoehenangabePropertyType">
+            <annotation>
+              <documentation>Angaben zur vertikalen Lage und Höhe eines Planinhalts.</documentation>
+            </annotation>
+          </element>
+          <element name="externeReferenz" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_SpezExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf ein Dokument oder einen georeferenzierten Rasterplan.</documentation>
+            </annotation>
+          </element>
           <element name="gehoertZuBereich" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_Bereich</gml:targetElement>
                 <gml:reversePropertyName>xplan:planinhalt</gml:reversePropertyName>
               </appinfo>
+              <documentation>Verweis auf den Bereich, zu dem der Planinhalt gehört. Diese Relation sollte immer belegt werden. In Version 6.0 wird sie in eine Pflicht-Relation umgewandelt werden.</documentation>
             </annotation>
           </element>
           <element name="wirdDargestelltDurch" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
@@ -506,6 +705,7 @@
                 <gml:targetElement>xplan:XP_AbstraktesPraesentationsobjekt</gml:targetElement>
                 <gml:reversePropertyName>xplan:dientZurDarstellungVon</gml:reversePropertyName>
               </appinfo>
+              <documentation>Verweis auf ein Präsentationsobjekt, das die Plandarstellung des Fachobjektes unterstützen soll.</documentation>
             </annotation>
           </element>
           <element name="refBegruendungInhalt" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
@@ -513,6 +713,7 @@
               <appinfo>
                 <gml:targetElement>xplan:XP_BegruendungAbschnitt</gml:targetElement>
               </appinfo>
+              <documentation>Referenz eines raumbezogenen Fachobjektes auf Teile der Begründung.</documentation>
             </annotation>
           </element>
           <element name="startBedingung" minOccurs="0" type="xplan:XP_WirksamkeitBedingungPropertyType">
@@ -520,6 +721,7 @@
               <appinfo>
                 <gml:targetElement>xplan:XP_WirksamkeitBedingung</gml:targetElement>
               </appinfo>
+              <documentation>Notwendige Bedingung für die Wirksamkeit eines Planinhalts.</documentation>
             </annotation>
           </element>
           <element name="endeBedingung" minOccurs="0" type="xplan:XP_WirksamkeitBedingungPropertyType">
@@ -527,15 +729,25 @@
               <appinfo>
                 <gml:targetElement>xplan:XP_WirksamkeitBedingung</gml:targetElement>
               </appinfo>
+              <documentation>Notwendige Bedingung für das Ende der Wirksamkeit eines Planinhalts.</documentation>
             </annotation>
           </element>
-          <element name="aufschrift" minOccurs="0" type="string" />
-          <element name="rechtscharakter" type="xplan:XP_Rechtscharakter" />
+          <element name="aufschrift" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Spezifischer Text zur Beschriftung von Planinhalten</documentation>
+            </annotation>
+          </element>
+          <element name="rechtscharakter" type="xplan:XP_Rechtscharakter">
+            <annotation>
+              <documentation>Rechtliche Charakterisierung eines Planinhalts</documentation>
+            </annotation>
+          </element>
           <element name="refTextInhalt" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_TextAbschnitt</gml:targetElement>
               </appinfo>
+              <documentation>Referenz eines raumbezogenen Fachobjektes auf textuell formulierte Planinhalte.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_Objekt" minOccurs="0" maxOccurs="unbounded" />
@@ -555,31 +767,116 @@
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="name" type="string" />
-          <element name="nummer" minOccurs="0" type="string" />
-          <element name="internalId" minOccurs="0" type="string" />
-          <element name="beschreibung" minOccurs="0" type="string" />
-          <element name="kommentar" minOccurs="0" type="string" />
-          <element name="technHerstellDatum" minOccurs="0" type="date" />
-          <element name="genehmigungsDatum" minOccurs="0" type="date" />
-          <element name="untergangsDatum" minOccurs="0" type="date" />
-          <element name="aendertPlan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanPropertyType" />
-          <element name="wurdeGeaendertVonPlan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanPropertyType" />
-          <element name="aendertPlanBereich" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanBereichPropertyType" />
-          <element name="wurdeGeaendertVonPlanBereich" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanBereichPropertyType" />
-          <element name="erstellungsMassstab" minOccurs="0" type="int" />
-          <element name="bezugshoehe" minOccurs="0" type="gml:LengthType" />
-          <element name="hoehenbezug" minOccurs="0" type="string" />
-          <element name="technischerPlanersteller" minOccurs="0" type="string" />
-          <element name="raeumlicherGeltungsbereich" type="gml:GeometryPropertyType" />
-          <element name="verfahrensMerkmale" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerfahrensMerkmalPropertyType" />
-          <element name="hatGenerAttribut" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GenerAttributPropertyType" />
-          <element name="externeReferenz" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_SpezExterneReferenzPropertyType" />
+          <element name="name" type="string">
+            <annotation>
+              <documentation>Name des Plans.</documentation>
+            </annotation>
+          </element>
+          <element name="nummer" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Nummer des Plans.</documentation>
+            </annotation>
+          </element>
+          <element name="internalId" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Interner Identifikator des Plans.</documentation>
+            </annotation>
+          </element>
+          <element name="beschreibung" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Kommentierende Beschreibung des Plans.</documentation>
+            </annotation>
+          </element>
+          <element name="kommentar" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Beliebiger Kommentar zum Plan.</documentation>
+            </annotation>
+          </element>
+          <element name="technHerstellDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum, an dem der Plan technisch ausgefertigt wurde.</documentation>
+            </annotation>
+          </element>
+          <element name="genehmigungsDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum der Genehmigung des Plans</documentation>
+            </annotation>
+          </element>
+          <element name="untergangsDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum, an dem der Plan (z.B. durch Ratsbeschluss oder Gerichtsurteil) aufgehoben oder für nichtig erklärt wurde.</documentation>
+            </annotation>
+          </element>
+          <element name="aendertPlan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanPropertyType">
+            <annotation>
+              <documentation>Verweis auf einen anderen Plan, der durch den vorliegenden Plan geändert wird.</documentation>
+            </annotation>
+          </element>
+          <element name="wurdeGeaendertVonPlan" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanPropertyType">
+            <annotation>
+              <documentation>Verweis auf einen anderen Plan, durch den der vorliegende Plan geändert wurde.</documentation>
+            </annotation>
+          </element>
+          <element name="aendertPlanBereich" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanBereichPropertyType">
+            <annotation>
+              <documentation>Verweis auf einen Planbereich eines anderen Plans, der durch den vorliegenden Plan geändert wird.
+
+Dies Konzept befindet sich noch in der &lt;b&gt;Erprobung&lt;/b&gt;. Es wird in nachfolgenden Versionen des Standards voraussichtlich geändert oder erweitert.</documentation>
+            </annotation>
+          </element>
+          <element name="wurdeGeaendertVonPlanBereich" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerbundenerPlanBereichPropertyType">
+            <annotation>
+              <documentation>Verweis auf einen Planbereich eines anderen Plan, durch den der vorliegende Plan geändert wurde.
+
+Dies Konzept befindet sich noch in der &lt;b&gt;Erprobung&lt;/b&gt;. Es wird in nachfolgenden Versionen des Standards voraussichtlich geändert oder erweitert.</documentation>
+            </annotation>
+          </element>
+          <element name="erstellungsMassstab" minOccurs="0" type="int">
+            <annotation>
+              <documentation>Der bei der Erstellung des Plans benutzte Kartenmaßstab.</documentation>
+            </annotation>
+          </element>
+          <element name="bezugshoehe" minOccurs="0" type="gml:LengthType">
+            <annotation>
+              <documentation>Standard Bezugshöhe (absolut NhN) für relative Höhenangaben von Planinhalten.</documentation>
+            </annotation>
+          </element>
+          <element name="hoehenbezug" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Bei Höhenangaben im Plan standardmäßig verwendeter Höhenbezug (z.B. Höhe über NN).</documentation>
+            </annotation>
+          </element>
+          <element name="technischerPlanersteller" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Bezeichnung der Institution oder Firma, die den Plan technisch erstellt hat.</documentation>
+            </annotation>
+          </element>
+          <element name="raeumlicherGeltungsbereich" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Grenze des räumlichen Geltungsbereiches des Plans.</documentation>
+            </annotation>
+          </element>
+          <element name="verfahrensMerkmale" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_VerfahrensMerkmalPropertyType">
+            <annotation>
+              <documentation>Vermerke der am Planungsverfahren beteiligten Akteure.</documentation>
+            </annotation>
+          </element>
+          <element name="hatGenerAttribut" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GenerAttributPropertyType">
+            <annotation>
+              <documentation>Erweiterung der vorgegebenen Attribute durch generische Attribute.</documentation>
+            </annotation>
+          </element>
+          <element name="externeReferenz" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_SpezExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf ein Dokument, einen Datenbankeintrag oder einen georeferenzierten Rasterplan. </documentation>
+            </annotation>
+          </element>
           <element name="texte" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_TextAbschnitt</gml:targetElement>
               </appinfo>
+              <documentation>Referenz auf einen textlich formulierten Planinhalt. </documentation>
             </annotation>
           </element>
           <element name="begruendungsTexte" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
@@ -587,6 +884,7 @@
               <appinfo>
                 <gml:targetElement>xplan:XP_BegruendungAbschnitt</gml:targetElement>
               </appinfo>
+              <documentation>Referenz auf einen Abschnitt der Begründung. Diese Relation darf nicht verwendet werden, wenn die Begründung als Gesamt-Dokument referiert werden soll. In diesem Fall sollte über das Attribut externeReferenz eine Objekt XP_SpezExterneReferent mit typ=1010 (Begruendung) verwendet werden.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_Plan" minOccurs="0" maxOccurs="unbounded" />
@@ -604,8 +902,16 @@
       <documentation>Spezifikation der Institution, die für den Plan verantwortlich ist.</documentation>
     </annotation>
     <sequence>
-      <element name="name" type="string" />
-      <element name="kennziffer" minOccurs="0" type="string" />
+      <element name="name" type="string">
+        <annotation>
+          <documentation>Name des Plangebers.</documentation>
+        </annotation>
+      </element>
+      <element name="kennziffer" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Kennziffer des Plangebers.</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfXP_Plangeber" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -785,7 +1091,11 @@
     <complexContent>
       <extension base="xplan:XP_ExterneReferenzType">
         <sequence>
-          <element name="typ" type="xplan:XP_ExterneReferenzTyp" />
+          <element name="typ" type="xplan:XP_ExterneReferenzTyp">
+            <annotation>
+              <documentation>Typ / Inhalt des referierten Dokuments oder Rasterplans.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_SpezExterneReferenz" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -809,7 +1119,11 @@
     <complexContent>
       <extension base="xplan:XP_GenerAttributType">
         <sequence>
-          <element name="wert" type="string" />
+          <element name="wert" type="string">
+            <annotation>
+              <documentation>Attributwert</documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -830,11 +1144,31 @@
     <complexContent>
       <extension base="gml:AbstractFeatureType">
         <sequence>
-          <element name="schluessel" minOccurs="0" type="string" />
-          <element name="gesetzlicheGrundlage" minOccurs="0" type="string" />
-          <element name="text" minOccurs="0" type="string" />
-          <element name="refText" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType" />
-          <element name="rechtscharakter" type="xplan:XP_Rechtscharakter" />
+          <element name="schluessel" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Schlüssel zur Referenzierung des Abschnitts.</documentation>
+            </annotation>
+          </element>
+          <element name="gesetzlicheGrundlage" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Gesetzliche Grundlage des Text-Abschnittes</documentation>
+            </annotation>
+          </element>
+          <element name="text" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Inhalt eines Abschnitts der textlichen Planinhalte</documentation>
+            </annotation>
+          </element>
+          <element name="refText" minOccurs="0" type="xplan:XP_ExterneReferenzPropertyType">
+            <annotation>
+              <documentation>Referenz auf ein externes Dokument das den zugeh&amp;#246;rigen Textabschnitt enth&amp;#228;lt.</documentation>
+            </annotation>
+          </element>
+          <element name="rechtscharakter" type="xplan:XP_Rechtscharakter">
+            <annotation>
+              <documentation>Rechtscharakter des textlich formulierten Planinhalts</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_TextAbschnitt" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -853,7 +1187,11 @@
     <complexContent>
       <extension base="xplan:XP_GenerAttributType">
         <sequence>
-          <element name="wert" type="anyURI" />
+          <element name="wert" type="anyURI">
+            <annotation>
+              <documentation>Attributwert</documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -872,15 +1210,32 @@
       <documentation>Spezifikation eines anderen Plans, der mit dem Ausgangsplan oder Planbereich verbunden ist und diesen ändert bzw. von ihm geändert wird.</documentation>
     </annotation>
     <sequence>
-      <element name="planName" minOccurs="0" type="string" />
-      <element name="aenderungsArt" type="xplan:XP_Aenderungsarten" />
-      <element name="nummer" minOccurs="0" type="string" />
-      <element name="aenderungsdatum" minOccurs="0" type="date" />
+      <element name="planName" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Name (Attribut "&lt;i&gt;name&lt;/i&gt;" von &lt;i&gt;XP_Plan&lt;/i&gt;) des verbundenen Plans.</documentation>
+        </annotation>
+      </element>
+      <element name="aenderungsArt" type="xplan:XP_Aenderungsarten">
+        <annotation>
+          <documentation>Spezifikation der Art der Änderungsbeziehung zwischen den verbundenen Plan- bzw. Planbereichs-Objekten.</documentation>
+        </annotation>
+      </element>
+      <element name="nummer" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Nummer (Attribut "&lt;i&gt;nummer" &lt;/i&gt;von &lt;i&gt;XP_Plan&lt;/i&gt;) des verbundenen Plans</documentation>
+        </annotation>
+      </element>
+      <element name="aenderungsdatum" minOccurs="0" type="date">
+        <annotation>
+          <documentation>Datum, an dem die Änderung in Kraft getreten ist. Das Attribut muss mit dem Datum des Inkrafttretens des ändernden Plans konsistent sein.</documentation>
+        </annotation>
+      </element>
       <element name="verbundenerPlan" minOccurs="0" type="gml:ReferenceType">
         <annotation>
           <appinfo>
             <gml:targetElement>xplan:XP_Plan</gml:targetElement>
           </appinfo>
+          <documentation>Referenz auf einen verbundenen Plan, der den aktuellen Plan oder Planbereich ändert oder von ihm geändert wird.</documentation>
         </annotation>
       </element>
       <element ref="xplan:_GenericApplicationPropertyOfXP_VerbundenerPlan" minOccurs="0" maxOccurs="unbounded" />
@@ -903,12 +1258,17 @@
     <complexContent>
       <extension base="xplan:XP_VerbundenerPlanType">
         <sequence>
-          <element name="bereichNummer" minOccurs="0" type="int" />
+          <element name="bereichNummer" minOccurs="0" type="int">
+            <annotation>
+              <documentation>Nummer (Attribut &lt;i&gt;nummer &lt;/i&gt;von &lt;i&gt;XP_Bereich&lt;/i&gt;) des verbundenen Planbereiches.</documentation>
+            </annotation>
+          </element>
           <element name="verbundenerPlanBereich" minOccurs="0" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_Bereich</gml:targetElement>
               </appinfo>
+              <documentation>Referenz auf einen verbundenen Planbereich, der den aktuellen Plan oder Planbereich ändert oder von ihm geändert wird.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_VerbundenerPlanBereich" minOccurs="0" maxOccurs="unbounded" />
@@ -932,10 +1292,26 @@
 </documentation>
     </annotation>
     <sequence>
-      <element name="vermerk" type="string" />
-      <element name="datum" type="date" />
-      <element name="signatur" type="string" />
-      <element name="signiert" type="boolean" />
+      <element name="vermerk" type="string">
+        <annotation>
+          <documentation>Inhalt des Vermerks.</documentation>
+        </annotation>
+      </element>
+      <element name="datum" type="date">
+        <annotation>
+          <documentation>Datum des Vermerks</documentation>
+        </annotation>
+      </element>
+      <element name="signatur" type="string">
+        <annotation>
+          <documentation>Unterschrift</documentation>
+        </annotation>
+      </element>
+      <element name="signiert" type="boolean">
+        <annotation>
+          <documentation>Angabe, ob die Unterschrift erfolgt ist.</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfXP_VerfahrensMerkmal" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -954,9 +1330,21 @@
       <documentation>Spezifikation von Bedingungen für die Wirksamkeit oder Unwirksamkeit einer Festsetzung.</documentation>
     </annotation>
     <sequence>
-      <element name="bedingung" minOccurs="0" type="string" />
-      <element name="datumAbsolut" minOccurs="0" type="date" />
-      <element name="datumRelativ" minOccurs="0" type="duration" />
+      <element name="bedingung" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Textlich formulierte Bedingung für die Wirksamkeit oder Unwirksamkeit einer Festsetzung.</documentation>
+        </annotation>
+      </element>
+      <element name="datumAbsolut" minOccurs="0" type="date">
+        <annotation>
+          <documentation>Datum an dem eine Festsetzung wirksam oder unwirksam wird.</documentation>
+        </annotation>
+      </element>
+      <element name="datumRelativ" minOccurs="0" type="duration">
+        <annotation>
+          <documentation>Zeitspanne, nach der eine Festsetzung wirksam oder unwirksam wird, wenn die im Attribut bedingung spezifizierte Bedingung erfüllt ist.</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfXP_WirksamkeitBedingung" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -3277,19 +3665,28 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
         <sequence>
           <element name="stylesheetId" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:XP_StylesheetListe</referenzierteCodelist>
-              </appinfo>
+              <documentation>Das Attribut "&lt;i&gt;stylesheetId&lt;/i&gt;" zeigt auf ein extern definiertes Stylesheet, das Parameter zur Visualisierung von Fl&amp;#228;chen, Linien, Punkten und Texten enth&amp;#228;lt. Jedem Stylesheet ist weiterhin eine Darstellungspriorit&amp;#228;t zugeordnet. Au&amp;#223;erdem kann ein Stylesheet logische Elemente enthalten,  die die Visualisierung abh&amp;#228;ngig machen vom Wert des durch "&lt;i&gt;art&lt;/i&gt;" definierten Attributes des Fachobjektes, das durch die Relation "&lt;i&gt;dientZurDarstellungVon&lt;/i&gt;" referiert wird.</documentation>
             </annotation>
           </element>
-          <element name="darstellungsprioritaet" minOccurs="0" type="int" />
-          <element name="art" minOccurs="0" maxOccurs="unbounded" type="string" />
+          <element name="darstellungsprioritaet" minOccurs="0" type="int">
+            <annotation>
+              <documentation>Enthält die Darstellungspriorität für Elemente der Signatur. Eine vom Standardwert abweichende Priorität wird über dieses Attribut definiert und nicht über eine neue Signatur.</documentation>
+            </annotation>
+          </element>
+          <element name="art" minOccurs="0" maxOccurs="unbounded" type="string">
+            <annotation>
+              <documentation>"art" gibt die Namen der Attribute an, die mit dem Präsentationsobjekt dargestellt werden sollen. Dabei ist beim Verweis auf komplexe Attribute des Fachobjekts die Xpath-Syntax zu verwenden. Wenn das zugehörige Attribut oder Sub-Attribut des Fachobjekts mehrfach belegt ist, muss die []-Syntax zur Spezifikation des zugehörigen Instanz-Attributs benutzt werden. 
+
+Das Attribut 'art' darf nur bei "Freien Präsentationsobjekten" (dientZurDarstellungVon = NULL) nicht belegt sein.</documentation>
+            </annotation>
+          </element>
           <element name="gehoertZuBereich" minOccurs="0" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_Bereich</gml:targetElement>
                 <gml:reversePropertyName>xplan:praesentationsobjekt</gml:reversePropertyName>
               </appinfo>
+              <documentation>Referenz auf den Bereich, zu dem das Präsentationsobjekt gehört.</documentation>
             </annotation>
           </element>
           <element name="dientZurDarstellungVon" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
@@ -3298,6 +3695,7 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
                 <gml:targetElement>xplan:XP_Objekt</gml:targetElement>
                 <gml:reversePropertyName>xplan:wirdDargestelltDurch</gml:reversePropertyName>
               </appinfo>
+              <documentation>Verweis auf das Fachobjekt, deren Plandarstellung durch das Präsentationsobjekt unterstützt werden soll.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_AbstraktesPraesentationsobjekt" minOccurs="0" maxOccurs="unbounded" />
@@ -3318,7 +3716,11 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
     <complexContent>
       <extension base="xplan:XP_AbstraktesPraesentationsobjektType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Zur Plandarstellung benutzte Flächengeometrie.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_FPO" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3363,7 +3765,11 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
     <complexContent>
       <extension base="xplan:XP_AbstraktesPraesentationsobjektType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Zur Plandarstellung benutzte Liniengeometrie.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_LPO" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3382,7 +3788,11 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
     <complexContent>
       <extension base="xplan:XP_TPOType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Linienführung des Textes</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_LTO" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3401,8 +3811,16 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
     <complexContent>
       <extension base="xplan:XP_PTOType">
         <sequence>
-          <element name="spaltenAnz" type="int" />
-          <element name="zeilenAnz" type="int" />
+          <element name="spaltenAnz" type="int">
+            <annotation>
+              <documentation>Anzahl der Spalten in der Nutzungsschablone</documentation>
+            </annotation>
+          </element>
+          <element name="zeilenAnz" type="int">
+            <annotation>
+              <documentation>Anzahl der Zeilen in der Nutzungsschablone</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_Nutzungsschablone" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3421,14 +3839,27 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
     <complexContent>
       <extension base="xplan:XP_AbstraktesPraesentationsobjektType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
-          <element name="drehwinkel" minOccurs="0" default="0" type="gml:AngleType" />
-          <element name="skalierung" minOccurs="0" default="1" type="double" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Position des zur Visualisierung benutzten  Textes oder Symbols,</documentation>
+            </annotation>
+          </element>
+          <element name="drehwinkel" minOccurs="0" default="0" type="gml:AngleType">
+            <annotation>
+              <documentation>Winkel um den der Text oder die Signatur mit punktförmiger Bezugsgeometrie aus der Horizontalen gedreht ist, Angabe in Grad. Zählweise im mathematisch positiven Sinn (von Ost über Nord nach West und Süd).</documentation>
+            </annotation>
+          </element>
+          <element name="skalierung" minOccurs="0" default="1" type="double">
+            <annotation>
+              <documentation>Skalierungsfaktor für Symbole.</documentation>
+            </annotation>
+          </element>
           <element name="hat" minOccurs="0" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_LPO</gml:targetElement>
               </appinfo>
+              <documentation>Die Relation ermöglicht es, einem punktförmigen Präsentationsobjekt ein linienförmiges Präsentationsobjekt zuzuweisen. Einziger bekannter Anwendungsfall ist der Zuordnungspfeil eines Symbols oder einer Nutzungsschablone.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_PPO" minOccurs="0" maxOccurs="unbounded" />
@@ -3467,8 +3898,16 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
     <complexContent>
       <extension base="xplan:XP_TPOType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
-          <element name="drehwinkel" minOccurs="0" default="0" type="gml:AngleType" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Position des Textes</documentation>
+            </annotation>
+          </element>
+          <element name="drehwinkel" minOccurs="0" default="0" type="gml:AngleType">
+            <annotation>
+              <documentation>Winkel um den der Text oder die Signatur mit punktförmiger Bezugsgeometrie aus der Horizontalen gedreht ist, Angabe in Grad. Zählweise im mathematisch positiven Sinn (von Ost über Nord nach West und Süd).</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_PTO" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3486,16 +3925,40 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
     <complexContent>
       <extension base="xplan:XP_AbstraktesPraesentationsobjektType">
         <sequence>
-          <element name="schriftinhalt" minOccurs="0" type="string" />
-          <element name="fontSperrung" minOccurs="0" default="0" type="double" />
-          <element name="skalierung" minOccurs="0" default="1" type="double" />
-          <element name="horizontaleAusrichtung" minOccurs="0" type="xplan:XP_HorizontaleAusrichtung" />
-          <element name="vertikaleAusrichtung" minOccurs="0" type="xplan:XP_VertikaleAusrichtung" />
+          <element name="schriftinhalt" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Schriftinhalt; enthält den darzustellenden Text.</documentation>
+            </annotation>
+          </element>
+          <element name="fontSperrung" minOccurs="0" default="0" type="double">
+            <annotation>
+              <documentation>Die Zeichensperrung steuert den zusätzlichen Raum, der zwischen 2 aufeinanderfolgende Zeichenkörper geschoben wird. Er ist ein Faktor, der mit der angegebenen Zeichenhöhe multipliziert wird, um den einzufügenden Zusatzabstand zu erhalten. Mit der Abhängigkeit von der Zeichenhöhe wird erreicht, dass das Schriftbild unabhängig von der Zeichenhöhe gleich wirkt. Der Defaultwert ist 0.</documentation>
+            </annotation>
+          </element>
+          <element name="skalierung" minOccurs="0" default="1" type="double">
+            <annotation>
+              <documentation>Skalierungsfaktor der Schriftgröße, bezogen auf die von der interpretierenden Software festgelegte Standardschrift</documentation>
+            </annotation>
+          </element>
+          <element name="horizontaleAusrichtung" minOccurs="0" type="xplan:XP_HorizontaleAusrichtung">
+            <annotation>
+              <documentation>Gibt die Ausrichtung des Textes bezüglich der Textgeometrie an.
+&lt;i&gt;linksbündig&lt;/i&gt;: Der Text beginnt an der Punktgeometrie bzw. am Anfangspunkt der Liniengeometrie.
+&lt;i&gt;rechtsbündig&lt;/i&gt;: Der Text endet an der Punktgeometrie bzw. am Endpunkt der Liniengeometrie
+&lt;i&gt;zentrisch&lt;/i&gt;: Der Text erstreckt sich von der Punktgeometrie gleich weit nach links und rechts bzw. steht auf der Mitte der Standlinie.</documentation>
+            </annotation>
+          </element>
+          <element name="vertikaleAusrichtung" minOccurs="0" type="xplan:XP_VertikaleAusrichtung">
+            <annotation>
+              <documentation>Die vertikale Ausrichtung eines Textes gibt an, ob die Bezugsgeometrie die Basis (Grundlinie) des Textes, die Mitte oder obere Buchstabenbegrenzung betrifft.</documentation>
+            </annotation>
+          </element>
           <element name="hat" minOccurs="0" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_LPO</gml:targetElement>
               </appinfo>
+              <documentation>Die Relation ermöglicht es, einem textlichen Präsentationsobjekt ein linienförmiges Präsentationsobjekt zuzuweisen. Einziger bekannter Anwendungsfall ist der Zuordnungspfeil eines Symbols oder einer Nutzungsschablone.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfXP_TPO" minOccurs="0" maxOccurs="unbounded" />
@@ -3539,10 +4002,26 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
       <documentation>Spezifikation einer für die Aufstellung des Plans zuständigen Gemeinde.</documentation>
     </annotation>
     <sequence>
-      <element name="ags" minOccurs="0" type="string" />
-      <element name="rs" minOccurs="0" type="string" />
-      <element name="gemeindeName" minOccurs="0" type="string" />
-      <element name="ortsteilName" minOccurs="0" type="string" />
+      <element name="ags" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Amtlicher Gemeindeschlüssel (früher Gemeinde-Kennziffer)</documentation>
+        </annotation>
+      </element>
+      <element name="rs" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Regionalschlüssel</documentation>
+        </annotation>
+      </element>
+      <element name="gemeindeName" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Name der Gemeinde.</documentation>
+        </annotation>
+      </element>
+      <element name="ortsteilName" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Name des Ortsteils</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfXP_Gemeinde" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -3561,9 +4040,21 @@ Gebundene Präsentationsobjekte mit Raumbezug dienen &lt;b&gt;ausschließlich &l
       <documentation>Spezifikation der Attribute für einer Schutz-, Pflege- oder Entwicklungsmaßnahme.</documentation>
     </annotation>
     <sequence>
-      <element name="klassifizMassnahme" minOccurs="0" type="xplan:XP_SPEMassnahmenTypen" />
-      <element name="massnahmeText" minOccurs="0" type="string" />
-      <element name="massnahmeKuerzel" minOccurs="0" type="string" />
+      <element name="klassifizMassnahme" minOccurs="0" type="xplan:XP_SPEMassnahmenTypen">
+        <annotation>
+          <documentation>Klassifikation der Maßnahme</documentation>
+        </annotation>
+      </element>
+      <element name="massnahmeText" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Durchzuführende Maßnahme als freier Text.</documentation>
+        </annotation>
+      </element>
+      <element name="massnahmeKuerzel" minOccurs="0" type="string">
+        <annotation>
+          <documentation>Kürzel der durchzuführenden Maßnahme.</documentation>
+        </annotation>
+      </element>
       <element ref="xplan:_GenericApplicationPropertyOfXP_SPEMassnahmenDaten" minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>

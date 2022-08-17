@@ -22,7 +22,7 @@ public class LpEingriffsregelungKomplexFlattenerTest {
 		Feature feature = getTestFeature(features, "Gml_35828929-2C80-4454-A4E3-8EA08D4F5D13");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:eingriffsregelungFlaechenTyp"));
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("[Flächenart: PotenzielleFlaecheKompensation]", value.toString());
+		assertEquals("[Flächenart: Potenzielle Fläche Kompensation]", value.toString());
 	}
 
 }

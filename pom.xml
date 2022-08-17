@@ -19,7 +19,7 @@
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
     <deegree3.version>3.5.0-SNAPSHOT</deegree3.version>
-    <geowerkstatt-hamburg.xplanung.version>0.12.1</geowerkstatt-hamburg.xplanung.version>
+    <geowerkstatt-hamburg.xplanung.version>0.12.2</geowerkstatt-hamburg.xplanung.version>
     <gwt.version>2.9.0</gwt.version>
     <geotools.version>26.1</geotools.version>
     <log4j.version>2.17.1</log4j.version>
@@ -781,7 +781,7 @@
       <dependency>
         <groupId>org.locationtech.jts</groupId>
         <artifactId>jts-core</artifactId>
-        <version>1.18.2</version>
+        <version>1.19.0</version>
       </dependency>
       <!-- xplan-manager internal dependencies with version -->
       <dependency>

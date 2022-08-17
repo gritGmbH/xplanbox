@@ -39,7 +39,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 public class RulesMetadata {
 
 	@JsonInclude(NON_NULL)
-	private @Valid Integer id;
+	private @Valid String id;
 
 	@JsonInclude(NON_NULL)
 	private @Valid String name;
@@ -56,18 +56,18 @@ public class RulesMetadata {
 	/**
 	 *
 	 **/
-	public RulesMetadata id(Integer id) {
+	public RulesMetadata id(String id) {
 		this.id = id;
 		return this;
 	}
 
-	@Schema(example = "1235678")
+	@Schema(example = "profil1")
 	@JsonProperty("id")
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
