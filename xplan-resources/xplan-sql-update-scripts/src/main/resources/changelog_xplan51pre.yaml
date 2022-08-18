@@ -1,7 +1,7 @@
 databaseChangeLog:
 - changeSet:
     id: 1660760899061-1
-    author: admin (generated)
+    author: tfr42 (generated)
     changes:
     - createTable:
         columns:
@@ -25,7 +25,7 @@ databaseChangeLog:
         tableName: feature_types
 - changeSet:
     id: 1660760899061-2
-    author: admin (generated)
+    author: tfr42 (generated)
     changes:
     - createTable:
         columns:
@@ -68,7 +68,7 @@ databaseChangeLog:
         tableName: gml_objects
 - changeSet:
     id: 1660760899061-3
-    author: admin (generated)
+    author: tfr42 (generated)
     changes:
     - insert:
         columns:
@@ -2412,7 +2412,7 @@ databaseChangeLog:
         tableName: feature_types
 - changeSet:
     id: 1660760899061-4
-    author: admin (generated)
+    author: tfr42 (generated)
     changes:
     - addUniqueConstraint:
         columnNames: gml_id
@@ -2421,7 +2421,7 @@ databaseChangeLog:
         tableName: gml_objects
 - changeSet:
     id: 1660760899061-5
-    author: admin (generated)
+    author: tfr42 (generated)
     changes:
     - createIndex:
         columns:
@@ -2432,7 +2432,7 @@ databaseChangeLog:
         tableName: gml_objects
 - changeSet:
     id: 1660760899061-6
-    author: admin (generated)
+    author: tfr42 (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: ft_type
