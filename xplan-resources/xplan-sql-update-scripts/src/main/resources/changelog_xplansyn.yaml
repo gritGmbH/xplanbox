@@ -41922,46 +41922,48 @@ databaseChangeLog:
     id: 1660760653754-248
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_abgrabungsflaeche_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_bp_abgrabungsflaeche
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_bp_abgrabungsflaeche_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_bp_abgrabungsflaeche
 - changeSet:
     id: 1660760653754-249
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_abstandsflaeche_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_bp_abstandsflaeche
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_bp_abstandsflaeche_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_bp_abstandsflaeche
 - changeSet:
     id: 1660760653754-250
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_abstandsmass_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_bp_abstandsmass
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_bp_abstandsmass_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_bp_abstandsmass
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_abstandsmass_xplan_position ON xplansyn.xplan_bp_abstandsmass USING gist (xplan_position);
 - changeSet:
     id: 1660760653754-251
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_abweichungvonbaugrenze_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_bp_abweichungvonbaugrenze
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_bp_abweichungvonbaugrenze_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_bp_abweichungvonbaugrenze
+        - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_abweichungvonbaugrenze_xplan_position ON xplansyn.xplan_bp_abweichungvonbaugrenze USING gist (xplan_position);
 - changeSet:
     id: 1660760653754-252
     author: tfr42 (generated)
@@ -42582,13 +42584,14 @@ databaseChangeLog:
     id: 1660760653754-308
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_strassenbegrenzungslinie_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_bp_strassenbegrenzungslinie
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_bp_strassenbegrenzungslinie_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_bp_strassenbegrenzungslinie
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_strassenbegrenzungslinie_xplan_position ON xplansyn.xplan_bp_strassenbegrenzungslinie USING gist (xplan_position);
 - changeSet:
     id: 1660760653754-309
     author: tfr42 (generated)
@@ -42604,24 +42607,26 @@ databaseChangeLog:
     id: 1660760653754-310
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_strassenverkehrsflaeche_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_bp_strassenverkehrsflaeche
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_bp_strassenverkehrsflaeche_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_bp_strassenverkehrsflaeche
+     - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_strassenverkehrsflaeche_xplan_position ON xplansyn.xplan_bp_strassenverkehrsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1660760653754-311
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_technischemassnahmenflaeche_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_bp_technischemassnahmenflaeche
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_bp_technischemassnahmenflaeche_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_bp_technischemassnahmenflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_technischemassnahmenflaeche_xplan_position ON xplansyn.xplan_bp_technischemassnahmenflaeche USING gist (xplan_position);
 - changeSet:
     id: 1660760653754-312
     author: tfr42 (generated)
@@ -44221,46 +44226,50 @@ databaseChangeLog:
     id: 1660760653754-457
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_gebiet_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_so_gebiet
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_so_gebiet_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_so_gebiet
+    - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_gebiet_xplan_position ON xplansyn.xplan_so_gebiet USING gist (xplan_position);
 - changeSet:
     id: 1660760653754-458
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_gelaendemorphologie_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_so_gelaendemorphologie
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_so_gelaendemorphologie_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_so_gelaendemorphologie
+    - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_gelaendemorphologie_xplan_position ON xplansyn.xplan_so_gelaendemorphologie USING gist (xplan_position);
 - changeSet:
     id: 1660760653754-459
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_gewaesser_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_so_gewaesser
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_so_gewaesser_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_so_gewaesser
+    - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_gewaesser_xplan_position ON xplansyn.xplan_so_gewaesser USING gist (xplan_position);
 - changeSet:
     id: 1660760653754-460
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_grenze_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_so_grenze
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_so_grenze_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_so_grenze
+    - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_grenze_xplan_position ON xplansyn.xplan_so_grenze USING gist (xplan_position);
 - changeSet:
     id: 1660760653754-461
     author: tfr42 (generated)
@@ -44485,11 +44494,11 @@ databaseChangeLog:
     id: 1660760653754-481
     author: tfr42 (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_xp_pto_xplan_position
-        schemaName: xplansyn
-        tableName: xplan_xp_pto
-
+#    - createIndex:
+#        columns:
+#        - column:
+#            name: xplan_position
+#        indexName: spidx_xplan_xp_pto_xplan_position
+#        schemaName: xplansyn
+#        tableName: xplan_xp_pto
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_xp_pto_xplan_position ON xplansyn.xplan_xp_pto USING gist (xplan_position);

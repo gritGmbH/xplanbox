@@ -4,4 +4,4 @@ databaseChangeLog:
       author: tfr42
       changes:
         - sql:
-            sql: CREATE EXTENSION postgis;
+            sql: CREATE EXTENSION IF NOT EXISTS postgis;
