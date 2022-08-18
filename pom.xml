@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>5.0.3-7ff28682-2-SNAPSHOT</version>
+  <version>5.0.3-7ff28682-2</version>
   <name>xPlanBox</name>
   <description>Software zur Verwaltung von XPlanGML Daten</description>
   <inceptionYear>2008</inceptionYear>
@@ -18,7 +18,7 @@
     <java.version>11</java.version>
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
-    <deegree3.version>3.4.27.1-SNAPSHOT</deegree3.version>
+    <deegree3.version>3.4.27.1</deegree3.version>
     <geowerkstatt-hamburg.xplanung.version>0.11.1</geowerkstatt-hamburg.xplanung.version>
     <gwt.version>2.9.0</gwt.version>
     <geotools.version>26.1</geotools.version>

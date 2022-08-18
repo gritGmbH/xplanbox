@@ -7,7 +7,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-api</artifactId>
-    <version>5.0.3-7ff28682-2-SNAPSHOT</version>
+    <version>5.0.3-7ff28682-2</version>
   </parent>
 
   <dependencies>
