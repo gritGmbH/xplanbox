@@ -5,6 +5,7 @@ import liquibase.Scope;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.ValidationErrors;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import org.junit.Test;
 
@@ -17,6 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class TestLiquibaseConfiguration {
 
     @Test
@@ -28,9 +32,12 @@ public class TestLiquibaseConfiguration {
 
         Scope.child(config, () -> {
             Connection connection = openConnection();
+
             Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
             Liquibase liquibase = new liquibase.Liquibase("changelog_v60.yaml", new ClassLoaderResourceAccessor(), database);
             liquibase.validate();
+            ValidationErrors errors = database.validate();
+            assertFalse(errors.hasErrors());
             connection.close();
         });
     }
