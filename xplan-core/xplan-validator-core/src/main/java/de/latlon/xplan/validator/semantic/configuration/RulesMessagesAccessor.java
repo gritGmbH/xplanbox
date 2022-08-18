@@ -20,14 +20,14 @@
  */
 package de.latlon.xplan.validator.semantic.configuration;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.validator.i18n.ValidationMessages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.commons.XPlanVersion;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * Allows access to messages assigned to a specific rule.
@@ -40,7 +40,7 @@ public final class RulesMessagesAccessor {
 
 	private static final String RULES_MESSAGES_PROPERTIES = "rulesMessages.properties";
 
-	static final String DEFAULT_MESSAGE = "Regel %s muss erf\u00FCllt sein";
+	static final String DEFAULT_MESSAGE = ValidationMessages.getMessage("RulesMessageAccessor_defaultMessage");
 
 	private static final Properties PROPERTIES = new Properties();
 

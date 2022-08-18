@@ -65,7 +65,7 @@ public enum SemanticValidationOptions {
 	}
 
 	/**
-	 * @param optionName the name of the option, never <code>null</code>
+	 * @param validationOption the name of the option, never <code>null</code>
 	 * @return the {@link SemanticValidationOptions} with the passed option name or NONE
 	 * option if no option exists
 	 * @throws IllegalArgumentException if the optionName is <code>null</code>

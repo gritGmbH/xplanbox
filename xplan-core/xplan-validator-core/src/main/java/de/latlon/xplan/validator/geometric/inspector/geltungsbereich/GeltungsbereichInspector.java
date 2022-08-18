@@ -56,6 +56,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
+
 /**
  * Inspector for 2.2.3.1 Raumbezogene Objekte im Innern des Geltungsbereichs:
  * <p>
@@ -68,18 +70,6 @@ import java.util.stream.Collectors;
 public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GeltungsbereichInspector.class);
-
-	private static final String ERROR_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht vollstaendig im Geltungsbereich des Bereichs/Plans. Schnittpunkte mit dem Umring des Geltungsbereich: %s";
-
-	private static final String ERROR_MSG_NO_POINTS = "2.2.3.1: Das Objekt mit der gml id %s liegt nicht vollstaendig im Geltungsbereich des Bereichs/Plans. Ausgabe der Schnittpunkte nicht moeglich, die betroffene Original-Geometrie wird im Shapefile ausgegeben.";
-
-	private static final String SCHNITTPUNKT_MSG = "2.2.3.1: Geometrie des Objekts mit der gml id %s, die ausserhalb des Geltungsbereichs des Bereichs/Plans liegt.";
-
-	private static final String OUTOFGELTUNGSBEREICH_MSG = "2.2.3.1: Das Objekt mit der gml id %s liegt vollstaendig ausserhalb des Geltungsbereichs des Bereichs/Plans.";
-
-	private static final String ERROR_MSG_INVALID_CHECK = "2.2.3.1: Der Geltungsbereich des Objekts mit der gml id %s konnte nicht überprüft werden. Wahrscheinlich liegt eine invalide Geometrie vor.";
-
-	private static final String ERROR_MSG_INVALID_GELTUNGSBEREICH = "2.2.3.1: Der Geltungsbereich des Plans ist geometrisch nicht valide. Betroffen ist das Feature mit der gml id %s. Die Pruefung des Geltungsbereichs kann nicht durchgeführt werden.";
 
 	private GeltungsbereichInspectorContext geltungsbereichInspectorContext = new GeltungsbereichInspectorContext();
 
@@ -103,7 +93,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 			}
 			else {
 				if (!geltungsbereichFeature.isGeometryValid()) {
-					String error = String.format(ERROR_MSG_INVALID_GELTUNGSBEREICH,
+					String error = format("GeltungsbereichInspector_invalid_geltungsbereich",
 							geltungsbereichFeature.getFeatureId());
 					addErrorAndBadGeometry(error, geltungsbereichFeature.getOriginalGeometry());
 					return false;
@@ -116,7 +106,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 					}
 				}
 				catch (InvalidGeometryException e) {
-					String error = String.format(ERROR_MSG_INVALID_CHECK, featureUnderTest.getFeatureId());
+					String error = format("GeltungsbereichInspector_invalid_geom", featureUnderTest.getFeatureId());
 					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
 				}
 			}
@@ -157,7 +147,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		AbstractDefaultGeometry geltungsbereichGeom = geltungsbereichFeature.getOriginalGeometry();
 		try {
 			if (geltungsbereichGeom.isDisjoint(featureGeom)) {
-				String error = String.format(OUTOFGELTUNGSBEREICH_MSG, inGeltungsbereichFeature.getFeatureId());
+				String error = format("GeltungsbereichInspector_error_outOfGeltungsbereich",
+						inGeltungsbereichFeature.getFeatureId());
 				addErrorAndBadGeometry(error, inGeltungsbereichFeature.getOriginalGeometry());
 			}
 			else {
@@ -198,10 +189,10 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
 	private String crateErrorMessage(FeatureUnderTest inGeltungsbereichFeature, List<String> points) {
 		if (points.isEmpty()) {
-			return String.format(ERROR_MSG_NO_POINTS, inGeltungsbereichFeature.getFeatureId());
+			return format("GeltungsbereichInspector_error_nogeom", inGeltungsbereichFeature.getFeatureId());
 		}
 		String pointList = points.stream().collect(Collectors.joining(","));
-		return String.format(ERROR_MSG, inGeltungsbereichFeature.getFeatureId(), pointList);
+		return format("GeltungsbereichInspector_error_withgeom", inGeltungsbereichFeature.getFeatureId(), pointList);
 	}
 
 	private List<AbstractDefaultGeometry> findRelevantDifferenceOutsideGeltungsbereich(
@@ -248,7 +239,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		geometriesOutsideGeltungsbereich.forEach(geomOutside -> {
 			String featureIdWithIndex = featureId + "_" + index.getAndIncrement();
 			geomOutside.setId(featureIdWithIndex + "_OutsideGeltungsbereich");
-			String error = String.format(SCHNITTPUNKT_MSG, featureIdWithIndex);
+			String error = format("GeltungsbereichInspector_geomOutside", featureIdWithIndex);
 			badGeometry.addMarkerGeometry(error, geomOutside);
 		});
 	}

@@ -67,6 +67,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 import static org.deegree.geometry.primitive.segments.CurveSegment.CurveSegmentType.LINE_STRING_SEGMENT;
 
 /**
@@ -103,16 +105,6 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private static final AbstractDefaultGeometry DEFAULT_GEOM = new DefaultPoint(null, null, null,
 			new double[] { 0.0, 0.0 });
-
-	private static final String UNSUPPORTED_GEOMETRY_TYPE = "%s sind laut XPlanGML-Schema nicht erlaubt.";
-
-	private static final String INVALID_MSG_IDENTISCHESTUETZPUNKTE = "2.2.2.1: Identische St\u00fctzpunkte: %s.";
-
-	private static final String INVALID_MSG_SELBSTUEBERSCHNEIDUNG = "2.2.2.1: Selbst\u00fcberschneidung an folgenden Punkten: %s.";
-
-	private static final String INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON = "2.2.2.1: Selbst\u00fcberschneidung zwischen Polygonen des MulitPolygonen %s an folgenden Punkten: %s";
-
-	private static final String INVALID_MSG_COVERED_MULTIPOLYGON = "2.2.2.1: Das folgende Polygon des MulitPolygonen %s liegt vollstaendig in einem anderen Polygon des gleichen MultiPolygons: %s";
 
 	private final XMLStreamReaderWrapper xmlStream;
 
@@ -158,7 +150,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 				break;
 			}
 			case COMPOSITE_GEOMETRY: {
-				String msg = createMessage(String.format(UNSUPPORTED_GEOMETRY_TYPE, "Composites"));
+				String msg = createMessage(format("XPlanGeometryInspector_invalid_unsupportedGeometry", "Composites"));
 				createError(msg);
 			}
 			default:
@@ -185,7 +177,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 			inspect((PolygonPatch) patch);
 		}
 		else {
-			String msg = createMessage(String.format(UNSUPPORTED_GEOMETRY_TYPE, "Nicht-planare Patches"));
+			String msg = createMessage(
+					format("XPlanGeometryInspector_invalid_unsupportedGeometry", "Nicht-planare Patches"));
 			createError(msg);
 		}
 		return patch;
@@ -194,9 +187,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 	@Override
 	public Points inspect(Points points) throws GeometryInspectionException {
 		if (points.getDimension() != 2) {
-			String msg = createMessage(String.format(
-					"Punkteliste mit ung\u00fcltiger Dimensionalit\u00e4t (%d). Nur 2D Koordinaten sind erlaubt.",
-					points.getDimension()));
+			String msg = createMessage(
+					format("XPlanGeometryInspector_invalid_punktliste_dimension", points.getDimension()));
 			createError(msg);
 		}
 		return points;
@@ -241,16 +233,16 @@ class XPlanGeometryInspector implements GeometryInspector {
 			break;
 		}
 		default:
-			String msg = createMessage(String.format(UNSUPPORTED_GEOMETRY_TYPE, geom.getPrimitiveType().name()));
+			String msg = createMessage(
+					format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getPrimitiveType().name()));
 			createError(msg);
 		}
 	}
 
 	private void inspect(Point point) {
 		if (point.getCoordinateDimension() != 2) {
-			String msg = createMessage(String.format(
-					"Punkt (=%s) mit ung\u00fcltiger Dimensionalit\u00e4t (%d). Nur 2D Koordinaten sind erlaubt.",
-					point, point.getCoordinateDimension()));
+			String msg = createMessage(
+					format("XPlanGeometryInspector_invalid_punkt_dimension", point, point.getCoordinateDimension()));
 			createError(msg);
 		}
 	}
@@ -269,7 +261,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 			break;
 		}
 		default:
-			String msg = createMessage(String.format(UNSUPPORTED_GEOMETRY_TYPE, geom.getCurveType().name()));
+			String msg = createMessage(
+					format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getCurveType().name()));
 			createError(msg);
 		}
 	}
@@ -287,7 +280,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 			break;
 		}
 		default:
-			String msg = createMessage(String.format(UNSUPPORTED_GEOMETRY_TYPE, geom.getSurfaceType().name()));
+			String msg = createMessage(
+					format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getSurfaceType().name()));
 			createError(msg);
 		}
 	}
@@ -305,8 +299,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 			if (lastSegmentEndPoint != null) {
 				if (startPoint.get0() != lastSegmentEndPoint.get0()
 						|| startPoint.get1() != lastSegmentEndPoint.get1()) {
-					String msg = createMessage(String.format("L\u00fccke zwischen Kurvensegment %d und %d: %s != %s",
-							segmentIdx, segmentIdx++, lastSegmentEndPoint, startPoint));
+					String msg = createMessage(format("XPlanGeometryInspector_invalid_linie_luecke", segmentIdx,
+							segmentIdx++, lastSegmentEndPoint, startPoint));
 					createError(msg);
 				}
 			}
@@ -320,8 +314,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 		Point endPoint = ring.getEndPoint();
 		if (!startPoint.equals(endPoint)) {
 			double dist = startPoint.getDistance(endPoint, null).getValueAsDouble();
-			String msg = createMessage(String.format("2.2.2.1: Ring nicht geschlossen: %s != %s, Abstand: %s",
-					startPoint, endPoint, dist));
+			String msg = createMessage(
+					format("XPlanGeometryInspector_invalid_polygon_notClosed", startPoint, endPoint, dist));
 			createError(msg);
 		}
 	}
@@ -333,14 +327,14 @@ class XPlanGeometryInspector implements GeometryInspector {
 			try {
 				IntersectionMatrix relate = jtsGeometry1.relate(jtsGeometry2);
 				if (relate.isContains()) {
-					String error = createMessage(
-							String.format(INVALID_MSG_COVERED_MULTIPOLYGON, multSurfaceId, WKTWriter.write(surface2)));
+					String error = createMessage(format("XPlanGeometryInspector_invalid_ueberdeckung_multipolygon",
+							multSurfaceId, WKTWriter.write(surface2)));
 					errors.add(error);
 					badGeometries.add(new BadGeometry(surface2, error));
 				}
 				else if (relate.isCoveredBy()) {
-					String error = createMessage(
-							String.format(INVALID_MSG_COVERED_MULTIPOLYGON, multSurfaceId, WKTWriter.write(surface1)));
+					String error = createMessage(format("XPlanGeometryInspector_invalid_ueberdeckung_multipolygon",
+							multSurfaceId, WKTWriter.write(surface1)));
 					errors.add(error);
 					badGeometries.add(new BadGeometry(surface1, error));
 				}
@@ -348,17 +342,16 @@ class XPlanGeometryInspector implements GeometryInspector {
 					Geometry intersection = calculateSelfIntersectionOfExterior(surface1, surface2);
 					if (hasIntersection(intersection)) {
 						intersection.setId(multSurfaceId + "_intersection_" + intersectionIndex.getAndAdd(1));
-						String error = createMessage(String.format(INVALID_MSG_SELBSTUEBERSCHNEIDUNG_MULTIPOLYGON,
-								multSurfaceId, geometryAsReadableString(intersection)));
+						String error = createMessage(
+								format("XPlanGeometryInspector_invalid_selbstueberschneidung_mulitpolygone",
+										multSurfaceId, geometryAsReadableString(intersection)));
 						errors.add(error);
 						badGeometries.add(new BadGeometry(intersection, error));
 					}
 				}
 			}
 			catch (TopologyException e) {
-				String error = String.format(
-						"2.2.2.1: Das MulitPolygon mit der ID %s kann aufgrund von Fehlern der Geometrie nicht validiert werden.",
-						multSurfaceId);
+				String error = format("XPlanGeometryInspector_error_multipolygon_invalidGeom", multSurfaceId);
 				errors.add(error);
 			}
 		}
@@ -385,7 +378,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		boolean selfIntersection = !jtsLineString.isSimple();
 		if (selfIntersection) {
 			List<Point> points = calculateIntersectionsAndAddError(ring, jtsLineString);
-			String msg = createMessage(String.format(INVALID_MSG_SELBSTUEBERSCHNEIDUNG,
+			String msg = createMessage(format("XPlanGeometryInspector_invalid_selbstueberschneidung",
 					points.stream().map(this::pointAsReadableString).collect(Collectors.joining(","))));
 			createError(msg);
 		}
@@ -394,7 +387,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 	void checkDuplicateControlPoints(Ring ring) {
 		List<Point> duplicateControlPoints = calculateDuplicateControlPointsAndAddErrors(ring);
 		if (!duplicateControlPoints.isEmpty()) {
-			String msg = createMessage(String.format(INVALID_MSG_IDENTISCHESTUETZPUNKTE,
+			String msg = createMessage(format("XPlanGeometryInspector_invalid_identischeStuetzpunkte",
 					duplicateControlPoints.stream().map(this::pointAsReadableString).collect(Collectors.joining(","))));
 			createError(msg);
 		}
@@ -440,7 +433,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 			}
 		}
 		catch (Exception e) {
-			String msg = createMessage("Validierung der Oberfl\u00e4chen-Topologie fehlgeschlagen (Folgefehler!?).");
+			String msg = createMessage(getMessage("XPlanGeometryInspector_error"));
 			getErrors().add(msg); // don't use cm errors - mocking!
 		}
 	}
@@ -449,9 +442,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 			Polygon exteriorJTSRingAsPolygon, LinearRing interiorJTSRing, Polygon interiorJTSRingAsPolygon,
 			int ringIdx) {
 		if (!interiorJTSRingAsPolygon.within(exteriorJTSRingAsPolygon)) {
-			String msg = createMessage(String.format(
-					"2.2.2.1: Innerer Ring mit Index %d befindet sich nicht innerhalb des \u00e4u\u00dferen Rings.",
-					ringIdx));
+			String msg = createMessage(format("XPlanGeometryInspector_invalid_poylgon_innererRingOuside", ringIdx));
 			createError(msg);
 			return;
 		}
@@ -460,11 +451,12 @@ class XPlanGeometryInspector implements GeometryInspector {
 			AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS(intersection,
 					exteriorRing.getCoordinateSystem());
 			if (hasIntersection(intersectionGeom)) {
-				String msg = createMessage(String
-						.format("2.2.2.1: \u00c4u\u00dferer Ring schneidet den inneren Ring mit Index %d.", ringIdx));
+				String msg = createMessage(
+						format("XPlanGeometryInspector_invalid_polygon_intersection_interiorAndExterior", ringIdx));
 				createError(msg);
-				String intersectionMsg = String.format(
-						"Schnittpunkt(e) des \u00c4u\u00dferer Ring mit dem inneren Ring mit Index %d.", ringIdx);
+				String intersectionMsg = format(
+						"XPlanGeometryInspector_invalid_polygon_intersection_interiorAndExterior_schnittpunkte",
+						ringIdx);
 				badGeometries.add(new BadGeometry(intersectionGeom, intersectionMsg));
 			}
 		}
@@ -473,14 +465,14 @@ class XPlanGeometryInspector implements GeometryInspector {
 	private void checkSelfIntersectionOfInteriorRings(LinearRing interior1JTSRing, Polygon interior1JTSRingAsPolygon,
 			LinearRing interior2JTSRing, Polygon interior2JTSRingAsPolygon, ICRS crs, int ring1Idx, int ring2Idx) {
 		if (interior1JTSRing.within(interior2JTSRingAsPolygon)) {
-			String msg = createMessage(String.format(
-					"2.2.2.1: Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.", ring1Idx, ring2Idx));
+			String msg = createMessage(
+					format("XPlanGeometryInspector_invalid_interiorRingInInteriorRing", ring1Idx, ring2Idx));
 			createError(msg);
 			return;
 		}
 		if (interior2JTSRing.within(interior1JTSRingAsPolygon)) {
-			String msg = createMessage(String.format(
-					"2.2.2.1: Der innere Ring %d liegt innerhalb des inneren Rings mit Index %d.", ring2Idx, ring1Idx));
+			String msg = createMessage(
+					format("XPlanGeometryInspector_invalid_interiorRingInInteriorRing", ring2Idx, ring1Idx));
 			createError(msg);
 			return;
 		}
@@ -488,12 +480,11 @@ class XPlanGeometryInspector implements GeometryInspector {
 			org.locationtech.jts.geom.Geometry intersection = interior1JTSRing.intersection(interior2JTSRing);
 			AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS(intersection, crs);
 			if (hasIntersection(intersectionGeom)) {
-				String msg = createMessage(String.format(
-						"2.2.2.1: Der innere Ring %d schneidet den inneren Ring mit Index %d.", ring1Idx, ring2Idx));
+				String msg = createMessage(
+						format("XPlanGeometryInspector_invalid_intersection_interiorRings", ring1Idx, ring2Idx));
 				createError(msg);
-				String intersectionMsg = String.format(
-						"Schnittpunkte des innere Ring mit Index %s mit dem inneren Ring mit Index %d.", ring1Idx,
-						ring2Idx);
+				String intersectionMsg = format(
+						"XPlanGeometryInspector_invalid_intersection_interiorRings_schnittpunkte", ring1Idx, ring2Idx);
 				badGeometries.add(new BadGeometry(intersectionGeom, intersectionMsg));
 			}
 		}
@@ -519,7 +510,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 						String intersectionId = ring.getId() + "_intersection_" + selfInterSectionCoords.size();
 						Point intersectionGeom = new GeometryFactory().createPoint(intersectionId, coordinate.x,
 								coordinate.y, coordinate.z, ring.getCoordinateSystem());
-						String intersectionMsg = "Geomerie der Selbst\u00fcberschneidung";
+						String intersectionMsg = getMessage("XPlanGeometryInspector_invalid_intersection_geom");
 						badGeometries.add(new BadGeometry(intersectionGeom, intersectionMsg));
 						selfInterSectionPoints.add(intersectionGeom);
 					}
@@ -549,7 +540,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 								Point duplicateControlPointGeom = new GeometryFactory().createPoint(
 										duplicateControlPointId, cp.get0(), cp.get1(), cp.get2(),
 										ring.getCoordinateSystem());
-								String duplicateControlPointMsg = "Doppelter St\u00fctzpunkte";
+								String duplicateControlPointMsg = getMessage(
+										"XPlanGeometryInspector_invalid_duplicateStuetzpunkt_geom");
 								badGeometries.add(new BadGeometry(duplicateControlPointGeom, duplicateControlPointMsg));
 								duplicateControlPoints.add(duplicateControlPointGeom);
 							}
@@ -569,7 +561,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		case COMPOSITE_GEOMETRY:
 			return compositeAsReadableString((CompositeGeometry) geom);
 		}
-		return "Ausgabe nicht moeglich.";
+		return getMessage("XPlanGeometryInspector_exportGeomInvalid");
 	}
 
 	private String primitiveAsReadableString(GeometricPrimitive geom) {
@@ -577,9 +569,10 @@ class XPlanGeometryInspector implements GeometryInspector {
 		case Point:
 			return pointAsReadableString((Point) geom);
 		case Curve:
-			return "Startpunkt: " + ((Curve) geom).getStartPoint() + "Endpunkt: " + ((Curve) geom).getEndPoint();
+			return format("XPlanGeometryInspector_geomAsString_curve", ((Curve) geom).getStartPoint(),
+					((Curve) geom).getEndPoint());
 		}
-		return "Ausgabe nicht moeglich.";
+		return getMessage("XPlanGeometryInspector_exportGeomInvalid");
 	}
 
 	private String pointAsReadableString(Point geom) {
@@ -611,7 +604,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		String elementName = xmlStream.getName().getLocalPart();
 		int lineNumber = xmlStream.getLocation().getLineNumber();
 		int columnNumber = xmlStream.getLocation().getColumnNumber();
-		return String.format("%s (Zeile %d, Spalte %d): %s", elementName, lineNumber, columnNumber, msg);
+		return format("XPlanGeometryInspector_location", elementName, lineNumber, columnNumber, msg);
 	}
 
 	void createError(String msg) {
@@ -635,7 +628,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 	private void checkOuterRing(Ring ring) {
 		LinearRing jTSRing = jtsParser.getJTSRing(ring);
 		if (!Orientation.isCCW(jTSRing.getCoordinates())) {
-			String msg = createMessage("2.2.2.1: \u00c4u\u00dferer Ring verwendet falsche Laufrichtung (CW).");
+			String msg = createMessage(getMessage("XPlanGeometryInspector_invalid_falscheLaufrichtung_aeussererRing"));
 			errors.add(msg);
 			badGeometries.add(new BadGeometry(ring, msg));
 		}
@@ -644,7 +637,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 	private void checkInnerRing(Ring ring) {
 		LinearRing jTSRing = jtsParser.getJTSRing(ring);
 		if (Orientation.isCCW(jTSRing.getCoordinates())) {
-			String msg = createMessage("2.2.2.1: Innerer Ring verwendet falsche Laufrichtung (CCW).");
+			String msg = createMessage(getMessage("XPlanGeometryInspector_invalid_falscheLaufrichtung_innererRing"));
 			errors.add(msg);
 			badGeometries.add(new BadGeometry(ring, msg));
 		}
@@ -653,9 +646,8 @@ class XPlanGeometryInspector implements GeometryInspector {
 	private org.locationtech.jts.geom.Geometry getJTSGeometry(Surface surface) {
 		if (surface instanceof AbstractDefaultGeometry)
 			return ((AbstractDefaultGeometry) surface).getJTSGeometry();
-		String msg = createMessage(String.format(
-				"Nicht unterstuetzer Geometrietyp {}, die geometrische Pruefung kann nicht durchgefuehrt werden.",
-				surface.getClass().getSimpleName()));
+		String msg = createMessage(
+				format("XPlanGeometryInspector_error_unsupportedGeom", surface.getClass().getSimpleName()));
 		createError(msg);
 		return null;
 	}
