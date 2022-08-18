@@ -28,6 +28,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromGml;
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromZip;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -93,8 +94,7 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		// TODO: assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
-		assertThat(flaechenschlussInspector.getWarnings().size(), is(4));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(5));
 	}
 
 	@Test
@@ -107,8 +107,7 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		// TODO: assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
-		assertThat(flaechenschlussInspector.getWarnings().size(), is(4));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(5));
 	}
 
 	@Test
@@ -118,7 +117,7 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
 	}
 
 	@Test
@@ -184,8 +183,11 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		// TODO: assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
+		assertThat(flaechenschlussInspector.getWarnings(), hasItem(
+				"2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke bei der Pruefung des Geltungsbereichs des Bereichs identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben."));
+		assertThat(flaechenschlussInspector.getWarnings(), hasItem(
+				"2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke bei der Pruefung des Geltungsbereichs des Plans identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben."));
 	}
 
 	@Test
@@ -196,8 +198,11 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		// TODO: assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
+		assertThat(flaechenschlussInspector.getWarnings(), hasItem(
+				"2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke bei der Pruefung des Geltungsbereichs des Bereichs identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben."));
+		assertThat(flaechenschlussInspector.getWarnings(), hasItem(
+				"2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke bei der Pruefung des Geltungsbereichs des Plans identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben."));
 	}
 
 	@Test
@@ -208,8 +213,11 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		// TODO: assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
+		assertThat(flaechenschlussInspector.getWarnings(), hasItem(
+				"2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke bei der Pruefung des Geltungsbereichs des Bereichs identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben."));
+		assertThat(flaechenschlussInspector.getWarnings(), hasItem(
+				"2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke bei der Pruefung des Geltungsbereichs des Plans identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben."));
 	}
 
 	@Test
