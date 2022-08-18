@@ -547,7 +547,21 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			for (FeatureUnderTest flaechenschlussFeature2 : flaechenschlussFeaturesCopy) {
 				IntersectionMatrix relate = flaechenschlussFeature1.getJtsGeometry()
 						.relate(flaechenschlussFeature2.getJtsGeometry());
-				if (relate.isCoveredBy() || relate.isCovers()) {
+				if (relate.isEquals(2, 2)) {
+					String error = String.format(EQUAL_ERROR_MSG, flaechenschlussFeature1.getFeatureId(),
+							flaechenschlussFeature2.getFeatureId());
+					BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature1.getOriginalGeometry(), error);
+					badGeometries.add(badGeometry);
+					flaechenschlussErrors.add(error);
+				}
+				else if (relate.isCoveredBy()) {
+					String error = String.format(EQUAL_ERROR_MSG, flaechenschlussFeature2.getFeatureId(),
+							flaechenschlussFeature1.getFeatureId());
+					BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature2.getOriginalGeometry(), error);
+					badGeometries.add(badGeometry);
+					flaechenschlussErrors.add(error);
+				}
+				else if (relate.isCovers()) {
 					String error = String.format(EQUAL_ERROR_MSG, flaechenschlussFeature1.getFeatureId(),
 							flaechenschlussFeature2.getFeatureId());
 					BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature1.getOriginalGeometry(), error);
