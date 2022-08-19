@@ -1714,7 +1714,7 @@ assert actualHeader != null</scriptText>
               <con:name>XPlanManagerAPI-Test.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1789,7 +1789,7 @@ assert actualHeader != null</scriptText>
               <con:name>Alsterdorf24.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>Alsterdorf24.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/Alsterdorf24.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/Alsterdorf24.zip</con:url>
               <con:id>9b69075c-2cf9-4eb9-a6fe-d73c2a98ab4d</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1865,7 +1865,7 @@ assert actualHeader != null</scriptText>
               <con:name>HafenCity13_Test_53.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>HafenCity13_Test_53.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/HafenCity13_Test_53.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/HafenCity13_Test_53.zip</con:url>
               <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1938,7 +1938,7 @@ assert actualHeader != null</scriptText>
               <con:name>HafenCity13_Test_53.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>Osdorf48_Test_60.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/Osdorf48_Test_60.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/Osdorf48_Test_60.zip</con:url>
               <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2011,7 +2011,7 @@ assert actualHeader != null</scriptText>
               <con:name>BPlan002_5-3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BPlan002_5-3.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/BPlan002_5-3.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/BPlan002_5-3.zip</con:url>
               <con:id>d27bdabd-dbce-426b-8614-3ff709f09921</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2084,7 +2084,7 @@ assert actualHeader != null</scriptText>
               <con:name>BPlan003_5-0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BPlan003_5-0.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/BPlan003_5-0.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/BPlan003_5-0.zip</con:url>
               <con:id>395a3c2d-7e5e-487d-bca0-1f1f3862dfbc</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2157,7 +2157,7 @@ assert actualHeader != null</scriptText>
               <con:name>FNP50_HH.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>FNP50_HH.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/FNP50_HH.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/FNP50_HH.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2233,7 +2233,7 @@ assert actualHeader != null</scriptText>
               <con:name>FNP50_HH.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>FNP50_HH.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/StErhVo_Eppendorf_Hoheluft-Ost_53-1.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/StErhVo_Eppendorf_Hoheluft-Ost_53-1.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2309,7 +2309,7 @@ assert actualHeader != null</scriptText>
               <con:name>FNP50_HH.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>FNP50_HH.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/RROP_Landkreis_Test_51.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/RROP_Landkreis_Test_51.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2384,7 +2384,7 @@ assert actualHeader != null</scriptText>
               <con:name>FNP50_HH.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>FNP50_HH.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/LP-Test_60.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/LP-Test_60.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2460,7 +2460,7 @@ assert actualHeader != null</scriptText>
               <con:name>FNP50_HH.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>Bahrenfeld74.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/Bahrenfeld74.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/Bahrenfeld74.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2545,7 +2545,7 @@ assert actualHeader != null</scriptText>
               <con:name>HafenCity11_HafenCity14.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>HafenCity11_HafenCity14.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/HafenCity11_HafenCity14.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/HafenCity11_HafenCity14.zip</con:url>
               <con:id>79dbf55e-6a74-4700-96be-a60128d23ca3</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2623,7 +2623,7 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-plans/XPlanManagerAPI-Test-v2.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test-v2.zip</con:url>
               <con:id>a9a8ee6f-17f6-421c-bab9-e60905d0f606</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2698,7 +2698,7 @@ assert actualHeader != null</scriptText>
               <con:name>xplan52-Laufrichtungsfehler.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>xplan52-Laufrichtungsfehler.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/xplan52-Laufrichtungsfehler.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/xplan52-Laufrichtungsfehler.zip</con:url>
               <con:id>a526c4cd-2d6b-4eb3-b02b-f58ee92a871f</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2773,7 +2773,7 @@ assert actualHeader != null</scriptText>
               <con:name>XPlanManagerAPI-Test.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BPlan001_5-2_Bereiche.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/BPlan001_5-2_Bereiche.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/BPlan001_5-2_Bereiche.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3026,7 +3026,7 @@ assert actualHeader != null</scriptText>
               <con:name>Eidelstedt_4_V4.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>Eidelstedt_4_V4.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/Eidelstedt_4_V4.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/Eidelstedt_4_V4.zip</con:url>
               <con:id>afe411ff-b64b-464b-9d2d-0d145eb36861</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3074,7 +3074,7 @@ assert actualHeader != null</scriptText>
               <con:name>V4_1_ID_103.gml</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>V4_1_ID_103.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/V4_1_ID_103.gml</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/V4_1_ID_103.gml</con:url>
               <con:id>c0a5e97e-011d-4699-94af-85d81146066d</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3133,7 +3133,7 @@ assert actualHeader != null</scriptText>
               <con:name>Alsterdorf2.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>Alsterdorf2.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/Alsterdorf2.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/Alsterdorf2.zip</con:url>
               <con:id>94a814d8-50e6-4b40-8a17-1f72fbba21d4</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3193,7 +3193,7 @@ assert actualHeader != null</scriptText>
               <con:name>xplan52-Laufrichtungsfehler.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>xplan52-Laufrichtungsfehler.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/xplan52-Laufrichtungsfehler.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/xplan52-Laufrichtungsfehler.zip</con:url>
               <con:id>e538619a-7880-41ee-adda-ed8929e76ee0</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3250,7 +3250,7 @@ assert actualHeader != null</scriptText>
               <con:name>xplan52-Laufrichtungsfehler.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>xplan-multipleInstances-withVerbundenerPlan.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/xplan-multipleInstances-withVerbundenerPlan.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/xplan-multipleInstances-withVerbundenerPlan.zip</con:url>
               <con:id>e538619a-7880-41ee-adda-ed8929e76ee0</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -4948,14 +4948,14 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRefName.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRefName.json</con:url>
               <con:id>3ccd59e9-baa2-4d28-9279-b7f9791e2bb1</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.pdf</con:url>
               <con:id>c44ffe30-e3ef-49d0-9a1c-c63c81161f8c</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5039,14 +5039,14 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRefName.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRefName.json</con:url>
               <con:id>0092755f-262c-4b6f-b697-d2fc2d499c1e</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.pdf</con:url>
               <con:id>9acc9b11-8536-4230-8dd7-8907e1f64c7e</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5235,14 +5235,14 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.json</con:url>
               <con:id>67cefa13-43d4-46c5-9fa1-38a36e8e8c0f</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.pdf</con:url>
               <con:id>d6200eb0-0ba1-4b77-a066-6f43fd6584e6</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5278,14 +5278,14 @@ assert actualHeader != null</scriptText>
               <con:name>postDok.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.json</con:url>
               <con:id>c8a1cf64-d62c-42ba-a574-5204b5f7d622</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.pdf</con:url>
               <con:id>c63fa0e3-7b42-4c5a-9d4b-49523cd7eff8</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5322,14 +5322,14 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.json</con:url>
               <con:id>daf90d2c-bcee-4948-8f35-8d350e7969e2</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.pdf</con:url>
               <con:id>ed7dbf40-30c6-4fb9-a57d-073ede5f766b</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5365,14 +5365,14 @@ assert actualHeader != null</scriptText>
               <con:name>putDok.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.json</con:url>
               <con:id>50b01d2c-ed19-4b22-82c0-f7050b7a0e39</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDok.pdf</con:url>
               <con:id>f1964a85-4b3b-4464-9ae2-364056fe5e3f</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5613,14 +5613,14 @@ assert actualHeader != null</scriptText>
               <con:name>putDok.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.json</con:url>
               <con:id>d1b0fea8-4a8f-4c4e-b206-f8c854887fc4</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.pdf</con:url>
               <con:id>e9ada331-0c21-4c6c-bc10-ce718f50069c</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5657,14 +5657,14 @@ assert actualHeader != null</scriptText>
               <con:name>putDok.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.json</con:url>
               <con:id>7404e765-e25f-4a25-8e13-8e5e9e458a2e</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.pdf</con:url>
               <con:id>887d774f-e05f-40ff-93db-f6c1a793ce0d</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5770,14 +5770,14 @@ assert actualHeader != null</scriptText>
               <con:name>putDok.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.json</con:url>
               <con:id>cf00f587-78ef-484d-b8fd-adeccca44162</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.pdf</con:url>
               <con:id>94f7d0b4-08f3-4852-b0da-e003207f8520</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5814,14 +5814,14 @@ assert actualHeader != null</scriptText>
               <con:name>putDok.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.json</con:url>
               <con:id>458b15f9-438a-4915-8622-d32dc37b3b28</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.pdf</con:url>
               <con:id>bc82fc0f-0eee-42f8-95aa-f81d041efbe1</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5858,7 +5858,7 @@ assert actualHeader != null</scriptText>
               <con:name>putDok.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.json</con:url>
               <con:id>70483438-91ad-4920-97ab-7a4c58dc2001</con:id>
             </con:attachment>
             <con:attachment>
@@ -5866,7 +5866,7 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.pdf</con:url>
               <con:id>9396e150-c272-4021-9406-281a1e4493eb</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5903,14 +5903,14 @@ assert actualHeader != null</scriptText>
               <con:name>putDok.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>dokumentmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.json</con:url>
               <con:id>0f8c69ca-9bfd-41ae-8250-44026d4dd69c</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDok.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDok.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDok.pdf</con:url>
               <con:id>6fcf0fbb-eac2-4b97-99ab-3239d8d58a22</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -6671,21 +6671,21 @@ assert actualHeader != null</scriptText>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
               <con:id>469ec73a-ffc0-4648-9de6-e197c9190268</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
               <con:id>2d9affa0-aaa8-4e76-bb8d-42b14a3cd18a</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
               <con:id>791eb8ed-2a62-4bb6-9687-0c328c00562b</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -6725,21 +6725,21 @@ assert actualHeader != null</scriptText>
               <con:name>postImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
               <con:id>40298a71-f3a1-42e2-ad6b-c17f5791bc3c</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
               <con:id>3cd273fa-dcc9-4b17-ba3b-49f4e365219b</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
               <con:id>3fa4dd5c-7ce6-42ad-a871-1652e413752d</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -6825,7 +6825,7 @@ assert actualHeader != null</scriptText>
               <con:name>postImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
               <con:id>38e4252d-803d-48eb-a1a4-abb41f92c8cb</con:id>
             </con:attachment>
             <con:attachment>
@@ -6833,7 +6833,7 @@ assert actualHeader != null</scriptText>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
               <con:id>9125af9a-4c06-46ae-b173-a37b267bb18a</con:id>
             </con:attachment>
             <con:attachment>
@@ -6841,7 +6841,7 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
               <con:id>817df22a-9e09-439d-9b4c-a7ae1df7235e</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -6880,21 +6880,21 @@ assert actualHeader != null</scriptText>
               <con:name>postImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
               <con:id>54d6c6b6-c5c6-46d3-a23d-c915d9294c90</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
               <con:id>aaf0f323-c87b-4405-8dbd-8c0f6d76f1b6</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
               <con:id>1f22c09d-bf9e-4281-ae2c-72189d871760</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -6990,7 +6990,7 @@ assert actualHeader != null</scriptText>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
               <con:id>8b264d05-82e5-4966-a0f4-ff33de0e1c42</con:id>
             </con:attachment>
             <con:attachment>
@@ -6998,7 +6998,7 @@ assert actualHeader != null</scriptText>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
               <con:id>acb4a198-0452-4433-aee6-ad3287f915b5</con:id>
             </con:attachment>
             <con:attachment>
@@ -7006,7 +7006,7 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
               <con:id>437db2b0-a93a-4015-a008-688d001f2af5</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -7262,7 +7262,7 @@ assert actualHeader != null</scriptText>
               <con:name>postImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
               <con:id>668fb897-46ec-4085-b92c-49cc07db9e61</con:id>
             </con:attachment>
             <con:attachment>
@@ -7270,14 +7270,14 @@ assert actualHeader != null</scriptText>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
               <con:id>31ee731f-e32f-4d72-931c-62da6f0acaab</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
               <con:id>28a86144-af38-45b3-979e-f603f7b6d2a1</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -7325,21 +7325,21 @@ assert actualHeader != null</scriptText>
               <con:name>postImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
               <con:id>be8c7b53-fd72-4c0e-bdcd-826729bd8a4d</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
               <con:id>35836a01-e4ac-4b22-8a7f-f3ed365099a6</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
               <con:id>183c1c5d-9ab1-4bda-b617-b615e0e501ff</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -7387,21 +7387,21 @@ assert actualHeader != null</scriptText>
               <con:name>postImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
               <con:id>bc7091d4-5f65-491d-ae70-ede97911b311</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
               <con:id>f159205c-7bb6-49a9-a6fb-2b7cdff59679</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
               <con:id>b614b5c1-adfd-4877-9f44-3819aa2f4b37</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -7449,7 +7449,7 @@ assert actualHeader != null</scriptText>
               <con:name>postImg.png</con:name>
               <con:contentType>imagie/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
               <con:id>06cfb8d0-1d65-42cf-ac28-ea701582ae56</con:id>
             </con:attachment>
             <con:attachment>
@@ -7457,14 +7457,14 @@ assert actualHeader != null</scriptText>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
               <con:id>f4a3a6d9-9e6e-412d-947c-048871486f84</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
               <con:id>a0399d96-a485-45e5-acaf-eb595b3c797d</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -7700,21 +7700,21 @@ assert actualHeader != null</scriptText>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
               <con:id>ce543129-b910-44f0-b189-a07905576ae7</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.png</con:url>
               <con:id>3337e3a8-9bdd-4eea-b518-0fbed2402a50</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRaster.json</con:url>
               <con:id>003d976e-910c-4f2f-8dc4-dba5d26e725c</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -7880,21 +7880,21 @@ assert actualHeader != null</scriptText>
               <con:name>putImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
               <con:id>56660e23-bf25-47cf-aabe-528f30ca7211</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.png</con:url>
               <con:id>2f73d3e8-b387-41f4-bcf9-fbd5b8c704d4</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDokRasterNoBereich.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRasterNoBereich.json</con:url>
               <con:id>fb71e1e4-62af-49c8-8777-a67e00c83888</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -7931,21 +7931,21 @@ assert actualHeader != null</scriptText>
               <con:name>putImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
               <con:id>847e7d1d-7b26-468c-97c1-0351a46e2623</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.png</con:url>
               <con:id>e21be604-849b-47c4-b355-c29f62792f80</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRaster.json</con:url>
               <con:id>5c55edb9-d47d-4f09-a907-6c7467aedca9</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -8099,21 +8099,21 @@ assert actualHeader != null</scriptText>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
               <con:id>124a4f58-d301-444f-ad2a-6fac3a4a23bc</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.png</con:url>
               <con:id>419e564f-5632-4f5f-8206-d4df860fc12a</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDokRasterMitBereich1.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRasterMitBereich1.json</con:url>
               <con:id>92f44cf1-8d1a-4f5e-952d-2950fc380443</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -8228,7 +8228,7 @@ assert actualHeader != null</scriptText>
               <con:name>putImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
               <con:id>f7ec1cc4-a02a-44f9-a3c6-ac05821905c7</con:id>
             </con:attachment>
             <con:attachment>
@@ -8236,14 +8236,14 @@ assert actualHeader != null</scriptText>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.png</con:url>
               <con:id>09b24d17-55fe-42f4-b030-29cb396eb6b1</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRaster.json</con:url>
               <con:id>54d5a461-0768-462b-ba97-be428c8afd55</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -8280,21 +8280,21 @@ assert actualHeader != null</scriptText>
               <con:name>putImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
               <con:id>0f10668c-c8c3-4888-b1a4-a8287f0b096f</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.png</con:url>
               <con:id>0c4a7c47-d965-4142-9bf7-c0b65e2b3c14</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRaster.json</con:url>
               <con:id>5cbca0b2-9f66-4faf-ab38-220e2c799ed3</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -8331,21 +8331,21 @@ assert actualHeader != null</scriptText>
               <con:name>putImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
               <con:id>e77837ae-659c-4a7f-87d2-3b370330b826</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.png</con:url>
               <con:id>a863a469-47e2-45c9-91c6-6cf8898ef9d8</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRaster.json</con:url>
               <con:id>b1072b20-96ee-4f11-adfe-e3edbcf2643d</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -8382,21 +8382,21 @@ assert actualHeader != null</scriptText>
               <con:name>putImgWf.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
               <con:id>fda1ce22-ef6e-4430-9be8-82f9e154376f</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putImg.png</con:name>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putImg.png</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.png</con:url>
               <con:id>490ae97b-2354-46cd-ab66-2a97d6fb29dd</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putDokRaster.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>rasterbasismodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putDokRaster.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRaster.json</con:url>
               <con:id>7895798e-d221-454b-985a-773606009031</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -8890,14 +8890,14 @@ assert actualHeader != null</scriptText>
               <con:name>postText.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
               <con:id>1fa73941-607a-46e9-b62f-83aebacda5ca</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
               <con:id>fb73faf4-ee9a-4117-89b0-428073d35570</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -9074,14 +9074,14 @@ assert actualHeader != null</scriptText>
               <con:name>postText.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
               <con:id>7354555a-e1d1-4fe8-a8ef-09c2c51d8aac</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
               <con:id>b4f207b3-87ac-45e8-82a7-20f22e2edef6</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -9335,14 +9335,14 @@ assert actualHeader != null</scriptText>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
               <con:id>30db1bff-b394-45d9-800a-045120ace225</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
               <con:id>d3f70c21-539a-4687-9148-beeac6bf0dbb</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -9387,14 +9387,14 @@ assert actualHeader != null</scriptText>
               <con:name>postText.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
               <con:id>a5095491-b0f7-4548-b890-be1f248c3a84</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
               <con:id>653dff68-2818-4d69-bd6a-5e6c5cbb5893</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -9439,14 +9439,14 @@ assert actualHeader != null</scriptText>
               <con:name>postText.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
               <con:id>7f495a4d-1a89-4d30-b7a8-5b0733763dfa</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
               <con:id>d4a49a3c-2872-497a-9d3b-30a2d1fe4520</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -9491,14 +9491,14 @@ assert actualHeader != null</scriptText>
               <con:name>postText.pdf</con:name>
               <con:contentType>application/pdf</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.pdf</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.pdf</con:url>
               <con:id>9ac41251-b479-44e3-bbe0-3c03fbc3689b</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>postText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/postText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postText.json</con:url>
               <con:id>9e9f218a-2bff-4a0a-ae8a-424352809c30</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -9818,14 +9818,14 @@ assert actualHeader != null</scriptText>
               <con:name>putText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.json</con:url>
               <con:id>3aed2ad7-03bc-499c-962e-0f6315a3fb33</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putText.odt</con:name>
               <con:contentType>application/odt</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
               <con:id>6293fd5d-2401-4e14-932b-05cf02053106</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -9931,14 +9931,14 @@ assert actualHeader != null</scriptText>
               <con:name>putText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.json</con:url>
               <con:id>343f2a08-8466-4199-9fb0-e3f37541c520</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putText.odt</con:name>
               <con:contentType>application/odt</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
               <con:id>e0752e01-914d-4974-b67b-919114e4495e</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -9975,14 +9975,14 @@ assert actualHeader != null</scriptText>
               <con:name>putText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.json</con:url>
               <con:id>f4514300-8579-40bd-b471-e69239e52ab4</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putText.odt</con:name>
               <con:contentType>application/odt</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
               <con:id>a17f6038-870e-4f86-898b-852b36d961dc</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -10019,14 +10019,14 @@ assert actualHeader != null</scriptText>
               <con:name>putText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.json</con:url>
               <con:id>ec3b63fb-4b3e-46f6-a926-771209a839d5</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putText.odt</con:name>
               <con:contentType>application/odt</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
               <con:id>dfe9e5a8-5ec3-4c5b-a336-c78f84971d50</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -10063,14 +10063,14 @@ assert actualHeader != null</scriptText>
               <con:name>putText.json</con:name>
               <con:contentType>application/json</con:contentType>
               <con:contentId>textmodel</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.json</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.json</con:url>
               <con:id>999b9fcb-b790-408b-9972-d53bbacc8e2a</con:id>
             </con:attachment>
             <con:attachment>
               <con:name>putText.odt</con:name>
               <con:contentType>application/odt</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
               <con:id>b7f8ef2a-56a7-4969-b5ac-99362cd5714a</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>

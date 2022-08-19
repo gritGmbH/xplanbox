@@ -3198,7 +3198,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip</con:url>
             <con:id>fcf51c4a-4c66-4063-b42b-a152689357bc</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3503,7 +3503,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
             <con:id>57363f79-2b6e-4349-aceb-fa2c65b5a839</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3724,7 +3724,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
             <con:id>b79715ee-f61c-449b-a5ef-48e940015d59</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3956,7 +3956,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
             <con:id>359d35cd-e5b7-41d5-b789-f2fba3449e7d</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -4005,7 +4005,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>BPlan002_5-3.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>BPlan002_5-3.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/BPlan002_5-3.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/BPlan002_5-3.zip</con:url>
             <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -4897,7 +4897,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:name>Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:url>
             <con:id>32682600-9bc2-4ce5-bac9-3bcfae1fa8fd</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5310,7 +5310,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
             <con:id>0ed35278-acb9-4c74-afaa-da54b7900d5a</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -7054,7 +7054,7 @@ declare namespace ows='http://www.opengis.net/ows/1.1';
             <con:name>Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:url>
             <con:id>127400ce-5339-4159-800b-e88299de3971</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
