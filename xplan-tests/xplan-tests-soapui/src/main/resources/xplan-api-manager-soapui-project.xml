@@ -3366,7 +3366,7 @@ assert actualHeader != null</scriptText>
               <con:name>XPlanManagerAPI-Test.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -11436,7 +11436,7 @@ assert expectedHeader == actualHeader</scriptText>
               <con:name>XPlanManagerAPI-Test.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -11488,7 +11488,7 @@ assert expectedHeader == actualHeader</scriptText>
               <con:name>XPlanManagerAPI-Test.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager-plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
