@@ -32,6 +32,7 @@ import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 
 /**
  * Dialog to select the legislation status of a plan.
@@ -46,13 +47,14 @@ public class LegislationStatusDialog extends WizardDialogBox {
 	private final ListBox legislationStatusSelectBox;
 
 	/**
+	 * @param type
 	 * @param legislationStatus the status from the plan, may be <code>null</code> if not
 	 * set
 	 */
-	public LegislationStatusDialog(Rechtsstand legislationStatus) {
+	public LegislationStatusDialog(String type, Rechtsstand legislationStatus) {
 		super(MESSAGES.legislationStatusDialogTitle());
 		setWidth("425px");
-		this.legislationStatusSelectBox = createLegislationStatusListBox(legislationStatus.getCodeNumber());
+		this.legislationStatusSelectBox = createLegislationStatusListBox(type, legislationStatus.getCodeNumber());
 		setContent(createContentPanel(legislationStatus.getTranslatedCode()));
 	}
 
@@ -70,7 +72,7 @@ public class LegislationStatusDialog extends WizardDialogBox {
 		return null;
 	}
 
-	private ListBox createLegislationStatusListBox(int legislationStatusCode) {
+	private ListBox createLegislationStatusListBox(String type, int legislationStatusCode) {
 		final ListBox legislationStatusListBox = new ListBox();
 		int selectedIndex = 0;
 		if (legislationStatusCode < 0) {
@@ -79,23 +81,25 @@ public class LegislationStatusDialog extends WizardDialogBox {
 			legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogArchiviertOption());
 		}
 		else {
-			if (legislationStatusCode == 3000 || legislationStatusCode == 4000) {
+			PlanStatus rechtsstand = findByLegislationStatusCode(type, legislationStatusCode);
+			switch (rechtsstand) {
+			case FESTGESTELLT:
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogFestgestelltSelectedOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogInAufstellungOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogArchiviertOption());
-			}
-			else if (legislationStatusCode == 4500 || legislationStatusCode == 5000 || legislationStatusCode == 50000
-					|| legislationStatusCode == 50001) {
+				break;
+			case ARCHIVIERT:
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogFestgestelltOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogInAufstellungOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogArchiviertSelectedOption());
 				selectedIndex = 2;
-			}
-			else {
+				break;
+			case IN_AUFSTELLUNG:
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogFestgestelltOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogInAufstellungSelectedOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogArchiviertOption());
 				selectedIndex = 1;
+				break;
 			}
 		}
 		legislationStatusListBox.setSelectedIndex(selectedIndex);

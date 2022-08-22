@@ -313,7 +313,7 @@ public class XPlanManager {
 			}
 			else {
 				Rechtsstand rechtsstand = determineRechtsstand(xPlanFeatureCollection);
-				planStatus = findByLegislationStatusCode(rechtsstand.getCodeNumber());
+				planStatus = findByLegislationStatusCode(archive.getType().name(), rechtsstand.getCodeNumber());
 			}
 			boolean planWithSameNameAndStatusExists = xplanDao.checkIfPlanWithSameNameAndStatusExists(planName,
 					planStatus.getMessage());

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -78,11 +78,12 @@ public class ImportWizardCreator {
 	 * @param id id of plan to import
 	 * @param hasMultipleXPlanElements
 	 */
-	public void importPlan(final String id, final boolean hasMultipleXPlanElements) {
-		selectValidityPeriodAndImportPlan(id, hasMultipleXPlanElements);
+	public void importPlan(final String id, final String type, final boolean hasMultipleXPlanElements) {
+		selectValidityPeriodAndImportPlan(id, type, hasMultipleXPlanElements);
 	}
 
-	private void selectValidityPeriodAndImportPlan(final String id, final boolean hasMultipleXPlanElements) {
+	private void selectValidityPeriodAndImportPlan(final String id, final String type,
+			final boolean hasMultipleXPlanElements) {
 		if (configuration.isValidityPeriodActivated() && !hasMultipleXPlanElements) {
 			final ValidityPeriodDialog dialog = new ValidityPeriodDialog();
 			dialog.addNextSubmittedHandler(new NextSubmittedHandler() {
@@ -93,7 +94,8 @@ public class ImportWizardCreator {
 							Date startDateTime = dialog.retrieveStartDateTime();
 							Date endDateTime = dialog.retrieveEndDateTime();
 							dialog.hide();
-							selectInternalIdAndImportPlan(id, hasMultipleXPlanElements, startDateTime, endDateTime);
+							selectInternalIdAndImportPlan(id, type, hasMultipleXPlanElements, startDateTime,
+									endDateTime);
 						}
 						else {
 							Window.alert(MESSAGES.editInvalidInput());
@@ -109,12 +111,12 @@ public class ImportWizardCreator {
 			dialog.show();
 		}
 		else {
-			selectInternalIdAndImportPlan(id, hasMultipleXPlanElements, null, null);
+			selectInternalIdAndImportPlan(id, type, hasMultipleXPlanElements, null, null);
 		}
 	}
 
-	private void selectInternalIdAndImportPlan(final String id, final boolean hasMultipleXPlanElements,
-			final Date startDateTime, final Date endDateTime) {
+	private void selectInternalIdAndImportPlan(final String id, final String type,
+			final boolean hasMultipleXPlanElements, final Date startDateTime, final Date endDateTime) {
 		if (configuration.getInternalIdActivated() && !hasMultipleXPlanElements) {
 			getService().retrieveMatchingInternalIds(id, new MethodCallback<Map<String, String>>() {
 				@Override
@@ -143,7 +145,7 @@ public class ImportWizardCreator {
 							String internalId = internalIdDialog.retrieveSelectedInternalId();
 							if (internalId != null) {
 								internalIdDialog.hide();
-								selectLegislationStatusAndImportPlan(id, hasMultipleXPlanElements, internalId,
+								selectLegislationStatusAndImportPlan(id, type, hasMultipleXPlanElements, internalId,
 										startDateTime, endDateTime);
 							}
 							else {
@@ -155,12 +157,13 @@ public class ImportWizardCreator {
 			});
 		}
 		else {
-			selectLegislationStatusAndImportPlan(id, hasMultipleXPlanElements, null, startDateTime, endDateTime);
+			selectLegislationStatusAndImportPlan(id, type, hasMultipleXPlanElements, null, startDateTime, endDateTime);
 		}
 	}
 
-	private void selectLegislationStatusAndImportPlan(final String id, final boolean hasMultipleXPlanElements,
-			final String internalId, final Date startDateTime, final Date endDateTime) {
+	private void selectLegislationStatusAndImportPlan(final String id, String type,
+			final boolean hasMultipleXPlanElements, final String internalId, final Date startDateTime,
+			final Date endDateTime) {
 		if (configuration.isLegislationStatusActivated() && !hasMultipleXPlanElements) {
 			getService().determineLegislationStatus(id, new MethodCallback<Rechtsstand>() {
 
@@ -171,7 +174,8 @@ public class ImportWizardCreator {
 
 				@Override
 				public void onSuccess(Method method, Rechtsstand legislationStatus) {
-					LegislationStatusDialog legislationStatusDialog = new LegislationStatusDialog(legislationStatus);
+					LegislationStatusDialog legislationStatusDialog = new LegislationStatusDialog(type,
+							legislationStatus);
 					NextSubmittedHandler nextSubmittedHandler = createNextSubmittedHandler(legislationStatusDialog);
 					legislationStatusDialog.addNextSubmittedHandler(nextSubmittedHandler);
 					legislationStatusDialog.center();

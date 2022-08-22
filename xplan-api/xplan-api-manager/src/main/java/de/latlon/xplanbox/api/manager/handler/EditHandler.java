@@ -39,7 +39,6 @@ import java.nio.file.Files;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.LP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
