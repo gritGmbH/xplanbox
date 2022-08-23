@@ -27,16 +27,14 @@ import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 import de.latlon.xplan.validator.configuration.ValidatorConfigurationParser;
-import de.latlon.xplan.validator.configuration.ValidatorProfile;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
-import de.latlon.xplan.validator.semantic.configuration.message.FileRulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
-import de.latlon.xplan.validator.semantic.profile.DelegatingSemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
@@ -50,8 +48,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.nio.file.Paths.get;
@@ -68,29 +65,16 @@ public class XPlanValidatorCliSpringConfig {
 	@Lazy
 	@Scope("prototype")
 	public SemanticValidator semanticValidator(Path rulesPath) throws ValidatorException {
-		RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
-		RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata(rulesPath);
+		RulesVersionParser rulesVersionParser = new RulesVersionParser();
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
 		return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata));
 	}
 
 	@Bean
 	public List<SemanticProfileValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
 			throws ValidatorException {
-		List<SemanticProfileValidator> semanticValidators = new ArrayList<>();
-		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			RulesMetadata rulesMetadata = new RulesMetadata(validatorProfile.getName(),
-					validatorProfile.getDescription(), validatorProfile.getVersion(), validatorProfile.getSource());
-			Path rulesPath = Paths.get(validatorProfile.getXqueryRulesDirectory());
-			FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(
-					validatorProfile.getRulesDescription());
-			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
-					rulesPath, rulesMetadata, messagesAccessor);
-			XQuerySemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(
-					xQuerySemanticValidatorConfigurationRetriever);
-			semanticValidators
-					.add(new DelegatingSemanticProfileValidator(rulesMetadata.getId(), xQuerySemanticValidator));
-		}
-		return semanticValidators;
+		return Collections.emptyList();
 	}
 
 	@Bean

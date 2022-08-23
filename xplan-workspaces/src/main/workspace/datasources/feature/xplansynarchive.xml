@@ -1,4 +1,4 @@
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 12.07.2022, 07:38:10-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 08.08.2022, 14:53:26-->
 <SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
   <JDBCConnId>xplan</JDBCConnId>
   <StorageCRS srid="0" dim="2D">EPSG:25832</StorageCRS>
@@ -232,54 +232,6 @@
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche" table="xplansynarchive.xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche">
     <FIDMapping prefix="XPLAN_BP_ABWEICHUNGVONUEBERBAUBARERGRUNDSTUECKSFLAECHE_">
-      <Column name="attr_gml_id" type="string"/>
-      <UUIDGenerator/>
-    </FIDMapping>
-    <Primitive path="xplan:gmlId" mapping="xplan_gmlid"/>
-    <Primitive path="xplan:gmlName" mapping="xplan_gmlname"/>
-    <Primitive path="xplan:gmlDescription" mapping="xplan_gmldescription"/>
-    <Primitive path="xplan:xpVersion" mapping="xplan_xpversion"/>
-    <Primitive path="xplan:xpPlanType" mapping="xplan_xpplantype"/>
-    <Primitive path="xplan:xpPlanName" mapping="xplan_xpplanname"/>
-    <Primitive path="xplan:xplanMgrPlanId" mapping="xplan_mgr_planid"/>
-    <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
-    <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
-    <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="dateTime"/>
-    <Primitive path="xplan:uuid" mapping="xplan_uuid"/>
-    <Primitive path="xplan:text" mapping="xplan_text"/>
-    <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand"/>
-    <Primitive path="xplan:rechtsstandWert" mapping="xplan_rechtsstandwert"/>
-    <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage"/>
-    <Primitive path="xplan:gliederung1" mapping="xplan_gliederung1"/>
-    <Primitive path="xplan:gliederung2" mapping="xplan_gliederung2"/>
-    <Primitive path="xplan:ebene" mapping="xplan_ebene"/>
-    <Primitive path="xplan:hatGenerAttribut" mapping="xplan_hatgenerattribut"/>
-    <Primitive path="xplan:hoehenangabe" mapping="xplan_hoehenangabe"/>
-    <Primitive path="xplan:externeReferenz" mapping="xplan_externereferenz"/>
-    <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich"/>
-    <Primitive path="xplan:wirdDargestelltDurch" mapping="xplan_wirddargestelltdurch"/>
-    <Primitive path="xplan:refBegruendungInhalt" mapping="xplan_refbegruendunginhalt"/>
-    <Primitive path="xplan:startBedingung" mapping="xplan_startbedingung"/>
-    <Primitive path="xplan:endeBedingung" mapping="xplan_endebedingung"/>
-    <Primitive path="xplan:aufschrift" mapping="xplan_aufschrift"/>
-    <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
-    <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
-    <Primitive path="xplan:refTextInhalt" mapping="xplan_reftextinhalt"/>
-    <Primitive path="xplan:wirdAusgeglichenDurchFlaeche" mapping="xplan_wirdausgeglichendurchflaeche"/>
-    <Primitive path="xplan:wirdAusgeglichenDurchABE" mapping="xplan_wirdausgeglichendurchabe"/>
-    <Primitive path="xplan:wirdAusgeglichenDurchSPEMassnahme" mapping="xplan_wirdausgeglichendurchspemassnahme"/>
-    <Primitive path="xplan:wirdAusgeglichenDurchSPEFlaeche" mapping="xplan_wirdausgeglichendurchspeflaeche"/>
-    <Primitive path="xplan:wirdAusgeglichenDurchMassnahme" mapping="xplan_wirdausgeglichendurchmassnahme"/>
-    <Primitive path="xplan:laermkontingent" mapping="xplan_laermkontingent"/>
-    <Primitive path="xplan:laermkontingentGebiet" mapping="xplan_laermkontingentgebiet"/>
-    <Primitive path="xplan:zusatzkontingent" mapping="xplan_zusatzkontingent"/>
-    <Primitive path="xplan:zusatzkontingentFlaeche" mapping="xplan_zusatzkontingentflaeche"/>
-    <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
-    <Geometry path="xplan:position" mapping="xplan_position"/>
-    <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
-  </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche" table="xplansynarchive.xplan_bp_abweichungvonueberbauberergrundstuecksflaeche">
-    <FIDMapping prefix="XPLAN_BP_ABWEICHUNGVONUEBERBAUBERERGRUNDSTUECKSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
     </FIDMapping>

@@ -1,23 +1,26 @@
 pipeline {
   agent any
+  options {
+      disableConcurrentBuilds()
+  }
   tools {
     maven 'maven-3.8'
     jdk 'openjdk11'
   }
-  parameters {
-    string(defaultValue: "master", description: 'Set git branch', name: 'BRANCH')
+  environment {
+      MAVEN_OPTS='-Djava.awt.headless=true -Xmx4096m'
   }
   stages {
     stage('Preparation') {
-      steps{
-        deleteDir()
-        git credentialsId: 'latlon-CI-bitbucket', url: 'https://bitbucket.org/latlon/xplanbox.git', branch: '${BRANCH}'
+      steps {
         sh 'mvn --version'
       }
     }
     stage('Build') {
-      steps{
-        sh 'mvn -B -C -q clean install'
+      steps {
+        withMaven(mavenLocalRepo: '.repository') {
+            sh 'mvn -B -C -q clean install'
+        }
       }
       post {
         always {
@@ -25,16 +28,10 @@ pipeline {
         }
       }
     }
-    stage('Deploy') {
-      when {
-        anyOf {
-          branch '${BRANCH}'
-          environment name: 'DEPLOY_STEP', value: 'true'
-        }
+  }
+  post {
+      always {
+          cleanWs notFailBuild: true
       }
-      steps{
-        sh 'mvn deploy -Dskip.unit.tests=true'
-      }
-    }
   }
 }

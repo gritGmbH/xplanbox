@@ -70,11 +70,13 @@ public class XPlanSynthesizer {
 
 	private final static String SYN_NS = XPLAN_SYN.getNamespace();
 
-	private static AppSchema synSchema;
+	private static final AppSchema synSchema;
 
 	private final Map<String, Expression> rules = new HashMap<String, Expression>();
 
 	private final Path rulesDirectory;
+
+	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
 	static {
 		try {
@@ -215,17 +217,19 @@ public class XPlanSynthesizer {
 
 	private Feature synthesize(Feature feature, FeatureCollection features) {
 		List<Property> newProps = new ArrayList<Property>();
-		QName synFeatureName = new QName(SYN_NS, feature.getType().getName().getLocalPart());
+		String synFeatureTypeName = featureTypeNameSynthesizer.detectSynFeatureTypeName(feature.getType().getName());
+		QName synFeatureName = new QName(SYN_NS, synFeatureTypeName);
 
-		if (synSchema.getFeatureType(synFeatureName) == null) {
+		FeatureType synFeatureType = synSchema.getFeatureType(synFeatureName);
+		if (synFeatureType == null) {
 			String msg = "Interner Fehler. Das XPlanSyn Schema definiert keinen Feature Type mit Namen '"
 					+ synFeatureName + "'.";
 			throw new RuntimeException(msg);
 		}
-		List<PropertyType> propTypes = synSchema.getFeatureType(synFeatureName).getPropertyDeclarations();
+		List<PropertyType> propTypes = synFeatureType.getPropertyDeclarations();
 		for (PropertyType propType : propTypes) {
 			// the rule keys are specified in "<featureName>/<propName>" format
-			String key = feature.getName().getLocalPart() + "/" + propType.getName().getLocalPart();
+			String key = synFeatureTypeName + "/" + propType.getName().getLocalPart();
 			if (rules.containsKey(key)) {
 				TypedObjectNode newPropValue = rules.get(key).evaluate(feature, features);
 				if (newPropValue == null) {
@@ -247,8 +251,7 @@ public class XPlanSynthesizer {
 				throw new RuntimeException("Interner Fehler. Die Regeldatei enthält keine Regel für " + key + ".");
 			}
 		}
-		FeatureType synType = synSchema.getFeatureType(new QName(SYN_NS, feature.getName().getLocalPart()));
-		return synType.newFeature(feature.getId(), newProps, null);
+		return synFeatureType.newFeature(feature.getId(), newProps, null);
 	}
 
 	private PrimitiveValue toString(TypedObjectNodeArray<?> array) {

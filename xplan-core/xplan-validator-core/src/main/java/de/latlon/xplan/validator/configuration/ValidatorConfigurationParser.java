@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -102,7 +102,7 @@ public class ValidatorConfigurationParser {
 		if (!configuration.getValidatorProfiles().isEmpty()) {
 			LOG.info("  validation profiles");
 			configuration.getValidatorProfiles().forEach(profile -> {
-				LOG.info("   - {}: {}, {}", profile.getName(), profile.getDescription(),
+				LOG.info("   - {} ({}): {}, {}", profile.getName(), profile.getId(), profile.getDescription(),
 						profile.getXqueryRulesDirectory());
 			});
 			LOG.info("-------------------------------------------");
@@ -156,7 +156,25 @@ public class ValidatorConfigurationParser {
 	}
 
 	private void checkProfiles(List<ValidatorProfile> profiles) throws ConfigurationException {
+		List<String> configuredProfileIds = new ArrayList<>();
+		List<String> configuredProfileNames = new ArrayList<>();
 		for (ValidatorProfile profile : profiles) {
+			String profileId = profile.getId();
+			if (profileId != null) {
+				if (configuredProfileIds.contains(profileId)) {
+					throw new ConfigurationException("Profile id " + profileId
+							+ " is configured multiple times. The ids of all configured profiles must be unique.");
+				}
+				configuredProfileIds.add(profileId);
+			}
+			String profileName = profile.getName();
+			if (profileName != null) {
+				if (configuredProfileNames.contains(profileName)) {
+					throw new ConfigurationException("Profile name " + profileName
+							+ " is configured multiple times. The names of all configured profiles must be unique.");
+				}
+				configuredProfileNames.add(profileName);
+			}
 			if (StringUtils.isEmpty(profile.getName()) || StringUtils.isEmpty(profile.getDescription())
 					|| StringUtils.isEmpty(profile.getXqueryRulesDirectory()))
 				throw new ConfigurationException("Profile name, description and xqueryRulesDirectory must not be null");

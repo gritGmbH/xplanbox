@@ -23,7 +23,7 @@ public class LpBiologischeVielfaltKomplexFlattenerTest {
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:biologischeVielfalt"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals(
-				"[Biologische Vielfalt: [Bestandteil: LebensstaetteArthabitat]|von gemeinschaftlichem Interesse kartiert: ja]",
+				"[Biologische Vielfalt: [Bestandteil: Lebensstätte, Arthabitat]|von gemeinschaftlichem Interesse kartiert: ja]",
 				value.toString());
 	}
 

@@ -19,7 +19,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 12.07.2022, 07:38:10 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 08.08.2022, 14:53:26 -->
 <html>
   <head>
     <title>XPlanWMS Sachdatenanzeige</title>
@@ -223,7 +223,6 @@ BP_AbstandsFlaeche=BP: Abstandsfl&auml;che
 BP_AbstandsMass=BP: AbstandsMass
 BP_AbweichungVonBaugrenze=BP: Abweichung von Baugrenze
 BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche=BP: Abweichung von &uuml;berbaubarer Grundst&uuml;cksFl&auml;che
-BP_AbweichungVonUeberbaubererGrundstuecksFlaeche=BP: Abweichung von &uuml;berbaubarer Grundst&uuml;cksFl&auml;che
 BP_AnpflanzungBindungErhaltung=BP: Anpflanzung, Erhalt und Bindung
 BP_AufschuettungsFlaeche=BP: Aufsch&uuml;ttungsfl&auml;che
 BP_AusgleichsFlaeche=BP: Ausgleichsfl&auml;che

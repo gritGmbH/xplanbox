@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -31,9 +31,6 @@ import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 import static org.deegree.gml.GMLVersion.GML_32;
 
@@ -75,53 +72,45 @@ public class XPlanCodeListsParser {
 	}
 
 	private XPlanCodeLists parseGmlCodelist(URL codeListUrl, Dictionary codeLists) {
-		Map<String, Map<String, String>> codeListIdToMapping = new TreeMap<>();
-		Map<String, Map<String, String>> codeListIdToReverseMapping = new TreeMap<>();
+		XPlanCodeLists xPlanCodeLists = new XPlanCodeLists();
 		if (!codeLists.isEmpty()) {
 			Definition firstDefinition = codeLists.get(0);
 			if (firstDefinition instanceof Dictionary) {
 				for (Definition codeListDef : codeLists) {
-					parseDictionary(codeListUrl, (Dictionary) codeListDef, codeListIdToMapping,
-							codeListIdToReverseMapping);
+					parseDictionary(codeListUrl, (Dictionary) codeListDef, xPlanCodeLists);
 				}
 			}
 			else {
-				parseDictionary(codeListUrl, codeLists, codeListIdToMapping, codeListIdToReverseMapping);
+				parseDictionary(codeListUrl, codeLists, xPlanCodeLists);
 			}
 		}
-		return new XPlanCodeLists(codeListIdToMapping, codeListIdToReverseMapping);
+		return xPlanCodeLists;
 	}
 
-	private void parseDictionary(URL codeListUrl, Dictionary codeListDef,
-			Map<String, Map<String, String>> codeListIdToMapping,
-			Map<String, Map<String, String>> codeListIdToReverseMapping) {
+	private void parseDictionary(URL codeListUrl, Dictionary codeListDef, XPlanCodeLists xPlanCodeLists) {
 		Dictionary codeListDict = codeListDef;
 		String codeListId = codeListDict.getId();
-		if (codeListIdToMapping.get(codeListId) != null) {
+		if (xPlanCodeLists.hasCodeList(codeListId)) {
 			String msg = "CodeList '" + codeListId + "' ist in Dictionary '" + codeListUrl + "' doppelt vorhanden.";
 			throw new RuntimeException(msg);
 		}
-
 		if (codeListDict.isEmpty()) {
-			codeListIdToMapping.put(codeListId, new HashMap<>());
-			codeListIdToReverseMapping.put(codeListId, new HashMap<>());
+			xPlanCodeLists.addNewCodeList(codeListId);
 		}
-
 		for (Definition def : codeListDict) {
-			parseDefinition(codeListUrl, codeListId, def, codeListIdToMapping, codeListIdToReverseMapping);
+			parseDefinition(codeListUrl, codeListId, def, xPlanCodeLists);
 		}
 	}
 
-	private void parseDefinition(URL codeListUrl, String codeListId, Definition def,
-			Map<String, Map<String, String>> codeListIdToMapping,
-			Map<String, Map<String, String>> codeListIdToReverseMapping) {
+	private void parseDefinition(URL codeListUrl, String codeListId, Definition def, XPlanCodeLists xPlanCodeLists) {
 		if (def.getNames().length > 0) {
-			String descriptionFromCode = getCode(def);
+			String name = getNameWithoutCodeSpaceOrFirst(def);
 			if (codeIsPartOfIdentifier(codeListId, def)) {
 				String codeWithCodelistId = def.getGMLProperties().getIdentifier().getCode();
 				String code = codeWithCodelistId.substring(codeWithCodelistId.indexOf(":") + 1);
-				addCodeAndDescription(codeListId, code, descriptionFromCode, codeListIdToMapping,
-						codeListIdToReverseMapping);
+				String lesbarerName = getName(def, "lesbarerName");
+				String kuerzel = getName(def, "kuerzel");
+				xPlanCodeLists.addNewCodeEntry(codeListId, code, name, lesbarerName, kuerzel);
 			}
 			else if (def.getDescription() != null) {
 				String description = def.getDescription().getString();
@@ -130,13 +119,11 @@ public class XPlanCodeListsParser {
 							+ "' definiert mehrerere Codes für '" + description + "'.";
 					throw new RuntimeException(msg);
 				}
-				addCodeAndDescription(codeListId, descriptionFromCode, description, codeListIdToMapping,
-						codeListIdToReverseMapping);
+				xPlanCodeLists.addNewCodeEntry(codeListId, name, description);
 			}
 			else {
 				// no description -> treat
-				addCodeAndDescription(codeListId, descriptionFromCode, descriptionFromCode, codeListIdToMapping,
-						codeListIdToReverseMapping);
+				xPlanCodeLists.addNewCodeEntry(codeListId, name, name);
 			}
 		}
 		else {
@@ -146,7 +133,7 @@ public class XPlanCodeListsParser {
 		}
 	}
 
-	private String getCode(Definition def) {
+	private String getNameWithoutCodeSpaceOrFirst(Definition def) {
 		CodeType[] names = def.getNames();
 		for (CodeType name : names) {
 			if (name.getCodeSpace() == null)
@@ -155,25 +142,13 @@ public class XPlanCodeListsParser {
 		return names[0].getCode();
 	}
 
-	void addCodeAndDescription(String codeListId, String code, String description,
-			Map<String, Map<String, String>> codeListIdToMapping,
-			Map<String, Map<String, String>> codeListIdToReverseMapping) {
-		Map<String, String> codeToDesc = codeListIdToMapping.get(codeListId);
-		Map<String, String> descToCode = codeListIdToReverseMapping.get(codeListId);
-		if (codeToDesc == null) {
-			codeToDesc = new HashMap<>();
-			codeListIdToMapping.put(codeListId, codeToDesc);
-			descToCode = new HashMap<>();
-			codeListIdToReverseMapping.put(codeListId, descToCode);
+	private String getName(Definition def, String codeSpace) {
+		CodeType[] names = def.getNames();
+		for (CodeType name : names) {
+			if (codeSpace.equals(name.getCodeSpace()) || (codeSpace == null && name.getCodeSpace() == null))
+				return name.getCode();
 		}
-		if (codeToDesc.get(code) != null && !description.equals(codeToDesc.get(code))) {
-			String msg = "Cannot add code '" + code + "' with description '" + description + "' to code list '"
-					+ codeListId + "' -- list already defines description '" + codeToDesc.get(code)
-					+ "' for this code.";
-			throw new IllegalArgumentException(msg);
-		}
-		codeToDesc.put(code, description);
-		descToCode.put(description, code);
+		return null;
 	}
 
 	private boolean codeIsPartOfIdentifier(String codeListId, Definition def) {

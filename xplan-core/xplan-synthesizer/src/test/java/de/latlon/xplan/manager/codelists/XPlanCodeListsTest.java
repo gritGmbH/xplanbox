@@ -24,7 +24,6 @@ import de.latlon.xplan.commons.XPlanVersion;
 import org.junit.Test;
 
 import java.net.URL;
-import java.util.Map;
 
 import static org.deegree.gml.GMLVersion.GML_30;
 import static org.hamcrest.CoreMatchers.is;
@@ -36,52 +35,82 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class XPlanCodeListsTest {
 
 	@Test
-	public void testGetDescription_XPlan42() {
+	public void testGetTranslation_XPlan41() {
 		XPlanVersion version = XPlanVersion.XPLAN_41;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
+		String translation = xPlanCodeLists.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+		assertThat(translation, is("InkraftGetreten"));
 	}
 
 	@Test
-	public void testGetDescription_XPlan52() {
+	public void testGetTranslation_XPlan52() {
 		XPlanVersion version = XPlanVersion.XPLAN_52;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
+		String translation = xPlanCodeLists.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+		assertThat(translation, is("InkraftGetreten"));
 	}
 
 	@Test
-	public void testGetDescription_XPlan53() {
+	public void testGetTranslation_XPlan53() {
 		XPlanVersion version = XPlanVersion.XPLAN_53;
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String legislationStatusTranslation = xPlanCodeLists.getDescription("BP_Rechtsstand", "4000");
+		String translation = xPlanCodeLists.getTranslation("BP_Rechtsstand", "4000");
 
-		assertThat(legislationStatusTranslation, is("InkraftGetreten"));
+		assertThat(translation, is("InkraftGetreten"));
 	}
 
 	@Test
-	public void testParseXPlan4() throws Exception {
+	public void testGetTranslation_XPlan60() {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		String translation = xPlanCodeLists.getTranslation("BP_Rechtsstand", "4000");
+
+		assertThat(translation, is("In Kraft getreten"));
+	}
+
+	@Test
+	public void testGetTranslation_XPlan60_lesbarereName() {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		String translation = xPlanCodeLists.getTranslation("XP_ArtHoehenbezug", "1000");
+
+		assertThat(translation, is("Absolut NHN"));
+	}
+
+	@Test
+	public void testGetCodeEntry_XPlan60_kuerzelAndLesbarerName() {
+		XPlanVersion version = XPlanVersion.XPLAN_60;
+		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		XPlanCodeList codeList = xPlanCodeLists.getCodeList("XP_ArtHoehenbezug");
+		XPlanCodeEntry codeEntry = codeList.getCodeEntry("1000");
+
+		assertThat(codeEntry.getName(), is("absolutNHN"));
+		assertThat(codeEntry.getLesbarerName(), is("Absolut NHN"));
+		assertThat(codeEntry.getKuerzel(), is("NHN"));
+	}
+
+	@Test
+	public void testParseCodelist_GML3() throws Exception {
 		URL codeListFile = XPlanCodeListsTest.class
 				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan4.xml");
 		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile, GML_30);
+		XPlanCodeList codeList = codeLists.getCodeList("xplan_XP_BesondereArtDerBaulNutzung");
 
-		Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
-		assertThat(codesToDescriptions.size(), is(1));
-		assertThat(codesToDescriptions.values().iterator().next().size(), is(5));
+		assertThat(codeLists.getCodeLists().size(), is(1));
+		assertThat(codeList.getCodeEntries().size(), is(5));
 	}
 
 	@Test
-	public void testParseXPlan5() throws Exception {
+	public void testParseCodelist_GML32() throws Exception {
 		URL codeListFile = XPlanCodeListsTest.class
 				.getResource("../synthesizer/XP_BesondereArtDerBaulNutzung-XPlan5.xml");
 		XPlanCodeLists codeLists = new XPlanCodeListsParser().parseCodelists(codeListFile);
+		XPlanCodeList codeList = codeLists.getCodeList("XP_BesondereArtDerBaulNutzung");
 
-		Map<String, Map<String, String>> codesToDescriptions = codeLists.getCodesToDescriptions();
-		assertThat(codesToDescriptions.size(), is(1));
-		assertThat(codesToDescriptions.values().iterator().next().size(), is(15));
+		assertThat(codeLists.getCodeLists().size(), is(1));
+		assertThat(codeList.getCodeEntries().size(), is(15));
 	}
 
 }

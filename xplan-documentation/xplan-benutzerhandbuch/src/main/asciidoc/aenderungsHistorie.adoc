@@ -8,6 +8,8 @@
 - Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
 - Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden
 - Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
+- Aktualisierung der XPlanGML Schemadateien auf Version 6.0.1
+- Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML Version 6.0.1
 
 [[Aenderungshistorie-5.0.3]]
 === Version 5.0.3
