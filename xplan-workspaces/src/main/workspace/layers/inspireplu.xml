@@ -20,14 +20,13 @@
   #L%
   -->
 
-<FeatureLayers configVersion="3.4.0"
-               xmlns="http://www.deegree.org/layers/feature"
+<FeatureLayers xmlns="http://www.deegree.org/layers/feature"
                xmlns:l="http://www.deegree.org/layers/base"
                xmlns:d="http://www.deegree.org/metadata/description"
                xmlns:s="http://www.deegree.org/metadata/spatial"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xmlns:app="http://www.deegree.org/app"
-               xsi:schemaLocation="http://www.deegree.org/layers/feature http://schemas.deegree.org/layers/feature/3.4.0/feature.xsd">
+               xsi:schemaLocation="http://www.deegree.org/layers/feature https://schemas.deegree.org/3.5/layers/feature/feature.xsd">
 
   <FeatureStoreId>inspireplu_view</FeatureStoreId>
 

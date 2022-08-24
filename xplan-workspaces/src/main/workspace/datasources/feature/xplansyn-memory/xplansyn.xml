@@ -18,10 +18,10 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-<MemoryFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/memory"
+<MemoryFeatureStore xmlns="http://www.deegree.org/datasource/feature/memory"
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://www.deegree.org/datasource/feature/memory
-  http://schemas.deegree.org/datasource/feature/memory/3.4.0/memory.xsd">
+  https://schemas.deegree.org/3.5/datasource/feature/memory/memory.xsd">
   <StorageCRS>EPSG:25832</StorageCRS>
   <GMLSchema version="GML_32">../../appschemas/XPlanGML_Syn/XPlanSyn.xsd</GMLSchema>
 

@@ -20,9 +20,9 @@
   #L%
   -->
 
-<deegreeServicesMetadata configVersion="3.4.0" xmlns="http://www.deegree.org/services/metadata"
+<deegreeServicesMetadata xmlns="http://www.deegree.org/services/metadata"
                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                         xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.4.0/metadata.xsd">
+                         xsi:schemaLocation="http://www.deegree.org/services/metadata https://schemas.deegree.org/3.5/services/metadata/metadata.xsd">
   <ServiceIdentification>
     <Title>XPlanWFS52Archive</Title>
     <Abstract>Dieser WFS Dienst stellt auf dem Standard XPlanung 5.2 basierende FeatureTypes bereit.</Abstract>

@@ -86,7 +86,6 @@ public class PlanwerkMetadataTest {
 		final DeegreeWMS.SupportedVersions supportedVersions = Mockito.mock(DeegreeWMS.SupportedVersions.class);
 		when(supportedVersions.getVersion()).thenReturn(versionsAsList);
 		final DeegreeWMS planwerkWms = Mockito.mock(DeegreeWMS.class);
-		when(planwerkWms.getConfigVersion()).thenReturn("3.4.0");
 		when(planwerkWms.getSupportedVersions()).thenReturn(supportedVersions);
 		final WmsMetadata planwerkWmsMD = Mockito.mock(WmsMetadata.class);
 		when(planwerkWmsMD.getCfg()).thenReturn(planwerkWms);
