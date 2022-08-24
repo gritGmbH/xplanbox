@@ -25,7 +25,7 @@
                          xsi:schemaLocation="http://www.deegree.org/services/metadata https://schemas.deegree.org/3.5/services/metadata/metadata.xsd">
   <ServiceIdentification>
     <Title>XPlanArtWMSFPlan</Title>
-    <Abstract>Dieser WMS Dienst stellt auf dem Standard XPlanung basierende WMS Ebenen bereit. Dargestellt werden jeweils nur die zu einer Planart gehörenden Objekte. Die umfangreiche Attributierung kann mittels GetFeatureInfo abgefragt werden. Objekte mit Referenzen auf weitere Dateien können über GetFeatureInfo abgefragt werden.</Abstract>
+    <Abstract>Dieser WMS Dienst stellt auf dem Standard XPlanung basierende WMS Ebenen bereit. Dargestellt werden jeweils nur die zur Planart FP gehörenden Objekte im Planstatus "Festgestellt". Die umfangreiche Attributierung kann mittels GetFeatureInfo abgefragt werden. Objekte mit Referenzen auf weitere Dateien können über GetFeatureInfo abgefragt werden.</Abstract>
     <Keywords>
       <Keyword>XPlanung</Keyword>
       <Keyword>FPlan</Keyword>
