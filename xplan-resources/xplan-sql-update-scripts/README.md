@@ -81,7 +81,7 @@ sed -i -e '/^#     - createIndex:/{ n; n; n; n; s/.*/# &/g }' changelog_xplansyn
 sed -i -e '/^#     - createIndex:/{ n; n; n; n; n; s/.*/# &/g }' changelog_xplansynarchive.yaml
 sed -i -e '/^#     - createIndex:/{ n; n; n; n; n; n; s/.*/# &/g }' changelog_xplansynarchive.yaml
 sed -i -e '/^#         tableName:/{ p; s/^#         tableName: /      - sql: CREATE INDEX IF NOT EXISTS spidx_/g }' changelog_xplansynarchive.yaml
-sed -i -e '/^      - sql: CREATE INDEX IF NOT EXISTS spidx_.*/s/.*\(xplan_.*\)/&_xplan_position ON xplansyn.\1 USING gist (xplan_position);/g' changelog_xplansynarchive.yaml
+sed -i -e '/^      - sql: CREATE INDEX IF NOT EXISTS spidx_.*/s/.*\(xplan_.*\)/&_xplan_position ON xplansynarchive.\1 USING gist (xplan_position);/g' changelog_xplansynarchive.yaml
 ```
 
 For `changelog_xplansynpre.yaml`:
@@ -95,5 +95,5 @@ sed -i -e '/^#     - createIndex:/{ n; n; n; n; s/.*/# &/g }' changelog_xplansyn
 sed -i -e '/^#     - createIndex:/{ n; n; n; n; n; s/.*/# &/g }' changelog_xplansynpre.yaml
 sed -i -e '/^#     - createIndex:/{ n; n; n; n; n; n; s/.*/# &/g }' changelog_xplansynpre.yaml
 sed -i -e '/^#         tableName:/{ p; s/^#         tableName: /      - sql: CREATE INDEX IF NOT EXISTS spidx_/g }' changelog_xplansynpre.yaml
-sed -i -e '/^      - sql: CREATE INDEX IF NOT EXISTS spidx_.*/s/.*\(xplan_.*\)/&_xplan_position ON xplansyn.\1 USING gist (xplan_position);/g' changelog_xplansynpre.yaml
+sed -i -e '/^      - sql: CREATE INDEX IF NOT EXISTS spidx_.*/s/.*\(xplan_.*\)/&_xplan_position ON xplansynpre.\1 USING gist (xplan_position);/g' changelog_xplansynpre.yaml
 ```
