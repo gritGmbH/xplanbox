@@ -65,26 +65,4 @@
       <Role>PointOfContact</Role>
     </ServiceContact>
   </ServiceProvider>
-
-
-  <ExtendedCapabilities protocolVersions="1.3.0">
-    <inspire_vs:ExtendedCapabilities xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
-                                     xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
-                                     xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd http://inspire.ec.europa.eu/schemas/inspire_vs/1.0 http://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd">
-      <inspire_common:MetadataUrl>
-        <inspire_common:URL>
-          http://www.metadaten-serviceportal.de/
-        </inspire_common:URL>
-        <inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType>
-      </inspire_common:MetadataUrl>
-      <inspire_common:SupportedLanguages>
-        <inspire_common:DefaultLanguage>
-          <inspire_common:Language>ger</inspire_common:Language>
-        </inspire_common:DefaultLanguage>
-      </inspire_common:SupportedLanguages>
-      <inspire_common:ResponseLanguage>
-        <inspire_common:Language>ger</inspire_common:Language>
-      </inspire_common:ResponseLanguage>
-    </inspire_vs:ExtendedCapabilities>
-  </ExtendedCapabilities>
 </deegreeServicesMetadata>
