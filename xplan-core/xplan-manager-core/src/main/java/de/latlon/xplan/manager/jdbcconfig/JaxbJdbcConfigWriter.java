@@ -57,7 +57,6 @@ public class JaxbJdbcConfigWriter implements JdbcConfigWriter {
 	private DataSourceConnectionProvider createNewDatasource(String jdbcConnection, String dbName, String user,
 			String pw) {
 		DataSourceConnectionProvider connectionProvider = new DataSourceConnectionProvider();
-		connectionProvider.setConfigVersion("3.4.0");
 		DataSource dataSource = new DataSource();
 		dataSource.setJavaClass("org.apache.commons.dbcp.BasicDataSource");
 		connectionProvider.setDataSource(dataSource);
