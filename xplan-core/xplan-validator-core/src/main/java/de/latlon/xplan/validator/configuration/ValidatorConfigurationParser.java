@@ -8,28 +8,37 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.validator.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import org.deegree.commons.utils.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import static java.nio.file.Files.createTempDirectory;
 
@@ -62,18 +71,20 @@ public class ValidatorConfigurationParser {
 	 */
 	public ValidatorConfiguration parse(PropertiesLoader propertiesLoader) throws ConfigurationException, IOException {
 		checkParameters(propertiesLoader);
-		Properties properties = propertiesLoader.loadProperties(VALIDATOR_CONFIGURATION_PROPERTIES);
 
-		ValidatorConfiguration configuration = parseConfiguration(properties);
+		ValidatorConfiguration configuration = parseConfiguration(propertiesLoader);
 		logConfiguration(configuration);
 		return configuration;
 	}
 
-	private ValidatorConfiguration parseConfiguration(Properties properties) throws IOException {
+	private ValidatorConfiguration parseConfiguration(PropertiesLoader propertiesLoader)
+			throws IOException, ConfigurationException {
+		Properties properties = propertiesLoader.loadProperties(VALIDATOR_CONFIGURATION_PROPERTIES);
 		Path reportDirectory = createReportDirectory(properties);
 		Path rulesDirectory = createRulesDirectory(properties);
 		String validatorWmsEndpoint = parseValidatorWmsEndpoint(properties);
-		return new ValidatorConfiguration(reportDirectory, rulesDirectory, validatorWmsEndpoint);
+		List<ValidatorProfile> validatorProfiles = parseValidatorProfiles(propertiesLoader);
+		return new ValidatorConfiguration(reportDirectory, rulesDirectory, validatorWmsEndpoint, validatorProfiles);
 	}
 
 	private void logConfiguration(ValidatorConfiguration configuration) {
@@ -88,6 +99,14 @@ public class ValidatorConfigurationParser {
 		LOG.info("  XPlanValidatorWMS Endpoint");
 		LOG.info("   - {}", configuration.getValidatorWmsEndpoint());
 		LOG.info("-------------------------------------------");
+		if (!configuration.getValidatorProfiles().isEmpty()) {
+			LOG.info("  validation profiles");
+			configuration.getValidatorProfiles().forEach(profile -> {
+				LOG.info("   - {} ({}): {}, {}", profile.getName(), profile.getId(), profile.getDescription(),
+						profile.getXqueryRulesDirectory());
+			});
+			LOG.info("-------------------------------------------");
+		}
 	}
 
 	private Path createReportDirectory(Properties properties) throws IOException {
@@ -108,6 +127,62 @@ public class ValidatorConfigurationParser {
 	private String parseValidatorWmsEndpoint(Properties properties) {
 		String validatorWmsEndpoint = properties.getProperty(VALIDATOR_WMS_ENDPOINT);
 		return validatorWmsEndpoint == null || validatorWmsEndpoint.trim().isEmpty() ? null : validatorWmsEndpoint;
+	}
+
+	private List<ValidatorProfile> parseValidatorProfiles(PropertiesLoader propertiesLoader)
+			throws IOException, ConfigurationException {
+		Path profileDirectory = propertiesLoader.resolveDirectory("profiles");
+		List<ValidatorProfile> validatorProfiles = new ArrayList<>();
+		if (profileDirectory != null && Files.exists(profileDirectory)) {
+			List<Path> profileConfigs = Files.find(profileDirectory, 1, (path, basicFileAttributes) -> {
+				File file = path.toFile();
+				return file.isFile() && file.getName().endsWith("yaml");
+			}).collect(Collectors.toList());
+			for (Path profileConfig : profileConfigs) {
+				List<ValidatorProfile> profiles = parseProfiles(profileConfig);
+				checkProfiles(profiles);
+				validatorProfiles.addAll(profiles);
+			}
+		}
+		return validatorProfiles;
+	}
+
+	private List<ValidatorProfile> parseProfiles(Path profileConfig) throws IOException {
+		try (InputStream configFile = Files.newInputStream(profileConfig)) {
+			ObjectMapper om = new ObjectMapper(new YAMLFactory());
+			CollectionType javaType = om.getTypeFactory().constructCollectionType(List.class, ValidatorProfile.class);
+			return om.readValue(configFile, javaType);
+		}
+	}
+
+	private void checkProfiles(List<ValidatorProfile> profiles) throws ConfigurationException {
+		List<String> configuredProfileIds = new ArrayList<>();
+		List<String> configuredProfileNames = new ArrayList<>();
+		for (ValidatorProfile profile : profiles) {
+			String profileId = profile.getId();
+			if (profileId != null) {
+				if (configuredProfileIds.contains(profileId)) {
+					throw new ConfigurationException("Profile id " + profileId
+							+ " is configured multiple times. The ids of all configured profiles must be unique.");
+				}
+				configuredProfileIds.add(profileId);
+			}
+			String profileName = profile.getName();
+			if (profileName != null) {
+				if (configuredProfileNames.contains(profileName)) {
+					throw new ConfigurationException("Profile name " + profileName
+							+ " is configured multiple times. The names of all configured profiles must be unique.");
+				}
+				configuredProfileNames.add(profileName);
+			}
+			if (StringUtils.isEmpty(profile.getName()) || StringUtils.isEmpty(profile.getDescription())
+					|| StringUtils.isEmpty(profile.getXqueryRulesDirectory()))
+				throw new ConfigurationException("Profile name, description and xqueryRulesDirectory must not be null");
+			Path xqueryRulesDirectory = Paths.get(profile.getXqueryRulesDirectory());
+			if (!Files.exists(xqueryRulesDirectory) || !Files.isDirectory(xqueryRulesDirectory))
+				throw new ConfigurationException("Profile xqueryRulesDirectory " + xqueryRulesDirectory
+						+ " does not exist or is not a directory");
+		}
 	}
 
 	private void checkParameters(PropertiesLoader propertiesLoader) {

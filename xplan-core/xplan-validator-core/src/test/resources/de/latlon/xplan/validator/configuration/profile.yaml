@@ -1,0 +1,4 @@
+- id: "Berlin"
+  name: "Berlin"
+  description: "Berliner Profil"
+  xqueryRulesDirectory: "PATH"

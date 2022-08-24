@@ -20,6 +20,7 @@
  */
 package de.latlon.xplanbox.api.commons.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -29,15 +30,82 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2020-08-27T12:32:04.497+02:00[Europe/Berlin]")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RulesMetadata {
 
+	@JsonInclude(NON_NULL)
+	private @Valid String id;
+
+	@JsonInclude(NON_NULL)
+	private @Valid String name;
+
+	@JsonInclude(NON_NULL)
+	private @Valid String description;
+
+	@JsonInclude(NON_NULL)
 	private @Valid String version;
 
+	@JsonInclude(NON_NULL)
 	private @Valid String source;
+
+	/**
+	 *
+	 **/
+	public RulesMetadata id(String id) {
+		this.id = id;
+		return this;
+	}
+
+	@Schema(example = "profil1")
+	@JsonProperty("id")
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	/**
+	 *
+	 **/
+	public RulesMetadata name(String name) {
+		this.name = name;
+		return this;
+	}
+
+	@Schema(example = "GemeindeMusterdorf")
+	@JsonProperty("name")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 *
+	 **/
+	public RulesMetadata description(String description) {
+		this.description = description;
+		return this;
+	}
+
+	@Schema(example = "Beschreibung des Profils der Gemeinde Musterdorf")
+	@JsonProperty("description")
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	/**
 	 *
@@ -84,12 +152,15 @@ public class RulesMetadata {
 			return false;
 		}
 		RulesMetadata rulesMetadata = (RulesMetadata) o;
-		return Objects.equals(this.version, rulesMetadata.version) && Objects.equals(this.source, rulesMetadata.source);
+		return Objects.equals(this.name, rulesMetadata.name)
+				&& Objects.equals(this.description, rulesMetadata.description)
+				&& Objects.equals(this.version, rulesMetadata.version)
+				&& Objects.equals(this.source, rulesMetadata.source);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(version, source);
+		return Objects.hash(name, description, version, source);
 	}
 
 	@Override
@@ -97,6 +168,8 @@ public class RulesMetadata {
 		StringBuilder sb = new StringBuilder();
 		sb.append("class RulesMetadata {\n");
 
+		sb.append("    name: ").append(toIndentedString(name)).append("\n");
+		sb.append("    description: ").append(toIndentedString(description)).append("\n");
 		sb.append("    version: ").append(toIndentedString(version)).append("\n");
 		sb.append("    source: ").append(toIndentedString(source)).append("\n");
 		sb.append("}");

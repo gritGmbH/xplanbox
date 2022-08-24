@@ -31,7 +31,7 @@ http://<host>:<port>/xplan-wms/services/wms?
 [[xplanwms-beispielanfragen]]
 ==== Adresse des XPlanWerkWMS
 
-Die Adresse des XPlanWerkWMS ist abhängig von dem Planwerk das angefragt werden soll. Der Name des Plans wird im XPlanManager (s. <<xplanmanager-web>>) in der Auflistung der Pläne angezeigt und in der URL für den Platzhalter <PLANNAME> angegeben. Der Planname wird aus dem XPlanGML Element `<xplan:name>` abgeleitet. Dabei werden Sonderzeichen wie `/` entfernt und der Planname für die Erstellung der URL des XPlanWerkWMS kodiert (weitere Informationen zu URL Syntax und Zeichenkodierung in https://datatracker.ietf.org/doc/html/rfc3986[RFC 3986 – Uniform Resource Identifier (URI)]).
+Die Adresse des XPlanWerkWMS ist abhängig von dem Planwerk das angefragt werden soll. Der Name des Plans wird im XPlanManager (s. <<xplanmanager-web>>) in der Auflistung der Pläne angezeigt und in der URL für den Platzhalter <PLANNAME> angegeben. Der Planname wird aus dem XPlanGML Element `xplan:name` abgeleitet. Dabei werden Sonderzeichen wie `/` entfernt und der Planname für die Erstellung der URL des XPlanWerkWMS kodiert (weitere Informationen zu URL Syntax und Zeichenkodierung in https://datatracker.ietf.org/doc/html/rfc3986[RFC 3986 – Uniform Resource Identifier (URI)]).
 
 Die vollständige XPlanWerkWMS URL kann über die Kartenvorschau im XPlanManagerWeb abgerufen werden.
 

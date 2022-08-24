@@ -59,6 +59,39 @@ exists(/wms:WMS_Capabilities)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
             <con:password>${#Project#password}</con:password>
@@ -228,6 +261,39 @@ exists(/wms:WMS_Capabilities)</path>
 
 exists(/wms:WMS_Capabilities)</path>
               <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="f8567ea6-1c24-411b-84e2-7713e8b83945" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -403,6 +469,39 @@ exists(/wms:WMS_Capabilities)</path>
 
 exists(/wms:WMS_Capabilities)</path>
               <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="638e143e-41ed-4d1c-ab43-0c90ae7115da" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+/wms:WMS_Capabilities/wms:Capability/wms:Layer/wms:Layer/wms:Layer/wms:Title = "BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -3198,7 +3297,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/BPlan41_HH_Bergedorf110_1Aend_soapui-webservices.zip</con:url>
             <con:id>fcf51c4a-4c66-4063-b42b-a152689357bc</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3468,11 +3567,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>32</con:value>
+          <con:value>155</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_32c28b24-9e5b-4b6f-a078-ec235241b303</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_67ea321d-cc02-4c74-9612-457a8045867f</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3503,7 +3602,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
             <con:id>57363f79-2b6e-4349-aceb-fa2c65b5a839</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3693,7 +3792,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>33</con:value>
+          <con:value>156</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3724,7 +3823,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
             <con:id>b79715ee-f61c-449b-a5ef-48e940015d59</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3925,7 +4024,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>34</con:value>
+          <con:value>157</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3956,7 +4055,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
             <con:id>359d35cd-e5b7-41d5-b789-f2fba3449e7d</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -4005,7 +4104,7 @@ exists(/wms:WMS_Capabilities)</path>
             <con:name>BPlan002_5-3.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>BPlan002_5-3.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/BPlan002_5-3.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/BPlan002_5-3.zip</con:url>
             <con:id>f4992d26-e700-4ffd-87cc-39551e589e8c</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -4685,11 +4784,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>35</con:value>
+          <con:value>158</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>36</con:value>
+          <con:value>159</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4720,6 +4819,39 @@ exists(/wms:WMS_Capabilities)</path>
 
 exists(/wfs:WFS_Capabilities)</path>
               <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -4782,6 +4914,39 @@ exists(/wfs:WFS_Capabilities)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="630bd269-b9c1-412f-8797-85ef62a97937" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="630bd269-b9c1-412f-8797-85ef62a97937" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="630bd269-b9c1-412f-8797-85ef62a97937" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
             <con:password>${#Project#password}</con:password>
@@ -4834,6 +4999,39 @@ exists(/wfs:WFS_Capabilities)</path>
 
 exists(/wfs:WFS_Capabilities)</path>
               <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="951a177f-4355-43e7-8939-537217c1236d" name="BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="951a177f-4355-43e7-8939-537217c1236d" name="BP: AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="951a177f-4355-43e7-8939-537217c1236d" name="BP_AbweichungVonUeberbaubererGrundstuecksFlaeche not exists">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+              <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -4897,7 +5095,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:name>Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:url>
             <con:id>32682600-9bc2-4ce5-bac9-3bcfae1fa8fd</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5279,7 +5477,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>29</con:value>
+          <con:value>160</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5310,7 +5508,56 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt_4_V4-soapui-webservices.zip</con:url>
+            <con:id>0ed35278-acb9-4c74-afaa-da54b7900d5a</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Import Osdorf48_Test_60.zip" id="e46f0924-9227-463d-b6b5-92d74dab3493">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import Osdorf48_Test_60.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices-plans/Osdorf48_Test_60.zip</con:url>
             <con:id>0ed35278-acb9-4c74-afaa-da54b7900d5a</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5343,6 +5590,17 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:sourceStep>Import Eidelstedt_4_V4-soapui-webservices.zip</con:sourceStep>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planIdOsdorf48</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import Osdorf48_Test_60.zip</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planIdOsdorf48</con:targetType>
             <con:targetStep>#TestCase#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -5462,6 +5720,118 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
           </con:parameters>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="GetFeature Archive" id="76da1a17-872d-42f7-b785-0913bf717f1f">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature Archive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Osdorf48_Testplan_60"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArt">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArt</path>
+              <content>10002</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="planArtWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:planArtWert</path>
+              <content>Bebauungsplan zur Wohnraumversorgung</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstand">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstand</path>
+              <content>50001</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="rechtsstandWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Plan/xplan:rechtsstandWert</path>
+              <content>Außer Kraft</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typenames</con:name>
+              <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
       <con:testStep type="httprequest" name="Delete Eidelstedt_4_V4-soapui-webservices.zip" id="b1956bd8-a4f4-4ee5-8ea2-6a97332d2388">
         <con:settings/>
         <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete Eidelstedt_4_V4-soapui-webservices.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -5482,22 +5852,31 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
             <con:authType>Global HTTP Settings</con:authType>
           </con:credentials>
-          <con:attachment>
-            <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
-            <con:contentType>application/octet-stream</con:contentType>
-            <con:size>16902</con:size>
-            <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:data>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</con:data>
-            <con:id>019177bb-3932-4610-8a4d-871d7c178373</con:id>
-          </con:attachment>
-          <con:attachment>
-            <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
-            <con:contentType>application/octet-stream</con:contentType>
-            <con:size>16908</con:size>
-            <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:data>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</con:data>
-            <con:id>d21b8f60-f835-4e51-84c2-8180ba6af2d8</con:id>
-          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Delete Osdorf48_Test_60.zip" id="b489a332-9bf4-4de8-b51f-b07b10ba72ef">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete Osdorf48_Test_60.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planIdOsdorf48}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:jmsPropertyConfig/>
           <con:parameters/>
@@ -5506,7 +5885,11 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>30</con:value>
+          <con:value>161</con:value>
+        </con:property>
+        <con:property>
+          <con:name>planIdOsdorf48</con:name>
+          <con:value>162</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -7054,7 +7437,7 @@ declare namespace ows='http://www.opengis.net/ows/1.1';
             <con:name>Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Eidelstedt4V4-with-nummer-soapui-webservices.zip</con:url>
             <con:id>127400ce-5339-4159-800b-e88299de3971</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -7444,7 +7827,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>31</con:value>
+          <con:value>163</con:value>
         </con:property>
       </con:properties>
     </con:testCase>

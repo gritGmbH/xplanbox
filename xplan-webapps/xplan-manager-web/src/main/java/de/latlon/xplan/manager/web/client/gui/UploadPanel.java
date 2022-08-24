@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -54,6 +54,7 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.client.ValidatorOptionsDialog;
 import de.latlon.xplan.validator.web.client.report.ReportDownloadFinishedListener;
+import de.latlon.xplan.validator.web.shared.ValidationConfig;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
@@ -84,7 +85,11 @@ public class UploadPanel extends DecoratorPanel {
 
 	private final FileUpload upload = new FileUpload();
 
-	public UploadPanel(ManagerWebConfiguration configuration, PlanListPanel planListPanel) {
+	private ValidationConfig validationConfig;
+
+	public UploadPanel(ManagerWebConfiguration configuration, ValidationConfig validationConfig,
+			PlanListPanel planListPanel) {
+		this.validationConfig = validationConfig;
 		this.importWizardCreator = new ImportWizardCreator(configuration, planListPanel);
 		createUi();
 	}
@@ -269,8 +274,9 @@ public class UploadPanel extends DecoratorPanel {
 				dialog.hide();
 			}
 		};
-		return new ValidatorOptionsDialog(reportDownloadFinishedListener, messages.reportCloseButtonTitle(),
-				messages.reportNextButtonTitle(), getFilename(upload), cancelHandler, false);
+		return new ValidatorOptionsDialog(validationConfig, reportDownloadFinishedListener,
+				messages.reportCloseButtonTitle(), messages.reportNextButtonTitle(), getFilename(upload), cancelHandler,
+				false);
 	}
 
 	private Widget createUploadWidget() {

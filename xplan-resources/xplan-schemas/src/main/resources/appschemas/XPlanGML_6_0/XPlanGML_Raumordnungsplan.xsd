@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 24.01.2022 09:22:45-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 16:07:21-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.1">
   <include schemaLocation="XPlanGML_Basisschema.xsd" />
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />
   <include schemaLocation="XPlanGML_LPlan_Kernmodell.xsd" />
@@ -137,17 +137,38 @@
     <complexContent>
       <extension base="xplan:XP_BereichType">
         <sequence>
-          <element name="versionBROG" minOccurs="0" type="date" />
-          <element name="versionBROGText" minOccurs="0" type="string" />
-          <element name="versionLPLG" minOccurs="0" type="date" />
-          <element name="versionLPLGText" minOccurs="0" type="string" />
-          <element name="geltungsmassstab" minOccurs="0" type="int" />
+          <element name="versionBROG" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Bekanntmachungs-Datum der zugrunde liegenden Version des ROG.</documentation>
+            </annotation>
+          </element>
+          <element name="versionBROGText" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Titel der zugrunde liegenden Version des Bundesraumordnungsgesetzes.</documentation>
+            </annotation>
+          </element>
+          <element name="versionLPLG" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Bekanntmachungs-Datum des zugrunde liegenden Landesplanungsgesetzes.</documentation>
+            </annotation>
+          </element>
+          <element name="versionLPLGText" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Titel des zugrunde liegenden Landesplanungsgesetzes.</documentation>
+            </annotation>
+          </element>
+          <element name="geltungsmassstab" minOccurs="0" type="int">
+            <annotation>
+              <documentation>(Rechtlicher) Geltungsmaßstab des Bereichs.</documentation>
+            </annotation>
+          </element>
           <element name="gehoertZuPlan" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:RP_Plan</gml:targetElement>
                 <gml:reversePropertyName>xplan:bereich</gml:reversePropertyName>
               </appinfo>
+              <documentation>Relation auf den zugehörigen Plan</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Bereich" minOccurs="0" maxOccurs="unbounded" />
@@ -256,10 +277,27 @@ Eignungsgebiete haben den Charakter von Zielen der Raumordnung.</documentation>
     <complexContent>
       <extension base="xplan:RP_ObjektType">
         <sequence>
-          <element name="position" type="gml:GeometryPropertyType" />
-          <element name="flaechenschluss" minOccurs="0" default="false" type="boolean" />
-          <element name="flussrichtung" minOccurs="0" type="boolean" />
-          <element name="nordwinkel" minOccurs="0" type="gml:AngleType" />
+          <element name="position" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>Variabler Raumbezug.</documentation>
+            </annotation>
+          </element>
+          <element name="flaechenschluss" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Zeigt an, ob für das Objekt Flächenschluss vorliegt.</documentation>
+            </annotation>
+          </element>
+          <element name="flussrichtung" minOccurs="0" type="boolean">
+            <annotation>
+              <documentation>Das Attribut ist nur relevant, wenn ein Geometrieobjekt einen linienhaften Raumbezug hat. Ist es mit dem Wert &lt;i&gt;true &lt;/i&gt;belegt, wird damit ausgedrückt, dass der Linie eine &lt;b&gt;Flussrichtung &lt;/b&gt; &lt;b&gt;in Digitalisierungsrichtung&lt;/b&gt; zugeordnet ist. In diesem Fall darf bei Im- und Export die Digitalisierungsreihenfolge der Stützpunkte nicht geändert werden. Wie eine definierte Flussrichtung  zu interpretieren oder bei einer Plandarstellung zu visualisieren ist, bleibt der Implementierung überlassen.
+Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, ist die Digitalisierungsreihenfolge der Stützpunkte &lt;b&gt;irrelevant&lt;/b&gt;.</documentation>
+            </annotation>
+          </element>
+          <element name="nordwinkel" minOccurs="0" type="gml:AngleType">
+            <annotation>
+              <documentation>Orientierung des Objektes bei punktförmigem Raumbezug als Winkel gegen die Nordrichtung. Zählweise im geographischen Sinn (von Nord über Ost nach Süd und West).</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Geometrieobjekt" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -277,11 +315,31 @@ Eignungsgebiete haben den Charakter von Zielen der Raumordnung.</documentation>
     <complexContent>
       <extension base="xplan:XP_ObjektType">
         <sequence>
-          <element name="konkretisierung" minOccurs="0" type="string" />
-          <element name="gebietsTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_GebietsTyp" />
-          <element name="kuestenmeer" minOccurs="0" default="false" type="boolean" />
-          <element name="bedeutsamkeit" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_Bedeutsamkeit" />
-          <element name="istZweckbindung" minOccurs="0" default="false" type="boolean" />
+          <element name="konkretisierung" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Konkretisierung des Rechtscharakters.</documentation>
+            </annotation>
+          </element>
+          <element name="gebietsTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_GebietsTyp">
+            <annotation>
+              <documentation>Gebietstyp eines Objekts.</documentation>
+            </annotation>
+          </element>
+          <element name="kuestenmeer" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Zeigt an, ob das Objekt im Küstenmeer liegt.</documentation>
+            </annotation>
+          </element>
+          <element name="bedeutsamkeit" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_Bedeutsamkeit">
+            <annotation>
+              <documentation>Bedeutsamkeit eines Objekts.</documentation>
+            </annotation>
+          </element>
+          <element name="istZweckbindung" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Zeigt an, ob es sich bei diesem Objekt um eine Zweckbindung handelt.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Objekt" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -299,43 +357,108 @@ Eignungsgebiete haben den Charakter von Zielen der Raumordnung.</documentation>
     <complexContent>
       <extension base="xplan:XP_PlanType">
         <sequence>
-          <element name="bundesland" maxOccurs="unbounded" type="xplan:XP_Bundeslaender" />
-          <element name="planArt" type="xplan:RP_Art" />
+          <element name="bundesland" maxOccurs="unbounded" type="xplan:XP_Bundeslaender">
+            <annotation>
+              <documentation>Zuständige Bundesländer für den Plan.</documentation>
+            </annotation>
+          </element>
+          <element name="planArt" type="xplan:RP_Art">
+            <annotation>
+              <documentation>Art des Raumordnungsplans.</documentation>
+            </annotation>
+          </element>
           <element name="sonstPlanArt" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:RP_SonstPlanArt</referenzierteCodelist>
-              </appinfo>
+              <documentation>Spezifikation einer weiteren Planart (CodeList) bei planArt == 9999.</documentation>
             </annotation>
           </element>
-          <element name="planungsregion" minOccurs="0" type="int" />
-          <element name="teilabschnitt" minOccurs="0" type="int" />
-          <element name="rechtsstand" minOccurs="0" type="xplan:RP_Rechtsstand" />
+          <element name="planungsregion" minOccurs="0" type="int">
+            <annotation>
+              <documentation>Kennziffer der Planungsregion.</documentation>
+            </annotation>
+          </element>
+          <element name="teilabschnitt" minOccurs="0" type="int">
+            <annotation>
+              <documentation>Kennziffer des Teilabschnittes.</documentation>
+            </annotation>
+          </element>
+          <element name="rechtsstand" minOccurs="0" type="xplan:RP_Rechtsstand">
+            <annotation>
+              <documentation>Rechtsstand des Plans.</documentation>
+            </annotation>
+          </element>
           <element name="status" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:RP_Status</referenzierteCodelist>
-              </appinfo>
+              <documentation>Status des Plans, definiert über eine CodeList.</documentation>
             </annotation>
           </element>
-          <element name="aufstellungsbeschlussDatum" minOccurs="0" type="date" />
-          <element name="auslegungStartDatum" minOccurs="0" maxOccurs="unbounded" type="date" />
-          <element name="auslegungEndDatum" minOccurs="0" maxOccurs="unbounded" type="date" />
-          <element name="traegerbeteiligungsStartDatum" minOccurs="0" maxOccurs="unbounded" type="date" />
-          <element name="traegerbeteiligungsEndDatum" minOccurs="0" maxOccurs="unbounded" type="date" />
-          <element name="aenderungenBisDatum" minOccurs="0" type="date" />
-          <element name="entwurfsbeschlussDatum" minOccurs="0" type="date" />
-          <element name="planbeschlussDatum" minOccurs="0" type="date" />
-          <element name="datumDesInkrafttretens" minOccurs="0" type="date" />
-          <element name="verfahren" minOccurs="0" type="xplan:RP_Verfahren" />
-          <element name="amtlicherSchluessel" minOccurs="0" type="string" />
-          <element name="genehmigungsbehoerde" minOccurs="0" type="string" />
+          <element name="aufstellungsbeschlussDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum des Aufstellungsbeschlusses.</documentation>
+            </annotation>
+          </element>
+          <element name="auslegungStartDatum" minOccurs="0" maxOccurs="unbounded" type="date">
+            <annotation>
+              <documentation>Start-Datum der öffentlichen Auslegung. Bei mehrfacher öffentlicher Auslegung können mehrere Datumsangaben spezifiziert werden.</documentation>
+            </annotation>
+          </element>
+          <element name="auslegungEndDatum" minOccurs="0" maxOccurs="unbounded" type="date">
+            <annotation>
+              <documentation>End-Datum der öffentlichen Auslegung. Bei mehrfacher öffentlicher Auslegung können mehrere Datumsangaben spezifiziert werden.</documentation>
+            </annotation>
+          </element>
+          <element name="traegerbeteiligungsStartDatum" minOccurs="0" maxOccurs="unbounded" type="date">
+            <annotation>
+              <documentation>Start-Datum der Trägerbeteiligung. Bei mehrfacher Trägerbeteiligung können mehrere Datumsangaben spezifiziert werden.</documentation>
+            </annotation>
+          </element>
+          <element name="traegerbeteiligungsEndDatum" minOccurs="0" maxOccurs="unbounded" type="date">
+            <annotation>
+              <documentation>End-Datum der Trägerbeteiligung. Bei mehrfacher Trägerbeteiligung können mehrere Datumsangaben spezifiziert werden.</documentation>
+            </annotation>
+          </element>
+          <element name="aenderungenBisDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum, bis zu dem Planänderungen berücksichtigt wurden.</documentation>
+            </annotation>
+          </element>
+          <element name="entwurfsbeschlussDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum des Entwurfsbeschlusses</documentation>
+            </annotation>
+          </element>
+          <element name="planbeschlussDatum" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum des Planbeschlusses.</documentation>
+            </annotation>
+          </element>
+          <element name="datumDesInkrafttretens" minOccurs="0" type="date">
+            <annotation>
+              <documentation>Datum des Inkrafttretens des Plans.</documentation>
+            </annotation>
+          </element>
+          <element name="verfahren" minOccurs="0" type="xplan:RP_Verfahren">
+            <annotation>
+              <documentation>Verfahrensstatus des Plans.</documentation>
+            </annotation>
+          </element>
+          <element name="amtlicherSchluessel" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Amtlicher Schlüssel eines Plans auf Basis des  AGS-Schlüssels (Amtlicher Gemeindeschlüssel).</documentation>
+            </annotation>
+          </element>
+          <element name="genehmigungsbehoerde" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Zuständige Genehmigungsbehörde</documentation>
+            </annotation>
+          </element>
           <element name="bereich" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:RP_Bereich</gml:targetElement>
                 <gml:reversePropertyName>xplan:gehoertZuPlan</gml:reversePropertyName>
               </appinfo>
+              <documentation>Relation auf einen Bereich</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Plan" minOccurs="0" maxOccurs="unbounded" />
@@ -477,7 +600,11 @@ Eignungsgebiete haben den Charakter von Zielen der Raumordnung.</documentation>
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_BodenschutzTypen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_BodenschutzTypen">
+            <annotation>
+              <documentation>Klassifikation von Bodenschutztypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Bodenschutz" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -495,9 +622,21 @@ Eignungsgebiete haben den Charakter von Zielen der Raumordnung.</documentation>
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typErholung" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_ErholungTypen" />
-          <element name="typTourismus" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_TourismusTypen" />
-          <element name="besondererTyp" minOccurs="0" type="xplan:RP_BesondereTourismusErholungTypen" />
+          <element name="typErholung" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_ErholungTypen">
+            <annotation>
+              <documentation>Klassifikation von Erholungstypen.</documentation>
+            </annotation>
+          </element>
+          <element name="typTourismus" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_TourismusTypen">
+            <annotation>
+              <documentation>Klassifikation von Tourismustypen.</documentation>
+            </annotation>
+          </element>
+          <element name="besondererTyp" minOccurs="0" type="xplan:RP_BesondereTourismusErholungTypen">
+            <annotation>
+              <documentation>Klassifikation von besonderen Typen für Tourismus und/oder Erholung.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Erholung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -516,7 +655,11 @@ Erneuerbare Energien sind Energiequellen, die keine endlichen Rohstoffe verbrauc
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_ErneuerbareEnergieTypen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_ErneuerbareEnergieTypen">
+            <annotation>
+              <documentation>Klassifikation von Typen Erneuerbarer Energie.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_ErneuerbareEnergie" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -535,7 +678,11 @@ Die natürlichen Abläufe in den Waldökosystemen werden dabei so gestaltet und 
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_ForstwirtschaftTypen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_ForstwirtschaftTypen">
+            <annotation>
+              <documentation>Klassifikation von Forstwirtschaftstypen und Wäldern.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Forstwirtschaft" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -554,8 +701,16 @@ Freiräume sind naturnahem Zustand, oder beinhalten Nutzungsformen, die mit sein
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="istAusgleichsgebiet" minOccurs="0" default="false" type="boolean" />
-          <element name="imVerbund" minOccurs="0" default="false" type="boolean" />
+          <element name="istAusgleichsgebiet" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Zeigt an, ob das Objekt ein Ausgleichsgebiet ist.</documentation>
+            </annotation>
+          </element>
+          <element name="imVerbund" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Zeigt an, ob das Objekt in einem (Freiraum-)Verbund liegt.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Freiraum" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -573,7 +728,11 @@ Freiräume sind naturnahem Zustand, oder beinhalten Nutzungsformen, die mit sein
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="gewaesserTyp" minOccurs="0" type="string" />
+          <element name="gewaesserTyp" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Spezifiziert den Typ des Gewässers.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Gewaesser" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -591,7 +750,11 @@ Freiräume sind naturnahem Zustand, oder beinhalten Nutzungsformen, die mit sein
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_ZaesurTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_ZaesurTypen">
+            <annotation>
+              <documentation>Klassifikation von Zäsurtypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_GruenzugGruenzaesur" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -610,7 +773,11 @@ Hochwasserschutz und vorbeugender Hochwasserschutz beinhaltet den Schutz von Sie
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_HochwasserschutzTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_HochwasserschutzTypen">
+            <annotation>
+              <documentation>Klassifikation von Hochwasserschutztypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Hochwasserschutz" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -628,7 +795,11 @@ Hochwasserschutz und vorbeugender Hochwasserschutz beinhaltet den Schutz von Sie
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_KlimaschutzTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_KlimaschutzTypen">
+            <annotation>
+              <documentation>Klassifikation von Lufttypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Klimaschutz" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -647,7 +818,11 @@ Beinhaltet unter anderem die Begriffe Kulturlandschaft, kulturelle Sachgüter un
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_KulturlandschaftTypen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_KulturlandschaftTypen">
+            <annotation>
+              <documentation>Klassifikation von Kulturlandschaftstypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Kulturlandschaft" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -665,7 +840,11 @@ Beinhaltet unter anderem die Begriffe Kulturlandschaft, kulturelle Sachgüter un
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_LandwirtschaftTypen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_LandwirtschaftTypen">
+            <annotation>
+              <documentation>Klassifikation von Landwirtschaftstypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Landwirtschaft" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -683,7 +862,11 @@ Beinhaltet unter anderem die Begriffe Kulturlandschaft, kulturelle Sachgüter un
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_NaturLandschaftTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_NaturLandschaftTypen">
+            <annotation>
+              <documentation>Klassifikation von Naturschutz, Landschaftsschutz und Naturlandschafttypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_NaturLandschaft" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -701,8 +884,16 @@ Beinhaltet unter anderem die Begriffe Kulturlandschaft, kulturelle Sachgüter un
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:LP_KlassifizierungNaturschutzrecht" />
-          <element name="istKernzone" minOccurs="0" default="false" type="boolean" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:LP_KlassifizierungNaturschutzrecht">
+            <annotation>
+              <documentation>Klassifikation des Naturschutzgebietes.</documentation>
+            </annotation>
+          </element>
+          <element name="istKernzone" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob es sich um eine Kernzone handelt.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_NaturschutzrechtlichesSchutzgebiet" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -720,7 +911,11 @@ Beinhaltet unter anderem die Begriffe Kulturlandschaft, kulturelle Sachgüter un
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_RadwegWanderwegTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_RadwegWanderwegTypen">
+            <annotation>
+              <documentation>Klassifikation von Radwegen und Wanderwegen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_RadwegWanderweg" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -738,15 +933,51 @@ Beinhaltet unter anderem die Begriffe Kulturlandschaft, kulturelle Sachgüter un
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="rohstoffTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_RohstoffTypen" />
-          <element name="detaillierterRohstoffTyp" minOccurs="0" maxOccurs="unbounded" type="string" />
-          <element name="folgenutzung" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_BergbauFolgenutzung" />
-          <element name="folgenutzungText" minOccurs="0" type="string" />
-          <element name="zeitstufe" minOccurs="0" type="xplan:RP_Zeitstufen" />
-          <element name="zeitstufeText" minOccurs="0" type="string" />
-          <element name="tiefe" minOccurs="0" type="xplan:RP_BodenschatzTiefen" />
-          <element name="bergbauplanungTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_BergbauplanungTypen" />
-          <element name="istAufschuettungAblagerung" minOccurs="0" default="false" type="boolean" />
+          <element name="rohstoffTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_RohstoffTypen">
+            <annotation>
+              <documentation>Abgebauter Rohstoff.</documentation>
+            </annotation>
+          </element>
+          <element name="detaillierterRohstoffTyp" minOccurs="0" maxOccurs="unbounded" type="string">
+            <annotation>
+              <documentation>Abgebauer Rohstoff in Textform</documentation>
+            </annotation>
+          </element>
+          <element name="folgenutzung" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_BergbauFolgenutzung">
+            <annotation>
+              <documentation>Klassifikation von Folgenutzungen bestimmter bergbaulicher Maßnahmen.</documentation>
+            </annotation>
+          </element>
+          <element name="folgenutzungText" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Textliche Festlegungen und Spezifizierungen zur Folgenutzung einer Bergbauplanung.</documentation>
+            </annotation>
+          </element>
+          <element name="zeitstufe" minOccurs="0" type="xplan:RP_Zeitstufen">
+            <annotation>
+              <documentation>Zeitstufe des Rohstoffabbaus.</documentation>
+            </annotation>
+          </element>
+          <element name="zeitstufeText" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Textliche Spezifizierung einer Rohstoffzeitstufe, zum Beispiel kurzfristiger Abbau (Zeitstufe I) und langfristige Sicherung für mindestens 25-30 Jahre (Zeitstufe II).</documentation>
+            </annotation>
+          </element>
+          <element name="tiefe" minOccurs="0" type="xplan:RP_BodenschatzTiefen">
+            <annotation>
+              <documentation>Tiefe eines Rohstoffes</documentation>
+            </annotation>
+          </element>
+          <element name="bergbauplanungTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_BergbauplanungTypen">
+            <annotation>
+              <documentation>Klassifikation von Bergbauplanungstypen.</documentation>
+            </annotation>
+          </element>
+          <element name="istAufschuettungAblagerung" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob der Rohstoff aus einer Aufschüttung oder Ablagerung gewonnen wird</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Rohstoff" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -782,7 +1013,11 @@ Sportanlagen sind ortsfeste Einrichtungen, die zur Sportausübung bestimmt sind.
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_SportanlageTypen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_SportanlageTypen">
+            <annotation>
+              <documentation>Klassifikation von Sportanlagen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Sportanlage" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -800,8 +1035,16 @@ Sportanlagen sind ortsfeste Einrichtungen, die zur Sportausübung bestimmt sind.
     <complexContent>
       <extension base="xplan:RP_FreiraumType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_WasserschutzTypen" />
-          <element name="zone" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_WasserschutzZonen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_WasserschutzTypen">
+            <annotation>
+              <documentation>Klassifikation des Wasserschutztyps.</documentation>
+            </annotation>
+          </element>
+          <element name="zone" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_WasserschutzZonen">
+            <annotation>
+              <documentation>Wasserschutzzone</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Wasserschutz" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -2723,9 +2966,21 @@ Die Zone III reicht von der Grenze des Einzugsgebietes bis zur Außengrenze der 
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_EnergieversorgungTypen" />
-          <element name="primaerenergieTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_PrimaerenergieTypen" />
-          <element name="spannung" minOccurs="0" type="xplan:RP_SpannungTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_EnergieversorgungTypen">
+            <annotation>
+              <documentation>Klassifikation von Energieversorgungs-Einrichtungen.</documentation>
+            </annotation>
+          </element>
+          <element name="primaerenergieTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_PrimaerenergieTypen">
+            <annotation>
+              <documentation>Klassifikation von der mit der Infrastruktur in Beziehung stehenden Primärenergie.</documentation>
+            </annotation>
+          </element>
+          <element name="spannung" minOccurs="0" type="xplan:RP_SpannungTypen">
+            <annotation>
+              <documentation>Klassifikation von Spannungen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Energieversorgung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -2851,10 +3106,26 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typAE" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_AbfallentsorgungTypen" />
-          <element name="abfallTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_AbfallTypen" />
-          <element name="typAW" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_AbwasserTypen" />
-          <element name="istAufschuettungAblagerung" minOccurs="0" default="false" type="boolean" />
+          <element name="typAE" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_AbfallentsorgungTypen">
+            <annotation>
+              <documentation>Klassifikation von Abfallentsorgung-Infrastruktur.</documentation>
+            </annotation>
+          </element>
+          <element name="abfallTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_AbfallTypen">
+            <annotation>
+              <documentation>Klassifikation von mit der Entsorgungsinfrastruktur in Beziehung stehenden Abfalltypen</documentation>
+            </annotation>
+          </element>
+          <element name="typAW" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_AbwasserTypen">
+            <annotation>
+              <documentation>Klassifikation von Abwasser-Infrastruktur.</documentation>
+            </annotation>
+          </element>
+          <element name="istAufschuettungAblagerung" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Gibt an, ob die Entsorgung in Form einer Aufschüttung oder Ablagerung erfolgt</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Entsorgung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -2872,7 +3143,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_KommunikationTypen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_KommunikationTypen">
+            <annotation>
+              <documentation>Klassifikation von Kommunikations-Infrastruktur.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Kommunikation" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -2930,7 +3205,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_LaermschutzTypen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_LaermschutzTypen">
+            <annotation>
+              <documentation>Klassifikation von Lärmschutztypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_LaermschutzBauschutz" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3000,7 +3279,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_VerkehrType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_LuftverkehrTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_LuftverkehrTypen">
+            <annotation>
+              <documentation>Klassifikation von Luftverkehr-Infrastruktur.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Luftverkehr" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3212,8 +3495,16 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_VerkehrType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_SchienenverkehrTypen" />
-          <element name="besondererTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_BesondererSchienenverkehrTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_SchienenverkehrTypen">
+            <annotation>
+              <documentation>Klassifikation von Schienenverkehr-Infrastruktur.</documentation>
+            </annotation>
+          </element>
+          <element name="besondererTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_BesondererSchienenverkehrTypen">
+            <annotation>
+              <documentation>Klassifikation von besonderer Schienenverkehr-Infrastruktur.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Schienenverkehr" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3354,7 +3645,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_VerkehrType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_SonstVerkehrTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_SonstVerkehrTypen">
+            <annotation>
+              <documentation>Sonstige Klassifikation von Verkehrs-Infrastruktur.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_SonstVerkehr" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3460,7 +3755,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_SozialeInfrastrukturTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_SozialeInfrastrukturTypen">
+            <annotation>
+              <documentation>Klassifikation von Sozialer Infrastruktur.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_SozialeInfrastruktur" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3570,8 +3869,16 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_VerkehrType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_StrassenverkehrTypen" />
-          <element name="besondererTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_BesondererStrassenverkehrTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_StrassenverkehrTypen">
+            <annotation>
+              <documentation>Klassifikation von Strassenverkehr-Infrastruktur.</documentation>
+            </annotation>
+          </element>
+          <element name="besondererTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_BesondererStrassenverkehrTypen">
+            <annotation>
+              <documentation>Klassifikation von besonderer Strassenverkehr-Infrastruktur.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Strassenverkehr" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3683,9 +3990,21 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="allgemeinerTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_VerkehrTypen" />
-          <element name="status" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_VerkehrStatus" />
-          <element name="bezeichnung" minOccurs="0" type="string" />
+          <element name="allgemeinerTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_VerkehrTypen">
+            <annotation>
+              <documentation>Allgemeine Klassifikation der Verkehrs-Arten.</documentation>
+            </annotation>
+          </element>
+          <element name="status" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_VerkehrStatus">
+            <annotation>
+              <documentation>Klassifikation von Verkehrsstati.</documentation>
+            </annotation>
+          </element>
+          <element name="bezeichnung" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Bezeichnung eines Verkehrstyps.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Verkehr" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3813,7 +4132,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_VerkehrType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_WasserverkehrTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_WasserverkehrTypen">
+            <annotation>
+              <documentation>Klassifikation von Wasserverkehr-Infrastruktur.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Wasserverkehr" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -3919,7 +4242,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_WasserwirtschaftTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_WasserwirtschaftTypen">
+            <annotation>
+              <documentation>Klassifikation von Anlagen und Einrichtungen der Wasserwirtschaft</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Wasserwirtschaft" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -4007,7 +4334,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_AchsenTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_AchsenTypen">
+            <annotation>
+              <documentation>Klassifikation verschiedener Achsen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Achse" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -4123,7 +4454,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_SiedlungType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_EinzelhandelTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_EinzelhandelTypen">
+            <annotation>
+              <documentation>Klassifikation von Einzelhandelstypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Einzelhandel" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -4211,8 +4546,16 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" maxOccurs="unbounded" type="xplan:RP_FunktionszuweisungTypen" />
-          <element name="bezeichnung" minOccurs="0" type="string" />
+          <element name="typ" maxOccurs="unbounded" type="xplan:RP_FunktionszuweisungTypen">
+            <annotation>
+              <documentation>Klassifikation des Gebietes nach Bundesraumordnungsgesetz.</documentation>
+            </annotation>
+          </element>
+          <element name="bezeichnung" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Bezeichnung und/oder Erörterung einer Gebietsfunktion.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Funktionszuweisung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -4300,7 +4643,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_SiedlungType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_IndustrieGewerbeTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_IndustrieGewerbeTypen">
+            <annotation>
+              <documentation>Klassifikation von Industrie- und Gewerbetypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_IndustrieGewerbe" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -4418,8 +4765,16 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="besondererTyp" minOccurs="0" type="xplan:RP_BesondereRaumkategorieTypen" />
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_RaumkategorieTypen" />
+          <element name="besondererTyp" minOccurs="0" type="xplan:RP_BesondereRaumkategorieTypen">
+            <annotation>
+              <documentation>Klassifikation verschiedener besonderer Raumkategorien.</documentation>
+            </annotation>
+          </element>
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_RaumkategorieTypen">
+            <annotation>
+              <documentation>Klassifikation verschiedener Raumkategorien.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Raumkategorie" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -4615,8 +4970,16 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="bauhoehenbeschraenkung" minOccurs="0" type="int" />
-          <element name="istSiedlungsbeschraenkung" minOccurs="0" default="false" type="boolean" />
+          <element name="bauhoehenbeschraenkung" minOccurs="0" type="int">
+            <annotation>
+              <documentation>Assoziierte Bauhöhenbeschränkung.</documentation>
+            </annotation>
+          </element>
+          <element name="istSiedlungsbeschraenkung" minOccurs="0" default="false" type="boolean">
+            <annotation>
+              <documentation>Abfrage, ob der FeatureType eine Siedlungsbeschränkung ist.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Siedlung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -4651,7 +5014,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" minOccurs="0" type="xplan:RP_SperrgebietTypen" />
+          <element name="typ" minOccurs="0" type="xplan:RP_SperrgebietTypen">
+            <annotation>
+              <documentation>Klassifikation verschiedener Sperrgebiettypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Sperrgebiet" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -4727,7 +5094,11 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_SiedlungType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_WohnenSiedlungTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_WohnenSiedlungTypen">
+            <annotation>
+              <documentation>Klassifikation von Wohnen- und Siedlungstypen.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_WohnenSiedlung" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -4815,8 +5186,16 @@ Abwasser beinhaltet durch häuslichen, gewerblichen, landwirtschaftlichen oder s
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" maxOccurs="unbounded" type="xplan:RP_ZentralerOrtTypen" />
-          <element name="sonstigerTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_ZentralerOrtSonstigeTypen" />
+          <element name="typ" maxOccurs="unbounded" type="xplan:RP_ZentralerOrtTypen">
+            <annotation>
+              <documentation>Klassifikation von Zentralen Orten.</documentation>
+            </annotation>
+          </element>
+          <element name="sonstigerTyp" minOccurs="0" maxOccurs="unbounded" type="xplan:RP_ZentralerOrtSonstigeTypen">
+            <annotation>
+              <documentation>Sonstige Klassifikation von Zentralen Orten.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_ZentralerOrt" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>
@@ -5067,9 +5446,7 @@ Kongruenzgebots. Der Kongruenzraum beschreibt den Raum im Umfeld eines Zentralen
         <sequence>
           <element name="typ" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:RP_GenerischesObjektTypen</referenzierteCodelist>
-              </appinfo>
+              <documentation>Über eine CodeList definierte Zweckbestimmung der Festlegung.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_GenerischesObjekt" minOccurs="0" maxOccurs="unbounded" />
@@ -5089,13 +5466,19 @@ Kongruenzgebots. Der Kongruenzraum beschreibt den Raum im Umfeld eines Zentralen
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GrenzeTypen" />
-          <element name="spezifischerTyp" minOccurs="0" type="xplan:RP_SpezifischeGrenzeTypen" />
+          <element name="typ" minOccurs="0" maxOccurs="unbounded" type="xplan:XP_GrenzeTypen">
+            <annotation>
+              <documentation>Typ der Grenze</documentation>
+            </annotation>
+          </element>
+          <element name="spezifischerTyp" minOccurs="0" type="xplan:RP_SpezifischeGrenzeTypen">
+            <annotation>
+              <documentation>Spezifischer Typ der Grenze</documentation>
+            </annotation>
+          </element>
           <element name="sonstTyp" minOccurs="0" type="gml:CodeType">
             <annotation>
-              <appinfo>
-                <referenzierteCodelist>xplan:RP_SonstGrenzeTypen</referenzierteCodelist>
-              </appinfo>
+              <documentation>Erweiterter Typ.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Grenze" minOccurs="0" maxOccurs="unbounded" />
@@ -5115,7 +5498,11 @@ Kongruenzgebots. Der Kongruenzraum beschreibt den Raum im Umfeld eines Zentralen
     <complexContent>
       <extension base="xplan:RP_GeometrieobjektType">
         <sequence>
-          <element name="planungsraumBeschreibung" minOccurs="0" type="string" />
+          <element name="planungsraumBeschreibung" minOccurs="0" type="string">
+            <annotation>
+              <documentation>Textliche Beschreibung eines Planungsrauminhalts.</documentation>
+            </annotation>
+          </element>
           <element ref="xplan:_GenericApplicationPropertyOfRP_Planungsraum" minOccurs="0" maxOccurs="unbounded" />
         </sequence>
       </extension>

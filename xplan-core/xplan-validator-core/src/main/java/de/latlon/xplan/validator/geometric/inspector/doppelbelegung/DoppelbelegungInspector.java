@@ -116,7 +116,7 @@ public class DoppelbelegungInspector implements GeometricFeatureInspector {
 	private void checkProperties(Feature featureToCheck, Feature overlappingFeature) {
 		propertiesToCheck.forEach(propertyToCheck -> {
 			QName propertyName = new QName(featureToCheck.getName().getNamespaceURI(), propertyToCheck);
-			List<Property> properties = overlappingFeature.getProperties(propertyName);
+			List<Property> properties = featureToCheck.getProperties(propertyName);
 			if (!properties.isEmpty()) {
 				checkIfPropertyExistInOverlappingFeature(featureToCheck, propertyName, overlappingFeature);
 			}

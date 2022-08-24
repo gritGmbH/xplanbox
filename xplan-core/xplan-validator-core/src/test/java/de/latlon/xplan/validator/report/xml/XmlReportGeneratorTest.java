@@ -105,6 +105,22 @@ public class XmlReportGeneratorTest {
 				"count(/ValidationReport/Validation/*[local-name()= 'Syn']/preceding-sibling::*)+1.", equalTo("3")));
 	}
 
+	@Test
+	public void testGenerateXmlReport_Profil() throws Exception {
+		XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		xmlReportGenerator.generateXmlReport(createValidatorReportWithAllTypesAndProfile(), os);
+		String xml = os.toString();
+
+		assertThat(xml, HasXPathMatcher.hasXPath("/ValidationReport/Validation/Profile"));
+		assertThat(xml,
+				EvaluateXPathMatcher.hasXPath("/ValidationReport/Validation/Profile/result", equalTo("nicht valide")));
+		assertThat(xml, EvaluateXPathMatcher
+				.hasXPath("/ValidationReport/Validation/Profile/Rules/Rule[name = 'a']/isValid", equalTo("true")));
+		assertThat(xml, EvaluateXPathMatcher
+				.hasXPath("/ValidationReport/Validation/Profile/Rules/Rule[name = 'b']/isValid", equalTo("false")));
+	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testGenerateXmlReportWithNullReport() throws Exception {
 		XmlReportGenerator xmlReportGenerator = new XmlReportGenerator();
@@ -157,6 +173,18 @@ public class XmlReportGeneratorTest {
 
 		GeometricValidatorResult geometricValidatorResult = new GeometricValidatorResult(SYNTAX_ERRORS);
 		validatorReport.setGeometricValidatorResult(geometricValidatorResult);
+		return validatorReport;
+	}
+
+	private ValidatorReport createValidatorReportWithAllTypesAndProfile() {
+		ValidatorReport validatorReport = createValidatorReportWithAllTypes();
+
+		SemanticValidatorResult profileValidatorResult = new SemanticValidatorResult();
+		profileValidatorResult.addRule("a", "Test valid", Collections.emptyList());
+		InvalidFeaturesResult invalidFeaturesResult = new InvalidFeaturesResult("id_profile10");
+		profileValidatorResult.addRule("b", "Test invalid", Collections.singletonList(invalidFeaturesResult));
+
+		validatorReport.addSemanticProfileValidatorResults(profileValidatorResult);
 		return validatorReport;
 	}
 

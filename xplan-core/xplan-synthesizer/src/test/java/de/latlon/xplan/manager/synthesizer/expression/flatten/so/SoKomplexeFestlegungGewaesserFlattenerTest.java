@@ -22,7 +22,7 @@ public class SoKomplexeFestlegungGewaesserFlattenerTest {
 		Feature feature = getTestFeature(features, "GML_8FDB6A1E-EFF1-9413-3AE1-B3CDAC3D573DA");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:artDerFestlegung"));
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("[Allgemeine Zweckbestimmung: StehendesGewaesser]", value.toString());
+		assertEquals("[Allgemeine Zweckbestimmung: Stehendes Gewässer]", value.toString());
 	}
 
 }

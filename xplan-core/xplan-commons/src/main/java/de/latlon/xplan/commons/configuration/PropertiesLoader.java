@@ -51,7 +51,7 @@ public interface PropertiesLoader {
 
 	/**
 	 * Resolves the passed subdirectory relative to the config directory
-	 * @param subdirectory necer <code>null</code>
+	 * @param subdirectory never <code>null</code>
 	 * @return the resolved directory or <code>null</code> if the config directory is
 	 * <code>null</code>
 	 */

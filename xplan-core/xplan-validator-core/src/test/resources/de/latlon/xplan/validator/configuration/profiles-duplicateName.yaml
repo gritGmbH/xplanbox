@@ -1,0 +1,8 @@
+- id: "profil1"
+  name: "Hamburg"
+  description: "Hamburger Profil"
+  xqueryRulesDirectory: "PATH"
+- id: "profil2"
+  name: "Hamburg"
+  description: "Bremer Profil"
+  xqueryRulesDirectory: "PATH"

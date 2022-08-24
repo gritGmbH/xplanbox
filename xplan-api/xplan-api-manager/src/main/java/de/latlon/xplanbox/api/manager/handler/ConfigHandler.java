@@ -67,7 +67,7 @@ public class ConfigHandler {
 				.skipFlaechenschluss(defaultValidationConfiguration.isSkipFlaechenschluss())
 				.skipGeltungsbereich(defaultValidationConfiguration.isSkipGeltungsbereich())
 				.skipLaufrichtung(defaultValidationConfiguration.isSkipLaufrichtung())
-				.rulesMetadata(systemConfigHandler.getRulesMetadata())
+				.rulesMetadata(systemConfigHandler.getRulesMetadata()).profiles(systemConfigHandler.getProfiles())
 				.supportedXPlanGmlVersions(systemConfigHandler.allSupportedVersions()).version(parseVersion());
 	}
 
