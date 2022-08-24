@@ -44,14 +44,14 @@
     <ServiceContact>
       <IndividualName>-</IndividualName>
       <PositionName />
-      <Phone>+49(0)22894779877</Phone>
+      <Phone>+49(0)22824333784</Phone>
       <Facsimile />
       <ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>
       <Address>
-        <DeliveryPoint>Aennchenstraße 19</DeliveryPoint>
-        <City>Bonn</City>
+        <DeliveryPoint>Im Ellig 1</DeliveryPoint>
+        <City>Wachtberg</City>
         <AdministrativeArea>Nordrhein-Westfalen</AdministrativeArea>
-        <PostalCode>53177</PostalCode>
+        <PostalCode>53343</PostalCode>
         <Country>Germany</Country>
       </Address>
       <OnlineResource>http://www.deegree.org</OnlineResource>
