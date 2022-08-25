@@ -1747,10 +1747,10 @@ Search for plan by name</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>Alsterdorf2.zip</con:name>
+              <con:name>BP_4.0_Laufrichtungsfehler.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>Alsterdorf2.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/Alsterdorf2.zip</con:url>
+              <con:contentId>BP_4.0_Laufrichtungsfehler.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_4.0_Laufrichtungsfehler.zip</con:url>
               <con:id>94a814d8-50e6-4b40-8a17-1f72fbba21d4</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1807,10 +1807,10 @@ Search for plan by name</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>XPlanManagerAPI-Test.zip</con:name>
+              <con:name>BP_4.1.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:contentId>BP_4.1.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_4.1.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1884,10 +1884,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>XPlanManagerAPI-Test.zip</con:name>
+              <con:name>BP_4.1.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:contentId>BP_4.1.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_4.1.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1962,11 +1962,11 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>XPlanManagerAPI-Test.zip</con:name>
+              <con:name>BP_4.1_MimeTypeV2.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
+              <con:contentId>BP_4.1_MimeTypeV2.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test-v2.zip</con:url>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_4.1_MimeTypeV2.zip</con:url>
               <con:id>a9a8ee6f-17f6-421c-bab9-e60905d0f606</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2023,10 +2023,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>Eidelstedt_4_V4.zip</con:name>
+              <con:name>BP_4.1_2.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>Eidelstedt_4_V4.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/Eidelstedt_4_V4.zip</con:url>
+              <con:contentId>BP_4.1_2.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_4.1_2.zip</con:url>
               <con:id>afe411ff-b64b-464b-9d2d-0d145eb36861</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2097,10 +2097,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>Alsterdorf24.zip</con:name>
+              <con:name>BP_5.0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>Alsterdorf24.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/Alsterdorf24.zip</con:url>
+              <con:contentId>BP_5.0.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.0.zip</con:url>
               <con:id>9b69075c-2cf9-4eb9-a6fe-d73c2a98ab4d</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2175,10 +2175,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>BPlan003_5-0.zip</con:name>
+              <con:name>BP_5.0_WithAenderungAndDokument.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>BPlan003_5-0.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/BPlan003_5-0.zip</con:url>
+              <con:contentId>BP_5.0_WithAenderungAndDokument.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.0_WithAenderungAndDokument.zip</con:url>
               <con:id>395a3c2d-7e5e-487d-bca0-1f1f3862dfbc</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2224,10 +2224,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>V4_1_ID_103.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.1.gml</con:url>
               <con:id>c0a5e97e-011d-4699-94af-85d81146066d</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2283,10 +2283,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>xplan52-Laufrichtungsfehler.zip</con:name>
+              <con:name>BP_5.2_MultiplePlaene.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>xplan-multipleInstances-withVerbundenerPlan.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/xplan-multipleInstances-withVerbundenerPlan.zip</con:url>
+              <con:contentId>BP_5.2_MultiplePlaene.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.2_MultiplePlaene.zip</con:url>
               <con:id>e538619a-7880-41ee-adda-ed8929e76ee0</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2357,10 +2357,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>FNP50_HH.zip</con:name>
+              <con:name>BP_5.2_WithoutBereich.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>Bahrenfeld74.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/Bahrenfeld74.zip</con:url>
+              <con:contentId>BP_5.2_WithoutBereich.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.2_WithoutBereich.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2435,10 +2435,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>xplan52-Laufrichtungsfehler.zip</con:name>
+              <con:name>BP_5.2_Laufrichtungsfehler.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>xplan52-Laufrichtungsfehler.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/xplan52-Laufrichtungsfehler.zip</con:url>
+              <con:contentId>BP_5.2_Laufrichtungsfehler.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.2_Laufrichtungsfehler.zip</con:url>
               <con:id>a526c4cd-2d6b-4eb3-b02b-f58ee92a871f</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2496,10 +2496,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>xplan52-Laufrichtungsfehler.zip</con:name>
+              <con:name>BP_5.2_Laufrichtungsfehler.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>xplan52-Laufrichtungsfehler.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/xplan52-Laufrichtungsfehler.zip</con:url>
+              <con:contentId>BP_5.2_Laufrichtungsfehler.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.2_Laufrichtungsfehler.zip</con:url>
               <con:id>e538619a-7880-41ee-adda-ed8929e76ee0</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2573,10 +2573,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>XPlanManagerAPI-Test.zip</con:name>
+              <con:name>BP_5.2_MultipleBereiche.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>BPlan001_5-2_Bereiche.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/BPlan001_5-2_Bereiche.zip</con:url>
+              <con:contentId>BP_5.2_MultipleBereiche.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.2_MultipleBereiche.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2650,10 +2650,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>HafenCity13_Test_53.zip</con:name>
+              <con:name>BP_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>HafenCity13_Test_53.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/HafenCity13_Test_53.zip</con:url>
+              <con:contentId>BP_5.3.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.3.zip</con:url>
               <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2724,10 +2724,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>BPlan002_5-3.zip</con:name>
+              <con:name>BP_5.3_WithText.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>BPlan002_5-3.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/BPlan002_5-3.zip</con:url>
+              <con:contentId>BP_5.3_WithText.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.3_WithText.zip</con:url>
               <con:id>d27bdabd-dbce-426b-8614-3ff709f09921</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2807,10 +2807,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>HafenCity11_HafenCity14.zip</con:name>
+              <con:name>BP_5.4_MultiplePlaene.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>HafenCity11_HafenCity14.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/HafenCity11_HafenCity14.zip</con:url>
+              <con:contentId>BP_5.4_MultiplePlaene.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.4_MultiplePlaene.zip</con:url>
               <con:id>79dbf55e-6a74-4700-96be-a60128d23ca3</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2885,10 +2885,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>HafenCity13_Test_53.zip</con:name>
+              <con:name>BP_6.0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>Osdorf48_Test_60.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/Osdorf48_Test_60.zip</con:url>
+              <con:contentId>BP_6.0.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_6.0.zip</con:url>
               <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2959,10 +2959,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>FNP50_HH.zip</con:name>
+              <con:name>FP_5.0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>FNP50_HH.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/FNP50_HH.zip</con:url>
+              <con:contentId>FP_5.0.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/FP_5.0.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3037,10 +3037,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>FNP50_HH.zip</con:name>
+              <con:name>LP_6.0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>FNP50_HH.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/LP-Test_60.zip</con:url>
+              <con:contentId>LP_6.0.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/LP_6.0.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3114,10 +3114,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>FNP50_HH.zip</con:name>
+              <con:name>RP_5.1.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>FNP50_HH.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/RROP_Landkreis_Test_51.zip</con:url>
+              <con:contentId>RP_5.1.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/RP_5.1.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -3190,10 +3190,10 @@ assert actualHeader != null</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>FNP50_HH.zip</con:name>
+              <con:name>SO_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>FNP50_HH.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/StErhVo_Eppendorf_Hoheluft-Ost_53-1.zip</con:url>
+              <con:contentId>SO_5.3.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/SO_5.3.zip</con:url>
               <con:id>f80c08eb-87bb-4ed1-9778-9ab7b507b913</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -11454,10 +11454,10 @@ assert expectedHeader == actualHeader</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>XPlanManagerAPI-Test.zip</con:name>
+              <con:name>BP_4.1.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:contentId>BP_4.1.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_4.1.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -11506,10 +11506,10 @@ assert expectedHeader == actualHeader</scriptText>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>XPlanManagerAPI-Test.zip</con:name>
+              <con:name>BP_4.1.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>XPlanManagerAPI-Test.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/XPlanManagerAPI-Test.zip</con:url>
+              <con:contentId>BP_4.1.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_4.1.zip</con:url>
               <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>

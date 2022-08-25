@@ -852,7 +852,7 @@ Validate XPlanGML or XPlanArchive</con:description>
     <con:testCase id="85d037a4-a7b1-4109-84a5-6102ac7aeea0" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/validate TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
       <con:description>TestCase generated for REST Resource [/validate] located at [/validate]</con:description>
       <con:settings/>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlan" id="0ebc453c-d1cb-4899-ad47-a320c5251fe0">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlan" id="0ebc453c-d1cb-4899-ad47-a320c5251fe0">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -895,10 +895,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>0674bd13-bd66-4955-bdcc-29379df18928</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -918,7 +918,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 sF validatePlan" id="98253763-2570-4283-801d-9d9b65451ca8">
+      <con:testStep type="restrequest" name="POST BP 5.1 sF validatePlan" id="98253763-2570-4283-801d-9d9b65451ca8">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 sF validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -961,10 +961,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>c2ad293c-0484-4694-b14c-c746c4db6364</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -985,7 +985,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 sG validatePlan" id="b94bcc59-b1a9-453b-b565-a2ace8f08c09">
+      <con:testStep type="restrequest" name="POST BP 5.1 sG validatePlan" id="b94bcc59-b1a9-453b-b565-a2ace8f08c09">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 sG validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1028,10 +1028,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>2dc1f48b-f0b2-42cd-b396-8c75efdafeba</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1052,7 +1052,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 sGeo validatePlan" id="5e438e69-4f7b-4bd9-b52e-795723cbe668">
+      <con:testStep type="restrequest" name="POST BP 5.1 sGeo validatePlan" id="5e438e69-4f7b-4bd9-b52e-795723cbe668">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 sGeo validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1095,10 +1095,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>12533ac6-bb17-48e1-acd3-129594475d5c</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1119,7 +1119,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 sS validatePlan" id="b7f338b3-0080-415e-99e8-06e8b1b32fe7">
+      <con:testStep type="restrequest" name="POST BP 5.1 sS validatePlan" id="b7f338b3-0080-415e-99e8-06e8b1b32fe7">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 sS validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1162,10 +1162,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>fedcacb5-ae8e-4024-a96c-35bb0b741e18</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1186,10 +1186,10 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 nV validatePlan" id="b5e2e80f-b981-42b9-a13a-51a498eeb4c0">
+      <con:testStep type="restrequest" name="POST BP 5.1 nV validatePlan" id="b5e2e80f-b981-42b9-a13a-51a498eeb4c0">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 na validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 4.1 nV validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1229,10 +1229,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>d6da07de-1ae7-48e3-9f13-662980c79fb7</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1253,7 +1253,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 nV,sF,sG,sGeo,sS validatePlan" id="4bf40571-36e5-44c1-9271-9245d71a6c88">
+      <con:testStep type="restrequest" name="POST BP 5.1 nV,sF,sG,sGeo,sS validatePlan" id="4bf40571-36e5-44c1-9271-9245d71a6c88">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 nV,sF,sG,sGeo,sS validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1314,10 +1314,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>2dd08acb-0726-40eb-9b85-92131a201708</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1342,7 +1342,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlanRequestBodyText/XML" id="1b00bcbb-d486-41bd-94fe-e7b01b97bae7">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyText/XML" id="1b00bcbb-d486-41bd-94fe-e7b01b97bae7">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlanRequestBodyText/XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1385,11 +1385,11 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
+              <con:contentId>BP_5.1.gml</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>b4650cb7-28a8-4dc6-80a5-4101746bc10a</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1409,7 +1409,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlanRequestBodyApplication/GML+XML" id="45e98442-8006-4b42-a5c9-d4a4ed5b7288">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyApplication/GML+XML" id="45e98442-8006-4b42-a5c9-d4a4ed5b7288">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlanRequestBodyApplication/GML+XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/gml+xml" postQueryString="false">
@@ -1452,10 +1452,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>application/gml+xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>063489ad-69e6-4ca7-8e9a-3fbae9b65823</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1475,7 +1475,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlanRequestBodyApplication/ZIP" id="3f61f8a4-faa8-4dab-8b61-5576fc991c3d">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIP" id="3f61f8a4-faa8-4dab-8b61-5576fc991c3d">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlanRequestBodyApplication/ZIP" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
@@ -1518,10 +1518,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.zip</con:name>
+              <con:name>BP_5.1.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>V4_1_ID_103.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.zip</con:url>
+              <con:contentId>BP_5.1.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.zip</con:url>
               <con:id>89b970d2-d511-433c-85fb-6c83d6ad5141</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1541,7 +1541,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlanRequestBodyApplication/ZIPExpectError" id="8e15b574-4b91-4e98-8f73-4b7f5098b500">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIPExpectError" id="8e15b574-4b91-4e98-8f73-4b7f5098b500">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlanRequestBodyApplication/ZIPExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1566,11 +1566,11 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.zip</con:name>
+              <con:name>BP_5.1.zip</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>V4_1_ID_103.zip</con:contentId>
+              <con:contentId>BP_5.1.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.zip</con:url>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.zip</con:url>
               <con:id>afea6522-6945-45bd-a136-66b7b97188e3</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1590,7 +1590,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/JSON" id="03e2e93a-a92f-44d4-85ce-ba18b2947399">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/JSON" id="03e2e93a-a92f-44d4-85ce-ba18b2947399">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/JSON" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1633,10 +1633,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>aabe5618-4f2e-4732-9b98-86a91f5a7d09</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1656,7 +1656,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/XML" id="88b00e68-608e-426e-b99f-f3e0f1383804">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/XML" id="88b00e68-608e-426e-b99f-f3e0f1383804">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1681,10 +1681,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>2329b5ac-65c6-4698-8e17-cd9b3107dc13</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1704,7 +1704,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlanAcceptHeaderText/XML" id="1c950b0b-2d93-4387-a86f-26862f5ab3d2">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderText/XML" id="1c950b0b-2d93-4387-a86f-26862f5ab3d2">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderText/XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1729,10 +1729,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>529248e2-6869-4797-8183-f085e9a69eaf</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1752,7 +1752,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/PDF" id="e5991dbd-a452-46a1-809f-b24463e12077">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/PDF" id="e5991dbd-a452-46a1-809f-b24463e12077">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/PDF" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1784,10 +1784,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>5aafa4ea-db83-4773-9912-f3fbf65c5e50</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1807,7 +1807,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/ZIP" id="b87b4c21-032f-4e63-b806-48b1708cadee">
+      <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/ZIP" id="b87b4c21-032f-4e63-b806-48b1708cadee">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/ZIP" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
@@ -1832,10 +1832,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>V4_1_ID_103.gml</con:name>
+              <con:name>BP_5.1.gml</con:name>
               <con:contentType>text/xml</con:contentType>
-              <con:contentId>plan</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/V4_1_ID_103.gml</con:url>
+              <con:contentId>BP_5.1.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.1.gml</con:url>
               <con:id>e732572e-3951-40e3-bb5f-986701f374f8</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1898,10 +1898,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>HafenCity13_Test_53.zip</con:name>
+              <con:name>BP_5.3.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>HafenCity13_Test_53.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/HafenCity13_Test_53.zip</con:url>
+              <con:contentId>BP_5.3.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_5.3.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -1973,11 +1973,11 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>HafenCity13_Test_53.zip</con:name>
+              <con:name>BP_6.0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>Blankenese29_Test_60.zip</con:contentId>
+              <con:contentId>BP_6.0.zip</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-validator/plans/Blankenese29_Test_60.zip</con:url>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2059,10 +2059,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>HafenCity13_Test_53.zip</con:name>
+              <con:name>BP_6.0.gml</con:name>
               <con:contentType>application/gml+xml</con:contentType>
-              <con:contentId>xplan60_Aenderungsplan_Luecke.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/xplan60_Aenderungsplan_Luecke.gml</con:url>
+              <con:contentId>BP_6.0.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.gml</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2114,10 +2114,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>HafenCity13_Test_53.zip</con:name>
+              <con:name>BP_6.0.gml</con:name>
               <con:contentType>application/gml+xml</con:contentType>
-              <con:contentId>xplan60_Aenderungsplan_Luecke.gml</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/xplan60_Aenderungsplan_Luecke.gml</con:url>
+              <con:contentId>BP_6.0.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.gml</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2312,10 +2312,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>Blankenese29_Test_60.zip</con:name>
+              <con:name>BP_6.0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>Blankenese29_Test_60.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/Blankenese29_Test_60.zip</con:url>
+              <con:contentId>BP_6.0.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.zip</con:url>
               <con:id>3940446e-fc4f-45cd-93d1-9f53341835ba</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -2418,10 +2418,10 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:authType>Preemptive</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>Blankenese29_Test_60.zip</con:name>
+              <con:name>BP_6.0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>Blankenese29_Test_60.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/Blankenese29_Test_60.zip</con:url>
+              <con:contentId>BP_6.0.zip</con:contentId>
+              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.zip</con:url>
               <con:id>3940446e-fc4f-45cd-93d1-9f53341835ba</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
