@@ -35,7 +35,7 @@ public class GeltungsbereichInspectorContext extends InspectorContext {
 
 	@Override
 	protected void addFeatureUnderTest(Feature feature) {
-		if (!featureAnalyser.isAllowedToBeOutside(feature)) {
+		if (!featureAnalyser.isAllowedToBeOutside(feature) && !featureAnalyser.isFeatureCollection(feature)) {
 			featuresUnderTest.add(new FeatureUnderTest(feature, this));
 		}
 	}

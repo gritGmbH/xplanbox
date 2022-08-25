@@ -22,6 +22,7 @@ package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.feature.Feature;
+import org.deegree.feature.FeatureCollection;
 
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
@@ -63,6 +64,10 @@ public class GeltungsbereichFeatureAnalyser {
 	 */
 	boolean isAllowedToBeOutside(Feature feature) {
 		return OBJECTS_ALLOWED_OUTSIDE.contains(feature.getName());
+	}
+
+	public boolean isFeatureCollection(Feature feature) {
+		return feature instanceof FeatureCollection;
 	}
 
 }

@@ -65,7 +65,7 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 	public GeltungsbereichFeature getGeltungsbereichFeature() {
 		String bereichId = getGehortZuBereichId();
 		if (bereichId == null) {
-			return null;
+			return getSingleGeltungsbereichFeature();
 		}
 		BereichFeature bereichFeature = inspectorContext.getBereichFeatures().get(bereichId);
 		if (bereichFeature.hasGeometry())
@@ -83,6 +83,19 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 			String gehortZuBereichId = getPropertyValue(propName);
 			if (gehortZuBereichId != null)
 				return gehortZuBereichId;
+		}
+		return null;
+	}
+
+	private GeltungsbereichFeature getSingleGeltungsbereichFeature() {
+		if (inspectorContext.getBereichFeatures().size() == 1) {
+			BereichFeature singleBereichFeature = inspectorContext.getBereichFeatures().values().stream().findFirst()
+					.get();
+			if (singleBereichFeature.hasGeometry())
+				return singleBereichFeature;
+		}
+		if (inspectorContext.getPlanFeatures().size() == 1) {
+			return inspectorContext.getPlanFeatures().values().stream().findFirst().get();
 		}
 		return null;
 	}
