@@ -44,11 +44,11 @@ public class AusrichtungTest {
 		Feature feature = TestFeaturesUtils.getTestFeature(features, "XP_PTO_EMPTY");
 		Ausrichtung horzontaleAusrichtung = new Ausrichtung(new Xpath("xplan:horizontaleAusrichtung"));
 		TypedObjectNode horizontaleValue = horzontaleAusrichtung.evaluate(feature, features);
-		assertThat(asDouble(horizontaleValue), is(0.0));
+		assertThat(asDouble(horizontaleValue), is(0.5));
 
 		Ausrichtung vertikaleAusrichtung = new Ausrichtung(new Xpath("xplan:vertikaleAusrichtung"));
 		TypedObjectNode vertikaleValue = vertikaleAusrichtung.evaluate(feature, features);
-		assertThat(asDouble(vertikaleValue), is(0.0));
+		assertThat(asDouble(vertikaleValue), is(0.5));
 	}
 
 	@Test
