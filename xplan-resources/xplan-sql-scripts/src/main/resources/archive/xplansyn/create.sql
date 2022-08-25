@@ -1,4 +1,4 @@
-/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 17.08.2022, 13:18:56 --- */
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.08.2022, 18:06:28 --- */
 CREATE SCHEMA xplansynarchive; 
 SET search_path TO xplansynarchive,public;
 CREATE TABLE xplansynarchive.xplan_bp_abgrabungsflaeche (
@@ -13808,6 +13808,8 @@ CREATE TABLE xplansynarchive.xplan_xp_nutzungsschablone (
     xplan_zeilenanz integer,
     xplan_anchorx text,
     xplan_anchory text,
+    xplan_drehwinkel text,
+    xplan_drehwinkeluom text,
     xplan_index text,
     xplan_stylesheetid text,
     xplan_stylesheetidwert text,
@@ -13815,8 +13817,6 @@ CREATE TABLE xplansynarchive.xplan_xp_nutzungsschablone (
     xplan_horizontaleausrichtungwert text,
     xplan_vertikaleausrichtung text,
     xplan_vertikaleausrichtungwert text,
-    xplan_drehwinkel text,
-    xplan_drehwinkeluom text,
     CONSTRAINT xplan_xp_nutzungsschablone_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_xp_nutzungsschablone','xplan_position','0','GEOMETRY', 2);
@@ -13841,9 +13841,9 @@ CREATE TABLE xplansynarchive.xplan_xp_ppo (
     xplan_skalierung numeric,
     xplan_hat text,
     xplan_schriftinhalt text,
-    xplan_index text,
     xplan_drehwinkel text,
     xplan_drehwinkeluom text,
+    xplan_index text,
     CONSTRAINT xplan_xp_ppo_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_xp_ppo','xplan_position','0','GEOMETRY', 2);
@@ -13871,13 +13871,13 @@ CREATE TABLE xplansynarchive.xplan_xp_pto (
     xplan_hat text,
     xplan_anchorx text,
     xplan_anchory text,
+    xplan_drehwinkel text,
+    xplan_drehwinkeluom text,
     xplan_index text,
     xplan_horizontaleausrichtung text,
     xplan_horizontaleausrichtungwert text,
     xplan_vertikaleausrichtung text,
     xplan_vertikaleausrichtungwert text,
-    xplan_drehwinkel text,
-    xplan_drehwinkeluom text,
     CONSTRAINT xplan_xp_pto_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansynarchive', 'xplan_xp_pto','xplan_position','0','GEOMETRY', 2);

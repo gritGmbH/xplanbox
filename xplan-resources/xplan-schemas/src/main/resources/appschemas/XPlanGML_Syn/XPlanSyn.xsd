@@ -1,4 +1,4 @@
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 17.08.2022, 13:18:56-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.08.2022, 18:06:28-->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.deegree.org/xplanung/1/0" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <element name="BP_AbgrabungsFlaeche" substitutionGroup="gml:AbstractFeature">
@@ -15021,6 +15021,8 @@
             <element name="zeilenAnz" minOccurs="0" type="integer"/>
             <element name="anchorX" minOccurs="0" type="string"/>
             <element name="anchorY" minOccurs="0" type="string"/>
+            <element name="drehwinkel" minOccurs="0" type="string"/>
+            <element name="drehwinkelUOM" minOccurs="0" type="string"/>
             <element name="index" minOccurs="0" type="string"/>
             <element name="stylesheetId" minOccurs="0" type="string"/>
             <element name="stylesheetIdWert" minOccurs="0" type="string"/>
@@ -15028,8 +15030,6 @@
             <element name="horizontaleAusrichtungWert" minOccurs="0" type="string"/>
             <element name="vertikaleAusrichtung" minOccurs="0" type="string"/>
             <element name="vertikaleAusrichtungWert" minOccurs="0" type="string"/>
-            <element name="drehwinkel" minOccurs="0" type="string"/>
-            <element name="drehwinkelUOM" minOccurs="0" type="string"/>
           </sequence>
         </extension>
       </complexContent>
@@ -15059,9 +15059,9 @@
             <element name="skalierung" minOccurs="0" type="decimal"/>
             <element name="hat" minOccurs="0" type="string"/>
             <element name="schriftinhalt" minOccurs="0" type="string"/>
-            <element name="index" minOccurs="0" type="string"/>
             <element name="drehwinkel" minOccurs="0" type="string"/>
             <element name="drehwinkelUOM" minOccurs="0" type="string"/>
+            <element name="index" minOccurs="0" type="string"/>
           </sequence>
         </extension>
       </complexContent>
@@ -15094,13 +15094,13 @@
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="anchorX" minOccurs="0" type="string"/>
             <element name="anchorY" minOccurs="0" type="string"/>
+            <element name="drehwinkel" minOccurs="0" type="string"/>
+            <element name="drehwinkelUOM" minOccurs="0" type="string"/>
             <element name="index" minOccurs="0" type="string"/>
             <element name="horizontaleAusrichtung" minOccurs="0" type="string"/>
             <element name="horizontaleAusrichtungWert" minOccurs="0" type="string"/>
             <element name="vertikaleAusrichtung" minOccurs="0" type="string"/>
             <element name="vertikaleAusrichtungWert" minOccurs="0" type="string"/>
-            <element name="drehwinkel" minOccurs="0" type="string"/>
-            <element name="drehwinkelUOM" minOccurs="0" type="string"/>
           </sequence>
         </extension>
       </complexContent>

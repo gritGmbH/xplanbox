@@ -19,7 +19,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 17.08.2022, 13:18:56 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.08.2022, 18:06:28 -->
 <html>
   <head>
     <title>XPlanWMS Sachdatenanzeige</title>
@@ -589,7 +589,7 @@ DNUOM=DN
 DNZwingend=DNZwingend
 DNZwingendUOM=DNZwingend
 drehwinkel=Drehwinkel
-drehwinkelUOM=Drehwinkel
+drehwinkelUOM=Drehwinkel (Einheit)
 durchfuehrungEndDatum=durchf&uuml;hrungEndDatum
 durchfuehrungStartDatum=durchf&uuml;hrungStartDatum
 durchfuehrungsVertrag=Duchf&uuml;hrungsvertrag
