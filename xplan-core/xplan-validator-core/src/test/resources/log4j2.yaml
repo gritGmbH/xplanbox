@@ -38,7 +38,7 @@ Configuration:
       - name: de.latlon.xplan
         level: info
       - name: de.latlon.xplan.validator
-        level: trace
+        level: info
       - name: org.springframework
         level: warn
       - name: org.glassfish

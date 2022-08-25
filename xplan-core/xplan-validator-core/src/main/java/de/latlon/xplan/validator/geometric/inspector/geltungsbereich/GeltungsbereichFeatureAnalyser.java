@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 
 /**
@@ -47,6 +49,10 @@ public class GeltungsbereichFeatureAnalyser {
 		addForAllXPlanVersions("XP_TPO");
 		OBJECTS_ALLOWED_OUTSIDE.add(new QName(XPLAN_53.getNamespace(), "BP_HoehenMass"));
 		OBJECTS_ALLOWED_OUTSIDE.add(new QName(XPLAN_53.getNamespace(), "BP_AbstandsMass"));
+		OBJECTS_ALLOWED_OUTSIDE.add(new QName(XPLAN_54.getNamespace(), "BP_HoehenMass"));
+		OBJECTS_ALLOWED_OUTSIDE.add(new QName(XPLAN_54.getNamespace(), "BP_AbstandsMass"));
+		OBJECTS_ALLOWED_OUTSIDE.add(new QName(XPLAN_60.getNamespace(), "BP_HoehenMass"));
+		OBJECTS_ALLOWED_OUTSIDE.add(new QName(XPLAN_60.getNamespace(), "BP_AbstandsMass"));
 	}
 
 	private static void addForAllXPlanVersions(String localName) {
@@ -66,6 +72,11 @@ public class GeltungsbereichFeatureAnalyser {
 		return OBJECTS_ALLOWED_OUTSIDE.contains(feature.getName());
 	}
 
+	/**
+	 * @param feature never <code>null</code>
+	 * @return <code>true</code> if the feature is a feature collection,
+	 * <code>false</code> otherwise
+	 */
 	public boolean isFeatureCollection(Feature feature) {
 		return feature instanceof FeatureCollection;
 	}
