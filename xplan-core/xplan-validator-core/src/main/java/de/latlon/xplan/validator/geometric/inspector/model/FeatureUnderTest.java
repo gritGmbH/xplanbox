@@ -88,6 +88,9 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 	}
 
 	private GeltungsbereichFeature getSingleGeltungsbereichFeature() {
+		if (inspectorContext.getBereichFeatures().size() > 1) {
+			return null;
+		}
 		if (inspectorContext.getBereichFeatures().size() == 1) {
 			BereichFeature singleBereichFeature = inspectorContext.getBereichFeatures().values().stream().findFirst()
 					.get();

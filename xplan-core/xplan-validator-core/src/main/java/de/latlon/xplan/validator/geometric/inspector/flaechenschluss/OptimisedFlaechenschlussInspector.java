@@ -21,6 +21,7 @@
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.model.AbstractGeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.inspector.model.BereichFeature;
@@ -219,30 +220,35 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	 */
 	@Override
 	public boolean checkGeometricRule() {
-		Map<GeltungsbereichFeature, List<FeatureUnderTest>> allFlaechenschlussFeaturesOfAPlan = flaechenschlussContext
-				.getAllFlaechenschlussFeaturesOfAPlan();
-		Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest = new HashMap<>();
-		Map<BereichFeature, FeaturesUnderTest> bereichFeaturesWithFeaturesUnderTest = new HashMap<>();
-		allFlaechenschlussFeaturesOfAPlan.forEach((geltungsbereichFeature, featuresUnderTest) -> {
-			if (!featuresUnderTest.isEmpty()) {
-				analyseFlaechenschlussFeaturePairs(featuresUnderTest);
-				analyseFlaechenschlussUnionFlaechenschlussFeatures(geltungsbereichFeature, featuresUnderTest,
-						bereichFeaturesWithFeaturesUnderTest, planFeaturesWithFeaturesUnderTest);
-			}
-		});
-		bereichFeaturesWithFeaturesUnderTest.forEach((bereichFeature, featuresUnderTest) -> {
-			analyseFlaechenschlussUnionOfBereich(bereichFeature, featuresUnderTest);
-		});
-		planFeaturesWithFeaturesUnderTest.forEach((planFeature, featuresUnderTest) -> {
-			analyseFlaechenschlussUnionOfPlan(planFeature, featuresUnderTest);
-		});
+		try {
+			Map<GeltungsbereichFeature, List<FeatureUnderTest>> allFlaechenschlussFeaturesOfAPlan = flaechenschlussContext
+					.getAllFlaechenschlussFeaturesOfAPlan();
+			Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest = new HashMap<>();
+			Map<BereichFeature, FeaturesUnderTest> bereichFeaturesWithFeaturesUnderTest = new HashMap<>();
+			allFlaechenschlussFeaturesOfAPlan.forEach((geltungsbereichFeature, featuresUnderTest) -> {
+				if (!featuresUnderTest.isEmpty()) {
+					analyseFlaechenschlussFeaturePairs(featuresUnderTest);
+					analyseFlaechenschlussUnionFlaechenschlussFeatures(geltungsbereichFeature, featuresUnderTest,
+							bereichFeaturesWithFeaturesUnderTest, planFeaturesWithFeaturesUnderTest);
+				}
+			});
+			bereichFeaturesWithFeaturesUnderTest.forEach((bereichFeature, featuresUnderTest) -> {
+				analyseFlaechenschlussUnionOfBereich(bereichFeature, featuresUnderTest);
+			});
+			planFeaturesWithFeaturesUnderTest.forEach((planFeature, featuresUnderTest) -> {
+				analyseFlaechenschlussUnionOfPlan(planFeature, featuresUnderTest);
+			});
 
-		if (flaechenschlussErrors.isEmpty()) {
-			LOG.info("No features with invalid flaechenschluss");
+			if (flaechenschlussErrors.isEmpty()) {
+				LOG.info("No features with invalid flaechenschluss");
+			}
+			else {
+				LOG.info("Features with invalid flaechenschluss:\n {}",
+						flaechenschlussErrors.stream().collect(Collectors.joining("\n")));
+			}
 		}
-		else {
-			LOG.info("Features with invalid flaechenschluss:\n {}",
-					flaechenschlussErrors.stream().collect(Collectors.joining("\n")));
+		catch (ValidatorException e) {
+			flaechenschlussErrors.add(e.getMessage());
 		}
 		return flaechenschlussErrors.isEmpty();
 	}
