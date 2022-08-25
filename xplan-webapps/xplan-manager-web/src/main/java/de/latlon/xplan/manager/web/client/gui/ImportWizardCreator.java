@@ -37,7 +37,7 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
-import de.latlon.xplan.manager.web.shared.Rechtsstand;
+import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
@@ -78,12 +78,11 @@ public class ImportWizardCreator {
 	 * @param id id of plan to import
 	 * @param hasMultipleXPlanElements
 	 */
-	public void importPlan(final String id, final String type, final boolean hasMultipleXPlanElements) {
-		selectValidityPeriodAndImportPlan(id, type, hasMultipleXPlanElements);
+	public void importPlan(final String id, final boolean hasMultipleXPlanElements) {
+		selectValidityPeriodAndImportPlan(id, hasMultipleXPlanElements);
 	}
 
-	private void selectValidityPeriodAndImportPlan(final String id, final String type,
-			final boolean hasMultipleXPlanElements) {
+	private void selectValidityPeriodAndImportPlan(final String id, final boolean hasMultipleXPlanElements) {
 		if (configuration.isValidityPeriodActivated() && !hasMultipleXPlanElements) {
 			final ValidityPeriodDialog dialog = new ValidityPeriodDialog();
 			dialog.addNextSubmittedHandler(new NextSubmittedHandler() {
@@ -94,8 +93,7 @@ public class ImportWizardCreator {
 							Date startDateTime = dialog.retrieveStartDateTime();
 							Date endDateTime = dialog.retrieveEndDateTime();
 							dialog.hide();
-							selectInternalIdAndImportPlan(id, type, hasMultipleXPlanElements, startDateTime,
-									endDateTime);
+							selectInternalIdAndImportPlan(id, hasMultipleXPlanElements, startDateTime, endDateTime);
 						}
 						else {
 							Window.alert(MESSAGES.editInvalidInput());
@@ -111,12 +109,12 @@ public class ImportWizardCreator {
 			dialog.show();
 		}
 		else {
-			selectInternalIdAndImportPlan(id, type, hasMultipleXPlanElements, null, null);
+			selectInternalIdAndImportPlan(id, hasMultipleXPlanElements, null, null);
 		}
 	}
 
-	private void selectInternalIdAndImportPlan(final String id, final String type,
-			final boolean hasMultipleXPlanElements, final Date startDateTime, final Date endDateTime) {
+	private void selectInternalIdAndImportPlan(final String id, final boolean hasMultipleXPlanElements,
+			final Date startDateTime, final Date endDateTime) {
 		if (configuration.getInternalIdActivated() && !hasMultipleXPlanElements) {
 			getService().retrieveMatchingInternalIds(id, new MethodCallback<Map<String, String>>() {
 				@Override
@@ -145,7 +143,7 @@ public class ImportWizardCreator {
 							String internalId = internalIdDialog.retrieveSelectedInternalId();
 							if (internalId != null) {
 								internalIdDialog.hide();
-								selectLegislationStatusAndImportPlan(id, type, hasMultipleXPlanElements, internalId,
+								selectLegislationStatusAndImportPlan(id, hasMultipleXPlanElements, internalId,
 										startDateTime, endDateTime);
 							}
 							else {
@@ -157,15 +155,14 @@ public class ImportWizardCreator {
 			});
 		}
 		else {
-			selectLegislationStatusAndImportPlan(id, type, hasMultipleXPlanElements, null, startDateTime, endDateTime);
+			selectLegislationStatusAndImportPlan(id, hasMultipleXPlanElements, null, startDateTime, endDateTime);
 		}
 	}
 
-	private void selectLegislationStatusAndImportPlan(final String id, String type,
-			final boolean hasMultipleXPlanElements, final String internalId, final Date startDateTime,
-			final Date endDateTime) {
+	private void selectLegislationStatusAndImportPlan(final String id, final boolean hasMultipleXPlanElements,
+			final String internalId, final Date startDateTime, final Date endDateTime) {
 		if (configuration.isLegislationStatusActivated() && !hasMultipleXPlanElements) {
-			getService().determineLegislationStatus(id, new MethodCallback<Rechtsstand>() {
+			getService().determineLegislationStatus(id, new MethodCallback<RechtsstandAndPlanStatus>() {
 
 				@Override
 				public void onFailure(Method method, Throwable caught) {
@@ -173,9 +170,8 @@ public class ImportWizardCreator {
 				}
 
 				@Override
-				public void onSuccess(Method method, Rechtsstand legislationStatus) {
-					LegislationStatusDialog legislationStatusDialog = new LegislationStatusDialog(type,
-							legislationStatus);
+				public void onSuccess(Method method, RechtsstandAndPlanStatus legislationStatus) {
+					LegislationStatusDialog legislationStatusDialog = new LegislationStatusDialog(legislationStatus);
 					NextSubmittedHandler nextSubmittedHandler = createNextSubmittedHandler(legislationStatusDialog);
 					legislationStatusDialog.addNextSubmittedHandler(nextSubmittedHandler);
 					legislationStatusDialog.center();

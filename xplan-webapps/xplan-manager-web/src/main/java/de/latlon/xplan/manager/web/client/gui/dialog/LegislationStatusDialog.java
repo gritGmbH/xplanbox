@@ -27,12 +27,11 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.web.shared.Rechtsstand;
+import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
-import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 
 /**
  * Dialog to select the legislation status of a plan.
@@ -47,15 +46,14 @@ public class LegislationStatusDialog extends WizardDialogBox {
 	private final ListBox legislationStatusSelectBox;
 
 	/**
-	 * @param type
 	 * @param legislationStatus the status from the plan, may be <code>null</code> if not
 	 * set
 	 */
-	public LegislationStatusDialog(String type, Rechtsstand legislationStatus) {
+	public LegislationStatusDialog(RechtsstandAndPlanStatus legislationStatus) {
 		super(MESSAGES.legislationStatusDialogTitle());
 		setWidth("425px");
-		this.legislationStatusSelectBox = createLegislationStatusListBox(type, legislationStatus.getCodeNumber());
-		setContent(createContentPanel(legislationStatus.getTranslatedCode()));
+		this.legislationStatusSelectBox = createLegislationStatusListBox(legislationStatus);
+		setContent(createContentPanel(legislationStatus.getRechtsstand().getTranslatedCode()));
 	}
 
 	/**
@@ -72,16 +70,16 @@ public class LegislationStatusDialog extends WizardDialogBox {
 		return null;
 	}
 
-	private ListBox createLegislationStatusListBox(String type, int legislationStatusCode) {
+	private ListBox createLegislationStatusListBox(RechtsstandAndPlanStatus rechtsstandAndPlanStatus) {
 		final ListBox legislationStatusListBox = new ListBox();
 		int selectedIndex = 0;
-		if (legislationStatusCode < 0) {
+		if (rechtsstandAndPlanStatus.getRechtsstand().getCodeNumber() < 0) {
 			legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogFestgestelltOption());
 			legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogInAufstellungOption());
 			legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogArchiviertOption());
 		}
 		else {
-			PlanStatus rechtsstand = findByLegislationStatusCode(type, legislationStatusCode);
+			PlanStatus rechtsstand = rechtsstandAndPlanStatus.getPlanStatus();
 			switch (rechtsstand) {
 			case FESTGESTELLT:
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogFestgestelltSelectedOption());
