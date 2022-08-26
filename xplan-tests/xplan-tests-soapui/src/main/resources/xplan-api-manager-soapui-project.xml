@@ -57,7 +57,7 @@ OpenAPI document</con:description>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
@@ -85,7 +85,7 @@ Show system and application configuration</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -253,7 +253,7 @@ Import the plan</con:description>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
@@ -304,7 +304,7 @@ Get plan identified by the given planName</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -364,7 +364,7 @@ Get plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -412,7 +412,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -458,7 +458,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -512,7 +512,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -558,7 +558,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -608,7 +608,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -654,7 +654,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -704,7 +704,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -755,7 +755,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -810,7 +810,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -861,7 +861,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -901,7 +901,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -953,7 +953,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -999,7 +999,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1050,7 +1050,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
@@ -1107,7 +1107,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1158,7 +1158,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1209,7 +1209,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1255,7 +1255,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1305,7 +1305,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1356,7 +1356,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1411,7 +1411,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1462,7 +1462,7 @@ Delete plan identified by the given plan ID</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1493,7 +1493,7 @@ Search for plan by name</con:description>
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
@@ -1532,7 +1532,7 @@ Search for plan by name</con:description>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
@@ -1581,7 +1581,7 @@ Search for plan by name</con:description>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
           <con:request/>
           <con:credentials>
-            <con:username xsi:nil="true"/>
+            <con:username/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
             <con:authType>No Authorization</con:authType>
@@ -1656,7 +1656,7 @@ Search for plan by name</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -1697,7 +1697,7 @@ Search for plan by name</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -1738,7 +1738,7 @@ Search for plan by name</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -1798,7 +1798,7 @@ Search for plan by name</con:description>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -1875,7 +1875,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -1953,7 +1953,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2014,7 +2014,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2088,7 +2088,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2166,7 +2166,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2215,7 +2215,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2274,7 +2274,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2348,7 +2348,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2426,7 +2426,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2487,7 +2487,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2564,7 +2564,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2641,7 +2641,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2715,7 +2715,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2798,7 +2798,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2876,7 +2876,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -2950,7 +2950,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -3028,7 +3028,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -3104,8 +3104,26 @@ def actualHeader = headers['Location']
 assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="727c0fd3-5cab-490a-a799-0465207ecae1" name="planStatus">
+              <con:configuration>
+                <path>$.planStatus</path>
+                <content>FESTGESTELLT</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="727c0fd3-5cab-490a-a799-0465207ecae1" name="rechtsstand">
+              <con:configuration>
+                <path>$.xplanModelData.rechtsstand</path>
+                <content>AllgemeinePlanungsabsicht</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -3181,7 +3199,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -3459,7 +3477,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3511,7 +3529,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3561,7 +3579,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3602,7 +3620,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3634,7 +3652,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3682,7 +3700,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3727,7 +3745,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3765,7 +3783,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3806,7 +3824,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3844,7 +3862,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3891,7 +3909,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3936,7 +3954,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -3974,7 +3992,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4021,7 +4039,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4066,7 +4084,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4104,7 +4122,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4151,7 +4169,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4196,7 +4214,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4234,7 +4252,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4281,7 +4299,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4326,7 +4344,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4364,7 +4382,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4407,7 +4425,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4455,7 +4473,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4493,7 +4511,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4531,7 +4549,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4579,7 +4597,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4617,7 +4635,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4655,7 +4673,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4703,7 +4721,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4741,7 +4759,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4779,7 +4797,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4827,7 +4845,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4865,7 +4883,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4903,7 +4921,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4951,7 +4969,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -4998,7 +5016,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5041,7 +5059,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5079,7 +5097,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5141,7 +5159,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5170,7 +5188,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5223,7 +5241,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5252,7 +5270,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5304,7 +5322,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5342,7 +5360,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5371,7 +5389,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5424,7 +5442,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5462,7 +5480,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5491,7 +5509,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5544,7 +5562,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5582,7 +5600,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5611,7 +5629,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5672,7 +5690,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5715,7 +5733,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5745,7 +5763,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5789,7 +5807,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5842,7 +5860,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5872,7 +5890,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5902,7 +5920,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5955,7 +5973,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -5994,7 +6012,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6024,7 +6042,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6054,7 +6072,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6107,7 +6125,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6146,7 +6164,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6176,7 +6194,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6206,7 +6224,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6260,7 +6278,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6299,7 +6317,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6329,7 +6347,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6359,7 +6377,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6412,7 +6430,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6451,7 +6469,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6481,7 +6499,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6525,7 +6543,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6566,7 +6584,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6604,7 +6622,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6645,7 +6663,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6683,7 +6701,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6726,7 +6744,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6764,7 +6782,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6802,7 +6820,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6857,7 +6875,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6928,7 +6946,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -6957,7 +6975,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7012,7 +7030,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7083,7 +7101,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7121,7 +7139,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7204,7 +7222,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7242,7 +7260,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7280,7 +7298,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7343,7 +7361,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7381,7 +7399,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7419,7 +7437,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7481,7 +7499,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7519,7 +7537,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7557,7 +7575,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7619,7 +7637,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7657,7 +7675,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7695,7 +7713,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7758,7 +7776,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7801,7 +7819,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7831,7 +7849,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7892,7 +7910,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7922,7 +7940,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7952,7 +7970,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -7982,7 +8000,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8012,7 +8030,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8063,7 +8081,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8123,7 +8141,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8153,7 +8171,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8201,7 +8219,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8230,7 +8248,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8282,7 +8300,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8330,7 +8348,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8360,7 +8378,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8421,7 +8439,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8451,7 +8469,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8481,7 +8499,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8511,7 +8529,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8571,7 +8589,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8601,7 +8619,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8631,7 +8649,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8661,7 +8679,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8721,7 +8739,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8751,7 +8769,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8781,7 +8799,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8811,7 +8829,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8871,7 +8889,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8901,7 +8919,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8931,7 +8949,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -8975,7 +8993,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9022,7 +9040,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9083,7 +9101,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9130,7 +9148,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9168,7 +9186,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9206,7 +9224,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9258,7 +9276,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9296,7 +9314,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9334,7 +9352,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9386,7 +9404,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9424,7 +9442,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9462,7 +9480,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9523,7 +9541,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9561,7 +9579,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9599,7 +9617,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9651,7 +9669,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9707,7 +9725,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9745,7 +9763,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9825,7 +9843,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9920,7 +9938,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -9950,7 +9968,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10003,7 +10021,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10033,7 +10051,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10063,7 +10081,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10116,7 +10134,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10146,7 +10164,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10199,7 +10217,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10229,7 +10247,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10282,7 +10300,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10312,7 +10330,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10365,7 +10383,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -10418,7 +10436,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10467,7 +10485,7 @@ assert actualHeader != null</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10506,7 +10524,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10537,7 +10555,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10577,7 +10595,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10617,7 +10635,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10657,7 +10675,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10697,7 +10715,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10737,7 +10755,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10777,7 +10795,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10817,7 +10835,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10857,7 +10875,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10897,7 +10915,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10937,7 +10955,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -10977,7 +10995,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -11017,7 +11035,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -11057,7 +11075,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -11097,7 +11115,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -11137,7 +11155,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -11177,7 +11195,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -11217,7 +11235,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -11237,87 +11255,87 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>236</con:value>
+        <con:value>51</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>238</con:value>
+        <con:value>53</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML53</con:name>
-        <con:value>244</con:value>
+        <con:value>59</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdText</con:name>
-        <con:value>245</con:value>
+        <con:value>60</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdAenderung</con:name>
-        <con:value>239</con:value>
+        <con:value>54</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdDokument</con:name>
-        <con:value>240</con:value>
+        <con:value>55</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdFPlan</con:name>
-        <con:value>249</con:value>
+        <con:value>64</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-        <con:value>246</con:value>
+        <con:value>61</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-        <con:value>247</con:value>
+        <con:value>62</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdV2</con:name>
-        <con:value>237</con:value>
+        <con:value>52</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-        <con:value>242</con:value>
+        <con:value>57</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBereiche</con:name>
-        <con:value>243</con:value>
+        <con:value>58</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60</con:name>
-        <con:value>248</con:value>
+        <con:value>63</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSOPlan</con:name>
-        <con:value>252</con:value>
+        <con:value>67</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdRPlan</con:name>
-        <con:value>251</con:value>
+        <con:value>66</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdLPlan</con:name>
-        <con:value>250</con:value>
+        <con:value>65</con:value>
       </con:property>
       <con:property>
         <con:name>textIdSOPlan</con:name>
-        <con:value>XPLAN_texte_d1e2ade7-dce8-443c-b2d0-dafaa6b56de5</con:value>
+        <con:value>XPLAN_texte_bf8414e9-c4cf-485d-ba7c-9f1d77b507d5</con:value>
       </con:property>
       <con:property>
         <con:name>textIdLPlan</con:name>
-        <con:value>XPLAN_texte_bfb90f4f-8a7b-44ec-9d5d-ff97c57d4db8</con:value>
+        <con:value>XPLAN_texte_7d553d6e-ba6b-41bc-9f1f-d930e4ed976f</con:value>
       </con:property>
       <con:property>
         <con:name>textIdFPlan</con:name>
-        <con:value>XPLAN_texte_dc7cbf43-85ad-45bb-b602-ab484a7bc21e</con:value>
+        <con:value>XPLAN_texte_20ac0aa7-fb3d-4d4c-8475-4299b7000193</con:value>
       </con:property>
       <con:property>
         <con:name>textIdRPlan</con:name>
-        <con:value>XPLAN_texte_d6422f80-1b1a-40d1-a803-a567afa67f65</con:value>
+        <con:value>XPLAN_texte_79d48dca-ca32-4ca0-a9bb-4f9f2ec47821</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBPlanOhneBereich</con:name>
-        <con:value>241</con:value>
+        <con:value>56</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
@@ -11387,7 +11405,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:authType>No Authorization</con:authType>
@@ -11445,7 +11463,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -11497,7 +11515,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
@@ -11580,7 +11598,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
@@ -11611,7 +11629,7 @@ assert expectedHeader == actualHeader</scriptText>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:username xsi:nil="true"/>
+              <con:username/>
               <con:password xsi:nil="true"/>
               <con:domain xsi:nil="true"/>
               <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
