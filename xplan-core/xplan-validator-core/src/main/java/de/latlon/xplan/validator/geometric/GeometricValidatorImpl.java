@@ -199,8 +199,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 						gmlReference.getReferencedObject();
 					}
 					catch (ReferenceResolvingException e) {
-						if (!treatAenderungIntegrityAsFailure && aenderungenInspector
-								.getLokalAendertAndWurdeGeandertVonReferences().contains("#" + id)) {
+						if (!treatAenderungIntegrityAsFailure && aenderungenInspector.isAenderungReference(id)) {
 							String warning = format(
 									"Die XLink-Integrität für die Referenz aendert oder wurdeGeandertVon mit der %s  konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht.",
 									id);
