@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -66,16 +66,42 @@ public enum PlanStatus {
 	 * <li>ARCHIVIERT: 4500, 5000
 	 * <li>IN_AUFSTELLUNG: other
 	 * </ul>
+	 * @param type of the plan, never <code>null</code>
 	 * @param legislationStatusCode the legislation status code of the plan
 	 * @return the {@link PlanStatus} assigned to the legislation status code, never
 	 * <code>null</code>
 	 */
-	public static PlanStatus findByLegislationStatusCode(int legislationStatusCode) {
-		if (legislationStatusCode < 0 || legislationStatusCode == 3000 || legislationStatusCode == 4000)
+	public static PlanStatus findByLegislationStatusCode(String type, int legislationStatusCode) {
+		if (legislationStatusCode < 0)
 			return FESTGESTELLT;
-		if (legislationStatusCode == 4500 || legislationStatusCode == 5000 || legislationStatusCode == 50000
-				|| legislationStatusCode == 50001)
-			return ARCHIVIERT;
+		switch (type) {
+		case "BP_Plan":
+			if (legislationStatusCode >= 3000 && legislationStatusCode < 5000)
+				return FESTGESTELLT;
+			if (legislationStatusCode >= 5000)
+				return ARCHIVIERT;
+			return IN_AUFSTELLUNG;
+		case "FP_Plan":
+			if (legislationStatusCode >= 4000 && legislationStatusCode < 5000)
+				return FESTGESTELLT;
+			if (legislationStatusCode >= 5000)
+				return ARCHIVIERT;
+			return IN_AUFSTELLUNG;
+		case "LP_Plan":
+			if (legislationStatusCode == 4000 || legislationStatusCode == 6000)
+				return FESTGESTELLT;
+			if (legislationStatusCode == 5000)
+				return ARCHIVIERT;
+			return IN_AUFSTELLUNG;
+		case "RP_Plan":
+			if ((legislationStatusCode >= 4000 && legislationStatusCode < 6000))
+				return FESTGESTELLT;
+			if (legislationStatusCode >= 6000)
+				return ARCHIVIERT;
+			return IN_AUFSTELLUNG;
+		case "SO_Plan":
+			return FESTGESTELLT;
+		}
 		return IN_AUFSTELLUNG;
 	}
 
