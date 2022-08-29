@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 29.08.2022, 14:30:11 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 29.08.2022, 15:45:06 -->
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
   <LayerStoreId>lplan</LayerStoreId>
   <LayerStoreId>soplan</LayerStoreId>
@@ -292,170 +292,62 @@
       <Layer>lp_zwischennutz</Layer>
     </Theme>
     <Theme>
-      <Identifier>lp_beschr_sym</Identifier>
-      <d:Title>Beschriftung und Symbole</d:Title>
+      <Identifier>lp_beschriftung</Identifier>
+      <d:Title>LP Beschriftung</d:Title>
       <s:Envelope crs="EPSG:4326">
         <s:LowerCorner>5.7 47.2</s:LowerCorner>
         <s:UpperCorner>15.1 55.1</s:UpperCorner>
       </s:Envelope>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Theme>
-        <Identifier>lp_beschriftung</Identifier>
-        <d:Title>LP Beschriftung</d:Title>
+        <Identifier>lp_xp_pto</Identifier>
+        <d:Title>XP_PTO</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-        <Theme>
-          <Identifier>lp_xp_pto</Identifier>
-          <d:Title>XP_PTO</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_xp_pto</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_xp_lto</Identifier>
-          <d:Title>XP_LTO</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_xp_lto</Layer>
-        </Theme>
+        <Layer>lp_xp_pto</Layer>
       </Theme>
       <Theme>
-        <Identifier>lp_symbole</Identifier>
-        <d:Title>LP Symbole</d:Title>
+        <Identifier>lp_xp_lto</Identifier>
+        <d:Title>XP_LTO</d:Title>
         <s:Envelope crs="EPSG:4326">
           <s:LowerCorner>5.7 47.2</s:LowerCorner>
           <s:UpperCorner>15.1 55.1</s:UpperCorner>
         </s:Envelope>
         <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-        <Theme>
-          <Identifier>lp_xp_fpo</Identifier>
-          <d:Title>XP_FPO</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_xp_fpo</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_xp_lpo</Identifier>
-          <d:Title>XP_LPO</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_xp_lpo</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_xp_ppo</Identifier>
-          <d:Title>XP_PPO</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_xp_ppo</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_schutzobjbundesrechtsym</Identifier>
-          <d:Title>LP_SchutzobjektBundesrecht Symbol</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_schutzobjbundesrechtsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_schutzobjinterrechtsym</Identifier>
-          <d:Title>LP_SchutzobjektInternatRecht Symbol</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_schutzobjinterrechtsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_denkmschrechtsym</Identifier>
-          <d:Title>LP_Denkmalschutzrecht Symbol</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_denkmschrechtsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_ausgleichsym</Identifier>
-          <d:Title>LP_Ausgleich Symbol</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_ausgleichsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_wrschutzgebsym</Identifier>
-          <d:Title>LP_WasserrechtSchutzgebiet Symbol</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_wrschutzgebsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_wrgemgebreinschrnatssym</Identifier>
-          <d:Title>LP_WasserrechtGemeingebrEinschraenkungNaturschutz Symbol</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_wrgemgebreinschrnatssym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_wrwirtschabflusshwssym</Identifier>
-          <d:Title>LP_WasserrechtWirtschaftAbflussHochwSchutz Symbol</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_wrwirtschabflusshwssym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_forstrechtsym</Identifier>
-          <d:Title>LP_Forstrecht Symbol</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_forstrechtsym</Layer>
-        </Theme>
-        <Theme>
-          <Identifier>lp_nutzerforderregelungsym</Identifier>
-          <d:Title>LP_NutzungserfordernisRegelung Symbol</d:Title>
-          <s:Envelope crs="EPSG:4326">
-            <s:LowerCorner>5.7 47.2</s:LowerCorner>
-            <s:UpperCorner>15.1 55.1</s:UpperCorner>
-          </s:Envelope>
-          <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
-          <Layer>lp_nutzerforderregelungsym</Layer>
-        </Theme>
+        <Layer>lp_xp_lto</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_xp_fpo</Identifier>
+        <d:Title>XP_FPO</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>lp_xp_fpo</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_xp_lpo</Identifier>
+        <d:Title>XP_LPO</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>lp_xp_lpo</Layer>
+      </Theme>
+      <Theme>
+        <Identifier>lp_xp_ppo</Identifier>
+        <d:Title>XP_PPO</d:Title>
+        <s:Envelope crs="EPSG:4326">
+          <s:LowerCorner>5.7 47.2</s:LowerCorner>
+          <s:UpperCorner>15.1 55.1</s:UpperCorner>
+        </s:Envelope>
+        <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+        <Layer>lp_xp_ppo</Layer>
       </Theme>
     </Theme>
     <Theme>
