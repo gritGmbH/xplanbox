@@ -25,7 +25,6 @@ import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.gml.property.Property;
-import org.deegree.commons.tom.primitive.BaseType;
 import org.deegree.commons.tom.primitive.PrimitiveType;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
@@ -43,8 +42,7 @@ import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.OTHER;
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.STRING;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.PRIMITIVE;
 import static org.apache.xerces.xs.XSConstants.DERIVATION_NONE;
 import static org.deegree.commons.xml.CommonNamespaces.GML3_2_NS;
 
@@ -187,8 +185,6 @@ public class AttributePropertyParser {
 	private static AttributePropertyType detectAttributePropertyType(PrimitiveValue stepValue,
 			TypedObjectNode parentStep) {
 		PrimitiveType type = stepValue.getType();
-		if (!BaseType.STRING.equals(type.getBaseType()))
-			return OTHER;
 		if (parentStep instanceof GenericXMLElement) {
 			XSElementDeclaration xsType = ((GenericXMLElement) parentStep).getXSType();
 			boolean isCodeList = xsType.getTypeDefinition().derivedFrom(GML3_2_NS, "CodeType", DERIVATION_NONE);
@@ -199,7 +195,7 @@ public class AttributePropertyParser {
 		if (namespace.startsWith(XPLAN_GML_NS_PREFIX)) {
 			return ENUM;
 		}
-		return STRING;
+		return PRIMITIVE;
 	}
 
 	private static String detectCodelistId(PrimitiveValue stepValue, AttributePropertyType attributePropertyType) {

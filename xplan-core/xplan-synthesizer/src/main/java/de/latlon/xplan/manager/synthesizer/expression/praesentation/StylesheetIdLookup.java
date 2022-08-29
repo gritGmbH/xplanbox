@@ -42,6 +42,7 @@ import static de.latlon.xplan.manager.synthesizer.expression.praesentation.Geome
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.GeometryTypeAbbreviation.UNKNOWN;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.PRIMITIVE;
 import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 /**
@@ -93,6 +94,11 @@ public class StylesheetIdLookup extends PraesentationsobjektLookup {
 					sb.append(attributeProperty.getAttribute());
 					if (attributeProperty.getValue() != null)
 						sb.append("=").append(attributeProperty.getValue());
+					sb.append("]");
+				}
+				else if (attributeProperty.getAttributePropertyType().equals(PRIMITIVE)) {
+					sb.append("[");
+					sb.append(attributeProperty.getAttribute());
 					sb.append("]");
 				}
 			}

@@ -25,6 +25,7 @@ import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
 import static org.hamcrest.CoreMatchers.is;
@@ -67,13 +68,13 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate5 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3_1", lookup);
-		assertThat(evaluate5.getAsText(), is("SO_Gebiet[gebietsArt=1999]_F"));
+		assertThat(evaluate5.getAsText(), is("SO_Gebiet[gebietsArt=1999][gemeindeName]_F"));
 
 		PrimitiveValue evaluate6 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3_2", lookup);
-		assertThat(evaluate6.getAsText(), is("SO_Gebiet[gebietsArt=1999]_F"));
+		assertThat(evaluate6.getAsText(), is("SO_Gebiet[gebietsArt=1999][ags]_F"));
 
 		PrimitiveValue evaluate7 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3_3", lookup);
-		assertThat(evaluate7.getAsText(), is("SO_Gebiet[gebietsArt=1999]_F"));
+		assertThat(evaluate7.getAsText(), is("SO_Gebiet[gebietsArt=1999][gemeindeName][ags]_F"));
 	}
 
 	@Test
@@ -106,6 +107,16 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_stylesheetId",
 				lookup);
 		assertThat(evaluate.getAsText(), is("BP_BaugebietsTeilFlaeche_F"));
+	}
+
+	@Test
+	public void testEvaluate_art_Z() throws Exception {
+		FeatureCollection features = getTestFeatures(XPLAN_41,
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan003_4-1.gml");
+
+		StylesheetIdLookup lookup = new StylesheetIdLookup();
+		PrimitiveValue evaluate = getEvaluate(features, "GML_94A54459-653D-4708-9912-F2C7FF162F25", lookup);
+		assertThat(evaluate.getAsText(), is("BP_UeberbaubareGrundstuecksFlaeche[Z]_F"));
 	}
 
 }

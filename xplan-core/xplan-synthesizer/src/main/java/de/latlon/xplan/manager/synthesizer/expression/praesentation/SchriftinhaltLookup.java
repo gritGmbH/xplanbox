@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.STRING;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.PRIMITIVE;
 import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.joining;
@@ -49,7 +49,7 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 
 	private final Xpath schriftinhalt;
 
-	private AttributePropertyType propertyType = STRING;
+	private AttributePropertyType propertyType = PRIMITIVE;
 
 	public SchriftinhaltLookup() {
 		super();
@@ -99,7 +99,7 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 
 	private Stream<String> filterStrings(List<AttributeProperty> attributeProperties) {
 		return attributeProperties.stream()
-				.filter(attributeProperty -> STRING.equals(attributeProperty.getAttributePropertyType()))
+				.filter(attributeProperty -> PRIMITIVE.equals(attributeProperty.getAttributePropertyType()))
 				.map(attributeProperty -> attributeProperty.getValue());
 	}
 

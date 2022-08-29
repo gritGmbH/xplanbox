@@ -41,8 +41,7 @@ import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.g
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.OTHER;
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.STRING;
+import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.PRIMITIVE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -96,7 +95,7 @@ public class AttributePropertyParserTest {
 				artNodes);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("beschreibung"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
 		assertThat(attributeProperties.get(0).getValue(), is("Testdaten"));
 	}
 
@@ -109,7 +108,7 @@ public class AttributePropertyParserTest {
 				artNodes);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("veraenderungssperre"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(OTHER));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
 		assertThat(attributeProperties.get(0).getValue(), is("false"));
 	}
 
@@ -122,7 +121,7 @@ public class AttributePropertyParserTest {
 				artNodes);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("gemeindeName"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
 		assertThat(attributeProperties.get(0).getValue(), is("Freie und Hansestadt Hamburg"));
 	}
 
@@ -136,7 +135,7 @@ public class AttributePropertyParserTest {
 				artNodes);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("gemeindeName"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
 		assertThat(attributeProperties.get(0).getValue(), is("Freie und Hansestadt Hamburg"));
 	}
 
@@ -150,7 +149,7 @@ public class AttributePropertyParserTest {
 				artNodes);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("gemeindeName"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
 		assertThat(attributeProperties.get(0).getValue(), is("Freie und Hansestadt Hamburg"));
 	}
 
@@ -163,7 +162,7 @@ public class AttributePropertyParserTest {
 				artNodes);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("ags"));
-		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(STRING));
+		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
 		assertThat(attributeProperties.get(0).getValue(), is("02000000"));
 	}
 

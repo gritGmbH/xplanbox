@@ -6,6 +6,6 @@ package de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute;
  */
 public enum AttributePropertyType {
 
-	ENUM, CODE, STRING, OTHER;
+	ENUM, CODE, PRIMITIVE
 
 }
