@@ -25,8 +25,6 @@ import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SchriftinhaltLookup;
 import org.junit.Test;
 
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
-import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.PRIMITIVE;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -59,16 +57,6 @@ public class RuleParserTest {
 		Expression expression = ruleParser.parse("schriftinhaltLookup()");
 
 		assertThat(expression, is(instanceOf(SchriftinhaltLookup.class)));
-		assertThat(((SchriftinhaltLookup) expression).getPropertyType(), is(PRIMITIVE));
-	}
-
-	@Test
-	public void testParse_SchriftinhaltLookupWithType() {
-		RuleParser ruleParser = new RuleParser("BP_Plan", "Name", null);
-		Expression expression = ruleParser.parse("schriftinhaltLookup(ENUM)");
-
-		assertThat(expression, is(instanceOf(SchriftinhaltLookup.class)));
-		assertThat(((SchriftinhaltLookup) expression).getPropertyType(), is(ENUM));
 	}
 
 }
