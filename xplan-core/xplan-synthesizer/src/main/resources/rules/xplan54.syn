@@ -1,4 +1,4 @@
-#Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 25.08.2022, 18:06:28
+#Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 29.08.2022, 14:30:11
 BP_AbgrabungsFlaeche/abbaugut=xpath('xplan:abbaugut')
 BP_AbgrabungsFlaeche/aufschrift=xpath('xplan:aufschrift')
 BP_AbgrabungsFlaeche/ebene=xpath('xplan:ebene')
@@ -8688,7 +8688,7 @@ XP_PPO/gmlName=xplanGmlName()
 XP_PPO/hat=xplanFlatten(xpath('xplan:hat'))
 XP_PPO/index=xpath('xplan:index')
 XP_PPO/position=xplanGeometry('xplan:position')
-XP_PPO/schriftinhalt=schriftinhaltLookup(ENUM)
+XP_PPO/schriftinhalt=schriftinhaltLookup()
 XP_PPO/skalierung=skalierungLookup()
 XP_PPO/stylesheetId=stylesheetIdLookup()
 XP_PPO/xpPlanName=xplanName()
