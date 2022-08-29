@@ -59,3 +59,9 @@ databaseChangeLog:
       file: changelog_xplan60archive.yaml
   - include:
       file: changelog_xplan60pre.yaml
+  - changeSet:
+      id:  tagDatabase-v60
+      author:  tfr42
+      changes:
+      - tagDatabase:
+          tag:  v_6.0
