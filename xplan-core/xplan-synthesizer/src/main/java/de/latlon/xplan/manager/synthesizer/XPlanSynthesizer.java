@@ -133,9 +133,6 @@ public class XPlanSynthesizer {
 
 		processRuleFile(version, xplanType.name(), xplanName);
 
-		// initialize lookup for all Fachobjekte that are referenced by XP_PPO features
-		XpPpoLookup.init(fc);
-
 		List<Feature> featureMembers = new ArrayList<Feature>();
 		for (Feature feature : fc) {
 			Feature synFeature = synthesize(feature, fc);

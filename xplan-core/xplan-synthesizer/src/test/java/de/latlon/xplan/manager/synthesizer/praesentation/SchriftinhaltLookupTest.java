@@ -26,7 +26,7 @@ import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
-import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
+import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -38,7 +38,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 
 	@Test
 	public void testEvaluate_textFromArt() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
 
@@ -48,7 +48,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 
 	@Test
 	public void testEvaluate_textFromArtEnum() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
 
@@ -59,7 +59,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 
 	@Test
 	public void testEvaluate_textFromArtCodeValue() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
 
@@ -69,7 +69,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 
 	@Test
 	public void testEvaluate_missingDientZurDarstellungVon() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
@@ -80,7 +80,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 
 	@Test
 	public void testEvaluate_missingArt() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
@@ -90,7 +90,7 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 
 	@Test
 	public void testEvaluate_existingSchriftinhalt() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SchriftinhaltLookup lookup = new SchriftinhaltLookup();

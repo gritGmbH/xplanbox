@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
-import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
+import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -39,7 +39,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 
 	@Test
 	public void testEvaluate_artWithOneCode() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 
@@ -55,7 +55,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 
 	@Test
 	public void testEvaluate_artWithCodeAndEnum() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate4 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3", lookup);
@@ -64,7 +64,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 
 	@Test
 	public void testEvaluate_artMultipleTimesDifferentXPath() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
 		PrimitiveValue evaluate5 = getEvaluate(features, "GML_a81f7f4e-071f-44fd-af3e-826e80b82ee3_1", lookup);
@@ -79,7 +79,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 
 	@Test
 	public void testEvaluate_missingDientZurDarstellungVon() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
@@ -90,7 +90,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 
 	@Test
 	public void testEvaluate_missingArt() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
@@ -100,7 +100,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 
 	@Test
 	public void testEvaluate_missingArt_existingStylesheetId() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		StylesheetIdLookup lookup = new StylesheetIdLookup();
@@ -111,7 +111,7 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 
 	@Test
 	public void testEvaluate_art_Z() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_41,
+		FeatureCollection features = load(XPLAN_41,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan003_4-1.gml");
 
 		StylesheetIdLookup lookup = new StylesheetIdLookup();

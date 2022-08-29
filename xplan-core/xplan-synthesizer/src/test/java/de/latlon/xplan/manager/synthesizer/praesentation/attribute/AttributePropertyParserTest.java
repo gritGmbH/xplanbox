@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
-import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
+import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.ENUM;
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.PRIMITIVE;
@@ -56,7 +56,7 @@ public class AttributePropertyParserTest {
 
 	@BeforeClass
 	public static void initTestFeatures() throws Exception {
-		features = getTestFeatures(XPLAN_54, "/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
+		features = load(XPLAN_54, "/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 	}
 
 	@Test

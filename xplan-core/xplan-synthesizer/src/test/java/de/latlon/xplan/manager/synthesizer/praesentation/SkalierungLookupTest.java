@@ -6,7 +6,7 @@ import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
-import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
+import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,7 +18,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 
 	@Test
 	public void testEvaluate_calculatedWithErstellungsMassstab() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		SkalierungLookup lookup = new SkalierungLookup();
 
@@ -28,7 +28,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 
 	@Test
 	public void testEvaluate_calculatedWithoutErstellungsMassstab() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4_ohneErstellungsMassstab.gml");
 		SkalierungLookup lookup = new SkalierungLookup();
 
@@ -38,7 +38,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 
 	@Test
 	public void testEvaluate_missingDientZurDarstellungVon() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SkalierungLookup lookup = new SkalierungLookup();
@@ -49,7 +49,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 
 	@Test
 	public void testEvaluate_missingArt() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SkalierungLookup lookup = new SkalierungLookup();
@@ -59,7 +59,7 @@ public class SkalierungLookupTest extends AbstractPraesentationsobjektLookupTest
 
 	@Test
 	public void testEvaluate_existingSkalierung() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_54,
+		FeatureCollection features = load(XPLAN_54,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 
 		SkalierungLookup lookup = new SkalierungLookup();

@@ -18,7 +18,7 @@ public class LpEingriffsregelungKomplexFlattenerTest {
 
 	@Test
 	public void testFlatten_eingriffsregelungFlaechenTyp() throws Exception {
-		FeatureCollection features = TestFeaturesUtils.getTestFeatures("xplan60/LP-Test_60.zip");
+		FeatureCollection features = TestFeaturesUtils.load("xplan60/LP-Test_60.zip");
 		Feature feature = getTestFeature(features, "Gml_35828929-2C80-4454-A4E3-8EA08D4F5D13");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:eingriffsregelungFlaechenTyp"));
 		PrimitiveValue value = expr.evaluate(feature, features);

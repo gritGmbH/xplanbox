@@ -18,7 +18,7 @@ public class LpBiologischeVielfaltKomplexFlattenerTest {
 
 	@Test
 	public void testFlatten_biologischeVielfalt() throws Exception {
-		FeatureCollection features = TestFeaturesUtils.getTestFeatures("xplan60/LP-Test_60.zip");
+		FeatureCollection features = TestFeaturesUtils.load("xplan60/LP-Test_60.zip");
 		Feature feature = getTestFeature(features, "Gml_8AC988AC-0E6C-44C6-9522-A32244FBBCE0");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:biologischeVielfalt"));
 		PrimitiveValue value = expr.evaluate(feature, features);

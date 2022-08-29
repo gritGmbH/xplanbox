@@ -18,7 +18,7 @@ public class KomplexeZweckbestimmungFlattenerTest {
 
 	@Test
 	public void testFlatten_zweckbestimmung() throws Exception {
-		FeatureCollection features = TestFeaturesUtils.getTestFeatures("xplan60/BPlan001_6-0.zip");
+		FeatureCollection features = TestFeaturesUtils.load("xplan60/BPlan001_6-0.zip");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:zweckbestimmung"));
 		PrimitiveValue value = expr.evaluate(feature, features);
