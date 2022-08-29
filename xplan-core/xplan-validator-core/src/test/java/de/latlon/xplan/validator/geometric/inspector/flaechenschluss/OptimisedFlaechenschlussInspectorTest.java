@@ -242,4 +242,28 @@ public class OptimisedFlaechenschlussInspectorTest {
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
 	}
 
+	@Test
+	public void testCheckFlaechenschluss_missing_gehoertZuBereich() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		readFeaturesFromGml("test41-54_1-missing-gehoertZuBereich.gml", OptimisedFlaechenschlussInspectorTest.class,
+				flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getErrors().size(), is(0));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(2));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_missing_gehoertZuBereich_multipleBereiche() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		readFeaturesFromGml("test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml",
+				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(flaechenschlussInspector.getErrors().size(), is(1));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
+	}
+
 }
