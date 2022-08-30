@@ -20,15 +20,15 @@
  */
 package de.latlon.xplan.manager.workspace;
 
-import java.io.IOException;
-import java.util.List;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Reloads a workspace via HTTP.
@@ -40,18 +40,26 @@ public class WorkspaceReloader {
 
 	private final Logger LOG = LoggerFactory.getLogger(WorkspaceReloader.class);
 
+	private WorkspaceReloaderConfiguration configuration;
+
 	/**
-	 * Reloads a workspace.
 	 * @param configuration configuration for {@link WorkspaceReloader}, if
 	 * {@link WorkspaceReloaderConfiguration} is invalid, reload is skipped, never
 	 * <code>null</code>
+	 */
+	public WorkspaceReloader(WorkspaceReloaderConfiguration configuration) {
+		this.configuration = configuration;
+	}
+
+	/**
+	 * Reloads a workspace.
 	 * @return true if all workspace reloads were successful, false otherwise.
 	 */
-	public boolean reloadWorkspace(WorkspaceReloaderConfiguration configuration) {
-		boolean isValid = checkConfiguration(configuration);
+	public boolean reloadWorkspace() {
+		boolean isValid = checkConfiguration();
 		if (isValid) {
 			LOG.info("Workspace reloader configuration is valid.");
-			return reload(configuration);
+			return reload();
 		}
 		else {
 			LOG.info("Workspace reloader configuration is invalid. Reload of workspace is skipped!");
@@ -59,17 +67,17 @@ public class WorkspaceReloader {
 		}
 	}
 
-	private boolean reload(WorkspaceReloaderConfiguration configuration) {
+	private boolean reload() {
 		List<String> urls = configuration.getUrls();
 		boolean isReloadSuccessfulForAllWorkspaces = true;
 		for (String url : urls) {
-			boolean reloadResult = reloadWorkspace(configuration, url);
+			boolean reloadResult = reloadWorkspace(url);
 			isReloadSuccessfulForAllWorkspaces = isReloadSuccessfulForAllWorkspaces && reloadResult;
 		}
 		return isReloadSuccessfulForAllWorkspaces;
 	}
 
-	private boolean reloadWorkspace(WorkspaceReloaderConfiguration configuration, String url) {
+	private boolean reloadWorkspace(String url) {
 		try {
 			String reloadUrl = retrieveWorkspaceReloadUrl(url);
 			LOG.info("Attempting to reload workspace with URL {}", reloadUrl);
@@ -111,7 +119,7 @@ public class WorkspaceReloader {
 		return response.getStatusLine().getStatusCode() == 200;
 	}
 
-	private boolean checkConfiguration(WorkspaceReloaderConfiguration configuration) {
+	private boolean checkConfiguration() {
 		List<String> url = configuration.getUrls();
 		String user = configuration.getUser();
 		String password = configuration.getPassword();

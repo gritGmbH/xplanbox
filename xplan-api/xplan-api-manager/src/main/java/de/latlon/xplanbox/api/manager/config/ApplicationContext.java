@@ -281,8 +281,8 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public WorkspaceReloader workspaceReloader() {
-		return new WorkspaceReloader();
+	public WorkspaceReloader workspaceReloader(ManagerConfiguration managerConfiguration) {
+		return new WorkspaceReloader(managerConfiguration.getWorkspaceReloaderConfiguration());
 	}
 
 	@Bean

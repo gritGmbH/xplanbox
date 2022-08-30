@@ -24,7 +24,6 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,8 +65,7 @@ public class XPlanDeleteManager {
 
 	private void reloadWorkspace() {
 		if (workspaceReloader != null) {
-			WorkspaceReloaderConfiguration configuration = managerConfiguration.getWorkspaceReloaderConfiguration();
-			workspaceReloader.reloadWorkspace(configuration);
+			workspaceReloader.reloadWorkspace();
 		}
 	}
 

@@ -20,14 +20,14 @@
  */
 package de.latlon.xplan.manager.workspace;
 
+import org.junit.Test;
+
+import java.util.List;
+
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.util.List;
-
-import org.junit.Test;
 
 /**
  * Tests for {@link WorkspaceReloader}.
@@ -37,39 +37,41 @@ import org.junit.Test;
  */
 public class WorkspaceReloaderTest {
 
-	private final WorkspaceReloader workspaceReloader = new WorkspaceReloader();
-
 	@Test
-	public void testReloadWorkspaceWithInvalidConfigurationShouldFail() throws Exception {
+	public void testReloadWorkspaceWithInvalidConfigurationShouldFail() {
 		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration();
-		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace(configuration);
+		WorkspaceReloader workspaceReloader = new WorkspaceReloader(configuration);
+		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace();
 
 		assertThat(isReloadSuccessful, is(false));
 	}
 
 	@Test
-	public void testReloadWorkspaceWithInvalidUrlShouldFail() throws Exception {
+	public void testReloadWorkspaceWithInvalidUrlShouldFail() {
 		List<String> urlList = singletonList("http://invalid-url");
 		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration(urlList, "user", "password");
-		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace(configuration);
+		WorkspaceReloader workspaceReloader = new WorkspaceReloader(configuration);
+		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace();
 
 		assertThat(isReloadSuccessful, is(false));
 	}
 
 	@Test
-	public void testReloadWorkspaceWithTwoInvalidUrlsShouldFail() throws Exception {
+	public void testReloadWorkspaceWithTwoInvalidUrlsShouldFail() {
 		List<String> urlList = asList("http://invalid-url1", "http://invalid-url2");
 		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration(urlList, "user", "password");
-		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace(configuration);
+		WorkspaceReloader workspaceReloader = new WorkspaceReloader(configuration);
+		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace();
 
 		assertThat(isReloadSuccessful, is(false));
 	}
 
 	@Test
-	public void testReloadWorkspaceWithThreeInvalidUrlsShouldFail() throws Exception {
+	public void testReloadWorkspaceWithThreeInvalidUrlsShouldFail() {
 		List<String> urlList = asList("http://invalid-url1", "http://invalid-url2", "http://invalid-url3");
 		WorkspaceReloaderConfiguration configuration = new WorkspaceReloaderConfiguration(urlList, "user", "password");
-		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace(configuration);
+		WorkspaceReloader workspaceReloader = new WorkspaceReloader(configuration);
+		boolean isReloadSuccessful = workspaceReloader.reloadWorkspace();
 
 		assertThat(isReloadSuccessful, is(false));
 	}

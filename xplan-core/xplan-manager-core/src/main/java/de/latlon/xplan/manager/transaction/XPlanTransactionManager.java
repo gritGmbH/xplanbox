@@ -44,7 +44,6 @@ import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -127,8 +126,7 @@ public abstract class XPlanTransactionManager {
 
 	protected void reloadWorkspace() {
 		if (workspaceReloader != null) {
-			WorkspaceReloaderConfiguration configuration = managerConfiguration.getWorkspaceReloaderConfiguration();
-			workspaceReloader.reloadWorkspace(configuration);
+			workspaceReloader.reloadWorkspace();
 		}
 	}
 

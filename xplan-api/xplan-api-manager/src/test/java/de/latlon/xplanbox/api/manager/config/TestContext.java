@@ -272,7 +272,7 @@ public class TestContext {
 	@Primary
 	public WorkspaceReloader workspaceReloader() {
 		WorkspaceReloader workspaceReloader = mock(WorkspaceReloader.class);
-		when(workspaceReloader.reloadWorkspace(any())).thenReturn(true);
+		when(workspaceReloader.reloadWorkspace()).thenReturn(true);
 		return workspaceReloader;
 	}
 
