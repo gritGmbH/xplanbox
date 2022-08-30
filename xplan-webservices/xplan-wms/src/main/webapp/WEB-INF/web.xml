@@ -151,7 +151,13 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
+
+  <servlet>
+    <servlet-name>planwerkwmsapi</servlet-name>
+    <servlet-class>de.latlon.xplan.planwerkwms.DeletePlanwerkServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>getAttachment</servlet-name>
     <url-pattern>/getAttachment</url-pattern>
@@ -176,6 +182,10 @@
     <servlet-name>config</servlet-name>
     <url-pattern>/config/*</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>planwerkwmsapi</servlet-name>
+    <url-pattern>/planwerkwmsapi/*</url-pattern>
+  </servlet-mapping>
 
   <welcome-file-list>
     <welcome-file>index.xhtml</welcome-file>
@@ -190,6 +200,16 @@
     <web-resource-collection>
       <web-resource-name>Configuration</web-resource-name>
       <url-pattern>/config/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>deegree</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>XPlanWerkWMS</web-resource-name>
+      <url-pattern>/planwerkwmsapi/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>deegree</role-name>
