@@ -25,13 +25,15 @@ This step applies an existing changelog to an empty database.
 
 First configure the JDBC connection in the `liquibase-target.properties` and create the database with pgAdmin or psql `CREATE DATABASE <DATABASE_NAME>`. Then run the goal:  
 
-    mvn clean package liquibase:update -Dliquibase.propertyFile=./target/test-classes/liquibase-target.properties -Dliquibase.changeLogFile=./target/changelog_v60.yaml 
+    mvn clean package
+    mvn liquibase:update -Dliquibase.propertyFile=./target/test-classes/liquibase-target.properties -Dliquibase.changeLogFile=./target/changelog_v60.yaml 
 
 ## Generate SQL migration script
 
 This step generates SQL migration scripts for the given changelog and can be used to migrate an existing database without liquibase.
 
-    mvn clean package liquibase:updateSQL -Dliquibase.propertyFile=./target/test-classes/liquibase-target.properties -Dliquibase.changeLogFile=./target/changelog_v60.yaml 
+    mvn clean package
+    mvn liquibase:updateSQL -Dliquibase.propertyFile=./target/test-classes/liquibase-target.properties -Dliquibase.changeLogFile=./target/changelog_v60.yaml 
 
 The output files are located in the `target/liquibase` folder.
 
