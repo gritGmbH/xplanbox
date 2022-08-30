@@ -54,8 +54,6 @@
       </Label>
       <Font>
         <SvgParameter name="font-family">Arial</SvgParameter>
-        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
-        <SvgParameter name="font-weight">bold</SvgParameter>
         <SvgParameter name="font-size">
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -81,13 +79,6 @@
           </Rotation>
         </PointPlacement>
       </LabelPlacement>
-      <Halo>
-        <Radius>0.3</Radius>
-        <Fill>
-          <SvgParameter name="fill">#ffffff</SvgParameter>
-          <SvgParameter name="fill-opacity">0.8</SvgParameter>
-        </Fill>
-      </Halo>
       <Fill>
         <SvgParameter name="fill">#000000</SvgParameter>
       </Fill>
