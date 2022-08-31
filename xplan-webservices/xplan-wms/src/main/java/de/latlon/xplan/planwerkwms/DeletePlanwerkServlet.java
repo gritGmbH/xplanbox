@@ -20,14 +20,17 @@
  */
 package de.latlon.xplan.planwerkwms;
 
+import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 import org.deegree.services.OWS;
 import org.deegree.services.OWSProvider;
 import org.deegree.services.controller.OGCFrontController;
+import org.deegree.workspace.ResourceIdentifier;
 import org.deegree.workspace.Workspace;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Delete the passed XPlanWerkWMS configuration.
@@ -40,12 +43,23 @@ public class DeletePlanwerkServlet extends HttpServlet {
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
 		String pathInfo = req.getPathInfo();
 		if (pathInfo != null) {
-			String serviceId = pathInfo.substring(1);
+			int planId = Integer.parseInt(pathInfo.substring(1));
 			Workspace workspace = OGCFrontController.getServiceWorkspace().getNewWorkspace();
-			OWS resource = workspace.getResource(OWSProvider.class, serviceId);
-			if (resource != null) {
-				workspace.destroy(resource.getMetadata().getIdentifier());
+			List<ResourceIdentifier<OWS>> resourcesOfType = workspace.getResourcesOfType(OWSProvider.class);
+			for (ResourceIdentifier<OWS> resourceId : resourcesOfType) {
+				deletePlanWerkWMSConfiguration(planId, workspace, resourceId);
 			}
+		}
+	}
+
+	private static void deletePlanWerkWMSConfiguration(int planId, Workspace workspace,
+			ResourceIdentifier<OWS> resourceId) {
+		OWS resource = workspace.getResource(OWSProvider.class, resourceId.getId());
+		if (resource != null && resource instanceof PlanwerkController) {
+			Planwerk planwerk = ((PlanwerkController) resource).getPlanwerk();
+			List<Integer> managerIds = planwerk.getManagerId();
+			if (managerIds.contains(planId))
+				workspace.destroy(resource.getMetadata().getIdentifier());
 		}
 	}
 
