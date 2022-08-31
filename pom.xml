@@ -27,6 +27,8 @@
     <spring.version>5.2.18.RELEASE</spring.version>
     <spring-security.version>5.2.13.RELEASE</spring-security.version>
     <jackson.version>2.13.1</jackson.version>
+    <liquibase.version>4.15.0</liquibase.version>
+    <postgresql.version>42.4.2</postgresql.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
@@ -779,6 +781,22 @@
         <artifactId>jts-core</artifactId>
         <version>1.18.2</version>
       </dependency>
+      <dependency>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-core</artifactId>
+        <version>${liquibase.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.liquibase.ext</groupId>
+        <artifactId>liquibase-postgresql</artifactId>
+        <version>${liquibase.version}</version>
+      </dependency>
       <!-- xplan-manager internal dependencies with version -->
       <dependency>
         <groupId>${project.groupId}</groupId>
@@ -1106,7 +1124,7 @@
       <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
-        <version>42.2.8</version>
+        <version>${postgresql.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

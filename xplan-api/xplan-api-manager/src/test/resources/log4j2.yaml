@@ -35,16 +35,20 @@ Configuration:
     Logger:
       - name: org.deegree
         level: warn
+      - name: org.deegree.gml.schema.GMLSchemaInfoSet
+        level: error
       - name: de.latlon.xplan
         level: warn
       - name: de.latlon.xplan.commons.configuration
-        level: trace
+        level: warn
       - name: de.latlon.xplan.manager.configuration;
         level: trace
       - name: de.latlon.xplanbox.api
         level: debug
-      - name: de.latlon.xplanbox.api.manager.config
+      - name: de.latlon.xplanbox.api.manager
         level: trace
+      - name: de.latlon.xplanbox.api.manager.config
+        level: debug
       - name: org.springframework
         level: warn
       - name: org.glassfish
