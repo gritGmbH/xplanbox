@@ -95,7 +95,8 @@ Das CLI _EvaluationSchemaSynchronizer_ unterstützt zwei Modi, die über die Opt
 * Option *ALL* zur Überführung aller Pläne aus dem XPlanSyn-Schema der xPlanBox in das Auswerteschema.
 * Option *SYNC* um die Synchronisierung der seit der letzten Ausführung des Werkzeuges geänderten Pläne aus dem XPlanSyn-Schema in das Auswerteschema durchzuführen.
 
-Üblicherweise erfolgt zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z.B. mit Hilfe eines Cron-Jobs) die Option *SYNC* um einen tagesaktuellen Stand im Auswerteschema zu erreichen.
+Es erfolgt zunächst einmalig die Ausführung mit der Option *ALL* und anschließend regelmäßig (z.B. mit Hilfe eines Cron-Jobs) mit der Option *SYNC* um einen tagesaktuellen Stand im Auswerteschema zu erreichen.
+Die zweimalige Ausführung mit der Option *ALL* führt zu einem Fehler bei der Ausführung, wenn bereits Daten synchronisiert wurden.
 
 Die einzelnen Parameter des Werkzeuges können durch folgenden Aufruf abgerufen werden:
 
