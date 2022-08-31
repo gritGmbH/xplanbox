@@ -27,6 +27,8 @@ import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -59,13 +61,13 @@ public class XPlanDeleteManager {
 	public void delete(String planId) throws Exception {
 		xPlanDao.deletePlan(planId);
 		xPlanRasterManager.removeRasterLayers(planId);
-		reloadWorkspace();
+		reloadWorkspace(planId);
 		LOG.info("XPlanArchiv mit Id {} wurde gelöscht", planId);
 	}
 
-	private void reloadWorkspace() {
+	private void reloadWorkspace(String planId) {
 		if (workspaceReloader != null) {
-			workspaceReloader.reloadWorkspace();
+			workspaceReloader.reloadWorkspace(parseInt(planId));
 		}
 	}
 

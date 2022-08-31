@@ -124,9 +124,9 @@ public abstract class XPlanTransactionManager {
 			this.metadataCouplingHandler = null;
 	}
 
-	protected void reloadWorkspace() {
+	protected void reloadWorkspace(int planId) {
 		if (workspaceReloader != null) {
-			workspaceReloader.reloadWorkspace();
+			workspaceReloader.reloadWorkspace(planId);
 		}
 	}
 
