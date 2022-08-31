@@ -68,6 +68,8 @@ public class UpdateUtils {
 			return "xplan53";
 		case "XPLAN_54":
 			return "xplan54";
+		case "XPLAN_60":
+			return "xplan60";
 		}
 		throw new IllegalArgumentException("Unsupported version: " + version);
 	}
@@ -115,6 +117,8 @@ public class UpdateUtils {
 			return "http://www.xplanung.de/xplangml/5/3";
 		case "xplan54":
 			return "http://www.xplanung.de/xplangml/5/4";
+		case "xplan60":
+			return "http://www.xplanung.de/xplangml/6/0";
 		}
 		throw new IllegalArgumentException("Unsupported schemaname: " + schemaname);
 	}
