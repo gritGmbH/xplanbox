@@ -27,7 +27,7 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.web.shared.Rechtsstand;
+import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
@@ -49,11 +49,11 @@ public class LegislationStatusDialog extends WizardDialogBox {
 	 * @param legislationStatus the status from the plan, may be <code>null</code> if not
 	 * set
 	 */
-	public LegislationStatusDialog(Rechtsstand legislationStatus) {
+	public LegislationStatusDialog(RechtsstandAndPlanStatus legislationStatus) {
 		super(MESSAGES.legislationStatusDialogTitle());
 		setWidth("425px");
-		this.legislationStatusSelectBox = createLegislationStatusListBox(legislationStatus.getCodeNumber());
-		setContent(createContentPanel(legislationStatus.getTranslatedCode()));
+		this.legislationStatusSelectBox = createLegislationStatusListBox(legislationStatus);
+		setContent(createContentPanel(legislationStatus.getRechtsstand().getTranslatedCode()));
 	}
 
 	/**
@@ -70,32 +70,34 @@ public class LegislationStatusDialog extends WizardDialogBox {
 		return null;
 	}
 
-	private ListBox createLegislationStatusListBox(int legislationStatusCode) {
+	private ListBox createLegislationStatusListBox(RechtsstandAndPlanStatus rechtsstandAndPlanStatus) {
 		final ListBox legislationStatusListBox = new ListBox();
 		int selectedIndex = 0;
-		if (legislationStatusCode < 0) {
+		if (rechtsstandAndPlanStatus.getRechtsstand().getCodeNumber() < 0) {
 			legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogFestgestelltOption());
 			legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogInAufstellungOption());
 			legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogArchiviertOption());
 		}
 		else {
-			if (legislationStatusCode == 3000 || legislationStatusCode == 4000) {
+			PlanStatus rechtsstand = rechtsstandAndPlanStatus.getPlanStatus();
+			switch (rechtsstand) {
+			case FESTGESTELLT:
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogFestgestelltSelectedOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogInAufstellungOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogArchiviertOption());
-			}
-			else if (legislationStatusCode == 4500 || legislationStatusCode == 5000 || legislationStatusCode == 50000
-					|| legislationStatusCode == 50001) {
+				break;
+			case ARCHIVIERT:
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogFestgestelltOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogInAufstellungOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogArchiviertSelectedOption());
 				selectedIndex = 2;
-			}
-			else {
+				break;
+			case IN_AUFSTELLUNG:
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogFestgestelltOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogInAufstellungSelectedOption());
 				legislationStatusListBox.addItem(MESSAGES.legislationStatusDialogArchiviertOption());
 				selectedIndex = 1;
+				break;
 			}
 		}
 		legislationStatusListBox.setSelectedIndex(selectedIndex);

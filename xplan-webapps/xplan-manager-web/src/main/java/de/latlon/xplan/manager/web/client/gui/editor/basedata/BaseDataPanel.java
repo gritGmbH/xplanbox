@@ -160,10 +160,10 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 		layout.setWidget(2, 1, new Label(MASSAGE.editCaptionBasedataCreationDate()));
 		layout.setWidget(2, 2, creationDate);
 
-		if (!SO_Plan.equals(type)) {
-			layout.setWidget(2, 3, new Label(MASSAGE.editCaptionBasedataOtherPlanType()));
-			layout.setWidget(2, 4, otherPlanType);
-		}
+		// https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1227
+		// layout.setWidget(2, 3, new Label(MASSAGE.editCaptionBasedataOtherPlanType()));
+		// layout.setWidget(2, 4, otherPlanType);
+
 		layout.setWidget(3, 1, new Label(MASSAGE.editCaptionBasedataLossDate()));
 		layout.setWidget(3, 2, lossDate);
 

@@ -30,7 +30,6 @@ import de.latlon.xplan.validator.geometric.inspector.flaechenschluss.OptimisedFl
 import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
-import de.latlon.xplan.validator.i18n.ValidationMessages;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import org.deegree.commons.tom.ReferenceResolvingException;
 import org.deegree.commons.tom.gml.GMLReference;
@@ -50,6 +49,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 
 /**
@@ -135,7 +135,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 			resolveAndValidateXlinks(gmlStream, result, aenderungenInspector);
 		}
 		catch (Exception e) {
-			String msg = ValidationMessages.getMessage("GeometricValidationImpl_error");
+			String msg = getMessage("GeometricValidationImpl_error");
 			result.addError(msg);
 			LOG.info("Unexpected failure by geometry validation ", e);
 		}
@@ -194,8 +194,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 						gmlReference.getReferencedObject();
 					}
 					catch (ReferenceResolvingException e) {
-						if (!treatAenderungIntegrityAsFailure && aenderungenInspector
-								.getLokalAendertAndWurdeGeandertVonReferences().contains("#" + id)) {
+						if (!treatAenderungIntegrityAsFailure && aenderungenInspector.isAenderungReference(id)) {
 							String warning = format("GeometricValidatorImpl_error_XLink_intern_aenderungsplaene", id);
 							LOG.info(warning);
 							result.addWarning(warning);
@@ -271,8 +270,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		ArrayList<String> extendedBrokenGeometryErrors = new ArrayList<>();
 		List<String> brokenGeometryErrors = gmlStream.getSkippedBrokenGeometryErrors();
 		for (String brokenGeometryError : brokenGeometryErrors) {
-			extendedBrokenGeometryErrors
-					.add(brokenGeometryError + ValidationMessages.getMessage("GeometricValidatorImpl_brokenGeom"));
+			extendedBrokenGeometryErrors.add(brokenGeometryError + getMessage("GeometricValidatorImpl_brokenGeom"));
 		}
 		return extendedBrokenGeometryErrors;
 	}

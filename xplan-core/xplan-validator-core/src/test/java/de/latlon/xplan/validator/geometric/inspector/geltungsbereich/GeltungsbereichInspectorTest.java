@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,7 +21,6 @@
 package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromGml;
@@ -35,7 +34,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-@Ignore
 public class GeltungsbereichInspectorTest {
 
 	@Test
@@ -115,6 +113,30 @@ public class GeltungsbereichInspectorTest {
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
+	}
+
+	@Test
+	public void testCheck_missing_gehoertZuBereich() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("test41-54_1-missing-gehoertZuBereich.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(geltungsbereichInspector.getWarnings().size(), is(0));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(0));
+	}
+
+	@Test
+	public void testCheck_missing_gehoertZuBereich_multipleBereiche() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(geltungsbereichInspector.getWarnings().size(), is(5));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(0));
 	}
 
 	@Test

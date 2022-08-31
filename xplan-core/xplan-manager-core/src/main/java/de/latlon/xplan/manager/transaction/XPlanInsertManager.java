@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.transaction;
 
+import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -53,6 +54,7 @@ import java.util.Date;
 import java.util.List;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -122,7 +124,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		}
 		List<Integer> planIds = new ArrayList<>();
 		for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
-			PlanStatus planStatusFromPlan = detectPlanStatus(xPlanInstance);
+			PlanStatus planStatusFromPlan = detectPlanStatus(archive.getType(), xPlanInstance);
 			FeatureCollection synFc = createSynFeatures(xPlanInstance, archive.getVersion());
 			int planId = importPlan(archive, makeRasterConfig, xPlanMetadata, crs, planStatusFromPlan, xPlanInstance,
 					synFc);
@@ -203,14 +205,13 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 		}
 	}
 
-	private PlanStatus detectPlanStatus(XPlanFeatureCollection xPlanInstance) {
+	private PlanStatus detectPlanStatus(XPlanType type, XPlanFeatureCollection xPlanInstance) {
 		String rechtsstand = FeatureCollectionUtils.retrieveRechtsstand(xPlanInstance.getFeatures(),
 				xPlanInstance.getType());
 		if (rechtsstand != null) {
 			try {
 				int rechtsstandCode = Integer.parseInt(rechtsstand);
-				return PlanStatus.findByLegislationStatusCode(rechtsstandCode);
-
+				return findByLegislationStatusCode(type.name(), rechtsstandCode);
 			}
 			catch (NumberFormatException e) {
 			}

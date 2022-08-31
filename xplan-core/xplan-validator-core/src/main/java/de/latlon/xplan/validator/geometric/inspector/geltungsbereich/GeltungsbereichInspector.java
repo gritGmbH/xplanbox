@@ -40,9 +40,7 @@ import org.deegree.geometry.primitive.Surface;
 import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.geometry.standard.multi.DefaultMultiGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
-import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.IntersectionMatrix;
 import org.locationtech.jts.geom.TopologyException;
 import org.slf4j.Logger;
@@ -77,6 +75,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
 	private List<String> errors = new ArrayList<>();
 
+	private List<String> warnings = new ArrayList<>();
+
 	@Override
 	public Feature inspect(Feature feature) throws FeatureInspectionException {
 		geltungsbereichInspectorContext.addToContext(feature, 0.002);
@@ -89,7 +89,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		for (FeatureUnderTest featureUnderTest : geltungsbereichInspectorContext.getFeaturesUnderTest()) {
 			GeltungsbereichFeature geltungsbereichFeature = featureUnderTest.getGeltungsbereichFeature();
 			if (geltungsbereichFeature == null) {
-				LOG.debug("Feature with ID {} has no Plan or Bereich", featureUnderTest.getFeatureId());
+				warnings.add("Das Objekt mit der ID " + featureUnderTest.getFeatureId()
+						+ " kann keinem Plan or Bereich zugeordnet werden, die  Geltungsbereichspruefung fuer dieses Objekt kann nicht durchgeführt werden.");
 			}
 			else {
 				if (!geltungsbereichFeature.isGeometryValid()) {
@@ -128,7 +129,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
 	@Override
 	public List<String> getWarnings() {
-		return Collections.emptyList();
+		return warnings;
 	}
 
 	@Override
@@ -322,12 +323,6 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	private String pointAsReadableString(Point p) {
 		return Arrays.stream(p.getAsArray()).filter(value -> !Double.isNaN(value)).mapToObj(Double::toString)
 				.collect(Collectors.joining(",", "(", ")"));
-	}
-
-	private org.locationtech.jts.geom.Point createJtsPoint(Point point) {
-		Coordinate coordinate = new Coordinate(point.get0(), point.get1(), point.get2());
-		org.locationtech.jts.geom.Point jtsPoint = new GeometryFactory().createPoint(coordinate);
-		return jtsPoint;
 	}
 
 }

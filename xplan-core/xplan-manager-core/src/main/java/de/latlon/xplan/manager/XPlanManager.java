@@ -67,6 +67,7 @@ import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
+import org.deegree.commons.utils.Pair;
 import org.deegree.commons.xml.XMLParsingException;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -267,11 +268,11 @@ public class XPlanManager {
 	 * @throws UnknownCRSException
 	 * @throws XMLStreamException
 	 */
-	public Rechtsstand determineRechtsstand(String pathToArchive)
+	public Pair<Rechtsstand, PlanStatus> determineRechtsstand(String pathToArchive)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
 		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
-		return determineRechtsstand(xPlanFeatureCollection);
+		return determineRechtsstandAndPlanstatus(xPlanFeatureCollection, archive.getType());
 	}
 
 	/**
@@ -312,8 +313,9 @@ public class XPlanManager {
 				planStatus = valueOf(status);
 			}
 			else {
-				Rechtsstand rechtsstand = determineRechtsstand(xPlanFeatureCollection);
-				planStatus = findByLegislationStatusCode(rechtsstand.getCodeNumber());
+				Pair<Rechtsstand, PlanStatus> rechtsstandPAndlanStatus = determineRechtsstandAndPlanstatus(
+						xPlanFeatureCollection, archive.getType());
+				planStatus = rechtsstandPAndlanStatus.second;
 			}
 			boolean planWithSameNameAndStatusExists = xplanDao.checkIfPlanWithSameNameAndStatusExists(planName,
 					planStatus.getMessage());
@@ -496,6 +498,13 @@ public class XPlanManager {
 			throw new Exception("Fehler beim Schreiben der Datei <" + wsDirectory.toString() + "/jdbc/xplan.xml>: "
 					+ e.getMessage());
 		}
+	}
+
+	private Pair<Rechtsstand, PlanStatus> determineRechtsstandAndPlanstatus(
+			XPlanFeatureCollection xPlanFeatureCollection, XPlanType type) {
+		Rechtsstand rechtsstand = determineRechtsstand(xPlanFeatureCollection);
+		PlanStatus planStatus = findByLegislationStatusCode(type.name(), rechtsstand.getCodeNumber());
+		return new Pair<>(rechtsstand, planStatus);
 	}
 
 	private Rechtsstand determineRechtsstand(XPlanFeatureCollection xPlanFeatureCollection) {

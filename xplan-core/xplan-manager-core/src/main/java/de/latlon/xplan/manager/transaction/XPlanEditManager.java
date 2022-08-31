@@ -62,6 +62,7 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanNa
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.deegree.cs.persistence.CRSManager.lookup;
@@ -124,7 +125,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			}
 
 			// TODO: Validation required?
-			PlanStatus newPlanStatus = detectNewPlanStatus(xPlanToEdit, oldLegislationStatus, oldPlanStatus);
+			PlanStatus newPlanStatus = detectNewPlanStatus(type, xPlanToEdit, oldLegislationStatus, oldPlanStatus);
 			AdditionalPlanData xPlanMetadata = new AdditionalPlanData(newPlanStatus,
 					xPlanToEdit.getValidityPeriod().getStart(), xPlanToEdit.getValidityPeriod().getEnd());
 			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
@@ -151,7 +152,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 		}
 	}
 
-	private PlanStatus detectNewPlanStatus(XPlanToEdit xPlanToEdit, String oldLegislationStatus,
+	private PlanStatus detectNewPlanStatus(XPlanType type, XPlanToEdit xPlanToEdit, String oldLegislationStatus,
 			PlanStatus oldPlanStatus) {
 		int newLegislationStatusCode = xPlanToEdit.getBaseData().getLegislationStatusCode();
 		int oldLegislationStatusCode = -1;
@@ -163,7 +164,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			LOG.warn("Could not parse legislation status code {} as integer", oldLegislationStatus);
 		}
 		if (newLegislationStatusCode != oldLegislationStatusCode)
-			return PlanStatus.findByLegislationStatusCode(newLegislationStatusCode);
+			return findByLegislationStatusCode(type.name(), newLegislationStatusCode);
 		return oldPlanStatus;
 	}
 

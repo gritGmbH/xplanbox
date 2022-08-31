@@ -21,6 +21,7 @@
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.model.AbstractGeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.inspector.model.BereichFeature;
@@ -74,6 +75,7 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -125,22 +127,31 @@ import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
  *          3. Pruefen ob jeder Stuetzpunkt einen korrespondieren Stuetzpunkt besitzt
  *          4. => Wenn nicht, Ausgabe eines Fehlers
  *    3. Pruefen der Vereinigung des Flaechenschluss
- *       1. Bilden der Vereinigung der Geometrien aller FlaechenschlussFeatures inkl. der Loecher aus dem Geltungsbereich mit einem Puffer von 2mm
+ *       1. Bilden der Vereinigung der Geometrien aller FlaechenschlussFeatures inkl. der Loecher aus dem Geltungsbereich (Bereich oder Plan) mit einem Puffer von 2mm
  *       2. Pruefen innerer Luecken in der Vereinigung aller FlaechenschlussFeatures
  *          1. Fuer alle inneren Polygone
  *             1. Identifizieren aller FlaechenschlussFeatures, die an diesem Polygon liegen
  *             2. Identifizieren der Stuetzpunkte der beiden FlaechenschlussFeatures
  *             3. Pruefen ob jeder Stuetzpunkt einen korrespondieren Stuetzpunkt besitzt
  *             4. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Luecke
- *       3. Pruefen von Luecken im Vergleich mit dem Geltungsbereich
- *          1. Bilden des Schnittbereichs der Vereinigung aller FlaechenschlussFeatures mit dem Geltungsbereich
- *          2. Fuer alle Polygone im Schnittbereich
- *              1. Identifizieren der Stuetzpunkte der beiden betroffenen FlaechenschlussFeatures
- *              2. Pruefe ob das Polygon im Toleranzbereich liegt (Wenn das Polygon mit einem Puffer von -1 kein leeres Polygon ergibt)
- *              3. Wenn ja
- *                 1. Pruefen ob jeder Stuetzpunkt einen korrespondieren Stuetzpunkt besitzt
- *                 2. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Luecke
- *                 3. => Wenn ja, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf eine Luecke
+ *    4. Pruefen der Vereinigung des Flaechenschluss gegen den Geltungsbereich des Bereichs (wenn vorhanden)
+ *       1. Bilden des Schnittbereichs der Vereinigung aller FlaechenschlussFeatures innerhalb des Breichs (aus 3.1.) mit dem Geltungsbereich des Bereichs
+ *       2. Fuer alle Polygone im Schnittbereich
+ *           1. Identifizieren der Stuetzpunkte der beiden betroffenen FlaechenschlussFeatures
+ *           2. Pruefe ob das Polygon im Toleranzbereich liegt (Wenn das Polygon mit einem Puffer von -1 kein leeres Polygon ergibt)
+ *           3. Wenn ja
+ *              1. Pruefen ob jeder Stuetzpunkt einen korrespondieren Stuetzpunkt besitzt
+ *              2. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Luecke
+ *              3. => Wenn ja, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf eine Luecke
+ *    5. Pruefen der Vereinigung des Flaechenschluss gegen den Geltungsbereich des Plans
+ *       1. Bilden des Schnittbereichs der Vereinigung aller FlaechenschlussFeatures innerhalb des Plans (aus 3.1.) mit dem Geltungsbereich des Plans
+ *       2. Fuer alle Polygone im Schnittbereich
+ *           1. Identifizieren der Stuetzpunkte der beiden betroffenen FlaechenschlussFeatures
+ *           2. Pruefe ob das Polygon im Toleranzbereich liegt (Wenn das Polygon mit einem Puffer von -1 kein leeres Polygon ergibt)
+ *           3. Wenn ja
+ *              1. Pruefen ob jeder Stuetzpunkt einen korrespondieren Stuetzpunkt besitzt
+ *              2. => Wenn nicht, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf potentielle Luecke
+ *              3. => Wenn ja, Ausgabe eines Fehlers bzw. Warnung (bis 5.4) mit Hinweis auf eine Luecke
  * </pre>
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -153,6 +164,10 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private static final AbstractDefaultGeometry DEFAULT_GEOM = new DefaultPoint(null, null, null,
 			new double[] { 0.0, 0.0 });
+
+	private static final String POSSIBLE_LUECKE_MSG_PLAN = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung bei der Pruefung des Geltungsbereichs des Plans an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
+
+	private static final String POSSIBLE_LUECKE_MSG_BEREICH = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung bei der Pruefung des Geltungsbereichs des Bereichs an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
 
 	private final List<String> flaechenschlussErrors = new ArrayList<>();
 
@@ -170,7 +185,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private enum TestStep {
 
-		FLAECHENSCHLUSSPAIRS, FLAECHENSCHLUSSUNION, GELTUNGSBEREICH
+		FLAECHENSCHLUSSPAIRS, FLAECHENSCHLUSSUNION, GELTUNGSBEREICH_BEREICH, GELTUNGSBEREICH_PLAN
 
 	}
 
@@ -191,26 +206,35 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	 */
 	@Override
 	public boolean checkGeometricRule() {
-		Map<GeltungsbereichFeature, List<FeatureUnderTest>> allFlaechenschlussFeaturesOfAPlan = flaechenschlussContext
-				.getAllFlaechenschlussFeaturesOfAPlan();
-		Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest = new HashMap<>();
-		allFlaechenschlussFeaturesOfAPlan.forEach((geltungsbereichFeature, featuresUnderTest) -> {
-			if (!featuresUnderTest.isEmpty()) {
-				analyseFlaechenschlussFeaturePairs(featuresUnderTest);
-				analyseFlaechenschlussUnion(geltungsbereichFeature, featuresUnderTest,
-						planFeaturesWithFeaturesUnderTest);
-			}
-		});
-		planFeaturesWithFeaturesUnderTest.forEach((planFeature, featuresUnderTest) -> {
-			analyseFlaechenschlussUnionOfPlan(planFeature, featuresUnderTest);
-		});
+		try {
+			Map<GeltungsbereichFeature, List<FeatureUnderTest>> allFlaechenschlussFeaturesOfAPlan = flaechenschlussContext
+					.getAllFlaechenschlussFeaturesOfAPlan();
+			Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest = new HashMap<>();
+			Map<BereichFeature, FeaturesUnderTest> bereichFeaturesWithFeaturesUnderTest = new HashMap<>();
+			allFlaechenschlussFeaturesOfAPlan.forEach((geltungsbereichFeature, featuresUnderTest) -> {
+				if (!featuresUnderTest.isEmpty()) {
+					analyseFlaechenschlussFeaturePairs(featuresUnderTest);
+					analyseFlaechenschlussUnionFlaechenschlussFeatures(geltungsbereichFeature, featuresUnderTest,
+							bereichFeaturesWithFeaturesUnderTest, planFeaturesWithFeaturesUnderTest);
+				}
+			});
+			bereichFeaturesWithFeaturesUnderTest.forEach((bereichFeature, featuresUnderTest) -> {
+				analyseFlaechenschlussUnionOfBereich(bereichFeature, featuresUnderTest);
+			});
+			planFeaturesWithFeaturesUnderTest.forEach((planFeature, featuresUnderTest) -> {
+				analyseFlaechenschlussUnionOfPlan(planFeature, featuresUnderTest);
+			});
 
-		if (flaechenschlussErrors.isEmpty()) {
-			LOG.info("No features with invalid flaechenschluss");
+			if (flaechenschlussErrors.isEmpty()) {
+				LOG.info("No features with invalid flaechenschluss");
+			}
+			else {
+				LOG.info("Features with invalid flaechenschluss:\n {}",
+						flaechenschlussErrors.stream().collect(Collectors.joining("\n")));
+			}
 		}
-		else {
-			LOG.info("Features with invalid flaechenschluss:\n {}",
-					flaechenschlussErrors.stream().collect(Collectors.joining("\n")));
+		catch (ValidatorException e) {
+			flaechenschlussErrors.add(e.getMessage());
 		}
 		return flaechenschlussErrors.isEmpty();
 	}
@@ -243,18 +267,25 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				.forEach(flaechenschlussFeaturePair -> analyseFlaechenschlussFeaturePair(flaechenschlussFeaturePair));
 	}
 
-	private void analyseFlaechenschlussUnion(GeltungsbereichFeature geltungsbereichFeature,
+	private void analyseFlaechenschlussUnionFlaechenschlussFeatures(GeltungsbereichFeature geltungsbereichFeature,
 			List<FeatureUnderTest> featuresUnderTest,
+			Map<BereichFeature, FeaturesUnderTest> bereichFeaturesWithFeaturesUnderTest,
 			Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest) {
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion(geltungsbereichFeature, featuresUnderTest);
-		LOG.debug("Union of all flaechenschluss geometries: " + WKTWriter.write(flaechenschlussUnion));
+		LOG.debug("Union of all flaechenschluss geometries: {}", WKTWriter.write(flaechenschlussUnion));
 		checkFlaechenschlussFeaturesIntersectingAnInteriorRing(geltungsbereichFeature, featuresUnderTest,
 				flaechenschlussUnion, TestStep.FLAECHENSCHLUSSUNION);
-		checkFlaechenschlussFeaturesWithGeltungsbereich(geltungsbereichFeature, featuresUnderTest, flaechenschlussUnion,
-				TestStep.GELTUNGSBEREICH);
-
+		addBereichFeature(bereichFeaturesWithFeaturesUnderTest, geltungsbereichFeature, featuresUnderTest,
+				flaechenschlussUnion);
 		addPlanFeature(planFeaturesWithFeaturesUnderTest, geltungsbereichFeature, featuresUnderTest,
 				flaechenschlussUnion);
+	}
+
+	private void analyseFlaechenschlussUnionOfBereich(BereichFeature bereichFeature,
+			FeaturesUnderTest featuresUnderTest) {
+		Geometry flaechenschlussUnion = featuresUnderTest.getFlaechenschlussUnion();
+		checkFlaechenschlussFeaturesWithGeltungsbereich(bereichFeature, featuresUnderTest.getFeaturesUnderTest(),
+				flaechenschlussUnion, TestStep.GELTUNGSBEREICH_BEREICH);
 	}
 
 	private void analyseFlaechenschlussUnionOfPlan(PlanFeature planFeature,
@@ -262,6 +293,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		if (planFeature.isAenderungsPlan()) {
 			LOG.info("Plan {} is an Aenderungsplan. Complete covering is not checked for the plan.",
 					planFeature.getFeatureId());
+			return;
 		}
 		Geometry flaechenschlussUnion = createFlaechenschlussUnion(featuresUnderTests);
 		LOG.debug("Union of all flaechenschluss geometries assigned to plan {}: {}", planFeature.getFeatureId(),
@@ -271,7 +303,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				.flatMap(featuresUnderTest -> featuresUnderTest.getFeaturesUnderTest().stream())
 				.collect(Collectors.toList());
 		checkFlaechenschlussFeaturesWithGeltungsbereich(planFeature, featureUnderTestOfPlan, flaechenschlussUnion,
-				TestStep.GELTUNGSBEREICH);
+				TestStep.GELTUNGSBEREICH_PLAN);
 	}
 
 	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(GeltungsbereichFeature geltungsbereichFeature,
@@ -385,6 +417,12 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			if (!foundInvalidControlPoints) {
 				boolean handleAsFailure = handleAsFailure(testStep);
 				String lueckeMessage = getMessage("FlaechenschlussInspector_error_Luecke");
+				if (TestStep.GELTUNGSBEREICH_BEREICH.equals(testStep)) {
+					lueckeMessage = getMessage("FlaechenschlussInspector_error_bereich_Luecke");
+				}
+				else if (TestStep.GELTUNGSBEREICH_PLAN.equals(testStep)) {
+					lueckeMessage = getMessage("FlaechenschlussInspector_error_plan_Luecke");
+				}
 				BadGeometry badGeometry = new BadGeometry(diffGeltungsbereich, lueckeMessage);
 				badGeometries.add(badGeometry);
 				if (handleAsFailure) {
@@ -416,7 +454,22 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			boolean handleAsFailure = handleAsFailure(testStep);
 			String msg;
 			if (!handleAsFailure && !TestStep.FLAECHENSCHLUSSPAIRS.equals(testStep)) {
-				msg = format("FlaechenschlussInspector_possibleLuecke", cp.getFeatureGmlId(), cp.getPoint());
+				if (TestStep.GELTUNGSBEREICH_BEREICH.equals(testStep)) {
+					msg = format("FlaechenschlussInspector_possibleLuecke_bereich", cp.getFeatureGmlId(),
+							cp.getPoint());
+				}
+				else if (TestStep.GELTUNGSBEREICH_PLAN.equals(testStep)) {
+					msg = format("FlaechenschlussInspector_possibleLuecke_plan", cp.getFeatureGmlId(), cp.getPoint());
+				}
+				else {
+					msg = format("FlaechenschlussInspector_possibleLuecke", cp.getFeatureGmlId(), cp.getPoint());
+				}
+			}
+			else if (TestStep.GELTUNGSBEREICH_BEREICH.equals(testStep)) {
+				msg = format("FlaechenschlussInspector_error_bereich", cp.getFeatureGmlId(), cp.getPoint());
+			}
+			else if (TestStep.GELTUNGSBEREICH_PLAN.equals(testStep)) {
+				msg = format("FlaechenschlussInspector_error_plan", cp.getFeatureGmlId(), cp.getPoint());
 			}
 			else {
 				msg = format("FlaechenschlussInspector_error", cp.getFeatureGmlId(), cp.getPoint());
@@ -435,6 +488,15 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		return !controlPointsWithInvalidFlaechenschluss.isEmpty();
 	}
 
+	private void addBereichFeature(Map<BereichFeature, FeaturesUnderTest> bereichFeaturesWithFeaturesUnderTest,
+			GeltungsbereichFeature geltungsbereichFeature, List<FeatureUnderTest> featuresUnderTest,
+			Geometry flaechenschlussUnion) {
+		if (geltungsbereichFeature instanceof BereichFeature) {
+			FeaturesUnderTest bereichFeaturesUnderTest = new FeaturesUnderTest(flaechenschlussUnion, featuresUnderTest);
+			bereichFeaturesWithFeaturesUnderTest.put((BereichFeature) geltungsbereichFeature, bereichFeaturesUnderTest);
+		}
+	}
+
 	private void addPlanFeature(Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest,
 			GeltungsbereichFeature geltungsbereichFeature, List<FeatureUnderTest> featuresUnderTest,
 			Geometry flaechenschlussUnion) {
@@ -446,6 +508,11 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			}
 			planFeaturesWithFeaturesUnderTest.get(((BereichFeature) geltungsbereichFeature).getPlanFeature())
 					.add(featuresUnderTest1);
+		}
+		else if (geltungsbereichFeature instanceof PlanFeature) {
+			FeaturesUnderTest planFeaturesUnderTest = new FeaturesUnderTest(flaechenschlussUnion, featuresUnderTest);
+			planFeaturesWithFeaturesUnderTest.put((PlanFeature) geltungsbereichFeature,
+					Collections.singletonList(planFeaturesUnderTest));
 		}
 	}
 
@@ -542,6 +609,20 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				IntersectionMatrix relate = flaechenschlussFeature1.getJtsGeometry()
 						.relate(flaechenschlussFeature2.getJtsGeometry());
 				if (relate.isEquals(2, 2)) {
+					String error = format("FlaechenschlussInspector_error_overlapping",
+							flaechenschlussFeature1.getFeatureId(), flaechenschlussFeature2.getFeatureId());
+					BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature1.getOriginalGeometry(), error);
+					badGeometries.add(badGeometry);
+					flaechenschlussErrors.add(error);
+				}
+				else if (relate.isCoveredBy()) {
+					String error = format("FlaechenschlussInspector_error_overlapping",
+							flaechenschlussFeature2.getFeatureId(), flaechenschlussFeature1.getFeatureId());
+					BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature2.getOriginalGeometry(), error);
+					badGeometries.add(badGeometry);
+					flaechenschlussErrors.add(error);
+				}
+				else if (relate.isCovers()) {
 					String error = format("FlaechenschlussInspector_error_overlapping",
 							flaechenschlussFeature1.getFeatureId(), flaechenschlussFeature2.getFeatureId());
 					BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature1.getOriginalGeometry(), error);
