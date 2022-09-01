@@ -77,20 +77,19 @@ Zusätzlich zu den aus den Konformitätsbedingungen abgeleiteten Validierungsreg
 * Anlegen einer Konfigurationsdatei im YAML-Dateiformat im Verzeichnis _<XPLANBOX_CONFIG>/profiles_ (verpflichtend)
 * Die YAML-Datei kann die Konfiguration für ein oder mehrere Profile beinhalten, der Dateiname ist frei wählbar, die Dateiendung muss _.yaml_ sein. (verpflichtend)
 * Ein Profil wird durch folgende Eigenschaften beschrieben:
-** *id*: Ein eindeutiger Bezeichner für das Profil, wenn dieser nicht angegeben wird, dann wird dieser aus `name` und `description` zusammengesetzt. (optional)
+** *id*: Ein eindeutiger Bezeichner für das Profil. (verpflichtend)
 ** *name*: Der Name des Profils, dieser wird im XPlanValidatorWeb und XPlanManagerWeb angezeigt. (verpflichtend)
 ** *description*: Beschreibung des Profils, wird als Tooltip im XPlanValidatorWeb und XPlanManagerWeb angezeigt. (verpflichtend)
-** *xqueryRulesDirectory*: Die absolute Pfadangabe auf das Verzeichnis in dem die XQuery-Regeln abgelegt sind. (verpflichtend)
 
 .Beispiel für profile.yaml:
 [source,yaml]
 ----
-- id: profile1
+- id: nrw [1]
   name: Pflichtenheft NRW
   description: Vorgaben aus Musterpflichtenheft zur Erstellung XPlanung-konformer Bebauungspläne in NRW
-  xqueryRulesDirectory: /pathto/xplan-validator-config/profiles/nrw <1>
 ----
-<1> Die Verzeichnisstruktur unterhalb dieses Verzeichnisses mit den XQuery-Regeln muss folgende Vorgaben erfüllen:
+
+Die XQuery-Regeln für ein Profil müssen in dem Verzeichnis _<XPLANBOX_CONFIG>/profiles/id_ mit der id aus der Profil-Konfiguration [1] liegen. Die Verzeichnisstruktur unterhalb dieses Verzeichnisses muss folgende Vorgaben erfüllen:
 ** Die Dateien mit den XQuery-Regeln müssen je XPlanGML-Version in getrennten Verzeichnissen abgelegt werden. Der Verzeichnisname setzt sich zusammen aus _xplangml<XPLANGML-VERSION>_, z. B. _xplangml54_, _xplangml60_.
 ** Es dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
 ** Jede XQuery-Regel muss in einer Datei mit dem Namen _<DATEINAME>.xq_ abgelegt sein.
@@ -112,7 +111,7 @@ rule1_XPLAN_60=Das Attribut 1 darf nicht unbelegt sein.
 rule2_XPLAN_60=Das Attribut 2 darf nicht unbelegt sein.
 ----
 
-.Beispiel für die Verzeichnisstruktur eines Profils:
+.Beispiel für die Verzeichnisstruktur des Profils mit der id 'nrw':
 ----
 nrw
 ├── rules.properties        # <1>
