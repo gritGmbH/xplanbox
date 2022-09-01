@@ -208,11 +208,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt neben einen hoch geladenen Plan auf den Button **Validieren**. | Ein neues Fenster mit dem XPlanValidator öffnet sich. 
 **02** | Der Benutzer vergibt eine _Bezeichnung_. | Die Bezeichnung wird im Feld dargestellt. 
-**03** | Der Benutzer wählt einen _Validierungstyp_ aus. | Der Validierungstyp wird im Feld dargestellt. 
-**04** | Der Benutzer startet den XPlanValidator. | Das Validierungsergebnis wird dargestellt. 
-**05** | Der Benutzer kehrt zu dem XPlanManager zurück. | Die Web-Oberfläche des XPlanManagers wird angezeigt. 
-**06.1** | Die Schaltfläche **Validieren** je nach Ergebnis rot (Validierung fehlgeschlagen). | Bei erfolgreicher Validierung wird die Schaltfläche **Import** freigegeben. 
-**06.2** | Die Schaltfläche **Validieren** je nach Ergebnis grün (Validierung erfolgreich) eingefärbt. | Bei fehlgeschlagener Validierung wird die Schaltfläche **Import** nicht freigegeben. 
+**03** | Der Benutzer wählt einen _Validierungstyp_ aus. | Der Validierungstyp wird im Feld dargestellt.
+**04** | Der Benutzer wählt ein _Profil_ aus. | Das Profil wird im Feld dargestellt. 
+**05** | Der Benutzer startet den XPlanValidator. | Das Validierungsergebnis wird dargestellt. 
+**06** | Der Benutzer kehrt zu dem XPlanManager zurück. | Die Web-Oberfläche des XPlanManagers wird angezeigt. 
+**07.1** | Die Schaltfläche **Validieren** je nach Ergebnis rot (Validierung fehlgeschlagen). | Bei erfolgreicher Validierung wird die Schaltfläche **Import** freigegeben. 
+**07.2** | Die Schaltfläche **Validieren** je nach Ergebnis grün (Validierung erfolgreich) eingefärbt. | Bei fehlgeschlagener Validierung wird die Schaltfläche **Import** nicht freigegeben. 
 
 **Hinweis**
 
@@ -781,7 +782,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-04: Auswahl der Validierungsart
+### Prüffall-04: Auswahl eines Validierungstyps
 
 #### Vorbedingungen
  * Der Prüffall-03 wurde erfolgreich ausgeführt. 
@@ -791,17 +792,32 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Auswahl **Validierungstyp**. 
+**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Auswahl an **Validierungstypen**. 
 **02** | Der Benutzer wählt durch das anklicken eines Kästchens einen _Validierungstyp_ aus. | Der ausgewählte Validierungstyp wird anhand eines _Häckchens_ im Kästchen angezeigt.
 
 ---
 
-### Prüffall-05: Validierung starten und abbrechen
+### Prüffall-05: Auswahl eines Profils
+
+#### Vorbedingungen
+ * Der Prüffall-03 wurde erfolgreich ausgeführt. 
+ * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
+ 
+#### Prüffall 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Auswahl an **Profilen**. 
+**02** | Der Benutzer wählt durch das anklicken eines Kästchens ein _Profil_ aus. | Das ausgewählte Profil wird anhand eines _Häckchens_ im Kästchen angezeigt.
+
+---
+
+### Prüffall-06: Validierung starten und abbrechen
 
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Die vorherigen Prüffälle (Prüffall-02, Prüffall-03, Prüffall-04) wurden erfolgreich ausgeführt.
+ * Die vorherigen Prüffälle (Prüffall-02, Prüffall-03, Prüffall-04, Prüffall-05) wurden erfolgreich ausgeführt.
 
 ### Prüffall 1
 
@@ -817,11 +833,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-06: Dynamische Titelzeile
+### Prüffall-07: Dynamische Titelzeile
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Der Prüffall-05 wurde erfolgreich ausgeführt.
+ * Der Prüffall-06 wurde erfolgreich ausgeführt.
  
 #### Prüffall 
 
@@ -831,7 +847,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-07: Download der Validierungsergebnisse
+### Prüffall-08: Download der Validierungsergebnisse
 
 #### Vorbedingungen 
  * Der Benutzer hat eine Validierung über die Web-basierte Benutzeroberfläche des XPlanValidators durchgeführt.
@@ -859,11 +875,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-08: Schaltfläche um einen weiteren Plan zu validieren
+### Prüffall-09: Schaltfläche um einen weiteren Plan zu validieren
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Der Prüffall-06 wurde erfolgreich ausgeführt.
+ * Der Prüffall-07 wurde erfolgreich ausgeführt.
  
 #### Prüffall 
 
@@ -874,7 +890,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-09: Optimierte Validatorreports
+### Prüffall-10: Optimierte Validatorreports
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar.
