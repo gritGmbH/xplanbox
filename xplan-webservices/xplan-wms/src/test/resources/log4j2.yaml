@@ -40,8 +40,8 @@ Configuration:
         AppenderRef:
           ref: STDOUT
       -   name: org.deegree
-          level: trace
+          level: info
       -   name: de.latlon.xplan
-          level: debug
+          level: info
       -   name: org.mockito
-          level: trace
+          level: info
