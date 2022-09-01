@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ValidatorProfile {
 
+	@JsonProperty(required = true)
 	private String id;
 
 	@JsonProperty(required = true)
@@ -34,9 +35,6 @@ public class ValidatorProfile {
 
 	@JsonProperty(required = true)
 	private String description;
-
-	@JsonProperty(required = true)
-	private String xqueryRulesDirectory;
 
 	public String getId() {
 		return id;
@@ -60,14 +58,6 @@ public class ValidatorProfile {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getXqueryRulesDirectory() {
-		return xqueryRulesDirectory;
-	}
-
-	public void setXqueryRulesDirectory(String xqueryRulesDirectory) {
-		this.xqueryRulesDirectory = xqueryRulesDirectory;
 	}
 
 }
