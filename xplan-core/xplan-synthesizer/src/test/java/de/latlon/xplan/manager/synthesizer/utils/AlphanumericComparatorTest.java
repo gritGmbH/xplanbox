@@ -121,7 +121,6 @@ public class AlphanumericComparatorTest {
 	public void testSortList() {
 		List<String> list = asList("$1 Nr.15", "$1", "$1 Nr.2", "Ende | 1", "$3", "SiebzehnPunktVier");
 		Collections.sort(list, comparator);
-		System.out.println(list);
 		assertThat(list.get(0), is("$1"));
 		assertThat(list.get(1), is("$1 Nr.2"));
 		assertThat(list.get(2), is("$1 Nr.15"));
