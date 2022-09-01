@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
@@ -36,6 +37,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class OptimisedFlaechenschlussInspectorTest {
+
+	@Ignore
+	@Test
+	public void testCheckFlaechenschluss_executionTime() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		long start = System.currentTimeMillis();
+		readFeaturesFromZip("Testplan.zip", OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
+		flaechenschlussInspector.checkGeometricRule();
+		long end = System.currentTimeMillis();
+		long timeNeeded = end - start;
+		System.out.println("Flaechenschluss with optimized implementation: " + timeNeeded + " [ms]");
+	}
 
 	@Test
 	public void testCheckFlaechenschluss() throws Exception {
