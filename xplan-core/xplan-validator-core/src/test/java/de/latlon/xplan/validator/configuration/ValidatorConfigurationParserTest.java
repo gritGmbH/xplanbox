@@ -61,7 +61,7 @@ public class ValidatorConfigurationParserTest {
 
 	private static Path invalidName;
 
-	private static Path invalidPath;
+	private static Path invalidId;
 
 	private static Path duplicateId;
 
@@ -80,9 +80,9 @@ public class ValidatorConfigurationParserTest {
 		Path invalidName = ValidatorConfigurationParserTest.invalidName.resolve("profile-invalidName.yaml");
 		copy("/de/latlon/xplan/validator/configuration/profile-invalidName.yaml", invalidName);
 
-		invalidPath = tempFolder.newFolder("invalidPath").toPath();
-		Path invalidPath = ValidatorConfigurationParserTest.invalidPath.resolve("profile-invalidName.yaml");
-		copy("/de/latlon/xplan/validator/configuration/profile-invalidPath.yaml", invalidPath);
+		invalidId = tempFolder.newFolder("invalidId").toPath();
+		Path invalidPath = ValidatorConfigurationParserTest.invalidId.resolve("profile-invalidId.yaml");
+		copy("/de/latlon/xplan/validator/configuration/profile-invalidId.yaml", invalidPath);
 
 		duplicateId = tempFolder.newFolder("duplicateId").toPath();
 		Path duplicateIdPath = ValidatorConfigurationParserTest.duplicateId.resolve("profiles-duplicateId.yaml");
@@ -162,8 +162,8 @@ public class ValidatorConfigurationParserTest {
 	}
 
 	@Test(expected = ConfigurationException.class)
-	public void testParseProfile_invalidPath() throws Exception {
-		PropertiesLoader propertiesLoader = mockPropertiesLoaderWithProfile("/home/xplanbox/report/", invalidPath);
+	public void testParseProfile_invalidId() throws Exception {
+		PropertiesLoader propertiesLoader = mockPropertiesLoaderWithProfile("/home/xplanbox/report/", invalidId);
 		ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
 		validatorConfigurationParser.parse(propertiesLoader);
 	}
