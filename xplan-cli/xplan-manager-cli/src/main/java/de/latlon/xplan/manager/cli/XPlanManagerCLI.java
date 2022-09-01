@@ -388,11 +388,6 @@ public class XPlanManagerCLI {
 		System.exit(0);
 	}
 
-	/**
-	 * TODO refactoring required: change modifier to private, resolve usage by using types
-	 * @param msg message
-	 */
-	@Deprecated
 	private static void endWithFatalError(String msg) {
 		System.out.println(msg);
 		System.exit(0);
