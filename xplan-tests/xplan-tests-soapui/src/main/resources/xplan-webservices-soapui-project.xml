@@ -3567,11 +3567,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>155</con:value>
+          <con:value>80</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_67ea321d-cc02-4c74-9612-457a8045867f</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_2a97b228-feb6-4a1c-b57d-218c3eb22696</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3792,7 +3792,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>156</con:value>
+          <con:value>81</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4024,7 +4024,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>157</con:value>
+          <con:value>82</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4784,11 +4784,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>158</con:value>
+          <con:value>83</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>159</con:value>
+          <con:value>84</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5477,7 +5477,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>160</con:value>
+          <con:value>85</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5557,7 +5557,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Osdorf48_Test_60.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Osdorf48_Test_60.zip</con:url>
             <con:id>0ed35278-acb9-4c74-afaa-da54b7900d5a</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5885,11 +5885,11 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>161</con:value>
+          <con:value>86</con:value>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value>162</con:value>
+          <con:value>87</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -7827,7 +7827,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>163</con:value>
+          <con:value>88</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
