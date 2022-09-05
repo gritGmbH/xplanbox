@@ -18,22 +18,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.database;
+package de.latlon.xplan.update.updater;
+
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.feature.SortPropertyReader;
+import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import org.deegree.feature.FeatureCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.deegree.feature.FeatureCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.feature.SortPropertyReader;
-import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 
 /**
  * Updates the sort property.

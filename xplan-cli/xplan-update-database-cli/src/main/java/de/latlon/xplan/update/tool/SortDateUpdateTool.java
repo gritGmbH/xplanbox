@@ -27,7 +27,7 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.SortPropertyUpdater;
+import de.latlon.xplan.update.updater.SortPropertyUpdater;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
