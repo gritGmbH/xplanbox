@@ -41,7 +41,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Main entry point to update xplan data in databases. Schema must be updated already.
+ * Main entry point to update bereich in databases.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
@@ -51,8 +51,6 @@ public class BereichUpdateTool {
 	private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
 	private static final String OPT_CONFIG_DIR = "configurationDirectory";
-
-	private static final String OPT_VERSION = "updateVersion";
 
 	public static void main(String[] args) {
 		if ((args.length > 0 && (args[0].contains("help") || args[0].contains("?")))) {
@@ -91,11 +89,6 @@ public class BereichUpdateTool {
 		opts.addOption(opt);
 
 		opt = new Option("c", OPT_CONFIG_DIR, true, "the directory containing the manager configuration");
-		opt.setRequired(false);
-		opts.addOption(opt);
-
-		opt = new Option("u", OPT_VERSION, false,
-				"update version (CURRENTLY THIS IS IGNORED): only the update from 5.0 to 5.0.2 is supported.");
 		opt.setRequired(false);
 		opts.addOption(opt);
 
