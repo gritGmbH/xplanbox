@@ -32,21 +32,7 @@ Aufstellung' der mit dem Schlüssel _wmsPreEndpoint_ konfigurierte
 Endpunkt oder bei Plänen mit dem Status 'Archiviert' der mit dem
 Schlüssel _wmsArchiveEndpoint_ konfigurierte Endpunkt.
 
-_Beispiel 1 - Konfiguration bei Verwendung einer
-Datenhaltungskomponente:_
-
-----
-wmsUrl=http://<host>:<port>/xplan-wms/services[/wms]?
-vectorWmsName=XPlan-WMS: Vektorkarten
-rasterWmsName=XPlan-WMS: Rasterkarten
-wmsEndpoint=
-wmsPreEndpoint=
-wmsArchiveEndpoint=
-----
-
-_Beispiel 2 - Konfiguration bei Verwendung von zwei
-Datenhaltungskomponenten:_
-
+_Beispiel der Konfiguration des XPlanWMS für die Kartenvorschau:_
 ----
 wmsUrl=http://<host>:<port>/xplan-wms/services
 vectorWmsName=XPlan-WMS: Vektorkarten

@@ -1,6 +1,11 @@
 [[systemarchitektur-und-schnittstellen]]
 == Systemarchitektur und Schnittstellen
 
+Die folgende Abbildung zeigt die vereinfachte Darstellung der zentralen Komponenten des xPlanBox.
+
+.Vereinfachte Darstellung der Komponenten der xPlanBox
+image::Architektur_xPlanBox_einfach.png[Einfache Darstellung]
+
 Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 
 * <<xplanmanager-web, XPlanManagerWeb>>
@@ -19,10 +24,9 @@ Das Gesamtsystem setzt sich aus folgenden Komponenten zusammen:
 * <<xplanresources, XPlanRessourcen>>
 * <<xplandb, XPlanDB>>
 
-.Einfache Datenhaltung der XPlanDB
-image::Architektur_xPlanBox_einfach.png[Einfache Darstellung]
+Die Gesamtarchitektur aller zuvor aufgelisteten Komponten wird in der folgenden Abbildung dargestellt:
 
-.Separate Datenhaltung der XPlanDB - getrennt nach Planstatus
+.Gesamtarchitektur aller Komponenten der xPlanBox
 image::Architektur_xPlanBox_komplex.png[Komplexe Darstellung]
 
 [[xplanmanager-web]]
@@ -91,18 +95,11 @@ Der XPlanWMS, XPlanArtWMS und XPlanWerkWMS sind auf dem Standard Web Map Service
 (Version 1.1.1 und 1.3.0) des Open Geospatial Consortium (OGC)
 basierende Kartendienste. Diese bieten die Möglichkeit,
 Visualisierungen von Plandaten sowie Sachinformationsabfragen zu
-einzelnen Planinhalten abzufragen. Um Plandaten zu visualisieren
-bzw. Sachinformationen abzufragen, ist es möglich, sowohl eine einfache
-(siehe Abbildung 1) als auch eine separate Datenhaltung (siehe Abbildung
-2) zu nutzen, in der die Plandaten hinterlegt sind. Dabei wird bei
-einer separaten Datenhaltung (Unterteilung in: In Aufstellung, Festgestellt, Archiviert)
-durch die Auswahl des Planstatus, die dazugehörige Datenhaltung und
-somit der entsprechende XPlanWMS-Endpoint angesprochen. Der XPlanWMS greift auf dasselbe Datenbankschema wie der <<xplansynwfs>> in der <<xplandb>> zu. Rasterdaten werden im Workspace-Verzeichnis des XPlanWMS hinterlegt. Die Verzeichnisstruktur des Workspace <<appendix_xplanwms-workspace>> ist im Anhang dokumentiert.
+einzelnen Planinhalten abzufragen.
 
-Während der XPlanWMS planübergreifend arbeitet, beschränkt sich der
-XPlanWerkWMS auf einzelne Planwerke. Der XPlanArtWMS stellt je einen Endpunkt für jede Planart wie z. B. BPlan oder FPlan zur Verfügung.
-
-Die folgende Tabelle zeigt die vom XPlanWMS bereitgestellten Daten nach Planstatus.
+Die Plandaten liegen in einer separate Datenhaltung (siehe Abbildung 2) vor, d.h. je nachdem in welche Datenhaltung ein Plan
+importiert wurde, ist dieser über den entsprechenden XPlanWMS-Endpoint abrufbar. Die folgende Tabelle zeigt die vom XPlanWMS
+bereitgestellten Daten nach Planstatus.
 
 [width="100%",cols="30%,40%,30%",options="header"]
 |===
@@ -121,6 +118,12 @@ Die folgende Tabelle zeigt die vom XPlanWMS bereitgestellten Daten nach Planstat
 |===
 
 NOTE: Gleiches gilt für den XPlanWerkWMS, XPlanArtWMS, XPlanWFS und XPlanSynWFS
+
+Der XPlanWMS greift auf dasselbe Datenbankschema wie der <<xplansynwfs>> in der <<xplandb>> zu. Rasterdaten werden im Workspace-Verzeichnis des XPlanWMS hinterlegt. Die Verzeichnisstruktur des Workspace <<appendix_xplanwms-workspace>> ist im Anhang dokumentiert.
+
+Während der XPlanWMS planübergreifend arbeitet, beschränkt sich der
+XPlanWerkWMS auf einzelne Planwerke. Der XPlanArtWMS stellt je einen Endpunkt für jede Planart wie z. B. BPlan oder FPlan zur Verfügung.
+
 
 [[xplanwfs]]
 === XPlanWFS
