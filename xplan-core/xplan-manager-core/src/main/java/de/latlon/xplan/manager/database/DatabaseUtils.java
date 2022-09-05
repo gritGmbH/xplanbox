@@ -20,9 +20,6 @@
  */
 package de.latlon.xplan.manager.database;
 
-import org.deegree.db.ConnectionProvider;
-import org.deegree.db.ConnectionProviderProvider;
-import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

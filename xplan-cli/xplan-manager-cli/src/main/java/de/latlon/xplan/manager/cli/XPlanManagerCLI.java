@@ -88,9 +88,6 @@ public class XPlanManagerCLI {
 		case "-list":
 			listOption(args, instantiateManager(args));
 			break;
-		case "-createdb":
-			createDBOption(args, instantiateManager(args));
-			break;
 		case "-updatewmssortdate":
 			createWmsSortDateOption(args, instantiateManager(args));
 			break;
@@ -256,43 +253,6 @@ public class XPlanManagerCLI {
 		manager.importPlan(fileName, defaultCRS, force, true, null);
 	}
 
-	private static void createDBOption(String[] args, XPlanManager manager) {
-		if (args.length != 7 && args.length != 9) {
-			printUsage();
-		}
-
-		String dbName = args[1];
-		String jdbcConn = args[2];
-		String template = null;
-		String user = null;
-		String pw = null;
-
-		for (int i = 3; i < args.length; i += 2) {
-
-			switch (args[i]) {
-			case "-u":
-				user = args[i + 1];
-				break;
-			case "-p":
-				pw = args[i + 1];
-				break;
-			case "-t":
-				template = args[i + 1];
-				break;
-			}
-
-		}
-
-		try {
-
-			manager.createInitialDB(jdbcConn, dbName, template, user, pw);
-
-		}
-		catch (Exception e) {
-			endWithFatalError(e.getMessage());
-		}
-	}
-
 	private static void createWmsSortDateOption(String[] args, XPlanManager manager) {
 		if (args.length != 1 && args.length != 3) {
 			printUsage();
@@ -367,7 +327,6 @@ public class XPlanManagerCLI {
 		System.out.println();
 		System.out.println(" -help");
 		System.out.println(" -list");
-		System.out.println(" -createdb <DB Name> <JDBC-Connection> -u <user> -p <passwort> [-t <PostGis Template>]");
 		System.out
 				.println(" -updateWmsSortDate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(
