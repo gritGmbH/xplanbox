@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.update;
+package de.latlon.xplan.update.tool;
 
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
@@ -27,7 +27,7 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION;
+import de.latlon.xplan.update.updater.BereichUpdate;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -39,13 +39,6 @@ import org.deegree.commons.tools.CommandUtils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_1_0_to_1_3_1;
-import static de.latlon.xplan.update.DatabaseDataUpdater.UPDATE_VERSION.FROM_PRE1_0_to_1_0;
-import static java.util.Arrays.asList;
 
 /**
  * Main entry point to update xplan data in databases. Schema must be updated already.
@@ -53,7 +46,7 @@ import static java.util.Arrays.asList;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class DatabaseUpdateTool {
+public class BereichUpdateTool {
 
 	private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
@@ -61,7 +54,7 @@ public class DatabaseUpdateTool {
 
 	private static final String OPT_VERSION = "updateVersion";
 
-	public static void main(String[] args) throws ConfigurationException {
+	public static void main(String[] args) {
 		if ((args.length > 0 && (args[0].contains("help") || args[0].contains("?")))) {
 			printHelp(initOptions());
 		}
@@ -74,10 +67,8 @@ public class DatabaseUpdateTool {
 					workspaceName = "xplan-manager-workspace";
 				String configurationDirectory = cmdline.getOptionValue(OPT_CONFIG_DIR);
 
-				List<UPDATE_VERSION> version = parseUpdateVersion(cmdline);
-
-				DatabaseUpdateTool tool = new DatabaseUpdateTool();
-				tool.run(workspaceName, configurationDirectory, Collections.emptyList());
+				BereichUpdateTool tool = new BereichUpdateTool();
+				tool.run(workspaceName, configurationDirectory);
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -114,17 +105,16 @@ public class DatabaseUpdateTool {
 
 	private static void printHelp(Options options) {
 		String help = "Update database.";
-		CommandUtils.printHelp(options, DatabaseUpdateTool.class.getSimpleName(), help, null);
+		CommandUtils.printHelp(options, BereichUpdateTool.class.getSimpleName(), help, null);
 	}
 
-	private void run(String workspaceName, String configurationFilePathVariable, List<UPDATE_VERSION> version)
-			throws Exception {
+	private void run(String workspaceName, String configurationFilePathVariable) throws Exception {
 		DeegreeWorkspace workspace = initWorkspace(workspaceName);
 		ManagerConfiguration managerConfiguration = createManagerConfiguration(configurationFilePathVariable);
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
 		XPlanDao xplanDao = createXplanDao(managerConfiguration, managerWorkspaceWrapper);
-		DatabaseDataUpdater dataUpdater = new DatabaseDataUpdater(xplanDao, managerWorkspaceWrapper);
-		dataUpdater.updateData(version);
+		BereichUpdate bereichUpdateTool = new BereichUpdate(xplanDao);
+		bereichUpdateTool.update();
 	}
 
 	private static XPlanDao createXplanDao(ManagerConfiguration managerConfiguration,
@@ -146,23 +136,6 @@ public class DatabaseUpdateTool {
 		DeegreeWorkspace workspace = DeegreeWorkspace.getInstance(workspaceName);
 		workspace.initAll();
 		return workspace;
-	}
-
-	private static List<UPDATE_VERSION> parseUpdateVersion(CommandLine cmdline) {
-		String updateVersion = cmdline.getOptionValue(OPT_VERSION);
-		if (updateVersion != null && !updateVersion.isEmpty()) {
-			List<UPDATE_VERSION> updateVersions = new ArrayList<DatabaseDataUpdater.UPDATE_VERSION>();
-			String[] versions = updateVersion.split(",");
-			for (String version : versions) {
-				if ("1".equals(version))
-					updateVersions.add(FROM_PRE1_0_to_1_0);
-				if ("2".equals(version))
-					updateVersions.add(FROM_1_0_to_1_3_1);
-			}
-			return updateVersions;
-		}
-		return asList(UPDATE_VERSION.values());
-
 	}
 
 }

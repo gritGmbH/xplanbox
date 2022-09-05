@@ -18,18 +18,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.update.from_5_0_to_5_0_2;
+package de.latlon.xplan.update.updater;
 
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
+import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.update.AbstractUpdater;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
 import java.util.List;
 
 /**
@@ -37,19 +36,26 @@ import java.util.List;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
-public class UpdaterFrom5_0To5_0_2 extends AbstractUpdater {
+public class BereichUpdate {
 
-	private final Logger LOG = LoggerFactory.getLogger(UpdaterFrom5_0To5_0_2.class);
+	private final Logger LOG = LoggerFactory.getLogger(BereichUpdate.class);
+
+	private final XPlanDao xplanDao;
+
+	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
 	/**
 	 * @param xplanDao allows access to the database, never <code>null</code>
 	 */
-	public UpdaterFrom5_0To5_0_2(XPlanDao xplanDao) {
-		super(xplanDao);
+	public BereichUpdate(XPlanDao xplanDao) {
+		this.xplanDao = xplanDao;
 	}
 
-	@Override
-	public void update(Connection conn) throws Exception {
+	/**
+	 * Updates data. Schema must be up to date already.
+	 * @throws Exception if an error occurred during update
+	 */
+	public void update() throws Exception {
 		List<XPlan> plans = xplanDao.getXPlanList(false);
 		for (XPlan plan : plans) {
 			update(plan);

@@ -29,7 +29,7 @@
           <copyConfigurationDirectory>true</copyConfigurationDirectory>
           <programs>
             <program>
-              <mainClass>de.latlon.xplan.update.DatabaseUpdateTool</mainClass>
+              <mainClass>de.latlon.xplan.update.tool.BereichUpdateTool</mainClass>
               <id>databaseUpdate</id>
             </program>
             <program>
