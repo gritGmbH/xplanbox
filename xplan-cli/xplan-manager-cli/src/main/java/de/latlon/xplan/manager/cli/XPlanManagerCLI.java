@@ -88,9 +88,6 @@ public class XPlanManagerCLI {
 		case "-list":
 			listOption(args, instantiateManager(args));
 			break;
-		case "-updatewmssortdate":
-			createWmsSortDateOption(args, instantiateManager(args));
-			break;
 		default:
 			XPlanRasterManagerCLI.main(args);
 		}
@@ -253,18 +250,6 @@ public class XPlanManagerCLI {
 		manager.importPlan(fileName, defaultCRS, force, true, null);
 	}
 
-	private static void createWmsSortDateOption(String[] args, XPlanManager manager) {
-		if (args.length != 1 && args.length != 3) {
-			printUsage();
-		}
-		try {
-			manager.updateWmsSortDate();
-		}
-		catch (Exception e) {
-			endWithFatalError(e.getMessage());
-		}
-	}
-
 	private static void export(String planId, String targetDir, XPlanManager manager) throws Exception {
 
 		File outputFile = new File(targetDir, "xplan-exported-" + planId + ".zip");
@@ -327,8 +312,6 @@ public class XPlanManagerCLI {
 		System.out.println();
 		System.out.println(" -help");
 		System.out.println(" -list");
-		System.out
-				.println(" -updateWmsSortDate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(
 				" -import [--force] <xplanarchiv> [--crs <CRS>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(

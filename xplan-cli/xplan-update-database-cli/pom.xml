@@ -37,6 +37,10 @@
               <id>districtUpdate</id>
             </program>
             <program>
+              <mainClass>de.latlon.xplan.update.tool.SortDateUpdateTool</mainClass>
+              <id>sortDateUpdate</id>
+            </program>
+            <program>
               <mainClass>de.latlon.xplan.update.tool.ReSynthesizerTool</mainClass>
               <id>reSynthesizer</id>
             </program>

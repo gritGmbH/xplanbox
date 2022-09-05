@@ -39,7 +39,6 @@ import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.SortPropertyUpdater;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
@@ -62,7 +61,6 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.utils.Pair;
 import org.deegree.commons.xml.XMLParsingException;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -105,10 +103,6 @@ public class XPlanManager {
 
 	private final XPlanDao xplanDao;
 
-	private final WorkspaceReloader workspaceReloader;
-
-	private final DeegreeWorkspace managerWorkspace;
-
 	private final XPlanExporter xPlanExporter;
 
 	private final XPlanToEditFactory planToEditFactory = new XPlanToEditFactory();
@@ -117,11 +111,7 @@ public class XPlanManager {
 
 	private final SortPropertyReader sortPropertyReader;
 
-	private final SortPropertyUpdater sortPropertyUpdater;
-
 	private final InspirePluPublisher inspirePluPublisher;
-
-	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
 	private final XPlanInsertManager xPlanInsertManager;
 
@@ -154,9 +144,6 @@ public class XPlanManager {
 		}
 		this.xplanDao = xPlanDao;
 		this.archiveCreator = archiveCreator;
-		this.managerWorkspace = managerWorkspaceWrapper.getWorkspace();
-		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
-		this.workspaceReloader = workspaceReloader;
 
 		ManagerConfigurationAnalyser managerConfigurationAnalyser = new ManagerConfigurationAnalyser(
 				managerWorkspaceWrapper.getConfiguration(), wmsWorkspaceWrapper);
@@ -166,7 +153,6 @@ public class XPlanManager {
 				managerWorkspaceWrapper.getConfiguration());
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
-		this.sortPropertyUpdater = new SortPropertyUpdater(sortPropertyReader, xplanDao, xPlanRasterManager);
 		this.xPlanExporter = new XPlanExporter();
 		XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer(managerWorkspaceWrapper.getConfiguration());
 		if (inspirePluTransformator != null)
@@ -427,15 +413,6 @@ public class XPlanManager {
 	 */
 	public void delete(String planId) throws Exception {
 		xPlanDeleteManager.delete(planId);
-	}
-
-	/**
-	 * Update of wms sort columns in XPlan Syn datastores and reordering of the WMS
-	 * layers.
-	 * @throws Exception
-	 */
-	public void updateWmsSortDate() throws Exception {
-		sortPropertyUpdater.updateSortProperty();
 	}
 
 	/**
