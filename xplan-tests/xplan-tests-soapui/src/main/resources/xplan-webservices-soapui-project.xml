@@ -3567,11 +3567,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>155</con:value>
+          <con:value>102</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_67ea321d-cc02-4c74-9612-457a8045867f</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_8068b048-6511-4341-96df-422ae73b31ab</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3695,9 +3695,9 @@ exists(/wms:WMS_Capabilities)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetCapabilities-with-whitespaces" id="0f3ac284-5d71-4027-b37e-85eea8893f90">
+      <con:testStep type="httprequest" name="GetCapabilities with whitespaces" id="0f3ac284-5d71-4027-b37e-85eea8893f90">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetCapabilities-with-whitespaces" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetCapabilities with whitespaces" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -3789,10 +3789,63 @@ exists(/wms:WMS_Capabilities)</path>
           <con:parameters/>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="GetCapabilities should fail" id="d1f075e1-9ff8-43c5-85c3-ab8d2981878d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="c94db636-c152-447a-94e1-768498fbcd21" name="GetCapabilities should fail" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wms/services/planwerkwms/planname/Eidelstedt4soapui-webservices</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="2b2dc1c4-d8c4-4308-8c53-f98536940634" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="a690f7b6-aa56-450e-93dd-bc93069e852d" name="ServiceExceptionReport">
+            <con:configuration>
+              <path>declare namespace ogc='http://www.opengis.net/ogc';
+
+exists(ogc:ServiceExceptionReport)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WMS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WMS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetCapabilities</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>156</con:value>
+          <con:value>103</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4024,7 +4077,7 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>157</con:value>
+          <con:value>104</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4784,11 +4837,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>158</con:value>
+          <con:value>105</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>159</con:value>
+          <con:value>106</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5477,7 +5530,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>160</con:value>
+          <con:value>107</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5557,7 +5610,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:name>Eidelstedt_4_V4-soapui-webservices.zip</con:name>
             <con:contentType>application/octet-stream</con:contentType>
             <con:contentId>Eidelstedt_4_V4-soapui-webservices.zip</con:contentId>
-            <con:url>${projectDir}/xplan-webservices-plans/Osdorf48_Test_60.zip</con:url>
+            <con:url>${projectDir}/xplan-webservices/plans/Osdorf48_Test_60.zip</con:url>
             <con:id>0ed35278-acb9-4c74-afaa-da54b7900d5a</con:id>
           </con:attachment>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -5885,11 +5938,11 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>161</con:value>
+          <con:value>108</con:value>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value>162</con:value>
+          <con:value>109</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -7827,7 +7880,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>163</con:value>
+          <con:value>110</con:value>
         </con:property>
       </con:properties>
     </con:testCase>

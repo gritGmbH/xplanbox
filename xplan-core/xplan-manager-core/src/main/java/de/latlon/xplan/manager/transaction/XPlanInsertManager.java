@@ -144,7 +144,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 				xPlanMetadata.getStartDateTime(), xPlanMetadata.getEndDateTime(), sortDate, null);
 		createRasterConfigurations(archive, makeRasterConfig, xPlanInstance, planId, selectedPlanStatus, sortDate);
 		startCreationOfDataServicesCoupling(planId, xPlanInstance, crs);
-		reloadWorkspace();
+		reloadWorkspace(planId);
 		LOG.info("XPlanArchiv wurde erfolgreich importiert. Zugewiesene Id: " + planId);
 		LOG.info("OK.");
 		return planId;

@@ -136,14 +136,15 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 
 			xPlanRasterManager.removeRasterLayers(planId, externalReferenceInfoToRemove);
+			int planIdInt = parseInt(planId);
 			if (makeRasterConfig) {
 				XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
-				createRasterConfiguration(archive, modifiedPlanFc, parseInt(planId), BP_Plan, oldPlanStatus,
-						newPlanStatus, sortDate);
-				reloadWorkspace();
+				createRasterConfiguration(archive, modifiedPlanFc, planIdInt, BP_Plan, oldPlanStatus, newPlanStatus,
+						sortDate);
+				reloadWorkspace(planIdInt);
 			}
 			else {
-				xPlanRasterManager.updateRasterLayers(parseInt(planId), type, oldPlanStatus, newPlanStatus);
+				xPlanRasterManager.updateRasterLayers(planIdInt, type, oldPlanStatus, newPlanStatus);
 			}
 			LOG.info("Rasterkonfiguration für den Plan mit der ID {} wurde ausgetauscht (falls vorhanden).", planId);
 		}
