@@ -49,6 +49,8 @@ Configuration:
         level: trace
       - name: de.latlon.xplanbox.api.manager.config
         level: debug
+      - name: de.latlon.xplanbox.api.manager.DatabaseVerifier
+        level: info
       - name: org.springframework
         level: warn
       - name: org.glassfish

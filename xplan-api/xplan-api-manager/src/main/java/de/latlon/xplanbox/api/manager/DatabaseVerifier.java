@@ -8,6 +8,7 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.DatabaseException;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.sql.Connection;
@@ -22,6 +23,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  *
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
+@Component
 public class DatabaseVerifier {
 
 	private static final Logger LOG = getLogger(DatabaseVerifier.class);
@@ -36,26 +38,33 @@ public class DatabaseVerifier {
 	}
 
 	@PostConstruct
-	public void verify() throws DatabaseException, SQLException {
+	public void verify() {
+		LOG.debug("Verifying application database XPlanDB for matching version");
+
 		try (Connection connection = managerWorkspaceWrapper.openConnection()) {
 			Database database = DatabaseFactory.getInstance()
 					.findCorrectDatabaseImplementation(new JdbcConnection(connection));
 			if (database.getDatabaseChangeLogTableName().isEmpty()) {
-				LOG.error("Liquibase tables are missing, unable to verify version of application database."
+				LOG.error("Liquibase tables are missing, unable to verify version of application database XPlanDB."
 						+ " Verify your installation and the database setup.");
 				return;
 			}
 			if (database.doesTagExist(DB_VERSION)) {
-				LOG.info("Application database version: " + DB_VERSION);
+				LOG.info("Application database XPlanDB version: " + DB_VERSION);
 				LOG.info("Last changeset id: "
 						+ retrieveChangeSet(database).stream().reduce((first, last) -> last).orElse(null));
-				LOG.debug("Ran changeset: " + retrieveChangeSet(database));
+				LOG.debug("Ran changesets: " + retrieveChangeSet(database));
 			}
 			else {
-				LOG.warn("Application database version tag % is missing."
+				LOG.warn("Application database version tag {} is missing."
 						+ " Database version is not matching application version."
 						+ " Verify your installation and the database setup.", DB_VERSION);
 			}
+		}
+		catch (DatabaseException | SQLException e) {
+			LOG.error("Connection to XPlanDB failed or liquibase can not be initialised."
+					+ " Verify your installation and the database setup. Nested exception: " + e.getMessage());
+			LOG.debug("Nested exception:", e);
 		}
 	}
 
