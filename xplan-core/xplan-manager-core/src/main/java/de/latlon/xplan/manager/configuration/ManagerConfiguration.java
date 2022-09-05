@@ -84,8 +84,6 @@ public class ManagerConfiguration {
 
 	private double rasterLayerMaxScaleDenominator = Double.NaN;
 
-	private boolean isSeperatedDataManagementActived = false;
-
 	private WorkspaceReloaderConfiguration workspaceReloaderConfiguration = new WorkspaceReloaderConfiguration();
 
 	private InternalIdRetrieverConfiguration internalIdRetrieverConfiguration = new InternalIdRetrieverConfiguration();
@@ -143,14 +141,6 @@ public class ManagerConfiguration {
 	 */
 	public double getRasterLayerMinScaleDenominator() {
 		return rasterLayerMinScaleDenominator;
-	}
-
-	/**
-	 * @return <code>true</code> if 'festgestellte' and 'in aufstellung befindliche' plans
-	 * should be stored in two separated database schemas, <code>false</code> otherwise
-	 */
-	public boolean isSeperatedDataManagementActived() {
-		return isSeperatedDataManagementActived;
 	}
 
 	/**
@@ -227,8 +217,6 @@ public class ManagerConfiguration {
 						RASTER_LAYER_SCALE_DENOMINATOR_MIN);
 				rasterLayerMaxScaleDenominator = parseScaleDenominator(loadProperties,
 						RASTER_LAYER_SCALE_DENOMINATOR_MAX);
-				isSeperatedDataManagementActived = parseBoolean(loadProperties, ACTIVATE_SEPARATED_DATAMANAGEMENT,
-						false);
 				workspaceReloaderConfiguration = parseWorkspaceReloaderConfiguration(loadProperties);
 				internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration(loadProperties);
 				parseSortConfiguration(loadProperties);
@@ -267,9 +255,6 @@ public class ManagerConfiguration {
 		LOG.info("   - type: {}", rasterConfigurationType);
 		LOG.info("   - min scale denominator: {}", rasterLayerMinScaleDenominator);
 		LOG.info("   - max scale denominator: {}", rasterLayerMaxScaleDenominator);
-		LOG.info("-------------------------------------------");
-		LOG.info("  separated data management");
-		LOG.info("   - is activated: {}", isSeperatedDataManagementActived);
 		LOG.info("-------------------------------------------");
 		LOG.info("  workspace reloader configuration");
 		LOG.info("   - urls of service to reload: {}", workspaceReloaderConfiguration.getUrls().toString());
