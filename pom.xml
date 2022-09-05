@@ -26,7 +26,7 @@
     <slf4j.version>1.7.36</slf4j.version>
     <spring.version>5.2.22.RELEASE</spring.version>
     <spring-security.version>5.2.15.RELEASE</spring-security.version>
-    <jackson.version>2.13.1</jackson.version>
+    <jackson.version>2.13.3</jackson.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
@@ -135,7 +135,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.0.4</version>
+        <version>7.1.2</version>
       </plugin>
     </plugins>
   </reporting>
@@ -294,7 +294,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.0.4</version>
+        <version>7.1.2</version>
       </plugin>
     </plugins>
     <pluginManagement>
@@ -1093,7 +1093,7 @@
       <dependency>
         <groupId>org.hibernate.validator</groupId>
         <artifactId>hibernate-validator</artifactId>
-        <version>6.1.6.Final</version>
+        <version>6.1.7.Final</version>
       </dependency>
       <dependency>
         <groupId>jakarta.validation</groupId>
