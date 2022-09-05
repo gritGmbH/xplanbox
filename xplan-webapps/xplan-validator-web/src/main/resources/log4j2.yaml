@@ -49,7 +49,7 @@ Configuration:
       level: info
       AppenderRef:
         - ref: STDOUT
-          level: error
+          level: warn
         - ref: RollingFile_Appender
           level: info
     Logger:
