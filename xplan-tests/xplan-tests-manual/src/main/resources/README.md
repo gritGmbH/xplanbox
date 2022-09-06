@@ -1,6 +1,6 @@
 # Erstellung der SoapUI-Testpläne
 
-Dieses Dokument beinhaltet Hinweise zur automatisierten Erstellung der einzelnen SoapUI-Testpläne.
+Dieses Dokument beinhaltet Hinweise zur automatisierten Ableitung von Testplänen aus den SoapUI-Projekten.
 
 ## XMLSTARLET Skript
 
