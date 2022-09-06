@@ -855,7 +855,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlan" id="0ebc453c-d1cb-4899-ad47-a320c5251fe0">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -921,7 +921,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 sF validatePlan" id="98253763-2570-4283-801d-9d9b65451ca8">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 sF validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 sF validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -988,7 +988,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 sG validatePlan" id="b94bcc59-b1a9-453b-b565-a2ace8f08c09">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 sG validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 sG validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1055,7 +1055,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 sGeo validatePlan" id="5e438e69-4f7b-4bd9-b52e-795723cbe668">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 sGeo validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 sGeo validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1122,7 +1122,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 sS validatePlan" id="b7f338b3-0080-415e-99e8-06e8b1b32fe7">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 sS validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 sS validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1189,7 +1189,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 nV validatePlan" id="b5e2e80f-b981-42b9-a13a-51a498eeb4c0">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 nV validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 nV validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1256,7 +1256,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 nV,sF,sG,sGeo,sS validatePlan" id="4bf40571-36e5-44c1-9271-9245d71a6c88">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 nV,sF,sG,sGeo,sS validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 nV,sF,sG,sGeo,sS validatePlan" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1345,7 +1345,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyText/XML" id="1b00bcbb-d486-41bd-94fe-e7b01b97bae7">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlanRequestBodyText/XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanRequestBodyText/XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1412,7 +1412,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyApplication/GML+XML" id="45e98442-8006-4b42-a5c9-d4a4ed5b7288">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlanRequestBodyApplication/GML+XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/gml+xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanRequestBodyApplication/GML+XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/gml+xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1478,7 +1478,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIP" id="3f61f8a4-faa8-4dab-8b61-5576fc991c3d">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlanRequestBodyApplication/ZIP" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIP" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1544,7 +1544,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIPExpectError" id="8e15b574-4b91-4e98-8f73-4b7f5098b500">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlanRequestBodyApplication/ZIPExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanRequestBodyApplication/ZIPExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -1593,7 +1593,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/JSON" id="03e2e93a-a92f-44d4-85ce-ba18b2947399">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/JSON" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/JSON" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -1659,7 +1659,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/XML" id="88b00e68-608e-426e-b99f-f3e0f1383804">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/xml" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -1707,7 +1707,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderText/XML" id="1c950b0b-2d93-4387-a86f-26862f5ab3d2">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderText/XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanAcceptHeaderText/XML" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="text/xml" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -1755,7 +1755,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/PDF" id="e5991dbd-a452-46a1-809f-b24463e12077">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/PDF" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/PDF" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/pdf" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -1810,7 +1810,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/ZIP" id="b87b4c21-032f-4e63-b806-48b1708cadee">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 XX validatePlanAcceptHeaderApplication/ZIP" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.1 XX validatePlanAcceptHeaderApplication/ZIP" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="text/xml" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/zip" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
