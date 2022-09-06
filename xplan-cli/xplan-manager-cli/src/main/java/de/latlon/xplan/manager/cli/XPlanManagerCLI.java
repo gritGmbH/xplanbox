@@ -49,11 +49,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * Kommandozeilen-Frontend zum Verwalten von XPlanArchiven und zum Bearbeiten der
- * Raster-Layer-Kategorien.
+ * Kommandozeilen-Frontend zum Verwalten von XPlanArchiven.
  *
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
- * @see XPlanRasterManagerCLI
  * @since 1.0
  */
 public class XPlanManagerCLI {
@@ -89,7 +87,8 @@ public class XPlanManagerCLI {
 			listOption(args, instantiateManager(args));
 			break;
 		default:
-			XPlanRasterManagerCLI.main(args);
+			System.out.println("Unbekannte Option: " + mode);
+			printUsage();
 		}
 	}
 
@@ -318,15 +317,6 @@ public class XPlanManagerCLI {
 				" -export <planid> [<verzeichnis>] [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(" -delete <planid>");
 		System.out.println();
-		System.out.println("Raster-Operationen:");
-		System.out.println();
-		System.out.println(" -addlayer <bplan|lplan|rplan|fplan|soplan> <rasterplanid> "
-				+ "<tiffid> <layername> <layertitle> [<categoryname>]");
-		System.out.println(" -removelayer <bplan|lplan|rplan|fplan|soplan> <layername>");
-		System.out.println(
-				" -addcategory <bplan|lplan|rplan|fplan|soplan> [<uppercategory>] <categoryname> <categorytitle>");
-		System.out.println(" -removecategory <bplan|lplan|rplan|fplan|soplan> <categoryname>");
-		System.out.println(" -movelayer <bplan|lplan|rplan|fplan|soplan> <layername> <categoryname>");
 		System.exit(0);
 	}
 

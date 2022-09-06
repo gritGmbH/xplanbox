@@ -53,14 +53,6 @@ Usage: XPlanManager <options>
  -import [--force] <xplanarchiv> [--crs <CRS>] [--managerconfiguration <XPLANBOX_CONFIG>]
  -export <planid> [<verzeichnis>] [--managerconfiguration <XPLANBOX_CONFIG>]
  -delete <planid>
-
-Raster-Operationen:
-
- -addlayer <bplan|lplan|rplan|fplan|soplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]
- -removelayer <bplan|lplan|rplan|fplan|soplan> <layername>
- -addcategory <bplan|lplan|rplan|fplan|soplan> [<uppercategory>] <categoryname> <categorytitle>
- -removecategory <bplan|lplan|rplan|fplan|soplan> <categoryname>
- -movelayer <bplan|lplan|rplan|fplan|soplan> <layername> <categoryname>
 ----
 
 [[xplanmanager-cli-auflistung]]
@@ -257,55 +249,6 @@ Rasterkonfiguration zu importieren:
 Evaluationsergebniss von referenzierten Rasterdaten:
   - Name: Abrundungssatzung_Gruhno_ergb.tif Unterstütztes CRS: Kein Unterstütztes Bildformat: Ja
 Aufgrund invalider Rasterdaten wird der Import abgebrochen. Sie können den Import ohne die Erzeugung von Rasterkonfigurationen erzwingen, indem Sie die Option --force angeben.
-----
-
-[[xplanmanager-cli-bearbeitung-von-ebenenbaeumen]]
-===== Bearbeitung von Ebenenbäumen
-
-Die Bearbeitung von Ebenenbäumen wird als Erweiterung des XPlanManagers
-bereitgestellt. Hiermit ist es möglich, Rasterlayer zusätzlich zur
-sortierten Kategorieebene auch noch thematisch zu organisieren. Die
-sortierte Kategorieebene kann nicht manuell bearbeitet werden. Die
-bereitgestellten Funktionen ergeben sich aus folgender Spezifikation:
-
-.  XPlanManager fügt eine Ebene in den Ebenenbaum ein. Wird der
-_<categoryname>_ weggelassen, wird die Ebene direkt unter der
-Wurzelebene eingefügt. Die `tiffid` ist hierbei der Datei-Basisname der
-gewünschten TIFF-Datei von dem Rasterplan.
-+
-----
-./XPlanManager -addlayer <bplan|rplan|fplan|lplan> <rasterplanid> <tiffid> <layername> <layertitle> [<categoryname>]
-----
-
-.  XPlanManager entfernt eine Ebene aus der Ebenenkonfiguration.
-+
-----
-./XPlanManager -removelayer <bplan|rplan|fplan|lplan> <layername>
-----
-
-.  XPlanManager fügt eine Kategorieebene hinzu. Wird der
-_<uppercategory>_ weggelassen, wird die Ebene direkt unter der
-Wurzelebene eingefügt, andernfalls wird diese unterhalb der mit
-_<uppercategory>_ angegebenen Kategorieebene eingefügt. Das Verhalten
-ist rekursiv, d.h. die Verschachtelung der Kategorieebenen kann beliebig
-tief erfolgen.
-+
-----
-./XPlanManager -addcategory <bplan|rplan|fplan|lplan> [<uppercategory>] <categoryname> <categorytitle>
-----
-
-.  XPlanManager löscht eine Kategorieebene. *Achtung:* Handelt es sich
-bei der zu löschenden Kategorieebene um eine Ebene mit untergeordneten
-Kategorien, werden diese ebenfalls gelöscht!
-+
-----
-./XPlanManager -removecategory <bplan|rplan|fplan|lplan> <categoryname>
-----
-
-.  XPlanManager bewegt eine Ebene in eine andere Kategorieebene.
-+
-----
-./XPlanManager -movelayer <bplan|rplan|fplan|lplan> <layername> <categoryname>
 ----
 
 [[xplanmanager-cli-export]]
