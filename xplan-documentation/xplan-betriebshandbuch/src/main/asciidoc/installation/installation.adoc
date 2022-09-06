@@ -66,7 +66,6 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 ** _xplan-update-data-cli/bin/bereichUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Informationen zu den Bereichen einzelner Pläne. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-data-cli/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-data-cli/bin/sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfeldern. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** _xplan-update-data-cli/bin/serviceMetadataRecordCreator_ - erstellt Metadatensätze für den XPlanWerkWMS. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt der Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert. Der Aufruf des Tools mit `serviceMetadataRecordCreator --help` liefert Hinweise zur Verwendung.
 
 [[install-xplanevaluationschemasynchronize-cli]]
 ===== XPlanAuswerteschemaCLI

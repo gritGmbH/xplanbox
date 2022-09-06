@@ -38,7 +38,7 @@ mit dem Parameter `help` ausgeben.
 Aufruf:
 
 ----
-./XPlanManager -help
+./XPlanManager --help
 ----
 
 Ausgabe:
@@ -51,6 +51,11 @@ Usage: XPlanManager <options>
  --import <xplanarchiv> [<xplanarchiv>..] [--force] [--crs=<CRS>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
  --export <planid> [<planid>..] [--target=<verzeichnis>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
  --delete <planid> [<planid>..]
+ --createMetadata <planid> [<planid>..] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll. Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keien ID angegeben ist, werden f?r alle Plaene Metadatensaetze erstellt.
+
+Allgemeine Parameter
+     --managerconfiguration Verzeichnis, in dem sich der Konfiguration des XPlanManagers befindet. Wenn die Option nicht angegeben wird, wird die Konfiguration aus dem Verzeichnis 'etc' des XPLanManagerCLIs verwendet.
 ----
 
 [[xplanmanager-cli-auflistung]]
@@ -248,6 +253,18 @@ Beispiel Ausgabe:
 - Entferne Plan 1 aus der Manager-DB...OK
 - Persistierung...OK
 Plan 1 wurde gelöscht.
+----
+
+[[xplanmanager-cli-loeschen]]
+===== Erzeugen von Service-Metadatensätzen
+
+Mit dieser Option können Metadatensätze für den XPlanWerkWMS erstellt werden. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt der Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.
+Für einzelne Pläne können Metadatensätze durch Angabe der PlanID (diese kann zuvor mit `list` herausgefunden werden) erzeugt werden. Mehrere PlanIDs können durch Leerzeichen getrennt angegeben werden. Wird keine PlanID angegeben, werden die Metadatensätze für alle Pläne erzeugt.
+
+Beispiel Aufruf:
+
+----
+./XPlanManager --createMetadata 1
 ----
 
 [[xplanmanager-cli-troubleshooting]]
