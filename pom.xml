@@ -26,7 +26,9 @@
     <slf4j.version>1.7.36</slf4j.version>
     <spring.version>5.2.22.RELEASE</spring.version>
     <spring-security.version>5.2.15.RELEASE</spring-security.version>
-    <jackson.version>2.13.1</jackson.version>
+    <jackson.version>2.13.3</jackson.version>
+    <liquibase.version>4.15.0</liquibase.version>
+    <postgresql.version>42.4.2</postgresql.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
@@ -135,7 +137,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.0.4</version>
+        <version>7.1.2</version>
       </plugin>
     </plugins>
   </reporting>
@@ -294,7 +296,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.0.4</version>
+        <version>7.1.2</version>
       </plugin>
     </plugins>
     <pluginManagement>
@@ -783,6 +785,22 @@
         <artifactId>jts-core</artifactId>
         <version>1.19.0</version>
       </dependency>
+      <dependency>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-core</artifactId>
+        <version>${liquibase.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.liquibase.ext</groupId>
+        <artifactId>liquibase-postgresql</artifactId>
+        <version>${liquibase.version}</version>
+      </dependency>
       <!-- xplan-manager internal dependencies with version -->
       <dependency>
         <groupId>${project.groupId}</groupId>
@@ -1093,7 +1111,7 @@
       <dependency>
         <groupId>org.hibernate.validator</groupId>
         <artifactId>hibernate-validator</artifactId>
-        <version>6.1.6.Final</version>
+        <version>6.1.7.Final</version>
       </dependency>
       <dependency>
         <groupId>jakarta.validation</groupId>
@@ -1109,7 +1127,7 @@
       <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
-        <version>42.3.3</version>
+        <version>${postgresql.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

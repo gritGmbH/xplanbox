@@ -84,6 +84,8 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 
 Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teilweisen Aktualisierung zu unterscheiden. Bei der im Abschnitt <<vollstaendige-aktualisierung>> beschriebenen vollständigen Aktualisierung werden z. B. Rasterdaten aus Plänen, die bereits importiert wurden, verworfen. Sollen vorhandene Daten beibehalten werden, ist die im Abschnitt <<teilweise-aktualisierung>> beschriebene Variante durchzuführen.
 
+IMPORTANT: Die HTML GFI für den XPlanWMS muss, wie in <<konfiguration_xplanwms>> beschrieben, konfiguriert werden.
+
 IMPORTANT: Alle Konfigurationsänderungen in _xplan-manager-config.properties_ und _xplan-valdiator-config.properties_  müssen manuell übertragen werden.
 
 [[vollstaendige-aktualisierung]]
@@ -153,7 +155,7 @@ der Datenbank ausgeführt werden und stehen danach für die Anwendung
 bereit. Bei Änderungen in einem Schema müssen diese durch in ein
 Update-Skript überführt und damit an der Datenbank durchgeführt werden.
 Für einige Aktualisierungen sind Aktualisierungsskripte im Modul
-_xplan-update-database-cli_ verfügbar.
+_xplan-update-data-cli_ verfügbar.
 
 TIP: Es gibt sowohl SQL-Update-Skripte als auch Liquibase-Skripte, die mit
 der Software https://www.liquibase.org/[Liquibase] ausgeführt werden
@@ -167,7 +169,7 @@ NOTE: Werden mehrere Aktualisierungschritte mit Liquibase ausgeführt, kann es z
 
 IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen. Für den Fall, dass dies nicht notwendig ist, muss lediglich die Datenbank neu aufgesetzt werden. Dieser Schritt sollte bereits während der Anwendung des Kapitels <<aktualisierung-der-schemas>> durchgeführt worden sein.
 
-Im Modul _xplan-update-database-cli_ wird das Programm __databaseUpdate__ für die Datenaktualisierung bestimmter xPlanBox-Versionen bereitgestellt. Eine
+Im Modul _xplan-update-data-cli_ wird das Programm __databaseUpdate__ für die Datenaktualisierung bestimmter xPlanBox-Versionen bereitgestellt. Eine
 Liste der für die Datenaktualisierung unterstützten Versionen wird beim
 Programmaufruf mit dem Parameter `--help` angezeigt.
 
@@ -186,17 +188,17 @@ Mit der Version 3.0 der xPlanBox sind einige Erweiterungen und Fehlerbehebungen 
 *** _fix/xplan51/create.sql_
 *** _pre/xplan51/create.sql_
 *** _archive/xplan51/create.sql_
-** Ausführen der Skripte im Verzeichnis _from_2.8_to_3.0_ im Modul _xplan-update-database-cli_ in der vorgegebenen Reihenfolge
+** Ausführen der Skripte im Verzeichnis _from_2.8_to_3.0_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
 * Wurde bisher GDAL verwendet (s. <<konfiguration-hale>>) ist die Aktualisierung von GDAL auf die Version 2.4 erforderlich (s. auch <<installation-gdal>>).
 
-Mit der Version 3.0 der xPlanBox können mehrere Ortsteilnamen im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<kategorien-ortsteile>>), muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul _xplan-update-database-cli_ steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+Mit der Version 3.0 der xPlanBox können mehrere Ortsteilnamen im XPlanGML auch durch Kommata separiert angegeben werden. Damit diese wie erwartet einem Bezirk zugeordnet werden können (s. Hinweis unter <<kategorien-ortsteile>>), muss eine Aktualisierung der in der Datenbank gespeicherten Daten erfolgen. Im Modul _xplan-update-data-cli_ steht dafür das Programm __districtUpdate__ zur Verfügung. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
-Weiterhin ist mit der Version 3.0 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul _xplan-update-database-cli_ steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+Weiterhin ist mit der Version 3.0 der xPlanBox die Abbildung von Kreisbögen im XPlanSynWFS und XPlanWMS verbessert worden. Um bereits importierte Pläne mit Kreisbögen in der verbesserten Abbildung abgeben zu können, muss eine Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten erfolgen. Im Modul _xplan-update-data-cli_ steht dafür das Programm __reSynthesizer__ zur Verfügung. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 Des Weiteren muss die HALE CLI auf Version 3.4.0 (siehe <<installation-hale-cli>>) und GDAL auf Version 2.4 (siehe <<installation-gdal>>) aktualisiert werden.
 
 Mit der Version 3.0 wird bei entsprechender Konfiguration (s. <<konfiguration-daten-dienste-kopplung>>) beim Import eines Plans geprüft, ob für diesen Plan bereits ein Daten-Metadatensatz existiert. Ist dies der Fall wird automatisiert ein Service-Metadatensatz für den Plan bzw. dessen XPlanWerkWMS erstellt.
-Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul __xplan-update-database-cli__ das Werkzeug __serviceMetadataRecordCreator__ zur Verfügung.
+Sollen für alle oder einzelne bereits importierten Pläne die Service-Metadatensätze generiert und die dazugehörigen Informationen zur Daten-Dienste-Kopplung, die in den Capabilities des XPlanWerkWMS ausgegeben werden, erstellt werden, steht im Modul __xplan-update-data-cli__ das Werkzeug __serviceMetadataRecordCreator__ zur Verfügung.
 
 [[aktualisierung-auf-die-version-3.3-der-xplanbox]]
 === Aktualisierung auf die Version 3.3 der xPlanBox
@@ -213,8 +215,8 @@ Für die Aktualisierung auf die Version 3.3 sind folgende Schritte auszuführen:
 *** _pre/xplan52/create.sql_
 *** _archive/xplan52/create.sql_
 *** _inspireplu/05_create_inspireplu_view.sql_
-** Ausführen der Skripte im Verzeichnis _from_3.0_to_3.3_ im Modul _xplan-update-database-cli_ in der vorgegebenen Reihenfolge
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** Ausführen der Skripte im Verzeichnis _from_3.0_to_3.3_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 * Anpassungen im Logging führen dazu, dass standardmäßig in das Log-Verzeichnis des
 Tomcat-Servers (${catalina.base}/logs) gelogged wird. Das Java Property `xplan.logdir` wird nicht mehr ausgewertet und kann entfernt werden.
 
@@ -234,8 +236,8 @@ Für die Aktualisierung auf die Version 3.3.1 sind folgende Schritte auszuführe
 * Aktualisierung der INSPIRE PLU Transformation (HALE Alignements)
 ** Aktualisierung der Dateien _xplanGml41-inspirePlu.halex.alignment.xml_ und _xplanGml41-inspirePlu.halex_ im Verzeichnis _xplan-manager-config_ (s. <<teilweise-aktualisierung>>). Für die Aktualisierung der Daten im INSPIRE PLU Schema ist eine erneute Ausführung der Transformation notwendig.
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.3.1_ im Modul _xplan-update-database-cli_. Die Tabelle _xplanmgr.plans_ wurde um die Spalte _internalid_ erweitert.
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der __reSynthesizer__ wurde so angepasst, dass die _xplanmgr.plans.internalid_ bei Ausführung in die synthetisierte FeatureCollection übernommen wird.
+** Ausführen der Skripte im Verzeichnis _from_3.3_to_3.3.1_ im Modul _xplan-update-data-cli_. Die Tabelle _xplanmgr.plans_ wurde um die Spalte _internalid_ erweitert.
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der __reSynthesizer__ wurde so angepasst, dass die _xplanmgr.plans.internalid_ bei Ausführung in die synthetisierte FeatureCollection übernommen wird.
 
 [[aktualisierung-auf-die-version-4.0-der-xplanbox]]
 === Aktualisierung auf die Version 4.0 der xPlanBox
@@ -247,8 +249,8 @@ Für die Aktualisierung auf die Version 4.0 sind folgende Schritte auszuführen:
 * Ist der Patch 3.3.1 *nicht* installiert, müssen die Aktualisierungsschritte aus <<aktualisierung-auf-die-version-3.3.1-der-xplanbox>> zuerst ausgeführt werden (die Ausführung des Kommandozeilentools __reSynthesizer__ ist nicht erforderlich).
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte im Verzeichnis _from_3.3_to_4.0_ im Modul _xplan-update-database-cli_.
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
+** Ausführen der Skripte im Verzeichnis _from_3.3_to_4.0_ im Modul _xplan-update-data-cli_.
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
 
 Die Installation der XPlanManagerAPI und XPlanValidatorAPI ist im Abschnitt <<web-anwendungen>> und die Konfiguration unter <<konfiguration-rest-api>> beschrieben.
 
@@ -271,8 +273,8 @@ Für die Aktualisierung auf die Version 4.2 sind folgende Schritte auszuführen:
 *** _fix/xplan53/create.sql_
 *** _pre/xplan53/create.sql_
 *** _archive/xplan53/create.sql_
-** Ausführen der Skripte im Verzeichnis _from_4.0_to_4.2_ im Modul _xplan-update-database-cli_ in der vorgegebenen Reihenfolge
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** Ausführen der Skripte im Verzeichnis _from_4.0_to_4.2_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Des Weiteren muss GDAL auf Version 3.0 aktualisiert werden (siehe <<installation-gdal>>).
 
 IMPORTANT:  GDAL 2 wird nicht mehr unterstützt.
@@ -283,7 +285,7 @@ IMPORTANT:  GDAL 2 wird nicht mehr unterstützt.
 Für die Aktualisierung auf die Version 4.3 sind folgende Schritte auszuführen:
 
 * Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
-* Ausführen des Kommandozeilenwerkzeug _serviceMetadataRecordCreator_ im Modul _xplan-update-database-cli_ zur Aktualisierung der generierten Metadatensätze, da sich die URL des XPlanWerkWMS geändert hat. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+* Ausführen des Kommandozeilenwerkzeug _serviceMetadataRecordCreator_ im Modul _xplan-update-data-cli_ zur Aktualisierung der generierten Metadatensätze, da sich die URL des XPlanWerkWMS geändert hat. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 [[aktualisierung-auf-die-version-5.0]]
 === Aktualisierung auf die Version 5.0
@@ -298,8 +300,8 @@ Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
 *** _fix/xplan54/create.sql_
 *** _pre/xplan54/create.sql_
 *** _archive/xplan54/create.sql_
-** Ausführen der Skripte im Verzeichnis _from_4.2_to_5.0_ im Modul _xplan-update-database-cli_ in der vorgegebenen Reihenfolge
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** Ausführen der Skripte im Verzeichnis _from_4.2_to_5.0_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
 
 IMPORTANT:  Java 1.8 wird nicht mehr unterstützt.
@@ -322,8 +324,8 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 * Austausch der beiden Webapps:
 ** _xplan-api-manager.war_
 ** _xplan-manager-web.war_
-* Ausführen der Skripte im Verzeichnis _from_5.0_to_5.0.2_ im Modul _xplan-update-database-cli_ in der vorgegebenen Reihenfolge
-* Ausführen des Kommandozeilenwerkzeug __databaseUpdate__ im Modul _xplan-update-database-cli_ zur Aktualisierung der XPlanSyn-Datenhaltung, z.B. mit `./databaseUpdate -c <XPLANBOX_CONFIG>/`
+* Ausführen der Skripte im Verzeichnis _from_5.0_to_5.0.2_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
+* Ausführen des Kommandozeilenwerkzeug __databaseUpdate__ im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanSyn-Datenhaltung, z.B. mit `./databaseUpdate -c <XPLANBOX_CONFIG>/`
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
@@ -359,8 +361,8 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 *** _fix/xplan60/create.sql_
 *** _pre/xplan60/create.sql_
 *** _archive/xplan60/create.sql_
-** Ausführen der Skripte im Verzeichnis _from_5.0_to_6.0_ im Modul _xplan-update-database-cli_ in der vorgegebenen Reihenfolge
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-database-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** Ausführen der Skripte im Verzeichnis _from_5.0_to_6.0_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
+** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
 
 IMPORTANT:  XPlanGML 3 wird nicht mehr unterstützt.

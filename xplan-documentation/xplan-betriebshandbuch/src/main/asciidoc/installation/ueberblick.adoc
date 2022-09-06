@@ -9,7 +9,7 @@ Die xPlanBox umfasst die folgenden Komponenten, die zusammengenommen die Liefere
  ** xplan-transform-cli-<VERSION>.zip
  ** xplan-validatedb-cli-<VERSION>.zip
  ** xplan-evaluation-schema-synchronize-cli-<VERSION>.zip
- ** xplan-update-database-cli-<VERSION>.zip
+ ** xplan-update-data-cli-<VERSION>.zip
 * Web-Anwendungen und Web-Dienste und zugehörige Konfigurationen:
 
 [width="100%",cols="40%,60%",options="header"]
