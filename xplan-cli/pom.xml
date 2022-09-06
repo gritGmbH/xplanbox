@@ -17,7 +17,7 @@
     <module>xplan-transform-cli</module>
     <module>xplan-evaluation-schema-synchronize-cli</module>
     <module>xplan-validatedb-cli</module>
-    <module>xplan-update-database-cli</module>
+    <module>xplan-update-data-cli</module>
   </modules>
 
 </project>

@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-update-database-cli - update of database
+ * xplan-update-data-cli - update of database
  * %%
  * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,14 +21,12 @@
 package de.latlon.xplan.update.tool;
 
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
-import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.update.updater.DistrictUpdater;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.update.updater.ReSynthesizer;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -45,20 +43,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Tool to re-synthesize all or single plans.
+ * Update tool to update the district of all plans.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ReSynthesizerTool {
+public class DistrictUpdateTool {
 
-	private static final Logger LOG = LoggerFactory.getLogger(ReSynthesizerTool.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DistrictUpdateTool.class);
 
 	private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
 	private static final String OPT_CONFIG_DIR = "configurationDirectory";
 
-	private static final String OPT_MGR_ID = "mgrId";
-
+	/**
+	 * @param args may be null
+	 */
 	public static void main(String[] args) {
 		if ((args.length > 0 && (args[0].contains("help") || args[0].contains("?")))) {
 			printHelp(initOptions());
@@ -71,47 +70,26 @@ public class ReSynthesizerTool {
 				if (workspaceName == null || workspaceName.isEmpty())
 					workspaceName = "xplan-manager-workspace";
 				String configurationDirectory = cmdline.getOptionValue(OPT_CONFIG_DIR);
-				String mgrId = cmdline.getOptionValue(OPT_MGR_ID);
 
-				ReSynthesizerTool tool = new ReSynthesizerTool();
-				tool.run(workspaceName, configurationDirectory, mgrId);
+				DistrictUpdateTool tool = new DistrictUpdateTool();
+				tool.run(workspaceName, configurationDirectory);
 			}
 			catch (Exception e) {
-				LOG.error("ReSynthesizerTool could not be executed!", e);
+				LOG.error("DistrictUpdateTool could not be executed!", e);
 			}
 		}
 		catch (ParseException exp) {
-			System.err.println("Could not parse command line");
+			System.err.println("Could nor parse command line");
 			exp.printStackTrace();
 		}
 
 	}
 
-	private void run(String workspaceName, String configurationDirectory, String mgrId) throws Exception {
-		ReSynthesizer reSynthesizer = createReSynthesizer(workspaceName, configurationDirectory);
-		if (mgrId == null) {
-			reSynthesizer.reSynthesize();
-		}
-		else {
-			try {
-				int mgrIdInt = Integer.parseInt(mgrId);
-				reSynthesizer.reSynthesize(mgrIdInt);
-			}
-			catch (NumberFormatException e) {
-				System.out.println("Invalid manager id (parameter -i), '" + mgrId + "' is not an integer value");
-			}
-		}
-	}
-
-	private ReSynthesizer createReSynthesizer(String workspaceName, String configurationDirectory)
-			throws ResourceInitException, ConfigurationException {
+	private void run(String workspaceName, String configurationDirectory) throws Exception {
 		DeegreeWorkspace workspace = initWorkspace(workspaceName);
-		ManagerConfiguration managerConfiguration = createManagerConfiguration(configurationDirectory);
-		XPlanDao xplanDao = createXplanDao(workspace, managerConfiguration);
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(
-				managerConfiguration.getSynthesizerConfigurationDirectory());
-		SortPropertyReader sortPropertyReader = new SortPropertyReader(managerConfiguration.getSortConfiguration());
-		return new ReSynthesizer(xplanDao, xPlanSynthesizer, sortPropertyReader);
+		XPlanDao xplanDao = createXplanDao(workspace, configurationDirectory);
+		DistrictUpdater updater = new DistrictUpdater(xplanDao);
+		updater.updateDistricts();
 	}
 
 	private static DeegreeWorkspace initWorkspace(String workspaceName) throws ResourceInitException {
@@ -122,17 +100,14 @@ public class ReSynthesizerTool {
 		return workspace;
 	}
 
-	private static XPlanDao createXplanDao(DeegreeWorkspace workspace, ManagerConfiguration managerConfiguration) {
-		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
-		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
-		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
-	}
-
-	private static ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)
+	private static XPlanDao createXplanDao(DeegreeWorkspace workspace, String configurationFilePathVariable)
 			throws ConfigurationException {
 		Path file = configurationFilePathVariable != null ? Paths.get(configurationFilePathVariable) : null;
 		ConfigurationDirectoryPropertiesLoader loader = new ConfigurationDirectoryPropertiesLoader(file);
-		return new ManagerConfiguration(loader);
+		ManagerConfiguration managerConfiguration = new ManagerConfiguration(loader);
+		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
+		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
 	}
 
 	private static Options initOptions() {
@@ -140,17 +115,11 @@ public class ReSynthesizerTool {
 
 		Option opt = new Option("w", OPT_WORKSPACE_NAME, true,
 				"Default: xplan-manager-workspace. Name of the manager workspace pointing to the database to update "
-						+ "(Must be located in the deegree workspace directory, usually .deegree in the user home directory. If the workspaces is not located there, the system property DEEGREE_WORKSPACE_ROOT=/path/to/directory/containg/workspace must be set.)");
+						+ "(must be located in the deegree workspace directory, usually .deegree)");
 		opt.setRequired(false);
 		opts.addOption(opt);
 
-		opt = new Option("c", OPT_CONFIG_DIR, true,
-				"The directory containing the manager configuration, e.g. /path/to/directory/xplan-manager-config");
-		opt.setRequired(true);
-		opts.addOption(opt);
-
-		opt = new Option("i", OPT_MGR_ID, true,
-				"The ID of a plan in the XPlanManager (manager-ID) of the plan to re-synthesize. If missing all plans are re-synthesized");
+		opt = new Option("c", OPT_CONFIG_DIR, true, "the directory containing the manager configuration");
 		opt.setRequired(false);
 		opts.addOption(opt);
 
@@ -159,8 +128,8 @@ public class ReSynthesizerTool {
 	}
 
 	private static void printHelp(Options options) {
-		String help = "Reads the XPlanGML and stores the re-synthesized in the xplansyn schema.";
-		CommandUtils.printHelp(options, "reSynthesizer", help, null);
+		String help = "Update column district of table xplanmgr.plans.";
+		CommandUtils.printHelp(options, DistrictUpdateTool.class.getSimpleName(), help, null);
 	}
 
 }

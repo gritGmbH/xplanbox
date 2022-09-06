@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-update-database-cli - update of database
+ * xplan-update-data-cli - update of database
  * %%
  * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%

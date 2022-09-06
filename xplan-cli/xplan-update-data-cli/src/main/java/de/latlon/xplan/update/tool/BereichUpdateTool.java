@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-update-database-cli - update of database
+ * xplan-update-data-cli - update of database
  * %%
  * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
@@ -22,17 +22,12 @@ package de.latlon.xplan.update.tool;
 
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
-import de.latlon.xplan.commons.configuration.SortConfiguration;
-import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.update.updater.SortPropertyUpdater;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
-import de.latlon.xplan.manager.workspace.WorkspaceUtils;
+import de.latlon.xplan.update.updater.BereichUpdate;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -46,12 +41,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Main entry point to update the sort date in databases.
+ * Main entry point to update bereich in databases.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class SortDateUpdateTool {
+public class BereichUpdateTool {
 
 	private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
@@ -70,7 +65,7 @@ public class SortDateUpdateTool {
 					workspaceName = "xplan-manager-workspace";
 				String configurationDirectory = cmdline.getOptionValue(OPT_CONFIG_DIR);
 
-				SortDateUpdateTool tool = new SortDateUpdateTool();
+				BereichUpdateTool tool = new BereichUpdateTool();
 				tool.run(workspaceName, configurationDirectory);
 			}
 			catch (Exception e) {
@@ -102,49 +97,23 @@ public class SortDateUpdateTool {
 	}
 
 	private static void printHelp(Options options) {
-		String help = "Update sort date.";
-		CommandUtils.printHelp(options, SortDateUpdateTool.class.getSimpleName(), help, null);
+		String help = "Update database.";
+		CommandUtils.printHelp(options, BereichUpdateTool.class.getSimpleName(), help, null);
 	}
 
 	private void run(String workspaceName, String configurationFilePathVariable) throws Exception {
 		DeegreeWorkspace workspace = initWorkspace(workspaceName);
 		ManagerConfiguration managerConfiguration = createManagerConfiguration(configurationFilePathVariable);
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
-
 		XPlanDao xplanDao = createXplanDao(managerConfiguration, managerWorkspaceWrapper);
-		SortPropertyReader sortPropertyReader = createSortPropertyReader(managerWorkspaceWrapper);
-		XPlanRasterManager xPlanRasterManager = createxPlanRasterManager(managerWorkspaceWrapper);
-
-		SortPropertyUpdater sortPropertyUpdater = new SortPropertyUpdater(sortPropertyReader, xplanDao,
-				xPlanRasterManager);
-		sortPropertyUpdater.updateSortProperty();
-	}
-
-	private static XPlanRasterManager createxPlanRasterManager(ManagerWorkspaceWrapper managerWorkspaceWrapper)
-			throws Exception {
-		DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
-		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper,
-				managerWorkspaceWrapper.getConfiguration());
-		return xPlanRasterManager;
-	}
-
-	private SortPropertyReader createSortPropertyReader(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
-		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
-		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
-		return sortPropertyReader;
+		BereichUpdate bereichUpdateTool = new BereichUpdate(xplanDao);
+		bereichUpdateTool.update();
 	}
 
 	private static XPlanDao createXplanDao(ManagerConfiguration managerConfiguration,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper) {
 		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
 		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
-	}
-
-	private SortConfiguration createSortConfiguration(ManagerConfiguration managerConfiguration) {
-		if (managerConfiguration != null)
-			return managerConfiguration.getSortConfiguration();
-		return new SortConfiguration();
 	}
 
 	private ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)
