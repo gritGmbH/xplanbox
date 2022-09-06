@@ -46,11 +46,11 @@ Ausgabe:
 ----
 Usage: XPlanManager <options>
 
- -help
- -list
- -import [--force] <xplanarchiv> [--crs <CRS>] [--managerconfiguration <XPLANBOX_CONFIG>]
- -export <planid> [<verzeichnis>] [--managerconfiguration <XPLANBOX_CONFIG>]
- -delete <planid>
+ --help
+ --list [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ --import <xplanarchiv> [<xplanarchiv>..] [--force] [--crs=<CRS>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ --export <planid> [<planid>..] [--target=<verzeichnis>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
+ --delete <planid> [<planid>..]
 ----
 
 [[xplanmanager-cli-auflistung]]
@@ -61,7 +61,7 @@ Der Parameter `list` gibt die Liste der geladenen Pläne aus. Durch die Angabe d
 Aufruf:
 
 ----
-./XPlanManager -list
+./XPlanManager --list
 ----
 
 Beispiel Ausgabe:
@@ -84,12 +84,12 @@ Anzahl Pläne: 8
 Ein Import kann durch Angabe des Parameters `import` gefolgt vom Pfad
 zum XPlanArchiv angestoßen werden. Bei dem Import können
 XPlanGML-Vektordaten und XPlanGML-Rasterdaten ohne zusätzlichen
-Parameter in die Datenhaltung geladen werden.
+Parameter in die Datenhaltung geladen werden. Mehrere Pläne können durch Leerzeichen getrennt angegeben werden.
 
 Beispiel Aufruf:
 
 ----
-./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip
+./XPlanManager --import ../Input-Planverzeichnis/Infrastruktur.zip
 ----
 
 Während des Imports finden zahlreiche Konsistenz- und
@@ -102,14 +102,11 @@ Informationen anzugeben.
 
 ----
 --force
---crs
---workspace
---managerconfiguration
+--crs=EPSG:25832
+--managerconfiguration=/PFAD/ZUR/MANAGER/KONFIGURATION
 ----
 
-Bitte beachten Sie die korrekte Reihenfolge der Parameterangabe.
-
-_-force_
+_--force_
 
 Enthält das XPlanGML-Dokument Geometriefehler o.ä., ist es
 dringend angeraten, diese vor einem Import zu bereinigen. Der Import eines Planes kann mit dem Parameter `force` erzwungen werden.
@@ -120,10 +117,10 @@ Auswirkungen können von einer fehlerhaften Darstellung des Plans bis hin
 zu unerwarteten Verhalten der xPlanBox reichen.
 
 ----
-./XPlanManager -import --force ../Input-Planverzeichnis/Infrastruktur.zip
+./XPlanManager --import --force ../Input-Planverzeichnis/Infrastruktur.zip
 ----
 
-_–crs_
+_-–crs_
 
 Fehlt die Angabe des Koordinatenreferenzsystems in den Daten, so kann
 dieses mit dem Parameter `crs` übergeben werden.
@@ -131,27 +128,17 @@ dieses mit dem Parameter `crs` übergeben werden.
 Beispiel Aufruf:
 
 ----
-./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --crs EPSG:31467
+./XPlanManager --import ../Input-Planverzeichnis/Infrastruktur.zip --crs=EPSG:31467
 ----
 
-_–workspace_
+_-–managerconfiguration_
 
-Sind mehrere Workspace-Verzeichnisse vorhanden, so kann durch den
-Parameter `workspace` das entsprechende Verzeichnis übergeben
-werden.
-
-----
-./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --workspace ~/.deegree/xplansyn-wms-workspace
-----
-
-_–managerconfiguration_
-
-Sind mehrere Konfigurationen für den XPlanManager vorhanden, so kann durch den
+Soll eine vorhandene Konfigurationen für den XPlanManager verwendet werden, so kann durch den
 Parameter `managerconfiguration` die entsprechende Konfiguration
-übergeben werden.
+übergeben werden. Andernfalls wird die Konfiguration im Verzeichnis `etc` des XPlanManagerCLIs verwendet.
 
 ----
-./XPlanManager -import ../Input-Planverzeichnis/Infrastruktur.zip --managerconfiguration <XPLANBOX_CONFIG>
+./XPlanManager --import ../Input-Planverzeichnis/Infrastruktur.zip --managerconfiguration=<XPLANBOX_CONFIG>
 ----
 
 Beispiel Ausgabe für erfolgreichen Import
@@ -179,16 +166,15 @@ Plan wurde eingefügt. Zugewiesene Id: 13
 [[xplanmanager-cli-rasterdatenanalyse]]
 ===== Rasterdatenanalyse
 
-Die Rasterdaten können beim Import auf Nutzbarkeit überprüft werden,
+Die Rasterdaten werden beim Import auf Nutzbarkeit überprüft werden,
 damit sichergestellt ist, dass diese korrekt in den XPlanWMS
 eingebettet werden können.
-
-Beim Import wird das CRS des Rasterplans überprüft.
+Die Prüfung beinhaltet das CRS des Rasterplans, sowie das Format.
 
 Beispiel Aufruf:
 
 ----
-./XPlanManager -import ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration <XPLANBOX_CONFIG>
+./XPlanManager --import ~/test-data/V4_1_ID_103-25832.zip --managerconfiguration=<XPLANBOX_CONFIG>
 ----
 
 Beispiel Ausgabe:
@@ -227,12 +213,12 @@ Aufgrund invalider Rasterdaten wird der Import abgebrochen. Sie können den Impo
 
 Der Export eines Planes erfolgt unter Angabe des Parameters `export`
 gefolgt von der PlanID (diese kann zuvor mit dem Parameter `list` herausgefunden werden)
-und dem Ausgabeverzeichnis.
+und dem Ausgabeverzeichnis. Mehrere PlanIDs können durch Leerzeichen getrennt angegeben werden.
 
 Beispiel Aufruf:
 
 ----
-./XPlanManager -export 9 outputverzeichnis
+./XPlanManager --export 9 --target=outputverzeichnis
 ----
 
 Beispiel Ausgabe für erfolgreichen Export:
@@ -246,12 +232,12 @@ Plan 9 wurde nach 'xplan-exported-9.zip' exportiert.
 ===== Löschen
 
 Beim Löschen wird dem Parameter `delete` die PlanID (diese kann zuvor mit
-`list` herausgefunden werden) übergeben.
+`list` herausgefunden werden) übergeben. Mehrere PlanIDs können durch Leerzeichen getrennt angegeben werden.
 
 Beispiel Aufruf:
 
 ----
-./XPlanManager -delete 1
+./XPlanManager --delete 1
 ----
 
 Beispiel Ausgabe:
