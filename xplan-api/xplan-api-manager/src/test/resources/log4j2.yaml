@@ -38,12 +38,16 @@ Configuration:
       - name: de.latlon.xplan
         level: warn
       - name: de.latlon.xplan.commons.configuration
-        level: info
+        level: warn
       - name: de.latlon.xplan.manager.configuration;
         level: info
       - name: de.latlon.xplanbox.api
-        level: info
+        level: debug
+      - name: de.latlon.xplanbox.api.manager
+        level: debug
       - name: de.latlon.xplanbox.api.manager.config
+        level: debug
+      - name: de.latlon.xplanbox.api.manager.DatabaseVerifier
         level: info
       - name: org.springframework
         level: warn
@@ -63,6 +67,8 @@ Configuration:
         level: fatal
       - name: io.swagger.v3
         level: warn
+      - name: org.deegree.gml.schema.GMLSchemaInfoSet
+        level: error
       - name: org.deegree.geometry.standard.AbstractDefaultGeometry
         level: fatal
       - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
