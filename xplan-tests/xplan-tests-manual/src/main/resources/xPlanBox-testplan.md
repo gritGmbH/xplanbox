@@ -3,20 +3,20 @@
 Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschiedene Testfälle definiert wurden.
 
 
-* [XPlanManagerCLI](#xplanmanagercli)
-* [XPlanManagerWeb](#xplanmanagerweb)
-* [XPlanValidatorCLI](#xplanvalidatorcli)
-* [XPlanValidatorWeb](#xplanvalidatorweb)
-* [XPlanValidateDB-CLI](#xplanvalidatedb-cli)
-* [XPlanUpdateData-CLI](#xplanupdatedata-cli)
-* [XPlanTransformCLI](#xplantransformcli)
-* [XPlanAuswerteschemaCLI](#xplanauswerteschemacli)
-* [XPlanWMS](#xplanwms)
-* [XPlanWFS/XPlanSynWFS](#xplanwfsxplansynwfs)
-* [XPlanRessourcen](#xplanresssourcen)
+* [1. XPlanManagerCLI](#xplanmanagercli)
+* [2. XPlanManagerWeb](#xplanmanagerweb)
+* [3. XPlanValidatorCLI](#xplanvalidatorcli)
+* [4. XPlanValidatorWeb](#xplanvalidatorweb)
+* [5. XPlanValidateDB-CLI](#xplanvalidatedb-cli)
+* [6. XPlanUpdateDataCLI](#XPlanUpdateDataCLI)        
+* [7. XPlanTransformCLI](#xplantransformcli)
+* [8. XPlanAuswerteschemaCLI](#xplanauswerteschemacli)
+* [9. XPlanWMS](#xplanwms)
+* [10. XPlanWFS/XPlanSynWFS](#xplanwfsxplansynwfs)
+* [11. XPlanRessourcen](#xplanresssourcen)
 
 
-# XPlanManagerCLI 
+# 1. XPlanManagerCLI 
 
 ### Prüffall-01: Hilfe aufrufen
 
@@ -167,7 +167,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 * [3] <http://<host:port>/xplan-wms/services/wms?REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&WIDTH=1081&HEIGHT=725&LAYERS=bplanraster_sortiert&TRANSPARENT=TRUE&FORMAT=image%2Fpng&BBOX=417326.9138990595,5715257.490169556,418938.9357000923,5716338.633375614&SRS=EPSG:25833&STYLES=default>
 
 
-# XPlanManagerWeb
+# 2. XPlanManagerWeb
 
 ### Prüffall-01: Plan-Funktion: Hinzufügen
 
@@ -644,7 +644,7 @@ BP_BaugebietsTeilFlaeche/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(x
 </gml:Dictionary>
 ```
 
-# XPlanValidatorCLI
+# 3. XPlanValidatorCLI
 
 ### Prüffall-01: Validierungsart
 
@@ -725,7 +725,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 * [4] `cd ~/xplan-validator-cli-$VERSION/tmp/` 
     * Der Pfad kann variieren.
 
-# XPlanValidatorWeb
+# 4. XPlanValidatorWeb
   
 ### Prüffall-01: Webschnittstelle XPlanValidator
 
@@ -914,7 +914,7 @@ Die Ausgabe der Validierungsergebnisse erfolgt bei den folgenden Komponenten ent
  * XPlanManagerWeb
  * XPlanManagerCLI.
 
-# XPlanValidateDB-CLI  
+# 5. XPlanValidateDB-CLI  
 
 ### Prüffall-01: Hilfe aufrufen
 
@@ -929,7 +929,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 * [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
     * Der Pfad kann variieren.
-* [2] `./XPlanValidateDB-CLI -h [oder -help und --help]`
+* [2] `./XPlanValidateDB -h [oder -help und --help]`
 
 ---
 
@@ -948,7 +948,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
  * [1] `./XPlanValidateDB -jdbcurl= <jdbc:postgresql://hostadresse:port/xplanbox> -user= <dbuser>  -password= <dbpassword> -rulesDirectory= <../xplan-validatedb-cli-$VERSION/etc/rules>`
 
-# XPlanUpdateData-CLI
+# 6. XPlanUpdateDataCLI
 
 ### Prüffall-01: Hilfe aufrufen
 
@@ -956,7 +956,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateData-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-data-cli-$VERSION/bin`.
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateDataCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-data-cli-$VERSION/bin`.
 **02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe für den databaseUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des databaseUpdate.
 **03** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den districtUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des districtUpdate.
 **04** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den reSynthesizer aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des reSynthesizer.
@@ -994,7 +994,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 * [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
 * [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
 
-# XPlanTransformCLI  
+# 7. XPlanTransformCLI  
 
 ### Prüffall-01: Hilfe aufrufen
 
@@ -1042,7 +1042,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 * [5] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -v [oder --verbose]`
 * [6] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -w [oder --workspaceName] <PFAD/ZU/VERZEICHNIS/DES/WORKSPACE>`
 
-# XPlanAuswerteschemaCLI
+# 8. XPlanAuswerteschemaCLI
 
 ### Prüffall-01: Hilfe aufrufen
 
@@ -1082,7 +1082,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
     * Der Befehl in [1] darf nur einmal, initial, ausgeführt werden!
 * [2] `../EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] SYNC -u [oder --user] <arg> -w [oder --password] <arg>`
 
-# XPlanWMS
+# 9. XPlanWMS
 
 ### Prüffall-01: Transparente Zeichenvorschriften im XPlanWMS ermöglichen
 
@@ -1274,7 +1274,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-# XPlanWFS/XPlanSynWFS
+# 10. XPlanWFS/XPlanSynWFS
 
 ### Prüffall-01: Unterstützung der Spezifikation WFS 2.0.0
 
@@ -1295,7 +1295,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-# XPlanRessourcen (Landingpage)
+# 11. XPlanRessourcen (Landingpage)
 
 ### Prüffall-01: Links aufrufen
 
