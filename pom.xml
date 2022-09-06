@@ -1120,6 +1120,16 @@
 
   <repositories>
     <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
       <id>latlon</id>
       <url>https://repo.lat-lon.de/repository/maven-public/</url>
       <releases>
@@ -1164,9 +1174,10 @@
       <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>latlon-deploy</id>
-      <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
-    </snapshotRepository>
+      <id>gitlab-maven</id>
+      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+  </snapshotRepository>
+
   </distributionManagement>
 
   <licenses>
