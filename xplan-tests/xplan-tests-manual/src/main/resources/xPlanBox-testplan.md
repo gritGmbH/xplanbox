@@ -8,7 +8,7 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 * [XPlanValidatorCLI](#xplanvalidatorcli)
 * [XPlanValidatorWeb](#xplanvalidatorweb)
 * [XPlanValidateDB-CLI](#xplanvalidatedb-cli)
-* [XPlanUpdateDatabase-CLI](#xplanupdatedatabase-cli)        
+* [XPlanUpdateData-CLI](#xplanupdatedata-cli)
 * [XPlanTransformCLI](#xplantransformcli)
 * [XPlanAuswerteschemaCLI](#xplanauswerteschemacli)
 * [XPlanWMS](#xplanwms)
@@ -932,7 +932,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
  * [1] `./XPlanValidateDB -jdbcurl= <jdbc:postgresql://hostadresse:port/xplanbox> -user= <dbuser>  -password= <dbpassword> -rulesDirectory= <../xplan-validatedb-cli-$VERSION/etc/rules>`
 
-# XPlanUpdateDatabase-CLI
+# XPlanUpdateData-CLI
 
 ### Prüffall-01: Hilfe aufrufen
 
@@ -940,7 +940,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateDatabase-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-data-cli-$VERSION/bin`.
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateData-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-data-cli-$VERSION/bin`.
 **02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe für den databaseUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des databaseUpdate.
 **03** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den districtUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des districtUpdate.
 **04** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den reSynthesizer aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des reSynthesizer.

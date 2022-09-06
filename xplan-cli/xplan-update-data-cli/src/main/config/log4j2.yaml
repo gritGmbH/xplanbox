@@ -19,7 +19,7 @@
 # #L%
 ###
 Configuration:
-  name: XPlanUpdateDatabaseCLI
+  name: XPlanUpdateDataCLI
   status: warn
   Properties:
     Property:
