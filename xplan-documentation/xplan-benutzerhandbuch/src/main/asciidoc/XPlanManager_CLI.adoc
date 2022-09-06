@@ -48,8 +48,6 @@ Usage: XPlanManager <options>
 
  -help
  -list
- -createdb <DB Name> <JDBC-Connection> -u <user> -p <passwort> [-t <PostGis Template>]
- -updatewmssortdate [--managerconfiguration <XPLANBOX_CONFIG>]
  -import [--force] <xplanarchiv> [--crs <CRS>] [--managerconfiguration <XPLANBOX_CONFIG>]
  -export <planid> [<verzeichnis>] [--managerconfiguration <XPLANBOX_CONFIG>]
  -delete <planid>
@@ -79,18 +77,6 @@ Id: 11, Version: XPLAN_40, Typ: LP_Plan, Name: Landschaftsplan 16 Gemeinde XYZ",
 Id: 12, Version: XPLAN_53, Typ: BP_Plan, Name: Bebauungsplan LA 22, Nummer: LA 22, GKZ: 02000000, Features: 1350, Importiert: 2022-02-18 21:16:06.753
 Anzahl Pläne: 8
 ----
-
-[[xplanmanager-cli-create]]
-===== XPlanDB-Datenbank erzeugen
-
-Mit dem XPlanManagerCLI kann die Datenhaltung XPlanDB erzeugt
-werden. Der XPlanManager wird beim Erzeugen der Datenhaltung auf diese
-neue Datenbank eingestellt.
-
-----
-./XPlanManager -createdb 'test' jdbc:postgresql://localhost:5432 -u postgres -p postgres
-----
-
 
 [[xplanmanager-cli-import]]
 ===== Import
@@ -188,21 +174,6 @@ OK [6376 ms]
 - Einfügen von Plan-Artefakt 'xplan.gml'...OK.
 - Persistierung...OK [109 ms].
 Plan wurde eingefügt. Zugewiesene Id: 13
-----
-
-[[xplanmanager-cli-sortwms]]
-===== Aktualisierung des Sortierfeldes für die Visualisierung
-
-Mit dem XPlanManagerCLI können die Werte der Sortierfelder in der
-Datenbank anhand einer bestehenden _managerConfiguration.properties_
-Datei aktualisiert werden. Der Aufruf kann ohne Parameter oder mit dem
-optionalen Parameter `managerconfiguration` erfolgen. Details zu
-diesem Parameter sind im Abschnitt
-Konfiguration über Datei <<xplanmanager-cli-konfiguration-ueber-datei>> zu
-finden.
-
-----
-./XPlanManager -updatewmssortdate
 ----
 
 [[xplanmanager-cli-rasterdatenanalyse]]
