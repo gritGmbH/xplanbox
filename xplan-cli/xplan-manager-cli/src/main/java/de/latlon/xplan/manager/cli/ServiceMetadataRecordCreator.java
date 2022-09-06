@@ -18,13 +18,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.database;
+package de.latlon.xplan.manager.cli;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
@@ -62,9 +63,9 @@ public class ServiceMetadataRecordCreator {
 			throws DataServiceCouplingException {
 		this.xPlanDao = xPlanDao;
 		this.managerConfiguration = managerConfiguration;
-		if (managerConfiguration == null)
+		if (managerConfiguration == null || managerConfiguration.getCoupledResourceConfiguration() == null)
 			throw new IllegalArgumentException(
-					"The configuration of the feature is invalid. Service metadata records could not be created.");
+					"The configuration used to create service is invalid. Service metadata records could not be created.");
 		this.metadataCouplingHandler = new MetadataCouplingHandler(xPlanDao,
 				managerConfiguration.getCoupledResourceConfiguration());
 	}

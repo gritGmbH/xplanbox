@@ -30,7 +30,7 @@
           <programs>
             <program>
               <mainClass>de.latlon.xplan.update.tool.BereichUpdateTool</mainClass>
-              <id>databaseUpdate</id>
+              <id>bereichUpdate</id>
             </program>
             <program>
               <mainClass>de.latlon.xplan.update.tool.DistrictUpdateTool</mainClass>
@@ -43,10 +43,6 @@
             <program>
               <mainClass>de.latlon.xplan.update.tool.ReSynthesizerTool</mainClass>
               <id>reSynthesizer</id>
-            </program>
-            <program>
-              <mainClass>de.latlon.xplan.update.tool.ServiceMetadataRecordCreationTool</mainClass>
-              <id>serviceMetadataRecordCreator</id>
             </program>
           </programs>
         </configuration>

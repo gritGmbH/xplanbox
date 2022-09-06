@@ -59,6 +59,14 @@ public class XPlanManagerCLI {
 		System.out.println(
 				" --export <planid> [<planid>..] [--target=<verzeichnis>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(" --delete <planid> [<planid>..]");
+		System.out.println(
+				" --createMetadata <planid> [<planid>..] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(
+				"     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll. Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keien ID angegeben ist, werden für alle Plaene Metadatensaetze erstellt.");
+		System.out.println();
+		System.out.println("Allgemeine Parameter");
+		System.out.println(
+				"     --managerconfiguration Verzeichnis, in dem sich der Konfiguration des XPlanManagers befindet. Wenn die Option nicht angegeben wird, wird die Konfiguration aus dem Verzeichnis 'etc' des XPLanManagerCLIs verwendet.");
 		System.out.println();
 		System.exit(0);
 	}

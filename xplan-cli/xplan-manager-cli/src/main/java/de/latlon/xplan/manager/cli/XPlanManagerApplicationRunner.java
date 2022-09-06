@@ -74,43 +74,24 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 		else if (args.containsOption("list")) {
 			listOption(instantiateManager(args));
 		}
+		else if (args.containsOption("createMetadata")) {
+			createMetadataOption(args, instantiateServiceMetadataRecordCreator(args));
+		}
 		else {
 			System.out.println(
-					"Unbekannte Option. Eine der Optionen import, export, list oder delete muss gesetzt sein.");
+					"Unbekannte Option. Eine der Optionen import, export, list, delete oder createMetadata muss gesetzt sein.");
 			printUsage();
 		}
 	}
 
 	private XPlanManager instantiateManager(ApplicationArguments args) {
-		Path directoryContainingTheManagerConfig = parseDirectoryFromArgs(args);
-		System.out.println(
-				"Die Konfigurationsdatei fuer den Manager (managerConfiguration.properties) wird im Verzeichnis "
-						+ directoryContainingTheManagerConfig + " erwartet.");
+		Path directoryContainingTheManagerConfig = parseDirectoryContainingManagerConfig(args);
 		return createManager(directoryContainingTheManagerConfig);
 	}
 
-	private XPlanManager createManager(Path directoryContainingTheManagerConfig) {
-
-		try {
-			PropertiesLoader propertiesLoader = new ConfigurationDirectoryPropertiesLoader(
-					directoryContainingTheManagerConfig, ManagerConfiguration.class);
-			ManagerConfiguration managerConfiguration = new ManagerConfiguration(propertiesLoader);
-			CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
-			XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(categoryMapper);
-			WorkspaceReloader workspaceReloader = new WorkspaceReloader();
-			DeegreeWorkspace managerWorkspace = WorkspaceUtils.instantiateManagerWorkspace(null);
-			ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(managerWorkspace,
-					managerConfiguration);
-			DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
-			WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
-			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
-			return new XPlanManager(xplanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null, null,
-					wmsWorkspaceWrapper);
-		}
-		catch (Exception e) {
-			endWithFatalError(e.getMessage());
-		}
-		return null;
+	private ServiceMetadataRecordCreator instantiateServiceMetadataRecordCreator(ApplicationArguments args) {
+		Path directoryContainingTheManagerConfig = parseDirectoryContainingManagerConfig(args);
+		return createServiceMetadataRecordCreator(directoryContainingTheManagerConfig);
 	}
 
 	private void listOption(XPlanManager manager) {
@@ -177,6 +158,36 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			}
 		}
 		importPlan(manager, force, plansToImport, defaultCRS);
+	}
+
+	private void createMetadataOption(ApplicationArguments args,
+			ServiceMetadataRecordCreator serviceMetadataRecordCreator) {
+		List<String> planIds = args.getNonOptionArgs();
+		if (planIds == null || planIds.isEmpty()) {
+			try {
+				serviceMetadataRecordCreator.createServiceMetadataRecords();
+			}
+			catch (Exception e) {
+				System.out.println(
+						"Bei der Erstellung des Service Metadatensatz fuer alle Plaen ist ein Fehler aufgetreten: "
+								+ e.getMessage());
+			}
+		}
+		else {
+			for (String planId : planIds) {
+				try {
+					int mgrIdInt = Integer.parseInt(planId);
+					serviceMetadataRecordCreator.createServiceMetadataRecords(mgrIdInt);
+				}
+				catch (NumberFormatException e) {
+					System.out.println("Ungueltige Plan id (" + planId + "', es handelt sich nicht um eine Ganzzahl.");
+				}
+				catch (Exception e) {
+					System.out.println("Bei der Erstellung des Service Metadatensatz fuer den Plan mit der ID " + planId
+							+ " ist ein Fehler aufgetreten: " + e.getMessage());
+				}
+			}
+		}
 	}
 
 	private void importPlan(XPlanManager manager, boolean force, List<String> plansToImport, ICRS defaultCRS) {
@@ -276,6 +287,14 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 		System.setProperty("derby.stream.error.method", "de.latlon.xplan.manager.XPlanManager.disableDerbyLogFile");
 	}
 
+	private Path parseDirectoryContainingManagerConfig(ApplicationArguments args) {
+		Path directoryContainingTheManagerConfig = parseDirectoryFromArgs(args);
+		System.out.println(
+				"Die Konfigurationsdatei fuer den Manager (managerConfiguration.properties) wird im Verzeichnis "
+						+ directoryContainingTheManagerConfig + " erwartet.");
+		return directoryContainingTheManagerConfig;
+	}
+
 	private Path parseDirectoryFromArgs(ApplicationArguments args) {
 		List<String> managerconfiguration = args.getOptionValues("managerconfiguration");
 		if (managerconfiguration != null && !managerconfiguration.isEmpty()) {
@@ -287,6 +306,47 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 		String path = XPlanManagerCLI.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		File jarLocation = new File(path);
 		return Paths.get(jarLocation.getParentFile().getParent()).resolve("etc");
+	}
+
+	private XPlanManager createManager(Path directoryContainingTheManagerConfig) {
+		try {
+			PropertiesLoader propertiesLoader = new ConfigurationDirectoryPropertiesLoader(
+					directoryContainingTheManagerConfig, ManagerConfiguration.class);
+			ManagerConfiguration managerConfiguration = new ManagerConfiguration(propertiesLoader);
+			CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
+			XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(categoryMapper);
+			WorkspaceReloader workspaceReloader = new WorkspaceReloader();
+			DeegreeWorkspace managerWorkspace = WorkspaceUtils.instantiateManagerWorkspace(null);
+			ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(managerWorkspace,
+					managerConfiguration);
+			DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
+			WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
+			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+			return new XPlanManager(xplanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null, null,
+					wmsWorkspaceWrapper);
+		}
+		catch (Exception e) {
+			endWithFatalError(e.getMessage());
+		}
+		return null;
+	}
+
+	private ServiceMetadataRecordCreator createServiceMetadataRecordCreator(Path directoryContainingTheManagerConfig) {
+		try {
+			PropertiesLoader propertiesLoader = new ConfigurationDirectoryPropertiesLoader(
+					directoryContainingTheManagerConfig, ManagerConfiguration.class);
+			ManagerConfiguration managerConfiguration = new ManagerConfiguration(propertiesLoader);
+			CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
+			DeegreeWorkspace managerWorkspace = WorkspaceUtils.instantiateManagerWorkspace(null);
+			ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(managerWorkspace,
+					managerConfiguration);
+			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+			return new ServiceMetadataRecordCreator(xplanDao, managerConfiguration);
+		}
+		catch (Exception e) {
+			endWithFatalError(e.getMessage());
+		}
+		return null;
 	}
 
 	private void endWithFatalError(String msg) {
