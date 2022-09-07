@@ -51,6 +51,8 @@ public class DoppelbelegungInspector implements GeometricFeatureInspector {
 
 	private static final String ERROR_MSG = "4.5.2.4: Das Feature mit der gml id %s beinhaltet das Attribut %s, welches auch im überlagernden BP_UeberbaubareGrundstuecksFlaeche mit der gml id %s definiert ist.";
 
+	private static final double TOLERANCE_METRE = 0.002;
+
 	private final List<String> errors = new ArrayList<>();
 
 	private final List<String> namesOfFeatureTypesToCheck = Arrays.asList("BP_BaugebietsTeilFlaeche",
@@ -132,10 +134,14 @@ public class DoppelbelegungInspector implements GeometricFeatureInspector {
 	}
 
 	private List<Feature> findOverlappingFeatures(Geometry geom) {
+		if (geom == null) {
+			return Collections.emptyList();
+		}
+		Geometry geomWithTolerance = geom.buffer(TOLERANCE_METRE * -1);
 		return ueberbaubareGrundstuecksflaecheFeatures.stream().filter(ueberbaubareGrundstuecksflaecheFeature -> {
 			Geometry ueberbaubareGrundstuecksflaecheGeom = getGeometry(ueberbaubareGrundstuecksflaecheFeature);
-			if (geom != null && ueberbaubareGrundstuecksflaecheGeom != null) {
-				IntersectionMatrix relate = ueberbaubareGrundstuecksflaecheGeom.relate(geom);
+			if (ueberbaubareGrundstuecksflaecheGeom != null) {
+				IntersectionMatrix relate = ueberbaubareGrundstuecksflaecheGeom.relate(geomWithTolerance);
 				return relate.matches("T********");
 			}
 			return false;
