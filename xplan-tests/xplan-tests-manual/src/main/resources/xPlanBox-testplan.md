@@ -2,17 +2,18 @@
 
 Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschiedene Testfälle definiert wurden.
 
-* [1. XPlanManagerCLI](#xplanmanagercli)
-* [2. XPlanManagerWeb](#xplanmanagerweb)
-* [3. XPlanValidatorCLI](#xplanvalidatorcli)
-* [4. XPlanValidatorWeb](#xplanvalidatorweb)
-* [5. XPlanValidateDB-CLI](#xplanvalidatedb-cli)
-* [6. XPlanUpdateDataCLI](#XPlanUpdateDataCLI)        
-* [7. XPlanTransformCLI](#xplantransformcli)
-* [8. XPlanAuswerteschemaCLI](#xplanauswerteschemacli)
-* [9. XPlanWMS](#xplanwms)
-* [10. XPlanWFS/XPlanSynWFS](#xplanwfsxplansynwfs)
-* [11. XPlanRessourcen](#xplanresssourcen)
+* [1. XPlanManagerCLI](#1-xplanmanagercli)
+* [2. XPlanManagerWeb](#2-xplanmanagerweb)
+* [3. XPlanValidatorCLI](#3-xplanvalidatorcli)
+* [4. XPlanValidatorWeb](#4-xplanvalidatorweb)
+* [5. XPlanValidateDB-CLI](#5-xplanvalidatedb-cli)
+* [6. XPlanUpdateDataCLI](#6-xplanupdatedatacli)        
+* [7. XPlanTransformCLI](#7-xplantransformcli)
+* [8. XPlanAuswerteschemaCLI](#8-xplanauswerteschemacli)
+* [9. XPlanWMS](#9-xplanwms)
+* [10. XPlanWFS/XPlanSynWFS](#10-xplanwfsxplansynwfs)
+* [11. XPlanRessourcen](#11-xplanressourcen-landingpage)
+* [12. DB-Aktualisierung](#12-db-aktualisierung)
 
 # 1. XPlanManagerCLI 
 
@@ -23,12 +24,12 @@ Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschieden
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer wechselt in das Verzeichnis des XPlanManagerCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-manager-cli-$VERSION/bin`.
-**01** | Der Benutzer ruft die Hilfe mit dem Befehl in [1] auf. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
+**01** | Der Benutzer ruft die Hilfe mit dem Befehl in [2] auf. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
 
 **Hinweis**
 
 * [1] `~/xplan-manager-cli-$VERSION/bin`
-* [1] `./XPlanManager -help `
+* [2] `./XPlanManager -help `
 
 ---
 
@@ -1296,3 +1297,42 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer überprüft die Ordnung sowie Rechtsschreibung der Linkvorschau auf der gesamten Landingpage | Alle Links sind richtig geordnet und weisen keine Rechtsschreibfehler auf. 
 **02** | Der Benutzer klickt auf jeden Link der Oberpunkte "XPlanManager und XPlanValidator", "XPlanDienste", "XPlanInspirePluDienste", "XPlanDokumentation" sowie "Weiterführende Informationen" und überprüft die Funktionalität. | Alle Links funktionieren. 
+
+# 12. DB-Aktualisierung
+
+### Prüffall-01: Ausführung der SQL-Skripte zur Aktualisierung des Datenbankschemas
+
+#### Vorbedingungen 
+ * Die xPlanBox ist in der Version 5.0.3 installiert und Daten sind in der XPlanDB vorhanden.
+
+#### Prüffall 
+Schritt | Beschreibung | Erwartetes Ergebnis 
+----------- |------------------|-------------------------
+**01** | Der Benutzer führt den SQL-Befehl SELECT tag FROM database-changelog WHERE versionid=5.0.3 | Die Version des Datenbankschemas ist 5.0.3. 
+**02** | Der Benutzer führt die DB-Skripte zur Aktualisierung des Datenbankschemas zur XPlanBox Version 6.0 aus. | Es treten keine Fehlermeldungen auf. 
+**03** | Der Benutzer führt den SQL-Befehl SELECT tag FROM database-changelog WHERE versionid=6.0  | Die Version des Datenbankschemas ist 6.0. 
+
+### Prüffall-02: (Optional) Ausführen des Kommandozeilenwerkzeug reSynthesizer
+
+#### Vorbedingungen 
+ * Der Prüffall-01 wurde erfolgeich ausgeführt.
+ * Der reSynthesizer wird benötigt um die im XPlanSyn-Schema gespeicherten Daten zu aktualisieren.
+
+#### Prüffall 
+Schritt | Beschreibung | Erwartetes Ergebnis 
+----------- |------------------|-------------------------
+**01** | Der Benutzer führt den reSynthesiser aus (siehe 6. XPlanUpdateDataCLI) | Es treten keine Fehlermeldungen auf. 
+**02** | Der Benutzer kontrolliert die in der Datenhaltung vorliegenden Daten auf Vollständigkeit.| Alle vorherigen Daten sind auch im neuen XPlanSyn-Schema vorhanden.
+
+### Prüffall-03: (Optional) Ausführen des Kommandozeilenwerkzeug EvaluationSchemaSynchronizer
+
+#### Vorbedingungen 
+ * Der Prüffall-01 wurde erfolgeich ausgeführt.
+ * Der EvaluationSchemaSynchronizer wird benötigt um ein weiteres Datenbankschema für die Auswertung zu erzeugen und die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas zu synchronisieren.
+
+#### Prüffall 
+Schritt | Beschreibung | Erwartetes Ergebnis 
+----------- |------------------|-------------------------
+**01** | Der Benutzer muss die Datenbankschemas xplanevaluationxplansynpre, xplanevaluationxplansyn und xplanevaluationxplansynarchive löschen. | Die Datenbankschemas können erfolgreich gelöscht werden. 
+**02** | Der Benutzer führt den EvaluationSchemaSynchronizer aus (siehe 8. XPlanAuswerteschemaCLI) | Es treten keine Fehlermeldungen auf. 
+**03** | Der Benutzer kontrolliert die in der Datenhaltung vorliegenden Daten darauf, dass die im jeweiligen XPlanSyn-Schema gespeicherten Daten auch dem neu erstellten Auswerteschema gleichen. | Die im XPlanSyn-Schema vorliegenden Daten gleichen dem jeweiligen Auswerteschema.
