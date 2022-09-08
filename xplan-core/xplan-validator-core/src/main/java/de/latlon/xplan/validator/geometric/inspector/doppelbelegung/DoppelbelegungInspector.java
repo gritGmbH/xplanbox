@@ -50,6 +50,8 @@ import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
  */
 public class DoppelbelegungInspector implements GeometricFeatureInspector {
 
+	private static final double TOLERANCE_METRE = 0.002;
+
 	private final List<String> errors = new ArrayList<>();
 
 	private final List<String> namesOfFeatureTypesToCheck = Arrays.asList("BP_BaugebietsTeilFlaeche",
@@ -131,10 +133,14 @@ public class DoppelbelegungInspector implements GeometricFeatureInspector {
 	}
 
 	private List<Feature> findOverlappingFeatures(Geometry geom) {
+		if (geom == null) {
+			return Collections.emptyList();
+		}
+		Geometry geomWithTolerance = geom.buffer(TOLERANCE_METRE * -1);
 		return ueberbaubareGrundstuecksflaecheFeatures.stream().filter(ueberbaubareGrundstuecksflaecheFeature -> {
 			Geometry ueberbaubareGrundstuecksflaecheGeom = getGeometry(ueberbaubareGrundstuecksflaecheFeature);
-			if (geom != null && ueberbaubareGrundstuecksflaecheGeom != null) {
-				IntersectionMatrix relate = ueberbaubareGrundstuecksflaecheGeom.relate(geom);
+			if (ueberbaubareGrundstuecksflaecheGeom != null) {
+				IntersectionMatrix relate = ueberbaubareGrundstuecksflaecheGeom.relate(geomWithTolerance);
 				return relate.matches("T********");
 			}
 			return false;

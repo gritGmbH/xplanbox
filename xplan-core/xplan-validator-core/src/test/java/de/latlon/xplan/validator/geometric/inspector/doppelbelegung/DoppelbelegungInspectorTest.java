@@ -64,4 +64,15 @@ public class DoppelbelegungInspectorTest {
 		assertThat(errors.size(), is(5));
 	}
 
+	@Test
+	public void test_InspectDoppelbelegung_Toleranzbereich() throws Exception {
+		DoppelbelegungInspector doppelbelegungInspector = new DoppelbelegungInspector();
+		readFeaturesFromGml("BPlan_6-0_4-5-2-4-Ueberlappung_valide.gml", DoppelbelegungInspectorTest.class,
+				doppelbelegungInspector);
+		doppelbelegungInspector.checkGeometricRule();
+
+		List<String> errors = doppelbelegungInspector.getErrors();
+		assertThat(errors.size(), is(0));
+	}
+
 }
