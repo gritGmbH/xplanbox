@@ -20,15 +20,17 @@
  */
 package de.latlon.xplan.manager.workspace;
 
-import java.io.IOException;
-import java.util.List;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Reloads a workspace via HTTP.
@@ -40,18 +42,28 @@ public class WorkspaceReloader {
 
 	private final Logger LOG = LoggerFactory.getLogger(WorkspaceReloader.class);
 
+	private WorkspaceReloaderConfiguration configuration;
+
 	/**
-	 * Reloads a workspace.
 	 * @param configuration configuration for {@link WorkspaceReloader}, if
 	 * {@link WorkspaceReloaderConfiguration} is invalid, reload is skipped, never
 	 * <code>null</code>
+	 */
+	public WorkspaceReloader(WorkspaceReloaderConfiguration configuration) {
+		this.configuration = configuration;
+	}
+
+	/**
+	 * Reloads a workspace.
+	 * @param planId the id of the plan forcing the workspace reload, never
+	 * <code>null</code>
 	 * @return true if all workspace reloads were successful, false otherwise.
 	 */
-	public boolean reloadWorkspace(WorkspaceReloaderConfiguration configuration) {
-		boolean isValid = checkConfiguration(configuration);
+	public boolean reloadWorkspace(int planId) {
+		boolean isValid = checkConfiguration();
 		if (isValid) {
 			LOG.info("Workspace reloader configuration is valid.");
-			return reload(configuration);
+			return executeReload(planId);
 		}
 		else {
 			LOG.info("Workspace reloader configuration is invalid. Reload of workspace is skipped!");
@@ -59,22 +71,68 @@ public class WorkspaceReloader {
 		}
 	}
 
-	private boolean reload(WorkspaceReloaderConfiguration configuration) {
+	private boolean executeReload(int planId) {
+		switch (configuration.getWorkspaceReloadAction()) {
+		case RELOAD:
+			return reload();
+		case PLANWERKWMS:
+			return deletePlanwerkWms(planId);
+		default:
+			boolean reload = reload();
+			return deletePlanwerkWms(planId) && reload;
+		}
+	}
+
+	private boolean deletePlanwerkWms(int planId) {
+		List<String> urls = configuration.getUrls();
+		boolean isSuccessfulForAll = true;
+		for (String url : urls) {
+			boolean reloadResult = deletePlanwerkWms(url, planId);
+			isSuccessfulForAll = isSuccessfulForAll && reloadResult;
+		}
+		return isSuccessfulForAll;
+	}
+
+	private boolean deletePlanwerkWms(String url, int planId) {
+		try {
+			String reloadUrl = retrieveDeletePlanwerkWmsUrl(url, planId);
+			LOG.info("Attempting to delete XPlanWerkWMS configuration with URL {}", reloadUrl);
+			HttpDelete httpDelete = new HttpDelete(reloadUrl);
+			addBasicAuth(configuration.getUser(), configuration.getPassword(), httpDelete);
+			DefaultHttpClient client = new DefaultHttpClient();
+			HttpResponse response = client.execute(httpDelete);
+			if (isResponseCodeOk(response)) {
+				LOG.info("Delete completed successfully.");
+				return true;
+			}
+			else {
+				LOG.info("Error while deleting XPlanWerkWMS configuration: {}",
+						response.getStatusLine().getReasonPhrase());
+				return false;
+			}
+		}
+		catch (IOException e) {
+			LOG.error("Delete XPlanWerkWMS configuration failed!", e);
+			return false;
+		}
+	}
+
+	private boolean reload() {
 		List<String> urls = configuration.getUrls();
 		boolean isReloadSuccessfulForAllWorkspaces = true;
 		for (String url : urls) {
-			boolean reloadResult = reloadWorkspace(configuration, url);
+			boolean reloadResult = reloadWorkspace(url);
 			isReloadSuccessfulForAllWorkspaces = isReloadSuccessfulForAllWorkspaces && reloadResult;
 		}
 		return isReloadSuccessfulForAllWorkspaces;
 	}
 
-	private boolean reloadWorkspace(WorkspaceReloaderConfiguration configuration, String url) {
+	private boolean reloadWorkspace(String url) {
 		try {
 			String reloadUrl = retrieveWorkspaceReloadUrl(url);
 			LOG.info("Attempting to reload workspace with URL {}", reloadUrl);
-			HttpGet httpGet = retrieveConfiguredHttpGet(reloadUrl, configuration.getUser(),
-					configuration.getPassword());
+			HttpGet httpGet = new HttpGet(reloadUrl);
+			addBasicAuth(configuration.getUser(), configuration.getPassword(), httpGet);
 			DefaultHttpClient client = new DefaultHttpClient();
 			HttpResponse response = client.execute(httpGet);
 			if (isResponseCodeOk(response)) {
@@ -99,19 +157,23 @@ public class WorkspaceReloader {
 		return url.concat("config/update");
 	}
 
-	private HttpGet retrieveConfiguredHttpGet(String reloadUrl, String user, String password) {
-		HttpGet httpGet = new HttpGet(reloadUrl);
+	private String retrieveDeletePlanwerkWmsUrl(String url, int planId) {
+		if (!url.endsWith("/"))
+			url = url.concat("/");
+		return url.concat("planwerkwmsapi/").concat(Integer.toString(planId));
+	}
+
+	private static void addBasicAuth(String user, String password, HttpRequestBase httpRequest) {
 		byte[] basicAuth = (user + ":" + password).getBytes();
 		String basicAuthEncoded = new String(Base64.encodeBase64(basicAuth));
-		httpGet.addHeader("Authorization", "Basic " + basicAuthEncoded);
-		return httpGet;
+		httpRequest.addHeader("Authorization", "Basic " + basicAuthEncoded);
 	}
 
 	private boolean isResponseCodeOk(HttpResponse response) {
 		return response.getStatusLine().getStatusCode() == 200;
 	}
 
-	private boolean checkConfiguration(WorkspaceReloaderConfiguration configuration) {
+	private boolean checkConfiguration() {
 		List<String> url = configuration.getUrls();
 		String user = configuration.getUser();
 		String password = configuration.getPassword();

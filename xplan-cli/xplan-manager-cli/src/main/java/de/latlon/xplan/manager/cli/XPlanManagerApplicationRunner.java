@@ -315,7 +315,8 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			ManagerConfiguration managerConfiguration = new ManagerConfiguration(propertiesLoader);
 			CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
 			XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(categoryMapper);
-			WorkspaceReloader workspaceReloader = new WorkspaceReloader();
+			WorkspaceReloader workspaceReloader = new WorkspaceReloader(
+					managerConfiguration.getWorkspaceReloaderConfiguration());
 			DeegreeWorkspace managerWorkspace = WorkspaceUtils.instantiateManagerWorkspace(null);
 			ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(managerWorkspace,
 					managerConfiguration);

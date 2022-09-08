@@ -27,6 +27,7 @@ import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
+import de.latlon.xplan.manager.workspace.WorkspaceReloadAction;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
+import static de.latlon.xplan.manager.workspace.WorkspaceReloadAction.ALL;
 
 /**
  * Provides access to the manager configuration.
@@ -65,6 +68,8 @@ public class ManagerConfiguration {
 	static final String WORKSPACE_RELOAD_USER = "workspaceReloadUser";
 
 	static final String WORKSPACE_RELOAD_PASSWORD = "workspaceReloadPassword";
+
+	static final String WORKSPACE_RELOAD_ACTION = "workspaceReloadAction";
 
 	static final String PATH_TO_HALE_CLI = "pathToHaleCli";
 
@@ -334,9 +339,17 @@ public class ManagerConfiguration {
 		String password = loadProperties.getProperty(WORKSPACE_RELOAD_PASSWORD);
 		if (urls != null && user != null && password != null && !"".equals(urls)) {
 			List<String> urlList = Arrays.asList(urls.split(","));
-			return new WorkspaceReloaderConfiguration(urlList, user, password);
+			WorkspaceReloadAction workspaceReloadAction = parseWorkspaceReloadAction(loadProperties);
+			return new WorkspaceReloaderConfiguration(urlList, user, password, workspaceReloadAction);
 		}
 		return new WorkspaceReloaderConfiguration();
+	}
+
+	private static WorkspaceReloadAction parseWorkspaceReloadAction(Properties loadProperties) {
+		String workspaceReloadAction = loadProperties.getProperty(WORKSPACE_RELOAD_ACTION);
+		if (workspaceReloadAction == null)
+			return ALL;
+		return WorkspaceReloadAction.valueOf(workspaceReloadAction);
 	}
 
 	private InternalIdRetrieverConfiguration parseInternalIdRetrieverConfiguration(Properties properties) {
