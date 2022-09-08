@@ -679,7 +679,7 @@ count(//mgr:Response/*)</path>
             <con:assertion type="XPath Match" name="XPath Match-codeNumber" id="71c8c818-4b15-4922-9654-0232a3172913">
               <con:configuration>
                 <path>declare namespace mgr='http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/';
-//mgr:Response/mgr:codeNumber</path>
+//mgr:Response/mgr:rechtsstand/mgr:codeNumber</path>
                 <content>4000</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -689,7 +689,7 @@ count(//mgr:Response/*)</path>
             <con:assertion type="XPath Match" name="XPath Match-translatedCode" id="6485d440-5b58-4380-b6e2-3fbd4a850809">
               <con:configuration>
                 <path>declare namespace mgr='http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/';
-//mgr:Response/mgr:translatedCode</path>
+//mgr:Response/mgr:rechtsstand/mgr:translatedCode</path>
                 <content>InkraftGetreten</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
