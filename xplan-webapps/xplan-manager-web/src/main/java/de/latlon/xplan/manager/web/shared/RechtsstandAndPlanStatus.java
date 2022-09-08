@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-validator-core - XPlan Validator Core Komponente
+ * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
  * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
@@ -18,46 +18,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.configuration;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package de.latlon.xplan.manager.web.shared;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ValidatorProfile {
+public class RechtsstandAndPlanStatus {
 
-	@JsonProperty(required = true)
-	private String id;
+	private Rechtsstand rechtsstand;
 
-	@JsonProperty(required = true)
-	private String name;
+	private PlanStatus planStatus;
 
-	@JsonProperty(required = true)
-	private String description;
-
-	public String getId() {
-		return id;
+	public RechtsstandAndPlanStatus() {
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public RechtsstandAndPlanStatus(Rechtsstand rechtsstand, PlanStatus planStatus) {
+		this.rechtsstand = rechtsstand;
+		this.planStatus = planStatus;
 	}
 
-	public String getName() {
-		return name;
+	public Rechtsstand getRechtsstand() {
+		return rechtsstand;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRechtsstand(Rechtsstand rechtsstand) {
+		this.rechtsstand = rechtsstand;
 	}
 
-	public String getDescription() {
-		return description;
+	public PlanStatus getPlanStatus() {
+		return planStatus;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPlanStatus(PlanStatus planStatus) {
+		this.planStatus = planStatus;
 	}
 
 }

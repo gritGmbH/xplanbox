@@ -69,7 +69,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -114,14 +113,15 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public Map<ValidatorProfile, RulesMetadata> profilesAndMetadata(ValidatorConfiguration validatorConfiguration)
-			throws ValidatorException {
+	public Map<ValidatorProfile, RulesMetadata> profilesAndMetadata(ValidatorConfiguration validatorConfiguration,
+			PropertiesLoader validatorPropertiesLoader) throws ValidatorException {
 		Map<ValidatorProfile, RulesMetadata> profilesAndMetadata = new HashMap<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
-			Path rulesDirectory = Paths.get(validatorProfile.getXqueryRulesDirectory());
+			String profileId = validatorProfile.getId();
+			Path rulesDirectory = validatorPropertiesLoader.resolveDirectory("profiles").resolve(profileId);
 			RulesVersionParser rulesVersionParser = new RulesVersionParser();
 			RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesDirectory);
-			RulesMetadata newRulesMetadata = new RulesMetadata(validatorProfile.getId(), validatorProfile.getName(),
+			RulesMetadata newRulesMetadata = new RulesMetadata(profileId, validatorProfile.getName(),
 					validatorProfile.getDescription(), rulesVersion.getVersion(), rulesVersion.getSource());
 			profilesAndMetadata.put(validatorProfile, newRulesMetadata);
 		}
@@ -134,13 +134,14 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public List<SemanticProfileValidator> profileValidators(Map<ValidatorProfile, RulesMetadata> profilesAndMetadata)
-			throws ValidatorException {
+	public List<SemanticProfileValidator> profileValidators(Map<ValidatorProfile, RulesMetadata> profilesAndMetadata,
+			PropertiesLoader validatorPropertiesLoader) throws ValidatorException {
 		List<SemanticProfileValidator> semanticValidators = new ArrayList<>();
 		for (Map.Entry<ValidatorProfile, RulesMetadata> profileAndMetadata : profilesAndMetadata.entrySet()) {
 			RulesMetadata rulesMetadata = profileAndMetadata.getValue();
 			ValidatorProfile validatorProfile = profileAndMetadata.getKey();
-			Path rulesDirectory = Paths.get(validatorProfile.getXqueryRulesDirectory());
+			String profileId = validatorProfile.getId();
+			Path rulesDirectory = validatorPropertiesLoader.resolveDirectory("profiles").resolve(profileId);
 			FileRulesMessagesAccessor messagesAccessor = new FileRulesMessagesAccessor(rulesDirectory);
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever = new XQuerySemanticValidatorConfigurationRetriever(
 					rulesDirectory, rulesMetadata, messagesAccessor);
@@ -192,8 +193,8 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public ReportArchiveGenerator reportArchiveGenerator() throws IOException, ConfigurationException {
-		return new ReportArchiveGenerator(validatorConfiguration());
+	public ReportArchiveGenerator reportArchiveGenerator(ValidatorConfiguration validatorConfiguration) {
+		return new ReportArchiveGenerator(validatorConfiguration);
 	}
 
 	@Bean
@@ -237,8 +238,8 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public WorkspaceReloader workspaceReloader() {
-		return new WorkspaceReloader();
+	public WorkspaceReloader workspaceReloader(ManagerConfiguration managerConfiguration) {
+		return new WorkspaceReloader(managerConfiguration.getWorkspaceReloaderConfiguration());
 	}
 
 	@Bean
@@ -263,14 +264,20 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public ValidatorConfiguration validatorConfiguration() throws IOException, ConfigurationException {
+	public ValidatorConfiguration validatorConfiguration(PropertiesLoader validatorPropertiesLoader)
+			throws IOException, ConfigurationException {
 		ValidatorConfigurationParser validatorConfigurationParser = new ValidatorConfigurationParser();
-		return validatorConfigurationParser.parse(new SystemPropertyPropertiesLoader(ValidatorConfiguration.class));
+		return validatorConfigurationParser.parse(validatorPropertiesLoader);
 	}
 
 	@Bean
 	public PropertiesLoader managerPropertiesLoader() {
 		return new SystemPropertyPropertiesLoader(ManagerConfiguration.class);
+	}
+
+	@Bean
+	public PropertiesLoader validatorPropertiesLoader() {
+		return new SystemPropertyPropertiesLoader(ValidatorConfiguration.class);
 	}
 
 	@Bean

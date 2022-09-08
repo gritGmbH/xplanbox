@@ -21,10 +21,10 @@
 package de.latlon.xplan.manager.web.client.service;
 
 import com.google.gwt.core.client.GWT;
-import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.fusesource.restygwt.client.MethodCallback;
@@ -136,7 +136,7 @@ public interface ManagerService extends RestService {
 	@GET
 	@Produces(APPLICATION_JSON)
 	@Path("/legislationstatus/{id}")
-	void determineLegislationStatus(@PathParam("id") String id, MethodCallback<Rechtsstand> callback);
+	void determineLegislationStatus(@PathParam("id") String id, MethodCallback<RechtsstandAndPlanStatus> callback);
 
 	@GET
 	@Path("/plu/plan/{planId}")

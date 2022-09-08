@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
 import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
 import de.latlon.xplan.validator.geometric.inspector.model.InspectorContext;
@@ -47,10 +48,15 @@ public class FlaechenschlussContext extends InspectorContext {
 	/**
 	 * @return all flaechenschluss features assigned to a plan
 	 */
-	public Map<GeltungsbereichFeature, List<FeatureUnderTest>> getAllFlaechenschlussFeaturesOfAPlan() {
+	public Map<GeltungsbereichFeature, List<FeatureUnderTest>> getAllFlaechenschlussFeaturesOfAPlan()
+			throws ValidatorException {
 		Map<GeltungsbereichFeature, List<FeatureUnderTest>> geltungsbereichFeatureToFeaturesUnderTest = new HashMap();
 		for (FeatureUnderTest featureUnderTest : featuresUnderTest) {
 			GeltungsbereichFeature geltungsbereichFeature = featureUnderTest.getGeltungsbereichFeature();
+			if (geltungsbereichFeature == null)
+				throw new ValidatorException("Mindestens das Flaechenschlussobjekt mit der ID "
+						+ featureUnderTest.getFeatureId()
+						+ " kann keinem Bereich/Plan zugeordnet werden. Die Flaechenschlussprüfung kann nicht durchgefuehrt werden.");
 			if (!geltungsbereichFeatureToFeaturesUnderTest.containsKey(geltungsbereichFeature)) {
 				geltungsbereichFeatureToFeaturesUnderTest.put(geltungsbereichFeature, new ArrayList<>());
 			}

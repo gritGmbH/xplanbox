@@ -58,8 +58,8 @@ public class BaseData {
 	 * @param lossDate may be <code>null</code>
 	 * @param planTypeCode may be <code>null</code>
 	 * @param otherPlanTypeCode may be <code>null</code>
-	 * @param verfahren may be <code>null</code>
-	 * @param rechtsstand may be <code>null</code>
+	 * @param methodCode may be <code>null</code>
+	 * @param legislationStatusCode may be <code>null</code>
 	 * @param regulationDate may be <code>null</code>
 	 */
 	public BaseData(String planName, String description, Date creationDate, Date lossDate, int planTypeCode,
@@ -167,7 +167,7 @@ public class BaseData {
 	}
 
 	/**
-	 * @param verfahren the method to set, may be <code>null</code>
+	 * @param methodCode the method to set, may be <code>null</code>
 	 */
 	public void setMethodCode(int methodCode) {
 		this.methodCode = methodCode;

@@ -57,6 +57,7 @@ import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -204,7 +205,7 @@ public class PlanHandler {
 		if (legislationStatus != null && !legislationStatus.isEmpty()) {
 			try {
 				int rechtsstand = parseInt(legislationStatus);
-				return PlanStatus.findByLegislationStatusCode(rechtsstand);
+				return findByLegislationStatusCode(xPlanArchive.getType().name(), rechtsstand);
 			}
 			catch (NumberFormatException e) {
 				LOG.info("Rechtsstand '{}' could not be parsed as integer.", legislationStatus);

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -272,7 +272,7 @@ public class TestContext {
 	@Primary
 	public WorkspaceReloader workspaceReloader() {
 		WorkspaceReloader workspaceReloader = mock(WorkspaceReloader.class);
-		when(workspaceReloader.reloadWorkspace(any())).thenReturn(true);
+		when(workspaceReloader.reloadWorkspace(1)).thenReturn(true);
 		return workspaceReloader;
 	}
 

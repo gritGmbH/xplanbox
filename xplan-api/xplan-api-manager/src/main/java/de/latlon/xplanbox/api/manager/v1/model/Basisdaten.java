@@ -21,6 +21,7 @@ package de.latlon.xplanbox.api.manager.v1.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 
@@ -52,6 +53,8 @@ public class Basisdaten {
 	@DecimalMax("99999")
 	private @Valid Integer planArt;
 
+	// https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1227
+	@JsonIgnore
 	@DecimalMin("1000")
 	@DecimalMax("99999")
 	private @Valid Integer sonstPlanArt;
@@ -154,7 +157,8 @@ public class Basisdaten {
 		return this;
 	}
 
-	@JsonProperty("sonstPlanArt")
+	// https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1227
+	// @JsonProperty("sonstPlanArt")
 	public Integer getSonstPlanArt() {
 		return sonstPlanArt;
 	}

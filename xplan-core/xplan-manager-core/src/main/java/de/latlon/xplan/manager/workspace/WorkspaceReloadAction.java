@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-validator-core - XPlan Validator Core Komponente
+ * xplan-manager-core - XPlan Manager Core Komponente
  * %%
  * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
@@ -18,46 +18,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.configuration;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package de.latlon.xplan.manager.workspace;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ValidatorProfile {
+public enum WorkspaceReloadAction {
 
-	@JsonProperty(required = true)
-	private String id;
-
-	@JsonProperty(required = true)
-	private String name;
-
-	@JsonProperty(required = true)
-	private String description;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	RELOAD, PLANWERKWMS, ALL
 
 }

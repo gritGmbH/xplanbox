@@ -20,7 +20,7 @@
  */
 package de.latlon.xplan.planwerkwms;
 
-import org.locationtech.jts.io.ParseException;
+import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 import org.apache.commons.fileupload.FileItem;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -36,12 +36,12 @@ import org.deegree.services.jaxb.metadata.DeegreeServicesMetadataType;
 import org.deegree.services.jaxb.wms.DeegreeWMS;
 import org.deegree.services.metadata.OWSMetadataProvider;
 import org.deegree.services.metadata.provider.OWSMetadataProviderProvider;
-import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 import org.deegree.services.wms.controller.WMSController;
 import org.deegree.services.wms.controller.capabilities.theme.DefaultMetadataMerger;
 import org.deegree.services.wms.controller.capabilities.theme.MetadataMerger;
 import org.deegree.theme.Theme;
 import org.deegree.workspace.Workspace;
+import org.locationtech.jts.io.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -121,6 +121,10 @@ public class PlanwerkController extends WMSController {
 				return firstTheme.getLayerMetadata().getSpatialMetadata().getCoordinateSystems();
 			}
 		};
+	}
+
+	public Planwerk getPlanwerk() {
+		return planwerk;
 	}
 
 	private void addManagerIdParameter(Map<String, String> map) {

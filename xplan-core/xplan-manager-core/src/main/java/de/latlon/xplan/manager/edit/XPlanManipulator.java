@@ -137,7 +137,9 @@ public class XPlanManipulator {
 		modify(version, feature, "untergangsDatum", changes.getBaseData().getLossDate());
 		modify(version, feature, "rechtsverordnungsDatum", changes.getBaseData().getRegulationDate());
 		modifyCode(version, feature, "rechtsstand", changes.getBaseData().getLegislationStatusCode());
-		modifyCode(version, feature, "sonstPlanArt", changes.getBaseData().getOtherPlanTypeCode());
+		// https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1227
+		// modifyCode(version, feature, "sonstPlanArt",
+		// changes.getBaseData().getOtherPlanTypeCode());
 		if (!SO_Plan.equals(type)) {
 			modifyCode(version, feature, "planArt", changes.getBaseData().getPlanTypeCode());
 		}
