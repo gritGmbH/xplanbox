@@ -5825,7 +5825,7 @@
       <rechtscharakter>9998</rechtscharakter>
       <rechtscharakterWert>Unbekannt</rechtscharakterWert>
       <zweckbestimmung>1000</zweckbestimmung>
-      <zweckbestimmungWert>Parkierungsflaeche</zweckbestimmungWert>
+      <zweckbestimmungWert>Parkplatz</zweckbestimmungWert>
     </BP_VerkehrsflaecheBesondererZweckbestimmung>
   </gml:featureMember>
   <gml:featureMember>

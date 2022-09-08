@@ -33118,7 +33118,7 @@
       <rechtsstand>1000</rechtsstand>
       <rechtsstandWert>Geplant</rechtsstandWert>
       <rechtscharakter>1000</rechtscharakter>
-      <rechtscharakterWert></rechtscharakterWert>
+      <rechtscharakterWert>FestsetzungBPlan</rechtscharakterWert>
       <artDerFestlegung>1000</artDerFestlegung>
       <artDerFestlegungWert>DenkmalschutzEnsemble</artDerFestlegungWert>
     </SO_Denkmalschutzrecht>
