@@ -26,7 +26,7 @@ fehlender Rasterpläne noch nicht von dem WMS angeboten wird.
 Wenn die URL dennoch genutzt werden soll, muss der Layer [*]P_Planraster
 manuell aus der Request URL entfernt werden (Wert des Parameters "LAYERS").
 
-Dies gilt für jeden einzeln Plan-Typ: Für die URL für BPläne muss z. B.
+Dies gilt für jede einzelne Planart: Für die URL für BPläne muss z. B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
 
@@ -62,9 +62,9 @@ Eine Umgehung ist das Löschen des Datensatzes aus der InspirePLUDB-Datenhaltung
 
 Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den XPlanWMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
 
-=== XPlanValidator - Darstellung von geometrischen Fehlern in einer Grafik und im Shapefile
+=== XPlanValidator - Darstellung von geometrischen Fehlern in einer Grafik und im Shape-Datei
 
-Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) im Validierungsbericht des XPlanValidator ausgegeben, Multigeometrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geometrien nur, wenn diese nicht zu fehlerhaft sind, um gerendert zu werden.
+Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) im Validierungsbericht des XPlanValidator ausgegeben, Multigeometrien werden nicht dargestellt. Die Shape-Datei enthält die fehlerhaften Geometrien nur, wenn diese nicht zu fehlerhaft sind, um gerendert zu werden.
 
 === XPlanManagerWeb - Änderungen der Rasterbasis über die Editorfunktion im XPlanManagerWeb werden nicht übernommen
 
