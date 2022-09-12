@@ -2873,46 +2873,4 @@
       </Graphic>
     </PointSymbolizer>
   </Rule>
-
-  <Rule>
-    <Description>
-      <Title>Undefiniert</Title>
-      <Abstract>Nicht von anderen Regeln erfasste Objekte werden als Fragezeichen dargestellt</Abstract>
-    </Description>
-    <ElseFilter/>
-    <TextSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Label>
-        <ogc:Literal>?</ogc:Literal>
-      </Label>
-      <Font>
-        <SvgParameter name="font-family">Arial</SvgParameter>
-        <SvgParameter name="font-size">
-          <ogc:Mul>
-            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>3</ogc:Literal>
-          </ogc:Mul>
-        </SvgParameter>
-      </Font>
-      <LabelPlacement>
-        <PointPlacement>
-          <AnchorPoint>
-            <AnchorPointX>0.5</AnchorPointX>
-            <AnchorPointY>0.5</AnchorPointY>
-          </AnchorPoint>
-          <Rotation>
-            <ogc:Mul>
-              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
-              <ogc:Literal>-1</ogc:Literal>
-            </ogc:Mul>
-          </Rotation>
-        </PointPlacement>
-      </LabelPlacement>
-      <Fill>
-        <SvgParameter name="fill">#000000</SvgParameter>
-      </Fill>
-    </TextSymbolizer>
-  </Rule>
 </FeatureTypeStyle>
