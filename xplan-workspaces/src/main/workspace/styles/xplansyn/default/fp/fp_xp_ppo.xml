@@ -64,7 +64,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -107,7 +107,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -150,7 +150,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -193,7 +193,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -236,7 +236,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -279,7 +279,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -322,7 +322,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -366,7 +366,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -409,7 +409,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -452,7 +452,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -495,7 +495,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -538,7 +538,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -581,7 +581,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -624,7 +624,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -667,7 +667,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -710,7 +710,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -753,7 +753,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -796,7 +796,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -839,7 +839,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -882,7 +882,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -925,7 +925,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -968,7 +968,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1011,7 +1011,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1054,7 +1054,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1097,7 +1097,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1140,7 +1140,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1183,7 +1183,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1227,7 +1227,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1270,7 +1270,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1315,7 +1315,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1358,7 +1358,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1401,7 +1401,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1444,7 +1444,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1487,7 +1487,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1530,7 +1530,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1573,7 +1573,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1617,7 +1617,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1660,7 +1660,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1703,7 +1703,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1746,7 +1746,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1789,7 +1789,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1832,7 +1832,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1875,7 +1875,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1918,7 +1918,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -1961,7 +1961,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2004,7 +2004,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2047,7 +2047,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2090,7 +2090,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2133,7 +2133,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2176,7 +2176,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2219,7 +2219,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2262,7 +2262,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2305,7 +2305,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2348,7 +2348,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2391,7 +2391,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2434,7 +2434,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2479,7 +2479,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2522,7 +2522,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2566,7 +2566,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2609,7 +2609,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2652,7 +2652,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2695,7 +2695,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2738,7 +2738,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2781,7 +2781,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2824,7 +2824,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
@@ -2867,7 +2867,7 @@
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
-            <ogc:Literal>6</ogc:Literal>
+            <ogc:Literal>15</ogc:Literal>
           </ogc:Mul>
         </Size>
       </Graphic>
