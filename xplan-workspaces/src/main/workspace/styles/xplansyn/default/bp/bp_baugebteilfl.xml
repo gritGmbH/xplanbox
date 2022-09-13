@@ -43,15 +43,6 @@
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsBetween>
-          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-          <ogc:LowerBoundary>
-            <ogc:Literal>1000</ogc:Literal>
-          </ogc:LowerBoundary>
-          <ogc:UpperBoundary>
-            <ogc:Literal>1300</ogc:Literal>
-          </ogc:UpperBoundary>
-        </ogc:PropertyIsBetween>
-        <ogc:PropertyIsBetween>
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:LowerBoundary>
             <ogc:Literal>1000</ogc:Literal>
@@ -100,15 +91,6 @@
             <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
             <ogc:Literal>1000</ogc:Literal>
           </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>1000</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>1300</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
           <ogc:PropertyIsBetween>
             <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
             <ogc:LowerBoundary>
@@ -171,15 +153,6 @@
           <ogc:Literal>2000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsBetween>
-          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-          <ogc:LowerBoundary>
-            <ogc:Literal>1400</ogc:Literal>
-          </ogc:LowerBoundary>
-          <ogc:UpperBoundary>
-            <ogc:Literal>1600</ogc:Literal>
-          </ogc:UpperBoundary>
-        </ogc:PropertyIsBetween>
-        <ogc:PropertyIsBetween>
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:LowerBoundary>
             <ogc:Literal>1400</ogc:Literal>
@@ -228,15 +201,6 @@
             <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
             <ogc:Literal>2000</ogc:Literal>
           </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>1400</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>1600</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
           <ogc:PropertyIsBetween>
             <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
             <ogc:LowerBoundary>
@@ -299,15 +263,6 @@
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsBetween>
-          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-          <ogc:LowerBoundary>
-            <ogc:Literal>1700</ogc:Literal>
-          </ogc:LowerBoundary>
-          <ogc:UpperBoundary>
-            <ogc:Literal>1800</ogc:Literal>
-          </ogc:UpperBoundary>
-        </ogc:PropertyIsBetween>
-        <ogc:PropertyIsBetween>
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:LowerBoundary>
             <ogc:Literal>1700</ogc:Literal>
@@ -356,15 +311,6 @@
             <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
             <ogc:Literal>3000</ogc:Literal>
           </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>1700</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>1800</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
           <ogc:PropertyIsBetween>
             <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
             <ogc:LowerBoundary>
@@ -427,15 +373,6 @@
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsBetween>
-          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-          <ogc:LowerBoundary>
-            <ogc:Literal>2000</ogc:Literal>
-          </ogc:LowerBoundary>
-          <ogc:UpperBoundary>
-            <ogc:Literal>4000</ogc:Literal>
-          </ogc:UpperBoundary>
-        </ogc:PropertyIsBetween>
-        <ogc:PropertyIsBetween>
           <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
           <ogc:LowerBoundary>
             <ogc:Literal>2000</ogc:Literal>
@@ -484,15 +421,6 @@
             <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
             <ogc:Literal>4000</ogc:Literal>
           </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsBetween>
-            <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:LowerBoundary>
-              <ogc:Literal>2000</ogc:Literal>
-            </ogc:LowerBoundary>
-            <ogc:UpperBoundary>
-              <ogc:Literal>4000</ogc:Literal>
-            </ogc:UpperBoundary>
-          </ogc:PropertyIsBetween>
           <ogc:PropertyIsBetween>
             <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
             <ogc:LowerBoundary>
@@ -551,10 +479,6 @@
       <ogc:Or>
         <ogc:PropertyIsEqualTo>
           <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
-          <ogc:Literal>9999</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondereArtDerBaulichenNutzung</ogc:PropertyName>
           <ogc:Literal>9999</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
