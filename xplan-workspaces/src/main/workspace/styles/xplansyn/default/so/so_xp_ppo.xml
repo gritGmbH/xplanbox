@@ -48,19 +48,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenfldakleingar_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -91,19 +83,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflfriedh_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -134,19 +118,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflpark_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -177,19 +153,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflspielpl_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -220,19 +188,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflsportpl_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -263,19 +223,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflzeltpl_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -306,19 +258,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflbadpl_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -350,19 +294,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsfloeff_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -393,19 +329,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsfloeff_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -436,19 +364,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -479,19 +399,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -522,19 +434,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -565,19 +469,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflkirch_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -608,19 +504,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -651,19 +539,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -694,19 +574,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -737,19 +609,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -780,19 +644,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -823,19 +679,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -866,19 +714,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflges_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -909,19 +749,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflges_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -952,19 +784,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflkult_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -995,19 +819,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflkult_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1038,19 +854,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflspo_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1081,19 +889,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflspo_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1124,19 +924,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflschutzb_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1167,19 +959,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflfeu_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1211,19 +995,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/spispoanlflspo_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1254,19 +1030,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/spispoanlflspi_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1299,19 +1067,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenfldakleingar_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1342,19 +1102,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflfriedh_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1385,19 +1137,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflpark_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1428,19 +1172,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflspielpl_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1471,19 +1207,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflsportpl_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1514,19 +1242,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflzeltpl_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1557,19 +1277,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gruenflbadpl_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1601,19 +1313,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsfloeff_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1644,19 +1348,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsfloeff_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1687,19 +1383,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1730,19 +1418,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1773,19 +1453,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1816,19 +1488,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflkirch_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1859,19 +1523,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1902,19 +1558,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1945,19 +1593,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -1988,19 +1628,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2031,19 +1663,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2074,19 +1698,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2117,19 +1733,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflges_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2160,19 +1768,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflges_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2203,19 +1803,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflkult_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2246,19 +1838,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflkult_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2289,19 +1873,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflspo_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2332,19 +1908,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflspo_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2375,19 +1943,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflschutzb_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2418,19 +1978,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/gembedarfsflfeu_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2463,19 +2015,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/denkmalschens_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2506,19 +2050,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/denkmalscheinzelanl_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2550,19 +2086,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/erhaltungsber_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2593,19 +2121,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/erhaltungsber_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2636,19 +2156,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/erhaltungsber_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2679,19 +2191,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/erhaltungsber_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2722,19 +2226,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/erhaltungsber_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2765,19 +2261,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/erhaltungsber_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2808,19 +2296,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/erhaltungsber_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -2851,19 +2331,11 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Graphic>
-        <Mark>
+        <ExternalGraphic>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
                           xlink:href="../../symbols/erhaltungsber_sym.svg"/>
           <Format>svg</Format>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.2</SvgParameter>
-          </Stroke>
-        </Mark>
+        </ExternalGraphic>
         <Size>
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
