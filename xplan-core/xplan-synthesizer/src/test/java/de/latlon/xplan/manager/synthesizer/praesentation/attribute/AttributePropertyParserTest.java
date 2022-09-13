@@ -32,10 +32,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
@@ -52,11 +55,14 @@ public class AttributePropertyParserTest {
 
 	private static FeatureCollection features;
 
+	private static FeatureCollection fpFeatures;
+
 	private AttributePropertyParser attributePropertyParser = new AttributePropertyParser();
 
 	@BeforeClass
 	public static void initTestFeatures() throws Exception {
 		features = load(XPLAN_54, "/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
+		fpFeatures = load(XPLAN_52, "/de/latlon/xplan/manager/synthesizer/praesentation/FP_5-2_PPO-Test.gml");
 	}
 
 	@Test
@@ -65,7 +71,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("planArt[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("planArt"));
 		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(ENUM));
@@ -79,7 +85,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("sonstGebietsArt[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("sonstGebietsArt"));
 		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(CODE));
@@ -92,7 +98,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("beschreibung[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("beschreibung"));
 		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
@@ -105,7 +111,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("veraenderungssperre[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("veraenderungssperre"));
 		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
@@ -118,7 +124,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/XP_Gemeinde/gemeindeName[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("gemeindeName"));
 		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
@@ -132,7 +138,7 @@ public class AttributePropertyParserTest {
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt(
 				"xplan:gemeinde[0]/xplan:XP_Gemeinde/xplan:gemeindeName[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("gemeindeName"));
 		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
@@ -146,7 +152,7 @@ public class AttributePropertyParserTest {
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt(
 				"xplan:gemeinde[0]/invalid:XP_Gemeinde/xplan:gemeindeName[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("gemeindeName"));
 		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
@@ -159,7 +165,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/XP_Gemeinde/ags[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(1));
 		assertThat(attributeProperties.get(0).getAttribute(), is("ags"));
 		assertThat(attributeProperties.get(0).getAttributePropertyType(), is(PRIMITIVE));
@@ -172,7 +178,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/gemeindeName[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(0));
 	}
 
@@ -182,7 +188,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/ags[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(0));
 	}
 
@@ -192,7 +198,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/ags[0]", "gemeinde[0]/gemeindeName[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(0));
 	}
 
@@ -202,7 +208,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("planArt[o]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(0));
 	}
 
@@ -212,7 +218,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("planArt[2]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(0));
 	}
 
@@ -222,7 +228,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/ags[o]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(0));
 	}
 
@@ -232,7 +238,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/ags[2]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(0));
 	}
 
@@ -242,7 +248,7 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("unknown[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(0));
 	}
 
@@ -252,8 +258,19 @@ public class AttributePropertyParserTest {
 
 		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("gemeinde[0]/unknown[0]");
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
-				artNodes);
+				artNodes, null);
 		assertThat(attributeProperties.size(), is(0));
+	}
+
+	@Test
+	public void testParseAttributeProperties_index() {
+		Feature feature = getTestFeature(fpFeatures, "Gml_23AAE82B-80D3-40BF-B930-58F86738399B");
+
+		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("zweckbestimmung");
+		TypedObjectNodeArray<TypedObjectNode> indexNodes = mockIndex(1);
+		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
+				artNodes, indexNodes);
+		assertThat(attributeProperties.size(), is(1));
 	}
 
 	private TypedObjectNodeArray<TypedObjectNode> mockArt(String... artNodes) {
@@ -264,6 +281,13 @@ public class AttributePropertyParserTest {
 			return property;
 		}).collect(Collectors.toList());
 		return new TypedObjectNodeArray<>(properties.toArray(new SimpleProperty[0]));
+	}
+
+	private TypedObjectNodeArray<TypedObjectNode> mockIndex(int index) {
+		SimpleProperty property = Mockito.mock(SimpleProperty.class);
+		PrimitiveValue primitiveValue = new PrimitiveValue(BigInteger.valueOf(index));
+		Mockito.when(property.getValue()).thenReturn(primitiveValue);
+		return new TypedObjectNodeArray<>(Collections.singleton(property).toArray(new SimpleProperty[0]));
 	}
 
 }

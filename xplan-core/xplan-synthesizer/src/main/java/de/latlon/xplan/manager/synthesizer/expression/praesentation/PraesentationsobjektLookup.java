@@ -44,13 +44,16 @@ public abstract class PraesentationsobjektLookup implements Expression {
 
 	private final AttributePropertyParser attributePropertyParser = new AttributePropertyParser();
 
-	protected final Xpath dientZurDarstellungVonXPath;
+	private final Xpath dientZurDarstellungVonXPath;
 
-	protected final Xpath artXPath;
+	private final Xpath artXPath;
+
+	private final Xpath indexXPath;
 
 	public PraesentationsobjektLookup() {
 		this.dientZurDarstellungVonXPath = new Xpath("xplan:dientZurDarstellungVon");
 		this.artXPath = new Xpath("xplan:art");
+		this.indexXPath = new Xpath("xplan:index");
 	}
 
 	@Override
@@ -92,9 +95,10 @@ public abstract class PraesentationsobjektLookup implements Expression {
 			Feature referencedFeature) {
 		if (referencedFeature == null)
 			return null;
-		TypedObjectNodeArray<TypedObjectNode> propertiesArray = castToArray(artXPath.evaluate(feature, features));
-		if (propertiesArray != null)
-			return attributePropertyParser.parseAttributeProperties(referencedFeature, propertiesArray);
+		TypedObjectNodeArray<TypedObjectNode> artProperties = castToArray(artXPath.evaluate(feature, features));
+		TypedObjectNodeArray<TypedObjectNode> indexProperties = castToArray(indexXPath.evaluate(feature, features));
+		if (artProperties != null)
+			return attributePropertyParser.parseAttributeProperties(referencedFeature, artProperties, indexProperties);
 		return null;
 	}
 

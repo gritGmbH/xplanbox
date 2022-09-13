@@ -34,10 +34,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyType.CODE;
@@ -56,15 +56,23 @@ public class AttributePropertyParser {
 	public static final String XPLAN_GML_NS_PREFIX = "http://www.xplanung.de/xplangml";
 
 	public List<AttributeProperty> parseAttributeProperties(Feature referencedFeature,
-			TypedObjectNodeArray<TypedObjectNode> propertiesArray) {
-		TypedObjectNode[] artProperties = propertiesArray.getElements();
-		return Arrays.stream(artProperties).map(artProperty -> {
-			List<Step> steps = parseXPath(artProperty, referencedFeature);
-			return parseSteps(referencedFeature, steps);
-		}).filter(Objects::nonNull).collect(Collectors.toList());
+			TypedObjectNodeArray<TypedObjectNode> artProperties,
+			TypedObjectNodeArray<TypedObjectNode> indexProperties) {
+		TypedObjectNode[] artPropertyElements = artProperties.getElements();
+		List<AttributeProperty> attributeProperties = new ArrayList<>();
+		for (int artIndex = 0; artIndex < artPropertyElements.length; artIndex++) {
+			TypedObjectNode artProperty = artPropertyElements[artIndex];
+			TypedObjectNode indexProperty = findCorrespondingIndex(artIndex, indexProperties);
+			List<Step> steps = parseXPath(artProperty, indexProperty, referencedFeature);
+			AttributeProperty attributeProperty = parseSteps(referencedFeature, steps);
+			if (attributeProperty != null) {
+				attributeProperties.add(attributeProperty);
+			}
+		}
+		return attributeProperties;
 	}
 
-	private List<Step> parseXPath(TypedObjectNode art, Feature referencedFeature) {
+	private List<Step> parseXPath(TypedObjectNode art, TypedObjectNode index, Feature referencedFeature) {
 		if (art instanceof SimpleProperty && ((SimpleProperty) art).getValue() instanceof PrimitiveValue) {
 			String artProperty = ((SimpleProperty) art).getValue().getAsText();
 			String[] split = artProperty.split("/");
@@ -72,9 +80,9 @@ public class AttributePropertyParser {
 				if (step.endsWith("]")) {
 					int indexOfPredicateBegin = step.indexOf("[");
 					if (indexOfPredicateBegin > 1) {
+						String position = step.substring(indexOfPredicateBegin + 1, step.length() - 1);
 						String nameWithPrefix = step.substring(0, indexOfPredicateBegin);
 						String name = parseStepNameAndCheckPrefix(referencedFeature, nameWithPrefix);
-						String position = step.substring(indexOfPredicateBegin + 1, step.length() - 1);
 						try {
 							return new Step(name, Integer.parseInt(position));
 						}
@@ -85,11 +93,31 @@ public class AttributePropertyParser {
 						}
 					}
 				}
+				else if (index != null && index instanceof SimpleProperty
+						&& ((SimpleProperty) index).getValue() instanceof PrimitiveValue) {
+					String indexProperty = ((SimpleProperty) index).getValue().getAsText();
+					String name = parseStepNameAndCheckPrefix(referencedFeature, step);
+					try {
+						return new Step(name, Integer.parseInt(indexProperty));
+					}
+					catch (NumberFormatException e) {
+						LOG.warn("Could not parse attribute art " + indexProperty + " as integer.");
+						String nameWithoutPrefix = parseStepNameAndCheckPrefix(referencedFeature, step);
+						return new Step(nameWithoutPrefix, 0);
+					}
+				}
 				String name = parseStepNameAndCheckPrefix(referencedFeature, step);
 				return new Step(name);
 			}).collect(Collectors.toList());
 		}
 		return Collections.emptyList();
+	}
+
+	private TypedObjectNode findCorrespondingIndex(int artIndex,
+			TypedObjectNodeArray<TypedObjectNode> indexProperties) {
+		if (indexProperties != null && indexProperties.getElements().length > artIndex)
+			return indexProperties.getElements()[artIndex];
+		return null;
 	}
 
 	private String parseStepNameAndCheckPrefix(Feature referencedFeature, String nameWithPrefix) {
