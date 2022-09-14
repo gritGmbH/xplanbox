@@ -57,12 +57,16 @@ public class AttributePropertyParserTest {
 
 	private static FeatureCollection fpFeatures;
 
+	private static FeatureCollection negativeIndexFeatures;
+
 	private AttributePropertyParser attributePropertyParser = new AttributePropertyParser();
 
 	@BeforeClass
 	public static void initTestFeatures() throws Exception {
 		features = load(XPLAN_54, "/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
 		fpFeatures = load(XPLAN_52, "/de/latlon/xplan/manager/synthesizer/praesentation/FP_5-2_PPO-Test.gml");
+		negativeIndexFeatures = load(XPLAN_52,
+				"/de/latlon/xplan/manager/synthesizer/praesentation/Test_PPO_index-1.gml");
 	}
 
 	@Test
@@ -271,6 +275,17 @@ public class AttributePropertyParserTest {
 		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
 				artNodes, indexNodes);
 		assertThat(attributeProperties.size(), is(1));
+	}
+
+	@Test
+	public void testParseAttributeProperties_NegativeIndex() {
+		Feature feature = getTestFeature(negativeIndexFeatures, "Gml_3C239C51-10F8-4C2C-94F9-E04420BB6CE4");
+
+		TypedObjectNodeArray<TypedObjectNode> artNodes = mockArt("nutzungsform");
+		TypedObjectNodeArray<TypedObjectNode> indexNodes = mockIndex(-1);
+		List<AttributeProperty> attributeProperties = attributePropertyParser.parseAttributeProperties(feature,
+				artNodes, indexNodes);
+		assertThat(attributeProperties.size(), is(0));
 	}
 
 	private TypedObjectNodeArray<TypedObjectNode> mockArt(String... artNodes) {

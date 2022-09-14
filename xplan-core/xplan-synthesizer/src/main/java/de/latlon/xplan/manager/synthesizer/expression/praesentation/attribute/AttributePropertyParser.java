@@ -98,7 +98,12 @@ public class AttributePropertyParser {
 					String indexProperty = ((SimpleProperty) index).getValue().getAsText();
 					String name = parseStepNameAndCheckPrefix(referencedFeature, step);
 					try {
-						return new Step(name, Integer.parseInt(indexProperty));
+						int indexAsInt = Integer.parseInt(indexProperty);
+						if (indexAsInt < 0) {
+							LOG.warn("Negative index {}, art is ignored.", indexAsInt);
+							return null;
+						}
+						return new Step(name, indexAsInt);
 					}
 					catch (NumberFormatException e) {
 						LOG.warn("Could not parse attribute art " + indexProperty + " as integer.");
@@ -108,7 +113,7 @@ public class AttributePropertyParser {
 				}
 				String name = parseStepNameAndCheckPrefix(referencedFeature, step);
 				return new Step(name);
-			}).collect(Collectors.toList());
+			}).filter(prop -> prop != null).collect(Collectors.toList());
 		}
 		return Collections.emptyList();
 	}
