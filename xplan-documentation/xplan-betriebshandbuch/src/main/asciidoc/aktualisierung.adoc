@@ -153,11 +153,6 @@ NOTE: Werden mehrere Aktualisierungschritte mit Liquibase ausgeführt, kann es z
 
 IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen. Für den Fall, dass dies nicht notwendig ist, muss lediglich die Datenbank neu aufgesetzt werden. Dieser Schritt sollte bereits während der Anwendung des Kapitels <<aktualisierung-der-schemas>> durchgeführt worden sein.
 
-Im Modul _xplan-update-data-cli_ wird das Programm __databaseUpdate__ für die Datenaktualisierung bestimmter xPlanBox-Versionen bereitgestellt. Eine
-Liste der für die Datenaktualisierung unterstützten Versionen wird beim
-Programmaufruf mit dem Parameter `--help` angezeigt.
-
-
 [[aktualisierung-auf-die-version-5.0]]
 === Aktualisierung auf die Version 5.0
 
@@ -196,7 +191,7 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 ** _xplan-api-manager.war_
 ** _xplan-manager-web.war_
 * Ausführen der Skripte im Verzeichnis _from_5.0_to_5.0.2_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
-* Ausführen des Kommandozeilenwerkzeug __databaseUpdate__ im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanSyn-Datenhaltung, z.B. mit `./databaseUpdate -c <XPLANBOX_CONFIG>/`
+* Ausführen des Kommandozeilenwerkzeugs __databaseUpdate__ (für Version 5.0.2) im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanSyn-Datenhaltung, z.B. mit `./databaseUpdate -c <XPLANBOX_CONFIG>/`
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
