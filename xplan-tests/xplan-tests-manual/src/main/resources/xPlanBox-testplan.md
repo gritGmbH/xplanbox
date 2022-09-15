@@ -302,7 +302,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt neben einen Plan auf den Button **Plan publizieren**. | Es öffnet sich ein Pop-up, welches den Vorgang bestätigt. 
-**02** | Der Benutzer geht auf die xPlanBox Landingpage und überprüft, ob der Plan in den XPlanInspirePluDiensten aufgelistet wird. | Der publizierte Plan wird in den XPlanInspirePluDiensten aufgelistet.  
+**02** | Der Benutzer geht auf die xPlanBox Landingpage und öffnet die Capabilities der XPlanInspirePluDienste. | Die Capabilities des XPlanInspirePluWFS und XPlanInspirePluWMS werden erfolgreich angezeigt.
+**03** | Der Benutzer testet mit einer Geoinformationssystemssoftware wie z.B. QGIS, ob der in Testschritt 01 publizierte Plan durch die Dienste dargestellt wird. | Der publizierte Plan wird erfolgreich durch die Dienste dargestellt.
 
 ---
 
@@ -1310,9 +1311,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Testschritte 
 Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
-**01** | Der Benutzer führt den SQL-Befehl SELECT tag FROM database-changelog WHERE versionid=5.0.3 | Die Version des Datenbankschemas ist 5.0.3. 
+**01** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid=5.0.3* | Die SQL-Abfrage liefert kein Ergebnis, da es die Tabelle databasechangelog in der Version 5.0.3 noch nicht gibt. 
 **02** | Der Benutzer führt die DB-Skripte zur Aktualisierung des Datenbankschemas zur XPlanBox Version 6.0 aus. | Es treten keine Fehlermeldungen auf. 
-**03** | Der Benutzer führt den SQL-Befehl SELECT tag FROM database-changelog WHERE versionid=6.0  | Die Version des Datenbankschemas ist 6.0. 
+**03** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid=6.0*  | Die Version des Datenbankschemas ist 6.0. 
+
+> Die SQL-Abfrage muss noch angepasst werden.
 
 ### Prüffall-02: (Optional) Ausführen des Kommandozeilenwerkzeug reSynthesizer
 
@@ -1335,9 +1338,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Testschritte 
 Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
-**01** | Der Benutzer muss die Datenbankschemas xplanevaluationxplansynpre, xplanevaluationxplansyn und xplanevaluationxplansynarchive löschen. | Die Datenbankschemas können erfolgreich gelöscht werden. 
-**02** | Der Benutzer führt den EvaluationSchemaSynchronizer aus (siehe 8. XPlanAuswerteschemaCLI) | Es treten keine Fehlermeldungen auf. 
-**03** | Der Benutzer kontrolliert die in der Datenhaltung vorliegenden Daten darauf, dass die im jeweiligen XPlanSyn-Schema gespeicherten Daten auch dem neu erstellten Auswerteschema gleichen. | Die im XPlanSyn-Schema vorliegenden Daten gleichen dem jeweiligen Auswerteschema.
+**01** | Der Benutzer muss die Datenbankschemas xplanevaluationxplansynpre, xplanevaluationxplansyn und xplanevaluationxplansynarchive löschen. | Die Datenbankschemas können erfolgreich gelöscht werden.
+**02** | Der Benutzer legt die Datenbankschemas mit Hilfe der SQL-Skipte im EvaluationSchemaSynchronizer an. | Es treten keine Fehlermeldungen auf, die Datenbankschemas existieren.
+**03** | Der Benutzer führt den EvaluationSchemaSynchronizer mit der Option `-t ALL` aus (siehe 8. XPlanAuswerteschemaCLI). | Es treten keine Fehlermeldungen auf. 
+**04** | Der Benutzer kontrolliert die in der Datenhaltung vorliegenden Daten darauf, dass die im jeweiligen XPlanSyn-Schema gespeicherten Daten auch dem neu erstellten Auswerteschema gleichen. | Die im XPlanSyn-Schema vorliegenden Daten gleichen dem jeweiligen Auswerteschema.
 
 # 13. Automatisierte SoapUI-Tests
 
@@ -1359,7 +1363,11 @@ Die SoapUI-Projekte befinden sich im folgenden Verzeichnis:
 
 # Anhang
 
-Die in der folgenden Tabelle aufgelisteten Testdaten sind unter https://bitbucket.org/geowerkstatt-hamburg/xplan-testdaten/src/master/ frei verfügbar. 
+Die nachfolgenden Testdatensätze werden für die Durchführung des Testplans genutzt. Jeder Testdatensatz verfügt über eine einzigartige Identifikationsnummer (Id).
+
+Die in der Tabelle 1 aufgelisteten Testdatensätze sind unter https://bitbucket.org/geowerkstatt-hamburg/xplan-testdaten/src/master/ frei verfügbar. 
+
+Tabelle 1:
 
 |   Id  | Planart | Version | Valide? |                 Bezeichnung                |
 |-------|---------|---------|---------|--------------------------------------------|
@@ -1371,8 +1379,12 @@ Die in der folgenden Tabelle aufgelisteten Testdaten sind unter https://bitbucke
 |  BP6  |  BPlan  |   5.4   |    ja   | BPlan001_5-4                               |          
 |  BP7  |  BPlan  |   6.0   |    ja   | BPlan002_6-0                               |
 
-Die Planarten FPlan, LPlan, RPlan und SOPlan befinden sich im folgenden Verzeichnis: 
+--- 
+
+Die Testdatensätze für die Planarten FPlan, LPlan, RPlan und SOPlan (Tabelle 2) befinden sich im folgenden Verzeichnis: 
 >/xplan-tests/xplan-tests-soapui/src/main/resources/xplan-api-manager/plans 
+
+Tabelle 2:
 
 |   Id  | Planart | Version | Valide? |                 Bezeichnung                |
 |-------|---------|---------|---------|--------------------------------------------|
