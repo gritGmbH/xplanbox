@@ -167,7 +167,7 @@ Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
 *** _pre/xplan54/create.sql_
 *** _archive/xplan54/create.sql_
 ** Ausführen der Skripte im Verzeichnis _from_4.2_to_5.0_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
 
 IMPORTANT:  Java 1.8 wird nicht mehr unterstützt.
@@ -228,7 +228,7 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 *** _pre/xplan60/create.sql_
 *** _archive/xplan60/create.sql_
 ** Ausführen der Skripte im Verzeichnis _from_5.0_to_6.0_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
-** Ausführen des Kommandozeilenwerkzeug __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
 
 IMPORTANT:  XPlanGML 3 wird nicht mehr unterstützt.
