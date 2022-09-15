@@ -40,7 +40,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static java.lang.String.format;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 
 /**
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
@@ -49,7 +50,7 @@ public class SyntacticValidatorImpl implements SyntacticValidator {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SyntacticValidatorImpl.class);
 
-	private static final String INVALID_HINT = "Das Instanzobjekt 'xplan.gml' ist nicht konform zum XPlanGML Schema. Eine \u00DCberpr\u00FCfung ist erforderlich.";
+	private static final String INVALID_HINT = getMessage("SyntacticValidatorImpl_invalid");
 
 	@Override
 	public ValidatorResult validateSyntax(XPlanArchive archive) {
@@ -107,7 +108,7 @@ public class SyntacticValidatorImpl implements SyntacticValidator {
 			int line = exception.getLineNumber();
 			int column = exception.getColumnNumber();
 			String exceptionMessage = exception.getMessage();
-			String resultMessage = format("%s Zeile: %s, Spalte %s", exceptionMessage, line, column);
+			String resultMessage = format("SyntacticValidatorImpl_invalid_location", exceptionMessage, line, column);
 			resultMessages.add(resultMessage);
 		}
 	}

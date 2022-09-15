@@ -51,6 +51,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
 import static de.latlon.xplan.validator.report.ReportUtils.createValidLabel;
 import static de.latlon.xplan.validator.report.pdf.Templates.bold14LeftStyle;
@@ -73,13 +75,13 @@ class ReportBuilder {
 
 	private static final String LABEL_TITLE = "ValidationReport";
 
-	private static final String LABEL_HINT = "Hinweis: ";
+	private static final String LABEL_HINT = getMessage("report_pdf_hint");
 
-	private static final String LABEL_WARNING = "Warnung: ";
+	private static final String LABEL_WARNING = getMessage("report_pdf_warning");
 
-	private static final String LABEL_ERROR = "Fehler: ";
+	private static final String LABEL_ERROR = getMessage("report_pdf_error");
 
-	private static final String LABEL_OK = "Erfolgreich: ";
+	private static final String LABEL_OK = getMessage("report_pdf_ok");
 
 	private static final int VERTICAL_GAP = 10;
 
@@ -164,7 +166,7 @@ class ReportBuilder {
 	}
 
 	private VerticalListBuilder addPlanNames(VerticalListBuilder verticalList, List<String> planNames) {
-		ComponentBuilder<?, ?> rulesHead = cmp.text("Plannamen").setStyle(bold14LeftStyle);
+		ComponentBuilder<?, ?> rulesHead = cmp.text(getMessage("report_pdf_plannamen")).setStyle(bold14LeftStyle);
 		HorizontalListBuilder header = cmp.horizontalList().add(rulesHead);
 		verticalList = verticalList.add(header);
 
@@ -180,7 +182,8 @@ class ReportBuilder {
 
 	private VerticalListBuilder addExternalReferenceReport(VerticalListBuilder verticalList,
 			ExternalReferenceReport externalReferenceReport) {
-		ComponentBuilder<?, ?> rulesHead = cmp.text("Externe Referenzen").setStyle(bold14LeftStyle);
+		ComponentBuilder<?, ?> rulesHead = cmp.text(getMessage("report_pdf_externalReferences"))
+				.setStyle(bold14LeftStyle);
 		HorizontalListBuilder header = cmp.horizontalList().add(rulesHead);
 		verticalList = verticalList.add(header);
 
@@ -215,9 +218,9 @@ class ReportBuilder {
 				String description = String.format(" Beschreibung: %s", rulesMetadata.getDescription());
 				verticalList = verticalList.add(addTextString(description));
 			}
-			String version = String.format(" Version der Regeln: %s", rulesMetadata.getVersion());
+			String version = format("report_pdf_versionRules", rulesMetadata.getVersion());
 			verticalList = verticalList.add(addTextString(version));
-			String source = String.format("  Quelle der Regeln: %s", rulesMetadata.getSource());
+			String source = format("report_pdf_sourceRules", rulesMetadata.getSource());
 			verticalList = verticalList.add(addTextString(source));
 		}
 		return verticalList;
@@ -225,24 +228,24 @@ class ReportBuilder {
 
 	private ComponentBuilder<?, ?> appendNumberOfRules(SemanticValidatorResult semanticValidatorResult) {
 		int noOfRules = semanticValidatorResult.getRules().size();
-		String text = String.format(" %s Validierungsregeln überprüft", noOfRules);
+		String text = format("report_pdf_noOfCheckedRules", noOfRules);
 		return addTextString(text);
 	}
 
 	private ComponentBuilder<?, ?> appendNumberOfFailedRules(SemanticValidatorResult semanticValidatorResult) {
 		long noOfRules = semanticValidatorResult.getRules().stream().filter(r -> !r.isValid()).count();
-		String text = String.format(" %s Validierungsregeln nicht erfüllt", noOfRules);
+		String text = format("report_pdf_noOfInvalidRules", noOfRules);
 		return addTextString(text);
 	}
 
 	private ComponentBuilder<?, ?> appendNumberOfValidRules(SemanticValidatorResult semanticValidatorResult) {
 		long noOfRules = semanticValidatorResult.getRules().stream().filter(r -> r.isValid()).count();
-		String text = String.format(" %s Validierungsregeln erfüllt", noOfRules);
+		String text = format("report_pdf_noOfValidRules", noOfRules);
 		return addTextString(text);
 	}
 
 	private ComponentBuilder<?, ?> appendDetailsSection() {
-		return addTextString("Details:");
+		return addTextString(getMessage("report_pdf_details"));
 	}
 
 	private ComponentBuilder<?, ?> addTextString(String text) {
@@ -327,7 +330,7 @@ class ReportBuilder {
 		TextFieldBuilder<String> nameField = cmp.text(name).setFixedWidth(60).setStyle(simpleStyle);
 		StringBuilder messageBuilder = new StringBuilder(message);
 		if (!gmlIds.isEmpty()) {
-			messageBuilder.append("\nGML Ids der fehlerhaften Features: ");
+			messageBuilder.append(getMessage("report_pdf_gmlIds"));
 			messageBuilder.append(gmlIds.stream().collect(Collectors.joining(", ")));
 		}
 		TextFieldBuilder<String> messageField = cmp.text(messageBuilder.toString()).setStyle(simpleStyle);

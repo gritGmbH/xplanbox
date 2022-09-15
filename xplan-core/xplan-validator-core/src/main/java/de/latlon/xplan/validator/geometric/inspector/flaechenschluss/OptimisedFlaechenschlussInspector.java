@@ -90,6 +90,8 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.validator.geometric.inspector.flaechenschluss.FlaechenschlussTolerance.ALLOWEDDISTANCE_METRE;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 
 /**
  * Inspector for 2.2.1 Flaechenschlussbedingung:
@@ -162,22 +164,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private static final AbstractDefaultGeometry DEFAULT_GEOM = new DefaultPoint(null, null, null,
 			new double[] { 0.0, 0.0 });
-
-	private static final String ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht: %s";
-
-	private static final String POSSIBLE_LUECKE_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
-
-	private static final String LUECKE_MSG = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben.";
-
-	private static final String EQUAL_ERROR_MSG = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s ueberdeckt das Flaechenschlussobjekt mit der gml id %s vollstaendig.";
-
-	private static final String ERROR_MSG_PLAN = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung bei der Pruefung des Geltungsbereichs des Plans an folgender Stelle nicht: %s";
-
-	private static final String ERROR_MSG_BEREICH = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung bei der Pruefung des Geltungsbereichs des Bereichs an folgender Stelle nicht: %s";
-
-	private static final String LUECKE_MSG_PLAN = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke bei der Pruefung des Geltungsbereichs des Plans identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben.";
-
-	private static final String LUECKE_MSG_BEREICH = "2.2.1.1: Die Flaechenschlussbedingung ist nicht erfuellt, es wurde ein Luecke bei der Pruefung des Geltungsbereichs des Bereichs identifiziert. Die Geometrie mit der Luecke wird in der Shape-Datei ausgegeben.";
 
 	private static final String POSSIBLE_LUECKE_MSG_PLAN = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung bei der Pruefung des Geltungsbereichs des Plans an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
 
@@ -430,20 +416,20 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			boolean foundInvalidControlPoints = checkControlPointsAndAddFailures(controlPointsInIntersection, testStep);
 			if (!foundInvalidControlPoints) {
 				boolean handleAsFailure = handleAsFailure(testStep);
-				String msg = LUECKE_MSG;
+				String lueckeMessage = getMessage("FlaechenschlussInspector_error_Luecke");
 				if (TestStep.GELTUNGSBEREICH_BEREICH.equals(testStep)) {
-					msg = LUECKE_MSG_BEREICH;
+					lueckeMessage = getMessage("FlaechenschlussInspector_error_bereich_Luecke");
 				}
 				else if (TestStep.GELTUNGSBEREICH_PLAN.equals(testStep)) {
-					msg = LUECKE_MSG_PLAN;
+					lueckeMessage = getMessage("FlaechenschlussInspector_error_plan_Luecke");
 				}
-				BadGeometry badGeometry = new BadGeometry(diffGeltungsbereich, msg);
+				BadGeometry badGeometry = new BadGeometry(diffGeltungsbereich, lueckeMessage);
 				badGeometries.add(badGeometry);
 				if (handleAsFailure) {
-					flaechenschlussErrors.add(msg);
+					flaechenschlussErrors.add(lueckeMessage);
 				}
 				else {
-					flaechenschlussWarnings.add(msg);
+					flaechenschlussWarnings.add(lueckeMessage);
 				}
 			}
 		}
@@ -469,23 +455,24 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			String msg;
 			if (!handleAsFailure && !TestStep.FLAECHENSCHLUSSPAIRS.equals(testStep)) {
 				if (TestStep.GELTUNGSBEREICH_BEREICH.equals(testStep)) {
-					msg = String.format(POSSIBLE_LUECKE_MSG_BEREICH, cp.getFeatureGmlId(), cp.getPoint());
+					msg = format("FlaechenschlussInspector_possibleLuecke_bereich", cp.getFeatureGmlId(),
+							cp.getPoint());
 				}
 				else if (TestStep.GELTUNGSBEREICH_PLAN.equals(testStep)) {
-					msg = String.format(POSSIBLE_LUECKE_MSG_PLAN, cp.getFeatureGmlId(), cp.getPoint());
+					msg = format("FlaechenschlussInspector_possibleLuecke_plan", cp.getFeatureGmlId(), cp.getPoint());
 				}
 				else {
-					msg = String.format(POSSIBLE_LUECKE_MSG, cp.getFeatureGmlId(), cp.getPoint());
+					msg = format("FlaechenschlussInspector_possibleLuecke", cp.getFeatureGmlId(), cp.getPoint());
 				}
 			}
 			else if (TestStep.GELTUNGSBEREICH_BEREICH.equals(testStep)) {
-				msg = String.format(ERROR_MSG_BEREICH, cp.getFeatureGmlId(), cp.getPoint());
+				msg = format("FlaechenschlussInspector_error_bereich", cp.getFeatureGmlId(), cp.getPoint());
 			}
 			else if (TestStep.GELTUNGSBEREICH_PLAN.equals(testStep)) {
-				msg = String.format(ERROR_MSG_PLAN, cp.getFeatureGmlId(), cp.getPoint());
+				msg = format("FlaechenschlussInspector_error_plan", cp.getFeatureGmlId(), cp.getPoint());
 			}
 			else {
-				msg = String.format(ERROR_MSG, cp.getFeatureGmlId(), cp.getPoint());
+				msg = format("FlaechenschlussInspector_error", cp.getFeatureGmlId(), cp.getPoint());
 			}
 			BadGeometry badGeometry = new BadGeometry(cp.getPoint(), msg);
 			if (!badGeometries.contains(badGeometry)) {
@@ -622,22 +609,22 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				IntersectionMatrix relate = flaechenschlussFeature1.getJtsGeometry()
 						.relate(flaechenschlussFeature2.getJtsGeometry());
 				if (relate.isEquals(2, 2)) {
-					String error = String.format(EQUAL_ERROR_MSG, flaechenschlussFeature1.getFeatureId(),
-							flaechenschlussFeature2.getFeatureId());
+					String error = format("FlaechenschlussInspector_error_overlapping",
+							flaechenschlussFeature1.getFeatureId(), flaechenschlussFeature2.getFeatureId());
 					BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature1.getOriginalGeometry(), error);
 					badGeometries.add(badGeometry);
 					flaechenschlussErrors.add(error);
 				}
 				else if (relate.isCoveredBy()) {
-					String error = String.format(EQUAL_ERROR_MSG, flaechenschlussFeature2.getFeatureId(),
-							flaechenschlussFeature1.getFeatureId());
+					String error = format("FlaechenschlussInspector_error_overlapping",
+							flaechenschlussFeature2.getFeatureId(), flaechenschlussFeature1.getFeatureId());
 					BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature2.getOriginalGeometry(), error);
 					badGeometries.add(badGeometry);
 					flaechenschlussErrors.add(error);
 				}
 				else if (relate.isCovers()) {
-					String error = String.format(EQUAL_ERROR_MSG, flaechenschlussFeature1.getFeatureId(),
-							flaechenschlussFeature2.getFeatureId());
+					String error = format("FlaechenschlussInspector_error_overlapping",
+							flaechenschlussFeature1.getFeatureId(), flaechenschlussFeature2.getFeatureId());
 					BadGeometry badGeometry = new BadGeometry(flaechenschlussFeature1.getOriginalGeometry(), error);
 					badGeometries.add(badGeometry);
 					flaechenschlussErrors.add(error);

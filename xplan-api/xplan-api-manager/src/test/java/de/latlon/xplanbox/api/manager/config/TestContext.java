@@ -66,6 +66,11 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -134,7 +139,7 @@ public class TestContext {
 	@Bean
 	@Primary
 	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
-			throws WorkspaceException {
+			throws WorkspaceException, SQLException {
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = mock(ManagerWorkspaceWrapper.class);
 		FeatureStore featureStore41 = mock(FeatureStore.class);
 		when(featureStore41.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_41));
@@ -143,7 +148,22 @@ public class TestContext {
 		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), any(PlanStatus.class))).thenReturn(featureStore41);
 		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), any(PlanStatus.class))).thenReturn(featureStore51);
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration());
+		Connection connection = mockConnection();
+		when(managerWorkspaceWrapper.openConnection()).thenReturn(connection);
 		return managerWorkspaceWrapper;
+	}
+
+	private static Connection mockConnection() throws SQLException {
+		Connection connection = mock(Connection.class);
+		DatabaseMetaData connectionMetadata = mock(DatabaseMetaData.class);
+		Statement statement = mock(Statement.class);
+		when(connection.createStatement()).thenReturn(statement);
+		when(statement.executeQuery(anyString())).thenReturn(mock(ResultSet.class));
+		when(connection.getMetaData()).thenReturn(connectionMetadata);
+		when(connectionMetadata.getURL()).thenReturn("jdbc:h2:mem:testdb");
+		when(connectionMetadata.getDatabaseProductName()).thenReturn("H2");
+		when(connectionMetadata.getSQLKeywords()).thenReturn("CREATE DROP");
+		return connection;
 	}
 
 	@Bean

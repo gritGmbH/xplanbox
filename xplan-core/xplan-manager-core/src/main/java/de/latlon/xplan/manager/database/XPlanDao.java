@@ -1175,8 +1175,7 @@ public class XPlanDao {
 
 			FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus);
 			FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus);
-			sameSourceAndTarget = oldPlanStatus == newPlanStatus
-					|| !managerConfiguration.isSeperatedDataManagementActived();
+			sameSourceAndTarget = oldPlanStatus == newPlanStatus;
 			FeatureStore fsTarget = sameSourceAndTarget ? fsSource
 					: managerWorkspaceWrapper.lookupStore(version, newPlanStatus);
 			FeatureStore synFsTarget = sameSourceAndTarget ? synFsSource

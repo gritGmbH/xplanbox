@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
 
 /**
  * Implements 4.5.2.4 (since XPlanGML 6.0): Verbot der Doppelbelegung gleichnamiger
@@ -48,8 +49,6 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class DoppelbelegungInspector implements GeometricFeatureInspector {
-
-	private static final String ERROR_MSG = "4.5.2.4: Das Feature mit der gml id %s beinhaltet das Attribut %s, welches auch im überlagernden BP_UeberbaubareGrundstuecksFlaeche mit der gml id %s definiert ist.";
 
 	private static final double TOLERANCE_METRE = 0.002;
 
@@ -157,7 +156,7 @@ public class DoppelbelegungInspector implements GeometricFeatureInspector {
 	}
 
 	private void addError(String featureId, String propertyName, String overlappingFeatureid) {
-		errors.add(String.format(ERROR_MSG, featureId, propertyName, overlappingFeatureid));
+		errors.add(format("DoppelbelegungInspector_error", featureId, propertyName, overlappingFeatureid));
 	}
 
 }

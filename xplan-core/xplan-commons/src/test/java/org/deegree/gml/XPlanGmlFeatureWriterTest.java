@@ -48,7 +48,6 @@ public class XPlanGmlFeatureWriterTest {
 	public void testWrite() throws Exception {
 		XPlanFeatureCollection fc = getMainFileAsXplanFeatureCollection("xplan41/Eidelstedt_4_V4.zip");
 		String xPlanFeatureCollection = writeXPlanFeatureCollection(fc);
-		System.out.println(xPlanFeatureCollection);
 		assertThat(xPlanFeatureCollection, hasXPath("/xplan:XPlanAuszug").withNamespaceContext(nsContext()));
 	}
 

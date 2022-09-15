@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.semantic.configuration.message;
 
+import de.latlon.xplan.validator.i18n.ValidationMessages;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ public abstract class RulesMessagesAccessor {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RulesMessagesAccessor.class);
 
-	private static final String DEFAULT_MESSAGE = "Regel %s muss erf\u00FCllt sein";
+	private static final String DEFAULT_MESSAGE = ValidationMessages.getMessage("RulesMessageAccessor_defaultMessage");
 
 	/**
 	 * @param rule to retrieve message for, may be <code>null</code> (default message is

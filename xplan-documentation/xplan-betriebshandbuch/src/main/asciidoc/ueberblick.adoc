@@ -68,7 +68,7 @@ https://www.oracle.com/technetwork/java/javase/downloads/index.html[Oracle JDK 1
 als auch OpenJDK 11 (https://adoptium.net/?variant=openjdk11&jvmVariant=hotspot[AdoptOpenJDK 11]
 oder https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html[Amazon Corretto 11]) unterstützt.
 
-TIP: Empfohlen wird OpenJDK 11.0.13+8.
+TIP: Empfohlen wird AdoptOpenJDK/Temurin 11.0.13+.
 
 
 [[java-applikationsserver]]
@@ -85,10 +85,10 @@ Profil. Empfohlen wird Apache Tomcat Version 9.0.58.
 [[datenbank]]
 === Datenbank
 
-Als Datenbanksystem ist eine Installation von PostgreSQL 9.5+ mit der
-Erweiterung PostGIS 2.4+ mindestens erforderlich.
+Als Datenbanksystem ist eine Installation von PostgreSQL 11+ mit der
+Erweiterung PostGIS 3.0+ erforderlich.
 
-TIP: Empfohlen wird PostgreSQL 11+ mit PostGIS 3.0+.
+TIP: Empfohlen wird PostgreSQL 12+ mit PostGIS 3.1+.
 
 === GDAL
 
@@ -101,4 +101,4 @@ IMPORTANT: Erforderlich ist GDAL 3.0.
 
 Optional kann die Installation von https://github.com/halestudio/hale-cli/[HALE CLI] erforderlich sein. HALE CLI wird für die Transformation von Daten der xPlanBox verwendet. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
 
-IMPORTANT: Erforderlich ist HALE CLI 3.4.0+.
+IMPORTANT: Erforderlich ist HALE CLI 4.0+.

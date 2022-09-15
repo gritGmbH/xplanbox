@@ -602,7 +602,6 @@ public class XPlanManipulatorTest {
 		planManipulator.modifyXPlan(featureCollection, editedXplan, version, BP_Plan, schema);
 
 		String exportedPlan = exportPlan(featureCollection, version);
-		System.out.println(exportedPlan);
 		assertThat(exportedPlan,
 				hasXPath("count(//xp:BP_Bereich/xp:rasterBasis)", is("0")).withNamespaceContext(nsContext(version)));
 		assertThat(exportedPlan,

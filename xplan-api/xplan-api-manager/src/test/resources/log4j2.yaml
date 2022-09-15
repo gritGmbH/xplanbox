@@ -29,7 +29,7 @@ Configuration:
         Pattern: "%d{HH:mm:ss,SSS} %5p [%c{1}]: %m%n"
   Loggers:
     Root:
-      level: trace
+      level: info
       AppenderRef:
         - ref: STDOUT
     Logger:
@@ -38,13 +38,17 @@ Configuration:
       - name: de.latlon.xplan
         level: warn
       - name: de.latlon.xplan.commons.configuration
-        level: trace
+        level: warn
       - name: de.latlon.xplan.manager.configuration;
-        level: trace
+        level: info
       - name: de.latlon.xplanbox.api
         level: debug
+      - name: de.latlon.xplanbox.api.manager
+        level: debug
       - name: de.latlon.xplanbox.api.manager.config
-        level: trace
+        level: debug
+      - name: de.latlon.xplanbox.api.manager.DatabaseVerifier
+        level: info
       - name: org.springframework
         level: warn
       - name: org.glassfish
@@ -63,6 +67,8 @@ Configuration:
         level: fatal
       - name: io.swagger.v3
         level: warn
+      - name: org.deegree.gml.schema.GMLSchemaInfoSet
+        level: error
       - name: org.deegree.geometry.standard.AbstractDefaultGeometry
         level: fatal
       - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector

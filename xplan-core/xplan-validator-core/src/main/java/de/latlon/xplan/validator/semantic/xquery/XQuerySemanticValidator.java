@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.List;
 
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 import static java.lang.String.format;
 
 /**
@@ -51,8 +52,6 @@ import static java.lang.String.format;
 public class XQuerySemanticValidator implements SemanticValidator {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XQuerySemanticValidator.class);
-
-	private static final String DETAILS_HINT = "Details zu den angewendeten Regeln können in folgenden Dokument nachgeschlagen werden: %s";
 
 	private final SemanticValidatorConfiguration semanticValidatorConfiguration;
 
@@ -130,7 +129,7 @@ public class XQuerySemanticValidator implements SemanticValidator {
 		if (semanticConformityLinkConfiguration != null) {
 			String link = semanticConformityLinkConfiguration.retrieveLink(archive.getVersion());
 			if (link != null && !"".equals(link)) {
-				return new ValidatorDetail(DETAILS_HINT, link);
+				return new ValidatorDetail(getMessage("XQuerySemanticValidator_linkKonformitaetsbedingungen"), link);
 			}
 		}
 		return null;

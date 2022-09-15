@@ -13,7 +13,7 @@
 
 ==== Übersicht der Datenbankschemata
 
-Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschemata und die auf diese Schema zugreifenden Komponenten am Beispiel der festgestellten Pläne bei <<systemarchitektur-und-schnittstellen,separater Datenhaltung>>.
+Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschemata und die auf diese Schema zugreifenden Komponenten am Beispiel der festgestellten.
 
 [width="100%",cols="25%,50%,25%",options="header"]
 |===
@@ -55,7 +55,7 @@ Die folgende Tabelle zeigt die in der XPlanDB enthaltenen Datenbankschemata und 
 | Relational <<appendix_xplandb_xplanmgr,(Schema)>>
 |===
 
-Bei separater Datenhaltung existiert für alle in Aufstellung befindlichen Pläne zusätzlich ein Datenbankschema mit der Namenskonvention `xplan*pre` und den Endpoints <<xplanwfs>>/_wfs*pre_ sowie für die archivierten Pläne mit `xplan*archive` und den Endpoints <<xplanwfs>>/_wfs*archive_.
+Für alle in Aufstellung befindlichen Pläne existiert zusätzlich ein Datenbankschema mit der Namenskonvention `xplan*pre` und den Endpoints <<xplanwfs>>/_wfs*pre_ sowie für die archivierten Pläne mit `xplan*archive` und den Endpoints <<xplanwfs>>/_wfs*archive_.
 
 Die Datenbankstruktur für die Schemata `xplan*` wird im Anhang <<appendix_xplandb>> beschrieben.
 

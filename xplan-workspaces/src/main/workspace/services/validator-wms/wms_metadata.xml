@@ -20,10 +20,9 @@
   #L%
   -->
 
-<deegreeServicesMetadata configVersion="3.4.0" xmlns="http://www.deegree.org/services/metadata"
-                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<deegreeServicesMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                          xmlns:inspire_vs="http://inspire.europa.eu/networkservice/view/1.0"
-                         xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.4.0/metadata.xsd">
+                         xsi:schemaLocation="http://www.deegree.org/services/metadata https://schemas.deegree.org/3.5/services/metadata/metadata.xsd">
   <ServiceIdentification>
     <Title>XPlanWMS</Title>
     <Abstract>Dieser WMS Dienst stellt auf dem Standard XPlanung basierende WMS Ebenen bereit. Die umfangreiche Attributierung kann mittels GetFeatureInfo abgefragt werden. Objekte mit Referenzen auf weitere Dateien können über GetFeatureInfo abgefragt werden.</Abstract>
@@ -45,14 +44,14 @@
     <ServiceContact>
       <IndividualName>-</IndividualName>
       <PositionName/>
-      <Phone>+49(0)22894779877</Phone>
+      <Phone>+49(0)22824333784</Phone>
       <Facsimile/>
       <ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>
       <Address>
-        <DeliveryPoint>Aennchenstraße 19</DeliveryPoint>
-        <City>Bonn</City>
+        <DeliveryPoint>Im Ellig 1</DeliveryPoint>
+        <City>Wachtberg</City>
         <AdministrativeArea>Nordrhein-Westfalen</AdministrativeArea>
-        <PostalCode>53177</PostalCode>
+        <PostalCode>53343</PostalCode>
         <Country>Germany</Country>
       </Address>
       <OnlineResource>http://www.deegree.org</OnlineResource>
@@ -61,26 +60,4 @@
       <Role>PointOfContact</Role>
     </ServiceContact>
   </ServiceProvider>
-
-
-  <ExtendedCapabilities protocolVersions="1.3.0">
-    <inspire_vs:ExtendedCapabilities xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
-                                     xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
-                                     xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd http://inspire.ec.europa.eu/schemas/inspire_vs/1.0 http://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd">
-      <inspire_common:MetadataUrl>
-        <inspire_common:URL>
-          http://www.metadaten-serviceportal.de/
-        </inspire_common:URL>
-        <inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType>
-      </inspire_common:MetadataUrl>
-      <inspire_common:SupportedLanguages>
-        <inspire_common:DefaultLanguage>
-          <inspire_common:Language>ger</inspire_common:Language>
-        </inspire_common:DefaultLanguage>
-      </inspire_common:SupportedLanguages>
-      <inspire_common:ResponseLanguage>
-        <inspire_common:Language>ger</inspire_common:Language>
-      </inspire_common:ResponseLanguage>
-    </inspire_vs:ExtendedCapabilities>
-  </ExtendedCapabilities>
 </deegreeServicesMetadata>

@@ -110,8 +110,8 @@ public class ApplicationPathConfig extends ResourceConfig {
 	}
 
 	private void addContact(OpenAPI openApi, ManagerApiConfiguration managerApiConfiguration) {
-		if (managerApiConfiguration != null && managerApiConfiguration.getContactEMailAdress() != null) {
-			String contactEMailAddress = managerApiConfiguration.getContactEMailAdress();
+		if (managerApiConfiguration != null && managerApiConfiguration.getContactEMailAddress() != null) {
+			String contactEMailAddress = managerApiConfiguration.getContactEMailAddress();
 			openApi.getInfo().setContact(new Contact().email(contactEMailAddress));
 		}
 	}

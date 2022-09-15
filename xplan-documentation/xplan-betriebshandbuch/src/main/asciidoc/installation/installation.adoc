@@ -61,10 +61,11 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 * XPlanTransformCLI: _xplan-transform-cli/bin/XPlanTransformCLI_ - Beschreibung der Funktionalität im Kapitel "XPlanTransformCLI" des XPlanBenutzerhandbuchs.
 * XPlanValidateDB: _xplan-validatedb-cli/bin/XPlanValidateDB_ - ermöglicht die **semantische** Validierung von bereits in die XPlanDB importierten Plänen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 * XPlanAuswerteschemaCLI: _xplan-evaluation-schema-synchronize-cli/bin/EvaluationSchemaSynchronizer_ - Beschreibung der Funktionalität im  folgenden Kapitel <<install-xplanevaluationschemasynchronize-cli>>.
-* XPlanUpdateDatabaseCLI: _xplan-update-database-cli/bin/databaseUpdate_ - wird  für eine Aktualisierung des Datenbestands der xPlanBox benötigt, weitere Informationen befinden sich im Abschnitt <<aktualisierung>>). Die Funktionen im Überblick:
-** _xplan-update-database-cli/bin/districtUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** _xplan-update-database-cli/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** _xplan-update-database-cli/bin/serviceMetadataRecordCreator_ - erstellt Metadatensätze für den XPlanWerkWMS. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt der Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert. Der Aufruf des Tools mit `serviceMetadataRecordCreator --help` liefert Hinweise zur Verwendung.
+* XPlanUpdateDataCLI: _xplan-update-data-cli/bin/_ - die in diesem Modul enthaltenen Werkzeuge können für die Aktualisierung des Datenbestands genutzt werden, weitere Informationen befinden sich im Abschnitt <<aktualisierung>>. Die Funktionen im Überblick:
+** _xplan-update-data-cli/bin/districtUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-data-cli/bin/bereichUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Informationen zu den Bereichen einzelner Pläne. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-data-cli/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-data-cli/bin/sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfeldern. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 [[install-xplanevaluationschemasynchronize-cli]]
 ===== XPlanAuswerteschemaCLI
@@ -95,7 +96,8 @@ Das CLI _EvaluationSchemaSynchronizer_ unterstützt zwei Modi, die über die Opt
 * Option *ALL* zur Überführung aller Pläne aus dem XPlanSyn-Schema der xPlanBox in das Auswerteschema.
 * Option *SYNC* um die Synchronisierung der seit der letzten Ausführung des Werkzeuges geänderten Pläne aus dem XPlanSyn-Schema in das Auswerteschema durchzuführen.
 
-Üblicherweise erfolgt zunächst einmalig die Ausführung der Option *ALL* und anschließend regelmäßig (z.B. mit Hilfe eines Cron-Jobs) die Option *SYNC* um einen tagesaktuellen Stand im Auswerteschema zu erreichen.
+Es erfolgt zunächst einmalig die Ausführung mit der Option *ALL* und anschließend regelmäßig (z.B. mit Hilfe eines Cron-Jobs) mit der Option *SYNC* um einen tagesaktuellen Stand im Auswerteschema zu erreichen.
+Die zweimalige Ausführung mit der Option *ALL* führt zu einem Fehler bei der Ausführung, wenn bereits Daten synchronisiert wurden.
 
 Die einzelnen Parameter des Werkzeuges können durch folgenden Aufruf abgerufen werden:
 

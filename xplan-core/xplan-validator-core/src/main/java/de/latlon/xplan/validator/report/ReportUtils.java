@@ -21,6 +21,7 @@
 package de.latlon.xplan.validator.report;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.validator.i18n.ValidationMessages;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,21 +29,23 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class ReportUtils {
 
-	public static final String LABEL_INVALID = "nicht valide";
+	public static final String LABEL_INVALID = getMessage("report_invalid");
 
-	public static final String LABEL_VALID = "valide";
+	public static final String LABEL_VALID = getMessage("report_valid");
 
 	public enum SkipCode {
 
-		SYNTAX_ERRORS("Nicht ausgefuehrt aufgrund von syntaktischen Fehlern."),
+		SYNTAX_ERRORS(ValidationMessages.getMessage("report_syntaxErrors")),
 
-		INTERNAL_ERRORS("Nicht ausgefuehrt aufgrund von internen Fehlern.");
+		INTERNAL_ERRORS(ValidationMessages.getMessage("report_internalErrors"));
 
 		private String message;
 

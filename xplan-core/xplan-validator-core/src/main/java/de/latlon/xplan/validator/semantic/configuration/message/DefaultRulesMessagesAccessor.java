@@ -36,7 +36,7 @@ public final class DefaultRulesMessagesAccessor extends RulesMessagesAccessor {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DefaultRulesMessagesAccessor.class);
 
-	private static final String RULES_MESSAGES_PROPERTIES = "../rulesMessages.properties";
+	private static final String RULES_MESSAGES_PROPERTIES = "/de/latlon/xplan/validator/semantic/configuration/rulesMessages.properties";
 
 	private static final Properties PROPERTIES = new Properties();
 

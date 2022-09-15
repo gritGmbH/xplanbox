@@ -29,7 +29,7 @@ Configuration:
         Pattern: "%d{HH:mm:ss,SSS} %5p [%c{1}]: %m%n"
   Loggers:
     Root:
-      level: trace
+      level: info
       AppenderRef:
         - ref: STDOUT
     Logger:

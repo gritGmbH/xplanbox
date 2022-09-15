@@ -29,7 +29,7 @@ Configuration:
         Pattern: "%d{HH:mm:ss,SSS} %5p [%c{1}]: %m%n"
   Loggers:
     Root:
-      level: trace
+      level: info
       AppenderRef:
         - ref: STDOUT
     Logger:
@@ -38,7 +38,7 @@ Configuration:
       - name: de.latlon.xplan
         level: warn
       - name: de.latlon.xplan.validator
-        level: debug
+        level: info
       - name: org.springframework
         level: warn
       - name: org.glassfish

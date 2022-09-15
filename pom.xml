@@ -22,11 +22,15 @@
     <geowerkstatt-hamburg.xplanung.version>0.12.2</geowerkstatt-hamburg.xplanung.version>
     <gwt.version>2.9.0</gwt.version>
     <geotools.version>26.1</geotools.version>
-    <log4j.version>2.17.1</log4j.version>
-    <slf4j.version>1.7.33</slf4j.version>
-    <spring.version>5.2.18.RELEASE</spring.version>
-    <spring-security.version>5.2.13.RELEASE</spring-security.version>
-    <jackson.version>2.13.1</jackson.version>
+    <log4j.version>2.17.2</log4j.version>
+    <slf4j.version>1.7.36</slf4j.version>
+    <spring.version>5.2.22.RELEASE</spring.version>
+    <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
+    <spring-batch.version>4.3.5</spring-batch.version>
+    <spring-security.version>5.2.15.RELEASE</spring-security.version>
+    <jackson.version>2.13.3</jackson.version>
+    <liquibase.version>4.15.0</liquibase.version>
+    <postgresql.version>42.4.2</postgresql.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
@@ -135,7 +139,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.0.4</version>
+        <version>7.1.2</version>
       </plugin>
     </plugins>
   </reporting>
@@ -294,7 +298,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.0.4</version>
+        <version>7.1.2</version>
       </plugin>
     </plugins>
     <pluginManagement>
@@ -783,6 +787,22 @@
         <artifactId>jts-core</artifactId>
         <version>1.19.0</version>
       </dependency>
+      <dependency>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-core</artifactId>
+        <version>${liquibase.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.liquibase.ext</groupId>
+        <artifactId>liquibase-postgresql</artifactId>
+        <version>${liquibase.version}</version>
+      </dependency>
       <!-- xplan-manager internal dependencies with version -->
       <dependency>
         <groupId>${project.groupId}</groupId>
@@ -970,6 +990,14 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
         <version>${spring.version}</version>
+        <!--
+        <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
+        -->
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
@@ -996,6 +1024,70 @@
         <artifactId>spring-test</artifactId>
         <version>${spring.version}</version>
         <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.batch</groupId>
+        <artifactId>spring-batch-core</artifactId>
+        <version>${spring-batch.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${spring-boot.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-to-slf4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-batch</artifactId>
+        <version>${spring-boot.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-to-slf4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <!-- Spring Security -->
       <dependency>
@@ -1093,7 +1185,7 @@
       <dependency>
         <groupId>org.hibernate.validator</groupId>
         <artifactId>hibernate-validator</artifactId>
-        <version>6.1.6.Final</version>
+        <version>6.1.7.Final</version>
       </dependency>
       <dependency>
         <groupId>jakarta.validation</groupId>
@@ -1109,7 +1201,7 @@
       <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
-        <version>42.3.3</version>
+        <version>${postgresql.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -10,9 +10,8 @@ Workspaces _xplansyn-wms-workspace_ eine Datei mit dem Namen _gdal.xml_
 und mit folgendem Inhalt abgelegt:
 
 ----
-<GDALSettings configVersion="3.4.0"
-  xmlns="http://www.deegree.org/gdal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.deegree.org/gdal http://schemas.deegree.org/commons/gdal/3.4.0/gdal.xsd">
+<GDALSettings xmlns="http://www.deegree.org/gdal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.deegree.org/gdal https://schemas.deegree.org/3.5/commons/gdal/gdal.xsd">
   <OpenDatasets>5</OpenDatasets>
 </GDALSettings>
 ----

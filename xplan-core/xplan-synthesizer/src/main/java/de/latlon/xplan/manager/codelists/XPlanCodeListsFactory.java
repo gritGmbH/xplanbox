@@ -40,11 +40,11 @@ public class XPlanCodeListsFactory {
 
 	private static final String XPLAN_41_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_4_1.xml";
 
-	private static final String XPLAN_50_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_5_0.xml";
+	private static final String XPLAN_50_CODE_LISTS = "/codelists/XPlanGML_5_0_Enumerationen.xml";
 
-	private static final String XPLAN_51_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_5_1.xml";
+	private static final String XPLAN_51_CODE_LISTS = "/codelists/XPlanGML_5_1_Enumerationen.xml";
 
-	private static final String XPLAN_52_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_5_2.xml";
+	private static final String XPLAN_52_CODE_LISTS = "/codelists/XPlanGML_5_2_Enumerationen.xml";
 
 	private static final String XPLAN_53_CODE_LISTS = "/codelists/XPlanGML_5_3_Enumerationen.xml";
 
@@ -135,21 +135,21 @@ public class XPlanCodeListsFactory {
 
 	private static synchronized XPlanCodeLists getXPlan50() {
 		if (xplan50CodeLists == null) {
-			xplan50CodeLists = createGml30Codelist(XPLAN_50_CODE_LISTS);
+			xplan50CodeLists = createCodelist(XPLAN_50_CODE_LISTS);
 		}
 		return xplan50CodeLists;
 	}
 
 	private static synchronized XPlanCodeLists getXPlan51() {
 		if (xplan51CodeLists == null) {
-			xplan51CodeLists = createGml30Codelist(XPLAN_51_CODE_LISTS);
+			xplan51CodeLists = createCodelist(XPLAN_51_CODE_LISTS);
 		}
 		return xplan51CodeLists;
 	}
 
 	private static synchronized XPlanCodeLists getXPlan52() {
 		if (xplan52CodeLists == null) {
-			xplan52CodeLists = createGml30Codelist(XPLAN_52_CODE_LISTS);
+			xplan52CodeLists = createCodelist(XPLAN_52_CODE_LISTS);
 		}
 		return xplan52CodeLists;
 	}

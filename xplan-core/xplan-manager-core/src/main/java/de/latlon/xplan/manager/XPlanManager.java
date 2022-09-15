@@ -38,16 +38,12 @@ import de.latlon.xplan.manager.codelists.XPlanCodeLists;
 import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
-import de.latlon.xplan.manager.database.DatabaseCreator;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.SortPropertyUpdater;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
-import de.latlon.xplan.manager.jdbcconfig.JaxbJdbcConfigWriter;
-import de.latlon.xplan.manager.jdbcconfig.JdbcConfigWriter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.UnsupportPlanException;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
@@ -65,8 +61,6 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.utils.Pair;
 import org.deegree.commons.xml.XMLParsingException;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -79,7 +73,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -110,10 +103,6 @@ public class XPlanManager {
 
 	private final XPlanDao xplanDao;
 
-	private final WorkspaceReloader workspaceReloader;
-
-	private final DeegreeWorkspace managerWorkspace;
-
 	private final XPlanExporter xPlanExporter;
 
 	private final XPlanToEditFactory planToEditFactory = new XPlanToEditFactory();
@@ -122,11 +111,7 @@ public class XPlanManager {
 
 	private final SortPropertyReader sortPropertyReader;
 
-	private final SortPropertyUpdater sortPropertyUpdater;
-
 	private final InspirePluPublisher inspirePluPublisher;
-
-	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
 	private final XPlanInsertManager xPlanInsertManager;
 
@@ -159,9 +144,6 @@ public class XPlanManager {
 		}
 		this.xplanDao = xPlanDao;
 		this.archiveCreator = archiveCreator;
-		this.managerWorkspace = managerWorkspaceWrapper.getWorkspace();
-		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
-		this.workspaceReloader = workspaceReloader;
 
 		ManagerConfigurationAnalyser managerConfigurationAnalyser = new ManagerConfigurationAnalyser(
 				managerWorkspaceWrapper.getConfiguration(), wmsWorkspaceWrapper);
@@ -171,7 +153,6 @@ public class XPlanManager {
 				managerWorkspaceWrapper.getConfiguration());
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
-		this.sortPropertyUpdater = new SortPropertyUpdater(sortPropertyReader, xplanDao, xPlanRasterManager);
 		this.xPlanExporter = new XPlanExporter();
 		XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer(managerWorkspaceWrapper.getConfiguration());
 		if (inspirePluTransformator != null)
@@ -435,36 +416,6 @@ public class XPlanManager {
 	}
 
 	/**
-	 * @param jdbcConnection the JDBC connection string
-	 * @param dbName The name of the database which will be created
-	 * @param template The name of the PostGis-template
-	 * @param user user of the database
-	 * @param pw the password of the database
-	 * @throws ResourceInitException
-	 * @throws java.sql.SQLException
-	 */
-	public void createInitialDB(String jdbcConnection, String dbName, String template, String user, String pw)
-			throws Exception {
-		File wsDirectory = managerWorkspace.getLocation();
-
-		writeJDBCFile(wsDirectory, jdbcConnection, dbName, user, pw);
-
-		DatabaseCreator databaseCreator = new DatabaseCreator();
-		databaseCreator.createInitialDB(jdbcConnection, dbName, template, user, pw, wsDirectory);
-
-		LOG.info("Datenbank " + dbName + " wurde erzeugt");
-	}
-
-	/**
-	 * Update of wms sort columns in XPlan Syn datastores and reordering of the WMS
-	 * layers.
-	 * @throws Exception
-	 */
-	public void updateWmsSortDate() throws Exception {
-		sortPropertyUpdater.updateSortProperty();
-	}
-
-	/**
 	 * Transforms the plans with the passed ID to INSPIRE PLU and imports them in the
 	 * INSPIRE Download Service for PLU.
 	 * @param plan plan to transform and publish
@@ -479,24 +430,6 @@ public class XPlanManager {
 			String planId = plan.getId();
 			inspirePluPublisher.transformAndPublish(planId, XPlanVersion.valueOf(plan.getVersion()));
 			xplanDao.setPlanWasInspirePublished(planId);
-		}
-	}
-
-	private void writeJDBCFile(File wsDirectory, String jdbcConnection, String dbName, String user, String pw)
-			throws Exception {
-
-		try {
-			File jdbcConnFile = new File(wsDirectory.toString() + "/jdbc/xplan.xml");
-			jdbcConnFile.createNewFile();
-
-			OutputStream os = new FileOutputStream(jdbcConnFile);
-			JdbcConfigWriter configWriter = new JaxbJdbcConfigWriter();
-			configWriter.write(os, jdbcConnection, dbName, user, pw);
-
-		}
-		catch (IOException e) {
-			throw new Exception("Fehler beim Schreiben der Datei <" + wsDirectory.toString() + "/jdbc/xplan.xml>: "
-					+ e.getMessage());
 		}
 	}
 

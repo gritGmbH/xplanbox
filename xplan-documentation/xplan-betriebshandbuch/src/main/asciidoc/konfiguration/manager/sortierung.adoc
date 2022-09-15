@@ -39,12 +39,12 @@ wmsSortDate_SO_Plan_XPLAN_54=SO_Plan,inkrafttretenDatum
 
 IMPORTANT: Es müssen ggf. Zeilenumbrüche entfernt werden.
 
-Die Angabe eines Sortierfeldes kann für jeden Plan-Type und Plan-Version
+Die Angabe eines Sortierfeldes kann für jede Planart und XPlanGML-Version
 differenziert erfolgen und kann am Aufbau des Schlüsselnamens erkannt
 werden.
 
 ----
-wmsSortDate_<TYP>_<VERSION>
+wmsSortDate_<PLANART>_PLAN_XPLAN_<VERSION>
 ----
 
 Der Wert gibt immer den Namen des FeatureTypes sowie den Namen der
