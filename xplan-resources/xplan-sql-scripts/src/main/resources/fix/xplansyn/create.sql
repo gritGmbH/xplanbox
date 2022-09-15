@@ -1,4 +1,4 @@
-/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 08.08.2022, 14:53:26 --- */
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 29.08.2022, 15:45:06 --- */
 CREATE SCHEMA xplansyn; 
 SET search_path TO xplansyn,public;
 CREATE TABLE xplansyn.xplan_bp_abgrabungsflaeche (
@@ -13720,13 +13720,12 @@ CREATE TABLE xplansyn.xplan_xp_fpo (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
     xplan_dientzurdarstellungvon text,
     xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
     CONSTRAINT xplan_xp_fpo_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_xp_fpo','xplan_position','0','GEOMETRY', 2);
@@ -13743,13 +13742,12 @@ CREATE TABLE xplansyn.xplan_xp_lpo (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
     xplan_dientzurdarstellungvon text,
     xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
     CONSTRAINT xplan_xp_lpo_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_xp_lpo','xplan_position','0','GEOMETRY', 2);
@@ -13766,6 +13764,7 @@ CREATE TABLE xplansyn.xplan_xp_lto (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
@@ -13777,8 +13776,6 @@ CREATE TABLE xplansyn.xplan_xp_lto (
     xplan_anchorx text,
     xplan_anchory text,
     xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
     xplan_horizontaleausrichtung text,
     xplan_horizontaleausrichtungwert text,
     xplan_vertikaleausrichtung text,
@@ -13811,6 +13808,8 @@ CREATE TABLE xplansyn.xplan_xp_nutzungsschablone (
     xplan_zeilenanz integer,
     xplan_anchorx text,
     xplan_anchory text,
+    xplan_drehwinkel text,
+    xplan_drehwinkeluom text,
     xplan_index text,
     xplan_stylesheetid text,
     xplan_stylesheetidwert text,
@@ -13818,8 +13817,6 @@ CREATE TABLE xplansyn.xplan_xp_nutzungsschablone (
     xplan_horizontaleausrichtungwert text,
     xplan_vertikaleausrichtung text,
     xplan_vertikaleausrichtungwert text,
-    xplan_drehwinkel text,
-    xplan_drehwinkeluom text,
     CONSTRAINT xplan_xp_nutzungsschablone_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_xp_nutzungsschablone','xplan_position','0','GEOMETRY', 2);
@@ -13836,17 +13833,17 @@ CREATE TABLE xplansyn.xplan_xp_ppo (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
     xplan_dientzurdarstellungvon text,
     xplan_skalierung numeric,
     xplan_hat text,
-    xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
+    xplan_schriftinhalt text,
     xplan_drehwinkel text,
     xplan_drehwinkeluom text,
+    xplan_index text,
     CONSTRAINT xplan_xp_ppo_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_xp_ppo','xplan_position','0','GEOMETRY', 2);
@@ -13863,6 +13860,7 @@ CREATE TABLE xplansyn.xplan_xp_pto (
     xplan_gueltigkeitbeginn timestamp,
     xplan_gueltigkeitende timestamp,
     xplan_wmssortdate timestamp,
+    xplan_stylesheetid text,
     xplan_darstellungsprioritaet integer,
     xplan_art text,
     xplan_gehoertzubereich text,
@@ -13873,15 +13871,13 @@ CREATE TABLE xplansyn.xplan_xp_pto (
     xplan_hat text,
     xplan_anchorx text,
     xplan_anchory text,
+    xplan_drehwinkel text,
+    xplan_drehwinkeluom text,
     xplan_index text,
-    xplan_stylesheetid text,
-    xplan_stylesheetidwert text,
     xplan_horizontaleausrichtung text,
     xplan_horizontaleausrichtungwert text,
     xplan_vertikaleausrichtung text,
     xplan_vertikaleausrichtungwert text,
-    xplan_drehwinkel text,
-    xplan_drehwinkeluom text,
     CONSTRAINT xplan_xp_pto_pkey PRIMARY KEY (attr_gml_id)
 );
 SELECT ADDGEOMETRYCOLUMN('xplansyn', 'xplan_xp_pto','xplan_position','0','GEOMETRY', 2);

@@ -113,9 +113,10 @@ public class XPlanCodeLists {
 	}
 
 	/**
-	 * @param codeListId the id of the codeList to return the name, never
+	 * @param codeListId the id of the codeList to return the translation, never
 	 * <code>null</code>
-	 * @param code the code of the codeEntry to return the name, never <code>null</code>
+	 * @param code the code of the codeEntry to return the translation, never
+	 * <code>null</code>
 	 * @return the name of the codeEntry with the passed code of the codeList with the
 	 * passed codeListId, never <code>null</code>
 	 * @throws IllegalArgumentException if no codeList or codeEntry with the passed
@@ -130,6 +131,23 @@ public class XPlanCodeLists {
 			return lesbarerName;
 		}
 		return codeEntry.getName();
+	}
+
+	/**
+	 * @param codeListId the id of the codeList to return the kuerzel, never
+	 * <code>null</code>
+	 * @param code the code of the codeEntry to return the kuerzel, never
+	 * <code>null</code>
+	 * @return the kuerzel of the codeEntry with the passed code of the codeList with the
+	 * passed codeListId, may be <code>null</code> if not available
+	 * @throws IllegalArgumentException if no codeList or codeEntry with the passed
+	 * codeListId exists
+	 */
+	public String getKuerzel(String codeListId, String code) {
+		String codeListIdOrFirst = checkCodeListIdForNull(codeListId);
+		XPlanCodeList codeList = getCodeList(codeListIdOrFirst);
+		XPlanCodeEntry codeEntry = codeList.getCodeEntry(code);
+		return codeEntry.getKuerzel();
 	}
 
 	private String checkCodeListIdForNull(String codeListId) {

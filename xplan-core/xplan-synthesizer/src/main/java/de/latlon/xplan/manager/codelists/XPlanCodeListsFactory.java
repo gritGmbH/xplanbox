@@ -74,6 +74,9 @@ public class XPlanCodeListsFactory {
 
 	private static XPlanCodeListsParser xPlanCodeListParser = new XPlanCodeListsParser();
 
+	private XPlanCodeListsFactory() {
+	}
+
 	/**
 	 * @param version the version of the XPlanGML, never <code>null</code>
 	 * @return the {@link XPlanCodeLists} for the specified version, never

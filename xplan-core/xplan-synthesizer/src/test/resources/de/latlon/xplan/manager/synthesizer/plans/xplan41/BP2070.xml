@@ -279,7 +279,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>
@@ -299,7 +298,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>
@@ -319,7 +317,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>
@@ -339,7 +336,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>
@@ -359,7 +355,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>
@@ -379,7 +374,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>
@@ -399,7 +393,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>
@@ -419,7 +412,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>
@@ -439,7 +431,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>
@@ -459,7 +450,6 @@
       </position>
       <skalierung>0.3</skalierung>
       <stylesheetId>SymbolAbwasser</stylesheetId>
-      <stylesheetIdWert>SymbolAbwasser</stylesheetIdWert>
       <drehwinkel>0</drehwinkel>
       <drehwinkelUOM>urn:adv:uom:grad</drehwinkelUOM>
     </XP_PPO>

@@ -34,7 +34,7 @@ import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveVal
  */
 public class Ausrichtung implements Expression {
 
-	private static final double AUSRICHTUNG_DEFAULT = 0.0;
+	private static final double AUSRICHTUNG_DEFAULT = 0.5;
 
 	private enum AUSRICHTUNG {
 

@@ -27,7 +27,6 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
-import de.latlon.xplan.manager.synthesizer.XpPpoLookup;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -49,7 +48,7 @@ import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
  */
 public class TestFeaturesUtils {
 
-	public static FeatureCollection getTestFeatures(String resourceName) throws Exception {
+	public static FeatureCollection load(String resourceName) throws Exception {
 		XPlanFeatureCollection testFeatureCollection = getTestFeatureCollection(resourceName);
 		return testFeatureCollection.getFeatures();
 	}
@@ -65,18 +64,6 @@ public class TestFeaturesUtils {
 		return new XPlanFeatureCollectionBuilder(features, archive.getType()).build();
 	}
 
-	public static FeatureCollection getTestFeatures(XPlanVersion version) throws Exception {
-		FeatureCollection fc = load(version);
-		XpPpoLookup.init(fc);
-		return fc;
-	}
-
-	public static FeatureCollection getTestFeatures(XPlanVersion version, String resourceName) throws Exception {
-		FeatureCollection fc = load(version, resourceName);
-		XpPpoLookup.init(fc);
-		return fc;
-	}
-
 	public static Feature getTestFeature(FeatureCollection fc, String gmlId) {
 		for (Feature f : fc) {
 			if (gmlId.equals(f.getId())) {
@@ -86,7 +73,7 @@ public class TestFeaturesUtils {
 		return null;
 	}
 
-	private static FeatureCollection load(XPlanVersion version) throws Exception {
+	public static FeatureCollection load(XPlanVersion version) throws Exception {
 		switch (version) {
 		case XPLAN_40:
 			return load(version, "xplan40.xml");
@@ -100,7 +87,7 @@ public class TestFeaturesUtils {
 		throw new IllegalArgumentException();
 	}
 
-	private static FeatureCollection load(XPlanVersion version, String resource) throws Exception {
+	public static FeatureCollection load(XPlanVersion version, String resource) throws Exception {
 		InputStream is = null;
 		XMLStreamReader xmlReader = null;
 		GMLStreamReader gmlReader = null;

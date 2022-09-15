@@ -1,4 +1,4 @@
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 08.08.2022, 14:53:26-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 29.08.2022, 15:45:06-->
 <SQLFeatureStore configVersion="3.4.0" xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
   <JDBCConnId>xplan</JDBCConnId>
   <StorageCRS srid="0" dim="2D">EPSG:25832</StorageCRS>
@@ -13971,14 +13971,13 @@
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="dateTime"/>
+    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
     <Primitive path="xplan:art" mapping="xplan_art"/>
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich"/>
     <Primitive path="xplan:dientZurDarstellungVon" mapping="xplan_dientzurdarstellungvon"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:index" mapping="xplan_index"/>
-    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
-    <Primitive path="xplan:stylesheetIdWert" mapping="xplan_stylesheetidwert"/>
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:XP_LPO" table="xplansynarchive.xplan_xp_lpo">
     <FIDMapping prefix="XPLAN_XP_LPO_">
@@ -13995,14 +13994,13 @@
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="dateTime"/>
+    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
     <Primitive path="xplan:art" mapping="xplan_art"/>
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich"/>
     <Primitive path="xplan:dientZurDarstellungVon" mapping="xplan_dientzurdarstellungvon"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:index" mapping="xplan_index"/>
-    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
-    <Primitive path="xplan:stylesheetIdWert" mapping="xplan_stylesheetidwert"/>
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:XP_LTO" table="xplansynarchive.xplan_xp_lto">
     <FIDMapping prefix="XPLAN_XP_LTO_">
@@ -14019,6 +14017,7 @@
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="dateTime"/>
+    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
     <Primitive path="xplan:art" mapping="xplan_art"/>
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich"/>
@@ -14031,8 +14030,6 @@
     <Primitive path="xplan:anchorX" mapping="xplan_anchorx"/>
     <Primitive path="xplan:anchorY" mapping="xplan_anchory"/>
     <Primitive path="xplan:index" mapping="xplan_index"/>
-    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
-    <Primitive path="xplan:stylesheetIdWert" mapping="xplan_stylesheetidwert"/>
     <Primitive path="xplan:horizontaleAusrichtung" mapping="xplan_horizontaleausrichtung"/>
     <Primitive path="xplan:horizontaleAusrichtungWert" mapping="xplan_horizontaleausrichtungwert"/>
     <Primitive path="xplan:vertikaleAusrichtung" mapping="xplan_vertikaleausrichtung"/>
@@ -14066,6 +14063,8 @@
     <Primitive path="xplan:zeilenAnz" mapping="xplan_zeilenanz"/>
     <Primitive path="xplan:anchorX" mapping="xplan_anchorx"/>
     <Primitive path="xplan:anchorY" mapping="xplan_anchory"/>
+    <Primitive path="xplan:drehwinkel" mapping="xplan_drehwinkel"/>
+    <Primitive path="xplan:drehwinkelUOM" mapping="xplan_drehwinkeluom"/>
     <Primitive path="xplan:index" mapping="xplan_index"/>
     <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:stylesheetIdWert" mapping="xplan_stylesheetidwert"/>
@@ -14073,8 +14072,6 @@
     <Primitive path="xplan:horizontaleAusrichtungWert" mapping="xplan_horizontaleausrichtungwert"/>
     <Primitive path="xplan:vertikaleAusrichtung" mapping="xplan_vertikaleausrichtung"/>
     <Primitive path="xplan:vertikaleAusrichtungWert" mapping="xplan_vertikaleausrichtungwert"/>
-    <Primitive path="xplan:drehwinkel" mapping="xplan_drehwinkel"/>
-    <Primitive path="xplan:drehwinkelUOM" mapping="xplan_drehwinkeluom"/>
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:XP_PPO" table="xplansynarchive.xplan_xp_ppo">
     <FIDMapping prefix="XPLAN_XP_PPO_">
@@ -14091,6 +14088,7 @@
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="dateTime"/>
+    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
     <Primitive path="xplan:art" mapping="xplan_art"/>
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich"/>
@@ -14098,11 +14096,10 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:skalierung" mapping="xplan_skalierung"/>
     <Primitive path="xplan:hat" mapping="xplan_hat"/>
-    <Primitive path="xplan:index" mapping="xplan_index"/>
-    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
-    <Primitive path="xplan:stylesheetIdWert" mapping="xplan_stylesheetidwert"/>
+    <Primitive path="xplan:schriftinhalt" mapping="xplan_schriftinhalt"/>
     <Primitive path="xplan:drehwinkel" mapping="xplan_drehwinkel"/>
     <Primitive path="xplan:drehwinkelUOM" mapping="xplan_drehwinkeluom"/>
+    <Primitive path="xplan:index" mapping="xplan_index"/>
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:XP_PTO" table="xplansynarchive.xplan_xp_pto">
     <FIDMapping prefix="XPLAN_XP_PTO_">
@@ -14119,6 +14116,7 @@
     <Primitive path="xplan:gueltigkeitBeginn" mapping="xplan_gueltigkeitbeginn" type="dateTime"/>
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="dateTime"/>
+    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:darstellungsprioritaet" mapping="xplan_darstellungsprioritaet"/>
     <Primitive path="xplan:art" mapping="xplan_art"/>
     <Primitive path="xplan:gehoertZuBereich" mapping="xplan_gehoertzubereich"/>
@@ -14130,15 +14128,13 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:anchorX" mapping="xplan_anchorx"/>
     <Primitive path="xplan:anchorY" mapping="xplan_anchory"/>
+    <Primitive path="xplan:drehwinkel" mapping="xplan_drehwinkel"/>
+    <Primitive path="xplan:drehwinkelUOM" mapping="xplan_drehwinkeluom"/>
     <Primitive path="xplan:index" mapping="xplan_index"/>
-    <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
-    <Primitive path="xplan:stylesheetIdWert" mapping="xplan_stylesheetidwert"/>
     <Primitive path="xplan:horizontaleAusrichtung" mapping="xplan_horizontaleausrichtung"/>
     <Primitive path="xplan:horizontaleAusrichtungWert" mapping="xplan_horizontaleausrichtungwert"/>
     <Primitive path="xplan:vertikaleAusrichtung" mapping="xplan_vertikaleausrichtung"/>
     <Primitive path="xplan:vertikaleAusrichtungWert" mapping="xplan_vertikaleausrichtungwert"/>
-    <Primitive path="xplan:drehwinkel" mapping="xplan_drehwinkel"/>
-    <Primitive path="xplan:drehwinkelUOM" mapping="xplan_drehwinkeluom"/>
   </FeatureTypeMapping>
   <FeatureTypeMapping name="xplan:XP_Praesentationsobjekt" table="xplansynarchive.xplan_xp_praesentationsobjekt">
     <FIDMapping prefix="XPLAN_XP_PRAESENTATIONSOBJEKT_">
