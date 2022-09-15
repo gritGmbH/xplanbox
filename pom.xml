@@ -1241,6 +1241,10 @@
       <id>latlon</id>
       <url>https://repo.lat-lon.de/repository/maven-public/</url>
     </pluginRepository>
+    <pluginRepository>
+      <id>SmartBearPluginRepository</id>
+      <url>http://smartbearsoftware.com/repository/maven2</url>
+    </pluginRepository>
   </pluginRepositories>
 
   <distributionManagement>
