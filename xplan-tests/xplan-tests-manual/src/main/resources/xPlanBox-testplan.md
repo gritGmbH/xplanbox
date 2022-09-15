@@ -2,35 +2,36 @@
 
 Die xPlanBox setzt sich aus folgenden Komponenten zusammen, für die verschiedene Testfälle definiert wurden.
 
+* [1. XPlanManagerCLI](#1-xplanmanagercli)
+* [2. XPlanManagerWeb](#2-xplanmanagerweb)
+* [3. XPlanValidatorCLI](#3-xplanvalidatorcli)
+* [4. XPlanValidatorWeb](#4-xplanvalidatorweb)
+* [5. XPlanValidateDB-CLI](#5-xplanvalidatedb-cli)
+* [6. XPlanUpdateDataCLI](#6-xplanupdatedatacli)        
+* [7. XPlanTransformCLI](#7-xplantransformcli)
+* [8. XPlanAuswerteschemaCLI](#8-xplanauswerteschemacli)
+* [9. XPlanWMS](#9-xplanwms)
+* [10. XPlanWFS/XPlanSynWFS](#10-xplanwfsxplansynwfs)
+* [11. XPlanRessourcen](#11-xplanressourcen-landingpage)
+* [12. DB-Aktualisierung](#12-db-aktualisierung)
+* [13. Automatisierte SoapUI-Tests](#13-automatisierte-soapui-tests)
+* [Anhang](#anhang)
 
-* [XPlanManagerCLI](#xplanmanagercli)
-* [XPlanManagerWeb](#xplanmanagerweb)
-* [XPlanValidatorCLI](#xplanvalidatorcli)
-* [XPlanValidatorWeb](#xplanvalidatorweb)
-* [XPlanValidateDB-CLI](#xplanvalidatedb-cli)
-* [XPlanUpdateData-CLI](#xplanupdatedata-cli)
-* [XPlanTransformCLI](#xplantransformcli)
-* [XPlanAuswerteschemaCLI](#xplanauswerteschemacli)
-* [XPlanWMS](#xplanwms)
-* [XPlanWFS/XPlanSynWFS](#xplanwfsxplansynwfs)
-* [XPlanRessourcen](#xplanresssourcen)
-
-
-# XPlanManagerCLI 
+# 1. XPlanManagerCLI 
 
 ### Prüffall-01: Hilfe aufrufen
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer wechselt in das Verzeichnis des XPlanManagerCLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-manager-cli-$VERSION/bin`.
-**01** | Der Benutzer ruft die Hilfe mit dem Befehl in [1] auf. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
+**01** | Der Benutzer ruft die Hilfe mit dem Befehl in [2] auf. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des XPlanManagerCLI. 
 
 **Hinweis**
 
 * [1] `~/xplan-manager-cli-$VERSION/bin`
-* [1] `./XPlanManager -help `
+* [2] `./XPlanManager -help `
 
 ---
 
@@ -39,9 +40,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * Die DB-Tabelle der Datenbasis ist leer, beinhaltet somit kein Datenbank-Schema.
- * Der Nutzer hat die Rechte, eine Datenbank anzulegen.
+ * Der Nutzer hat die Rechte, eine Datenbank anzulegen. 
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -60,7 +61,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
  * Der Prüffall-02 wurde erfolgreich ausgeführt.
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -79,7 +80,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
  * Der Prüffall-03  wurde erfolgreich ausgeführt.
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -105,7 +106,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Der Prüffall-03  wurde erfolgreich ausgeführt.
  * Das zur Sortierung genutzte Datumsfeld wurde in der Datei <XPLANBOX_CONFIG>/managerConfiguration.properties erfolgreich konfiguriert.
 
-#### Prüffall
+#### Testschritte
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -152,7 +153,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  
  Beispielhaft werden anhand der Testdaten XPlanGML-Pläne (Rasterdaten) mit verschiedenen Versionen über den XPlanManager in die Datenbasis geladen und mittels GetMap-Request über den XPlanWMS wieder abgerufen.
  
-#### Prüffall
+#### Testschritte
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -167,7 +168,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 * [3] <http://<host:port>/xplan-wms/services/wms?REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&WIDTH=1081&HEIGHT=725&LAYERS=bplanraster_sortiert&TRANSPARENT=TRUE&FORMAT=image%2Fpng&BBOX=417326.9138990595,5715257.490169556,418938.9357000923,5716338.633375614&SRS=EPSG:25833&STYLES=default>
 
 
-# XPlanManagerWeb
+# 2. XPlanManagerWeb
 
 ### Prüffall-01: Plan-Funktion: Hinzufügen
 
@@ -175,7 +176,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * XPlanArchive sind verfügbar.
  
-#### Prüffall 
+#### Testschritte 
 Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt auf den Button **Datei auswählen**. | Es öffnet sich ein neues Fenster zur Auswahl von Plänen. 
@@ -202,17 +203,18 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt neben einen hoch geladenen Plan auf den Button **Validieren**. | Ein neues Fenster mit dem XPlanValidator öffnet sich. 
 **02** | Der Benutzer vergibt eine _Bezeichnung_. | Die Bezeichnung wird im Feld dargestellt. 
-**03** | Der Benutzer wählt einen _Validierungstyp_ aus. | Der Validierungstyp wird im Feld dargestellt. 
-**04** | Der Benutzer startet den XPlanValidator. | Das Validierungsergebnis wird dargestellt. 
-**05** | Der Benutzer kehrt zu dem XPlanManager zurück. | Die Web-Oberfläche des XPlanManagers wird angezeigt. 
-**06.1** | Die Schaltfläche **Validieren** je nach Ergebnis rot (Validierung fehlgeschlagen). | Bei erfolgreicher Validierung wird die Schaltfläche **Import** freigegeben. 
-**06.2** | Die Schaltfläche **Validieren** je nach Ergebnis grün (Validierung erfolgreich) eingefärbt. | Bei fehlgeschlagener Validierung wird die Schaltfläche **Import** nicht freigegeben. 
+**03** | Der Benutzer wählt einen _Validierungstyp_ aus. | Der Validierungstyp wird im Feld dargestellt.
+**04** | Der Benutzer wählt ein _Profil_ aus. | Das Profil wird im Feld dargestellt. 
+**05** | Der Benutzer startet den XPlanValidator. | Das Validierungsergebnis wird dargestellt. 
+**06** | Der Benutzer kehrt zu dem XPlanManager zurück. | Die Web-Oberfläche des XPlanManagers wird angezeigt. 
+**07.1** | Die Schaltfläche **Validieren** je nach Ergebnis rot (Validierung fehlgeschlagen). | Bei erfolgreicher Validierung wird die Schaltfläche **Import** freigegeben. 
+**07.2** | Die Schaltfläche **Validieren** je nach Ergebnis grün (Validierung erfolgreich) eingefärbt. | Bei fehlgeschlagener Validierung wird die Schaltfläche **Import** nicht freigegeben. 
 
 **Hinweis**
 
@@ -227,7 +229,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Der Prüffall-01 wurde erfolgreich ausgeführt (XPlanArchive sind in der Datenbasis vorhanden).
  * Der Prüffall-02 wurde erfolgreich ausgeführt (Es sind valide und invalide XPlanArchive vorhanden).
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -243,11 +245,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-04: Plan-Liste
 
-
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -282,7 +283,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -296,22 +297,93 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
  
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt neben einen Plan auf den Button **Plan publizieren**. | Es öffnet sich ein Pop-up, welches den Vorgang bestätigt. 
-**02** | Der Benutzer geht auf die xPlanBox Landingpage und überprüft, ob der Plan in den XPlanInspirePluDiensten aufgelistet wird. | Der publizierte Plan wird in den XPlanInspirePluDiensten aufgelistet.  
+**02** | Der Benutzer geht auf die xPlanBox Landingpage und öffnet die Capabilities der XPlanInspirePluDienste. | Die Capabilities des XPlanInspirePluWFS und XPlanInspirePluWMS werden erfolgreich angezeigt.
+**03** | Der Benutzer testet mit einer Geoinformationssystemssoftware wie z.B. QGIS, ob der in Testschritt 01 publizierte Plan durch die Dienste dargestellt wird. | Der publizierte Plan wird erfolgreich durch die Dienste dargestellt.
 
 ---
 
-### Prüffall-07: Plan-Funktion: Export
+### Prüffall-07: Plan-Funktion: Editieren
+
+#### Vorbedingungen 
+
+* Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
+* Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten.
+
+#### Testschritte 1
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer überprüft die Möglichkeit der Editierbarkeit.| Hinter den Plänen wird je eine Schaltfläche **editieren**  angezeigt.
+**02** | Der Benutzer drückt auf die Schaltfläche **editieren**.| Es öffnet sich ein neues Fenster mit einem Formular.
+**03** | Der Benutzer editiert die _Stammdaten_ in den **Basisdaten** und **Gültigkeitszeitraum** valide und bestätigt die Änderung durch die Schaltfläche **Speichern**.| Speicherung der Veränderungen.
+**04** | Der Benutzer editiert die _Stammdaten_ in den **Basisdaten** und **Gültigkeitszeitraum** nicht valide und bestätigt die Änderung durch die Schaltfläche **Speichern**.| Es öffnet sich eine Fehlermeldung mit dem Vermerk auf den Fehler.
+
+#### Testschritte 2 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.| Es öffnet sich ein neues Fenster mit einem Formular.
+**02** | Der Benutzer klickt auf **Änderung hinzufügen**.| Es öffnet sich ein Dialog mit einem Formular.
+**03** | Der Benutzer editiert die Daten unter **Neue Änderung anlegen** ohne dabei falsche Eingaben zu machen und bestätigt das Ergebnis durch die Schaltfläche **Speichern**.| Die geänderten Daten werden in die Liste der Änderungen übernommen.
+**04** | Der Benutzer editiert die Daten unter **Neue Änderung anlegen**, wobei kein Planname angegeben wird, und bestätigt die Änderung durch die Schaltfläche **Speichern**.| Es wird eine Fehlermeldung mit dem Vermerk auf den fehlenden Plannamen angezeigt.
+**05** | Der Benutzer fügt einen _Plannamen_ ein und bestätigt die Änderung durch die Schaltfläche **Speichern**.| Die geänderten Daten werden in die Liste der Änderungen übernommen.
+
+#### Testschritte 3 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** |Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.|Es öffnet sich ein neues Fenster mit einem Formular.
+**02** |Der Benutzer folgt unter „Dokumente“ den Schritten 02 und 03 von Prüffall 2 entsprechend.| Ergebnis siehe Prüffall 2 Schritt 02 und 03.
+
+#### Testschritte 4 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.| Es öffnet sich ein neues Fenster mit einem Formular.
+**02** | Der Benutzer editiert die Angaben unter **Rasterbasis** ohne dabei falsche Eingaben zu machen und bestätigt das Ergebnis durch die Schaltfläche **Speichern**.| Speicherung der Veränderungen.
+
+#### Testschritte 5
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** |  Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1. | Es öffnet sich ein neues Fenster mit einem Formular.
+**02** | Der Benutzer editiert lediglich das _Datum der Rechtsverordnung_ in den **Basisdaten** und bestätigt die Änderung durch die Schaltfläche **Speichern**. Die Eingabe ist valide. | Die Reihenfolge der aufgelisteten Pläne auf der Web-basierten Benutzeroberfläche des XPlanManagers hat sich verändert.
+**03** | Der Benutzer editiert lediglich das _Datum der Rechtsverordnung_ in den **Basisdaten** und bestätigt die Änderung durch die Schaltfläche **Speichern**. Die Eingabe ist nicht valide. | Es wird eine Fehlermeldung mit dem Vermerk auf den Fehler angezeigt.
+
+#### Testschritte 6
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1. | Es öffnet sich ein neues Fenster mit einem Formular.
+**02** | Der Benutzer editiert lediglich den _Rechtsstand_ in den **Basisdaten** und bestätigt die Änderung durch die Schaltfläche **Speichern**. | Der bearbeitete Plan wird in der entsprechende Datenhaltung abgelegt und nur in der Kartenansicht des entsprechenden WMS-Dienstes angezeigt.
+
+#### Testschritte 7
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.| Es öffnet sich ein neues Fenster mit einem Formular.
+**02** | Der Benutzer editiert bzw. löscht beliebig viele Stammdaten und bricht das Editieren durch **Abbruch** ab. | Die ursprünglichen Plandaten sind nicht verändert.
+
+#### Testschritte 8
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer exportiert einen zuvor bearbeiteten Plan. | Das exportierte Planarchiv enthält die geänderten Daten.
+
+---
+
+### Prüffall-08: Plan-Funktion: Export
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
  
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -321,13 +393,13 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-08: Plan-Funktion: Entfernen
+### Prüffall-09: Plan-Funktion: Entfernen
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet.
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
  
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -338,102 +410,33 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-09: Plan-Funktion: Editieren
-
-#### Vorbedingungen 
-
- * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
- * Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten.
-
-#### Prüffall 1
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer überprüft die Möglichkeit der Editierbarkeit.| Hinter den Plänen wird je eine Schaltfläche **editieren**  angezeigt.
-**02** | Der Benutzer drückt auf die Schaltfläche **editieren**.| Es öffnet sich ein neues Fenster mit einem Formular.
-**03** | Der Benutzer editiert die _Stammdaten_ in den **Basisdaten** und **Gültigkeitszeitraum** valide und bestätigt die Änderung durch die Schaltfläche **Speichern**.| Speicherung der Veränderungen.
-**04** | Der Benutzer editiert die _Stammdaten_ in den **Basisdaten** und **Gültigkeitszeitraum** nicht valide und bestätigt die Änderung durch die Schaltfläche **Speichern**.| Es öffnet sich eine Fehlermeldung mit dem Vermerk auf den Fehler.
-
-#### Prüffall 2 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.| Es öffnet sich ein neues Fenster mit einem Formular.
-**02** | Der Benutzer klickt auf **Änderung hinzufügen**.| Es öffnet sich ein Dialog mit einem Formular.
-**03** | Der Benutzer editiert die Daten unter **Neue Änderung anlegen** ohne dabei falsche Eingaben zu machen und bestätigt das Ergebnis durch die Schaltfläche **Speichern**.| Die geänderten Daten werden in die Liste der Änderungen übernommen.
-**04** | Der Benutzer editiert die Daten unter **Neue Änderung anlegen**, wobei kein Planname angegeben wird, und bestätigt die Änderung durch die Schaltfläche **Speichern**.| Es wird eine Fehlermeldung mit dem Vermerk auf den fehlenden Plannamen angezeigt.
-**05** | Der Benutzer fügt einen _Plannamen_ ein und bestätigt die Änderung durch die Schaltfläche **Speichern**.| Die geänderten Daten werden in die Liste der Änderungen übernommen.
-
-#### Prüffall 3 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** |Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.|Es öffnet sich ein neues Fenster mit einem Formular.
-**02** |Der Benutzer folgt unter „Dokumente“ den Schritten 02 und 03 von Prüffall 2 entsprechend.| Ergebnis siehe Prüffall 2 Schritt 02 und 03.
-
-#### Prüffall 4 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.| Es öffnet sich ein neues Fenster mit einem Formular.
-**02** | Der Benutzer editiert die Angaben unter **Rasterbasis** ohne dabei falsche Eingaben zu machen und bestätigt das Ergebnis durch die Schaltfläche **Speichern**.| Speicherung der Veränderungen.
-
-
-#### Prüffall 5
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** |  Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1. | Es öffnet sich ein neues Fenster mit einem Formular.
-**02** | Der Benutzer editiert lediglich das _Datum der Rechtsverordnung_ in den **Basisdaten** und bestätigt die Änderung durch die Schaltfläche **Speichern**. Die Eingabe ist valide. | Die Reihenfolge der aufgelisteten Pläne auf der Web-basierten Benutzeroberfläche des XPlanManagers hat sich verändert.
-**03** | Der Benutzer editiert lediglich das _Datum der Rechtsverordnung_ in den **Basisdaten** und bestätigt die Änderung durch die Schaltfläche **Speichern**. Die Eingabe ist nicht valide. | Es wird eine Fehlermeldung mit dem Vermerk auf den Fehler angezeigt.
-
-#### Prüffall 6
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1. | Es öffnet sich ein neues Fenster mit einem Formular.
-**02** | Der Benutzer editiert lediglich den _Rechtsstand_ in den **Basisdaten** und bestätigt die Änderung durch die Schaltfläche **Speichern**. | Der bearbeitete Plan wird in der entsprechende Datenhaltung abgelegt und nur in der Kartenansicht des entsprechenden WMS-Dienstes angezeigt.
-
-#### Prüffall 7
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer folgt den Schritten 01 bis 02 von Prüffall 1.| Es öffnet sich ein neues Fenster mit einem Formular.
-**02** | Der Benutzer editiert bzw. löscht beliebig viele Stammdaten und bricht das Editieren durch **Abbruch** ab. | Die ursprünglichen Plandaten sind nicht verändert.
-
-#### Prüffall 8
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer exportiert einen zuvor bearbeiteten Plan. | Das exportierte Planarchiv enthält die geänderten Daten.
-
----
-
 ### Prüffall-10: XPlanManager-Funktion: Anzeigefilter
 
 #### Vorbedingungen 
 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
 
-#### Prüffall 1 
+#### Testschritte 1 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer sucht die Pläne einer bestimmten Gemeinde (Suchfilter **Gemeindeauswahl**) mit uneingeschränktem Planstatus. | Es werden alle der Suchanfrage entsprechenden Pläne angezeigt.
 
-#### Prüffall 2 
+#### Testschritte 2 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer sucht die Pläne eines bestimmten Status (Suchfilter **Planstatus**) in allen Gemeinden. | Es werden alle der Suchanfrage entsprechenden Pläne angezeigt.
 
-#### Prüffall 3 
+#### Testschritte 3 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer sucht die Pläne einer bestimmten Gemeinde (Suchfilter **Gemeindeauswahl**) und einem bestimmten Planstatus (Suchfilter **Planstatus**). | Es werden alle der Suchanfrage entsprechenden Pläne angezeigt.
 **02** | Der Benutzer wählt **Name** und gibt einen _Namen(steil)_ eines in der Planliste angezeigten Plans an. | Die zuvor angezeigte Liste ist auf die Pläne eingeschränkt, deren Namen mit der Nutzereingabe übereinstimmen.
 **03** | Der Benutzer wählt **Alle Pläne anzeigen** | Die zuvor gesetzten Auswahlkriterien werden zurückgesetzt, und es werden alle Pläne angezeigt.
+
+---
 
 ### Prüffall-11: Active Directory mit Gruppenhierarchien anbinden
 
@@ -442,7 +445,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
  * Es existiert ein Nutzer „A", dieser ist Mitglied der Gruppe „B-Plan“. Gruppe „B-Plan“ ist Mitglied der Gruppe „C“. Gruppe C ist berechtigt ausschließlich Pläne aus der Gemeinde XY zu importieren.
 
-#### Prüffall
+#### Testschritte
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -462,7 +465,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Es existiert ein Nutzer „A“, dieser ist Mitglied der Gruppe „Editor“ (oder ähnliches). Die Gruppe „Editor“ (oder ähnliches) ist berechtigt Pläne des Bezirkes „XY“ zu editieren.
  * Es existiert ein Nutzer „B“, dieser ist Mitglied der Gruppe „B“. Die Gruppe „B“ ist nicht berechtigt zu editieren.
 
-#### Prüffall 1 
+#### Testschritte 1 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -471,7 +474,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **03** | Der Benutzer überprüft die Schaltfläche „editieren“ der  Gemeinde „XY“ zugehörigen Pläne.| Die Schaltfläche ist farblich gefüllt und beim klicken auf die Schaltfläche öffnet sich ein neues Fenster mit einem Formular.
 **04** | Der Benutzer überprüft die Schaltfläche „editieren“ von Plänen einer anderen Gemeinde.| Die Schaltfläche ist ausgegraut und beim Klick auf die Schaltfläche passiert nichts.
 
-#### Prüffall 2 
+#### Testschritte 2 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -479,7 +482,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **02** | Der Benutzer meldet sich als Nutzer „B“ an.| Es öffnet sich die Web-basierte Benutzeroberfläche des XPlanManagers, bereits importierte Pläne werden aufgelistet.
 **03** | Der Benutzer überprüft die Möglichkeit der Editierbarkeit.| Hinter den Plänen wird je eine ausgegraute Schaltfläche „editieren“  angezeigt.
 
-#### Prüffall 3 
+#### Testschritte 3 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -493,7 +496,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Optional, wenn Active Directory konfiguriert ist.
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
 
-#### Prüffall 
+#### Testschritte 
  
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -512,7 +515,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Es existiert ein Nutzer „A“, dieser ist Mitglied der Gruppe „Super-Administrator“. Die Gruppe „Super-Administrator“ ist berechtigt zu importieren und beim Import das Planverfahren manuell zu bestimmen, wenn keine automatische Zuordnung statt findet.
  * Es existiert ein Nutzer „B“, dieser ist Mitglied der Gruppe „B“. Die Gruppe „B“ ist berechtigt zu importieren jedoch können diese, beim Import, das Planverfahren nicht manuell bestimmen, wenn keine automatische Zuordnung statt findet.
 
-#### Prüffall 1
+#### Testschritte 1
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -521,7 +524,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **03** | Der Benutzer importiert einen Plan mit automatischer Zuordnung des Planverfahrens.| Es muss nicht manuell eingegriffen werden und der Plan wird importiert.
 **04** | Der Benutzer importiert einen Plan ohne automatische Zuordnung des Planverfahrens.| Es öffnet sich ein neues Fenster mit Auswahlmöglichkeiten des Planverfahrens.
 
-#### Prüffall 2 
+#### Testschritte 2 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -530,7 +533,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **03** | Der Benutzer importiert einen Plan mit automatischer Zuordnung des Planverfahrens.| Der Plan wird importiert.
 **04** | Der Benutzer importiert einen Plan ohne automatische Zuordnung des Planverfahrens.| Der Importvorgang wird abgebrochen. Es wird eine entsprechende Fehlermeldung angezeigt.
 
-#### Prüffall 3 
+#### Testschritte 3 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -548,7 +551,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
  * Der Benutzer ist am XPlanManager-Web angemeldet und hat die Berechtigung zum Import von Planarchiven. 
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt |Beschreibung |Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -581,7 +584,7 @@ Schritt |Beschreibung |Erwartetes Ergebnis
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
  * Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
 
-#### Prüffall
+#### Testschritte
 
 Schritt |Beschreibung |Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -643,14 +646,14 @@ BP_BaugebietsTeilFlaeche/detaillierteArtDerBaulNutzung=xplanExternalCodeLookup(x
 </gml:Dictionary>
 ```
 
-# XPlanValidatorCLI
+# 3. XPlanValidatorCLI
 
 ### Prüffall-01: Validierungsart
 
 #### Vorbedingungen 
  * Valide und invalide XPlanArchive sind verfügbar.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -684,8 +687,8 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  * XPlanArchive sind verfügbar.
- 
-#### Prüffall 
+
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -706,7 +709,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Der Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -724,14 +727,14 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 * [4] `cd ~/xplan-validator-cli-$VERSION/tmp/` 
     * Der Pfad kann variieren.
 
-# XPlanValidatorWeb
+# 4. XPlanValidatorWeb
   
 ### Prüffall-01: Webschnittstelle XPlanValidator
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet. 
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -741,12 +744,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-02: Planarchiv auswählen
 
-
 #### Vorbedingungen
  * Der Prüffall-01 wurde erfolgreich ausgeführt. 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -756,21 +758,20 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-
 ### Prüffall-03: Eingabe einer Bezeichnung für den Validierungsdurchlauf 
 
 #### Vorbedingungen
  * Der Prüffall-02 wurde erfolgreich ausgeführt. 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
  
-#### Prüffall 1
+#### Testschritte 1
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt auf den Button **Hochladen und Validierungsoptionen einstellen**. | Es öffnet sich ein Fenster mit _Plan hochladen_ und dem _Namen_ des ausgewählten Planarchivs.
 **02** | Der Benutzer klickt auf **Abbrechen**. | Das Fenster schließt sich, das Planarchiv ist aber immer noch ausgewählt.
 
-#### Prüffall 2
+#### Testschritte 2
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -781,27 +782,42 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-04: Auswahl der Validierungsart
+### Prüffall-04: Auswahl eines Validierungstyps
 
 #### Vorbedingungen
  * Der Prüffall-03 wurde erfolgreich ausgeführt. 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Auswahl **Validierungstyp**. 
+**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Auswahl an **Validierungstypen**. 
 **02** | Der Benutzer wählt durch das anklicken eines Kästchens einen _Validierungstyp_ aus. | Der ausgewählte Validierungstyp wird anhand eines _Häckchens_ im Kästchen angezeigt.
 
 ---
 
-### Prüffall-05: Validierung starten und abbrechen
+### Prüffall-05: Auswahl eines Profils
+
+#### Vorbedingungen
+ * Der Prüffall-03 wurde erfolgreich ausgeführt. 
+ * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
+ 
+#### Testschritte 
+
+Schritt | Beschreibung | Erwartetes Ergebnis
+----------- |------------------|-------------------------
+**01** | Der Benutzer überprüft die Web-Schnittstelle (Eingabesicht) des XPlanValidators. | Die Eingabesicht hat eine Auswahl an **Profilen**. 
+**02** | Der Benutzer wählt durch das anklicken eines Kästchens ein _Profil_ aus. | Das ausgewählte Profil wird anhand eines _Häckchens_ im Kästchen angezeigt.
+
+---
+
+### Prüffall-06: Validierung starten und abbrechen
 
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Die vorherigen Prüffälle (Prüffall-02, Prüffall-03, Prüffall-04) wurden erfolgreich ausgeführt.
+ * Die vorherigen Prüffälle (Prüffall-02, Prüffall-03, Prüffall-04, Prüffall-05) wurden erfolgreich ausgeführt.
 
 ### Prüffall 1
 
@@ -809,7 +825,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt auf den Button **Validierung abbrechen**. | Die Validierungsoptionen werden geschlossen, das Planarchiv gelöscht.
 
-#### Prüffall 2
+#### Testschritte 2
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -817,13 +833,13 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-06: Dynamische Titelzeile
+### Prüffall-07: Dynamische Titelzeile
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Der Prüffall-05 wurde erfolgreich ausgeführt.
+ * Der Prüffall-06 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -831,12 +847,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-07: Download der Validierungsergebnisse
+### Prüffall-08: Download der Validierungsergebnisse
 
 #### Vorbedingungen 
  * Der Benutzer hat eine Validierung über die Web-basierte Benutzeroberfläche des XPlanValidators durchgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -859,13 +875,13 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-08: Schaltfläche um einen weiteren Plan zu validieren
+### Prüffall-09: Schaltfläche um einen weiteren Plan zu validieren
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar und geöffnet.
- * Der Prüffall-06 wurde erfolgreich ausgeführt.
+ * Der Prüffall-07 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -874,13 +890,13 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-09: Optimierte Validatorreports
+### Prüffall-10: Optimierte Validatorreports
 
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanValidators ist verfügbar.
  * Ein Planarchiv mit Syntaxfehlern, geometrischen und semantischen Fehlern in xplan.gml ist verfügbar.
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -898,11 +914,11 @@ Die Ausgabe der Validierungsergebnisse erfolgt bei den folgenden Komponenten ent
  * XPlanManagerWeb
  * XPlanManagerCLI.
 
-# XPlanValidateDB-CLI  
+# 5. XPlanValidateDB-CLI  
 
 ### Prüffall-01: Hilfe aufrufen
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -911,9 +927,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
+ * [1] ` cd ~/xplan-validatedb-cli-$VERSION/bin` 
     * Der Pfad kann variieren.
-* [2] `./XPlanValidateDB-CLI -h [oder -help und --help]`
+ * [2] `./XPlanValidateDB -h [oder -help und --help]`
 
 ---
 
@@ -922,7 +938,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -932,15 +948,15 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
  * [1] `./XPlanValidateDB -jdbcurl= <jdbc:postgresql://hostadresse:port/xplanbox> -user= <dbuser>  -password= <dbpassword> -rulesDirectory= <../xplan-validatedb-cli-$VERSION/etc/rules>`
 
-# XPlanUpdateData-CLI
+# 6. XPlanUpdateDataCLI
 
 ### Prüffall-01: Hilfe aufrufen
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateData-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-data-cli-$VERSION/bin`.
+**01** | Der Benutzer wechselt in das Verzeichnis des XPlanUpdateDatabase-CLI mit Hilfe des Befehls [1]. | Der Benutzer befindet sich in dem Verzeichnis `~/xplan-update-database-cli-$VERSION/bin`.
 **02** | Der Benutzer führt mit dem Befehl in [2] die Hilfe für den databaseUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des databaseUpdate.
 **03** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den districtUpdate aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des districtUpdate.
 **04** | Der Benutzer führt mit dem Befehl in [3] die Hilfe für den reSynthesizer aus. | Die Ausgabe gibt Auskunft über alle möglichen Eingabeparameter des reSynthesizer.
@@ -948,12 +964,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] ` cd ~/xplan-update-data-cli-$VERSION/bin` 
-    * Der Pfad kann variieren.
-* [2] `./databaseUpdate -? [oder --help]`
-* [3] `./districtUpdate -? [oder --help]`
-* [4] `./reSynthesizer -? [oder --help]`
-* [5] `./serviceMetadataRecordCreator -? [oder --help]`
+ * [1] ` cd ~/xplan-update-data-cli-$VERSION/bin` 
+   * Der Pfad kann variieren.
+ * [2] `./databaseUpdate -? [oder --help]`
+ * [3] `./districtUpdate -? [oder --help]`
+ * [4] `./reSynthesizer -? [oder --help]`
+ * [5] `./serviceMetadataRecordCreator -? [oder --help]`
 
 ---
 
@@ -962,7 +978,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -973,12 +989,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] `./databaseUpdate [-c <arg>] [-u <arg>] [-v] [-w <arg>]`
-* [2] `./districtUpdate [-c <arg>] [-v] [-w <arg>]`
-* [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
-* [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
+ * [1] `./databaseUpdate [-c <arg>] [-u <arg>] [-v] [-w <arg>]`
+ * [2] `./districtUpdate [-c <arg>] [-v] [-w <arg>]`
+ * [3] `./reSynthesizer -c <arg> [-i <arg>] [-v] [-w <arg>]`
+ * [4] `./serviceMetadataRecordCreator -c <arg> [-i <arg>] [-v] [-w <arg>]`
 
-# XPlanTransformCLI  
+# 7. XPlanTransformCLI  
 
 ### Prüffall-01: Hilfe aufrufen
 
@@ -986,7 +1002,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Die Installation von HALE wurde erfolgreich abgeschlossen.
  * Die im Verzeichnis `~/xplan-transform-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -995,9 +1011,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] ` cd ~/xplan-transform-cli-$VERSION/bin` 
-    * Der Pfad kann variieren.
-* [2] `./XPlanTransformCLI -? [oder --help]`
+ * [1] ` cd ~/xplan-transform-cli-$VERSION/bin` 
+   * Der Pfad kann variieren.
+ * [2] `./XPlanTransformCLI -? [oder --help]`
 
 ---
 
@@ -1006,7 +1022,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1019,21 +1035,21 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] VALIDATE`
-* [2] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] ALL`
-* [3] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] SYNC`
-* [4] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -f [oder --output] <PFAD/ZU/OUTPUTVERZEICHNIS>`
-* [5] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -v [oder --verbose]`
-* [6] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -w [oder --workspaceName] <PFAD/ZU/VERZEICHNIS/DES/WORKSPACE>`
+ * [1] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] VALIDATE`
+ * [2] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] ALL`
+ * [3] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -t [oder --type] SYNC`
+ * [4] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -f [oder --output] <PFAD/ZU/OUTPUTVERZEICHNIS>`
+ * [5] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -v [oder --verbose]`
+ * [6] `./XPlanTransformCLI -c [oder --outputDirectory] <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION> -w [oder --workspaceName] <PFAD/ZU/VERZEICHNIS/DES/WORKSPACE>`
 
-# XPlanAuswerteschemaCLI
+# 8. XPlanAuswerteschemaCLI
 
 ### Prüffall-01: Hilfe aufrufen
 
 #### Vorbedingungen 
  * Die im Verzeichnis `~/xplan-evaluation-schema-synchronize-cli-$VERSION/scripts` (Pfad kann variieren) liegenden SQL-Skripte wurden erfolgreich und in richtiger Reihenfolge ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1042,9 +1058,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] ` cd ~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin` 
-    * Der Pfad kann variieren.
-* [2] `./EvaluationSchemaSynchronizer -? [oder --help]`
+ * [1] ` cd ~/xplan-evaluation-schema-synchronize-cli-$VERSION/bin` 
+   * Der Pfad kann variieren.
+ * [2] `./EvaluationSchemaSynchronizer -? [oder --help]`
 
 ---
 
@@ -1053,7 +1069,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Prüffall-01 wurde erfolgreich ausgeführt.
  
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1062,11 +1078,11 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1] `./EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] ALL -u [oder --user] <arg> -w [oder --password] <arg>`
-    * Der Befehl in [1] darf nur einmal, initial, ausgeführt werden!
-* [2] `../EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] SYNC -u [oder --user] <arg> -w [oder --password] <arg>`
+ * [1] `./EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] ALL -u [oder --user] <arg> -w [oder --password] <arg>`
+   * Der Befehl in [1] darf nur einmal, initial, ausgeführt werden!
+ * [2] `../EvaluationSchemaSynchronizer -d [oder --database] <arg> -h [oder --host] <arg> -p [oder --port] <arg> -t [oder --type] SYNC -u [oder --user] <arg> -w [oder --password] <arg>`
 
-# XPlanWMS
+# 9. XPlanWMS
 
 ### Prüffall-01: Transparente Zeichenvorschriften im XPlanWMS ermöglichen
 
@@ -1075,7 +1091,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Im WMSpre und im WMSarchive ist als default Style eine transparente Darstellung eingestellt.
  * Im WMS-Endpoint ist als default Style die vollflächige Darstellung eingestellt.
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1150,7 +1166,7 @@ Eine transparente Kartendarstellung. Es erfolgt nur eine Darstellung der Geltung
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar.
  * Der Benutzer hat die Berechtigung zum Import von Planarchiven.
 
-#### Prüffall 1 
+#### Testschritte 1 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1163,11 +1179,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 ### Prüffall-03: Umringe immer sichtbar
 
 #### Vorbedingungen 
-
 * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar. 
 * Der Benutzer hat die Berechtigung zum Import von Planarchiven.
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1187,7 +1202,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Vorbedingungen 
  * Die Web-basierte Benutzeroberfläche des XPlanManagers ist verfügbar und geöffnet. 
 
-#### Prüffall 
+#### Testschritte 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1206,7 +1221,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Der Benutzer hat die Berechtigung zum Editieren von Planstammdaten. 
  * Es ist bereits mindestens ein Plan importiert.
 
-#### Prüffall 1 
+#### Testschritte 1 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1215,7 +1230,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 **03** | Der Benutzer verändert das „Rechtsverordungsdatum“ in ein zurückliegendes Datum und verändert ein Attribut. Die Änderung ist valide.| Die geänderten Daten sind gespeichert.
 **04** | Der Benutzer überprüft die Änderung mit Hilfe einer GetMap-Anfrage.|Der geänderte Plan wird auf der Karte im Hintergrund angezeigt. 
 
-#### Prüffall 2 
+#### Testschritte 2 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1234,7 +1249,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  * Der Benutzer hat die Berechtigung zum Import von Planarchiven. 
  * Der Systemadministrator hat Zugriff auf die Protokolldateien der o.g. Komponenten.
 
-#### Prüffall 1 
+#### Testschritte 1 
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1245,10 +1260,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ### Prüffall-07: GetFeatureInfo-Ausgaben des WMS
 
-#### Vorbedingungen 
- * Der Benutzer hat den XPlanWMS in QGIS als Datenquelle eingebunden.
-
-#### Prüffall
+#### Testschritte
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1258,14 +1270,14 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-# XPlanWFS/XPlanSynWFS
+# 10. XPlanWFS/XPlanSynWFS
 
 ### Prüffall-01: Unterstützung der Spezifikation WFS 2.0.0
 
 #### Vorbedingungen 
  * Es liegen XPlanArchive mit dem Planstatus "Festgestellt" in der Datenhaltung vor.
 
-#### Prüffall
+#### Testschritte
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -1279,12 +1291,104 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-# XPlanRessourcen (Landingpage)
+# 11. XPlanRessourcen (Landingpage)
 
 ### Prüffall-01: Links aufrufen
 
-#### Prüffall 
+#### Testschritte 
 Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
 **01** | Der Benutzer überprüft die Ordnung sowie Rechtsschreibung der Linkvorschau auf der gesamten Landingpage | Alle Links sind richtig geordnet und weisen keine Rechtsschreibfehler auf. 
 **02** | Der Benutzer klickt auf jeden Link der Oberpunkte "XPlanManager und XPlanValidator", "XPlanDienste", "XPlanInspirePluDienste", "XPlanDokumentation" sowie "Weiterführende Informationen" und überprüft die Funktionalität. | Alle Links funktionieren. 
+
+# 12. DB-Aktualisierung
+
+### Prüffall-01: Ausführung der SQL-Skripte zur Aktualisierung des Datenbankschemas
+
+#### Vorbedingungen 
+ * Die xPlanBox ist in der Version 5.0.3 installiert und Daten sind in der XPlanDB vorhanden.
+
+#### Testschritte 
+Schritt | Beschreibung | Erwartetes Ergebnis 
+----------- |------------------|-------------------------
+**01** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid=5.0.3* | Die SQL-Abfrage liefert kein Ergebnis, da es die Tabelle databasechangelog in der Version 5.0.3 noch nicht gibt. 
+**02** | Der Benutzer führt die DB-Skripte zur Aktualisierung des Datenbankschemas zur XPlanBox Version 6.0 aus. | Es treten keine Fehlermeldungen auf. 
+**03** | Der Benutzer führt den SQL-Befehl SELECT tag FROM databasechangelog WHERE versionid=6.0*  | Die Version des Datenbankschemas ist 6.0. 
+
+> Die SQL-Abfrage muss noch angepasst werden.
+
+### Prüffall-02: (Optional) Ausführen des Kommandozeilenwerkzeug reSynthesizer
+
+#### Vorbedingungen 
+ * Der Prüffall-01 wurde erfolgeich ausgeführt.
+ * Der reSynthesizer wird benötigt um die im XPlanSyn-Schema gespeicherten Daten zu aktualisieren.
+
+#### Testschritte 
+Schritt | Beschreibung | Erwartetes Ergebnis 
+----------- |------------------|-------------------------
+**01** | Der Benutzer führt den reSynthesiser aus (siehe 6. XPlanUpdateDataCLI) | Es treten keine Fehlermeldungen auf. 
+**02** | Der Benutzer kontrolliert die in der Datenhaltung vorliegenden Daten auf Vollständigkeit.| Alle vorherigen Daten sind auch im neuen XPlanSyn-Schema vorhanden.
+
+### Prüffall-03: (Optional) Ausführen des Kommandozeilenwerkzeug EvaluationSchemaSynchronizer
+
+#### Vorbedingungen 
+ * Der Prüffall-01 wurde erfolgeich ausgeführt.
+ * Der EvaluationSchemaSynchronizer wird benötigt um ein weiteres Datenbankschema für die Auswertung zu erzeugen und die Daten aus dem XPlanSyn-Schema der XPlanDB mit dem des Auswerteschemas zu synchronisieren.
+
+#### Testschritte 
+Schritt | Beschreibung | Erwartetes Ergebnis 
+----------- |------------------|-------------------------
+**01** | Der Benutzer muss die Datenbankschemas xplanevaluationxplansynpre, xplanevaluationxplansyn und xplanevaluationxplansynarchive löschen. | Die Datenbankschemas können erfolgreich gelöscht werden.
+**02** | Der Benutzer legt die Datenbankschemas mit Hilfe der SQL-Skipte im EvaluationSchemaSynchronizer an. | Es treten keine Fehlermeldungen auf, die Datenbankschemas existieren.
+**03** | Der Benutzer führt den EvaluationSchemaSynchronizer mit der Option `-t ALL` aus (siehe 8. XPlanAuswerteschemaCLI). | Es treten keine Fehlermeldungen auf. 
+**04** | Der Benutzer kontrolliert die in der Datenhaltung vorliegenden Daten darauf, dass die im jeweiligen XPlanSyn-Schema gespeicherten Daten auch dem neu erstellten Auswerteschema gleichen. | Die im XPlanSyn-Schema vorliegenden Daten gleichen dem jeweiligen Auswerteschema.
+
+# 13. Automatisierte SoapUI-Tests
+
+### Prüffall-01: Ausführung der automatisierten SoapUI-Tests
+
+#### Vorbedingungen 
+ * Die Software SoapUI ist in der Version 5.7.0 installiert.
+ * Die SoapUI-Projekte `xplan-api-managersoapui-project.xml`, `xplan-api-validatorsoapui-project.xml` und `xplan-webservices-soapui-project.xml` sind vorhanden und in SoapUI ausführbar.
+
+#### Testschritte 
+Schritt | Beschreibung | Erwartetes Ergebnis 
+----------- |------------------|-------------------------
+**01** | Der Benutzer führt das SoapUI-Projekt `xplan-api-managersoapui-project.xml` in SoapUI aus. | Alle Tests werden erfolgreich bestanden. 
+**02** | Der Benutzer führt das SoapUI-Projekt `xplan-api-validatorsoapui-project.xml` in SoapUI aus. | Alle Tests werden erfolgreich bestanden. 
+**03** | Der Benutzer führt das SoapUI-Projekt `xplan-webservices-soapui-project.xml` in SoapUI aus.  | Alle Tests werden erfolgreich bestanden 
+
+Die SoapUI-Projekte befinden sich im folgenden Verzeichnis: 
+>/xplan-tests/xplan-tests-soapui/src/main/resources/
+
+# Anhang
+
+Die nachfolgenden Testdatensätze werden für die Durchführung des Testplans genutzt. Jeder Testdatensatz verfügt über eine einzigartige Identifikationsnummer (Id).
+
+Die in der Tabelle 1 aufgelisteten Testdatensätze sind unter https://bitbucket.org/geowerkstatt-hamburg/xplan-testdaten/src/master/ frei verfügbar. 
+
+Tabelle 1:
+
+|   Id  | Planart | Version | Valide? |                 Bezeichnung                |
+|-------|---------|---------|---------|--------------------------------------------|
+|  BP1  |  BPlan  |   4.1   |    ja   | BPlan001_4-1                               |
+|  BP2  |  BPlan  |   5.0   |    ja   | BPlan002_5-0                               |
+|  BP3  |  BPlan  |   5.1   |    ja   | BPlan002_5-1                               |
+|  BP4  |  BPlan  |   5.2   |    ja   | BPlan001_5-2                               |
+|  BP5  |  BPlan  |   5.3   |    ja   | BPlan002_5-3                               |
+|  BP6  |  BPlan  |   5.4   |    ja   | BPlan001_5-4                               |          
+|  BP7  |  BPlan  |   6.0   |    ja   | BPlan002_6-0                               |
+
+--- 
+
+Die Testdatensätze für die Planarten FPlan, LPlan, RPlan und SOPlan (Tabelle 2) befinden sich im folgenden Verzeichnis: 
+>/xplan-tests/xplan-tests-soapui/src/main/resources/xplan-api-manager/plans 
+
+Tabelle 2:
+
+|   Id  | Planart | Version | Valide? |                 Bezeichnung                |
+|-------|---------|---------|---------|--------------------------------------------|
+|  FP1  |    FPlan   |   5.0   |   nein, die geometrischen Validierung ist invalide (Verstoß gegen 2.2.1.1 und 2.2.3.1)   | Flächennutzungsplan Freie und Hansestadt Hamburg |
+|  LP2  |    LPlan   |   6.0   |    ja   | P-Test 60                                  |
+|  RP3  |    RPlan   |   5.1   |   nein, die geometrischen Validierung ist invalide (Verstoß gegen 2.2.1.1)  | Regionales Raumordnungsprogramm Landkreis Test 2019 |
+|  SO4  |    SOPlan   |   5.3   |    ja   | StErhVO_Eppendorf_Hoheluft-Ost             |
