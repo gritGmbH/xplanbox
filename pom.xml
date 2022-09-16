@@ -21,12 +21,12 @@
     <deegree3.version>3.5-PRE1</deegree3.version>
     <geowerkstatt-hamburg.xplanung.version>0.12.2</geowerkstatt-hamburg.xplanung.version>
     <gwt.version>2.9.0</gwt.version>
-    <geotools.version>26.1</geotools.version>
+    <geotools.version>26.6</geotools.version>
     <log4j.version>2.17.2</log4j.version>
     <slf4j.version>1.7.36</slf4j.version>
     <spring.version>5.2.22.RELEASE</spring.version>
     <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
-    <spring-batch.version>4.3.5</spring-batch.version>
+    <spring-batch.version>4.3.6</spring-batch.version>
     <spring-security.version>5.2.15.RELEASE</spring-security.version>
     <jackson.version>2.13.4</jackson.version>
     <liquibase.version>4.15.0</liquibase.version>
