@@ -1,4 +1,4 @@
-#Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 29.08.2022, 15:45:06
+#Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 16.09.2022, 15:43:48
 BP_AbgrabungsFlaeche/abbaugut=xpath('xplan:abbaugut')
 BP_AbgrabungsFlaeche/aufschrift=xpath('xplan:aufschrift')
 BP_AbgrabungsFlaeche/ebene=xpath('xplan:ebene')
