@@ -108,3 +108,5 @@
 ==== Fehlerbehebungen
 - Fehler in der Workspace Konfiguration des XPlanWMS behoben
 - Fehler "org.deegree.geometry.standard.multi.DefaultMultiPoint cannot be cast to class org.deegree.geometry.primitive.Point" beim Import eines Plans behoben
+
+Die vollständige Änderungshistorie ist auf der https://gitlab.opencode.de/diplanung/ozgxplanung/[OpenCoDE-Plattform] zu finden.

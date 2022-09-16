@@ -8,7 +8,7 @@ Dieses Projekt ist unter der GNU Affero General Public License, Version 3 oder j
 
 ## Versionierung
 
-Die Versionierung der Software folgt dem Versionierungsschema von [SemVer](http://semver.org/). Eine Übersicht der bisher erstellten Versionen ist unter [Releases](../../releases) zu finden. 
+Die Versionierung der Software folgt dem Versionierungsschema von [SemVer](http://semver.org/). Eine Übersicht der bisher erstellten Versionen ist unter [Releases](../../releases) zu finden. Die Änderungshistorie ist im [CHANGELOG.md](CHANGELOG.md) dokumentiert.
 
 ## Mitarbeit
 
