@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -239,16 +239,16 @@ public class XPlanFeatureCollectionBuilder {
 
 	private String detectReleaseDatePropertyName(XPlanType type) {
 		switch (type) {
-		case BP_Plan:
-			return BP_RELEASE_DATE_PROP_NAME;
-		case FP_Plan:
-			return FP_RELEASE_DATE_PROP_NAME;
-		case LP_Plan:
-			return LP_RELEASE_DATE_PROP_NAME;
-		case RP_Plan:
-			return RP_RELEASE_DATE_PROP_NAME;
-		default:
-			return null;
+			case BP_Plan:
+				return BP_RELEASE_DATE_PROP_NAME;
+			case FP_Plan:
+				return FP_RELEASE_DATE_PROP_NAME;
+			case LP_Plan:
+				return LP_RELEASE_DATE_PROP_NAME;
+			case RP_Plan:
+				return RP_RELEASE_DATE_PROP_NAME;
+			default:
+				return null;
 		}
 	}
 

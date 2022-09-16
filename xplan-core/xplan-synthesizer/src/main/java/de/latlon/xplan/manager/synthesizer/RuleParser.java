@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -146,39 +146,39 @@ class RuleParser {
 
 	private Expression parseFunction(String functionName, List<String> args) {
 		switch (functionName) {
-		case "xpath":
-			return parseXPath(args);
-		case "xplanGmlName":
-			return new XplanGmlName();
-		case "xplanGmlDescription":
-			return new XPlanGmlDescription();
-		case "xplanFlatten":
-			return parseXPlanFlattenFeature(args);
-		case "xplanCodeLookup":
-			return parseXPlanCodeLookup(args);
-		case "xplanGeometry":
-			return parseXPlanGeometry(args);
-		case "xplanAggregateFlaechenteil":
-			return parseXPlanAggregateFlaechenteil();
-		case "xplanType":
-			return new XPlanType(xplanType);
-		case "xplanName":
-			return new XPlanName(xplanName);
-		case "xplanExternalCodeLookup":
-			// Required to resolve codelist from external files
-			return parseXPlanExternalCodeLookup(args);
-		case "ausrichtungLookup":
-			return parseAusrichtungLookup(args);
-		case "stylesheetIdLookup":
-			return parseStylesheetIdLookup();
-		case "schriftinhaltLookup":
-			return parseSchriftinhaltLookup();
-		case "skalierungLookup":
-			return parseSkalierungLookup();
-		case "latest":
-			return parseLatest(args);
-		default:
-			throw new RuntimeException(String.format("Expression %s is not expected.", functionName));
+			case "xpath":
+				return parseXPath(args);
+			case "xplanGmlName":
+				return new XplanGmlName();
+			case "xplanGmlDescription":
+				return new XPlanGmlDescription();
+			case "xplanFlatten":
+				return parseXPlanFlattenFeature(args);
+			case "xplanCodeLookup":
+				return parseXPlanCodeLookup(args);
+			case "xplanGeometry":
+				return parseXPlanGeometry(args);
+			case "xplanAggregateFlaechenteil":
+				return parseXPlanAggregateFlaechenteil();
+			case "xplanType":
+				return new XPlanType(xplanType);
+			case "xplanName":
+				return new XPlanName(xplanName);
+			case "xplanExternalCodeLookup":
+				// Required to resolve codelist from external files
+				return parseXPlanExternalCodeLookup(args);
+			case "ausrichtungLookup":
+				return parseAusrichtungLookup(args);
+			case "stylesheetIdLookup":
+				return parseStylesheetIdLookup();
+			case "schriftinhaltLookup":
+				return parseSchriftinhaltLookup();
+			case "skalierungLookup":
+				return parseSkalierungLookup();
+			case "latest":
+				return parseLatest(args);
+			default:
+				throw new RuntimeException(String.format("Expression %s is not expected.", functionName));
 		}
 	}
 

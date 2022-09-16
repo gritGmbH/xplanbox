@@ -653,14 +653,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	private void checkAndAddInvalidFlaechenschlussFeature(FeatureUnderTest flaechenschlussFeature1,
 			FeatureUnderTest flaechenschlussFeature2, Geometry intersection, TestStep testStep) {
 		switch (intersection.getGeometryType()) {
-		case PRIMITIVE_GEOMETRY:
-			checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2,
-					(GeometricPrimitive) intersection, testStep);
-			break;
-		case MULTI_GEOMETRY:
-			checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2,
-					(MultiGeometry) intersection, testStep);
-			break;
+			case PRIMITIVE_GEOMETRY:
+				checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2,
+						(GeometricPrimitive) intersection, testStep);
+				break;
+			case MULTI_GEOMETRY:
+				checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2,
+						(MultiGeometry) intersection, testStep);
+				break;
 		}
 	}
 
@@ -750,47 +750,47 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		for (CurveSegment segment : segments) {
 			CurveSegment.CurveSegmentType segmentType = segment.getSegmentType();
 			switch (segmentType) {
-			case ARC:
-				pointsList.add(((Arc) segment).getControlPoints());
-				break;
-			case ARC_BY_BULGE:
-				pointsList.add(((ArcByBulge) segment).getControlPoints());
-				break;
-			case ARC_STRING:
-				pointsList.add(((ArcString) segment).getControlPoints());
-				break;
-			case ARC_STRING_BY_BULGE:
-				pointsList.add(((ArcStringByBulge) segment).getControlPoints());
-				break;
-			case BEZIER:
-				pointsList.add(((Bezier) segment).getControlPoints());
-				break;
-			case BSPLINE:
-				pointsList.add(((BSpline) segment).getControlPoints());
-				break;
-			case CIRCLE:
-				pointsList.add(((Circle) segment).getControlPoints());
-				break;
-			case CUBIC_SPLINE:
-				pointsList.add(((CubicSpline) segment).getControlPoints());
-				break;
-			case GEODESIC:
-				pointsList.add(((Geodesic) segment).getControlPoints());
-				break;
-			case GEODESIC_STRING:
-				pointsList.add(((GeodesicString) segment).getControlPoints());
-				break;
-			case LINE_STRING_SEGMENT:
-				pointsList.add(((LineStringSegment) segment).getControlPoints());
-				break;
-			case OFFSET_CURVE:
-				break;
-			case ARC_BY_CENTER_POINT:
-			case CIRCLE_BY_CENTER_POINT:
-			case CLOTHOID:
-			default:
-				throw new IllegalArgumentException(
-						"Surfaces with segments of type " + segmentType + " are currently not supported.");
+				case ARC:
+					pointsList.add(((Arc) segment).getControlPoints());
+					break;
+				case ARC_BY_BULGE:
+					pointsList.add(((ArcByBulge) segment).getControlPoints());
+					break;
+				case ARC_STRING:
+					pointsList.add(((ArcString) segment).getControlPoints());
+					break;
+				case ARC_STRING_BY_BULGE:
+					pointsList.add(((ArcStringByBulge) segment).getControlPoints());
+					break;
+				case BEZIER:
+					pointsList.add(((Bezier) segment).getControlPoints());
+					break;
+				case BSPLINE:
+					pointsList.add(((BSpline) segment).getControlPoints());
+					break;
+				case CIRCLE:
+					pointsList.add(((Circle) segment).getControlPoints());
+					break;
+				case CUBIC_SPLINE:
+					pointsList.add(((CubicSpline) segment).getControlPoints());
+					break;
+				case GEODESIC:
+					pointsList.add(((Geodesic) segment).getControlPoints());
+					break;
+				case GEODESIC_STRING:
+					pointsList.add(((GeodesicString) segment).getControlPoints());
+					break;
+				case LINE_STRING_SEGMENT:
+					pointsList.add(((LineStringSegment) segment).getControlPoints());
+					break;
+				case OFFSET_CURVE:
+					break;
+				case ARC_BY_CENTER_POINT:
+				case CIRCLE_BY_CENTER_POINT:
+				case CLOTHOID:
+				default:
+					throw new IllegalArgumentException(
+							"Surfaces with segments of type " + segmentType + " are currently not supported.");
 			}
 		}
 		Geometry intersectionWithBuffer = intersection

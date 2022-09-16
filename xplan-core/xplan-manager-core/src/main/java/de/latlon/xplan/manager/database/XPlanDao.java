@@ -629,21 +629,21 @@ public class XPlanDao {
 			StringBuilder sqlBuilder = new StringBuilder();
 			sqlBuilder.append("SELECT xplan_internalid FROM ");
 			switch (type) {
-			case BP_Plan:
-				sqlBuilder.append("xplansyn.xplan_bp_plan");
-				break;
-			case FP_Plan:
-				sqlBuilder.append("xplansyn.xplan_fp_plan");
-				break;
-			case LP_Plan:
-				sqlBuilder.append("xplansyn.xplan_lp_plan");
-				break;
-			case RP_Plan:
-				sqlBuilder.append("xplansyn.xplan_rp_plan");
-				break;
-			default:
-				LOG.warn("Unsupported xplan type " + type);
-				return null;
+				case BP_Plan:
+					sqlBuilder.append("xplansyn.xplan_bp_plan");
+					break;
+				case FP_Plan:
+					sqlBuilder.append("xplansyn.xplan_fp_plan");
+					break;
+				case LP_Plan:
+					sqlBuilder.append("xplansyn.xplan_lp_plan");
+					break;
+				case RP_Plan:
+					sqlBuilder.append("xplansyn.xplan_rp_plan");
+					break;
+				default:
+					LOG.warn("Unsupported xplan type " + type);
+					return null;
 
 			}
 			sqlBuilder.append(" WHERE ");

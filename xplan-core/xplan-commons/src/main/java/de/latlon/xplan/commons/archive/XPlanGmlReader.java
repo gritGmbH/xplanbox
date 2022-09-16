@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -137,44 +137,44 @@ public class XPlanGmlReader {
 
 	private void write(XMLStreamReader reader, XMLStreamWriter writer) throws XMLStreamException {
 		switch (reader.getEventType()) {
-		case XMLEvent.START_ELEMENT:
-			writeStartElementWithNamespaceBindings(reader, writer);
-			break;
-		case XMLEvent.END_ELEMENT:
-			writer.writeEndElement();
-			break;
-		case XMLEvent.SPACE:
-		case XMLEvent.CHARACTERS:
-			writer.writeCharacters(reader.getTextCharacters(), reader.getTextStart(), reader.getTextLength());
-			break;
-		case XMLEvent.PROCESSING_INSTRUCTION:
-			writer.writeProcessingInstruction(reader.getPITarget(), reader.getPIData());
-			break;
-		case XMLEvent.CDATA:
-			writer.writeCData(reader.getText());
-			break;
+			case XMLEvent.START_ELEMENT:
+				writeStartElementWithNamespaceBindings(reader, writer);
+				break;
+			case XMLEvent.END_ELEMENT:
+				writer.writeEndElement();
+				break;
+			case XMLEvent.SPACE:
+			case XMLEvent.CHARACTERS:
+				writer.writeCharacters(reader.getTextCharacters(), reader.getTextStart(), reader.getTextLength());
+				break;
+			case XMLEvent.PROCESSING_INSTRUCTION:
+				writer.writeProcessingInstruction(reader.getPITarget(), reader.getPIData());
+				break;
+			case XMLEvent.CDATA:
+				writer.writeCData(reader.getText());
+				break;
 
-		case XMLEvent.COMMENT:
-			writer.writeComment(reader.getText());
-			break;
-		case XMLEvent.ENTITY_REFERENCE:
-			writer.writeEntityRef(reader.getLocalName());
-			break;
-		case XMLEvent.START_DOCUMENT:
-			String encoding = reader.getCharacterEncodingScheme();
-			String version = reader.getVersion();
+			case XMLEvent.COMMENT:
+				writer.writeComment(reader.getText());
+				break;
+			case XMLEvent.ENTITY_REFERENCE:
+				writer.writeEntityRef(reader.getLocalName());
+				break;
+			case XMLEvent.START_DOCUMENT:
+				String encoding = reader.getCharacterEncodingScheme();
+				String version = reader.getVersion();
 
-			if (encoding != null && version != null)
-				writer.writeStartDocument(encoding, version);
-			else if (version != null)
-				writer.writeStartDocument(reader.getVersion());
-			break;
-		case XMLEvent.END_DOCUMENT:
-			writer.writeEndDocument();
-			break;
-		case XMLEvent.DTD:
-			writer.writeDTD(reader.getText());
-			break;
+				if (encoding != null && version != null)
+					writer.writeStartDocument(encoding, version);
+				else if (version != null)
+					writer.writeStartDocument(reader.getVersion());
+				break;
+			case XMLEvent.END_DOCUMENT:
+				writer.writeEndDocument();
+				break;
+			case XMLEvent.DTD:
+				writer.writeDTD(reader.getText());
+				break;
 		}
 	}
 

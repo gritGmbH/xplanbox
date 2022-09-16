@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -67,30 +67,30 @@ public class ColumnComparator implements Comparator<XPlan> {
 		if (first.equals(second))
 			return IS_EQUAL;
 		switch (type) {
-		case NAME:
-			return compareString(first.getName(), second.getName());
-		case ID:
-			Integer firstIdNumber = parseInt(first.getId());
-			Integer secondIdNumber = parseInt(second.getId());
-			return firstIdNumber.compareTo(secondIdNumber);
-		case NUMBER:
-			return compareString(first.getNumber(), second.getNumber());
-		case TYPE:
-			return compareString(first.getType(), second.getType());
-		case ADDITIONALTYPE:
-			return compareString(first.getAdditionalType(), second.getAdditionalType());
-		case LEGISLATIONSTATUS:
-			return compareString(first.getLegislationStatus(), second.getLegislationStatus());
-		case RELEASEDATE:
-			return compareDate(first.getReleaseDate(), second.getReleaseDate());
-		case IMPORTDATE:
-			return compareDate(first.getImportDate(), second.getImportDate());
-		case PLANSTATUS:
-			String firstPlanStatus = retrievePlanStatus(first);
-			String secondPlanStatus = retrievePlanStatus(second);
-			return compareString(firstPlanStatus, secondPlanStatus);
-		case VERSION:
-			return compareString(first.getVersion(), second.getVersion());
+			case NAME:
+				return compareString(first.getName(), second.getName());
+			case ID:
+				Integer firstIdNumber = parseInt(first.getId());
+				Integer secondIdNumber = parseInt(second.getId());
+				return firstIdNumber.compareTo(secondIdNumber);
+			case NUMBER:
+				return compareString(first.getNumber(), second.getNumber());
+			case TYPE:
+				return compareString(first.getType(), second.getType());
+			case ADDITIONALTYPE:
+				return compareString(first.getAdditionalType(), second.getAdditionalType());
+			case LEGISLATIONSTATUS:
+				return compareString(first.getLegislationStatus(), second.getLegislationStatus());
+			case RELEASEDATE:
+				return compareDate(first.getReleaseDate(), second.getReleaseDate());
+			case IMPORTDATE:
+				return compareDate(first.getImportDate(), second.getImportDate());
+			case PLANSTATUS:
+				String firstPlanStatus = retrievePlanStatus(first);
+				String secondPlanStatus = retrievePlanStatus(second);
+				return compareString(firstPlanStatus, secondPlanStatus);
+			case VERSION:
+				return compareString(first.getVersion(), second.getVersion());
 		}
 		return IS_SMALLER;
 	}
