@@ -1,7 +1,7 @@
 databaseChangeLog:
 - changeSet:
-    id: 1660760922331-1
-    author: tfr42 (generated)
+    id: 1663512782307-1
+    author: lyn (generated)
     changes:
     - createTable:
         columns:
@@ -24,8 +24,8 @@ databaseChangeLog:
         schemaName: xplan50
         tableName: feature_types
 - changeSet:
-    id: 1660760922331-2
-    author: tfr42 (generated)
+    id: 1663512782307-2
+    author: lyn (generated)
     changes:
     - createTable:
         columns:
@@ -67,8 +67,8 @@ databaseChangeLog:
         schemaName: xplan50
         tableName: gml_objects
 - changeSet:
-    id: 1660760922331-3
-    author: tfr42 (generated)
+    id: 1663512782307-3
+    author: lyn (generated)
     changes:
     - insert:
         columns:
@@ -2375,8 +2375,8 @@ databaseChangeLog:
         schemaName: xplan50
         tableName: feature_types
 - changeSet:
-    id: 1660760922331-4
-    author: tfr42 (generated)
+    id: 1663512782307-4
+    author: lyn (generated)
     changes:
     - addUniqueConstraint:
         columnNames: gml_id
@@ -2384,8 +2384,8 @@ databaseChangeLog:
         schemaName: xplan50
         tableName: gml_objects
 - changeSet:
-    id: 1660760922331-5
-    author: tfr42 (generated)
+    id: 1663512782307-5
+    author: lyn (generated)
     changes:
     - createIndex:
         columns:
@@ -2395,8 +2395,8 @@ databaseChangeLog:
         schemaName: xplan50
         tableName: gml_objects
 - changeSet:
-    id: 1660760922331-6
-    author: tfr42 (generated)
+    id: 1663512782307-6
+    author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: ft_type

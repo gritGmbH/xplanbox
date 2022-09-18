@@ -1,7 +1,7 @@
 databaseChangeLog:
 - changeSet:
-    id: 1660760616071-1
-    author: tfr42 (generated)
+    id: 1663512723565-1
+    author: lyn (generated)
     changes:
     - createTable:
         columns:
@@ -32,8 +32,8 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: artefacts
 - changeSet:
-    id: 1660760616071-2
-    author: tfr42 (generated)
+    id: 1663512723565-2
+    author: lyn (generated)
     changes:
     - createTable:
         columns:
@@ -58,8 +58,8 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: bereiche
 - changeSet:
-    id: 1660760616071-3
-    author: tfr42 (generated)
+    id: 1663512723565-3
+    author: lyn (generated)
     changes:
     - createTable:
         columns:
@@ -80,8 +80,8 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: features
 - changeSet:
-    id: 1660760616071-4
-    author: tfr42 (generated)
+    id: 1663512723565-4
+    author: lyn (generated)
     changes:
     - createTable:
         columns:
@@ -160,8 +160,8 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: plans
 - changeSet:
-    id: 1660760616071-5
-    author: tfr42 (generated)
+    id: 1663512723565-5
+    author: lyn (generated)
     changes:
     - createTable:
         columns:
@@ -184,8 +184,8 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: planwerkwmsmetadata
 - changeSet:
-    id: 1660760616071-6
-    author: tfr42 (generated)
+    id: 1663512723565-6
+    author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: plan
@@ -201,8 +201,8 @@ databaseChangeLog:
         referencedTableSchemaName: xplanmgr
         validate: true
 - changeSet:
-    id: 1660760616071-7
-    author: tfr42 (generated)
+    id: 1663512723565-7
+    author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: plan
@@ -218,8 +218,8 @@ databaseChangeLog:
         referencedTableSchemaName: xplanmgr
         validate: true
 - changeSet:
-    id: 1660760616071-8
-    author: tfr42 (generated)
+    id: 1663512723565-8
+    author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: plan
@@ -235,8 +235,8 @@ databaseChangeLog:
         referencedTableSchemaName: xplanmgr
         validate: true
 - changeSet:
-    id: 1660760616071-9
-    author: tfr42 (generated)
+    id: 1663512723565-9
+    author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: plan
