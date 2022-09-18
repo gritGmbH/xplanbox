@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -863,16 +863,16 @@ public class XPlanManipulator {
 
 	private QName getBereichFeatureTypeName(XPlanType type, String namespaceUri) {
 		switch (type) {
-		case BP_Plan:
-			return new QName(namespaceUri, "BP_Bereich");
-		case FP_Plan:
-			return new QName(namespaceUri, "FP_Bereich");
-		case RP_Plan:
-			return new QName(namespaceUri, "RP_Bereich");
-		case LP_Plan:
-			return new QName(namespaceUri, "LP_Bereich");
-		case SO_Plan:
-			return new QName(namespaceUri, "SO_Bereich");
+			case BP_Plan:
+				return new QName(namespaceUri, "BP_Bereich");
+			case FP_Plan:
+				return new QName(namespaceUri, "FP_Bereich");
+			case RP_Plan:
+				return new QName(namespaceUri, "RP_Bereich");
+			case LP_Plan:
+				return new QName(namespaceUri, "LP_Bereich");
+			case SO_Plan:
+				return new QName(namespaceUri, "SO_Bereich");
 		}
 		return new QName(namespaceUri, "XP_Bereich");
 	}
@@ -884,16 +884,16 @@ public class XPlanManipulator {
 		if (XPLAN_50.equals(version) || XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version)
 				|| XPLAN_54.equals(version)) {
 			switch (type) {
-			case BP_Plan:
-				return new QName(namespaceUri, "BP_TextAbschnitt");
-			case FP_Plan:
-				return new QName(namespaceUri, "FP_TextAbschnitt");
-			case RP_Plan:
-				return new QName(namespaceUri, "RP_TextAbschnitt");
-			case LP_Plan:
-				return new QName(namespaceUri, "LP_TextAbschnitt");
-			case SO_Plan:
-				return new QName(namespaceUri, "SO_TextAbschnitt");
+				case BP_Plan:
+					return new QName(namespaceUri, "BP_TextAbschnitt");
+				case FP_Plan:
+					return new QName(namespaceUri, "FP_TextAbschnitt");
+				case RP_Plan:
+					return new QName(namespaceUri, "RP_TextAbschnitt");
+				case LP_Plan:
+					return new QName(namespaceUri, "LP_TextAbschnitt");
+				case SO_Plan:
+					return new QName(namespaceUri, "SO_TextAbschnitt");
 			}
 		}
 		return new QName(namespaceUri, "XP_TextAbschnitt");
@@ -975,23 +975,23 @@ public class XPlanManipulator {
 
 	private void checkVersionAndType(XPlanVersion version, XPlanType type) {
 		switch (type) {
-		case BP_Plan:
-			if (!XPLAN_41.equals(version) && !XPLAN_50.equals(version) && !XPLAN_51.equals(version)
-					&& !XPLAN_52.equals(version) && !XPLAN_53.equals(version) && !XPLAN_54.equals(version)
-					&& !XPLAN_60.equals(version))
-				throw new IllegalArgumentException("Unsupported Version: " + version);
-			break;
-		case SO_Plan:
-		case FP_Plan:
-		case RP_Plan:
-			if (!XPLAN_50.equals(version) && !XPLAN_51.equals(version) && !XPLAN_52.equals(version)
-					&& !XPLAN_53.equals(version) && !XPLAN_54.equals(version) && !XPLAN_60.equals(version))
-				throw new IllegalArgumentException("Unsupported Version: " + version);
-			break;
-		case LP_Plan:
-			if (!XPLAN_60.equals(version))
-				throw new IllegalArgumentException("Unsupported Version: " + version);
-			break;
+			case BP_Plan:
+				if (!XPLAN_41.equals(version) && !XPLAN_50.equals(version) && !XPLAN_51.equals(version)
+						&& !XPLAN_52.equals(version) && !XPLAN_53.equals(version) && !XPLAN_54.equals(version)
+						&& !XPLAN_60.equals(version))
+					throw new IllegalArgumentException("Unsupported Version: " + version);
+				break;
+			case SO_Plan:
+			case FP_Plan:
+			case RP_Plan:
+				if (!XPLAN_50.equals(version) && !XPLAN_51.equals(version) && !XPLAN_52.equals(version)
+						&& !XPLAN_53.equals(version) && !XPLAN_54.equals(version) && !XPLAN_60.equals(version))
+					throw new IllegalArgumentException("Unsupported Version: " + version);
+				break;
+			case LP_Plan:
+				if (!XPLAN_60.equals(version))
+					throw new IllegalArgumentException("Unsupported Version: " + version);
+				break;
 		}
 	}
 

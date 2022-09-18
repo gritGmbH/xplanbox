@@ -248,49 +248,49 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	private List<? extends org.deegree.geometry.Geometry> extractExteriorRingOrPrimitive(
 			AbstractDefaultGeometry geometry) {
 		switch (geometry.getGeometryType()) {
-		case PRIMITIVE_GEOMETRY:
-			org.deegree.geometry.Geometry primitive = extractExteriorRingOrPrimitive((GeometricPrimitive) geometry);
-			return Collections.singletonList(primitive);
-		case MULTI_GEOMETRY:
-			return extractExteriorRingOrPrimitive((MultiGeometry) geometry);
+			case PRIMITIVE_GEOMETRY:
+				org.deegree.geometry.Geometry primitive = extractExteriorRingOrPrimitive((GeometricPrimitive) geometry);
+				return Collections.singletonList(primitive);
+			case MULTI_GEOMETRY:
+				return extractExteriorRingOrPrimitive((MultiGeometry) geometry);
 		}
 		return Collections.singletonList(geometry);
 	}
 
 	private org.deegree.geometry.Geometry extractExteriorRingOrPrimitive(GeometricPrimitive geometry) {
 		switch (geometry.getPrimitiveType()) {
-		case Surface:
-			Surface surface = (Surface) geometry;
-			switch (surface.getSurfaceType()) {
-			case Polygon:
-				Polygon polygon = (Polygon) surface;
-				return polygon.getExteriorRing();
-			}
+			case Surface:
+				Surface surface = (Surface) geometry;
+				switch (surface.getSurfaceType()) {
+					case Polygon:
+						Polygon polygon = (Polygon) surface;
+						return polygon.getExteriorRing();
+				}
 		}
 		return geometry;
 	}
 
 	private List<Ring> extractExteriorRingOrPrimitive(MultiGeometry geometry) {
 		switch (geometry.getMultiGeometryType()) {
-		case MULTI_CURVE:
-			return geometry;
-		case MULTI_POLYGON:
-			MultiPolygon multiPolygon = (MultiPolygon) geometry;
-			return multiPolygon.stream().map(p -> p.getExteriorRing()).collect(Collectors.toList());
-		case MULTI_SURFACE:
-			MultiSurface multiSurface = (MultiSurface) geometry;
-			List<Ring> exteriorRingsSurface = new ArrayList<>();
-			for (Object surfaceObject : multiSurface) {
-				Surface surface = (Surface) surfaceObject;
-				if (Surface.SurfaceType.Polygon == surface.getSurfaceType()) {
-					exteriorRingsSurface.add(((Polygon) surface).getExteriorRing());
+			case MULTI_CURVE:
+				return geometry;
+			case MULTI_POLYGON:
+				MultiPolygon multiPolygon = (MultiPolygon) geometry;
+				return multiPolygon.stream().map(p -> p.getExteriorRing()).collect(Collectors.toList());
+			case MULTI_SURFACE:
+				MultiSurface multiSurface = (MultiSurface) geometry;
+				List<Ring> exteriorRingsSurface = new ArrayList<>();
+				for (Object surfaceObject : multiSurface) {
+					Surface surface = (Surface) surfaceObject;
+					if (Surface.SurfaceType.Polygon == surface.getSurfaceType()) {
+						exteriorRingsSurface.add(((Polygon) surface).getExteriorRing());
+					}
+					else {
+						LOG.warn(
+								"Intersection with other geometry types than Polygons in a MultiSurface are currently not supported.");
+					}
 				}
-				else {
-					LOG.warn(
-							"Intersection with other geometry types than Polygons in a MultiSurface are currently not supported.");
-				}
-			}
-			return exteriorRingsSurface;
+				return exteriorRingsSurface;
 		}
 		LOG.warn("Intersection with geometries of typ {} are currently not supported.",
 				geometry.getMultiGeometryType());

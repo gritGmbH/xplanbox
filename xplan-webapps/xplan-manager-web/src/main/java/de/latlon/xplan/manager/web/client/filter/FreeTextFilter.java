@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -73,24 +73,24 @@ public class FreeTextFilter implements PlanFilter {
 
 	private boolean isMatchingColumn(PlanListColumnType columnToSearchIn, XPlan plan) {
 		switch (columnToSearchIn) {
-		case ADDITIONALTYPE:
-			return isMatching(plan.getAdditionalType());
-		case ID:
-			return isMatching(plan.getId());
-		case IMPORTDATE:
-			return isMatching(convertDateToString(plan.getImportDate(), getImportDateFormat()));
-		case LEGISLATIONSTATUS:
-			return isMatching(plan.getLegislationStatus());
-		case NAME:
-			return isMatching(plan.getName());
-		case NUMBER:
-			return isMatching(plan.getNumber());
-		case RELEASEDATE:
-			return isMatching(convertDateToString(plan.getReleaseDate(), getReleaseDateFormat()));
-		case TYPE:
-			return isMatching(plan.getType());
-		default:
-			return false;
+			case ADDITIONALTYPE:
+				return isMatching(plan.getAdditionalType());
+			case ID:
+				return isMatching(plan.getId());
+			case IMPORTDATE:
+				return isMatching(convertDateToString(plan.getImportDate(), getImportDateFormat()));
+			case LEGISLATIONSTATUS:
+				return isMatching(plan.getLegislationStatus());
+			case NAME:
+				return isMatching(plan.getName());
+			case NUMBER:
+				return isMatching(plan.getNumber());
+			case RELEASEDATE:
+				return isMatching(convertDateToString(plan.getReleaseDate(), getReleaseDateFormat()));
+			case TYPE:
+				return isMatching(plan.getType());
+			default:
+				return false;
 		}
 	}
 

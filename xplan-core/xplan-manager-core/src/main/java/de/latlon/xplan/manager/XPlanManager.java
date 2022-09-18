@@ -472,16 +472,16 @@ public class XPlanManager {
 
 	private String findCodeListId(XPlanType xPlanType) {
 		switch (xPlanType) {
-		case BP_Plan:
-			return "BP_Rechtsstand";
-		case FP_Plan:
-			return "FP_Rechtsstand";
-		case LP_Plan:
-			return "LP_Rechtsstand";
-		case RP_Plan:
-			return "RP_Rechtsstand";
-		default:
-			break;
+			case BP_Plan:
+				return "BP_Rechtsstand";
+			case FP_Plan:
+				return "FP_Rechtsstand";
+			case LP_Plan:
+				return "LP_Rechtsstand";
+			case RP_Plan:
+				return "RP_Rechtsstand";
+			default:
+				break;
 		}
 		return "XP_Rechtsstand";
 	}

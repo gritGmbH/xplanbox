@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -85,24 +85,24 @@ public class XPlanCodeListsFactory {
 	 */
 	public static XPlanCodeLists get(XPlanVersion version) {
 		switch (version) {
-		case XPLAN_40:
-			return getXPlan40();
-		case XPLAN_41:
-			return getXPlan41();
-		case XPLAN_50:
-			return getXPlan50();
-		case XPLAN_51:
-			return getXPlan51();
-		case XPLAN_52:
-			return getXPlan52();
-		case XPLAN_53:
-			return getXPlan53();
-		case XPLAN_54:
-			return getXPlan54();
-		case XPLAN_60:
-			return getXPlan60();
-		default:
-			throw new IllegalArgumentException("Could not find codelists for version " + version);
+			case XPLAN_40:
+				return getXPlan40();
+			case XPLAN_41:
+				return getXPlan41();
+			case XPLAN_50:
+				return getXPlan50();
+			case XPLAN_51:
+				return getXPlan51();
+			case XPLAN_52:
+				return getXPlan52();
+			case XPLAN_53:
+				return getXPlan53();
+			case XPLAN_54:
+				return getXPlan54();
+			case XPLAN_60:
+				return getXPlan60();
+			default:
+				throw new IllegalArgumentException("Could not find codelists for version " + version);
 		}
 	}
 

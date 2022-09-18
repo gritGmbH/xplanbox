@@ -120,34 +120,34 @@ public class StylesheetIdLookup extends PraesentationsobjektLookup {
 
 	private static GeometryTypeAbbreviation parseGeometryType(Geometry geometry) {
 		switch (geometry.getGeometryType()) {
-		case ENVELOPE:
-			return POLYGON;
-		case PRIMITIVE_GEOMETRY:
-			GeometricPrimitive.PrimitiveType primitiveType = ((GeometricPrimitive) geometry).getPrimitiveType();
-			switch (primitiveType) {
-			case Point:
-				return POINT;
-			case Curve:
-				return LINE;
-			case Surface:
-			case Solid:
+			case ENVELOPE:
 				return POLYGON;
-			}
-			break;
-		case COMPOSITE_GEOMETRY:
-			CompositeGeometry compositeGeometry = (CompositeGeometry) geometry;
-			Optional firstCompositeGeom = compositeGeometry.stream().findFirst();
-			if (firstCompositeGeom.isPresent()) {
-				Geometry firstCompositeGeometry = (Geometry) firstCompositeGeom.get();
-				return parseGeometryType(firstCompositeGeometry);
-			}
-		case MULTI_GEOMETRY:
-			MultiGeometry multiGeometry = (MultiGeometry) geometry;
-			Optional firstMultiGeom = multiGeometry.stream().findFirst();
-			if (firstMultiGeom.isPresent()) {
-				Geometry firstCompositeGeometry = (Geometry) firstMultiGeom.get();
-				return parseGeometryType(firstCompositeGeometry);
-			}
+			case PRIMITIVE_GEOMETRY:
+				GeometricPrimitive.PrimitiveType primitiveType = ((GeometricPrimitive) geometry).getPrimitiveType();
+				switch (primitiveType) {
+					case Point:
+						return POINT;
+					case Curve:
+						return LINE;
+					case Surface:
+					case Solid:
+						return POLYGON;
+				}
+				break;
+			case COMPOSITE_GEOMETRY:
+				CompositeGeometry compositeGeometry = (CompositeGeometry) geometry;
+				Optional firstCompositeGeom = compositeGeometry.stream().findFirst();
+				if (firstCompositeGeom.isPresent()) {
+					Geometry firstCompositeGeometry = (Geometry) firstCompositeGeom.get();
+					return parseGeometryType(firstCompositeGeometry);
+				}
+			case MULTI_GEOMETRY:
+				MultiGeometry multiGeometry = (MultiGeometry) geometry;
+				Optional firstMultiGeom = multiGeometry.stream().findFirst();
+				if (firstMultiGeom.isPresent()) {
+					Geometry firstCompositeGeometry = (Geometry) firstMultiGeom.get();
+					return parseGeometryType(firstCompositeGeometry);
+				}
 		}
 		return UNKNOWN;
 	}

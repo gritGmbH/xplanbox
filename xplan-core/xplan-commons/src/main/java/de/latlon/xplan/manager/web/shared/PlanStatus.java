@@ -75,32 +75,32 @@ public enum PlanStatus {
 		if (legislationStatusCode < 0)
 			return FESTGESTELLT;
 		switch (type) {
-		case "BP_Plan":
-			if (legislationStatusCode >= 3000 && legislationStatusCode < 5000)
+			case "BP_Plan":
+				if (legislationStatusCode >= 3000 && legislationStatusCode < 5000)
+					return FESTGESTELLT;
+				if (legislationStatusCode >= 5000)
+					return ARCHIVIERT;
+				return IN_AUFSTELLUNG;
+			case "FP_Plan":
+				if (legislationStatusCode >= 4000 && legislationStatusCode < 5000)
+					return FESTGESTELLT;
+				if (legislationStatusCode >= 5000)
+					return ARCHIVIERT;
+				return IN_AUFSTELLUNG;
+			case "LP_Plan":
+				if (legislationStatusCode == 4000 || legislationStatusCode == 6000)
+					return FESTGESTELLT;
+				if (legislationStatusCode == 5000)
+					return ARCHIVIERT;
+				return IN_AUFSTELLUNG;
+			case "RP_Plan":
+				if ((legislationStatusCode >= 4000 && legislationStatusCode < 6000))
+					return FESTGESTELLT;
+				if (legislationStatusCode >= 6000)
+					return ARCHIVIERT;
+				return IN_AUFSTELLUNG;
+			case "SO_Plan":
 				return FESTGESTELLT;
-			if (legislationStatusCode >= 5000)
-				return ARCHIVIERT;
-			return IN_AUFSTELLUNG;
-		case "FP_Plan":
-			if (legislationStatusCode >= 4000 && legislationStatusCode < 5000)
-				return FESTGESTELLT;
-			if (legislationStatusCode >= 5000)
-				return ARCHIVIERT;
-			return IN_AUFSTELLUNG;
-		case "LP_Plan":
-			if (legislationStatusCode == 4000 || legislationStatusCode == 6000)
-				return FESTGESTELLT;
-			if (legislationStatusCode == 5000)
-				return ARCHIVIERT;
-			return IN_AUFSTELLUNG;
-		case "RP_Plan":
-			if ((legislationStatusCode >= 4000 && legislationStatusCode < 6000))
-				return FESTGESTELLT;
-			if (legislationStatusCode >= 6000)
-				return ARCHIVIERT;
-			return IN_AUFSTELLUNG;
-		case "SO_Plan":
-			return FESTGESTELLT;
 		}
 		return IN_AUFSTELLUNG;
 	}

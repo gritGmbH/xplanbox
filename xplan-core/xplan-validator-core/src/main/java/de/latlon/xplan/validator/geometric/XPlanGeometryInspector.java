@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -141,20 +141,21 @@ class XPlanGeometryInspector implements GeometryInspector {
 	public Geometry inspect(Geometry geom) throws GeometryInspectionException {
 		try {
 			switch (geom.getGeometryType()) {
-			case PRIMITIVE_GEOMETRY: {
-				inspect((GeometricPrimitive) geom);
-				break;
-			}
-			case MULTI_GEOMETRY: {
-				inspect((MultiGeometry) geom);
-				break;
-			}
-			case COMPOSITE_GEOMETRY: {
-				String msg = createMessage(format("XPlanGeometryInspector_invalid_unsupportedGeometry", "Composites"));
-				createError(msg);
-			}
-			default:
-				LOG.warn("Unsupported geometry type (will be ignored) {}", geom.getGeometryType());
+				case PRIMITIVE_GEOMETRY: {
+					inspect((GeometricPrimitive) geom);
+					break;
+				}
+				case MULTI_GEOMETRY: {
+					inspect((MultiGeometry) geom);
+					break;
+				}
+				case COMPOSITE_GEOMETRY: {
+					String msg = createMessage(
+							format("XPlanGeometryInspector_invalid_unsupportedGeometry", "Composites"));
+					createError(msg);
+				}
+				default:
+					LOG.warn("Unsupported geometry type (will be ignored) {}", geom.getGeometryType());
 			}
 		}
 		catch (Exception e) {
@@ -196,11 +197,11 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private void inspect(MultiGeometry geom) throws GeometryInspectionException {
 		switch (geom.getMultiGeometryType()) {
-		case MULTI_POINT:
-		case MULTI_CURVE:
-			break;
-		case MULTI_SURFACE:
-			inspect((MultiSurface) geom);
+			case MULTI_POINT:
+			case MULTI_CURVE:
+				break;
+			case MULTI_SURFACE:
+				inspect((MultiSurface) geom);
 		}
 	}
 
@@ -220,22 +221,22 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private void inspect(GeometricPrimitive geom) throws GeometryInspectionException {
 		switch (geom.getPrimitiveType()) {
-		case Point: {
-			inspect((Point) geom);
-			break;
-		}
-		case Curve: {
-			inspect((Curve) geom);
-			break;
-		}
-		case Surface: {
-			inspect((Surface) geom);
-			break;
-		}
-		default:
-			String msg = createMessage(
-					format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getPrimitiveType().name()));
-			createError(msg);
+			case Point: {
+				inspect((Point) geom);
+				break;
+			}
+			case Curve: {
+				inspect((Curve) geom);
+				break;
+			}
+			case Surface: {
+				inspect((Surface) geom);
+				break;
+			}
+			default:
+				String msg = createMessage(
+						format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getPrimitiveType().name()));
+				createError(msg);
 		}
 	}
 
@@ -250,39 +251,39 @@ class XPlanGeometryInspector implements GeometryInspector {
 	private void inspect(Curve geom) throws GeometryInspectionException {
 		checkSegmentContinuity(geom);
 		switch (geom.getCurveType()) {
-		case Curve:
-		case LineString: {
-			break;
-		}
-		case Ring: {
-			checkClosed((Ring) geom);
-			checkSelfIntersection((Ring) geom);
-			checkDuplicateControlPoints((Ring) geom);
-			break;
-		}
-		default:
-			String msg = createMessage(
-					format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getCurveType().name()));
-			createError(msg);
+			case Curve:
+			case LineString: {
+				break;
+			}
+			case Ring: {
+				checkClosed((Ring) geom);
+				checkSelfIntersection((Ring) geom);
+				checkDuplicateControlPoints((Ring) geom);
+				break;
+			}
+			default:
+				String msg = createMessage(
+						format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getCurveType().name()));
+				createError(msg);
 		}
 	}
 
 	private void inspect(Surface geom) throws GeometryInspectionException {
 		switch (geom.getSurfaceType()) {
-		case Surface: {
-			// nothing to do (all patches have been checked already)
-			break;
-		}
-		case Polygon: {
-			org.deegree.geometry.primitive.Polygon polygon = (org.deegree.geometry.primitive.Polygon) geom;
-			PolygonPatch firstOriginalPatch = polygon.getPatches().get(0);
-			inspect(firstOriginalPatch);
-			break;
-		}
-		default:
-			String msg = createMessage(
-					format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getSurfaceType().name()));
-			createError(msg);
+			case Surface: {
+				// nothing to do (all patches have been checked already)
+				break;
+			}
+			case Polygon: {
+				org.deegree.geometry.primitive.Polygon polygon = (org.deegree.geometry.primitive.Polygon) geom;
+				PolygonPatch firstOriginalPatch = polygon.getPatches().get(0);
+				inspect(firstOriginalPatch);
+				break;
+			}
+			default:
+				String msg = createMessage(
+						format("XPlanGeometryInspector_invalid_unsupportedGeometry", geom.getSurfaceType().name()));
+				createError(msg);
 		}
 	}
 
@@ -554,23 +555,23 @@ class XPlanGeometryInspector implements GeometryInspector {
 
 	private String geometryAsReadableString(Geometry geom) {
 		switch (geom.getGeometryType()) {
-		case PRIMITIVE_GEOMETRY:
-			return primitiveAsReadableString((GeometricPrimitive) geom);
-		case MULTI_GEOMETRY:
-			return multipleAsReadableString((MultiGeometry) geom);
-		case COMPOSITE_GEOMETRY:
-			return compositeAsReadableString((CompositeGeometry) geom);
+			case PRIMITIVE_GEOMETRY:
+				return primitiveAsReadableString((GeometricPrimitive) geom);
+			case MULTI_GEOMETRY:
+				return multipleAsReadableString((MultiGeometry) geom);
+			case COMPOSITE_GEOMETRY:
+				return compositeAsReadableString((CompositeGeometry) geom);
 		}
 		return getMessage("XPlanGeometryInspector_exportGeomInvalid");
 	}
 
 	private String primitiveAsReadableString(GeometricPrimitive geom) {
 		switch (geom.getPrimitiveType()) {
-		case Point:
-			return pointAsReadableString((Point) geom);
-		case Curve:
-			return format("XPlanGeometryInspector_geomAsString_curve", ((Curve) geom).getStartPoint(),
-					((Curve) geom).getEndPoint());
+			case Point:
+				return pointAsReadableString((Point) geom);
+			case Curve:
+				return format("XPlanGeometryInspector_geomAsString_curve", ((Curve) geom).getStartPoint(),
+						((Curve) geom).getEndPoint());
 		}
 		return getMessage("XPlanGeometryInspector_exportGeomInvalid");
 	}
