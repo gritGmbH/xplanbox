@@ -477,10 +477,10 @@
                         <artifactId>liquibase-maven-plugin</artifactId>
                         <configuration>
                             <propertyFile>${project.basedir}/src/main/resources/liquibase-diff.properties</propertyFile>
-                            <outputDefaultSchema>true</outputDefaultSchema>
                             <diffTypes>tables,views,columns,indexes,primarykeys,foreignkeys,uniqueconstraints,data</diffTypes>
                             <verbose>true</verbose>
                             <changeLogFile>${project.basedir}/src/main/resources/changelog_v60.yaml</changeLogFile>
+                            <diffIncludeSchema>true</diffIncludeSchema>
                         </configuration>
                         <executions>
                             <execution>

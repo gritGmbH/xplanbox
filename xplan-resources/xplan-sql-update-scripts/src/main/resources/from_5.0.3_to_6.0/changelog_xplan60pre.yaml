@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1663583022034-1
+    id: 1663589822184-1
     author: lyn (generated)
     changes:
     - createTable:
@@ -21,9 +21,10 @@ databaseChangeLog:
             name: bbox
             type: GEOMETRY
         remarks: Ids and bboxes of concrete feature types
+        schemaName: xplan60pre
         tableName: feature_types
 - changeSet:
-    id: 1663583022034-2
+    id: 1663589822184-2
     author: lyn (generated)
     changes:
     - createTable:
@@ -63,9 +64,10 @@ databaseChangeLog:
             name: gml_bounded_by
             type: GEOMETRY
         remarks: All objects (features and geometries)
+        schemaName: xplan60pre
         tableName: gml_objects
 - changeSet:
-    id: 1663583022034-3
+    id: 1663589822184-3
     author: lyn (generated)
     changes:
     - insert:
@@ -78,6 +80,7 @@ databaseChangeLog:
             value: '{http://www.opengis.net/gml/3.2}AbstractDiscreteCoverage'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -89,6 +92,7 @@ databaseChangeLog:
             value: '{http://www.opengis.net/gml/3.2}MultiPointCoverage'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -100,6 +104,7 @@ databaseChangeLog:
             value: '{http://www.opengis.net/gml/3.2}RectifiedGridCoverage'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -111,6 +116,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_AbgrabungsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -122,6 +128,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_AbstandsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -133,6 +140,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_AbstandsMass'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -144,6 +152,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_AbweichungVonBaugrenze'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -155,6 +164,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -166,6 +176,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_AnpflanzungBindungErhaltung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -177,6 +188,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_AufschuettungsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -188,6 +200,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_AusgleichsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -199,6 +212,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_AusgleichsMassnahme'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -210,6 +224,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_BauGrenze'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -221,6 +236,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_BauLinie'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -232,6 +248,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_BaugebietsTeilFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -243,6 +260,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_Bereich'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -254,6 +272,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_BereichOhneEinAusfahrtLinie'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -265,6 +284,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_BesondererNutzungszweckFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -276,6 +296,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_EinfahrtPunkt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -287,6 +308,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_EinfahrtsbereichLinie'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -298,6 +320,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_EingriffsBereich'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -309,6 +332,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_FestsetzungNachLandesrecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -320,6 +344,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_FlaecheOhneFestsetzung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -331,6 +356,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_FoerderungsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -342,6 +368,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_FreiFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -353,6 +380,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_GebaeudeFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -364,6 +392,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_GebaeudeStellung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -375,6 +404,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_GemeinbedarfsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -386,6 +416,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_GemeinschaftsanlagenFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -397,6 +428,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_GemeinschaftsanlagenZuordnung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -408,6 +440,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_GenerischesObjekt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -419,6 +452,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_GruenFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -430,6 +464,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_HoehenMass'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -441,6 +476,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_Immissionsschutz'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -452,6 +488,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_KennzeichnungsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -463,6 +500,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_KleintierhaltungFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -474,6 +512,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_LandwirtschaftsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -485,6 +524,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_NebenanlagenAusschlussFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -496,6 +536,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_NebenanlagenFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -507,6 +548,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_NichtUeberbaubareGrundstuecksflaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -518,6 +560,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_NutzungsartenGrenze'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -529,6 +572,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_PersGruppenBestimmteFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -540,6 +584,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_Plan'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -551,6 +596,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_RegelungVergnuegungsstaetten'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -562,6 +608,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_RichtungssektorGrenze'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -573,6 +620,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_SchutzPflegeEntwicklungsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -584,6 +632,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_SchutzPflegeEntwicklungsMassnahme'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -595,6 +644,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_SpezielleBauweise'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -606,6 +656,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_SpielSportanlagenFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -617,6 +668,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_StrassenbegrenzungsLinie'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -628,6 +680,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_Strassenkoerper'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -639,6 +692,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_TechnischeMassnahmenFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -650,6 +704,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_TextAbschnittFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -661,6 +716,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_UeberbaubareGrundstuecksFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -672,6 +728,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_UnverbindlicheVormerkung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -683,6 +740,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_VerEntsorgung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -694,6 +752,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_Veraenderungssperre'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -705,6 +764,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_WaldFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -716,6 +776,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_Wegerecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -727,6 +788,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_WohngebaeudeFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -738,6 +800,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_ZentralerVersorgungsbereich'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -749,6 +812,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_ZusatzkontingentLaerm'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -760,6 +824,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}BP_ZusatzkontingentLaermFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -771,6 +836,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_Abgrabung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -782,6 +848,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_AnpassungKlimawandel'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -793,6 +860,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_Aufschuettung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -804,6 +872,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_AusgleichsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -815,6 +884,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_BebauungsFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -826,6 +896,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_Bereich'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -837,6 +908,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_DarstellungNachLandesrecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -848,6 +920,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_FlaecheOhneDarstellung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -859,6 +932,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_Gemeinbedarf'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -870,6 +944,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_GenerischesObjekt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -881,6 +956,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_Gruen'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -892,6 +968,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_KeineZentrAbwasserBeseitigungFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -903,6 +980,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_Kennzeichnung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -914,6 +992,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_Landwirtschaft'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -925,6 +1004,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_Nutzungsbeschraenkung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -936,6 +1016,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_Plan'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -947,6 +1028,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_PrivilegiertesVorhaben'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -958,6 +1040,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_SchutzPflegeEntwicklung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -969,6 +1052,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_SpielSportanlage'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -980,6 +1064,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_TextAbschnittFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -991,6 +1076,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_UnverbindlicheVormerkung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1002,6 +1088,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_VerEntsorgung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1013,6 +1100,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_VorbehalteFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1024,6 +1112,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_WaldFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1035,6 +1124,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}FP_ZentralerVersorgungsbereich'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1046,6 +1136,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}LP_Bereich'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1057,6 +1148,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}LP_BiotopverbundBiotopvernetzung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1068,6 +1160,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}LP_Eingriffsregelung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1079,6 +1172,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}LP_GenerischesObjekt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1090,6 +1184,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}LP_Plan'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1101,6 +1196,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}LP_SchutzBestimmterTeileVonNaturUndLandschaft'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1112,6 +1208,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}LP_TextAbschnittObjekt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1123,6 +1220,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}LP_ZieleErfordernisseMassnahmen'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1134,6 +1232,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Achse'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1145,6 +1244,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Bereich'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1156,6 +1256,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Bodenschutz'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1167,6 +1268,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Einzelhandel'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1178,6 +1280,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Energieversorgung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1189,6 +1292,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Entsorgung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1200,6 +1304,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Erholung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1211,6 +1316,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_ErneuerbareEnergie'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1222,6 +1328,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Forstwirtschaft'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1233,6 +1340,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Freiraum'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1244,6 +1352,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Funktionszuweisung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1255,6 +1364,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_GenerischesObjekt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1266,6 +1376,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Gewaesser'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1277,6 +1388,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Grenze'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1288,6 +1400,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_GruenzugGruenzaesur'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1299,6 +1412,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Hochwasserschutz'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1310,6 +1424,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_IndustrieGewerbe'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1321,6 +1436,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Klimaschutz'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1332,6 +1448,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Kommunikation'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1343,6 +1460,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Kulturlandschaft'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1354,6 +1472,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_LaermschutzBauschutz'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1365,6 +1484,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Landwirtschaft'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1376,6 +1496,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Luftverkehr'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1387,6 +1508,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_NaturLandschaft'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1398,6 +1520,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_NaturschutzrechtlichesSchutzgebiet'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1409,6 +1532,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Plan'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1420,6 +1544,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Planungsraum'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1431,6 +1556,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_RadwegWanderweg'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1442,6 +1568,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Raumkategorie'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1453,6 +1580,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Rohstoff'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1464,6 +1592,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Schienenverkehr'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1475,6 +1604,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Siedlung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1486,6 +1616,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_SonstVerkehr'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1497,6 +1628,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_SonstigeInfrastruktur'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1508,6 +1640,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_SonstigerFreiraumschutz'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1519,6 +1652,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_SonstigerSiedlungsbereich'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1530,6 +1664,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_SozialeInfrastruktur'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1541,6 +1676,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Sperrgebiet'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1552,6 +1688,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Sportanlage'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1563,6 +1700,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Strassenverkehr'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1574,6 +1712,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Verkehr'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1585,6 +1724,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Wasserschutz'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1596,6 +1736,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Wasserverkehr'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1607,6 +1748,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_Wasserwirtschaft'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1618,6 +1760,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_WohnenSiedlung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1629,6 +1772,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}RP_ZentralerOrt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1640,6 +1784,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Baubeschraenkung'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1651,6 +1796,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Bereich'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1662,6 +1808,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Bodenschutzrecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1673,6 +1820,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Denkmalschutzrecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1684,6 +1832,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Forstrecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1695,6 +1844,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Gebiet'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1706,6 +1856,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Gelaendemorphologie'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1717,6 +1868,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Gewaesser'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1728,6 +1880,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Grenze'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1739,6 +1892,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Linienobjekt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1750,6 +1904,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Luftverkehrsrecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1761,6 +1916,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Objekt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1772,6 +1928,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Plan'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1783,6 +1940,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Schienenverkehrsrecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1794,6 +1952,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_SchutzgebietWasserrecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1805,6 +1964,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Sichtflaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1816,6 +1976,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_SonstigesRecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1827,6 +1988,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Strassenverkehr'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1838,6 +2000,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_TextAbschnittFlaeche'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1849,6 +2012,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Wasserrecht'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1860,6 +2024,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}SO_Wasserwirtschaft'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1871,6 +2036,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}XP_BegruendungAbschnitt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1882,6 +2048,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}XP_FPO'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1893,6 +2060,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}XP_LPO'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1904,6 +2072,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}XP_LTO'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1915,6 +2084,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}XP_Nutzungsschablone'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1926,6 +2096,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}XP_PPO'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1937,6 +2108,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}XP_PTO'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1948,6 +2120,7 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}XP_Praesentationsobjekt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
     - insert:
         columns:
@@ -1959,17 +2132,19 @@ databaseChangeLog:
             value: '{http://www.xplanung.de/xplangml/6/0}XP_TextAbschnitt'
         - column:
             name: bbox
+        schemaName: xplan60pre
         tableName: feature_types
 - changeSet:
-    id: 1663583022034-4
+    id: 1663589822184-4
     author: lyn (generated)
     changes:
     - addUniqueConstraint:
         columnNames: gml_id
         constraintName: gml_objects_gml_id_key
+        schemaName: xplan60pre
         tableName: gml_objects
 - changeSet:
-    id: 1663583022034-5
+    id: 1663589822184-5
     author: lyn (generated)
     changes:
     - createIndex:
@@ -1977,14 +2152,16 @@ databaseChangeLog:
         - column:
             name: gml_bounded_by
         indexName: gml_objects_sidx
+        schemaName: xplan60pre
         tableName: gml_objects
 - changeSet:
-    id: 1663583022034-6
+    id: 1663589822184-6
     author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: ft_type
         baseTableName: gml_objects
+        baseTableSchemaName: xplan60pre
         constraintName: gml_objects_ft_type_fkey
         deferrable: false
         initiallyDeferred: false
@@ -1992,5 +2169,6 @@ databaseChangeLog:
         onUpdate: NO ACTION
         referencedColumnNames: id
         referencedTableName: feature_types
+        referencedTableSchemaName: xplan60pre
         validate: true
 
