@@ -37,6 +37,14 @@ This step generates SQL migration scripts for the given changelog and can be use
 
 The output files are located in the `target/liquibase` folder.
 
+## Create diff changelog
+
+To create a changelog with a diff between different database versions configure the target and reference JDBC connection in `liquibase-diff.properties` and run:
+
+    mvn clean package -Pdiff
+
+The changelog files are written into the directory `target/generated-resources/`.
+
 ## Workarounds
 
 ### Wrong index method 
