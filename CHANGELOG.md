@@ -41,15 +41,11 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 
 ### Fehlerbehebungen
 - Verbesserung der Geltungsbereichsprüfung im XPlanValidator
-
-* Ausgabe von Schnittpunkten verbessert
-* Prüfung von linien- oder punktförmigen Geometrien korrigiert
-
+    - Ausgabe von Schnittpunkten verbessert
+    - Prüfung von linien- oder punktförmigen Geometrien korrigiert
 - Verbesserungen der Flächenschlussprüfung im XPlanValidator
-
-* Abweichungen von Stützpunkten unterhalb von 2mm im Bereich von Lücken werden erkannt
-* Verbesserte Ausgabe von potentiellen Lücken als Warnungen
-
+    - Abweichungen von Stützpunkten unterhalb von 2mm im Bereich von Lücken werden erkannt
+    - Verbesserte Ausgabe von potentiellen Lücken als Warnungen
 - Fehlermeldung bei Abbruch der geometrischen Validierung im XPlanValidator verbessert
 - Verbesserte Darstellung von geometrischen Warnungen im HTML-Format des Reports des XPlanValidator
 - Korrekturen in der Benutzerdokumentation für den XPlanValidator vorgenommen
@@ -140,11 +136,10 @@ Veröffentlichung des Quellcodes unter einer Open Source Lizenz auf der OpenCoDE
 
 ### Erweiterungen
 - Verbesserungen des XPlanValidator:
-
-    * Anzeige der XPlanGML Version im Validierungsbericht
-    * Angabe der fehlerhaften Koordinate bei einem Geltungsbereichfehler
-    * Geometrische Validierung von Multigeometrien
-    * Ausgabe der Koordinate(n) des/der Schnittpunkt(e) bei einer Selbstüberschneidung
+    - Anzeige der XPlanGML Version im Validierungsbericht
+    - Angabe der fehlerhaften Koordinate bei einem Geltungsbereichfehler
+    - Geometrische Validierung von Multigeometrien
+    - Ausgabe der Koordinate(n) des/der Schnittpunkt(e) bei einer Selbstüberschneidung
 
 ### Fehlerbehebungen
 - (TT_10420) Beibehalten der Übersetzungen externer Codelisten beim Ausführen des reSynthesizer
@@ -186,8 +181,8 @@ Veröffentlichung des Quellcodes unter einer Open Source Lizenz auf der OpenCoDE
 - Integration einer Kartenvorschau im XPlanValidator
 - Unterstützung für XPlanGML Version 2.0 aus der xPlanBox entfernen
 - Diverse Verbesserungen im XPlanValidator
-    * Angabe der GML Id bei semantischen Fehlern (ab XPlanGML 5.0)
-    * Verbesserung der geometrischen Validierung
+    - Angabe der GML Id bei semantischen Fehlern (ab XPlanGML 5.0)
+    - Verbesserung der geometrischen Validierung
 - Verbesserung der Darstellung von Präsentationsobjekten
 - Verbesserung der Sachdatenabfrage im XPlanWMS (HTML)
 - Verbesserung der Performanz des XPlanInspirePluWFS

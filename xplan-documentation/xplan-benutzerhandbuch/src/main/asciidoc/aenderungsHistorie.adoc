@@ -42,15 +42,11 @@
 
 ==== Fehlerbehebungen
 - Verbesserung der Geltungsbereichsprüfung im XPlanValidator
-
- * Ausgabe von Schnittpunkten verbessert
- * Prüfung von linien- oder punktförmigen Geometrien korrigiert
-
+    - Ausgabe von Schnittpunkten verbessert
+    - Prüfung von linien- oder punktförmigen Geometrien korrigiert
 - Verbesserungen der Flächenschlussprüfung im XPlanValidator
-
-* Abweichungen von Stützpunkten unterhalb von 2mm im Bereich von Lücken werden erkannt
-* Verbesserte Ausgabe von potentiellen Lücken als Warnungen
-
+    - Abweichungen von Stützpunkten unterhalb von 2mm im Bereich von Lücken werden erkannt
+    - Verbesserte Ausgabe von potentiellen Lücken als Warnungen
 - Fehlermeldung bei Abbruch der geometrischen Validierung im XPlanValidator verbessert
 - Verbesserte Darstellung von geometrischen Warnungen im HTML-Format des Reports des XPlanValidator
 - Korrekturen in der Benutzerdokumentation für den XPlanValidator vorgenommen
