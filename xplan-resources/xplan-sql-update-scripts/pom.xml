@@ -491,7 +491,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplanmgr</defaultSchemaName>
-                                    <changelogSchemaName>xplanmgr</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplanmgr</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplanmgr.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -517,7 +517,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplansynpre</defaultSchemaName>
-                                    <changelogSchemaName>xplansynpre</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplansynpre</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplansynpre.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -530,7 +530,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplansynarchive</defaultSchemaName>
-                                    <changelogSchemaName>xplansynarchive</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplansynarchive</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplansynarchive.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -543,7 +543,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan60</defaultSchemaName>
-                                    <changelogSchemaName>xplan60</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan60</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplan60.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -556,7 +556,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan60pre</defaultSchemaName>
-                                    <changelogSchemaName>xplan60pre</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan60pre</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan60pre.yaml
                                     </diffChangeLogFile>
@@ -570,7 +570,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan60archive</defaultSchemaName>
-                                    <changelogSchemaName>xplan60archive</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan60archive</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan60archive.yaml
                                     </diffChangeLogFile>
@@ -584,7 +584,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan54</defaultSchemaName>
-                                    <changelogSchemaName>xplan54</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan54</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplan54.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -597,7 +597,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan54pre</defaultSchemaName>
-                                    <changelogSchemaName>xplan54pre</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan54pre</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan54pre.yaml
                                     </diffChangeLogFile>
@@ -611,7 +611,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan54archive</defaultSchemaName>
-                                    <changelogSchemaName>xplan54archive</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan54archive</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan54archive.yaml
                                     </diffChangeLogFile>
@@ -625,7 +625,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan53</defaultSchemaName>
-                                    <changelogSchemaName>xplan53</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan53</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplan53.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -638,7 +638,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan53pre</defaultSchemaName>
-                                    <changelogSchemaName>xplan53pre</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan53pre</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan53pre.yaml
                                     </diffChangeLogFile>
@@ -652,7 +652,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan53archive</defaultSchemaName>
-                                    <changelogSchemaName>xplan53archive</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan53archive</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan53archive.yaml
                                     </diffChangeLogFile>
@@ -666,7 +666,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan52</defaultSchemaName>
-                                    <changelogSchemaName>xplan52</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan52</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplan52.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -679,7 +679,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan52pre</defaultSchemaName>
-                                    <changelogSchemaName>xplan52pre</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan52pre</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan52pre.yaml
                                     </diffChangeLogFile>
@@ -693,7 +693,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan52archive</defaultSchemaName>
-                                    <changelogSchemaName>xplan52archive</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan52archive</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan52archive.yaml
                                     </diffChangeLogFile>
@@ -707,7 +707,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan51</defaultSchemaName>
-                                    <changelogSchemaName>xplan51</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan51</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplan51.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -720,7 +720,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan51pre</defaultSchemaName>
-                                    <changelogSchemaName>xplan51pre</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan51pre</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan51pre.yaml
                                     </diffChangeLogFile>
@@ -734,7 +734,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan51archive</defaultSchemaName>
-                                    <changelogSchemaName>xplan51archive</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan51archive</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan51archive.yaml
                                     </diffChangeLogFile>
@@ -748,7 +748,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan50</defaultSchemaName>
-                                    <changelogSchemaName>xplan50</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan50</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplan50.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -761,7 +761,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan50pre</defaultSchemaName>
-                                    <changelogSchemaName>xplan50pre</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan50pre</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan50pre.yaml
                                     </diffChangeLogFile>
@@ -775,7 +775,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan50archive</defaultSchemaName>
-                                    <changelogSchemaName>xplan50archive</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan50archive</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan50archive.yaml
                                     </diffChangeLogFile>
@@ -789,7 +789,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan41</defaultSchemaName>
-                                    <changelogSchemaName>xplan41</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan41</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplan41.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -802,7 +802,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan41pre</defaultSchemaName>
-                                    <changelogSchemaName>xplan41pre</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan41pre</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan41pre.yaml
                                     </diffChangeLogFile>
@@ -816,7 +816,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan41archive</defaultSchemaName>
-                                    <changelogSchemaName>xplan41archive</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan41archive</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan41archive.yaml
                                     </diffChangeLogFile>
@@ -830,7 +830,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan40</defaultSchemaName>
-                                    <changelogSchemaName>xplan40</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan40</referenceDefaultSchemaName>
                                     <diffChangeLogFile>${project.basedir}/target/generated-resources/changelog_xplan40.yaml
                                     </diffChangeLogFile>
                                 </configuration>
@@ -843,7 +843,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan40pre</defaultSchemaName>
-                                    <changelogSchemaName>xplan40pre</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan40pre</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan40pre.yaml
                                     </diffChangeLogFile>
@@ -857,7 +857,7 @@
                                 </goals>
                                 <configuration>
                                     <defaultSchemaName>xplan40archive</defaultSchemaName>
-                                    <changelogSchemaName>xplan40archive</changelogSchemaName>
+                                    <referenceDefaultSchemaName>xplan40archive</referenceDefaultSchemaName>
                                     <diffChangeLogFile>
                                         ${project.basedir}/target/generated-resources/changelog_xplan40archive.yaml
                                     </diffChangeLogFile>
