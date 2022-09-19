@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: xplan3-schema
+      author: lyn
+      changes:
+        - sql:
+            sql: DROP SCHEMA IF EXISTS xplan3 CASCADE;
+        - sql:
+            sql: DROP SCHEMA IF EXISTS xplan3pre CASCADE;
+        - sql:
+            sql: DROP SCHEMA IF EXISTS xplan3archive CASCADE;
+  - changeSet:
+      id: xplan60-schema
+      author: lyn
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan60;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan60pre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan60archive;
+
+

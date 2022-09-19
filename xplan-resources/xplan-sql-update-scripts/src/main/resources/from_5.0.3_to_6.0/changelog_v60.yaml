@@ -1,6 +1,9 @@
 databaseChangeLog:
   - include:
       relativeToChangelogFile: true
+      file: changelog_schemas.yaml
+  - include:
+      relativeToChangelogFile: true
       file: changelog_xplanmgr.yaml
   - include:
       relativeToChangelogFile: true
