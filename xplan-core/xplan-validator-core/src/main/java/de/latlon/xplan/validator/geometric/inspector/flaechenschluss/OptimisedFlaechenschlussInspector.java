@@ -70,6 +70,7 @@ import org.locationtech.jts.geom.IntersectionMatrix;
 import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.MultiPolygon;
 import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.geom.TopologyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -235,6 +236,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		}
 		catch (ValidatorException e) {
 			flaechenschlussErrors.add(e.getMessage());
+		}
+		catch (TopologyException e) {
+			String msg = getMessage("FlaechenschlussInspector_geom_abort");
+			flaechenschlussErrors.add(msg);
+		}
+		catch (Exception e) {
+			String msg = getMessage("FlaechenschlussInspector_abort");
+			flaechenschlussErrors.add(msg);
 		}
 		return flaechenschlussErrors.isEmpty();
 	}
@@ -643,11 +652,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		FeatureUnderTest flaechenschlussFeature2 = flaechenschlussFeaturePair.getSecond();
 		Geometry intersection = flaechenschlussFeature1.getOriginalGeometry()
 				.getIntersection(flaechenschlussFeature2.getOriginalGeometry());
-		LOG.debug("Intersection of {} ({}) and {} ({}) is {}", flaechenschlussFeature1.getFeatureId(),
-				flaechenschlussFeature1.getFeatureType(), flaechenschlussFeature2.getFeatureId(),
-				flaechenschlussFeature2.getFeatureType(), intersection.getClass().getSimpleName());
-		checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2, intersection,
-				TestStep.FLAECHENSCHLUSSPAIRS);
+		// intersection may be null if JTS.intersection returns an empty geometry
+		if (intersection != null) {
+			LOG.debug("Intersection of {} ({}) and {} ({}) is {}", flaechenschlussFeature1.getFeatureId(),
+					flaechenschlussFeature1.getFeatureType(), flaechenschlussFeature2.getFeatureId(),
+					flaechenschlussFeature2.getFeatureType(), intersection.getClass().getSimpleName());
+			checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2, intersection,
+					TestStep.FLAECHENSCHLUSSPAIRS);
+		}
 	}
 
 	private void checkAndAddInvalidFlaechenschlussFeature(FeatureUnderTest flaechenschlussFeature1,
