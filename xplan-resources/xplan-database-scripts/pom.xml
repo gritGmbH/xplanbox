@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>xplan-sql-update-scripts</artifactId>
+    <artifactId>xplan-database-scripts</artifactId>
     <packaging>jar</packaging>
-    <description>SQL Skripte zum Aktualisieren der Datenhaltung.</description>
+    <description>Liquibase Changelogs zum Aufsetzen/Aktualisieren der Datenhaltung.</description>
 
     <parent>
         <groupId>de.latlon.product.xplanbox</groupId>
