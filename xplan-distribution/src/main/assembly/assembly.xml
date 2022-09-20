@@ -1,0 +1,84 @@
+<!--
+  #%L
+  xplan-sql-scripts - SQL Skripte zum Aufsetzen der Datenhaltung.
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  <id>xplan-distribution</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>doc</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-benutzerhandbuch:*:*</include>
+        <include>de.latlon.product.xplanbox:xplan-betriebshandbuch:*:*</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>bin</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-manager-cli:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-validator-cli:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-transform-cli:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-validatedb-cli:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-evaluation-schema-synchronize-cli:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-update-data-cli:zip:*</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>web</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-manager-web:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-api-manager:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-root:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-validator-web:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-api-validator:war:*</include>
+        <include>de.latlon.product.xplanbox:xplansyn-wfs:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-wfs:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-wms:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-inspireplu:war:*</include>
+        <include>de.latlon.product.xplanbox:xplan-validator-wms:war:*</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>conf</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-manager-config:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-validator-config:zip:*</include>
+        <include>de.latlon.product.xplanbox:xplan-workspaces:zip:*</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>test</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-tests-soapui:zip:*</include>
+      </includes>
+    </dependencySet>
+  </dependencySets>
+</assembly>
