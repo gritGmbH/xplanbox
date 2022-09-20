@@ -11360,87 +11360,87 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>146</con:value>
+        <con:value>34</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>148</con:value>
+        <con:value>36</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML53</con:name>
-        <con:value>154</con:value>
+        <con:value>42</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdText</con:name>
-        <con:value>155</con:value>
+        <con:value>43</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdAenderung</con:name>
-        <con:value>149</con:value>
+        <con:value>37</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdDokument</con:name>
-        <con:value>150</con:value>
+        <con:value>38</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdFPlan</con:name>
-        <con:value>159</con:value>
+        <con:value>47</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-        <con:value>156</con:value>
+        <con:value>44</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-        <con:value>157</con:value>
+        <con:value>45</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdV2</con:name>
-        <con:value>147</con:value>
+        <con:value>35</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-        <con:value>152</con:value>
+        <con:value>40</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBereiche</con:name>
-        <con:value>153</con:value>
+        <con:value>41</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60</con:name>
-        <con:value>158</con:value>
+        <con:value>46</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSOPlan</con:name>
-        <con:value>162</con:value>
+        <con:value>50</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdRPlan</con:name>
-        <con:value>161</con:value>
+        <con:value>49</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdLPlan</con:name>
-        <con:value>160</con:value>
+        <con:value>48</con:value>
       </con:property>
       <con:property>
         <con:name>textIdSOPlan</con:name>
-        <con:value>XPLAN_texte_24193ac8-a633-4917-9f6f-d7ae2bbfcecb</con:value>
+        <con:value>XPLAN_texte_0eeb9e72-1cdb-435b-b52b-d4eff3c0fe8d</con:value>
       </con:property>
       <con:property>
         <con:name>textIdLPlan</con:name>
-        <con:value>XPLAN_texte_8b782208-fe74-49e3-a69a-730be2df654d</con:value>
+        <con:value>XPLAN_texte_bb690028-f0ef-4818-b292-5c15f9dc26c6</con:value>
       </con:property>
       <con:property>
         <con:name>textIdFPlan</con:name>
-        <con:value>XPLAN_texte_cd1f28a2-02d8-40ab-9714-44963c6c8ab2</con:value>
+        <con:value>XPLAN_texte_b5832bdb-4cea-46ef-a6e3-cfbc7b5ad0c2</con:value>
       </con:property>
       <con:property>
         <con:name>textIdRPlan</con:name>
-        <con:value>XPLAN_texte_17035fcb-af29-4964-a780-56576449e7f7</con:value>
+        <con:value>XPLAN_texte_d41af74a-9a07-437c-a40e-fbb7925acfc9</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBPlanOhneBereich</con:name>
-        <con:value>151</con:value>
+        <con:value>39</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>

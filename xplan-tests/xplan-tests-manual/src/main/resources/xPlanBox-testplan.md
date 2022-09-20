@@ -179,21 +179,17 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 #### Testschritte 
 Schritt | Beschreibung | Erwartetes Ergebnis 
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt auf den Button **Datei auswählen**. | Es öffnet sich ein neues Fenster zur Auswahl von Plänen. 
-**02** | Der Benutzer wählt eine beliebige Datei (außer ein Plan im `Zip`-Format) aus klickt auf **Öffnen**. | Die beliebige Datei wird zwischengelagert in der Weboberfläche angezeigt.
+**01** | Der Benutzer klickt auf den Button **Datei auswählen**. | Es öffnet sich ein neues Fenster zur Auswahl eines Planarchivs. 
+**02** | Der Benutzer wählt eine beliebige Datei (außer ein Plan im `Zip`-Format) aus klickt auf **Öffnen**. | Das Fenster schließt sich. Die beliebige Datei wird zwischengelagert in der Weboberfläche angezeigt.
 **02.1** | Der Benutzer klickt auf den Button **Hinzufügen**. | Es wird ein Fenster geöffnet. Die Datei wird abgelehnt und nicht hoch geladen. 
-**02.3** | Der Benutzer klickt auf den Button **Schließen**. | Das Fenster wird geschlossen.
-**03** | Der Benutzer wählt ein Plan im `Zip`-Format aus. | Der Plan wird markiert im Fenster dargestellt. 
-**03.1** | Der Benutzer klickt auf den Button **Datei auswählen**. | Das Fenster schließt sich. Der Planname wird zwischengelagert in der Weboberfläche angezeigt. 
+**02.2** | Der Benutzer klickt auf den Button **Schließen**. | Das Fenster wird geschlossen.
+**03** | Der Benutzer klickt auf den Button **Datei auswählen**. | Es öffnet sich ein neues Fenster zur Auswahl eines Planarchivs. 
+**03.01** | Der Benutzer wählt einen Plan im `Zip`-Format aus. |  Das Fenster schließt sich. Der Planname wird zwischengelagert in der Weboberfläche angezeigt.
 **03.2** | Der Benutzer klickt auf den Button **Hinzufügen**. | Der Plan wird hoch geladen. Nach Ende des Uploads wird ein neues Fenster geöffnet, mit der Meldung, dass der Upload abgeschlossen ist. 
 **03.3** | Der Benutzer klickt auf **Ok**. | Das Fenster wird geschlossen. Der Plan wird angezeigt. 
-**04** | Der Benutzer wählt ein Plan im `Zip`-Format aus. | Der Plan wird markiert im Fenster dargestellt. 
-**04.1** | Der Benutzer klickt auf den Button **Datei auswählen**. | Das Fenster schließt sich. Der Planname wird angezeigt. 
-**04.2** | Der Benutzer klickt auf den Button **Hinzufügen**. | Der Plan wird hoch geladen. Nach Ende des Uploads wird ein neues Fenster geöffnet, mit der Meldung, dass der Upload abgeschlossen ist. 
-**04.3** | Der Benutzer klickt auf **Ok**. | Das Fenster wird geschlossen. Der Plan wird angezeigt. 
-**04.4** | Der Benutzer klickt auf **Entfernen**. | Es wird ein neues Fenster geöffnet, mit der Meldung, ob der Plan wirklich entfernt werden soll.
-**04.5** | Der Benutzer klickt auf **Ok**. | Es wird ein neues Fenster geöffnet, mit der Meldung, dass das Entfernen abgeschlossen ist.
-**04.6** | Der Benutzer klickt auf **Ok**. | Es ist kein Plan aufgelistet, welcher zur Validation aussteht.
+**03.4** | Der Benutzer klickt auf **Entfernen**. | Es wird ein neues Fenster geöffnet, mit der Meldung, ob der Plan wirklich entfernt werden soll.
+**03.5** | Der Benutzer klickt auf **Ok**. | Es wird ein neues Fenster geöffnet, mit der Meldung, dass das Entfernen abgeschlossen ist.
+**03.6** | Der Benutzer klickt auf **Ok**. | Es ist kein Plan aufgelistet, welcher zur Validation aussteht.
 
 ---
 
@@ -207,7 +203,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
-**01** | Der Benutzer klickt neben einen hoch geladenen Plan auf den Button **Validieren**. | Ein neues Fenster mit dem XPlanValidator öffnet sich. 
+**01** | Der Benutzer klickt neben einem hochgeladenen Plan auf den Button **Validieren**. | Ein neues Fenster mit dem XPlanValidator öffnet sich.
 **02** | Der Benutzer vergibt eine _Bezeichnung_. | Die Bezeichnung wird im Feld dargestellt. 
 **03** | Der Benutzer wählt einen _Validierungstyp_ aus. | Der Validierungstyp wird im Feld dargestellt.
 **04** | Der Benutzer wählt ein _Profil_ aus. | Das Profil wird im Feld dargestellt. 
@@ -234,12 +230,12 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
 **01** | Der Benutzer klickt neben einen syntaktisch, semmantisch oder geometrisch invaliden Plan auf den Button **Import**. | Der Button ist deaktiviert und kann nicht angeklickt werden.
-**02** | Der Benutzer klickt neben einen validen Plan auf den Button **Import**. | Es öffnet sich ein Fenster zur Angabe des Gültigkeitszeitraums.  
+**02** | Der Benutzer klickt neben einen validen Plan mit Rasterdaten auf den Button **Import**. | Es öffnet sich ein Fenster zur Angabe des Gültigkeitszeitraums.
 **02.1** | Der Benutzer wählt einen _Gültigkeitszeitraum_ aus oder klickt ohne Angaben den Button **Weiter**. | Es öffnet sich ein weiteres Fenster um den Rechtsstand auszuwählen.
 **02.2** | Der Benutzer wählt einen _Rechtsstand_ aus oder klickt ohne Änderung den Button **Weiter**. | Es öffnet sich ein weiteres Fenster für die Analyse der Rasterdaten.
-**02.3** | Der Benutzer wählt klickt den Button **Weiter mit Rasterdaten**, klickt den Button **Weiter ohne Rasterdaten** oder bricht den Import ab mit dem Button **Abbrechen**. | Beim klicken von den Button **Weiter mit/ohne Rasterdaten** wird Plan importiert, es öffnet sich ein Fenster mit der Meldung, dass der Import abgeschlossen ist.
+**02.3** | Der Benutzer klickt den Button **Weiter mit Rasterdaten**, klickt den Button **Weiter ohne Rasterdaten** oder bricht den Import ab mit dem Button **Abbrechen**. | Beim klicken von den Button **Weiter mit/ohne Rasterdaten** wird Plan importiert, es öffnet sich ein Fenster mit der Meldung, dass der Import abgeschlossen ist.
 **02.4** | Der Benutzer wählt klickt den Button **Ok**. | Der Plan wird in der Plan-Liste angezeigt.
-**03** | Der Benutzer überprüft mit dem XPlanManager CLI (Parameter: `-list`), ob ein Plan importiert wurde. | Der zuvor ausgewählte Plan wurde importiert. 
+**03** | Der Benutzer überprüft mit dem XPlanManagerCLI (Parameter: `-list`), ob ein Plan importiert wurde. | Der zuvor ausgewählte Plan wurde importiert.
 
 ---
 
