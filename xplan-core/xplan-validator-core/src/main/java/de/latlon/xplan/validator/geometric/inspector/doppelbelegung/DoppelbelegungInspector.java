@@ -31,6 +31,7 @@ import org.deegree.geometry.standard.AbstractDefaultGeometry;
 import org.deegree.gml.feature.FeatureInspectionException;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.IntersectionMatrix;
+import org.locationtech.jts.geom.TopologyException;
 
 import javax.xml.namespace.QName;
 import java.util.ArrayList;
@@ -149,8 +150,15 @@ public class DoppelbelegungInspector implements GeometricFeatureInspector {
 
 	private Geometry getGeometry(Feature feature) {
 		TypedObjectNode value = feature.getGeometryProperties().get(0).getValue();
-		if (value instanceof AbstractDefaultGeometry) {
-			return ((AbstractDefaultGeometry) value).getJTSGeometry();
+		try {
+			if (value instanceof AbstractDefaultGeometry) {
+				return ((AbstractDefaultGeometry) value).getJTSGeometry();
+			}
+		}
+		catch (TopologyException | IllegalArgumentException e) {
+			String error = format("DoppelbelegungInspector_invalid_geom", feature.getType().getName().getLocalPart(),
+					feature.getId());
+			errors.add(error);
 		}
 		return null;
 	}
