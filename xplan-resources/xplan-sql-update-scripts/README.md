@@ -64,7 +64,7 @@ As long as this issue is not fixed the method for creating the index has to be d
       - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_linienobjekt_xplan_position ON xplansyn.xplan_so_linienobjekt USING gist (xplan_position);
 ```
 
-To apply this to the changelog by keeping the changeSet ID the following scripts can be used.
+To apply this to the changelog by keeping the changeSet ID the following scripts can be used. In addition, some the indices for the columns xplan_geltungsbereich, xplan_raeumlichergeltungsbereich, xplan_raeumlichergeltungsbereich, xplan_geltungsbereichaenderung must be fixed manually.
 
 For `changelog_xplansyn.yaml`:
 

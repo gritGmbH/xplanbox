@@ -42073,7 +42073,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_bp_bereich_xplan_geltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_bp_bereich
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_bereich_xplan_position ON xplansynarchive.xplan_bp_bereich USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_bp_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663512750284-262
     author: lyn (generated)
@@ -42505,7 +42505,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_bp_plan_xplan_raeumlichergeltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_bp_plan
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_plan_xplan_position ON xplansynarchive.xplan_bp_plan USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_bp_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663512750284-298
     author: lyn (generated)
@@ -42517,7 +42517,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_bp_rasterplanaenderung_xplan_geltungsbereichaende_2
 #         schemaName: xplansynarchive
 #         tableName: xplan_bp_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_rasterplanaenderung_xplan_position ON xplansynarchive.xplan_bp_rasterplanaenderung USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_bp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512750284-299
     author: lyn (generated)
@@ -42937,7 +42937,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_fp_bereich_xplan_geltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_fp_bereich
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_bereich_xplan_position ON xplansynarchive.xplan_fp_bereich USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_fp_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663512750284-334
     author: lyn (generated)
@@ -43117,7 +43117,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_fp_plan_xplan_raeumlichergeltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_fp_plan
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_plan_xplan_position ON xplansynarchive.xplan_fp_plan USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_fp_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663512750284-349
     author: lyn (generated)
@@ -43141,7 +43141,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_fp_rasterplanaenderung_xplan_geltungsbereichaende_6
 #         schemaName: xplansynarchive
 #         tableName: xplan_fp_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_rasterplanaenderung_xplan_position ON xplansynarchive.xplan_fp_rasterplanaenderung USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_fp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512750284-351
     author: lyn (generated)
@@ -43333,7 +43333,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_lp_bereich_xplan_geltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_lp_bereich
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_bereich_xplan_position ON xplansynarchive.xplan_lp_bereich USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_lp_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663512750284-367
     author: lyn (generated)
@@ -43477,7 +43477,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_lp_plan_xplan_raeumlichergeltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_lp_plan
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_plan_xplan_position ON xplansynarchive.xplan_lp_plan USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_lp_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663512750284-379
     author: lyn (generated)
@@ -43501,7 +43501,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_lp_rasterplanaenderung_xplan_geltungsbereichaende_7
 #         schemaName: xplansynarchive
 #         tableName: xplan_lp_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_rasterplanaenderung_xplan_position ON xplansynarchive.xplan_lp_rasterplanaenderung USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_lp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512750284-381
     author: lyn (generated)
@@ -43693,7 +43693,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_rp_bereich_xplan_geltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_rp_bereich
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_bereich_xplan_position ON xplansynarchive.xplan_rp_bereich USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_rp_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663512750284-397
     author: lyn (generated)
@@ -44029,7 +44029,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_rp_plan_xplan_raeumlichergeltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_rp_plan
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_plan_xplan_position ON xplansynarchive.xplan_rp_plan USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_rp_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663512750284-425
     author: lyn (generated)
@@ -44065,7 +44065,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_rp_rasterplanaenderung_xplan_geltungsbereichaend_13
 #         schemaName: xplansynarchive
 #         tableName: xplan_rp_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_rasterplanaenderung_xplan_position ON xplansynarchive.xplan_rp_rasterplanaenderung USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_rp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512750284-428
     author: lyn (generated)
@@ -44377,7 +44377,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_so_bereich_xplan_geltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_so_bereich
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_bereich_xplan_position ON xplansynarchive.xplan_so_bereich USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_so_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663512750284-454
     author: lyn (generated)
@@ -44497,7 +44497,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_so_plan_xplan_raeumlichergeltungsbereich
 #         schemaName: xplansynarchive
 #         tableName: xplan_so_plan
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_plan_xplan_position ON xplansynarchive.xplan_so_plan USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_so_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663512750284-464
     author: lyn (generated)
@@ -44509,7 +44509,7 @@ databaseChangeLog:
 #         indexName: spidx_xplan_so_rasterplanaenderung_xplan_geltungsbereichaend_14
 #         schemaName: xplansynarchive
 #         tableName: xplan_so_rasterplanaenderung
-      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_rasterplanaenderung_xplan_position ON xplansynarchive.xplan_so_rasterplanaenderung USING gist (xplan_position);
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_so_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663512750284-465
     author: lyn (generated)
