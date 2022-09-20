@@ -43,6 +43,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -78,6 +79,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -113,6 +115,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -148,6 +151,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -183,6 +187,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -218,6 +223,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -253,6 +259,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -289,6 +296,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -324,6 +332,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -359,6 +368,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -394,6 +404,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -429,6 +440,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -464,6 +476,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -499,6 +512,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -534,6 +548,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -569,6 +584,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -604,6 +620,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -639,6 +656,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -674,6 +692,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -709,6 +728,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -744,6 +764,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -779,6 +800,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -814,6 +836,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -849,6 +872,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -884,6 +908,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -919,6 +944,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -954,6 +980,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -990,6 +1017,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1025,6 +1053,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1062,6 +1091,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1097,6 +1127,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1132,6 +1163,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1167,6 +1199,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1202,6 +1235,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1237,6 +1271,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1272,6 +1307,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1308,6 +1344,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1343,6 +1380,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1378,6 +1416,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1413,6 +1452,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1448,6 +1488,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1483,6 +1524,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1518,6 +1560,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1553,6 +1596,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1588,6 +1632,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1623,6 +1668,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1658,6 +1704,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1693,6 +1740,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1728,6 +1776,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1763,6 +1812,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1798,6 +1848,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1833,6 +1884,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1868,6 +1920,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1903,6 +1956,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1938,6 +1992,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -1973,6 +2028,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2010,6 +2066,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2045,6 +2102,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2081,6 +2139,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2116,6 +2175,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2151,6 +2211,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2186,6 +2247,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2221,6 +2283,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2256,6 +2319,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2291,6 +2355,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -2326,6 +2391,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
