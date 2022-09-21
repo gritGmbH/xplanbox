@@ -141,12 +141,7 @@ Update-Skript überführt und damit an der Datenbank durchgeführt werden.
 Für einige Aktualisierungen sind Aktualisierungsskripte im Modul
 _xplan-update-data-cli_ verfügbar.
 
-TIP: Es gibt sowohl SQL-Update-Skripte als auch Liquibase-Skripte, die mit
-der Software https://www.liquibase.org/[Liquibase] ausgeführt werden
-können. Falls beide Skript-Typen vorhanden sind, kann der Nutzer wählen,
-ob das Update per SQL oder Liquibase durchgeführt werden soll.
-
-NOTE: Werden mehrere Aktualisierungschritte mit Liquibase ausgeführt, kann es zu folgender Fehlermeldungen: _ERROR:  relation "databasechangeloglock" already exists_ kommen. Diese Fehlermeldung kann ignoriert werden.
+NOTE: Bei der Aktualisierung kann es zu folgender Fehlermeldungen kommen: _ERROR:  relation "databasechangeloglock" already exists_ kommen. Diese Fehlermeldung kann ignoriert werden.
 
 [[aktualisierung-der-daten]]
 === Aktualisierung der Daten
@@ -172,6 +167,8 @@ Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
 
 IMPORTANT:  Java 1.8 wird nicht mehr unterstützt.
 
+IMPORTANT: Die Skripte für die Aktualisierung auf die Version 5.0 werden mit der Version 6.0 der xPlanBox nicht mehr ausgeliefert. Bei  Fragen zur Aktualisierung von früheren Versionen (5.0 und älter), wenden Sie sich bitte an die https://www.lat-lon.de[lat/lon GmbH].
+
 [[aktualisierung-auf-die-version-5.0.1]]
 === Aktualisierung auf die Version 5.0.1
 
@@ -190,8 +187,8 @@ Für eine Installation der Bugfix-Version müssen folgende Schritte ausgeführt 
 * Austausch der beiden Webapps:
 ** _xplan-api-manager.war_
 ** _xplan-manager-web.war_
-* Ausführen der Skripte im Verzeichnis _from_5.0_to_5.0.2_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
-* Ausführen des Kommandozeilenwerkzeugs __databaseUpdate__ (für Version 5.0.2) im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanSyn-Datenhaltung, z.B. mit `./databaseUpdate -c <XPLANBOX_CONFIG>/`
+* Ausführen des Skripts _01_addBereichTable.sql_ im Verzeichnis _sql/update/from_5.0_to_5.0.2_ im Modul _xplan-manager-workspace_
+* Ausführen des Kommandozeilenwerkzeugs _databaseUpdate_ (für Version 5.0.2) im Modul _xplan-update-data-cli_ zur Aktualisierung der XPlanSyn-Datenhaltung, z.B. mit `./databaseUpdate -c <XPLANBOX_CONFIG>/`
 
 TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert werden.
 
@@ -223,11 +220,7 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 *** die Eigenschaft `maxWait` umbenennen in `maxWaitMillis`
 *** die Eigenschaft `removeAbandoned` ersetzen entweder durch `removeAbandonedOnBorrow` (empfohlen) oder `removeAbandonedOnMaintenance` (weitere Informationen unter https://commons.apache.org/proper/commons-dbcp/configuration.html[Apache DBCP Konfigurationsoptionen])
 * Aktualisierung der Datenbank:
-** Ausführen der Skripte für die Erstellung der Datenhaltung für 6.0 aus dem Modul _xplan-manager-workspace_:
-*** _fix/xplan60/create.sql_
-*** _pre/xplan60/create.sql_
-*** _archive/xplan60/create.sql_
-** Ausführen der Skripte im Verzeichnis _from_5.0_to_6.0_ im Modul _xplan-update-data-cli_ in der vorgegebenen Reihenfolge
+** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_5.0.2_to_6.0_ im Modul _xplan-manager-workspace_
 ** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
 
