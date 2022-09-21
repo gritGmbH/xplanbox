@@ -26,6 +26,9 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import junitparams.JUnitParamsRunner;
@@ -59,7 +62,7 @@ public class XQuerySemanticValidatorTest {
 	public void testValidateSemantic(String testResource, int expectedNumberOfRules) throws Exception {
 		Path xqueryFilePath = pathToSampleRules();
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				xqueryFilePath);
+				xqueryFilePath, rulesMatadata(xqueryFilePath));
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever);
 		ValidatorResult result = xQuerySemanticValidator.validateSemantic(getTestArchive(testResource),
 				Collections.emptyList());
@@ -72,7 +75,7 @@ public class XQuerySemanticValidatorTest {
 	public void testValidatorResultContainsDetailsHint() throws Exception {
 		Path xqueryFilePath = pathToSampleRules();
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				xqueryFilePath);
+				xqueryFilePath, rulesMatadata(xqueryFilePath));
 		SemanticConformityLinkConfiguration linkConfig = new SemanticConformityLinkConfiguration();
 		linkConfig.addLink(XPLAN_41, "link");
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever, linkConfig);
@@ -88,7 +91,7 @@ public class XQuerySemanticValidatorTest {
 	public void testValidatorResultWithoutLinkNotContainsDetailsHint() throws Exception {
 		Path xqueryFilePath = pathToSampleRules();
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				xqueryFilePath);
+				xqueryFilePath, rulesMatadata(xqueryFilePath));
 		SemanticConformityLinkConfiguration linkConfig = new SemanticConformityLinkConfiguration();
 		linkConfig.addLink(XPLAN_40, "link");
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever, linkConfig);
@@ -103,7 +106,7 @@ public class XQuerySemanticValidatorTest {
 	public void testValidatorResultWithoutLinkConfigNotContainsDetailsHint() throws Exception {
 		Path xqueryFilePath = pathToSampleRules();
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				xqueryFilePath);
+				xqueryFilePath, rulesMatadata(xqueryFilePath));
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever);
 		ValidatorResult result = xQuerySemanticValidator.validateSemantic(getTestArchive("xplan41/BP2070.zip"),
 				Collections.emptyList());
@@ -116,7 +119,7 @@ public class XQuerySemanticValidatorTest {
 	public void testValidateSemanticWithNullArchiveShouldFail() throws Exception {
 		Path xqueryFilePath = pathToSampleRules();
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				xqueryFilePath);
+				xqueryFilePath, rulesMatadata(xqueryFilePath));
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever);
 		xQuerySemanticValidator.validateSemantic(null, Collections.emptyList());
 	}
@@ -125,9 +128,15 @@ public class XQuerySemanticValidatorTest {
 	public void testValidateSemanticWithOptionsArchiveShouldFail() throws Exception {
 		Path xqueryFilePath = pathToSampleRules();
 		XQuerySemanticValidatorConfigurationRetriever retriever = new XQuerySemanticValidatorConfigurationRetriever(
-				xqueryFilePath);
+				xqueryFilePath, rulesMatadata(xqueryFilePath));
 		SemanticValidator xQuerySemanticValidator = new XQuerySemanticValidator(retriever);
 		xQuerySemanticValidator.validateSemantic(getTestArchive("xplan41/BP2070.zip"), null);
+	}
+
+	private RulesMetadata rulesMatadata(Path rulesPath) {
+		RulesVersionParser rulesVersionParser = new RulesVersionParser();
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+		return new RulesMetadata(rulesVersion);
 	}
 
 	private XPlanArchive getTestArchive(String name) throws Exception {

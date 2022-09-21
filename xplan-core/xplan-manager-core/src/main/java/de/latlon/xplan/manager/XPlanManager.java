@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -38,17 +38,14 @@ import de.latlon.xplan.manager.codelists.XPlanCodeLists;
 import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
-import de.latlon.xplan.manager.database.DatabaseCreator;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.manager.database.SortPropertyUpdater;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
-import de.latlon.xplan.manager.jdbcconfig.JaxbJdbcConfigWriter;
-import de.latlon.xplan.manager.jdbcconfig.JdbcConfigWriter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.transaction.UnsupportPlanException;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
@@ -64,8 +61,7 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.deegree.commons.config.ResourceInitException;
+import org.deegree.commons.utils.Pair;
 import org.deegree.commons.xml.XMLParsingException;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -77,7 +73,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -108,10 +103,6 @@ public class XPlanManager {
 
 	private final XPlanDao xplanDao;
 
-	private final WorkspaceReloader workspaceReloader;
-
-	private final DeegreeWorkspace managerWorkspace;
-
 	private final XPlanExporter xPlanExporter;
 
 	private final XPlanToEditFactory planToEditFactory = new XPlanToEditFactory();
@@ -120,11 +111,7 @@ public class XPlanManager {
 
 	private final SortPropertyReader sortPropertyReader;
 
-	private final SortPropertyUpdater sortPropertyUpdater;
-
 	private final InspirePluPublisher inspirePluPublisher;
-
-	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
 	private final XPlanInsertManager xPlanInsertManager;
 
@@ -157,9 +144,6 @@ public class XPlanManager {
 		}
 		this.xplanDao = xPlanDao;
 		this.archiveCreator = archiveCreator;
-		this.managerWorkspace = managerWorkspaceWrapper.getWorkspace();
-		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
-		this.workspaceReloader = workspaceReloader;
 
 		ManagerConfigurationAnalyser managerConfigurationAnalyser = new ManagerConfigurationAnalyser(
 				managerWorkspaceWrapper.getConfiguration(), wmsWorkspaceWrapper);
@@ -169,7 +153,6 @@ public class XPlanManager {
 				managerWorkspaceWrapper.getConfiguration());
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
-		this.sortPropertyUpdater = new SortPropertyUpdater(sortPropertyReader, xplanDao, xPlanRasterManager);
 		this.xPlanExporter = new XPlanExporter();
 		XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer(managerWorkspaceWrapper.getConfiguration());
 		if (inspirePluTransformator != null)
@@ -199,23 +182,18 @@ public class XPlanManager {
 	 * @param defaultCRS the default crs, may be <code>null</code> if no default crs
 	 * should be set
 	 * @param force should import be forced?
-	 * @param makeWMSConfig <code>true</code> if the WMS configuration for the plan to
-	 * import should be created, <code>false</code> otherwise. To use this option it is
-	 * required, that makeRasterConfig is <code>true</code>
 	 * @param makeRasterConfig <code>true</code> if the configuration of raster files
 	 * should be created, <code>false</code> otherwise
-	 * @param workspaceFolder workspace folder, may be <code>null</code> if default path
-	 * should be used.
 	 * @param internalId is added to the feature collection of the plan, if
 	 * <code>null</code>, internalId property is not added to the feature collection
 	 */
-	public void importPlan(String archiveFileName, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
-			boolean makeRasterConfig, File workspaceFolder, String internalId) throws Exception {
+	public void importPlan(String archiveFileName, ICRS defaultCRS, boolean force, boolean makeRasterConfig,
+			String internalId) throws Exception {
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		if (archive.hasMultipleXPlanElements())
-			throw new IllegalArgumentException("Das XPlanGML enthält mehrere XP_Plan-Elemente.");
-		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, workspaceFolder,
-				internalId, new AdditionalPlanData());
+			throw new UnsupportPlanException("Das XPlanGML enthält mehrere XP_Plan-Elemente.");
+		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeRasterConfig, internalId,
+				new AdditionalPlanData());
 	}
 
 	/**
@@ -224,9 +202,6 @@ public class XPlanManager {
 	 * @param defaultCRS the default crs, may be <code>null</code> if no default crs
 	 * should be set
 	 * @param force should import be forced?
-	 * @param makeWMSConfig <code>true</code> if the WMS configuration for the plan to
-	 * import should be created, <code>false</code> otherwise. To use this option it is
-	 * required, that makeRasterConfig is <code>true</code>
 	 * @param makeRasterConfig <code>true</code> if the configuration of raster files
 	 * should be created, <code>false</code> otherwise
 	 * @param internalId is added to the feature collection of the plan, if
@@ -235,10 +210,9 @@ public class XPlanManager {
 	 * <code>null</code>
 	 */
 	@PreAuthorize("hasPermission(#archive, 'hasDistrictPermission') or hasRole('ROLE_XPLAN_SUPERUSER')")
-	public void importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeWMSConfig,
-			boolean makeRasterConfig, String internalId, AdditionalPlanData xPlanMetadata) throws Exception {
-		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeWMSConfig, makeRasterConfig, null, internalId,
-				xPlanMetadata);
+	public void importPlan(XPlanArchive archive, ICRS defaultCRS, boolean force, boolean makeRasterConfig,
+			String internalId, AdditionalPlanData xPlanMetadata) throws Exception {
+		xPlanInsertManager.importPlan(archive, defaultCRS, force, makeRasterConfig, internalId, xPlanMetadata);
 	}
 
 	/**
@@ -275,11 +249,11 @@ public class XPlanManager {
 	 * @throws UnknownCRSException
 	 * @throws XMLStreamException
 	 */
-	public Rechtsstand determineRechtsstand(String pathToArchive)
+	public Pair<Rechtsstand, PlanStatus> determineRechtsstand(String pathToArchive)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
 		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
-		return determineRechtsstand(xPlanFeatureCollection);
+		return determineRechtsstandAndPlanstatus(xPlanFeatureCollection, archive.getType());
 	}
 
 	/**
@@ -320,8 +294,9 @@ public class XPlanManager {
 				planStatus = valueOf(status);
 			}
 			else {
-				Rechtsstand rechtsstand = determineRechtsstand(xPlanFeatureCollection);
-				planStatus = findByLegislationStatusCode(rechtsstand.getCodeNumber());
+				Pair<Rechtsstand, PlanStatus> rechtsstandPAndlanStatus = determineRechtsstandAndPlanstatus(
+						xPlanFeatureCollection, archive.getType());
+				planStatus = rechtsstandPAndlanStatus.second;
 			}
 			boolean planWithSameNameAndStatusExists = xplanDao.checkIfPlanWithSameNameAndStatusExists(planName,
 					planStatus.getMessage());
@@ -433,51 +408,11 @@ public class XPlanManager {
 	}
 
 	/**
-	 * @param planId the plan id to delete
+	 * @param planId the plan id to delete should be used.
 	 * @throws Exception
 	 */
 	public void delete(String planId) throws Exception {
-		delete(planId, null);
-	}
-
-	/**
-	 * @param planId the plan id to delete
-	 * @param workspaceFolder workspace folder, may be <code>null</code> if default path
-	 * should be used.
-	 * @throws Exception
-	 */
-	public void delete(String planId, File workspaceFolder) throws Exception {
-		xPlanDeleteManager.delete(planId, workspaceFolder);
-	}
-
-	/**
-	 * @param jdbcConnection the JDBC connection string
-	 * @param dbName The name of the database which will be created
-	 * @param template The name of the PostGis-template
-	 * @param user user of the database
-	 * @param pw the password of the database
-	 * @throws ResourceInitException
-	 * @throws java.sql.SQLException
-	 */
-	public void createInitialDB(String jdbcConnection, String dbName, String template, String user, String pw)
-			throws Exception {
-		File wsDirectory = managerWorkspace.getLocation();
-
-		writeJDBCFile(wsDirectory, jdbcConnection, dbName, user, pw);
-
-		DatabaseCreator databaseCreator = new DatabaseCreator();
-		databaseCreator.createInitialDB(jdbcConnection, dbName, template, user, pw, wsDirectory);
-
-		LOG.info("Datenbank " + dbName + " wurde erzeugt");
-	}
-
-	/**
-	 * Update of wms sort columns in XPlan Syn datastores and reordering of the WMS
-	 * layers.
-	 * @throws Exception
-	 */
-	public void updateWmsSortDate() throws Exception {
-		sortPropertyUpdater.updateSortProperty();
+		xPlanDeleteManager.delete(planId);
 	}
 
 	/**
@@ -498,22 +433,11 @@ public class XPlanManager {
 		}
 	}
 
-	private void writeJDBCFile(File wsDirectory, String jdbcConnection, String dbName, String user, String pw)
-			throws Exception {
-
-		try {
-			File jdbcConnFile = new File(wsDirectory.toString() + "/jdbc/xplan.xml");
-			jdbcConnFile.createNewFile();
-
-			OutputStream os = new FileOutputStream(jdbcConnFile);
-			JdbcConfigWriter configWriter = new JaxbJdbcConfigWriter();
-			configWriter.write(os, jdbcConnection, dbName, user, pw);
-
-		}
-		catch (IOException e) {
-			throw new Exception("Fehler beim Schreiben der Datei <" + wsDirectory.toString() + "/jdbc/xplan.xml>: "
-					+ e.getMessage());
-		}
+	private Pair<Rechtsstand, PlanStatus> determineRechtsstandAndPlanstatus(
+			XPlanFeatureCollection xPlanFeatureCollection, XPlanType type) {
+		Rechtsstand rechtsstand = determineRechtsstand(xPlanFeatureCollection);
+		PlanStatus planStatus = findByLegislationStatusCode(type.name(), rechtsstand.getCodeNumber());
+		return new Pair<>(rechtsstand, planStatus);
 	}
 
 	private Rechtsstand determineRechtsstand(XPlanFeatureCollection xPlanFeatureCollection) {
@@ -537,7 +461,7 @@ public class XPlanManager {
 		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
 		String codeListId = findCodeListId(type);
 		try {
-			return xPlanCodeLists.getDescription(codeListId, Integer.toString(rechtsstandCode));
+			return xPlanCodeLists.getTranslation(codeListId, Integer.toString(rechtsstandCode));
 		}
 		catch (Exception e) {
 			LOG.error("Could not translate rechtsstand code {}: {}", rechtsstandCode, e.getMessage());
@@ -548,16 +472,16 @@ public class XPlanManager {
 
 	private String findCodeListId(XPlanType xPlanType) {
 		switch (xPlanType) {
-		case BP_Plan:
-			return "BP_Rechtsstand";
-		case FP_Plan:
-			return "FP_Rechtsstand";
-		case LP_Plan:
-			return "LP_Rechtsstand";
-		case RP_Plan:
-			return "RP_Rechtsstand";
-		default:
-			break;
+			case BP_Plan:
+				return "BP_Rechtsstand";
+			case FP_Plan:
+				return "FP_Rechtsstand";
+			case LP_Plan:
+				return "LP_Rechtsstand";
+			case RP_Plan:
+				return "RP_Rechtsstand";
+			default:
+				break;
 		}
 		return "XP_Rechtsstand";
 	}

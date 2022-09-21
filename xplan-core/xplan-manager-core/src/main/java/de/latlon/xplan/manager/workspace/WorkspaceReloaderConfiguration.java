@@ -20,9 +20,10 @@
  */
 package de.latlon.xplan.manager.workspace;
 
-import static java.util.Collections.emptyList;
-
 import java.util.List;
+
+import static de.latlon.xplan.manager.workspace.WorkspaceReloadAction.ALL;
+import static java.util.Collections.emptyList;
 
 /**
  * Container object for {@link WorkspaceReloader} configuration.
@@ -38,6 +39,8 @@ public class WorkspaceReloaderConfiguration {
 
 	private final String password;
 
+	private final WorkspaceReloadAction workspaceReloadAction;
+
 	/**
 	 * Invalid workspace reloader configuration.
 	 */
@@ -45,6 +48,7 @@ public class WorkspaceReloaderConfiguration {
 		this.urls = emptyList();
 		this.user = "";
 		this.password = "";
+		this.workspaceReloadAction = ALL;
 	}
 
 	/**
@@ -52,11 +56,18 @@ public class WorkspaceReloaderConfiguration {
 	 * @param urls URLs of deegree services to reload, never <code>null</code>
 	 * @param user user used for authentication, never <code>null</code>
 	 * @param password password used for authentication, never <code>null</code>
+	 * @param workspaceReloadAction the operation to execute for workspace reload, may be
+	 * <code>null</code> (defaults to ALL)
 	 */
-	public WorkspaceReloaderConfiguration(List<String> urls, String user, String password) {
+	public WorkspaceReloaderConfiguration(List<String> urls, String user, String password,
+			WorkspaceReloadAction workspaceReloadAction) {
 		this.urls = urls;
 		this.user = user;
 		this.password = password;
+		if (workspaceReloadAction == null)
+			this.workspaceReloadAction = ALL;
+		else
+			this.workspaceReloadAction = workspaceReloadAction;
 	}
 
 	/**
@@ -78,6 +89,13 @@ public class WorkspaceReloaderConfiguration {
 	 */
 	public String getPassword() {
 		return password;
+	}
+
+	/**
+	 * @return operation to execute for workspace reload, never <code>null</code>
+	 */
+	public WorkspaceReloadAction getWorkspaceReloadAction() {
+		return workspaceReloadAction;
 	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -99,12 +99,12 @@ public class WorkspaceRasterLayerManager {
 	public void createRasterConfigurations(String rasterId, String rasterFileName, double minScaleDenominator,
 			double maxScaleDenominator) throws JAXBException, IOException {
 		switch (tileStoreType) {
-		case geotiff:
-			createGeotiffConfiguration(rasterId, rasterFileName, minScaleDenominator, maxScaleDenominator);
-			break;
-		default:
-			createGdalConfiguration(rasterId, rasterFileName, minScaleDenominator, maxScaleDenominator);
-			break;
+			case geotiff:
+				createGeotiffConfiguration(rasterId, rasterFileName, minScaleDenominator, maxScaleDenominator);
+				break;
+			default:
+				createGdalConfiguration(rasterId, rasterFileName, minScaleDenominator, maxScaleDenominator);
+				break;
 		}
 	}
 
@@ -199,7 +199,6 @@ public class WorkspaceRasterLayerManager {
 	private void createTileLayerConfig(String rasterId, double minScaleDenominator, double maxScaleDenominator)
 			throws JAXBException, IOException {
 		TileLayers cfg = new TileLayers();
-		cfg.setConfigVersion("3.4.0");
 		TileLayerType lay = new TileLayerType();
 		cfg.getTileLayer().add(lay);
 		lay.setName(rasterId);
@@ -233,7 +232,6 @@ public class WorkspaceRasterLayerManager {
 	private void createGeotiffTileMatrixSetConfig(String rasterId, String rasterFileName)
 			throws JAXBException, IOException {
 		GeoTIFFTileMatrixSetConfig cfg = new GeoTIFFTileMatrixSetConfig();
-		cfg.setConfigVersion("3.4.0");
 		cfg.setStorageCRS(rasterConfigurationCrs);
 		cfg.setFile("../../../data/" + rasterFileName);
 		Path tilematrixsetDir = wmsWorkspace.resolve("datasources/tile/tilematrixset/");
@@ -245,7 +243,6 @@ public class WorkspaceRasterLayerManager {
 	private void createGdalTileMatrixSetConfig(String rasterId, String rasterFileName)
 			throws JAXBException, IOException {
 		GdalTileMatrixSetConfig cfg = new GdalTileMatrixSetConfig();
-		cfg.setConfigVersion("3.4.0");
 		cfg.setStorageCRS(rasterConfigurationCrs);
 		cfg.setFile("../../../data/" + rasterFileName);
 		Path tilematrixsetDir = wmsWorkspace.resolve("datasources/tile/tilematrixset/");
@@ -256,7 +253,6 @@ public class WorkspaceRasterLayerManager {
 
 	private void createGeotiffTileStoreConfig(String rasterId, String rasterFileName) throws JAXBException {
 		GeoTIFFTileStoreJAXB cfg = new GeoTIFFTileStoreJAXB();
-		cfg.setConfigVersion("3.4.0");
 		GeoTIFFTileStoreJAXB.TileDataSet tds = new GeoTIFFTileStoreJAXB.TileDataSet();
 		tds.setIdentifier(rasterId);
 		tds.setFile("../../data/" + rasterFileName);
@@ -269,7 +265,6 @@ public class WorkspaceRasterLayerManager {
 	private void createGdalTileStoreConfig(String rasterId, String rasterFileName)
 			throws JAXBException, PropertyException {
 		GdalTileStoreJaxb cfg = new GdalTileStoreJaxb();
-		cfg.setConfigVersion("3.4.0");
 		GdalTileStoreJaxb.TileDataSet tds = new GdalTileStoreJaxb.TileDataSet();
 		tds.setIdentifier(rasterId);
 		tds.setFile("../../data/" + rasterFileName);
@@ -281,7 +276,6 @@ public class WorkspaceRasterLayerManager {
 
 	private void createGdalConfiguration() throws JAXBException {
 		GDALSettings gdalSettings = new GDALSettings();
-		gdalSettings.setConfigVersion("3.4.0");
 		gdalSettings.setOpenDatasets(BigInteger.valueOf(10));
 		GDALOption gdalOption = new GDALOption();
 		gdalOption.setName("gdalSettings.getGDALOption()");

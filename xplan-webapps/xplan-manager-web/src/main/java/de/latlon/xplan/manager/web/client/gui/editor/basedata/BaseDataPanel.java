@@ -8,26 +8,17 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.web.client.gui.editor.basedata;
-
-import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static com.google.gwt.user.client.ui.HasVerticalAlignment.ALIGN_TOP;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_PlanArt;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_Rechtsstand;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_SonstPlanArt;
-import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.BP_Verfahren;
-import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.CaptionPanel;
@@ -35,7 +26,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
-
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType;
 import de.latlon.xplan.manager.web.client.gui.widget.CodeListBox;
@@ -44,6 +35,17 @@ import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBoxFormat;
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
+
+import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static com.google.gwt.user.client.ui.HasVerticalAlignment.ALIGN_TOP;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.SO_Plan;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.PlanArt;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.Rechtsstand;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.SonstPlanArt;
+import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.Verfahren;
+import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 
 /**
  * CaptionPanel with editor for the base data section.
@@ -77,13 +79,16 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private final CodeListBox legislationStatus;
 
-	public BaseDataPanel(EditVersion version) {
+	private EditPlanType type;
+
+	public BaseDataPanel(EditVersion version, EditPlanType type) {
+		this.type = type;
 		setCaptionText(MASSAGE.editCaptionBasedata());
-		planType = createMandatoryCodeListInput(version, BP_PlanArt);
-		otherPlanType = createCodeListInput(version, BP_SonstPlanArt);
-		method = createMethodInput(version);
-		legislationStatus = createCodeListInput(version, BP_Rechtsstand);
-		add(createBaseDataLayout());
+		this.planType = createMandatoryCodeListInput(version, type, PlanArt);
+		this.otherPlanType = createCodeListInput(version, type, SonstPlanArt);
+		this.method = createMethodInput(version, type);
+		this.legislationStatus = createCodeListInput(version, type, Rechtsstand);
+		add(createBaseDataLayout(version, type));
 	}
 
 	public void setBaseData(BaseData baseData) {
@@ -123,10 +128,12 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	@Override
 	public boolean isValid() {
+		if (SO_Plan.equals(type))
+			return areComponentsValid(creationDate, lossDate, regulationDate);
 		return areComponentsValid(planType, creationDate, lossDate, regulationDate);
 	}
 
-	private FlexTable createBaseDataLayout() {
+	private FlexTable createBaseDataLayout(EditVersion version, EditPlanType type) {
 		FlexTable layout = new FlexTable();
 		FlexTable.FlexCellFormatter formatter = layout.getFlexCellFormatter();
 		formatter.setHorizontalAlignment(1, 1, ALIGN_LEFT);
@@ -145,48 +152,57 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 		layout.setWidget(1, 1, new Label(MASSAGE.editCaptionBasedataName()));
 		layout.setWidget(1, 2, name);
-		layout.setWidget(1, 3, new Label(MASSAGE.editCaptionBasedataPlanType()));
-		layout.setWidget(1, 4, planType);
+		if (!SO_Plan.equals(type)) {
+			layout.setWidget(1, 3, new Label(MASSAGE.editCaptionBasedataPlanType()));
+			layout.setWidget(1, 4, planType);
+		}
 
 		layout.setWidget(2, 1, new Label(MASSAGE.editCaptionBasedataCreationDate()));
 		layout.setWidget(2, 2, creationDate);
-		layout.setWidget(2, 3, new Label(MASSAGE.editCaptionBasedataOtherPlanType()));
-		layout.setWidget(2, 4, otherPlanType);
+
+		// https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1227
+		// layout.setWidget(2, 3, new Label(MASSAGE.editCaptionBasedataOtherPlanType()));
+		// layout.setWidget(2, 4, otherPlanType);
 
 		layout.setWidget(3, 1, new Label(MASSAGE.editCaptionBasedataLossDate()));
 		layout.setWidget(3, 2, lossDate);
-		layout.setWidget(3, 3, new Label(MASSAGE.editCaptionBasedataMethod()));
-		layout.setWidget(3, 4, method);
 
-		layout.setWidget(4, 1, new Label(MASSAGE.editCaptionBasedataRegulationDate()));
-		layout.setWidget(4, 2, regulationDate);
-		layout.setWidget(4, 3, new Label(MASSAGE.editCaptionBasedataLegislationStatus()));
-		layout.setWidget(4, 4, legislationStatus);
+		if (!XPLAN_60.equals(version) && !SO_Plan.equals(type)) {
+			layout.setWidget(3, 3, new Label(MASSAGE.editCaptionBasedataMethod()));
+			layout.setWidget(3, 4, method);
+		}
 
+		if (BP_Plan.equals(type)) {
+			layout.setWidget(4, 1, new Label(MASSAGE.editCaptionBasedataRegulationDate()));
+			layout.setWidget(4, 2, regulationDate);
+		}
+
+		if (!SO_Plan.equals(type)) {
+			layout.setWidget(4, 3, new Label(MASSAGE.editCaptionBasedataLegislationStatus()));
+			layout.setWidget(4, 4, legislationStatus);
+		}
 		layout.setWidget(5, 1, new Label(MASSAGE.editCaptionBasedataDescription()));
 		layout.setWidget(5, 2, description);
 
 		return layout;
 	}
 
-	private CodeListBox createMethodInput(EditVersion version) {
-		CodeListBox methodInput = createCodeListInput(version, BP_Verfahren);
-		if (XPLAN_3.equals(version)) {
-			methodInput.setEnabled(false);
-		}
-		return methodInput;
+	private CodeListBox createMethodInput(EditVersion version, EditPlanType planType) {
+		return createCodeListInput(version, planType, Verfahren);
 	}
 
-	private CodeListBox createMandatoryCodeListInput(EditVersion version, CodelistType codelistType) {
-		return createCodeListInput(version, codelistType, true);
+	private CodeListBox createMandatoryCodeListInput(EditVersion version, EditPlanType planType,
+			CodelistType codelistType) {
+		return createCodeListInput(version, planType, codelistType, true);
 	}
 
-	private CodeListBox createCodeListInput(EditVersion version, CodelistType codelistType) {
-		return createCodeListInput(version, codelistType, false);
+	private CodeListBox createCodeListInput(EditVersion version, EditPlanType planType, CodelistType codelistType) {
+		return createCodeListInput(version, planType, codelistType, false);
 	}
 
-	private CodeListBox createCodeListInput(EditVersion version, CodelistType codelistType, boolean isMandatory) {
-		CodeListBox codeListBox = new CodeListBox(version, codelistType, isMandatory);
+	private CodeListBox createCodeListInput(EditVersion version, EditPlanType planType, CodelistType codelistType,
+			boolean isMandatory) {
+		CodeListBox codeListBox = new CodeListBox(version, planType, codelistType, isMandatory);
 		codeListBox.setWidth(DEFAULT_WIDTH);
 		return codeListBox;
 	}

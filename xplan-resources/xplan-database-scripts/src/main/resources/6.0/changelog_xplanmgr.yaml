@@ -1,0 +1,254 @@
+databaseChangeLog:
+- changeSet:
+    id: 1663512723565-1
+    author: lyn (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: plan
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: filename
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: data
+            type: BYTEA
+        - column:
+            constraints:
+              nullable: false
+            name: num
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: mimetype
+            type: TEXT
+        remarks: Plan artefacts
+        schemaName: xplanmgr
+        tableName: artefacts
+- changeSet:
+    id: 1663512723565-2
+    author: lyn (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: bereiche_pkey
+            name: plan
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: bereiche_pkey
+            name: nummer
+            type: TEXT
+        - column:
+            name: name
+            type: TEXT
+        remarks: Plan Bereiche
+        schemaName: xplanmgr
+        tableName: bereiche
+- changeSet:
+    id: 1663512723565-3
+    author: lyn (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: plan
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: fid
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: num
+            type: INTEGER
+        remarks: Feature ids for plans
+        schemaName: xplanmgr
+        tableName: features
+- changeSet:
+    id: 1663512723565-4
+    author: lyn (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: plans_pkey
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: import_date
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: xp_version
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: xp_type
+            type: TEXT
+        - column:
+            name: name
+            type: TEXT
+        - column:
+            name: nummer
+            type: TEXT
+        - column:
+            name: internalid
+            type: TEXT
+        - column:
+            name: gkz
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: has_raster
+            type: BOOLEAN
+        - column:
+            name: rechtsstand
+            type: TEXT
+        - column:
+            name: release_date
+            type: date
+        - column:
+            name: sonst_plan_art
+            type: TEXT
+        - column:
+            name: planstatus
+            type: TEXT
+        - column:
+            name: district
+            type: TEXT
+        - column:
+            name: wmssortdate
+            type: date
+        - column:
+            name: gueltigkeitbeginn
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: gueltigkeitende
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            defaultValueBoolean: false
+            name: inspirepublished
+            type: BOOLEAN
+        - column:
+            name: bbox
+            type: GEOMETRY
+        remarks: Imported plans
+        schemaName: xplanmgr
+        tableName: plans
+- changeSet:
+    id: 1663512723565-5
+    author: lyn (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: plan
+            type: INTEGER
+        - column:
+            name: title
+            type: TEXT
+        - column:
+            name: resourceidentifier
+            type: TEXT
+        - column:
+            name: datametadataurl
+            type: TEXT
+        - column:
+            name: servicemetadataurl
+            type: TEXT
+        remarks: Metadata of plans provided in the capabilities of the PlanwerkWMS
+        schemaName: xplanmgr
+        tableName: planwerkwmsmetadata
+- changeSet:
+    id: 1663512723565-6
+    author: lyn (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: plan
+        baseTableName: artefacts
+        baseTableSchemaName: xplanmgr
+        constraintName: artefacts_plan_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: plans
+        referencedTableSchemaName: xplanmgr
+        validate: true
+- changeSet:
+    id: 1663512723565-7
+    author: lyn (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: plan
+        baseTableName: bereiche
+        baseTableSchemaName: xplanmgr
+        constraintName: bereiche_plan_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: plans
+        referencedTableSchemaName: xplanmgr
+        validate: true
+- changeSet:
+    id: 1663512723565-8
+    author: lyn (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: plan
+        baseTableName: features
+        baseTableSchemaName: xplanmgr
+        constraintName: features_plan_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: plans
+        referencedTableSchemaName: xplanmgr
+        validate: true
+- changeSet:
+    id: 1663512723565-9
+    author: lyn (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: plan
+        baseTableName: planwerkwmsmetadata
+        baseTableSchemaName: xplanmgr
+        constraintName: planwerkwmsmetadata_plan_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: plans
+        referencedTableSchemaName: xplanmgr
+        validate: true
+

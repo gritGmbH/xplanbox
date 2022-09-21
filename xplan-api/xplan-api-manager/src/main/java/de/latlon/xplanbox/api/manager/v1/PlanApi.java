@@ -79,6 +79,7 @@ import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_V1_JS
 import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_V2_JSON;
 import static de.latlon.xplanbox.api.manager.XPlanBoxContentTypes.XPLANBOX_V2_JSON_TYPE;
 import static de.latlon.xplanbox.api.manager.v1.model.Link.RelEnum.SELF;
+import static io.swagger.v3.oas.annotations.enums.Explode.FALSE;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
@@ -151,6 +152,8 @@ public class PlanApi {
 					description = "skip Geltungsbereich Ueberpruefung") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") @Parameter(
 					description = "skip Laufrichtung Ueberpruefung") Boolean skipLaufrichtung,
+			@QueryParam("profiles") @Parameter(description = "Angabe der Profile, gegen die validiert werden soll",
+					explode = FALSE) List<String> profiles,
 			@QueryParam("internalId") @Parameter(description = "internalId links to VerfahrensId") String internalId,
 			@QueryParam("planStatus") @Parameter(
 					description = "target for data storage, overrides the default derived from xplan:rechtsstand",
@@ -163,7 +166,7 @@ public class PlanApi {
 				overwriteByRequest(skipSemantisch, validationConfig.isSkipSemantisch()),
 				overwriteByRequest(skipFlaechenschluss, validationConfig.isSkipFlaechenschluss()),
 				overwriteByRequest(skipGeltungsbereich, validationConfig.isSkipGeltungsbereich()),
-				overwriteByRequest(skipLaufrichtung, validationConfig.isSkipLaufrichtung()));
+				overwriteByRequest(skipLaufrichtung, validationConfig.isSkipLaufrichtung()), profiles);
 		List<XPlan> xPlans = planHandler.importPlan(body, xFilename, validationSettings, internalId, planStatus);
 		MediaType requestedMediaType = requestedMediaType(request);
 		if (XPLANBOX_V2_JSON_TYPE.equals(requestedMediaType)) {

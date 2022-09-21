@@ -27,12 +27,14 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.property.SimpleProperty;
 
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class Ausrichtung implements Expression {
 
-	private static final double AUSRICHTUNG_DEFAULT = 0.0;
+	private static final double AUSRICHTUNG_DEFAULT = 0.5;
 
 	private enum AUSRICHTUNG {
 
@@ -87,7 +89,7 @@ public class Ausrichtung implements Expression {
 				return asTypedObjectNode(((GenericXMLElement) property).getValue());
 			}
 		}
-		return asTypedObjectNode(AUSRICHTUNG_DEFAULT);
+		return toPrimitiveValue(AUSRICHTUNG_DEFAULT);
 	}
 
 	private TypedObjectNode asTypedObjectNode(PrimitiveValue property) {
@@ -95,14 +97,10 @@ public class Ausrichtung implements Expression {
 			String asText = property.getAsText();
 			AUSRICHTUNG ausrichtung = AUSRICHTUNG.valueOfCodelistName(asText);
 			if (ausrichtung != null) {
-				return asTypedObjectNode(ausrichtung.anchor);
+				return toPrimitiveValue(ausrichtung.anchor);
 			}
 		}
-		return asTypedObjectNode(AUSRICHTUNG_DEFAULT);
-	}
-
-	private TypedObjectNode asTypedObjectNode(double anchor) {
-		return Expressions.toPrimitiveValue(anchor);
+		return toPrimitiveValue(AUSRICHTUNG_DEFAULT);
 	}
 
 }

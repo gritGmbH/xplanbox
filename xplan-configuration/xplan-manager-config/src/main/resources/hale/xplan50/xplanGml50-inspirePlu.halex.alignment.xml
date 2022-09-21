@@ -9,12 +9,12 @@
   it under the terms of the GNU Affero General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
@@ -25,6 +25,20 @@
         <source>
             <class>
                 <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </class>
+        </source>
+        <target>
+            <class>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+            </class>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.retype" id="Cf7ed59a5-70c1-4a18-87fe-08e882eff08e" priority="normal">
+        <source>
+            <class>
+                <type name="SO_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
             </class>
         </source>
         <target>
@@ -63,22 +77,6 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2b379e44-14f7-4880-b29e-f49bd8b00b50" priority="normal">
-        <source>
-            <property>
-                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
-    </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca85fac51-40fc-461b-bffe-31f168b84aa0" priority="normal">
         <source>
             <property>
@@ -111,19 +109,17 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cedb8e635-3480-4223-8949-a659dfb24a52" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C2b379e44-14f7-4880-b29e-f49bd8b00b50" priority="normal">
         <source>
             <property>
-                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </source>
         <target>
             <property>
                 <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -165,10 +161,10 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C924e19ce-ef73-4167-bf51-f1eded55f407" priority="normal">
-        <source name="anchor">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cedb8e635-3480-4223-8949-a659dfb24a52" priority="normal">
+        <source>
             <property>
-                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </source>
@@ -177,10 +173,11 @@
                 <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
                 <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
                 <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
-                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="localId" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="https://registry.gdi-de.org/id/de.bw" name="value"/>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="Ce4f1d1f0-dcf5-4fe5-8f95-12548a920f41" priority="normal">
         <source name="anchor">
@@ -216,27 +213,22 @@
         </target>
         <parameter value="https://registry.gdi-de.org/id/de.bw" name="value"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd9c0acfe-58d5-4043-a02b-9ecb327ddc9c" priority="normal">
-        <source>
+    <cell relation="eu.esdihumboldt.hale.align.assign.bound" id="C924e19ce-ef73-4167-bf51-f1eded55f407" priority="normal">
+        <source name="anchor">
             <property>
-                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
-                <child name="refText" ns="http://www.xplanung.de/xplangml/5/0"/>
-                <child name="choice" ns="http://www.xplanung.de/xplangml/5/0/XP_ExterneReferenz"/>
-                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/0"/>
-                <child name="datum" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </source>
         <target>
             <property>
                 <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
-                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
-                <child name="date" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="inspireId" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="Identifier" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
+                <child name="namespace" ns="http://inspire.ec.europa.eu/schemas/base/3.3"/>
             </property>
         </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
+        <parameter value="https://registry.gdi-de.org/id/de.bw" name="value"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="C91700010-d06e-4a48-bf0d-cb3e92144561" priority="normal">
         <source>
@@ -282,6 +274,28 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cd9c0acfe-58d5-4043-a02b-9ecb327ddc9c" priority="normal">
+        <source>
+            <property>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/0/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="datum" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="date" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
     <cell relation="eu.esdihumboldt.hale.align.generateuid" id="C14fc4e5f-32fc-4115-aa73-7f8df16c366c" priority="normal">
         <target>
             <property>
@@ -303,30 +317,6 @@
                 <child name="id" ns="http://www.opengis.net/gml/3.2"/>
             </property>
         </target>
-    </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccdff4c0c-b2ea-4896-b41c-00acf9298f49" priority="normal">
-        <source>
-            <property>
-                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
-                <child name="refText" ns="http://www.xplanung.de/xplangml/5/0"/>
-                <child name="choice" ns="http://www.xplanung.de/xplangml/5/0/XP_ExterneReferenz"/>
-                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/0"/>
-                <child name="georefURL" ns="http://www.xplanung.de/xplangml/5/0"/>
-            </property>
-        </source>
-        <target>
-            <property>
-                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
-                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
-                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
-                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0">
-                    <context>0</context>
-                </child>
-            </property>
-        </target>
-        <parameter value="false" name="ignoreNamespaces"/>
-        <parameter value="false" name="structuralRename"/>
     </cell>
     <cell relation="eu.esdihumboldt.hale.align.rename" id="Ca62e831c-a38c-433b-a88e-0337da325a11" priority="normal">
         <source>
@@ -376,14 +366,14 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8440509c-d3b7-4f60-b119-d46781a9ad40" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Ccdff4c0c-b2ea-4896-b41c-00acf9298f49" priority="normal">
         <source>
             <property>
-                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="refText" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="choice" ns="http://www.xplanung.de/xplangml/5/0/XP_ExterneReferenz"/>
                 <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/0"/>
-                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="georefURL" ns="http://www.xplanung.de/xplangml/5/0"/>
             </property>
         </source>
         <target>
@@ -393,7 +383,7 @@
                 <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
                 <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
                 <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0">
-                    <context>1</context>
+                    <context>0</context>
                 </child>
             </property>
         </target>
@@ -448,14 +438,14 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C4f927416-ec64-4045-8029-4bef002303b1" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C8440509c-d3b7-4f60-b119-d46781a9ad40" priority="normal">
         <source>
             <property>
-                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="refText" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="choice" ns="http://www.xplanung.de/xplangml/5/0/XP_ExterneReferenz"/>
                 <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/0"/>
-                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="informationssystemURL" ns="http://www.xplanung.de/xplangml/5/0"/>
             </property>
         </source>
         <target>
@@ -465,7 +455,7 @@
                 <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
                 <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
                 <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0">
-                    <context>2</context>
+                    <context>1</context>
                 </child>
             </property>
         </target>
@@ -520,10 +510,10 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C21e13ee2-7ed9-40a0-9518-de94a6daf57f" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C4f927416-ec64-4045-8029-4bef002303b1" priority="normal">
         <source>
             <property>
-                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="refText" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="choice" ns="http://www.xplanung.de/xplangml/5/0/XP_ExterneReferenz"/>
                 <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/0"/>
@@ -536,7 +526,9 @@
                 <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
                 <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
                 <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
-                <child name="name" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="link" ns="http://inspire.ec.europa.eu/schemas/base2/2.0">
+                    <context>2</context>
+                </child>
             </property>
         </target>
         <parameter value="false" name="ignoreNamespaces"/>
@@ -586,10 +578,32 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf41c2c73-04e3-43bc-8001-2219f8549cc1" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C21e13ee2-7ed9-40a0-9518-de94a6daf57f" priority="normal">
         <source>
             <property>
-                <type name="BP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="refText" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="choice" ns="http://www.xplanung.de/xplangml/5/0/XP_ExterneReferenz"/>
+                <child name="XP_ExterneReferenz" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <child name="referenzURL" ns="http://www.xplanung.de/xplangml/5/0"/>
+            </property>
+        </source>
+        <target>
+            <property>
+                <type name="OfficialDocumentationType" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="planDocument" ns="http://inspire.ec.europa.eu/schemas/plu/4.0"/>
+                <child name="choice" ns="http://inspire.ec.europa.eu/schemas/base2/2.0/DocumentCitation"/>
+                <child name="DocumentCitation" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+                <child name="name" ns="http://inspire.ec.europa.eu/schemas/base2/2.0"/>
+            </property>
+        </target>
+        <parameter value="false" name="ignoreNamespaces"/>
+        <parameter value="false" name="structuralRename"/>
+    </cell>
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="C60f9bb4a-d1f5-4819-a867-30c8001b7c34" priority="normal">
+        <source>
+            <property>
+                <type name="XP_BegruendungAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="text" ns="http://www.xplanung.de/xplangml/5/0"/>
             </property>
         </source>
@@ -602,10 +616,10 @@
         <parameter value="false" name="ignoreNamespaces"/>
         <parameter value="false" name="structuralRename"/>
     </cell>
-    <cell relation="eu.esdihumboldt.hale.align.rename" id="C60f9bb4a-d1f5-4819-a867-30c8001b7c34" priority="normal">
+    <cell relation="eu.esdihumboldt.hale.align.rename" id="Cf41c2c73-04e3-43bc-8001-2219f8549cc1" priority="normal">
         <source>
             <property>
-                <type name="XP_BegruendungAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
+                <type name="XP_TextAbschnittType" ns="http://www.xplanung.de/xplangml/5/0"/>
                 <child name="text" ns="http://www.xplanung.de/xplangml/5/0"/>
             </property>
         </source>

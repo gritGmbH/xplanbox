@@ -69,6 +69,7 @@ public class Rasterbasis extends Referenz {
 		rasterReference.setBereichNummer(getBereichNummer());
 		rasterReference.setReference(getReferenzURL());
 		rasterReference.setReferenzMimeType(MimeTypes.getByCode(getReferenzMimeType()));
+		rasterReference.setReferenzName(getReferenzName());
 		rasterReference.setGeoReference(getGeorefURL());
 		rasterReference.setGeorefMimeType(MimeTypes.getByCode(getGeorefMimeType()));
 		rasterReference.setArt(ExterneReferenzArt.getByCode(getArt()));

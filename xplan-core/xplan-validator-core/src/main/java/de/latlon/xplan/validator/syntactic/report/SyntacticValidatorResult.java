@@ -20,10 +20,12 @@
  */
 package de.latlon.xplan.validator.syntactic.report;
 
-import java.util.List;
-
 import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorResult;
+
+import java.util.List;
+
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 
 /**
  * contains the validator result of the syntactic validator
@@ -32,7 +34,7 @@ import de.latlon.xplan.validator.report.ValidatorResult;
  */
 public class SyntacticValidatorResult extends ValidatorResult {
 
-	private static final String VALIDATION_TYPE_NAME = "Syntaktische Validierung";
+	private static final String VALIDATION_TYPE_NAME = getMessage("validationType_syntactic");
 
 	private final List<String> messages;
 

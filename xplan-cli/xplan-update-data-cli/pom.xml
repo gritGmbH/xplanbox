@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>xplan-update-data-cli</artifactId>
+  <description>update of database</description>
+
+  <parent>
+    <groupId>de.latlon.product.xplanbox</groupId>
+    <artifactId>xplan-cli</artifactId>
+    <version>5.1-SNAPSHOT</version>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>appassembler-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>assemble</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <repositoryLayout>flat</repositoryLayout>
+          <useWildcardClassPath>true</useWildcardClassPath>
+          <copyConfigurationDirectory>true</copyConfigurationDirectory>
+          <programs>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.BereichUpdateTool</mainClass>
+              <id>bereichUpdate</id>
+            </program>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.DistrictUpdateTool</mainClass>
+              <id>districtUpdate</id>
+            </program>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.SortDateUpdateTool</mainClass>
+              <id>sortDateUpdate</id>
+            </program>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.ReSynthesizerTool</mainClass>
+              <id>reSynthesizer</id>
+            </program>
+          </programs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>bundle</id>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/assembly/assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <configuration>
+              <target>
+                <chmod perm="+x">
+                  <fileset dir="target/appassembler/bin">
+                    <include name="databaseUpdate" />
+                    <include name="districtUpdate" />
+                    <include name="reSynthesizer" />
+                    <include name="serviceMetadataRecordCreator" />
+                  </fileset>
+                </chmod>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-manager-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-sql-update-scripts</artifactId>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-sqldialect-postgis</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>

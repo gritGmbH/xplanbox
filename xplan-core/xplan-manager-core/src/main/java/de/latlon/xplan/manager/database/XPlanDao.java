@@ -89,9 +89,9 @@ import java.util.zip.GZIPOutputStream;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.apache.commons.io.IOUtils.closeQuietly;
@@ -629,21 +629,21 @@ public class XPlanDao {
 			StringBuilder sqlBuilder = new StringBuilder();
 			sqlBuilder.append("SELECT xplan_internalid FROM ");
 			switch (type) {
-			case BP_Plan:
-				sqlBuilder.append("xplansyn.xplan_bp_plan");
-				break;
-			case FP_Plan:
-				sqlBuilder.append("xplansyn.xplan_fp_plan");
-				break;
-			case LP_Plan:
-				sqlBuilder.append("xplansyn.xplan_lp_plan");
-				break;
-			case RP_Plan:
-				sqlBuilder.append("xplansyn.xplan_rp_plan");
-				break;
-			default:
-				LOG.warn("Unsupported xplan type " + type);
-				return null;
+				case BP_Plan:
+					sqlBuilder.append("xplansyn.xplan_bp_plan");
+					break;
+				case FP_Plan:
+					sqlBuilder.append("xplansyn.xplan_fp_plan");
+					break;
+				case LP_Plan:
+					sqlBuilder.append("xplansyn.xplan_lp_plan");
+					break;
+				case RP_Plan:
+					sqlBuilder.append("xplansyn.xplan_rp_plan");
+					break;
+				default:
+					LOG.warn("Unsupported xplan type " + type);
+					return null;
 
 			}
 			sqlBuilder.append(" WHERE ");
@@ -1175,8 +1175,7 @@ public class XPlanDao {
 
 			FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus);
 			FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus);
-			sameSourceAndTarget = oldPlanStatus == newPlanStatus
-					|| !managerConfiguration.isSeperatedDataManagementActived();
+			sameSourceAndTarget = oldPlanStatus == newPlanStatus;
 			FeatureStore fsTarget = sameSourceAndTarget ? fsSource
 					: managerWorkspaceWrapper.lookupStore(version, newPlanStatus);
 			FeatureStore synFsTarget = sameSourceAndTarget ? synFsSource
@@ -1293,11 +1292,11 @@ public class XPlanDao {
 			stmt.setString(5, fc.getPlanNummer());
 			stmt.setString(6, fc.getPlanGkz());
 			stmt.setBoolean(7, fc.getHasRaster());
-			stmt.setString(8, retrieveRechtsstand(synFc, archive.getType()));
+			stmt.setString(8, retrieveRechtsstandWert(synFc, archive.getType()));
 			stmt.setTimestamp(9, convertToSqlTimestamp(fc.getPlanReleaseDate()));
-			stmt.setString(10, retrieveAdditionalType(synFc, archive.getType()));
+			stmt.setString(10, retrieveAdditionalTypeWert(synFc, archive.getType()));
 			stmt.setString(11, retrievePlanStatusMessage(planStatus));
-			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType(), archive.getVersion()));
+			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType()));
 			stmt.setTimestamp(13, convertToSqlTimestamp(sortDate));
 			stmt.setTimestamp(14, convertToSqlTimestamp(beginValidity));
 			stmt.setTimestamp(15, convertToSqlTimestamp(endValidity));
@@ -1379,8 +1378,8 @@ public class XPlanDao {
 			XPlanType type = XPlanType.valueOf(xplan.getType());
 			stmt = conn.prepareStatement(updateSql);
 			stmt.setString(1, fc.getPlanName());
-			stmt.setString(2, retrieveRechtsstand(synFc, type));
-			stmt.setString(3, retrieveAdditionalType(synFc, type));
+			stmt.setString(2, retrieveRechtsstandWert(synFc, type));
+			stmt.setString(3, retrieveAdditionalTypeWert(synFc, type));
 			stmt.setTimestamp(4, convertToSqlTimestamp(sortDate));
 			stmt.setTimestamp(5, convertToSqlTimestamp(newXPlanMetadata.getStartDateTime()));
 			stmt.setTimestamp(6, convertToSqlTimestamp(newXPlanMetadata.getEndDateTime()));

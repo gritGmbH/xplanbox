@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -41,12 +41,15 @@ import de.latlon.xplan.validator.web.client.service.MapPreviewConfigServiceAsync
 import de.latlon.xplan.validator.web.client.service.ValidationService;
 import de.latlon.xplan.validator.web.client.service.ValidationServiceAsync;
 import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
+import de.latlon.xplan.validator.web.shared.ValidationConfig;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
+import de.latlon.xplan.validator.web.shared.ValidationProfile;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static de.latlon.xplan.validator.web.shared.ValidationType.GEOMETRIC;
@@ -88,6 +91,8 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 	private CheckBox skipLaufrichtung = new CheckBox(messages.skipLaufrichtung());
 
+	private List<CheckBox> profileCheckBoxes = new ArrayList<>();
+
 	private final ReportDownloadFinishedListener reportDownloadFinishedListener;
 
 	private DialogBox validating;
@@ -96,11 +101,14 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 	private String reportNextButtonTitle;
 
+	private ValidationConfig validationConfig;
+
 	private boolean showMapPreview = false;
 
 	private PollingTextBox pollingTextBox;
 
 	/**
+	 * @param validationConfig the validation config, never <code>null</code>
 	 * @param reportDownloadFinishedListener informed when the validation report dialog is
 	 * closed or next is clicked, never <code>null</code>
 	 * @param fileName name of the file to validate, may be <code>null</code>
@@ -111,14 +119,16 @@ public class ValidatorOptionsDialog extends FormPanel {
 	 * @param enabledGeomValidation <code>true</code> if the geometrische validation can
 	 * be activated/deactivated, <code>false</code> otherwise
 	 */
-	public ValidatorOptionsDialog(ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName,
-			boolean showMapPreview, ClickHandler cancelHandler, boolean enabledGeomValidation) {
-		this(reportDownloadFinishedListener, messages.reportButtonCloseTitle(), messages.reportButtonNextTitle(),
-				fileName, cancelHandler, enabledGeomValidation);
+	public ValidatorOptionsDialog(ValidationConfig validationConfig,
+			ReportDownloadFinishedListener reportDownloadFinishedListener, String fileName, boolean showMapPreview,
+			ClickHandler cancelHandler, boolean enabledGeomValidation) {
+		this(validationConfig, reportDownloadFinishedListener, messages.reportButtonCloseTitle(),
+				messages.reportButtonNextTitle(), fileName, cancelHandler, enabledGeomValidation);
 		this.showMapPreview = showMapPreview;
 	}
 
 	/**
+	 * @param validationConfig the validation config, never <code>null</code>
 	 * @param reportDownloadFinishedListener informed when the validation report dialog is
 	 * closed or next is clicked, never <code>null</code>
 	 * @param reportCloseButtonTitle title of the close button in the report dialog
@@ -129,9 +139,10 @@ public class ValidatorOptionsDialog extends FormPanel {
 	 * @param enabledGeomValidation <code>true</code> if the geometrische validation can
 	 * be activated/deactivated, <code>false</code> otherwise
 	 */
-	public ValidatorOptionsDialog(ReportDownloadFinishedListener reportDownloadFinishedListener,
-			String reportCloseButtonTitle, String reportNextButtonTitle, String fileName, ClickHandler cancelHandler,
-			boolean enabledGeomValidation) {
+	public ValidatorOptionsDialog(ValidationConfig validationConfig,
+			ReportDownloadFinishedListener reportDownloadFinishedListener, String reportCloseButtonTitle,
+			String reportNextButtonTitle, String fileName, ClickHandler cancelHandler, boolean enabledGeomValidation) {
+		this.validationConfig = validationConfig;
 		this.reportDownloadFinishedListener = reportDownloadFinishedListener;
 		this.reportCloseButtonTitle = reportCloseButtonTitle;
 		this.reportNextButtonTitle = reportNextButtonTitle;
@@ -156,6 +167,12 @@ public class ValidatorOptionsDialog extends FormPanel {
 		mainPanel.add(skipGeltungsbereich);
 		mainPanel.add(skipLaufrichtung);
 		mainPanel.add(validationTypeSyn);
+		if (!profileCheckBoxes.isEmpty()) {
+			mainPanel.add(createLabel(messages.selectionProfileLabel()));
+			for (CheckBox profileCheckBox : profileCheckBoxes) {
+				mainPanel.add(profileCheckBox);
+			}
+		}
 		mainPanel.add(createButtonsPanel(cancelHandler));
 		add(mainPanel);
 	}
@@ -172,6 +189,20 @@ public class ValidatorOptionsDialog extends FormPanel {
 		skipFlaechenschluss.setStyleName("valOption");
 		skipGeltungsbereich.setStyleName("valOption");
 		skipLaufrichtung.setStyleName("valOption");
+		if (validationConfig != null && !validationConfig.getProfiles().isEmpty()) {
+			validationConfig.getProfiles().sort(new Comparator<ValidationProfile>() {
+				@Override
+				public int compare(ValidationProfile o1, ValidationProfile o2) {
+					return o1.getName().compareTo(o2.getName());
+				}
+			});
+			for (ValidationProfile profile : validationConfig.getProfiles()) {
+				CheckBox checkBox = new CheckBox(profile.getName());
+				checkBox.setTitle(profile.getDescription());
+				checkBox.setName(profile.getId().toString());
+				profileCheckBoxes.add(checkBox);
+			}
+		}
 	}
 
 	private Label createTitel() {
@@ -230,7 +261,13 @@ public class ValidatorOptionsDialog extends FormPanel {
 			options.add(new ValidationOption(SKIP_GELTUNGSBEREICH, Boolean.TRUE.toString()));
 		if (skipLaufrichtung.getValue())
 			options.add(new ValidationOption(SKIP_LAUFRICHTUNG, Boolean.TRUE.toString()));
-		return new ValidationSettings(name, validationType, options);
+		List<String> selectedProfiles = new ArrayList<String>();
+		for (CheckBox profileCheckBox : profileCheckBoxes) {
+			if (profileCheckBox.getValue()) {
+				selectedProfiles.add(profileCheckBox.getName());
+			}
+		}
+		return new ValidationSettings(name, validationType, selectedProfiles, options);
 	}
 
 	private boolean validateForm() {

@@ -24,7 +24,7 @@ E-Mail Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konf
 Beispiel:
 
 ----
-contactEMailAdress=info@lat-lon.de
+contactEMailAddress=info@lat-lon.de
 ----
 
 ==== URL zu den "Terms of Service"
@@ -93,7 +93,7 @@ E-Mail Adresse des Kontakts, die im OpenAPI Dokument ausgegeben wird. Diese Konf
 Beispiel:
 
 ----
-contactEMailAdress=info@lat-lon.de
+contactEMailAddress=info@lat-lon.de
 ----
 
 ==== URL zu den "Terms of Service"

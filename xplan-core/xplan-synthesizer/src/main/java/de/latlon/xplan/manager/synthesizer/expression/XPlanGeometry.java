@@ -34,8 +34,8 @@ import org.deegree.geometry.multi.MultiGeometry;
 import java.util.ArrayList;
 import java.util.List;
 
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToGeometry;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToGeometry;
 import static org.deegree.geometry.multi.MultiGeometry.MultiGeometryType.MULTI_GEOMETRY;
 
 /**

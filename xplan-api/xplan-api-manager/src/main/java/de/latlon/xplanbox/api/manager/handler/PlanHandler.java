@@ -57,6 +57,7 @@ import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -103,8 +104,7 @@ public class PlanHandler {
 		}
 		LOG.info("Plan is valid. Importing plan into storage for '{}'", planStatus);
 		AdditionalPlanData metadata = createAdditionalPlanData(xPlanArchive, planStatus);
-		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, null, false, false, true, null, internalId,
-				metadata);
+		List<Integer> planIds = xPlanInsertManager.importPlan(xPlanArchive, null, false, true, internalId, metadata);
 		List<XPlan> plansById = findPlansById(planIds);
 		LOG.info("Plan successfully imported. Ids: {}",
 				plansById.stream().map(plan -> plan.getId()).collect(Collectors.joining(",")));
@@ -205,7 +205,7 @@ public class PlanHandler {
 		if (legislationStatus != null && !legislationStatus.isEmpty()) {
 			try {
 				int rechtsstand = parseInt(legislationStatus);
-				return PlanStatus.findByLegislationStatusCode(rechtsstand);
+				return findByLegislationStatusCode(xPlanArchive.getType().name(), rechtsstand);
 			}
 			catch (NumberFormatException e) {
 				LOG.info("Rechtsstand '{}' could not be parsed as integer.", legislationStatus);

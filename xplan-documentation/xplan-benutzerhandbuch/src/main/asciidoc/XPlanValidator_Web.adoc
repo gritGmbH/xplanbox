@@ -30,9 +30,9 @@ Bitte beachten Sie die Anforderungen an den Dateinamen. Der Dateiname darf nur f
 Sonderzeichen wie z.B. Umlaute, Zeilenumbrüche und Leerzeichen sind nicht erlaubt.
 ====
 
-CAUTION: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
+WARNING: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
 
-
+[[xplanvalidator-web-validieren]]
 ===== Schritt 2 – Bezeichnung des Validierungsberichts und Validierungstyp wählen
 
 Wenn Sie einen Plan hochgeladen haben, steht im Feld „Bezeichnung für den Report“ der Name der Datei ohne Endung.
@@ -70,6 +70,7 @@ Die semantische Validierung überprüft die fachlich-inhaltliche Kohärenz der X
  * 5.2 (191 Regeln)
  * 5.3 (195 Regeln)
  * 5.4 (198 Regeln)
+ * 6.0 (181 Regeln)
 
 [NOTE]
 ====
@@ -136,6 +137,14 @@ Die syntaktische Validierung ist die Voraussetzung für die semantische und geom
 Bei der syntaktischen Validierung wird die Struktur der XPlanGML-Datei geprüft. Eine syntaktisch valide XPlanGML-Datei muss sowohl den Anforderungen der Wohlgeformtheit von XML entsprechen als auch die vom XPlanGML-Schema definierten Regeln erfüllen.
 
 Die Validierung kann über den Button image:validator/BT_ValidierungStarten.png[] gestartet werden.
+
+[[xplanvalidator-web-profiles]]
+*Zusätzliche Profile mit Validierungsregeln (optional)*
+
+Zusätzlich können noch Profile ausgewählt werden, die zusätzliche Validierungsregeln enthalten können. Ist ein Profil oder mehrere Profile für den XPlanValidator konfiguriert, dann werden diese unterhalb der Validierungstypen angezeigt.
+
+[.bordered]
+image::validator/Validierungsprofile.png[Validierungsprofile]
 
 ===== Schritt 3 – Validierungsergebnis und Validierungsbericht
 
@@ -213,7 +222,14 @@ image::validator/Validierung_syntaktisch-nicht-valide-andere.png[Validerung synt
 [.bordered]
 image::validator/Kartenvorschau-nicht-verfuegbar.png[Kartenvorschau nicht verfügbar]
 
-====== Der Validierungsbericht
+*Validierungsergebnis für Profile*
+
+Sind Profile für den XPlanValidator konfiguriert und wurden diese bei der Validierung durch den Benutzer ausgewählt, so wird das Ergebnis unterhalb der Ergebnisse der syntaktischen Validierung ausgegeben
+
+[.bordered]
+image::validator/Validierungsprofile-valide.png[Validerungsprofile valide]
+
+====== Download des Validierungsberichts
 
 [.bordered]
 image::validator/Validierungsbericht_download.png[Validierungsbericht Download]

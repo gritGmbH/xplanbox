@@ -21,9 +21,9 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:XP_PTO</FeatureTypeName>
   <Rule>
@@ -53,8 +53,6 @@
       </Label>
       <Font>
         <SvgParameter name="font-family">Arial</SvgParameter>
-        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
-        <SvgParameter name="font-weight">bold</SvgParameter>
         <SvgParameter name="font-size">
           <ogc:Mul>
             <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
@@ -80,13 +78,6 @@
           </Rotation>
         </PointPlacement>
       </LabelPlacement>
-      <Halo>
-        <Radius>0.3</Radius>
-        <Fill>
-          <SvgParameter name="fill">#ffffff</SvgParameter>
-          <SvgParameter name="fill-opacity">0.8</SvgParameter>
-        </Fill>
-      </Halo>
       <Fill>
         <SvgParameter name="fill">#000000</SvgParameter>
       </Fill>

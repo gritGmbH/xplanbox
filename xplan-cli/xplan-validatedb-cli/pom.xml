@@ -13,9 +13,6 @@
   <properties>
     <mainclass>de.latlon.xplan.validatedb.cli.ValidateFromDatabaseApp</mainclass>
     <application-name>XPlanValidateDB</application-name>
-    <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
-    <spring-batch.version>4.3.5</spring-batch.version>
-    <spring.version>5.2.18.RELEASE</spring.version>
   </properties>
 
   <dependencyManagement>
@@ -122,19 +119,17 @@
       <type>zip</type>
     </dependency>
     <dependency>
-      <groupId>commons-dbcp</groupId>
-      <artifactId>commons-dbcp</artifactId>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
     </dependency>
     <!-- spring -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>${spring.version}</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -145,12 +140,10 @@
     <dependency>
       <groupId>org.springframework.batch</groupId>
       <artifactId>spring-batch-core</artifactId>
-      <version>${spring-batch.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-batch</artifactId>
-      <version>${spring-boot.version}</version>
       <exclusions>
         <exclusion>
           <groupId>org.slf4j</groupId>

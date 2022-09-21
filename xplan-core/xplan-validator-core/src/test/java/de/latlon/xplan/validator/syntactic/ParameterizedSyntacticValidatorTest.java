@@ -46,13 +46,12 @@ public class ParameterizedSyntacticValidatorTest {
 
 	@Parameterized.Parameters
 	public static List<Object[]> data() {
-		return Arrays.asList(new Object[][] { { "xplan3/BP2070.zip" }, { "xplan3/BP2135.zip" }, { "xplan3/FPlan.zip" },
-				{ "xplan41/BP2070.zip" }, { "xplan41/BP2135.zip" }, { "xplan41/Demo.zip" },
-				{ "xplan41/Eidelstedt_4_V4.zip" }, { "xplan41/FPlan.zip" }, { "xplan41/LA22.zip" },
-				{ "xplan41/LA67.zip" }, { "xplan41/V4_1_ID_103.zip" }, { "xplan40/V4_1_ID_66.zip" },
-				{ "xplan50/BP2070.zip" }, { "xplan50/BP2135.zip" }, { "xplan50/FPlan.zip" }, { "xplan50/LA22.zip" },
-				{ "xplan50/LA67.zip" }, { "xplan51/BP2070.zip" }, { "xplan51/BP2135.zip" }, { "xplan51/FPlan.zip" },
-				{ "xplan51/LA22.zip" }, { "xplan51/LA67.zip" } });
+		return Arrays.asList(new Object[][] { { "xplan41/BP2070.zip" }, { "xplan41/BP2135.zip" },
+				{ "xplan41/Demo.zip" }, { "xplan41/Eidelstedt_4_V4.zip" }, { "xplan41/FPlan.zip" },
+				{ "xplan41/LA22.zip" }, { "xplan41/LA67.zip" }, { "xplan41/V4_1_ID_103.zip" },
+				{ "xplan40/V4_1_ID_66.zip" }, { "xplan50/BP2070.zip" }, { "xplan50/BP2135.zip" },
+				{ "xplan50/FPlan.zip" }, { "xplan50/LA22.zip" }, { "xplan50/LA67.zip" }, { "xplan51/BP2070.zip" },
+				{ "xplan51/BP2135.zip" }, { "xplan51/FPlan.zip" }, { "xplan51/LA22.zip" }, { "xplan51/LA67.zip" } });
 	}
 
 	public ParameterizedSyntacticValidatorTest(String testResource) {

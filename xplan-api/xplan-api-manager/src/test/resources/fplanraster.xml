@@ -19,7 +19,7 @@
   #L%
   -->
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description"
-        xmlns:s="http://www.deegree.org/metadata/spatial" configVersion="3.4.0">
+        xmlns:s="http://www.deegree.org/metadata/spatial">
   <!--<LayerStoreId>dummyrasterlayer</LayerStoreId>-->
   <Theme>
     <Identifier>FP_Planraster</Identifier>

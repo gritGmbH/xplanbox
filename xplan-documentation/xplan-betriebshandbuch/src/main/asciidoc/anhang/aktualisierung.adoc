@@ -63,7 +63,7 @@ Vorbereitung:
 2. Neue deegree Workspaces ZIP-Dateien entpacken und in die jeweiligen Verzeichnisse unterhalb von _<DEEGREE_WORKSPACE_ROOT>_ kopieren.
 3. Die Dateien _console.pw_ und _webapps.properties_ aus _<BACKUP_CONFIG>_ zurückkopieren.
 
-NOTE: Neben den in den folgenden Abschnitten genannten Dateien können noch weitere Dateien umgebungsspezifische Anpassungen enthalten. Hier sind neben den Service-Metadaten in den Dateien _services/*metadata.xml_ auch die Service-Konfigurationen im Verzeichnis _services/_ sowie die Konfiguration für die WFS-Storedqueries im Verzeichnis _storedqueries/_ oder die <<appendix_bbox_cache_properties>> zu beachten.
+NOTE: Neben den in den folgenden Abschnitten genannten Dateien können noch weitere Dateien umgebungsspezifische Anpassungen enthalten. Hier sind neben den Service-Metadaten in den Dateien _services/*metadata.xml_ auch die Service-Konfigurationen im Verzeichnis _services/_ sowie die Konfiguration für die WFS-Storedqueries im Verzeichnis _storedqueries/_ oder die <<appendix_bbox_cache_properties_syn>> und <<appendix_bbox_cache_properties_gml>> zu beachten.
 
 ==== XPlanManager Konfiguration
 
@@ -122,14 +122,23 @@ Konfiguration im Verzeichnis _<XPLANBOX_CONFIG>/xplan-inspireplu-workspace/_ akt
 * <<aktualisierung-der-daten, Aktualisierung der Daten>>
 
 [appendix]
-[[appendix_bbox_cache_properties]]
-== bbox_cache.properties Konfiguration
+[[appendix_bbox_cache_properties_syn]]
+== bbox_cache.properties Konfiguration für XPlanWMS und XPlanSynWFS
 
-Im Folgenden befindet sich eine vollständige __bbox_cache.properties__. Diese ist vorkonfiguriert auf ganz Deutschland:
+Im Folgenden befindet sich eine vollständige __bbox_cache.properties__ für die Komponenten XPlanWMS und XPlanSynWFS die beide auf dem synthetisierten Schema basieren und den Namensraum _http://www.deegree.org/xplanung/1/0_ verwenden. Diese ist vorkonfiguriert auf ganz Deutschland:
 
-link:../downloads/bbox_cache.properties[bbox_cache.properties]
-
+link:../downloads/bbox_cache_syn.properties[bbox_cache.properties für XPlanWMS und XPlanSynWFS]
 ----
-include::../downloads/bbox_cache.properties[]
+include::../downloads/bbox_cache_syn.properties[]
 ----
 
+[appendix]
+[[appendix_bbox_cache_properties_gml]]
+== bbox_cache.properties Konfiguration für XPlanWFS
+
+Im Folgenden befindet sich eine vollständige __bbox_cache.properties__ für die Komponente XPlanWFS der auf der jeweiligen Version des XPlanGML-Schemas basiert und den Namensraum _http://www.xplanung.de/xplangml_ verwendet. Diese ist vorkonfiguriert auf ganz Deutschland:
+
+link:../downloads/bbox_cache_gml.properties[bbox_cache.properties für XPlanWFS]
+----
+include::../downloads/bbox_cache_gml.properties[]
+----

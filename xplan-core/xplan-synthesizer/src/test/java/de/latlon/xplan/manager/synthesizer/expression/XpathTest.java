@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -33,12 +33,12 @@ import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
-import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
+import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
 import static org.deegree.commons.tom.primitive.BaseType.DECIMAL;
 import static org.deegree.commons.tom.primitive.BaseType.DOUBLE;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -46,8 +46,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class XpathTest {
 
 	@Test
-	public void testSimpleProperty() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testSimpleProperty() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		Xpath expr = new Xpath("xplan:beschreibung");
 		Property prop = (Property) expr.evaluate(feature, features);
@@ -56,8 +56,8 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testGeometryProperty() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testGeometryProperty() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		Xpath expr = new Xpath("xplan:raeumlicherGeltungsbereich");
 		Property prop = (Property) expr.evaluate(feature, features);
@@ -66,8 +66,8 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testGmlIdAttribute() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testGmlIdAttribute() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		Xpath expr = new Xpath("@gml:id");
 		PrimitiveValue value = (PrimitiveValue) expr.evaluate(feature, features);
@@ -75,8 +75,8 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testDrehwinkelDefaultValue() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testDrehwinkelDefaultValue() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_4");
 		Xpath expr = new Xpath("xplan:drehwinkel/text()", 0.0);
 		PrimitiveValue value = (PrimitiveValue) expr.evaluate(feature, features);
@@ -85,8 +85,8 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testDrehwinkelValue() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testDrehwinkelValue() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_1");
 		Xpath expr = new Xpath("xplan:drehwinkel/text()");
 		PrimitiveValue value = (PrimitiveValue) expr.evaluate(feature, features);
@@ -95,8 +95,8 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testDrehwinkelUomAttribute() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testDrehwinkelUomAttribute() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_1");
 		Xpath expr = new Xpath("xplan:drehwinkel/@uom");
 		PrimitiveValue value = (PrimitiveValue) expr.evaluate(feature, features);
@@ -104,8 +104,8 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testMultiProperty() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testMultiProperty() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Bereich_1");
 		Xpath expr = new Xpath("xplan:nachrichtlich");
 		TypedObjectNodeArray<?> props = (TypedObjectNodeArray<?>) expr.evaluate(feature, features);
@@ -117,8 +117,8 @@ public class XpathTest {
 	}
 
 	@Test
-	public void testIntegerPropertyIndex() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testIntegerPropertyIndex() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_1");
 		Xpath expr = new Xpath("xplan:index");
 		TypedObjectNodeArray nodeArray = (TypedObjectNodeArray) expr.evaluate(feature, features);

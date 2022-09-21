@@ -30,8 +30,10 @@ import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
+import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 import org.slf4j.Logger;
@@ -341,7 +343,7 @@ public class ManagerController {
 				if (defaultCrs != null)
 					crs = CRSManager.getCRSRef(defaultCrs);
 				AdditionalPlanData xPlanMetadata = new AdditionalPlanData(planStatus, startDateTime, endDateTime);
-				manager.importPlan(archive, crs, false, false, makeRasterConfig, internalId, xPlanMetadata);
+				manager.importPlan(archive, crs, false, makeRasterConfig, internalId, xPlanMetadata);
 			}
 			catch (Exception e) {
 				String message = BUNDLE.getString("loadFailed") + ": " + e.getMessage();
@@ -439,15 +441,16 @@ public class ManagerController {
 	@RequestMapping(value = "/legislationstatus/{id}", method = GET)
 	@ResponseBody
 	// @formatter:off
-    public Rechtsstand determineLegislationStatus( @PathVariable String id,
-												   @Context HttpServletResponse response )
+    public RechtsstandAndPlanStatus determineLegislationStatus( @PathVariable String id,
+																@Context HttpServletResponse response )
                                                                          throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate legislation status of plan with id {}.", id);
 		try {
 			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
-			return manager.determineRechtsstand(fileToBeImported);
+			Pair<Rechtsstand, PlanStatus> rechtsstandPlanStatusPair = manager.determineRechtsstand(fileToBeImported);
+			return new RechtsstandAndPlanStatus(rechtsstandPlanStatusPair.first, rechtsstandPlanStatusPair.second);
 		}
 		catch (Exception e) {
 			String message = BUNDLE.getString("determinationLegislationStatusFailed") + ": " + e.getMessage();

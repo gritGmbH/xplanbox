@@ -70,6 +70,7 @@ public class ApplicationPathConfig extends ResourceConfig {
 		packages("de.latlon.xplanbox.api.manager.v1");
 		packages("de.latlon.xplanbox.api.manager.exception");
 		packages("de.latlon.xplanbox.api.commons.exception");
+		packages("de.latlon.xplanbox.api.commons.converter");
 		packages("org.glassfish.jersey.examples.multipart");
 		OpenAPI openApi = new OpenAPI();
 		openApi.setInfo(new Info().title("XPlanManagerAPI").version("1.1.0").description("XPlanManager REST API")
@@ -109,8 +110,8 @@ public class ApplicationPathConfig extends ResourceConfig {
 	}
 
 	private void addContact(OpenAPI openApi, ManagerApiConfiguration managerApiConfiguration) {
-		if (managerApiConfiguration != null && managerApiConfiguration.getContactEMailAdress() != null) {
-			String contactEMailAddress = managerApiConfiguration.getContactEMailAdress();
+		if (managerApiConfiguration != null && managerApiConfiguration.getContactEMailAddress() != null) {
+			String contactEMailAddress = managerApiConfiguration.getContactEMailAddress();
 			openApi.getInfo().setContact(new Contact().email(contactEMailAddress));
 		}
 	}

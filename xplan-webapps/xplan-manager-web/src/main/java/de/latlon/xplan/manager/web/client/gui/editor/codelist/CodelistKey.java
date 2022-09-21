@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.web.client.gui.editor.codelist;
 
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 
 /**
@@ -30,17 +31,20 @@ import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
  */
 class CodelistKey {
 
-	private EditVersion version;
+	private final EditVersion version;
 
-	private CodelistType codelistType;
+	private final EditPlanType planType;
+
+	private final CodelistType codelistType;
 
 	/**
 	 * Instantiates a {@link CodelistKey} out of the version and codelistType.
 	 * @param version may be <code>null</code>
 	 * @param codelistType may be <code>null</code>
 	 */
-	CodelistKey(EditVersion version, CodelistType codelistType) {
+	CodelistKey(EditVersion version, EditPlanType planType, CodelistType codelistType) {
 		this.version = version;
+		this.planType = planType;
 		this.codelistType = codelistType;
 	}
 
@@ -50,6 +54,7 @@ class CodelistKey {
 		int result = 1;
 		result = prime * result + ((codelistType == null) ? 0 : codelistType.hashCode());
 		result = prime * result + ((version == null) ? 0 : version.hashCode());
+		result = prime * result + ((planType == null) ? 0 : planType.hashCode());
 		return result;
 	}
 
@@ -65,6 +70,8 @@ class CodelistKey {
 		if (codelistType != other.codelistType)
 			return false;
 		if (version != other.version)
+			return false;
+		if (planType != other.planType)
 			return false;
 		return true;
 	}

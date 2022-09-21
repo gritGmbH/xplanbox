@@ -31,7 +31,11 @@ import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.report.ReportArchiveGenerator;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersion;
+import de.latlon.xplan.validator.semantic.configuration.metadata.RulesVersionParser;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
@@ -44,6 +48,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.List;
 
 import static java.nio.file.Paths.get;
 
@@ -59,7 +65,16 @@ public class XPlanValidatorCliSpringConfig {
 	@Lazy
 	@Scope("prototype")
 	public SemanticValidator semanticValidator(Path rulesPath) throws ValidatorException {
-		return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath));
+		RulesVersionParser rulesVersionParser = new RulesVersionParser();
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
+		return new XQuerySemanticValidator(new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata));
+	}
+
+	@Bean
+	public List<SemanticProfileValidator> profileValidators(ValidatorConfiguration validatorConfiguration)
+			throws ValidatorException {
+		return Collections.emptyList();
 	}
 
 	@Bean
@@ -74,8 +89,10 @@ public class XPlanValidatorCliSpringConfig {
 
 	@Bean
 	public XPlanValidator xplanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-			SemanticValidator semanticValidator, ReportArchiveGenerator reportArchiveGenerator) {
-		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, reportArchiveGenerator);
+			SemanticValidator semanticValidator, List<SemanticProfileValidator> profileValidators,
+			ReportArchiveGenerator reportArchiveGenerator) {
+		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, profileValidators,
+				reportArchiveGenerator);
 	}
 
 	@Bean

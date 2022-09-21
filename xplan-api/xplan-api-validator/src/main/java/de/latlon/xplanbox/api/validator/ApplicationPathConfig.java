@@ -69,6 +69,7 @@ public class ApplicationPathConfig extends ResourceConfig {
 		packages("de.latlon.xplanbox.api.validator.handler");
 		packages("de.latlon.xplanbox.api.validator.v1");
 		packages("de.latlon.xplanbox.api.commons.exception");
+		packages("de.latlon.xplanbox.api.commons.converter");
 		OpenAPI openApi = new OpenAPI();
 		openApi.setInfo(new Info().title("XPlanValidatorAPI").version("1.0.0").description("XPlanValidator REST API")
 				.termsOfService(getTermsOfService(validatorApiConfiguration))
@@ -98,9 +99,9 @@ public class ApplicationPathConfig extends ResourceConfig {
 	}
 
 	private void addContact(OpenAPI openApi, ValidatorApiConfiguration validatorApiConfiguration) {
-		if (validatorApiConfiguration != null && validatorApiConfiguration.getContactEMailAdress() != null) {
-			String contactEMailAdress = validatorApiConfiguration.getContactEMailAdress();
-			openApi.getInfo().setContact(new Contact().email(contactEMailAdress));
+		if (validatorApiConfiguration != null && validatorApiConfiguration.getContactEMailAddress() != null) {
+			String contactEMailAddress = validatorApiConfiguration.getContactEMailAddress();
+			openApi.getInfo().setContact(new Contact().email(contactEMailAddress));
 		}
 	}
 

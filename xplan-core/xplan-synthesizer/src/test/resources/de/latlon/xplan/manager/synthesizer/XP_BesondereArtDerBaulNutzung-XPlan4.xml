@@ -41,4 +41,16 @@
       <gml:name codeSpace="www.lat-lon/test/4.1/0">1300</gml:name>
     </gml:Definition>
   </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_1400">
+      <gml:description>Art4</gml:description>
+      <gml:name codeSpace="www.lat-lon/test/4.1/0">1400</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
+  <gml:dictionaryEntry>
+    <gml:Definition gml:id="id_1500">
+      <gml:description>Art5</gml:description>
+      <gml:name codeSpace="www.lat-lon/test/4.1/0">1500</gml:name>
+    </gml:Definition>
+  </gml:dictionaryEntry>
 </gml:Dictionary>

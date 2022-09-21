@@ -1,0 +1,99 @@
+databaseChangeLog:
+  - changeSet:
+      id: xplanmgr-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplanmgr;
+  - changeSet:
+      id: xplansyn-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplansyn;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplansynpre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplansynarchive;
+  - changeSet:
+      id: xplan40-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan40;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan40pre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan40archive;
+  - changeSet:
+      id: xplan41-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan41;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan41pre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan41archive;
+  - changeSet:
+      id: xplan50-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan50;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan50pre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan50archive;
+  - changeSet:
+      id: xplan51-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan51;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan51pre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan51archive;
+  - changeSet:
+      id: xplan52-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan52;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan52pre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan52archive;
+  - changeSet:
+      id: xplan53-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan53;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan53pre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan53archive;
+  - changeSet:
+      id: xplan54-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan54;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan54pre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan54archive;
+  - changeSet:
+      id: xplan60-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan60;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan60pre;
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS xplan60archive;
+
+

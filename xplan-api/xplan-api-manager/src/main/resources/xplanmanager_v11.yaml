@@ -971,7 +971,6 @@ components:
             type: string
             example: XPLAN_51
             enum:
-              - XPLAN_3
               - XPLAN_40
               - XPLAN_41
               - XPLAN_50
@@ -979,6 +978,7 @@ components:
               - XPLAN_52
               - XPLAN_53
               - XPLAN_54
+              - XPLAN_60
         rasterCrs:
           type: string
           description: Konfiguriertes CRS für die Rasterdatenhaltung
@@ -1085,7 +1085,6 @@ components:
           type: string
           example: XPLAN_51
           enum:
-            - XPLAN_3
             - XPLAN_40
             - XPLAN_41
             - XPLAN_50
@@ -1093,6 +1092,7 @@ components:
             - XPLAN_52
             - XPLAN_53
             - XPLAN_54
+            - XPLAN_60
         planStatus:
           type: string
           example: Festgestellt
@@ -1179,7 +1179,6 @@ components:
           type: string
           example: XPLAN_51
           enum:
-            - XPLAN_3
             - XPLAN_40
             - XPLAN_41
             - XPLAN_50
@@ -1187,6 +1186,7 @@ components:
             - XPLAN_52
             - XPLAN_53
             - XPLAN_54
+            - XPLAN_60
         filename:
           type: string
           example: xplan52-test.gml

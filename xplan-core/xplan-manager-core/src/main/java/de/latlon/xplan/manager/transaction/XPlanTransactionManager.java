@@ -38,12 +38,12 @@ import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.metadata.MetadataCouplingHandler;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
+import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
-import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -101,6 +101,8 @@ public abstract class XPlanTransactionManager {
 
 	private final MetadataCouplingHandler metadataCouplingHandler;
 
+	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
+
 	public XPlanTransactionManager(XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
 			XPlanDao xplanDao, XPlanExporter xPlanExporter, XPlanRasterManager xPlanRasterManager,
 			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
@@ -122,10 +124,9 @@ public abstract class XPlanTransactionManager {
 			this.metadataCouplingHandler = null;
 	}
 
-	protected void reloadWorkspace() {
+	protected void reloadWorkspace(int planId) {
 		if (workspaceReloader != null) {
-			WorkspaceReloaderConfiguration configuration = managerConfiguration.getWorkspaceReloaderConfiguration();
-			workspaceReloader.reloadWorkspace(configuration);
+			workspaceReloader.reloadWorkspace(planId);
 		}
 	}
 
@@ -165,7 +166,8 @@ public abstract class XPlanTransactionManager {
 
 	protected void reassignFids(XPlanFeatureCollection fc) {
 		for (Feature f : fc.getFeatures()) {
-			String prefix = "XPLAN_" + f.getName().getLocalPart().toUpperCase() + "_";
+			String synFeatureTypeName = featureTypeNameSynthesizer.detectSynFeatureTypeName(f.getName());
+			String prefix = "XPLAN_" + synFeatureTypeName.toUpperCase() + "_";
 			String uuid = UUID.randomUUID().toString();
 			f.setId(prefix + uuid);
 		}
