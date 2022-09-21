@@ -80,13 +80,13 @@ Das Installationsarchiv findet sich bei der https://tomcat.apache.org[Apache Fou
 Um eine spätere Trennung der Dienste (Web-Anwendungen) zu gewährleisten, wird die Konfiguration von mehreren Tomcat-Instanzen empfohlen (siehe Kapitel <<web-anwendungen>>).
 
 TIP: Die minimale Anforderung an den Applikationsserver ist das Java EE 7 Web
-Profil. Empfohlen wird Apache Tomcat Version 9.0.58.
+Profil. Empfohlen wird Apache Tomcat Version 9.0.65.
 
 [[datenbank]]
 === Datenbank
 
-Als Datenbanksystem ist eine Installation von PostgreSQL 11+ mit der
-Erweiterung PostGIS 3.0+ erforderlich.
+Als Datenbanksystem ist eine Installation von PostgreSQL 12+ mit der
+Erweiterung PostGIS 3.1+ erforderlich.
 
 TIP: Empfohlen wird PostgreSQL 12+ mit PostGIS 3.1+.
 

@@ -4,21 +4,23 @@
 
 [[Aenderungshistorie-6.0]]
 === Version 6.0
+
+Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neben der Aktualisierung auf deegree webservices Version 3.5 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 6.0 der xPlanBox ist mindestens PostgreSQL Version 12 mit der PostGIS-Erweiterung 3.1 erforderlich.
+
 ==== Erweiterungen
 - Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
-- Profile mit Validierungsregeln für den XPlanValidator
-- Neuer Dienst XPlanArtWMS - für jede spezifischen Planklasse ein eigener WMS
+- Unterstützung von Profilen mit zusätzlichen Validierungsregeln für den XPlanValidator
+- Neuer Dienst XPlanArtWMS eingeführt, für jede spezifische Planklasse ein eigener WMS
 - Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden
 - Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
-- Versionierung des Datenbankschemas
+- Versionierung des Datenbankschemas mit Liquibase
 - Aktualisierung der XPlanGML Schemadateien auf Version 6.0.1
 - Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML Version 6.0.1
+- VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
 - Validierung eines XPlan GML mit xsi:type ermöglicht
 - Verbesserungen am XPlanSyn-Schema
 - Langfassung für Übersetzung von Enumerationswerten im XPlanSynWFS und XPlanWMS
-
 - Vereinheitlichen der Layernamen im XPlanWMS und XPlanWerkWMS
-- VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
 - Verbesserungen der Behandlung von Präsentationsobjekten mit einer Auswahl an Zeichenvorschriften
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten mit uneindeutigen Bereichs-Nummern
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten und Referenzierung über verbundenerPlan@xlink:href
@@ -29,13 +31,13 @@
 - Aktualisierung auf JTS 1.19.0
 
 ==== Fehlerbehebungen
-- Fehler bei der Veröffentlichung von Bebauungsplänen als INSPIRE PLU
-- Fehler beim Editieren der Rasterbasis (XPlanGML 4.1)
-- Fehler in der  ListStoredQueries Antwort
-- Fehler beim wiederholten Import eines Plans mit mehreren Instanzen
-- Anfrage von nicht vorhandenen Ressource über XPlanManagerAPI
+- Fehler bei der Veröffentlichung von Bebauungsplänen als INSPIRE PLU behoben
+- Fehler beim Editieren der Rasterbasis (XPlanGML 4.1) behoben
+- Fehler in der XPlanWFS ListStoredQueries Antwort behoben
+- Fehler beim wiederholten Import eines Plans mit mehreren Instanzen behoben
+- Fehlerbehandlung für Anfrage von nicht vorhandenen Ressource über XPlanManagerAPI verbessert
 - Fehlende Zeichenvorschriften ergänzt
-- Fehler in der Flächenschlussprüfung für Änderungspläne und bei vollständiger Überlappung
+- Fehler in der Flächenschlussprüfung für Änderungspläne und bei vollständiger Überlappung behoben
 
 [[Aenderungshistorie-5.0.3]]
 === Version 5.0.3
@@ -46,7 +48,7 @@
     - Prüfung von linien- oder punktförmigen Geometrien korrigiert
 - Verbesserungen der Flächenschlussprüfung im XPlanValidator
     - Abweichungen von Stützpunkten unterhalb von 2mm im Bereich von Lücken werden erkannt
-    - Verbesserte Ausgabe von potentiellen Lücken als Warnungen
+    - Verbesserte Ausgabe von potenziellen Lücken als Warnungen
 - Fehlermeldung bei Abbruch der geometrischen Validierung im XPlanValidator verbessert
 - Verbesserte Darstellung von geometrischen Warnungen im HTML-Format des Reports des XPlanValidator
 - Korrekturen in der Benutzerdokumentation für den XPlanValidator vorgenommen
@@ -65,6 +67,8 @@
 
 [[Aenderungshistorie-5.0]]
 === Version 5.0
+
+Mit der Version 5.0 der xPlanBox wird die Version XPlanGML 5.4 unterstützt. Neben der Aktualisierung auf deegree webservices Version 3.4.27 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 5.0 der xPlanBox ist Java 11 mit Tomcat 9.0 erforderlich. Ältere Java Versionen werden nicht mehr unterstützt.
 
 ==== Erweiterungen
 - Umstellung von Java 8 auf Java 11 sowie Tomcat 8.5 auf Tomcat 9.0

@@ -151,7 +151,7 @@ IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die berei
 [[aktualisierung-auf-die-version-5.0]]
 === Aktualisierung auf die Version 5.0
 
-Mit der Version 5.0 der xPlanBox kann die xPlanBox ausschließlich unter Java 11 mit Tomcat 9 betrieben werden, außerdem wird die Version XPlanGML 5.4 unterstützt. Weiterhin sind einige Erweiterungen und Verbesserungen am XPlanValidator, XPlanManagerWeb und den XPlanDiensten vorgenommen worden. Zwei Kommandozeilenwerkzeuge (XPlanAuswerteschemaCLI und XPlanValdiateDB) sind neu hinzugekommen.
+Mit der Version 5.0 der xPlanBox kann die xPlanBox ausschließlich unter Java 11 mit Tomcat 9 betrieben werden, außerdem wird die Version XPlanGML 5.4 unterstützt. Weiterhin sind einige Erweiterungen und Verbesserungen am XPlanValidator, XPlanManagerWeb und den XPlanDiensten vorgenommen worden. Zwei Kommandozeilenwerkzeuge (XPlanAuswerteschemaCLI und XPlanValidateDB) sind neu hinzugekommen.
 
 Für die Aktualisierung auf die Version 5.0 sind folgende Schritte auszuführen:
 
@@ -209,7 +209,7 @@ TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert w
 [[aktualisierung-auf-xplanbox-version-6.0]]
 === Aktualisierung auf die Version 6.0 der xPlanBox
 
-Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neben der Aktualisierung auf deegree webservices Version 3.5 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden.
+Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neben der Aktualisierung auf deegree webservices Version 3.5 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 6.0 ist mindestens PostgreSQL Version 12 mit der PostGIS-Erweiterung 3.1 erforderlich.
 
 Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 

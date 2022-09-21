@@ -6,19 +6,18 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 
 ### Erweiterungen
 - Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
-- Profile mit Validierungsregeln für den XPlanValidator
-- Neuer Dienst XPlanArtWMS - für jede spezifische Planklasse ein eigener WMS
+- Unterstützung von Profilen mit zusätzlichen Validierungsregeln für den XPlanValidator
+- Neuer Dienst XPlanArtWMS eingeführt, für jede spezifische Planklasse ein eigener WMS
 - Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden
 - Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
-- Versionierung des Datenbankschemas
+- Versionierung des Datenbankschemas mit Liquibase
 - Aktualisierung der XPlanGML Schemadateien auf Version 6.0.1
 - Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML Version 6.0.1
+- VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
 - Validierung eines XPlan GML mit xsi:type ermöglicht
 - Verbesserungen am XPlanSyn-Schema
 - Langfassung für Übersetzung von Enumerationswerten im XPlanSynWFS und XPlanWMS
-
 - Vereinheitlichen der Layernamen im XPlanWMS und XPlanWerkWMS
-- VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
 - Verbesserungen der Behandlung von Präsentationsobjekten mit einer Auswahl an Zeichenvorschriften
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten mit uneindeutigen Bereichs-Nummern
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten und Referenzierung über verbundenerPlan@xlink:href
@@ -29,13 +28,13 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Aktualisierung auf JTS 1.19.0
 
 ### Fehlerbehebungen
-- Fehler bei der Veröffentlichung von Bebauungsplänen als INSPIRE PLU
-- Fehler beim Editieren der Rasterbasis (XPlanGML 4.1)
-- Fehler in der  ListStoredQueries Antwort
-- Fehler beim wiederholten Import eines Plans mit mehreren Instanzen
-- Anfrage von nicht vorhandenen Ressource über XPlanManagerAPI
+- Fehler bei der Veröffentlichung von Bebauungsplänen als INSPIRE PLU behoben
+- Fehler beim Editieren der Rasterbasis (XPlanGML 4.1) behoben
+- Fehler in der XPlanWFS ListStoredQueries Antwort behoben
+- Fehler beim wiederholten Import eines Plans mit mehreren Instanzen behoben
+- Fehlerbehandlung für Anfrage von nicht vorhandenen Ressource über XPlanManagerAPI verbessert
 - Fehlende Zeichenvorschriften ergänzt
-- Fehler in der Flächenschlussprüfung für Änderungspläne und bei vollständiger Überlappung
+- Fehler in der Flächenschlussprüfung für Änderungspläne und bei vollständiger Überlappung behoben
 
 ## Version 5.0.3 (2022-07-11)
 
@@ -45,7 +44,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
     - Prüfung von linien- oder punktförmigen Geometrien korrigiert
 - Verbesserungen der Flächenschlussprüfung im XPlanValidator
     - Abweichungen von Stützpunkten unterhalb von 2mm im Bereich von Lücken werden erkannt
-    - Verbesserte Ausgabe von potentiellen Lücken als Warnungen
+    - Verbesserte Ausgabe von potenziellen Lücken als Warnungen
 - Fehlermeldung bei Abbruch der geometrischen Validierung im XPlanValidator verbessert
 - Verbesserte Darstellung von geometrischen Warnungen im HTML-Format des Reports des XPlanValidator
 - Korrekturen in der Benutzerdokumentation für den XPlanValidator vorgenommen
