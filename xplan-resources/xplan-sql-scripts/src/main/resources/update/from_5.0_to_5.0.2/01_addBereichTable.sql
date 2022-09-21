@@ -1,6 +1,6 @@
 ---
 -- #%L
--- xplan-sql-update-scripts - SQL Skripte zum Aktualisieren der Datenhaltung.
+-- xplan-sql-scripts - SQL Skripte zum Aktualisieren der Datenhaltung.
 -- %%
 -- Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
 -- %%
