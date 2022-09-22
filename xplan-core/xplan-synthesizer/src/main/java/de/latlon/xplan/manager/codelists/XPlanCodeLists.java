@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,10 +98,10 @@ public class XPlanCodeLists {
 	}
 
 	/**
-	 * @return al codeLists, mey be <code>empty</code> but never <code>null</code>
+	 * @return all codeLists, may be <code>empty</code> but never <code>null</code>
 	 */
 	public List<XPlanCodeList> getCodeLists() {
-		return codeLists;
+		return Collections.unmodifiableList(codeLists);
 	}
 
 	/**

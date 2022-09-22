@@ -104,4 +104,11 @@ public class XPlanCodeList {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "XPlanCodeList{" +
+				"codeListId='" + codeListId + '\'' +
+				", codeEntries=" + codeEntries +
+				'}';
+	}
 }

@@ -77,4 +77,13 @@ public class XPlanCodeEntry {
 		return kuerzel;
 	}
 
+	@Override
+	public String toString() {
+		return "XPlanCodeEntry{" +
+				"code='" + code + '\'' +
+				", name='" + name + '\'' +
+				", lesbarerName='" + lesbarerName + '\'' +
+				", kuerzel='" + kuerzel + '\'' +
+				'}';
+	}
 }
