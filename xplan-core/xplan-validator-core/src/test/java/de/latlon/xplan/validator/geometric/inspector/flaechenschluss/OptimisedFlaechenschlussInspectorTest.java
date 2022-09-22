@@ -107,7 +107,7 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		assertThat(flaechenschlussInspector.getWarnings().size(), is(5));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(7));
 	}
 
 	@Test
@@ -120,7 +120,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
-		assertThat(flaechenschlussInspector.getWarnings().size(), is(5));
+		System.out.println(flaechenschlussInspector.getWarnings());
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(7));
 	}
 
 	@Test
@@ -277,6 +278,17 @@ public class OptimisedFlaechenschlussInspectorTest {
 		assertThat(isValid, is(false));
 		assertThat(flaechenschlussInspector.getErrors().size(), is(1));
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(0));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Luecke() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		readFeaturesFromGml("Test_Insel_Luecke_5mm.gml", OptimisedFlaechenschlussInspectorTest.class,
+				flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
 	}
 
 }

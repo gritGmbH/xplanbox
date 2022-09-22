@@ -407,7 +407,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		// of the geltungsbereich geometry. Also the boundaries and exteriors of the
 		// feature and geltungsbereich geometry.
 		LOG.debug("Intersection matrix: {}", relate);
-		if (relate.matches("TTT*T***T")) {
+		if (relate.matches("TTT*****T")) {
 			List<? extends SurfacePatch> patches = diffGeltungsbereich.getPatches();
 			PolygonPatch patch = (PolygonPatch) patches.get(0);
 			Ring exteriorRing = patch.getExteriorRing();
