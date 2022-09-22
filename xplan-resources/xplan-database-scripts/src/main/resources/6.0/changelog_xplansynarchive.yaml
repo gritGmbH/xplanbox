@@ -41910,2574 +41910,2808 @@ databaseChangeLog:
     id: 1663845219127-248
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_abgrabungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_abgrabungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_abgrabungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_abgrabungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_abgrabungsflaeche_xplan_position ON xplansynarchive.xplan_bp_abgrabungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-249
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_abstandsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_abstandsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_abstandsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_abstandsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_abstandsflaeche_xplan_position ON xplansynarchive.xplan_bp_abstandsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-250
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_abstandsmass_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_abstandsmass
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_abstandsmass_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_abstandsmass
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_abstandsmass_xplan_position ON xplansynarchive.xplan_bp_abstandsmass USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-251
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_abweichungvonbaugrenze_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_abweichungvonbaugrenze
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_abweichungvonbaugrenze_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_abweichungvonbaugrenze
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_abweichungvonbaugrenze_xplan_position ON xplansynarchive.xplan_bp_abweichungvonbaugrenze USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-252
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche__0
-        schemaName: xplansynarchive
-        tableName: xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche__0
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche_xplan_position ON xplansynarchive.xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-253
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_anpflanzungbindungerhaltung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_anpflanzungbindungerhaltung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_anpflanzungbindungerhaltung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_anpflanzungbindungerhaltung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_anpflanzungbindungerhaltung_xplan_position ON xplansynarchive.xplan_bp_anpflanzungbindungerhaltung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-254
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_aufschuettungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_aufschuettungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_aufschuettungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_aufschuettungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_aufschuettungsflaeche_xplan_position ON xplansynarchive.xplan_bp_aufschuettungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-255
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_ausgleichsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_ausgleichsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_ausgleichsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_ausgleichsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_ausgleichsflaeche_xplan_position ON xplansynarchive.xplan_bp_ausgleichsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-256
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_ausgleichsmassnahme_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_ausgleichsmassnahme
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_ausgleichsmassnahme_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_ausgleichsmassnahme
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_ausgleichsmassnahme_xplan_position ON xplansynarchive.xplan_bp_ausgleichsmassnahme USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-257
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_baugebiet_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_baugebiet
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_baugebiet_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_baugebiet
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_baugebiet_xplan_position ON xplansynarchive.xplan_bp_baugebiet USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-258
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_baugebietsteilflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_baugebietsteilflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_baugebietsteilflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_baugebietsteilflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_baugebietsteilflaeche_xplan_position ON xplansynarchive.xplan_bp_baugebietsteilflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-259
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_baugrenze_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_baugrenze
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_baugrenze_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_baugrenze
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_baugrenze_xplan_position ON xplansynarchive.xplan_bp_baugrenze USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-260
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_baulinie_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_baulinie
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_baulinie_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_baulinie
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_baulinie_xplan_position ON xplansynarchive.xplan_bp_baulinie USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-261
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereich
-        indexName: spidx_xplan_bp_bereich_xplan_geltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_bp_bereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereich
+#         indexName: spidx_xplan_bp_bereich_xplan_geltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_bereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_bp_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663845219127-262
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_bereichohneeinausfahrtlinie_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_bereichohneeinausfahrtlinie
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_bereichohneeinausfahrtlinie_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_bereichohneeinausfahrtlinie
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_bereichohneeinausfahrtlinie_xplan_position ON xplansynarchive.xplan_bp_bereichohneeinausfahrtlinie USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-263
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_besonderernutzungszweckflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_besonderernutzungszweckflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_besonderernutzungszweckflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_besonderernutzungszweckflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_besonderernutzungszweckflaeche_xplan_position ON xplansynarchive.xplan_bp_besonderernutzungszweckflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-264
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_bodenschaetzeflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_bodenschaetzeflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_bodenschaetzeflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_bodenschaetzeflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_bodenschaetzeflaeche_xplan_position ON xplansynarchive.xplan_bp_bodenschaetzeflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-265
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_denkmalschutzeinzelanlage_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_denkmalschutzeinzelanlage
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_denkmalschutzeinzelanlage_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_denkmalschutzeinzelanlage
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_denkmalschutzeinzelanlage_xplan_position ON xplansynarchive.xplan_bp_denkmalschutzeinzelanlage USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-266
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_denkmalschutzensembleflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_denkmalschutzensembleflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_denkmalschutzensembleflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_denkmalschutzensembleflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_denkmalschutzensembleflaeche_xplan_position ON xplansynarchive.xplan_bp_denkmalschutzensembleflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-267
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_einfahrtpunkt_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_einfahrtpunkt
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_einfahrtpunkt_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_einfahrtpunkt
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_einfahrtpunkt_xplan_position ON xplansynarchive.xplan_bp_einfahrtpunkt USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-268
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_einfahrtsbereichlinie_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_einfahrtsbereichlinie
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_einfahrtsbereichlinie_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_einfahrtsbereichlinie
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_einfahrtsbereichlinie_xplan_position ON xplansynarchive.xplan_bp_einfahrtsbereichlinie USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-269
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_eingriffsbereich_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_eingriffsbereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_eingriffsbereich_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_eingriffsbereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_eingriffsbereich_xplan_position ON xplansynarchive.xplan_bp_eingriffsbereich USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-270
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_erhaltungsbereichflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_erhaltungsbereichflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_erhaltungsbereichflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_erhaltungsbereichflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_erhaltungsbereichflaeche_xplan_position ON xplansynarchive.xplan_bp_erhaltungsbereichflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-271
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_erneuerbareenergieflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_erneuerbareenergieflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_erneuerbareenergieflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_erneuerbareenergieflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_erneuerbareenergieflaeche_xplan_position ON xplansynarchive.xplan_bp_erneuerbareenergieflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-272
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_festsetzungnachlandesrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_festsetzungnachlandesrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_festsetzungnachlandesrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_festsetzungnachlandesrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_festsetzungnachlandesrecht_xplan_position ON xplansynarchive.xplan_bp_festsetzungnachlandesrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-273
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_firstrichtungslinie_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_firstrichtungslinie
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_firstrichtungslinie_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_firstrichtungslinie
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_firstrichtungslinie_xplan_position ON xplansynarchive.xplan_bp_firstrichtungslinie USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-274
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_flaecheohnefestsetzung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_flaecheohnefestsetzung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_flaecheohnefestsetzung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_flaecheohnefestsetzung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_flaecheohnefestsetzung_xplan_position ON xplansynarchive.xplan_bp_flaecheohnefestsetzung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-275
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_foerderungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_foerderungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_foerderungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_foerderungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_foerderungsflaeche_xplan_position ON xplansynarchive.xplan_bp_foerderungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-276
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_freiflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_freiflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_freiflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_freiflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_freiflaeche_xplan_position ON xplansynarchive.xplan_bp_freiflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-277
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_gebaeudeflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_gebaeudeflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_gebaeudeflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_gebaeudeflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_gebaeudeflaeche_xplan_position ON xplansynarchive.xplan_bp_gebaeudeflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-278
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_gebaeudestellung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_gebaeudestellung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_gebaeudestellung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_gebaeudestellung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_gebaeudestellung_xplan_position ON xplansynarchive.xplan_bp_gebaeudestellung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-279
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_gemeinbedarfsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_gemeinbedarfsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_gemeinbedarfsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_gemeinbedarfsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_gemeinbedarfsflaeche_xplan_position ON xplansynarchive.xplan_bp_gemeinbedarfsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-280
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_gemeinschaftsanlagenflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_gemeinschaftsanlagenflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_gemeinschaftsanlagenflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_gemeinschaftsanlagenflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_gemeinschaftsanlagenflaeche_xplan_position ON xplansynarchive.xplan_bp_gemeinschaftsanlagenflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-281
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_gemeinschaftsanlagenzuordnung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_gemeinschaftsanlagenzuordnung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_gemeinschaftsanlagenzuordnung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_gemeinschaftsanlagenzuordnung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_gemeinschaftsanlagenzuordnung_xplan_position ON xplansynarchive.xplan_bp_gemeinschaftsanlagenzuordnung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-282
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_generischesobjekt_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_generischesobjekt
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_generischesobjekt_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_generischesobjekt
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_generischesobjekt_xplan_position ON xplansynarchive.xplan_bp_generischesobjekt USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-283
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_gewaesserflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_gewaesserflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_gewaesserflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_gewaesserflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_gewaesserflaeche_xplan_position ON xplansynarchive.xplan_bp_gewaesserflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-284
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_gruenflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_gruenflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_gruenflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_gruenflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_gruenflaeche_xplan_position ON xplansynarchive.xplan_bp_gruenflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-285
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_hoehenmass_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_hoehenmass
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_hoehenmass_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_hoehenmass
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_hoehenmass_xplan_position ON xplansynarchive.xplan_bp_hoehenmass USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-286
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_immissionsschutz_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_immissionsschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_immissionsschutz_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_immissionsschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_immissionsschutz_xplan_position ON xplansynarchive.xplan_bp_immissionsschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-287
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_kennzeichnungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_kennzeichnungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_kennzeichnungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_kennzeichnungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_kennzeichnungsflaeche_xplan_position ON xplansynarchive.xplan_bp_kennzeichnungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-288
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_kleintierhaltungflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_kleintierhaltungflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_kleintierhaltungflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_kleintierhaltungflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_kleintierhaltungflaeche_xplan_position ON xplansynarchive.xplan_bp_kleintierhaltungflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-289
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_landwirtschaft_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_landwirtschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_landwirtschaft_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_landwirtschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_landwirtschaft_xplan_position ON xplansynarchive.xplan_bp_landwirtschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-290
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_landwirtschaftsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_landwirtschaftsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_landwirtschaftsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_landwirtschaftsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_landwirtschaftsflaeche_xplan_position ON xplansynarchive.xplan_bp_landwirtschaftsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-291
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_luftreinhalteflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_luftreinhalteflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_luftreinhalteflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_luftreinhalteflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_luftreinhalteflaeche_xplan_position ON xplansynarchive.xplan_bp_luftreinhalteflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-292
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_nebenanlagenausschlussflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_nebenanlagenausschlussflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_nebenanlagenausschlussflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_nebenanlagenausschlussflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_nebenanlagenausschlussflaeche_xplan_position ON xplansynarchive.xplan_bp_nebenanlagenausschlussflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-293
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_nebenanlagenflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_nebenanlagenflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_nebenanlagenflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_nebenanlagenflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_nebenanlagenflaeche_xplan_position ON xplansynarchive.xplan_bp_nebenanlagenflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-294
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_nichtueberbaubaregrundstuecksflaeche_xplan_pos_1
-        schemaName: xplansynarchive
-        tableName: xplan_bp_nichtueberbaubaregrundstuecksflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_nichtueberbaubaregrundstuecksflaeche_xplan_pos_1
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_nichtueberbaubaregrundstuecksflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_nichtueberbaubaregrundstuecksflaeche_xplan_position ON xplansynarchive.xplan_bp_nichtueberbaubaregrundstuecksflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-295
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_nutzungsartengrenze_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_nutzungsartengrenze
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_nutzungsartengrenze_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_nutzungsartengrenze
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_nutzungsartengrenze_xplan_position ON xplansynarchive.xplan_bp_nutzungsartengrenze USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-296
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_persgruppenbestimmteflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_persgruppenbestimmteflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_persgruppenbestimmteflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_persgruppenbestimmteflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_persgruppenbestimmteflaeche_xplan_position ON xplansynarchive.xplan_bp_persgruppenbestimmteflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-297
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_raeumlichergeltungsbereich
-        indexName: spidx_xplan_bp_plan_xplan_raeumlichergeltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_bp_plan
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_raeumlichergeltungsbereich
+#         indexName: spidx_xplan_bp_plan_xplan_raeumlichergeltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_plan
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_bp_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663845219127-298
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereichaenderung
-        indexName: spidx_xplan_bp_rasterplanaenderung_xplan_geltungsbereichaende_2
-        schemaName: xplansynarchive
-        tableName: xplan_bp_rasterplanaenderung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereichaenderung
+#         indexName: spidx_xplan_bp_rasterplanaenderung_xplan_geltungsbereichaende_2
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_rasterplanaenderung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_bp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663845219127-299
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_regelungvergnuegungsstaetten_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_regelungvergnuegungsstaetten
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_regelungvergnuegungsstaetten_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_regelungvergnuegungsstaetten
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_regelungvergnuegungsstaetten_xplan_position ON xplansynarchive.xplan_bp_regelungvergnuegungsstaetten USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-300
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_rekultivierungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_rekultivierungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_rekultivierungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_rekultivierungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_rekultivierungsflaeche_xplan_position ON xplansynarchive.xplan_bp_rekultivierungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-301
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_richtungssektorgrenze_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_richtungssektorgrenze
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_richtungssektorgrenze_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_richtungssektorgrenze
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_richtungssektorgrenze_xplan_position ON xplansynarchive.xplan_bp_richtungssektorgrenze USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-302
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_schutzgebiet_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_schutzgebiet
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_schutzgebiet_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_schutzgebiet
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_schutzgebiet_xplan_position ON xplansynarchive.xplan_bp_schutzgebiet USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-303
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_schutzpflegeentwicklungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_schutzpflegeentwicklungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_schutzpflegeentwicklungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_schutzpflegeentwicklungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_schutzpflegeentwicklungsflaeche_xplan_position ON xplansynarchive.xplan_bp_schutzpflegeentwicklungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-304
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_schutzpflegeentwicklungsmassnahme_xplan_positi_3
-        schemaName: xplansynarchive
-        tableName: xplan_bp_schutzpflegeentwicklungsmassnahme
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_schutzpflegeentwicklungsmassnahme_xplan_positi_3
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_schutzpflegeentwicklungsmassnahme
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_schutzpflegeentwicklungsmassnahme_xplan_position ON xplansynarchive.xplan_bp_schutzpflegeentwicklungsmassnahme USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-305
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_sichtflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_sichtflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_sichtflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_sichtflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_sichtflaeche_xplan_position ON xplansynarchive.xplan_bp_sichtflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-306
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_speziellebauweise_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_speziellebauweise
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_speziellebauweise_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_speziellebauweise
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_speziellebauweise_xplan_position ON xplansynarchive.xplan_bp_speziellebauweise USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-307
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_spielsportanlagenflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_spielsportanlagenflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_spielsportanlagenflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_spielsportanlagenflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_spielsportanlagenflaeche_xplan_position ON xplansynarchive.xplan_bp_spielsportanlagenflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-308
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_strassenbegrenzungslinie_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_strassenbegrenzungslinie
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_strassenbegrenzungslinie_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_strassenbegrenzungslinie
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_strassenbegrenzungslinie_xplan_position ON xplansynarchive.xplan_bp_strassenbegrenzungslinie USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-309
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_strassenkoerper_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_strassenkoerper
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_strassenkoerper_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_strassenkoerper
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_strassenkoerper_xplan_position ON xplansynarchive.xplan_bp_strassenkoerper USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-310
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_strassenverkehrsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_strassenverkehrsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_strassenverkehrsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_strassenverkehrsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_strassenverkehrsflaeche_xplan_position ON xplansynarchive.xplan_bp_strassenverkehrsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-311
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_technischemassnahmenflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_technischemassnahmenflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_technischemassnahmenflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_technischemassnahmenflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_technischemassnahmenflaeche_xplan_position ON xplansynarchive.xplan_bp_technischemassnahmenflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-312
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_textabschnittflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_textabschnittflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_textabschnittflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_textabschnittflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_textabschnittflaeche_xplan_position ON xplansynarchive.xplan_bp_textabschnittflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-313
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_textlichefestsetzungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_textlichefestsetzungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_textlichefestsetzungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_textlichefestsetzungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_textlichefestsetzungsflaeche_xplan_position ON xplansynarchive.xplan_bp_textlichefestsetzungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-314
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_ueberbaubaregrundstuecksflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_ueberbaubaregrundstuecksflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_ueberbaubaregrundstuecksflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_ueberbaubaregrundstuecksflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_ueberbaubaregrundstuecksflaeche_xplan_position ON xplansynarchive.xplan_bp_ueberbaubaregrundstuecksflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-315
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_unverbindlichevormerkung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_unverbindlichevormerkung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_unverbindlichevormerkung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_unverbindlichevormerkung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_unverbindlichevormerkung_xplan_position ON xplansynarchive.xplan_bp_unverbindlichevormerkung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-316
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_veraenderungssperre_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_veraenderungssperre
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_veraenderungssperre_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_veraenderungssperre
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_veraenderungssperre_xplan_position ON xplansynarchive.xplan_bp_veraenderungssperre USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-317
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_verentsorgung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_verentsorgung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_verentsorgung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_verentsorgung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_verentsorgung_xplan_position ON xplansynarchive.xplan_bp_verentsorgung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-318
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_verkehrsflaechebesondererzweckbestimmung_xplan_4
-        schemaName: xplansynarchive
-        tableName: xplan_bp_verkehrsflaechebesondererzweckbestimmung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_verkehrsflaechebesondererzweckbestimmung_xplan_4
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_verkehrsflaechebesondererzweckbestimmung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_verkehrsflaechebesondererzweckbestimmung_xplan_position ON xplansynarchive.xplan_bp_verkehrsflaechebesondererzweckbestimmung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-319
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_waldflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_waldflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_waldflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_waldflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_waldflaeche_xplan_position ON xplansynarchive.xplan_bp_waldflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-320
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_wasserwirtschaftsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_wasserwirtschaftsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_wasserwirtschaftsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_wasserwirtschaftsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_wasserwirtschaftsflaeche_xplan_position ON xplansynarchive.xplan_bp_wasserwirtschaftsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-321
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_wegerecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_wegerecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_wegerecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_wegerecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_wegerecht_xplan_position ON xplansynarchive.xplan_bp_wegerecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-322
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_wohngebaeudeflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_wohngebaeudeflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_wohngebaeudeflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_wohngebaeudeflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_wohngebaeudeflaeche_xplan_position ON xplansynarchive.xplan_bp_wohngebaeudeflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-323
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_zentralerversorgungsbereich_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_zentralerversorgungsbereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_zentralerversorgungsbereich_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_zentralerversorgungsbereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_zentralerversorgungsbereich_xplan_position ON xplansynarchive.xplan_bp_zentralerversorgungsbereich USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-324
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_zusatzkontingentlaerm_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_zusatzkontingentlaerm
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_zusatzkontingentlaerm_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_zusatzkontingentlaerm
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_zusatzkontingentlaerm_xplan_position ON xplansynarchive.xplan_bp_zusatzkontingentlaerm USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-325
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_bp_zusatzkontingentlaermflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_bp_zusatzkontingentlaermflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_bp_zusatzkontingentlaermflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_bp_zusatzkontingentlaermflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_bp_zusatzkontingentlaermflaeche_xplan_position ON xplansynarchive.xplan_bp_zusatzkontingentlaermflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-326
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_abgrabung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_abgrabung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_abgrabung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_abgrabung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_abgrabung_xplan_position ON xplansynarchive.xplan_fp_abgrabung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-327
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_abgrabungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_abgrabungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_abgrabungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_abgrabungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_abgrabungsflaeche_xplan_position ON xplansynarchive.xplan_fp_abgrabungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-328
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_anpassungklimawandel_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_anpassungklimawandel
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_anpassungklimawandel_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_anpassungklimawandel
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_anpassungklimawandel_xplan_position ON xplansynarchive.xplan_fp_anpassungklimawandel USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-329
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_aufschuettung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_aufschuettung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_aufschuettung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_aufschuettung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_aufschuettung_xplan_position ON xplansynarchive.xplan_fp_aufschuettung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-330
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_aufschuettungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_aufschuettungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_aufschuettungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_aufschuettungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_aufschuettungsflaeche_xplan_position ON xplansynarchive.xplan_fp_aufschuettungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-331
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_ausgleichsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_ausgleichsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_ausgleichsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_ausgleichsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_ausgleichsflaeche_xplan_position ON xplansynarchive.xplan_fp_ausgleichsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-332
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_bebauungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_bebauungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_bebauungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_bebauungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_bebauungsflaeche_xplan_position ON xplansynarchive.xplan_fp_bebauungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-333
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereich
-        indexName: spidx_xplan_fp_bereich_xplan_geltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_fp_bereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereich
+#         indexName: spidx_xplan_fp_bereich_xplan_geltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_bereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_fp_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663845219127-334
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_bodenschaetze_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_bodenschaetze
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_bodenschaetze_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_bodenschaetze
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_bodenschaetze_xplan_position ON xplansynarchive.xplan_fp_bodenschaetze USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-335
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_bodenschaetzeflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_bodenschaetzeflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_bodenschaetzeflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_bodenschaetzeflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_bodenschaetzeflaeche_xplan_position ON xplansynarchive.xplan_fp_bodenschaetzeflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-336
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_darstellungnachlandesrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_darstellungnachlandesrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_darstellungnachlandesrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_darstellungnachlandesrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_darstellungnachlandesrecht_xplan_position ON xplansynarchive.xplan_fp_darstellungnachlandesrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-337
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_flaecheohnedarstellung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_flaecheohnedarstellung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_flaecheohnedarstellung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_flaecheohnedarstellung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_flaecheohnedarstellung_xplan_position ON xplansynarchive.xplan_fp_flaecheohnedarstellung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-338
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_gemeinbedarf_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_gemeinbedarf
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_gemeinbedarf_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_gemeinbedarf
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_gemeinbedarf_xplan_position ON xplansynarchive.xplan_fp_gemeinbedarf USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-339
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_generischesobjekt_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_generischesobjekt
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_generischesobjekt_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_generischesobjekt
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_generischesobjekt_xplan_position ON xplansynarchive.xplan_fp_generischesobjekt USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-340
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_gewaesser_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_gewaesser
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_gewaesser_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_gewaesser
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_gewaesser_xplan_position ON xplansynarchive.xplan_fp_gewaesser USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-341
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_gruen_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_gruen
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_gruen_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_gruen
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_gruen_xplan_position ON xplansynarchive.xplan_fp_gruen USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-342
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_keinezentrabwasserbeseitigungflaeche_xplan_pos_5
-        schemaName: xplansynarchive
-        tableName: xplan_fp_keinezentrabwasserbeseitigungflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_keinezentrabwasserbeseitigungflaeche_xplan_pos_5
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_keinezentrabwasserbeseitigungflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_keinezentrabwasserbeseitigungflaeche_xplan_position ON xplansynarchive.xplan_fp_keinezentrabwasserbeseitigungflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-343
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_kennzeichnung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_kennzeichnung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_kennzeichnung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_kennzeichnung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_kennzeichnung_xplan_position ON xplansynarchive.xplan_fp_kennzeichnung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-344
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_landwirtschaft_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_landwirtschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_landwirtschaft_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_landwirtschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_landwirtschaft_xplan_position ON xplansynarchive.xplan_fp_landwirtschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-345
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_landwirtschaftsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_landwirtschaftsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_landwirtschaftsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_landwirtschaftsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_landwirtschaftsflaeche_xplan_position ON xplansynarchive.xplan_fp_landwirtschaftsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-346
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_nutzungsbeschraenkung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_nutzungsbeschraenkung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_nutzungsbeschraenkung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_nutzungsbeschraenkung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_nutzungsbeschraenkung_xplan_position ON xplansynarchive.xplan_fp_nutzungsbeschraenkung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-347
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_nutzungsbeschraenkungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_nutzungsbeschraenkungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_nutzungsbeschraenkungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_nutzungsbeschraenkungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_nutzungsbeschraenkungsflaeche_xplan_position ON xplansynarchive.xplan_fp_nutzungsbeschraenkungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-348
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_raeumlichergeltungsbereich
-        indexName: spidx_xplan_fp_plan_xplan_raeumlichergeltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_fp_plan
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_raeumlichergeltungsbereich
+#         indexName: spidx_xplan_fp_plan_xplan_raeumlichergeltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_plan
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_fp_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663845219127-349
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_privilegiertesvorhaben_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_privilegiertesvorhaben
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_privilegiertesvorhaben_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_privilegiertesvorhaben
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_privilegiertesvorhaben_xplan_position ON xplansynarchive.xplan_fp_privilegiertesvorhaben USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-350
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereichaenderung
-        indexName: spidx_xplan_fp_rasterplanaenderung_xplan_geltungsbereichaende_6
-        schemaName: xplansynarchive
-        tableName: xplan_fp_rasterplanaenderung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereichaenderung
+#         indexName: spidx_xplan_fp_rasterplanaenderung_xplan_geltungsbereichaende_6
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_rasterplanaenderung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_fp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663845219127-351
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_schutzpflegeentwicklung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_schutzpflegeentwicklung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_schutzpflegeentwicklung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_schutzpflegeentwicklung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_schutzpflegeentwicklung_xplan_position ON xplansynarchive.xplan_fp_schutzpflegeentwicklung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-352
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_spielsportanlage_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_spielsportanlage
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_spielsportanlage_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_spielsportanlage
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_spielsportanlage_xplan_position ON xplansynarchive.xplan_fp_spielsportanlage USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-353
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_strassenverkehr_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_strassenverkehr
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_strassenverkehr_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_strassenverkehr
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_strassenverkehr_xplan_position ON xplansynarchive.xplan_fp_strassenverkehr USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-354
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_textabschnittflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_textabschnittflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_textabschnittflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_textabschnittflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_textabschnittflaeche_xplan_position ON xplansynarchive.xplan_fp_textabschnittflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-355
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_textlichedarstellungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_textlichedarstellungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_textlichedarstellungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_textlichedarstellungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_textlichedarstellungsflaeche_xplan_position ON xplansynarchive.xplan_fp_textlichedarstellungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-356
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_unverbindlichevormerkung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_unverbindlichevormerkung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_unverbindlichevormerkung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_unverbindlichevormerkung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_unverbindlichevormerkung_xplan_position ON xplansynarchive.xplan_fp_unverbindlichevormerkung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-357
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_verentsorgung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_verentsorgung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_verentsorgung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_verentsorgung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_verentsorgung_xplan_position ON xplansynarchive.xplan_fp_verentsorgung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-358
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_vorbehalteflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_vorbehalteflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_vorbehalteflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_vorbehalteflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_vorbehalteflaeche_xplan_position ON xplansynarchive.xplan_fp_vorbehalteflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-359
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_waldflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_waldflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_waldflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_waldflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_waldflaeche_xplan_position ON xplansynarchive.xplan_fp_waldflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-360
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_wasserwirtschaft_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_wasserwirtschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_wasserwirtschaft_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_wasserwirtschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_wasserwirtschaft_xplan_position ON xplansynarchive.xplan_fp_wasserwirtschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-361
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_fp_zentralerversorgungsbereich_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_fp_zentralerversorgungsbereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_fp_zentralerversorgungsbereich_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_fp_zentralerversorgungsbereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_fp_zentralerversorgungsbereich_xplan_position ON xplansynarchive.xplan_fp_zentralerversorgungsbereich USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-362
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_abgrenzung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_abgrenzung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_abgrenzung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_abgrenzung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_abgrenzung_xplan_position ON xplansynarchive.xplan_lp_abgrenzung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-363
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_allggruenflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_allggruenflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_allggruenflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_allggruenflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_allggruenflaeche_xplan_position ON xplansynarchive.xplan_lp_allggruenflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-364
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_anpflanzungbindungerhaltung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_anpflanzungbindungerhaltung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_anpflanzungbindungerhaltung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_anpflanzungbindungerhaltung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_anpflanzungbindungerhaltung_xplan_position ON xplansynarchive.xplan_lp_anpflanzungbindungerhaltung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-365
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_ausgleich_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_ausgleich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_ausgleich_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_ausgleich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_ausgleich_xplan_position ON xplansynarchive.xplan_lp_ausgleich USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-366
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereich
-        indexName: spidx_xplan_lp_bereich_xplan_geltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_lp_bereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereich
+#         indexName: spidx_xplan_lp_bereich_xplan_geltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_bereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_lp_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663845219127-367
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_biotopverbundbiotopvernetzung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_biotopverbundbiotopvernetzung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_biotopverbundbiotopvernetzung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_biotopverbundbiotopvernetzung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_biotopverbundbiotopvernetzung_xplan_position ON xplansynarchive.xplan_lp_biotopverbundbiotopvernetzung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-368
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_biotopverbundflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_biotopverbundflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_biotopverbundflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_biotopverbundflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_biotopverbundflaeche_xplan_position ON xplansynarchive.xplan_lp_biotopverbundflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-369
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_bodenschutzrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_bodenschutzrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_bodenschutzrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_bodenschutzrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_bodenschutzrecht_xplan_position ON xplansynarchive.xplan_lp_bodenschutzrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-370
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_denkmalschutzrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_denkmalschutzrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_denkmalschutzrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_denkmalschutzrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_denkmalschutzrecht_xplan_position ON xplansynarchive.xplan_lp_denkmalschutzrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-371
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_eingriffsregelung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_eingriffsregelung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_eingriffsregelung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_eingriffsregelung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_eingriffsregelung_xplan_position ON xplansynarchive.xplan_lp_eingriffsregelung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-372
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_erholungfreizeit_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_erholungfreizeit
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_erholungfreizeit_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_erholungfreizeit
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_erholungfreizeit_xplan_position ON xplansynarchive.xplan_lp_erholungfreizeit USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-373
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_forstrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_forstrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_forstrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_forstrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_forstrecht_xplan_position ON xplansynarchive.xplan_lp_forstrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-374
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_generischesobjekt_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_generischesobjekt
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_generischesobjekt_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_generischesobjekt
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_generischesobjekt_xplan_position ON xplansynarchive.xplan_lp_generischesobjekt USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-375
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_landschaftsbild_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_landschaftsbild
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_landschaftsbild_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_landschaftsbild
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_landschaftsbild_xplan_position ON xplansynarchive.xplan_lp_landschaftsbild USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-376
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_nutzungsausschluss_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_nutzungsausschluss
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_nutzungsausschluss_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_nutzungsausschluss
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_nutzungsausschluss_xplan_position ON xplansynarchive.xplan_lp_nutzungsausschluss USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-377
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_nutzungserfordernisregelung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_nutzungserfordernisregelung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_nutzungserfordernisregelung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_nutzungserfordernisregelung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_nutzungserfordernisregelung_xplan_position ON xplansynarchive.xplan_lp_nutzungserfordernisregelung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-378
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_raeumlichergeltungsbereich
-        indexName: spidx_xplan_lp_plan_xplan_raeumlichergeltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_lp_plan
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_raeumlichergeltungsbereich
+#         indexName: spidx_xplan_lp_plan_xplan_raeumlichergeltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_plan
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_lp_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663845219127-379
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_planerischevertiefung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_planerischevertiefung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_planerischevertiefung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_planerischevertiefung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_planerischevertiefung_xplan_position ON xplansynarchive.xplan_lp_planerischevertiefung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-380
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereichaenderung
-        indexName: spidx_xplan_lp_rasterplanaenderung_xplan_geltungsbereichaende_7
-        schemaName: xplansynarchive
-        tableName: xplan_lp_rasterplanaenderung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereichaenderung
+#         indexName: spidx_xplan_lp_rasterplanaenderung_xplan_geltungsbereichaende_7
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_rasterplanaenderung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_lp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663845219127-381
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_schutzbestimmterteilevonnaturundlandschaft_xpl_8
-        schemaName: xplansynarchive
-        tableName: xplan_lp_schutzbestimmterteilevonnaturundlandschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_schutzbestimmterteilevonnaturundlandschaft_xpl_8
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_schutzbestimmterteilevonnaturundlandschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_schutzbestimmterteilevonnaturundlandschaft_xplan_position ON xplansynarchive.xplan_lp_schutzbestimmterteilevonnaturundlandschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-382
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_schutzobjektbundesrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_schutzobjektbundesrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_schutzobjektbundesrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_schutzobjektbundesrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_schutzobjektbundesrecht_xplan_position ON xplansynarchive.xplan_lp_schutzobjektbundesrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-383
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_schutzobjektinternatrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_schutzobjektinternatrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_schutzobjektinternatrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_schutzobjektinternatrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_schutzobjektinternatrecht_xplan_position ON xplansynarchive.xplan_lp_schutzobjektinternatrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-384
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_schutzpflegeentwicklung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_schutzpflegeentwicklung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_schutzpflegeentwicklung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_schutzpflegeentwicklung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_schutzpflegeentwicklung_xplan_position ON xplansynarchive.xplan_lp_schutzpflegeentwicklung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-385
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_sonstigesrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_sonstigesrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_sonstigesrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_sonstigesrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_sonstigesrecht_xplan_position ON xplansynarchive.xplan_lp_sonstigesrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-386
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_textabschnittobjekt_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_textabschnittobjekt
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_textabschnittobjekt_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_textabschnittobjekt
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_textabschnittobjekt_xplan_position ON xplansynarchive.xplan_lp_textabschnittobjekt USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-387
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_textlichefestsetzungsflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_textlichefestsetzungsflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_textlichefestsetzungsflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_textlichefestsetzungsflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_textlichefestsetzungsflaeche_xplan_position ON xplansynarchive.xplan_lp_textlichefestsetzungsflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-388
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz_9
-        schemaName: xplansynarchive
-        tableName: xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz_9
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz_xplan_position ON xplansynarchive.xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-389
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_wasserrechtschutzgebiet_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_wasserrechtschutzgebiet
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_wasserrechtschutzgebiet_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_wasserrechtschutzgebiet
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_wasserrechtschutzgebiet_xplan_position ON xplansynarchive.xplan_lp_wasserrechtschutzgebiet USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-390
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_wasserrechtsonstige_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_wasserrechtsonstige
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_wasserrechtsonstige_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_wasserrechtsonstige
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_wasserrechtsonstige_xplan_position ON xplansynarchive.xplan_lp_wasserrechtsonstige USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-391
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_wasserrechtwirtschaftabflusshochwschutz_xplan_10
-        schemaName: xplansynarchive
-        tableName: xplan_lp_wasserrechtwirtschaftabflusshochwschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_wasserrechtwirtschaftabflusshochwschutz_xplan_10
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_wasserrechtwirtschaftabflusshochwschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_wasserrechtwirtschaftabflusshochwschutz_xplan_position ON xplansynarchive.xplan_lp_wasserrechtwirtschaftabflusshochwschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-392
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_zieleerfordernissemassnahmen_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_zieleerfordernissemassnahmen
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_zieleerfordernissemassnahmen_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_zieleerfordernissemassnahmen
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_zieleerfordernissemassnahmen_xplan_position ON xplansynarchive.xplan_lp_zieleerfordernissemassnahmen USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-393
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_zubegruenendegrundstueckflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_zubegruenendegrundstueckflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_zubegruenendegrundstueckflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_zubegruenendegrundstueckflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_zubegruenendegrundstueckflaeche_xplan_position ON xplansynarchive.xplan_lp_zubegruenendegrundstueckflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-394
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_lp_zwischennutzung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_lp_zwischennutzung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_lp_zwischennutzung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_lp_zwischennutzung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_lp_zwischennutzung_xplan_position ON xplansynarchive.xplan_lp_zwischennutzung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-395
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_achse_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_achse
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_achse_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_achse
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_achse_xplan_position ON xplansynarchive.xplan_rp_achse USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-396
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereich
-        indexName: spidx_xplan_rp_bereich_xplan_geltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_rp_bereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereich
+#         indexName: spidx_xplan_rp_bereich_xplan_geltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_bereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_rp_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663845219127-397
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_bodenschutz_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_bodenschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_bodenschutz_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_bodenschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_bodenschutz_xplan_position ON xplansynarchive.xplan_rp_bodenschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-398
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_einzelhandel_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_einzelhandel
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_einzelhandel_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_einzelhandel
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_einzelhandel_xplan_position ON xplansynarchive.xplan_rp_einzelhandel USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-399
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_energieversorgung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_energieversorgung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_energieversorgung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_energieversorgung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_energieversorgung_xplan_position ON xplansynarchive.xplan_rp_energieversorgung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-400
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_entsorgung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_entsorgung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_entsorgung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_entsorgung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_entsorgung_xplan_position ON xplansynarchive.xplan_rp_entsorgung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-401
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_erholung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_erholung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_erholung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_erholung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_erholung_xplan_position ON xplansynarchive.xplan_rp_erholung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-402
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_erneuerbareenergie_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_erneuerbareenergie
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_erneuerbareenergie_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_erneuerbareenergie
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_erneuerbareenergie_xplan_position ON xplansynarchive.xplan_rp_erneuerbareenergie USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-403
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_forstwirtschaft_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_forstwirtschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_forstwirtschaft_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_forstwirtschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_forstwirtschaft_xplan_position ON xplansynarchive.xplan_rp_forstwirtschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-404
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_freiraum_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_freiraum
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_freiraum_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_freiraum
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_freiraum_xplan_position ON xplansynarchive.xplan_rp_freiraum USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-405
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_freizeiterholung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_freizeiterholung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_freizeiterholung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_freizeiterholung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_freizeiterholung_xplan_position ON xplansynarchive.xplan_rp_freizeiterholung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-406
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_funktionszuweisung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_funktionszuweisung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_funktionszuweisung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_funktionszuweisung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_funktionszuweisung_xplan_position ON xplansynarchive.xplan_rp_funktionszuweisung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-407
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_gemeindefunktionsiedlungsentwicklung_xplan_po_11
-        schemaName: xplansynarchive
-        tableName: xplan_rp_gemeindefunktionsiedlungsentwicklung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_gemeindefunktionsiedlungsentwicklung_xplan_po_11
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_gemeindefunktionsiedlungsentwicklung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_gemeindefunktionsiedlungsentwicklung_xplan_position ON xplansynarchive.xplan_rp_gemeindefunktionsiedlungsentwicklung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-408
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_generischesobjekt_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_generischesobjekt
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_generischesobjekt_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_generischesobjekt
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_generischesobjekt_xplan_position ON xplansynarchive.xplan_rp_generischesobjekt USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-409
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_gewaesser_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_gewaesser
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_gewaesser_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_gewaesser
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_gewaesser_xplan_position ON xplansynarchive.xplan_rp_gewaesser USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-410
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_grenze_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_grenze
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_grenze_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_grenze
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_grenze_xplan_position ON xplansynarchive.xplan_rp_grenze USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-411
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_gruenzuggruenzaesur_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_gruenzuggruenzaesur
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_gruenzuggruenzaesur_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_gruenzuggruenzaesur
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_gruenzuggruenzaesur_xplan_position ON xplansynarchive.xplan_rp_gruenzuggruenzaesur USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-412
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_hochwasserschutz_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_hochwasserschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_hochwasserschutz_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_hochwasserschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_hochwasserschutz_xplan_position ON xplansynarchive.xplan_rp_hochwasserschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-413
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_industriegewerbe_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_industriegewerbe
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_industriegewerbe_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_industriegewerbe
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_industriegewerbe_xplan_position ON xplansynarchive.xplan_rp_industriegewerbe USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-414
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_klimaschutz_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_klimaschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_klimaschutz_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_klimaschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_klimaschutz_xplan_position ON xplansynarchive.xplan_rp_klimaschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-415
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_kommunikation_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_kommunikation
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_kommunikation_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_kommunikation
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_kommunikation_xplan_position ON xplansynarchive.xplan_rp_kommunikation USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-416
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_kulturellessachgut_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_kulturellessachgut
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_kulturellessachgut_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_kulturellessachgut
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_kulturellessachgut_xplan_position ON xplansynarchive.xplan_rp_kulturellessachgut USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-417
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_kulturlandschaft_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_kulturlandschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_kulturlandschaft_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_kulturlandschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_kulturlandschaft_xplan_position ON xplansynarchive.xplan_rp_kulturlandschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-418
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_laermschutzbauschutz_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_laermschutzbauschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_laermschutzbauschutz_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_laermschutzbauschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_laermschutzbauschutz_xplan_position ON xplansynarchive.xplan_rp_laermschutzbauschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-419
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_laermschutzbereich_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_laermschutzbereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_laermschutzbereich_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_laermschutzbereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_laermschutzbereich_xplan_position ON xplansynarchive.xplan_rp_laermschutzbereich USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-420
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_landwirtschaft_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_landwirtschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_landwirtschaft_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_landwirtschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_landwirtschaft_xplan_position ON xplansynarchive.xplan_rp_landwirtschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-421
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_luftverkehr_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_luftverkehr
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_luftverkehr_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_luftverkehr
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_luftverkehr_xplan_position ON xplansynarchive.xplan_rp_luftverkehr USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-422
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_naturlandschaft_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_naturlandschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_naturlandschaft_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_naturlandschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_naturlandschaft_xplan_position ON xplansynarchive.xplan_rp_naturlandschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-423
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_naturschutzrechtlichesschutzgebiet_xplan_posi_12
-        schemaName: xplansynarchive
-        tableName: xplan_rp_naturschutzrechtlichesschutzgebiet
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_naturschutzrechtlichesschutzgebiet_xplan_posi_12
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_naturschutzrechtlichesschutzgebiet
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_naturschutzrechtlichesschutzgebiet_xplan_position ON xplansynarchive.xplan_rp_naturschutzrechtlichesschutzgebiet USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-424
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_raeumlichergeltungsbereich
-        indexName: spidx_xplan_rp_plan_xplan_raeumlichergeltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_rp_plan
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_raeumlichergeltungsbereich
+#         indexName: spidx_xplan_rp_plan_xplan_raeumlichergeltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_plan
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_rp_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663845219127-425
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_planungsraum_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_planungsraum
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_planungsraum_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_planungsraum
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_planungsraum_xplan_position ON xplansynarchive.xplan_rp_planungsraum USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-426
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_radwegwanderweg_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_radwegwanderweg
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_radwegwanderweg_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_radwegwanderweg
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_radwegwanderweg_xplan_position ON xplansynarchive.xplan_rp_radwegwanderweg USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-427
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereichaenderung
-        indexName: spidx_xplan_rp_rasterplanaenderung_xplan_geltungsbereichaend_13
-        schemaName: xplansynarchive
-        tableName: xplan_rp_rasterplanaenderung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereichaenderung
+#         indexName: spidx_xplan_rp_rasterplanaenderung_xplan_geltungsbereichaend_13
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_rasterplanaenderung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_rp_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663845219127-428
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_raumkategorie_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_raumkategorie
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_raumkategorie_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_raumkategorie
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_raumkategorie_xplan_position ON xplansynarchive.xplan_rp_raumkategorie USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-429
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_rohstoff_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_rohstoff
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_rohstoff_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_rohstoff
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_rohstoff_xplan_position ON xplansynarchive.xplan_rp_rohstoff USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-430
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_rohstoffsicherung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_rohstoffsicherung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_rohstoffsicherung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_rohstoffsicherung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_rohstoffsicherung_xplan_position ON xplansynarchive.xplan_rp_rohstoffsicherung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-431
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_schienenverkehr_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_schienenverkehr
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_schienenverkehr_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_schienenverkehr
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_schienenverkehr_xplan_position ON xplansynarchive.xplan_rp_schienenverkehr USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-432
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_siedlung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_siedlung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_siedlung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_siedlung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_siedlung_xplan_position ON xplansynarchive.xplan_rp_siedlung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-433
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_sonstigeinfrastruktur_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_sonstigeinfrastruktur
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_sonstigeinfrastruktur_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_sonstigeinfrastruktur
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_sonstigeinfrastruktur_xplan_position ON xplansynarchive.xplan_rp_sonstigeinfrastruktur USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-434
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_sonstigerfreiraumschutz_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_sonstigerfreiraumschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_sonstigerfreiraumschutz_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_sonstigerfreiraumschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_sonstigerfreiraumschutz_xplan_position ON xplansynarchive.xplan_rp_sonstigerfreiraumschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-435
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_sonstigerfreiraumstruktur_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_sonstigerfreiraumstruktur
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_sonstigerfreiraumstruktur_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_sonstigerfreiraumstruktur
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_sonstigerfreiraumstruktur_xplan_position ON xplansynarchive.xplan_rp_sonstigerfreiraumstruktur USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-436
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_sonstigersiedlungsbereich_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_sonstigersiedlungsbereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_sonstigersiedlungsbereich_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_sonstigersiedlungsbereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_sonstigersiedlungsbereich_xplan_position ON xplansynarchive.xplan_rp_sonstigersiedlungsbereich USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-437
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_sonstigesiedlungsstruktur_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_sonstigesiedlungsstruktur
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_sonstigesiedlungsstruktur_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_sonstigesiedlungsstruktur
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_sonstigesiedlungsstruktur_xplan_position ON xplansynarchive.xplan_rp_sonstigesiedlungsstruktur USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-438
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_sonstverkehr_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_sonstverkehr
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_sonstverkehr_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_sonstverkehr
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_sonstverkehr_xplan_position ON xplansynarchive.xplan_rp_sonstverkehr USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-439
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_sozialeinfrastruktur_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_sozialeinfrastruktur
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_sozialeinfrastruktur_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_sozialeinfrastruktur
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_sozialeinfrastruktur_xplan_position ON xplansynarchive.xplan_rp_sozialeinfrastruktur USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-440
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_sperrgebiet_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_sperrgebiet
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_sperrgebiet_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_sperrgebiet
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_sperrgebiet_xplan_position ON xplansynarchive.xplan_rp_sperrgebiet USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-441
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_sportanlage_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_sportanlage
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_sportanlage_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_sportanlage
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_sportanlage_xplan_position ON xplansynarchive.xplan_rp_sportanlage USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-442
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_strassenverkehr_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_strassenverkehr
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_strassenverkehr_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_strassenverkehr
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_strassenverkehr_xplan_position ON xplansynarchive.xplan_rp_strassenverkehr USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-443
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_verkehr_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_verkehr
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_verkehr_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_verkehr
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_verkehr_xplan_position ON xplansynarchive.xplan_rp_verkehr USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-444
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_vorbhochwasserschutz_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_vorbhochwasserschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_vorbhochwasserschutz_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_vorbhochwasserschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_vorbhochwasserschutz_xplan_position ON xplansynarchive.xplan_rp_vorbhochwasserschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-445
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_wasserschutz_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_wasserschutz
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_wasserschutz_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_wasserschutz
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_wasserschutz_xplan_position ON xplansynarchive.xplan_rp_wasserschutz USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-446
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_wasserverkehr_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_wasserverkehr
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_wasserverkehr_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_wasserverkehr
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_wasserverkehr_xplan_position ON xplansynarchive.xplan_rp_wasserverkehr USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-447
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_wasserwirtschaft_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_wasserwirtschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_wasserwirtschaft_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_wasserwirtschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_wasserwirtschaft_xplan_position ON xplansynarchive.xplan_rp_wasserwirtschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-448
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_windenergienutzung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_windenergienutzung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_windenergienutzung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_windenergienutzung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_windenergienutzung_xplan_position ON xplansynarchive.xplan_rp_windenergienutzung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-449
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_wohnensiedlung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_wohnensiedlung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_wohnensiedlung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_wohnensiedlung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_wohnensiedlung_xplan_position ON xplansynarchive.xplan_rp_wohnensiedlung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-450
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_rp_zentralerort_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_rp_zentralerort
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_rp_zentralerort_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_rp_zentralerort
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_rp_zentralerort_xplan_position ON xplansynarchive.xplan_rp_zentralerort USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-451
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_baubeschraenkung_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_baubeschraenkung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_baubeschraenkung_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_baubeschraenkung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_baubeschraenkung_xplan_position ON xplansynarchive.xplan_so_baubeschraenkung USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-452
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_bauverbotszone_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_bauverbotszone
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_bauverbotszone_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_bauverbotszone
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_bauverbotszone_xplan_position ON xplansynarchive.xplan_so_bauverbotszone USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-453
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereich
-        indexName: spidx_xplan_so_bereich_xplan_geltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_so_bereich
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereich
+#         indexName: spidx_xplan_so_bereich_xplan_geltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_bereich
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_bereich_xplan_geltungsbereich ON xplansynarchive.xplan_so_bereich USING gist (xplan_geltungsbereich);
 - changeSet:
     id: 1663845219127-454
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_bodenschutzrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_bodenschutzrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_bodenschutzrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_bodenschutzrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_bodenschutzrecht_xplan_position ON xplansynarchive.xplan_so_bodenschutzrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-455
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_denkmalschutzrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_denkmalschutzrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_denkmalschutzrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_denkmalschutzrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_denkmalschutzrecht_xplan_position ON xplansynarchive.xplan_so_denkmalschutzrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-456
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_forstrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_forstrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_forstrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_forstrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_forstrecht_xplan_position ON xplansynarchive.xplan_so_forstrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-457
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_gebiet_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_gebiet
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_gebiet_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_gebiet
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_gebiet_xplan_position ON xplansynarchive.xplan_so_gebiet USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-458
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_gelaendemorphologie_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_gelaendemorphologie
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_gelaendemorphologie_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_gelaendemorphologie
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_gelaendemorphologie_xplan_position ON xplansynarchive.xplan_so_gelaendemorphologie USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-459
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_gewaesser_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_gewaesser
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_gewaesser_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_gewaesser
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_gewaesser_xplan_position ON xplansynarchive.xplan_so_gewaesser USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-460
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_grenze_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_grenze
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_grenze_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_grenze
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_grenze_xplan_position ON xplansynarchive.xplan_so_grenze USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-461
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_linienobjekt_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_linienobjekt
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_linienobjekt_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_linienobjekt
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_linienobjekt_xplan_position ON xplansynarchive.xplan_so_linienobjekt USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-462
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_luftverkehrsrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_luftverkehrsrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_luftverkehrsrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_luftverkehrsrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_luftverkehrsrecht_xplan_position ON xplansynarchive.xplan_so_luftverkehrsrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-463
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_raeumlichergeltungsbereich
-        indexName: spidx_xplan_so_plan_xplan_raeumlichergeltungsbereich
-        schemaName: xplansynarchive
-        tableName: xplan_so_plan
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_raeumlichergeltungsbereich
+#         indexName: spidx_xplan_so_plan_xplan_raeumlichergeltungsbereich
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_plan
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_plan_xplan_raeumlichergeltungsbereich ON xplansynarchive.xplan_so_plan USING gist (xplan_raeumlichergeltungsbereich);
 - changeSet:
     id: 1663845219127-464
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_geltungsbereichaenderung
-        indexName: spidx_xplan_so_rasterplanaenderung_xplan_geltungsbereichaend_14
-        schemaName: xplansynarchive
-        tableName: xplan_so_rasterplanaenderung
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_geltungsbereichaenderung
+#         indexName: spidx_xplan_so_rasterplanaenderung_xplan_geltungsbereichaend_14
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_rasterplanaenderung
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_rasterplanaenderung_xplan_geltungsbereichaenderung ON xplansynarchive.xplan_so_rasterplanaenderung USING gist (xplan_geltungsbereichaenderung);
 - changeSet:
     id: 1663845219127-465
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_schienenverkehrsrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_schienenverkehrsrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_schienenverkehrsrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_schienenverkehrsrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_schienenverkehrsrecht_xplan_position ON xplansynarchive.xplan_so_schienenverkehrsrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-466
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_schutzgebietnaturschutzrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_schutzgebietnaturschutzrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_schutzgebietnaturschutzrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_schutzgebietnaturschutzrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_schutzgebietnaturschutzrecht_xplan_position ON xplansynarchive.xplan_so_schutzgebietnaturschutzrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-467
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_schutzgebietsonstigesrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_schutzgebietsonstigesrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_schutzgebietsonstigesrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_schutzgebietsonstigesrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_schutzgebietsonstigesrecht_xplan_position ON xplansynarchive.xplan_so_schutzgebietsonstigesrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-468
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_schutzgebietwasserrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_schutzgebietwasserrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_schutzgebietwasserrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_schutzgebietwasserrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_schutzgebietwasserrecht_xplan_position ON xplansynarchive.xplan_so_schutzgebietwasserrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-469
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_sichtflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_sichtflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_sichtflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_sichtflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_sichtflaeche_xplan_position ON xplansynarchive.xplan_so_sichtflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-470
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_sonstigesrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_sonstigesrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_sonstigesrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_sonstigesrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_sonstigesrecht_xplan_position ON xplansynarchive.xplan_so_sonstigesrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-471
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_strassenverkehr_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_strassenverkehr
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_strassenverkehr_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_strassenverkehr
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_strassenverkehr_xplan_position ON xplansynarchive.xplan_so_strassenverkehr USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-472
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_strassenverkehrsrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_strassenverkehrsrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_strassenverkehrsrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_strassenverkehrsrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_strassenverkehrsrecht_xplan_position ON xplansynarchive.xplan_so_strassenverkehrsrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-473
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_textabschnittflaeche_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_textabschnittflaeche
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_textabschnittflaeche_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_textabschnittflaeche
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_textabschnittflaeche_xplan_position ON xplansynarchive.xplan_so_textabschnittflaeche USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-474
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_wasserrecht_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_wasserrecht
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_wasserrecht_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_wasserrecht
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_wasserrecht_xplan_position ON xplansynarchive.xplan_so_wasserrecht USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-475
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_so_wasserwirtschaft_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_so_wasserwirtschaft
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_so_wasserwirtschaft_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_so_wasserwirtschaft
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_so_wasserwirtschaft_xplan_position ON xplansynarchive.xplan_so_wasserwirtschaft USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-476
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_xp_fpo_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_xp_fpo
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_xp_fpo_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_xp_fpo
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_xp_fpo_xplan_position ON xplansynarchive.xplan_xp_fpo USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-477
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_xp_lpo_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_xp_lpo
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_xp_lpo_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_xp_lpo
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_xp_lpo_xplan_position ON xplansynarchive.xplan_xp_lpo USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-478
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_xp_lto_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_xp_lto
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_xp_lto_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_xp_lto
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_xp_lto_xplan_position ON xplansynarchive.xplan_xp_lto USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-479
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_xp_nutzungsschablone_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_xp_nutzungsschablone
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_xp_nutzungsschablone_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_xp_nutzungsschablone
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_xp_nutzungsschablone_xplan_position ON xplansynarchive.xplan_xp_nutzungsschablone USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-480
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_xp_ppo_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_xp_ppo
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_xp_ppo_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_xp_ppo
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_xp_ppo_xplan_position ON xplansynarchive.xplan_xp_ppo USING gist (xplan_position);
 - changeSet:
     id: 1663845219127-481
     author: lyn (generated)
     changes:
-    - createIndex:
-        columns:
-        - column:
-            name: xplan_position
-        indexName: spidx_xplan_xp_pto_xplan_position
-        schemaName: xplansynarchive
-        tableName: xplan_xp_pto
+#     - createIndex:
+#         columns:
+#         - column:
+#             name: xplan_position
+#         indexName: spidx_xplan_xp_pto_xplan_position
+#         schemaName: xplansynarchive
+#         tableName: xplan_xp_pto
+      - sql: CREATE INDEX IF NOT EXISTS spidx_xplan_xp_pto_xplan_position ON xplansynarchive.xplan_xp_pto USING gist (xplan_position);
 
