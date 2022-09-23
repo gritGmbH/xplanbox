@@ -281,7 +281,7 @@ public class OptimisedFlaechenschlussInspectorTest {
 	}
 
 	@Test
-	public void testCheckFlaechenschluss_Luecke() throws Exception {
+	public void testCheckFlaechenschluss_OneFlaechenschlussFeature_Luecke() throws Exception {
 		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
 		readFeaturesFromGml("Test_Insel_Luecke_5mm.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
