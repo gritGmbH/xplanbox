@@ -55,7 +55,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
@@ -139,7 +138,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			int planIdInt = parseInt(planId);
 			if (makeRasterConfig) {
 				XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
-				createRasterConfiguration(archive, modifiedPlanFc, planIdInt, BP_Plan, oldPlanStatus, newPlanStatus,
+				createRasterConfiguration(archive, modifiedPlanFc, planIdInt, type, oldPlanStatus, newPlanStatus,
 						sortDate);
 				reloadWorkspace(planIdInt);
 			}
