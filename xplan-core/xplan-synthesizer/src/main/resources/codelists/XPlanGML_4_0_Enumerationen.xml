@@ -7779,6 +7779,7 @@
           <name>Deich</name>
         </Definition>
       </definitionMember>
+      <!--
       <definitionMember>
         <Definition gml:id="RP_NSM_HochwasserschutzTypen_5000">
           <description />
@@ -7786,6 +7787,7 @@
           <name>Hochwasserschutz</name>
         </Definition>
       </definitionMember>
+      -->
       <definitionMember>
         <Definition gml:id="RP_NSM_HochwasserschutzTypen_6000">
           <description />
