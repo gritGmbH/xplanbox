@@ -16,7 +16,7 @@
 #  You should have received a copy of the GNU Affero General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #  #L%
-#Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 16.09.2022, 16:43:06
+#Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 27.09.2022, 14:12:50
 BP_AbgrabungsFlaeche/abbaugut=xpath('xplan:abbaugut')
 BP_AbgrabungsFlaeche/aufschrift=xpath('xplan:aufschrift')
 BP_AbgrabungsFlaeche/ebene=xpath('xplan:ebene')

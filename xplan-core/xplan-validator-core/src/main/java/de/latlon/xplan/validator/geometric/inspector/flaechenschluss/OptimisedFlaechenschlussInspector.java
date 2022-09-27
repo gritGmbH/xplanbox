@@ -404,10 +404,10 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		IntersectionMatrix relate = geltungsbereichFeature.getJtsGeometry()
 				.relate(diffGeltungsbereich.getJTSGeometry());
 		// The feature geometry must have at least one point in common with the interior
-		// of the geltungsbereich geometry. Also the boundaries and exteriors of the
-		// feature and geltungsbereich geometry.
+		// of the geltungsbereich geometry. Also the boundaries of the feature and
+		// geltungsbereich geometry.
 		LOG.debug("Intersection matrix: {}", relate);
-		if (relate.matches("TTT*T***T")) {
+		if (relate.matches("TTT*****T")) {
 			List<? extends SurfacePatch> patches = diffGeltungsbereich.getPatches();
 			PolygonPatch patch = (PolygonPatch) patches.get(0);
 			Ring exteriorRing = patch.getExteriorRing();
