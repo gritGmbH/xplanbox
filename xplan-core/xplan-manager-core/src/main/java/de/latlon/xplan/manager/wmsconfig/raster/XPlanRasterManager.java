@@ -20,12 +20,29 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster;
 
-import static de.latlon.xplan.manager.wmsconfig.ConfigWriterUtils.detectType;
-import static de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType.geotiff;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
-import static org.apache.commons.io.IOUtils.closeQuietly;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.commons.archive.ArchiveEntry;
+import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.reference.ExternalReference;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.manager.configuration.ConfigurationException;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
+import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
+import de.latlon.xplan.manager.workspace.WorkspaceException;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.deegree.commons.config.DeegreeWorkspace;
+import org.gdal.gdal.Dataset;
+import org.gdal.gdal.gdal;
+import org.gdal.osr.SpatialReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,30 +56,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-import javax.xml.bind.JAXBException;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.deegree.commons.config.DeegreeWorkspace;
-import org.gdal.gdal.Dataset;
-import org.gdal.gdal.gdal;
-import org.gdal.osr.SpatialReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.archive.ArchiveEntry;
-import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-import de.latlon.xplan.commons.reference.ExternalReference;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.manager.configuration.ConfigurationException;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
-import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
-import de.latlon.xplan.manager.workspace.WorkspaceException;
+import static de.latlon.xplan.manager.wmsconfig.ConfigWriterUtils.detectType;
+import static de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType.geotiff;
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
+import static org.apache.commons.io.IOUtils.closeQuietly;
 
 /**
  * An instance of XPlanRasterManager provides the service methods to manage raster files
@@ -166,58 +164,6 @@ public class XPlanRasterManager {
 		catch (Exception e) {
 			LOG.trace("Layer " + layerName + " could not be removed!", e);
 			LOG.error("Benutzerdefinierte Ebene kann nicht gelöscht werden: {}", e.getLocalizedMessage());
-		}
-	}
-
-	/**
-	 * Creates a new category with the passed name and title. If the name of the
-	 * uppercategory is not <code>null</code> the new category will be created as
-	 * subcategory of this.
-	 * @param type must be one of bplan, lplan, rplan or fplan, never <code>null</code>
-	 * @param name of the category to add, never <code>null</code>
-	 * @param title of the category to add, never <code>null</code>
-	 * @param uppercategory name of an existing category, may be <code>null</code> if the
-	 * new category has no upper category
-	 */
-	public void addCategory(String type, String name, String title, String uppercategory) {
-		try {
-			rasterThemeManager.addCategory(type, name, title, uppercategory);
-		}
-		catch (Exception e) {
-			LOG.trace("Category " + name + " could not be added!", e);
-			LOG.error("Kategorie kann nicht angelegt werden: {} ", e.getLocalizedMessage());
-		}
-	}
-
-	/**
-	 * Removes the category with the passed name.
-	 * @param type must be one of bplan, lplan, rplan or fplan, never <code>null</code>
-	 * @param categoryName to remove, should not be <code>null</code>
-	 */
-	public void removeCategory(String type, String categoryName) {
-		try {
-			rasterThemeManager.removeCategory(type, categoryName);
-		}
-		catch (Exception e) {
-			LOG.trace("Category " + categoryName + " could not be removed!", e);
-			LOG.error("Kategorie kann nicht gelöscht werden: {}", e.getLocalizedMessage());
-		}
-	}
-
-	/**
-	 * Moves the layer with the passed id to the category with the passed name.
-	 * @param type must be one of bplan, lplan, rplan or fplan, never <code>null</code>
-	 * @param layer name of the layer to move, should not be <code>null</code>
-	 * @param category name of the category the layer should be moved to, should not be
-	 * <code>null</code>
-	 */
-	public void moveLayer(String type, String layer, String category) {
-		try {
-			rasterThemeManager.moveLayer(type, layer, category);
-		}
-		catch (Exception e) {
-			LOG.trace("Layer " + layer + " could not be moved to " + category + "!", e);
-			LOG.error("Ebene kann nicht verschoben werden: {}", e.getLocalizedMessage());
 		}
 	}
 

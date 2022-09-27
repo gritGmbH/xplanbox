@@ -20,10 +20,20 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster;
 
-import static de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper.supportedTypes;
-import static java.lang.Boolean.TRUE;
-import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
+import de.latlon.xplan.manager.configuration.ConfigurationException;
+import de.latlon.xplan.manager.wmsconfig.WmsThemesConfig;
+import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import org.deegree.commons.metadata.description.jaxb.LanguageStringType;
+import org.deegree.theme.persistence.standard.jaxb.ThemeType;
+import org.deegree.theme.persistence.standard.jaxb.ThemeType.Identifier;
+import org.deegree.theme.persistence.standard.jaxb.ThemeType.Layer;
+import org.deegree.theme.persistence.standard.jaxb.Themes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,22 +43,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-
-import org.deegree.commons.metadata.description.jaxb.LanguageStringType;
-import org.deegree.theme.persistence.standard.jaxb.ThemeType;
-import org.deegree.theme.persistence.standard.jaxb.ThemeType.Identifier;
-import org.deegree.theme.persistence.standard.jaxb.ThemeType.Layer;
-import org.deegree.theme.persistence.standard.jaxb.Themes;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.latlon.xplan.manager.XPlanManager;
-import de.latlon.xplan.manager.configuration.ConfigurationException;
-import de.latlon.xplan.manager.wmsconfig.WmsThemesConfig;
-import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import static de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper.supportedTypes;
+import static java.lang.Boolean.TRUE;
+import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
 
 /**
  * Modifies raster theme configuration files in the WMS workspace.
@@ -220,30 +217,6 @@ public class WorkspaceRasterThemeManager {
 	}
 
 	/**
-	 * Moves the specified user-defined layer to a different user-defined category.
-	 * @param layerId id of the layer, must not be <code>null</code>
-	 * @param category user-defined category, can be <code>null</code> (root category)
-	 * @throws JAXBException if the changes could not be persisted
-	 * @throws IOException
-	 */
-	public void moveLayer(String type, String layerId, String category)
-			throws JAXBException, IOException, ConfigurationException {
-		checkIfTypeIsSupported(type);
-		checkIfGroupLayer(type, layerId);
-
-		WmsThemesConfig themesConfig = wmsWorkspaceWrapper.retrieveThemesForType(type);
-		Themes themes = themesConfig.getThemes();
-
-		ThemeType layer = removeUserLayer(layerId, themes.getTheme());
-		if (layer == null) {
-			throw new IllegalArgumentException("Kein benutzer-definierter Layer mit id '" + layerId + "' vorhanden.");
-		}
-		ThemeType userCategory = findUserCategory(themes, category);
-		userCategory.getTheme().add(layer);
-		persist(themes, themesConfig.getConfig());
-	}
-
-	/**
 	 * Moves all raster configurations from one config to another. If sourceType and
 	 * targetType are equal, nothing is moved.
 	 * @param sourceType the type of the plan to move from, never <code>null</code>
@@ -281,54 +254,6 @@ public class WorkspaceRasterThemeManager {
 	}
 
 	/**
-	 * Adds a new user-defined category layer.
-	 * @param name id of the category layer, must not be <code>null</code>
-	 * @param title title of the category layer, must not be <code>null</code>
-	 * @param uppercategory
-	 * @throws JAXBException if the changes could not be persisted
-	 * @throws IOException
-	 */
-	public void addCategory(String type, String name, String title, String uppercategory)
-			throws JAXBException, IOException, ConfigurationException {
-		checkIfTypeIsSupported(type);
-		WmsThemesConfig themesConfig = wmsWorkspaceWrapper.retrieveThemesForType(type);
-		Themes themes = themesConfig.getThemes();
-		Set<String> themeIds = retrieveAllThemeIds(themes);
-
-		if (themeIds.contains(name)) {
-			throw new IllegalArgumentException("Eine Kategorie/Layer mit der id " + name + " exisitiert bereits.");
-		}
-		if (uppercategory != null && !themeIds.contains(uppercategory)) {
-			throw new IllegalArgumentException("Es existiert keine Kategorie mit der id " + uppercategory + ".");
-		}
-		ThemeType theme = new ThemeType();
-		theme.setIdentifier(createIdentifier(name));
-		LanguageStringType titl = new LanguageStringType();
-		titl.setValue(title);
-		theme.getTitle().add(titl);
-		findParentTheme(themes, uppercategory).getTheme().add(theme);
-		persist(themes, themesConfig.getConfig());
-	}
-
-	/**
-	 * Removes a user-defined category layer.
-	 * @param name id of the category layer, must not be <code>null</code>
-	 * @throws JAXBException if the changes could not be persisted
-	 * @throws IOException
-	 */
-	public void removeCategory(String type, String name) throws JAXBException, IOException, ConfigurationException {
-		checkIfTypeIsSupported(type);
-		WmsThemesConfig themesConfig = wmsWorkspaceWrapper.retrieveThemesForType(type);
-		Themes themes = themesConfig.getThemes();
-
-		ThemeType upperTheme = themes.getTheme();
-		boolean isRemoved = removeTheme(name, upperTheme);
-		if (!isRemoved)
-			throw new IllegalArgumentException("Keine benutzerdefinierte Kategorie '" + name + "' vorhanden.");
-		persist(themes, themesConfig.getConfig());
-	}
-
-	/**
 	 * Reorders the wms layer configuraton by the passed sort dates.
 	 * @param planId2sortDate plan ids mapped to the new sort date, never
 	 * <code>null</code>
@@ -362,17 +287,6 @@ public class WorkspaceRasterThemeManager {
 		Marshaller marshaller = ctx.createMarshaller();
 		marshaller.setProperty(JAXB_FORMATTED_OUTPUT, TRUE);
 		marshaller.marshal(themes, config);
-	}
-
-	private ThemeType findParentTheme(Themes themes, String uppercategory) {
-		if (uppercategory == null) {
-			return themes.getTheme();
-		}
-		List<ThemeType> subthemes = themes.getTheme().getTheme();
-		ThemeType parentTheme = findThemeByIdentifier(uppercategory, subthemes);
-		if (parentTheme != null)
-			return parentTheme;
-		throw new IllegalArgumentException("Es existiert keine Kategorie mit der id '" + uppercategory + "'.");
 	}
 
 	private ThemeType findThemeByIdentifier(String identfier, List<ThemeType> subthemes) {
@@ -550,19 +464,6 @@ public class WorkspaceRasterThemeManager {
 			removedLayers.addAll(removeUserLayers(planId, subTheme));
 		}
 		return removedLayers;
-	}
-
-	private boolean removeTheme(String name, ThemeType upperTheme) {
-		for (ThemeType theme : upperTheme.getTheme()) {
-			if (name.equals(theme.getIdentifier().getValue())) {
-				upperTheme.getTheme().remove(theme);
-				return true;
-			}
-			boolean removeTheme = removeTheme(name, theme);
-			if (removeTheme)
-				return true;
-		}
-		return false;
 	}
 
 	private Identifier createIdentifier(String name) {
