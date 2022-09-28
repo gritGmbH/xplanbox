@@ -34,7 +34,6 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
-import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -69,8 +68,8 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -119,11 +118,10 @@ public class TestContext {
 	@Primary
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			Optional<InspirePluTransformator> inspirePluTransformator,
-			Optional<XPlanGmlTransformer> xPlanGmlTransformer, WmsWorkspaceWrapper wmsWorkspaceWrapper)
+			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper)
 			throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), xPlanGmlTransformer.orElse(null), wmsWorkspaceWrapper);
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper);
 	}
 
 	@Bean
@@ -260,8 +258,7 @@ public class TestContext {
 	@Primary
 	public XPlanInsertManager xPlanInsertManager(XPlanDao xPlanDao, XPlanExporter xPlanExporter,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanRasterManager xPlanRasterManager,
-			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
-			XPlanGmlTransformer xPlanGmlTransformer) throws Exception {
+			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader) throws Exception {
 		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
 		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(),
 				nullable(String.class), any())).thenReturn(Collections.singletonList(123));

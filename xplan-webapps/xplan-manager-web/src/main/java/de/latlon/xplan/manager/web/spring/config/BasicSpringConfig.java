@@ -31,8 +31,6 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
-import de.latlon.xplan.manager.transformation.HaleXplan41ToXplan51Transformer;
-import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.server.service.ManagerReportProvider;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
@@ -182,11 +180,10 @@ public class BasicSpringConfig {
 	@Bean
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			Optional<InspirePluTransformator> inspirePluTransformator,
-			Optional<XPlanGmlTransformer> xPlanGmlTransformer, WmsWorkspaceWrapper wmsWorkspaceWrapper)
+			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper)
 			throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), xPlanGmlTransformer.orElse(null), wmsWorkspaceWrapper);
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper);
 	}
 
 	@Bean
@@ -250,18 +247,6 @@ public class BasicSpringConfig {
 		Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
 		if (pathToHaleCli != null && pathToHaleProjectDirectory != null)
 			return new HaleCliInspirePluTransformator(pathToHaleCli, pathToHaleProjectDirectory);
-		return null;
-	}
-
-	@Bean
-	public XPlanGmlTransformer xPlanGmlTransformer(ManagerConfiguration managerConfiguration) {
-		String pathToHaleCli = managerConfiguration.getPathToHaleCli();
-		Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
-		if (pathToHaleCli != null && pathToHaleProjectDirectory != null) {
-			HaleXplan41ToXplan51Transformer haleXplan41ToXplan51Transformer = new HaleXplan41ToXplan51Transformer(
-					pathToHaleCli, pathToHaleProjectDirectory);
-			return new XPlanGmlTransformer(haleXplan41ToXplan51Transformer);
-		}
 		return null;
 	}
 

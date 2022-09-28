@@ -49,7 +49,6 @@ import de.latlon.xplan.manager.transaction.UnsupportPlanException;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanEditManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
-import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -136,8 +135,7 @@ public class XPlanManager {
 	 */
 	public XPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			InspirePluTransformator inspirePluTransformator, XPlanGmlTransformer xPlanGmlTransformer,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
+			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
 		if (xPlanDao == null || archiveCreator == null || managerWorkspaceWrapper == null
 				|| wmsWorkspaceWrapper == null) {
 			throw new IllegalArgumentException("Mandatory argument must not be null");
@@ -159,12 +157,12 @@ public class XPlanManager {
 			this.inspirePluPublisher = new InspirePluPublisher(xplanDao, inspirePluTransformator);
 		else
 			this.inspirePluPublisher = null;
-		this.xPlanInsertManager = new XPlanInsertManager(xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter,
-				xPlanRasterManager, workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
-				managerWorkspaceWrapper, sortPropertyReader);
-		this.xPlanEditManager = new XPlanEditManager(xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter,
-				xPlanRasterManager, workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
-				managerWorkspaceWrapper, sortPropertyReader);
+		this.xPlanInsertManager = new XPlanInsertManager(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager,
+				workspaceReloader, managerWorkspaceWrapper.getConfiguration(), managerWorkspaceWrapper,
+				sortPropertyReader);
+		this.xPlanEditManager = new XPlanEditManager(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager,
+				workspaceReloader, managerWorkspaceWrapper.getConfiguration(), managerWorkspaceWrapper,
+				sortPropertyReader);
 		this.xPlanDeleteManager = new XPlanDeleteManager(xplanDao, xPlanRasterManager, workspaceReloader,
 				managerWorkspaceWrapper.getConfiguration());
 	}

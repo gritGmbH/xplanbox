@@ -36,7 +36,6 @@ import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
-import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
@@ -98,7 +97,7 @@ public class ApplicationContext {
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
 			WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null, null,
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
 				wmsWorkspaceWrapper);
 	}
 
@@ -219,13 +218,12 @@ public class ApplicationContext {
 	@Bean
 	public XPlanInsertManager xPlanInsertManager(XPlanDao xPlanDao, XPlanExporter xPlanExporter,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanRasterManager xPlanRasterManager,
-			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
-			XPlanGmlTransformer xPlanGmlTransformer) throws Exception {
+			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader) throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration(managerConfiguration);
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 
-		return new XPlanInsertManager(xPlanSynthesizer(managerConfiguration), xPlanGmlTransformer, xPlanDao,
-				xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
+		return new XPlanInsertManager(xPlanSynthesizer(managerConfiguration), xPlanDao, xPlanExporter,
+				xPlanRasterManager, workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
 				sortPropertyReader);
 	}
 
