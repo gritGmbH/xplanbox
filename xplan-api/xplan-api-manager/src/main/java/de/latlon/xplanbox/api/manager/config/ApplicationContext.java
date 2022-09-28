@@ -26,8 +26,6 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
-import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
-import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -38,7 +36,6 @@ import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
-import de.latlon.xplan.manager.transformation.HaleXplan41ToXplan51Transformer;
 import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
@@ -100,10 +97,9 @@ public class ApplicationContext {
 	@Bean
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			InspirePluTransformator inspirePluTransformator, XPlanGmlTransformer xPlanGmlTransformer,
 			WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator, xPlanGmlTransformer, wmsWorkspaceWrapper);
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null, null,
+				wmsWorkspaceWrapper);
 	}
 
 	@Bean
@@ -285,27 +281,6 @@ public class ApplicationContext {
 	@Bean
 	public WorkspaceReloader workspaceReloader(ManagerConfiguration managerConfiguration) {
 		return new WorkspaceReloader(managerConfiguration.getWorkspaceReloaderConfiguration());
-	}
-
-	@Bean
-	public InspirePluTransformator inspirePluTransformator(ManagerConfiguration managerConfiguration) {
-		String pathToHaleCli = managerConfiguration.getPathToHaleCli();
-		Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
-		if (pathToHaleCli != null && pathToHaleProjectDirectory != null)
-			return new HaleCliInspirePluTransformator(pathToHaleCli, pathToHaleProjectDirectory);
-		return null;
-	}
-
-	@Bean
-	public XPlanGmlTransformer xPlanGmlTransformer(ManagerConfiguration managerConfiguration) {
-		String pathToHaleCli = managerConfiguration.getPathToHaleCli();
-		Path pathToHaleProjectDirectory = managerConfiguration.getPathToHaleProjectDirectory();
-		if (pathToHaleCli != null && pathToHaleProjectDirectory != null) {
-			HaleXplan41ToXplan51Transformer haleXplan41ToXplan51Transformer = new HaleXplan41ToXplan51Transformer(
-					pathToHaleCli, pathToHaleProjectDirectory);
-			return new XPlanGmlTransformer(haleXplan41ToXplan51Transformer);
-		}
-		return null;
 	}
 
 	@Bean
