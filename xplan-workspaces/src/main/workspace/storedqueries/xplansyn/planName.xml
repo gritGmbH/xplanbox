@@ -16,10 +16,10 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 27.09.2022, 14:12:50-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 28.09.2022, 13:23:39-->
 <wfs:StoredQueryDefinition xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd" id="urn:ogc:def:query:OGC-WFS::PlanName">
   <wfs:Title>planName</wfs:Title>
-  <wfs:Abstract>Es koennen vollstaendige XPlanGML Plaene anhand des Plannamens heruntergeladen werden.</wfs:Abstract>
+  <wfs:Abstract>Es koennen alle zu dem PlanNamen gehoerenden Features im XPlanSyn-Schema heruntergeladen werden.</wfs:Abstract>
   <wfs:Parameter name="planName" xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string">
     <wfs:Abstract>planName (Mandatory)</wfs:Abstract>
   </wfs:Parameter>
@@ -28,7 +28,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_AbgrabungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -56,7 +56,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_AbstandsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -84,7 +84,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_AbstandsMass/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -112,7 +112,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_AbweichungVonBaugrenze/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -140,7 +140,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -168,7 +168,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_AnpflanzungBindungErhaltung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -196,7 +196,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_AufschuettungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -224,7 +224,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_AusgleichsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -252,7 +252,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_AusgleichsMassnahme/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -280,7 +280,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_BauGrenze/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -308,7 +308,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_BauLinie/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -336,7 +336,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_Baugebiet/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -364,7 +364,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_BaugebietsTeilFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -392,7 +392,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_Bereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -420,7 +420,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_BereichOhneEinAusfahrtLinie/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -448,7 +448,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_BesondererNutzungszweckFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -476,7 +476,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_BodenschaetzeFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -504,7 +504,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_DenkmalschutzEinzelanlage/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -532,7 +532,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_DenkmalschutzEnsembleFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -560,7 +560,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_EinfahrtPunkt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -588,7 +588,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_EinfahrtsbereichLinie/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -616,7 +616,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_EingriffsBereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -644,7 +644,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_ErhaltungsBereichFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -672,7 +672,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_ErneuerbareEnergieFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -700,7 +700,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_FestsetzungNachLandesrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -728,7 +728,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_FirstRichtungsLinie/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -756,7 +756,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_FlaecheOhneFestsetzung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -784,7 +784,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_FoerderungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -812,7 +812,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_FreiFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -840,7 +840,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_GebaeudeFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -868,7 +868,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_GebaeudeStellung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -896,7 +896,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_GemeinbedarfsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -924,7 +924,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_GemeinschaftsanlagenFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -952,7 +952,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_GemeinschaftsanlagenZuordnung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -980,7 +980,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_GenerischesObjekt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1008,7 +1008,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_GewaesserFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1036,7 +1036,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_GruenFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1064,7 +1064,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_HoehenMass/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1092,7 +1092,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_Immissionsschutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1120,7 +1120,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_KennzeichnungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1148,7 +1148,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_KleintierhaltungFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1176,7 +1176,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_Landwirtschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1204,7 +1204,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_LandwirtschaftsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1232,7 +1232,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_LuftreinhalteFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1260,7 +1260,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_NebenanlagenAusschlussFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1288,7 +1288,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_NebenanlagenFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1316,7 +1316,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_NichtUeberbaubareGrundstuecksflaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1344,7 +1344,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_NutzungsartenGrenze/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1372,7 +1372,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_PersGruppenBestimmteFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1428,7 +1428,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_RasterplanAenderung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1456,7 +1456,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_RegelungVergnuegungsstaetten/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1484,7 +1484,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_RekultivierungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1512,7 +1512,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_RichtungssektorGrenze/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1540,7 +1540,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_SchutzPflegeEntwicklungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1568,7 +1568,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_SchutzPflegeEntwicklungsMassnahme/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1596,7 +1596,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_Schutzgebiet/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1624,7 +1624,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_Sichtflaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1652,7 +1652,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_SpezielleBauweise/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1680,7 +1680,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_SpielSportanlagenFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1708,7 +1708,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_StrassenVerkehrsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1736,7 +1736,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_StrassenbegrenzungsLinie/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1764,7 +1764,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_Strassenkoerper/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1792,7 +1792,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_TechnischeMassnahmenFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1820,7 +1820,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_TextAbschnitt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1848,7 +1848,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_TextAbschnittFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1876,7 +1876,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_TextlicheFestsetzungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1904,7 +1904,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_UeberbaubareGrundstuecksFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1932,7 +1932,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_UnverbindlicheVormerkung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1960,7 +1960,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_VerEntsorgung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -1988,7 +1988,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_Veraenderungssperre/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2016,7 +2016,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_VerkehrsflaecheBesondererZweckbestimmung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2044,7 +2044,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_WaldFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2072,7 +2072,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_WasserwirtschaftsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2100,7 +2100,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_Wegerecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2128,7 +2128,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_WohngebaeudeFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2156,7 +2156,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_ZentralerVersorgungsbereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2184,7 +2184,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_ZusatzkontingentLaerm/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2212,7 +2212,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:BP_ZusatzkontingentLaermFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2240,7 +2240,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Abgrabung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2268,7 +2268,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_AbgrabungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2296,7 +2296,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_AnpassungKlimawandel/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2324,7 +2324,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Aufschuettung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2352,7 +2352,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_AufschuettungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2380,7 +2380,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_AusgleichsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2408,7 +2408,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_BebauungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2436,7 +2436,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Bereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2464,7 +2464,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Bodenschaetze/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2492,7 +2492,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_BodenschaetzeFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2520,7 +2520,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_DarstellungNachLandesrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2548,7 +2548,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_FlaecheOhneDarstellung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2576,7 +2576,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Gemeinbedarf/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2604,7 +2604,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_GenerischesObjekt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2632,7 +2632,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Gewaesser/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2660,7 +2660,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Gruen/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2688,7 +2688,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_KeineZentrAbwasserBeseitigungFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2716,7 +2716,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Kennzeichnung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2744,7 +2744,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Landwirtschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2772,7 +2772,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_LandwirtschaftsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2800,7 +2800,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Nutzungsbeschraenkung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2828,7 +2828,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_NutzungsbeschraenkungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2856,7 +2856,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Plan/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2884,7 +2884,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_PrivilegiertesVorhaben/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2912,7 +2912,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_RasterplanAenderung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2940,7 +2940,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_SchutzPflegeEntwicklung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2968,7 +2968,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_SpielSportanlage/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -2996,7 +2996,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Strassenverkehr/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3024,7 +3024,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_TextAbschnitt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3052,7 +3052,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_TextAbschnittFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3080,7 +3080,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_TextlicheDarstellungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3108,7 +3108,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_UnverbindlicheVormerkung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3136,7 +3136,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_VerEntsorgung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3164,7 +3164,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_VorbehalteFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3192,7 +3192,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_WaldFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3220,7 +3220,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_Wasserwirtschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3248,7 +3248,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:FP_ZentralerVersorgungsbereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3276,7 +3276,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Abgrenzung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3304,7 +3304,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_AllgGruenflaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3332,7 +3332,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_AnpflanzungBindungErhaltung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3360,7 +3360,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Ausgleich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3388,7 +3388,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Bereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3416,7 +3416,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_BiotopverbundBiotopvernetzung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3444,7 +3444,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Biotopverbundflaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3472,7 +3472,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Bodenschutzrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3500,7 +3500,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Denkmalschutzrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3528,7 +3528,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Eingriffsregelung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3556,7 +3556,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_ErholungFreizeit/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3584,7 +3584,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Forstrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3612,7 +3612,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_GenerischesObjekt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3640,7 +3640,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Landschaftsbild/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3668,7 +3668,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_NutzungsAusschluss/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3696,7 +3696,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_NutzungserfordernisRegelung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3724,7 +3724,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Plan/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3752,7 +3752,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_PlanerischeVertiefung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3780,7 +3780,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_RasterplanAenderung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3808,7 +3808,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_SchutzBestimmterTeileVonNaturUndLandschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3836,7 +3836,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_SchutzPflegeEntwicklung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3864,7 +3864,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_SchutzobjektBundesrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3892,7 +3892,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_SchutzobjektInternatRecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3920,7 +3920,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_SonstigeAbgrenzuung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3948,7 +3948,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_SonstigesRecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -3976,7 +3976,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_TextAbschnitt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4004,7 +4004,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_TextAbschnittObjekt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4032,7 +4032,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_TextlicheFestsetzungsFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4060,7 +4060,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4088,7 +4088,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_WasserrechtSchutzgebiet/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4116,7 +4116,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_WasserrechtSonstige/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4144,7 +4144,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_WasserrechtWirtschaftAbflussHochwSchutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4172,7 +4172,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_ZieleErfordernisseMassnahmen/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4200,7 +4200,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_ZuBegruenendeGrundstueckflaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4228,7 +4228,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:LP_Zwischennutzung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4256,7 +4256,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Achse/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4284,7 +4284,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Bereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4312,7 +4312,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Bodenschutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4340,7 +4340,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Einzelhandel/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4368,7 +4368,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Energieversorgung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4396,7 +4396,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Entsorgung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4424,7 +4424,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Erholung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4452,7 +4452,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_ErneuerbareEnergie/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4480,7 +4480,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Forstwirtschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4508,7 +4508,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Freiraum/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4536,7 +4536,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_FreizeitErholung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4564,7 +4564,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Funktionszuweisung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4592,7 +4592,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_GemeindeFunktionSiedlungsentwicklung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4620,7 +4620,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_GenerischesObjekt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4648,7 +4648,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Gewaesser/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4676,7 +4676,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Grenze/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4704,7 +4704,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_GruenzugGruenzaesur/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4732,7 +4732,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Hochwasserschutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4760,7 +4760,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_IndustrieGewerbe/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4788,7 +4788,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Klimaschutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4816,7 +4816,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Kommunikation/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4844,7 +4844,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_KulturellesSachgut/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4872,7 +4872,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Kulturlandschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4900,7 +4900,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_LaermschutzBauschutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4928,7 +4928,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Laermschutzbereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4956,7 +4956,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Landwirtschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -4984,7 +4984,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Legendenobjekt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5012,7 +5012,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Luftverkehr/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5040,7 +5040,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_NaturLandschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5068,7 +5068,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_NaturschutzrechtlichesSchutzgebiet/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5096,7 +5096,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Plan/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5124,7 +5124,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Planungsraum/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5152,7 +5152,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_RadwegWanderweg/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5180,7 +5180,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_RasterplanAenderung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5208,7 +5208,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Raumkategorie/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5236,7 +5236,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Rohstoff/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5264,7 +5264,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Rohstoffsicherung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5292,7 +5292,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Schienenverkehr/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5320,7 +5320,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Siedlung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5348,7 +5348,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_SonstVerkehr/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5376,7 +5376,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_SonstigeInfrastruktur/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5404,7 +5404,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_SonstigeSiedlungsstruktur/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5432,7 +5432,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_SonstigerFreiraumschutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5460,7 +5460,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_SonstigerFreiraumstruktur/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5488,7 +5488,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_SonstigerSiedlungsbereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5516,7 +5516,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_SozialeInfrastruktur/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5544,7 +5544,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Sperrgebiet/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5572,7 +5572,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Sportanlage/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5600,7 +5600,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Strassenverkehr/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5628,7 +5628,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_TextAbschnitt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5656,7 +5656,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Verkehr/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5684,7 +5684,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_VorbHochwasserschutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5712,7 +5712,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Wasserschutz/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5740,7 +5740,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Wasserverkehr/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5768,7 +5768,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Wasserwirtschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5796,7 +5796,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_Windenergienutzung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5824,7 +5824,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_WohnenSiedlung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5852,7 +5852,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:RP_ZentralerOrt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5880,7 +5880,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Baubeschraenkung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5908,7 +5908,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Bauverbotszone/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5936,7 +5936,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Bereich/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5964,7 +5964,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Bodenschutzrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -5992,7 +5992,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Denkmalschutzrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6020,7 +6020,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Forstrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6048,7 +6048,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Gebiet/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6076,7 +6076,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Gelaendemorphologie/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6104,7 +6104,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Gewaesser/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6132,7 +6132,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Grenze/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6160,7 +6160,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Linienobjekt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6188,7 +6188,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Luftverkehrsrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6216,7 +6216,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Objekt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6244,7 +6244,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Plan/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6272,7 +6272,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_RasterplanAenderung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6300,7 +6300,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Schienenverkehrsrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6328,7 +6328,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_SchutzgebietNaturschutzrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6356,7 +6356,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_SchutzgebietSonstigesRecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6384,7 +6384,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_SchutzgebietWasserrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6412,7 +6412,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Sichtflaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6440,7 +6440,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_SonstigesRecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6468,7 +6468,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Strassenverkehr/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6496,7 +6496,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Strassenverkehrsrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6524,7 +6524,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_TextAbschnitt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6552,7 +6552,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_TextAbschnittFlaeche/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6580,7 +6580,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Wasserrecht/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6608,7 +6608,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:SO_Wasserwirtschaft/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6636,7 +6636,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_BegruendungAbschnitt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6664,7 +6664,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_FPO/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6692,7 +6692,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_LPO/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6720,7 +6720,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_LTO/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6748,7 +6748,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_Nutzungsschablone/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6776,7 +6776,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_PPO/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6804,7 +6804,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_PTO/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6832,7 +6832,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_Praesentationsobjekt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6860,7 +6860,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_Rasterdarstellung/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6888,7 +6888,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_RasterplanBasis/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
@@ -6916,7 +6916,7 @@
       <fes:Filter>
         <fes:And>
           <fes:PropertyIsEqualTo>
-            <fes:ValueReference>//xplan:BP_Plan/xplan:name</fes:ValueReference>
+            <fes:ValueReference>//xplan:XP_TextAbschnitt/xplan:name</fes:ValueReference>
             <fes:Literal>${planName}</fes:Literal>
           </fes:PropertyIsEqualTo>
           <fes:Or>
