@@ -182,6 +182,12 @@
             <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
             <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
             <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+            <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+            <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
+            <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
+            <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
+            <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
+            <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
             <exclude>**/*.json</exclude>
           </excludes>
           <extraExtensions>
