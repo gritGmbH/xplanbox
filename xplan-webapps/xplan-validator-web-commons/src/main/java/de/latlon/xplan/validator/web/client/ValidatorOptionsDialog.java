@@ -303,7 +303,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 				Window.alert("Fehler bei der Validierung: " + caught.getMessage());
 			}
 		});
-		mapPreviewConfigService.isMapPreviewAvaialable(new AsyncCallback<Boolean>() {
+		mapPreviewConfigService.isMapPreviewAvailable(new AsyncCallback<Boolean>() {
 			@Override
 			public void onSuccess(Boolean isMapPreviewAvailable) {
 				if (isMapPreviewAvailable) {

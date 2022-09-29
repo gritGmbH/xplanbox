@@ -30,6 +30,6 @@ public interface MapPreviewConfigServiceAsync {
 
 	void createMapPreviewConfig(AsyncCallback<MapPreviewMetadata> callback);
 
-	void isMapPreviewAvaialable(AsyncCallback<Boolean> callback);
+	void isMapPreviewAvailable(AsyncCallback<Boolean> callback);
 
 }
