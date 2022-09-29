@@ -221,7 +221,7 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 *** die Eigenschaft `removeAbandoned` ersetzen entweder durch `removeAbandonedOnBorrow` (empfohlen) oder `removeAbandonedOnMaintenance` (weitere Informationen unter https://commons.apache.org/proper/commons-dbcp/configuration.html[Apache DBCP Konfigurationsoptionen])
 * Aktualisierung der Datenbank:
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_5.0.2_to_6.0_ im Modul _xplan-manager-workspace_
-** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
 
 IMPORTANT:  XPlanGML 3 wird nicht mehr unterstützt.
