@@ -46,3 +46,4 @@
 \i archive/xplan60/create.sql
 \i archive/xplansyn/create.sql
 \i xplanmgr/create.sql
+\i xplanmgr/planlog.sql
