@@ -1,7 +1,7 @@
 [[konfiguration-der-datenbank]]
 === Konfiguration der Datenbank
 
-Das Anlegen der Datenbank kann entweder über das XPlanManagerCLI oder manuell erfolgen. Beide Varianten sind in den folgenden Abschnitten beschrieben.
+Das Anlegen der Datenbank XPlanDB kann entweder über das XPlanManagerCLI oder manuell mit einem beliebigen Datenbankwerkzeug wie z. B. https://www.pgadmin.org[pgAdmin] erfolgen. Beide Varianten sind in den folgenden Abschnitten beschrieben.
 
 ==== Initiales Aufsetzen der Datenbank über das XPlanManagerCLI
 
@@ -43,7 +43,9 @@ Alternativ zum Aufsetzen über das XPlanManagerCLI kann die Datenbank auch manue
 [[aufsetzen-plu-db-schema]]
 ==== Manuelles Aufsetzen der Datenbank für die Bereitstellung von INSPIRE PLU
 
-Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als INSPIRE PLU konforme Datensätze ist eine weitere Datenbank erforderlich. Diese kann aktuell nur manuell aufgesetzt werden. Es müssen die folgenden Schritte ausgeführt werden:
+Für die Bereitstellung von Plänen, die vom XPlanManager verwaltet werden, als INSPIRE PLU konforme Datensätze ist eine weitere Datenbank erforderlich. Diese kann aktuell nur manuell aufgesetzt werden!
+
+Es müssen die folgenden Schritte ausgeführt werden:
 
  . Anlegen einer neuen Datenbank.
  . Installation der PostGIS-Erweiterung für die neue Datenbank.
