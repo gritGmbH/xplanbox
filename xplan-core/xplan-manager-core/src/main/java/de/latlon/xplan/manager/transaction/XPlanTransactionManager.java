@@ -75,6 +75,8 @@ public abstract class XPlanTransactionManager {
 
 	private static final DateFormat DATEFORMAT = createDateFormat();
 
+	public static final String SYN_FEATURETYPE_PREFIX = "XPLAN_";
+
 	protected final XPlanSynthesizer xPlanSynthesizer;
 
 	protected final XPlanGmlTransformer xPlanGmlTransformer;
@@ -167,7 +169,7 @@ public abstract class XPlanTransactionManager {
 	protected void reassignFids(XPlanFeatureCollection fc) {
 		for (Feature f : fc.getFeatures()) {
 			String synFeatureTypeName = featureTypeNameSynthesizer.detectSynFeatureTypeName(f.getName());
-			String prefix = "XPLAN_" + synFeatureTypeName.toUpperCase() + "_";
+			String prefix = SYN_FEATURETYPE_PREFIX + synFeatureTypeName.toUpperCase() + "_";
 			String uuid = UUID.randomUUID().toString();
 			f.setId(prefix + uuid);
 		}

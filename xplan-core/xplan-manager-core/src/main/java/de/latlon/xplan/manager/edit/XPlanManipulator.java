@@ -71,6 +71,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
+import static de.latlon.xplan.manager.transaction.XPlanTransactionManager.SYN_FEATURETYPE_PREFIX;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.LEGEND;
@@ -907,7 +908,7 @@ public class XPlanManipulator {
 	}
 
 	private String generateGmlId(QName propName) {
-		String prefix = "XPLAN_" + propName.getLocalPart() + "_";
+		String prefix = SYN_FEATURETYPE_PREFIX + propName.getLocalPart() + "_";
 		String uuid = UUID.randomUUID().toString();
 		return prefix + uuid;
 	}
