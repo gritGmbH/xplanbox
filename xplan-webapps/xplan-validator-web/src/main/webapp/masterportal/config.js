@@ -19,7 +19,7 @@ const Config = {
     quickHelp: {
         imgPath: "./resources/img/"
     },
-    portalConf: "config/",
+    //portalConf: "config/",
     layerConf: "./config/services-internet.json",
     restConf: "./resources/rest-services-internet.json",
     styleConf: "./resources/style_v3.json",
