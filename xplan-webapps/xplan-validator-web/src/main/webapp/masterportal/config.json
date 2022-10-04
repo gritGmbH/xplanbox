@@ -19,7 +19,7 @@
 		"mapView": {
 			"backgroundImage": "./resources/img/backgroundCanvas.jpeg",
 			"startCenter": [561210, 5932600],
-			"extent": [510000.0, 5850000.0, 625000.4, 6000000.0],
+			"extent": [250063.8, 5232673.8, 888982.3, 6122928.6],
 			"startZoomLevel": 1
 		},
 		"menu": {
@@ -77,87 +77,18 @@
 	"Themenconfig": {
 		"Hintergrundkarten": {
 			"Layer": [
-        {
-          "id": "453",
-          "visibility": true
-        },
-        {
-          "id": "452"
-        },
-        {
-          "id": ["717", "718", "719", "720", "13712", "13709", "13714", "13716"],
-          "name": "Geobasiskarten (farbig)"
-        }
+				{
+					"id": "452",
+					"name": "Basiskarte",
+					"visibility": true
+				}
 			]
 		},
 		"Fachdaten": {
 			"Layer": [
 				{
-					"id": "2426",
-					"name": "Bezirke",
-					"layerAttribution": "<span>Hier Text angeben, der angezeigt wird sobald der Layer sichtbar ist.</span>"
-				},
-				{
-					"id": "4561",
-					"name": "Eventflächen",
-					"infoFormat": "text/html",
-					"maxScale": "100000",
-					"minScale": "40000"
-				},
-				{
-					"id": "3302",
-					"name": "Trinkwasser"
-				},
-				{
-				  "id": "myId2",
-				  "children": [
-				    {
-				        "id": "682"
-				    },
-				    {
-				        "id": "1731"
-				    }
-				  ],
-				  "name": "Kita und Krankenhäuser"
-				},
-				{
-					"id": "2003",
-					"name": "WFS Schutzgebiete",
-					"styleId": "2003",
-					"mouseHoverField": "gebietsname"
-				},
-				{
-					"id": "10882",
-					"name": "WFS Bike and Ride Parkplätze",
-					"styleId": "10882",
-          "clusterDistance": 40,
-          "styleGeometryType": ["Point"]
-				},
-				{
-					"id": "1711",
-					"name": "WFS Krankenhäuser",
-					"styleId": "1711",
-					"mouseHoverField": "name",
-					"searchField":  "name"
-				},
-				{
-				  "id": "8712",
-				  "name": "WFS Schulen",
-				  "styleId": "8712",
-				  "mouseHoverField": ["schulname", "kapitelbezeichnung"],
-				  "searchField": ["schulname", "fremdsprache"]
-				},
-				{
-				  "id": "4560",
-          "name": "WFS Polygon (Default Style)"
-				},
-				{
-				  "id": "1132",
-          "name": "WFS Point (Default Style)"
-				},
-				{
-				  "id": "1133",
-          "name": "WFS Line (Default Style)"
+					"id": "001",
+					"name": "XPlan"
 				}
 			]
 		}
