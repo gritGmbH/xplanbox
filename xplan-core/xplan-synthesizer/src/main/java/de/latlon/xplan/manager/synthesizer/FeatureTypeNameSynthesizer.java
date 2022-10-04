@@ -20,6 +20,8 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+
 import javax.xml.namespace.QName;
 import java.io.InputStream;
 import java.util.Properties;
@@ -54,6 +56,15 @@ public class FeatureTypeNameSynthesizer {
 	public String detectSynFeatureTypeName(QName featureTypeName) {
 		String localPart = featureTypeName.getLocalPart();
 		return renamedFeatureTypes.getProperty(localPart, localPart);
+	}
+
+	public boolean idsMatchSynFeatureType(XPlanFeatureCollection featureCollection) {
+		return featureCollection.getFeatures().stream().anyMatch(feature -> {
+			String featureId = feature.getId();
+			QName name = feature.getType().getName();
+			String synFeatureTypeName = detectSynFeatureTypeName(name);
+			return featureId.startsWith(synFeatureTypeName);
+		});
 	}
 
 }
