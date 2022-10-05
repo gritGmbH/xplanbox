@@ -35,27 +35,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-02: Erzeugung der DB Schemata 
-
-#### Vorbedingungen 
- * Der Prüffall-01 wurde erfolgreich ausgeführt.
- * Die DB-Tabelle der Datenbasis ist leer, beinhaltet somit kein Datenbank-Schema.
- * Der Nutzer hat die Rechte, eine Datenbank anzulegen. 
- 
-#### Testschritte 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**02** | Der Benutzer führt den in [1] aufgelisteten Befehl in der Kommandozeile aus. | Der XPlanManager kann das benötigte Datenbankschema selbst erzeugen. 
-**03** | Der Benutzer überprüft, ob das Datenbank-Schema erstellt worden ist. | Das Datenbank-Schema wurde erzeugt. 
-
-**Hinweis**
-
-* [1]  ` ./XPlanManager -createdb <dbname> jdbc:postgresql://<host>:<port> -u <username> -p <password> -t template_postgis `
-  
----
-
-### Prüffall-03: DB Anbindung 
+### Prüffall-02: DB Anbindung
 
 #### Vorbedingungen 
 
@@ -74,7 +54,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-04: Planverwaltung
+### Prüffall-03: Planverwaltung
 
 #### Vorbedingungen 
 
@@ -99,7 +79,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  
 ---
 
-### Prüffall-05: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanwerkWMS
+### Prüffall-04: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanwerkWMS
 
 #### Vorbedingungen 
 
@@ -121,7 +101,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-06: Bearbeitung von Ebenenbäumen
+### Prüffall-05: Bearbeitung von Ebenenbäumen
 
 #### Vorbedingungen 
 
@@ -145,7 +125,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-07: Visualisierung von importierten XPlanGML-Rasterdaten 
+### Prüffall-06: Visualisierung von importierten XPlanGML-Rasterdaten
 
 #### Vorbedingungen 
 
