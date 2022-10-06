@@ -23,14 +23,14 @@ SET search_path TO xplanmgr,public;
 
 CREATE TABLE xplanmgr.plansLog (
     id SERIAL,
-    xplanmgrid int NOT NULL,
+    plan_id int NOT NULL,
     xp_version text NOT NULL,
     xp_type text NOT NULL,
     bbox geometry,
-    newplanstatus text,
-    oldplanstatus text,
+    planstatus_new text,
+    planstatus_old text,
     operation varchar(6) NOT NULL,
-    datum timestamp
+    last_update_date timestamp
 );
 
 COMMENT ON TABLE xplanmgr.plansLog IS 'Logs inserted, updated and deleted plans';
@@ -41,17 +41,17 @@ $$
 BEGIN
 
    IF TG_OP = 'INSERT' THEN
-     EXECUTE 'INSERT INTO xplanmgr.plansLog (xplanmgrid, xp_version, xp_type, bbox, newplanstatus, operation, datum) VALUES($1, $2, $3, $4, $5, $6, $7)' USING NEW.id, NEW.xp_version, NEW.xp_type, NEW.bbox, NEW.planstatus, TG_OP, now();
+     EXECUTE 'INSERT INTO xplanmgr.plansLog (plan_id, xp_version, xp_type, bbox, planstatus_new, operation, last_update_date) VALUES($1, $2, $3, $4, $5, $6, $7)' USING NEW.id, NEW.xp_version, NEW.xp_type, NEW.bbox, NEW.planstatus, TG_OP, now();
      RETURN OLD;
    END IF;
 
    IF TG_OP = 'UPDATE' THEN
-     EXECUTE 'INSERT INTO xplanmgr.plansLog (xplanmgrid, xp_version, xp_type, bbox, newplanstatus, oldplanstatus, operation, datum) VALUES($1, $2, $3, $4, $5, $6, $7, $8)' USING NEW.id, NEW.xp_version, NEW.xp_type, NEW.bbox, NEW.planstatus, OLD.planstatus, TG_OP, now();
+     EXECUTE 'INSERT INTO xplanmgr.plansLog (plan_id, xp_version, xp_type, bbox, planstatus_new, planstatus_old, operation, last_update_date) VALUES($1, $2, $3, $4, $5, $6, $7, $8)' USING NEW.id, NEW.xp_version, NEW.xp_type, NEW.bbox, NEW.planstatus, OLD.planstatus, TG_OP, now();
      RETURN OLD;
    END IF;
 
    IF TG_OP = 'DELETE' THEN
-     EXECUTE 'INSERT INTO xplanmgr.plansLog (xplanmgrid, xp_version, xp_type, bbox, oldplanstatus, operation, datum) VALUES($1, $2, $3, $4, $5, $6, $7)' USING OLD.id, OLD.xp_version, OLD.xp_type, OLD.bbox, OLD.planstatus, TG_OP, now();
+     EXECUTE 'INSERT INTO xplanmgr.plansLog (plan_id, xp_version, xp_type, bbox, planstatus_old, operation, last_update_date) VALUES($1, $2, $3, $4, $5, $6, $7)' USING OLD.id, OLD.xp_version, OLD.xp_type, OLD.bbox, OLD.planstatus, TG_OP, now();
      RETURN OLD;
    END IF;
 
