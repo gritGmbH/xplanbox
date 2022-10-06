@@ -81,6 +81,91 @@
         <module>xplan-distribution</module>
       </modules>
     </profile>
+    <profile>
+      <id>licence</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <version>2.0.0</version>
+            <configuration>
+              <inceptionYear>${project.inceptionYear}</inceptionYear>
+              <organizationName>${project.organization.name}</organizationName>
+              <projectName>${project.name} - ${project.description}</projectName>
+              <copyrightOwners>lat/lon GmbH, info@lat-lon.de, www.lat-lon.de</copyrightOwners>
+              <licenseName>agpl_v3</licenseName>
+              <roots>
+                <root>src/main</root>
+                <root>src/test</root>
+              </roots>
+              <excludes>
+                <exclude>*/codelists/**</exclude>
+                <exclude>*/appschemas/**</exclude>
+                <exclude>*/masterportal/**</exclude>
+                <exclude>*/xplanmgrweb/js/**</exclude>
+                <exclude>*/appschemas/XPlanGML_3_0/**</exclude>
+                <exclude>*/appschemas/XPlanGML_4_0/**</exclude>
+                <exclude>*/appschemas/XPlanGML_4_1/**</exclude>
+                <exclude>*/appschemas/XPlanGML_5_0/**</exclude>
+                <exclude>*/appschemas/XPlanGML_5_1/**</exclude>
+                <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
+                <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
+                <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+                <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+                <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
+                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
+                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
+                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
+                <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
+                <exclude>**/*.json</exclude>
+              </excludes>
+              <extraExtensions>
+                <xq>xml</xq>
+                <gfi>xml</gfi>
+                <gml>xml</gml>
+                <jrxml>xml</jrxml>
+                <xjc>xml</xjc>
+                <xsd>xml</xsd>
+                <xslt>xml</xslt>
+                <rules>properties</rules>
+                <syn>properties</syn>
+                <yaml>properties</yaml>
+                <yuml>properties</yuml>
+              </extraExtensions>
+            </configuration>
+          </plugin>
+          <!-- Workaround to replace XML comments with XQuery comments,
+               since licence:update-file-header goal does not support xq files yet! -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <id>replace-xml-comment</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>process-sources</phase>
+                <configuration>
+                  <target>
+                    <replace dir="${project.basedir}" value="(:">
+                      <include name="**/*.xq" />
+                      <replacetoken><![CDATA[<!--]]></replacetoken>
+                    </replace>
+                    <replace dir="${project.basedir}" value=":)">
+                      <include name="**/*.xq" />
+                      <replacetoken><![CDATA[-->]]></replacetoken>
+                    </replace>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 
   <reporting>
@@ -152,84 +237,6 @@
             <goals>
               <goal>validate</goal>
             </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>license-maven-plugin</artifactId>
-        <version>2.0.0</version>
-        <configuration>
-          <inceptionYear>${project.inceptionYear}</inceptionYear>
-          <organizationName>${project.organization.name}</organizationName>
-          <projectName>${project.name} - ${project.description}</projectName>
-          <copyrightOwners>lat/lon GmbH, info@lat-lon.de, www.lat-lon.de</copyrightOwners>
-          <licenseName>agpl_v3</licenseName>
-          <roots>
-            <root>src/main</root>
-            <root>src/test</root>
-          </roots>
-          <excludes>
-            <exclude>*/codelists/**</exclude>
-            <exclude>*/appschemas/**</exclude>
-            <exclude>*/masterportal/**</exclude>
-            <exclude>*/xplanmgrweb/js/**</exclude>
-            <exclude>*/appschemas/XPlanGML_3_0/**</exclude>
-            <exclude>*/appschemas/XPlanGML_4_0/**</exclude>
-            <exclude>*/appschemas/XPlanGML_4_1/**</exclude>
-            <exclude>*/appschemas/XPlanGML_5_0/**</exclude>
-            <exclude>*/appschemas/XPlanGML_5_1/**</exclude>
-            <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
-            <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
-            <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
-            <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
-            <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
-            <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
-            <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
-            <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
-            <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
-            <exclude>**/*.json</exclude>
-          </excludes>
-          <extraExtensions>
-            <xq>xml</xq>
-            <gfi>xml</gfi>
-            <gml>xml</gml>
-            <jrxml>xml</jrxml>
-            <xjc>xml</xjc>
-            <xsd>xml</xsd>
-            <xslt>xml</xslt>
-            <rules>properties</rules>
-            <syn>properties</syn>
-            <yaml>properties</yaml>
-            <yuml>properties</yuml>
-          </extraExtensions>
-        </configuration>
-      </plugin>
-      <!-- Workaround to replace XML comments with XQuery comments,
-           since licence:update-file-header goal does not support xq files yet! -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.8</version>
-        <executions>
-          <execution>
-            <id>replace-xml-comment</id>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <phase>process-sources</phase>
-            <configuration>
-              <target>
-                <replace dir="${project.basedir}" value="(:">
-                  <include name="**/*.xq" />
-                  <replacetoken><![CDATA[<!--]]></replacetoken>
-                </replace>
-                <replace dir="${project.basedir}" value=":)">
-                  <include name="**/*.xq" />
-                  <replacetoken><![CDATA[-->]]></replacetoken>
-                </replace>
-              </target>
-            </configuration>
           </execution>
         </executions>
       </plugin>
