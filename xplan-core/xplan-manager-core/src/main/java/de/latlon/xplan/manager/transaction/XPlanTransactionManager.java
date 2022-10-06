@@ -40,7 +40,6 @@ import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadata;
 import de.latlon.xplan.manager.planwerkwms.PlanwerkServiceMetadataBuilder;
 import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -79,8 +78,6 @@ public abstract class XPlanTransactionManager {
 
 	protected final XPlanSynthesizer xPlanSynthesizer;
 
-	protected final XPlanGmlTransformer xPlanGmlTransformer;
-
 	protected final XPlanDao xplanDao;
 
 	protected final XPlanExporter xPlanExporter;
@@ -105,13 +102,11 @@ public abstract class XPlanTransactionManager {
 
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
-	public XPlanTransactionManager(XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
-			XPlanDao xplanDao, XPlanExporter xPlanExporter, XPlanRasterManager xPlanRasterManager,
-			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
-			throws DataServiceCouplingException {
+	public XPlanTransactionManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
+			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
+			ManagerConfiguration managerConfiguration, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			SortPropertyReader sortPropertyReader) throws DataServiceCouplingException {
 		this.xPlanSynthesizer = xPlanSynthesizer;
-		this.xPlanGmlTransformer = xPlanGmlTransformer;
 		this.xplanDao = xplanDao;
 		this.xPlanExporter = xPlanExporter;
 		this.xPlanRasterManager = xPlanRasterManager;
