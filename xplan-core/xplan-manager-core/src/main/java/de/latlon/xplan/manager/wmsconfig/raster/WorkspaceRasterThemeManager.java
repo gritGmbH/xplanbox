@@ -227,17 +227,6 @@ public class WorkspaceRasterThemeManager {
 		marshaller.marshal(themes, config);
 	}
 
-	private ThemeType findThemeByIdentifier(String identfier, List<ThemeType> subthemes) {
-		for (ThemeType themeType : subthemes) {
-			if (identfier.equals(themeType.getIdentifier().getValue()))
-				return themeType;
-			ThemeType subtheme = findThemeByIdentifier(identfier, themeType.getTheme());
-			if (subtheme != null)
-				return subtheme;
-		}
-		return null;
-	}
-
 	private int findIndex(List<Layer> layers, String succedingPlanId) {
 		if (succedingPlanId != null) {
 			String prefix = succedingPlanId + "_";
