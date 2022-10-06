@@ -79,8 +79,8 @@ public class WorkspaceRasterThemeManager {
 	 * @throws IOException
 	 * @throws ConfigurationException
 	 */
-	public void insertLayersRightBefore(String type, String crs, List<String> rasterLayerIds, String succeedingPlanId)
-			throws JAXBException, IOException, ConfigurationException {
+	public synchronized void insertLayersRightBefore(String type, String crs, List<String> rasterLayerIds,
+			String succeedingPlanId) throws JAXBException, IOException, ConfigurationException {
 		checkIfTypeIsSupported(type);
 		WmsThemesConfig themesConfig = wmsWorkspaceWrapper.retrieveThemesForType(type, crs);
 
@@ -108,7 +108,7 @@ public class WorkspaceRasterThemeManager {
 	 * @throws JAXBException if the changes could not be persisted
 	 * @throws IOException
 	 */
-	public void insertLayersAtBeginning(String type, String crs, List<String> rasterLayerIds)
+	public synchronized void insertLayersAtBeginning(String type, String crs, List<String> rasterLayerIds)
 			throws JAXBException, IOException, ConfigurationException {
 		checkIfTypeIsSupported(type);
 		WmsThemesConfig themesConfig = wmsWorkspaceWrapper.retrieveThemesForType(type, crs);
@@ -132,7 +132,7 @@ public class WorkspaceRasterThemeManager {
 	 * @throws JAXBException
 	 * @throws IOException
 	 */
-	public void removeLayersForPlan(String type, String planId)
+	public synchronized void removeLayersForPlan(String type, String planId)
 			throws JAXBException, IOException, ConfigurationException {
 		final String prefix = planId + "_";
 		removeLayers(type, toMatch -> toMatch.startsWith(prefix));
@@ -148,7 +148,7 @@ public class WorkspaceRasterThemeManager {
 	 * @throws JAXBException
 	 * @throws IOException
 	 */
-	public void removeLayersForPlan(String type, String planId, String rasterId)
+	public synchronized void removeLayersForPlan(String type, String planId, String rasterId)
 			throws JAXBException, IOException, ConfigurationException {
 		final String layerId = planId + "_" + rasterId;
 		removeLayers(type, toMatch -> toMatch.equals(layerId));
@@ -164,7 +164,7 @@ public class WorkspaceRasterThemeManager {
 	 * @throws IOException
 	 * @throws ConfigurationException
 	 */
-	public void moveLayers(String sourceType, String targetType, String planId)
+	public synchronized void moveLayers(String sourceType, String targetType, String planId)
 			throws JAXBException, IOException, ConfigurationException {
 		if (sourceType.equals(targetType))
 			return;
@@ -199,7 +199,7 @@ public class WorkspaceRasterThemeManager {
 	 * @throws IOException
 	 * @throws JAXBException
 	 */
-	public void reorderWmsLayers(Map<String, Date> planId2sortDate, String crs)
+	public synchronized void reorderWmsLayers(Map<String, Date> planId2sortDate, String crs)
 			throws JAXBException, IOException, ConfigurationException {
 		List<String> sortedByDate = rasterConfigurationSorter.sortByDateInDeegreeOrder(planId2sortDate);
 		for (String supportedType : supportedTypes) {
