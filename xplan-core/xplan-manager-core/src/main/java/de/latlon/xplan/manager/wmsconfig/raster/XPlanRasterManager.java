@@ -131,43 +131,6 @@ public class XPlanRasterManager {
 	}
 
 	/**
-	 * Adds the specified layer to a user-defined category using a custom name and title.
-	 * @param type must be one of bplan, lplan, rplan or fplan, never <code>null</code>
-	 * @param layerId id of the layer, must not be <code>null</code> (and already exist in
-	 * themes file)
-	 * @param tiffid
-	 * @param layerName name of the layer in the category, must not be <code>null</code>
-	 * @param layerTitle title of the layer in the category, must not be <code>null</code>
-	 * @param categoryName category to place the new layer, must not be <code>null</code>
-	 * (and already exist)
-	 */
-	public void addLayer(String type, String layerId, String tiffid, String layerName, String layerTitle,
-			String categoryName) {
-		try {
-			rasterThemeManager.addUserLayer(type, layerId, layerName, layerTitle, categoryName);
-		}
-		catch (Exception e) {
-			LOG.trace("Layer could not be created!", e);
-			LOG.error("Benutzerdefinierte Ebene kann nicht angelegt werden: {}", e.getLocalizedMessage());
-		}
-	}
-
-	/**
-	 * Removes the layer with the passed name.
-	 * @param type must be one of bplan, lplan, rplan or fplan, never <code>null</code>
-	 * @param layerName name of the layer to remove, should not be <code>null</code>
-	 */
-	public void removeLayer(String type, String layerName) {
-		try {
-			rasterThemeManager.removeUserLayer(type, layerName);
-		}
-		catch (Exception e) {
-			LOG.trace("Layer " + layerName + " could not be removed!", e);
-			LOG.error("Benutzerdefinierte Ebene kann nicht gelöscht werden: {}", e.getLocalizedMessage());
-		}
-	}
-
-	/**
 	 * Removes the configuration of the plan with the given id.
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
@@ -277,7 +240,6 @@ public class XPlanRasterManager {
 		if (newPlanStatus != null) {
 			String newStatusType = detectType(type, newPlanStatus);
 			rasterThemeManager.moveLayers(statusType, newStatusType, Integer.toString(planId));
-			statusType = newStatusType;
 		}
 	}
 
