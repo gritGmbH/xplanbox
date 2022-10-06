@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1663845190584-1
+    id: 1665070039779-1
     author: lyn (generated)
     changes:
     - createTable:
@@ -32,7 +32,7 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: artefacts
 - changeSet:
-    id: 1663845190584-2
+    id: 1665070039779-2
     author: lyn (generated)
     changes:
     - createTable:
@@ -58,7 +58,7 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: bereiche
 - changeSet:
-    id: 1663845190584-3
+    id: 1665070039779-3
     author: lyn (generated)
     changes:
     - createTable:
@@ -80,7 +80,7 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: features
 - changeSet:
-    id: 1663845190584-4
+    id: 1665070039779-4
     author: lyn (generated)
     changes:
     - createTable:
@@ -160,7 +160,54 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: plans
 - changeSet:
-    id: 1663845190584-5
+    id: 1665070039779-5
+    author: lyn (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: plan_id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: xp_version
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: xp_type
+            type: TEXT
+        - column:
+            name: bbox
+            type: GEOMETRY
+        - column:
+            name: planstatus_new
+            type: TEXT
+        - column:
+            name: planstatus_old
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: operation
+            type: VARCHAR(6)
+        - column:
+            name: last_update_date
+            type: TIMESTAMP WITHOUT TIME ZONE
+        remarks: Logs inserted, updated and deleted plans
+        schemaName: xplanmgr
+        tableName: planslog
+- changeSet:
+    id: 1665070039779-6
     author: lyn (generated)
     changes:
     - createTable:
@@ -184,7 +231,7 @@ databaseChangeLog:
         schemaName: xplanmgr
         tableName: planwerkwmsmetadata
 - changeSet:
-    id: 1663845190584-6
+    id: 1665070039779-7
     author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
@@ -201,7 +248,7 @@ databaseChangeLog:
         referencedTableSchemaName: xplanmgr
         validate: true
 - changeSet:
-    id: 1663845190584-7
+    id: 1665070039779-8
     author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
@@ -218,7 +265,7 @@ databaseChangeLog:
         referencedTableSchemaName: xplanmgr
         validate: true
 - changeSet:
-    id: 1663845190584-8
+    id: 1665070039779-9
     author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
@@ -235,7 +282,7 @@ databaseChangeLog:
         referencedTableSchemaName: xplanmgr
         validate: true
 - changeSet:
-    id: 1663845190584-9
+    id: 1665070039779-10
     author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
