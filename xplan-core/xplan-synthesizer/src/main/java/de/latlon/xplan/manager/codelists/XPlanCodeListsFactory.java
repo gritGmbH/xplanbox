@@ -36,7 +36,7 @@ import static org.deegree.gml.GMLVersion.GML_30;
  */
 public class XPlanCodeListsFactory {
 
-	private static final String XPLAN_40_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_4_0.xml";
+	private static final String XPLAN_40_CODE_LISTS = "/codelists/XPlanGML_4_0_Enumerationen.xml";
 
 	private static final String XPLAN_41_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_4_1.xml";
 
@@ -121,7 +121,7 @@ public class XPlanCodeListsFactory {
 
 	private static synchronized XPlanCodeLists getXPlan40() {
 		if (xplan40CodeLists == null) {
-			xplan40CodeLists = createGml30Codelist(XPLAN_40_CODE_LISTS);
+			xplan40CodeLists = createCodelist(XPLAN_40_CODE_LISTS);
 		}
 		return xplan40CodeLists;
 	}

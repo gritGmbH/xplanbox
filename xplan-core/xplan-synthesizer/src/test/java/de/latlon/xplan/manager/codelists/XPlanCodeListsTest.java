@@ -113,4 +113,13 @@ public class XPlanCodeListsTest {
 		assertThat(codeList.getCodeEntries().size(), is(15));
 	}
 
+	@Test
+	public void testGetZweckbestimmungGruenTypeCodelistEntry_GML40() {
+		XPlanVersion version = XPlanVersion.XPLAN_40;
+		XPlanCodeLists codeLists = XPlanCodeListsFactory.get(version);
+		XPlanCodeList xpZweckbestimmungGruen = codeLists.getCodeList("XP_ZweckbestimmungGruen");
+		XPlanCodeEntry xpZweckbestimmungGruenCodeEntry = xpZweckbestimmungGruen.getCodeEntry("9999");
+		assertThat(xpZweckbestimmungGruenCodeEntry.getName(), is("Sonstiges"));
+	}
+
 }

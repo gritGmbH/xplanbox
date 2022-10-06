@@ -70,7 +70,10 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 		return attributeProperties.stream().map(attributeProperty -> {
 			if (ENUM.equals(attributeProperty.getAttributePropertyType())) {
 				XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(xPlanVersion);
-				return xPlanCodeLists.getKuerzel(attributeProperty.getCodeListId(), attributeProperty.getValue());
+				String codeListId = attributeProperty.getCodeListId();
+				if (XPlanVersion.XPLAN_40.equals(xPlanVersion) && codeListId.endsWith("Type"))
+					codeListId = codeListId.substring(0, codeListId.length() - 4);
+				return xPlanCodeLists.getKuerzel(codeListId, attributeProperty.getValue());
 			}
 			else if (PRIMITIVE.equals(attributeProperty.getAttributePropertyType())) {
 				return attributeProperty.getValue();
