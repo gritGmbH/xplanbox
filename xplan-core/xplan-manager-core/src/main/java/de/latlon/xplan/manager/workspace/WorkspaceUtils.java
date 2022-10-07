@@ -87,7 +87,8 @@ public class WorkspaceUtils {
 	 * the given name does not exist
 	 */
 	public static DeegreeWorkspace instantiateWorkspace(String workspaceName) throws WorkspaceException {
-		LOG.info("Get workspace instance with name {} from deegree.home", workspaceName);
+		LOG.info("Get workspace instance '{}' from deegree workspace root '{}'", workspaceName,
+				DeegreeWorkspace.getWorkspaceRoot());
 		if (!isWorkspace(workspaceName)) {
 			throw new WorkspaceException("Fehler: Workspace '" + workspaceName + "' existiert nicht.");
 		}
@@ -106,8 +107,8 @@ public class WorkspaceUtils {
 	/**
 	 * @param workspaceDir directory to use as workspace, may be <code>null</code>
 	 * @return the location of the workspace (passed directory or the workspace with
-	 * default name ('xplansyn-wms-workspace') in the deegree.home directory) if exist,
-	 * never <code>null</code>
+	 * default name ('xplansyn-wms-workspace') in the deegree workspace root directory) if
+	 * exist, never <code>null</code>
 	 * @throws Exception - if a workspace with the given name does not exist
 	 */
 	public static File findWorkspaceDirectory(File workspaceDir) throws Exception {
@@ -131,7 +132,8 @@ public class WorkspaceUtils {
 
 	private static DeegreeWorkspace instantiateWorkspaceByNameAndDir(File workspaceDir, String workspaceName)
 			throws WorkspaceException {
-		LOG.info("get workspace instance with name {} from deegree.home or {} ", workspaceName, workspaceDir);
+		LOG.info("Get workspace instance '{}' from deegree workspace root '{}' or '{}' ", workspaceName,
+				DeegreeWorkspace.getWorkspaceRoot(), workspaceDir);
 		DeegreeWorkspace workspace;
 		try {
 			workspace = getInstance(workspaceName, workspaceDir);
@@ -154,7 +156,7 @@ public class WorkspaceUtils {
 	}
 
 	private static File findWorkspaceDirectoryByDir(File workspaceDir) throws WorkspaceException {
-		LOG.info("get workspace instance from {} ", workspaceDir);
+		LOG.info("Get workspace instance from directory '{}'", workspaceDir);
 		DeegreeWorkspace workspace;
 		try {
 			workspace = getInstance(null, workspaceDir);
@@ -169,7 +171,8 @@ public class WorkspaceUtils {
 	}
 
 	private static File findWorkspaceDirectoryByName(String workspaceName) throws WorkspaceException {
-		LOG.info("get workspace instance with name {} from deegree.home", workspaceName);
+		LOG.info("Get workspace instance '{}' from deegree workspace root '{}'", workspaceName,
+				DeegreeWorkspace.getWorkspaceRoot());
 		DeegreeWorkspace workspace = getInstance(workspaceName);
 		File workspaceLocation = workspace.getLocation();
 		if (!workspaceLocation.exists())
