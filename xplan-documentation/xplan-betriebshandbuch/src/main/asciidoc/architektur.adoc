@@ -97,7 +97,7 @@ basierende Kartendienste. Diese bieten die Möglichkeit,
 Visualisierungen von Plandaten sowie Sachinformationsabfragen zu
 einzelnen Planinhalten abzufragen.
 
-Die Plandaten liegen in einer separate Datenhaltung (siehe Abbildung 2) vor, d.h. je nachdem in welche Datenhaltung ein Plan
+Die Plandaten liegen in einer separaten Datenhaltung (siehe Abbildung 2) vor, d.h. je nachdem in welche Datenhaltung ein Plan
 importiert wurde, ist dieser über den entsprechenden XPlanWMS-Endpoint abrufbar. Die folgende Tabelle zeigt die vom XPlanWMS
 bereitgestellten Daten nach Planstatus.
 

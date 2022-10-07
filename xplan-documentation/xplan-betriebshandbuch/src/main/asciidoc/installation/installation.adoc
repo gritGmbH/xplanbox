@@ -16,7 +16,7 @@ Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (Vorgabewert ist das _.deegree_ im Home-V
 * _xplan-manager-config_
 * _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
 
-NOTE: Die Konfigurationen müssen alle unterhalb desselben Basis-Verzeichnisses liegen.
+IMPORTANT: Die Verzeichnisse mit der Konfiguration der Komponenten der xPlanBox müssen alle unterhalb desselben Basis-Verzeichnisses liegen.
 
 [[web-anwendungen]]
 ==== Web-Anwendungen
@@ -62,10 +62,10 @@ Die Kommandozeilenkomponenten (s. <<installationskomponenten>>) können an belie
 * XPlanValidateDB: _xplan-validatedb-cli/bin/XPlanValidateDB_ - ermöglicht die **semantische** Validierung von bereits in die XPlanDB importierten Plänen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 * XPlanAuswerteschemaCLI: _xplan-evaluation-schema-synchronize-cli/bin/EvaluationSchemaSynchronizer_ - Beschreibung der Funktionalität im  folgenden Kapitel <<install-xplanevaluationschemasynchronize-cli>>.
 * XPlanUpdateDataCLI: _xplan-update-data-cli/bin/_ - die in diesem Modul enthaltenen Werkzeuge können für die Aktualisierung des Datenbestands genutzt werden, weitere Informationen befinden sich im Abschnitt <<aktualisierung>>. Die Funktionen im Überblick:
-** _xplan-update-data-cli/bin/districtUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-data-cli/bin/bereichUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Informationen zu den Bereichen einzelner Pläne. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-data-cli/bin/districtUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Ortsteilnamen. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** _xplan-update-data-cli/bin/reSynthesizer_ - ermöglicht die Aktualisierung der im XPlanSyn-Schema gespeicherten Daten. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** _xplan-update-data-cli/bin/sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfeldern. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
+** _xplan-update-data-cli/bin/sortDateUpdate_ - ermöglicht die Aktualisierung der in der Datenbank gespeicherten Sortierfelder. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 [[install-xplanevaluationschemasynchronize-cli]]
 ===== XPlanAuswerteschemaCLI

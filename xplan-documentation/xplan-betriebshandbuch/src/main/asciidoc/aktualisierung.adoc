@@ -6,7 +6,7 @@ Bei einer Aktualisierung der xPlanBox müssen folgende Schritte durchgeführt we
 Datenunabhängige Aktualisierungsschritte:
 
 * Stoppen aller Tomcat-Instanzen
-* <<austausch-der-web-archive, Austausch der Web-Archive (.war) in den Tomcat-Instanzen>>
+* <<austausch-der-web-archive, Austausch der Web-Archive in den Tomcat-Instanzen>>
 * <<austausch-der-commandline-tools, Austausch der Commandline-Tools>>
 
 Aktualisierungsschritte, die die Datenhaltung betreffen:
@@ -242,6 +242,6 @@ IMPORTANT:  XPlanGML 3 wird nicht mehr unterstützt.
 
 Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
 
-* Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ des Tomcat-Servers. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
-* Reload der Workspaces der XPlanDienste
+* Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ der Tomcat-Server. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
+* Reload der Workspaces der XPlanDienste.
 * Löschen des Browser-Caches.
