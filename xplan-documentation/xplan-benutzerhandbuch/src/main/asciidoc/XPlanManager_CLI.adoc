@@ -5,8 +5,7 @@ Die Komponente XPlanManagerCLI ist ein Kommandozeilenwerkzeug, welches
 dem Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
 kontrollieren. Dabei ist das Kommandozeilenwerkzeug in der Lage,
 XPlanGML-Dokumente in die Datenhaltung zu Laden, zu Löschen,
-Listenausgaben zu erzeugen sowie eingebettete Rasterpläne zu
-importieren.
+Listenausgaben zu erzeugen sowie Service-Metadaten für den XPlanWerkWMS zu erzeugen.
 
 [[xplanmanager-cli-benutzungsanleitung]]
 ==== Benutzungsanleitung
@@ -29,8 +28,7 @@ Konfigurationsdatei __managerConfiguration.properties__, welche genutzt
 werden kann, um generelle Konfigurationen an dem Kommandozeilentool
 durchzuführen.
 
-Falls der Parameter `managerconfiguration` während eines Aufrufs des
-Kommandozeilentools nicht mitgegeben wird, nutzt das Tool die unter
+Wird der Parameter `managerconfiguration` nicht angegeben, nutzt das Tool die unter
 _etc/_ abgelegte Datei. Wenn der Parameter mitgegeben wird, muss sich die
 Konfigurationsdatei in dem referenzierten Verzeichnis befinden.
 
@@ -61,16 +59,16 @@ Usage: XPlanManager <options>
      --crs Angabe des Koordinatenreferenzsystems in dem die Daten vorliegen (optional).
  --export <planid> [<planid>..] [--target=<verzeichnis>] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
      <planid> Die ID des Plans der exportiert werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.
-     --target Angabe des Verzeichni in dem die exportierten XPlanArchive abgelegt werden sollen (optional).
+     --target Angabe des Verzeichnis in dem die exportierten XPlanArchive abgelegt werden sollen (optional).
  --delete <planid> [<planid>..]
-     <planid> Die ID des Plans der gelöscht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden (.
+     <planid> Die ID des Plans der gelöscht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.
  --createMetadata <planid> [<planid>..] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]
-     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keien ID angegeben ist, werden für alle Plaene Metadatensaetze erstellt.
+     <planid> Die ID des Plans zu dem der Service-Metadatensatz generiert werden soll (optional). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden. Wenn keine ID angegeben ist, werden für alle Plaene Metadatensaetze erstellt.
 
-Allgemeine Parameter
+Allgemeine Parameter:
      --managerconfiguration Verzeichnis, in dem sich der Konfiguration des XPlanManagers befindet. Wenn die Option nicht angegeben wird, wird die Konfiguration aus dem Verzeichnis 'etc' des XPLanManagerCLIs verwendet.
 
-Allgemeine Hinweise
+Allgemeine Hinweise:
      Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree_ des Home-Verzeichnis des Nutzers liegen, der das XPlanManagerCLI aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
 
 ----
