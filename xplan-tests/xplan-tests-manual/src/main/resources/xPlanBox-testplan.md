@@ -35,30 +35,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-02: DB Anbindung
-
-#### Vorbedingungen 
-
- * Der Prüffall-02 wurde erfolgreich ausgeführt.
-
-#### Testschritte 
-
-Schritt | Beschreibung | Erwartetes Ergebnis
------------ |------------------|-------------------------
-**01** | Der Benutzer überprüft in dem Manager Workspace [1], ob die im Prüffall-02 verwendeten Einstellungen in der Datenbank-Verbindung geschrieben wurden | Die Datenbank-Einstellungen entsprechen den Eingaben von Prüffall-02. 
-
-**Hinweis**
-
- * [1]  ` .deegree/xplan-manager-workspace/jdbc/xplan.xml`
-   * Der Pfad kann variieren.
-
----
-
-### Prüffall-03: Planverwaltung
-
-#### Vorbedingungen 
-
- * Der Prüffall-03 wurde erfolgreich ausgeführt.
+### Prüffall-02: Planverwaltung
 
 #### Testschritte 
 
@@ -79,11 +56,10 @@ Schritt | Beschreibung | Erwartetes Ergebnis
  
 ---
 
-### Prüffall-04: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanwerkWMS
+### Prüffall-03: Aktualisierung des Sortierfeldes für die Visualisierung im XPlanwerkWMS
 
-#### Vorbedingungen 
+#### Vorbedingungen
 
- * Der Prüffall-03 wurde erfolgreich ausgeführt.
  * Das zur Sortierung genutzte Datumsfeld wurde in der Datei <XPLANBOX_CONFIG>/managerConfiguration.properties erfolgreich konfiguriert.
 
 #### Testschritte
@@ -101,11 +77,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-05: Bearbeitung von Ebenenbäumen
+### Prüffall-04: Bearbeitung von Ebenenbäumen
 
-#### Vorbedingungen 
-
- * Der Prüffall-03  wurde erfolgreich ausgeführt.
+#### Testschritte
 
 Schritt | Beschreibung | Erwartetes Ergebnis
 ----------- |------------------|-------------------------
@@ -125,13 +99,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 ---
 
-### Prüffall-06: Visualisierung von importierten XPlanGML-Rasterdaten
+### Prüffall-05: Visualisierung von importierten XPlanGML-Rasterdaten
 
-#### Vorbedingungen 
-
- * Der Prüffall-03  wurde erfolgreich ausgeführt.
- 
- Beispielhaft werden anhand der Testdaten XPlanGML-Pläne (Rasterdaten) mit verschiedenen Versionen über den XPlanManager in die Datenbasis geladen und mittels GetMap-Request über den XPlanWMS wieder abgerufen.
+Beispielhaft werden anhand der Testdaten XPlanGML-Pläne (Rasterdaten) mit verschiedenen Versionen über den XPlanManager in die Datenbasis geladen und mittels GetMap-Request über den XPlanWMS wieder abgerufen.
  
 #### Testschritte
 
