@@ -41,6 +41,8 @@ import org.apache.commons.cli.PosixParser;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.tools.CommandUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -52,6 +54,8 @@ import java.nio.file.Paths;
  * @version $Revision: $, $Date: $
  */
 public class SortDateUpdateTool {
+
+	private static final Logger LOG = LoggerFactory.getLogger(SortDateUpdateTool.class);
 
 	private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
@@ -72,9 +76,10 @@ public class SortDateUpdateTool {
 
 				SortDateUpdateTool tool = new SortDateUpdateTool();
 				tool.run(workspaceName, configurationDirectory);
+				LOG.info("SortDateUpdateTool successfully executed!");
 			}
 			catch (Exception e) {
-				e.printStackTrace();
+				LOG.error("SortDateUpdateTool could not be executed!", e);
 			}
 		}
 		catch (ParseException exp) {

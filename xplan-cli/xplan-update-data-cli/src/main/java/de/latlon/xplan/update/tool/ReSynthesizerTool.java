@@ -75,6 +75,7 @@ public class ReSynthesizerTool {
 
 				ReSynthesizerTool tool = new ReSynthesizerTool();
 				tool.run(workspaceName, configurationDirectory, mgrId);
+				LOG.info("ReSynthesizerTool successfully executed!");
 			}
 			catch (Exception e) {
 				LOG.error("ReSynthesizerTool could not be executed!", e);

@@ -36,17 +36,21 @@ import org.apache.commons.cli.PosixParser;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.tools.CommandUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Main entry point to update bereich in databases.
+ * Update tool to update the bereich of all plans.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 public class BereichUpdateTool {
+
+	private static final Logger LOG = LoggerFactory.getLogger(BereichUpdateTool.class);
 
 	private static final String OPT_WORKSPACE_NAME = "workspaceName";
 
@@ -67,9 +71,10 @@ public class BereichUpdateTool {
 
 				BereichUpdateTool tool = new BereichUpdateTool();
 				tool.run(workspaceName, configurationDirectory);
+				LOG.info("BereichUpdateTool successfully executed!");
 			}
 			catch (Exception e) {
-				e.printStackTrace();
+				LOG.error("BereichUpdateTool could not be executed!", e);
 			}
 		}
 		catch (ParseException exp) {

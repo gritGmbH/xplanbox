@@ -73,6 +73,7 @@ public class DistrictUpdateTool {
 
 				DistrictUpdateTool tool = new DistrictUpdateTool();
 				tool.run(workspaceName, configurationDirectory);
+				LOG.info("DistrictUpdateTool successfully executed!");
 			}
 			catch (Exception e) {
 				LOG.error("DistrictUpdateTool could not be executed!", e);
