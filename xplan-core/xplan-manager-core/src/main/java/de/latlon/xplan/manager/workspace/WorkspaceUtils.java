@@ -87,7 +87,7 @@ public class WorkspaceUtils {
 	 * the given name does not exist
 	 */
 	public static DeegreeWorkspace instantiateWorkspace(String workspaceName) throws WorkspaceException {
-		LOG.info("get workspace instance with name {} from deegree.home", workspaceName);
+		LOG.info("Get workspace instance with name {} from deegree.home", workspaceName);
 		if (!isWorkspace(workspaceName)) {
 			throw new WorkspaceException("Fehler: Workspace '" + workspaceName + "' existiert nicht.");
 		}
