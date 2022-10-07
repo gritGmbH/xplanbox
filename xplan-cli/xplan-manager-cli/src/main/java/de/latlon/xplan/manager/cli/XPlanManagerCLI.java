@@ -67,7 +67,8 @@ public class XPlanManagerCLI {
 				"     <planid> Die ID des Plans der exportiert werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.");
 		System.out.println(
 				"     --target Angabe des Verzeichnis in dem die exportierten XPlanArchive abgelegt werden sollen (optional).");
-		System.out.println(" --delete <planid> [<planid>..] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
+		System.out.println(
+				" --delete <planid> [<planid>..] [--managerconfiguration=<PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]");
 		System.out.println(
 				"     <planid> Die ID des Plans der gelöscht werden soll (verpflichtend). Mehrere IDs koennen durch ein Leerzeichen getrennt angegeben werden.");
 		System.out.println(
