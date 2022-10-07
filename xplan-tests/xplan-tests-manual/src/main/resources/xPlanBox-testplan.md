@@ -58,7 +58,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 #### Vorbedingungen 
 
- * Der Prüffall-03  wurde erfolgreich ausgeführt.
+ * Der Prüffall-03 wurde erfolgreich ausgeführt.
 
 #### Testschritte 
 
@@ -83,7 +83,7 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 #### Vorbedingungen 
 
- * Der Prüffall-03  wurde erfolgreich ausgeführt.
+ * Der Prüffall-03 wurde erfolgreich ausgeführt.
  * Das zur Sortierung genutzte Datumsfeld wurde in der Datei <XPLANBOX_CONFIG>/managerConfiguration.properties erfolgreich konfiguriert.
 
 #### Testschritte
@@ -95,9 +95,9 @@ Schritt | Beschreibung | Erwartetes Ergebnis
 
 **Hinweis**
 
-* [1]  ` ./XPlanManager -updatewmssortdate [--managerconfiguration <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]` 
+* [1]  ` ./sortDateUpdate [--configurationDirectory <PFAD/ZU/VERZEICHNIS/MIT/MANAGERCONFIGURATION>]`
 * [2]  ` .deegree/xplansyn-wms-workspace/themes/bplanraster.xml`
-  * Der Pfad kann variieren. 
+  * Der Pfad kann variieren.
 
 ---
 
