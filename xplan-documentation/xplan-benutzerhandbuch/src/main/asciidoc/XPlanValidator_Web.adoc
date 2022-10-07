@@ -214,6 +214,8 @@ image::validator/Validierung_syntaktisch-valide.png[Validerungsoptionen]
 [.bordered]
 image::validator/Validierung_syntaktisch-nicht-valide.png[Validerung syntaktisch valide]
 
+IMPORTANT: Die Angaben der Zeilennummer können abweichen. Gute Ergebnisse lassen sich erzielen, wenn das XML-Dokument ohne Formatierung der Attribute erfolgt, insbesondere der Deklaration der Namensräume (siehe auch <<bekannte-probleme>>).
+
 Wenn die syntaktische Validierung nicht valide ist, werden die semantische und die geometrische Validierung nicht durchgeführt und es ist auch keine Kartenvorschau vorhanden.
 
 [.bordered]

@@ -9,6 +9,11 @@ IMPORTANT: Die Unterstützung von Microsoft Internet Explorer 9/10/11 ist mit Ve
 
 Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) im Validierungsbericht des XPlanValidator ausgegeben, Multigeometrien werden nicht dargestellt. In die Shape-Datei können nur Geometrien geschrieben werden, wenn diese auch gerendert werden können.
 
+=== XPlanValidator - Anzeige der Zeilennummern im Validierungsbericht
+
+Die Ausgabe der Zeilennummer bei semantischen Validierungsfehlern, kann je nach Formatierung des XML-Dokuments von der Zeile des verursachenden Elements abweichen.
+Gute und exakte Ergebnisse bei der Ausgabe der Zeilennummer des Elements lassen sich dann erzielen, wenn das XML-Dokument ohne Formatierung der Attribute erfolgt, insbesondere der Deklaration der Namensräume im Wurzelelement. Die Zeilen werden entsprechend der https://www.w3.org/TR/REC-xml/#sec-line-ends[XML-Spezifikation] gezählt und stellen nur eine Annäherung an die Zeilennummer der Dokumententität oder der externen geparsten Entität dar, in der das Element erscheint, das das Ereignis auslöst.
+
 === XPlanWMS - Mit Kartenvorschau im XPlanManagerWeb generierter GetMap-Request
 
 Der durch den Button "Plan im neuen Fenster öffnen" unterhalb der Kartenvorschau im XPlanManagerWeb generierte WMS GetMap-Request gibt im Fall, dass noch kein Rasterplan in das System importiert wurde, folgende erwartete Meldung aus:
