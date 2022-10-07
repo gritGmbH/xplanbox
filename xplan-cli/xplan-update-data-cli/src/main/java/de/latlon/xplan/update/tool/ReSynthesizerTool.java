@@ -160,7 +160,7 @@ public class ReSynthesizerTool {
 	}
 
 	private static void printHelp(Options options) {
-		String help = "Reads the XPlanGML and stores the re-synthesized in the xplansyn schema.";
+		String help = "Reads the XPlanGML data and updates the re-synthesized data in the xplansyn schema.";
 		CommandUtils.printHelp(options, "reSynthesizer", help, null);
 	}
 

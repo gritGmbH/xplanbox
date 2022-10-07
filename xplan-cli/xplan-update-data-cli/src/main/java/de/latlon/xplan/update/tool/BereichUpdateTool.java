@@ -102,7 +102,7 @@ public class BereichUpdateTool {
 	}
 
 	private static void printHelp(Options options) {
-		String help = "Update database.";
+		String help = "Update Bereiche of plans.";
 		CommandUtils.printHelp(options, BereichUpdateTool.class.getSimpleName(), help, null);
 	}
 
