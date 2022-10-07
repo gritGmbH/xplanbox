@@ -67,11 +67,13 @@ Usage: XPlanManager <options>
 
 Allgemeine Parameter:
      --managerconfiguration Verzeichnis, in dem sich der Konfiguration des XPlanManagers befindet. Wenn die Option nicht angegeben wird, wird die Konfiguration aus dem Verzeichnis 'etc' des XPLanManagerCLIs verwendet.
+     --v Ausgabe der Systemeigenschaften
 
 Allgemeine Hinweise:
-     Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree_ des Home-Verzeichnis des Nutzers liegen, der das XPlanManagerCLI aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
+     Der Workspace `xplan-manager-workspace` muss im Verzeichnis _.deegree/_ des Home-Verzeichnis des Nutzers liegen, der das XPlanManagerCLI aufruft. Alternativ kann das Verzeichnis, in dem der Workspace liegt durch Angabe der Umgebungsvariablen _DEEGREE_WORKSPACE_ROOT_ gesetzt werden.
 
 ----
+
 
 [[xplanmanager-cli-auflistung]]
 ===== Auflistung
