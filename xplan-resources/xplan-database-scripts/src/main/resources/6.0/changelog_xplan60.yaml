@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1665070069212-1
+    id: 1663512754583-1
     author: lyn (generated)
     changes:
     - createTable:
@@ -24,7 +24,7 @@ databaseChangeLog:
         schemaName: xplan60
         tableName: feature_types
 - changeSet:
-    id: 1665070069212-2
+    id: 1663512754583-2
     author: lyn (generated)
     changes:
     - createTable:
@@ -67,7 +67,7 @@ databaseChangeLog:
         schemaName: xplan60
         tableName: gml_objects
 - changeSet:
-    id: 1665070069212-3
+    id: 1663512754583-3
     author: lyn (generated)
     changes:
     - insert:
@@ -2135,7 +2135,7 @@ databaseChangeLog:
         schemaName: xplan60
         tableName: feature_types
 - changeSet:
-    id: 1665070069212-4
+    id: 1663512754583-4
     author: lyn (generated)
     changes:
     - addUniqueConstraint:
@@ -2144,7 +2144,7 @@ databaseChangeLog:
         schemaName: xplan60
         tableName: gml_objects
 - changeSet:
-    id: 1665070069212-5
+    id: 1663512754583-5
     author: lyn (generated)
     changes:
     - createIndex:
@@ -2155,7 +2155,7 @@ databaseChangeLog:
         schemaName: xplan60
         tableName: gml_objects
 - changeSet:
-    id: 1665070069212-6
+    id: 1663512754583-6
     author: lyn (generated)
     changes:
     - addForeignKeyConstraint:
