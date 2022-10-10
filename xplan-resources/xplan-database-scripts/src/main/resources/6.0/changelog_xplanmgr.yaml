@@ -298,4 +298,6 @@ databaseChangeLog:
                 remarks: Logs inserted, updated and deleted plans
                 schemaName: xplanmgr
                 tableName: planslog
+          - sql: "CREATE OR REPLACE FUNCTION xplanmgr.plansLog() RETURNS trigger AS ' BEGIN IF TG_OP = ''INSERT'' THEN INSERT INTO xplanmgr.plansLog (plan_id, xp_version, xp_type, bbox, planstatus_new, operation, last_update_date) VALUES(NEW.id, NEW.xp_version, NEW.xp_type, NEW.bbox, NEW.planstatus, TG_OP, now()); RETURN NEW; END IF; IF TG_OP = ''UPDATE'' THEN INSERT INTO xplanmgr.plansLog (plan_id, xp_version, xp_type, bbox, planstatus_new, planstatus_old, operation, last_update_date) VALUES(NEW.id, NEW.xp_version, NEW.xp_type, NEW.bbox, NEW.planstatus, OLD.planstatus, TG_OP, now()); RETURN OLD; END IF; IF TG_OP = ''DELETE'' THEN INSERT INTO xplanmgr.plansLog (plan_id, xp_version, xp_type, bbox, planstatus_old, operation, last_update_date) VALUES(OLD.id, OLD.xp_version, OLD.xp_type, OLD.bbox, OLD.planstatus, TG_OP, now()); RETURN OLD; END IF; END; ' LANGUAGE plpgsql;"
+          - sql: "CREATE TRIGGER xplanmgr_planslog AFTER INSERT OR UPDATE OR DELETE ON xplanmgr.plans FOR EACH ROW EXECUTE PROCEDURE xplanmgr.plansLog();"
 
