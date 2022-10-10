@@ -22,9 +22,8 @@
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
                   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-                  xmlns:sed="http://www.deegree.org/se"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_SpezielleBauweise</FeatureTypeName>
   <!-- TODO: platzhalter -->
@@ -78,7 +77,7 @@
         </ogc:PropertyIsEqualTo>
       </ogc:Or>
     </ogc:Filter>
-    <MaxScaleDenominator>1000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -108,7 +107,7 @@
         <ogc:Literal>1300</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>1000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -138,7 +137,7 @@
         <ogc:Literal>1400</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
-    <MaxScaleDenominator>1000</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>

@@ -1,25 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
                   xmlns:sed="http://www.deegree.org/se"
                   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
@@ -60,13 +39,13 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Fill>
-        <SvgParameter name="fill">#FFD92F</SvgParameter>
+        <SvgParameter name="fill">#fddf1b</SvgParameter>
         <SvgParameter name="fill-opacity">1.0</SvgParameter>
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
@@ -85,7 +64,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -96,9 +75,9 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke">#232323</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
@@ -109,7 +88,7 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FFD92F</SvgParameter>
+        <SvgParameter name="stroke">#fddf1b</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">5.0</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
@@ -122,7 +101,7 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke">#232323</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">0.5</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
@@ -135,9 +114,9 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke">#232323</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
@@ -159,7 +138,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>1200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -170,9 +149,9 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke">#232323</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
@@ -183,7 +162,7 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#FFD92F</SvgParameter>
+        <SvgParameter name="stroke">#fddf1b</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
         <SvgParameter name="stroke-width">5.0</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
@@ -196,14 +175,80 @@
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
-        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke">#232323</SvgParameter>
         <SvgParameter name="stroke-opacity">1.0</SvgParameter>
-        <SvgParameter name="stroke-width">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
         <SvgParameter name="stroke-linecap">round</SvgParameter>
         <SvgParameter name="stroke-linejoin">round</SvgParameter>
       </Stroke>
       <sed:PerpendicularOffset type="Edged">2.5</sed:PerpendicularOffset>
     </LineSymbolizer>
+  </Rule>
+  <!-- RuhenderVerkehr -->
+  <Rule>
+    <Name>Hauptverkehrsstrasse</Name>
+    <Description>
+      <Title>FP: Ruhender Verkehr/ Parkplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsSurface">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Or>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+            <ogc:Literal>1600</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+          <ogc:PropertyIsEqualTo>
+            <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+            <ogc:Literal>16000</ogc:Literal>
+          </ogc:PropertyIsEqualTo>
+        </ogc:Or>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <SvgParameter name="fill">#FFEC8B</SvgParameter>
+        <SvgParameter name="fill-opacity">1.0</SvgParameter>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#ffffff</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.5</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
+    <PolygonSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Fill>
+        <GraphicFill>
+          <Graphic>
+            <ExternalGraphic>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                              xlink:href="../../symbols/verksflbeszwb_neu.png"/>
+              <Format>image/png</Format>
+            </ExternalGraphic>
+            <Size>30</Size>
+          </Graphic>
+        </GraphicFill>
+      </Fill>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
+        <SvgParameter name="stroke-linecap">butt</SvgParameter>
+        <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
+      </Stroke>
+    </PolygonSymbolizer>
   </Rule>
   <!-- Sonstiger Verkehrsweg Anlage -->
   <Rule>
@@ -220,7 +265,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -240,6 +285,95 @@
       </Stroke>
     </LineSymbolizer>
   </Rule>
+  <!-- Wanderweg -->
+  <Rule>
+    <Name>Wanderweg</Name>
+    <Description>
+      <Title>FP: Wanderweg</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsCurve">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>14006</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">10.0</SvgParameter>
+        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1 30</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <GraphicStroke>
+          <Graphic>
+            <Mark>
+              <WellKnownName>square</WellKnownName>
+              <Fill>
+                <SvgParameter name="fill">#ffffff</SvgParameter>
+                <SvgParameter name="fill-opacity">1</SvgParameter>
+              </Fill>
+              <Stroke>
+                <SvgParameter name="stroke">#000000</SvgParameter>
+                <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+                <SvgParameter name="stroke-width">0.1</SvgParameter>
+              </Stroke>
+            </Mark>
+            <Rotation>45</Rotation>
+            <Size>25</Size>
+          </Graphic>
+          <Gap>170</Gap>
+        </GraphicStroke>
+      </Stroke>
+    </LineSymbolizer>
+    <LineSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Stroke>
+        <GraphicStroke>
+          <Graphic>
+            <Mark>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                              xlink:href="../../symbols/FreeSans.ttf"/>
+              <Format>ttf</Format>
+              <MarkIndex>58</MarkIndex>
+              <Fill>
+                <SvgParameter name="fill">#000000</SvgParameter>
+                <SvgParameter name="fill-opacity">1</SvgParameter>
+              </Fill>
+              <Stroke>
+                <SvgParameter name="stroke">#000000</SvgParameter>
+                <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+                <SvgParameter name="stroke-width">0.1</SvgParameter>
+              </Stroke>
+            </Mark>
+            <Size>20</Size>
+          </Graphic>
+          <Gap>175</Gap>
+        </GraphicStroke>
+      </Stroke>
+    </LineSymbolizer>
+  </Rule>
   <!-- Ruhender Verkehr -->
   <Rule>
     <Name>RuhenderVerkehr</Name>
@@ -255,7 +389,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>1600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -290,7 +424,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>9999</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -325,7 +459,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>XP2_1200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -360,7 +494,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
           <ogc:Literal>XP2_1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -380,340 +514,87 @@
       </Stroke>
     </LineSymbolizer>
   </Rule>
-  <!-- Autobahn Punkt-->
+  <!-- Ortsdurchfahrt -->
   <Rule>
-    <Name>Autobahn</Name>
+    <Name>fp_strverk</Name>
     <Description>
-      <Title>FP: Autobahn</Title>
+      <Title>FP: Ortsdurchfahrt</Title>
     </Description>
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
+          <ogc:Function name="IsCurve">
             <ogc:PropertyName>xplan:position</ogc:PropertyName>
           </ogc:Function>
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>1000</ogc:Literal>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>1300</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
+    <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>square</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
+      <Stroke>
+        <SvgParameter name="stroke">#FF0000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">2.0</SvgParameter>
+        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
   </Rule>
-  <!-- Hauptverkehrsstraße Punkt-->
+  <!-- Fussweg -->
   <Rule>
-    <Name>Hauptverkehrsstrasse</Name>
+    <Name>fp_strverk</Name>
     <Description>
-      <Title>FP: Hauptverkehrsstraße</Title>
+      <Title>FP: Fussweg</Title>
     </Description>
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
+          <ogc:Function name="IsCurve">
             <ogc:PropertyName>xplan:position</ogc:PropertyName>
           </ogc:Function>
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>1200</ogc:Literal>
+          <ogc:PropertyName>xplan:zweckbestimmungCode</ogc:PropertyName>
+          <ogc:Literal>14005</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
+    <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>square</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
-  <!-- Sonstiger Verkehrsweg Anlage  Punkt -->
-  <Rule>
-    <Name>SonstigerVerkehrswegAnlage</Name>
-    <Description>
-      <Title>FP: Sonstiger Verkehrsweg Anlage</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:position</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>1400</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
+      <Stroke>
+        <SvgParameter name="stroke">#000000</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">8.0</SvgParameter>
+        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1 15</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
+    <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>square</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
-  <!-- Ruhender Verkehr Punkt -->
-  <Rule>
-    <Name>RuhenderVerkehr</Name>
-    <Description>
-      <Title>FP: Ruhender Verkehr</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:position</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>1600</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>square</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">3</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                          xlink:href="../../symbols/FreeSans.ttf"/>
-          <Format>ttf</Format>
-          <MarkIndex>51</MarkIndex>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1</SvgParameter>
-            <SvgParameter name="stroke-width">1</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>50</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
-  <!-- Sonstiges Punkt -->
-  <Rule>
-    <Name>Sonstiges</Name>
-    <Description>
-      <Title>FP: Sonstiges</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:position</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>9999</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>square</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
-  <!-- Überörtlicher Weg Punkt -->
-  <Rule>
-    <Name>Ueberortlicher Weg</Name>
-    <Description>
-      <Title>FP: Überörtlicher Weg</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:position</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>XP2_1200</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>square</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-  </Rule>
-  <!-- Durchgang Punkt -->
-  <Rule>
-    <Name>Durchgang</Name>
-    <Description>
-      <Title>FP: Durchgang</Title>
-    </Description>
-    <ogc:Filter>
-      <ogc:And>
-        <ogc:PropertyIsEqualTo>
-          <ogc:Function name="IsPoint">
-            <ogc:PropertyName>xplan:position</ogc:PropertyName>
-          </ogc:Function>
-          <ogc:Literal>true</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-        <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:zweckbestimmung</ogc:PropertyName>
-          <ogc:Literal>XP2_1500</ogc:Literal>
-        </ogc:PropertyIsEqualTo>
-      </ogc:And>
-    </ogc:Filter>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <PointSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Graphic>
-        <Mark>
-          <WellKnownName>square</WellKnownName>
-          <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
-            <SvgParameter name="fill-opacity">1.0</SvgParameter>
-          </Fill>
-          <Stroke>
-            <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-width">0.5</SvgParameter>
-          </Stroke>
-        </Mark>
-        <Size>70</Size>
-      </Graphic>
-    </PointSymbolizer>
-    <TextSymbolizer uom="meter">
-      <Geometry>
-        <ogc:PropertyName>xplan:position</ogc:PropertyName>
-      </Geometry>
-      <Label>
-        <ogc:Literal>Du</ogc:Literal>
-      </Label>
-      <Font>
-        <SvgParameter name="font-family">Arial</SvgParameter>
-        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
-        <SvgParameter name="font-weight">bold</SvgParameter>
-        <SvgParameter name="font-size">50</SvgParameter>
-      </Font>
-      <LabelPlacement>
-        <PointPlacement>
-          <Displacement>
-            <DisplacementX>-3</DisplacementX>
-            <DisplacementY>0</DisplacementY>
-          </Displacement>
-        </PointPlacement>
-      </LabelPlacement>
-      <Fill>
-        <SvgParameter name="fill">#FFFFFF</SvgParameter>
-      </Fill>
-    </TextSymbolizer>
+      <Stroke>
+        <SvgParameter name="stroke">#fddf1b</SvgParameter>
+        <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+        <SvgParameter name="stroke-width">7.0</SvgParameter>
+        <SvgParameter name="stroke-linecap">round</SvgParameter>
+        <SvgParameter name="stroke-linejoin">round</SvgParameter>
+        <SvgParameter name="stroke-dasharray">1 15</SvgParameter>
+      </Stroke>
+    </LineSymbolizer>
   </Rule>
   <!-- vonGenehmigungAusgenommen -->
   <Rule>

@@ -1,54 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-                  xmlns:sed="http://www.deegree.org/se"
                   xmlns:xplan="http://www.deegree.org/xplanung/1/0"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:BP_SpielSportanlagenFlaeche</FeatureTypeName>
+  <!-- Sportanlage -->
+  <!-- Rule wg. symbolPosition entfernt -->
+  <!-- Spielanlage -->
+  <!-- Rule wg. symbolPosition entfernt -->
+  <!-- Sonstiges -->
+  <!-- Rule wg. symbolPosition entfernt -->
+  <!-- Detaillierte Zweckbestimmung -->
+
   <Rule>
     <Name>bp_spispoanlfl</Name>
     <Description>
-      <Title>BP: Spiel- und Sportanlagen</Title>
+      <Title>detaillierte Zweckbestimmung</Title>
     </Description>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <ogc:Filter>
+      <ogc:Not>
+        <ogc:PropertyIsNull>
+          <ogc:PropertyName>xplan:detaillierteZweckbestimmung</ogc:PropertyName>
+        </ogc:PropertyIsNull>
+      </ogc:Not>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:PropertyName>xplan:detaillierteZweckbestimmung</ogc:PropertyName>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
+        <SvgParameter name="font-weight">bold</SvgParameter>
+        <SvgParameter name="font-size">3</SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Displacement>
+            <DisplacementX>2.6</DisplacementX>
+            <DisplacementY>0</DisplacementY>
+          </Displacement>
+        </PointPlacement>
+      </LabelPlacement>
+      <Halo>
+        <Radius>0.3</Radius>
+        <Fill>
+          <SvgParameter name="fill">#ffffff</SvgParameter>
+          <SvgParameter name="fill-opacity">0.8</SvgParameter>
+        </Fill>
+      </Halo>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>bp_spispoanlfl</Name>
+    <Description>
+      <Title>Spielanlage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:PropertyIsEqualTo>
+        <ogc:Function name="IsSurface">
+          <ogc:PropertyName>xplan:position</ogc:PropertyName>
+        </ogc:Function>
+        <ogc:Literal>true</ogc:Literal>
+      </ogc:PropertyIsEqualTo>
+    </ogc:Filter>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-        <SvgParameter name="stroke-width">0.2</SvgParameter>
+        <SvgParameter name="stroke-width">1.0</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
-  </Rule>
-  <Rule>
-    <Name>bp_spispoanlfl</Name>
-    <Description>
-      <Title>BP: Spiel- und Sportanlagen</Title>
-    </Description>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
+
     <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
@@ -65,15 +100,16 @@
               </Fill>
               <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
-                <SvgParameter name="stroke-width">0.2</SvgParameter>
+                <SvgParameter name="stroke-width">1</SvgParameter>
               </Stroke>
             </Mark>
-            <Size>2.5</Size>
+            <Size>4</Size>
           </Graphic>
-          <Gap>0</Gap>
+          <Gap>2</Gap>
         </GraphicStroke>
       </Stroke>
-      <sed:PerpendicularOffset type="Standard">-2</sed:PerpendicularOffset>
+      <PerpendicularOffset type="Standard">-3</PerpendicularOffset>
     </PolygonSymbolizer>
+
   </Rule>
 </FeatureTypeStyle>

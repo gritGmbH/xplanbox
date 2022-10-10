@@ -12,8 +12,17 @@
    height="100%"
    viewBox="-5 -5 100 100"
    id="svg2"
-   sodipodi:docname="schutzgebnaturpark_sym.svg"
+   sodipodi:docname="schutzgeblandsch_sym.svg"
    inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
+  <g
+     aria-label="L"
+     id="text859"
+     style="font-style:normal;font-weight:normal;font-size:42.0136px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none">
+    <path
+       d="M 54.662307,60.27301 H 35.337693 V 29.72699 h 4.061861 v 26.935477 h 15.262753 z"
+       style="stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path861" />
+  </g>
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -22,6 +31,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -52,24 +62,6 @@
        type="text/css"
        id="style6" />
   </defs>
-  <g
-     id="use13"
-     transform="matrix(10.503516,0,0,10.503516,45.1417,45.1417)"
-     style="stroke-width:0.19041243;stroke-miterlimit:4;stroke-dasharray:none">
-    <g
-       aria-label="NP"
-       id="text870"
-       style="font-weight:100;font-size:4px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.19041243;stroke-miterlimit:4;stroke-dasharray:none">
-      <path
-         d="M -0.09277344,1.5 H -0.57128906 L -1.9501953,-1.1015625 V 1.5 h -0.3613281 v -2.9082031 h 0.5996093 l 1.25781254,2.37499998 V -1.4082031 h 0.36132812 z"
-         style="font-weight:100;font-size:4px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.19041243;stroke-miterlimit:4;stroke-dasharray:none"
-         id="path874" />
-      <path
-         d="m 2.5830078,-0.52929687 q 0,0.19335937 -0.068359,0.359375 -0.066406,0.16406249 -0.1875,0.28515624 Q 2.1767578,0.265625 1.9716797,0.34179688 1.7666016,0.41601563 1.4541016,0.41601563 H 1.0673828 V 1.5 H 0.68066406 V -1.4082031 H 1.4697266 q 0.2617187,0 0.4433593,0.044922 0.1816407,0.042969 0.3222657,0.1367187 0.1660156,0.1113281 0.2558593,0.27734375 0.091797,0.16601563 0.091797,0.41992178 z m -0.4023437,0.009766 q 0,-0.15039062 -0.052734,-0.26171875 -0.052734,-0.11132813 -0.1601563,-0.18164063 -0.09375,-0.0605469 -0.2148437,-0.0859374 -0.1191406,-0.027344 -0.3027344,-0.027344 H 1.0673828 V 0.085937 h 0.3261719 q 0.234375,0 0.3808594,-0.04101563 0.1464843,-0.04296874 0.2382812,-0.13476562 0.091797,-0.09375 0.1289063,-0.19726563 0.039063,-0.10351562 0.039063,-0.23242099 z"
-         style="font-weight:100;font-size:4px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.19041243;stroke-miterlimit:4;stroke-dasharray:none"
-         id="path876" />
-    </g>
-  </g>
   <path
      id="path883-4"
      style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none"
