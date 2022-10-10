@@ -60,3 +60,5 @@ In der Tabelle `xplanmgr.plans.artefacts` werden alle im XPlanArchiv enthaltenen
 image::xplandb_xplanmgr.png[Schema xplanmgr]
 
 NOTE: Die Rasterdateien werden zusätzlich für die Bereitstellung über den XPlanWMS auch im Workspace des XPlanWMS abgelegt. Die Verzeichnisstruktur im Kapitel <<appendix_xplanwms-workspace>> beschrieben.
+
+NOTE: Die nicht abgebildete Tabelle planslog beinhaltet eine Historie jedes Plans ab dem Zeitpunkt an dem die Tabelle inkl. Function und Trigger angelegt wurde. Die Historie umfasst den Zeitpunkt wann ein Plan importiert (INSERT), aktualisiert (UPDATE) und gelöscht (DELETE) wurde. Außerdem wird die Version, die Planart, die BoundingBox des Plans sowie der neue und der alte Planstatus abgespeichert.

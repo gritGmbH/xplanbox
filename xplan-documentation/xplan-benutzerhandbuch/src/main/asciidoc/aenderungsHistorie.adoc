@@ -27,6 +27,7 @@ Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neb
 - Verbessern der Fehlermeldung beim Editieren eines Plans ohne Bereich
 - Unterstützung von XPlanGML 3.0 aus allen Komponenten entfernt
 - Konfigurationsparameter defaultBboxIn4326 entfernt
+- Hinzufügen einer Tabelle planslog in der XPlanDB
 - Aktualisierung auf deegree 3.5
 - Aktualisierung auf JTS 1.19.0
 
