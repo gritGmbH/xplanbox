@@ -223,7 +223,7 @@ TIP: Alle anderen Komponenten sind unverändert und müssen nicht aktualisiert w
 
 Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neben der Aktualisierung auf deegree webservices Version 3.5 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 6.0 ist mindestens PostgreSQL Version 12 mit der PostGIS-Erweiterung 3.1 erforderlich.
 
-IMPORTANT: Mit der Version 6.0 der xPlanBox wird XPlanGML 3 nicht mehr unterstützt! Vor der Aktualisierung müssen alle Pläne in der Version XPlanGML 3 heruntergeladen und gelöscht werden. Heruntergeladene Pläne müssen manuell in eine höhere Version überführt werden und nach der Aktualisierung wieder über den XPlanManager importiert werden.
+IMPORTANT: Mit der Version 6.0 der xPlanBox wird XPlanGML 3 nicht mehr unterstützt! Vor der Aktualisierung müssen alle Pläne in der Version XPlanGML 3 heruntergeladen und gelöscht werden. Heruntergeladene Pläne müssen manuell in eine höhere Version überführt und nach der Aktualisierung wieder über den XPlanManager importiert werden.
 
 Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 
