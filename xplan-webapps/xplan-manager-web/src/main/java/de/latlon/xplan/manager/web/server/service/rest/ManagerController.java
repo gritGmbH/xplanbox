@@ -73,6 +73,7 @@ import static java.lang.Long.toHexString;
 import static java.lang.Math.random;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.apache.commons.io.IOUtils.write;
+import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -237,7 +238,7 @@ public class ManagerController {
 		}
 	}
 
-	@RequestMapping(value = "/edit/plan/artefact", method = POST)
+	@RequestMapping(value = "/edit/plan/artefact", method = POST, produces = TEXT_HTML_VALUE)
 	@ResponseBody
 	// @formatter:off
     public void uploadPlanArtefact( @RequestParam("referenceArtefact") MultipartFile referenceArtefact,
@@ -292,7 +293,7 @@ public class ManagerController {
 		return false;
 	}
 
-	@RequestMapping(value = "/plan", method = POST)
+	@RequestMapping(value = "/plan", method = POST, produces = TEXT_HTML_VALUE)
 	@ResponseBody
 	// @formatter:off
     public void uploadPlan( @RequestParam("planZipFile" ) MultipartFile file, HttpServletRequest request,
@@ -566,6 +567,7 @@ public class ManagerController {
 	}
 
 	private void populateResponse(HttpServletResponse response, String message) throws IOException {
+		response.addHeader("Content-Type", TEXT_HTML_VALUE);
 		response.setStatus(HttpServletResponse.SC_CREATED);
 		response.getWriter().println("<html><body>" + message + "</body></html>");
 		response.flushBuffer();
