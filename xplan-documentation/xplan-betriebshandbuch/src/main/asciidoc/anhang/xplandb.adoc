@@ -27,7 +27,7 @@ IMPORTANT: Wird eine ältere XPlanGML-Version abgekündigt oder eine neue XPlanG
 Die folgenden Diagramme zeigen die Tabellenstruktur für ausgewählte Fachdatenobjekte (abgeleitete Feature Types aus den XPlanGML-Schema) aus dem Schema `xplansyn`.
 
 .Datenbankschema 'xplansyn' - BPlan (Ausschnitt 1 - BP_Baugebiet)
-image::xplandb_xplansyn_bplan1.png[Schema xplansyn - BPlan (Ausschnitt 1 - PB_Baugebiet)]
+image::xplandb_xplansyn_bplan1.png[Schema xplansyn - BPlan (Ausschnitt 1 - BP_Baugebiet)]
 
 .Datenbankschema 'xplansyn' - BPlan (Ausschnitt 2 - BP_Bereich)
 image::xplandb_xplansyn_bplan2.png[Schema xplansyn - BPlan (Ausschnitt 2 - BP_Bereich)]
@@ -38,14 +38,11 @@ image::xplandb_xplansyn_bplan3.png[Schema xplansyn - BPlan (Ausschnitt 3 - BP_Pl
 .Datenbankschema 'xplansyn' - BPlan (Ausschnitt 4 - BP_UeberbaubareGrundstuecksflaeche)
 image::xplandb_xplansyn_bplan4.png[Schema xplansyn - BPlan (Ausschnitt 4 - BP_UeberbaubareGrundstuecksflaeche)]
 
-.Datenbankschema 'xplansyn' - XP (Ausschnitt 1 - XP_Nutzungsschablone)
-image::xplandb_xplansyn_xp1.png[Schema xplansyn - XP (Ausschnitt 1 - XP_Nutzungsschablone)]
+.Datenbankschema 'xplansyn' - XP (Ausschnitt 1 - XP_FPO)
+image::xplandb_xplansyn_xp1.png[Schema xplansyn - XP (Ausschnitt 1 - XP_FPO)]
 
-.Datenbankschema 'xplansyn' - XP (Ausschnitt 2 - XP_Grenze)
-image::xplandb_xplansyn_xp2.png[Schema xplansyn - XP (Ausschnitt 2 - XP_Grenze)]
-
-.Datenbankschema 'xplansyn' - XP (Ausschnitt 3 - XP_Textabschnitt)
-image::xplandb_xplansyn_xp3.png[Schema xplansyn - XP (Ausschnitt 3 - XP_Textabschnitt)]
+.Datenbankschema 'xplansyn' - XP (Ausschnitt 2 - XP_Nutzungsschablone)
+image::xplandb_xplansyn_xp2.png[Schema xplansyn - XP (Ausschnitt 2 - XP_Nutzungsschablone)]
 
 [[appendix_xplandb_xplanmgr]]
 === Datenbankschema für XPlanManager
