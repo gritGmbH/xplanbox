@@ -26,19 +26,24 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.XPlan;
+import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
+import static de.latlon.xplan.manager.transaction.XPlanTransactionManager.SYN_FEATURETYPE_PREFIX;
 
 /**
  * Re-synthesizes single or all available plans.
@@ -56,6 +61,10 @@ public class ReSynthesizer {
 	private final SortPropertyReader sortPropertyReader;
 
 	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+
+	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
+
+	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	/**
 	 * @param dao used to access the database, never <code>null</code>
@@ -92,23 +101,32 @@ public class ReSynthesizer {
 	}
 
 	private void reSynthesize(XPlan plan) throws Exception {
-		LOG.info("Synthesize plan with id {}, version {}, type {}", plan.getId(), plan.getVersion(), plan.getType());
+		String planId = plan.getId();
+		LOG.info("Synthesize plan with id {}, version {}, type {}", planId, plan.getVersion(), plan.getType());
 		XPlanType planType = XPlanType.valueOf(plan.getType());
 		XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 
-		FeatureCollection featureCollection = xPlanDao.retrieveFeatureCollection(plan);
-		if (featureCollection.isEmpty()) {
-			LOG.warn("FeatureCollection is not available! Plan with id {} is skipped.", plan.getId());
-			return;
+		try (InputStream originalPlan = xPlanDao.retrieveXPlanArtefact(planId)) {
+			if (originalPlan == null) {
+				LOG.warn("FeatureCollection is not available! Plan with id {} is skipped.", planId);
+				return;
+			}
+			XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan,
+					version, planType);
+			boolean idsMatchSynFeatureType = featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
+			if (!idsMatchSynFeatureType) {
+				reassignFids(xPlanFeatureCollection);
+			}
+
+			Date sortDate = sortPropertyReader.readSortDate(planType, version, xPlanFeatureCollection.getFeatures());
+
+			FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(version,
+					xPlanFeatureCollection);
+			addInternalId(plan, synthesizedFeatureCollection);
+
+			xPlanDao.updateXPlanSynFeatureCollection(plan, synthesizedFeatureCollection, xPlanFeatureCollection,
+					sortDate, !idsMatchSynFeatureType);
 		}
-		XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder(featureCollection, planType)
-				.build();
-		Date sortDate = sortPropertyReader.readSortDate(planType, version, xPlanFeatureCollection.getFeatures());
-
-		FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(version, xPlanFeatureCollection);
-		addInternalId(plan, synthesizedFeatureCollection);
-
-		xPlanDao.updateXPlanSynFeatureCollection(plan, synthesizedFeatureCollection, sortDate);
 	}
 
 	private void addInternalId(XPlan plan, FeatureCollection synthesizedFeatureCollection) {
@@ -116,6 +134,15 @@ public class ReSynthesizer {
 		if (internalId != null) {
 			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 			featureCollectionManipulator.addInternalId(synthesizedFeatureCollection, synSchema, internalId);
+		}
+	}
+
+	private void reassignFids(XPlanFeatureCollection fc) {
+		for (Feature f : fc.getFeatures()) {
+			String synFeatureTypeName = featureTypeNameSynthesizer.detectSynFeatureTypeName(f.getName());
+			String prefix = SYN_FEATURETYPE_PREFIX + synFeatureTypeName.toUpperCase() + "_";
+			String uuid = UUID.randomUUID().toString();
+			f.setId(prefix + uuid);
 		}
 	}
 
