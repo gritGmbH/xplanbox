@@ -36,7 +36,6 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
-import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanIdSyntax;
@@ -50,7 +49,6 @@ import org.springframework.stereotype.Component;
 import javax.inject.Singleton;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.stream.XMLStreamException;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -93,10 +91,9 @@ public class PlanHandler {
 	@Autowired
 	private XPlanGmlParser xPlanGmlParser;
 
-	public List<XPlan> importPlan(File uploadedPlan, String xFileName, ValidationSettings validationSettings,
+	public List<XPlan> importPlan(XPlanArchive xPlanArchive, String xFileName, ValidationSettings validationSettings,
 			String internalId, String planStatus) throws Exception {
 		LOG.info("Importing plan using validation settings '{}'", validationSettings);
-		XPlanArchive xPlanArchive = createArchive(uploadedPlan);
 		ValidatorReport validatorReport = xPlanValidator.validateNotWriteReport(validationSettings, xPlanArchive,
 				xFileName);
 		if (!validatorReport.isReportValid()) {
@@ -109,15 +106,6 @@ public class PlanHandler {
 		LOG.info("Plan successfully imported. Ids: {}",
 				plansById.stream().map(plan -> plan.getId()).collect(Collectors.joining(",")));
 		return plansById;
-	}
-
-	private XPlanArchive createArchive(File uploadedPlan) throws InvalidXPlanGmlOrArchive {
-		try {
-			return archiveCreator.createXPlanArchiveFromZip(uploadedPlan);
-		}
-		catch (Exception e) {
-			throw new InvalidXPlanGmlOrArchive("Could not read attached file as XPlanArchive", e);
-		}
 	}
 
 	public StatusMessage deletePlan(String planId) throws Exception {

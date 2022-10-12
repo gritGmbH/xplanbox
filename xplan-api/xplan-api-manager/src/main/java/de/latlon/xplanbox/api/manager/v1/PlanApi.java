@@ -20,8 +20,11 @@
  */
 package de.latlon.xplanbox.api.manager.v1;
 
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
+import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.manager.ApplicationPathConfig;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
@@ -32,6 +35,7 @@ import de.latlon.xplanbox.api.manager.handler.PlanHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Link;
 import de.latlon.xplanbox.api.manager.v1.model.PlanInfo;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -103,6 +107,9 @@ public class PlanApi {
 	private static final boolean WITH_GEOMETRISCH_VALIDATION = false;
 
 	@Autowired
+	private XPlanArchiveCreator archiveCreator;
+
+	@Autowired
 	private PlanHandler planHandler;
 
 	@Context
@@ -138,9 +145,14 @@ public class PlanApi {
 											description = "XPlanArchive (application/zip) file to upload")),
 							@Content(mediaType = "application/x-zip-compressed",
 									schema = @Schema(type = "string", format = "binary",
-											description = "XPlanArchive (application/zip) file to upload")) },
+											description = "XPlanArchive (application/zip) file to upload")),
+							@Content(mediaType = "text/xml",
+									schema = @Schema(type = "string", format = "binary",
+											description = "XPlanGML file to upload")),
+							@Content(mediaType = "application/gml+xml", schema = @Schema(type = "string",
+									format = "binary", description = "XPlanGML file to upload")) },
 					required = true))
-	public Response callImport(@Context Request request, @Valid File body,
+	public Response callImportZip(@Context Request request, @Valid File body,
 			@HeaderParam("X-Filename") @Parameter(description = "Name of the file to be uploaded",
 					example = "File names such as xplan.gml, xplan.xml, xplan.zip",
 					schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$")) String xFilename,
@@ -160,26 +172,38 @@ public class PlanApi {
 					schema = @Schema(allowableValues = { "IN_AUFSTELLUNG", "FESTGESTELLT", "ARCHIVIERT" },
 							example = "FESTGESTELLT")) String planStatus)
 			throws Exception {
-		String validationName = detectOrCreateValidationName(xFilename);
-		DefaultValidationConfiguration validationConfig = managerApiConfiguration.getDefaultValidationConfiguration();
-		ValidationSettings validationSettings = createValidationSettings(validationName, WITH_GEOMETRISCH_VALIDATION,
-				overwriteByRequest(skipSemantisch, validationConfig.isSkipSemantisch()),
-				overwriteByRequest(skipFlaechenschluss, validationConfig.isSkipFlaechenschluss()),
-				overwriteByRequest(skipGeltungsbereich, validationConfig.isSkipGeltungsbereich()),
-				overwriteByRequest(skipLaufrichtung, validationConfig.isSkipLaufrichtung()), profiles);
-		List<XPlan> xPlans = planHandler.importPlan(body, xFilename, validationSettings, internalId, planStatus);
-		MediaType requestedMediaType = requestedMediaType(request);
-		if (XPLANBOX_V2_JSON_TYPE.equals(requestedMediaType)) {
-			List<PlanInfo> planInfos = createPlanInfo(requestedMediaType, xPlans);
-			return Response.created(getSelfLink(planInfos)).entity(planInfos).build();
+		XPlanArchive xPlanArchive;
+		try {
+			xPlanArchive = archiveCreator.createXPlanArchiveFromZip(body);
 		}
-		if (xPlans.size() > 1) {
-			throw new InvalidApiVersion(
-					"The imported XPlanArchive contains multiple XPlan GML instances, accept header " + XPLANBOX_V2_JSON
-							+ "  must be used to import this plan.");
+		catch (Exception e) {
+			throw new InvalidXPlanGmlOrArchive("Could not read attached file as XPlanArchive", e);
 		}
-		PlanInfo planInfo = createPlanInfo(requestedMediaType, xPlans.get(0));
-		return Response.created(getSelfLink(planInfo)).entity(planInfo).build();
+		return callImport(request, xFilename, skipSemantisch, skipFlaechenschluss, skipGeltungsbereich,
+				skipLaufrichtung, profiles, internalId, planStatus, xPlanArchive);
+	}
+
+	@POST
+	@Consumes({ "text/xml", "application/gml+xml" })
+	@Produces({ "application/json", XPLANBOX_NO_VERSION_JSON, XPLANBOX_V1_JSON, XPLANBOX_V2_JSON })
+	@Hidden
+	public Response callImportGml(@Context Request request, @Valid File body,
+			@HeaderParam("X-Filename") String xFilename,
+			@QueryParam("skipSemantisch") @DefaultValue("false") Boolean skipSemantisch,
+			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
+			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,
+			@QueryParam("skipLaufrichtung") @DefaultValue("false") Boolean skipLaufrichtung,
+			@QueryParam("profiles") List<String> profiles, @QueryParam("internalId") String internalId,
+			@QueryParam("planStatus") String planStatus) throws Exception {
+		XPlanArchive xPlanArchive;
+		try {
+			xPlanArchive = archiveCreator.createXPlanArchiveFromGml(body);
+		}
+		catch (Exception e) {
+			throw new InvalidXPlanGmlOrArchive("Could not read attached file as XPlanArchive", e);
+		}
+		return callImport(request, xFilename, skipSemantisch, skipFlaechenschluss, skipGeltungsbereich,
+				skipLaufrichtung, profiles, internalId, planStatus, xPlanArchive);
 	}
 
 	@DELETE
@@ -246,6 +270,32 @@ public class PlanApi {
 					.alternateMediaType(Arrays.asList(APPLICATION_XML, APPLICATION_ZIP)).build();
 		}).collect(Collectors.toList());
 		return Response.ok().entity(planInfos).build();
+	}
+
+	private Response callImport(Request request, String xFilename, Boolean skipSemantisch, Boolean skipFlaechenschluss,
+			Boolean skipGeltungsbereich, Boolean skipLaufrichtung, List<String> profiles, String internalId,
+			String planStatus, XPlanArchive xPlanArchive) throws Exception {
+		String validationName = detectOrCreateValidationName(xFilename);
+		DefaultValidationConfiguration validationConfig = managerApiConfiguration.getDefaultValidationConfiguration();
+		ValidationSettings validationSettings = createValidationSettings(validationName, WITH_GEOMETRISCH_VALIDATION,
+				overwriteByRequest(skipSemantisch, validationConfig.isSkipSemantisch()),
+				overwriteByRequest(skipFlaechenschluss, validationConfig.isSkipFlaechenschluss()),
+				overwriteByRequest(skipGeltungsbereich, validationConfig.isSkipGeltungsbereich()),
+				overwriteByRequest(skipLaufrichtung, validationConfig.isSkipLaufrichtung()), profiles);
+		List<XPlan> xPlans = planHandler.importPlan(xPlanArchive, xFilename, validationSettings, internalId,
+				planStatus);
+		MediaType requestedMediaType = requestedMediaType(request);
+		if (XPLANBOX_V2_JSON_TYPE.equals(requestedMediaType)) {
+			List<PlanInfo> planInfos = createPlanInfo(requestedMediaType, xPlans);
+			return Response.created(getSelfLink(planInfos)).entity(planInfos).build();
+		}
+		if (xPlans.size() > 1) {
+			throw new InvalidApiVersion(
+					"The imported XPlanArchive contains multiple XPlan GML instances, accept header " + XPLANBOX_V2_JSON
+							+ "  must be used to import this plan.");
+		}
+		PlanInfo planInfo = createPlanInfo(requestedMediaType, xPlans.get(0));
+		return Response.created(getSelfLink(planInfo)).entity(planInfo).build();
 	}
 
 	private List<PlanInfo> createPlanInfo(MediaType requestedMediaType, List<XPlan> plans) {
