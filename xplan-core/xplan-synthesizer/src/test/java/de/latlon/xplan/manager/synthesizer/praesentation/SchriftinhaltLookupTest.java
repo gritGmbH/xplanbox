@@ -99,4 +99,15 @@ public class SchriftinhaltLookupTest extends AbstractPraesentationsobjektLookupT
 		assertThat(evaluate.getAsText(), is("Test mit Schriftinhalt"));
 	}
 
+	@Test
+	public void testEvaluate_complexProperty() throws Exception {
+		FeatureCollection features = load(XPLAN_54,
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
+
+		SchriftinhaltLookup lookup = new SchriftinhaltLookup();
+		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_dachgestaltung",
+				lookup);
+		assertThat(evaluate, is(nullValue()));
+	}
+
 }

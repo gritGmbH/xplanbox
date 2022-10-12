@@ -110,6 +110,17 @@ public class StylesheetIdLookupTest extends AbstractPraesentationsobjektLookupTe
 	}
 
 	@Test
+	public void testEvaluate_complexProperty() throws Exception {
+		FeatureCollection features = load(XPLAN_54,
+				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan002_5-4.gml");
+
+		StylesheetIdLookup lookup = new StylesheetIdLookup();
+		PrimitiveValue evaluate = getEvaluate(features, "GML_22989f35-59e8-4260-8c60-e706b916a886_dachgestaltung",
+				lookup);
+		assertThat(evaluate.getAsText(), is("BP_BaugebietsTeilFlaeche_F"));
+	}
+
+	@Test
 	public void testEvaluate_art_Z() throws Exception {
 		FeatureCollection features = load(XPLAN_41,
 				"/de/latlon/xplan/manager/synthesizer/praesentation/BPlan003_4-1.gml");
