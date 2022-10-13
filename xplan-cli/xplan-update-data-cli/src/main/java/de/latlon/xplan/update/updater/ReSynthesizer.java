@@ -44,7 +44,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static de.latlon.xplan.manager.transaction.XPlanTransactionManager.SYN_FEATURETYPE_PREFIX;
+import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 
 /**
  * Re-synthesizes single or all available plans.
