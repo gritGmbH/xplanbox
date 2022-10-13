@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
@@ -106,27 +107,25 @@ public class ReSynthesizer {
 		XPlanType planType = XPlanType.valueOf(plan.getType());
 		XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 
-		try (InputStream originalPlan = xPlanDao.retrieveXPlanArtefact(planId)) {
-			if (originalPlan == null) {
-				LOG.warn("FeatureCollection is not available! Plan with id {} is skipped.", planId);
-				return;
-			}
-			XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan,
-					version, planType);
-			boolean idsMatchSynFeatureType = featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
-			if (!idsMatchSynFeatureType) {
+		FeatureCollection featureCollection = xPlanDao.retrieveFeatureCollection(plan);
+		if (featureCollection.isEmpty()) {
+			LOG.warn("FeatureCollection is not available! Plan with id {} is skipped.", planId);
+			return;
+		}
+		XPlanFeatureCollection xPlanFeatureCollection = new XPlanFeatureCollectionBuilder(featureCollection, planType)
+				.build();
+		boolean useOriginalXPlan = !featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
+		if (useOriginalXPlan) {
+			try (InputStream originalPlan = xPlanDao.retrieveXPlanArtefact(planId)) {
+				xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan, version, planType);
 				reassignFids(xPlanFeatureCollection);
 			}
-
-			Date sortDate = sortPropertyReader.readSortDate(planType, version, xPlanFeatureCollection.getFeatures());
-
-			FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(version,
-					xPlanFeatureCollection);
-			addInternalId(plan, synthesizedFeatureCollection);
-
-			xPlanDao.updateXPlanSynFeatureCollection(plan, synthesizedFeatureCollection, xPlanFeatureCollection,
-					sortDate, !idsMatchSynFeatureType);
 		}
+		Date sortDate = sortPropertyReader.readSortDate(planType, version, xPlanFeatureCollection.getFeatures());
+		FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(version, xPlanFeatureCollection);
+		addInternalId(plan, synthesizedFeatureCollection);
+		xPlanDao.updateXPlanSynFeatureCollection(plan, synthesizedFeatureCollection, xPlanFeatureCollection, sortDate,
+				useOriginalXPlan);
 	}
 
 	private void addInternalId(XPlan plan, FeatureCollection synthesizedFeatureCollection) {
