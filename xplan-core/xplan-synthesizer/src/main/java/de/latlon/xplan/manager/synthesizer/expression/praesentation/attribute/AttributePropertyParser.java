@@ -158,8 +158,7 @@ public class AttributePropertyParser {
 				return parseSteps(properties, firstStep.index, firstStep, steps);
 			}
 			else {
-				LOG.warn(
-						"Referenced feature with id {} contains no property with name {} on index {}.",
+				LOG.warn("Referenced feature with id {} contains no property with name {} on index {}.",
 						referencedFeature.getId(), firstStep.name, firstStep.index);
 			}
 		}
