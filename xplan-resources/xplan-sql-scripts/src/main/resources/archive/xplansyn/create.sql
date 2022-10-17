@@ -16,7 +16,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L% --- */
-/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 30.09.2022, 07:54:15 --- */
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 17.10.2022, 09:15:43 --- */
 CREATE SCHEMA xplansynarchive; 
 SET search_path TO xplansynarchive,public;
 CREATE TABLE xplansynarchive.xplan_bp_abgrabungsflaeche (
@@ -13479,6 +13479,7 @@ CREATE TABLE xplansynarchive.xplan_so_strassenverkehr (
     xplan_zu_ausn integer,
     xplan_mzspezial text,
     xplan_artderfestlegung text,
+    xplan_artderfestlegungwert text,
     xplan_einteilung text,
     xplan_einteilungwert text,
     xplan_name text,
