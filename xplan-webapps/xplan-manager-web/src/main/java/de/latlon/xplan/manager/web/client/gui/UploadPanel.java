@@ -339,7 +339,7 @@ public class UploadPanel extends DecoratorPanel {
 
 			private boolean isSupportedType(final FileUpload upload) {
 				String filename = upload.getFilename().toLowerCase();
-				return filename.endsWith(".zip");
+				return filename.endsWith(".zip") || filename.endsWith(".xml") || filename.endsWith(".gml");
 			}
 
 			private boolean isValidFileName(final FileUpload upload) {
