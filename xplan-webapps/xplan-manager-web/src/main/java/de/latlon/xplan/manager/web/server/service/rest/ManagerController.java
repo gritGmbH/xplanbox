@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -337,7 +337,7 @@ public class ManagerController {
 			LOG.info("Found local plan to import.");
 			archiveManager.savePlanInSession(session, plan);
 			try {
-				String fileToBeImported = retrieveFileToBeImported(plan, planId);
+				String fileToBeImported = retrieveFileToBeImported(plan);
 				XPlanArchive archive = manager.analyzeArchive(fileToBeImported);
 				ICRS crs = null;
 				if (defaultCrs != null)
@@ -368,7 +368,7 @@ public class ManagerController {
 		HttpSession session = request.getSession();
 		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = retrieveFileToBeImported(plan, id);
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			String planName = manager.retrievePlanName(fileToBeImported);
 			Map<String, String> matchingInternalIds = internalIdRetriever.getMatchingInternalIds(planName);
 			if (!matchingInternalIds.isEmpty())
@@ -395,7 +395,7 @@ public class ManagerController {
 		HttpSession session = request.getSession();
 		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = retrieveFileToBeImported(plan, id);
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			return manager.isCrsSet(fileToBeImported);
 		}
 		catch (Exception e) {
@@ -416,7 +416,7 @@ public class ManagerController {
 		HttpSession session = request.getSession();
 		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = retrieveFileToBeImported(plan, id);
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			return manager.evaluateRasterdata(fileToBeImported);
 		}
 		catch (Exception e) {
@@ -438,7 +438,7 @@ public class ManagerController {
 		try {
 			if ("null".equals(status))
 				status = null;
-			String fileToBeImported = retrieveFileToBeImported(plan, id);
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			return manager.evaluatePlanNameAndStatus(fileToBeImported, status);
 		}
 		catch (Exception e) {
@@ -460,7 +460,7 @@ public class ManagerController {
 		HttpSession session = request.getSession();
 		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = retrieveFileToBeImported(plan, id);
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			Pair<Rechtsstand, PlanStatus> rechtsstandPlanStatusPair = manager.determineRechtsstand(fileToBeImported);
 			return new RechtsstandAndPlanStatus(rechtsstandPlanStatusPair.first, rechtsstandPlanStatusPair.second);
 		}
@@ -533,10 +533,9 @@ public class ManagerController {
 		}
 	}
 
-	private String retrieveFileToBeImported(XPlan xPlan, String planId) {
-		String fileName = archiveManager.determineFileName(xPlan, planId);
-		String fileToBeImported = archiveManager.getUploadFolder() + "/" + fileName;
-		return fileToBeImported;
+	private String retrieveFileToBeImported(XPlan xPlan) {
+		String fileName = archiveManager.determineFileNameAndFolder(xPlan);
+		return archiveManager.getUploadFolder() + "/" + fileName;
 	}
 
 	private void populateResponseAndWriteOutput(HttpServletResponse response, XPlan requestedPlan,
@@ -592,6 +591,8 @@ public class ManagerController {
 
 	private void uploadZipFile(MultipartFile file, XPlan plan) throws IOException {
 		File localFile = archiveManager.readArchiveFromFilesystem(plan);
+		localFile.getParentFile().mkdir();
+		localFile.createNewFile();
 		try (FileOutputStream localOutput = new FileOutputStream(localFile)) {
 			write(file.getBytes(), localOutput);
 		}

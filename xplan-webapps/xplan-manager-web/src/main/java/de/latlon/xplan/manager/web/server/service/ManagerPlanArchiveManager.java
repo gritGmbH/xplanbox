@@ -58,17 +58,12 @@ public class ManagerPlanArchiveManager {
 	}
 
 	public File readArchiveFromFilesystem(XPlan plan) throws IOException {
-		String fileToBeValidated = determineFileName(plan, plan.getId());
+		String fileToBeValidated = determineFileNameAndFolder(plan);
 		return new File(getUploadFolder(), fileToBeValidated);
 	}
 
-	public String determineFileName(XPlan plan, String planId) {
-		String suffix = ".zip";
-		String name = plan.getName();
-		if (name.indexOf(".") > 0) {
-			suffix = name.substring(name.lastIndexOf("."));
-		}
-		return plan.getId() + suffix;
+	public String determineFileNameAndFolder(XPlan plan) {
+		return plan.getId() + "/" + plan.getName();
 
 	}
 
