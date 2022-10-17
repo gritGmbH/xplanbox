@@ -38,12 +38,21 @@ import static org.junit.Assert.assertEquals;
 public class KomplexeZweckbestimmungFlattenerTest {
 
 	@Test
-	public void testFlatten_zweckbestimmung() throws Exception {
+	public void testFlatten_zweckbestimmungTranslate() throws Exception {
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/BPlan001_6-0.zip");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:zweckbestimmung"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals("[Allgemein: Naturerfahrungsraum|Aufschrift: Grüne Hölle]", value.toString());
+	}
+
+	@Test
+	public void testFlatten_zweckbestimmungCode() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load("xplan60/BPlan001_6-0.zip");
+		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:zweckbestimmung"), false, false);
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals("[Allgemein: 2700|Aufschrift: Grüne Hölle]", value.toString());
 	}
 
 }

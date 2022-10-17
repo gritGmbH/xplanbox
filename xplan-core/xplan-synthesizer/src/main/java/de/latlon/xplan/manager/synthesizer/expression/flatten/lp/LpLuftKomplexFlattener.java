@@ -10,12 +10,12 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -42,10 +42,10 @@ public class LpLuftKomplexFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode node) {
+	public String flatten(TypedObjectNode node, boolean translateCodes) {
 		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(((ElementNode) node).getName());
 		List<Pair<String, String>> properties = new ArrayList<>();
-		appendTranslatedCode("Art", node, "luftArt", version, "LP_LuftArt", properties);
+		appendCode("Art", node, "luftArt", version, "LP_LuftArt", translateCodes, properties);
 		append("Erläuterung", node, "luftText", properties);
 		return encode(properties);
 	}

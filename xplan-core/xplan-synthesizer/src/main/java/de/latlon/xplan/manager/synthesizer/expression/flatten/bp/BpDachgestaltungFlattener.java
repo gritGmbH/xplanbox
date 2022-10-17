@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -41,14 +41,14 @@ public class BpDachgestaltungFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode bpDachgestaltung) {
+	public String flatten(TypedObjectNode bpDachgestaltung, boolean translateCodes) {
 		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(((ElementNode) bpDachgestaltung).getName());
 		List<Pair<String, String>> properties = new ArrayList<>();
 		append("Dachneigung", bpDachgestaltung, "DN", properties);
 		append("Dachneigung Min", bpDachgestaltung, "DNmin", properties);
 		append("Dachneigung Max", bpDachgestaltung, "DNmax", properties);
 		append("Dachneigung Zwingend", bpDachgestaltung, "DNzwingend", properties);
-		appendTranslatedCode("Dachform", bpDachgestaltung, "dachform", version, "BP_Dachform", properties);
+		appendCode("Dachform", bpDachgestaltung, "dachform", version, "BP_Dachform", translateCodes, properties);
 		append("Detaillierte Dachform", bpDachgestaltung, "detaillierteDachform", properties);
 		return encode(properties);
 	}

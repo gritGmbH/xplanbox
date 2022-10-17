@@ -102,6 +102,9 @@ class RuleParser {
 	}
 
 	private Expression parseXPlanFlattenFeature(List<String> args) {
+		if (args.size() > 2) {
+			return new XplanFlattenProperty(parse(args.get(0)), asBoolean(args.get(1)), asBoolean(args.get(2)));
+		}
 		if (args.size() > 1) {
 			return new XplanFlattenProperty(parse(args.get(0)), asBoolean(args.get(1)));
 		}

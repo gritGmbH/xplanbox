@@ -41,10 +41,10 @@ public class KomplexeSondernutzungFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode node) {
+	public String flatten(TypedObjectNode node, boolean translateCodes) {
 		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(((ElementNode) node).getName());
 		List<Pair<String, String>> properties = new ArrayList<>();
-		appendTranslatedCode("Allgemein", node, "allgemein", version, "XP_Sondernutzungen", properties);
+		appendCode("Allgemein", node, "allgemein", version, "XP_Sondernutzungen", translateCodes, properties);
 		append("Nutzung", node, "nutzungText", properties);
 		append("Aufschrift", node, "aufschrift", properties);
 		return encode(properties);

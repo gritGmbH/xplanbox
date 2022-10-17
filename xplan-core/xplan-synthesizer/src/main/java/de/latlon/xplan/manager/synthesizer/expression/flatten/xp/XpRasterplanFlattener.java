@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -66,7 +66,7 @@ public class XpRasterplanFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode rasterPlanFeatureEl) {
+	public String flatten(TypedObjectNode rasterPlanFeatureEl, boolean translateCodes) {
 		Feature feature = (Feature) rasterPlanFeatureEl;
 		String ns = feature.getName().getNamespaceURI();
 		QName refName = new QName(ns, "refScan");
@@ -77,11 +77,12 @@ public class XpRasterplanFlattener extends AbstractFlattener {
 			if (value != null) {
 				if (value instanceof FeatureReference) {
 					Feature xpExterneReferenzPlan = ((FeatureReference) value).getReferencedObject();
-					s += new XpExterneReferenzFlattener(xpExterneReferenzPlan).flatten(xpExterneReferenzPlan);
+					s += new XpExterneReferenzFlattener(xpExterneReferenzPlan).flatten(xpExterneReferenzPlan,
+							translateCodes);
 				}
 				else if (value instanceof ElementNode) {
 					ElementNode elNode = (ElementNode) value;
-					s += new XpExterneReferenzFlattener(feature).flatten(getFirstChild(elNode));
+					s += new XpExterneReferenzFlattener(feature).flatten(getFirstChild(elNode), translateCodes);
 				}
 				else {
 					LOG.warn("Flattening of nodes from class {} is not supported yet!", value.getClass());

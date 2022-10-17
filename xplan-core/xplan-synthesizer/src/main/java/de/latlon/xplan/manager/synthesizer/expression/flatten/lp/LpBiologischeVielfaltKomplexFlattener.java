@@ -10,12 +10,12 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -35,13 +35,22 @@ import java.util.List;
  */
 public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 
+	private boolean translateCodes;
+
+	/**
+	 * @param translateCodes <code>true</code> if code properties should be translated
+	 */
+	public LpBiologischeVielfaltKomplexFlattener(boolean translateCodes) {
+		this.translateCodes = translateCodes;
+	}
+
 	@Override
 	public boolean accepts(TypedObjectNode node) {
 		return acceptsElementNode(node, "LP_BiologischeVielfaltKomplex");
 	}
 
 	@Override
-	public String flatten(TypedObjectNode node) {
+	public String flatten(TypedObjectNode node, boolean translateCodes) {
 		List<Pair<String, String>> properties = new ArrayList<>();
 		appendFlattenedValue("Biologische Vielfalt", node, new LpBiologischeVielfaltTypKomplexFlattener(),
 				"bioVielfaltTypus", properties);
@@ -66,9 +75,9 @@ public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 		if (property == null)
 			return null;
 		if (flattener.accepts(property)) {
-			return flattener.flatten(property);
+			return flattener.flatten(property, translateCodes);
 		}
-		return new DefaultFlattener().flatten(node);
+		return new DefaultFlattener().flatten(node, translateCodes);
 	}
 
 }

@@ -105,6 +105,8 @@ public class XplanFlattenProperty implements Expression {
 
 	private final boolean sortProperties;
 
+	private boolean translateCodes;
+
 	private final List<Flattener> customFlatteners = new ArrayList<Flattener>();
 
 	/**
@@ -120,8 +122,20 @@ public class XplanFlattenProperty implements Expression {
 	 * alphabetically, false otherwise
 	 */
 	public XplanFlattenProperty(Expression exp, boolean sortProperties) {
+		this(exp, sortProperties, true);
+	}
+
+	/**
+	 * @param exp an expression that targets a property node
+	 * @param sortProperties <code>true</code> if the properties should be sorted
+	 * alphabetically, false otherwise
+	 * @param translateCodes <code>true</code> if code properties should be translated
+	 *
+	 */
+	public XplanFlattenProperty(Expression exp, boolean sortProperties, boolean translateCodes) {
 		this.exp = exp;
 		this.sortProperties = sortProperties;
+		this.translateCodes = translateCodes;
 		customFlatteners.add(new KomplexeSondernutzungFlattener());
 		customFlatteners.add(new KomplexeZweckbestimmungFlattener());
 		customFlatteners.add(new BpDachgestaltungFlattener());
@@ -130,7 +144,7 @@ public class XplanFlattenProperty implements Expression {
 		customFlatteners.add(new BpRichtungssektorFlattener());
 		customFlatteners.add(new BpVeraenderungssperreDatenFlattener());
 		customFlatteners.add(new LpAdressatKomplexFlattener());
-		customFlatteners.add(new LpBiologischeVielfaltKomplexFlattener());
+		customFlatteners.add(new LpBiologischeVielfaltKomplexFlattener(translateCodes));
 		customFlatteners.add(new LpBiologischeVielfaltTypKomplexFlattener());
 		customFlatteners.add(new LpBioVfBiotoptypKomplexFlattener());
 		customFlatteners.add(new LpBioVfPflanzenArtKomplexFlattener());
@@ -203,7 +217,7 @@ public class XplanFlattenProperty implements Expression {
 				value = getFirstChild((ElementNode) value);
 			}
 			catch (Exception e) {
-				return new DefaultFlattener().flatten(value);
+				return new DefaultFlattener().flatten(value, translateCodes);
 			}
 		}
 		else if (value instanceof Reference) {
@@ -239,13 +253,13 @@ public class XplanFlattenProperty implements Expression {
 		}
 		for (Flattener flattener : customFlatteners) {
 			if (flattener.accepts(value)) {
-				return flattener.flatten(value);
+				return flattener.flatten(value, translateCodes);
 			}
 		}
 		if (extRefFlattener.accepts(value)) {
-			return extRefFlattener.flatten(value);
+			return extRefFlattener.flatten(value, translateCodes);
 		}
-		return new DefaultFlattener().flatten(value);
+		return new DefaultFlattener().flatten(value, translateCodes);
 	}
 
 	private TypedObjectNode getFirstChild(ElementNode elNode) {
