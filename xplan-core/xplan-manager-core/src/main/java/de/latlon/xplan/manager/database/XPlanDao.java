@@ -641,9 +641,11 @@ public class XPlanDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.prepareStatement("SELECT data FROM xplanmgr.artefacts WHERE plan=? and filename=?");
+			stmt = conn.prepareStatement(
+					"SELECT data FROM xplanmgr.artefacts WHERE plan=? and (filename=? OR EXISTS (SELECT plan FROM xplanmgr.artefacts WHERE plan=? GROUP BY plan HAVING count(plan)=1) )");
 			stmt.setInt(1, planId);
 			stmt.setString(2, MAIN_FILE);
+			stmt.setInt(3, planId);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				return unzipArtefact(rs.getBinaryStream(1));
