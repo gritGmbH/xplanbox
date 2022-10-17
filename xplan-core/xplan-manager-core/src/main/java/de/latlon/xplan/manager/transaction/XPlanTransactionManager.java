@@ -64,6 +64,7 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
+import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -73,8 +74,6 @@ public abstract class XPlanTransactionManager {
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanTransactionManager.class);
 
 	private static final DateFormat DATEFORMAT = createDateFormat();
-
-	public static final String SYN_FEATURETYPE_PREFIX = "XPLAN_";
 
 	protected final XPlanSynthesizer xPlanSynthesizer;
 
