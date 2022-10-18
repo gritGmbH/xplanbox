@@ -34,4 +34,10 @@ public interface ZipEntryWithContent extends ArchiveEntry {
 	 */
 	InputStream retrieveContentAsStream();
 
+	/**
+	 * @return <code>true</code> if the ArchiveEntry is the XPlanGML, <code>false</code>
+	 * otherwise
+	 */
+	boolean isXPlanGml();
+
 }

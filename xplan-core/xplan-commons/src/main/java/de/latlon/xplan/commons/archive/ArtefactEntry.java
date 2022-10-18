@@ -58,4 +58,9 @@ public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithConten
 		return new ByteArrayInputStream(content);
 	}
 
+	@Override
+	public boolean isXPlanGml() {
+		return false;
+	}
+
 }

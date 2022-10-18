@@ -52,4 +52,9 @@ public class MainZipEntry implements ZipEntryWithContent {
 		return name;
 	}
 
+	@Override
+	public boolean isXPlanGml() {
+		return true;
+	}
+
 }
