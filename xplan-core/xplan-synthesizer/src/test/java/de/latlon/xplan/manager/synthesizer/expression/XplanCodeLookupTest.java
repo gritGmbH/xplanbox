@@ -27,9 +27,10 @@ import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
-import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -42,7 +43,7 @@ public class XplanCodeLookupTest {
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("BPlan", value + "");
+		assertThat(value.getAsText(), is("BPlan"));
 	}
 
 	@Test
@@ -51,7 +52,17 @@ public class XplanCodeLookupTest {
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("BPlan", value + "");
+		assertThat(value.getAsText(), is("BPlan"));
+	}
+
+	@Test
+	public void testComplexProperty() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_60);
+		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
+		Xpath xpath = new Xpath("xplan:zweckbestimmung/xplan:BP_KomplexeZweckbestGruen/xplan:allgemein");
+		XplanCodeLookup expr = new XplanCodeLookup(xpath, "XP_ZweckbestimmungGruen");
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertThat(value.getAsText(), is("Parkanlage"));
 	}
 
 }

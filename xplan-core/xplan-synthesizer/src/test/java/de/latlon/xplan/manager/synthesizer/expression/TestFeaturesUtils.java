@@ -83,6 +83,8 @@ public class TestFeaturesUtils {
 				return load(version, "xplan50.xml");
 			case XPLAN_53:
 				return load(version, "xplan53.xml");
+			case XPLAN_60:
+				return load(version, "xplan60.xml");
 		}
 		throw new IllegalArgumentException();
 	}
