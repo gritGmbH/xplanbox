@@ -104,7 +104,8 @@
         "removeLayer": "Layer entfernen",
         "levelUp": "Ebene nach oben",
         "levelDown": "Ebene nach unten",
-        "externalTechnicalData": "Externe Fachdaten"
+        "externalTechnicalData": "Externe Fachdaten",
+        "selectedFeatures": "Auswahl:"
     },
     "date": "Datum",
     "time": "Zeit",
@@ -468,6 +469,9 @@
                 "download": {
                     "label": "Gefilterte Daten herunterladen",
                     "labelBtn": "Herunterladen"
+                },
+                "upload": {
+                    "geometryParseError": "Die angegebene Geometry konnte nicht geladen werden"
                 }
             },
             "pendler": {
@@ -827,6 +831,54 @@
                 "district": "Gemarkung",
                 "parcelNumber": "Flurstücksnummer"
             },
+            "wfsTransaction": {
+                "layerSelectLabel" : "Aktueller Layer:",
+                "polygonHint": "Halten Sie die Strg-Taste und bewegen Sie die Maus mit gedrückter Maustaste, um ein Polygon zu bewegen.",
+                "interactionSelect": {
+                    "update": "Geometrie bearbeiten",
+                    "delete": "Geometrie löschen",
+                    "line": "Linie erfassen",
+                    "point": "Punkt erfassen",
+                    "polygon": "Fläche erfassen"
+                },
+                "error": {
+                    "allLayersNotSelected": "Es wurde kein für dieses Werkzeug konfigurierter WFS-T Layer im Themenbaum aktiviert.",
+                    "geometryOutOfRange": "Die gezeichnete Geometrie befindet sich außerhalb des erlaubten Bereiches des Layers.",
+                    "layerNotConfiguredCorrectly": "Es liegen Probleme bei der Konfiguration des ausgewählten Layers für die Nutzung mit diesem Werkzeug vor; möglicherweise fehlt der Parameter 'featurePrefix'.",
+                    "layerNotSelected": "Der ausgewählte Layer wurde noch nicht im Themenbaum aktiviert.",
+                    "noFeature": "Bitte zeichnen Sie eine zu Ihren Einträgen assoziierte Geometrie.",
+                    "onlyNumbersAllowed": "Das Eingabefeld erlaubt nur Zahlen.",
+                    "requiredPropertiesNotSet": "Bitte geben Sie einen validen Wert für die verpflichtenden Felder {{properties}} ein."
+                },
+                "transaction": {
+                    "success": {
+                        "baseSuccess": "Das {{transaction}} der Geometrie und ihrer Parameter war erfolgreich.",
+                        "delete": "$t(common:modules.tools.wfsTransaction.transaction.success.baseSuccess, {\"transaction\": 'Löschen'})",
+                        "insert": "$t(common:modules.tools.wfsTransaction.transaction.success.baseSuccess, {\"transaction\": 'Speichern'})",
+                        "selectedUpdate" : "$t(common:modules.tools.wfsTransaction.transaction.success.baseSuccess, {\"transaction\": 'Bearbeiten'})"
+                    },
+                    "error": {
+                        "genericFailedTransaction": "Das Speichern bzw. Löschen der Geometrie und ihrer Parameter ist leider fehlgeschlagen. Bitte wenden Sie sich an Ihren Administrator.",
+                        "axios": "$t(common:modules.tools.wfsTransaction.transaction.error.genericFailedTransaction)",
+                        "baseError": "Das Speichern der Geometrie und ihrer Parameter ist leider fehlgeschlagen.",
+                        "InvalidValue": "$t(common:modules.tools.wfsTransaction.transaction.error.baseError) Eine der Eingaben ist unzulässig bzw. nicht im richtigen Format.",
+                        "InvalidParameterValue": "$t(common:modules.tools.wfsTransaction.transaction.error.InvalidValue)",
+                        "MissingParameterValue": "$t(common:modules.tools.wfsTransaction.transaction.error.baseError) Einer oder mehrere der Parameter haben keine Eingabe und der Dienst verfügt über keinen Defaultwert.",
+                        "OperationNotSupported": "$t(common:modules.tools.wfsTransaction.transaction.error.baseError) Der Dienst unterstützt die durchgeführte Operation nicht.",
+                        "OperationParsingFailed": "$t(common:modules.tools.wfsTransaction.transaction.error.baseError) Die Transaktion konnte vom Dienst nicht verarbeitet werden. Bitte wenden Sie sich an den Administrator.",
+                        "OperationProcessingFailed": "$t(common:modules.tools.wfsTransaction.transaction.error.baseError) Während der Transaktion ist ein Fehler aufgetreten."
+                    }
+                },
+                "deleteInteraction": {
+                  "confirm": "Löschen",
+                  "headline": "Achtung",
+                  "text": "Sind Sie sich sicher, dass Sie diese Geometrie löschen möchten?"
+                },
+                "form": {
+                    "discard": "Verwerfen",
+                    "save": "Speichern"
+                }
+            },
             "routing": {
                 "coordinateInputHelp": "Suchen Sie einen Ort oder fügen Sie einen Punkt durch Klick in die Karte hinzu",
                 "startpoint": "Startpunkt",
@@ -1035,7 +1087,8 @@
                 "location": "Ort",
                 "subject": "Thema (externe Fachdaten)",
                 "topic": "Thema (Fachdaten)",
-                "general": "Fachdaten"
+                "general": "Fachdaten",
+                "folder": "Ordner (Fachdaten)"
             },
             "specialWFS": {
                 "ongoing": "im Verfahren",
@@ -1132,6 +1185,7 @@
             "newYearsEve": "Silvester"
         },
         "parametricURL": {
+            "name": "URL-Parameter",
             "alertWrongLayerIds": "Im aufgerufenen Link sind Themen enthalten, die nicht mehr gefunden werden können.</br> Um diese Fehlermeldung zukünftig nicht mehr zu erhalten unternehmen Sie bitte folgende Schritte:<ul> <li> Prüfen Sie Ihren gewünschten Kartenausschnitt auf fehlende Inhalte.</li> <li>Speichern Sie Ihre Auswahl erneut mit dem Werkzeug \"Auswahl Speichern\" ab.</li></ul>",
             "alertWrongAmountVisibility": "<strong>Parametrisierter Aufruf fehlerhaft!</strong></br>Die Angaben zu <b>layerIds</b> passen nicht zu <b>visibility</b> bzw. <b>transparency</b>. Sie müssen jeweils in der gleichen Anzahl angegeben werden.",
             "errorLoadConfig": "Die gewünschte Konfigurationsdatei konnte unter folgendem Pfad nicht geladen werden: {{url}}<br>Der URL-Paramater <strong>configJson</strong> verlangt eine Datei mit der Endung \".json\".<br>Es wird versucht die config.json unter dem Standardpfad zu laden.",
