@@ -1,5 +1,3 @@
-package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
-
 /*-
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
@@ -20,29 +18,33 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.manager.synthesizer.expression.flatten.complex.model;
 
-import de.latlon.xplan.manager.synthesizer.expression.flatten.AbstractFlattener;
-import org.deegree.commons.tom.TypedObjectNode;
-import org.deegree.commons.utils.Pair;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class LpReferenzLPObjektFlattener extends AbstractFlattener {
+public class DataTypeFlattener {
 
-	@Override
-	public boolean accepts(TypedObjectNode node) {
-		return acceptsElementNode(node, "LP_ReferenzLPObjekt");
+	private String acceptedClass;
+
+	private List<FlattenerProperty> properties;
+
+	public String getAcceptedClass() {
+		return acceptedClass;
 	}
 
-	@Override
-	public String flatten(TypedObjectNode node, boolean translateCodes) {
-		List<Pair<String, String>> properties = new ArrayList<>();
-		append("Beschreibung", node, "beschreibung", properties);
-		return encode(properties);
+	public void setAcceptedClass(String acceptedClass) {
+		this.acceptedClass = acceptedClass;
+	}
+
+	public List<FlattenerProperty> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(List<FlattenerProperty> properties) {
+		this.properties = properties;
 	}
 
 }

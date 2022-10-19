@@ -24,6 +24,7 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.AbstractFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.DefaultFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.Flattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.complex.ComplexFlattener;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.utils.Pair;
 
@@ -52,12 +53,10 @@ public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 	@Override
 	public String flatten(TypedObjectNode node, boolean translateCodes) {
 		List<Pair<String, String>> properties = new ArrayList<>();
-		appendFlattenedValue("Biologische Vielfalt", node, new LpBiologischeVielfaltTypKomplexFlattener(),
-				"bioVielfaltTypus", properties);
-		appendFlattenedValue("Planzenart", node, new LpBioVfPflanzenArtKomplexFlattener(), "bioVfPflanzenArt",
-				properties);
-		appendFlattenedValue("Tierart", node, new LpBioVfTiereArtKomplexFlattener(), "bioVfTierArt", properties);
-		appendFlattenedValue("Biotoptyp", node, new LpBioVfBiotoptypKomplexFlattener(), "bioVfBiotoptyp", properties);
+		appendFlattenedValue("Biologische Vielfalt", node, new ComplexFlattener(), "bioVielfaltTypus", properties);
+		appendFlattenedValue("Planzenart", node, new ComplexFlattener(), "bioVfPflanzenArt", properties);
+		appendFlattenedValue("Tierart", node, new ComplexFlattener(), "bioVfTierArt", properties);
+		appendFlattenedValue("Biotoptyp", node, new ComplexFlattener(), "bioVfBiotoptyp", properties);
 		appendBoolean("von gemeinschaftlichem Interesse kartiert", node, "bioVfArtFFHAnhangII", properties);
 		return encode(properties);
 	}
