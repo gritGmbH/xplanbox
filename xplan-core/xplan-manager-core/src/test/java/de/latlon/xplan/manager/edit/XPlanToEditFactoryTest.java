@@ -68,6 +68,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGED_BY;
 import static de.latlon.xplan.manager.web.shared.edit.ChangeType.CHANGES;
@@ -449,6 +450,18 @@ public class XPlanToEditFactoryTest {
 		assertThat(xPlanToEdit.getTexts().size(), is(0));
 		assertThat(xPlanToEdit.getReferences().size(), is(0));
 		assertThat(xPlanToEdit.getChanges().size(), is(0));
+	}
+
+	@Test
+	public void testCreateXPlanToEdit_XPlan54_incompleteRefScan() throws Exception {
+		FeatureCollection featureCollection = readXPlanGml(XPLAN_54, "xplan54/BPlan002_5-4.gml");
+
+		XPlanToEdit xPlanToEdit = factory.createXPlanToEdit(mockXPlan(XPLAN_54, BP_Plan), featureCollection);
+		assertThat(xPlanToEdit.isHasBereich(), is(true));
+
+		List<RasterBasis> rasterBasis = xPlanToEdit.getRasterBasis();
+		assertThat(rasterBasis.size(), is(1));
+		assertThat(rasterBasis.get(0).getRasterReferences().size(), is(0));
 	}
 
 	private RasterReference getByType(List<RasterReference> rasterBasisReferences, RasterReferenceType type) {
