@@ -208,33 +208,40 @@ public class XPlanToEditFactory {
 		String featureId = referencedObject.getId();
 		rasterBasis.setFeatureId(featureId);
 		for (Property prop : referencedObject.getProperties()) {
-			String propName = prop.getName().getLocalPart();
-			if ("refLegende".equals(propName)) {
-				RasterReference rasterReference = parseRasterReference(bereichId, prop, LEGEND);
-				if (isXPlan51OrHigher(version)) {
-					Reference reference = new Reference(rasterReference.getReference(),
-							rasterReference.getGeoReference(), ReferenceType.LEGENDE);
-					copyReference(rasterReference, reference);
-					xPlanToEdit.addReference(reference);
-				}
-				else {
-					rasterBasis.addRasterReference(rasterReference);
-				}
+			if (hasChilds(prop)) {
+				parseRasterWithReferences(bereichId, xPlanToEdit, rasterBasis, version, prop);
 			}
-			else if ("refScan".equals(propName)) {
-				RasterReference rasterReference = parseRasterReference(bereichId, prop, SCAN);
+		}
+	}
+
+	private void parseRasterWithReferences(String bereichId, XPlanToEdit xPlanToEdit, RasterBasis rasterBasis,
+			String version, Property prop) {
+		String propName = prop.getName().getLocalPart();
+		if ("refLegende".equals(propName)) {
+			RasterReference rasterReference = parseRasterReference(bereichId, prop, LEGEND);
+			if (isXPlan51OrHigher(version)) {
+				Reference reference = new Reference(rasterReference.getReference(), rasterReference.getGeoReference(),
+						ReferenceType.LEGENDE);
+				copyReference(rasterReference, reference);
+				xPlanToEdit.addReference(reference);
+			}
+			else {
 				rasterBasis.addRasterReference(rasterReference);
 			}
-			else if ("refText".equals(propName)) {
-				RasterReference rasterReference = parseRasterReference(bereichId, prop, TEXT);
-				if (isXPlan51OrHigher(version)) {
-					Text text = new Text(null, rasterReference.getReference());
-					copyReference(rasterReference, text);
-					xPlanToEdit.addText(text);
-				}
-				else {
-					rasterBasis.addRasterReference(rasterReference);
-				}
+		}
+		else if ("refScan".equals(propName)) {
+			RasterReference rasterReference = parseRasterReference(bereichId, prop, SCAN);
+			rasterBasis.addRasterReference(rasterReference);
+		}
+		else if ("refText".equals(propName)) {
+			RasterReference rasterReference = parseRasterReference(bereichId, prop, TEXT);
+			if (isXPlan51OrHigher(version)) {
+				Text text = new Text(null, rasterReference.getReference());
+				copyReference(rasterReference, text);
+				xPlanToEdit.addText(text);
+			}
+			else {
+				rasterBasis.addRasterReference(rasterReference);
 			}
 		}
 	}
@@ -536,6 +543,10 @@ public class XPlanToEditFactory {
 	private boolean isXPlan51OrHigher(String xPlanVersion) {
 		XPlanVersion version = XPlanVersion.valueOf(xPlanVersion);
 		return XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version);
+	}
+
+	private boolean hasChilds(Property prop) {
+		return prop.getChildren().size() > 0;
 	}
 
 }
