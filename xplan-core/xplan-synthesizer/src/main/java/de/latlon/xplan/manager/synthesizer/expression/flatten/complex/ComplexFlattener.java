@@ -66,7 +66,7 @@ public class ComplexFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode element, boolean translateCodes) {
+	public String flatten(TypedObjectNode element, boolean keepCodes) {
 		QName elNodeName = ((ElementNode) element).getName();
 		DataTypeFlattener dataTypeFlattener = complexFlattener.get(elNodeName.getLocalPart());
 		if (dataTypeFlattener != null) {
@@ -77,8 +77,8 @@ public class ComplexFlattener extends AbstractFlattener {
 				String label = flattenerProperty.getLabel();
 				String propertyName = flattenerProperty.getPropertyName();
 				if (flattenerProperty.getCodeListName() != null) {
-					appendCode(label, element, propertyName, version, flattenerProperty.getCodeListName(),
-							translateCodes, properties);
+					appendCode(label, element, propertyName, version, flattenerProperty.getCodeListName(), keepCodes,
+							properties);
 				}
 				else {
 					append(label, element, propertyName, properties);

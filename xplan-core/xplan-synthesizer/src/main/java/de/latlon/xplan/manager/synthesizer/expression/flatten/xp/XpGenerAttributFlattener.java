@@ -48,7 +48,7 @@ public class XpGenerAttributFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode xpGenerAttribut, boolean translateCodes) {
+	public String flatten(TypedObjectNode xpGenerAttribut, boolean keepCodes) {
 		TypedObjectNode name = getPropertyValue(xpGenerAttribut, "name");
 		TypedObjectNode wert = getPropertyValue(xpGenerAttribut, "wert");
 		return "[\"" + name + "\"=\"" + wert + "\"]";

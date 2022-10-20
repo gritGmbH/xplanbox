@@ -161,16 +161,16 @@ public abstract class AbstractFlattener implements Flattener {
 	}
 
 	public void appendCode(String label, TypedObjectNode feature, String propertyName, XPlanVersion version,
-			String codeListName, boolean translateCodes, List<Pair<String, String>> properties) {
-		if (translateCodes) {
+			String codeListName, boolean keepCodes, List<Pair<String, String>> properties) {
+		if (keepCodes) {
+			append(label, feature, propertyName, properties);
+		}
+		else {
 			String propertyValue = asString(feature, propertyName);
 			if (propertyValue != null) {
 				String translatedValue = XPlanCodeListsFactory.get(version).getTranslation(codeListName, propertyValue);
 				properties.add(new Pair(label, translatedValue));
 			}
-		}
-		else {
-			append(label, feature, propertyName, properties);
 		}
 	}
 

@@ -29,6 +29,6 @@ public interface Flattener {
 
 	boolean accepts(TypedObjectNode element);
 
-	String flatten(TypedObjectNode element, boolean translateCodes);
+	String flatten(TypedObjectNode element, boolean keepCodes);
 
 }

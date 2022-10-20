@@ -35,7 +35,7 @@ public class XpVerfahrensMerkmalFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode xpVerfahrensmerkmal, boolean translateCodes) {
+	public String flatten(TypedObjectNode xpVerfahrensmerkmal, boolean keepCodes) {
 		PrimitiveValue datum = (PrimitiveValue) getPropertyValue(xpVerfahrensmerkmal, "datum");
 		PrimitiveValue vermerk = (PrimitiveValue) getPropertyValue(xpVerfahrensmerkmal, "vermerk");
 		PrimitiveValue signatur = (PrimitiveValue) getPropertyValue(xpVerfahrensmerkmal, "signatur");

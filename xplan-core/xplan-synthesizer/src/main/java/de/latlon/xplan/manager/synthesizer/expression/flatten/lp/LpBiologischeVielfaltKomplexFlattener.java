@@ -36,13 +36,13 @@ import java.util.List;
  */
 public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 
-	private boolean translateCodes;
+	private boolean keepCodes;
 
 	/**
-	 * @param translateCodes <code>true</code> if code properties should be translated
+	 * @param keepCodes <code>true</code> if code properties should be translated
 	 */
-	public LpBiologischeVielfaltKomplexFlattener(boolean translateCodes) {
-		this.translateCodes = translateCodes;
+	public LpBiologischeVielfaltKomplexFlattener(boolean keepCodes) {
+		this.keepCodes = keepCodes;
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode node, boolean translateCodes) {
+	public String flatten(TypedObjectNode node, boolean keepCodes) {
 		List<Pair<String, String>> properties = new ArrayList<>();
 		appendFlattenedValue("Biologische Vielfalt", node, new ComplexFlattener(), "bioVielfaltTypus", properties);
 		appendFlattenedValue("Planzenart", node, new ComplexFlattener(), "bioVfPflanzenArt", properties);
@@ -74,9 +74,9 @@ public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 		if (property == null)
 			return null;
 		if (flattener.accepts(property)) {
-			return flattener.flatten(property, translateCodes);
+			return flattener.flatten(property, keepCodes);
 		}
-		return new DefaultFlattener().flatten(node, translateCodes);
+		return new DefaultFlattener().flatten(node, keepCodes);
 	}
 
 }

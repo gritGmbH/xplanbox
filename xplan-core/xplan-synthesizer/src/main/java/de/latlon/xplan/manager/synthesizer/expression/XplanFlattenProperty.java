@@ -70,7 +70,7 @@ public class XplanFlattenProperty implements Expression {
 
 	private final boolean sortProperties;
 
-	private boolean translateCodes;
+	private boolean keepCodes;
 
 	private final List<Flattener> customFlatteners = new ArrayList<Flattener>();
 
@@ -87,22 +87,23 @@ public class XplanFlattenProperty implements Expression {
 	 * alphabetically, false otherwise
 	 */
 	public XplanFlattenProperty(Expression exp, boolean sortProperties) {
-		this(exp, sortProperties, true);
+		this(exp, sortProperties, false);
 	}
 
 	/**
 	 * @param exp an expression that targets a property node
 	 * @param sortProperties <code>true</code> if the properties should be sorted
 	 * alphabetically, false otherwise
-	 * @param translateCodes <code>true</code> if code properties should be translated
+	 * @param keepCodes <code>true</code> if code properties should not be translated,
+	 * <code>false</code> otherwise
 	 *
 	 */
-	public XplanFlattenProperty(Expression exp, boolean sortProperties, boolean translateCodes) {
+	public XplanFlattenProperty(Expression exp, boolean sortProperties, boolean keepCodes) {
 		this.exp = exp;
 		this.sortProperties = sortProperties;
-		this.translateCodes = translateCodes;
+		this.keepCodes = keepCodes;
 		this.customFlatteners.add(new ComplexFlattener());
-		customFlatteners.add(new LpBiologischeVielfaltKomplexFlattener(translateCodes));
+		customFlatteners.add(new LpBiologischeVielfaltKomplexFlattener(keepCodes));
 		customFlatteners.add(new XpBegruendungAbschnittFlattener());
 		customFlatteners.add(new XpGenerAttributFlattener());
 		customFlatteners.add(new XpRasterplanFlattener());
@@ -147,7 +148,7 @@ public class XplanFlattenProperty implements Expression {
 				value = getFirstChild((ElementNode) value);
 			}
 			catch (Exception e) {
-				return new DefaultFlattener().flatten(value, translateCodes);
+				return new DefaultFlattener().flatten(value, keepCodes);
 			}
 		}
 		else if (value instanceof Reference) {
@@ -183,13 +184,13 @@ public class XplanFlattenProperty implements Expression {
 		}
 		for (Flattener flattener : customFlatteners) {
 			if (flattener.accepts(value)) {
-				return flattener.flatten(value, translateCodes);
+				return flattener.flatten(value, keepCodes);
 			}
 		}
 		if (extRefFlattener.accepts(value)) {
-			return extRefFlattener.flatten(value, translateCodes);
+			return extRefFlattener.flatten(value, keepCodes);
 		}
-		return new DefaultFlattener().flatten(value, translateCodes);
+		return new DefaultFlattener().flatten(value, keepCodes);
 	}
 
 	private TypedObjectNode getFirstChild(ElementNode elNode) {

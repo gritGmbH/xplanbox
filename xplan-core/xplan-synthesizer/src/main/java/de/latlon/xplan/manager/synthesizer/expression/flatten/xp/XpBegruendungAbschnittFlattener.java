@@ -38,7 +38,7 @@ public class XpBegruendungAbschnittFlattener extends AbstractTextlicherAbschnitt
 	}
 
 	@Override
-	public String flatten(TypedObjectNode xpBegruendungAbschnitt, boolean translateCodes) {
+	public String flatten(TypedObjectNode xpBegruendungAbschnitt, boolean keepCodes) {
 		Feature feature = (Feature) xpBegruendungAbschnitt;
 		return flatten(feature);
 	}

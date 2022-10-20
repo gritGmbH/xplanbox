@@ -66,7 +66,7 @@ public class XpRasterplanFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode rasterPlanFeatureEl, boolean translateCodes) {
+	public String flatten(TypedObjectNode rasterPlanFeatureEl, boolean keepCodes) {
 		Feature feature = (Feature) rasterPlanFeatureEl;
 		String ns = feature.getName().getNamespaceURI();
 		QName refName = new QName(ns, "refScan");
@@ -78,11 +78,11 @@ public class XpRasterplanFlattener extends AbstractFlattener {
 				if (value instanceof FeatureReference) {
 					Feature xpExterneReferenzPlan = ((FeatureReference) value).getReferencedObject();
 					s += new XpExterneReferenzFlattener(xpExterneReferenzPlan).flatten(xpExterneReferenzPlan,
-							translateCodes);
+							keepCodes);
 				}
 				else if (value instanceof ElementNode) {
 					ElementNode elNode = (ElementNode) value;
-					s += new XpExterneReferenzFlattener(feature).flatten(getFirstChild(elNode), translateCodes);
+					s += new XpExterneReferenzFlattener(feature).flatten(getFirstChild(elNode), keepCodes);
 				}
 				else {
 					LOG.warn("Flattening of nodes from class {} is not supported yet!", value.getClass());

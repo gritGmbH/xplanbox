@@ -37,7 +37,7 @@ public class DefaultFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode node, boolean translateCodes) {
+	public String flatten(TypedObjectNode node, boolean keepCodes) {
 		if (node instanceof Feature) {
 			return flatten((Feature) node);
 		}
@@ -48,7 +48,7 @@ public class DefaultFlattener extends AbstractFlattener {
 			GenericXMLElement el = (GenericXMLElement) node;
 			String s = "[" + el.getName().getLocalPart() + "=";
 			for (TypedObjectNode child : el.getChildren()) {
-				s += flatten(child, translateCodes);
+				s += flatten(child, keepCodes);
 			}
 			s += "]";
 			return s;
