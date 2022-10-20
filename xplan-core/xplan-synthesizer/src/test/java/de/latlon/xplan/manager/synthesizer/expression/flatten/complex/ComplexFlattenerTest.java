@@ -51,7 +51,7 @@ public class ComplexFlattenerTest {
 	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungCode() throws Exception {
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/BPlan001_6-0.zip");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
-		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:zweckbestimmung"), false, false);
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:zweckbestimmung"), false, true);
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals("[Allgemein: 2700|Aufschrift: Grüne Hölle]", value.toString());
 	}

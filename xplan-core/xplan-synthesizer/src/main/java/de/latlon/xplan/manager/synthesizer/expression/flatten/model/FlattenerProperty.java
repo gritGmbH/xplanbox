@@ -18,33 +18,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression.flatten.complex.model;
-
-import java.util.List;
+package de.latlon.xplan.manager.synthesizer.expression.flatten.model;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class DataTypeFlattener {
+public class FlattenerProperty {
 
-	private String acceptedClass;
+	private String label;
 
-	private List<FlattenerProperty> properties;
+	private String propertyName;
 
-	public String getAcceptedClass() {
-		return acceptedClass;
+	private String codeListName;
+
+	public String getLabel() {
+		return label;
 	}
 
-	public void setAcceptedClass(String acceptedClass) {
-		this.acceptedClass = acceptedClass;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
-	public List<FlattenerProperty> getProperties() {
-		return properties;
+	public String getPropertyName() {
+		return propertyName;
 	}
 
-	public void setProperties(List<FlattenerProperty> properties) {
-		this.properties = properties;
+	public void setPropertyName(String propertyName) {
+		this.propertyName = propertyName;
+	}
+
+	public String getCodeListName() {
+		return codeListName;
+	}
+
+	public void setCodeListName(String codeListName) {
+		this.codeListName = codeListName;
 	}
 
 }
