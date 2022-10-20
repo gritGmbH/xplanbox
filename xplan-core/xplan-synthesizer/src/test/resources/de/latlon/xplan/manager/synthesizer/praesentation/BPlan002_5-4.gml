@@ -94,6 +94,11 @@
         </gml:Polygon>
       </xplan:position>
       <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:dachgestaltung>
+        <xplan:BP_Dachgestaltung>
+          <xplan:DN uom="grad">15</xplan:DN>
+        </xplan:BP_Dachgestaltung>
+      </xplan:dachgestaltung>
       <xplan:besondereArtDerBaulNutzung>1200</xplan:besondereArtDerBaulNutzung>
     </xplan:BP_BaugebietsTeilFlaeche>
   </gml:featureMember>
@@ -494,6 +499,26 @@
         </gml:Envelope>
       </gml:boundedBy>
       <xplan:stylesheetId>Freier Text</xplan:stylesheetId>
+      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+      <xplan:dientZurDarstellungVon xlink:href="#GML_51e17233-d921-46cb-83b9-af28451186a1" />
+      <xplan:position>
+        <gml:Point srsName="EPSG:25832" gml:id="GML_27888432-2c29-41c0-b6bc-d857207dced4">
+          <gml:pos>565043.676 5940476.202</gml:pos>
+        </gml:Point>
+      </xplan:position>
+      <xplan:drehwinkel uom="grad">0.0</xplan:drehwinkel>
+    </xplan:XP_PPO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:XP_PPO gml:id="GML_22989f35-59e8-4260-8c60-e706b916a886_dachgestaltung">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>565043.676 5940476.202</gml:lowerCorner>
+          <gml:upperCorner>565044.676 5940476.202</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:art>dachgestaltung</xplan:art>
+      <xplan:index>0</xplan:index>
       <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
       <xplan:dientZurDarstellungVon xlink:href="#GML_51e17233-d921-46cb-83b9-af28451186a1" />
       <xplan:position>
