@@ -16,7 +16,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 17.10.2022, 09:15:43-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 20.10.2022, 09:08:58-->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.deegree.org/xplanung/1/0" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <element name="BP_AbgrabungsFlaeche" substitutionGroup="gml:AbstractFeature">
@@ -2239,6 +2239,8 @@
             <element name="ZU" minOccurs="0" type="integer"/>
             <element name="ZU_Ausn" minOccurs="0" type="integer"/>
             <element name="MZspezial" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="bauweiseText" minOccurs="0" type="string"/>
             <element name="traeger" minOccurs="0" type="string"/>
             <element name="traegerWert" minOccurs="0" type="string"/>
@@ -2392,6 +2394,8 @@
             <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="Zmax" minOccurs="0" type="integer"/>
             <element name="eigentuemer" minOccurs="0" type="string"/>
             <element name="textSchluessel" minOccurs="0" type="string"/>
@@ -2695,6 +2699,8 @@
             <element name="ZU" minOccurs="0" type="integer"/>
             <element name="ZU_Ausn" minOccurs="0" type="integer"/>
             <element name="MZspezial" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="zugunstenVon" minOccurs="0" type="string"/>
             <element name="MinGRWohneinheit" minOccurs="0" type="string"/>
             <element name="MinGRWohneinheitUOM" minOccurs="0" type="string"/>
@@ -3166,6 +3172,8 @@
             <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="rechtsstand" minOccurs="0" type="string"/>
             <element name="rechtsstandWert" minOccurs="0" type="string"/>
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>
@@ -3336,6 +3344,8 @@
             <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="Zmax" minOccurs="0" type="integer"/>
             <element name="textSchluessel" minOccurs="0" type="string"/>
             <element name="textSchluesselBegruendung" minOccurs="0" type="string"/>
@@ -4257,6 +4267,8 @@
             <element name="ZU" minOccurs="0" type="integer"/>
             <element name="ZU_Ausn" minOccurs="0" type="integer"/>
             <element name="MZspezial" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="zugunstenVon" minOccurs="0" type="string"/>
             <element name="MinGRWohneinheit" minOccurs="0" type="string"/>
             <element name="MinGRWohneinheitUOM" minOccurs="0" type="string"/>
@@ -5065,6 +5077,8 @@
             <element name="ZU" minOccurs="0" type="integer"/>
             <element name="ZU_Ausn" minOccurs="0" type="integer"/>
             <element name="MZspezial" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="zugunstenVon" minOccurs="0" type="string"/>
             <element name="textlicheErgaenzung" minOccurs="0" type="string"/>
             <element name="MinGRWohneinheit" minOccurs="0" type="string"/>
@@ -5391,6 +5405,8 @@
             <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="eigentumsart" minOccurs="0" type="string"/>
             <element name="eigentumsartWert" minOccurs="0" type="string"/>
             <element name="betreten" minOccurs="0" type="string"/>
@@ -6582,6 +6598,8 @@
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="traeger" minOccurs="0" type="string"/>
             <element name="traegerWert" minOccurs="0" type="string"/>
             <element name="zugunstenVon" minOccurs="0" type="string"/>
@@ -6804,6 +6822,8 @@
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="zugunstenVon" minOccurs="0" type="string"/>
             <element name="nordwinkel" minOccurs="0" type="string"/>
             <element name="nordwinkelUOM" minOccurs="0" type="string"/>
@@ -7017,6 +7037,8 @@
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="rechtsstand" minOccurs="0" type="string"/>
             <element name="rechtsstandWert" minOccurs="0" type="string"/>
             <element name="gesetzlicheGrundlage" minOccurs="0" type="string"/>
@@ -7514,6 +7536,8 @@
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="zugunstenVon" minOccurs="0" type="string"/>
             <element name="nordwinkel" minOccurs="0" type="string"/>
             <element name="nordwinkelUOM" minOccurs="0" type="string"/>
@@ -7830,6 +7854,8 @@
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="zugunstenVon" minOccurs="0" type="string"/>
             <element name="textlicheErgaenzung" minOccurs="0" type="string"/>
             <element name="nordwinkel" minOccurs="0" type="string"/>
@@ -7967,6 +7993,8 @@
             <element name="wirdAusgeglichenDurchSPE" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
+            <element name="zweckbestimmungKomplex" minOccurs="0" type="string"/>
+            <element name="zweckbestimmungKomplexWert" minOccurs="0" type="string"/>
             <element name="eigentumsart" minOccurs="0" type="string"/>
             <element name="eigentumsartWert" minOccurs="0" type="string"/>
             <element name="betreten" minOccurs="0" type="string"/>
@@ -14641,6 +14669,8 @@
             <element name="MZspezial" minOccurs="0" type="string"/>
             <element name="artDerFestlegung" minOccurs="0" type="string"/>
             <element name="artDerFestlegungWert" minOccurs="0" type="string"/>
+            <element name="artDerFestlegungKomplex" minOccurs="0" type="string"/>
+            <element name="artDerFestlegungKomplexWert" minOccurs="0" type="string"/>
             <element name="einteilung" minOccurs="0" type="string"/>
             <element name="einteilungWert" minOccurs="0" type="string"/>
             <element name="name" minOccurs="0" type="string"/>

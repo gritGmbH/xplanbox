@@ -19,7 +19,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 17.10.2022, 09:15:43 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 20.10.2022, 09:08:58 -->
 <html>
   <head>
     <title>XPlanWMS Sachdatenanzeige</title>
@@ -487,8 +487,11 @@ anchorY=anchorY
 anzahl=Anzahl
 art=Art
 artDerFestlegung=Art der Festlegung
+artDerFestlegungKomplex=Art der Festlegung
+artDerFestlegungKomplexWert=Art der Festlegung
 artDerFestlegungText=Art der Festlegung (Text)
 artDerFestlegungWert=Art der Festlegung
+artDerFestlegungWert=artDerFestlegung/xplan:SO_KomplexeZweckbestStrassenverkehr/xplan:allgemein
 artWert=Art
 aufschrift=Aufschrift
 aufschuettungsmaterial=Aufsch&uuml;ttungsmaterial
@@ -1004,6 +1007,22 @@ zusatzkontingent=Zusatzkontingent
 zusatzkontingentFlaeche=Zusatzkontingent Fl&auml;che
 ZUzwingend=ZUzwingend
 zweckbestimmung=Zweckbestimmung
+zweckbestimmungKomplex=Zweckbestimmung
+zweckbestimmungKomplexWert=Zweckbestimmung
 zweckbestimmungWert=Zweckbestimmung
+zweckbestimmungWert=zweckbestimmung/xplan:BP_KomplexeZweckbestGemeinbedarf/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:BP_KomplexeZweckbestGemeinschaftsanlagen/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:BP_KomplexeZweckbestGruen/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:BP_KomplexeZweckbestLandwirtschaft/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:BP_KomplexeZweckbestNebenanlagen/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:BP_KomplexeZweckbestSpielSportanlage/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:BP_KomplexeZweckbestVerEntsorgung/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:BP_KomplexeZweckbestWald/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:FP_KomplexeZweckbestGemeinbedarf/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:FP_KomplexeZweckbestGruen/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:FP_KomplexeZweckbestLandwirtschaft/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:FP_KomplexeZweckbestSpielSportanlage/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:FP_KomplexeZweckbestVerEntsorgung/xplan:allgemein
+zweckbestimmungWert=zweckbestimmung/xplan:FP_KomplexeZweckbestWald/xplan:allgemein
 ZWohn=ZWohn
 Zzwingend=Vollgeschoss zwingend

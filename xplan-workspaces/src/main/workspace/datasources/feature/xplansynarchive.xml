@@ -16,7 +16,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 17.10.2022, 09:15:43-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 20.10.2022, 09:08:58-->
 <SQLFeatureStore xmlns="http://www.deegree.org/datasource/feature/sql" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql http://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2">
   <JDBCConnId>xplan</JDBCConnId>
   <StorageCRS srid="0" dim="2D">EPSG:25832</StorageCRS>
@@ -2117,6 +2117,8 @@
     <Primitive path="xplan:ZU" mapping="xplan_zu"/>
     <Primitive path="xplan:ZU_Ausn" mapping="xplan_zu_ausn"/>
     <Primitive path="xplan:MZspezial" mapping="xplan_mzspezial"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:bauweiseText" mapping="xplan_bauweisetext"/>
     <Primitive path="xplan:traeger" mapping="xplan_traeger"/>
     <Primitive path="xplan:traegerWert" mapping="xplan_traegerwert"/>
@@ -2266,6 +2268,8 @@
     <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:Zmax" mapping="xplan_zmax"/>
     <Primitive path="xplan:eigentuemer" mapping="xplan_eigentuemer"/>
     <Primitive path="xplan:textSchluessel" mapping="xplan_textschluessel"/>
@@ -2553,6 +2557,8 @@
     <Primitive path="xplan:ZU" mapping="xplan_zu"/>
     <Primitive path="xplan:ZU_Ausn" mapping="xplan_zu_ausn"/>
     <Primitive path="xplan:MZspezial" mapping="xplan_mzspezial"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon"/>
     <Primitive path="xplan:MinGRWohneinheit" mapping="xplan_mingrwohneinheit"/>
     <Primitive path="xplan:MinGRWohneinheitUOM" mapping="xplan_mingrwohneinheituom"/>
@@ -3000,6 +3006,8 @@
     <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand"/>
     <Primitive path="xplan:rechtsstandWert" mapping="xplan_rechtsstandwert"/>
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage"/>
@@ -3158,6 +3166,8 @@
     <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:Zmax" mapping="xplan_zmax"/>
     <Primitive path="xplan:textSchluessel" mapping="xplan_textschluessel"/>
     <Primitive path="xplan:textSchluesselBegruendung" mapping="xplan_textschluesselbegruendung"/>
@@ -4023,6 +4033,8 @@
     <Primitive path="xplan:ZU" mapping="xplan_zu"/>
     <Primitive path="xplan:ZU_Ausn" mapping="xplan_zu_ausn"/>
     <Primitive path="xplan:MZspezial" mapping="xplan_mzspezial"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon"/>
     <Primitive path="xplan:MinGRWohneinheit" mapping="xplan_mingrwohneinheit"/>
     <Primitive path="xplan:MinGRWohneinheitUOM" mapping="xplan_mingrwohneinheituom"/>
@@ -4791,6 +4803,8 @@
     <Primitive path="xplan:ZU" mapping="xplan_zu"/>
     <Primitive path="xplan:ZU_Ausn" mapping="xplan_zu_ausn"/>
     <Primitive path="xplan:MZspezial" mapping="xplan_mzspezial"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon"/>
     <Primitive path="xplan:textlicheErgaenzung" mapping="xplan_textlicheergaenzung"/>
     <Primitive path="xplan:MinGRWohneinheit" mapping="xplan_mingrwohneinheit"/>
@@ -5105,6 +5119,8 @@
     <Primitive path="xplan:richtungssektorGrenze" mapping="xplan_richtungssektorgrenze"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:eigentumsart" mapping="xplan_eigentumsart"/>
     <Primitive path="xplan:eigentumsartWert" mapping="xplan_eigentumsartwert"/>
     <Primitive path="xplan:betreten" mapping="xplan_betreten"/>
@@ -6220,6 +6236,8 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:traeger" mapping="xplan_traeger"/>
     <Primitive path="xplan:traegerWert" mapping="xplan_traegerwert"/>
     <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon"/>
@@ -6430,6 +6448,8 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon"/>
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkeluom"/>
@@ -6631,6 +6651,8 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand"/>
     <Primitive path="xplan:rechtsstandWert" mapping="xplan_rechtsstandwert"/>
     <Primitive path="xplan:gesetzlicheGrundlage" mapping="xplan_gesetzlichegrundlage"/>
@@ -7096,6 +7118,8 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon"/>
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkeluom"/>
@@ -7388,6 +7412,8 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
     <Primitive path="xplan:flussrichtung" mapping="xplan_flussrichtung"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:zugunstenVon" mapping="xplan_zugunstenvon"/>
     <Primitive path="xplan:textlicheErgaenzung" mapping="xplan_textlicheergaenzung"/>
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
@@ -7517,6 +7543,8 @@
     <Primitive path="xplan:wirdAusgeglichenDurchSPE" mapping="xplan_wirdausgeglichendurchspe"/>
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
+    <Primitive path="xplan:zweckbestimmungKomplex" mapping="xplan_zweckbestimmungkomplex"/>
+    <Primitive path="xplan:zweckbestimmungKomplexWert" mapping="xplan_zweckbestimmungkomplexwert"/>
     <Primitive path="xplan:eigentumsart" mapping="xplan_eigentumsart"/>
     <Primitive path="xplan:eigentumsartWert" mapping="xplan_eigentumsartwert"/>
     <Primitive path="xplan:betreten" mapping="xplan_betreten"/>
@@ -13723,6 +13751,8 @@
     <Primitive path="xplan:MZspezial" mapping="xplan_mzspezial"/>
     <Primitive path="xplan:artDerFestlegung" mapping="xplan_artderfestlegung"/>
     <Primitive path="xplan:artDerFestlegungWert" mapping="xplan_artderfestlegungwert"/>
+    <Primitive path="xplan:artDerFestlegungKomplex" mapping="xplan_artderfestlegungkomplex"/>
+    <Primitive path="xplan:artDerFestlegungKomplexWert" mapping="xplan_artderfestlegungkomplexwert"/>
     <Primitive path="xplan:einteilung" mapping="xplan_einteilung"/>
     <Primitive path="xplan:einteilungWert" mapping="xplan_einteilungwert"/>
     <Primitive path="xplan:name" mapping="xplan_name"/>
