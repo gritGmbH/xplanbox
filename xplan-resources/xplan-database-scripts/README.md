@@ -47,6 +47,10 @@ The changelog files are written into the directory `target/generated-resources/`
 
 ## Workarounds
 
+### Missing Functions and Triggers
+
+Functions and Triggers are ignore by liquibase (free, s. https://forum.liquibase.org/t/updating-triggers-and-functions/7370). Functions and triggers must be added manually to the changelog or sql.  
+
 ### Wrong index method 
 
 Currently liquibase generates the wrong [index method](https://www.postgresql.org/docs/13/sql-createindex.html) for spatial objects, see issue https://github.com/liquibase/liquibase/issues/1134.
