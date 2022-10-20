@@ -84,7 +84,6 @@ public class MasterportalMapPreviewDialog extends DialogBox {
 		sb.append(bbox.getMinY()).append(",");
 		sb.append(bbox.getMaxX()).append(",");
 		sb.append(bbox.getMaxY()).append("&");
-		sb.append("projection=").append(bbox.getCrs()).append("&");
 		sb.append("config=config/").append(mapPreviewMetadata.getConfigFileName());
 		return sb.toString();
 	}
