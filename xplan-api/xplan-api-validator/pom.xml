@@ -305,5 +305,37 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>docker</id>
+	  <properties>
+	  	<docker-image.skip>false</docker-image.skip>
+	  </properties>
+	  <dependencies>
+	    <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
+	      <groupId>de.latlon.product.xplanbox</groupId>
+	      <artifactId>xplan-docker-tomcat</artifactId>
+	      <version>${project.version}</version>
+	      <type>pom</type>
+	    </dependency>
+	  </dependencies>
+	  <build>
+	    <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-war-plugin</artifactId>
+	        <executions>
+	          <execution>
+	            <goals>
+	              <goal>exploded</goal>
+	            </goals>
+	            <configuration>
+	              <webappDirectory>${project.build.directory}/exploded-webapp</webappDirectory>
+	            </configuration>
+  	          </execution>
+            </executions>
+	      </plugin>
+	    </plugins>
+	  </build>
+    </profile>
   </profiles>
 </project>

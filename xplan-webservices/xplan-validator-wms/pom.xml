@@ -39,4 +39,12 @@
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>docker</id>
+	  <properties>
+	  	<docker-image.skip>false</docker-image.skip>
+	  </properties>
+    </profile>
+  </profiles>
 </project>

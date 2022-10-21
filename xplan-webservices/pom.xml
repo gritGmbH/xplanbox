@@ -20,6 +20,14 @@
     <module>xplan-validator-wms</module>
   </modules>
 
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <modules>
+        <module>xplan-services-docker</module>
+      </modules>
+    </profile>
+  </profiles>
   <build>
     <plugins>
       <plugin>
