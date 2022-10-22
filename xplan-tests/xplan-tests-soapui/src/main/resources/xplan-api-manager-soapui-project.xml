@@ -166,7 +166,7 @@ Import the plan</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>406 500</con:status>
+          <con:status>406 500 415</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -253,6 +253,14 @@ Import the plan</con:description>
           <con:status>0</con:status>
           <con:params/>
           <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>text/xml</con:mediaType>
+          <con:params/>
         </con:representation>
         <con:request name="Request 1" id="0ab9bfa6-1c76-41df-b253-dabff57568f7" mediaType="application/json" postQueryString="false">
           <con:settings/>
@@ -2922,6 +2930,57 @@ assert actualHeader != null</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0 sF importPlanAsGML" id="472fb2b1-e763-49cd-835f-bb86f8ac6004">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0 sF importPlanAsGML" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="text/xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>201</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.1.gml</con:name>
+              <con:contentType>text/xml</con:contentType>
+              <con:contentId>BP_6.0.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_6.0.gml</con:url>
+              <con:id>c0a5e97e-011d-4699-94af-85d81146066d</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="skipLaufrichtung" value=""/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="POST BP 6.0 XX importPlan" id="70a0cee1-2eca-44a1-9223-50368989f013">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -3521,6 +3580,18 @@ assert actualHeader != null</scriptText>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>planId40</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdXPlanGML60asGML</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>POST BP 6.0 sF importPlanAsGML</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>currentPlanIdXPlanGML60asGML</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath/>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
@@ -10776,7 +10847,7 @@ assert expectedHeader == actualHeader</scriptText>
       <con:testStep type="restrequest" name="DEL BP 4.0 pI deletePlan" id="6fa4759c-4b84-434e-88c7-7a68b7660808">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET BP 4.0 pI deletePlan" id="f9bcc4d9-872e-472c-96b8-27484a6e67a3" mediaType="application/json" postQueryString="false">
+          <con:restRequest name="DEL BP 4.0 pI deletePlan" id="f9bcc4d9-872e-472c-96b8-27484a6e67a3" mediaType="application/json" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -11333,6 +11404,46 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="DEL BP 6.0 pI deletePlanAsGML" id="9539a2ce-cba7-41c1-9cc2-d757699891f3">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Copy of DEL BP 6.0 pI deletePlanAsGML" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="265e523e-b027-4418-ada5-9044a1a6e4b2" name="message">
+              <con:configuration>
+                <path>$..message</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="DEL FP 5.0 pI deletePlan" id="9020206f-2fe7-4dd1-9e13-dbcde87bb7f1">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -11583,6 +11694,10 @@ assert expectedHeader == actualHeader</scriptText>
       <con:property>
         <con:name>planId40</con:name>
         <con:value>1</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currentPlanIdXPlanGML60asGML</con:name>
+        <con:value>17</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
