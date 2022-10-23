@@ -237,6 +237,14 @@ public class XPlanValidatorTest {
 		executeValidator(geoVal, semVal, synVal, profileValidators, semanticSettings);
 	}
 
+	@Test(expected = ValidatorException.class)
+	public void testValidateWithInvalidProfile_NoProfileConfigured() throws Exception {
+		ValidationSettings semanticSettings = new ValidationSettings("", singletonList(SEMANTIC), emptyList());
+		semanticSettings.setProfiles(Collections.singletonList("99"));
+
+		executeValidator(geoVal, semVal, synVal, semanticSettings);
+	}
+
 	private Matcher<SyntacticValidatorResult> containsSyntaticResult(final String messageToCheck) {
 		return new TypeSafeMatcher<SyntacticValidatorResult>() {
 			@Override
