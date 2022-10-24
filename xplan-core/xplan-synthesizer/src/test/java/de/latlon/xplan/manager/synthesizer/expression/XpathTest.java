@@ -32,10 +32,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
-import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
 import static org.deegree.commons.tom.primitive.BaseType.DECIMAL;
 import static org.deegree.commons.tom.primitive.BaseType.DOUBLE;
+import static org.deegree.commons.tom.primitive.BaseType.INTEGER;
+import static org.deegree.commons.tom.primitive.BaseType.STRING;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -125,9 +127,19 @@ public class XpathTest {
 		TypedObjectNode[] nodes = nodeArray.getElements();
 		for (int i = 0; i < nodes.length; i++) {
 			PrimitiveValue value = ((SimpleProperty) nodes[i]).getValue();
-			assertThat(value.getType().toString(), is("INTEGER"));
+			assertThat(value.getType().getBaseType(), is(INTEGER));
 			assertThat(value.toString(), is(Integer.toString(i)));
 		}
+	}
+
+	@Test
+	public void testComplexProperty() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_60);
+		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
+		Xpath expr = new Xpath("xplan:zweckbestimmung/xplan:BP_KomplexeZweckbestGruen/xplan:allgemein");
+		PrimitiveValue value = (PrimitiveValue) expr.evaluate(feature, features);
+		assertThat(value.getType().getBaseType(), is(STRING));
+		assertThat(value.toString(), is("1000"));
 	}
 
 }

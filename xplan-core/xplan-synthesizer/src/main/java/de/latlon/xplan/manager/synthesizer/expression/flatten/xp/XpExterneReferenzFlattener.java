@@ -59,7 +59,7 @@ public class XpExterneReferenzFlattener extends AbstractFlattener {
 	}
 
 	@Override
-	public String flatten(TypedObjectNode xpExterneReferenz) {
+	public String flatten(TypedObjectNode xpExterneReferenz, boolean keepCodes) {
 		StringBuilder extRef = new StringBuilder();
 		TypedObjectNode referenzUrl = getPropertyValue(xpExterneReferenz, "referenzURL");
 		String typ = translateTyp(xpExterneReferenz);

@@ -3551,11 +3551,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>20</con:value>
+          <con:value>73</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_32aaaba8-5cff-406a-8ef6-a1fdc1bf2eed</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_8a46747d-2be3-4ce8-a67f-2d2fb1edf747</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3813,7 +3813,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>21</con:value>
+          <con:value>74</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4029,7 +4029,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>22</con:value>
+          <con:value>75</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4757,11 +4757,11 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>23</con:value>
+          <con:value>76</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>24</con:value>
+          <con:value>77</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5493,7 +5493,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>25</con:value>
+          <con:value>78</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5624,9 +5624,9 @@ count(//wfs:member)</path>
           </con:transfers>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="GetFeature" id="a32bc5bd-e81c-45bf-bfe2-bbe5b9b5d58a">
+      <con:testStep type="httprequest" name="GetFeature BP_Plan" id="a32bc5bd-e81c-45bf-bfe2-bbe5b9b5d58a">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature BP_Plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -5731,6 +5731,118 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             <con:parameter>
               <con:name>typenames</con:name>
               <con:value>xplan:BP_Plan</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetFeature BP_GruenFlaeche" id="353296c1-66a7-4eef-8147-0875b344cbab">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="GetFeature BP_GruenFlaeche" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfsarchive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="xpPlanName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_GruenFlaeche/xplan:xpPlanName="Osdorf48_Testplan_60"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="zweckbestimmung">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_GruenFlaeche/xplan:zweckbestimmung</path>
+              <content>2700</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="zweckbestimmungWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_GruenFlaeche/xplan:zweckbestimmungWert</path>
+              <content>Naturerfahrungsraum</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="zweckbestimmungKomplex">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_GruenFlaeche/xplan:zweckbestimmungKomplex</path>
+              <content>[Allgemein: 2700]</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="zweckbestimmungKomplexWert">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_GruenFlaeche/xplan:zweckbestimmungKomplexWert</path>
+              <content>[Allgemein: Naturerfahrungsraum]</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typenames</con:name>
+              <con:value>xplan:BP_GruenFlaeche</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
@@ -5901,11 +6013,11 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>26</con:value>
+          <con:value>79</con:value>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value>27</con:value>
+          <con:value>80</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -7827,7 +7939,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>28</con:value>
+          <con:value>81</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
