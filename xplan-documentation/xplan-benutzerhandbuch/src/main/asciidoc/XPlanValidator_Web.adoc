@@ -141,7 +141,7 @@ Die Validierung kann über den Button image:validator/BT_ValidierungStarten.png[
 [[xplanvalidator-web-profiles]]
 *Zusätzliche Profile mit Validierungsregeln (optional)*
 
-Zusätzlich können noch Profile ausgewählt werden, die zusätzliche Validierungsregeln enthalten können. Ist ein Profil oder mehrere Profile für den XPlanValidator konfiguriert, dann werden diese unterhalb der Validierungstypen angezeigt.
+Zusätzlich können noch Profile ausgewählt werden, die zusätzliche Validierungsregeln enthalten können. Sind Profile für den XPlanValidator konfiguriert, dann werden diese unterhalb der Validierungstypen angezeigt.
 
 [.bordered]
 image::validator/Validierungsprofile.png[Validierungsprofile]

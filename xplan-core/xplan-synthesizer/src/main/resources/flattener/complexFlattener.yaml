@@ -1,0 +1,495 @@
+###
+# #%L
+# xplan-synthesizer - XPlan Manager Synthesizer Komponente
+# %%
+# Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+# %%
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# #L%
+###
+## Komplexe Zweckbestimmungen
+- acceptedClass: "BP_KomplexeZweckbestGemeinschaftsanlagen"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "BP_ZweckbestimmungGemeinschaftsanlagen"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "BpKomplexeZweckbestSpielSportanlage"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungSpielSportanlage"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "BP_KomplexeZweckbestNebenanlagen"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "BP_ZweckbestimmungNebenanlagen"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "BP_KomplexeZweckbestLandwirtschaft"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungLandwirtschaft"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "BP_KomplexeZweckbestGruen"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungGruen"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "BP_KomplexeZweckbestGemeinbedarf"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungGemeinbedarf"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "BP_KomplexeZweckbestVerEntsorgung"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungVerEntsorgung"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "FP_KomplexeZweckbestGemeinbedarf"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungGemeinbedarf"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "FP_KomplexeZweckbestSpielSportanlage"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungSpielSportanlage"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "FP_KomplexeZweckbestGruen"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungGruen"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "FP_KomplexeZweckbestLandwirtschaft"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungLandwirtschaft"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "FP_KomplexeZweckbestWald"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungWald"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "FP_KomplexeZweckbestVerEntsorgung"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_ZweckbestimmungVerEntsorgung"
+    - label: "Textliche Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+## Komplexe Sondernutzung
+- acceptedClass: "BP_KomplexeSondernutzung"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_Sondernutzungen"
+    - label: "Nutzung"
+      propertyName: "nutzungText"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+- acceptedClass: "FP_KomplexeSondernutzung"
+  properties:
+    - label: "Allgemein"
+      propertyName: "allgemein"
+      codeListName: "XP_Sondernutzungen"
+    - label: "Nutzung"
+      propertyName: "nutzungText"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+## BP_Dachgestaltung
+- acceptedClass: "BP_Dachgestaltung"
+  properties:
+    - label: "Dachneigung"
+      propertyName: "DN"
+    - label: "Dachneigung Min"
+      propertyName: "DNmin"
+    - label: "Dachneigung Max"
+      propertyName: "DNmax"
+    - label: "Dachneigung Zwingend"
+      propertyName: "DNzwingend"
+    - label: "Dachform"
+      propertyName: "dachform"
+      codeListName: "BP_Dachform"
+    - label: "Detaillierte Dachform"
+      propertyName: "detaillierteDachform"
+## BP_EmissionskontingentLaerm
+- acceptedClass: "BP_EmissionskontingentLaerm"
+  properties:
+    - label: "Emissionskontingent Tag [db]"
+      propertyName: "ekwertTag"
+    - label: "Emissionskontingent Nacht [db]"
+      propertyName: "ekwertNacht"
+    - label: "Erläuterung"
+      propertyName: "erlaeuterung"
+## BP_EmissionskontingentLaermGebiet
+- acceptedClass: "BP_EmissionskontingentLaermGebiet"
+  properties:
+    - label: "Emissionskontingent Tag [db]"
+      propertyName: "ekwertTag"
+    - label: "Emissionskontingent Nacht [db]"
+      propertyName: "ekwertNacht"
+    - label: "Erläuterung"
+      propertyName: "erlaeuterung"
+    - label: "Bezeichnung des Immissionsgebietes"
+      propertyName: "gebietsbezeichnung"
+## BP_Richtungssektor
+- acceptedClass: "BP_Richtungssektor"
+  properties:
+    - label: "Startwinkel"
+      propertyName: "winkelAnfang"
+    - label: "Endwinkel"
+      propertyName: "winkelEnde"
+    - label: "Zusatzkontingent Tag"
+      propertyName: "zkWertTag"
+    - label: "Zusatzkontingent Nacht"
+      propertyName: "zkWertNacht"
+## BP_VeraenderungssperreDaten
+- acceptedClass: "BP_VeraenderungssperreDaten"
+  properties:
+    - label: "Startdatum"
+      propertyName: "startDatum"
+    - label: "Enddatum"
+      propertyName: "endDatum"
+    - label: "Verlängerung"
+      propertyName: "verlaengerung"
+      codeListName: "BP_VerlaengerungVeraenderungssperre"
+    - label: "Beschluss vom"
+      propertyName: "beschlussDatum"
+## LP_AdressatKomplex
+- acceptedClass: "LP_AdressatKomplex"
+  properties:
+    - label: "Adressat"
+      propertyName: "adressatArt"
+      codeListName: "LP_AdressatArt"
+    - label: "Adressat (Ergänzung)"
+      propertyName: "adressatText"
+## LP_BiologischeVielfaltTypKomplex
+- acceptedClass: "LP_BiologischeVielfaltTypKomplex"
+  properties:
+    - label: "Bestandteil"
+      propertyName: "bioVielfaltTyp"
+      codeListName: "LP_BioVfBestandteil"
+    - label: "Bestandteil (Ergänzung)"
+      propertyName: "bioVielfaltTypText"
+## LP_BioVfBiotoptypKomplex
+- acceptedClass: "LP_BioVfBiotoptypKomplex"
+  properties:
+    - label: "Biotoptypen"
+      propertyName: "bioVfBiotoptyp_Text"
+## LP_BioVfPflanzenArtKomplex
+- acceptedClass: "LP_BioVfPflanzenArtKomplex"
+  properties:
+    - label: "Pflanzenart"
+      propertyName: "bioVfPflanzenArtName"
+    - label: "Einordnung"
+      propertyName: "bioVfPflanzenSystematik"
+      codeListName: "LP_BioVfPflanzenArtSystematik"
+    - label: "Einordnung (Ergänzung)"
+      propertyName: "bioVfPflanzenSystematikText"
+    - label: "Rechtliche Grundlage"
+      propertyName: "bioVfPflanzenRechtlicherSchutz"
+      codeListName: "LP_BioVfPflanzenArtRechtlicherSchutz"
+    - label: "Rechtliche Grundlage (Ergänzung)"
+      propertyName: "bioVfPflanzenRechtlicherSchutzText"
+## LP_BioVfTiereArtKomplex
+- acceptedClass: "LP_BioVfTiereArtKomplex"
+  properties:
+    - label: "Tierart"
+      propertyName: "bioVfTierArtName"
+    - label: "Einordnung"
+      propertyName: "bioVfTiereSystematik"
+      codeListName: "LP_BioVfTiereArtSystematik"
+    - label: "Einordnung (Ergänzung)"
+      propertyName: "bioVfTiereSystematikText"
+    - label: "Rechtliche Grundlage"
+      propertyName: "bioVfTierArtRechtlicherSchutz"
+      codeListName: "LP_BioVfTierArtRechtlicherSchutz"
+    - label: "Rechtliche Grundlage (Ergänzung)"
+      propertyName: "bioVfTierArtRechtlicherSchutzText"
+    - label: "Habitatanforderungen"
+      propertyName: "bioVfTierArtHabitatanforderung"
+      codeListName: "LP_BioVfTierArtHabitatanforderung"
+    - label: "Habitatanforderungen (Ergänzung)"
+      propertyName: "bioVfTierArtHabitatanforderungText"
+## LP_BodenKomplex
+- acceptedClass: "LP_BodenKomplex"
+  properties:
+    - label: "Ausprägung"
+      propertyName: "bodenAuspraegung"
+      codeListName: "LP_BodenAuspraegung"
+    - label: "Erläuterung"
+      propertyName: "bodenText"
+## LP_EingriffsregelungKomplex
+- acceptedClass: "LP_EingriffsregelungKomplex"
+  properties:
+    - label: "Flächenart"
+      propertyName: "eRFlaechenArt"
+      codeListName: "LP_ERFlaechenArt"
+    - label: "Erläuterung"
+      propertyName: "eRFlaechenArtText"
+## LP_ErholungKomplex
+- acceptedClass: "LP_ErholungKomplex"
+  properties:
+    - label: "Art"
+      propertyName: "erholungFunktionArt"
+      codeListName: "LP_ErholungFunktionen"
+    - label: "Erläuterung"
+      propertyName: "erholungFunktionText"
+## LP_KlimaKomplex
+- acceptedClass: "LP_KlimaKomplex"
+  properties:
+    - label: "Art"
+      propertyName: "klimaArt"
+      codeListName: "LP_KlimaArt"
+    - label: "Erläuterung"
+      propertyName: "klimaText"
+## LP_LandschaftsbildKomplex
+- acceptedClass: "LP_LandschaftsbildKomplex"
+  properties:
+    - label: "Art"
+      propertyName: "landschaftsbildArt"
+      codeListName: "LP_LandschaftsbildArt"
+    - label: "Erläuterung"
+      propertyName: "landschaftsbildText"
+## LP_LuftKomplex
+- acceptedClass: "LP_LuftKomplex"
+  properties:
+    - label: "Art"
+      propertyName: "luftArt"
+      codeListName: "LP_LuftArt"
+    - label: "Erläuterung"
+      propertyName: "luftText"
+## LP_NutzungseinschraenkungKomplex
+- acceptedClass: "LP_NutzungseinschraenkungKomplex"
+  properties:
+    - label: "Empfohlen/vorgeschlagen"
+      propertyName: "hatNutzungseinschraenkung"
+    - label: "Erläuterung"
+      propertyName: "nutzungseinschraenkungText"
+## LP_ReferenzLPObjekt
+- acceptedClass: "LP_ReferenzLPObjekt"
+  properties:
+    - label: "Beschreibung"
+      propertyName: "beschreibung"
+## LP_SchutzgutKomplex
+- acceptedClass: "LP_SchutzgutKomplex"
+  properties:
+    - label: "Art"
+      propertyName: "schutzgutArt"
+      codeListName: "LP_SchutzgutArt"
+    - label: "Erläuterung"
+      propertyName: "schutzgutText"
+## LP_SPEKomplex
+- acceptedClass: "LP_SPEKomplex"
+  properties:
+    - label: "Art"
+      propertyName: "schutzPflegeEntwicklungTyp"
+      codeListName: "LP_SchutzPflegeEntwicklung"
+    - label: "Erläuterung"
+      propertyName: "schutzPflegeEntwicklungText"
+## LP_TypBioVerbundKomplex
+- acceptedClass: "LP_TypBioVerbundKomplex"
+  properties:
+    - label: "Flächentyp"
+      propertyName: "flaechenTypBV"
+      codeListName: "LP_FlaechenTypBV"
+    - label: "Flächentyp (speziell)"
+      propertyName: "flaechentypBVSpeziell"
+      codeListName: "LP_FlaechenTypBVSpeziell"
+    - label: "Flächentyp (Ergänzung zu speziell)"
+      propertyName: "flaechentypSpeziellText"
+## LP_VorschlagIntegrationBauleitplanung
+- acceptedClass: "LP_VorschlagIntegrationBauleitplanung"
+  properties:
+    - label: "Begruendung"
+      propertyName: "begruendung"
+## LP_VorschlagIntegrationRaumordnung
+- acceptedClass: "LP_VorschlagIntegrationRaumordnung"
+  properties:
+    - label: "Begruendung"
+      propertyName: "begruendung"
+## LP_WasserKomplex
+- acceptedClass: "LP_WasserKomplex"
+  properties:
+    - label: "Ausprägung"
+      propertyName: "wasserAuspraegung"
+      codeListName: "LP_WasserAuspraegung"
+    - label: "Erläuterung"
+      propertyName: "wasserText"
+## LP_ZielDimNatSchLaPflKomplex
+- acceptedClass: "LP_ZielDimNatSchLaPflKomplex"
+  properties:
+    - label: "Art"
+      propertyName: "zielDimensionTyp"
+      codeListName: "LP_ZielDimensionTyp"
+    - label: "Erläuterung"
+      propertyName: "zielDimensionText"
+## SO_KomplexeFestlegungGewaesser
+- acceptedClass: "SO_KomplexeFestlegungGewaesser"
+  properties:
+    - label: "Allgemeine Zweckbestimmung"
+      propertyName: "allgemein"
+      codeListName: "SO_KlassifizGewaesser"
+    - label: "Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+## SO_KomplexeZweckbestStrassenverkehr
+- acceptedClass: "SO_KomplexeZweckbestStrassenverkehr"
+  properties:
+    - label: "Allgemeine Zweckbestimmung"
+      propertyName: "allgemein"
+      codeListName: "SO_ZweckbestimmungStrassenverkehr"
+    - label: "Ergänzung"
+      propertyName: "textlicheErgaenzung"
+    - label: "Aufschrift"
+      propertyName: "aufschrift"
+## XP_Gemeinde
+- acceptedClass: "XP_Gemeinde"
+  properties:
+    - label: "Gemeindeschlüssel"
+      propertyName: "ags"
+    - label: "Regionalschlüssel"
+      propertyName: "rs"
+    - label: "Gemeinde"
+      propertyName: "gemeindeName"
+    - label: "Ortsteil"
+      propertyName: "ortsteilName"
+## XP_GesetzlicheGrundlage
+- acceptedClass: "XP_GesetzlicheGrundlage"
+  properties:
+    - label: "Name"
+      propertyName: "name"
+    - label: "Datum"
+      propertyName: "datum"
+    - label: "Detail"
+      propertyName: "detail"
+## XP_Hoehenangabe
+- acceptedClass: "XP_Hoehenangabe"
+  properties:
+    - label: "Höhenbezug"
+      propertyName: "hoehenbezug"
+      codeListName: "XP_ArtHoehenbezug"
+    - label: "Abweichender Höhenbezug"
+      propertyName: "abweichenderHoehenbezug"
+    - label: "Bezugspunkt"
+      propertyName: "bezugspunkt"
+      codeListName: "XP_ArtHoehenbezugspunkt"
+    - label: "Abweichender Bezugspunkt"
+      propertyName: "abweichenderBezugspunkt"
+    - label: "Höhe"
+      propertyName: "h"
+    - label: "Höhe Min"
+      propertyName: "hMin"
+    - label: "Höhe Max"
+      propertyName: "hMax"
+    - label: "Höhe Zwingend"
+      propertyName: "hZwingend"
+## XP_Plangeber
+- acceptedClass: "XP_Plangeber"
+  properties:
+    - label: "Name"
+      propertyName: "name"
+    - label: "Kennziffer"
+      propertyName: "kennziffer"
+## XP_SPEMassnahmenDaten
+- acceptedClass: "XP_SPEMassnahmenDaten"
+  properties:
+    - label: "Maßnahmentext"
+      propertyName: "massnahmeText"
+    - label: "Maßnahmenkürzel"
+      propertyName: "massnahmeKuerzel"
+    - label: "Maßnahme"
+      propertyName: "klassifizMassnahme"
+      codeListName: "XP_SPEMassnahmenTypen"
+## XP_VerbundenerPlanBereich
+- acceptedClass: "XP_VerbundenerPlanBereich"
+  properties:
+    - label: "Verbundener Planbereich"
+      propertyName: "planName"
+    - label: "Rechtscharakter Planänderung"
+      propertyName: "rechtscharakter"
+      codeListName: "XP_RechtscharakterPlanaenderung"
+    - label: "Änderungsart"
+      propertyName: "aenderungsArt"
+      codeListName: "XP_Aenderungsarten"
+    - label: "Nummer verbundener Plan"
+      propertyName: "nummer"
+## XP_VerbundenerPlan
+- acceptedClass: "XP_VerbundenerPlan"
+  properties:
+    - label: "Verbundener Plan"
+      propertyName: "planName"
+    - label: "Rechtscharakter Planänderung"
+      propertyName: "rechtscharakter"
+      codeListName: "XP_RechtscharakterPlanaenderung"
+    - label: "Nummer verbundener Plan"
+      propertyName: "nummer"
+## XP_WirksamkeitBedingung
+- acceptedClass: "XP_WirksamkeitBedingung"
+  properties:
+    - label: "Bedingung"
+      propertyName: "bedingung"
+    - label: "Datum"
+      propertyName: "datumAbsolut"
+    - label: "Zeitspanne"
+      propertyName: "datumRelativ"

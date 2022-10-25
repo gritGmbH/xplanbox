@@ -33,7 +33,6 @@ import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanArtefactIterator;
 import de.latlon.xplan.manager.export.XPlanExportException;
-import de.latlon.xplan.manager.transaction.XPlanTransactionManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -96,6 +95,7 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditi
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
+import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.apache.commons.io.IOUtils.copyLarge;
@@ -341,9 +341,9 @@ public class XPlanDao {
 						.map(featureType -> featureType.getName()).collect(Collectors.toList());
 
 				Set<String> validIds = ids.stream().filter(oldFeatureId -> {
-					Optional<QName> featureType = featureTypeNames.stream().filter(
-							featureTypeName -> oldFeatureId.startsWith(XPlanTransactionManager.SYN_FEATURETYPE_PREFIX
-									+ featureTypeName.getLocalPart().toUpperCase()))
+					Optional<QName> featureType = featureTypeNames.stream()
+							.filter(featureTypeName -> oldFeatureId
+									.startsWith(SYN_FEATURETYPE_PREFIX + featureTypeName.getLocalPart().toUpperCase()))
 							.findFirst();
 					if (featureType.isPresent()) {
 						return true;

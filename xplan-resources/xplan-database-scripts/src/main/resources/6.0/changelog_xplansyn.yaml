@@ -6190,6 +6190,12 @@ databaseChangeLog:
             name: xplan_mzspezial
             type: TEXT
         - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
+        - column:
             name: xplan_bauweisetext
             type: TEXT
         - column:
@@ -6633,6 +6639,12 @@ databaseChangeLog:
         - column:
             name: xplan_flaechenschluss
             type: BOOLEAN
+        - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
         - column:
             name: xplan_zmax
             type: INTEGER
@@ -7481,6 +7493,12 @@ databaseChangeLog:
             type: INTEGER
         - column:
             name: xplan_mzspezial
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
             type: TEXT
         - column:
             name: xplan_zugunstenvon
@@ -8806,6 +8824,12 @@ databaseChangeLog:
             name: xplan_flaechenschluss
             type: BOOLEAN
         - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
+        - column:
             name: xplan_rechtsstand
             type: TEXT
         - column:
@@ -9270,6 +9294,12 @@ databaseChangeLog:
         - column:
             name: xplan_flaechenschluss
             type: BOOLEAN
+        - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
         - column:
             name: xplan_zmax
             type: INTEGER
@@ -11824,6 +11854,12 @@ databaseChangeLog:
             name: xplan_mzspezial
             type: TEXT
         - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
+        - column:
             name: xplan_zugunstenvon
             type: TEXT
         - column:
@@ -14281,6 +14317,12 @@ databaseChangeLog:
             name: xplan_mzspezial
             type: TEXT
         - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
+        - column:
             name: xplan_zugunstenvon
             type: TEXT
         - column:
@@ -15030,6 +15072,12 @@ databaseChangeLog:
         - column:
             name: xplan_flaechenschluss
             type: BOOLEAN
+        - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
         - column:
             name: xplan_eigentumsart
             type: TEXT
@@ -18319,6 +18367,12 @@ databaseChangeLog:
             name: xplan_flussrichtung
             type: BOOLEAN
         - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
+        - column:
             name: xplan_traeger
             type: TEXT
         - column:
@@ -18940,6 +18994,12 @@ databaseChangeLog:
             name: xplan_flussrichtung
             type: BOOLEAN
         - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
+        - column:
             name: xplan_zugunstenvon
             type: TEXT
         - column:
@@ -19533,6 +19593,12 @@ databaseChangeLog:
         - column:
             name: xplan_flussrichtung
             type: BOOLEAN
+        - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
         - column:
             name: xplan_rechtsstand
             type: TEXT
@@ -20905,6 +20971,12 @@ databaseChangeLog:
             name: xplan_flussrichtung
             type: BOOLEAN
         - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
+        - column:
             name: xplan_zugunstenvon
             type: TEXT
         - column:
@@ -21763,6 +21835,12 @@ databaseChangeLog:
             name: xplan_flussrichtung
             type: BOOLEAN
         - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
+        - column:
             name: xplan_zugunstenvon
             type: TEXT
         - column:
@@ -22143,6 +22221,12 @@ databaseChangeLog:
         - column:
             name: xplan_flaechenschluss
             type: BOOLEAN
+        - column:
+            name: xplan_zweckbestimmungkomplex
+            type: TEXT
+        - column:
+            name: xplan_zweckbestimmungkomplexwert
+            type: TEXT
         - column:
             name: xplan_eigentumsart
             type: TEXT
@@ -40406,6 +40490,15 @@ databaseChangeLog:
             type: TEXT
         - column:
             name: xplan_artderfestlegung
+            type: TEXT
+        - column:
+            name: xplan_artderfestlegungwert
+            type: TEXT
+        - column:
+            name: xplan_artderfestlegungkomplex
+            type: TEXT
+        - column:
+            name: xplan_artderfestlegungkomplexwert
             type: TEXT
         - column:
             name: xplan_einteilung

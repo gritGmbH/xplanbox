@@ -10,12 +10,12 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -24,6 +24,7 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.AbstractFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.DefaultFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.Flattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.complex.ComplexFlattener;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.utils.Pair;
 
@@ -35,20 +36,27 @@ import java.util.List;
  */
 public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 
+	private boolean keepCodes;
+
+	/**
+	 * @param keepCodes <code>true</code> if code properties should be translated
+	 */
+	public LpBiologischeVielfaltKomplexFlattener(boolean keepCodes) {
+		this.keepCodes = keepCodes;
+	}
+
 	@Override
 	public boolean accepts(TypedObjectNode node) {
 		return acceptsElementNode(node, "LP_BiologischeVielfaltKomplex");
 	}
 
 	@Override
-	public String flatten(TypedObjectNode node) {
+	public String flatten(TypedObjectNode node, boolean keepCodes) {
 		List<Pair<String, String>> properties = new ArrayList<>();
-		appendFlattenedValue("Biologische Vielfalt", node, new LpBiologischeVielfaltTypKomplexFlattener(),
-				"bioVielfaltTypus", properties);
-		appendFlattenedValue("Planzenart", node, new LpBioVfPflanzenArtKomplexFlattener(), "bioVfPflanzenArt",
-				properties);
-		appendFlattenedValue("Tierart", node, new LpBioVfTiereArtKomplexFlattener(), "bioVfTierArt", properties);
-		appendFlattenedValue("Biotoptyp", node, new LpBioVfBiotoptypKomplexFlattener(), "bioVfBiotoptyp", properties);
+		appendFlattenedValue("Biologische Vielfalt", node, new ComplexFlattener(), "bioVielfaltTypus", properties);
+		appendFlattenedValue("Planzenart", node, new ComplexFlattener(), "bioVfPflanzenArt", properties);
+		appendFlattenedValue("Tierart", node, new ComplexFlattener(), "bioVfTierArt", properties);
+		appendFlattenedValue("Biotoptyp", node, new ComplexFlattener(), "bioVfBiotoptyp", properties);
 		appendBoolean("von gemeinschaftlichem Interesse kartiert", node, "bioVfArtFFHAnhangII", properties);
 		return encode(properties);
 	}
@@ -66,9 +74,9 @@ public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 		if (property == null)
 			return null;
 		if (flattener.accepts(property)) {
-			return flattener.flatten(property);
+			return flattener.flatten(property, keepCodes);
 		}
-		return new DefaultFlattener().flatten(node);
+		return new DefaultFlattener().flatten(node, keepCodes);
 	}
 
 }

@@ -33,6 +33,8 @@ import java.util.Properties;
  */
 public class FeatureTypeNameSynthesizer {
 
+	public static final String SYN_FEATURETYPE_PREFIX = "XPLAN_";
+
 	private static final Properties renamedFeatureTypes = new Properties();
 
 	static {
@@ -59,11 +61,11 @@ public class FeatureTypeNameSynthesizer {
 	}
 
 	public boolean idsMatchSynFeatureType(XPlanFeatureCollection featureCollection) {
-		return featureCollection.getFeatures().stream().anyMatch(feature -> {
+		return featureCollection.getFeatures().stream().allMatch(feature -> {
 			String featureId = feature.getId();
 			QName name = feature.getType().getName();
 			String synFeatureTypeName = detectSynFeatureTypeName(name);
-			return featureId.startsWith(synFeatureTypeName);
+			return featureId.startsWith(SYN_FEATURETYPE_PREFIX + synFeatureTypeName.toUpperCase());
 		});
 	}
 

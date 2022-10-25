@@ -272,7 +272,7 @@ Beispiel Ausgabe:
 Plan 1 wurde gelöscht.
 ----
 
-[[xplanmanager-cli-loeschen]]
+[[xplanmanager-metadaten-erzeugen]]
 ===== Erzeugen von Service-Metadatensätzen
 
 Mit dieser Option können Metadatensätze für den XPlanWerkWMS erstellt werden. Bei der Erstellung der Informationen für die Capabilities des XPlanWerkWMS werden dabei bereits vorhandene Informationen überschrieben. Generierte Service-Metadatensätze werden nicht überschrieben, sondern können anhand des Zeitstempels im Dateinamen dem Zeitpunkt der Erstellung zugeordnet werden. Es wird jedoch ein neuer FileIdentifier generiert.

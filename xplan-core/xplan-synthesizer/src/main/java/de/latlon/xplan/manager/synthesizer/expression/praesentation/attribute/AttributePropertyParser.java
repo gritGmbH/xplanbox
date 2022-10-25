@@ -158,8 +158,7 @@ public class AttributePropertyParser {
 				return parseSteps(properties, firstStep.index, firstStep, steps);
 			}
 			else {
-				LOG.warn(
-						"Referenced feature with id {} contains no property with name {} on index {}. Use first property.",
+				LOG.warn("Referenced feature with id {} contains no property with name {} on index {}.",
 						referencedFeature.getId(), firstStep.name, firstStep.index);
 			}
 		}
@@ -169,9 +168,14 @@ public class AttributePropertyParser {
 	private static AttributeProperty parseSteps(List<Property> properties, int index, Step firstStep,
 			List<Step> steps) {
 		Property propertyStep = properties.get(index);
-		AttributeProperty attributeProperty = parseSteps(firstStep, steps, 1, propertyStep, null);
-		if (attributeProperty != null)
-			return attributeProperty;
+		if (propertyStep instanceof GenericProperty) {
+			TypedObjectNode propertyStepValue = ((GenericProperty) propertyStep).getValue();
+			return parseSteps(firstStep, steps, index + 1, propertyStepValue, propertyStep);
+		}
+		else if (propertyStep instanceof SimpleProperty) {
+			TypedObjectNode propertyStepValue = ((SimpleProperty) propertyStep).getValue();
+			return parseSteps(firstStep, steps, index + 1, propertyStepValue, propertyStep);
+		}
 		return null;
 	}
 
@@ -184,19 +188,11 @@ public class AttributePropertyParser {
 			String primitiveValue = ((PrimitiveValue) stepValue).getAsText();
 			return new AttributeProperty(currentStep.name, attributePropertyType, primitiveValue, codeListId);
 		}
-		else if (stepValue instanceof GenericProperty) {
-			TypedObjectNode propertyStepValue = ((GenericProperty) stepValue).getValue();
-			return parseSteps(currentStep, allSteps, nextStepIndex, propertyStepValue, stepValue);
-		}
-		else if (stepValue instanceof SimpleProperty) {
-			TypedObjectNode propertyStepValue = ((SimpleProperty) stepValue).getValue();
-			return parseSteps(currentStep, allSteps, nextStepIndex, propertyStepValue, stepValue);
-		}
 		else if (stepValue instanceof GenericXMLElement) {
 			GenericXMLElement stepValueGenericXml = (GenericXMLElement) stepValue;
+			List<TypedObjectNode> children = stepValueGenericXml.getChildren();
 			if (allSteps.size() > nextStepIndex) {
 				Step nextStep = allSteps.get(nextStepIndex);
-				List<TypedObjectNode> children = stepValueGenericXml.getChildren();
 				List<TypedObjectNode> childrenWithStepName = children.stream().filter(child -> {
 					if (child instanceof GenericXMLElement)
 						return ((GenericXMLElement) child).getName().getLocalPart().equals(nextStep.name);
@@ -207,8 +203,7 @@ public class AttributePropertyParser {
 							stepValueGenericXml);
 				}
 			}
-			else if (stepValueGenericXml.getChildren().size() == 1) {
-				List<TypedObjectNode> children = stepValueGenericXml.getChildren();
+			else if (children.size() == 1 && children.get(0) instanceof PrimitiveValue) {
 				return parseSteps(currentStep, allSteps, nextStepIndex, children.get(0), stepValueGenericXml);
 			}
 		}

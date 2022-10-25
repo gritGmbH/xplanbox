@@ -195,10 +195,8 @@ public class XPlanValidator {
 			validateGeometric(archive, voOptions, report);
 		if (validationType.contains(SEMANTIC))
 			validateSemantic(archive, semanticValidationOptions, report);
-		if (!semanticProfileValidators.isEmpty()) {
-			List<String> profiles = validationSettings.getProfiles();
-			validateSemanticProfiles(archive, profiles, report);
-		}
+		List<String> profiles = validationSettings.getProfiles();
+		validateSemanticProfiles(archive, profiles, report);
 		return report;
 	}
 
