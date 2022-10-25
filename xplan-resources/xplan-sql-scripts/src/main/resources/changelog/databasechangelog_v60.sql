@@ -24,6 +24,9 @@ SET default_table_access_method = heap;
 -- Name: databasechangelog; Type: TABLE; Schema: public; Owner: postgres
 --
 
+-- DROP TABLE if already exists
+DROP TABLE IF EXISTS public.databasechangelog;
+
 CREATE TABLE public.databasechangelog (
     id character varying(255) NOT NULL,
     author character varying(255) NOT NULL,
