@@ -119,9 +119,8 @@
       <artifactId>ecj</artifactId>
     </dependency>
     <dependency>
-      <groupId>de.geowerkstatt-hamburg</groupId>
-      <artifactId>xplanung</artifactId>
-      <type>zip</type>
+      <groupId>de.xleitstelle.xplanung</groupId>
+      <artifactId>regeln</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>

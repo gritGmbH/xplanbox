@@ -60,11 +60,11 @@
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>de.geowerkstatt-hamburg:xplanung:zip</include>
+        <include>de.xleitstelle.xplanung:regeln</include>
       </includes>
       <useProjectArtifact>true</useProjectArtifact>
       <unpack>true</unpack>
-      <outputDirectory>etc</outputDirectory>
+      <outputDirectory>etc/rules</outputDirectory>
     </dependencySet>
   </dependencySets>
 </assembly>
