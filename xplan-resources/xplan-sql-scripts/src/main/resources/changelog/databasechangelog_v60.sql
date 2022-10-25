@@ -20,6 +20,8 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
+SET SEARCH_PATH TO public, "$user","public";
+
 --
 -- Name: databasechangelog; Type: TABLE; Schema: public; Owner: postgres
 --
