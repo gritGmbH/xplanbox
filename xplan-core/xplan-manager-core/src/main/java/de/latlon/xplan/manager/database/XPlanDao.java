@@ -306,7 +306,6 @@ public class XPlanDao {
 	public void updateXPlanSynFeatureCollection(XPlan xplan, FeatureCollection synFc, XPlanFeatureCollection originalFc,
 			Date sortDate, boolean updateFeaturesAndBlob) throws Exception {
 		Connection conn = null;
-		PreparedStatement stmt = null;
 		SQLFeatureStoreTransaction taSyn = null;
 		SQLFeatureStoreTransaction taBlob = null;
 		try {
@@ -389,7 +388,7 @@ public class XPlanDao {
 			throw new Exception("Fehler beim Aktualisieren des Plans: " + e.getMessage() + ".", e);
 		}
 		finally {
-			closeQuietly(stmt);
+			closeQuietly(conn);
 		}
 	}
 
