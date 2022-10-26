@@ -66,7 +66,7 @@
           <gml:upperCorner>565072.441 5940511.714</gml:upperCorner>
         </gml:Envelope>
       </gml:boundedBy>
-      <xplan:nummer>1</xplan:nummer>
+      <xplan:nummer>0</xplan:nummer>
       <xplan:planinhalt xlink:href="#GML_51e17233-d921-46cb-83b9-af28451186a1" />
       <xplan:planinhalt xlink:href="#GML_b4176441-d7e7-435c-87ae-27360e8cb4d6" />
       <xplan:planinhalt xlink:href="#GML_fa0eea57-ebb1-4d50-b205-95865d6b9284" />

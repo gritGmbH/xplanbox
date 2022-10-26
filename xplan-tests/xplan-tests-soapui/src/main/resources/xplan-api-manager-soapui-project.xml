@@ -7512,7 +7512,7 @@ assert actualHeader != null</scriptText>
       <con:testStep type="restrequest" name="POST BP 6.0 pI modifyStatusGML" id="dff35add-7848-4f46-a75c-029eb246160f">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis" methodName="addRasterBasis" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Copy of POST BP 5.3 pI modifyStatus" id="e18e8142-72bd-457f-aaf4-6656c0313839" mediaType="multipart/form-data" postQueryString="false">
+          <con:restRequest name="POST BP 6.0 pI modifyStatusGML" id="e18e8142-72bd-457f-aaf4-6656c0313839" mediaType="multipart/form-data" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -7575,7 +7575,7 @@ assert actualHeader != null</scriptText>
       <con:testStep type="restrequest" name="GET BP 6.0 pI currentStatusGML" id="04cd90d7-7dd6-468f-889c-ad60bbaa6bce">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis" methodName="getRasterBasis" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="Copy of GET BP 5.3 pI currentStatus" id="db9a041f-e0a5-40dc-af67-04479f9de7c9" mediaType="application/json">
+          <con:restRequest name="GET BP 6.0 pI currentStatusGML" id="db9a041f-e0a5-40dc-af67-04479f9de7c9" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -7590,7 +7590,7 @@ assert actualHeader != null</scriptText>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
               <con:configuration>
                 <path>$[0].id</path>
-                <content/>
+                <content>postImg-postImgpng</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -8733,6 +8733,75 @@ assert actualHeader != null</scriptText>
             <con:parameters>
               <con:entry key="planId" value="${#TestSuite#currentPlanIdBereiche}"/>
               <con:entry key="id" value="-putImgpng"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET BP 6.0 pI,id currentStatusGML" id="4eb389d8-ac99-48d1-acee-4a92612c3f06">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="getRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 6.0 pI,id currentStatusGML" id="170c2217-1c2e-4220-98cc-3c1f42061cc9" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="801d9d24-d33b-49de-876e-7d0e2b2e37b2" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+              <con:configuration>
+                <path>$.id</path>
+                <content>postImg-postImgpng</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}"/>
+              <con:entry key="id" value="postImg-postImgpng"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="DEL BP 6.0 pI,id modifyStatusGML" id="95cc547b-78da-46e9-ade1-0a7f5af43817">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="deleteRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="DEL BP 6.0 pI,id modifyStatusGML" id="e2912344-f8cb-4508-8045-b82c8668dd9d" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="62b4e9ab-64fc-4591-b13c-39f1b3867d5d" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}"/>
+              <con:entry key="id" value="postImg-postImgpng"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -11710,95 +11779,95 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>115</con:value>
+        <con:value>280</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>117</con:value>
+        <con:value>282</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML53</con:name>
-        <con:value>123</con:value>
+        <con:value>288</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdText</con:name>
-        <con:value>124</con:value>
+        <con:value>289</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdAenderung</con:name>
-        <con:value>118</con:value>
+        <con:value>283</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdDokument</con:name>
-        <con:value>119</con:value>
+        <con:value>284</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdFPlan</con:name>
-        <con:value>129</con:value>
+        <con:value>294</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-        <con:value>125</con:value>
+        <con:value>290</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-        <con:value>126</con:value>
+        <con:value>291</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdV2</con:name>
-        <con:value>116</con:value>
+        <con:value>281</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-        <con:value>121</con:value>
+        <con:value>286</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBereiche</con:name>
-        <con:value>122</con:value>
+        <con:value>287</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60</con:name>
-        <con:value>128</con:value>
+        <con:value>293</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSOPlan</con:name>
-        <con:value>132</con:value>
+        <con:value>297</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdRPlan</con:name>
-        <con:value>131</con:value>
+        <con:value>296</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdLPlan</con:name>
-        <con:value>130</con:value>
+        <con:value>295</con:value>
       </con:property>
       <con:property>
         <con:name>textIdSOPlan</con:name>
-        <con:value>XPLAN_texte_132b13e9-fd49-46c2-9f21-df1a70855c66</con:value>
+        <con:value>XPLAN_texte_4a93dae5-8182-4865-83ed-d5d1ef619781</con:value>
       </con:property>
       <con:property>
         <con:name>textIdLPlan</con:name>
-        <con:value>XPLAN_texte_442de9d1-574e-4e65-87da-a226edd2b67f</con:value>
+        <con:value>XPLAN_texte_1ae02547-c798-4147-bc23-5367c862806e</con:value>
       </con:property>
       <con:property>
         <con:name>textIdFPlan</con:name>
-        <con:value>XPLAN_texte_22b1f6e4-dc11-4e6f-bd9e-8327489cb505</con:value>
+        <con:value>XPLAN_texte_98ca7a58-a3a0-4809-82e5-e75345cf47da</con:value>
       </con:property>
       <con:property>
         <con:name>textIdRPlan</con:name>
-        <con:value>XPLAN_texte_4a50bb2e-6a70-4d44-82db-605ac3d19fda</con:value>
+        <con:value>XPLAN_texte_2176646b-e1ee-4c71-83e7-e8b88b9b88d0</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBPlanOhneBereich</con:name>
-        <con:value>120</con:value>
+        <con:value>285</con:value>
       </con:property>
       <con:property>
         <con:name>planId40</con:name>
-        <con:value>114</con:value>
+        <con:value>279</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60asGML</con:name>
-        <con:value>127</con:value>
+        <con:value>292</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
