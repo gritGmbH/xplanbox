@@ -78,7 +78,7 @@ public class LiquibaseConfigurationIT {
 			ValidationErrors errors = database.validate();
 			assertFalse(errors.hasErrors());
 			RanChangeSet changeSet60 = database.getRanChangeSetList().stream()
-					.filter(changeSet -> changeSet.getId().equalsIgnoreCase("1660760759850-6")).findAny().orElse(null);
+					.filter(changeSet -> changeSet.getId().equalsIgnoreCase("1663512741090-1")).findAny().orElse(null);
 			assertNotNull(changeSet60);
 			assertTrue(database.doesTagExist("v_6.0"));
 			connection.close();
