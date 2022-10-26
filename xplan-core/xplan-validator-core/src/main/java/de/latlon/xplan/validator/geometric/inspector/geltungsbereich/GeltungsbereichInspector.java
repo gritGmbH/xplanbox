@@ -202,6 +202,9 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		AbstractDefaultGeometry difference = (AbstractDefaultGeometry) currentFeatureGeom
 				.getDifference(geltungsbereichGeom);
 		List<AbstractDefaultGeometry> relevantDifferences = new ArrayList<>();
+		if (difference == null) {
+			return Collections.emptyList();
+		}
 		if (difference instanceof MultiGeometry) {
 			((MultiGeometry<?>) difference).forEach(geom -> relevantDifferences.add((AbstractDefaultGeometry) geom));
 		}
@@ -297,15 +300,15 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		return Collections.emptyList();
 	}
 
-	private boolean isInsideGeom(FeatureUnderTest inGeltungsbereichFeature, Geometry geltungsbereich)
+	private boolean isInsideGeom(FeatureUnderTest inGeltungsbereichFeature, Geometry geltungsbereichWithBuffer)
 			throws InvalidGeometryException {
 		try {
-			Geometry geometry = inGeltungsbereichFeature.getJtsGeometry();
-			if (geometry == null) {
+			Geometry featureGeometry = inGeltungsbereichFeature.getJtsGeometry();
+			if (featureGeometry == null) {
 				throw new InvalidGeometryException("Geometry of feature with ID "
 						+ inGeltungsbereichFeature.getFeatureId() + " could not be parsed (or is empty)");
 			}
-			IntersectionMatrix relate = geltungsbereich.relate(geometry);
+			IntersectionMatrix relate = geltungsbereichWithBuffer.relate(featureGeometry);
 			return relate.matches("***F**FFT");
 		}
 		catch (TopologyException | IllegalArgumentException e) {
