@@ -64,7 +64,7 @@
       </includes>
       <useProjectArtifact>true</useProjectArtifact>
       <unpack>true</unpack>
-      <outputDirectory>etc/rules</outputDirectory>
+      <outputDirectory>etc</outputDirectory>
     </dependencySet>
   </dependencySets>
 </assembly>
