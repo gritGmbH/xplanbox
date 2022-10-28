@@ -35,9 +35,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>de.geowerkstatt-hamburg</groupId>
-                  <artifactId>xplanung</artifactId>
-                  <type>zip</type>
+                  <groupId>de.xleitstelle.xplanung</groupId>
+                  <artifactId>regeln</artifactId>
                   <overWrite>true</overWrite>
                 </artifactItem>
               </artifactItems>

@@ -47,9 +47,8 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>de.geowerkstatt-hamburg</groupId>
-      <artifactId>xplanung</artifactId>
-      <type>zip</type>
+      <groupId>de.xleitstelle.xplanung</groupId>
+      <artifactId>regeln</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
