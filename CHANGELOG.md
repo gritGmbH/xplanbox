@@ -2,7 +2,7 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-## Version 6.0 (2020-09-XX)
+## Version 6.0 (2020-10-28)
 
 ### Erweiterungen
 - Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
@@ -18,12 +18,14 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Verbesserungen am XPlanSyn-Schema
 - Langfassung für Übersetzung von Enumerationswerten im XPlanSynWFS und XPlanWMS
 - Vereinheitlichen der Layernamen im XPlanWMS und XPlanWerkWMS
+- Verbesserungen der Zeichenvorschriften für Layer aus dem Modellbereichen BP und FP im XPlanWMS
 - Verbesserungen der Behandlung von Präsentationsobjekten mit einer Auswahl an Zeichenvorschriften
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten mit uneindeutigen Bereichs-Nummern
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten und Referenzierung über verbundenerPlan@xlink:href
 - Verbessern der Fehlermeldung beim Editieren eines Plans ohne Bereich
 - Unterstützung von XPlanGML 3.0 aus allen Komponenten entfernt
 - Konfigurationsparameter defaultBboxIn4326 entfernt
+- Hinzufügen einer Tabelle planslog in der XPlanDB
 - Aktualisierung auf deegree 3.5
 - Aktualisierung auf JTS 1.19.0
 

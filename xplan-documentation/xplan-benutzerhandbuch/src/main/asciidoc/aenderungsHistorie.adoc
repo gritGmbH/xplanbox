@@ -21,6 +21,7 @@ Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neb
 - Verbesserungen am XPlanSyn-Schema
 - Langfassung für Übersetzung von Enumerationswerten im XPlanSynWFS und XPlanWMS
 - Vereinheitlichen der Layernamen im XPlanWMS und XPlanWerkWMS
+- Verbesserungen der Zeichenvorschriften für Layer aus dem Modellbereichen BP und FP im XPlanWMS
 - Verbesserungen der Behandlung von Präsentationsobjekten mit einer Auswahl an Zeichenvorschriften
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten mit uneindeutigen Bereichs-Nummern
 - Verbesserung der Fehlermeldung beim Import eines XPlanArchiv mit mehreren Instanzdokumenten und Referenzierung über verbundenerPlan@xlink:href
