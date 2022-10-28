@@ -3,7 +3,6 @@
 == Lizenzen der verwendeten Bibliotheken
 
 ```
-(Unknown license) avalon-framework-impl (avalon-framework:avalon-framework-impl:4.2.0 - no url defined)
 (The Apache Software License, Version 2.0) ClassMate (com.fasterxml:classmate:1.3.4 - http://github.com/FasterXML/java-classmate)
 (The Apache Software License, Version 2.0) Jackson-annotations (com.fasterxml.jackson.core:jackson-annotations:2.13.4 - http://github.com/FasterXML/jackson)
 (The Apache Software License, Version 2.0) Jackson-annotations (com.fasterxml.jackson.core:jackson-annotations:2.9.6 - http://github.com/FasterXML/jackson)
@@ -75,7 +74,6 @@
 (The Apache Software License, Version 2.0) Apache Commons Logging (commons-logging:commons-logging:1.2 - http://commons.apache.org/proper/commons-logging/)
 (The Apache Software License, Version 2.0) Commons Pool (commons-pool:commons-pool:1.5.4 - http://commons.apache.org/pool/)
 (The Apache Software License, Version 2.0) Commons Pool (commons-pool:commons-pool:1.6 - http://commons.apache.org/pool/)
-(Unknown license) xplanung (de.geowerkstatt-hamburg:xplanung:0.12.2 - no url defined)
 (GNU Lesser General Public License (LGPL), version 2.1) deegree-connectionprovider-datasource (de.latlon:deegree-connectionprovider-datasource:3.5-PRE1 - http://www.deegree.org/deegree-core/deegree-connectionprovider-datasource/)
 (GNU Lesser General Public License (LGPL), version 2.1) deegree-core-annotations (de.latlon:deegree-core-annotations:3.5-PRE1 - http://www.deegree.org/deegree-core/deegree-core-annotations/)
 (GNU Lesser General Public License (LGPL), version 2.1) deegree-core-base (de.latlon:deegree-core-base:3.5-PRE1 - http://www.deegree.org/deegree-core/deegree-core-base/)
@@ -131,6 +129,7 @@
 (GNU Affero General Public License (AGPL), version 3) xplan-validator-core (de.latlon.product.xplanbox:xplan-validator-core:6.0-SNAPSHOT - https://gitlab.opencode.de/diplanung/ozgxplanung/xplan-core/xplan-validator-core)
 (GNU Affero General Public License (AGPL), version 3) xplan-validator-web-commons (de.latlon.product.xplanbox:xplan-validator-web-commons:6.0-SNAPSHOT - https://gitlab.opencode.de/diplanung/ozgxplanung/xplan-webapps/xplan-validator-web-commons)
 (GNU Affero General Public License (AGPL), version 3) xplan-workspaces (de.latlon.product.xplanbox:xplan-workspaces:6.0-SNAPSHOT - https://gitlab.opencode.de/diplanung/ozgxplanung/xplan-workspaces)
+(GNU Lesser General Public License, Version 2.1) regeln (de.xleitstelle.xplanung:regeln:1.0 - no url defined)
 (The MIT License (MIT)) ClassGraph (io.github.classgraph:classgraph:4.8.117 - https://github.com/classgraph/classgraph)
 (MIT License) ToolFactory JVM Driver (io.github.toolfactory:jvm-driver:4.0.0 - https://toolfactory.github.io/jvm-driver/)
 (MIT License) Narcissus (io.github.toolfactory:narcissus:1.0.1 - https://github.com/toolfactory/narcissus)
@@ -187,7 +186,6 @@
 (The Apache Software License, Version 2.0) JSON Small and Fast Parser (net.minidev:json-smart:2.3 - http://www.minidev.net/)
 (GNU Lesser General Public License) PostGIS Geometry (net.postgis:postgis-geometry:2.5.1 - http://postgis.net/postgis-geometry)
 (GNU Lesser General Public License) Postgis JDBC Driver (net.postgis:postgis-jdbc:2.5.1 - http://postgis.net/postgis-jdbc)
-(The Apache Software License, Version 2.0) Barcode4J (net.sf.barcode4j:barcode4j:2.1 - http://barcode4j.sourceforge.net)
 (The Apache Software License, Version 2.0) Ehcache Core (net.sf.ehcache:ehcache-core:2.6.11 - http://ehcache.org)
 (The MIT License(MIT)) Java implementation of GeographicLib (net.sf.geographiclib:GeographicLib-Java:1.49 - https://geographiclib.sourceforge.io)
 (GNU Lesser General Public License) JasperReports Library (net.sf.jasperreports:jasperreports:6.12.2 - http://jasperreports.sourceforge.net)
@@ -197,8 +195,6 @@
 (GNU Lesser General Public License) DynamicReports - core (net.sourceforge.dynamicreports:dynamicreports-core:6.12.1 - https://github.com/dynamicreports)
 (GNU Lesser General Public License) DynamicReports - googlecharts (net.sourceforge.dynamicreports:dynamicreports-googlecharts:6.12.1 - https://github.com/dynamicreports)
 (BSD licence) ANTLR 3 Runtime (org.antlr:antlr-runtime:3.5.2 - http://www.antlr.org)
-(Unknown license) org.apache.tools.ant (org.apache.ant:ant:1.7.1 - http://ant.apache.org/ant/)
-(Unknown license) ant-launcher (org.apache.ant:ant-launcher:1.7.1 - http://ant.apache.org/ant-launcher/)
 (Apache License, Version 2.0) Apache Commons Collections (org.apache.commons:commons-collections4:4.2 - http://commons.apache.org/proper/commons-collections/)
 (Apache License, Version 2.0) Apache Commons Collections (org.apache.commons:commons-collections4:4.3 - http://commons.apache.org/proper/commons-collections/)
 (Apache License, Version 2.0) Apache Commons Collections (org.apache.commons:commons-collections4:4.4 - https://commons.apache.org/proper/commons-collections/)
