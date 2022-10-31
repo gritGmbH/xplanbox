@@ -2945,6 +2945,31 @@ assert actualHeader != null</scriptText>
                 <codes>201</codes>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="8d5bc177-2019-4544-a9f7-299bcc0ffce2" name="has id">
+              <con:configuration>
+                <path>$.id</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="331b52ad-ec82-4ee1-96aa-4a2b7c3502cf" name="name">
+              <con:configuration>
+                <path>$.xplanModelData.name</path>
+                <content>BPlan002_6-0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="46617d13-a860-44b4-abab-73c9a3756d8d" name="has location header">
+              <con:configuration>
+                <scriptText>def headers = messageExchange.response.responseHeaders
+def actualHeader = headers['Location']
+assert actualHeader != null</scriptText>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -7524,7 +7549,7 @@ assert actualHeader != null</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>postImg-postImgpng</content>
@@ -7587,7 +7612,7 @@ assert actualHeader != null</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="id">
               <con:configuration>
                 <path>$[0].id</path>
                 <content>postImg-postImgpng</content>
@@ -8752,7 +8777,7 @@ assert actualHeader != null</scriptText>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="JsonPath Match">
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
               <con:configuration>
                 <path>$.id</path>
                 <content>postImg-postImgpng</content>
@@ -11779,95 +11804,95 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>280</con:value>
+        <con:value>67</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>282</con:value>
+        <con:value>69</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML53</con:name>
-        <con:value>288</con:value>
+        <con:value>75</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdText</con:name>
-        <con:value>289</con:value>
+        <con:value>76</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdAenderung</con:name>
-        <con:value>283</con:value>
+        <con:value>70</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdDokument</con:name>
-        <con:value>284</con:value>
+        <con:value>71</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdFPlan</con:name>
-        <con:value>294</con:value>
+        <con:value>81</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-        <con:value>290</con:value>
+        <con:value>77</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-        <con:value>291</con:value>
+        <con:value>78</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdV2</con:name>
-        <con:value>281</con:value>
+        <con:value>68</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-        <con:value>286</con:value>
+        <con:value>73</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBereiche</con:name>
-        <con:value>287</con:value>
+        <con:value>74</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60</con:name>
-        <con:value>293</con:value>
+        <con:value>80</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSOPlan</con:name>
-        <con:value>297</con:value>
+        <con:value>84</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdRPlan</con:name>
-        <con:value>296</con:value>
+        <con:value>83</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdLPlan</con:name>
-        <con:value>295</con:value>
+        <con:value>82</con:value>
       </con:property>
       <con:property>
         <con:name>textIdSOPlan</con:name>
-        <con:value>XPLAN_texte_4a93dae5-8182-4865-83ed-d5d1ef619781</con:value>
+        <con:value>XPLAN_texte_0f10ee68-0b99-4528-82aa-8c584aa20234</con:value>
       </con:property>
       <con:property>
         <con:name>textIdLPlan</con:name>
-        <con:value>XPLAN_texte_1ae02547-c798-4147-bc23-5367c862806e</con:value>
+        <con:value>XPLAN_texte_303d0cd0-8966-4195-9ca2-4310bad0977d</con:value>
       </con:property>
       <con:property>
         <con:name>textIdFPlan</con:name>
-        <con:value>XPLAN_texte_98ca7a58-a3a0-4809-82e5-e75345cf47da</con:value>
+        <con:value>XPLAN_texte_759c2bd5-14f4-4da5-a813-f3de4dc73559</con:value>
       </con:property>
       <con:property>
         <con:name>textIdRPlan</con:name>
-        <con:value>XPLAN_texte_2176646b-e1ee-4c71-83e7-e8b88b9b88d0</con:value>
+        <con:value>XPLAN_texte_830fa38f-dd2c-4317-b685-b13f1d0941a7</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBPlanOhneBereich</con:name>
-        <con:value>285</con:value>
+        <con:value>72</con:value>
       </con:property>
       <con:property>
         <con:name>planId40</con:name>
-        <con:value>279</con:value>
+        <con:value>66</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60asGML</con:name>
-        <con:value>292</con:value>
+        <con:value>79</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
@@ -12181,19 +12206,19 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>profilesId</con:name>
-        <con:value>p2</con:value>
+        <con:value>test2</con:value>
       </con:property>
       <con:property>
         <con:name>profilesSecondId</con:name>
-        <con:value>p1</con:value>
+        <con:value>test1</con:value>
       </con:property>
       <con:property>
         <con:name>planIdProfile</con:name>
-        <con:value>144</con:value>
+        <con:value>85</con:value>
       </con:property>
       <con:property>
         <con:name>planIdProfiles</con:name>
-        <con:value>145</con:value>
+        <con:value>86</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
