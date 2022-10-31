@@ -60,4 +60,9 @@ public class RulesVersion {
 		return source;
 	}
 
+	@Override
+	public String toString() {
+		return "RulesVersion{" + "version='" + version + '\'' + ", source='" + source + '\'' + '}';
+	}
+
 }

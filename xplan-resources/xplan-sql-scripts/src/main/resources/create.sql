@@ -47,3 +47,4 @@
 \i archive/xplansyn/create.sql
 \i xplanmgr/create.sql
 \i xplanmgr/planslog.sql
+\i changelog/databasechangelog_v60.sql

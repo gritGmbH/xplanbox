@@ -324,4 +324,40 @@ public class GeltungsbereichInspectorTest {
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(2));
 	}
 
+	/**
+	 * Die Geometrie des Fachobjekts entspricht exakt dem Geltungsbereich des Plans. Das
+	 * Validierungsergebnis ist: valide.
+	 */
+	@Test
+	public void testCheck_FeatureGeometryIsGeltungsbereich() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("Testplan_position_geltungsbereich.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+	}
+
+	/**
+	 * Die Geometrie des Fachobjekts entspricht exakt dem Geltungsbereich des Plans, der
+	 * Geltungsbereich des Plans hat aber ein Loch, die Geometrie des Fachobjekts nicht.
+	 * Das Validierungsergebnis ist: invalide. Es wird kein Schnittpunkt ausgegegen.
+	 */
+	@Test
+	public void testCheck_FeatureGeometryIsGeltungsbereichWithoutHole() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		readFeaturesFromGml("Testplan_position_geltungsbereichLoch.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+		String error = geltungsbereichInspector.getErrors().get(0);
+		assertThat(error, containsString("GML_046c1737-4b09-4b0e-8271-0632eb0d62e0"));
+
+		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
+	}
+
 }

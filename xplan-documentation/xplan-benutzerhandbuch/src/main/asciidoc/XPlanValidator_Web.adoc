@@ -120,15 +120,22 @@ Nutzung der Optionen
 
 * *„Geometrische Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen“*: +
 Mit der Option "Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen" kann die Prüfung der Flächenschlussbedingung in Ausnahmefällen deaktiviert werden. Grundsätzlich sollten alle Fehler, die den Flächenschluss betreffen, behoben werden.
-* *„Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“*: +
-Wenn Fehler im Geltungsbereich, z.B. in Kreisbögen, nicht korrigiert werden können, selektieren Sie in Ausnahmefällen die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm. Grundsätzlich sollten alle Fehler, die den Geltungsbereich betreffen, behoben werden.
-* *„Prüfung der Laufrichtung (2.2.2.1) überspringen“*: +
-Bei der Prüfung der Laufrichtung werden Fehler bei der Orientierung von Polygonen ausgegeben. Sollen die Fehler bei der Laufrichtung ignoriert werden, können Sie die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktivieren.
 
 [NOTE]
 ====
 Wenn sich zwei aneinandergrenzende Flächenschlussobjekte an einer Geraden berühren und nur eines der Flächenschlussobjekte einen zusätzlichen Stützpunkt innerhalb dieser Geraden aufweist, wird der fehlende Stützpunkt des anderen Flächenschlussobjekt durch den XPlanValidator nicht gefunden.
 ====
+
+* *„Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“*: +
+Wenn Fehler im Geltungsbereich, z.B. in Kreisbögen, nicht korrigiert werden können, selektieren Sie in Ausnahmefällen die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm. Grundsätzlich sollten alle Fehler, die den Geltungsbereich betreffen, behoben werden.
+
+[NOTE]
+====
+Wenn die Geometrie eines Fachobjekts ein Loch im Geltungsbereich vollständig überdeckt, wird dieser Fehler nur angezeigt, wenn für dieses Fachobjekt keine weiteren Fehler bei der Überprüfung des Geltungsbereichs auftreten.
+====
+
+* *„Prüfung der Laufrichtung (2.2.2.1) überspringen“*: +
+Bei der Prüfung der Laufrichtung werden Fehler bei der Orientierung von Polygonen ausgegeben. Sollen die Fehler bei der Laufrichtung ignoriert werden, können Sie die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktivieren.
 
 *3) Syntaktische Validierung (obligatorisch)*
 

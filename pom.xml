@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>6.0-SNAPSHOT</version>
+  <version>6.1-SNAPSHOT</version>
   <name>xPlanBox</name>
   <description>Software zur Verwaltung von XPlanGML Daten</description>
   <inceptionYear>2008</inceptionYear>
@@ -19,7 +19,7 @@
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
     <deegree3.version>3.5-PRE1</deegree3.version>
-    <geowerkstatt-hamburg.xplanung.version>0.12.2</geowerkstatt-hamburg.xplanung.version>
+    <xplanung.regeln.version>1.0</xplanung.regeln.version>
     <gwt.version>2.10.0</gwt.version>
     <geotools.version>26.6</geotools.version>
     <log4j.version>2.17.2</log4j.version>
@@ -890,10 +890,9 @@
         <type>zip</type>
       </dependency>
       <dependency>
-        <groupId>de.geowerkstatt-hamburg</groupId>
-        <artifactId>xplanung</artifactId>
-        <version>${geowerkstatt-hamburg.xplanung.version}</version>
-        <type>zip</type>
+        <groupId>de.xleitstelle.xplanung</groupId>
+        <artifactId>regeln</artifactId>
+        <version>${xplanung.regeln.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
@@ -1230,6 +1229,16 @@
     <repository>
       <id>latlon</id>
       <url>https://repo.lat-lon.de/repository/maven-public/</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>xleitstelle-xplanung-validierungsregeln</id>
+      <url>https://gitlab.opencode.de/api/v4/projects/398/packages/maven</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
