@@ -26,12 +26,12 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
-  <FeatureTypeName>xplan:SO_Gewaesser</FeatureTypeName>
+  <FeatureTypeName>xplan:RP_Gewaesser</FeatureTypeName>
   <!-- Flaeche -->
   <Rule>
-    <Name>so_gewaesser Flaeche</Name>
+    <Name>rp_gewaesser Flaeche</Name>
     <Description>
-      <Title>SO: Gewaesser Flaeche</Title>
+      <Title>RP: Gewaesser Flaeche</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
@@ -58,9 +58,9 @@
   </Rule>
   <!-- Linie -->
   <Rule>
-    <Name>so_gewaesser Linie</Name>
+    <Name>rp_gewaesser Linie</Name>
     <Description>
-      <Title>SO: Gewaesser Linie</Title>
+      <Title>RP: Gewaesser Linie</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
@@ -99,9 +99,9 @@
 
   <!-- Punkt -->
   <Rule>
-    <Name>so_gewaesser Punkt</Name>
+    <Name>rp_gewaesser Punkt</Name>
     <Description>
-      <Title>SO: Gewaesser Punkt</Title>
+      <Title>RP: Gewaesser Punkt</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
