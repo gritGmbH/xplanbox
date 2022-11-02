@@ -105,6 +105,8 @@ mvn clean install
 
 Die Installation und Konfiguration der Anwendung ist im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc) dokumentiert.
 
+> **_Hinweis_**: Verwenden Sie für die Konfiguration der Komponenten die Konfigurationsdateien aus den erstellten ZIP-Dateien mit der Endung "default.zip", z. B. `xplan-manager-config-VERSION-default.zip`. 
+
 ----
 © 2022 lat/lon gesellschaft für raumbezogene informationssysteme mbH  
 Im Ellig 1
