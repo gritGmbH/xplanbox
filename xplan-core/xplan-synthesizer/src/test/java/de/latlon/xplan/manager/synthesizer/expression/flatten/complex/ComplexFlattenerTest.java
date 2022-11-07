@@ -29,6 +29,7 @@ import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
 import static org.junit.Assert.assertEquals;
@@ -54,6 +55,27 @@ public class ComplexFlattenerTest {
 		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:zweckbestimmung"), false, true);
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals("[Allgemein: 2700|Aufschrift: Grüne Hölle]", value.toString());
+	}
+
+	@Test
+	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate_Code() throws Exception {
+		FeatureCollection features = load(XPLAN_60, "flatten/BP_KomplexeZweckbestGruen.xml");
+		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:zweckbestimmung"));
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals(
+				"[Allgemein: Naturerfahrungsraum|Detail: 1000|Textliche Ergänzung: Textliche Ergänzung|Aufschrift: Grüne Hölle]",
+				value.toString());
+	}
+
+	@Test
+	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungCode_Code() throws Exception {
+		FeatureCollection features = load(XPLAN_60, "flatten/BP_KomplexeZweckbestGruen.xml");
+		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
+		XplanFlattenProperty expr = new XplanFlattenProperty(new Xpath("xplan:zweckbestimmung"), false, true);
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals("[Allgemein: 2700|Detail: 1000|Textliche Ergänzung: Textliche Ergänzung|Aufschrift: Grüne Hölle]",
+				value.toString());
 	}
 
 	@Test
