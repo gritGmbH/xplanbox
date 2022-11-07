@@ -60,7 +60,7 @@
   <Rule>
     <Name>so_gewaesser Linie</Name>
     <Description>
-      <Title>BP: Gewaesser Linie</Title>
+      <Title>SO: Gewaesser Linie</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
@@ -101,7 +101,7 @@
   <Rule>
     <Name>so_gewaesser Punkt</Name>
     <Description>
-      <Title>BP: Gewaesser Punkt</Title>
+      <Title>SO: Gewaesser Punkt</Title>
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
