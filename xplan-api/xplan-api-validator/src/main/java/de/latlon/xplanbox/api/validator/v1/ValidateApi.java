@@ -105,7 +105,7 @@ public class ValidateApi {
 											implementation = Object.class)) }),
 					@ApiResponse(responseCode = "400", description = "Invalid input"),
 					@ApiResponse(responseCode = "406",
-							description = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted") },
+							description = "Invalid content - only XPlanGML or ZIP with XPlanGML is accepted") },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/octet-stream",
 							schema = @Schema(type = "string", format = "binary",

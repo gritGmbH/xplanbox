@@ -118,7 +118,7 @@ public class PlanApi {
 	@POST
 	@Consumes({ "application/octet-stream", "application/zip", "application/x-zip", "application/x-zip-compressed" })
 	@Produces({ "application/json", XPLANBOX_NO_VERSION_JSON, XPLANBOX_V1_JSON, XPLANBOX_V2_JSON })
-	@Operation(operationId = "import", summary = "Import the plan", description = "Imports the plan",
+	@Operation(operationId = "import", summary = "Import a XPlanGML or XPlanArchive", description = "Imports a XPlanGML or XPlanArchive",
 			tags = { "manage", },
 			responses = {
 					@ApiResponse(responseCode = "201", description = "successful operation", content = {
@@ -131,7 +131,7 @@ public class PlanApi {
 					@ApiResponse(responseCode = "400", description = "Invalid input",
 							content = @Content(schema = @Schema(implementation = ValidationReport.class))),
 					@ApiResponse(responseCode = "406",
-							description = "Invalid content only XPlanGML or ZIP with XPlanGML is accepted") },
+							description = "Invalid content - only XPlanGML or ZIP with XPlanGML is accepted") },
 			requestBody = @RequestBody(
 					content = {
 							@Content(mediaType = "application/octet-stream",
