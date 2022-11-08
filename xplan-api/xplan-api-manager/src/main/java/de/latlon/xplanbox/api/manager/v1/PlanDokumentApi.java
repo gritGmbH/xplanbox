@@ -66,11 +66,11 @@ public class PlanDokumentApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(
 									array = @ArraySchema(schema = @Schema(implementation = Dokument.class)))),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value") })
 	public List<Dokument> getDokumente(@PathParam("planId") @Parameter(
-			description = "planId of the plan to return dokumente", example = "123") String planId) throws Exception {
+			description = "ID of the plan to return dokumente", example = "123") String planId) throws Exception {
 		return editDokumentHandler.retrieveDokumente(planId);
 	}
 
@@ -81,11 +81,11 @@ public class PlanDokumentApi {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Dokument.class))),
 			@ApiResponse(responseCode = "404",
-					description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+					description = "Invalid planID or dokument ID, plan or dokument not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan version or dokumentmodel is missing or Plan ID is not a valid int value") })
+					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value") })
 	public Dokument addDokument(
-			@PathParam("planId") @Parameter(description = "ID of the plan to add dokumente",
+			@PathParam("planId") @Parameter(description = "ID of the plan to add a dokument",
 					example = "123") String planId,
 			@Parameter(schema = @Schema(implementation = Dokument.class),
 					required = true) @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
@@ -107,14 +107,14 @@ public class PlanDokumentApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Dokument.class))),
 					@ApiResponse(responseCode = "404",
-							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+							description = "Invalid planID or dokument ID, plan or dokument not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value") })
 	public Dokument getDokumentById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to get dokument",
+			@PathParam("planId") @Parameter(description = "ID of the plan to get dokument",
 					example = "123") String planId,
 			@PathParam("id") @Parameter(
-					description = "id of the Dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
+					description = "ID of the dokument to be returned (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
 					example = "Legende123-") String id)
 			throws Exception {
 		return editDokumentHandler.retrieveDokument(planId, id);
@@ -128,14 +128,14 @@ public class PlanDokumentApi {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Dokument.class))),
 			@ApiResponse(responseCode = "404",
-					description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+					description = "Invalid planID or dokument ID, plan or dokument not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan version or dokumentmodel is missing or Plan ID is not a valid int value") })
+					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value") })
 	public Dokument replaceDokumentById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to replace dokument",
+			@PathParam("planId") @Parameter(description = "ID of the plan to replace dokument",
 					example = "123") String planId,
 			@PathParam("id") @Parameter(
-					description = "id of the Dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
+					description = "ID of the dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
 					example = "Legende123-") String id,
 			@Parameter(schema = @Schema(implementation = Dokument.class),
 					required = true) @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
@@ -157,14 +157,14 @@ public class PlanDokumentApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Dokument.class))),
 					@ApiResponse(responseCode = "404",
-							description = "Invalid plan ID or dokument ID, plan or dokument not found"),
+							description = "Invalid planID or dokument ID, plan or dokument not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value") })
 	public Dokument deleteDokumentById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to delete dokument",
+			@PathParam("planId") @Parameter(description = "ID of the plan to delete dokument",
 					example = "123") String planId,
 			@PathParam("id") @Parameter(
-					description = "id of the Dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
+					description = "ID of the dokument to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
 					example = "Legende123-") String id)
 			throws Exception {
 		return editDokumentHandler.deleteDokument(planId, id);

@@ -64,10 +64,10 @@ public class PlanTextApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(array = @ArraySchema(schema = @Schema(implementation = Text.class)))),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
-	public List<Text> getTexte(@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
+							description = "Unsupported plan version or planID is not a valid int value") })
+	public List<Text> getTexte(@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 			example = "123") String planId) throws Exception {
 		return editTextHandler.retrieveTexte(planId);
 	}
@@ -78,11 +78,11 @@ public class PlanTextApi {
 	@Operation(operationId = "addText", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan version or textmodel is missing or Plan ID is not a valid int value") })
+					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value") })
 	public Text addText(
-			@PathParam("planId") @Parameter(description = "ID of the plan to add texte", example = "123") String planId,
+			@PathParam("planId") @Parameter(description = "ID of the plan to add text", example = "123") String planId,
 			@Parameter(schema = @Schema(implementation = Text.class),
 					required = true) @FormDataParam("textmodel") FormDataBodyPart textmodel,
 			@Parameter(schema = @Schema(type = "string", format = "binary")) @FormDataParam("datei") InputStream datei,
@@ -101,13 +101,13 @@ public class PlanTextApi {
 	@Operation(operationId = "getTextById", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID or text ID, plan or text not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan version or Plan ID is not a valid int value") })
+					description = "Unsupported plan version or planID is not a valid int value") })
 	public Text getTextById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
+			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 					example = "123") String planId,
-			@PathParam("id") @Parameter(description = "id of the Text to be returned (GML Id of the feature)",
+			@PathParam("id") @Parameter(description = "ID of the text to be returned (GML-Id of the feature)",
 					example = "GML_ID_123") String id)
 			throws Exception {
 		return editTextHandler.retrieveText(planId, id);
@@ -120,13 +120,13 @@ public class PlanTextApi {
 	@Operation(operationId = "replaceTextById", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID or text ID, plan or Text not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan version  or textmodel is missing or Plan ID is not a valid int value") })
+					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value") })
 	public Text replaceTextById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be updated",
+			@PathParam("planId") @Parameter(description = "ID of the plan to be updated",
 					example = "123") String planId,
-			@PathParam("id") @Parameter(description = "id of the Text to be updated (GML Id of the feature)",
+			@PathParam("id") @Parameter(description = "ID of the text to be updated (GML-Id of the feature)",
 					example = "GML_ID_123") String id,
 			@Parameter(schema = @Schema(implementation = Text.class),
 					required = true) @FormDataParam("textmodel") FormDataBodyPart textmodel,

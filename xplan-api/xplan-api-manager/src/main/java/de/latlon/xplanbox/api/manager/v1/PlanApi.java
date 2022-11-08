@@ -118,8 +118,8 @@ public class PlanApi {
 	@POST
 	@Consumes({ "application/octet-stream", "application/zip", "application/x-zip", "application/x-zip-compressed" })
 	@Produces({ "application/json", XPLANBOX_NO_VERSION_JSON, XPLANBOX_V1_JSON, XPLANBOX_V2_JSON })
-	@Operation(operationId = "import", summary = "Import a XPlanGML or XPlanArchive", description = "Imports a XPlanGML or XPlanArchive",
-			tags = { "manage", },
+	@Operation(operationId = "import", summary = "Import a XPlanGML or XPlanArchive",
+			description = "Imports a XPlanGML or XPlanArchive", tags = { "manage", },
 			responses = {
 					@ApiResponse(responseCode = "201", description = "successful operation", content = {
 							@Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
@@ -210,13 +210,13 @@ public class PlanApi {
 	@DELETE
 	@Path("/{planId}")
 	@Produces({ "application/json", "application/xml" })
-	@Operation(summary = "Delete plan identified by the given plan ID",
-			description = "Deletes an existing plan identified by the given plan ID", tags = { "manage", },
+	@Operation(summary = "Delete plan identified by the given planID",
+			description = "Deletes an existing plan identified by the given planID", tags = { "manage", },
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = StatusMessage.class))),
-					@ApiResponse(responseCode = "400", description = "Plan ID is not a valid int value"),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
+					@ApiResponse(responseCode = "400", description = "PlanID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found") })
 	public Response delete(@PathParam("planId") @Parameter(description = "ID of the plan to be removed",
 			example = "123") String planId) throws Exception {
 		StatusMessage statusMessage = planHandler.deletePlan(planId);
@@ -226,16 +226,16 @@ public class PlanApi {
 	@GET
 	@Path("/{planId}")
 	@Produces({ "application/json", "application/xml", "application/zip" })
-	@Operation(summary = "Get plan identified by the given plan ID",
-			description = "Returns an existing plan identified by the given plan ID", tags = { "manage", "search", },
+	@Operation(summary = "Get plan identified by the given planID",
+			description = "Returns an existing plan identified by the given planID", tags = { "manage", "search", },
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation", content = {
 							@Content(mediaType = "application/json", schema = @Schema(implementation = PlanInfo.class)),
 							@Content(mediaType = "application/xml", schema = @Schema(implementation = PlanInfo.class)),
 							@Content(mediaType = "application/zip",
 									schema = @Schema(type = "string", format = "binary")) }),
-					@ApiResponse(responseCode = "400", description = "Plan ID is not a valid int value"),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found") })
+					@ApiResponse(responseCode = "400", description = "PlanID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found") })
 	public Response getById(@Context Request request,
 			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 					example = "123") String planId)
@@ -260,9 +260,9 @@ public class PlanApi {
 					@ApiResponse(responseCode = "200", description = "OK",
 							content = { @Content(mediaType = "application/json",
 									array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class))) }),
-					@ApiResponse(responseCode = "404", description = "Invalid plan name, plan not found") })
+					@ApiResponse(responseCode = "404", description = "Invalid planName, plan not found") })
 	public Response getByName(@Context Request request,
-			@PathParam("planName") @Parameter(description = "planName of the plan to be returned",
+			@PathParam("planName") @Parameter(description = "name of the plan to be returned",
 					example = "bplan_123, fplan-123, rplan20200803") String planName)
 			throws Exception {
 		List<XPlan> plans = planHandler.findPlansByName(planName);
@@ -291,9 +291,8 @@ public class PlanApi {
 			return Response.created(getSelfLink(planInfos)).entity(planInfos).build();
 		}
 		if (xPlans.size() > 1) {
-			throw new InvalidApiVersion(
-					"The imported XPlanArchive contains multiple XPlan GML instances, accept header " + XPLANBOX_V2_JSON
-							+ "  must be used to import this plan.");
+			throw new InvalidApiVersion("The imported XPlanArchive contains multiple XPlanGML instances, accept header "
+					+ XPLANBOX_V2_JSON + "  must be used to import this plan.");
 		}
 		PlanInfo planInfo = createPlanInfo(requestedMediaType, xPlans.get(0));
 		return Response.created(getSelfLink(planInfo)).entity(planInfo).build();
