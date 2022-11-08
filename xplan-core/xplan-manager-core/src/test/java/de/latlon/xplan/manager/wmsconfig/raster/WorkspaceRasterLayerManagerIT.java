@@ -42,8 +42,6 @@ import org.deegree.workspace.Workspace;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
-
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $

@@ -67,12 +67,6 @@ public class WorkspaceRasterLayerManager {
 
 	private final String rasterConfigurationCrs;
 
-	public enum RasterConfigurationType {
-
-		gdal, geotiff
-
-	}
-
 	/**
 	 * Instantiates a {@link WorkspaceRasterLayerManager} with type
 	 * RasterConfigurationType.gdal and crs EPSG:25833.
