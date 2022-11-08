@@ -139,7 +139,8 @@ public class ValidateApi {
 					description = "skip Geltungsbereich Ueberpruefung") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") @Parameter(
 					description = "skip Laufrichtung Ueberpruefung") Boolean skipLaufrichtung,
-			@QueryParam("profiles") @Parameter(description = "Angabe der Profile, gegen die validiert werden soll",
+			@QueryParam("profiles") @Parameter(
+					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
 		String validationName = detectOrCreateValidationName(xFilename, name);
@@ -160,7 +161,8 @@ public class ValidateApi {
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
 			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") Boolean skipLaufrichtung,
-			@QueryParam("profiles") @Parameter(description = "Angabe der Profile, gegen die validiert werden soll",
+			@QueryParam("profiles") @Parameter(
+					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
 		String validationName = detectOrCreateValidationName(xFilename, name);

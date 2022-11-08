@@ -164,7 +164,8 @@ public class PlanApi {
 					description = "skip Geltungsbereich Ueberpruefung") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") @Parameter(
 					description = "skip Laufrichtung Ueberpruefung") Boolean skipLaufrichtung,
-			@QueryParam("profiles") @Parameter(description = "Angabe der Profile, gegen die validiert werden soll",
+			@QueryParam("profiles") @Parameter(
+					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles,
 			@QueryParam("internalId") @Parameter(description = "internalId links to VerfahrensId") String internalId,
 			@QueryParam("planStatus") @Parameter(
