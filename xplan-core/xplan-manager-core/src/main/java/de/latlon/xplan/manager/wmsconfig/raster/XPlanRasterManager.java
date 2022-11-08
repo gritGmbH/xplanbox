@@ -122,6 +122,8 @@ public class XPlanRasterManager {
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
 	public void removeRasterLayers(String planId) {
+		if (!isDeegreeRasterType())
+			return;
 		try {
 			WorkspaceRasterLayerManager rasterLayerManager = new WorkspaceRasterLayerManager(
 					wmsWorkspaceWrapper.getLocation());
@@ -141,6 +143,8 @@ public class XPlanRasterManager {
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
 	public void removeRasterLayers(String planId, ExternalReferenceInfo externalReferencesToRemove) {
+		if (!isDeegreeRasterType())
+			return;
 		try {
 			List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferencesToRemove
 					.getRasterPlanBaseAndUpdateScans();
@@ -199,8 +203,8 @@ public class XPlanRasterManager {
 
 			List<String> rasterIds = copyRasterplanImageFilesToWmsWorkspace(wmsWorkspaceWrapper.getLocation(), archive,
 					rasterplanEntries, planId);
-
-			insertRasterLayers(planId, moreRecentPlanId, type, planStatus, newPlanStatus, rasterIds, sortDate);
+			if (isDeegreeRasterType())
+				insertRasterLayers(planId, moreRecentPlanId, type, planStatus, newPlanStatus, rasterIds, sortDate);
 			return rasterIds;
 		}
 		catch (Exception e) {
@@ -223,6 +227,8 @@ public class XPlanRasterManager {
 	 */
 	public void updateRasterLayers(int planId, XPlanType type, PlanStatus planStatus, PlanStatus newPlanStatus)
 			throws JAXBException, IOException, ConfigurationException {
+		if (!isDeegreeRasterType())
+			return;
 		String statusType = detectType(type, planStatus);
 		if (newPlanStatus != null) {
 			String newStatusType = detectType(type, newPlanStatus);
@@ -273,6 +279,8 @@ public class XPlanRasterManager {
 	 * @throws Exception
 	 */
 	public void reorderWmsLayers(Map<String, Date> planId2sortDate) throws Exception {
+		if (!isDeegreeRasterType())
+			return;
 		String rasterConfigurationCrs = getRasterConfigurationCrsFromManagerConfig();
 		rasterThemeManager.reorderWmsLayers(planId2sortDate, rasterConfigurationCrs);
 	}
@@ -425,9 +433,10 @@ public class XPlanRasterManager {
 		FileUtils.copyInputStreamToFile(archive.retrieveInputStreamFor(entryName), target);
 		String rasterId = createRasterId(dataFileName);
 		rasterIds.add(rasterId);
-		rasterLayerManager.createRasterConfigurations(rasterId, dataFileName,
-				managerConfiguration.getRasterLayerMinScaleDenominator(),
-				managerConfiguration.getRasterLayerMaxScaleDenominator());
+		if (isDeegreeRasterType())
+			rasterLayerManager.createRasterConfigurations(rasterId, dataFileName,
+					managerConfiguration.getRasterLayerMinScaleDenominator(),
+					managerConfiguration.getRasterLayerMaxScaleDenominator());
 	}
 
 	private String createRasterId(String dataFileName) {
@@ -494,6 +503,11 @@ public class XPlanRasterManager {
 		else
 			return rasterCrs;
 		return rasterReference.GetAuthorityName(key) + ":" + rasterReference.GetAuthorityCode(key);
+	}
+
+	private boolean isDeegreeRasterType() {
+		return RasterConfigurationType.gdal.equals(getRasterConfigurationTypeFromManagerConfig())
+				|| geotiff.equals(getRasterConfigurationTypeFromManagerConfig());
 	}
 
 	private int asEpsgCode(String rasterCrs) {

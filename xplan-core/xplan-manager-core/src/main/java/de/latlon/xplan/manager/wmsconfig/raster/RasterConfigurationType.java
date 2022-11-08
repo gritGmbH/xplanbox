@@ -25,6 +25,6 @@ package de.latlon.xplan.manager.wmsconfig.raster;
  */
 public enum RasterConfigurationType {
 
-	gdal, geotiff
+	gdal, geotiff, mapserver
 
 }
