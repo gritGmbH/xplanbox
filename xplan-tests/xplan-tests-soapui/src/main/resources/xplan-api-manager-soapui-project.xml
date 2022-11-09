@@ -1658,7 +1658,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan/{planId}/basisdaten">
               <con:configuration>
                 <path>$.paths./plan/{planId}/basisdaten</path>
-                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"planId of the plan basisdaten to be returned","required":true,"schema":{"type":"string"},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid plan ID, plan not found"},"400":{"description":"Unsupported Plan version or Plan ID is not a valid int value"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"planId of the plan to be returned","required":true,"schema":{"type":"string"},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid plan ID, plan not found"},"400":{"description":"Unsupported Plan version or Plan ID is not a valid int value"}}}}</content>
+                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan basisdaten to be returned","required":true,"schema":{"type":"string"},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid planID, plan not found"},"400":{"description":"Unsupported plan version or planID is not a valid int value"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan to be returned","required":true,"schema":{"type":"string"},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid plan ID, plan not found"},"400":{"description":"Unsupported plan version or planID is not a valid int value"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1667,7 +1667,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan profiles parameter">
               <con:configuration>
                 <path>$.paths./plan.post.parameters.[?(@.name == 'profiles')]</path>
-                <content>[{"name":"profiles","in":"query","description":"Angabe der Profile, gegen die validiert werden soll","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
+                <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -11804,67 +11804,67 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>67</con:value>
-      </con:property>
-      <con:property>
-        <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>69</con:value>
-      </con:property>
-      <con:property>
-        <con:name>currentPlanIdXPlanGML53</con:name>
-        <con:value>75</con:value>
-      </con:property>
-      <con:property>
-        <con:name>currentPlanIdText</con:name>
-        <con:value>76</con:value>
-      </con:property>
-      <con:property>
-        <con:name>currentPlanIdAenderung</con:name>
-        <con:value>70</con:value>
-      </con:property>
-      <con:property>
-        <con:name>currentPlanIdDokument</con:name>
-        <con:value>71</con:value>
-      </con:property>
-      <con:property>
-        <con:name>currentPlanIdFPlan</con:name>
-        <con:value>81</con:value>
-      </con:property>
-      <con:property>
-        <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
         <con:value>77</con:value>
       </con:property>
       <con:property>
-        <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-        <con:value>78</con:value>
+        <con:name>currentPlanIdSkipAll</con:name>
+        <con:value>79</con:value>
       </con:property>
       <con:property>
-        <con:name>currentPlanIdV2</con:name>
-        <con:value>68</con:value>
+        <con:name>currentPlanIdXPlanGML53</con:name>
+        <con:value>85</con:value>
       </con:property>
       <con:property>
-        <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-        <con:value>73</con:value>
+        <con:name>currentPlanIdText</con:name>
+        <con:value>86</con:value>
       </con:property>
       <con:property>
-        <con:name>currentPlanIdBereiche</con:name>
-        <con:value>74</con:value>
-      </con:property>
-      <con:property>
-        <con:name>currentPlanIdXPlanGML60</con:name>
+        <con:name>currentPlanIdAenderung</con:name>
         <con:value>80</con:value>
       </con:property>
       <con:property>
-        <con:name>currentPlanIdSOPlan</con:name>
-        <con:value>84</con:value>
+        <con:name>currentPlanIdDokument</con:name>
+        <con:value>81</con:value>
       </con:property>
       <con:property>
-        <con:name>currentPlanIdRPlan</con:name>
+        <con:name>currentPlanIdFPlan</con:name>
+        <con:value>91</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
+        <con:value>87</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
+        <con:value>88</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currentPlanIdV2</con:name>
+        <con:value>78</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
         <con:value>83</con:value>
       </con:property>
       <con:property>
+        <con:name>currentPlanIdBereiche</con:name>
+        <con:value>84</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currentPlanIdXPlanGML60</con:name>
+        <con:value>90</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currentPlanIdSOPlan</con:name>
+        <con:value>94</con:value>
+      </con:property>
+      <con:property>
+        <con:name>currentPlanIdRPlan</con:name>
+        <con:value>93</con:value>
+      </con:property>
+      <con:property>
         <con:name>currentPlanIdLPlan</con:name>
-        <con:value>82</con:value>
+        <con:value>92</con:value>
       </con:property>
       <con:property>
         <con:name>textIdSOPlan</con:name>
@@ -11884,15 +11884,15 @@ assert expectedHeader == actualHeader</scriptText>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBPlanOhneBereich</con:name>
-        <con:value>72</con:value>
+        <con:value>82</con:value>
       </con:property>
       <con:property>
         <con:name>planId40</con:name>
-        <con:value>66</con:value>
+        <con:value>76</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60asGML</con:name>
-        <con:value>79</con:value>
+        <con:value>89</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
