@@ -60,6 +60,7 @@ CREATE TABLE artefacts (
     filename text NOT NULL,
     data bytea NOT NULL,
     num integer NOT NULL,
+    isxplangml boolean NOT NULL,
     mimetype text NOT NULL
 );
 COMMENT ON TABLE artefacts IS 'Plan artefacts';

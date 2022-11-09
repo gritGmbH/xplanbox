@@ -3,12 +3,12 @@
 
 Die Komponente XPlanManagerWeb ist eine Web-Oberfläche, die dem
 Fachadministrator der xPlanBox ermöglicht, die Datenhaltung zu
-kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer XPlanArchive in die Datenhaltung laden, diese editieren, löschen sowie bereits importiere XPlanArchive wieder exportieren und in einer Liste anzeigen.
+kontrollieren und zu verwalten. Mit dem XPlanManagerWeb kann der Benutzer <<xplanarchiv, XPlanArchive>> und <<xplangmlfile, XPlanGML-Dateien>> in die Datenhaltung laden, diese editieren, löschen sowie bereits importiere Planwerke wieder exportieren und in einer Liste anzeigen.
 
 [[xplanmanager-web-benutzungsanleitung]]
 ==== Einstiegsseite
 
-Die Webanwendung XPlanManagerWeb dient der Verwaltung von <<xplanarchiv, XPlanArchiven>> und ist unter:
+Die Webanwendung XPlanManagerWeb dient der Verwaltung der Planwerke und ist unter:
 
 ----
 http://<host>:<port>/xplan-manager-web/
@@ -27,15 +27,15 @@ Betätigen des Buttons _Hilfe_ ausgeben.
 [[xplanmanager-web-hinzufuegen]]
 ===== Hinzufügen
 
-Vor dem Importieren eines XPlanGML-Dokuments in die Datenhaltung,
+Vor dem Importieren eines XPlanArchives oder XPlanGML-Dokuments in die Datenhaltung,
 muss dieses über die Web-Oberfläche hochgeladen und validiert werden.
-Im ersten Schritt wird das XPlanArchiv ausgewählt und über den Browser hochgeladen. Hierfür kann die Datei über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
+Im ersten Schritt wird die Datei ausgewählt und über den Browser hochgeladen. Hierfür kann die Datei über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
 _Hinzufügen_ hochgeladen werden. Der Benutzer wird über das erfolgreiche bzw. fehlerhafte Hinzufügen der Datei in Form eines PopUp-Fensters informiert.
 
 [[xplanmanager-web-validieren]]
 ===== Validieren
 
-Nachdem das XPlanArchiv hochgeladen wurde, kann dieses
+Nachdem die Datei hochgeladen wurde, kann diese
 validiert werden. Hier stehen die Auswahlmöglichkeiten des <<xplanvalidator-web-validieren, XPlanValidatorWeb>> zur Verfügung.
 
 IMPORTANT: Bei der Validierung werden immer die syntaktische und Basis-Geometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch, geometrische Validierung>>) ausgeführt. Diese Prüfungen stellen sicher, dass ein Plan keine schwerwiegenden Fehler enthält, die einen Import verhindern. Um die automatische Korrektur der Laufrichtung von Polygonen beim Import zu erzwingen, muss die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktiviert sein.
@@ -43,7 +43,7 @@ IMPORTANT: Bei der Validierung werden immer die syntaktische und Basis-Geometris
 [[xplanmanager-web-import]]
 ===== Import
 
-Wenn das XPlanArchiv erfolgreich validiert wurde, kann der Plan in die Datenhaltung durch Klick auf den Button _Import_ in die Datenhaltung übernommen werden. Ist der Plan nicht valide, dann ist der Button _Import_ deaktiviert. Der Benutzer wird über den erfolgreichen bzw. fehlerhaften Import des Plans in Form eines PopUps informiert.
+Wenn die Datei erfolgreich validiert wurde, kann der Plan in die Datenhaltung durch Klick auf den Button _Import_ in die Datenhaltung übernommen werden. Ist der Plan nicht valide, dann ist der Button _Import_ deaktiviert. Der Benutzer wird über den erfolgreichen bzw. fehlerhaften Import des Plans in Form eines PopUps informiert.
 
 Ist ein Import nicht möglich und soll ein anderer Plan importiert werden, dann kann der Plan über den Button _Entfernen_ aus der laufenden Sitzung entfernt werden.
 

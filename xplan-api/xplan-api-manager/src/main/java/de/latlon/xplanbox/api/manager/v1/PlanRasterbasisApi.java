@@ -66,11 +66,11 @@ public class PlanRasterbasisApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(
 									array = @ArraySchema(schema = @Schema(implementation = Rasterbasis.class)))),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value") })
 	public List<Rasterbasis> getRasterBasis(@PathParam("planId") @Parameter(
-			description = "planId of the plan to be returned", example = "123") String planId) throws Exception {
+			description = "ID of the plan to be returned", example = "123") String planId) throws Exception {
 		return editRasterbasisHandler.retrieveRasterbasis(planId);
 	}
 
@@ -80,9 +80,9 @@ public class PlanRasterbasisApi {
 	@Operation(operationId = "addRasterBasis", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan type or version, missing bereich nummer or rasterbasismodel is missing or Plan ID is not a valid int value") })
+					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value") })
 	public Rasterbasis addRasterBasis(
 			@PathParam("planId") @Parameter(description = "ID of the plan to add rasterbasis",
 					example = "123") String planId,
@@ -113,14 +113,14 @@ public class PlanRasterbasisApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
 					@ApiResponse(responseCode = "404",
-							description = "Invalid plan ID or rasterbasis ID, plan or rasterbasis not found"),
+							description = "Invalid planID or rasterbasis ID, plan or rasterbasis not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value") })
 	public Rasterbasis getRasterbasisById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
+			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 					example = "123") String planId,
 			@PathParam("id") @Parameter(
-					description = "id of the rasterbasis to be returned (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed",
+					description = "ID of the rasterbasis to be returned (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed",
 					example = "Referenz123-") String id)
 			throws Exception {
 		return editRasterbasisHandler.retrieveRasterbasis(planId, id);
@@ -134,14 +134,14 @@ public class PlanRasterbasisApi {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
 			@ApiResponse(responseCode = "404",
-					description = "Invalid plan ID or rasterbasis ID, plan or rasterbasis not found"),
+					description = "Invalid planID or rasterbasis ID, plan or rasterbasis not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan type or version, missing bereich nummer or rasterbasismodel is missing or Plan ID is not a valid int value") })
+					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value") })
 	public Rasterbasis replaceRasterbasisById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be updated",
+			@PathParam("planId") @Parameter(description = "ID of the plan to be updated",
 					example = "123") String planId,
 			@PathParam("id") @Parameter(
-					description = "id of the rasterbasis to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed",
+					description = "ID of the rasterbasis to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed",
 					example = "Referenz123-") String id,
 			@Parameter(schema = @Schema(implementation = Rasterbasis.class),
 					required = true) @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
@@ -170,14 +170,14 @@ public class PlanRasterbasisApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
 					@ApiResponse(responseCode = "404",
-							description = "Invalid plan ID or rasterbasis ID, plan or rasterbasis not found"),
+							description = "Invalid planID or rasterbasis ID, plan or rasterbasis not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value") })
 	public Rasterbasis deleteRasterbasisById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be deleted",
+			@PathParam("planId") @Parameter(description = "ID of the plan to be deleted",
 					example = "123") String planId,
 			@PathParam("id") @Parameter(
-					description = "id of the rasterbasis to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed",
+					description = "ID of the rasterbasis to be deleted (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed",
 					example = "Referenz123-") String id)
 			throws Exception {
 		return editRasterbasisHandler.deleteRasterbasis(planId, id);

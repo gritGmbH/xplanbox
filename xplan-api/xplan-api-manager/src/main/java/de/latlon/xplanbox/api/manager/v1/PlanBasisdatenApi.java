@@ -57,13 +57,11 @@ public class PlanBasisdatenApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Basisdaten.class))),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
-	public Basisdaten getBasisdaten(
-			@PathParam("planId") @Parameter(description = "planId of the plan basisdaten to be returned",
-					example = "123") String planId)
-			throws Exception {
+							description = "Unsupported plan version or planID is not a valid int value") })
+	public Basisdaten getBasisdaten(@PathParam("planId") @Parameter(
+			description = "ID of the plan basisdaten to be returned", example = "123") String planId) throws Exception {
 		return editBasisdatenHandler.retrieveBasisdaten(planId);
 	}
 
@@ -76,13 +74,11 @@ public class PlanBasisdatenApi {
 							content = @Content(schema = @Schema(implementation = Basisdaten.class))),
 					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") },
+							description = "Unsupported plan version or planID is not a valid int value") },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Basisdaten.class)) }))
-	public Basisdaten replaceBasisdaten(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
-					example = "123") String planId,
-			@Valid Basisdaten basisdaten) throws Exception {
+	public Basisdaten replaceBasisdaten(@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
+			example = "123") String planId, @Valid Basisdaten basisdaten) throws Exception {
 		return editBasisdatenHandler.replaceBasisdaten(planId, basisdaten);
 	}
 

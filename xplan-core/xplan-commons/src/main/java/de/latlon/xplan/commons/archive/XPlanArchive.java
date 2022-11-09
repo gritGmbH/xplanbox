@@ -76,8 +76,8 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
 	public XPlanArchive(MainZipEntry mainEntry, String fileName, XPlanVersion version, XPlanType type, ICRS crs,
 			List<String> districts, boolean hasVerbundenerPlanBereich, boolean hasMultipleXPlanElements) {
-		this(Collections.emptyList(), mainEntry, fileName, version, type, crs, districts, hasVerbundenerPlanBereich,
-				hasMultipleXPlanElements);
+		this(Collections.singletonList(mainEntry), mainEntry, fileName, version, type, crs, districts,
+				hasVerbundenerPlanBereich, hasMultipleXPlanElements);
 	}
 
 	private XPlanArchive(List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String fileName,

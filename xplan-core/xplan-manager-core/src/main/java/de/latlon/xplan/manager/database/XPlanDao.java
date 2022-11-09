@@ -68,7 +68,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -640,9 +639,8 @@ public class XPlanDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.prepareStatement("SELECT data FROM xplanmgr.artefacts WHERE plan=? and filename=?");
+			stmt = conn.prepareStatement("SELECT data FROM xplanmgr.artefacts WHERE plan=? and isxplangml=true");
 			stmt.setInt(1, planId);
-			stmt.setString(2, MAIN_FILE);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				return unzipArtefact(rs.getBinaryStream(1));
@@ -1472,14 +1470,15 @@ public class XPlanDao {
 			try {
 				InputStream is = archiveEntry.retrieveContentAsStream();
 				String mimetype = getArtefactMimeType(name);
-				String insertStatement = "INSERT INTO xplanmgr.artefacts (plan,filename,data,num,mimetype)"
-						+ " VALUES (?,?,?,?,?)";
+				String insertStatement = "INSERT INTO xplanmgr.artefacts (plan,filename,data,num,mimetype,isxplangml)"
+						+ " VALUES (?,?,?,?,?,?)";
 				stmt = conn.prepareStatement(insertStatement);
 				stmt.setInt(1, planId);
 				stmt.setString(2, name);
 				stmt.setBytes(3, createZipArtefact(is));
 				stmt.setInt(4, i++);
 				stmt.setString(5, mimetype);
+				stmt.setBoolean(6, archiveEntry.isXPlanGml());
 				stmt.executeUpdate();
 				stmt.close();
 				is.close();
@@ -1506,12 +1505,11 @@ public class XPlanDao {
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE xplanmgr.artefacts SET ");
 			sql.append("data = ? ");
-			sql.append("WHERE plan = ? AND filename = ?");
+			sql.append("WHERE plan = ? AND isxplangml = true");
 			String updateSql = sql.toString();
 			stmt = conn.prepareStatement(updateSql);
 			stmt.setBytes(1, createZipArtefact(new ByteArrayInputStream(planArtefact)));
 			stmt.setInt(2, Integer.parseInt(xplan.getId()));
-			stmt.setString(3, "xplan.gml");
 			LOG.trace("SQL Update XPlanManager Artefacts: {}", stmt);
 			stmt.executeUpdate();
 			stmt.close();
@@ -1580,7 +1578,7 @@ public class XPlanDao {
 	}
 
 	private void executeUpdateArtefacts(Connection conn, int id, Map<String, File> artefactsToUpdate)
-			throws SQLException, IOException, FileNotFoundException {
+			throws SQLException, IOException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE xplanmgr.artefacts SET ");
 		sql.append("data = ? ");
@@ -1607,8 +1605,8 @@ public class XPlanDao {
 	private void executeInsertArtefacts(Connection conn, int id, Map<String, File> artefactsToInsert) throws Exception {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO xplanmgr.artefacts ");
-		sql.append("(plan,filename,data,num,mimetype) ");
-		sql.append("VALUES (?,?,?,?,?)");
+		sql.append("(plan,filename,data,num,mimetype,isxplangml) ");
+		sql.append("VALUES (?,?,?,?,?,false)");
 		String insertSql = sql.toString();
 		int num = selectNextArtefactNumber(conn, id);
 		PreparedStatement stmt = null;
