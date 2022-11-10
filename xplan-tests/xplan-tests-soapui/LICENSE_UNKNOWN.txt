@@ -14,7 +14,7 @@ Inhalt des Verzeichnisses src/main/resources:
 │   │   ├── postDokRaster.json
 │   │   ├── postDokRefName.json
 │   │   ├── postImg.png
-│   │   ├── postImgWf.pgw
+│   │   ├── postImg.pgw
 │   │   ├── postText.json
 │   │   ├── postText.pdf
 │   │   ├── putDok.json
@@ -23,7 +23,7 @@ Inhalt des Verzeichnisses src/main/resources:
 │   │   ├── putDokRasterMitBereich1.json
 │   │   ├── putDokRasterNoBereich.json
 │   │   ├── putImg.png
-│   │   ├── putImgWf.pgw
+│   │   ├── putImg.pgw
 │   │   ├── putText.json
 │   │   └── putText.odt
 │   └── plans
