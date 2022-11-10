@@ -18,11 +18,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster;
+package de.latlon.xplan.manager.wmsconfig.raster.evaluation;
+
+import de.latlon.xplan.commons.archive.ArchiveEntry;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.ZipEntryWithContent;
+import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.reference.ExternalReference;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
+import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType;
+import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.geotiff;
-import static de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager.isGdalSuccessfullInitialized;
+import static de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter.isGdalSuccessfullInitialized;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeTrue;
@@ -30,32 +48,12 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import de.latlon.xplan.commons.archive.ZipEntryWithContent;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.archive.ArchiveEntry;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.reference.ExternalReference;
-import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
-import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
 @Ignore
-public class XPlanRasterManagerTest {
+public class XPlanRasterEvaluatorTest {
 
 	private static final String CONFIGURED_CRS = "epsg:4326";
 
@@ -79,7 +77,7 @@ public class XPlanRasterManagerTest {
 	public void testEvaluateRasterdataGdalWithTiffEpsg4269() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
 				mockGdalManagerConfig());
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffEpsg4269(),
 				mockFeatureCollection());
@@ -95,7 +93,7 @@ public class XPlanRasterManagerTest {
 	public void testEvaluateRasterdataGdalWithTiffEpsg4326() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
 				mockGdalManagerConfig());
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffEpsg4326(),
 				mockFeatureCollection());
@@ -111,7 +109,7 @@ public class XPlanRasterManagerTest {
 	public void testEvaluateRasterdataGdalWithTiffNoCrs() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
 				mockGdalManagerConfig());
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffNoCrs(),
 				mockFeatureCollection());
@@ -127,7 +125,7 @@ public class XPlanRasterManagerTest {
 	public void testEvaluateRasterdataGdalWithTxt() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
 				mockGdalManagerConfig());
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTxt(),
 				mockFeatureCollection());
@@ -143,7 +141,7 @@ public class XPlanRasterManagerTest {
 	public void testEvaluateRasterdataGeotiffWithTiff() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
 				mockGeotiffManagerConfig());
 
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffNoCrs(),
@@ -161,7 +159,7 @@ public class XPlanRasterManagerTest {
 	public void testEvaluateRasterdataGeotiffWithPng() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
 				mockGeotiffManagerConfig());
 
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithPngNoCrs(),
@@ -179,7 +177,7 @@ public class XPlanRasterManagerTest {
 	public void testEvaluateRasterdataGdalWithPng25833() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(mockWmsWorkspaceWrapper(),
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
 				mockGdalManagerConfig());
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithPngEpsg25833(),
 				mockFeatureCollection());
@@ -189,12 +187,6 @@ public class XPlanRasterManagerTest {
 		assertThat(result.isCrsSet(), is(true));
 		assertThat(result.isConfiguredCrs(), is(false));
 		assertThat(result.isSupportedImageFormat(), is(true));
-	}
-
-	private WmsWorkspaceWrapper mockWmsWorkspaceWrapper() throws IOException {
-		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
-		when(wmsWorkspaceWrapper.getLocation()).thenReturn(Files.createTempDirectory("workspace").toFile());
-		return wmsWorkspaceWrapper;
 	}
 
 	private XPlanArchive mockArchiveWithTiffEpsg4269() {
@@ -244,7 +236,7 @@ public class XPlanRasterManagerTest {
 	private ZipEntryWithContent mockZipEntry(XPlanArchive mockedArchive, String name, String resource) {
 		ZipEntryWithContent mockedEntry = mock(ZipEntryWithContent.class);
 		when(mockedEntry.getName()).thenReturn(name);
-		InputStream resourceStream = XPlanRasterManagerTest.class.getResourceAsStream(resource);
+		InputStream resourceStream = XPlanRasterEvaluatorTest.class.getResourceAsStream(resource);
 		when(mockedArchive.retrieveInputStreamFor(name)).thenReturn(resourceStream);
 		return mockedEntry;
 	}

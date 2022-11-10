@@ -29,24 +29,16 @@ import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.gdal.gdal.Dataset;
-import org.gdal.gdal.gdal;
-import org.gdal.osr.SpatialReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,7 +48,8 @@ import java.util.Vector;
 
 import static de.latlon.xplan.manager.wmsconfig.ConfigWriterUtils.detectType;
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.geotiff;
-import static org.apache.commons.io.IOUtils.closeQuietly;
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.findRasterplanZipEntries;
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.unzipArchiveInTmpDirectory;
 
 /**
  * An instance of XPlanRasterManager provides the service methods to manage raster files
@@ -69,28 +62,15 @@ public class XPlanRasterManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanRasterManager.class);
 
-	private static boolean gdalSuccessfullInitialized = false;
-
 	private final WmsWorkspaceWrapper wmsWorkspaceWrapper;
+
+	private final GdalRasterAdapter rasterAdapter;
 
 	private final ManagerConfiguration managerConfiguration;
 
 	private final WorkspaceRasterThemeManager rasterThemeManager;
 
 	private final WorkspaceRasterLayerManager rasterLayerManager;
-
-	static {
-		try {
-			gdal.AllRegister();
-			LOG.info("Installed GDAL JNI Version : " + gdal.VersionInfo());
-			gdalSuccessfullInitialized = true;
-		}
-		catch (Throwable e) {
-			LOG.warn("Registration of GDAL JNI adapter failed: " + e.getMessage(), e);
-			LOG.warn("GDAL raster configurations are not supported. "
-					+ "In the managerConfiguration.properties file the rasterConfigurationType must not be gdal!");
-		}
-	}
 
 	/**
 	 * Instantiates a {@link XPlanRasterManager} with workspace and manager configuration.
@@ -100,21 +80,14 @@ public class XPlanRasterManager {
 	 * <code>null</code>
 	 * @throws WorkspaceException
 	 */
-	public XPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper, ManagerConfiguration managerConfiguration)
-			throws WorkspaceException {
+	public XPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper, GdalRasterAdapter rasterAdapter,
+			ManagerConfiguration managerConfiguration) throws WorkspaceException {
 		this.wmsWorkspaceWrapper = wmsWorkspaceWrapper;
+		this.rasterAdapter = rasterAdapter;
 		this.managerConfiguration = managerConfiguration;
 		this.rasterThemeManager = new WorkspaceRasterThemeManager(wmsWorkspaceWrapper);
 		this.rasterLayerManager = new WorkspaceRasterLayerManager(wmsWorkspaceWrapper.getLocation(),
 				getRasterConfigurationTypeFromManagerConfig(), getRasterConfigurationCrsFromManagerConfig());
-	}
-
-	/**
-	 * @return <code>true</code> if gdal was correctly initialized, <code>false</code>
-	 * otherwise
-	 */
-	public static boolean isGdalSuccessfullInitialized() {
-		return gdalSuccessfullInitialized;
 	}
 
 	/**
@@ -199,7 +172,8 @@ public class XPlanRasterManager {
 		try {
 			List<String> scanFiles = collectRasterScanFiles(planFeatureCollection);
 			logScanFiles(begin, scanFiles);
-			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, scanFiles);
+			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, scanFiles,
+					getRasterConfigurationTypeFromManagerConfig());
 
 			List<String> rasterIds = copyRasterplanImageFilesToWmsWorkspace(wmsWorkspaceWrapper.getLocation(), archive,
 					rasterplanEntries, planId);
@@ -237,42 +211,6 @@ public class XPlanRasterManager {
 	}
 
 	/**
-	 * Evaluates rasterdata referenced by the plan.
-	 * @param archive containing the rasterdata to evaluate, never <code>null</code>
-	 * @param planFeatureCollection featureCollection of the xplan, never
-	 * <code>null</code>
-	 * @return a list of evaluation results, one per raster, may be empty if plan does not
-	 * contain rasterdata but never <code>null</code>
-	 * @throws IOException if access to the archive fails
-	 */
-	public List<RasterEvaluationResult> evaluateRasterdata(XPlanArchiveContentAccess archive,
-			XPlanFeatureCollection planFeatureCollection) throws IOException {
-		ExternalReferenceInfo externalReferenceInfo = planFeatureCollection.getExternalReferenceInfo();
-		return evaluateRasterdata(archive, externalReferenceInfo);
-	}
-
-	/**
-	 * Evaluates rasterdata referenced by the plan.
-	 * @param archive containing the rasterdata to evaluate, never <code>null</code>
-	 * @param externalReferencesToEvaluate {@link ExternalReferenceInfo} to evaluate,
-	 * never <code>null</code>
-	 * @return a list of evaluation results, one per raster, may be empty if plan does not
-	 * contain rasterdata but never <code>null</code>
-	 * @throws IOException if access to the archive fails
-	 */
-	public List<RasterEvaluationResult> evaluateRasterdata(XPlanArchiveContentAccess archive,
-			ExternalReferenceInfo externalReferencesToEvaluate) throws IOException {
-		List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferencesToEvaluate
-				.getRasterPlanBaseAndUpdateScans();
-		switch (getRasterConfigurationTypeFromManagerConfig()) {
-			case geotiff:
-				return evaluateRasterdataGeotiffConfig(archive, rasterPlanBaseAndUpdateScans);
-			default:
-				return evaluateRasterGdalConfig(archive, rasterPlanBaseAndUpdateScans);
-		}
-	}
-
-	/**
 	 * Reorders the wms layer configuration by the passed sort dates.
 	 * @param planId2sortDate plan ids mapped to the new sort date, never
 	 * <code>null</code>
@@ -301,78 +239,6 @@ public class XPlanRasterManager {
 		else {
 			rasterThemeManager.insertLayersAtBeginning(statusType, rasterConfigurationCrs, rasterIds);
 		}
-	}
-
-	private List<RasterEvaluationResult> evaluateRasterdataGeotiffConfig(XPlanArchiveContentAccess archive,
-			List<ExternalReference> externalReferencesToEvaluate) {
-		List<RasterEvaluationResult> results = new ArrayList<>();
-		List<String> scanFiles = collectRasterScanFiles(externalReferencesToEvaluate);
-		List<ArchiveEntry> findRasterplanZipEntries = findRasterplanZipEntries(archive, scanFiles);
-		for (ArchiveEntry entry : findRasterplanZipEntries) {
-			String entryName = entry.getName();
-			String lowerCaseEntryName = entryName.toLowerCase();
-			boolean supportedImageFormat = false;
-			if (lowerCaseEntryName.endsWith("tif") || lowerCaseEntryName.endsWith("tiff"))
-				supportedImageFormat = true;
-			results.add(new RasterEvaluationResult(entryName, null, getRasterConfigurationCrsFromManagerConfig(), false,
-					true, supportedImageFormat));
-		}
-		return results;
-	}
-
-	private List<ArchiveEntry> findRasterplanZipEntries(XPlanArchiveContentAccess archive, List<String> scanFiles) {
-		List<ArchiveEntry> entries = new ArrayList<>();
-		for (String scanFile : scanFiles) {
-			if (scanFile != null) {
-				ArchiveEntry entry = archive.getEntry(scanFile);
-				if (entry == null) {
-					throw new RuntimeException("Rasterscan-Datei:" + scanFile + " ist nicht im Archiv vorhanden.");
-				}
-				if (geotiff.equals(getRasterConfigurationTypeFromManagerConfig())) {
-					String name = entry.getName().toLowerCase();
-					if (!name.endsWith("tif") && !name.endsWith("tiff")) {
-						LOG.info("Ignoriere Datei '{}'. Keine TIFF-Datei.", entry.getName());
-					}
-				}
-				entries.add(entry);
-			}
-		}
-		return entries;
-	}
-
-	private List<RasterEvaluationResult> evaluateRasterGdalConfig(XPlanArchiveContentAccess archive,
-			List<ExternalReference> externalReferencesToEvaluate) throws IOException {
-		List<RasterEvaluationResult> results = new ArrayList<>();
-		List<String> scanFiles = collectRasterScanFiles(externalReferencesToEvaluate);
-		List<ArchiveEntry> rasterplanZipEntries = findRasterplanZipEntries(archive, scanFiles);
-		if (!rasterplanZipEntries.isEmpty()) {
-			File archiveDirectory = unzipArchiveInTmpDirectory(archive);
-			for (ArchiveEntry zipEntry : rasterplanZipEntries) {
-				RasterEvaluationResult result = evaluateRaster(zipEntry, archiveDirectory);
-				results.add(result);
-			}
-			archiveDirectory.delete();
-		}
-		return results;
-	}
-
-	private RasterEvaluationResult evaluateRaster(ArchiveEntry zipEntry, File archiveDirectory) {
-		String entryName = zipEntry.getName();
-		LOG.info("Rasterdatei mit Namen {} gefunden.", entryName);
-		File mainRasterFile = new File(archiveDirectory, entryName);
-		LOG.trace("Raster was copied to {}.", mainRasterFile);
-		String configuredCrs = getRasterConfigurationCrsFromManagerConfig();
-		Dataset dataset = gdal.OpenShared(mainRasterFile.getAbsolutePath());
-		if (dataset != null) {
-			String rasterCrs = dataset.GetProjectionRef();
-			LOG.info("Koordinatensystem des Rasters: {}", rasterCrs);
-			boolean isCrsSet = rasterCrs != null && !rasterCrs.isEmpty();
-			boolean isConfiguredCrs = compareConfiguredCrsWithRasterCrs(rasterCrs, configuredCrs);
-			mainRasterFile.delete();
-			return new RasterEvaluationResult(entryName, retrieveAuthorityIfAvailable(rasterCrs), configuredCrs,
-					isCrsSet, isConfiguredCrs, true);
-		}
-		return new RasterEvaluationResult(entryName, null, configuredCrs, false, false, false);
 	}
 
 	private List<String> copyRasterplanImageFilesToWmsWorkspace(File workspaceLocation,
@@ -411,9 +277,8 @@ public class XPlanRasterManager {
 			LOG.debug("Raster data entry {} ", entryName);
 			copyRasterFileAndCreateConfiguration(workspaceLocation, archive, planId, rasterIds, entryName);
 			File mainRasterFile = new File(archiveDirectory, entryName);
-			Dataset dataset = gdal.OpenShared(mainRasterFile.getAbsolutePath());
-			if (dataset != null) {
-				Vector<?> referencedFiles = dataset.GetFileList();
+			Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(mainRasterFile);
+			if (referencedFiles != null) {
 				for (Object referencedFile : referencedFiles) {
 					File file = new File(referencedFile.toString());
 					if (!file.equals(mainRasterFile)) {
@@ -443,14 +308,6 @@ public class XPlanRasterManager {
 		return dataFileName.replaceAll(".tiff?", "");
 	}
 
-	private List<String> collectRasterScanFiles(List<ExternalReference> externalReferenceInfo) {
-		List<String> scanFiles = new ArrayList<>();
-		for (ExternalReference externalRef : externalReferenceInfo) {
-			scanFiles.add(externalRef.getReferenzUrl());
-		}
-		return scanFiles;
-	}
-
 	private List<String> collectRasterScanFiles(XPlanFeatureCollection fc) {
 		List<String> scanFiles = new ArrayList<>();
 		for (ExternalReference externalRef : fc.getExternalReferenceInfo().getRasterPlanBaseScans()) {
@@ -459,60 +316,9 @@ public class XPlanRasterManager {
 		return scanFiles;
 	}
 
-	private File unzipArchiveInTmpDirectory(XPlanArchiveContentAccess archive) throws IOException {
-		List<? extends ArchiveEntry> archiveEntries = archive.getZipFileEntries();
-		File archiveDirectory = Files.createTempDirectory("xplanbox-archive").toFile();
-		for (ArchiveEntry zipEntry : archiveEntries) {
-			copyToTempFile(archive, zipEntry.getName(), archiveDirectory);
-		}
-		return archiveDirectory;
-	}
-
-	private void copyToTempFile(XPlanArchiveContentAccess archive, String entryName, File archiveDirectory)
-			throws IOException {
-		InputStream content = archive.retrieveInputStreamFor(entryName);
-		File writeRasterIn = new File(archiveDirectory, entryName);
-		OutputStream outputStream = null;
-		try {
-			outputStream = new FileOutputStream(writeRasterIn);
-			IOUtils.copy(content, outputStream);
-		}
-		finally {
-			closeQuietly(content);
-			closeQuietly(outputStream);
-		}
-	}
-
-	private boolean compareConfiguredCrsWithRasterCrs(String rasterCrs, String configuredCrs) {
-		SpatialReference rasterReference = new SpatialReference(rasterCrs);
-
-		SpatialReference configuredReference = new SpatialReference();
-		configuredReference.ImportFromEPSG(asEpsgCode(configuredCrs));
-
-		int isSame = rasterReference.IsSame(configuredReference);
-		return isSame == 1;
-	}
-
-	private String retrieveAuthorityIfAvailable(String rasterCrs) {
-		SpatialReference rasterReference = new SpatialReference(rasterCrs);
-		String key;
-		if (rasterReference.IsGeographic() == 1)
-			key = "GEOGCS";
-		else if (rasterReference.IsProjected() == 1)
-			key = "PROJCS";
-		else
-			return rasterCrs;
-		return rasterReference.GetAuthorityName(key) + ":" + rasterReference.GetAuthorityCode(key);
-	}
-
 	private boolean isDeegreeRasterType() {
 		return RasterConfigurationType.gdal.equals(getRasterConfigurationTypeFromManagerConfig())
 				|| geotiff.equals(getRasterConfigurationTypeFromManagerConfig());
-	}
-
-	private int asEpsgCode(String rasterCrs) {
-		String epsgCode = rasterCrs.substring(rasterCrs.indexOf(":") + 1);
-		return Integer.parseInt(epsgCode);
 	}
 
 	private RasterConfigurationType getRasterConfigurationTypeFromManagerConfig() {

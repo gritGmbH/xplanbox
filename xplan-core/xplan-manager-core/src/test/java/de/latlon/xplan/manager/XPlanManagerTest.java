@@ -44,7 +44,7 @@ import java.nio.file.Files;
 import java.util.List;
 
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
-import static de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager.isGdalSuccessfullInitialized;
+import static de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter.isGdalSuccessfullInitialized;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeTrue;

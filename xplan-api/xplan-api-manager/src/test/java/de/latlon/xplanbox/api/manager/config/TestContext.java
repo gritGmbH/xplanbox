@@ -39,6 +39,7 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -167,8 +168,13 @@ public class TestContext {
 	@Bean
 	@Primary
 	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			ManagerConfiguration managerConfiguration) throws WorkspaceException {
-		return new XPlanRasterManager(wmsWorkspaceWrapper, managerConfiguration);
+			GdalRasterAdapter rasterAdapter, ManagerConfiguration managerConfiguration) throws WorkspaceException {
+		return new XPlanRasterManager(wmsWorkspaceWrapper, rasterAdapter, managerConfiguration);
+	}
+
+	@Bean
+	public GdalRasterAdapter rasterAdapter() {
+		return new GdalRasterAdapter();
 	}
 
 	@Bean

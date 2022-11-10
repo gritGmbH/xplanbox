@@ -58,6 +58,8 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.deegree.commons.utils.Pair;
@@ -108,6 +110,8 @@ public class XPlanManager {
 
 	private final XPlanRasterManager xPlanRasterManager;
 
+	private final XPlanRasterEvaluator xPlanRasterEvaluator;
+
 	private final SortPropertyReader sortPropertyReader;
 
 	private final InspirePluPublisher inspirePluPublisher;
@@ -128,8 +132,6 @@ public class XPlanManager {
 	 * workspace is reloaded
 	 * @param inspirePluTransformator transforms XPlanGML to INSPIRE PLU, may be
 	 * <code>null</code>
-	 * @param xPlanGmlTransformer transforms between different versions of XPlanGML, may
-	 * be <code>null</code>
 	 * @param wmsWorkspaceWrapper mandatory WMS workspace configuration
 	 * @throws Exception if mandatory arguments are missing or something went wrong
 	 */
@@ -147,7 +149,10 @@ public class XPlanManager {
 				managerWorkspaceWrapper.getConfiguration(), wmsWorkspaceWrapper);
 		managerConfigurationAnalyser.checkConfiguration();
 
-		this.xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper,
+		GdalRasterAdapter gdalRasterAdapter = new GdalRasterAdapter();
+		this.xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper, gdalRasterAdapter,
+				managerWorkspaceWrapper.getConfiguration());
+		this.xPlanRasterEvaluator = new XPlanRasterEvaluator(gdalRasterAdapter,
 				managerWorkspaceWrapper.getConfiguration());
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
@@ -268,7 +273,7 @@ public class XPlanManager {
 			throws IOException, XMLStreamException, XMLParsingException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
 		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive);
-		return xPlanRasterManager.evaluateRasterdata(archive, fc);
+		return xPlanRasterEvaluator.evaluateRasterdata(archive, fc);
 	}
 
 	/**
@@ -320,7 +325,7 @@ public class XPlanManager {
 		XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
 		ExternalReferenceInfo externalReferenceInfoToUpdate = createExternalRefAddedOrUpdated(xPlanToEdit,
 				uploadedArtefacts);
-		return xPlanRasterManager.evaluateRasterdata(archive, externalReferenceInfoToUpdate);
+		return xPlanRasterEvaluator.evaluateRasterdata(archive, externalReferenceInfoToUpdate);
 	}
 
 	/**
