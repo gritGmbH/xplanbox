@@ -23,8 +23,6 @@ package de.latlon.xplan.manager.wmsconfig.raster;
 import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,7 +33,6 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.geotiff;
 import static org.apache.commons.io.IOUtils.close;
 
 /**
@@ -43,22 +40,14 @@ import static org.apache.commons.io.IOUtils.close;
  */
 public class RasterUtils {
 
-	private static final Logger LOG = LoggerFactory.getLogger(RasterUtils.class);
-
-	public static List<ArchiveEntry> findRasterplanZipEntries(XPlanArchiveContentAccess archive, List<String> scanFiles,
-			RasterConfigurationType rasterConfigurationType) {
+	public static List<ArchiveEntry> findRasterplanZipEntries(XPlanArchiveContentAccess archive,
+			List<String> scanFiles) {
 		List<ArchiveEntry> entries = new ArrayList<>();
 		for (String scanFile : scanFiles) {
 			if (scanFile != null) {
 				ArchiveEntry entry = archive.getEntry(scanFile);
 				if (entry == null) {
 					throw new RuntimeException("Rasterscan-Datei:" + scanFile + " ist nicht im Archiv vorhanden.");
-				}
-				if (geotiff.equals(rasterConfigurationType)) {
-					String name = entry.getName().toLowerCase();
-					if (!name.endsWith("tif") && !name.endsWith("tiff")) {
-						LOG.info("Ignoriere Datei '{}'. Keine TIFF-Datei.", entry.getName());
-					}
 				}
 				entries.add(entry);
 			}

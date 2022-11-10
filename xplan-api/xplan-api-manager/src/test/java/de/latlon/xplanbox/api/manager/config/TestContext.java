@@ -40,6 +40,8 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GeotiffRasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -119,10 +121,10 @@ public class TestContext {
 	@Primary
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper)
-			throws Exception {
+			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			RasterEvaluation rasterEvaluation) throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper);
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, rasterEvaluation);
 	}
 
 	@Bean
@@ -175,6 +177,11 @@ public class TestContext {
 	@Bean
 	public GdalRasterAdapter rasterAdapter() {
 		return new GdalRasterAdapter();
+	}
+
+	@Bean
+	public RasterEvaluation rasterEvaluation(ManagerConfiguration managerConfiguration) {
+		return new GeotiffRasterEvaluation(managerConfiguration.getRasterConfigurationCrs());
 	}
 
 	@Bean

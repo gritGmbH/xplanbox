@@ -59,6 +59,7 @@ import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -137,7 +138,8 @@ public class XPlanManager {
 	 */
 	public XPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
+			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			RasterEvaluation rasterEvaluation) throws Exception {
 		if (xPlanDao == null || archiveCreator == null || managerWorkspaceWrapper == null
 				|| wmsWorkspaceWrapper == null) {
 			throw new IllegalArgumentException("Mandatory argument must not be null");
@@ -152,8 +154,7 @@ public class XPlanManager {
 		GdalRasterAdapter gdalRasterAdapter = new GdalRasterAdapter();
 		this.xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper, gdalRasterAdapter,
 				managerWorkspaceWrapper.getConfiguration());
-		this.xPlanRasterEvaluator = new XPlanRasterEvaluator(gdalRasterAdapter,
-				managerWorkspaceWrapper.getConfiguration());
+		this.xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		this.xPlanExporter = new XPlanExporter();

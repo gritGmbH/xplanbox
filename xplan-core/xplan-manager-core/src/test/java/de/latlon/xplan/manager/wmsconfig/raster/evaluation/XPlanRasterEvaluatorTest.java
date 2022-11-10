@@ -26,10 +26,7 @@ import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
-import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType;
-import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -38,8 +35,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.geotiff;
 import static de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter.isGdalSuccessfullInitialized;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -52,7 +47,6 @@ import static org.mockito.Mockito.when;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-@Ignore
 public class XPlanRasterEvaluatorTest {
 
 	private static final String CONFIGURED_CRS = "epsg:4326";
@@ -77,8 +71,7 @@ public class XPlanRasterEvaluatorTest {
 	public void testEvaluateRasterdataGdalWithTiffEpsg4269() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
-				mockGdalManagerConfig());
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation(CONFIGURED_CRS));
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffEpsg4269(),
 				mockFeatureCollection());
 		RasterEvaluationResult result = results.get(0);
@@ -93,8 +86,7 @@ public class XPlanRasterEvaluatorTest {
 	public void testEvaluateRasterdataGdalWithTiffEpsg4326() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
-				mockGdalManagerConfig());
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation(CONFIGURED_CRS));
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffEpsg4326(),
 				mockFeatureCollection());
 		RasterEvaluationResult result = results.get(0);
@@ -109,8 +101,7 @@ public class XPlanRasterEvaluatorTest {
 	public void testEvaluateRasterdataGdalWithTiffNoCrs() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
-				mockGdalManagerConfig());
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation(CONFIGURED_CRS));
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffNoCrs(),
 				mockFeatureCollection());
 		RasterEvaluationResult result = results.get(0);
@@ -125,8 +116,7 @@ public class XPlanRasterEvaluatorTest {
 	public void testEvaluateRasterdataGdalWithTxt() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
-				mockGdalManagerConfig());
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation("EPSG:25832"));
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTxt(),
 				mockFeatureCollection());
 		RasterEvaluationResult result = results.get(0);
@@ -137,12 +127,25 @@ public class XPlanRasterEvaluatorTest {
 		assertThat(result.isSupportedImageFormat(), is(false));
 	}
 
+	@Ignore
 	@Test
-	public void testEvaluateRasterdataGeotiffWithTiff() throws Exception {
+	public void testEvaluateRasterdataGdalWithPng25833() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
-				mockGeotiffManagerConfig());
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterEvaluation(CONFIGURED_CRS));
+		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithPngEpsg25833(),
+				mockFeatureCollection());
+		RasterEvaluationResult result = results.get(0);
+
+		assertThat(result.getRasterName(), is(PNG_EPSG25833_NAME));
+		assertThat(result.isCrsSet(), is(true));
+		assertThat(result.isConfiguredCrs(), is(false));
+		assertThat(result.isSupportedImageFormat(), is(true));
+	}
+
+	@Test
+	public void testEvaluateRasterdataGeotiffWithTiff() throws Exception {
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GeotiffRasterEvaluation(CONFIGURED_CRS));
 
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithTiffNoCrs(),
 				mockFeatureCollection());
@@ -157,10 +160,7 @@ public class XPlanRasterEvaluatorTest {
 
 	@Test
 	public void testEvaluateRasterdataGeotiffWithPng() throws Exception {
-		assumeTrue(isGdalSuccessfullInitialized());
-
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
-				mockGeotiffManagerConfig());
+		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GeotiffRasterEvaluation(CONFIGURED_CRS));
 
 		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithPngNoCrs(),
 				mockFeatureCollection());
@@ -171,22 +171,6 @@ public class XPlanRasterEvaluatorTest {
 		assertThat(result.isCrsSet(), is(false));
 		assertThat(result.isConfiguredCrs(), is(true));
 		assertThat(result.isSupportedImageFormat(), is(false));
-	}
-
-	@Test
-	public void testEvaluateRasterdataGdalWithPng25833() throws Exception {
-		assumeTrue(isGdalSuccessfullInitialized());
-
-		XPlanRasterEvaluator xPlanRasterManager = new XPlanRasterEvaluator(new GdalRasterAdapter(),
-				mockGdalManagerConfig());
-		List<RasterEvaluationResult> results = xPlanRasterManager.evaluateRasterdata(mockArchiveWithPngEpsg25833(),
-				mockFeatureCollection());
-		RasterEvaluationResult result = results.get(0);
-
-		assertThat(result.getRasterName(), is(PNG_EPSG25833_NAME));
-		assertThat(result.isCrsSet(), is(true));
-		assertThat(result.isConfiguredCrs(), is(false));
-		assertThat(result.isSupportedImageFormat(), is(true));
 	}
 
 	private XPlanArchive mockArchiveWithTiffEpsg4269() {
@@ -254,21 +238,6 @@ public class XPlanRasterEvaluatorTest {
 
 		when(mockedFeatureCollection.getExternalReferenceInfo()).thenReturn(mockedExternalReferenceInfo);
 		return mockedFeatureCollection;
-	}
-
-	private ManagerConfiguration mockGdalManagerConfig() {
-		return mockManagerConfig(gdal);
-	}
-
-	private ManagerConfiguration mockGeotiffManagerConfig() {
-		return mockManagerConfig(geotiff);
-	}
-
-	private ManagerConfiguration mockManagerConfig(RasterConfigurationType configurationType) {
-		ManagerConfiguration mockedConfiguration = mock(ManagerConfiguration.class);
-		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(configurationType);
-		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn(CONFIGURED_CRS);
-		return mockedConfiguration;
 	}
 
 }

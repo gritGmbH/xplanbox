@@ -31,6 +31,7 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -65,6 +66,8 @@ public class XPlanRasterManager {
 	private final WmsWorkspaceWrapper wmsWorkspaceWrapper;
 
 	private final GdalRasterAdapter rasterAdapter;
+
+	private RasterEvaluation rasterEvaluation;
 
 	private final ManagerConfiguration managerConfiguration;
 
@@ -172,8 +175,7 @@ public class XPlanRasterManager {
 		try {
 			List<String> scanFiles = collectRasterScanFiles(planFeatureCollection);
 			logScanFiles(begin, scanFiles);
-			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, scanFiles,
-					getRasterConfigurationTypeFromManagerConfig());
+			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, scanFiles);
 
 			List<String> rasterIds = copyRasterplanImageFilesToWmsWorkspace(wmsWorkspaceWrapper.getLocation(), archive,
 					rasterplanEntries, planId);

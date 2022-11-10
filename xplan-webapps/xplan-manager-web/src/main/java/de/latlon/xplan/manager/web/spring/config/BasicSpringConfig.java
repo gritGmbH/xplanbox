@@ -34,6 +34,9 @@ import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.server.service.ManagerReportProvider;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GdalRasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GeotiffRasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -180,10 +183,21 @@ public class BasicSpringConfig {
 	@Bean
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper)
-			throws Exception {
+			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			RasterEvaluation rasterEvaluation) throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper);
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, rasterEvaluation);
+	}
+
+	@Bean
+	public RasterEvaluation rasterEvaluation(ManagerConfiguration managerConfiguration) {
+		switch (managerConfiguration.getRasterConfigurationType()) {
+			case gdal:
+			case mapserver:
+				return new GdalRasterEvaluation(managerConfiguration.getRasterConfigurationCrs());
+			default:
+				return new GeotiffRasterEvaluation(managerConfiguration.getRasterConfigurationCrs());
+		}
 	}
 
 	@Bean

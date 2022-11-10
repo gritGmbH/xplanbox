@@ -20,19 +20,6 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster;
 
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
-import static java.nio.file.Files.copy;
-import static java.nio.file.Files.createDirectory;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.utils.DoublePair;
 import org.deegree.layer.persistence.LayerStore;
@@ -41,6 +28,19 @@ import org.deegree.layer.persistence.tile.TileLayer;
 import org.deegree.workspace.Workspace;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
+import static java.nio.file.Files.copy;
+import static java.nio.file.Files.createDirectory;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
@@ -117,7 +117,7 @@ public class WorkspaceRasterLayerManagerIT {
 	}
 
 	private void copyFile(String resourceName, Path dataPath) throws IOException {
-		InputStream resourceAsStream = getClass().getResourceAsStream(resourceName);
+		InputStream resourceAsStream = getClass().getResourceAsStream("evaluation/" + resourceName);
 		Path targetFile = dataPath.resolve(resourceName);
 		copy(resourceAsStream, targetFile);
 	}

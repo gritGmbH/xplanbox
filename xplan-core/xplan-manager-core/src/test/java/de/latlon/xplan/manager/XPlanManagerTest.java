@@ -30,7 +30,9 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import org.apache.commons.io.IOUtils;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GdalRasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GeotiffRasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import org.deegree.commons.utils.Pair;
 import org.junit.After;
 import org.junit.Before;
@@ -45,6 +47,8 @@ import java.util.List;
 
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
 import static de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter.isGdalSuccessfullInitialized;
+import static org.apache.commons.io.IOUtils.close;
+import static org.apache.commons.io.IOUtils.copy;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeTrue;
@@ -56,6 +60,8 @@ import static org.mockito.Mockito.when;
  * @version 1.0
  */
 public class XPlanManagerTest {
+
+	private static final String CONFIGURED_CRS = "epsg:4326";
 
 	private File managerWorkspaceDirectory;
 
@@ -81,7 +87,7 @@ public class XPlanManagerTest {
 	public void testEvaluateRasterdata() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanManager xPlanManager = createXPlanManager();
+		XPlanManager xPlanManager = createXPlanManager(createGdalRasterEvaluation());
 		String pathToArchive = copyPlan();
 
 		List<RasterEvaluationResult> results = xPlanManager.evaluateRasterdata(pathToArchive);
@@ -95,7 +101,7 @@ public class XPlanManagerTest {
 
 	@Test
 	public void testDetermineLegislationStatus() throws Exception {
-		XPlanManager xPlanManager = createXPlanManager();
+		XPlanManager xPlanManager = createXPlanManager(createGeotiffRasterEvaluation());
 		String pathToArchive = copyPlan();
 
 		Pair<Rechtsstand, PlanStatus> legislationStatus = xPlanManager.determineRechtsstand(pathToArchive);
@@ -104,7 +110,7 @@ public class XPlanManagerTest {
 		assertThat(legislationStatus.second, is(PlanStatus.FESTGESTELLT));
 	}
 
-	private XPlanManager createXPlanManager() throws Exception {
+	private XPlanManager createXPlanManager(RasterEvaluation rasterEvaluation) throws Exception {
 		XPlanDao xPlanDao = mock(XPlanDao.class);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		ManagerConfiguration managerConfiguration = mockManagerConfig();
@@ -112,13 +118,22 @@ public class XPlanManagerTest {
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, wmsWorkspaceWrapper);
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, wmsWorkspaceWrapper,
+				rasterEvaluation);
+	}
+
+	private static RasterEvaluation createGeotiffRasterEvaluation() {
+		return new GeotiffRasterEvaluation(CONFIGURED_CRS);
+	}
+
+	private static RasterEvaluation createGdalRasterEvaluation() {
+		return new GdalRasterEvaluation(CONFIGURED_CRS);
 	}
 
 	private ManagerConfiguration mockManagerConfig() {
 		ManagerConfiguration mockedConfiguration = mock(ManagerConfiguration.class);
 		when(mockedConfiguration.getRasterConfigurationType()).thenReturn(gdal);
-		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn("epsg:4326");
+		when(mockedConfiguration.getRasterConfigurationCrs()).thenReturn(CONFIGURED_CRS);
 		when(mockedConfiguration.getSortConfiguration()).thenReturn(new SortConfiguration());
 		return mockedConfiguration;
 	}
@@ -132,8 +147,8 @@ public class XPlanManagerTest {
 			return resourceFile.getAbsolutePath();
 		}
 		finally {
-			IOUtils.copy(resource, output);
-			IOUtils.closeQuietly(resource);
+			copy(resource, output);
+			close(resource);
 		}
 	}
 
