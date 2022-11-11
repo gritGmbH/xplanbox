@@ -21,36 +21,17 @@
 Configuration:
   name: XPlanWMS
   status: warn
-  Properties:
-    Property:
-      - name: log.file
-        value: xplan-wms.log
-      - name: log.path
-        value: ${sys:catalina.base:-.}/logs
   Appenders:
     Console:
       name: STDOUT
       target: SYSTEM_OUT
       PatternLayout:
         Pattern: "%d %p %C{1.} [%t] %m%n"
-    RollingFile:
-      name: RollingFile_Appender
-      fileName: ${log.path}/${log.file}
-      filePattern: ${log.path}/${log.file}.%d{yyyy-MM-dd-hh-mm}
-      PatternLayout:
-        pattern: "%d %p %C{1.} [%t] %m%n"
-      Policies:
-        SizeBasedTriggeringPolicy:
-          size: 100 MB
-      DefaultRollOverStrategy:
-        max: 5
   Loggers:
     Root:
       level: info
       AppenderRef:
         - ref: STDOUT
-          level: warn
-        - ref: RollingFile_Appender
           level: info
     Logger:
       - name: org.deegree
