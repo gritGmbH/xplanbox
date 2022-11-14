@@ -106,7 +106,6 @@ public class WorkspaceRasterLayerManager {
 	/**
 	 * Removes all configuration files for the specified plan:
 	 * <ul>
-	 * <li>data/&lt;planId&gt;_&lt;XXX&gt;</li>
 	 * <li>datasources/tile/&lt;planId&gt;_&lt;XXX&gt;</li>
 	 * <li>datasources/tile/tilematrixset/&lt;planId&gt;_&lt;XXX&gt;</li>
 	 * <li>layers/&lt;planId&gt;_&lt;XXX&gt;</li>
@@ -123,7 +122,6 @@ public class WorkspaceRasterLayerManager {
 	/**
 	 * Removes the configuration files of the specified rasterId for the specified plan:
 	 * <ul>
-	 * <li>data/&lt;planId&gt;_&lt;rasterId&gt;.xml</li>
 	 * <li>datasources/tile/&lt;planId&gt;_&lt;rasterId&gt;.xml</li>
 	 * <li>datasources/tile/tilematrixset/&lt;planId&gt;_&lt;rasterId&gt;.xml</li>
 	 * <li>layers/&lt;planId&gt;_&lt;rasterId&gt;.xml</li>
@@ -134,24 +132,12 @@ public class WorkspaceRasterLayerManager {
 	 */
 	public void deleteDataFilesAndRasterConfigurations(String planId, String rasterId) throws IOException {
 		final String rasterLayerFileName = planId + "_" + rasterId;
-		deleteDataFilesAndRasterConfigurations((path, basicFileAttributes) -> {
-			String fileName = path.getFileName().toString();
-			String nameWithoutPrefix = fileName;
-			int lastIndexOfDot = fileName.lastIndexOf(".");
-			if (lastIndexOfDot > 0)
-				nameWithoutPrefix = fileName.substring(0, lastIndexOfDot);
-			return rasterLayerFileName.startsWith(nameWithoutPrefix);
-		}, (path, basicFileAttributes) -> path.getFileName().toString().startsWith(rasterLayerFileName));
+		deleteDataFilesAndRasterConfigurations(
+				(path, basicFileAttributes) -> path.getFileName().toString().startsWith(rasterLayerFileName));
 	}
 
-	private void deleteDataFilesAndRasterConfigurations(BiPredicate<Path, BasicFileAttributes> filenameFilter)
+	private void deleteDataFilesAndRasterConfigurations(BiPredicate<Path, BasicFileAttributes> xmlFilenameFilter)
 			throws IOException {
-		deleteDataFilesAndRasterConfigurations(filenameFilter, filenameFilter);
-	}
-
-	private void deleteDataFilesAndRasterConfigurations(BiPredicate<Path, BasicFileAttributes> dataFilenameFilter,
-			BiPredicate<Path, BasicFileAttributes> xmlFilenameFilter) throws IOException {
-		deleteFilesWithPrefix(wmsWorkspace.resolve("data"), dataFilenameFilter);
 		deleteFilesWithPrefix(wmsWorkspace.resolve("datasources/tile"), xmlFilenameFilter);
 		deleteFilesWithPrefix(wmsWorkspace.resolve("datasources/tile/tilematrixset"), xmlFilenameFilter);
 		deleteFilesWithPrefix(wmsWorkspace.resolve("layers"), xmlFilenameFilter);

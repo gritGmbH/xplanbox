@@ -332,11 +332,11 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
 			XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(
 					createRasterEvaluation(managerConfiguration));
-			RasterStorage rasterStorage = createRasterStorage(managerConfiguration);
+			Path dataDirectory = Paths.get(wmsWorkspaceWrapper.getLocation().toURI()).resolve("data");
+			RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
 			RasterConfigManager rasterManagerConfig = RasterConfigManagerFactory
 					.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
-			XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage,
-					rasterManagerConfig);
+			XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterManagerConfig);
 			return new XPlanManager(xplanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
 					wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
 		}

@@ -21,36 +21,81 @@
 package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.function.BiPredicate;
+import java.util.stream.Stream;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public abstract class FileSystemStorage implements RasterStorage {
 
-	protected String copyEntry(File workspaceLocation, XPlanArchiveContentAccess archive, int planId, String entryName)
-			throws IOException {
+	private static final Logger LOG = LoggerFactory.getLogger(FileSystemStorage.class);
+
+	protected Path dataDirectory;
+
+	protected FileSystemStorage(Path dataDirectory) {
+		this.dataDirectory = dataDirectory;
+	}
+
+	@Override
+	public String copyRasterfile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException {
 		String rasterFileName = createFileName(planId, entryName);
-		File target = createTargetFile(workspaceLocation, rasterFileName);
-		FileUtils.copyInputStreamToFile(archive.retrieveInputStreamFor(entryName), target);
+		Path target = createTargetFile(rasterFileName);
+		Files.copy(archive.retrieveInputStreamFor(entryName), target);
 		return rasterFileName;
 	}
 
-	protected void copyFile(File workspaceLocation, int planId, File file) throws IOException {
-		String newFileName = createFileName(planId, file.getName());
-		File target = createTargetFile(workspaceLocation, newFileName);
-		FileUtils.copyFile(file, target);
+	@Override
+	public void deleteRasterFiles(String planId) throws IOException {
+		String prefix = planId + "_";
+		deleteFilesWithPrefix((path, basicFileAttributes) -> path.getFileName().toString().startsWith(prefix));
 	}
 
-	private String createFileName(int planId, String fileName) {
+	@Override
+	public void deleteRasterFiles(String planId, String rasterId) throws IOException {
+		final String rasterLayerFileName = planId + "_" + rasterId;
+		deleteFilesWithPrefix((path, basicFileAttributes) -> {
+			String fileName = path.getFileName().toString();
+			String nameWithoutPrefix = fileName;
+			int lastIndexOfDot = fileName.lastIndexOf(".");
+			if (lastIndexOfDot > 0)
+				nameWithoutPrefix = fileName.substring(0, lastIndexOfDot);
+			return rasterLayerFileName.startsWith(nameWithoutPrefix);
+		});
+
+	}
+
+	protected String createFileName(int planId, String fileName) {
 		return planId + "_" + fileName;
 	}
 
-	private File createTargetFile(File workspaceLocation, String newFileName) {
-		return new File(workspaceLocation, "data/" + newFileName);
+	protected Path createTargetFile(String newFileName) {
+		return dataDirectory.resolve(newFileName);
+	}
+
+	private void deleteFilesWithPrefix(BiPredicate<Path, BasicFileAttributes> filenameFilter) throws IOException {
+		if (!Files.exists(dataDirectory) || !Files.isDirectory(dataDirectory)) {
+			return;
+		}
+		Stream<Path> filesToDelete = Files.find(dataDirectory, Integer.MAX_VALUE, filenameFilter);
+		filesToDelete.forEach(file -> {
+			LOG.info("- Entferne Raster-Datei '" + file + "'...");
+			try {
+				Files.delete(file);
+				LOG.info("OK");
+			}
+			catch (Exception e) {
+				LOG.error("Fehler: " + e.getMessage());
+				LOG.debug("Fehler: ", e);
+			}
+		});
 	}
 
 }

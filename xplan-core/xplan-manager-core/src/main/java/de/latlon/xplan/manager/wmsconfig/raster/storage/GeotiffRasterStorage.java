@@ -20,30 +20,15 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
-import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-
-import java.io.File;
-import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class GeotiffRasterStorage extends FileSystemStorage {
 
-	@Override
-	public String copyRasterfile(File workspaceLocation, int planId, XPlanArchiveContentAccess archive,
-			String entryName) throws IOException {
-		return copyEntry(workspaceLocation, archive, planId, entryName);
-	}
-
-	@Override
-	public void deleteRasterFiles(String planId) {
-
-	}
-
-	@Override
-	public void deleteRasterFiles(String planId, String rasterId) {
-
+	public GeotiffRasterStorage(Path dataDirectory) {
+		super(dataDirectory);
 	}
 
 }

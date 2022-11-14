@@ -134,12 +134,11 @@ public class SortDateUpdateTool {
 			throws Exception {
 		DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
-		RasterStorage rasterStorage = createRasterStorage(managerConfiguration);
+		Path dataDirectory = Paths.get(wmsWorkspaceWrapper.getLocation().toURI()).resolve("data");
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
 		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
 				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage,
-				rasterConfigManager);
-		return xPlanRasterManager;
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
 	}
 
 	private SortPropertyReader createSortPropertyReader(ManagerWorkspaceWrapper managerWorkspaceWrapper) {

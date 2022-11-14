@@ -74,6 +74,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,7 +82,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluationFactory.createRasterEvaluation;
 import static de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorageFactory.createRasterStorage;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
@@ -204,14 +204,15 @@ public class BasicSpringConfig {
 	@Bean
 	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			ManagerConfiguration managerConfiguration) throws WorkspaceException {
-		RasterStorage rasterStorage = createRasterStorage(managerConfiguration);
+		Path dataDirectory = Paths.get(wmsWorkspaceWrapper.getLocation().toURI()).resolve("data");
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
 		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
 				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
-		return new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage, rasterConfigManager);
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
 	}
 
 	@Bean
-	public InternalIdRetriever internalIdRetriever(ManagerConfiguration managerConfiguration) throws Exception {
+	public InternalIdRetriever internalIdRetriever(ManagerConfiguration managerConfiguration) {
 		return new InternalIdRetriever(managerConfiguration.getInternalIdRetrieverConfiguration());
 	}
 

@@ -23,18 +23,20 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 
+import java.nio.file.Path;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class RasterStorageFactory {
 
-	public static RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration) {
+	public static RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration, Path dataDirectory) {
 		switch (managerConfiguration.getRasterConfigurationType()) {
 			case gdal:
 			case mapserver:
-				return new GdalRasterStorage(new GdalRasterAdapter());
+				return new GdalRasterStorage(dataDirectory, new GdalRasterAdapter());
 		}
-		return new GeotiffRasterStorage();
+		return new GeotiffRasterStorage(dataDirectory);
 	}
 
 }

@@ -23,8 +23,10 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Vector;
 
 /**
@@ -34,34 +36,26 @@ public class GdalRasterStorage extends FileSystemStorage {
 
 	private GdalRasterAdapter rasterAdapter;
 
-	public GdalRasterStorage(GdalRasterAdapter rasterAdapter) {
+	public GdalRasterStorage(Path dataDirectory, GdalRasterAdapter rasterAdapter) {
+		super(dataDirectory);
 		this.rasterAdapter = rasterAdapter;
 	}
 
 	@Override
-	public String copyRasterfile(File workspaceLocation, int planId, XPlanArchiveContentAccess archive,
-			String entryName) throws IOException {
-		String rasterFileName = copyEntry(workspaceLocation, archive, planId, entryName);
+	public String copyRasterfile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException {
+		String rasterFileName = super.copyRasterfile(planId, entryName, archive);
 		Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(archive, entryName);
 		if (referencedFiles != null) {
 			for (Object referencedFile : referencedFiles) {
-				File file = new File(referencedFile.toString());
-				if (!file.getName().equals(rasterFileName)) {
-					copyFile(workspaceLocation, planId, file);
+				Path file = Paths.get(referencedFile.toString());
+				String newFileName = createFileName(planId, file.getFileName().toString());
+				if (!newFileName.equals(rasterFileName)) {
+					Path target = createTargetFile(newFileName);
+					Files.copy(file, target);
 				}
 			}
 		}
 		return rasterFileName;
-	}
-
-	@Override
-	public void deleteRasterFiles(String planId) {
-
-	}
-
-	@Override
-	public void deleteRasterFiles(String planId, String rasterId) {
-
 	}
 
 }

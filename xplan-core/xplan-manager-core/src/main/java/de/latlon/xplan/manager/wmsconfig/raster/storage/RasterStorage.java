@@ -22,7 +22,6 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -30,11 +29,10 @@ import java.io.IOException;
  */
 public interface RasterStorage {
 
-	String copyRasterfile(File workspaceLocation, int planId, XPlanArchiveContentAccess archive, String entryName)
-			throws IOException;
+	String copyRasterfile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException;
 
-	void deleteRasterFiles(String planId);
+	void deleteRasterFiles(String planId) throws IOException;
 
-	void deleteRasterFiles(String planId, String rasterId);
+	void deleteRasterFiles(String planId, String rasterId) throws IOException;
 
 }

@@ -181,14 +181,15 @@ public class TestContext {
 
 	@Bean
 	@Primary
-	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterStorage rasterStorage,
-			RasterConfigManager rasterConfigManager) throws WorkspaceException {
-		return new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage, rasterConfigManager);
+	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
+			throws WorkspaceException {
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
 	}
 
 	@Bean
-	public RasterStorage rasterStorage() {
-		return new GeotiffRasterStorage();
+	public RasterStorage rasterStorage(WmsWorkspaceWrapper wmsWorkspaceWrapper) {
+		Path dataDirectory = Paths.get(wmsWorkspaceWrapper.getLocation().toURI()).resolve("data");
+		return new GeotiffRasterStorage(dataDirectory);
 	}
 
 	@Bean

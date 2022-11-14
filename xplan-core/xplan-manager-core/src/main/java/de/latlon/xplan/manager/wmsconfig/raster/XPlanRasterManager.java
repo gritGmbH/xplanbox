@@ -28,7 +28,6 @@ import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
-import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
@@ -36,7 +35,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,25 +55,20 @@ public class XPlanRasterManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanRasterManager.class);
 
-	private final WmsWorkspaceWrapper wmsWorkspaceWrapper;
-
 	private final RasterStorage rasterStorage;
 
 	private final RasterConfigManager rasterConfigManager;
 
 	/**
 	 * Instantiates a {@link XPlanRasterManager} with workspace and manager configuration.
-	 * @param wmsWorkspaceWrapper the wms workspace, may be <code>null</code> (workspace
-	 * with default name is used
 	 * @param rasterStorage the RasterStorage used to write raster files, never
 	 * <code>null</code>
 	 * @param rasterConfigManager the RasterConfigManager used to write config files,
 	 * never <code>null</code>
 	 * @throws WorkspaceException
 	 */
-	public XPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterStorage rasterStorage,
-			RasterConfigManager rasterConfigManager) throws WorkspaceException {
-		this.wmsWorkspaceWrapper = wmsWorkspaceWrapper;
+	public XPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
+			throws WorkspaceException {
 		this.rasterStorage = rasterStorage;
 		this.rasterConfigManager = rasterConfigManager;
 	}
@@ -85,8 +78,13 @@ public class XPlanRasterManager {
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
 	public void removeRasterLayers(String planId) {
-		rasterConfigManager.removeRasterLayers(planId);
-		rasterStorage.deleteRasterFiles(planId);
+		try {
+			rasterConfigManager.removeRasterLayers(planId);
+			rasterStorage.deleteRasterFiles(planId);
+		}
+		catch (IOException e) {
+			LOG.error("Löschen der Raster-Datei/Konfiguration fehlgeschlagen: {}", e.getMessage());
+		}
 	}
 
 	/**
@@ -146,8 +144,7 @@ public class XPlanRasterManager {
 			logScanFiles(begin, scanFiles);
 			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, scanFiles);
 
-			List<String> rasterIds = copyRasterfilesAndCreateConfig(wmsWorkspaceWrapper.getLocation(), archive,
-					rasterplanEntries, planId);
+			List<String> rasterIds = copyRasterfilesAndCreateConfig(archive, rasterplanEntries, planId);
 			rasterConfigManager.insertRasterLayers(planId, moreRecentPlanId, type, planStatus, newPlanStatus, rasterIds,
 					sortDate);
 			return rasterIds;
@@ -185,13 +182,13 @@ public class XPlanRasterManager {
 		rasterConfigManager.reorderWmsLayers(planId2sortDate);
 	}
 
-	private List<String> copyRasterfilesAndCreateConfig(File workspaceLocation, XPlanArchiveContentAccess archive,
+	private List<String> copyRasterfilesAndCreateConfig(XPlanArchiveContentAccess archive,
 			List<ArchiveEntry> rasterplanEntries, int planId) throws IOException, JAXBException {
 		List<String> rasterIds = new ArrayList<>();
 		for (ArchiveEntry entry : rasterplanEntries) {
 			String entryName = entry.getName();
 			LOG.debug("Raster data entry {} ", entryName);
-			String rasterFileName = rasterStorage.copyRasterfile(workspaceLocation, planId, archive, entryName);
+			String rasterFileName = rasterStorage.copyRasterfile(planId, entryName, archive);
 			String rasterId = createRasterId(rasterFileName);
 			rasterIds.add(rasterId);
 			rasterConfigManager.createConfiguration(rasterId, rasterFileName);
