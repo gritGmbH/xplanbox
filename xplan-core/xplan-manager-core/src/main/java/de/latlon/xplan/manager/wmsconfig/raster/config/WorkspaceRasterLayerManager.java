@@ -18,8 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster;
+package de.latlon.xplan.manager.wmsconfig.raster.config;
 
+import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType;
 import org.deegree.commons.gdal.jaxb.GDALSettings;
 import org.deegree.commons.gdal.jaxb.GDALSettings.GDALOption;
 import org.deegree.commons.metadata.description.jaxb.LanguageStringType;

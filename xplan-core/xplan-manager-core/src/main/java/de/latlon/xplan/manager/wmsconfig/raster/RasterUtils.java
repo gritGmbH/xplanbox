@@ -55,28 +55,4 @@ public class RasterUtils {
 		return entries;
 	}
 
-	public static File unzipArchiveInTmpDirectory(XPlanArchiveContentAccess archive) throws IOException {
-		List<? extends ArchiveEntry> archiveEntries = archive.getZipFileEntries();
-		File archiveDirectory = Files.createTempDirectory("xplanbox-archive").toFile();
-		for (ArchiveEntry zipEntry : archiveEntries) {
-			copyToTempFile(archive, zipEntry.getName(), archiveDirectory);
-		}
-		return archiveDirectory;
-	}
-
-	private static void copyToTempFile(XPlanArchiveContentAccess archive, String entryName, File archiveDirectory)
-			throws IOException {
-		InputStream content = archive.retrieveInputStreamFor(entryName);
-		File writeRasterIn = new File(archiveDirectory, entryName);
-		OutputStream outputStream = null;
-		try {
-			outputStream = new FileOutputStream(writeRasterIn);
-			IOUtils.copy(content, outputStream);
-		}
-		finally {
-			close(content);
-			close(outputStream);
-		}
-	}
-
 }

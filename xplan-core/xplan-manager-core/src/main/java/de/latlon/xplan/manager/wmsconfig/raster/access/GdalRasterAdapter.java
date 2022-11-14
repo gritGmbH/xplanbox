@@ -21,13 +21,23 @@
 package de.latlon.xplan.manager.wmsconfig.raster.access;
 
 import de.latlon.xplan.commons.archive.ArchiveEntry;
+import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import org.apache.commons.io.IOUtils;
 import org.gdal.gdal.Dataset;
 import org.gdal.gdal.gdal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.util.List;
 import java.util.Vector;
+
+import static org.apache.commons.io.IOUtils.close;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -59,33 +69,60 @@ public class GdalRasterAdapter {
 		return gdalSuccessfullInitialized;
 	}
 
-	public Vector<?> getReferencedFiles(File mainRasterFile) {
-		Dataset dataset = gdal.OpenShared(mainRasterFile.getAbsolutePath());
+	/**
+	 * @param archive the XPlanArchive, never <code>null</code>
+	 * @param entryName the name of the entry to detect the referenced files,
+	 * <code>null</code>
+	 * @return all referenced files, e.g. tfw or pgw files, may be <code>null</code> if an
+	 * entry with the passed name is not found.
+	 * @throws IOException if the zip file could not be unziped
+	 */
+	public Vector<?> getReferencedFiles(XPlanArchiveContentAccess archive, String entryName) throws IOException {
+		File zipArchiveLocation = unzipArchiveInTmpDirectory(archive);
+		File entry = new File(zipArchiveLocation, entryName);
+		Dataset dataset = gdal.OpenShared(entry.getAbsolutePath());
 		if (dataset != null) {
 			return dataset.GetFileList();
 		}
 		return null;
 	}
 
-	public Vector<?> getReferencedFiles(ArchiveEntry entry) {
-
-		return null;
-	}
-
-	public Vector<?> getReferencedFiles(String mainRasterFile) {
-		Dataset dataset = gdal.OpenShared(mainRasterFile);
-		if (dataset != null) {
-			return dataset.GetFileList();
-		}
-		return null;
-	}
-
-	public String getRasterCrs(File mainRasterFile) {
-		Dataset dataset = gdal.OpenShared(mainRasterFile.getAbsolutePath());
+	/**
+	 * @param rasterFile the file with the raster, to retrieve the crs from, never
+	 * <<code>null</code>
+	 * @return the crs definition , may be <code>null</code> if the entry with the passed
+	 * name is not found or is not a gdal dataset.
+	 */
+	public String getRasterCrs(File rasterFile) {
+		Dataset dataset = gdal.OpenShared(rasterFile.getAbsolutePath());
 		if (dataset != null) {
 			return dataset.GetProjectionRef();
 		}
 		return null;
+	}
+
+	public File unzipArchiveInTmpDirectory(XPlanArchiveContentAccess archive) throws IOException {
+		List<? extends ArchiveEntry> archiveEntries = archive.getZipFileEntries();
+		File archiveDirectory = Files.createTempDirectory("xplanbox-archive").toFile();
+		for (ArchiveEntry zipEntry : archiveEntries) {
+			copyToTempFile(archive, zipEntry.getName(), archiveDirectory);
+		}
+		return archiveDirectory;
+	}
+
+	private void copyToTempFile(XPlanArchiveContentAccess archive, String entryName, File archiveDirectory)
+			throws IOException {
+		InputStream content = archive.retrieveInputStreamFor(entryName);
+		File writeRasterIn = new File(archiveDirectory, entryName);
+		OutputStream outputStream = null;
+		try {
+			outputStream = new FileOutputStream(writeRasterIn);
+			IOUtils.copy(content, outputStream);
+		}
+		finally {
+			close(content);
+			close(outputStream);
+		}
 	}
 
 }

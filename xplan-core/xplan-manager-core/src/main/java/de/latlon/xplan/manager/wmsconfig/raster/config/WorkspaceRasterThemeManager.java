@@ -18,11 +18,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster;
+package de.latlon.xplan.manager.wmsconfig.raster.config;
 
 import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsThemesConfig;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationSorter;
 import org.deegree.theme.persistence.standard.jaxb.ThemeType;
 import org.deegree.theme.persistence.standard.jaxb.ThemeType.Layer;
 import org.deegree.theme.persistence.standard.jaxb.Themes;

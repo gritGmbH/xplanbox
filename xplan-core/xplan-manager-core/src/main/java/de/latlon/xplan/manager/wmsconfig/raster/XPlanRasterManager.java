@@ -30,6 +30,8 @@ import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.raster.config.WorkspaceRasterLayerManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.WorkspaceRasterThemeManager;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import org.slf4j.Logger;

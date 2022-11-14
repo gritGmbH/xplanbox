@@ -33,8 +33,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.unzipArchiveInTmpDirectory;
-
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -57,7 +55,7 @@ public class GdalRasterEvaluation implements RasterEvaluation {
 
 		List<RasterEvaluationResult> results = new ArrayList<>();
 		if (!rasterplanZipEntries.isEmpty()) {
-			File archiveDirectory = unzipArchiveInTmpDirectory(archive);
+			File archiveDirectory = rasterAdapter.unzipArchiveInTmpDirectory(archive);
 			for (ArchiveEntry zipEntry : rasterplanZipEntries) {
 				RasterEvaluationResult result = evaluateRaster(zipEntry, archiveDirectory);
 				results.add(result);

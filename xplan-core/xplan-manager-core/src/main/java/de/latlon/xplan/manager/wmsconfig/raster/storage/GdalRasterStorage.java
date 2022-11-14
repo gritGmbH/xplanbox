@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
-import de.latlon.xplan.commons.archive.ArchiveEntry;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 
@@ -43,8 +42,7 @@ public class GdalRasterStorage extends FileSystemStorage {
 	public String copyRasterfile(File workspaceLocation, int planId, XPlanArchiveContentAccess archive,
 			String entryName) throws IOException {
 		String rasterFileName = copyEntry(workspaceLocation, archive, planId, entryName);
-		ArchiveEntry entry = archive.getEntry(entryName);
-		Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(entry);
+		Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(archive, entryName);
 		if (referencedFiles != null) {
 			for (Object referencedFile : referencedFiles) {
 				File file = new File(referencedFile.toString());
