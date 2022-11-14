@@ -34,7 +34,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static de.latlon.xplan.manager.wmsconfig.ConfigWriterUtils.detectType;
+import static de.latlon.xplan.manager.wmsconfig.raster.config.ConfigWriterUtils.detectType;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -42,8 +42,6 @@ import static de.latlon.xplan.manager.wmsconfig.ConfigWriterUtils.detectType;
 public class DeegreeRasterConfigManager implements RasterConfigManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DeegreeRasterConfigManager.class);
-
-	private final WmsWorkspaceWrapper wmsWorkspaceWrapper;
 
 	private final ManagerConfiguration managerConfiguration;
 
@@ -55,7 +53,6 @@ public class DeegreeRasterConfigManager implements RasterConfigManager {
 			ManagerConfiguration managerConfiguration) {
 		this.rasterThemeManager = new WorkspaceRasterThemeManager(wmsWorkspaceWrapper);
 		this.managerConfiguration = managerConfiguration;
-		this.wmsWorkspaceWrapper = wmsWorkspaceWrapper;
 		this.rasterLayerManager = new WorkspaceRasterLayerManager(wmsWorkspaceWrapper.getLocation(),
 				managerConfiguration.getRasterConfigurationType(), managerConfiguration.getRasterConfigurationCrs());
 	}
@@ -87,8 +84,6 @@ public class DeegreeRasterConfigManager implements RasterConfigManager {
 	@Override
 	public void removeRasterLayers(String planId) {
 		try {
-			WorkspaceRasterLayerManager rasterLayerManager = new WorkspaceRasterLayerManager(
-					wmsWorkspaceWrapper.getLocation());
 			for (String type : WmsWorkspaceWrapper.supportedTypes) {
 				rasterThemeManager.removeLayersForPlan(type, planId);
 			}
@@ -107,8 +102,6 @@ public class DeegreeRasterConfigManager implements RasterConfigManager {
 	@Override
 	public void removeRasterLayer(String planId, String rasterId)
 			throws ConfigurationException, JAXBException, IOException {
-		WorkspaceRasterLayerManager rasterLayerManager = new WorkspaceRasterLayerManager(
-				wmsWorkspaceWrapper.getLocation());
 		for (String type : WmsWorkspaceWrapper.supportedTypes) {
 			rasterThemeManager.removeLayersForPlan(type, planId, rasterId);
 		}

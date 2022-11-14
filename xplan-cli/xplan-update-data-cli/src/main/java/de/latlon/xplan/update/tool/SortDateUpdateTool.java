@@ -134,7 +134,7 @@ public class SortDateUpdateTool {
 			throws Exception {
 		DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
-		Path dataDirectory = Paths.get(wmsWorkspaceWrapper.getLocation().toURI()).resolve("data");
+		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
 		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
 		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
 				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);

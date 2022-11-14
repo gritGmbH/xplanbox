@@ -188,7 +188,7 @@ public class TestContext {
 
 	@Bean
 	public RasterStorage rasterStorage(WmsWorkspaceWrapper wmsWorkspaceWrapper) {
-		Path dataDirectory = Paths.get(wmsWorkspaceWrapper.getLocation().toURI()).resolve("data");
+		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
 		return new GeotiffRasterStorage(dataDirectory);
 	}
 

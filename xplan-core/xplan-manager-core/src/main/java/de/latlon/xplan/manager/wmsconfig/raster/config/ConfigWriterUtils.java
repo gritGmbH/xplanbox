@@ -18,7 +18,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig;
+package de.latlon.xplan.manager.wmsconfig.raster.config;
+
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.FP_Plan;
@@ -27,13 +33,6 @@ import static de.latlon.xplan.commons.XPlanType.RP_Plan;
 import static de.latlon.xplan.commons.XPlanType.SO_Plan;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.manager.web.shared.PlanStatus;
 
 /**
  * Contains convenience methods to write the wms configuration for a plan.
@@ -74,13 +73,6 @@ public class ConfigWriterUtils {
 		}
 		String msg = "Plan with type " + type + " is not supported for wms configuration creation!";
 		throw new IllegalArgumentException(msg);
-	}
-
-	/**
-	 * @return a collection of all supported plan types
-	 */
-	public static Collection<String> retrieveAllPlanTypes() {
-		return typeToExtension.values();
 	}
 
 }

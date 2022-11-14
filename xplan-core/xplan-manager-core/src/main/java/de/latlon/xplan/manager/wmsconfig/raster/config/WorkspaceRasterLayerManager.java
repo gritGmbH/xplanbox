@@ -58,8 +58,6 @@ import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
  */
 public class WorkspaceRasterLayerManager {
 
-	public static final String DEFAULT_RASTER_CRS = "EPSG:25833";
-
 	private static final Logger LOG = LoggerFactory.getLogger(WorkspaceRasterLayerManager.class);
 
 	private final Path wmsWorkspace;
@@ -67,16 +65,6 @@ public class WorkspaceRasterLayerManager {
 	private final RasterConfigurationType tileStoreType;
 
 	private final String rasterConfigurationCrs;
-
-	/**
-	 * Instantiates a {@link WorkspaceRasterLayerManager} with type
-	 * RasterConfigurationType.gdal and crs EPSG:25833.
-	 * @param wmsWorkspace the location of the workspace the configuration should be
-	 * stored, never <code>null</code>
-	 */
-	public WorkspaceRasterLayerManager(File wmsWorkspace) {
-		this(wmsWorkspace, RasterConfigurationType.gdal, DEFAULT_RASTER_CRS);
-	}
 
 	/**
 	 * @param wmsWorkspace the location of the workspace the configuration should be

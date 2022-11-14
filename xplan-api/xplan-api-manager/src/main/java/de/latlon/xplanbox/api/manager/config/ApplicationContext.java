@@ -78,7 +78,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -226,7 +225,7 @@ public class ApplicationContext {
 	@Bean
 	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			ManagerConfiguration managerConfiguration) throws WorkspaceException {
-		Path dataDirectory = Paths.get(wmsWorkspaceWrapper.getLocation().toURI()).resolve("data");
+		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
 		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
 		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
 				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);

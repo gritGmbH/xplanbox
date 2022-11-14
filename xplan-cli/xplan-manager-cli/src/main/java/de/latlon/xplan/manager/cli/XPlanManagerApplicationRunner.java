@@ -332,7 +332,7 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
 			XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(
 					createRasterEvaluation(managerConfiguration));
-			Path dataDirectory = Paths.get(wmsWorkspaceWrapper.getLocation().toURI()).resolve("data");
+			Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
 			RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
 			RasterConfigManager rasterManagerConfig = RasterConfigManagerFactory
 					.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);

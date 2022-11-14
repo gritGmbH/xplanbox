@@ -46,7 +46,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
@@ -126,7 +125,7 @@ public class XPlanManagerTest {
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
 		XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(
 				createRasterEvaluation(managerConfiguration));
-		Path dataDirectory = Paths.get(wmsWorkspaceWrapper.getLocation().toURI()).resolve("data");
+		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
 		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
 		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
 				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
