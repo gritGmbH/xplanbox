@@ -58,9 +58,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.deegree.commons.utils.Pair;
@@ -139,21 +137,20 @@ public class XPlanManager {
 	public XPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
 			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			RasterEvaluation rasterEvaluation, RasterStorage rasterStorage) throws Exception {
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager) throws Exception {
 		if (xPlanDao == null || archiveCreator == null || managerWorkspaceWrapper == null
 				|| wmsWorkspaceWrapper == null) {
 			throw new IllegalArgumentException("Mandatory argument must not be null");
 		}
 		this.xplanDao = xPlanDao;
 		this.archiveCreator = archiveCreator;
+		this.xPlanRasterEvaluator = xPlanRasterEvaluator;
+		this.xPlanRasterManager = xPlanRasterManager;
 
 		ManagerConfigurationAnalyser managerConfigurationAnalyser = new ManagerConfigurationAnalyser(
 				managerWorkspaceWrapper.getConfiguration(), wmsWorkspaceWrapper);
 		managerConfigurationAnalyser.checkConfiguration();
 
-		this.xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage,
-				managerWorkspaceWrapper.getConfiguration());
-		this.xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		this.xPlanExporter = new XPlanExporter();

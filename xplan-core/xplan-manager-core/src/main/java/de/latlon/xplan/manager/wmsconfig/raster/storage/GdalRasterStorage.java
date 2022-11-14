@@ -54,4 +54,14 @@ public class GdalRasterStorage extends FileSystemStorage {
 		return rasterFileName;
 	}
 
+	@Override
+	public void deleteRasterFiles(String planId) {
+
+	}
+
+	@Override
+	public void deleteRasterFiles(String planId, String rasterId) {
+
+	}
+
 }

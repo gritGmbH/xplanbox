@@ -39,8 +39,11 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.NoConfigRasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GeotiffRasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.GeotiffRasterStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
@@ -123,9 +126,9 @@ public class TestContext {
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
 			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			RasterEvaluation rasterEvaluation, RasterStorage rasterStorage) throws Exception {
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager) throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, rasterEvaluation, rasterStorage);
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
 	}
 
 	@Bean
@@ -170,9 +173,17 @@ public class TestContext {
 
 	@Bean
 	@Primary
+	public XPlanRasterEvaluator xPlanRasterEvaluator(ManagerConfiguration managerConfiguration) {
+		RasterEvaluation rasterEvaluation = new GeotiffRasterEvaluation(
+				managerConfiguration.getRasterConfigurationCrs());
+		return new XPlanRasterEvaluator(rasterEvaluation);
+	}
+
+	@Bean
+	@Primary
 	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterStorage rasterStorage,
-			ManagerConfiguration managerConfiguration) throws WorkspaceException {
-		return new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage, managerConfiguration);
+			RasterConfigManager rasterConfigManager) throws WorkspaceException {
+		return new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage, rasterConfigManager);
 	}
 
 	@Bean
@@ -181,8 +192,8 @@ public class TestContext {
 	}
 
 	@Bean
-	public RasterEvaluation rasterEvaluation(ManagerConfiguration managerConfiguration) {
-		return new GeotiffRasterEvaluation(managerConfiguration.getRasterConfigurationCrs());
+	public RasterConfigManager rasterConfigManager() {
+		return new NoConfigRasterConfigManager();
 	}
 
 	@Bean

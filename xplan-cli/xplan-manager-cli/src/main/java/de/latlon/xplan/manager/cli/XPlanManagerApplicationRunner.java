@@ -32,7 +32,10 @@ import de.latlon.xplan.manager.log.SystemLog;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManagerFactory;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.manager.workspace.WorkspaceUtils;
@@ -327,10 +330,15 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 			WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
 			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
-			RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
+			XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(
+					createRasterEvaluation(managerConfiguration));
 			RasterStorage rasterStorage = createRasterStorage(managerConfiguration);
+			RasterConfigManager rasterManagerConfig = RasterConfigManagerFactory
+					.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+			XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage,
+					rasterManagerConfig);
 			return new XPlanManager(xplanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
-					wmsWorkspaceWrapper, rasterEvaluation, rasterStorage);
+					wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
 		}
 		catch (Exception e) {
 			endWithFatalError(e.getMessage());

@@ -27,11 +27,9 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.configuration.ConfigurationException;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.wmsconfig.raster.config.WorkspaceRasterLayerManager;
-import de.latlon.xplan.manager.wmsconfig.raster.config.WorkspaceRasterThemeManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import org.slf4j.Logger;
@@ -46,8 +44,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static de.latlon.xplan.manager.wmsconfig.ConfigWriterUtils.detectType;
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.geotiff;
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.findRasterplanZipEntries;
 
 /**
@@ -63,36 +59,25 @@ public class XPlanRasterManager {
 
 	private final WmsWorkspaceWrapper wmsWorkspaceWrapper;
 
-	private final ManagerConfiguration managerConfiguration;
-
-	private final WorkspaceRasterThemeManager rasterThemeManager;
-
-	private final WorkspaceRasterLayerManager rasterLayerManager;
-
-	private final RasterConfigurationType rasterConfigurationType;
-
-	private final String rasterConfigurationCrs;
-
 	private final RasterStorage rasterStorage;
+
+	private final RasterConfigManager rasterConfigManager;
 
 	/**
 	 * Instantiates a {@link XPlanRasterManager} with workspace and manager configuration.
 	 * @param wmsWorkspaceWrapper the wms workspace, may be <code>null</code> (workspace
 	 * with default name is used
-	 * @param managerConfiguration configuration of the manager, should not be
+	 * @param rasterStorage the RasterStorage used to write raster files, never
 	 * <code>null</code>
+	 * @param rasterConfigManager the RasterConfigManager used to write config files,
+	 * never <code>null</code>
 	 * @throws WorkspaceException
 	 */
 	public XPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterStorage rasterStorage,
-			ManagerConfiguration managerConfiguration) throws WorkspaceException {
+			RasterConfigManager rasterConfigManager) throws WorkspaceException {
 		this.wmsWorkspaceWrapper = wmsWorkspaceWrapper;
 		this.rasterStorage = rasterStorage;
-		this.managerConfiguration = managerConfiguration;
-		this.rasterConfigurationType = managerConfiguration.getRasterConfigurationType();
-		this.rasterConfigurationCrs = managerConfiguration.getRasterConfigurationCrs();
-		this.rasterThemeManager = new WorkspaceRasterThemeManager(wmsWorkspaceWrapper);
-		this.rasterLayerManager = new WorkspaceRasterLayerManager(wmsWorkspaceWrapper.getLocation(),
-				rasterConfigurationType, rasterConfigurationCrs);
+		this.rasterConfigManager = rasterConfigManager;
 	}
 
 	/**
@@ -100,20 +85,8 @@ public class XPlanRasterManager {
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
 	public void removeRasterLayers(String planId) {
-		if (!isDeegreeRasterType())
-			return;
-		try {
-			WorkspaceRasterLayerManager rasterLayerManager = new WorkspaceRasterLayerManager(
-					wmsWorkspaceWrapper.getLocation());
-			for (String type : WmsWorkspaceWrapper.supportedTypes) {
-				rasterThemeManager.removeLayersForPlan(type, planId);
-			}
-			rasterLayerManager.deleteDataFilesAndRasterConfigurations(planId);
-		}
-		catch (Exception e) {
-			LOG.trace("Configuration of the plan with id " + planId + " failed.!", e);
-			LOG.error("Modifizierung der Themes-Datei fehlgeschlagen: {}", e.getMessage());
-		}
+		rasterConfigManager.removeRasterLayers(planId);
+		rasterStorage.deleteRasterFiles(planId);
 	}
 
 	/**
@@ -121,8 +94,6 @@ public class XPlanRasterManager {
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
 	public void removeRasterLayers(String planId, ExternalReferenceInfo externalReferencesToRemove) {
-		if (!isDeegreeRasterType())
-			return;
 		try {
 			List<ExternalReference> rasterPlanBaseAndUpdateScans = externalReferencesToRemove
 					.getRasterPlanBaseAndUpdateScans();
@@ -130,12 +101,8 @@ public class XPlanRasterManager {
 				String referenzUrl = externalReferenceToRemove.getReferenzUrl();
 				if (referenzUrl != null) {
 					String rasterId = createRasterId(referenzUrl);
-					WorkspaceRasterLayerManager rasterLayerManager = new WorkspaceRasterLayerManager(
-							wmsWorkspaceWrapper.getLocation());
-					for (String type : WmsWorkspaceWrapper.supportedTypes) {
-						rasterThemeManager.removeLayersForPlan(type, planId, rasterId);
-					}
-					rasterLayerManager.deleteDataFilesAndRasterConfigurations(planId, rasterId);
+					rasterConfigManager.removeRasterLayer(planId, rasterId);
+					rasterStorage.deleteRasterFiles(planId, rasterId);
 				}
 			}
 		}
@@ -181,8 +148,8 @@ public class XPlanRasterManager {
 
 			List<String> rasterIds = copyRasterfilesAndCreateConfig(wmsWorkspaceWrapper.getLocation(), archive,
 					rasterplanEntries, planId);
-			if (isDeegreeRasterType())
-				insertRasterLayers(planId, moreRecentPlanId, type, planStatus, newPlanStatus, rasterIds, sortDate);
+			rasterConfigManager.insertRasterLayers(planId, moreRecentPlanId, type, planStatus, newPlanStatus, rasterIds,
+					sortDate);
 			return rasterIds;
 		}
 		catch (Exception e) {
@@ -205,13 +172,7 @@ public class XPlanRasterManager {
 	 */
 	public void updateRasterLayers(int planId, XPlanType type, PlanStatus planStatus, PlanStatus newPlanStatus)
 			throws JAXBException, IOException, ConfigurationException {
-		if (!isDeegreeRasterType())
-			return;
-		String statusType = detectType(type, planStatus);
-		if (newPlanStatus != null) {
-			String newStatusType = detectType(type, newPlanStatus);
-			rasterThemeManager.moveLayers(statusType, newStatusType, Integer.toString(planId));
-		}
+		rasterConfigManager.updateRasterLayers(planId, type, planStatus, newPlanStatus);
 	}
 
 	/**
@@ -221,26 +182,7 @@ public class XPlanRasterManager {
 	 * @throws Exception
 	 */
 	public void reorderWmsLayers(Map<String, Date> planId2sortDate) throws Exception {
-		if (!isDeegreeRasterType())
-			return;
-		rasterThemeManager.reorderWmsLayers(planId2sortDate, rasterConfigurationCrs);
-	}
-
-	private void insertRasterLayers(int planId, String moreRecentPlanId, XPlanType type, PlanStatus planStatus,
-			PlanStatus newPlanStatus, List<String> rasterIds, Date sortDate)
-			throws JAXBException, IOException, ConfigurationException {
-		String statusType = detectType(type, planStatus);
-		if (newPlanStatus != null) {
-			String newStatusType = detectType(type, newPlanStatus);
-			rasterThemeManager.moveLayers(statusType, newStatusType, Integer.toString(planId));
-			statusType = newStatusType;
-		}
-		if (sortDate != null) {
-			rasterThemeManager.insertLayersRightBefore(statusType, rasterConfigurationCrs, rasterIds, moreRecentPlanId);
-		}
-		else {
-			rasterThemeManager.insertLayersAtBeginning(statusType, rasterConfigurationCrs, rasterIds);
-		}
+		rasterConfigManager.reorderWmsLayers(planId2sortDate);
 	}
 
 	private List<String> copyRasterfilesAndCreateConfig(File workspaceLocation, XPlanArchiveContentAccess archive,
@@ -250,19 +192,11 @@ public class XPlanRasterManager {
 			String entryName = entry.getName();
 			LOG.debug("Raster data entry {} ", entryName);
 			String rasterFileName = rasterStorage.copyRasterfile(workspaceLocation, planId, archive, entryName);
-			createConfiguration(rasterIds, rasterFileName);
-		}
-		return rasterIds;
-	}
-
-	private void createConfiguration(List<String> rasterIds, String rasterFileName) throws IOException, JAXBException {
-		if (isDeegreeRasterType()) {
 			String rasterId = createRasterId(rasterFileName);
 			rasterIds.add(rasterId);
-			rasterLayerManager.createRasterConfigurations(rasterId, rasterFileName,
-					managerConfiguration.getRasterLayerMinScaleDenominator(),
-					managerConfiguration.getRasterLayerMaxScaleDenominator());
+			rasterConfigManager.createConfiguration(rasterId, rasterFileName);
 		}
+		return rasterIds;
 	}
 
 	private String createRasterId(String dataFileName) {
@@ -275,10 +209,6 @@ public class XPlanRasterManager {
 			scanFiles.add(externalRef.getReferenzUrl());
 		}
 		return scanFiles;
-	}
-
-	private boolean isDeegreeRasterType() {
-		return RasterConfigurationType.gdal.equals(rasterConfigurationType) || geotiff.equals(rasterConfigurationType);
 	}
 
 	private void logScanFiles(long begin, List<String> scanFiles) {

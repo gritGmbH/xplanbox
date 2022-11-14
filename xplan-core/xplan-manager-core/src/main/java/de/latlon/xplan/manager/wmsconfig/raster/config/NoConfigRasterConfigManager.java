@@ -18,32 +18,43 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage;
+package de.latlon.xplan.manager.wmsconfig.raster.config;
 
-import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.commons.XPlanType;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class GeotiffRasterStorage extends FileSystemStorage {
+public class NoConfigRasterConfigManager implements RasterConfigManager {
 
 	@Override
-	public String copyRasterfile(File workspaceLocation, int planId, XPlanArchiveContentAccess archive,
-			String entryName) throws IOException {
-		return copyEntry(workspaceLocation, archive, planId, entryName);
+	public void insertRasterLayers(int planId, String moreRecentPlanId, XPlanType type, PlanStatus planStatus,
+			PlanStatus newPlanStatus, List<String> rasterIds, Date sortDate) {
 	}
 
 	@Override
-	public void deleteRasterFiles(String planId) {
-
+	public void removeRasterLayers(String planId) {
 	}
 
 	@Override
-	public void deleteRasterFiles(String planId, String rasterId) {
+	public void removeRasterLayer(String planId, String rasterId) {
+	}
 
+	@Override
+	public void updateRasterLayers(int planId, XPlanType type, PlanStatus planStatus, PlanStatus newPlanStatus) {
+	}
+
+	@Override
+	public void reorderWmsLayers(Map<String, Date> planId2sortDate) {
+	}
+
+	@Override
+	public void createConfiguration(String rasterId, String rasterFileName) {
 	}
 
 }

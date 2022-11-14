@@ -18,32 +18,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage;
+package de.latlon.xplan.manager.wmsconfig.raster.config;
 
-import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-
-import java.io.File;
-import java.io.IOException;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
+import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class GeotiffRasterStorage extends FileSystemStorage {
+public class RasterConfigManagerFactory {
 
-	@Override
-	public String copyRasterfile(File workspaceLocation, int planId, XPlanArchiveContentAccess archive,
-			String entryName) throws IOException {
-		return copyEntry(workspaceLocation, archive, planId, entryName);
-	}
-
-	@Override
-	public void deleteRasterFiles(String planId) {
-
-	}
-
-	@Override
-	public void deleteRasterFiles(String planId, String rasterId) {
-
+	public static RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration) {
+		switch (managerConfiguration.getRasterConfigurationType()) {
+			case gdal:
+			case geotiff:
+				return new DeegreeRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+			case mapserver:
+			default:
+				return new NoConfigRasterConfigManager();
+		}
 	}
 
 }

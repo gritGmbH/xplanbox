@@ -33,4 +33,8 @@ public interface RasterStorage {
 	String copyRasterfile(File workspaceLocation, int planId, XPlanArchiveContentAccess archive, String entryName)
 			throws IOException;
 
+	void deleteRasterFiles(String planId);
+
+	void deleteRasterFiles(String planId, String rasterId);
+
 }

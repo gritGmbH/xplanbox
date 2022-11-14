@@ -30,7 +30,10 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManagerFactory;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import org.deegree.commons.utils.Pair;
 import org.junit.After;
@@ -119,10 +122,15 @@ public class XPlanManagerTest {
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
-		RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
+		XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(
+				createRasterEvaluation(managerConfiguration));
 		RasterStorage rasterStorage = createRasterStorage(managerConfiguration);
+		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
+				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage,
+				rasterConfigManager);
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, wmsWorkspaceWrapper,
-				rasterEvaluation, rasterStorage);
+				xPlanRasterEvaluator, xPlanRasterManager);
 	}
 
 	private ManagerConfiguration mockManagerConfig() {

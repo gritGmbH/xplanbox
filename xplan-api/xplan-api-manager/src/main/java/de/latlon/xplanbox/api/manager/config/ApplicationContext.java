@@ -39,8 +39,11 @@ import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManagerFactory;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluationFactory;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
@@ -100,10 +103,10 @@ public class ApplicationContext {
 	@Bean
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation, RasterStorage rasterStorage)
-			throws Exception {
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, XPlanRasterEvaluator xPlanRasterEvaluator,
+			XPlanRasterManager xPlanRasterManager) throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
-				wmsWorkspaceWrapper, rasterEvaluation, rasterStorage);
+				wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
 	}
 
 	@Bean
@@ -210,25 +213,22 @@ public class ApplicationContext {
 	@Bean
 	public WmsWorkspaceWrapper wmsWorkspaceWrapper() throws WorkspaceException {
 		DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper(DEFAULT_XPLANSYN_WMS_WORKSPACE);
-		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
-		return wmsWorkspaceWrapper;
+		return new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
+	}
+
+	@Bean
+	public XPlanRasterEvaluator xPlanRasterEvaluator(ManagerConfiguration managerConfiguration) {
+		RasterEvaluation rasterEvaluation = RasterEvaluationFactory.createRasterEvaluation(managerConfiguration);
+		return new XPlanRasterEvaluator(rasterEvaluation);
 	}
 
 	@Bean
 	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			ManagerConfiguration managerConfiguration, RasterStorage rasterStorage) throws WorkspaceException {
-		return new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage, managerConfiguration);
-	}
-
-	@Bean
-	public RasterStorage rasterStorage(ManagerConfiguration managerConfiguration) {
+			ManagerConfiguration managerConfiguration) throws WorkspaceException {
 		RasterStorage rasterStorage = createRasterStorage(managerConfiguration);
-		return rasterStorage;
-	}
-
-	@Bean
-	public RasterEvaluation rasterEvaluation(ManagerConfiguration managerConfiguration) {
-		return RasterEvaluationFactory.createRasterEvaluation(managerConfiguration);
+		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
+				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+		return new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage, rasterConfigManager);
 	}
 
 	@Bean
