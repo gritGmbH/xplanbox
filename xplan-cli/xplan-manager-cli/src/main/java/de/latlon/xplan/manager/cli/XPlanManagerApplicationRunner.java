@@ -32,9 +32,8 @@ import de.latlon.xplan.manager.log.SystemLog;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GdalRasterEvaluation;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GeotiffRasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.manager.workspace.WorkspaceUtils;
 import org.deegree.commons.config.DeegreeWorkspace;
@@ -54,6 +53,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static de.latlon.xplan.manager.cli.XPlanManagerCLI.printUsage;
+import static de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluationFactory.createRasterEvaluation;
+import static de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorageFactory.createRasterStorage;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -327,23 +328,14 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
 			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
 			RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
+			RasterStorage rasterStorage = createRasterStorage(managerConfiguration);
 			return new XPlanManager(xplanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
-					wmsWorkspaceWrapper, rasterEvaluation);
+					wmsWorkspaceWrapper, rasterEvaluation, rasterStorage);
 		}
 		catch (Exception e) {
 			endWithFatalError(e.getMessage());
 		}
 		return null;
-	}
-
-	private RasterEvaluation createRasterEvaluation(ManagerConfiguration managerConfiguration) {
-		switch (managerConfiguration.getRasterConfigurationType()) {
-			case gdal:
-			case mapserver:
-				return new GdalRasterEvaluation(managerConfiguration.getRasterConfigurationCrs());
-			default:
-				return new GeotiffRasterEvaluation(managerConfiguration.getRasterConfigurationCrs());
-		}
 	}
 
 	private ServiceMetadataRecordCreator createServiceMetadataRecordCreator(Path directoryContainingTheManagerConfig) {

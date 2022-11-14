@@ -31,7 +31,8 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
-import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorageFactory;
 import de.latlon.xplan.manager.workspace.WorkspaceUtils;
 import de.latlon.xplan.update.updater.SortPropertyUpdater;
 import org.apache.commons.cli.CommandLine;
@@ -47,6 +48,8 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import static de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorageFactory.createRasterStorage;
 
 /**
  * Main entry point to update the sort date in databases.
@@ -119,20 +122,20 @@ public class SortDateUpdateTool {
 
 		XPlanDao xplanDao = createXplanDao(managerConfiguration, managerWorkspaceWrapper);
 		SortPropertyReader sortPropertyReader = createSortPropertyReader(managerWorkspaceWrapper);
-		XPlanRasterManager xPlanRasterManager = createxPlanRasterManager(managerWorkspaceWrapper);
+		XPlanRasterManager xPlanRasterManager = createxPlanRasterManager(managerConfiguration);
 
 		SortPropertyUpdater sortPropertyUpdater = new SortPropertyUpdater(sortPropertyReader, xplanDao,
 				xPlanRasterManager);
 		sortPropertyUpdater.updateSortProperty();
 	}
 
-	private static XPlanRasterManager createxPlanRasterManager(ManagerWorkspaceWrapper managerWorkspaceWrapper)
+	private static XPlanRasterManager createxPlanRasterManager(ManagerConfiguration managerConfiguration)
 			throws Exception {
 		DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
-		GdalRasterAdapter rasterAdapter = new GdalRasterAdapter();
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper, rasterAdapter,
-				managerWorkspaceWrapper.getConfiguration());
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration);
+		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage,
+				managerConfiguration);
 		return xPlanRasterManager;
 	}
 

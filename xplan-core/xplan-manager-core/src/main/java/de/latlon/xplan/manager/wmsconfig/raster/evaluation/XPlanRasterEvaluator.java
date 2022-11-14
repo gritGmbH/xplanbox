@@ -27,8 +27,6 @@ import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,8 +38,6 @@ import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.findRasterpla
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class XPlanRasterEvaluator {
-
-	private static final Logger LOG = LoggerFactory.getLogger(XPlanRasterEvaluator.class);
 
 	private RasterEvaluation rasterEvaluation;
 

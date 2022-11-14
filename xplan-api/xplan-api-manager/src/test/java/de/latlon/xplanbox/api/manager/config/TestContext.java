@@ -39,9 +39,10 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
-import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GeotiffRasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.GeotiffRasterStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -122,9 +123,9 @@ public class TestContext {
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
 			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			RasterEvaluation rasterEvaluation) throws Exception {
+			RasterEvaluation rasterEvaluation, RasterStorage rasterStorage) throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, rasterEvaluation);
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, rasterEvaluation, rasterStorage);
 	}
 
 	@Bean
@@ -169,14 +170,14 @@ public class TestContext {
 
 	@Bean
 	@Primary
-	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			GdalRasterAdapter rasterAdapter, ManagerConfiguration managerConfiguration) throws WorkspaceException {
-		return new XPlanRasterManager(wmsWorkspaceWrapper, rasterAdapter, managerConfiguration);
+	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterStorage rasterStorage,
+			ManagerConfiguration managerConfiguration) throws WorkspaceException {
+		return new XPlanRasterManager(wmsWorkspaceWrapper, rasterStorage, managerConfiguration);
 	}
 
 	@Bean
-	public GdalRasterAdapter rasterAdapter() {
-		return new GdalRasterAdapter();
+	public RasterStorage rasterStorage() {
+		return new GeotiffRasterStorage();
 	}
 
 	@Bean

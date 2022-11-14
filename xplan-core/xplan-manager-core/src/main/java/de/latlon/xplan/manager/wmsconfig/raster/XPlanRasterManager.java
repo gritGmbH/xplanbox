@@ -30,10 +30,8 @@ import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,12 +43,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import static de.latlon.xplan.manager.wmsconfig.ConfigWriterUtils.detectType;
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.geotiff;
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.findRasterplanZipEntries;
-import static de.latlon.xplan.manager.wmsconfig.raster.RasterUtils.unzipArchiveInTmpDirectory;
 
 /**
  * An instance of XPlanRasterManager provides the service methods to manage raster files
@@ -65,15 +61,17 @@ public class XPlanRasterManager {
 
 	private final WmsWorkspaceWrapper wmsWorkspaceWrapper;
 
-	private final GdalRasterAdapter rasterAdapter;
-
-	private RasterEvaluation rasterEvaluation;
-
 	private final ManagerConfiguration managerConfiguration;
 
 	private final WorkspaceRasterThemeManager rasterThemeManager;
 
 	private final WorkspaceRasterLayerManager rasterLayerManager;
+
+	private final RasterConfigurationType rasterConfigurationType;
+
+	private final String rasterConfigurationCrs;
+
+	private final RasterStorage rasterStorage;
 
 	/**
 	 * Instantiates a {@link XPlanRasterManager} with workspace and manager configuration.
@@ -83,14 +81,16 @@ public class XPlanRasterManager {
 	 * <code>null</code>
 	 * @throws WorkspaceException
 	 */
-	public XPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper, GdalRasterAdapter rasterAdapter,
+	public XPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterStorage rasterStorage,
 			ManagerConfiguration managerConfiguration) throws WorkspaceException {
 		this.wmsWorkspaceWrapper = wmsWorkspaceWrapper;
-		this.rasterAdapter = rasterAdapter;
+		this.rasterStorage = rasterStorage;
 		this.managerConfiguration = managerConfiguration;
+		this.rasterConfigurationType = managerConfiguration.getRasterConfigurationType();
+		this.rasterConfigurationCrs = managerConfiguration.getRasterConfigurationCrs();
 		this.rasterThemeManager = new WorkspaceRasterThemeManager(wmsWorkspaceWrapper);
 		this.rasterLayerManager = new WorkspaceRasterLayerManager(wmsWorkspaceWrapper.getLocation(),
-				getRasterConfigurationTypeFromManagerConfig(), getRasterConfigurationCrsFromManagerConfig());
+				rasterConfigurationType, rasterConfigurationCrs);
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class XPlanRasterManager {
 			logScanFiles(begin, scanFiles);
 			List<ArchiveEntry> rasterplanEntries = findRasterplanZipEntries(archive, scanFiles);
 
-			List<String> rasterIds = copyRasterplanImageFilesToWmsWorkspace(wmsWorkspaceWrapper.getLocation(), archive,
+			List<String> rasterIds = copyRasterfilesAndCreateConfig(wmsWorkspaceWrapper.getLocation(), archive,
 					rasterplanEntries, planId);
 			if (isDeegreeRasterType())
 				insertRasterLayers(planId, moreRecentPlanId, type, planStatus, newPlanStatus, rasterIds, sortDate);
@@ -221,7 +221,6 @@ public class XPlanRasterManager {
 	public void reorderWmsLayers(Map<String, Date> planId2sortDate) throws Exception {
 		if (!isDeegreeRasterType())
 			return;
-		String rasterConfigurationCrs = getRasterConfigurationCrsFromManagerConfig();
 		rasterThemeManager.reorderWmsLayers(planId2sortDate, rasterConfigurationCrs);
 	}
 
@@ -234,7 +233,6 @@ public class XPlanRasterManager {
 			rasterThemeManager.moveLayers(statusType, newStatusType, Integer.toString(planId));
 			statusType = newStatusType;
 		}
-		String rasterConfigurationCrs = getRasterConfigurationCrsFromManagerConfig();
 		if (sortDate != null) {
 			rasterThemeManager.insertLayersRightBefore(statusType, rasterConfigurationCrs, rasterIds, moreRecentPlanId);
 		}
@@ -243,67 +241,26 @@ public class XPlanRasterManager {
 		}
 	}
 
-	private List<String> copyRasterplanImageFilesToWmsWorkspace(File workspaceLocation,
-			XPlanArchiveContentAccess archive, List<ArchiveEntry> rasterplanEntries, int planId)
-			throws IOException, JAXBException {
-		RasterConfigurationType rasterConfigurationType = getRasterConfigurationTypeFromManagerConfig();
+	private List<String> copyRasterfilesAndCreateConfig(File workspaceLocation, XPlanArchiveContentAccess archive,
+			List<ArchiveEntry> rasterplanEntries, int planId) throws IOException, JAXBException {
 		List<String> rasterIds = new ArrayList<>();
-		switch (rasterConfigurationType) {
-			case geotiff:
-				createGeotiffConfig(workspaceLocation, archive, rasterplanEntries, planId, rasterIds);
-				break;
-			default:
-				createGdalConfig(workspaceLocation, archive, rasterplanEntries, planId, rasterIds);
-				break;
+		for (ArchiveEntry entry : rasterplanEntries) {
+			String entryName = entry.getName();
+			LOG.debug("Raster data entry {} ", entryName);
+			String rasterFileName = rasterStorage.copyRasterfile(workspaceLocation, planId, archive, entryName);
+			createConfiguration(rasterIds, rasterFileName);
 		}
-
 		return rasterIds;
 	}
 
-	private void createGeotiffConfig(File workspaceLocation, XPlanArchiveContentAccess archive,
-			List<ArchiveEntry> rasterplanEntries, int planId, List<String> rasterIds)
-			throws IOException, JAXBException {
-		for (ArchiveEntry entry : rasterplanEntries) {
-			String entryName = entry.getName();
-			LOG.debug("Raster data entry {} ", entryName);
-			copyRasterFileAndCreateConfiguration(workspaceLocation, archive, planId, rasterIds, entryName);
-		}
-	}
-
-	private void createGdalConfig(File workspaceLocation, XPlanArchiveContentAccess archive,
-			List<ArchiveEntry> rasterplanEntries, int planId, List<String> rasterIds)
-			throws IOException, JAXBException {
-		File archiveDirectory = unzipArchiveInTmpDirectory(archive);
-		for (ArchiveEntry entry : rasterplanEntries) {
-			String entryName = entry.getName();
-			LOG.debug("Raster data entry {} ", entryName);
-			copyRasterFileAndCreateConfiguration(workspaceLocation, archive, planId, rasterIds, entryName);
-			File mainRasterFile = new File(archiveDirectory, entryName);
-			Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(mainRasterFile);
-			if (referencedFiles != null) {
-				for (Object referencedFile : referencedFiles) {
-					File file = new File(referencedFile.toString());
-					if (!file.equals(mainRasterFile)) {
-						String newFileName = createDataFileName(planId, file.getName());
-						File target = createTargetFile(workspaceLocation, newFileName);
-						FileUtils.copyFile(file, target);
-					}
-				}
-			}
-		}
-	}
-
-	private void copyRasterFileAndCreateConfiguration(File workspaceLocation, XPlanArchiveContentAccess archive,
-			int planId, List<String> rasterIds, String entryName) throws IOException, JAXBException {
-		String dataFileName = createDataFileName(planId, entryName);
-		File target = createTargetFile(workspaceLocation, dataFileName);
-		FileUtils.copyInputStreamToFile(archive.retrieveInputStreamFor(entryName), target);
-		String rasterId = createRasterId(dataFileName);
-		rasterIds.add(rasterId);
-		if (isDeegreeRasterType())
-			rasterLayerManager.createRasterConfigurations(rasterId, dataFileName,
+	private void createConfiguration(List<String> rasterIds, String rasterFileName) throws IOException, JAXBException {
+		if (isDeegreeRasterType()) {
+			String rasterId = createRasterId(rasterFileName);
+			rasterIds.add(rasterId);
+			rasterLayerManager.createRasterConfigurations(rasterId, rasterFileName,
 					managerConfiguration.getRasterLayerMinScaleDenominator(),
 					managerConfiguration.getRasterLayerMaxScaleDenominator());
+		}
 	}
 
 	private String createRasterId(String dataFileName) {
@@ -319,25 +276,7 @@ public class XPlanRasterManager {
 	}
 
 	private boolean isDeegreeRasterType() {
-		return RasterConfigurationType.gdal.equals(getRasterConfigurationTypeFromManagerConfig())
-				|| geotiff.equals(getRasterConfigurationTypeFromManagerConfig());
-	}
-
-	private RasterConfigurationType getRasterConfigurationTypeFromManagerConfig() {
-		return managerConfiguration != null ? managerConfiguration.getRasterConfigurationType()
-				: RasterConfigurationType.gdal;
-	}
-
-	private String getRasterConfigurationCrsFromManagerConfig() {
-		return managerConfiguration != null ? managerConfiguration.getRasterConfigurationCrs() : null;
-	}
-
-	private String createDataFileName(int planId, String fileName) {
-		return planId + "_" + fileName;
-	}
-
-	private File createTargetFile(File workspaceLocation, String newFileName) {
-		return new File(workspaceLocation, "data/" + newFileName);
+		return RasterConfigurationType.gdal.equals(rasterConfigurationType) || geotiff.equals(rasterConfigurationType);
 	}
 
 	private void logScanFiles(long begin, List<String> scanFiles) {

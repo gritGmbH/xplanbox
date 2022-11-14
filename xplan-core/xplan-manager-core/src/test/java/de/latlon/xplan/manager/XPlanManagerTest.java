@@ -30,9 +30,8 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GdalRasterEvaluation;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GeotiffRasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import org.deegree.commons.utils.Pair;
 import org.junit.After;
 import org.junit.Before;
@@ -47,6 +46,8 @@ import java.util.List;
 
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
 import static de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter.isGdalSuccessfullInitialized;
+import static de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluationFactory.createRasterEvaluation;
+import static de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorageFactory.createRasterStorage;
 import static org.apache.commons.io.IOUtils.close;
 import static org.apache.commons.io.IOUtils.copy;
 import static org.hamcrest.CoreMatchers.is;
@@ -87,7 +88,7 @@ public class XPlanManagerTest {
 	public void testEvaluateRasterdata() throws Exception {
 		assumeTrue(isGdalSuccessfullInitialized());
 
-		XPlanManager xPlanManager = createXPlanManager(createGdalRasterEvaluation());
+		XPlanManager xPlanManager = createXPlanManager();
 		String pathToArchive = copyPlan();
 
 		List<RasterEvaluationResult> results = xPlanManager.evaluateRasterdata(pathToArchive);
@@ -101,7 +102,7 @@ public class XPlanManagerTest {
 
 	@Test
 	public void testDetermineLegislationStatus() throws Exception {
-		XPlanManager xPlanManager = createXPlanManager(createGeotiffRasterEvaluation());
+		XPlanManager xPlanManager = createXPlanManager();
 		String pathToArchive = copyPlan();
 
 		Pair<Rechtsstand, PlanStatus> legislationStatus = xPlanManager.determineRechtsstand(pathToArchive);
@@ -110,7 +111,7 @@ public class XPlanManagerTest {
 		assertThat(legislationStatus.second, is(PlanStatus.FESTGESTELLT));
 	}
 
-	private XPlanManager createXPlanManager(RasterEvaluation rasterEvaluation) throws Exception {
+	private XPlanManager createXPlanManager() throws Exception {
 		XPlanDao xPlanDao = mock(XPlanDao.class);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		ManagerConfiguration managerConfiguration = mockManagerConfig();
@@ -118,16 +119,10 @@ public class XPlanManagerTest {
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
+		RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration);
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, wmsWorkspaceWrapper,
-				rasterEvaluation);
-	}
-
-	private static RasterEvaluation createGeotiffRasterEvaluation() {
-		return new GeotiffRasterEvaluation(CONFIGURED_CRS);
-	}
-
-	private static RasterEvaluation createGdalRasterEvaluation() {
-		return new GdalRasterEvaluation(CONFIGURED_CRS);
+				rasterEvaluation, rasterStorage);
 	}
 
 	private ManagerConfiguration mockManagerConfig() {

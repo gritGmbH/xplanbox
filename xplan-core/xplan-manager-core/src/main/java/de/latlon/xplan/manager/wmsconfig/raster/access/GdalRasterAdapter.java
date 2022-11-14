@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.access;
 
+import de.latlon.xplan.commons.archive.ArchiveEntry;
 import org.gdal.gdal.Dataset;
 import org.gdal.gdal.gdal;
 import org.slf4j.Logger;
@@ -60,6 +61,19 @@ public class GdalRasterAdapter {
 
 	public Vector<?> getReferencedFiles(File mainRasterFile) {
 		Dataset dataset = gdal.OpenShared(mainRasterFile.getAbsolutePath());
+		if (dataset != null) {
+			return dataset.GetFileList();
+		}
+		return null;
+	}
+
+	public Vector<?> getReferencedFiles(ArchiveEntry entry) {
+
+		return null;
+	}
+
+	public Vector<?> getReferencedFiles(String mainRasterFile) {
+		Dataset dataset = gdal.OpenShared(mainRasterFile);
 		if (dataset != null) {
 			return dataset.GetFileList();
 		}
