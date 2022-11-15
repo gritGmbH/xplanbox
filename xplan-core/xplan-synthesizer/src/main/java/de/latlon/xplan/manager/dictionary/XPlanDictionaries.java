@@ -51,6 +51,14 @@ public class XPlanDictionaries {
 	}
 
 	/**
+	 * Adds all passed {@link XPlanDictionary} to this {@link XPlanDictionaries}
+	 * @param xPlanDictionaries to add, never <code>null</code>
+	 */
+	public void addDictionaries(XPlanDictionaries xPlanDictionaries) {
+		this.dictionaries.addAll(xPlanDictionaries.getDictionaries());
+	}
+
+	/**
 	 * @param dictionaryId the id of the dictionary to add the new dictionaryEntry to,
 	 * never <code>null</code>
 	 * @param code the code of the entry to add, never <code>null</code>
