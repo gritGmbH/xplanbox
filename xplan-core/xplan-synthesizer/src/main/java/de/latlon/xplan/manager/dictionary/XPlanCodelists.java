@@ -49,6 +49,13 @@ public class XPlanCodelists {
 	private final Map<XPlanVersion, XPlanDictionaries> xPlanCodelists = new HashMap<>();
 
 	/**
+	 * Instantiates an empty XPlanCodelist instance.
+	 */
+	public XPlanCodelists() throws XMLStreamException, IOException {
+		this(null);
+	}
+
+	/**
 	 * @param synthesizerDir the path of the directory containing the xplan version
 	 * directories with the external codelists, maybe <code>null</code> (nothing is
 	 * parsed)
@@ -63,15 +70,11 @@ public class XPlanCodelists {
 
 	/**
 	 * @param version the version of the codelist to return, never <code>null</code>
-	 * @param dictionaryId the id of the dictionary to return, never <code>null</code>
-	 * @return the dictionary with the passed version and id, may be <code>null</code> if
-	 * not available
+	 * @return the dictionaries with the passed version, may be <code>null</code> if not
+	 * available
 	 */
-	public XPlanDictionary getCodelist(XPlanVersion version, String dictionaryId) {
-		XPlanDictionaries codelists = xPlanCodelists.get(version);
-		if (codelists != null)
-			return codelists.getDictionary(dictionaryId);
-		return null;
+	public XPlanDictionaries getCodelists(XPlanVersion version) {
+		return xPlanCodelists.get(version);
 	}
 
 	private void parseCodelists(Path synthesizerDir) throws XMLStreamException, IOException {

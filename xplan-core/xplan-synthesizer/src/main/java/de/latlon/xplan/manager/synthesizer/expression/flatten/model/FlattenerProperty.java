@@ -29,6 +29,8 @@ public class FlattenerProperty {
 
 	private String propertyName;
 
+	private String enumerationName;
+
 	private String codeListName;
 
 	public String getLabel() {
@@ -45,6 +47,14 @@ public class FlattenerProperty {
 
 	public void setPropertyName(String propertyName) {
 		this.propertyName = propertyName;
+	}
+
+	public String getEnumerationName() {
+		return enumerationName;
+	}
+
+	public void setEnumerationName(String enumerationName) {
+		this.enumerationName = enumerationName;
 	}
 
 	public String getCodeListName() {

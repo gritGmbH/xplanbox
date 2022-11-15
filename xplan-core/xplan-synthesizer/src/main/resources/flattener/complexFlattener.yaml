@@ -23,20 +23,22 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "BP_ZweckbestimmungGemeinschaftsanlagen"
+      enumerationName: "BP_ZweckbestimmungGemeinschaftsanlagen"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "BP_DetailZweckbestGemeinschaftsanlagen"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
       propertyName: "aufschrift"
-- acceptedClass: "BpKomplexeZweckbestSpielSportanlage"
+- acceptedClass: "BP_KomplexeZweckbestSpielSportanlage"
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungSpielSportanlage"
+      enumerationName: "XP_ZweckbestimmungSpielSportanlage"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "BP_DetailZweckbestSpielSportanlage"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -45,9 +47,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "BP_ZweckbestimmungNebenanlagen"
+      enumerationName: "BP_ZweckbestimmungNebenanlagen"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "BP_DetailZweckbestNebenanlagen"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -56,9 +59,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungLandwirtschaft"
+      enumerationName: "XP_ZweckbestimmungLandwirtschaft"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "BP_DetailZweckbestLandwirtschaft"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -67,9 +71,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungWald"
+      enumerationName: "XP_ZweckbestimmungWald"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "BP_DetailZweckbestWaldFlaeche"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -78,9 +83,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungGruen"
+      enumerationName: "XP_ZweckbestimmungGruen"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "BP_DetailZweckbestGruenFlaeche"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -89,9 +95,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungGemeinbedarf"
+      enumerationName: "XP_ZweckbestimmungGemeinbedarf"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "BP_DetailZweckbestGemeinbedarf"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -100,9 +107,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungVerEntsorgung"
+      enumerationName: "XP_ZweckbestimmungVerEntsorgung"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "BP_DetailZweckbestVerEntsorgung"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -111,9 +119,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungGemeinbedarf"
+      enumerationName: "XP_ZweckbestimmungGemeinbedarf"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "FP_DetailZweckbestGemeinbedarf"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -122,9 +131,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungSpielSportanlage"
+      enumerationName: "XP_ZweckbestimmungSpielSportanlage"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "FP_DetailZweckbestSpielSportanlage"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -133,9 +143,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungGruen"
+      enumerationName: "XP_ZweckbestimmungGruen"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "FP_DetailZweckbestGruen"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -144,9 +155,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungLandwirtschaft"
+      enumerationName: "XP_ZweckbestimmungLandwirtschaft"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "FP_DetailZweckbestLandwirtschaftsFlaeche"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -155,9 +167,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungWald"
+      enumerationName: "XP_ZweckbestimmungWald"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "FP_DetailZweckbestWaldFlaeche"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -166,9 +179,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_ZweckbestimmungVerEntsorgung"
+      enumerationName: "XP_ZweckbestimmungVerEntsorgung"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "FP_DetailZweckbestVerEntsorgung"
     - label: "Textliche Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -178,9 +192,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_Sondernutzungen"
+      enumerationName: "XP_Sondernutzungen"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "BP_DetailSondernutzung"
     - label: "Nutzung"
       propertyName: "nutzungText"
     - label: "Aufschrift"
@@ -189,9 +204,10 @@
   properties:
     - label: "Allgemein"
       propertyName: "allgemein"
-      codeListName: "XP_Sondernutzungen"
+      enumerationName: "XP_Sondernutzungen"
     - label: "Detail"
       propertyName: "detail"
+      codeListName: "FP_DetailSondernutzung"
     - label: "Nutzung"
       propertyName: "nutzungText"
     - label: "Aufschrift"
@@ -209,7 +225,7 @@
       propertyName: "DNzwingend"
     - label: "Dachform"
       propertyName: "dachform"
-      codeListName: "BP_Dachform"
+      enumerationName: "BP_Dachform"
     - label: "Detaillierte Dachform"
       propertyName: "detaillierteDachform"
 ## BP_EmissionskontingentLaerm
@@ -252,7 +268,7 @@
       propertyName: "endDatum"
     - label: "Verlängerung"
       propertyName: "verlaengerung"
-      codeListName: "BP_VerlaengerungVeraenderungssperre"
+      enumerationName: "BP_VerlaengerungVeraenderungssperre"
     - label: "Beschluss vom"
       propertyName: "beschlussDatum"
 ## LP_AdressatKomplex
@@ -260,7 +276,7 @@
   properties:
     - label: "Adressat"
       propertyName: "adressatArt"
-      codeListName: "LP_AdressatArt"
+      enumerationName: "LP_AdressatArt"
     - label: "Adressat (Ergänzung)"
       propertyName: "adressatText"
 ## LP_BiologischeVielfaltTypKomplex
@@ -268,7 +284,7 @@
   properties:
     - label: "Bestandteil"
       propertyName: "bioVielfaltTyp"
-      codeListName: "LP_BioVfBestandteil"
+      enumerationName: "LP_BioVfBestandteil"
     - label: "Bestandteil (Ergänzung)"
       propertyName: "bioVielfaltTypText"
 ## LP_BioVfBiotoptypKomplex
@@ -283,12 +299,12 @@
       propertyName: "bioVfPflanzenArtName"
     - label: "Einordnung"
       propertyName: "bioVfPflanzenSystematik"
-      codeListName: "LP_BioVfPflanzenArtSystematik"
+      enumerationName: "LP_BioVfPflanzenArtSystematik"
     - label: "Einordnung (Ergänzung)"
       propertyName: "bioVfPflanzenSystematikText"
     - label: "Rechtliche Grundlage"
       propertyName: "bioVfPflanzenRechtlicherSchutz"
-      codeListName: "LP_BioVfPflanzenArtRechtlicherSchutz"
+      enumerationName: "LP_BioVfPflanzenArtRechtlicherSchutz"
     - label: "Rechtliche Grundlage (Ergänzung)"
       propertyName: "bioVfPflanzenRechtlicherSchutzText"
 ## LP_BioVfTiereArtKomplex
@@ -298,17 +314,17 @@
       propertyName: "bioVfTierArtName"
     - label: "Einordnung"
       propertyName: "bioVfTiereSystematik"
-      codeListName: "LP_BioVfTiereArtSystematik"
+      enumerationName: "LP_BioVfTiereArtSystematik"
     - label: "Einordnung (Ergänzung)"
       propertyName: "bioVfTiereSystematikText"
     - label: "Rechtliche Grundlage"
       propertyName: "bioVfTierArtRechtlicherSchutz"
-      codeListName: "LP_BioVfTierArtRechtlicherSchutz"
+      enumerationName: "LP_BioVfTierArtRechtlicherSchutz"
     - label: "Rechtliche Grundlage (Ergänzung)"
       propertyName: "bioVfTierArtRechtlicherSchutzText"
     - label: "Habitatanforderungen"
       propertyName: "bioVfTierArtHabitatanforderung"
-      codeListName: "LP_BioVfTierArtHabitatanforderung"
+      enumerationName: "LP_BioVfTierArtHabitatanforderung"
     - label: "Habitatanforderungen (Ergänzung)"
       propertyName: "bioVfTierArtHabitatanforderungText"
 ## LP_BodenKomplex
@@ -316,7 +332,7 @@
   properties:
     - label: "Ausprägung"
       propertyName: "bodenAuspraegung"
-      codeListName: "LP_BodenAuspraegung"
+      enumerationName: "LP_BodenAuspraegung"
     - label: "Erläuterung"
       propertyName: "bodenText"
 ## LP_EingriffsregelungKomplex
@@ -324,7 +340,7 @@
   properties:
     - label: "Flächenart"
       propertyName: "eRFlaechenArt"
-      codeListName: "LP_ERFlaechenArt"
+      enumerationName: "LP_ERFlaechenArt"
     - label: "Erläuterung"
       propertyName: "eRFlaechenArtText"
 ## LP_ErholungKomplex
@@ -332,7 +348,7 @@
   properties:
     - label: "Art"
       propertyName: "erholungFunktionArt"
-      codeListName: "LP_ErholungFunktionen"
+      enumerationName: "LP_ErholungFunktionen"
     - label: "Erläuterung"
       propertyName: "erholungFunktionText"
 ## LP_KlimaKomplex
@@ -340,7 +356,7 @@
   properties:
     - label: "Art"
       propertyName: "klimaArt"
-      codeListName: "LP_KlimaArt"
+      enumerationName: "LP_KlimaArt"
     - label: "Erläuterung"
       propertyName: "klimaText"
 ## LP_LandschaftsbildKomplex
@@ -348,7 +364,7 @@
   properties:
     - label: "Art"
       propertyName: "landschaftsbildArt"
-      codeListName: "LP_LandschaftsbildArt"
+      enumerationName: "LP_LandschaftsbildArt"
     - label: "Erläuterung"
       propertyName: "landschaftsbildText"
 ## LP_LuftKomplex
@@ -356,7 +372,7 @@
   properties:
     - label: "Art"
       propertyName: "luftArt"
-      codeListName: "LP_LuftArt"
+      enumerationName: "LP_LuftArt"
     - label: "Erläuterung"
       propertyName: "luftText"
 ## LP_NutzungseinschraenkungKomplex
@@ -376,7 +392,7 @@
   properties:
     - label: "Art"
       propertyName: "schutzgutArt"
-      codeListName: "LP_SchutzgutArt"
+      enumerationName: "LP_SchutzgutArt"
     - label: "Erläuterung"
       propertyName: "schutzgutText"
 ## LP_SPEKomplex
@@ -384,7 +400,7 @@
   properties:
     - label: "Art"
       propertyName: "schutzPflegeEntwicklungTyp"
-      codeListName: "LP_SchutzPflegeEntwicklung"
+      enumerationName: "LP_SchutzPflegeEntwicklung"
     - label: "Erläuterung"
       propertyName: "schutzPflegeEntwicklungText"
 ## LP_TypBioVerbundKomplex
@@ -392,10 +408,10 @@
   properties:
     - label: "Flächentyp"
       propertyName: "flaechenTypBV"
-      codeListName: "LP_FlaechenTypBV"
+      enumerationName: "LP_FlaechenTypBV"
     - label: "Flächentyp (speziell)"
       propertyName: "flaechentypBVSpeziell"
-      codeListName: "LP_FlaechenTypBVSpeziell"
+      enumerationName: "LP_FlaechenTypBVSpeziell"
     - label: "Flächentyp (Ergänzung zu speziell)"
       propertyName: "flaechentypSpeziellText"
 ## LP_VorschlagIntegrationBauleitplanung
@@ -413,7 +429,7 @@
   properties:
     - label: "Ausprägung"
       propertyName: "wasserAuspraegung"
-      codeListName: "LP_WasserAuspraegung"
+      enumerationName: "LP_WasserAuspraegung"
     - label: "Erläuterung"
       propertyName: "wasserText"
 ## LP_ZielDimNatSchLaPflKomplex
@@ -421,7 +437,7 @@
   properties:
     - label: "Art"
       propertyName: "zielDimensionTyp"
-      codeListName: "LP_ZielDimensionTyp"
+      enumerationName: "LP_ZielDimensionTyp"
     - label: "Erläuterung"
       propertyName: "zielDimensionText"
 ## SO_KomplexeFestlegungGewaesser
@@ -429,7 +445,7 @@
   properties:
     - label: "Allgemeine Zweckbestimmung"
       propertyName: "allgemein"
-      codeListName: "SO_KlassifizGewaesser"
+      enumerationName: "SO_KlassifizGewaesser"
     - label: "Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -439,7 +455,7 @@
   properties:
     - label: "Allgemeine Zweckbestimmung"
       propertyName: "allgemein"
-      codeListName: "SO_ZweckbestimmungStrassenverkehr"
+      enumerationName: "SO_ZweckbestimmungStrassenverkehr"
     - label: "Ergänzung"
       propertyName: "textlicheErgaenzung"
     - label: "Aufschrift"
@@ -469,12 +485,12 @@
   properties:
     - label: "Höhenbezug"
       propertyName: "hoehenbezug"
-      codeListName: "XP_ArtHoehenbezug"
+      enumerationName: "XP_ArtHoehenbezug"
     - label: "Abweichender Höhenbezug"
       propertyName: "abweichenderHoehenbezug"
     - label: "Bezugspunkt"
       propertyName: "bezugspunkt"
-      codeListName: "XP_ArtHoehenbezugspunkt"
+      enumerationName: "XP_ArtHoehenbezugspunkt"
     - label: "Abweichender Bezugspunkt"
       propertyName: "abweichenderBezugspunkt"
     - label: "Höhe"
@@ -501,7 +517,7 @@
       propertyName: "massnahmeKuerzel"
     - label: "Maßnahme"
       propertyName: "klassifizMassnahme"
-      codeListName: "XP_SPEMassnahmenTypen"
+      enumerationName: "XP_SPEMassnahmenTypen"
 ## XP_VerbundenerPlanBereich
 - acceptedClass: "XP_VerbundenerPlanBereich"
   properties:
@@ -509,10 +525,10 @@
       propertyName: "planName"
     - label: "Rechtscharakter Planänderung"
       propertyName: "rechtscharakter"
-      codeListName: "XP_RechtscharakterPlanaenderung"
+      enumerationName: "XP_RechtscharakterPlanaenderung"
     - label: "Änderungsart"
       propertyName: "aenderungsArt"
-      codeListName: "XP_Aenderungsarten"
+      enumerationName: "XP_Aenderungsarten"
     - label: "Nummer verbundener Plan"
       propertyName: "nummer"
 ## XP_VerbundenerPlan
@@ -522,7 +538,7 @@
       propertyName: "planName"
     - label: "Rechtscharakter Planänderung"
       propertyName: "rechtscharakter"
-      codeListName: "XP_RechtscharakterPlanaenderung"
+      enumerationName: "XP_RechtscharakterPlanaenderung"
     - label: "Nummer verbundener Plan"
       propertyName: "nummer"
 ## XP_WirksamkeitBedingung

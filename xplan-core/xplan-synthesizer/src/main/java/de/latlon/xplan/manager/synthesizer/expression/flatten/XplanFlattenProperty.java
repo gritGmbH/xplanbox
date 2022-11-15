@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
+import de.latlon.xplan.manager.dictionary.XPlanCodelists;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.complex.ComplexFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.lp.LpBiologischeVielfaltKomplexFlattener;
@@ -74,22 +75,25 @@ public class XplanFlattenProperty implements Expression {
 	private final List<Flattener> customFlatteners = new ArrayList<Flattener>();
 
 	/**
+	 * @param codelists used to translate codelist values, never <code>null</code>
 	 * @param exp an expression that targets a property node
 	 */
-	public XplanFlattenProperty(Expression exp) {
-		this(exp, false);
+	public XplanFlattenProperty(XPlanCodelists codelists, Expression exp) {
+		this(codelists, exp, false);
 	}
 
 	/**
+	 * @param codelists used to translate codelist values, never <code>null</code>
 	 * @param exp an expression that targets a property node
 	 * @param sortProperties <code>true</code> if the properties should be sorted
 	 * alphabetically, false otherwise
 	 */
-	public XplanFlattenProperty(Expression exp, boolean sortProperties) {
-		this(exp, sortProperties, false);
+	public XplanFlattenProperty(XPlanCodelists codelists, Expression exp, boolean sortProperties) {
+		this(codelists, exp, sortProperties, false);
 	}
 
 	/**
+	 * @param codelists used to translate codelist values, never <code>null</code>
 	 * @param exp an expression that targets a property node
 	 * @param sortProperties <code>true</code> if the properties should be sorted
 	 * alphabetically, false otherwise
@@ -97,12 +101,12 @@ public class XplanFlattenProperty implements Expression {
 	 * <code>false</code> otherwise
 	 *
 	 */
-	public XplanFlattenProperty(Expression exp, boolean sortProperties, boolean keepCodes) {
+	public XplanFlattenProperty(XPlanCodelists codelists, Expression exp, boolean sortProperties, boolean keepCodes) {
 		this.exp = exp;
 		this.sortProperties = sortProperties;
 		this.keepCodes = keepCodes;
-		this.customFlatteners.add(new ComplexFlattener());
-		customFlatteners.add(new LpBiologischeVielfaltKomplexFlattener(keepCodes));
+		this.customFlatteners.add(new ComplexFlattener(codelists));
+		customFlatteners.add(new LpBiologischeVielfaltKomplexFlattener(codelists, keepCodes));
 		customFlatteners.add(new XpBegruendungAbschnittFlattener());
 		customFlatteners.add(new XpGenerAttributFlattener());
 		customFlatteners.add(new XpRasterplanFlattener());
