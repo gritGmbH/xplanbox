@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.codelists;
+package de.latlon.xplan.manager.dictionary;
 
 import org.deegree.commons.tom.ows.CodeType;
 import org.deegree.gml.GMLInputFactory;
@@ -37,97 +37,99 @@ import static org.deegree.gml.GMLVersion.GML_32;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XPlanCodeListsParser {
+public class XPlanDictionariesParser {
 
 	/**
-	 * Erzeugt eine neue {@link XPlanCodeLists} Instanz, die durch das Einlesen des
+	 * Erzeugt eine neue {@link XPlanDictionaries} Instanz, die durch das Einlesen des
 	 * spezifizierten GML Dictionaries initialisiert wird. Die Codeliste muss in GML 3.2
 	 * vorliegen.
-	 * @param codeListUrl
+	 * @param dictionaryUrl
 	 * @throws XMLStreamException
 	 * @throws FactoryConfigurationError
 	 * @throws IOException
 	 */
-	public XPlanCodeLists parseCodelists(URL codeListUrl)
+	public XPlanDictionaries parseDictionaries(URL dictionaryUrl)
 			throws XMLStreamException, FactoryConfigurationError, IOException {
-		return parseCodelists(codeListUrl, GML_32);
+		return parseDictionaries(dictionaryUrl, GML_32);
 	}
 
 	/**
-	 * Erzeugt eine neue {@link XPlanCodeLists} Instanz, die durch das Einlesen des
-	 * spezifizierten GML Dictionaries initialisiert wird. Die Codeliste muss in der
+	 * Erzeugt eine neue {@link XPlanDictionaries} Instanz, die durch das Einlesen des
+	 * spezifizierten GML Dictionaries initialisiert wird. Das Dictionary muss in der
 	 * uebergebenen GML Version vorliegen.
-	 * @param codeListUrl
+	 * @param dictionaryUrl
 	 * @param gmlVersion gml version of the dictionary, never <code>null</code>
 	 * @throws XMLStreamException
 	 * @throws FactoryConfigurationError
 	 * @throws IOException
 	 */
-	public XPlanCodeLists parseCodelists(URL codeListUrl, GMLVersion gmlVersion)
+	public XPlanDictionaries parseDictionaries(URL dictionaryUrl, GMLVersion gmlVersion)
 			throws XMLStreamException, FactoryConfigurationError, IOException {
-		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(gmlVersion, codeListUrl);
-		Dictionary codeLists = gmlStream.readDictionary();
+		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(gmlVersion, dictionaryUrl);
+		Dictionary dictionary = gmlStream.readDictionary();
 		gmlStream.close();
-		return parseGmlCodelist(codeListUrl, codeLists);
+		return parseGmlDictionary(dictionaryUrl, dictionary);
 	}
 
-	private XPlanCodeLists parseGmlCodelist(URL codeListUrl, Dictionary codeLists) {
-		XPlanCodeLists xPlanCodeLists = new XPlanCodeLists();
-		if (!codeLists.isEmpty()) {
-			Definition firstDefinition = codeLists.get(0);
+	private XPlanDictionaries parseGmlDictionary(URL dictionaryUrl, Dictionary dictionary) {
+		XPlanDictionaries dictionaries = new XPlanDictionaries();
+		if (!dictionary.isEmpty()) {
+			Definition firstDefinition = dictionary.get(0);
 			if (firstDefinition instanceof Dictionary) {
-				for (Definition codeListDef : codeLists) {
-					parseDictionary(codeListUrl, (Dictionary) codeListDef, xPlanCodeLists);
+				for (Definition codeListDef : dictionary) {
+					parseDictionary(dictionaryUrl, (Dictionary) codeListDef, dictionaries);
 				}
 			}
 			else {
-				parseDictionary(codeListUrl, codeLists, xPlanCodeLists);
+				parseDictionary(dictionaryUrl, dictionary, dictionaries);
 			}
 		}
-		return xPlanCodeLists;
+		return dictionaries;
 	}
 
-	private void parseDictionary(URL codeListUrl, Dictionary codeListDef, XPlanCodeLists xPlanCodeLists) {
-		Dictionary codeListDict = codeListDef;
-		String codeListId = codeListDict.getId();
-		if (xPlanCodeLists.hasCodeList(codeListId)) {
-			String msg = "CodeList '" + codeListId + "' ist in Dictionary '" + codeListUrl + "' doppelt vorhanden.";
+	private void parseDictionary(URL dictionaryUrl, Dictionary codeListDef, XPlanDictionaries dictionaries) {
+		Dictionary dictionary = codeListDef;
+		String dictionaryId = dictionary.getId();
+		if (dictionaries.hasDictionary(dictionaryId)) {
+			String msg = "Dictionary mit der ID '" + dictionaryId + "' ist in Dictionary '" + dictionaryUrl
+					+ "' doppelt vorhanden.";
 			throw new RuntimeException(msg);
 		}
-		if (codeListDict.isEmpty()) {
-			xPlanCodeLists.addNewCodeList(codeListId);
+		if (dictionary.isEmpty()) {
+			dictionaries.addDictionary(dictionaryId);
 		}
-		for (Definition def : codeListDict) {
-			parseDefinition(codeListUrl, codeListId, def, xPlanCodeLists);
+		for (Definition def : dictionary) {
+			parseDefinition(dictionaryUrl, dictionaryId, def, dictionaries);
 		}
 	}
 
-	private void parseDefinition(URL codeListUrl, String codeListId, Definition def, XPlanCodeLists xPlanCodeLists) {
+	private void parseDefinition(URL dictionaryUrl, String dictionaryId, Definition def,
+			XPlanDictionaries dictionaries) {
 		if (def.getNames().length > 0) {
 			String name = getNameWithoutCodeSpaceOrFirst(def);
-			if (codeIsPartOfIdentifier(codeListId, def)) {
-				String codeWithCodelistId = def.getGMLProperties().getIdentifier().getCode();
-				String code = codeWithCodelistId.substring(codeWithCodelistId.indexOf(":") + 1);
+			if (codeIsPartOfIdentifier(dictionaryId, def)) {
+				String codeWithDictionaryId = def.getGMLProperties().getIdentifier().getCode();
+				String code = codeWithDictionaryId.substring(codeWithDictionaryId.indexOf(":") + 1);
 				String lesbarerName = getName(def, "lesbarerName");
 				String kuerzel = getName(def, "kuerzel");
-				xPlanCodeLists.addNewCodeEntry(codeListId, code, name, lesbarerName, kuerzel);
+				dictionaries.addDictionaryEntry(dictionaryId, code, name, lesbarerName, kuerzel);
 			}
 			else if (def.getDescription() != null) {
 				String description = def.getDescription().getString();
 				if (def.getNames() == null || def.getNames().length != 1) {
-					String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
+					String msg = "Dictionary '" + dictionaryId + "' in Dictionary '" + dictionaryUrl
 							+ "' definiert mehrerere Codes für '" + description + "'.";
 					throw new RuntimeException(msg);
 				}
-				xPlanCodeLists.addNewCodeEntry(codeListId, name, description);
+				dictionaries.addDictionaryEntry(dictionaryId, name, description);
 			}
 			else {
 				// no description -> treat
-				xPlanCodeLists.addNewCodeEntry(codeListId, name, name);
+				dictionaries.addDictionaryEntry(dictionaryId, name, name);
 			}
 		}
 		else {
-			String msg = "CodeList '" + codeListId + "' in Dictionary '" + codeListUrl
+			String msg = "Dictionary '" + dictionaryId + "' in Dictionary '" + dictionaryUrl
 					+ "' enthält Einträge ohne Code.";
 			throw new RuntimeException(msg);
 		}

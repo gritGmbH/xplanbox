@@ -20,19 +20,19 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.manager.synthesizer.expression.Ausrichtung;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.LatestDate;
 import de.latlon.xplan.manager.synthesizer.expression.StringConstant;
-import de.latlon.xplan.manager.synthesizer.expression.XPlanExternalCodeLookup;
+import de.latlon.xplan.manager.synthesizer.expression.dictionary.XPlanExternalCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGeometry;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGmlDescription;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanName;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanType;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBaugebietFlaechenteile;
-import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookup;
-import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
+import de.latlon.xplan.manager.synthesizer.expression.dictionary.XPlanEnumerationLookup;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XplanFlattenProperty;
 import de.latlon.xplan.manager.synthesizer.expression.XplanGmlName;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SchriftinhaltLookup;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SkalierungLookup;
@@ -112,7 +112,7 @@ class RuleParser {
 	}
 
 	private Expression parseXPlanCodeLookup(List<String> args) {
-		return new XplanCodeLookup(parse(args.get(0)), trimString(args.get(1)));
+		return new XPlanEnumerationLookup(parse(args.get(0)), trimString(args.get(1)));
 	}
 
 	private Expression parseXPlanGeometry(List<String> args) {

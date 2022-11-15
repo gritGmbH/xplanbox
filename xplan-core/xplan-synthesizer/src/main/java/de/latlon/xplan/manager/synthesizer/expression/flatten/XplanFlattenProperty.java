@@ -18,10 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression;
+package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
-import de.latlon.xplan.manager.synthesizer.expression.flatten.DefaultFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.Flattener;
+import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.complex.ComplexFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.lp.LpBiologischeVielfaltKomplexFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.xp.XpBegruendungAbschnittFlattener;

@@ -18,9 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.praesentation;
+package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
-import de.latlon.xplan.manager.synthesizer.expression.praesentation.StylesheetIdLookup;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;

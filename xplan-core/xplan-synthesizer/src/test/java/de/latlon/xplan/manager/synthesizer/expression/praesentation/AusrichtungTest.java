@@ -18,9 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer;
+package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
-import de.latlon.xplan.manager.synthesizer.expression.Ausrichtung;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import org.deegree.commons.tom.TypedObjectNode;

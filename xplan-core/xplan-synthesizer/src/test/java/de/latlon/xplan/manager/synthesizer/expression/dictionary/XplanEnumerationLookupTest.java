@@ -18,8 +18,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression;
+package de.latlon.xplan.manager.synthesizer.expression.dictionary;
 
+import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
+import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -35,13 +37,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XplanCodeLookupTest {
+public class XplanEnumerationLookupTest {
 
 	@Test
 	public void testEvaluateXplan40() throws Exception {
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_40);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
-		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
+		XPlanEnumerationLookup expr = new XPlanEnumerationLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertThat(value.getAsText(), is("BPlan"));
 	}
@@ -50,7 +52,7 @@ public class XplanCodeLookupTest {
 	public void testEvaluateXplan41() throws Exception {
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
-		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
+		XPlanEnumerationLookup expr = new XPlanEnumerationLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertThat(value.getAsText(), is("BPlan"));
 	}
@@ -60,7 +62,7 @@ public class XplanCodeLookupTest {
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_60);
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
 		Xpath xpath = new Xpath("xplan:zweckbestimmung/xplan:BP_KomplexeZweckbestGruen/xplan:allgemein");
-		XplanCodeLookup expr = new XplanCodeLookup(xpath, "XP_ZweckbestimmungGruen");
+		XPlanEnumerationLookup expr = new XPlanEnumerationLookup(xpath, "XP_ZweckbestimmungGruen");
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertThat(value.getAsText(), is("Parkanlage"));
 	}

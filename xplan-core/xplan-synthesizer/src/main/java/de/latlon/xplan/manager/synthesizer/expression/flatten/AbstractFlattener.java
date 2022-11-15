@@ -22,7 +22,7 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.synthesizer.Features;
-import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
+import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
@@ -168,7 +168,8 @@ public abstract class AbstractFlattener implements Flattener {
 		else {
 			String propertyValue = asString(feature, propertyName);
 			if (propertyValue != null) {
-				String translatedValue = XPlanCodeListsFactory.get(version).getTranslation(codeListName, propertyValue);
+				String translatedValue = XPlanEnumerationFactory.get(version).getTranslation(codeListName,
+						propertyValue);
 				properties.add(new Pair(label, translatedValue));
 			}
 		}

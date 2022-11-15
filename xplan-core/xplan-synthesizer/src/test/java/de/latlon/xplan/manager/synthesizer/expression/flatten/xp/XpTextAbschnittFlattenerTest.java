@@ -23,7 +23,7 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.xp;
 
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
-import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XplanFlattenProperty;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;

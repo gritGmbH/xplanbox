@@ -34,12 +34,12 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
-import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
+import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
@@ -456,10 +456,10 @@ public class XPlanManager {
 	}
 
 	private String translateRechtsstand(XPlanVersion version, XPlanType type, int rechtsstandCode) {
-		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
-		String codeListId = findCodeListId(type);
+		XPlanDictionaries dictionaries = XPlanEnumerationFactory.get(version);
+		String dictionaryId = findDictionaryId(type);
 		try {
-			return xPlanCodeLists.getTranslation(codeListId, Integer.toString(rechtsstandCode));
+			return dictionaries.getTranslation(dictionaryId, Integer.toString(rechtsstandCode));
 		}
 		catch (Exception e) {
 			LOG.error("Could not translate rechtsstand code {}: {}", rechtsstandCode, e.getMessage());
@@ -468,7 +468,7 @@ public class XPlanManager {
 		}
 	}
 
-	private String findCodeListId(XPlanType xPlanType) {
+	private String findDictionaryId(XPlanType xPlanType) {
 		switch (xPlanType) {
 			case BP_Plan:
 				return "BP_Rechtsstand";
