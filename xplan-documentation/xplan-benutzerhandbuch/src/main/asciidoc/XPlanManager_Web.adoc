@@ -21,47 +21,42 @@ verfügbar und kann mit einem Web-Browser aufgerufen werden.
 [[xplanmanager-web-hilfe]]
 ===== Hilfe
 
-Die Hilfe mit den Angaben zu den möglichen Funktionen lässt sich durch
+Die Hilfe mit den Angaben zu den unterstützten Funktionen lässt sich durch
 Betätigen des Buttons _Hilfe_ ausgeben.
 
 [[xplanmanager-web-hinzufuegen]]
 ===== Hinzufügen
 
 Vor dem Importieren eines XPlanGML-Dokuments in die Datenhaltung,
-muss dieser über die Web-Oberfläche hochgeladen werden. Hierfür kann der Plan
-über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
-_Import_ hochgeladen werden. Der Benutzer wird
-über das erfolgreiche bzw. fehlerhafte Hinzufügen des Plans in Form
-eines PopUp-Fensters informiert.
+muss dieses über die Web-Oberfläche hochgeladen und validiert werden.
+Im ersten Schritt wird das XPlanArchiv ausgewählt und über den Browser hochgeladen. Hierfür kann die Datei über den Button _Durchsuchen_ ausgewählt und durch einen Klick auf
+_Hinzufügen_ hochgeladen werden. Der Benutzer wird über das erfolgreiche bzw. fehlerhafte Hinzufügen der Datei in Form eines PopUp-Fensters informiert.
 
-Nachdem der Plan hochgeladen wurde, kann dieser
-validiert bzw. entfernt werden. Erst nachdem der Plan erfolgreich
-validiert wurde, kann der Plan in die Datenbasis importiert werden.
-Andernfalls ist der Button _Import_ deaktiviert.
+[[xplanmanager-web-validieren]]
+===== Validieren
 
-IMPORTANT: Bei der Validierung werden immer die syntaktische und Basis-Geometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch, geometrische Validierung>>) ausgeführt. Diese stellen sicher, dass ein Plan keine schwerwiegenden Fehler hat, die einen Import verhindern würden. Um die automatische Korrektur der Laufrichtung von Polygonen beim Import zu erzwingen, muss die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktiviert sein.
+Nachdem das XPlanArchiv hochgeladen wurde, kann dieses
+validiert werden. Hier stehen die Auswahlmöglichkeiten des <<xplanvalidator-web-validieren, XPlanValidatorWeb>> zur Verfügung.
+
+IMPORTANT: Bei der Validierung werden immer die syntaktische und Basis-Geometrische Prüfung (s. Abschnitt <<xplanvalidator-web-geometrisch, geometrische Validierung>>) ausgeführt. Diese Prüfungen stellen sicher, dass ein Plan keine schwerwiegenden Fehler enthält, die einen Import verhindern. Um die automatische Korrektur der Laufrichtung von Polygonen beim Import zu erzwingen, muss die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktiviert sein.
 
 [[xplanmanager-web-import]]
 ===== Import
 
-Nachdem der Plan erfolgreich validiert wurde, kann der Plan durch einen
-Klick auf den Button _Import_ in die Datenbasis importiert werden. Der
-Benutzer wird über den erfolgreichen bzw. fehlerhaften Import des Plans
-in Form eines PopUps informiert.
+Wenn das XPlanArchiv erfolgreich validiert wurde, kann der Plan in die Datenhaltung durch Klick auf den Button _Import_ in die Datenhaltung übernommen werden. Ist der Plan nicht valide, dann ist der Button _Import_ deaktiviert. Der Benutzer wird über den erfolgreichen bzw. fehlerhaften Import des Plans in Form eines PopUps informiert.
+
+Ist ein Import nicht möglich und soll ein anderer Plan importiert werden, dann kann der Plan über den Button _Entfernen_ aus der laufenden Sitzung entfernt werden.
 
 [[xplanmanager-web-auflistung]]
 ===== Auflistung
 
 Standardmäßig werden alle importierten Pläne in einer Liste angezeigt.
-Diese Liste kann nach den angezeigen Spaltennamen
-auf- oder absteigend sortiert werden.
+Diese Liste kann nach den angezeigten Spaltennamen auf- oder absteigend sortiert werden. Sind mehr als 15 Pläne in der Auswahl, so wird unterhalb der Liste eine Navigation angezeigt, die ein seitenweises Vor- und Zurückblättern innerhalb der Ergebnismenge erlaubt.
 
 [[xplanmanager-filter]]
 ===== Filter
 
-Diese Liste kann auch nach verschiedenen Kriterien gefiltert werden. Neben dem Filter nach "Gemeinde" und "Planstatus" kann
-über den freien Filer die Anzeige der Pläne im XPlanManager reduziert werden. Mit dem Button "Alle Pläne anzeigen" können alle Filter aufgehoben werden und alle
-Pläne werden wieder angezeigt.
+Die Liste kann auch nach verschiedenen Kriterien gefiltert werden. Neben den beiden Filtern "Gemeindeauswahl" und "Planstatus" kann der Benutzer auch einen freien Filer auswählen und mit Klick auf den Button _Suche_ die Anzeige der Pläne reduzieren. Mit dem Button "Alle Pläne anzeigen" können alle Filter aufgehoben werden und es werden wieder alle Pläne angezeigt.
 
 [[xplanmanager-web-kartenvorschau]]
 ===== Kartenvorschau
@@ -82,29 +77,26 @@ Button _Herunterladen_ wieder als XPlanArchiv heruntergeladen werden.
 [[loeschen]]
 ===== Löschen
 
-Je nach Benutzerrechten können die importierten Pläne durch den Klick
-auf den Button _Löschen_ aus der Datenbasis gelöscht werden. Hat ein
-Benutzer keine Rechte, so wird der Button grau dargestellt.
+Je nach Benutzerrechten können importierten Pläne durch den Klick
+auf den Button _Löschen_ aus der Datenhaltung gelöscht werden. Hat ein
+Benutzer keine entsprechende Rechte, so wird der Button grau dargestellt.
 
 [[xplanmanager-web-editieren]]
 ===== Editieren
 
-Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer
-die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt. 
-Die Editieransicht öffnet sich durch Klick auf den Button __Editieren__. Die Ansicht ist in verschiedene Bereiche
-aufgeteilt, die insgesamt die Bearbeitung folgender Elemente zulässt:
+Abhängig von den Benutzerrechten können Pläne editiert werden. Fehlen dem Benutzer die entsprechenden Rechte ist die Funktion deaktiviert und der Button __Editieren__ wird grau dargestellt.
+Die Editieransicht öffnet sich durch Klick auf den Button __Editieren__. Die Ansicht ist in verschiedene Bereiche aufgeteilt, die insgesamt die Bearbeitung folgender Elemente im XPlanGML über die Oberfläche zulässt. Je nach Planart kann die Liste der änderbaren Element variieren. Unterstützt werden Bebauungspläne ab der Version 4.1, Flächennutzungspläne, Regionalpläne und Sonstige Pläne ab der Version 5.0 sowie Landschaftspläne ab der Version 6.0.
 
 *Basisdaten*
 
- * name
- * beschreibung
- * technHerstellDatum
- * untergangsDatum
- * planArt
- * sonstPlanArt
- * verfahren
- * rechtsstand
- * rechtsverordnungsDatum
+ * _name_
+ * _beschreibung_
+ * _technHerstellDatum_
+ * _untergangsDatum_
+ * _planArt_
+ * _sonstPlanArt_
+ * _rechtsstand_
+ * _rechtsverordnungsDatum_
 
 IMPORTANT: Das Editieren des Rechtsstands kann dazu führen, dass eine
 Zustandsänderung des Plans eintritt. Damit verbunden ist das Verschieben
@@ -132,8 +124,15 @@ erfolgt ist, wird beim Ändern des Zeitraums überschrieben.
 
 *Änderungen*
 
+bis XPlanGML 5.4:
+
  * aendert
  * wurdeGeaendertVon
+
+ab XPlanGML 6.0:
+
+* aendertPlan
+* wurdeGeaendertVonPlan
 
 *Texte*
 
@@ -141,11 +140,7 @@ erfolgt ist, wird beim Ändern des Zeitraums überschrieben.
 
 *Dokumente*
 
-Abhängig von der XPlanGML Version können folgende Dokumente editiert werden:
-
-XPlanGML 3.0:
-
- * refBegruendung
+Abhängig von der XPlanGML Version können folgende Elemente editiert werden:
 
 XPlanGML 4.1:
 
@@ -153,32 +148,30 @@ XPlanGML 4.1:
  * refRechtsplan
  * refGruenordnungsplan
 
-XPlanGML 5.x:
+ab XPlanGML 5.0:
 
- * alle verfügbaren Typen aus `XP_ExterneReferenzTyp` (Enumeration)
+ * externeReferenz
 
 Dabei kann der Benutzer wählen, ob er eine Datei über einen vollqualifizierten Link (URL) referenziert oder zum XPlanArchiv hinzugefügt und dann relativ verlinkt.
 
 *Rasterbasis*
 
- * rasterbasis
+ * rasterBasis
 
-Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP_Bereich besitzt. Ist dies nicht der Fall, wird ein entsprechender Hinweis in der Oberfläche angegeben. Die Angabe einer Rasterbasis kann in diesem Fall nicht erfolgen.
+Die Rasterbasis kann nur editiert werden, wenn ein Plan ein Objekt vom Typ BP|FP|LP|RP|SO_Bereich besitzt. Ist dies nicht der Fall, wird ein entsprechender Hinweis in der Oberfläche angegeben. Die Angabe einer Rasterbasis kann in diesem Fall nicht erfolgen.
 
 Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
 
-NOTE: Werden Referenzen auf Rasterbasisdateien entfernt oder verändert, so werden die nicht mehr referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu einer Aktualisierung der XPlanWMS-Konfiguration. Klickt der Nutzer auf
-__Speichern__, wird zunächst eine Validierung der Rasterdaten
+NOTE: Werden Referenzen auf Rasterbasisdateien entfernt oder verändert, so werden die nicht mehr referenzierten Dateien aus der Datenhaltung entfernt. Änderungen führen zu einer Aktualisierung der XPlanWMS-Konfiguration. Klickt der Nutzer auf __Speichern__, wird zunächst eine Validierung der Rasterdaten
 vorgenommen. Bei invaliden Dateien bekommt der Nutzer eine
-Entscheidungsoption wie mit diesen Daten umgegangen werden soll. Passt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so
+Entscheidungsoption wie mit diesen Daten umgegangen werden soll. Stimmt das CRS der Rasterdaten nicht mit dem CRS der Rasterdatenhaltung überein, so
 erhält der Nutzer die Option, den Plan ohne Erzeugung der
 Rasterkonfiguration zu importieren.
 Anschließend erfolgt die Aktualisierung der Daten.
 
-Die ebenfalls in diesem Abschnitt editierbaren Referenzen auf Texte (refText) und Legenden (refLegende) müssen in den Versionen 5.1, 5.2, 5.3 und 5.4 über die Abschnitte `Texte` und `Dokumente` editiert werden.
+Wie im Abschnitt <<referenzierung-von-rasterdaten-im-xplangml>> beschrieben, sind in den Versionen 5.1, 5.2, 5.3 und 5.4 noch zwei Varianten zur Referenzierung von Rasterdaten möglich. Die Anzeige im XPlanManager unterstützt die alte und die neue Variante. Wird über den XPlanManager eine Referenz geändert, dann erfolgt die Referenzierung immer über das Element `<refScan/>` unabhängig von der im Plan ursprünglich verwendeten Referenzierung.
 
-NOTE: Die Editierfunktion steht nur für BPläne in den XPlanGML Versionen
-3.0, 4.1, 5.0, 5.1, 5.2, 5.3 und 5.4 zur Verfügung.
+Die ebenfalls in diesem Abschnitt editierbaren Referenzen auf Texte (refText) und Legenden (refLegende) müssen in den Versionen 5.1, 5.2, 5.3 und 5.4 über die Abschnitte `Texte` und `Dokumente` editiert werden.
 
 
 [[xplanmanager-web-inspireplu]]
@@ -188,4 +181,4 @@ Abhängig von den Benutzerrechten können Pläne im Datenthema INSPIRE Planned L
 
 Durch Klick auf den Button __Bereitstellung als INSPIRE Datensatz__ wird der Plan in das INSPIRE PLU Datenschema überführt und in den INSPIRE konformen Download Service importiert. Anschließend kann der transformierte Plan über den INSPIRE Download Service (XPlanInspirePluWFS) und INSPIRE View Service (XPlanInspirePluWMS) abgerufen werden.
 
-NOTE: Die Bereitstellung als INSPIRE PLU Datensatz steht nur für BPläne in den XPlanGML Versionen 4.1, 5.0, 5.1, 5.2, 5.3 und 5.4 zur Verfügung.
+NOTE: Die Bereitstellung als INSPIRE PLU Datensatz steht nur für BPläne in den XPlanGML Versionen 4.1, 5.0, 5.1, 5.2, 5.3, 5.4 und 6.0 zur Verfügung.

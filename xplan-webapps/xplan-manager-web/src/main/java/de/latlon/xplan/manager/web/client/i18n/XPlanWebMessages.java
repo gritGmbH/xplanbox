@@ -404,6 +404,10 @@ public interface XPlanWebMessages extends Messages {
 
 	String editCaptionRasterBasisReferenceNameOrUrl();
 
+	String editCaptionRasterBasisReferenceNameMissing();
+
+	String editCaptionRasterBasisReferenceUrlMissing();
+
 	String editCaptionRasterBasisGeoReferenceNotAllowed();
 
 	String editCaptionRasterBasisGeoReferenceMimeTypeNotAllowed();

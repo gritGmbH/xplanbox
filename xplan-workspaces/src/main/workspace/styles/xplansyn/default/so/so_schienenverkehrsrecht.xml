@@ -1,30 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:sed="http://www.deegree.org/se"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xmlns:sed="http://www.deegree.org/se"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:SO_Schienenverkehrsrecht</FeatureTypeName>
   <!-- oberirdische Bahnanlage -->
@@ -63,7 +42,7 @@
       </Fill>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>
-		<SvgParameter name="stroke-width">0.2</SvgParameter>
+        <SvgParameter name="stroke-width">0.2</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
@@ -99,11 +78,11 @@
         <SvgParameter name="stroke-width">2</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
-		<SvgParameter name="stroke-dasharray">6 3</SvgParameter>
-		<SvgParameter name="stroke-dashoffset">0.1</SvgParameter>
-	  </Stroke>
+        <SvgParameter name="stroke-dasharray">6 3</SvgParameter>
+        <SvgParameter name="stroke-dashoffset">0.1</SvgParameter>
+      </Stroke>
     </LineSymbolizer>
-	<LineSymbolizer uom="meter">
+    <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -113,7 +92,7 @@
         <SvgParameter name="stroke-width">1.6</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
-		<SvgParameter name="stroke-dasharray">5.7 3.3</SvgParameter>
+        <SvgParameter name="stroke-dasharray">5.7 3.3</SvgParameter>
       </Stroke>
     </LineSymbolizer>
   </Rule>
@@ -139,7 +118,7 @@
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
-	<PolygonSymbolizer uom="meter">
+    <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -149,12 +128,12 @@
         <SvgParameter name="stroke-width">2</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
-		<SvgParameter name="stroke-dasharray">6 3</SvgParameter>
-		<SvgParameter name="stroke-dashoffset">0.1</SvgParameter>
-	  </Stroke>
-	  <sed:PerpendicularOffset type="Standard">-1</sed:PerpendicularOffset>
+        <SvgParameter name="stroke-dasharray">6 3</SvgParameter>
+        <SvgParameter name="stroke-dashoffset">0.1</SvgParameter>
+      </Stroke>
+      <sed:PerpendicularOffset type="Standard">-1</sed:PerpendicularOffset>
     </PolygonSymbolizer>
-	<PolygonSymbolizer uom="meter">
+    <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -164,11 +143,11 @@
         <SvgParameter name="stroke-width">1.6</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
-		<SvgParameter name="stroke-dasharray">5.7 3.3</SvgParameter>
+        <SvgParameter name="stroke-dasharray">5.7 3.3</SvgParameter>
       </Stroke>
-	  <sed:PerpendicularOffset type="Standard">-1</sed:PerpendicularOffset>
+      <sed:PerpendicularOffset type="Standard">-1</sed:PerpendicularOffset>
     </PolygonSymbolizer>
-	<PolygonSymbolizer uom="meter">
+    <PolygonSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -181,7 +160,7 @@
       </Stroke>
     </PolygonSymbolizer>
   </Rule>
-  
+
   <!-- oberirdische Bahnanlage Linie-->
 
   <Rule>
@@ -219,9 +198,9 @@
         <SvgParameter name="stroke-width">2</SvgParameter>
         <SvgParameter name="stroke-linecap">butt</SvgParameter>
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
-	  </Stroke>
+      </Stroke>
     </LineSymbolizer>
-	<LineSymbolizer uom="meter">
+    <LineSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -233,8 +212,8 @@
         <SvgParameter name="stroke-linejoin">mitre</SvgParameter>
       </Stroke>
     </LineSymbolizer>
-  </Rule>  
-  
+  </Rule>
+
   <!-- hochgelegende Bahnanlage Fläche -->
   <Rule>
     <Name>so_Schienenverkehrsrecht</Name>
@@ -260,7 +239,7 @@
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
-	  <Fill>
+      <Fill>
         <SvgParameter name="fill">#FFFFFF</SvgParameter>
         <SvgParameter name="fill-opacity">0</SvgParameter>
       </Fill>
@@ -290,5 +269,193 @@
         <SvgParameter name="stroke-width">0.2</SvgParameter>
       </Stroke>
     </PolygonSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>so_sonstigesrecht</Name>
+    <Description>
+      <Title>SO: Schienenverkehrsrecht Punkt</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:Not>
+          <ogc:Or>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+              <ogc:Literal>1000</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+              <ogc:Literal>1001</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+              <ogc:Literal>9999</ogc:Literal>
+            </ogc:PropertyIsEqualTo>
+          </ogc:Or>
+        </ogc:Not>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#A591B3</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1.0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>40</Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>so_sonstigesrecht</Name>
+    <Description>
+      <Title>SO: Schienenverkehrsrecht Bahnanlage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:Literal>1000</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#A591B3</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1.0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>65</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>Bahn</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
+        <SvgParameter name="font-weight">bold</SvgParameter>
+        <SvgParameter name="font-size">22</SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Displacement>
+            <DisplacementX>-2</DisplacementX>
+            <DisplacementY>0</DisplacementY>
+          </Displacement>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+
+  <Rule>
+    <Name>so_sonstigesrecht</Name>
+    <Description>
+      <Title>SO: Schienenverkehrsrecht Peronenbahnhof</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsPoint">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:Literal>10001</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>circle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill">#A591B3</SvgParameter>
+            <SvgParameter name="fill-opacity">1.0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-opacity">1.0</SvgParameter>
+            <SvgParameter name="stroke-width">1.0</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>60</Size>
+      </Graphic>
+    </PointSymbolizer>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>Pbf</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-family">Sans-Serif</SvgParameter>
+        <SvgParameter name="font-weight">bold</SvgParameter>
+        <SvgParameter name="font-size">22</SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Displacement>
+            <DisplacementX>-2</DisplacementX>
+            <DisplacementY>0</DisplacementY>
+          </Displacement>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
   </Rule>
 </FeatureTypeStyle>

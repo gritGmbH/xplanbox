@@ -22,9 +22,9 @@
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
                   xmlns:sed="http://www.deegree.org/se"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:RP_NaturLandschaft</FeatureTypeName>
   <!-- Fläche -->
@@ -43,11 +43,11 @@
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           </ogc:PropertyIsNull>
           <ogc:Not>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:typ</ogc:PropertyName>
               <ogc:Literal>2600</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Not>
@@ -83,11 +83,11 @@
         </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
-            <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+            <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           </ogc:PropertyIsNull>
           <ogc:Not>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:typ</ogc:PropertyName>
               <ogc:Literal>2600</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Not>
@@ -160,7 +160,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>2600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -208,7 +208,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>2600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -222,7 +222,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/naturlandschaft-freiraum.svg" />
+                              xlink:href="../../symbols/naturlandschaft-freiraum.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#99ff00</SvgParameter>

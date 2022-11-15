@@ -122,12 +122,12 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/naturschutzrecht.svg" />
+                              xlink:href="../../symbols/naturschutzrecht.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill-opacity">0</SvgParameter>
               </Fill>
-               <Stroke>
+              <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
                 <SvgParameter name="stroke-width">0.1</SvgParameter>
@@ -206,12 +206,12 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/naturschutzrecht.svg" />
+                              xlink:href="../../symbols/naturschutzrecht.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill-opacity">0</SvgParameter>
               </Fill>
-               <Stroke>
+              <Stroke>
                 <SvgParameter name="stroke">#000000</SvgParameter>
                 <SvgParameter name="stroke-opacity">1.0</SvgParameter>
                 <SvgParameter name="stroke-width">0.1</SvgParameter>
@@ -226,7 +226,7 @@
     </LineSymbolizer>
   </Rule>
 
-  <!-- Punkte --> 
+  <!-- Punkte -->
 
   <!-- Naturschutzgebiet -->
   <Rule>
@@ -243,7 +243,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -256,7 +256,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/FreeSans.ttf" />
+                          xlink:href="../../symbols/FreeSans.ttf"/>
           <Format>ttf</Format>
           <MarkIndex>49</MarkIndex>
           <Fill>
@@ -306,7 +306,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -319,7 +319,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebnatpark_sym.svg" />
+                          xlink:href="../../symbols/schutzgebnatpark_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -333,7 +333,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -370,7 +370,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1200</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -383,7 +383,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebbiosph_sym.svg" />
+                          xlink:href="../../symbols/schutzgebbiosph_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -414,7 +414,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1300</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -427,7 +427,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/FreeSans.ttf" />
+                          xlink:href="../../symbols/FreeSans.ttf"/>
           <Format>ttf</Format>
           <MarkIndex>47</MarkIndex>
           <Fill>
@@ -477,7 +477,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -490,7 +490,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebnaturpark_sym.svg" />
+                          xlink:href="../../symbols/schutzgebnaturpark_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -504,7 +504,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -541,7 +541,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -554,7 +554,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebnaturdenk_sym.svg" />
+                          xlink:href="../../symbols/schutzgebnaturdenk_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -568,7 +568,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -605,7 +605,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -618,7 +618,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebgeschla_sym.svg" />
+                          xlink:href="../../symbols/schutzgebgeschla_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -632,7 +632,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -669,7 +669,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1700</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -682,7 +682,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebgeschbio_sym.svg" />
+                          xlink:href="../../symbols/schutzgebgeschbio_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -696,7 +696,7 @@
         <Size>3</Size>
       </Graphic>
     </PointSymbolizer>
-	<PointSymbolizer uom="meter">
+    <PointSymbolizer uom="meter">
       <Geometry>
         <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
@@ -733,7 +733,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1800</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -746,7 +746,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebgembed_sym.svg" />
+                          xlink:href="../../symbols/schutzgebgembed_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -777,7 +777,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>18000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -790,7 +790,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebgembed_sym.svg" />
+                          xlink:href="../../symbols/schutzgebgembed_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -821,7 +821,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>18001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -834,7 +834,7 @@
       <Graphic>
         <Mark>
           <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-            xlink:href="../../symbols/schutzgebeurvog_sym.svg" />
+                          xlink:href="../../symbols/schutzgebeurvog_sym.svg"/>
           <Format>svg</Format>
           <Fill>
             <SvgParameter name="fill">#000000</SvgParameter>
@@ -849,7 +849,7 @@
       </Graphic>
     </PointSymbolizer>
   </Rule>
-  
+
   <Rule>
     <Name>sonstigesSchutzgebiet</Name>
     <Description>
@@ -864,7 +864,7 @@
           <ogc:Literal>true</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>9999</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>

@@ -19,24 +19,461 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-
-<FeatureTypeStyle xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.opengis.net/se"
-  xmlns:ogc="http://www.opengis.net/ogc" xmlns:sed="http://www.deegree.org/se"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
-  <Name>vollflaechig</Name>
+<FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
+  <Name>XP_PPO</Name>
   <FeatureTypeName>xplan:XP_PPO</FeatureTypeName>
+  <!-- BP -->
+  <!-- Allgemein -->
   <Rule>
-    <Name>bp_xp_ppo</Name>
     <Description>
-      <Title>BP: Punkthaftes Präsentationobjekt</Title>
+      <Title>GR</Title>
     </Description>
     <ogc:Filter>
-      <ogc:PropertyIsEqualTo>
-        <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
-        <ogc:Literal>BP_Plan</ogc:Literal>
-      </ogc:PropertyIsEqualTo>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[GR]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GR</ogc:Literal>
+        <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+        <ogc:Literal>m²</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>GF</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[GF]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GF</ogc:Literal>
+        <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+        <ogc:Literal>m²</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>MaxZahlWohnungen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[MaxZahlWohnungen]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+        <ogc:Literal>Wo</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>GRZ</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[GRZ]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GRZ</ogc:Literal>
+        <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>GFZ</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[GFZ]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GFZ</ogc:Literal>
+        <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>BMZ</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[BMZ]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>BMZ</ogc:Literal>
+        <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Z</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[Z*]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <Recode fallbackValue="">
+          <LookupValue>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </LookupValue>
+          <MapItem>
+            <Data>1</Data>
+            <Value>I</Value>
+          </MapItem>
+          <MapItem>
+            <Data>2</Data>
+            <Value>II</Value>
+          </MapItem>
+          <MapItem>
+            <Data>3</Data>
+            <Value>III</Value>
+          </MapItem>
+          <MapItem>
+            <Data>4</Data>
+            <Value>IV</Value>
+          </MapItem>
+          <MapItem>
+            <Data>5</Data>
+            <Value>V</Value>
+          </MapItem>
+          <MapItem>
+            <Data>6</Data>
+            <Value>VI</Value>
+          </MapItem>
+          <MapItem>
+            <Data>7</Data>
+            <Value>VII</Value>
+          </MapItem>
+          <MapItem>
+            <Data>8</Data>
+            <Value>VIII</Value>
+          </MapItem>
+          <MapItem>
+            <Data>9</Data>
+            <Value>IX</Value>
+          </MapItem>
+          <MapItem>
+            <Data>10</Data>
+            <Value>X</Value>
+          </MapItem>
+          <MapItem>
+            <Data>11</Data>
+            <Value>XI</Value>
+          </MapItem>
+        </Recode>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Zwingend</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[Zzwingend]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
     <PointSymbolizer uom="meter">
@@ -47,16 +484,4631 @@
         <Mark>
           <WellKnownName>circle</WellKnownName>
           <Fill>
-            <SvgParameter name="fill">#000000</SvgParameter>
             <SvgParameter name="fill-opacity">0</SvgParameter>
           </Fill>
           <Stroke>
             <SvgParameter name="stroke">#000000</SvgParameter>
-            <SvgParameter name="stroke-opacity">1</SvgParameter>
-            <SvgParameter name="stroke-width">0.1</SvgParameter>
+            <SvgParameter name="stroke-width">
+              <ogc:Mul>
+                <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+                <ogc:Literal>0.2</ogc:Literal>
+              </ogc:Mul>
+            </SvgParameter>
           </Stroke>
         </Mark>
-        <Size>3</Size>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>5</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+        <Displacement>
+          <DisplacementX>0.3</DisplacementX>
+          <DisplacementY>0</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>offene Bauweise</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[bauweise=1000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>o</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>geschlossene Bauweise</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[bauweise=2000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>g</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>abweichende Bauweise</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[bauweise=3000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>a</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Bebauungsart Einzelhäuser</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[bebauungsArt=1000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>triangle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">0.2</SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>5</Size>
+        <Displacement>
+          <DisplacementX>0.3</DisplacementX>
+          <DisplacementY>-0.5</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>E</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Bebauungsart Doppelhäuser</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[bebauungsArt=2000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>triangle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">
+              <ogc:Mul>
+                <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+                <ogc:Literal>0.2</ogc:Literal>
+              </ogc:Mul>
+            </SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>5</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+        <Displacement>
+          <DisplacementX>0.3</DisplacementX>
+          <DisplacementY>-0.5</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>D</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Bebauungsart Hausgruppen</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[bebauungsArt=3000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>triangle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">
+              <ogc:Mul>
+                <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+                <ogc:Literal>0.2</ogc:Literal>
+              </ogc:Mul>
+            </SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>5</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+        <Displacement>
+          <DisplacementX>0.3</DisplacementX>
+          <DisplacementY>-0.5</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>H</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Bebauungsart Einzel- und Doppelhäuser</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_*[bebauungsArt=4000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <Mark>
+          <WellKnownName>triangle</WellKnownName>
+          <Fill>
+            <SvgParameter name="fill-opacity">0</SvgParameter>
+          </Fill>
+          <Stroke>
+            <SvgParameter name="stroke">#000000</SvgParameter>
+            <SvgParameter name="stroke-width">
+              <ogc:Mul>
+                <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+                <ogc:Literal>0.2</ogc:Literal>
+              </ogc:Mul>
+            </SvgParameter>
+          </Stroke>
+        </Mark>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>7</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+        <Displacement>
+          <DisplacementX>0.3</DisplacementX>
+          <DisplacementY>-1.5</DisplacementY>
+        </Displacement>
+      </Graphic>
+    </PointSymbolizer>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>ED</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Allgemeine Beschriftung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_*[gliederung.]*</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_*[text]*</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_*[aufschrift]*</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_*[zugunstenVon]*</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:Not>
+          <ogc:PropertyIsNull>
+            <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+          </ogc:PropertyIsNull>
+        </ogc:Not>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <!-- BP_BaugebietsteilFlaeche -->
+  <Rule>
+    <Description>
+      <Title>W</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[allgArtDerBaulNutzung=1000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>W</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>M</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[allgArtDerBaulNutzung=2000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>M</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>G</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[allgArtDerBaulNutzung=3000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>G</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>S</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[allgArtDerBaulNutzung=4000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>S</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>WS</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>WS</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>WR</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1100]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>WR</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>WA</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1200]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>WA</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>WB</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1300]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>WB</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>MD</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1400]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>MD</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>MDW</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1450]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>MDW</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>MI</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1500]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>MI</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>MU</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1550]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>MU</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>MK</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1600]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>MK</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>GE</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1700]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GE</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>GI</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=1800]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GI</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>SO</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=2.00]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_BaugebietsTeilFlaeche*[besondereArtDerBaulNutzung=4000]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>SO</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>NutzungText</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_BaugebietsTeilFlaeche*[nutzungText]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:PropertyName>xplan:schriftinhalt</ogc:PropertyName>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <!-- BP_GemeinschaftsanlageFlaeche -->
+  <Rule>
+    <Description>
+      <Title>GSt</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinschaftsanlagenFlaeche*[zweckbestimmung=1000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GSt</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>GGa</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinschaftsanlagenFlaeche*[zweckbestimmung=2000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GGa</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Spielplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinschaftsanlagenFlaeche*[zweckbestimmung=3000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflspielpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>GTGa</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinschaftsanlagenFlaeche*[zweckbestimmung=3200]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GTGa</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>GA</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_GemeinschaftsanlagenFlaeche*[zweckbestimmung=3400]*</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_GemeinschaftsanlagenFlaeche*[zweckbestimmung=3600]*</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>GA</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <!-- BP_NebenanlagenFlaeche -->
+  <Rule>
+    <Description>
+      <Title>St</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_NebenanlagenFlaeche*[zweckbestimmung=1000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>St</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Ga</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_NebenanlagenFlaeche*[zweckbestimmung=2000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>Ga</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Spielplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_NebenanlagenFlaeche*[zweckbestimmung=3000]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflspielpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>TGa</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_NebenanlagenFlaeche*[zweckbestimmung=3200]*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Label>
+        <ogc:Literal>TGa</ogc:Literal>
+      </Label>
+      <Font>
+        <SvgParameter name="font-family">Arial</SvgParameter>
+        <SvgParameter name="font-size">
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>3</ogc:Literal>
+          </ogc:Mul>
+        </SvgParameter>
+      </Font>
+      <LabelPlacement>
+        <PointPlacement>
+          <Rotation>
+            <ogc:Mul>
+              <ogc:PropertyName>xplan:drehwinkel</ogc:PropertyName>
+              <ogc:Literal>-1</ogc:Literal>
+            </ogc:Mul>
+          </Rotation>
+        </PointPlacement>
+      </LabelPlacement>
+      <Fill>
+        <SvgParameter name="fill">#000000</SvgParameter>
+      </Fill>
+    </TextSymbolizer>
+  </Rule>
+  <!-- BP_ErhaltungsBereichFlaeche -->
+  <Rule>
+    <Description>
+      <Title>Erhaltungsbereich</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_ErhaltungsBereichFlaeche*</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/erhaltungsber_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- BP_GruenFlaeche -->
+  <Rule>
+    <Description>
+      <Title>Kleingärten</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GruenFlaeche*[zweckbestimmung=1200]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenfldakleingar_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Friedhof</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GruenFlaeche*[zweckbestimmung=2600]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflfriedh_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Parkanlage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GruenFlaeche*[zweckbestimmung=1000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflpark_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Spielplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GruenFlaeche*[zweckbestimmung=1600]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflspielpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Sportplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GruenFlaeche*[zweckbestimmung=1400]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflsportpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Zeltplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GruenFlaeche*[zweckbestimmung=1800]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflzeltpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Badeplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GruenFlaeche*[zweckbestimmung=2000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflbadpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- BP_GemeinbedarfsFlaeche -->
+  <Rule>
+    <Description>
+      <Title>Öffentliche Verwaltung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=1000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsfloeff_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Kommunale Einrichtung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=10000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsfloeff_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Schule</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=12000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Hochschule</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=12001]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Berufsbildende Schule</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=12002]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Kirche</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=1400]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflkirch_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Sozial</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=1600]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Kinder</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=16000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Jugendliche</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=16001]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Familie und Erwachsene</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=16002]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Senioren</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=16003]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Behinderte</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=16005]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Gesundheit</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=1800]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflges_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Krankenhaus</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=18000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflges_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Kultur</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=2000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflkult_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Musik und Theater</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=20000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflkult_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Sport</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=2200]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflspo_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Sportplatz oder Sporthalle</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=22001]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflspo_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Schutzbauwerk</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=24001]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflschutzb_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Feuerwehr</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_GemeinbedarfsFlaeche*[zweckbestimmung=24000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflfeu_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- BP_SpielSportanlagenFlaeche -->
+  <Rule>
+    <Description>
+      <Title>Sportanlage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_SpielSportanlagenFlaeche*[zweckbestimmung=1000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/spispoanlflspo_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Spielanlage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>BP_SpielSportanlagenFlaeche*[zweckbestimmung=2000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/spispoanlflspi_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- FP -->
+  <!-- FP_Gruen -->
+  <Rule>
+    <Description>
+      <Title>Kleingärten</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gruen*[zweckbestimmung=1200]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenfldakleingar_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Friedhof</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gruen*[zweckbestimmung=2600]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflfriedh_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Parkanlage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gruen*[zweckbestimmung=1000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflpark_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Spielplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gruen*[zweckbestimmung=1600]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflspielpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Sportplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gruen*[zweckbestimmung=1400]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflsportpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Zeltplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gruen*[zweckbestimmung=1800]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflzeltpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Badeplatz</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gruen*[zweckbestimmung=2000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gruenflbadpl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- FP_Gemeinbedarf -->
+  <Rule>
+    <Description>
+      <Title>Öffentliche Verwaltung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=1000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsfloeff_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Kommunale Einrichtung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=10000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsfloeff_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Schule</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=12000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Hochschule</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=12001]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Berufsbildende Schule</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=12002]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflschule_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Kirche</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=1400]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflkirch_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Sozial</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=1600]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Kinder</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=16000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Jugendliche</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=16001]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Familie und Erwachsene</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=16002]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Senioren</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=16003]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Einrichtung Behinderte</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=16005]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflsoz_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Gesundheit</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=1800]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflges_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Krankenhaus</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=18000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflges_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Kultur</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=2000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflkult_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Musik und Theater</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=20000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflkult_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Sport</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=2200]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflspo_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Sportplatz oder Sporthalle</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=22001]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflspo_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Schutzbauwerk</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=24001]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflschutzb_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Feuerwehr</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>FP_Gemeinbedarf*[zweckbestimmung=24000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/gembedarfsflfeu_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- SO -->
+  <!-- SO_Denkmalschutzrecht -->
+  <Rule>
+    <Description>
+      <Title>Denkmalschutz-Ensemble</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Denkmalschutzrecht*[artDerFestlegung=1000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/denkmalschens_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Denkmalschutz-Einzelanlage</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Denkmalschutzrecht*[artDerFestlegung=1100]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/denkmalscheinzelanl_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- SO_Gebiet -->
+  <Rule>
+    <Description>
+      <Title>Erhaltungsverordnung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Gebiet*[gebietsArt=1999]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/erhaltungsber_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>ErhaltungsverordnungStaedtebaulicheGestalt</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Gebiet*[gebietsArt=2000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/erhaltungsber_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>ErhaltungsverordnungWohnbevoelkerung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Gebiet*[gebietsArt=2100]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/erhaltungsber_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>ErhaltungsverordnungUmstrukturierung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Gebiet*[gebietsArt=2200]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/erhaltungsber_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Erhaltungsgebiet</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Gebiet*[gebietsArt=1700]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/erhaltungsber_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Erhaltungsgebiet Städtebauliche Gestalt</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Gebiet*[gebietsArt=17000]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/erhaltungsber_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Erhaltungsgebiet Wohnbevölkerung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Gebiet*[gebietsArt=17001]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/erhaltungsber_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Erhaltungsgebiet Umstrukturierung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+          <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+          <ogc:Literal>SO_Gebiet*[gebietsArt=17002]*_F</ogc:Literal>
+        </ogc:PropertyIsLike>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/erhaltungsber_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>6</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <!-- BP_Schutzgebiet/SO_SchutzgebietNaturschutzrecht -->
+  <Rule>
+    <Description>
+      <Title>Naturschutzgebiet</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=1000]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=1000]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgebnatur_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Nationalpark</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=1100]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=1100]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgebnatpark_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Biosphärenreservat</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=1200]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=1200]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgebbiosph_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Landschaftsschutzgebiet</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=1300]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=1300]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgeblandsch_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Naturpark</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=1400]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=1400]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgebnaturpark_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Naturdenkmal</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=1500]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=1500]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgebnaturdenk_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Geschützter Landschaftsbestandteil</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=1600]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=1600]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgebgeschla_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Gesetzlich geschütztes Biotop</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=1700]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=1700]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgebgeschbio_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Gebiet gemeinschaftlicher Bedeutung</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=18000]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=18000]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgebgembed_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
+      </Graphic>
+    </PointSymbolizer>
+  </Rule>
+  <Rule>
+    <Description>
+      <Title>Europäisches Vogelschutzgebiet</Title>
+    </Description>
+    <ogc:Filter>
+      <ogc:And>
+        <ogc:Or>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>SO_SchutzgebietNaturschutzrecht*[artDerFestlegung=18001]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+          <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
+            <ogc:PropertyName>xplan:stylesheetId</ogc:PropertyName>
+            <ogc:Literal>BP_Schutzgebiet*[zweckbestimmung=18001]*_F</ogc:Literal>
+          </ogc:PropertyIsLike>
+        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:xpPlanType</ogc:PropertyName>
+          <ogc:Literal>BP_Plan</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+      </ogc:And>
+    </ogc:Filter>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <PointSymbolizer uom="meter">
+      <Geometry>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
+      </Geometry>
+      <Graphic>
+        <ExternalGraphic>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
+                          xlink:href="../../symbols/schutzgebeurvog_sym.svg"/>
+          <Format>svg</Format>
+        </ExternalGraphic>
+        <Size>
+          <ogc:Mul>
+            <ogc:PropertyName>xplan:skalierung</ogc:PropertyName>
+            <ogc:Literal>10</ogc:Literal>
+          </ogc:Mul>
+        </Size>
       </Graphic>
     </PointSymbolizer>
   </Rule>

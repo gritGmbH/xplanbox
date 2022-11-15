@@ -20,14 +20,14 @@ Die Tabellenstruktur aus diesem Schema unterscheidet sich nicht zu den anderen v
 === Datenbankschema für XPlanSyn
 
 Das XPlanSyn-Schema wird aus den von der xPlanBox unterstützten XPlanGML-Versionen abgeleitet. Dabei wird ein versionsübergreifendes Schema erzeugt.
-In der aktuellen Version der xPlanBox sind dies die XPlanGML-Versionen 3.0 bis 5.4 und das Datenbankschema `xplansyn` umfasst 324 Tabellen. XPlanGML-Dokumente werden im XPlanSyn-Schema unter Verwendung des relationalen Mappings von deegree (siehe https://download.deegree.org/documentation/current/html/#_mapping_gml_application_schemas[deegree webservices relational mapping]) gespeichert.
+In der aktuellen Version der xPlanBox sind dies die XPlanGML-Versionen 4.0 bis 6.0 und das Datenbankschema `xplansyn` umfasst 324 Tabellen. XPlanGML-Dokumente werden im XPlanSyn-Schema unter Verwendung des relationalen Mappings von deegree (siehe https://download.deegree.org/documentation/current/html/#_mapping_gml_application_schemas[deegree webservices relational mapping]) gespeichert.
 
 IMPORTANT: Wird eine ältere XPlanGML-Version abgekündigt oder eine neue XPlanGML-Version hinzugefügt, ändert sich das XPlanSyn-Schema!
 
 Die folgenden Diagramme zeigen die Tabellenstruktur für ausgewählte Fachdatenobjekte (abgeleitete Feature Types aus den XPlanGML-Schema) aus dem Schema `xplansyn`.
 
 .Datenbankschema 'xplansyn' - BPlan (Ausschnitt 1 - BP_Baugebiet)
-image::xplandb_xplansyn_bplan1.png[Schema xplansyn - BPlan (Ausschnitt 1 - PB_Baugebiet)]
+image::xplandb_xplansyn_bplan1.png[Schema xplansyn - BPlan (Ausschnitt 1 - BP_Baugebiet)]
 
 .Datenbankschema 'xplansyn' - BPlan (Ausschnitt 2 - BP_Bereich)
 image::xplandb_xplansyn_bplan2.png[Schema xplansyn - BPlan (Ausschnitt 2 - BP_Bereich)]
@@ -38,14 +38,11 @@ image::xplandb_xplansyn_bplan3.png[Schema xplansyn - BPlan (Ausschnitt 3 - BP_Pl
 .Datenbankschema 'xplansyn' - BPlan (Ausschnitt 4 - BP_UeberbaubareGrundstuecksflaeche)
 image::xplandb_xplansyn_bplan4.png[Schema xplansyn - BPlan (Ausschnitt 4 - BP_UeberbaubareGrundstuecksflaeche)]
 
-.Datenbankschema 'xplansyn' - XP (Ausschnitt 1 - XP_Nutzungsschablone)
-image::xplandb_xplansyn_xp1.png[Schema xplansyn - XP (Ausschnitt 1 - XP_Nutzungsschablone)]
+.Datenbankschema 'xplansyn' - XP (Ausschnitt 1 - XP_FPO)
+image::xplandb_xplansyn_xp1.png[Schema xplansyn - XP (Ausschnitt 1 - XP_FPO)]
 
-.Datenbankschema 'xplansyn' - XP (Ausschnitt 2 - XP_Grenze)
-image::xplandb_xplansyn_xp2.png[Schema xplansyn - XP (Ausschnitt 2 - XP_Grenze)]
-
-.Datenbankschema 'xplansyn' - XP (Ausschnitt 3 - XP_Textabschnitt)
-image::xplandb_xplansyn_xp3.png[Schema xplansyn - XP (Ausschnitt 3 - XP_Textabschnitt)]
+.Datenbankschema 'xplansyn' - XP (Ausschnitt 2 - XP_Nutzungsschablone)
+image::xplandb_xplansyn_xp2.png[Schema xplansyn - XP (Ausschnitt 2 - XP_Nutzungsschablone)]
 
 [[appendix_xplandb_xplanmgr]]
 === Datenbankschema für XPlanManager
@@ -60,3 +57,5 @@ In der Tabelle `xplanmgr.plans.artefacts` werden alle im XPlanArchiv enthaltenen
 image::xplandb_xplanmgr.png[Schema xplanmgr]
 
 NOTE: Die Rasterdateien werden zusätzlich für die Bereitstellung über den XPlanWMS auch im Workspace des XPlanWMS abgelegt. Die Verzeichnisstruktur im Kapitel <<appendix_xplanwms-workspace>> beschrieben.
+
+NOTE: Die Tabelle planslog beinhaltet eine Historie jedes Plans ab dem Zeitpunkt an dem die Tabelle inkl. Function und Trigger angelegt wurde. Die Historie umfasst den Zeitpunkt wann ein Plan importiert (INSERT), aktualisiert (UPDATE) und gelöscht (DELETE) wurde

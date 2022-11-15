@@ -1,56 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="100%"
    height="100%"
    viewBox="-5 -5 100 100"
-   id="svg2">
+   id="svg2"
+   sodipodi:docname="schutzgebbiosph_sym.svg"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="8.5"
+     inkscape:cx="50"
+     inkscape:cy="50"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     inkscape:document-rotation="0" />
   <defs
      id="defs4">
     <style
        type="text/css"
        id="style6" />
-    <symbol
-       id="SymbolBiosphaerenreservat"
-       style="overflow:visible">
-      <text
-         x="0"
-         y="1.5"
-         id="text11"
-         style="font-size:4px;font-weight:100;text-anchor:middle;fill:#000000;stroke:none">BRV</text>
-    </symbol>
   </defs>
-  <use
-     transform="matrix(10.460899,0,0,10.460899,44.939271,44.939271)"
-     id="use13"
-     x="0"
-     y="0"
-     width="10"
-     height="10"
-     xlink:href="#SymbolBiosphaerenreservat" />
+  <g
+     id="g878"
+     transform="translate(12.23787,-0.41941)"
+     style="stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none">
+    <path
+       d="m 28.777999,51.273018 q 0,2.267891 -0.858118,4.004563 -0.858123,1.736673 -2.308755,2.860402 -1.716242,1.348476 -3.779818,1.920556 -2.043144,0.57208 -5.210018,0.57208 H 5.8334879 V 30.208201 h 9.0102671 q 3.330325,0 4.985272,0.245172 1.654947,0.245172 3.166873,1.021569 1.675379,0.878548 2.431342,2.267891 0.755968,1.368906 0.755968,3.289462 0,2.165733 -1.103299,3.698091 -1.103298,1.511927 -2.942128,2.431342 v 0.163452 q 3.085149,0.633374 4.862684,2.717382 1.777535,2.063575 1.777532,5.230456 z M 21.974329,37.56352 q 0,-1.103298 -0.367764,-1.859261 -0.367768,-0.755964 -1.185026,-1.225887 -0.960279,-0.551645 -2.329185,-0.674236 -1.368906,-0.143022 -3.391619,-0.143022 H 9.8789142 v 8.785521 h 5.2304498 q 1.900124,0 3.023853,-0.183883 1.12373,-0.204315 2.084007,-0.817258 0.960279,-0.612943 1.348476,-1.573221 0.408634,-0.980709 0.408629,-2.308753 z m 2.594793,13.87295 q 0,-1.83883 -0.551645,-2.921696 -0.551645,-1.082867 -2.002282,-1.83883 -0.980709,-0.510786 -2.390478,-0.653807 -1.389339,-0.163451 -3.391619,-0.163451 H 9.8789142 v 11.31902 h 5.3530378 q 2.656088,0 4.351898,-0.265613 1.695809,-0.286043 2.778676,-1.021569 1.144161,-0.796827 1.675378,-1.818399 0.531215,-1.021573 0.531218,-2.635655 z"
+       style="font-weight:100;font-size:4px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path850" />
+    <path
+       d="M 59.690773,60.630619 H 54.439892 L 44.265033,48.535205 H 38.564661 V 60.630619 H 34.519235 V 30.208201 h 8.519912 q 2.758245,0 4.597075,0.367763 1.838829,0.347333 3.309893,1.26675 1.654947,1.042006 2.574362,2.635658 0.939847,1.573221 0.939847,4.004563 0,3.289462 -1.654947,5.51649 -1.654947,2.206595 -4.556212,3.330325 z M 50.231015,38.768975 q 0,-1.307612 -0.469924,-2.308753 -0.449491,-1.021573 -1.511926,-1.716241 -0.878552,-0.592512 -2.084007,-0.817258 -1.205456,-0.245178 -2.839971,-0.245178 h -4.760526 v 11.482472 h 4.086288 q 1.920556,0 3.350757,-0.326903 1.430201,-0.347335 2.431342,-1.26675 0.919415,-0.858121 1.348475,-1.961418 0.449491,-1.12373 0.449492,-2.839971 z"
+       style="font-weight:100;font-size:4px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path852" />
+  </g>
+  <path
+     id="path883-4"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none"
+     d="M 86.496979,44.999999 A 41.496976,41.496976 0 0 1 44.999997,86.496977 41.496976,41.496976 0 0 1 3.503021,44.999999 41.496976,41.496976 0 0 1 44.999997,3.503023 41.496976,41.496976 0 0 1 86.496979,44.999999 Z" />
 </svg>

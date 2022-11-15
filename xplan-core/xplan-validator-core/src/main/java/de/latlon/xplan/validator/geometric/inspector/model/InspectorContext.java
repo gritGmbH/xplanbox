@@ -55,10 +55,10 @@ public abstract class InspectorContext {
 	 */
 	public void addToContext(Feature feature, double toleranceInMeter) {
 		if (isPlanFeature(feature)) {
-			planFeatures.put(feature.getId(), new PlanFeature(feature, toleranceInMeter));
+			planFeatures.put(feature.getId(), new PlanFeature(feature, this, toleranceInMeter));
 		}
 		else if (isBereichFeature(feature)) {
-			bereichFeatures.put(feature.getId(), new BereichFeature(feature, toleranceInMeter));
+			bereichFeatures.put(feature.getId(), new BereichFeature(feature, this, toleranceInMeter));
 		}
 		else {
 			addFeatureUnderTest(feature);

@@ -1,18 +1,13 @@
-stages:
-  - build
-
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
-  MAVEN_CLI_OPTS: "--batch-mode -DinstallAtEnd=true -DdeployAtEnd=true -s $CI_PROJECT_DIR/ci_settings.xml"
+  MAVEN_CLI_OPTS: "--batch-mode -DinstallAtEnd=true -DdeployAtEnd=true -DskipDeployBigArtefact=true -s $CI_PROJECT_DIR/ci_settings.xml"
 
 maven-build:
   stage: build
   image: maven:3.8.6-jdk-11
   script:
     - 'echo "with Maven goal: $MAVEN_GOAL"'
-    - 'curl -o geowerkstatt-hamburg-xplanung.zip https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.11.1.zip'
-    - 'mvn -q $MAVEN_CLI_OPTS install:install-file -DgroupId=de.geowerkstatt-hamburg -DartifactId=xplanung -Dversion=0.11.1 -Dpackaging=zip -DgeneratePom=true -Dfile=geowerkstatt-hamburg-xplanung.zip'
-    - 'git clone --branch xplanbox-deegree-3.4.27 https://github.com/lat-lon/deegree3.git'
+    - 'git clone --branch xplanbox-deegree-3.5-PRE1 https://github.com/lat-lon/deegree3.git'
     - 'cd deegree3'
     - 'mvn -q $MAVEN_CLI_OPTS install -DskipTests'
     - 'cd ..'
@@ -24,3 +19,32 @@ maven-build:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
       variables:
         MAVEN_GOAL: "deploy"
+
+maven-release:
+  image: maven:3.8.6-jdk-11
+  stage: deploy
+  only:
+    - main
+  when: manual
+  before_script:
+    - mkdir -p ~/.ssh/
+    - cp $DEPLOY_PRIVATE_KEY ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+    - cp $KNOWN_HOSTS ~/.ssh/known_hosts
+    - apt-get update && apt-get install -y git
+    - git config --global user.email "noreply@gitlab.opencode.de"
+    - git config --global user.name "xplanung GitLab CI"
+    - git checkout -B "$CI_COMMIT_REF_NAME"
+  script:
+    - mvn release:prepare release:perform $MAVEN_CLI_OPTS -DscmReleaseCommitComment="[skip ci] prepare release @{releaseLabel}" -DtagNameFormat="v@{project.version}"
+
+gitlab-release:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "Running the release job."
+  release:
+    tag_name: $CI_COMMIT_TAG
+    name: 'Release $CI_COMMIT_TAG'
+    description: 'Release created using the release-cli.'    

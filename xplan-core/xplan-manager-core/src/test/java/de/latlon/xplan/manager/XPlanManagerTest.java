@@ -26,12 +26,12 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.workspace.WorkspaceUtils;
 import org.apache.commons.io.IOUtils;
-import org.deegree.commons.config.DeegreeWorkspace;
+import org.deegree.commons.utils.Pair;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,24 +98,21 @@ public class XPlanManagerTest {
 		XPlanManager xPlanManager = createXPlanManager();
 		String pathToArchive = copyPlan();
 
-		Rechtsstand legislationStatus = xPlanManager.determineRechtsstand(pathToArchive);
+		Pair<Rechtsstand, PlanStatus> legislationStatus = xPlanManager.determineRechtsstand(pathToArchive);
 
-		assertThat(legislationStatus.getCodeNumber(), is(4000));
+		assertThat(legislationStatus.first.getCodeNumber(), is(4000));
+		assertThat(legislationStatus.second, is(PlanStatus.FESTGESTELLT));
 	}
 
 	private XPlanManager createXPlanManager() throws Exception {
 		XPlanDao xPlanDao = mock(XPlanDao.class);
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		ManagerConfiguration managerConfiguration = mockManagerConfig();
-		DeegreeWorkspace managerWorkspace = WorkspaceUtils
-				.instantiateManagerWorkspace(managerWorkspaceDirectory.getAbsoluteFile());
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = mock(ManagerWorkspaceWrapper.class);
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
-		DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(wmsWorkspaceDirectory.getAbsoluteFile());
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, null,
-				wmsWorkspaceWrapper);
+		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, wmsWorkspaceWrapper);
 	}
 
 	private ManagerConfiguration mockManagerConfig() {

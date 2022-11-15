@@ -36,7 +36,6 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -55,13 +54,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrievePlanName;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
+import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.deegree.cs.persistence.CRSManager.lookup;
@@ -73,13 +72,12 @@ public class XPlanEditManager extends XPlanTransactionManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanEditManager.class);
 
-	public XPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanGmlTransformer xPlanGmlTransformer,
-			XPlanDao xplanDao, XPlanExporter xPlanExporter, XPlanRasterManager xPlanRasterManager,
-			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
-			throws DataServiceCouplingException {
-		super(xPlanSynthesizer, xPlanGmlTransformer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
-				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
+	public XPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
+			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
+			ManagerConfiguration managerConfiguration, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			SortPropertyReader sortPropertyReader) throws DataServiceCouplingException {
+		super(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration,
+				managerWorkspaceWrapper, sortPropertyReader);
 	}
 
 	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
@@ -124,7 +122,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			}
 
 			// TODO: Validation required?
-			PlanStatus newPlanStatus = detectNewPlanStatus(xPlanToEdit, oldLegislationStatus, oldPlanStatus);
+			PlanStatus newPlanStatus = detectNewPlanStatus(type, xPlanToEdit, oldLegislationStatus, oldPlanStatus);
 			AdditionalPlanData xPlanMetadata = new AdditionalPlanData(newPlanStatus,
 					xPlanToEdit.getValidityPeriod().getStart(), xPlanToEdit.getValidityPeriod().getEnd());
 			Date sortDate = sortPropertyReader.readSortDate(type, version, modifiedFeatures);
@@ -135,14 +133,15 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			startCreationIfPlanNameHasChanged(planId, type, modifiedPlanFc, oldPlanName, oldDescription);
 
 			xPlanRasterManager.removeRasterLayers(planId, externalReferenceInfoToRemove);
+			int planIdInt = parseInt(planId);
 			if (makeRasterConfig) {
 				XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
-				createRasterConfiguration(archive, modifiedPlanFc, parseInt(planId), BP_Plan, oldPlanStatus,
-						newPlanStatus, sortDate);
-				reloadWorkspace();
+				createRasterConfiguration(archive, modifiedPlanFc, planIdInt, type, oldPlanStatus, newPlanStatus,
+						sortDate);
+				reloadWorkspace(planIdInt);
 			}
 			else {
-				xPlanRasterManager.updateRasterLayers(parseInt(planId), type, oldPlanStatus, newPlanStatus);
+				xPlanRasterManager.updateRasterLayers(planIdInt, type, oldPlanStatus, newPlanStatus);
 			}
 			LOG.info("Rasterkonfiguration für den Plan mit der ID {} wurde ausgetauscht (falls vorhanden).", planId);
 		}
@@ -151,7 +150,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 		}
 	}
 
-	private PlanStatus detectNewPlanStatus(XPlanToEdit xPlanToEdit, String oldLegislationStatus,
+	private PlanStatus detectNewPlanStatus(XPlanType type, XPlanToEdit xPlanToEdit, String oldLegislationStatus,
 			PlanStatus oldPlanStatus) {
 		int newLegislationStatusCode = xPlanToEdit.getBaseData().getLegislationStatusCode();
 		int oldLegislationStatusCode = -1;
@@ -163,7 +162,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			LOG.warn("Could not parse legislation status code {} as integer", oldLegislationStatus);
 		}
 		if (newLegislationStatusCode != oldLegislationStatusCode)
-			return PlanStatus.findByLegislationStatusCode(newLegislationStatusCode);
+			return findByLegislationStatusCode(type.name(), newLegislationStatusCode);
 		return oldPlanStatus;
 	}
 

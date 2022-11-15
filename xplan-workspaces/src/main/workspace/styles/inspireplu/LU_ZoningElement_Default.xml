@@ -37,7 +37,7 @@
 
   <!--PrimaryProduction-->
   <se:Rule>
-    <se:Name>Primary  Production</se:Name>
+    <se:Name>Primary Production</se:Name>
     <ogc:Filter>
       <ogc:PropertyIsLike wildCard="*" singleChar="." escapeChar="!">
         <ogc:PropertyName>app:hilucs</ogc:PropertyName>

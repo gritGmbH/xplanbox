@@ -30,9 +30,9 @@ Bitte beachten Sie die Anforderungen an den Dateinamen. Der Dateiname darf nur f
 Sonderzeichen wie z.B. Umlaute, Zeilenumbrüche und Leerzeichen sind nicht erlaubt.
 ====
 
-CAUTION: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
+WARNING: Die Größe eines Plans hat unmittelbare Auswirkungen auf die Dauer der Validierung.
 
-
+[[xplanvalidator-web-validieren]]
 ===== Schritt 2 – Bezeichnung des Validierungsberichts und Validierungstyp wählen
 
 Wenn Sie einen Plan hochgeladen haben, steht im Feld „Bezeichnung für den Report“ der Name der Datei ohne Endung.
@@ -70,6 +70,7 @@ Die semantische Validierung überprüft die fachlich-inhaltliche Kohärenz der X
  * 5.2 (191 Regeln)
  * 5.3 (195 Regeln)
  * 5.4 (198 Regeln)
+ * 6.0 (181 Regeln)
 
 [NOTE]
 ====
@@ -119,15 +120,22 @@ Nutzung der Optionen
 
 * *„Geometrische Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen“*: +
 Mit der Option "Prüfung der Flächenschlussbedingung (2.2.1.1) überspringen" kann die Prüfung der Flächenschlussbedingung in Ausnahmefällen deaktiviert werden. Grundsätzlich sollten alle Fehler, die den Flächenschluss betreffen, behoben werden.
-* *„Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“*: +
-Wenn Fehler im Geltungsbereich, z.B. in Kreisbögen, nicht korrigiert werden können, selektieren Sie in Ausnahmefällen die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm. Grundsätzlich sollten alle Fehler, die den Geltungsbereich betreffen, behoben werden.
-* *„Prüfung der Laufrichtung (2.2.2.1) überspringen“*: +
-Bei der Prüfung der Laufrichtung werden Fehler bei der Orientierung von Polygonen ausgegeben. Sollen die Fehler bei der Laufrichtung ignoriert werden, können Sie die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktivieren.
 
 [NOTE]
 ====
 Wenn sich zwei aneinandergrenzende Flächenschlussobjekte an einer Geraden berühren und nur eines der Flächenschlussobjekte einen zusätzlichen Stützpunkt innerhalb dieser Geraden aufweist, wird der fehlende Stützpunkt des anderen Flächenschlussobjekt durch den XPlanValidator nicht gefunden.
 ====
+
+* *„Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“*: +
+Wenn Fehler im Geltungsbereich, z.B. in Kreisbögen, nicht korrigiert werden können, selektieren Sie in Ausnahmefällen die Option „Geometrische Prüfung des Geltungsbereichs (2.2.3.1) überspringen“. Bei Überlappungen des Geltungsbereiches gilt eine Toleranz von 1 mm. Grundsätzlich sollten alle Fehler, die den Geltungsbereich betreffen, behoben werden.
+
+[NOTE]
+====
+Wenn die Geometrie eines Fachobjekts ein Loch im Geltungsbereich vollständig überdeckt, wird dieser Fehler nur angezeigt, wenn für dieses Fachobjekt keine weiteren Fehler bei der Überprüfung des Geltungsbereichs auftreten.
+====
+
+* *„Prüfung der Laufrichtung (2.2.2.1) überspringen“*: +
+Bei der Prüfung der Laufrichtung werden Fehler bei der Orientierung von Polygonen ausgegeben. Sollen die Fehler bei der Laufrichtung ignoriert werden, können Sie die Option "Prüfung der Laufrichtung (2.2.2.1) überspringen" aktivieren.
 
 *3) Syntaktische Validierung (obligatorisch)*
 
@@ -136,6 +144,14 @@ Die syntaktische Validierung ist die Voraussetzung für die semantische und geom
 Bei der syntaktischen Validierung wird die Struktur der XPlanGML-Datei geprüft. Eine syntaktisch valide XPlanGML-Datei muss sowohl den Anforderungen der Wohlgeformtheit von XML entsprechen als auch die vom XPlanGML-Schema definierten Regeln erfüllen.
 
 Die Validierung kann über den Button image:validator/BT_ValidierungStarten.png[] gestartet werden.
+
+[[xplanvalidator-web-profiles]]
+*Zusätzliche Profile mit Validierungsregeln (optional)*
+
+Zusätzlich können noch Profile ausgewählt werden, die zusätzliche Validierungsregeln enthalten können. Sind Profile für den XPlanValidator konfiguriert, dann werden diese unterhalb der Validierungstypen angezeigt.
+
+[.bordered]
+image::validator/Validierungsprofile.png[Validierungsprofile]
 
 ===== Schritt 3 – Validierungsergebnis und Validierungsbericht
 
@@ -205,6 +221,8 @@ image::validator/Validierung_syntaktisch-valide.png[Validerungsoptionen]
 [.bordered]
 image::validator/Validierung_syntaktisch-nicht-valide.png[Validerung syntaktisch valide]
 
+IMPORTANT: Die Angaben der Zeilennummer können abweichen. Gute Ergebnisse lassen sich erzielen, wenn das XML-Dokument ohne Formatierung der Attribute erfolgt, insbesondere der Deklaration der Namensräume (siehe auch <<bekannte-probleme>>).
+
 Wenn die syntaktische Validierung nicht valide ist, werden die semantische und die geometrische Validierung nicht durchgeführt und es ist auch keine Kartenvorschau vorhanden.
 
 [.bordered]
@@ -213,7 +231,14 @@ image::validator/Validierung_syntaktisch-nicht-valide-andere.png[Validerung synt
 [.bordered]
 image::validator/Kartenvorschau-nicht-verfuegbar.png[Kartenvorschau nicht verfügbar]
 
-====== Der Validierungsbericht
+*Validierungsergebnis für Profile*
+
+Sind Profile für den XPlanValidator konfiguriert und wurden diese bei der Validierung durch den Benutzer ausgewählt, so wird das Ergebnis unterhalb der Ergebnisse der syntaktischen Validierung ausgegeben
+
+[.bordered]
+image::validator/Validierungsprofile-valide.png[Validerungsprofile valide]
+
+====== Download des Validierungsberichts
 
 [.bordered]
 image::validator/Validierungsbericht_download.png[Validierungsbericht Download]

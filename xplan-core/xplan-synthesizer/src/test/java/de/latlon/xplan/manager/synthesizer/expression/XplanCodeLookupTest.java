@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -25,12 +25,12 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
-import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -38,30 +38,31 @@ import static org.junit.Assert.assertEquals;
 public class XplanCodeLookupTest {
 
 	@Test
-	public void testEvaluateXplan3() {
-		FeatureCollection features = getTestFeatures(XPLAN_3);
+	public void testEvaluateXplan40() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_40);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("BPlan", value + "");
+		assertThat(value.getAsText(), is("BPlan"));
 	}
 
 	@Test
-	public void testEvaluateXplan40() {
-		FeatureCollection features = getTestFeatures(XPLAN_40);
+	public void testEvaluateXplan41() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("BPlan", value + "");
+		assertThat(value.getAsText(), is("BPlan"));
 	}
 
 	@Test
-	public void testEvaluateXplan41() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
-		Feature feature = getTestFeature(features, "BP_Plan_1");
-		XplanCodeLookup expr = new XplanCodeLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
+	public void testComplexProperty() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_60);
+		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
+		Xpath xpath = new Xpath("xplan:zweckbestimmung/xplan:BP_KomplexeZweckbestGruen/xplan:allgemein");
+		XplanCodeLookup expr = new XplanCodeLookup(xpath, "XP_ZweckbestimmungGruen");
 		PrimitiveValue value = expr.evaluate(feature, features);
-		assertEquals("BPlan", value + "");
+		assertThat(value.getAsText(), is("Parkanlage"));
 	}
 
 }

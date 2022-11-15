@@ -21,10 +21,10 @@
   -->
 
 <FeatureTypeStyle xmlns="http://www.opengis.net/se" xmlns:ogc="http://www.opengis.net/ogc"
-  xmlns:sed="http://www.deegree.org/se"
-  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
+                  xmlns:sed="http://www.deegree.org/se"
+                  xmlns:xplan="http://www.deegree.org/xplanung/1/0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd http://www.deegree.org/se http://schemas.deegree.org/se/1.1.0/Symbolizer-deegree.xsd">
   <Name>vollflaechig</Name>
   <FeatureTypeName>xplan:FP_AusgleichsFlaeche</FeatureTypeName>
   <Rule>
@@ -34,16 +34,16 @@
     </Description>
     <ogc:Filter>
       <ogc:And>
-      <ogc:PropertyIsEqualTo>
-        <ogc:Function name="IsSurface">
-          <ogc:PropertyName>xplan:position</ogc:PropertyName>
-        </ogc:Function>
-        <ogc:Literal>true</ogc:Literal>
-      </ogc:PropertyIsEqualTo>
-      <ogc:PropertyIsEqualTo>
-        <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
-        <ogc:Literal>true</ogc:Literal>
-      </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:Function name="IsSurface">
+            <ogc:PropertyName>xplan:position</ogc:PropertyName>
+          </ogc:Function>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
+          <ogc:Literal>true</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
       </ogc:And>
     </ogc:Filter>
     <MaxScaleDenominator>50000</MaxScaleDenominator>

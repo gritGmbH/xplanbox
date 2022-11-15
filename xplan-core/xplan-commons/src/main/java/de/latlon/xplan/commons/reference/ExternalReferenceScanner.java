@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -23,7 +23,6 @@ package de.latlon.xplan.commons.reference;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
-import org.deegree.commons.tom.gml.GMLReference;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
@@ -73,23 +72,20 @@ public class ExternalReferenceScanner {
 
 	private void scanFc(FeatureCollection fc, XPlanVersion version) {
 		switch (version) {
-		case XPLAN_3:
-			Map<String, ExternalReference> fidToExternalRef = scanForExternalReferencesXplan2or3(fc);
-			scanForRasterplanFeaturesXplan2or3(fidToExternalRef, fc);
-			break;
-		case XPLAN_40:
-		case XPLAN_41:
-			scanXplan4(fc);
-			break;
-		case XPLAN_50:
-		case XPLAN_51:
-		case XPLAN_52:
-		case XPLAN_53:
-		case XPLAN_54:
-			scanXplan5(fc);
-			break;
-		default:
-			throw new IllegalArgumentException("Unsupported XPlanGML Version: " + version);
+			case XPLAN_40:
+			case XPLAN_41:
+				scanXplan4(fc);
+				break;
+			case XPLAN_50:
+			case XPLAN_51:
+			case XPLAN_52:
+			case XPLAN_53:
+			case XPLAN_54:
+			case XPLAN_60:
+				scanXplan5or6(fc);
+				break;
+			default:
+				throw new IllegalArgumentException("Unsupported XPlanGML Version: " + version);
 		}
 	}
 
@@ -117,33 +113,6 @@ public class ExternalReferenceScanner {
 			}
 		}
 		return fidToExternalReference;
-	}
-
-	private void scanForRasterplanFeaturesXplan2or3(Map<String, ExternalReference> fidToExternalRef,
-			FeatureCollection fc) {
-		for (Feature feature : fc) {
-			String name = feature.getName().getLocalPart();
-			if ("XP_RasterplanBasis".equals(name)) {
-				List<Property> refScanProps = feature
-						.getProperties(new QName(feature.getName().getNamespaceURI(), "refScan"));
-				for (Property property : refScanProps) {
-					GMLReference<?> ref = (GMLReference<?>) property.getValue();
-					String gmlId = ref.getId();
-					ExternalReference externalRef = fidToExternalRef.get(gmlId);
-					rasterPlanBaseScans.add(externalRef);
-				}
-			}
-			else if (isRasterplanAenderungFeature(name)) {
-				List<Property> refScanProps = feature
-						.getProperties(new QName(feature.getName().getNamespaceURI(), "refScan"));
-				for (Property property : refScanProps) {
-					GMLReference<?> ref = (GMLReference<?>) property.getValue();
-					String gmlId = ref.getId();
-					ExternalReference externalRef = fidToExternalRef.get(gmlId);
-					rasterPlanUpdateScans.add(externalRef);
-				}
-			}
-		}
 	}
 
 	private void scanXplan4(FeatureCollection fc) {
@@ -183,7 +152,7 @@ public class ExternalReferenceScanner {
 		}
 	}
 
-	private void scanXplan5(FeatureCollection fc) {
+	private void scanXplan5or6(FeatureCollection fc) {
 		for (Feature feature : fc) {
 			String name = feature.getName().getLocalPart();
 			if ("XP_Rasterdarstellung".equals(name) || name.matches("(BP|LP|RP|FP|SO)_Bereich")) {

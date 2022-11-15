@@ -31,11 +31,13 @@ import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResult;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultGeometrisch;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantisch;
+import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantischProfil;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSemantischRules;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReportValidationResultSyntaktisch;
 import org.deegree.geometry.Envelope;
 
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -107,7 +109,7 @@ public class ValidationReportBuilder {
 
 	private ValidationReportValidationResult createValidationResult() {
 		return new ValidationReportValidationResult().syntaktisch(syntaktischResult()).semantisch(semantischResult())
-				.geometrisch(geometrischResult());
+				.geometrisch(geometrischResult()).profile(profileResult());
 	}
 
 	private ValidationReportValidationResultSyntaktisch syntaktischResult() {
@@ -122,21 +124,7 @@ public class ValidationReportBuilder {
 	private ValidationReportValidationResultSemantisch semantischResult() {
 		if (validatorReport != null && validatorReport.getSemanticValidatorResult() != null) {
 			SemanticValidatorResult result = validatorReport.getSemanticValidatorResult();
-			List<ValidationReportValidationResultSemantischRules> rules = result.getRules().stream()
-					.map(ruleResult -> new ValidationReportValidationResultSemantischRules()
-							.isValid(ruleResult.isValid()).name(ruleResult.getName()).message(ruleResult.getMessage())
-							.warnedFeatures(ruleResult.getInvalidFeaturesResultsByType(WARNING).stream()
-									.map(invalidRuleResult -> new SemanticInvalidRuleResult()
-											.message(invalidRuleResult.getMessage())
-											.invalidGmlIds(invalidRuleResult.getGmlIds()))
-									.collect(Collectors.toList()))
-							.erroredFeatures(ruleResult.getInvalidFeaturesResultsByType(ERROR).stream()
-									.map(invalidRuleResult -> new SemanticInvalidRuleResult()
-											.message(invalidRuleResult.getMessage())
-											.invalidGmlIds(invalidRuleResult.getGmlIds()))
-									.collect(Collectors.toList())))
-					.collect(Collectors.toList());
-			return new ValidationReportValidationResultSemantisch().valid(result.isValid()).rules(rules);
+			return createSemanticValidatorResult(result);
 		}
 		return null;
 	}
@@ -148,6 +136,38 @@ public class ValidationReportBuilder {
 					.warnings(result.getWarnings().stream().sorted().collect(Collectors.toList()));
 		}
 		return null;
+	}
+
+	private List<ValidationReportValidationResultSemantischProfil> profileResult() {
+		if (validatorReport != null && validatorReport.getSemanticProfileValidatorResults() != null) {
+			List<SemanticValidatorResult> profileResults = validatorReport.getSemanticProfileValidatorResults();
+			return profileResults.stream().map(profileResult -> {
+				de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata rulesMetadata = profileResult
+						.getRulesMetadata();
+				ValidationReportValidationResultSemantisch result = createSemanticValidatorResult(profileResult);
+				return new ValidationReportValidationResultSemantischProfil().name(rulesMetadata.getName())
+						.description(rulesMetadata.getDescription()).result(result);
+			}).collect(Collectors.toList());
+		}
+		return Collections.emptyList();
+	}
+
+	private ValidationReportValidationResultSemantisch createSemanticValidatorResult(SemanticValidatorResult result) {
+		List<ValidationReportValidationResultSemantischRules> rules = result.getRules().stream()
+				.map(ruleResult -> new ValidationReportValidationResultSemantischRules().isValid(ruleResult.isValid())
+						.name(ruleResult.getName()).message(ruleResult.getMessage())
+						.warnedFeatures(ruleResult.getInvalidFeaturesResultsByType(WARNING).stream()
+								.map(invalidRuleResult -> new SemanticInvalidRuleResult()
+										.message(invalidRuleResult.getMessage())
+										.invalidGmlIds(invalidRuleResult.getGmlIds()))
+								.collect(Collectors.toList()))
+						.erroredFeatures(ruleResult.getInvalidFeaturesResultsByType(ERROR).stream()
+								.map(invalidRuleResult -> new SemanticInvalidRuleResult()
+										.message(invalidRuleResult.getMessage())
+										.invalidGmlIds(invalidRuleResult.getGmlIds()))
+								.collect(Collectors.toList())))
+				.collect(Collectors.toList());
+		return new ValidationReportValidationResultSemantisch().valid(result.isValid()).rules(rules);
 	}
 
 }

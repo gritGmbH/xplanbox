@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  xplan-tests-soapui - SoapUI-Tests
+  %%
+  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
 <con:soapui-project activeEnvironment="Default" name="xplan-manager-web" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" id="d6b438c5-e36f-447d-97b3-c0ed43c1c1a2" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="MANAGER" type="rest" basePath="/xplanmgrweb/rest" definitionUrl="" id="e35a1adf-d31f-49f2-8d74-efe2e22f0380" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:settings/>
     <con:definitionCache type="TEXT" rootPart=""/>
     <con:endpoints>
-      <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+      <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
       <con:endpoint>https://xplanbox.lat-lon.de/xplan-manager-web</con:endpoint>
     </con:endpoints>
     <con:resource name="/report/zip/{uuid}" path="/report/zip/{uuid}" id="63948341-0714-4c27-9fd6-0fd6e14b5739">
@@ -39,7 +60,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -77,7 +98,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -121,7 +142,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -141,7 +162,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -161,7 +182,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -192,7 +213,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -264,7 +285,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -301,7 +322,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -332,7 +353,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -368,7 +389,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -399,7 +420,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -437,7 +458,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -461,7 +482,7 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -498,7 +519,7 @@
         </con:representation>
         <con:request name="Request 1" mediaType="application/json" id="25889864-5f0f-451f-b6fc-471418aef40d">
           <con:settings/>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -529,7 +550,7 @@
         <con:parameters/>
         <con:request name="Request 1" mediaType="application/json" id="6eeef28d-de28-4b5b-8844-ce3a21a70d4d">
           <con:settings/>
-          <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+          <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
           <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
@@ -558,7 +579,7 @@
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/plan</con:originalUri>
             <con:assertion type="Simple Contains" id="7c700cfb-fa0b-4e20-8382-11dab675df44" name="Contains">
@@ -605,7 +626,7 @@
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/local/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="25c2d00d-efb0-4706-b7ba-f0a0f3808f29">
@@ -658,7 +679,7 @@
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="0aac6135-cda1-40d1-8448-e0cc38a1f075">
@@ -679,7 +700,7 @@ count(//mgr:Response/*)</path>
             <con:assertion type="XPath Match" name="XPath Match-codeNumber" id="71c8c818-4b15-4922-9654-0232a3172913">
               <con:configuration>
                 <path>declare namespace mgr='http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/';
-//mgr:Response/mgr:codeNumber</path>
+//mgr:Response/mgr:rechtsstand/mgr:codeNumber</path>
                 <content>4000</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -689,7 +710,7 @@ count(//mgr:Response/*)</path>
             <con:assertion type="XPath Match" name="XPath Match-translatedCode" id="6485d440-5b58-4380-b6e2-3fbd4a850809">
               <con:configuration>
                 <path>declare namespace mgr='http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/';
-//mgr:Response/mgr:translatedCode</path>
+//mgr:Response/mgr:rechtsstand/mgr:translatedCode</path>
                 <content>InkraftGetreten</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -705,7 +726,7 @@ count(//mgr:Response/*)</path>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
-              <entry key="id" value="3fe235e68c43d08c" xmlns="http://eviware.com/soapui/config"/>
+              <entry key="id" value="3fc849c900bd6460" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -723,7 +744,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/plan</con:originalUri>
             <con:assertion type="Simple Contains" id="b404a193-92c3-49a9-9125-6f1cba2913ee" name="Contains">
@@ -769,7 +790,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/local/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="d75d2380-59b1-44b6-a48e-bf7389b46084">
@@ -821,7 +842,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="0b89f7b9-e0fd-43f4-8b91-0aa2eb384064">
@@ -838,7 +859,7 @@ count(//mgr:Response/*)</path>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
-              <entry key="id" value="3fe9ec79ca9238f2" xmlns="http://eviware.com/soapui/config"/>
+              <entry key="id" value="3fdbfb9b5cf5a2ec" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -856,7 +877,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/plan</con:originalUri>
             <con:assertion type="Simple Contains" id="246a426e-0cf9-4e51-8941-d495d2656760" name="Contains">
@@ -902,7 +923,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/local/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="1d695eac-5d15-4da5-91d3-5d8a91cf7bac">
@@ -955,7 +976,7 @@ count(//mgr:Response/*)</path>
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>http://localhost:8080/xplan-manager-web</con:endpoint>
+            <con:endpoint>http://localhost:8082/xplan-manager-web</con:endpoint>
             <con:request/>
             <con:originalUri>http://localhost/xplan-manager-web/xplanmgrweb/rest/manager/internalid/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes" id="9cb58c38-3688-45c0-aea2-fab9c1aadead">
@@ -1035,7 +1056,7 @@ count(//mgr:Response/*)</path>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:jmsPropertyConfig/>
             <con:parameters>
-              <entry key="id" value="3faef9062ba42a60" xmlns="http://eviware.com/soapui/config"/>
+              <entry key="id" value="3fe2642dee8be417" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
         </con:config>

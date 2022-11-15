@@ -1,1 +1,0 @@
-ALTER TABLE xplanmgr.plans ADD COLUMN wmsSortDate date;

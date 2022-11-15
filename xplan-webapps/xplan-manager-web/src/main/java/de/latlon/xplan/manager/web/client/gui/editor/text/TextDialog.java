@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
@@ -36,6 +37,7 @@ import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
 
 /**
  * Dialog to edit an existing or create a new {@link Text}
@@ -60,15 +62,15 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 	 * @param textToEdit the text to edit, should not <code>null</code> (a new change is
 	 * created)
 	 */
-	public TextDialog(EditVersion version, Text textToEdit) {
-		this(version, textToEdit, MESSAGES.editCaptionTextsDialogEdit());
+	public TextDialog(EditVersion version, EditPlanType planType, Text textToEdit) {
+		this(version, planType, textToEdit, MESSAGES.editCaptionTextsDialogEdit());
 	}
 
 	/**
 	 * Instantiates a {@link TextDialog} to create a new {@link Change}
 	 */
-	public TextDialog(EditVersion version) {
-		this(version, null, MESSAGES.editCaptionTextsDialogNew());
+	public TextDialog(EditVersion version, EditPlanType planType) {
+		this(version, planType, null, MESSAGES.editCaptionTextsDialogNew());
 	}
 
 	/**
@@ -90,6 +92,10 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 		editedText.setGeoReference(georeference.getFilename());
 		if (rechtscharakterType != null) {
 			editedText.setRechtscharakter(rechtscharakterType.getValueAsEnum());
+		}
+		if (XPLAN_60.equals(version) && (textToEdit == null || textToEdit.getReferenzName() == null)) {
+			String referenzName = parseReferenzNameFromRefrenzUrl();
+			editedText.setReferenzName(referenzName);
 		}
 		return editedText;
 	}
@@ -121,11 +127,17 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 		return valid;
 	}
 
-	private TextDialog(EditVersion version, Text textToEdit, String title) {
+	private TextDialog(EditVersion version, EditPlanType planType, Text textToEdit, String title) {
 		super(version, title);
 		this.textToEdit = textToEdit;
 		if (!XPLAN_41.equals(version)) {
-			this.rechtscharakterType = new TypeCodeListBox<TextRechtscharacterType>(TextRechtscharacterType.class);
+			List<TextRechtscharacterType> entriesFromOtherPlanTypeOrVersion = new ArrayList<>();
+			for (TextRechtscharacterType textRechtscharacterType : TextRechtscharacterType.values()) {
+				if (!textRechtscharacterType.isCodeFor(version.name(), planType.name()))
+					entriesFromOtherPlanTypeOrVersion.add(textRechtscharacterType);
+			}
+			this.rechtscharakterType = new TypeCodeListBox<TextRechtscharacterType>(TextRechtscharacterType.class,
+					entriesFromOtherPlanTypeOrVersion, false);
 		}
 		initDialog(createFormContent());
 		setText(textToEdit);
@@ -155,10 +167,8 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 		layout.setWidget(index, 1, new Label(MESSAGES.editCaptionTextsReferenceLink()));
 		layout.setWidget(index++, 2, referenceLink);
 		// #3305 - georeference is not needed.
-		// if ( !XPLAN_3.equals( version ) ) {
 		// layout.setWidget( 5, 1, new Label( MESSAGES.editCaptionTextsGeoReference() ) );
 		// layout.setWidget( 5, 2, georeference );
-		// }
 		return layout;
 	}
 

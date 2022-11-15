@@ -35,7 +35,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterDialog;
 import de.latlon.xplan.manager.web.client.gui.dialog.RasterHandler;
 import de.latlon.xplan.manager.web.client.gui.editor.basedata.BaseDataPanel;
-import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplan30Panel;
 import de.latlon.xplan.manager.web.client.gui.editor.change.ChangesXplanPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.raster.RasterBasisPanel;
 import de.latlon.xplan.manager.web.client.gui.editor.reference.ReferencesPanel;
@@ -54,7 +53,6 @@ import org.fusesource.restygwt.client.MethodCallback;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
 import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 
@@ -67,6 +65,8 @@ import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.get
 public class EditorPanel extends DecoratorPanel {
 
 	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
+
+	private EditPlanType planType;
 
 	private final HandlerManager eventBus;
 
@@ -84,13 +84,14 @@ public class EditorPanel extends DecoratorPanel {
 
 	private String planId;
 
-	public EditorPanel(EditVersion version, List<Bereich> bereiche, HandlerManager eventBus) {
+	public EditorPanel(EditVersion version, EditPlanType planType, List<Bereich> bereiche, HandlerManager eventBus) {
+		this.planType = planType;
 		this.eventBus = eventBus;
-		baseDataPanel = new BaseDataPanel(version);
-		changesPanel = createChangePanel(version);
-		textsPanel = new TextsPanel(version);
-		referencesPanel = new ReferencesPanel(version);
-		rasterBasisPanel = new RasterBasisPanel(version, bereiche);
+		baseDataPanel = new BaseDataPanel(version, planType);
+		changesPanel = new ChangesXplanPanel(version, planType);
+		textsPanel = new TextsPanel(version, planType);
+		referencesPanel = new ReferencesPanel(version, planType);
+		rasterBasisPanel = new RasterBasisPanel(version, planType, bereiche);
 		FormPanel form = createForm();
 		this.getElement().setId("editor-panel");
 		this.setWidget(form);
@@ -162,7 +163,9 @@ public class EditorPanel extends DecoratorPanel {
 		panel.setSpacing(10);
 		panel.setHorizontalAlignment(ALIGN_CENTER);
 		panel.add(baseDataPanel);
-		panel.add(validityPeriodPanel);
+		if ("BP_Plan".equals(planType)) {
+			panel.add(validityPeriodPanel);
+		}
 		panel.add(changesPanel);
 		panel.add(textsPanel);
 		panel.add(referencesPanel);
@@ -252,12 +255,6 @@ public class EditorPanel extends DecoratorPanel {
 		saving.center();
 		saving.show();
 		return saving;
-	}
-
-	private AbstractEditorSubPanelWithTable<Change> createChangePanel(EditVersion version) {
-		if (XPLAN_3.equals(version))
-			return new ChangesXplan30Panel();
-		return new ChangesXplanPanel(version);
 	}
 
 }

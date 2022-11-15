@@ -22,17 +22,42 @@ package de.latlon.xplan.validator.geometric.inspector.model;
 
 import org.deegree.feature.Feature;
 
+import java.util.Map;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class PlanFeature extends GeltungsbereichFeature {
 
+	private InspectorContext inspectorContext;
+
 	/**
 	 * @param feature never <code>null</code>
+	 * @param inspectorContext
 	 * @param toleranceMetre
 	 */
-	public PlanFeature(Feature feature, double toleranceMetre) {
+	public PlanFeature(Feature feature, InspectorContext inspectorContext, double toleranceMetre) {
 		super(feature, toleranceMetre);
+		this.inspectorContext = inspectorContext;
+	}
+
+	/**
+	 * @return <code>true</code> if this plan has the property aendertPlan or at least one
+	 * of the bereiche assigned to this plan has the property aendertPlanBereich,
+	 * <code>false</code> otherwise
+	 */
+	public boolean isAenderungsPlan() {
+		boolean aendertPlan = getPropertyValue("aendertPlan") != null;
+		if (aendertPlan)
+			return true;
+
+		Map<String, BereichFeature> bereichFeatures = inspectorContext.getBereichFeatures();
+		long numberOfAenderungsBereichen = bereichFeatures.values().stream()
+				.filter(bereichFeature -> getFeatureId().equals(bereichFeature.getPlanId())
+						&& bereichFeature.isAendertPlanBereich())
+				.count();
+
+		return numberOfAenderungsBereichen > 0;
 	}
 
 }

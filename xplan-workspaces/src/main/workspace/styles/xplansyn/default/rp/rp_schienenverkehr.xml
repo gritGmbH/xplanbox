@@ -39,11 +39,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -70,11 +70,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -103,11 +103,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -134,11 +134,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -166,11 +166,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -197,11 +197,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -229,11 +229,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -260,11 +260,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -290,11 +290,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -321,11 +321,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1002</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -355,11 +355,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -386,11 +386,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -419,11 +419,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -450,11 +450,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -482,11 +482,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -514,11 +514,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -546,11 +546,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -578,11 +578,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -608,11 +608,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -639,11 +639,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1001</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -675,11 +675,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -706,11 +706,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -738,11 +738,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -769,11 +769,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -801,11 +801,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -832,11 +832,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1400</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -867,15 +867,15 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondererTyp</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -910,15 +910,15 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondererTyp</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -953,15 +953,15 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1600</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondererTyp</ogc:PropertyName>
           <ogc:Literal>3000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -999,11 +999,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1038,11 +1038,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1077,11 +1077,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1116,11 +1116,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1155,11 +1155,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1194,11 +1194,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:typCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:typ</ogc:PropertyName>
           <ogc:Literal>1500</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1236,11 +1236,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondererTyp</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1275,11 +1275,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondererTyp</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1314,11 +1314,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondererTyp</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1353,11 +1353,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondererTyp</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1392,11 +1392,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondererTyp</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>
@@ -1431,11 +1431,11 @@
     <ogc:Filter>
       <ogc:And>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:besondererTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:besondererTyp</ogc:PropertyName>
           <ogc:Literal>4000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:gebietsTypCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:gebietsTyp</ogc:PropertyName>
           <ogc:Literal>1100</ogc:Literal>
         </ogc:PropertyIsEqualTo>
       </ogc:And>

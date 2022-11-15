@@ -23,10 +23,13 @@ package de.latlon.xplan.manager.codelists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 /**
- * Encapsulates the internal or external code lists for one XPlan schema.
+ * Encapsulates the enumerations for one XPlan version.
  *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
  * @version 1.0, Date: 2010-02-11
@@ -35,82 +38,127 @@ public class XPlanCodeLists {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanCodeLists.class);
 
-	// for each code list: key: code, value: description
-	private final Map<String, Map<String, String>> codeListIdToMapping;
-
-	// for each code list: key: description, value: code
-	private final Map<String, Map<String, String>> codeListIdToReverseMapping;
+	private final List<XPlanCodeList> codeLists = new ArrayList<>();
 
 	/**
-	 * @param codeListIdToMapping
-	 * @param codeListIdToReverseMapping
+	 * @param codeListId the id of the codeList to create, never <code>null</code>
+	 * @return the created {@link XPlanCodeList}, never <code>null</code>
 	 */
-	XPlanCodeLists(Map<String, Map<String, String>> codeListIdToMapping,
-			Map<String, Map<String, String>> codeListIdToReverseMapping) {
-		this.codeListIdToMapping = codeListIdToMapping;
-		this.codeListIdToReverseMapping = codeListIdToReverseMapping;
+	public XPlanCodeList addNewCodeList(String codeListId) {
+		XPlanCodeList codeList = new XPlanCodeList(codeListId);
+		codeLists.add(codeList);
+		return codeList;
 	}
 
 	/**
-	 * @param codeListId
-	 * @param code
-	 * @return
+	 * @param codeListId the id of the codeList to add the new codeEntry to, never
+	 * <code>null</code>
+	 * @param code the code of the entry to add, never <code>null</code>
+	 * @param name the name of the entry to add, never <code>null</code>
 	 */
-	public String getDescription(String codeListId, String code) {
-		String codeListIdToUse = checkCodeListIdForNull(codeListId);
-		Map<String, String> codeToDesc = codeListIdToMapping.get(codeListIdToUse);
-		if (codeToDesc == null) {
+	public void addNewCodeEntry(String codeListId, String code, String name) {
+		addNewCodeEntry(codeListId, code, name, null, null);
+	}
+
+	/**
+	 * @param codeListId the id of the codeList to add the new codeEntry to, never
+	 * <code>null</code>
+	 * @param code the code of the entry to add, never <code>null</code>
+	 * @param name the name of the entry to add, never <code>null</code>
+	 * @param lesbarerName of the codeEntry, may be <code>null</code>
+	 * @param kuerzel of the codeEntry, may be <code>null</code>
+	 */
+	public void addNewCodeEntry(String codeListId, String code, String name, String lesbarerName, String kuerzel) {
+		Optional<XPlanCodeList> codeListWithId = codeLists.stream()
+				.filter(codeList -> codeList.getCodelistId().equals(codeListId)).findFirst();
+		XPlanCodeList codeList;
+		if (!codeListWithId.isPresent()) {
+			codeList = addNewCodeList(codeListId);
+		}
+		else {
+			codeList = codeListWithId.get();
+		}
+		codeList.addNewCode(code, name, lesbarerName, kuerzel);
+	}
+
+	/**
+	 * @param codeListId the id of the codeList to return, never <code>null</code>
+	 * @return the codeList with the passed codeListId, never <code>null</code>, if no
+	 * codeList with the passed codeListId exists, an {@link IllegalArgumentException} is
+	 * thrown
+	 * @throws IllegalArgumentException if no codeList with the passed codeListId exists
+	 */
+	public XPlanCodeList getCodeList(String codeListId) {
+		Optional<XPlanCodeList> codeListWithId = codeLists.stream()
+				.filter(codeList -> codeList.getCodelistId().equals(codeListId)).findFirst();
+		if (!codeListWithId.isPresent()) {
 			throw new IllegalArgumentException("Unbekannte CodeList '" + codeListId + "'.");
 		}
-		String translation = codeToDesc.get(code);
-		if (translation == null) {
-			throw new IllegalArgumentException("Unbekannter Code '" + code + "'. CodeList '" + codeListId
-					+ "' enthält keinen entsprechenden Eintrag.");
-		}
-		return translation;
+		return codeListWithId.get();
 	}
 
 	/**
-	 * @param codeListId
-	 * @param description
-	 * @return
+	 * @return all codeLists, may be <code>empty</code> but never <code>null</code>
 	 */
-	public String getCode(String codeListId, String description) {
-		String codeListIdToUse = checkCodeListIdForNull(codeListId);
-		Map<String, String> codeToDesc = codeListIdToReverseMapping.get(codeListIdToUse);
-		if (codeToDesc == null) {
-			throw new IllegalArgumentException("Unbekannte CodeList '" + codeListId + "'.");
-		}
-		String code = codeToDesc.get(description);
-		if (code == null) {
-			throw new IllegalArgumentException("Unbekannte Description '" + description + "'. CodeList '" + codeListId
-					+ "' enthält keinen entsprechenden Eintrag.");
-		}
-		return code;
+	public List<XPlanCodeList> getCodeLists() {
+		return Collections.unmodifiableList(codeLists);
 	}
 
 	/**
-	 * @return key: code list id, value: (key: code, value: description)
+	 * @param codeListId the id of the codeList to check, never <code>null</code>
+	 * @return <code>true</code> if a codeList with the passed codeListId exists,
+	 * <code>false</code> otherwise
 	 */
-	public Map<String, Map<String, String>> getCodesToDescriptions() {
-		return codeListIdToMapping;
+	public boolean hasCodeList(String codeListId) {
+		return codeLists.stream().anyMatch(codeList -> codeList.getCodelistId().equals(codeListId));
 	}
 
 	/**
-	 * @return key: code list id, value: (key: description, value: code)
+	 * @param codeListId the id of the codeList to return the translation, never
+	 * <code>null</code>
+	 * @param code the code of the codeEntry to return the translation, never
+	 * <code>null</code>
+	 * @return the name of the codeEntry with the passed code of the codeList with the
+	 * passed codeListId, never <code>null</code>
+	 * @throws IllegalArgumentException if no codeList or codeEntry with the passed
+	 * codeListId exists
 	 */
-	public Map<String, Map<String, String>> getDescriptionsToCodes() {
-		return codeListIdToReverseMapping;
+	public String getTranslation(String codeListId, String code) {
+		String codeListIdOrFirst = checkCodeListIdForNull(codeListId);
+		XPlanCodeList codeList = getCodeList(codeListIdOrFirst);
+		XPlanCodeEntry codeEntry = codeList.getCodeEntry(code);
+		String lesbarerName = codeEntry.getLesbarerName();
+		if (lesbarerName != null && !lesbarerName.isEmpty()) {
+			return lesbarerName;
+		}
+		return codeEntry.getName();
+	}
+
+	/**
+	 * @param codeListId the id of the codeList to return the kuerzel, never
+	 * <code>null</code>
+	 * @param code the code of the codeEntry to return the kuerzel, never
+	 * <code>null</code>
+	 * @return the kuerzel of the codeEntry with the passed code of the codeList with the
+	 * passed codeListId, may be <code>null</code> if not available
+	 * @throws IllegalArgumentException if no codeList or codeEntry with the passed
+	 * codeListId exists
+	 */
+	public String getKuerzel(String codeListId, String code) {
+		String codeListIdOrFirst = checkCodeListIdForNull(codeListId);
+		XPlanCodeList codeList = getCodeList(codeListIdOrFirst);
+		XPlanCodeEntry codeEntry = codeList.getCodeEntry(code);
+		return codeEntry.getKuerzel();
 	}
 
 	private String checkCodeListIdForNull(String codeListId) {
 		if (codeListId != null) {
 			return codeListId;
 		}
-		if (codeListIdToMapping.size() == 0)
+		if (codeLists.size() == 0)
 			LOG.warn("Code list is empty!");
-		else if (codeListIdToMapping.size() == 1)
-			return codeListIdToMapping.keySet().iterator().next();
+		else if (codeLists.size() == 1)
+			return codeLists.stream().findFirst().get().getCodelistId();
 		else
 			LOG.warn("XPlanCodeLists contains multiple codelists!");
 		return null;

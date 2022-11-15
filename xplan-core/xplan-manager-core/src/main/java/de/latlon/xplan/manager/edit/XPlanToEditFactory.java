@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -86,18 +86,18 @@ public class XPlanToEditFactory {
 	 * @param featureCollection to parse the editable values from, never <code>null</code>
 	 * @return the xPlanToEdit, never <code>null</code>
 	 */
-	public XPlanToEdit createXPlanToEdit(XPlan xPlan, FeatureCollection featureCollection) {
+	public XPlanToEdit createXPlanToEdit(XPlan xPlan, FeatureCollection featureCollection) throws EditException {
 		Iterator<Feature> iterator = featureCollection.iterator();
 		XPlanToEdit xPlanToEdit = new XPlanToEdit();
 		while (iterator.hasNext()) {
 			Feature feature = iterator.next();
 			String nameOfFeature = feature.getName().getLocalPart();
-			if ("BP_Plan".equals(nameOfFeature)) {
-				parseBPPlan(feature, xPlanToEdit);
+			if (nameOfFeature.matches("(BP|FP|LP|RP|SO)_Plan")) {
+				parsePlan(xPlan, feature, xPlanToEdit);
 			}
-			else if ("BP_Bereich".equals(nameOfFeature)) {
+			else if (nameOfFeature.matches("(BP|FP|LP|RP|SO)_Bereich")) {
 				xPlanToEdit.setHasBereich(true);
-				parseBPBereich(feature, xPlanToEdit, xPlan.getVersion());
+				parseBereich(feature, xPlanToEdit, xPlan.getVersion());
 			}
 		}
 		setValidityPeriod(xPlan, xPlanToEdit);
@@ -114,8 +114,8 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parseBPPlan(Feature feature, XPlanToEdit xPlanToEdit) {
-		LOG.debug("Parse properties from BP_Plan");
+	private void parsePlan(XPlan xPlan, Feature feature, XPlanToEdit xPlanToEdit) throws EditException {
+		LOG.debug("Parse properties from Plan");
 		BaseData baseData = xPlanToEdit.getBaseData();
 		for (Property property : feature.getProperties()) {
 			String propertyName = property.getName().getLocalPart();
@@ -147,10 +147,10 @@ public class XPlanToEditFactory {
 			else if ("rechtsverordnungsDatum".equals(propertyName)) {
 				baseData.setRegulationDate(asDate(propertyValue));
 			}
-			else if ("aendert".equals(propertyName)) {
+			else if ("aendert".equals(propertyName) || "aendertPlan".equals(propertyName)) {
 				parseChange(property, xPlanToEdit, CHANGES);
 			}
-			else if ("wurdeGeaendertVon".equals(propertyName)) {
+			else if ("wurdeGeaendertVon".equals(propertyName) || "wurdeGeaendertVonPlan".equals(propertyName)) {
 				parseChange(property, xPlanToEdit, CHANGED_BY);
 			}
 			else if ("refBegruendung".equals(propertyName)) {
@@ -166,13 +166,13 @@ public class XPlanToEditFactory {
 				parseExterneReference(property, xPlanToEdit);
 			}
 			else if ("texte".equals(propertyName)) {
-				parseTextReference(property, xPlanToEdit);
+				parseTextReference(xPlan, property, xPlanToEdit);
 			}
 		}
 	}
 
-	private void parseBPBereich(Feature feature, XPlanToEdit xPlanToEdit, String version) {
-		LOG.debug("Parse properties from BP_Bereich");
+	private void parseBereich(Feature feature, XPlanToEdit xPlanToEdit, String version) {
+		LOG.debug("Parse properties from Bereich");
 		String bereichNummer = getPropertyByName(feature, "nummer");
 		RasterBasis rasterBasis = createOrGetRasterBasis(xPlanToEdit, bereichNummer, null);
 		for (Property property : feature.getProperties()) {
@@ -208,33 +208,40 @@ public class XPlanToEditFactory {
 		String featureId = referencedObject.getId();
 		rasterBasis.setFeatureId(featureId);
 		for (Property prop : referencedObject.getProperties()) {
-			String propName = prop.getName().getLocalPart();
-			if ("refLegende".equals(propName)) {
-				RasterReference rasterReference = parseRasterReference(bereichId, prop, LEGEND);
-				if (isXPlan51OrHigher(version)) {
-					Reference reference = new Reference(rasterReference.getReference(),
-							rasterReference.getGeoReference(), ReferenceType.LEGENDE);
-					copyReference(rasterReference, reference);
-					xPlanToEdit.addReference(reference);
-				}
-				else {
-					rasterBasis.addRasterReference(rasterReference);
-				}
+			if (hasChilds(prop)) {
+				parseRasterWithReferences(bereichId, xPlanToEdit, rasterBasis, version, prop);
 			}
-			else if ("refScan".equals(propName)) {
-				RasterReference rasterReference = parseRasterReference(bereichId, prop, SCAN);
+		}
+	}
+
+	private void parseRasterWithReferences(String bereichId, XPlanToEdit xPlanToEdit, RasterBasis rasterBasis,
+			String version, Property prop) {
+		String propName = prop.getName().getLocalPart();
+		if ("refLegende".equals(propName)) {
+			RasterReference rasterReference = parseRasterReference(bereichId, prop, LEGEND);
+			if (isXPlan51OrHigher(version)) {
+				Reference reference = new Reference(rasterReference.getReference(), rasterReference.getGeoReference(),
+						ReferenceType.LEGENDE);
+				copyReference(rasterReference, reference);
+				xPlanToEdit.addReference(reference);
+			}
+			else {
 				rasterBasis.addRasterReference(rasterReference);
 			}
-			else if ("refText".equals(propName)) {
-				RasterReference rasterReference = parseRasterReference(bereichId, prop, TEXT);
-				if (isXPlan51OrHigher(version)) {
-					Text text = new Text(null, rasterReference.getReference());
-					copyReference(rasterReference, text);
-					xPlanToEdit.addText(text);
-				}
-				else {
-					rasterBasis.addRasterReference(rasterReference);
-				}
+		}
+		else if ("refScan".equals(propName)) {
+			RasterReference rasterReference = parseRasterReference(bereichId, prop, SCAN);
+			rasterBasis.addRasterReference(rasterReference);
+		}
+		else if ("refText".equals(propName)) {
+			RasterReference rasterReference = parseRasterReference(bereichId, prop, TEXT);
+			if (isXPlan51OrHigher(version)) {
+				Text text = new Text(null, rasterReference.getReference());
+				copyReference(rasterReference, text);
+				xPlanToEdit.addText(text);
+			}
+			else {
+				rasterBasis.addRasterReference(rasterReference);
 			}
 		}
 	}
@@ -321,7 +328,7 @@ public class XPlanToEditFactory {
 		}
 	}
 
-	private void parseTextReference(Property property, XPlanToEdit xPlanToEdit) {
+	private void parseTextReference(XPlan xPlan, Property property, XPlanToEdit xPlanToEdit) throws EditException {
 		TypedObjectNode propertyValue = property.getValue();
 		if (propertyValue instanceof FeatureReference) {
 			Feature referencedObject = ((FeatureReference) propertyValue).getReferencedObject();
@@ -343,14 +350,15 @@ public class XPlanToEditFactory {
 					parseReference(prop.getChildren(), text);
 				}
 				else if ("rechtscharakter".equals(propName)) {
-					text.setRechtscharakter(TextRechtscharacterType.fromCode(asInteger(propValue)));
+					text.setRechtscharakter(TextRechtscharacterType.fromCode(asInteger(propValue), xPlan.getVersion(),
+							xPlan.getType()));
 				}
 			}
 			xPlanToEdit.addText(text);
 		}
 	}
 
-	private void parseChange(Property property, XPlanToEdit xPlanToEdit, ChangeType changeType) {
+	private void parseChange(Property property, XPlanToEdit xPlanToEdit, ChangeType changeType) throws EditException {
 		if (property instanceof GenericProperty) {
 			List<TypedObjectNode> children = property.getChildren();
 			if (children.size() == 1 && children.get(0) instanceof GenericXMLElement) {
@@ -363,7 +371,8 @@ public class XPlanToEditFactory {
 						if ("planName".equals(childProperty.getName().getLocalPart())) {
 							change.setPlanName(asString(childProperty.getValue()));
 						}
-						else if ("rechtscharakter".equals(childProperty.getName().getLocalPart())) {
+						else if ("rechtscharakter".equals(childProperty.getName().getLocalPart())
+								|| "aenderungsArt".equals(childProperty.getName().getLocalPart())) {
 							change.setLegalNatureCode(asInteger(childProperty.getValue()));
 						}
 						else if ("nummer".equals(childProperty.getName().getLocalPart())) {
@@ -512,19 +521,14 @@ public class XPlanToEditFactory {
 		return null;
 	}
 
-	private int asInteger(TypedObjectNode value) {
-		if (value instanceof PrimitiveValue) {
-			if (BaseType.INTEGER.equals(((PrimitiveValue) value).getType().getBaseType()))
-				return (int) ((PrimitiveValue) value).getValue();
-			String valueAsText = ((PrimitiveValue) value).getAsText();
-			try {
-				return Integer.parseInt(valueAsText);
-			}
-			catch (NumberFormatException e) {
-				LOG.warn("Could not parse {} as integer.", valueAsText);
-			}
+	private int asInteger(TypedObjectNode value) throws EditException {
+		String valueAsText = value.toString();
+		try {
+			return Integer.parseInt(valueAsText);
 		}
-		return -1;
+		catch (NumberFormatException e) {
+			throw new EditException("Could not parse " + valueAsText + " as integer.");
+		}
 	}
 
 	private Date asDate(TypedObjectNode value) {
@@ -539,6 +543,10 @@ public class XPlanToEditFactory {
 	private boolean isXPlan51OrHigher(String xPlanVersion) {
 		XPlanVersion version = XPlanVersion.valueOf(xPlanVersion);
 		return XPLAN_51.equals(version) || XPLAN_52.equals(version) || XPLAN_53.equals(version);
+	}
+
+	private boolean hasChilds(Property prop) {
+		return prop.getChildren().size() > 0;
 	}
 
 }

@@ -26,6 +26,8 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import org.apache.commons.io.IOUtils;
+import org.apache.xerces.xs.XSElementDeclaration;
+import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
@@ -68,11 +70,13 @@ public class XPlanSynthesizer {
 
 	private final static String SYN_NS = XPLAN_SYN.getNamespace();
 
-	private static AppSchema synSchema;
+	private static final AppSchema synSchema;
 
 	private final Map<String, Expression> rules = new HashMap<String, Expression>();
 
 	private final Path rulesDirectory;
+
+	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
 	static {
 		try {
@@ -129,11 +133,6 @@ public class XPlanSynthesizer {
 
 		processRuleFile(version, xplanType.name(), xplanName);
 
-		// initialize lookup of XP_TextAbschnitt and XP_BegruendungAbschnitt features
-		XplanAbschnittLookup.init(fc);
-		// initialize lookup for all Fachobjekte that are referenced by XP_PPO features
-		XpPpoLookup.init(fc);
-
 		List<Feature> featureMembers = new ArrayList<Feature>();
 		for (Feature feature : fc) {
 			Feature synFeature = synthesize(feature, fc);
@@ -141,16 +140,6 @@ public class XPlanSynthesizer {
 		}
 
 		return new GenericFeatureCollection(fc.getId(), featureMembers);
-	}
-
-	/**
-	 * Retrieve the rules applied to the transformation. Invoke synthesize first,
-	 * otherwise no rules are available.
-	 * @return the rules of the last transformation. may be empty (if #synthesize() was
-	 * not invoked before) but never <code>null</code>
-	 */
-	public Map<String, Expression> getRules() {
-		return rules;
 	}
 
 	/**
@@ -225,17 +214,19 @@ public class XPlanSynthesizer {
 
 	private Feature synthesize(Feature feature, FeatureCollection features) {
 		List<Property> newProps = new ArrayList<Property>();
-		QName synFeatureName = new QName(SYN_NS, feature.getType().getName().getLocalPart());
+		String synFeatureTypeName = featureTypeNameSynthesizer.detectSynFeatureTypeName(feature.getType().getName());
+		QName synFeatureName = new QName(SYN_NS, synFeatureTypeName);
 
-		if (synSchema.getFeatureType(synFeatureName) == null) {
+		FeatureType synFeatureType = synSchema.getFeatureType(synFeatureName);
+		if (synFeatureType == null) {
 			String msg = "Interner Fehler. Das XPlanSyn Schema definiert keinen Feature Type mit Namen '"
 					+ synFeatureName + "'.";
 			throw new RuntimeException(msg);
 		}
-		List<PropertyType> propTypes = synSchema.getFeatureType(synFeatureName).getPropertyDeclarations();
+		List<PropertyType> propTypes = synFeatureType.getPropertyDeclarations();
 		for (PropertyType propType : propTypes) {
 			// the rule keys are specified in "<featureName>/<propName>" format
-			String key = feature.getName().getLocalPart() + "/" + propType.getName().getLocalPart();
+			String key = synFeatureTypeName + "/" + propType.getName().getLocalPart();
 			if (rules.containsKey(key)) {
 				TypedObjectNode newPropValue = rules.get(key).evaluate(feature, features);
 				if (newPropValue == null) {
@@ -248,7 +239,7 @@ public class XPlanSynthesizer {
 					newPropValue = toString(((TypedObjectNodeArray<?>) newPropValue));
 				}
 				if (newPropValue instanceof GenericXMLElement) {
-					newPropValue = new PrimitiveValue(newPropValue.getClass() + "");
+					newPropValue = getNewPropValue((GenericXMLElement) newPropValue);
 				}
 				Property newProp = new GenericProperty(propType, newPropValue);
 				newProps.add(newProp);
@@ -257,8 +248,7 @@ public class XPlanSynthesizer {
 				throw new RuntimeException("Interner Fehler. Die Regeldatei enthält keine Regel für " + key + ".");
 			}
 		}
-		FeatureType synType = synSchema.getFeatureType(new QName(SYN_NS, feature.getName().getLocalPart()));
-		return synType.newFeature(feature.getId(), newProps, null);
+		return synFeatureType.newFeature(feature.getId(), newProps, null);
 	}
 
 	private PrimitiveValue toString(TypedObjectNodeArray<?> array) {
@@ -267,6 +257,39 @@ public class XPlanSynthesizer {
 			sBuilder.append(n);
 		}
 		return new PrimitiveValue(sBuilder.toString());
+	}
+
+	private TypedObjectNode getNewPropValue(GenericXMLElement valueNode) {
+		if (isCodeType(valueNode)) {
+			String s = toString(valueNode);
+			return new PrimitiveValue(s);
+		}
+		return new PrimitiveValue(valueNode.getClass() + "");
+	}
+
+	private boolean isCodeType(GenericXMLElement valueNode) {
+		XSElementDeclaration xsType = valueNode.getXSType();
+		return xsType != null && xsType.getTypeDefinition() != null
+				&& "CodeType".equals(xsType.getTypeDefinition().getName());
+	}
+
+	private String toString(TypedObjectNode value) {
+		if (value == null) {
+			return null;
+		}
+		if (value instanceof ElementNode) {
+			ElementNode el = (ElementNode) value;
+			String s = "";
+			PrimitiveValue codeSpace = el.getAttributes().get(new QName("codeSpace"));
+			if (codeSpace != null) {
+				s = "{" + codeSpace + "}";
+			}
+			for (TypedObjectNode child : el.getChildren()) {
+				s += child;
+			}
+			return s;
+		}
+		return value.toString();
 	}
 
 }

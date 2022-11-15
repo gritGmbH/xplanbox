@@ -33,7 +33,7 @@
     </Description>
     <ogc:Filter>
         <ogc:PropertyIsEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsEqualTo>
     </ogc:Filter>
@@ -80,7 +80,7 @@
     </Description>
     <!--ogc:Filter>
         <ogc:PropertyIsNotEqualTo>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
           <ogc:Literal>1000</ogc:Literal>
         </ogc:PropertyIsNotEqualTo>
     </ogc:Filter-->

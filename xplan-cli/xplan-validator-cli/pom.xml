@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-cli</artifactId>
-    <version>5.1-SNAPSHOT</version>
+    <version>6.0-SNAPSHOT</version>
   </parent>
 
   <properties>
@@ -119,9 +119,8 @@
       <artifactId>ecj</artifactId>
     </dependency>
     <dependency>
-      <groupId>de.geowerkstatt-hamburg</groupId>
-      <artifactId>xplanung</artifactId>
-      <type>zip</type>
+      <groupId>de.xleitstelle.xplanung</groupId>
+      <artifactId>regeln</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>

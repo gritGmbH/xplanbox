@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -37,11 +37,11 @@ import java.util.Map;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
-import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeatures;
+import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 
 /**
@@ -50,8 +50,8 @@ import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
 public class XplanGeometryTest {
 
 	@Test
-	public void testEvaluate() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testEvaluate() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:raeumlicherGeltungsbereich"));
 		Geometry value = expr.evaluate(feature, features);
@@ -59,8 +59,8 @@ public class XplanGeometryTest {
 	}
 
 	@Test
-	public void testEvaluateEmptyProperty() {
-		FeatureCollection features = getTestFeatures(XPLAN_41);
+	public void testEvaluateEmptyProperty() throws Exception {
+		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_3");
 		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:position"));
 		Geometry value = expr.evaluate(feature, features);
@@ -69,7 +69,7 @@ public class XplanGeometryTest {
 
 	@Test
 	public void testEvaluateCurve() throws Exception {
-		FeatureCollection features = getTestFeatures(XPLAN_41, "FeatureWithCurve.xml");
+		FeatureCollection features = load(XPLAN_41, "FeatureWithCurve.xml");
 		Feature feature = getTestFeature(features, "BP_BaugebietsTeilFlaeche");
 
 		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:position"));

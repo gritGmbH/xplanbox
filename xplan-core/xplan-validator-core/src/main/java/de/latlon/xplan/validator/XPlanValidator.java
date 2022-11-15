@@ -40,6 +40,7 @@ import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
 import de.latlon.xplan.validator.semantic.SemanticValidator;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
+import de.latlon.xplan.validator.semantic.profile.SemanticProfileValidator;
 import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
@@ -63,6 +64,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.validator.report.ReportUtils.SkipCode.INTERNAL_ERRORS;
@@ -85,6 +87,8 @@ public class XPlanValidator {
 
 	private final SemanticValidator semanticValidator;
 
+	private final List<SemanticProfileValidator> semanticProfileValidators;
+
 	private final ReportArchiveGenerator reportArchiveGenerator;
 
 	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
@@ -94,10 +98,12 @@ public class XPlanValidator {
 	private XPlanSchemas schemas;
 
 	public XPlanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
-			SemanticValidator semanticValidator, ReportArchiveGenerator reportArchiveGenerator) {
+			SemanticValidator semanticValidator, List<SemanticProfileValidator> semanticProfileValidators,
+			ReportArchiveGenerator reportArchiveGenerator) {
 		this.geometricValidator = geometricValidator;
 		this.syntacticValidator = syntacticValidator;
 		this.semanticValidator = semanticValidator;
+		this.semanticProfileValidators = semanticProfileValidators;
 		this.reportArchiveGenerator = reportArchiveGenerator;
 		this.schemas = XPlanSchemas.getInstance();
 	}
@@ -189,6 +195,8 @@ public class XPlanValidator {
 			validateGeometric(archive, voOptions, report);
 		if (validationType.contains(SEMANTIC))
 			validateSemantic(archive, semanticValidationOptions, report);
+		List<String> profiles = validationSettings.getProfiles();
+		validateSemanticProfiles(archive, profiles, report);
 		return report;
 	}
 
@@ -220,9 +228,31 @@ public class XPlanValidator {
 			report.setSemanticValidatorResult(new SemanticValidatorResult(SYNTAX_ERRORS));
 		}
 		else {
-			SemanticValidatorResult semanticallyResult = validateSemanticallyAndWriteResult(archive,
+			SemanticValidatorResult semanticallyResult = validateSemanticallyAndWriteResult(semanticValidator, archive,
 					semanticValidationOptions);
 			report.setSemanticValidatorResult(semanticallyResult);
+		}
+	}
+
+	private void validateSemanticProfiles(XPlanArchive archive, List<String> profiles, ValidatorReport report)
+			throws ValidatorException {
+		if (!report.getSyntacticValidatorResult().isValid()) {
+			report.addSemanticProfileValidatorResults(new SemanticValidatorResult(SYNTAX_ERRORS));
+		}
+		else {
+			for (String profileId : profiles) {
+				Optional<SemanticProfileValidator> profileValidator = semanticProfileValidators.stream()
+						.filter(semanticProfileValidator -> semanticProfileValidator.getId().equals(profileId))
+						.findFirst();
+				if (profileValidator.isPresent()) {
+					SemanticValidatorResult semanticValidatorResult = validateSemanticallyAndWriteResult(
+							profileValidator.get(), archive, Collections.emptyList());
+					report.addSemanticProfileValidatorResults(semanticValidatorResult);
+				}
+				else {
+					throw new ValidatorException("Profile with id " + profileId + " does not exist");
+				}
+			}
 		}
 	}
 
@@ -257,8 +287,8 @@ public class XPlanValidator {
 	 * considered by the validation, may be empty, but never <code>null</code>
 	 * @return the created report
 	 */
-	SemanticValidatorResult validateSemanticallyAndWriteResult(SemanticValidableXPlanArchive archive,
-			List<SemanticValidationOptions> semanticValidationOptions) {
+	SemanticValidatorResult validateSemanticallyAndWriteResult(SemanticValidator semanticValidator,
+			SemanticValidableXPlanArchive archive, List<SemanticValidationOptions> semanticValidationOptions) {
 		ValidatorResult result = semanticValidator.validateSemantic(archive, semanticValidationOptions);
 		SemanticValidatorResult validatorResult = (SemanticValidatorResult) result;
 		log(validatorResult);
@@ -338,6 +368,10 @@ public class XPlanValidator {
 		RulesMetadata rulesMetadata = validatorResult.getRulesMetadata();
 		if (rulesMetadata != null) {
 			LOG.info("Informationen zur semantischen Validierung:");
+			if (rulesMetadata.getName() != null)
+				LOG.info("  - Name: {}", rulesMetadata.getName());
+			if (rulesMetadata.getDescription() != null)
+				LOG.info("  - Beschreibung: {}", rulesMetadata.getDescription());
 			LOG.info("  - Version: {}", rulesMetadata.getVersion());
 			LOG.info("  - Quelle: {}", rulesMetadata.getSource());
 		}

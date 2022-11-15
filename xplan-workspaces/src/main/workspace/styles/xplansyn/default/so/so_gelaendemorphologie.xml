@@ -36,7 +36,7 @@
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
-        <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+        <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
         <ogc:Literal>1000</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
@@ -50,7 +50,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/gelaendemorphologie-terrassenkanten.svg" />
+                              xlink:href="../../symbols/gelaendemorphologie-terrassenkanten.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#ff3333</SvgParameter>
@@ -89,7 +89,7 @@
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
-        <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+        <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
         <ogc:Literal>1100</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
@@ -103,7 +103,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/gelaendemorphologie-rinne.svg" />
+                              xlink:href="../../symbols/gelaendemorphologie-rinne.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#b85b00</SvgParameter>
@@ -141,7 +141,7 @@
     </Description>
     <ogc:Filter>
       <ogc:PropertyIsEqualTo>
-        <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+        <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
         <ogc:Literal>1200</ogc:Literal>
       </ogc:PropertyIsEqualTo>
     </ogc:Filter>
@@ -155,7 +155,7 @@
           <Graphic>
             <Mark>
               <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple"
-                              xlink:href="../../symbols/verentsorgabfall_sym.svg" />
+                              xlink:href="../../symbols/verentsorgabfall_sym.svg"/>
               <Format>svg</Format>
               <Fill>
                 <SvgParameter name="fill">#b85b00</SvgParameter>
@@ -195,20 +195,20 @@
     <ogc:Filter>
       <ogc:Or>
         <ogc:PropertyIsNull>
-          <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+          <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
         </ogc:PropertyIsNull>
         <ogc:Not>
           <ogc:Or>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
               <ogc:Literal>1000</ogc:Literal>
             </ogc:PropertyIsEqualTo>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
               <ogc:Literal>1100</ogc:Literal>
             </ogc:PropertyIsEqualTo>
             <ogc:PropertyIsEqualTo>
-              <ogc:PropertyName>xplan:artDerFestlegungCode</ogc:PropertyName>
+              <ogc:PropertyName>xplan:artDerFestlegung</ogc:PropertyName>
               <ogc:Literal>1200</ogc:Literal>
             </ogc:PropertyIsEqualTo>
           </ogc:Or>

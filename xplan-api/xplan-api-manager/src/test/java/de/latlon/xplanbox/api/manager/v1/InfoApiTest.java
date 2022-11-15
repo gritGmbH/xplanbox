@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -26,6 +26,7 @@ import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -35,6 +36,7 @@ import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -61,10 +63,11 @@ public class InfoApiTest extends JerseyTest {
 	}
 
 	@Test
-	public void verifyThat_Response_ContainsSupportedXplanGmlVersions() {
+	public void verifyThat_Response_ContainsSupportedXplanGmlVersionsAndNotProfiles() {
 		final String response = target("/info").request(APPLICATION_JSON).get(String.class);
 
 		assertThat(response, containsString("supportedXPlanGmlVersions"));
+		Assert.assertThat(response, not(containsString("profiles")));
 	}
 
 }

@@ -1,0 +1,115 @@
+Hinweis:
+========
+
+Zu den SVG- und PNG-Dateien im Verzeichnis src/main/workspace/styles/xplansyn/symbols/ können keine genaueren Angaben zur Quelle und zu etwaigen Nutzungsrechten angegeben werden. Eine Weitergabe an
+Dritte ist nicht gestattet.
+
+Inhalt des Verzeichnisses src/main/workspace/styles/xplansyn/symbols/:
+--------------------------
+├── abgrabungbs_sym.svg
+├── abstandsfl_rs.svg
+├── anpassungklimawandel-erhalt.png
+├── anpflanzbinderhasons_sym.svg
+├── anpflanzbinderhastr_sym.svg
+├── anpflanzbinderhbesons_sym.svg
+├── anpflanzbinderhbestr_sym.svg
+├── bauverbotszone.png
+├── berohneeinausflin_sym.svg
+├── denkmalscheinzelanl_sym.svg
+├── denkmalschens_sym.svg
+├── d_sym.svg
+├── einfberlin_as.svg
+├── einfberlin_es.svg
+├── erhaltungsber_sym.svg
+├── firstlin_sym.svg
+├── FreeSans.ttf
+├── gelaendemorphologie-rinne.svg
+├── gelaendemorphologie-terrassenkanten.svg
+├── gembedarfsflfeu_sym.svg
+├── gembedarfsflges_sym.svg
+├── gembedarfsflkirch_sym.svg
+├── gembedarfsflkult_sym.svg
+├── gembedarfsfloeff_sym.svg
+├── gembedarfsflschule_sym.svg
+├── gembedarfsflschutzb_sym.svg
+├── gembedarfsflsoz_sym.svg
+├── gembedarfsflspo_sym.svg
+├── gruenflbadpl_sym.svg
+├── gruenfl_bg.svg
+├── gruenflboeschung_sym.svg
+├── gruenflbolzpl_sym.svg
+├── gruenfldakleingar_sym.svg
+├── gruenflerholgaerten_sym.svg
+├── gruenflfreizherh_sym.svg
+├── gruenflfriedh_sym.svg
+├── gruenflgolfpl_sym.svg
+├── gruenflkleintier_sym.svg
+├── gruenflpark_sym.svg
+├── gruenflskate_sym.svg
+├── gruenflsons_sym.svg
+├── gruenflspezgru_sym.svg
+├── gruenflspielpl_sym.svg
+├── gruenflsportpl_sym.svg
+├── gruenflstrabeglgruen_sym.svg
+├── gruenflzeltpl_sym.svg
+├── hoehenpt_sym.svg
+├── laermschutzbereich.svg
+├── LROP
+│   └── LROP_S_VR_GVZ.svg
+├── naturlandschaft-freiraum.svg
+├── naturschutzrecht.svg
+├── nebenanlausschl_neu.png
+├── nichtueberbaubaregrundstuecksfl.png
+├── RROP
+│   ├── RROP_Erholung_vb.svg
+│   ├── RROP_Erholung_VR.svg
+│   ├── RROP_NeueVerkehrstechnik_VR.svg
+│   ├── RROP_S_Anschlussstelle_vb.svg
+│   ├── RROP_S_Anschlussstelle_VR.svg
+│   ├── RROP_S_Bahnhof_vb.svg
+│   ├── RROP_S_Bahnhof_VR.svg
+│   ├── RROP_S_eltBetrieb_vb.svg
+│   ├── RROP_S_eltBetrieb_VR.svg
+│   ├── RROP_S_FernBahnhof_VR.svg
+│   ├── RROP_S_Flugsport.svg
+│   ├── RROP_S_Golfsport.svg
+│   ├── RROP_S_GVZreg_vb.svg
+│   ├── RROP_S_GVZreg_VR.svg
+│   ├── RROP_S_GVZ_vb.svg
+│   ├── RROP_S_GVZ_VR.svg
+│   ├── RROP_S_Motorsport.svg
+│   ├── RROP_S_neueVerkehrstechnik.svg
+│   ├── RROP_S_Reitsport.svg
+│   ├── RROP_S_Schleuse_VR.svg
+│   └── RROP_S_Wassersport.svg
+├── schutzgebbiosph_sym.svg
+├── schutzgebeurvog_sym.svg
+├── schutzgebgembed_sym.svg
+├── schutzgebgeschbio_sym.svg
+├── schutzgebgeschla_sym.svg
+├── schutzgebnatpark_sym.svg
+├── schutzgebnaturdenk_sym.svg
+├── schutzgebnaturpark_sym.svg
+├── schutzpflentwfl_rs.svg
+├── sichtflaeche.png
+├── speziellebauweise_arkade.png
+├── speziellebauweise_auskragung.png
+├── speziellebauweise_bruecke.png
+├── speziellebauweise_rampe.svg
+├── spispoanfl_rs.svg
+├── spispoanlfl_bg.svg
+├── spispoanlflspi_sym.svg
+├── spispoanlflspo_sym.svg
+├── strkoerperauf_rs.svg
+├── strkoerperstuetz_rs.svg
+├── test.txt
+├── todo.svg
+├── verentsorgabfall_sym.svg
+├── verentsorgablag_sym.svg
+├── verentsorgabwa_sym.svg
+├── verentsorgelektr_sym.svg
+├── verentsorggas_sym.svg
+├── verentsorgwasser_sym.svg
+└── verksflbeszwb_neu.png
+
+

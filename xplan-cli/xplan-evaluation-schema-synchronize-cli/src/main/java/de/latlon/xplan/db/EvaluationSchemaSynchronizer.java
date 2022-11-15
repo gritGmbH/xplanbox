@@ -10,12 +10,12 @@ package de.latlon.xplan.db;
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -95,20 +95,20 @@ public class EvaluationSchemaSynchronizer implements Synchronizer {
 		LOG.info("Synchronize table {}, old schema {}, new schema {}, operation {}", synTableName, oldSynSchema,
 				newSynSchema, operation);
 		switch (operation) {
-		case INSERT:
-			insertInEvaluationTable(conn, xPlanManagerId, newSynSchema, synTableName);
-			updateGeomColumns(conn, xPlanManagerId, newSynSchema, synTableName, blobSchema);
-			break;
-		case UPDATE:
-			deleteFromEvaluationTable(conn, xPlanManagerId, oldSynSchema, synTableName);
-			insertInEvaluationTable(conn, xPlanManagerId, newSynSchema, synTableName);
-			updateGeomColumns(conn, xPlanManagerId, newSynSchema, synTableName, blobSchema);
-			break;
-		case DELETE:
-			deleteFromEvaluationTable(conn, xPlanManagerId, oldSynSchema, synTableName);
-			break;
-		default:
-			LOG.warn("Unsupported operation: {}", operation);
+			case INSERT:
+				insertInEvaluationTable(conn, xPlanManagerId, newSynSchema, synTableName);
+				updateGeomColumns(conn, xPlanManagerId, newSynSchema, synTableName, blobSchema);
+				break;
+			case UPDATE:
+				deleteFromEvaluationTable(conn, xPlanManagerId, oldSynSchema, synTableName);
+				insertInEvaluationTable(conn, xPlanManagerId, newSynSchema, synTableName);
+				updateGeomColumns(conn, xPlanManagerId, newSynSchema, synTableName, blobSchema);
+				break;
+			case DELETE:
+				deleteFromEvaluationTable(conn, xPlanManagerId, oldSynSchema, synTableName);
+				break;
+			default:
+				LOG.warn("Unsupported operation: {}", operation);
 		}
 	}
 

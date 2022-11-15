@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -34,7 +34,6 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
-import de.latlon.xplan.manager.transformation.XPlanGmlTransformer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
@@ -59,7 +58,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -67,6 +65,11 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -115,11 +118,10 @@ public class TestContext {
 	@Primary
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			Optional<InspirePluTransformator> inspirePluTransformator,
-			Optional<XPlanGmlTransformer> xPlanGmlTransformer, WmsWorkspaceWrapper wmsWorkspaceWrapper)
+			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper)
 			throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), xPlanGmlTransformer.orElse(null), wmsWorkspaceWrapper);
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper);
 	}
 
 	@Bean
@@ -135,7 +137,7 @@ public class TestContext {
 	@Bean
 	@Primary
 	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
-			throws WorkspaceException {
+			throws WorkspaceException, SQLException {
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = mock(ManagerWorkspaceWrapper.class);
 		FeatureStore featureStore41 = mock(FeatureStore.class);
 		when(featureStore41.getSchema()).thenReturn(XPlanSchemas.getInstance().getAppSchema(XPLAN_41));
@@ -144,7 +146,22 @@ public class TestContext {
 		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_41), any(PlanStatus.class))).thenReturn(featureStore41);
 		when(managerWorkspaceWrapper.lookupStore(eq(XPLAN_51), any(PlanStatus.class))).thenReturn(featureStore51);
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration());
+		Connection connection = mockConnection();
+		when(managerWorkspaceWrapper.openConnection()).thenReturn(connection);
 		return managerWorkspaceWrapper;
+	}
+
+	private static Connection mockConnection() throws SQLException {
+		Connection connection = mock(Connection.class);
+		DatabaseMetaData connectionMetadata = mock(DatabaseMetaData.class);
+		Statement statement = mock(Statement.class);
+		when(connection.createStatement()).thenReturn(statement);
+		when(statement.executeQuery(anyString())).thenReturn(mock(ResultSet.class));
+		when(connection.getMetaData()).thenReturn(connectionMetadata);
+		when(connectionMetadata.getURL()).thenReturn("jdbc:h2:mem:testdb");
+		when(connectionMetadata.getDatabaseProductName()).thenReturn("H2");
+		when(connectionMetadata.getSQLKeywords()).thenReturn("CREATE DROP");
+		return connection;
 	}
 
 	@Bean
@@ -202,21 +219,32 @@ public class TestContext {
 	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			ManagerConfiguration managerConfiguration) throws Exception {
 		XPlanDao xplanDao = mock(XPlanDao.class);
-		XPlan mockPlan3 = new XPlan("bplan_30", "3", "BP_Plan", "XPLAN_3");
-		XPlan mockPlan41 = new XPlan("bplan_51", "123", "BP_Plan", "XPLAN_41");
-		XPlan mockPlan51 = new XPlan("bplan_41", "2", "BP_Plan", "XPLAN_51");
-		mockPlan3.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
-		mockPlan41.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
-		mockPlan51.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
-		when(xplanDao.getXPlanById(1)).thenReturn(mockPlan41);
-		when(xplanDao.getXPlanById(123)).thenReturn(mockPlan41);
-		when(xplanDao.getXPlanById(2)).thenReturn(mockPlan51);
-		when(xplanDao.getXPlanById(3)).thenReturn(mockPlan3);
+		XPlan mockPlan_1 = new XPlan("bplan_41", "1", "BP_Plan", "XPLAN_41");
+		XPlan mockPlan_123 = new XPlan("bplan_41", "123", "BP_Plan", "XPLAN_41");
+		XPlan mockPlan_2 = new XPlan("bplan_51", "2", "BP_Plan", "XPLAN_51");
+		XPlan mockPlan_3 = new XPlan("bplan_53", "3", "BP_Plan", "XPLAN_53");
+		XPlan mockPlan_4 = new XPlan("fplan_51", "4", "FP_Plan", "XPLAN_51");
+		XPlan mockPlan_5 = new XPlan("lplan_51", "5", "LP_Plan", "XPLAN_51");
+		XPlan mockPlan_6 = new XPlan("soplan_40", "6", "SO_Plan", "XPLAN_40");
+		XPlan mockPlan_7 = new XPlan("bplan_51", "7", "BP_Plan", "XPLAN_51");
+		mockPlan_123.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
+		mockPlan_2.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
+		mockPlan_3.setXplanMetadata(new AdditionalPlanData(FESTGESTELLT));
+		when(xplanDao.getXPlanById(1)).thenReturn(mockPlan_1);
+		when(xplanDao.getXPlanById(123)).thenReturn(mockPlan_123);
+		when(xplanDao.getXPlanById(2)).thenReturn(mockPlan_2);
+		when(xplanDao.getXPlanById(3)).thenReturn(mockPlan_3);
+		when(xplanDao.getXPlanById(4)).thenReturn(mockPlan_4);
+		when(xplanDao.getXPlanById(5)).thenReturn(mockPlan_5);
+		when(xplanDao.getXPlanById(6)).thenReturn(mockPlan_6);
+		when(xplanDao.getXPlanById(7)).thenReturn(mockPlan_7);
 		when(xplanDao.retrieveXPlanArtefact("2")).thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
 				.thenReturn(getClass().getResourceAsStream("/xplan51.gml"))
 				.thenReturn(getClass().getResourceAsStream("/xplan51-edited.gml"));
+		when(xplanDao.retrieveXPlanArtefact("7")).thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"))
+				.thenReturn(getClass().getResourceAsStream("/xplan51_ohneBereich.gml"));
 		List<XPlan> mockList = new ArrayList<>();
-		mockList.add(mockPlan41);
+		mockList.add(mockPlan_123);
 		when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);
 		when(xplanDao.getXPlansLikeName("bplan_41")).thenReturn(mockList);
 		when(xplanDao.getXPlanList(anyBoolean())).thenReturn(mockList);
@@ -230,11 +258,10 @@ public class TestContext {
 	@Primary
 	public XPlanInsertManager xPlanInsertManager(XPlanDao xPlanDao, XPlanExporter xPlanExporter,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanRasterManager xPlanRasterManager,
-			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader,
-			XPlanGmlTransformer xPlanGmlTransformer) throws Exception {
+			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader) throws Exception {
 		XPlanInsertManager xplanInsertManager = mock(XPlanInsertManager.class);
-		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(), anyBoolean(),
-				nullable(File.class), nullable(String.class), any())).thenReturn(Collections.singletonList(123));
+		when(xplanInsertManager.importPlan(any(), nullable(ICRS.class), anyBoolean(), anyBoolean(),
+				nullable(String.class), any())).thenReturn(Collections.singletonList(123));
 		return xplanInsertManager;
 	}
 
@@ -262,7 +289,7 @@ public class TestContext {
 	@Primary
 	public WorkspaceReloader workspaceReloader() {
 		WorkspaceReloader workspaceReloader = mock(WorkspaceReloader.class);
-		when(workspaceReloader.reloadWorkspace(any())).thenReturn(true);
+		when(workspaceReloader.reloadWorkspace(1)).thenReturn(true);
 		return workspaceReloader;
 	}
 

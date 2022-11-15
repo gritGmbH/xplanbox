@@ -33,6 +33,7 @@ import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
+import de.latlon.xplan.manager.web.client.gui.widget.MandatoryTextBox;
 import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
@@ -44,22 +45,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_3;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_54;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_MSEXCEL;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_MSWORD;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_ODT;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_VND_OGC_GML;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_VND_OGC_SLD_XML;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.APPLICATION_VND_OGC_WMS_XML;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.IMAGE_SVG_XML;
-import static de.latlon.xplan.manager.web.shared.edit.MimeTypes.TEXT_PLAIN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 
 /**
@@ -82,7 +75,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private final TypeCodeListBox<ExterneReferenzArt> artType;
 
-	private final TextBox referenzName = createTextInput();
+	private final TextBox referenzName;
 
 	private final TextBox informationssystemURL = createTextInput();
 
@@ -106,11 +99,12 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		this.bereiche = bereiche;
 		this.bereichNummer = createBereichNummer(isBereichNummerEditable);
 		this.refType = createRefType();
-		this.refMimeType = createMimeTypeType(version);
-		this.georefMimeType = createMimeTypeType(version);
+		this.refMimeType = createMimeTypeType();
+		this.georefMimeType = createMimeTypeType();
+		this.referenzName = createRasterName(version);
 		this.artType = new TypeCodeListBox<ExterneReferenzArt>(ExterneReferenzArt.class, true);
 		this.originalRasterReference = rasterReference;
-		addChangeHandlers(version);
+		addChangeHandlers();
 		initDialog(createFormContent());
 		setRasterReferenceValues();
 	}
@@ -171,43 +165,26 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		layout.setWidget(rowIndex++, 2, refMimeType);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisGeoReference()));
 		layout.setWidget(rowIndex++, 2, georeference);
-		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisGeorefMimeType()));
-		layout.setWidget(rowIndex++, 2, georefMimeType);
-		if (!XPLAN_3.equals(version)) {
-			layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisArt()));
-			layout.setWidget(rowIndex++, 2, artType);
+		if (!XPLAN_60.equals(version)) {
+			layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisGeorefMimeType()));
+			layout.setWidget(rowIndex++, 2, georefMimeType);
 		}
-		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisInformationssystemURL()));
-		layout.setWidget(rowIndex++, 2, informationssystemURL);
+		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisArt()));
+		layout.setWidget(rowIndex++, 2, artType);
+		if (!XPLAN_60.equals(version)) {
+			layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisInformationssystemURL()));
+			layout.setWidget(rowIndex++, 2, informationssystemURL);
+		}
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisReferenzName()));
 		layout.setWidget(rowIndex++, 2, referenzName);
 		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisBeschreibung()));
 		layout.setWidget(rowIndex++, 2, beschreibung);
-		if (!XPLAN_3.equals(version)) {
-			layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisDatum()));
-			layout.setWidget(rowIndex++, 2, datum);
-		}
+		layout.setWidget(rowIndex, 1, new Label(MESSAGES.editCaptionRasterBasisDatum()));
+		layout.setWidget(rowIndex++, 2, datum);
 		return layout;
 	}
 
-	private void addChangeHandlers(EditVersion version) {
-		if (XPLAN_3.equals(version)) {
-			refType.addChangeHandler(new ChangeHandler() {
-				@Override
-				public void onChange(ChangeEvent changeEvent) {
-					if (RasterReferenceType.SCAN.equals(refType.getValueAsEnum())) {
-						georeference.setEnabled(true);
-						georefMimeType.setEnabled(true);
-					}
-					else {
-						georeference.setEnabled(false);
-						georefMimeType.setEnabled(false);
-						georeference.setTitle(MESSAGES.editUnsupportedPropertyRefType());
-						georefMimeType.setTitle(MESSAGES.editUnsupportedPropertyRefType());
-					}
-				}
-			});
-		}
+	private void addChangeHandlers() {
 		artType.addChangeHandler(new ClearValidationErrorsCH());
 		georeference.addChangeHandler(new ClearValidationErrorsCH());
 		georefMimeType.addChangeHandler(new ClearValidationErrorsCH());
@@ -268,30 +245,37 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		return codeListBox;
 	}
 
-	private TypeCodeListBox createMimeTypeType(EditVersion version) {
-		if (XPLAN_3.equals(version)) {
-			List<MimeTypes> disabledItems = new ArrayList<MimeTypes>();
-			disabledItems.add(APPLICATION_MSEXCEL);
-			disabledItems.add(APPLICATION_MSWORD);
-			disabledItems.add(APPLICATION_ODT);
-			disabledItems.add(APPLICATION_VND_OGC_GML);
-			disabledItems.add(APPLICATION_VND_OGC_SLD_XML);
-			disabledItems.add(APPLICATION_VND_OGC_WMS_XML);
-			disabledItems.add(IMAGE_SVG_XML);
-			disabledItems.add(TEXT_PLAIN);
-			return new TypeCodeListBox<MimeTypes>(MimeTypes.class, disabledItems, true);
-		}
+	private TypeCodeListBox createMimeTypeType() {
 		return new TypeCodeListBox(MimeTypes.class, true);
+	}
+
+	private TextBox createRasterName(EditVersion version) {
+		if (XPLAN_60.equals(version)) {
+			return createMandatoryTextInput();
+		}
+		return createTextInput();
 	}
 
 	private boolean validate(boolean includeReferences) {
 		boolean valid = super.isValid();
 		List<String> validationFailures = new ArrayList<String>();
 
-		if ((referenzName.getValue() == null || !(referenzName.getValue().length() > 0))
-				&& !reference.isFileSelected()) {
-			valid = false;
-			validationFailures.add(MESSAGES.editCaptionRasterBasisReferenceNameOrUrl());
+		if (XPLAN_60.equals(version)) {
+			if (referenzName instanceof MandatoryTextBox && !((MandatoryTextBox) referenzName).isValid()) {
+				valid = false;
+				validationFailures.add(MESSAGES.editCaptionRasterBasisReferenceNameMissing());
+			}
+			if (!reference.isFileSelected()) {
+				valid = false;
+				validationFailures.add(MESSAGES.editCaptionRasterBasisReferenceUrlMissing());
+			}
+		}
+		else {
+			if ((referenzName.getValue() == null || !(referenzName.getValue().length() > 0))
+					&& !reference.isFileSelected()) {
+				valid = false;
+				validationFailures.add(MESSAGES.editCaptionRasterBasisReferenceNameOrUrl());
+			}
 		}
 		if (artType.getValueAsEnum() != null && DOKUMENT.equals(artType.getValueAsEnum())) {
 			if (georefMimeType.getValueAsEnum() != null) {

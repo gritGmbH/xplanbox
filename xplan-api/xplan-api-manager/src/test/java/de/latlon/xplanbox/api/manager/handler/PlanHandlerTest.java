@@ -104,7 +104,7 @@ public class PlanHandlerTest {
 	@Test
 	public void verifyThat_findPlans() throws Exception {
 		List<XPlan> planList = planHandler.findPlans("bplan_41");
-		assertThat(planList, hasItem(new XPlan("bplan_51", "123", "BP_Plan", "XPLAN_41")));
+		assertThat(planList, hasItem(new XPlan("bplan_41", "123", "BP_Plan", "XPLAN_41")));
 	}
 
 	@Test

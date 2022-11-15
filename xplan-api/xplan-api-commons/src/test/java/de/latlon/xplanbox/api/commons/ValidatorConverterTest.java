@@ -25,6 +25,8 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
 import org.junit.Test;
 
+import java.util.Collections;
+
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -61,11 +63,12 @@ public class ValidatorConverterTest {
 	@Test
 	public void verifyThat_CreateValidationSettings_ReturnsCompleteSettings() {
 		ValidationSettings validationSettings = ValidatorConverter.createValidationSettings("foo", false, true, true,
-				false, true);
+				false, true, Collections.singletonList("10"));
 		assertThat(validationSettings.getValidationName(), containsString("foo"));
 		assertThat(validationSettings.getValidationTypes(), hasItem(ValidationType.GEOMETRIC));
 		assertThat(validationSettings.getExtendedOptions(), hasItem(GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS));
 		assertThat(validationSettings.getExtendedOptions(), hasItem(GeometricValidatorImpl.SKIP_LAUFRICHTUNG));
+		assertThat(validationSettings.getProfiles(), hasItem("10"));
 	}
 
 }

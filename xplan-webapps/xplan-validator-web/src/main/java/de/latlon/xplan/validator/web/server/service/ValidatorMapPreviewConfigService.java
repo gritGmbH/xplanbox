@@ -40,6 +40,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 import static org.springframework.web.context.support.SpringBeanAutowiringSupport.processInjectionBasedOnServletContext;
 
@@ -60,7 +61,7 @@ public class ValidatorMapPreviewConfigService extends RemoteServiceServlet imple
 	protected HttpSession session;
 
 	@Autowired
-	private MapPreviewManager mapPreviewManager;
+	private Optional<MapPreviewManager> mapPreviewManager;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -76,19 +77,19 @@ public class ValidatorMapPreviewConfigService extends RemoteServiceServlet imple
 	}
 
 	@Override
-	public boolean isMapPreviewAvaialable() throws MapPreviewException {
-		return mapPreviewManager != null;
+	public boolean isMapPreviewAvailable() throws MapPreviewException {
+		return mapPreviewManager.isPresent();
 	}
 
 	@Override
 	public MapPreviewMetadata createMapPreviewConfig() throws MapPreviewException {
-		if (mapPreviewManager == null)
+		if (mapPreviewManager.isEmpty())
 			throw new MapPreviewException("Map preview manager is not available");
 		try {
 			XPlan planToVerify = planArchiveManager.readPlanFromSession(session);
 			File archive = planArchiveManager.retrieveXPlanArchiveFromFileSystem(planToVerify);
 
-			return mapPreviewManager.createConfigurations(archive);
+			return mapPreviewManager.get().createConfigurations(archive);
 		}
 		catch (ValidatorException | IOException | MapPreviewCreationException e) {
 			LOG.error("An exception occurred during validation", e);

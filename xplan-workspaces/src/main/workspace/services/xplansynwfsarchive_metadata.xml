@@ -20,14 +20,15 @@
   #L%
   -->
 
-<deegreeServicesMetadata configVersion="3.4.0" xmlns="http://www.deegree.org/services/metadata"
+<deegreeServicesMetadata xmlns="http://www.deegree.org/services/metadata"
                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                         xsi:schemaLocation="http://www.deegree.org/services/metadata http://schemas.deegree.org/services/metadata/3.4.0/metadata.xsd">
+                         xsi:schemaLocation="http://www.deegree.org/services/metadata https://schemas.deegree.org/3.5/services/metadata/metadata.xsd">
   <ServiceIdentification>
-    <Title>XPlanSynWFS</Title>
+    <Title>XPlanSynWFSArchive</Title>
     <Abstract>Dieser WFS Dienst stellt versionsübergreifende auf dem Standard XPlanung basierende FeatureTypes bereit.</Abstract>
     <Keywords>
       <Keyword>XPlanung</Keyword>
+      <Keyword>XPlanGML 6.0</Keyword>
       <Keyword>XPlanGML 5.4</Keyword>
       <Keyword>XPlanGML 5.3</Keyword>
       <Keyword>XPlanGML 5.2</Keyword>
@@ -35,7 +36,6 @@
       <Keyword>XPlanGML 5.0</Keyword>
       <Keyword>XPlanGML 4.1</Keyword>
       <Keyword>XPlanGML 4.0</Keyword>
-      <Keyword>XPlanGML 3.0</Keyword>
       <Keyword>WFS</Keyword>
       <Keyword>xPlanBox Version ${project.version}</Keyword>
     </Keywords>
@@ -48,14 +48,14 @@
     <ServiceContact>
       <IndividualName>-</IndividualName>
       <PositionName/>
-      <Phone>+49(0)22894779877</Phone>
+      <Phone>+49(0)22824333784</Phone>
       <Facsimile/>
       <ElectronicMailAddress>info@lat-lon.de</ElectronicMailAddress>
       <Address>
-        <DeliveryPoint>Aennchenstraße 19</DeliveryPoint>
-        <City>Bonn</City>
+        <DeliveryPoint>Im Ellig 1</DeliveryPoint>
+        <City>Wachtberg</City>
         <AdministrativeArea>Nordrhein-Westfalen</AdministrativeArea>
-        <PostalCode>53177</PostalCode>
+        <PostalCode>53343</PostalCode>
         <Country>Germany</Country>
       </Address>
       <OnlineResource>http://www.deegree.org</OnlineResource>
