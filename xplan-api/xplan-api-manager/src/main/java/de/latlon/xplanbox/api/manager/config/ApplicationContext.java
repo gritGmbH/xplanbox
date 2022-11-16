@@ -217,16 +217,20 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanRasterEvaluator xPlanRasterEvaluator(ManagerConfiguration managerConfiguration) {
-		RasterEvaluation rasterEvaluation = RasterEvaluationFactory.createRasterEvaluation(managerConfiguration);
+	public XPlanRasterEvaluator xPlanRasterEvaluator(RasterEvaluation rasterEvaluation) {
 		return new XPlanRasterEvaluator(rasterEvaluation);
 	}
 
 	@Bean
+	public RasterEvaluation getRasterEvaluation(ManagerConfiguration managerConfiguration) {
+		return RasterEvaluationFactory.createRasterEvaluation(managerConfiguration);
+	}
+
+	@Bean
 	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			ManagerConfiguration managerConfiguration) throws WorkspaceException {
+			ManagerConfiguration managerConfiguration, RasterEvaluation rasterEvaluation) throws WorkspaceException {
 		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
-		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory, rasterEvaluation);
 		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
 				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
 		return new XPlanRasterManager(rasterStorage, rasterConfigManager);

@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,22 +35,28 @@ import java.util.stream.Stream;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public abstract class FileSystemStorage implements RasterStorage {
+public class FileSystemStorage implements RasterStorage {
 
 	private static final Logger LOG = LoggerFactory.getLogger(FileSystemStorage.class);
 
-	protected Path dataDirectory;
+	private final Path dataDirectory;
 
-	protected FileSystemStorage(Path dataDirectory) {
+	private final RasterEvaluation rasterEvaluation;
+
+	public FileSystemStorage(Path dataDirectory, RasterEvaluation rasterEvaluation) {
 		this.dataDirectory = dataDirectory;
+		this.rasterEvaluation = rasterEvaluation;
 	}
 
 	@Override
-	public String copyRasterfile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException {
-		String rasterFileName = createFileName(planId, entryName);
-		Path target = createTargetFile(rasterFileName);
-		Files.copy(archive.retrieveInputStreamFor(entryName), target);
-		return rasterFileName;
+	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException {
+		if (rasterEvaluation.isSupportedFile(entryName)) {
+			String rasterFileName = createFileName(planId, entryName);
+			Path target = createTargetFile(rasterFileName);
+			Files.copy(archive.retrieveInputStreamFor(entryName), target);
+			return rasterFileName;
+		}
+		return null;
 	}
 
 	@Override
@@ -69,7 +76,6 @@ public abstract class FileSystemStorage implements RasterStorage {
 				nameWithoutPrefix = fileName.substring(0, lastIndexOfDot);
 			return rasterLayerFileName.startsWith(nameWithoutPrefix);
 		});
-
 	}
 
 	protected String createFileName(int planId, String fileName) {

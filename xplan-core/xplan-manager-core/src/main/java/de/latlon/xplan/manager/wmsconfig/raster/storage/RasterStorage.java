@@ -29,7 +29,7 @@ import java.io.IOException;
  */
 public interface RasterStorage {
 
-	String copyRasterfile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException;
+	String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException;
 
 	void deleteRasterFiles(String planId) throws IOException;
 

@@ -35,6 +35,7 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManagerFactory;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -330,10 +331,10 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 			WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
 			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
-			XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(
-					createRasterEvaluation(managerConfiguration));
+			RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
+			XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
 			Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
-			RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
+			RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory, rasterEvaluation);
 			RasterConfigManager rasterManagerConfig = RasterConfigManagerFactory
 					.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
 			XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterManagerConfig);

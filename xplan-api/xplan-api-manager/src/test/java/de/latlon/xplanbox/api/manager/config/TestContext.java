@@ -44,7 +44,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GeotiffRasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.GeotiffRasterStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.FileSystemStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
@@ -173,10 +173,14 @@ public class TestContext {
 
 	@Bean
 	@Primary
-	public XPlanRasterEvaluator xPlanRasterEvaluator(ManagerConfiguration managerConfiguration) {
-		RasterEvaluation rasterEvaluation = new GeotiffRasterEvaluation(
-				managerConfiguration.getRasterConfigurationCrs());
+	public XPlanRasterEvaluator xPlanRasterEvaluator(RasterEvaluation rasterEvaluation) {
 		return new XPlanRasterEvaluator(rasterEvaluation);
+	}
+
+	@Bean
+	@Primary
+	public RasterEvaluation getRasterEvaluation(ManagerConfiguration managerConfiguration) {
+		return new GeotiffRasterEvaluation(managerConfiguration.getRasterConfigurationCrs());
 	}
 
 	@Bean
@@ -187,9 +191,9 @@ public class TestContext {
 	}
 
 	@Bean
-	public RasterStorage rasterStorage(WmsWorkspaceWrapper wmsWorkspaceWrapper) {
+	public RasterStorage rasterStorage(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
 		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
-		return new GeotiffRasterStorage(dataDirectory);
+		return new FileSystemStorage(dataDirectory, rasterEvaluation);
 	}
 
 	@Bean

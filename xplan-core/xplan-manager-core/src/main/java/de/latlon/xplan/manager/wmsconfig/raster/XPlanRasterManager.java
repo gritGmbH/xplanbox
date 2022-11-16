@@ -188,7 +188,7 @@ public class XPlanRasterManager {
 		for (ArchiveEntry entry : rasterplanEntries) {
 			String entryName = entry.getName();
 			LOG.debug("Raster data entry {} ", entryName);
-			String rasterFileName = rasterStorage.copyRasterfile(planId, entryName, archive);
+			String rasterFileName = rasterStorage.addRasterFile(planId, entryName, archive);
 			String rasterId = createRasterId(rasterFileName);
 			rasterIds.add(rasterId);
 			rasterConfigManager.createConfiguration(rasterId, rasterFileName);

@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 
 import java.nio.file.Path;
 
@@ -30,13 +31,14 @@ import java.nio.file.Path;
  */
 public class RasterStorageFactory {
 
-	public static RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration, Path dataDirectory) {
+	public static RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration, Path dataDirectory,
+			RasterEvaluation rasterEvaluation) {
 		switch (managerConfiguration.getRasterConfigurationType()) {
 			case gdal:
 			case mapserver:
-				return new GdalRasterStorage(dataDirectory, new GdalRasterAdapter());
+				return new GdalRasterStorage(dataDirectory, rasterEvaluation, new GdalRasterAdapter());
 		}
-		return new GeotiffRasterStorage(dataDirectory);
+		return new FileSystemStorage(dataDirectory, rasterEvaluation);
 	}
 
 }

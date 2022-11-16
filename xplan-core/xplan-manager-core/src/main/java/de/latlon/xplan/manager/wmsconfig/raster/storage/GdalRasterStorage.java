@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -36,22 +37,24 @@ public class GdalRasterStorage extends FileSystemStorage {
 
 	private GdalRasterAdapter rasterAdapter;
 
-	public GdalRasterStorage(Path dataDirectory, GdalRasterAdapter rasterAdapter) {
-		super(dataDirectory);
+	public GdalRasterStorage(Path dataDirectory, RasterEvaluation rasterEvaluation, GdalRasterAdapter rasterAdapter) {
+		super(dataDirectory, rasterEvaluation);
 		this.rasterAdapter = rasterAdapter;
 	}
 
 	@Override
-	public String copyRasterfile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException {
-		String rasterFileName = super.copyRasterfile(planId, entryName, archive);
-		Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(archive, entryName);
-		if (referencedFiles != null) {
-			for (Object referencedFile : referencedFiles) {
-				Path file = Paths.get(referencedFile.toString());
-				String newFileName = createFileName(planId, file.getFileName().toString());
-				if (!newFileName.equals(rasterFileName)) {
-					Path target = createTargetFile(newFileName);
-					Files.copy(file, target);
+	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException {
+		String rasterFileName = super.addRasterFile(planId, entryName, archive);
+		if (rasterFileName != null) {
+			Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(archive, entryName);
+			if (referencedFiles != null) {
+				for (Object referencedFile : referencedFiles) {
+					Path file = Paths.get(referencedFile.toString());
+					String newFileName = createFileName(planId, file.getFileName().toString());
+					if (!newFileName.equals(rasterFileName)) {
+						Path target = createTargetFile(newFileName);
+						Files.copy(file, target);
+					}
 				}
 			}
 		}

@@ -33,6 +33,8 @@ import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManagerFactory;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluationFactory;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceUtils;
 import de.latlon.xplan.update.updater.SortPropertyUpdater;
@@ -135,7 +137,8 @@ public class SortDateUpdateTool {
 		DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
 		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
-		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory);
+		RasterEvaluation rasterEvaluation = RasterEvaluationFactory.createRasterEvaluation(managerConfiguration);
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory, rasterEvaluation);
 		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
 				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
 		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
