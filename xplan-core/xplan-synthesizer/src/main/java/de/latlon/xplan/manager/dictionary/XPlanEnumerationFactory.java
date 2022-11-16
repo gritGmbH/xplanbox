@@ -31,21 +31,21 @@ import static org.deegree.gml.GMLVersion.GML_30;
  */
 public class XPlanEnumerationFactory {
 
-	private static final String XPLAN_40_CODE_LISTS = "/codelists/XPlanGML_4_0_Enumerationen.xml";
+	private static final String XPLAN_40_CODE_LISTS = "/enumeration/XPlanGML_4_0_Enumerationen.xml";
 
-	private static final String XPLAN_41_CODE_LISTS = "/codelists/XPlanGML_Enumerationen_4_1.xml";
+	private static final String XPLAN_41_CODE_LISTS = "/enumeration/XPlanGML_Enumerationen_4_1.xml";
 
-	private static final String XPLAN_50_CODE_LISTS = "/codelists/XPlanGML_5_0_Enumerationen.xml";
+	private static final String XPLAN_50_CODE_LISTS = "/enumeration/XPlanGML_5_0_Enumerationen.xml";
 
-	private static final String XPLAN_51_CODE_LISTS = "/codelists/XPlanGML_5_1_Enumerationen.xml";
+	private static final String XPLAN_51_CODE_LISTS = "/enumeration/XPlanGML_5_1_Enumerationen.xml";
 
-	private static final String XPLAN_52_CODE_LISTS = "/codelists/XPlanGML_5_2_Enumerationen.xml";
+	private static final String XPLAN_52_CODE_LISTS = "/enumeration/XPlanGML_5_2_Enumerationen.xml";
 
-	private static final String XPLAN_53_CODE_LISTS = "/codelists/XPlanGML_5_3_Enumerationen.xml";
+	private static final String XPLAN_53_CODE_LISTS = "/enumeration/XPlanGML_5_3_Enumerationen.xml";
 
-	private static final String XPLAN_54_CODE_LISTS = "/codelists/XPlanGML_5_4_Enumerationen.xml";
+	private static final String XPLAN_54_CODE_LISTS = "/enumeration/XPlanGML_5_4_Enumerationen.xml";
 
-	private static final String XPLAN_60_CODE_LISTS = "/codelists/XPlanGML_6_0_1_Enumerationen.xml";
+	private static final String XPLAN_60_CODE_LISTS = "/enumeration/XPlanGML_6_0_1_Enumerationen.xml";
 
 	private static XPlanDictionaries xplan40Enumerations;
 
