@@ -30,6 +30,7 @@ import de.latlon.xplan.manager.configuration.ConfigurationException;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -183,7 +184,7 @@ public class XPlanRasterManager {
 	}
 
 	private List<String> copyRasterfilesAndCreateConfig(XPlanArchiveContentAccess archive,
-			List<ArchiveEntry> rasterplanEntries, int planId) throws IOException, JAXBException {
+			List<ArchiveEntry> rasterplanEntries, int planId) throws IOException, JAXBException, StorageException {
 		List<String> rasterIds = new ArrayList<>();
 		for (ArchiveEntry entry : rasterplanEntries) {
 			String entryName = entry.getName();

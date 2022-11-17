@@ -20,20 +20,17 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
-import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-
-import java.io.IOException;
-
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public interface RasterStorage {
+public class StorageException extends Exception {
 
-	String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive)
-			throws IOException, StorageException;
+	public StorageException(String message) {
+		super(message);
+	}
 
-	void deleteRasterFiles(String planId) throws IOException;
-
-	void deleteRasterFiles(String planId, String rasterId) throws IOException;
+	public StorageException(String message, Throwable e) {
+		super(message, e);
+	}
 
 }

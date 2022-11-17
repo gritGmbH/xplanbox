@@ -20,20 +20,22 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.storage;
 
-import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-
-import java.io.IOException;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public interface RasterStorage {
+public class AmazonS3Factory {
 
-	String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive)
-			throws IOException, StorageException;
+	public static final String PROFILE_NAME = "xplanbox";
 
-	void deleteRasterFiles(String planId) throws IOException;
+	private final AmazonS3ClientBuilder builder = AmazonS3ClientBuilder.standard()
+			.withCredentials(new ProfileCredentialsProvider(PROFILE_NAME));
 
-	void deleteRasterFiles(String planId, String rasterId) throws IOException;
+	public AmazonS3 createClient() {
+		return builder.build();
+	}
 
 }
