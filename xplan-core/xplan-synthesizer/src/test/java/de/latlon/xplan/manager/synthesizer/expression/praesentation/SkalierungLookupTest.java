@@ -1,4 +1,4 @@
-package de.latlon.xplan.manager.synthesizer.praesentation;
+package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
 /*-
  * #%L
@@ -21,7 +21,6 @@ package de.latlon.xplan.manager.synthesizer.praesentation;
  * #L%
  */
 
-import de.latlon.xplan.manager.synthesizer.expression.praesentation.SkalierungLookup;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;

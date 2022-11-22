@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.praesentation.attribute;
+package de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute;
 
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributePropertyParser;

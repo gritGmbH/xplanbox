@@ -18,11 +18,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression;
+package de.latlon.xplan.manager.synthesizer.expression.dictionary;
 
-import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
-import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
-
+import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
+import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -32,31 +31,32 @@ import org.deegree.feature.property.GenericProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 /**
- * {@link Expression} for translating codes from {@link XPlanCodeLists} to their textual
- * representation.
+ * {@link Expression} for translating codes from {@link XPlanDictionaries} to their
+ * textual representation.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public abstract class AbstractXplanCodeLookup implements Expression {
+public abstract class AbstractXPlanDictionaryLookup implements Expression {
 
-	private static final Logger LOG = LoggerFactory.getLogger(AbstractXplanCodeLookup.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AbstractXPlanDictionaryLookup.class);
 
 	private final Expression exp;
 
-	private final String codeListName;
+	private final String dictionaryName;
 
-	public AbstractXplanCodeLookup(Expression exp, String codeListName) {
+	public AbstractXPlanDictionaryLookup(Expression exp, String dictionaryName) {
 		this.exp = exp;
-		this.codeListName = codeListName;
+		this.dictionaryName = dictionaryName;
 	}
 
 	@Override
 	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
-		XPlanCodeLists xPlanCodeLists = getXplanCodeLists(feature);
-		if (xPlanCodeLists == null)
+		XPlanDictionaries xPlanDictionaries = getXPlanDictionaries(feature);
+		if (xPlanDictionaries == null)
 			return null;
 
 		String translation = null;
@@ -66,7 +66,7 @@ public abstract class AbstractXplanCodeLookup implements Expression {
 				translation = "";
 				for (TypedObjectNode o : codes.getElements()) {
 					String code = toString(o);
-					String desc = xPlanCodeLists.getTranslation(codeListName, code);
+					String desc = xPlanDictionaries.getTranslation(dictionaryName, code);
 					translation += "[" + escape(desc) + "]";
 				}
 				if (codes.getElements().length == 1) {
@@ -83,7 +83,7 @@ public abstract class AbstractXplanCodeLookup implements Expression {
 		return toPrimitiveValue(translation);
 	}
 
-	protected abstract XPlanCodeLists getXplanCodeLists(Feature feature);
+	protected abstract XPlanDictionaries getXPlanDictionaries(Feature feature);
 
 	private String escape(String desc) {
 		return desc.replace("][", "][][");

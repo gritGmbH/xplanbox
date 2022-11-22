@@ -8,20 +8,21 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression;
+package de.latlon.xplan.manager.synthesizer.expression.dictionary;
 
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
-import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
+import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
+import de.latlon.xplan.manager.dictionary.XPlanDictionariesParser;
+import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import org.deegree.feature.Feature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,14 +34,16 @@ import java.nio.file.Path;
 import static org.deegree.gml.GMLVersion.GML_30;
 
 /**
- * {@link AbstractXplanCodeLookup} for translating codes from external
- * {@link XPlanCodeLists} to their textual representation.
+ * {@link AbstractXPlanDictionaryLookup} for translating codes from external
+ * {@link XPlanDictionaries} to their textual representation.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class XPlanExternalCodeLookup extends AbstractXplanCodeLookup {
+public class XPlanExternalCodeLookup extends AbstractXPlanDictionaryLookup {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanExternalCodeLookup.class);
+
+	private final XPlanDictionariesParser xPlanDictionariesParser = new XPlanDictionariesParser();
 
 	private final String codeListFile;
 
@@ -63,12 +66,12 @@ public class XPlanExternalCodeLookup extends AbstractXplanCodeLookup {
 	}
 
 	@Override
-	protected XPlanCodeLists getXplanCodeLists(Feature feature) {
+	protected XPlanDictionaries getXPlanDictionaries(Feature feature) {
 		if (configurationFilePath != null) {
 			Path codeList = configurationFilePath.resolve(codeListFile);
 			LOG.info("Use configured codelist from {}.", codeList);
 			try {
-				return XPlanCodeListsFactory.getXPlanCodeLists(codeList.toUri().toURL(), GML_30);
+				return xPlanDictionariesParser.parseDictionaries(codeList.toUri().toURL(), GML_30);
 			}
 			catch (XMLStreamException | IOException e) {
 				LOG.error("Could not parse code list " + codeList + ". Code will not be translated.", e);

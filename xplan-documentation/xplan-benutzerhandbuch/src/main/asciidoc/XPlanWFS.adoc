@@ -12,7 +12,7 @@ Der XPlanWFS bietet verschiedene Dienste zur Abfrage von XPlanGML an:
 
 [width="100%",cols="30%,30%,40%",options="header"]
 |===
-| XPlanGML Version
+| XPlanGML-Version
 | Service Endpoint
 | WFS Protokollversion
 | 3
@@ -172,7 +172,7 @@ drei weitere StoredQueries an. Darüber lassen sich die Vektordaten eines einzel
 Diese Eigenschaften sollten bei den importierten Plänen eindeutig sein, nur dann liefert die StoredQuery exakt ein Anfrageergebnis. Pläne ohne Rechtsstand werden generell nicht über die StoredQueries ausgegeben.
 
 Die Nutzung der StoredQueries erfolgt über GetFeature-Anfragen. Beispielanfrage für
-den Plan mit dem Namen _Musterdorf_ in der XPlanGML Version 5.4:
+den Plan mit dem Namen _Musterdorf_ in der XPlanGML-Version 5.4:
 
 ----
 http://<host>:<port>/xplan-wfs/services/wfs54?request=GetFeature&service=WFS&version=2.0.0&resolvedepth=*&StoredQuery_ID=urn:ogc:def:query:OGC-WFS::PlanName&planName=Musterdorf

@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.codelists;
+package de.latlon.xplan.manager.dictionary;
 
 /**
  * A single codeEntry with all relevant information.
@@ -26,7 +26,7 @@ package de.latlon.xplan.manager.codelists;
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
  * @version 1.0, Date: 2010-02-11
  */
-public class XPlanCodeEntry {
+public class XPlanDictionaryEntry {
 
 	private final String code;
 
@@ -42,7 +42,7 @@ public class XPlanCodeEntry {
 	 * @param lesbarerName of the codeEntry, e.g "Absolut NHN", may be <code>null</code>
 	 * @param kuerzel of the codeEntry, e.g "NHN", may be <code>null</code>
 	 */
-	public XPlanCodeEntry(String code, String name, String lesbarerName, String kuerzel) {
+	public XPlanDictionaryEntry(String code, String name, String lesbarerName, String kuerzel) {
 		this.code = code;
 		this.name = name;
 		this.lesbarerName = lesbarerName;
