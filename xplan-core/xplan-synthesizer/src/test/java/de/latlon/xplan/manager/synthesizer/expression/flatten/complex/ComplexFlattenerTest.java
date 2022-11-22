@@ -35,6 +35,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.AdditionalMatchers.not;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -78,19 +79,24 @@ public class ComplexFlattenerTest {
 	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate_Code_WithCodelist() throws Exception {
 		FeatureCollection features = load(XPLAN_60, "flatten/BP_KomplexeZweckbestGruen.xml");
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
-		XplanFlattenProperty expr = new XplanFlattenProperty(mockXPlanCodelists(), new Xpath("xplan:zweckbestimmung"));
+		XPlanCodelists codelists = mockXPlanCodelists("1000", "Uebersetzte1000");
+		XplanFlattenProperty expr = new XplanFlattenProperty(codelists, new Xpath("xplan:zweckbestimmung"));
 		PrimitiveValue value = expr.evaluate(feature, features);
 		assertEquals(
 				"[Allgemein: Naturerfahrungsraum|Detail: Uebersetzte1000|Textliche Ergänzung: Textliche Ergänzung|Aufschrift: Grüne Hölle]",
 				value.toString());
 	}
 
-	private XPlanCodelists mockXPlanCodelists() {
-		XPlanDictionaries codelists = mock(XPlanDictionaries.class);
-		when(codelists.getTranslation(eq("BP_DetailZweckbestGruenFlaeche"), eq("1000"))).thenReturn("Uebersetzte1000");
-		XPlanCodelists xPlanCodelists = mock(XPlanCodelists.class);
-		when(xPlanCodelists.getCodelists(XPLAN_60)).thenReturn(codelists);
-		return xPlanCodelists;
+	@Test
+	public void testFlatten_KomplexeZweckbestimmung_zweckbestimmungTranslate_Code_UnknownCode() throws Exception {
+		FeatureCollection features = load(XPLAN_60, "flatten/BP_KomplexeZweckbestGruen.xml");
+		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
+		XPlanCodelists codelists = mockXPlanCodelists("5000", "Uebersetzte5000");
+		XplanFlattenProperty expr = new XplanFlattenProperty(codelists, new Xpath("xplan:zweckbestimmung"));
+		PrimitiveValue value = expr.evaluate(feature, features);
+		assertEquals(
+				"[Allgemein: Naturerfahrungsraum|Detail: 1000|Textliche Ergänzung: Textliche Ergänzung|Aufschrift: Grüne Hölle]",
+				value.toString());
 	}
 
 	@Test
@@ -192,6 +198,16 @@ public class ComplexFlattenerTest {
 		assertEquals(
 				"[Verbundener Plan: Heideweg8|Rechtscharakter Planänderung: Aufhebung|Nummer verbundener Plan: 88]",
 				value.toString());
+	}
+
+	private XPlanCodelists mockXPlanCodelists(String code, String translation) {
+		XPlanDictionaries codelists = mock(XPlanDictionaries.class);
+		when(codelists.getTranslation(eq("BP_DetailZweckbestGruenFlaeche"), eq(code))).thenReturn(translation);
+		when(codelists.getTranslation(eq("BP_DetailZweckbestGruenFlaeche"), not(eq(code))))
+				.thenThrow(IllegalArgumentException.class);
+		XPlanCodelists xPlanCodelists = mock(XPlanCodelists.class);
+		when(xPlanCodelists.getCodelists(XPLAN_60)).thenReturn(codelists);
+		return xPlanCodelists;
 	}
 
 }

@@ -196,8 +196,13 @@ public abstract class AbstractFlattener implements Flattener {
 			String propertyValue = asString(feature, propertyName);
 			if (propertyValue != null) {
 				if (codelists != null) {
-					String translatedValue = codelists.getTranslation(codeListName, propertyValue);
-					properties.add(new Pair(label, translatedValue));
+					try {
+						String translatedValue = codelists.getTranslation(codeListName, propertyValue);
+						properties.add(new Pair(label, translatedValue));
+					}
+					catch (IllegalArgumentException e) {
+						properties.add(new Pair(label, propertyValue));
+					}
 				}
 			}
 		}
