@@ -25,16 +25,15 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://www.opengis.net/se http://schemas.opengis.net/se/1.1.0/FeatureStyle.xsd">
   <Name>vollflaechig</Name>
-  <FeatureTypeName>xplan:BP_RasterplanAenderung</FeatureTypeName>
-  <!-- TODO platzhalter -->
+  <FeatureTypeName>xplan:LP_ZuBegruenendeGrundstueckflaeche</FeatureTypeName>
   <Rule>
-    <Name>bp_rasterplanaender</Name>
+    <Name>lp_zubegruenendegrundstueckflaeche</Name>
     <Description>
-      <Title>BP: Rasterplanänderung</Title>
+      <Title>LP: ZuBegruenendeGrundstueckflaeche</Title>
     </Description>
     <PolygonSymbolizer uom="meter">
       <Geometry>
-        <ogc:PropertyName>xplan:geltungsbereichAenderung</ogc:PropertyName>
+        <ogc:PropertyName>xplan:position</ogc:PropertyName>
       </Geometry>
       <Stroke>
         <SvgParameter name="stroke">#000000</SvgParameter>

@@ -17,7 +17,7 @@
 
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 24.10.2022, 07:13:49
+  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 31.10.2022, 09:04:57
 -->
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial">
   <LayerStoreId>rplanpre</LayerStoreId>
@@ -131,6 +131,13 @@
       <Layer>rp_genobj</Layer>
     </Theme>
     <Theme>
+      <Identifier>rp_gewaesser</Identifier>
+      <d:Title>RP_Gewaesser</d:Title>
+      <d:Abstract>RP_Gewaesser</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>rp_gewaesser</Layer>
+    </Theme>
+    <Theme>
       <Identifier>rp_gr</Identifier>
       <d:Title>RP_Grenze</d:Title>
       <d:Abstract>RP_Grenze</d:Abstract>
@@ -171,6 +178,13 @@
       <d:Abstract>RP_Kommunikation</d:Abstract>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>rp_kommunikation</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_kulturellessachgut</Identifier>
+      <d:Title>RP_KulturellesSachgut</d:Title>
+      <d:Abstract>RP_KulturellesSachgut</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>rp_kulturellessachgut</Layer>
     </Theme>
     <Theme>
       <Identifier>rp_kulturlandschaft</Identifier>
@@ -318,6 +332,13 @@
       <d:Abstract>RP_SozialeInfrastruktur</d:Abstract>
       <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
       <Layer>rp_sozinfrastrukt</Layer>
+    </Theme>
+    <Theme>
+      <Identifier>rp_sperrgebiet</Identifier>
+      <d:Title>RP_Sperrgebiet</d:Title>
+      <d:Abstract>RP_Sperrgebiet</d:Abstract>
+      <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
+      <Layer>rp_sperrgebiet</Layer>
     </Theme>
     <Theme>
       <Identifier>rp_sportanlage</Identifier>

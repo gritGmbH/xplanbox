@@ -2,7 +2,7 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-## Version 6.0 (2020-10-28)
+## Version 6.0 (2022-10-28)
 
 ### Erweiterungen
 - Unterstützung für XPlanGML 6.0 in allen Komponenten der xPlanBox
