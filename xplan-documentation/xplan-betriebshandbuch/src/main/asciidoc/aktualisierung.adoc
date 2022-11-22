@@ -117,7 +117,7 @@ cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-manager-config-${VERSION}
 cd ${DEEGREE_DIR} && unzip -o ${WORK_DIR}/config/xplan-validator-config-${VERSION}.zip
 ----
 
-Folgende Ordner des neuen _xplansyn-wms-workspace_ müssen in die bestehende Installation integriert werden:
+Folgende Verzeichnisse des neuen _xplansyn-wms-workspace_ müssen in die bestehende Installation integriert werden:
 
 * _appschemas/_
 * _datasources/feature/_
@@ -126,7 +126,7 @@ Folgende Ordner des neuen _xplansyn-wms-workspace_ müssen in die bestehende Ins
 * _styles/_
 * _themes/_
 
-CAUTION: Im Ordner _themes/_ nicht die Dateien, die auf _raster.xml_ enden, ersetzen!
+CAUTION: Im Verzeichnis _themes/_ nicht die Dateien, die auf _raster.xml_ enden, ersetzen!
 
 
 [[aktualisierung-der-schemas]]
@@ -135,7 +135,7 @@ CAUTION: Im Ordner _themes/_ nicht die Dateien, die auf _raster.xml_ enden, erse
 IMPORTANT: Die folgenden Schritte müssen nur ausgeführt werden, wenn die bereits in das System importierten Daten beibehalten werden sollen. Für den Fall, dass dies nicht notwendig ist, kann die Datenbank XPlanDB neu aufgesetzt werden. Mehr Details hierzu finden Sie im Kapitel <<konfiguration-der-datenbank>>.
 
 Die SQL-Skripte für die Datenbankschemas jeder Version befinden sich im
-_xplan-manager-workspace_ im Ordner _sql/_. Für jedes Datenbankschema gibt es dort
+_xplan-manager-workspace_ im Verzeichnis _sql/_. Für jedes Datenbankschema gibt es dort
 einen eigenen Unterordner. Neu hinzugekommene Datenbankschemas können zu der
 Datenbank hinzugefügt werden und stehen danach für die Anwendung
 bereit. Bei Änderungen an einem Datenbankschema müssen diese durch ein
@@ -143,8 +143,8 @@ SQL-Skript durchgeführt werden. Für die Aktualisierungen der XPlanDB liegen di
 
 Führen Sie die zu der Version passenden SQL-Skripte aus dem entsprechenden Unterordner aus:
 
-- von 5.0 auf 5.0.2 aus dem Ordner _from_5.0_to_5.0.2/_
-- von 5.0.2 auf 6.0 aus dem Ordner _from_5.0.2_to_6.0/_
+- von 5.0 auf 5.0.2 aus dem Verzeichnis _from_5.0_to_5.0.2/_
+- von 5.0.2 auf 6.0 aus dem Verzeichnis _from_5.0.2_to_6.0/_
 
 NOTE: Bei der Aktualisierung der XPlanDB kann es bei Ausführung der SQL zu folgender Fehlermeldungen kommen: _ERROR:  relation "databasechangeloglock" already exists_ kommen. Diese Fehlermeldung kann ignoriert werden.
 
