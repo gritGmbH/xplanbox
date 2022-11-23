@@ -32,6 +32,7 @@
         <include>data/**</include>
         <include>datasources/feature/xplansyn*</include>
         <include>datasources/tile/**</include>
+        <include>datasources/remoteows/**</include>
         <include>jdbc/xplan.xml</include>
         <include>services/wms*</include>
         <include>services/bpwms*</include>
@@ -47,6 +48,7 @@
         <include>layers/soplan*</include>
         <include>layers/planart-wms/**</include>
         <include>layers/dummyrasterlayer.ignore</include>
+        <include>layers/mapserver.ignore</include>
         <include>services/wms*</include>
         <include>themes/bplan*</include>
         <include>themes/fplan*</include>

@@ -21,6 +21,7 @@
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description"
         xmlns:s="http://www.deegree.org/metadata/spatial" >
   <!--<LayerStoreId>dummyrasterlayer</LayerStoreId>-->
+  <!--<LayerStoreId>mapserver</LayerStoreId>-->
   <Theme>
     <Identifier>LP_Planraster</Identifier>
     <d:Title>LPlan Raster</d:Title>
@@ -30,6 +31,7 @@
       <Identifier>lplanraster_sortiert</Identifier>
       <d:Title>LPlan Raster Theme</d:Title>
       <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
+      <!--<Layer layerStore="mapserver">lplanraster</Layer>-->
     </Theme>
   </Theme>
 </Themes>
