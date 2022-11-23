@@ -239,6 +239,11 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 ** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 ** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
 
+[[aktualisierung-auf-xplanbox-version-6.1]]
+=== Aktualisierung auf die Version 6.1 der xPlanBox
+
+In der Version 6.1 der xPlanBox erfolgte eine Umstellung des Loggings. Es werden für die Anwendungen XPlanManagerWeb, XPlanManagerApi, XPlanValidatorWeb und XPlanValidatorApi, sowie alle XPlanDienste keine Log-Dateien mehr geschrieben. Die Log-Ausgaben werden standardmäßig nur noch nach Standard-Out geschrieben.
+
 === Troubleshooting
 
 Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:

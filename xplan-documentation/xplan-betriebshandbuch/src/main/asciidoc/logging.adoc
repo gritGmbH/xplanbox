@@ -4,7 +4,7 @@
 Die Anwendungen XPlanManagerWeb, XPlanManagerApi, XPlanValidatorWeb und XPlanValidatorApi, sowie alle XPlanDienste und Kommandozeilenwerkzeuge schreiben Log-Ausgaben standardmäßig nach
 Standard-Out. Für die Web-Anwendungen und die Webservices ist dies die Logging-Datei des
 Java Applikationsserver (Apache Tomcat: _catalina.out_) und bei den Kommandozeilenwerkzeugen die Konsole.
-Nach Standard-Out werden nur Warnungen und Fehler geschrieben.
+Nach Standard-Out werden Informationen, Warnungen und Fehler geschrieben.
 
 === Protokolldateien der Komponenten
 
