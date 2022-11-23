@@ -21,26 +21,11 @@ package de.latlon.xplan.validator.geometric.inspector.aenderungen;
  * #L%
  */
 
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
-import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.GMLVersion;
 import org.junit.Test;
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import java.io.InputStream;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromGml;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -49,31 +34,25 @@ public class AenderungenInspectorTest {
 
 	@Test
 	public void test_InspectAendertAndWurdeGeaendertVonReferences() throws Exception {
-		AenderungenInspector aenderungenInspector = readFeatures("aendertUndWurdeGeandertVon.gml");
+		AenderungenInspector aenderungenInspector = new AenderungenInspector();
+		readFeaturesFromGml("aendertUndWurdeGeandertVon.gml", AenderungenInspectorTest.class, aenderungenInspector);
 
-		List<String> aendertAndWurdeGeandertVonReferences = aenderungenInspector
-				.getLokalAendertAndWurdeGeandertVonReferences();
-		assertThat(aendertAndWurdeGeandertVonReferences.size(), is(2));
+		assertTrue(aenderungenInspector.isAenderungReference("GML_18e6f5cd-9896-4e80-b4f3-ce0d8cc8a0c4"));
+		assertTrue(aenderungenInspector.isAenderungReference("GML_5792983e-433f-11e8-88d4-b3eda89dad90"));
+		assertFalse(aenderungenInspector.isAenderungReference("GML_7af470e9-0167-43ae-823d-56e4241eab9d"));
+		assertFalse(aenderungenInspector.isAenderungReference("GML_7af470e9-0167-43ae-823d-56e4241eab9d"));
 	}
 
-	private AenderungenInspector readFeatures(String resource) throws XMLStreamException, UnknownCRSException {
-		InputStream resourceAsStream = getClass().getResourceAsStream(resource);
-		XMLStreamReader xmlStreamReader = XMLInputFactory.newFactory().createXMLStreamReader(resourceAsStream);
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xmlStreamReader, null);
-		XPlanVersion version = XPlanVersion.XPLAN_50;
-		GMLVersion gmlVersion = version.getGmlVersion();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-
-		GeometryFactory geomFac = new GeometryFactory();
-		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(gmlVersion, xmlStream);
-		gmlStream.setGeometryFactory(geomFac);
-		gmlStream.setApplicationSchema(schema);
-		gmlStream.setSkipBrokenGeometries(true);
+	@Test
+	public void test_InspectAendertAndWurdeGeaendertVonReferences_XPlanGml60() throws Exception {
 		AenderungenInspector aenderungenInspector = new AenderungenInspector();
-		gmlStream.addInspector(aenderungenInspector);
-		gmlStream.readFeature();
+		readFeaturesFromGml("aendertPlanUndAendertPlanBereich.gml", AenderungenInspectorTest.class,
+				aenderungenInspector);
 
-		return aenderungenInspector;
+		assertTrue(aenderungenInspector.isAenderungReference("REF_1"));
+		assertTrue(aenderungenInspector.isAenderungReference("REF_2"));
+		assertFalse(aenderungenInspector.isAenderungReference("GML_9ee7445b-a079-403e-8717-cbc0dd9687ee"));
+		assertFalse(aenderungenInspector.isAenderungReference("GML_033a8b97-b5f7-4453-99d7-b624fc1b4ef5"));
 	}
 
 }

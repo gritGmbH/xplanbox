@@ -8,7 +8,7 @@ Dieses Projekt ist unter der GNU Affero General Public License, Version 3 oder j
 
 ## Versionierung
 
-Die Versionierung der Software folgt dem Versionierungsschema von [SemVer](http://semver.org/). Eine Übersicht der bisher erstellten Versionen ist unter [Releases](../../releases) zu finden. 
+Die Versionierung der Software folgt dem Versionierungsschema von [SemVer](http://semver.org/). Eine Übersicht der bisher erstellten Versionen ist unter [Releases](../../releases) zu finden. Die Änderungshistorie ist im [CHANGELOG.md](CHANGELOG.md) dokumentiert.
 
 ## Mitarbeit
 
@@ -69,12 +69,12 @@ Weitere Informationen zu Konfiguration von Maven stehen in der [Referenzdokument
 
 #### deegree webservices erstellen
 
-Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 5.0 der Anwendung muss deegree **Version 3.4.27** verwendet werden:
+Im ersten Schritt muss der Quellcode von [deegree mit Java 11](https://github.com/lat-lon/deegree3/tree/xplanbox-deegree3.5) kompiliert werden. Dazu muss die passende Version von deegree ausgewählt werden. Für Version 6.0 der Anwendung muss deegree **Version 3.5-PRE1** verwendet werden:
 
 ```shell
 git clone https://github.com/lat-lon/deegree3.git
 cd deegree3
-git checkout tags/xplanbox-deegree-3.4.27
+git checkout tags/xplanbox-deegree-3.5-PRE1
 mvn clean install
 ```
 > **_Hinweis_**: Aktuell kann noch nicht eine offizielle Release-Version von deegree verwendet werden, da diese bisher nur unter Java 1.8 ausführbar sind. Der Quellcode für diese Anwendung erfordert aber Java 11! Sobald eine Version von deegree mit Unterstützung von Java 11 verfügbar ist, entfällt dieser Schritt.
@@ -83,11 +83,7 @@ mvn clean install
 
 #### XPlanung-Validierungsregeln einbinden
 
-Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des XPlanung-Standards aus dem [Bitbucket-Repository der Geowerkstatt Hamburg](https://bitbucket.org/geowerkstatt-hamburg/xplanung).
-Dazu muss die passende Version der XPlanung-Validierungsregeln ausgewählt werden. Für Version 5.0 der Anwendung muss **Version 0.11.1** verwendet werden:
-
-* Download der Datei [v0.11.1.zip](https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.11.1.zip) aus dem [Download-Bereich](https://bitbucket.org/geowerkstatt-hamburg/xplanung/downloads/?tab=tags)
-* Installieren der Datei im lokalen Maven Repository mit `mvn install:install-file -DgroupId=de.geowerkstatt-hamburg -DartifactId=xplanung -Dversion=0.11.1 -Dpackaging=zip -DgeneratePom=true -Dfile=geowerkstatt-hamburg-xplanung.zip`
+Die Anwendung nutzt die öffentlich verfügbaren XPlanung-Validierungsregeln des XPlanung-Standards aus dem [OpenCoDE-Repository der XLeitstelle](https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard).
 
 > **_Hinweis_**: Um eine andere Version der XPlanung-Validierungsregeln zu installieren, folgen Sie der Anleitung im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc).
 
@@ -104,8 +100,6 @@ mvn clean install
 ### Installation und Konfiguration
 
 Die Installation und Konfiguration der Anwendung ist im [Betriebshandbuch](xplan-documentation/xplan-betriebshandbuch/src/main/asciidoc) dokumentiert.
-
-> **_Hinweis_**: Verwenden Sie für die Konfiguration der Komponenten die Konfigurationsdateien aus den erstellten ZIP-Dateien mit der Endung "default.zip", z. B. `xplan-manager-config-VERSION-default.zip`. 
 
 ----
 © 2022 lat/lon gesellschaft für raumbezogene informationssysteme mbH  

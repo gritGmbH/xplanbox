@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -37,14 +37,14 @@ import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
-import de.latlon.xplan.manager.web.shared.Rechtsstand;
+import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 
@@ -162,7 +162,7 @@ public class ImportWizardCreator {
 	private void selectLegislationStatusAndImportPlan(final String id, final boolean hasMultipleXPlanElements,
 			final String internalId, final Date startDateTime, final Date endDateTime) {
 		if (configuration.isLegislationStatusActivated() && !hasMultipleXPlanElements) {
-			getService().determineLegislationStatus(id, new MethodCallback<Rechtsstand>() {
+			getService().determineLegislationStatus(id, new MethodCallback<RechtsstandAndPlanStatus>() {
 
 				@Override
 				public void onFailure(Method method, Throwable caught) {
@@ -170,7 +170,7 @@ public class ImportWizardCreator {
 				}
 
 				@Override
-				public void onSuccess(Method method, Rechtsstand legislationStatus) {
+				public void onSuccess(Method method, RechtsstandAndPlanStatus legislationStatus) {
 					LegislationStatusDialog legislationStatusDialog = new LegislationStatusDialog(legislationStatus);
 					NextSubmittedHandler nextSubmittedHandler = createNextSubmittedHandler(legislationStatusDialog);
 					legislationStatusDialog.addNextSubmittedHandler(nextSubmittedHandler);
@@ -295,10 +295,7 @@ public class ImportWizardCreator {
 
 			@Override
 			public void onSuccess(Method method, List<PlanNameWithStatusResult> planNameWithStatusResults) {
-				Map<String, PlanStatus> alreadyInserted = planNameWithStatusResults.stream().filter(
-						planNameWithStatusResult -> planNameWithStatusResult.isPlanWithSameNameAndStatusExists())
-						.collect(Collectors.toMap(planNameWithStatusResult -> planNameWithStatusResult.getName(),
-								planNameWithStatusResult -> planNameWithStatusResult.getStatus()));
+				Map<String, PlanStatus> alreadyInserted = collectAlreadInsertedPlans(planNameWithStatusResults);
 				if (alreadyInserted.size() == 0) {
 					importPlan(id, internalId, defaultCrs, makeRasterConfig, planStatus, startDateTime, endDateTime);
 				}
@@ -311,6 +308,17 @@ public class ImportWizardCreator {
 					planNameAndStatusDialogBox.show();
 
 				}
+			}
+
+			private Map<String, PlanStatus> collectAlreadInsertedPlans(
+					List<PlanNameWithStatusResult> planNameWithStatusResults) {
+				Map<String, PlanStatus> alreadyInserted = new HashMap<String, PlanStatus>();
+				for (PlanNameWithStatusResult planNameWithStatusResult : planNameWithStatusResults) {
+					if (planNameWithStatusResult.isPlanWithSameNameAndStatusExists()) {
+						alreadyInserted.put(planNameWithStatusResult.getName(), planNameWithStatusResult.getStatus());
+					}
+				}
+				return alreadyInserted;
 			}
 
 			private NextSubmittedHandler createNextSubmittedHandler(

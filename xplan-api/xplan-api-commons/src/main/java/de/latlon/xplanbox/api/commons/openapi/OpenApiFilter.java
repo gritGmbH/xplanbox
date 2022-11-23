@@ -21,6 +21,7 @@
 package de.latlon.xplanbox.api.commons.openapi;
 
 import io.swagger.v3.core.filter.AbstractSpecFilter;
+import io.swagger.v3.core.model.ApiDescription;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
@@ -28,6 +29,7 @@ import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.oas.models.media.Content;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 
@@ -49,6 +51,14 @@ public class OpenApiFilter extends AbstractSpecFilter {
 		filterPath(openAPI);
 		addOpenApiPath(openAPI);
 		return super.filterOpenAPI(openAPI, params, cookies, headers);
+	}
+
+	@Override
+	public Optional<Parameter> filterParameter(Parameter parameter, Operation operation, ApiDescription api,
+			Map<String, List<String>> params, Map<String, String> cookies, Map<String, List<String>> headers) {
+		if ("query".equals(parameter.getIn()) && "profiles".equals(parameter.getName()))
+			parameter.setExplode(false);
+		return super.filterParameter(parameter, operation, api, params, cookies, headers);
 	}
 
 	private void addOpenApiPath(OpenAPI openAPI) {

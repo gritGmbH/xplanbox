@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -24,25 +24,19 @@ import de.latlon.xplan.manager.synthesizer.expression.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.LatestDate;
 import de.latlon.xplan.manager.synthesizer.expression.StringConstant;
-import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbest;
-import de.latlon.xplan.manager.synthesizer.expression.XPlanBesondZweckbestLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanExternalCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGeometry;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGmlDescription;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanName;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanType;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
-import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeLookup;
-import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeLookupExt;
-import de.latlon.xplan.manager.synthesizer.expression.Xplan2CodeNormalize;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBaugebietFlaechenteile;
-import de.latlon.xplan.manager.synthesizer.expression.XplanBegruendungAbschnitte;
 import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookup;
-import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookupExt;
 import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
 import de.latlon.xplan.manager.synthesizer.expression.XplanGmlName;
-import de.latlon.xplan.manager.synthesizer.expression.XplanRefTextAbschnitte;
-import de.latlon.xplan.manager.synthesizer.expression.XplanTextAbschnitte;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.SchriftinhaltLookup;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.SkalierungLookup;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.StylesheetIdLookup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,50 +102,17 @@ class RuleParser {
 	}
 
 	private Expression parseXPlanFlattenFeature(List<String> args) {
+		if (args.size() > 2) {
+			return new XplanFlattenProperty(parse(args.get(0)), asBoolean(args.get(1)), asBoolean(args.get(2)));
+		}
 		if (args.size() > 1) {
 			return new XplanFlattenProperty(parse(args.get(0)), asBoolean(args.get(1)));
 		}
 		return new XplanFlattenProperty(parse(args.get(0)));
 	}
 
-	private Expression parseXPlanCodeNormalize(List<String> args) {
-		// third argument is ignored
-		return new Xplan2CodeNormalize(parse(args.get(0)), trimString(args.get(1)));
-	}
-
 	private Expression parseXPlanCodeLookup(List<String> args) {
 		return new XplanCodeLookup(parse(args.get(0)), trimString(args.get(1)));
-	}
-
-	private Expression parseXPlanCodeLookupExt(List<String> args) {
-		return new XplanCodeLookupExt(parse(args.get(0)), trimString(args.get(1)));
-	}
-
-	private Expression parseXPlan2CodeLookup(List<String> args) {
-		// second argument is ignored
-		return new Xplan2CodeLookup(parse(args.get(0)), trimString(args.get(2)));
-	}
-
-	private Expression parseXPlan2CodeLookupExt(List<String> args) {
-		// second argument is ignored
-		return new Xplan2CodeLookupExt(parse(args.get(0)), trimString(args.get(2)));
-	}
-
-	private Expression parseXPlanTextSchluessel() {
-		return new XplanTextAbschnitte();
-	}
-
-	private Expression parseXPlanTextSchluesselBegruendung() {
-		return new XplanBegruendungAbschnitte();
-	}
-
-	private Expression parseXPlanBesondZweckbestLookup(List<String> args) {
-		return new XPlanBesondZweckbestLookup(parse(args.get(0)), parse(args.get(1)), trimString(args.get(2)),
-				trimString(args.get(3)));
-	}
-
-	private Expression parseXPlanBesondZweckbest(List<String> args) {
-		return new XPlanBesondZweckbest(parse(args.get(0)), parse(args.get(1)), trimString(args.get(2)));
 	}
 
 	private Expression parseXPlanGeometry(List<String> args) {
@@ -170,57 +131,57 @@ class RuleParser {
 		return new Ausrichtung(parse(args.get(0)));
 	}
 
+	private Expression parseStylesheetIdLookup() {
+		return new StylesheetIdLookup();
+	}
+
+	private Expression parseSchriftinhaltLookup() {
+		return new SchriftinhaltLookup();
+	}
+
+	private Expression parseSkalierungLookup() {
+		return new SkalierungLookup();
+	}
+
 	private Expression parseLatest(List<String> args) {
 		return new LatestDate(parse(args.get(0)));
 	}
 
 	private Expression parseFunction(String functionName, List<String> args) {
 		switch (functionName) {
-		case "xpath":
-			return parseXPath(args);
-		case "xplanGmlName":
-			return new XplanGmlName();
-		case "xplanGmlDescription":
-			return new XPlanGmlDescription();
-		case "xplanFlatten":
-			return parseXPlanFlattenFeature(args);
-		case "xplanCodeLookup":
-			return parseXPlanCodeLookup(args);
-		case "xplanCodeLookupExt":
-			return parseXPlanCodeLookupExt(args);
-		case "xplan2CodeNormalize":
-			return parseXPlanCodeNormalize(args);
-		case "xplan2CodeLookup":
-			return parseXPlan2CodeLookup(args);
-		case "xplan2CodeLookupExt":
-			return parseXPlan2CodeLookupExt(args);
-		case "xplanRefTextAbschnitte":
-			return new XplanRefTextAbschnitte();
-		case "xplanTextAbschnitte":
-			return parseXPlanTextSchluessel();
-		case "xplanBegruendungAbschnitte":
-			return parseXPlanTextSchluesselBegruendung();
-		case "xplanBesondZweckbest":
-			return parseXPlanBesondZweckbest(args);
-		case "xplanBesondZweckbestLookup":
-			return parseXPlanBesondZweckbestLookup(args);
-		case "xplanGeometry":
-			return parseXPlanGeometry(args);
-		case "xplanAggregateFlaechenteil":
-			return parseXPlanAggregateFlaechenteil();
-		case "xplanType":
-			return new XPlanType(xplanType);
-		case "xplanName":
-			return new XPlanName(xplanName);
-		case "xplanExternalCodeLookup":
-			// Required to resolve codelist from external files
-			return parseXPlanExternalCodeLookup(args);
-		case "ausrichtungLookup":
-			return parseAusrichtungLookup(args);
-		case "latest":
-			return parseLatest(args);
-		default:
-			throw new RuntimeException(String.format("Expression %s is not expected.", functionName));
+			case "xpath":
+				return parseXPath(args);
+			case "xplanGmlName":
+				return new XplanGmlName();
+			case "xplanGmlDescription":
+				return new XPlanGmlDescription();
+			case "xplanFlatten":
+				return parseXPlanFlattenFeature(args);
+			case "xplanCodeLookup":
+				return parseXPlanCodeLookup(args);
+			case "xplanGeometry":
+				return parseXPlanGeometry(args);
+			case "xplanAggregateFlaechenteil":
+				return parseXPlanAggregateFlaechenteil();
+			case "xplanType":
+				return new XPlanType(xplanType);
+			case "xplanName":
+				return new XPlanName(xplanName);
+			case "xplanExternalCodeLookup":
+				// Required to resolve codelist from external files
+				return parseXPlanExternalCodeLookup(args);
+			case "ausrichtungLookup":
+				return parseAusrichtungLookup(args);
+			case "stylesheetIdLookup":
+				return parseStylesheetIdLookup();
+			case "schriftinhaltLookup":
+				return parseSchriftinhaltLookup();
+			case "skalierungLookup":
+				return parseSkalierungLookup();
+			case "latest":
+				return parseLatest(args);
+			default:
+				throw new RuntimeException(String.format("Expression %s is not expected.", functionName));
 		}
 	}
 

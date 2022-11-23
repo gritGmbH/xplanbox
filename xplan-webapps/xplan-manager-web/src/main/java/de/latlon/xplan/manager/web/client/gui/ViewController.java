@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -32,6 +32,7 @@ import de.latlon.xplan.manager.web.client.gui.event.EditorStartedEvent;
 import de.latlon.xplan.manager.web.client.gui.event.EditorStartedEventHandler;
 import de.latlon.xplan.manager.web.shared.AuthorizationInfo;
 import de.latlon.xplan.manager.web.shared.ManagerWebConfiguration;
+import de.latlon.xplan.validator.web.shared.ValidationConfig;
 
 /**
  * Controller controlling the main views (like plan list with upload and edit views).
@@ -52,13 +53,14 @@ public class ViewController {
 	/**
 	 * @param eventBus required to control overall view events, never <code>null</code>
 	 * @param configuration never <code>null</code>
+	 * @param validationConfig never <code>null</code>
 	 * @param authorizationInfo never <code>null</code>
 	 */
 	public ViewController(HandlerManager eventBus, ManagerWebConfiguration configuration,
-			AuthorizationInfo authorizationInfo) {
+			ValidationConfig validationConfig, AuthorizationInfo authorizationInfo) {
 		this.eventBus = eventBus;
 		this.mainView = new DeckPanel();
-		createGui(eventBus, configuration, authorizationInfo);
+		createGui(eventBus, configuration, validationConfig, authorizationInfo);
 		bind();
 	}
 
@@ -80,8 +82,8 @@ public class ViewController {
 	}
 
 	private void createGui(HandlerManager eventBus, ManagerWebConfiguration configuration,
-			AuthorizationInfo authorizationInfo) {
-		importAndOverviewPanel = new ImportAndListView(eventBus, configuration, authorizationInfo);
+			ValidationConfig validationConfig, AuthorizationInfo authorizationInfo) {
+		importAndOverviewPanel = new ImportAndListView(eventBus, configuration, validationConfig, authorizationInfo);
 		editPanel = new EditorView(eventBus);
 
 		mainView.add(importAndOverviewPanel);
@@ -94,7 +96,7 @@ public class ViewController {
 			@Override
 			public void onEditorStarted(EditorStartedEvent event) {
 				editPanel.setXPlanToEdit(event.getPlanId(), event.getBereiche(), event.getVersion(),
-						event.getxPlantoEdit());
+						event.getPlanType(), event.getxPlantoEdit());
 				showEditModule();
 			}
 		});

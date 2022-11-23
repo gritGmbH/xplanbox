@@ -29,21 +29,22 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
       <includes>
-        <include>datasources/feature/xplan3*</include>
         <include>datasources/feature/xplan4*</include>
         <include>datasources/feature/xplan5*</include>
+        <include>datasources/feature/xplan6*</include>
         <include>jdbc/xplan.xml</include>
         <include>storedqueries/xplan4*/**</include>
         <include>storedqueries/xplan5*/**</include>
-        <include>services/wfs3*</include>
+        <include>storedqueries/xplan6*/**</include>
         <include>services/wfs4*</include>
         <include>services/wfs5*</include>
+        <include>services/wfs6*</include>
       </includes>
       <excludes>
         <exclude>appschemas/*</exclude>
-        <exclude>services/wfs3*_metadata.xml</exclude>
         <exclude>services/wfs4*_metadata.xml</exclude>
         <exclude>services/wfs5*_metadata.xml</exclude>
+        <exclude>services/wfs6*_metadata.xml</exclude>
       </excludes>
       <outputDirectory>.</outputDirectory>
       <filtered>false</filtered>
@@ -51,9 +52,9 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace</directory>
       <includes>
-        <include>services/wfs3*_metadata.xml</include>
         <include>services/wfs4*_metadata.xml</include>
         <include>services/wfs5*_metadata.xml</include>
+        <include>services/wfs6*_metadata.xml</include>
       </includes>
       <outputDirectory>.</outputDirectory>
       <filtered>true</filtered>

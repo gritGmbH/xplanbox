@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -24,7 +24,6 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
-import de.latlon.xplan.validator.semantic.configuration.RulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.ValidationResultType;
@@ -76,19 +75,19 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 
 	private final String name;
 
+	private String message;
+
 	private XPlanVersion version;
 
 	private SemanticValidationOptions ignoredOption;
 
-	private String defaultMessage;
-
 	public XQuerySemanticValidatorRule(InputStream statementStream, String name, XPlanVersion version,
-			SemanticValidationOptions validationOption) throws IOException, XPathException {
+			SemanticValidationOptions validationOption, String message) throws IOException, XPathException {
 		this.version = version;
 		this.ignoredOption = validationOption;
 		this.expression = compileStatement(statementStream);
 		this.name = name;
-		this.defaultMessage = RulesMessagesAccessor.retrieveMessageForRule(name, version);
+		this.message = message;
 	}
 
 	@Override
@@ -124,6 +123,11 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 		return ignoredOption != null && ignoredOption.equals(option);
 	}
 
+	@Override
+	public String getMessage() {
+		return message;
+	}
+
 	private Properties createProperties() {
 		final Properties props = new Properties();
 		props.setProperty(OutputKeys.METHOD, "text");
@@ -157,20 +161,20 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 				if (resultOrGmlId.equalsIgnoreCase("true"))
 					return Collections.emptyList();
 				if (resultOrGmlId.equalsIgnoreCase("false"))
-					return Collections.singletonList(new InvalidFeaturesResult(defaultMessage));
-				evaludateInvalidGmlIdResult(resultOrGmlId, results);
+					return Collections.singletonList(new InvalidFeaturesResult(message));
+				evaluateInvalidGmlIdResult(resultOrGmlId, results);
 			}
 		}
 		return results.values().stream().collect(Collectors.toList());
 	}
 
-	private void evaludateInvalidGmlIdResult(String gmlId, MultiKeyMap<String, InvalidFeaturesResult> results) {
-		if (results.containsKey(ERROR.name(), defaultMessage)) {
-			results.get(ERROR.name(), defaultMessage).addGmlId(gmlId);
+	private void evaluateInvalidGmlIdResult(String gmlId, MultiKeyMap<String, InvalidFeaturesResult> results) {
+		if (results.containsKey(ERROR.name(), message)) {
+			results.get(ERROR.name(), message).addGmlId(gmlId);
 		}
 		else {
-			InvalidFeaturesResult invalidRuleResult = new InvalidFeaturesResult(gmlId, defaultMessage);
-			results.put(ERROR.name(), defaultMessage, invalidRuleResult);
+			InvalidFeaturesResult invalidRuleResult = new InvalidFeaturesResult(gmlId, message);
+			results.put(ERROR.name(), message, invalidRuleResult);
 		}
 	}
 
@@ -200,10 +204,10 @@ public class XQuerySemanticValidatorRule implements SemanticValidatorRule {
 	private ValidationResultType asValidationResultType(Sequence sequence) {
 		String s = asString(sequence);
 		switch (s) {
-		case "W":
-			return WARNING;
-		default:
-			return ERROR;
+			case "W":
+				return WARNING;
+			default:
+				return ERROR;
 		}
 	}
 

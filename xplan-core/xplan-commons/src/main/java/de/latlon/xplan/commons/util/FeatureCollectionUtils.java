@@ -21,7 +21,6 @@
 package de.latlon.xplan.commons.util;
 
 import de.latlon.xplan.commons.XPlanType;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -35,7 +34,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
 import static de.latlon.xplan.commons.synthesizer.Features.getPropertyValue;
 
@@ -100,29 +98,43 @@ public class FeatureCollectionUtils {
 	}
 
 	/**
-	 * Retrieves the additional type ("sonstPlanArt") of a XPlan-FeatureCollection.
-	 * @param fc XPlan-FeatureCollection, never <code>null</code>
+	 * Retrieves the translated rechtsstand ("rechtsstandWert") of a synthesized
+	 * XPlan-FeatureCollection.
+	 * @param fc synthesized XPlan-FeatureCollection, never <code>null</code>
 	 * @param type XPlan-Type, never <code>null</code>
-	 * @return additional type value or <code>null</code> if no value was found
+	 * @return translated rechtsstand ("rechtsstandWert") of the plan or <code>null</code>
+	 * if no value was found
 	 */
-	public static String retrieveAdditionalType(FeatureCollection fc, XPlanType type) {
-		return retrievePlanProperty(fc, type, "sonstPlanArt");
+	public static String retrieveRechtsstandWert(FeatureCollection fc, XPlanType type) {
+		return retrievePlanProperty(fc, type, "rechtsstandWert");
 	}
 
 	/**
-	 * Retrieves the district (XPlan3: "ortsteil"; XPlan40 and XPlan41: "ortsteilName") of
-	 * a XPlan-FeatureCollection. XPlan3, XPlan40 and XPlan41 plans are considered. In
-	 * other cases <code>null</code> ist returned.
+	 * Retrieves the translated additional type ("sonstPlanArtWert") of a synthesized
+	 * XPlan-FeatureCollection.
+	 * @param fc synthesized XPlan-FeatureCollection, never <code>null</code>
+	 * @param type XPlan-Type, never <code>null</code>
+	 * @return translated sonstPlanArtWert value or <code>null</code> if no value was
+	 * found
+	 */
+	public static String retrieveAdditionalTypeWert(FeatureCollection fc, XPlanType type) {
+		return retrievePlanProperty(fc, type, "sonstPlanArtWert");
+	}
+
+	/**
+	 * Retrieves the district ("ortsteilName") of a XPlan-FeatureCollection.
 	 * @param fc XPlan-FeatureCollection, never <code>null</code>
 	 * @param type XPlan-Type, never <code>null</code>
-	 * @param version XPlan-Version, never <code>null</code>
 	 * @return district value or <code>null</code> if no value was found
 	 */
-	public static String retrieveDistrict(FeatureCollection fc, XPlanType type, XPlanVersion version) {
-		if (version == XPLAN_3) {
-			return retrieveXPlan3District(fc, type);
+	public static String retrieveDistrict(FeatureCollection fc, XPlanType type) {
+		Feature planFeature = findPlanFeature(fc, type);
+		String ns = planFeature.getName().getNamespaceURI();
+		TypedObjectNode municipality = getPropertyValue(planFeature, new QName(ns, "gemeinde"));
+		if (municipality != null && municipality instanceof ElementNode) {
+			return scanMunicipalityChildren(ns, (ElementNode) municipality);
 		}
-		return retrieveXPlan4District(fc, type);
+		return null;
 	}
 
 	/**
@@ -191,20 +203,6 @@ public class FeatureCollectionUtils {
 			}
 		}
 		return bereiche;
-	}
-
-	private static String retrieveXPlan3District(FeatureCollection fc, XPlanType type) {
-		return retrievePlanProperty(fc, type, "ortsteil");
-	}
-
-	private static String retrieveXPlan4District(FeatureCollection fc, XPlanType type) {
-		Feature planFeature = findPlanFeature(fc, type);
-		String ns = planFeature.getName().getNamespaceURI();
-		TypedObjectNode municipality = getPropertyValue(planFeature, new QName(ns, "gemeinde"));
-		if (municipality != null && municipality instanceof ElementNode) {
-			return scanMunicipalityChildren(ns, (ElementNode) municipality);
-		}
-		return null;
 	}
 
 	private static String scanMunicipalityChildren(String ns, ElementNode municipality) {

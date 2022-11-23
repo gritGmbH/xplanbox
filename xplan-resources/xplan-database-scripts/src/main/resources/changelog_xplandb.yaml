@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: 6.0/changelog_v60.yaml
+  - changeSet:
+      id:  tagDatabase-v60
+      author:  tfr42
+      changes:
+        - tagDatabase:
+            tag:  v_6.0

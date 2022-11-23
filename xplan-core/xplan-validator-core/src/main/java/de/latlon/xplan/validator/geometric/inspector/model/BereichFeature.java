@@ -27,19 +27,39 @@ import org.deegree.feature.Feature;
  */
 public class BereichFeature extends GeltungsbereichFeature {
 
+	private InspectorContext inspectorContext;
+
 	/**
 	 * @param feature never <code>null</code>
+	 * @param inspectorContext never <code>null</code>
 	 * @param toleranceMetre
 	 */
-	public BereichFeature(Feature feature, double toleranceMetre) {
+	public BereichFeature(Feature feature, InspectorContext inspectorContext, double toleranceMetre) {
 		super(feature, toleranceMetre);
+		this.inspectorContext = inspectorContext;
 	}
 
 	/**
-	 * @return the od of the plan this bereich belongs to.
+	 * @return the id of the plan this bereich belongs to.
 	 */
 	public String getPlanId() {
 		return getPropertyValue("gehoertZuPlan");
+	}
+
+	/**
+	 * @return the Plan feature of this BereichFeature, may not be <code>null</code>
+	 */
+	public PlanFeature getPlanFeature() {
+		String planId = getPlanId();
+		return inspectorContext.getPlanFeatures().get(planId);
+	}
+
+	/**
+	 * @return <code>true</code> if this bereich has the property aendertPlanBereich,
+	 * <code>false</code> otherwise
+	 */
+	public boolean isAendertPlanBereich() {
+		return getPropertyValue("aendertPlanBereich") != null;
 	}
 
 }

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -46,6 +46,7 @@ import de.latlon.xplan.commons.web.DisengageableButtonCell;
 import de.latlon.xplan.manager.web.client.comparator.ColumnComparator;
 import de.latlon.xplan.manager.web.client.filter.PlanFilter;
 import de.latlon.xplan.manager.web.client.gui.dialog.MapPreviewDialog;
+import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.event.EditorStartedEvent;
 import de.latlon.xplan.manager.web.client.gui.filter.FilterPanel;
@@ -488,7 +489,7 @@ public class PlanListPanel extends DecoratorPanel {
 		final Column<XPlan, String> editButtonColumn = new Column<XPlan, String>(editButtonCell) {
 			@Override
 			public String getValue(XPlan xPlan) {
-				if ("BP_Plan".equals(xPlan.getType()) && isVersionSupportedByEditor(xPlan) && isEditingPermitted(xPlan))
+				if (isTypeAndVersionSupportedByEditor(xPlan) && isEditingPermitted(xPlan))
 					editButtonCell.setEnabled();
 				else
 					editButtonCell.setDisabled();
@@ -497,7 +498,7 @@ public class PlanListPanel extends DecoratorPanel {
 		};
 		editButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
 			public void update(int index, XPlan xplan, String value) {
-				editPlan(xplan.getVersion(), xplan.getId(), xplan.getBereiche());
+				editPlan(xplan.getVersion(), xplan.getType(), xplan.getId(), xplan.getBereiche());
 			}
 		});
 		editButtonColumn.setCellStyleNames("planListColumn editButtonColumn");
@@ -508,9 +509,7 @@ public class PlanListPanel extends DecoratorPanel {
 				XPlan xPlan = event.getValue();
 				if (!isEditingPermitted(xPlan))
 					return messages.editButtonTooltipPermissionDenied();
-				else if (!"BP_Plan".equals(xPlan.getType()))
-					return messages.editButtonTooltipIncorrectPlanType();
-				else if (!(isVersionSupportedByEditor(xPlan)))
+				else if (!(isTypeAndVersionSupportedByEditor(xPlan)))
 					return messages.editButtonTooltipIncorrectVersion();
 				return messages.editButtonTooltip();
 			}
@@ -625,7 +624,7 @@ public class PlanListPanel extends DecoratorPanel {
 		return columnSortHandler;
 	}
 
-	private void editPlan(final String version, final String id, List<Bereich> bereiche) {
+	private void editPlan(final String version, final String planType, final String id, List<Bereich> bereiche) {
 		final DialogBox waitDialog = createAndShowDialogBox(messages.editingStarted());
 		ManagerService.Util.getService().getPlanToEdit(id, new MethodCallback<XPlanToEdit>() {
 
@@ -641,8 +640,9 @@ public class PlanListPanel extends DecoratorPanel {
 				if (waitDialog != null)
 					waitDialog.hide();
 				try {
-					EditVersion codelistVersion = EditVersion.valueOf(version);
-					eventBus.fireEvent(new EditorStartedEvent(id, bereiche, codelistVersion, xPlantoEdit));
+					EditVersion editVersion = EditVersion.valueOf(version);
+					EditPlanType editPlanType = EditPlanType.valueOf(planType);
+					eventBus.fireEvent(new EditorStartedEvent(id, bereiche, editVersion, editPlanType, xPlantoEdit));
 				}
 				catch (IllegalArgumentException e) {
 					Window.alert("Unsupported XPlan version for editing: " + version);
@@ -716,22 +716,30 @@ public class PlanListPanel extends DecoratorPanel {
 		return dialog;
 	}
 
-	private boolean isVersionSupportedByEditor(XPlan xPlan) {
-		return "XPLAN_3".equals(xPlan.getVersion()) || "XPLAN_41".equals(xPlan.getVersion())
-				|| "XPLAN_50".equals(xPlan.getVersion()) || "XPLAN_51".equals(xPlan.getVersion())
-				|| "XPLAN_52".equals(xPlan.getVersion()) || "XPLAN_53".equals(xPlan.getVersion())
-				|| "XPLAN_54".equals(xPlan.getVersion());
+	private boolean isTypeAndVersionSupportedByEditor(XPlan xPlan) {
+		if ("BP_Plan".equals(xPlan.getType()))
+			return "XPLAN_41".equals(xPlan.getVersion()) || "XPLAN_50".equals(xPlan.getVersion())
+					|| "XPLAN_51".equals(xPlan.getVersion()) || "XPLAN_52".equals(xPlan.getVersion())
+					|| "XPLAN_53".equals(xPlan.getVersion()) || "XPLAN_54".equals(xPlan.getVersion())
+					|| "XPLAN_60".equals(xPlan.getVersion());
+		else if ("FP_Plan".equals(xPlan.getType()) || "SO_Plan".equals(xPlan.getType())
+				|| "RP_Plan".equals(xPlan.getType()))
+			return "XPLAN_50".equals(xPlan.getVersion()) || "XPLAN_51".equals(xPlan.getVersion())
+					|| "XPLAN_52".equals(xPlan.getVersion()) || "XPLAN_53".equals(xPlan.getVersion())
+					|| "XPLAN_54".equals(xPlan.getVersion()) || "XPLAN_60".equals(xPlan.getVersion());
+		else if ("LP_Plan".equals(xPlan.getType()))
+			return "XPLAN_60".equals(xPlan.getVersion());
+		return false;
 	}
 
 	private boolean isVersionSupportedByInpirePlu(XPlan xPlan) {
 		return "XPLAN_41".equals(xPlan.getVersion()) || "XPLAN_50".equals(xPlan.getVersion())
 				|| "XPLAN_51".equals(xPlan.getVersion()) || "XPLAN_52".equals(xPlan.getVersion())
-				|| "XPLAN_53".equals(xPlan.getVersion()) || "XPLAN_54".equals(xPlan.getVersion());
+				|| "XPLAN_53".equals(xPlan.getVersion()) || "XPLAN_54".equals(xPlan.getVersion())
+				|| "XPLAN_60".equals(xPlan.getVersion());
 	}
 
 	private String translateVersion(String version) {
-		if ("XPLAN_3".equalsIgnoreCase(version))
-			return "3.0";
 		if ("XPLAN_40".equalsIgnoreCase(version))
 			return "4.0";
 		if ("XPLAN_41".equalsIgnoreCase(version))
@@ -746,6 +754,8 @@ public class PlanListPanel extends DecoratorPanel {
 			return "5.3";
 		if ("XPLAN_54".equalsIgnoreCase(version))
 			return "5.4";
+		if ("XPLAN_60".equalsIgnoreCase(version))
+			return "6.0";
 		return version;
 	}
 

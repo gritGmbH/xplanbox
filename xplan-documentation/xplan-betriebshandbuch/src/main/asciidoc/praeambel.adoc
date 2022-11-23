@@ -16,9 +16,7 @@ werden gerne entgegengenommen.
 
 Dieses Dokument ist mit AsciiDoc gesetzt. Es ist als
 Quellcode erhältlich und kann als HTML und PDF angeschaut bzw.
-bereitgestellt werden. Für die Bereitstellung des AsciiDoc Quellcode wenden
-Sie sich bitte an https://www.lat-lon.de[lat/lon] - per E-mail an
-info@lat-lon.de.
+bereitgestellt werden. Die Bereitstellung des AsciiDoc Quellcode erfolgt über die https://gitlab.opencode.de/diplanung/ozgxplanung[OpenCoDE-Plattform].
 
 [[autoren]]
 === Autoren
@@ -41,14 +39,14 @@ Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
 ==== Softwareüberlassung
 
 Die Überlassung der in Binärcode übersetzten Programme (Binärprogramme) der
-xPlanBox sowie Skripte, Konfigurationsdateien und Dokumentation erfolgt als Distributionsdatei durch lat/lon und stehen unter https://repo.lat-lon.de/ zum Download zur Verfügung.
+xPlanBox sowie Skripte, Konfigurationsdateien und Dokumentation erfolgt als Distributionsdatei durch https://www.lat-lon.de[lat/lon] und stehen auf der https://gitlab.opencode.de/diplanung/ozgxplanung[OpenCoDE-Plattform] zum Download zur Verfügung.
 
 [[gewährleistung]]
 ==== Gewährleistung
 
 Für die Komponenten der xPlanBox gelten die Haftungs- und Gewährleistungsausschlüsse wie in der AGPL benannt. Für deegree gelten die Haftungs- und Gewährleistungsausschlüsse wie in der LGPL benannt.
 
-Die Firma lat/lon GmbH übernimmt keine Gewähr zur Freiheit der Software xPlanBox
+Die Firma https://www.lat-lon.de[lat/lon] übernimmt keine Gewähr zur Freiheit der Software xPlanBox
 bezüglich von Funktions- oder Sachmängeln.
 
 [[nutzungsbedingungen]]

@@ -20,19 +20,18 @@
  */
 package de.latlon.xplan.manager.web.client.gui.editor;
 
-import java.util.Collections;
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.CaptionPanel;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.Range;
 import com.google.gwt.view.client.RowCountChangeEvent;
-
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistProvider;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.TypeCodelistProvider;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Base class for all sub panels with a table in the {@link EditorPanel}.
@@ -51,16 +50,20 @@ public abstract class AbstractEditorSubPanelWithTable<T> extends CaptionPanel {
 
 	protected final EditVersion version;
 
+	protected final EditPlanType planType;
+
 	private final ListDataProvider<T> provider = new ListDataProvider<T>();
 
 	private final CellTable<T> table;
 
 	/**
 	 * @param version of the plan to edit, never <code>null</code>
+	 * @param planType type of the plan to edit, never <code>null</code>
 	 * @param captionText the text of the caption, never <code>null</code>
 	 */
-	public AbstractEditorSubPanelWithTable(EditVersion version, String captionText) {
+	public AbstractEditorSubPanelWithTable(EditVersion version, EditPlanType planType, String captionText) {
 		this.version = version;
+		this.planType = planType;
 		setCaptionText(captionText);
 		this.table = createTable();
 	}

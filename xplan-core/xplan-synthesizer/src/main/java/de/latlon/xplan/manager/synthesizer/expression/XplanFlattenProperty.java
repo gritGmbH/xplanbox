@@ -20,22 +20,16 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import de.latlon.xplan.manager.synthesizer.expression.flatten.BP_EmissionskontingentLaermFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.BP_EmissionskontingentLaermGebietFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.BpDachgestaltungFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.BpRichtungssektorFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.DefaultFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.Flattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpBegruendungAbschnittFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpExterneReferenzFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpGemeindeFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpGenerAttributFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpHoehenangabeFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpRasterplanFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpSPEMassnahmenDatenFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpTextAbschnittFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpVerbundenerPlanFlattener;
-import de.latlon.xplan.manager.synthesizer.expression.flatten.XpVerfahrensMerkmalFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.complex.ComplexFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.lp.LpBiologischeVielfaltKomplexFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.xp.XpBegruendungAbschnittFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.xp.XpExterneReferenzFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.xp.XpGenerAttributFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.xp.XpRasterplanFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.xp.XpTextAbschnittFlattener;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.xp.XpVerfahrensMerkmalFlattener;
 import de.latlon.xplan.manager.synthesizer.utils.AlphanumericComparator;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.Reference;
@@ -56,8 +50,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 /**
  * {@link Expression} that returns a "flat" textual representation for properties that
@@ -76,6 +70,8 @@ public class XplanFlattenProperty implements Expression {
 
 	private final boolean sortProperties;
 
+	private boolean keepCodes;
+
 	private final List<Flattener> customFlatteners = new ArrayList<Flattener>();
 
 	/**
@@ -91,21 +87,28 @@ public class XplanFlattenProperty implements Expression {
 	 * alphabetically, false otherwise
 	 */
 	public XplanFlattenProperty(Expression exp, boolean sortProperties) {
+		this(exp, sortProperties, false);
+	}
+
+	/**
+	 * @param exp an expression that targets a property node
+	 * @param sortProperties <code>true</code> if the properties should be sorted
+	 * alphabetically, false otherwise
+	 * @param keepCodes <code>true</code> if code properties should not be translated,
+	 * <code>false</code> otherwise
+	 *
+	 */
+	public XplanFlattenProperty(Expression exp, boolean sortProperties, boolean keepCodes) {
 		this.exp = exp;
 		this.sortProperties = sortProperties;
+		this.keepCodes = keepCodes;
+		this.customFlatteners.add(new ComplexFlattener());
+		customFlatteners.add(new LpBiologischeVielfaltKomplexFlattener(keepCodes));
 		customFlatteners.add(new XpBegruendungAbschnittFlattener());
-		customFlatteners.add(new XpGemeindeFlattener());
 		customFlatteners.add(new XpGenerAttributFlattener());
-		customFlatteners.add(new XpHoehenangabeFlattener());
 		customFlatteners.add(new XpRasterplanFlattener());
 		customFlatteners.add(new XpTextAbschnittFlattener());
 		customFlatteners.add(new XpVerfahrensMerkmalFlattener());
-		customFlatteners.add(new XpVerbundenerPlanFlattener());
-		customFlatteners.add(new BpDachgestaltungFlattener());
-		customFlatteners.add(new XpSPEMassnahmenDatenFlattener());
-		customFlatteners.add(new BpRichtungssektorFlattener());
-		customFlatteners.add(new BP_EmissionskontingentLaermFlattener());
-		customFlatteners.add(new BP_EmissionskontingentLaermGebietFlattener());
 	}
 
 	@Override
@@ -145,7 +148,7 @@ public class XplanFlattenProperty implements Expression {
 				value = getFirstChild((ElementNode) value);
 			}
 			catch (Exception e) {
-				return new DefaultFlattener().flatten(value);
+				return new DefaultFlattener().flatten(value, keepCodes);
 			}
 		}
 		else if (value instanceof Reference) {
@@ -181,13 +184,13 @@ public class XplanFlattenProperty implements Expression {
 		}
 		for (Flattener flattener : customFlatteners) {
 			if (flattener.accepts(value)) {
-				return flattener.flatten(value);
+				return flattener.flatten(value, keepCodes);
 			}
 		}
 		if (extRefFlattener.accepts(value)) {
-			return extRefFlattener.flatten(value);
+			return extRefFlattener.flatten(value, keepCodes);
 		}
-		return new DefaultFlattener().flatten(value);
+		return new DefaultFlattener().flatten(value, keepCodes);
 	}
 
 	private TypedObjectNode getFirstChild(ElementNode elNode) {

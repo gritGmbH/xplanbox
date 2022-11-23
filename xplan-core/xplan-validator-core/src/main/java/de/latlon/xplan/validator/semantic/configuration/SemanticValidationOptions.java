@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -29,8 +29,8 @@ import de.latlon.xplan.validator.web.shared.ValidationOption;
  */
 public enum SemanticValidationOptions {
 
-	IGNORE_XP(new ValidationOption("ignore-xp"), "xp"), IGNORE_SO(new ValidationOption("ignore-so"),
-			"so"), NONE(new ValidationOption(), null);
+	IGNORE_XP(new ValidationOption("ignore-xp"), "xp"), IGNORE_SO(new ValidationOption("ignore-so"), "so"),
+	NONE(new ValidationOption(), null);
 
 	private ValidationOption option;
 
@@ -65,7 +65,7 @@ public enum SemanticValidationOptions {
 	}
 
 	/**
-	 * @param optionName the name of the option, never <code>null</code>
+	 * @param validationOption the name of the option, never <code>null</code>
 	 * @return the {@link SemanticValidationOptions} with the passed option name or NONE
 	 * option if no option exists
 	 * @throws IllegalArgumentException if the optionName is <code>null</code>

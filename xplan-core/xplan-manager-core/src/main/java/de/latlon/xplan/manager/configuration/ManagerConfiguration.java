@@ -27,9 +27,8 @@ import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
+import de.latlon.xplan.manager.workspace.WorkspaceReloadAction;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
-import org.deegree.geometry.Envelope;
-import org.deegree.geometry.SimpleGeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,8 +41,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import static java.lang.Double.parseDouble;
-import static org.deegree.cs.CRSUtils.EPSG_4326;
+import static de.latlon.xplan.manager.workspace.WorkspaceReloadAction.ALL;
 
 /**
  * Provides access to the manager configuration.
@@ -65,14 +63,13 @@ public class ManagerConfiguration {
 
 	static final String RASTER_CONFIG_TYPE = "rasterConfigurationType";
 
-	@Deprecated
-	static final String DEFAULT_BBOX_IN_4326 = "defaultBboxIn4326";
-
 	static final String WORKSPACE_RELOAD_URLS = "workspaceReloadUrls";
 
 	static final String WORKSPACE_RELOAD_USER = "workspaceReloadUser";
 
 	static final String WORKSPACE_RELOAD_PASSWORD = "workspaceReloadPassword";
+
+	static final String WORKSPACE_RELOAD_ACTION = "workspaceReloadAction";
 
 	static final String PATH_TO_HALE_CLI = "pathToHaleCli";
 
@@ -92,11 +89,7 @@ public class ManagerConfiguration {
 
 	private double rasterLayerMaxScaleDenominator = Double.NaN;
 
-	private boolean isSeperatedDataManagementActived = false;
-
 	private WorkspaceReloaderConfiguration workspaceReloaderConfiguration = new WorkspaceReloaderConfiguration();
-
-	private Envelope defaultBboxIn4326 = null;
 
 	private InternalIdRetrieverConfiguration internalIdRetrieverConfiguration = new InternalIdRetrieverConfiguration();
 
@@ -156,28 +149,12 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return <code>true</code> if 'festgestellte' and 'in aufstellung befindliche' plans
-	 * should be stored in two separated database schemas, <code>false</code> otherwise
-	 */
-	public boolean isSeperatedDataManagementActived() {
-		return isSeperatedDataManagementActived;
-	}
-
-	/**
 	 * @return configuration for
 	 * {@link de.latlon.xplan.manager.workspace.WorkspaceReloader}, never
 	 * <code>null</code>
 	 */
 	public WorkspaceReloaderConfiguration getWorkspaceReloaderConfiguration() {
 		return workspaceReloaderConfiguration;
-	}
-
-	/**
-	 * @return default BBOX in EPSG:4326, may be <code>null</code>
-	 */
-	@Deprecated
-	public Envelope getDefaultBboxIn4326() {
-		return defaultBboxIn4326;
 	}
 
 	/**
@@ -245,10 +222,7 @@ public class ManagerConfiguration {
 						RASTER_LAYER_SCALE_DENOMINATOR_MIN);
 				rasterLayerMaxScaleDenominator = parseScaleDenominator(loadProperties,
 						RASTER_LAYER_SCALE_DENOMINATOR_MAX);
-				isSeperatedDataManagementActived = parseBoolean(loadProperties, ACTIVATE_SEPARATED_DATAMANAGEMENT,
-						false);
 				workspaceReloaderConfiguration = parseWorkspaceReloaderConfiguration(loadProperties);
-				defaultBboxIn4326 = parseDefaultBboxIn4326(loadProperties);
 				internalIdRetrieverConfiguration = parseInternalIdRetrieverConfiguration(loadProperties);
 				parseSortConfiguration(loadProperties);
 				parseSemanticConformityLinkConfiguration(loadProperties);
@@ -286,9 +260,6 @@ public class ManagerConfiguration {
 		LOG.info("   - type: {}", rasterConfigurationType);
 		LOG.info("   - min scale denominator: {}", rasterLayerMinScaleDenominator);
 		LOG.info("   - max scale denominator: {}", rasterLayerMaxScaleDenominator);
-		LOG.info("-------------------------------------------");
-		LOG.info("  separated data management");
-		LOG.info("   - is activated: {}", isSeperatedDataManagementActived);
 		LOG.info("-------------------------------------------");
 		LOG.info("  workspace reloader configuration");
 		LOG.info("   - urls of service to reload: {}", workspaceReloaderConfiguration.getUrls().toString());
@@ -368,22 +339,17 @@ public class ManagerConfiguration {
 		String password = loadProperties.getProperty(WORKSPACE_RELOAD_PASSWORD);
 		if (urls != null && user != null && password != null && !"".equals(urls)) {
 			List<String> urlList = Arrays.asList(urls.split(","));
-			return new WorkspaceReloaderConfiguration(urlList, user, password);
+			WorkspaceReloadAction workspaceReloadAction = parseWorkspaceReloadAction(loadProperties);
+			return new WorkspaceReloaderConfiguration(urlList, user, password, workspaceReloadAction);
 		}
 		return new WorkspaceReloaderConfiguration();
 	}
 
-	@Deprecated
-	private Envelope parseDefaultBboxIn4326(Properties loadProperties) {
-		String defaultBbox = loadProperties.getProperty(DEFAULT_BBOX_IN_4326);
-		if (defaultBbox == null || defaultBbox.isEmpty())
-			return null;
-		String[] split = defaultBbox.split(",");
-		double minx = parseDouble(split[0].trim());
-		double miny = parseDouble(split[1].trim());
-		double maxx = parseDouble(split[2].trim());
-		double maxy = parseDouble(split[3].trim());
-		return new SimpleGeometryFactory().createEnvelope(minx, miny, maxx, maxy, EPSG_4326);
+	private static WorkspaceReloadAction parseWorkspaceReloadAction(Properties loadProperties) {
+		String workspaceReloadAction = loadProperties.getProperty(WORKSPACE_RELOAD_ACTION);
+		if (workspaceReloadAction == null)
+			return ALL;
+		return WorkspaceReloadAction.valueOf(workspaceReloadAction);
 	}
 
 	private InternalIdRetrieverConfiguration parseInternalIdRetrieverConfiguration(Properties properties) {

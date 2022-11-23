@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="100%"
    height="100%"
    viewBox="-5 -5 100 100"
-   id="svg2">
+   id="svg2"
+   sodipodi:docname="schutzgebeurvog_sym.svg"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="6.0104076"
+     inkscape:cx="32.554299"
+     inkscape:cy="39.419543"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     inkscape:document-rotation="0" />
   <defs
      id="defs4">
     <style
@@ -45,12 +61,26 @@
          style="font-size:4px;font-weight:100;text-anchor:middle;fill:#000000;stroke:none">EVG</text>
     </symbol>
   </defs>
-  <use
-     transform="matrix(10.503516,0,0,10.503516,45.1417,45.1417)"
-     id="use13"
-     x="0"
-     y="0"
-     width="10"
-     height="10"
-     xlink:href="#SymbolEuropaeischesVogelschutzgebiet" />
+  <g
+     aria-label="VRL"
+     id="text856"
+     style="font-style:normal;font-weight:normal;font-size:39.1163px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="matrix(0.95649261,0,0,0.95649261,1.9578322,1.9578316)">
+    <path
+       d="M 35.119954,30.780233 24.767887,59.219769 H 19.725551 L 9.3734838,30.780233 h 4.0491482 l 8.919586,25.020679 8.919585,-25.020679 z"
+       style="stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path873" />
+    <path
+       d="M 60.967396,59.219769 H 56.058759 L 46.547081,47.912713 H 41.218249 V 59.219769 H 37.436498 V 30.780233 h 7.964598 q 2.578467,0 4.297445,0.343796 1.718977,0.324695 3.09416,1.184184 1.54708,0.974088 2.406569,2.463869 0.878589,1.470681 0.878589,3.743552 0,3.07506 -1.54708,5.156934 -1.547081,2.062773 -4.259246,3.11326 z M 52.124209,38.78303 q 0,-1.222384 -0.439294,-2.158272 Q 51.26472,35.66977 50.271533,35.020379 49.450244,34.466486 48.323358,34.256388 47.196473,34.027191 45.668492,34.027191 H 41.218249 V 44.761254 H 45.0382 q 1.795377,0 3.13236,-0.305596 1.336983,-0.324696 2.272871,-1.184185 0.859489,-0.80219 1.260584,-1.833577 0.420194,-1.050486 0.420194,-2.654866 z"
+       style="stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path875" />
+    <path
+       d="M 80.626517,59.219769 H 62.634547 V 30.780233 h 3.781752 v 25.077979 h 14.210218 z"
+       style="stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path877" />
+  </g>
+  <path
+     id="path883-4"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none"
+     d="M 86.496977,44.999999 A 41.496976,41.496976 0 0 1 45,86.496977 41.496976,41.496976 0 0 1 3.5030235,44.999999 41.496976,41.496976 0 0 1 45,3.503023 41.496976,41.496976 0 0 1 86.496977,44.999999 Z" />
 </svg>

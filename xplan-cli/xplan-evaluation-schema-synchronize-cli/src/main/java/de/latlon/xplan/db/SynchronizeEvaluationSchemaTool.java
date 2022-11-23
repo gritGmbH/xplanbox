@@ -10,12 +10,12 @@ package de.latlon.xplan.db;
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -109,22 +109,22 @@ public class SynchronizeEvaluationSchemaTool {
 
 	private void run(SYNCTYPE synctype, String host, String port, String database, String user, String password) {
 		switch (synctype) {
-		case SYNC:
-			sync(host, port, database, user, password, (conn) -> {
-				EvaluationSchemaSynchronizer synchronizer = new EvaluationSchemaSynchronizer();
-				SynchronizeExecutor executer = new SynchronizeExecutor(LOG_TABLE_NAME, synchronizer);
-				executer.synchronize(conn);
-			});
-			break;
-		case ALL:
-			sync(host, port, database, user, password, (conn) -> {
-				EvaluationSchemaSynchronizer synchronizer = new EvaluationSchemaSynchronizer();
-				SynchronizeAllExecutor executor = new SynchronizeAllExecutor(LOG_TABLE_NAME, synchronizer);
-				executor.synchronizeAll(conn);
-			});
-			break;
-		default:
-			LOG.warn("Unsupported sync type: {}", synctype);
+			case SYNC:
+				sync(host, port, database, user, password, (conn) -> {
+					EvaluationSchemaSynchronizer synchronizer = new EvaluationSchemaSynchronizer();
+					SynchronizeExecutor executer = new SynchronizeExecutor(LOG_TABLE_NAME, synchronizer);
+					executer.synchronize(conn);
+				});
+				break;
+			case ALL:
+				sync(host, port, database, user, password, (conn) -> {
+					EvaluationSchemaSynchronizer synchronizer = new EvaluationSchemaSynchronizer();
+					SynchronizeAllExecutor executor = new SynchronizeAllExecutor(LOG_TABLE_NAME, synchronizer);
+					executor.synchronizeAll(conn);
+				});
+				break;
+			default:
+				LOG.warn("Unsupported sync type: {}", synctype);
 		}
 	}
 

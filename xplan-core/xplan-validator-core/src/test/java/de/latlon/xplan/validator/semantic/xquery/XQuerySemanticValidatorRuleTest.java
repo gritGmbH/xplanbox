@@ -20,28 +20,26 @@
  */
 package de.latlon.xplan.validator.semantic.xquery;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_SO;
-import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_XP;
-import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
-import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
-import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import de.latlon.xplan.ResourceAccessor;
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
+import net.sf.saxon.trans.XPathException;
+import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
-import net.sf.saxon.trans.XPathException;
-
-import org.junit.Test;
-
-import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_SO;
+import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.IGNORE_XP;
+import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
+import static de.latlon.xplan.validator.semantic.report.ValidationResultType.WARNING;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Tests for <link>XQuerySemanticValidatorRule</link>
@@ -55,7 +53,7 @@ public class XQuerySemanticValidatorRuleTest {
 	public void testValidRuleShouldReturnTrue() throws Exception {
 		ByteArrayInputStream byteArrayInputStream = getStream();
 		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(byteArrayInputStream, "name",
-				XPLAN_41, NONE);
+				XPLAN_41, NONE, "message");
 		List<InvalidFeaturesResult> invalidFeatures = validatorRule.validate(retrieveArchive("xplan41/BP2070.zip"));
 		assertThat(invalidFeatures.size(), is(0));
 	}
@@ -64,7 +62,8 @@ public class XQuerySemanticValidatorRuleTest {
 	public void testValidRuleSelectingMultipleGmlIdsShouldReturnTrue() throws Exception {
 		InputStream xqery = XQuerySemanticValidatorRuleTest.class
 				.getResourceAsStream("../configuration/xquery/rules/gmlIds.xq");
-		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(xqery, "name", XPLAN_41, NONE);
+		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(xqery, "name", XPLAN_41, NONE,
+				"message");
 		List<InvalidFeaturesResult> invalidFeatures = validatorRule.validate(retrieveArchive("xplan41/BP2070.zip"));
 		assertThat(invalidFeatures.size(), is(1));
 	}
@@ -73,7 +72,8 @@ public class XQuerySemanticValidatorRuleTest {
 	public void testValidRuleSelectingOneGmlIdShouldReturnTrue() throws Exception {
 		InputStream xqery = XQuerySemanticValidatorRuleTest.class
 				.getResourceAsStream("../configuration/xquery/rules/gmlId.xq");
-		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(xqery, "name", XPLAN_41, NONE);
+		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(xqery, "name", XPLAN_41, NONE,
+				"message");
 		List<InvalidFeaturesResult> invalidFeatures = validatorRule.validate(retrieveArchive("xplan41/BP2070.zip"));
 		assertThat(invalidFeatures.size(), is(1));
 	}
@@ -82,7 +82,8 @@ public class XQuerySemanticValidatorRuleTest {
 	public void testValidRuleSelectingWarningsAndErrors() throws Exception {
 		InputStream xqery = XQuerySemanticValidatorRuleTest.class
 				.getResourceAsStream("../configuration/xquery/rules/gmlId-warningsAndErrors.xq");
-		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(xqery, "name", XPLAN_41, NONE);
+		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(xqery, "name", XPLAN_41, NONE,
+				"message");
 		List<InvalidFeaturesResult> invalidFeatures = validatorRule.validate(retrieveArchive("xplan41/BP2070.zip"));
 		assertThat(invalidFeatures.size(), is(2));
 		assertThat(invalidFeatures.stream().filter(invalidFeature -> invalidFeature.getResultType() == WARNING).count(),
@@ -95,7 +96,7 @@ public class XQuerySemanticValidatorRuleTest {
 	public void testNonMatchingRuleShouldReturnFalse() throws Exception {
 		ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("exists(/notThere)".getBytes());
 		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(byteArrayInputStream, "name",
-				XPLAN_41, NONE);
+				XPLAN_41, NONE, "message");
 		List<InvalidFeaturesResult> invalidFeatures = validatorRule.validate(retrieveArchive("xplan41/BP2070.zip"));
 		assertThat(invalidFeatures.size(), is(1));
 	}
@@ -103,14 +104,14 @@ public class XQuerySemanticValidatorRuleTest {
 	@Test(expected = XPathException.class)
 	public void testDefectedRuleShouldThrowException() throws Exception {
 		ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("<<".getBytes());
-		(new XQuerySemanticValidatorRule(byteArrayInputStream, "name", XPLAN_41, NONE))
+		(new XQuerySemanticValidatorRule(byteArrayInputStream, "name", XPLAN_41, NONE, "message"))
 				.validate(retrieveArchive("xplan41/BP2070.zip"));
 	}
 
 	@Test
 	public void testIsIgnoredByOptionShouldReturnTrue() throws Exception {
 		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(getStream(), "name", XPLAN_41,
-				IGNORE_SO);
+				IGNORE_SO, "message");
 		boolean ignoredByOption = validatorRule.isIgnoredByOption(IGNORE_SO);
 		assertThat(ignoredByOption, is(true));
 	}
@@ -118,15 +119,15 @@ public class XQuerySemanticValidatorRuleTest {
 	@Test
 	public void testIsIgnoredByOptionShouldReturnFalse() throws Exception {
 		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(getStream(), "name", XPLAN_41,
-				IGNORE_XP);
+				IGNORE_XP, "message");
 		boolean ignoredByOption = validatorRule.isIgnoredByOption(IGNORE_SO);
 		assertThat(ignoredByOption, is(false));
 	}
 
 	@Test
 	public void testIsIgnoredByOptionNoneShouldReturnFalse() throws Exception {
-		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(getStream(), "name", XPLAN_41,
-				NONE);
+		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(getStream(), "name", XPLAN_41, NONE,
+				"message");
 		boolean ignoredByOption = validatorRule.isIgnoredByOption(IGNORE_SO);
 		assertThat(ignoredByOption, is(false));
 	}
@@ -134,7 +135,7 @@ public class XQuerySemanticValidatorRuleTest {
 	@Test
 	public void testIsIgnoredByOptionWithNoneShouldReturnFalse() throws Exception {
 		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(getStream(), "name", XPLAN_41,
-				IGNORE_SO);
+				IGNORE_SO, "message");
 		boolean ignoredByOption = validatorRule.isIgnoredByOption(NONE);
 		assertThat(ignoredByOption, is(false));
 	}
@@ -142,7 +143,7 @@ public class XQuerySemanticValidatorRuleTest {
 	@Test
 	public void testIsIgnoredByOptionWithNullShouldReturnFalse() throws Exception {
 		XQuerySemanticValidatorRule validatorRule = new XQuerySemanticValidatorRule(getStream(), "name", XPLAN_41,
-				IGNORE_SO);
+				IGNORE_SO, "message");
 		boolean ignoredByOption = validatorRule.isIgnoredByOption(null);
 		assertThat(ignoredByOption, is(false));
 	}

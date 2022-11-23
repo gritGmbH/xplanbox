@@ -18,7 +18,6 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- #L%
 ---
-\i fix/xplan3/create.sql
 \i fix/xplan40/create.sql
 \i fix/xplan41/create.sql
 \i fix/xplan50/create.sql
@@ -26,8 +25,8 @@
 \i fix/xplan52/create.sql
 \i fix/xplan53/create.sql
 \i fix/xplan54/create.sql
+\i fix/xplan60/create.sql
 \i fix/xplansyn/create.sql
-\i pre/xplan3/create.sql
 \i pre/xplan40/create.sql
 \i pre/xplan41/create.sql
 \i pre/xplan50/create.sql
@@ -35,8 +34,8 @@
 \i pre/xplan52/create.sql
 \i pre/xplan53/create.sql
 \i pre/xplan54/create.sql
+\i pre/xplan60/create.sql
 \i pre/xplansyn/create.sql
-\i archive/xplan3/create.sql
 \i archive/xplan40/create.sql
 \i archive/xplan41/create.sql
 \i archive/xplan50/create.sql
@@ -44,5 +43,8 @@
 \i archive/xplan52/create.sql
 \i archive/xplan53/create.sql
 \i archive/xplan54/create.sql
+\i archive/xplan60/create.sql
 \i archive/xplansyn/create.sql
 \i xplanmgr/create.sql
+\i xplanmgr/planslog.sql
+\i changelog/databasechangelog_v60.sql

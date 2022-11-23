@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-tests</artifactId>
-    <version>5.1-SNAPSHOT</version>
+    <version>6.0-SNAPSHOT</version>
   </parent>
 
   <build>
@@ -35,4 +35,63 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>integration-tests</id>
+      <properties>
+        <testFileName />
+        <baseUrl />
+        <baseUrlInspirePlu />
+        <baseUrlManagerApi />
+        <username />
+        <password />
+        <endpoint />
+      </properties>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>SmartBearPluginRepository</id>
+          <url>http://www.soapui.org/repository/maven2/</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.smartbear.soapui</groupId>
+            <artifactId>soapui-maven-plugin</artifactId>
+            <version>5.7.0</version>
+            <dependencies>
+              <dependency>
+                <groupId>com.jgoodies</groupId>
+                <artifactId>forms</artifactId>
+                <version>1.2.1</version>
+              </dependency>
+            </dependencies>
+            <executions>
+              <execution>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+                <configuration>
+                  <projectFile>${basedir}/src/main/resources/${testFileName}</projectFile>
+                  <outputFolder>${project.build.directory}/soapui</outputFolder>
+                  <endpoint>${endpoint}</endpoint>
+                  <username>${username}</username>
+                  <password>${password}</password>
+                  <projectProperties>
+                    <projectProperty>projectDir=${basedir}/src/main/resources</projectProperty>
+                    <value>baseUrl=${baseUrl}</value>
+                    <value>baseUrlInspirePlu=${baseUrlInspirePlu}</value>
+                    <value>baseUrlManagerApi=${baseUrlManagerApi}</value>
+                    <value>username=${username}</value>
+                    <value>password=${password}</value>
+                  </projectProperties>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

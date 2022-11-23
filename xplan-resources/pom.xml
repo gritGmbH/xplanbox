@@ -8,13 +8,13 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>5.1-SNAPSHOT</version>
+    <version>6.0-SNAPSHOT</version>
   </parent>
 
   <modules>
     <module>xplan-sql-scripts</module>
     <module>xplan-schemas</module>
-    <module>xplan-sql-update-scripts</module>
+    <module>xplan-database-scripts</module>
   </modules>
 
 </project>

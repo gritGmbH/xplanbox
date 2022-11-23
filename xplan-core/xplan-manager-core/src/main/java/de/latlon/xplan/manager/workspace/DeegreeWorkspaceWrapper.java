@@ -42,8 +42,8 @@ public class DeegreeWorkspaceWrapper {
 
 	/**
 	 * Returns the workspace with the given name.
-	 * @param workspaceName the name of the workspace located at deegree.home, never
-	 * <code>null</code>
+	 * @param workspaceName the name of the workspace located at deegree workspace root,
+	 * never <code>null</code>
 	 * @throws IllegalArgumentException - if workspaceName is <code>null</code>
 	 */
 	public DeegreeWorkspaceWrapper(String workspaceName) {
@@ -70,8 +70,8 @@ public class DeegreeWorkspaceWrapper {
 	 * Returns the workspace with the given name or the workspace for the given directory
 	 * if the former does not exist if both parameters (workspaceName and workspaceDir)
 	 * are not null.
-	 * @param workspaceName the name of the workspace located at deegree.home, can be
-	 * <code>null</code> (implies default workspace)
+	 * @param workspaceName the name of the workspace located at deegree workspace root,
+	 * can be <code>null</code> (implies default workspace)
 	 * @param workspaceDir the directory to use as workspace if the named workspace does
 	 * not exist, can be null <code>null</code>
 	 * @throws IllegalArgumentException - if both, workspaceName and workspaceDir are

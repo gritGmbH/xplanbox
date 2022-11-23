@@ -30,8 +30,10 @@ import de.latlon.xplan.manager.web.shared.PlanNameWithStatusResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
+import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 import org.slf4j.Logger;
@@ -71,6 +73,7 @@ import static java.lang.Long.toHexString;
 import static java.lang.Math.random;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.apache.commons.io.IOUtils.write;
+import static org.springframework.http.MediaType.TEXT_HTML_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -235,7 +238,7 @@ public class ManagerController {
 		}
 	}
 
-	@RequestMapping(value = "/edit/plan/artefact", method = POST)
+	@RequestMapping(value = "/edit/plan/artefact", method = POST, produces = TEXT_HTML_VALUE)
 	@ResponseBody
 	// @formatter:off
     public void uploadPlanArtefact( @RequestParam("referenceArtefact") MultipartFile referenceArtefact,
@@ -290,7 +293,7 @@ public class ManagerController {
 		return false;
 	}
 
-	@RequestMapping(value = "/plan", method = POST)
+	@RequestMapping(value = "/plan", method = POST, produces = TEXT_HTML_VALUE)
 	@ResponseBody
 	// @formatter:off
     public void uploadPlan( @RequestParam("planZipFile" ) MultipartFile file, HttpServletRequest request,
@@ -341,7 +344,7 @@ public class ManagerController {
 				if (defaultCrs != null)
 					crs = CRSManager.getCRSRef(defaultCrs);
 				AdditionalPlanData xPlanMetadata = new AdditionalPlanData(planStatus, startDateTime, endDateTime);
-				manager.importPlan(archive, crs, false, false, makeRasterConfig, internalId, xPlanMetadata);
+				manager.importPlan(archive, crs, false, makeRasterConfig, internalId, xPlanMetadata);
 			}
 			catch (Exception e) {
 				String message = BUNDLE.getString("loadFailed") + ": " + e.getMessage();
@@ -439,15 +442,16 @@ public class ManagerController {
 	@RequestMapping(value = "/legislationstatus/{id}", method = GET)
 	@ResponseBody
 	// @formatter:off
-    public Rechtsstand determineLegislationStatus( @PathVariable String id,
-												   @Context HttpServletResponse response )
+    public RechtsstandAndPlanStatus determineLegislationStatus( @PathVariable String id,
+																@Context HttpServletResponse response )
                                                                          throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate legislation status of plan with id {}.", id);
 		try {
 			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
-			return manager.determineRechtsstand(fileToBeImported);
+			Pair<Rechtsstand, PlanStatus> rechtsstandPlanStatusPair = manager.determineRechtsstand(fileToBeImported);
+			return new RechtsstandAndPlanStatus(rechtsstandPlanStatusPair.first, rechtsstandPlanStatusPair.second);
 		}
 		catch (Exception e) {
 			String message = BUNDLE.getString("determinationLegislationStatusFailed") + ": " + e.getMessage();
@@ -563,6 +567,7 @@ public class ManagerController {
 	}
 
 	private void populateResponse(HttpServletResponse response, String message) throws IOException {
+		response.addHeader("Content-Type", TEXT_HTML_VALUE);
 		response.setStatus(HttpServletResponse.SC_CREATED);
 		response.getWriter().println("<html><body>" + message + "</body></html>");
 		response.flushBuffer();

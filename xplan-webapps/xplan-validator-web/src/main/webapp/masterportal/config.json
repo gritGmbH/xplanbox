@@ -1,30 +1,26 @@
 {
 	"Portalconfig": {
-		"portalTitle": {
-			"title": "Basic - Portal",
-			"logo": "./ressources/img/mp_logo.png",
-			"link": "https://geoinfo.hamburg.de",
-			"tooTtip": "Landesbetrieb Geoinformation und Vermessung"
-		},
-		"treeType": "light",
+    "treeType": "light",
 		"searchBar": {
-			"osm": {
-				"minChars": 3,
-				"serviceId": "10",
-				"limit": 60,
-				"states": "Hamburg",
-				"classes": "place,highway,building,shop,historic,leisure,city,county"
-			},
+			"komoot": {
+        "minChars": 3,
+        "serviceId": "11",
+        "limit": 20,
+        "lang": "de",
+        "lat": 53.6,
+        "lon": 10.0,
+        "bbox": "9.6,53.3,10.4,53.8"
+    },
       "visibleVector": {},
       "tree": {},
-			"zoomLevel": 9,
+			"startZoomLevel": 9,
 			"placeholder": "Suche nach: - Adresse - Aktiven WFS"
 		},
 		"mapView": {
-			"backgroundImage": "./ressources/img/backgroundCanvas.jpeg",
+			"backgroundImage": "./resources/img/backgroundCanvas.jpeg",
 			"startCenter": [561210, 5932600],
 			"extent": [250063.8, 5232673.8, 888982.3, 6122928.6],
-			"zoomLevel": 1
+			"startZoomLevel": 1
 		},
 		"menu": {
 			"tree": {
@@ -34,24 +30,20 @@
 				"name": "Werkzeuge",
 				"children": {
 					"gfi": {
-						"name": "Informationen abfragen",
-						"isActive": true
+            "name": "Informationen abfragen",
+						"active": true
 					},
-					"searchByCoord": {
-						"name": "Koordinatensuche"
-					},
-					"coord": {
-						"name": "Koordinaten abfragen"
+					"coordToolkit": {
+						"name": "Koordinaten"
 					},
 					"measure": {
 						"name": "Strecke / Fläche messen"
 					},
 					"draw": {
-						"name": "Zeichnen / Schreiben",
-						"glyphicon": "glyphicon-pencil"
+						"name": "Zeichnen / Schreiben"
 					},
-					"kmlimport": {
-						"name": "KML Import"
+					"fileImport": {
+            			"name": "Datei Import"
 					},
 					"saveSelection": {
 						"name": "Auswahl speichern"
@@ -86,8 +78,8 @@
 		"Hintergrundkarten": {
 			"Layer": [
 				{
-          "id": "452",
-          "name": "Basiskarte",
+					"id": "452",
+					"name": "Basiskarte",
 					"visibility": true
 				}
 			]
@@ -95,8 +87,8 @@
 		"Fachdaten": {
 			"Layer": [
 				{
-				  "id": "001",
-				  "name": "XPlan"
+					"id": "001",
+					"name": "XPlan"
 				}
 			]
 		}

@@ -62,12 +62,13 @@ public final class ValidatorConverter {
 	}
 
 	public static ValidationSettings createValidationSettings(String validationName, boolean skipGeometrisch,
-			boolean skipSemantisch, boolean skipFlaechenschluss, boolean skipGeltungsbereich,
-			boolean skipLaufrichtung) {
+			boolean skipSemantisch, boolean skipFlaechenschluss, boolean skipGeltungsbereich, boolean skipLaufrichtung,
+			List<String> profiles) {
 		ValidationSettings settings = new ValidationSettings();
 		settings.setValidationName(validationName);
 		settings.setValidationTypes(asValidationTypes(skipGeometrisch, skipSemantisch));
 		settings.setExtendedOptions(asValidationOptions(skipFlaechenschluss, skipGeltungsbereich, skipLaufrichtung));
+		settings.setProfiles(profiles);
 		return settings;
 	}
 

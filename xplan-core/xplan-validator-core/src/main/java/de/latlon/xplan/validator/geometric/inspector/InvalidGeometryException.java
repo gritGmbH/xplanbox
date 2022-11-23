@@ -21,7 +21,7 @@
 package de.latlon.xplan.validator.geometric.inspector;
 
 /**
- * Indicates an iinvalid geometry.
+ * Indicates an invalid geometry.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */

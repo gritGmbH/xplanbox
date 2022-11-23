@@ -9,25 +9,25 @@ categories:
   - data-collection
 dependsOn:
   open:
-    - name: OSGeo deegree
+    - name: OSGeo deegree webservices (with XPlanung patch)
       optional: false
-      version: '3.4'
-      versionMax: '3.4.27'
-      versionMin: '3.4.27'
+      version: '3.5'
+      versionMax: '3.5.0'
+      versionMin: '3.5-PRE1'
     - name: XPlanung-Validierungsregeln
       optional: false
-      version: '0.11'
-      versionMax: '0.11.1'
-      versionMin: '0.11.0'
+      version: '1.0'
+      versionMax: '1.0'
+      versionMin: '1.0'
     - name: PostgreSQL Datenbank mit PostGIS-Erweiterung
       optional: false
-      version: '11.0'
-      versionMax: '12.0'
-      versionMin: '9.6'  
+      version: '12.0'
+      versionMax: '13.0'
+      versionMin: '12.0'
 description:
   de:
     documentation: |-
-      https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/main-v5.0.2/README.md
+      https://gitlab.opencode.de/diplanung/ozgxplanung/-/blob/README.md
     features:
       - XPlanValidator: Web-Oberfläche für den XPlanGML-Validator
       - XPlanManager: Web-Oberfläche für das Datenmanagement
@@ -67,9 +67,9 @@ maintenance:
 name: ozgxplanung
 platforms:
   - web
-releaseDate: '2022-05-24'
+releaseDate: '2022-10-28'
 softwareType: standalone/depends
-softwareVersion: 5.0.2
+softwareVersion: 6.0
 url: 'https://gitlab.opencode.de/diplanung/ozgxplanung.git'
 usedBy:
   - XLeitstelle, Hamburg

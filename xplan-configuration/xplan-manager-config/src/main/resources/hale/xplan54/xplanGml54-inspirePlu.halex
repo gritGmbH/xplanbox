@@ -3,7 +3,7 @@
     <name>XPlan GML 5.4 to INSPRE PLU</name>
     <author>lat/lon GmbH</author>
     <created>2020-01-06T07:10:46.571Z</created>
-    <modified>2021-01-06T06:56:35.507Z</modified>
+    <modified>2022-06-09T05:47:20.829Z</modified>
     <save-config action-id="project.save" provider-id="eu.esdihumboldt.hale.io.project.hale25.xml.writer">
         <setting name="charset">UTF-8</setting>
         <setting name="projectFiles.separate">false</setting>

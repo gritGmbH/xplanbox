@@ -1,0 +1,42 @@
+Hinweis:
+========
+
+Bei den im Verzeichnis src/main/resources abgelgten chamgelogs handelt es sich um generierte Daten. Eine Weitergabe an
+Dritte ist nicht gestattet.
+
+Inhalt des Verzeichnisses src/main/resources:
+--------------------------
+xplan-resources/xplan-database-scripts/src/main/resources/
+├── 6.0
+│   ├── changelog_postgisext.yaml
+│   ├── changelog_schemas.yaml
+│   ├── changelog_v60.yaml
+│   ├── changelog_xplan40archive.yaml
+│   ├── changelog_xplan40pre.yaml
+│   ├── changelog_xplan40.yaml
+│   ├── changelog_xplan41archive.yaml
+│   ├── changelog_xplan41pre.yaml
+│   ├── changelog_xplan41.yaml
+│   ├── changelog_xplan50archive.yaml
+│   ├── changelog_xplan50pre.yaml
+│   ├── changelog_xplan50.yaml
+│   ├── changelog_xplan51archive.yaml
+│   ├── changelog_xplan51pre.yaml
+│   ├── changelog_xplan51.yaml
+│   ├── changelog_xplan52archive.yaml
+│   ├── changelog_xplan52pre.yaml
+│   ├── changelog_xplan52.yaml
+│   ├── changelog_xplan53archive.yaml
+│   ├── changelog_xplan53pre.yaml
+│   ├── changelog_xplan53.yaml
+│   ├── changelog_xplan54archive.yaml
+│   ├── changelog_xplan54pre.yaml
+│   ├── changelog_xplan54.yaml
+│   ├── changelog_xplan60archive.yaml
+│   ├── changelog_xplan60pre.yaml
+│   ├── changelog_xplan60.yaml
+│   ├── changelog_xplanmgr.yaml
+│   ├── changelog_xplansynarchive.yaml
+│   ├── changelog_xplansynpre.yaml
+│   └── changelog_xplansyn.yaml
+├── changelog_xplandb.yaml

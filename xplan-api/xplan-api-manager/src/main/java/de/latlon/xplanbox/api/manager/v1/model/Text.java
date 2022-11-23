@@ -78,16 +78,17 @@ public class Text {
 		return text;
 	}
 
-	public de.latlon.xplan.manager.web.shared.edit.Text toText() {
+	public de.latlon.xplan.manager.web.shared.edit.Text toText(String version, String type) {
 		de.latlon.xplan.manager.web.shared.edit.Text oldText = new de.latlon.xplan.manager.web.shared.edit.Text();
 		oldText.setKey(schluessel);
 		oldText.setBasis(gesetzlicheGrundlage);
 		oldText.setText(text);
-		oldText.setRechtscharakter(TextRechtscharacterType.fromCode(rechtscharakter));
+		oldText.setRechtscharakter(TextRechtscharacterType.fromCode(rechtscharakter, version, type));
 		if (refText != null) {
 			oldText.setReference(refText.getReferenzURL());
+			oldText.setReferenzName(refText.getReferenzName());
 			oldText.setReferenzMimeType(MimeTypes.getByCode(refText.getReferenzMimeType()));
-			oldText.setGeoReference(refText.getGeorefMimeType());
+			oldText.setGeoReference(refText.getGeorefURL());
 			oldText.setGeorefMimeType(MimeTypes.getByCode(refText.getGeorefMimeType()));
 			oldText.setArt(ExterneReferenzArt.getByCode(refText.getArt()));
 			oldText.setBeschreibung(refText.getBeschreibung());

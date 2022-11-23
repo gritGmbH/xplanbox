@@ -22,5 +22,5 @@
 BP_BaugebietsTeilFlaeche/gmlTest=xplanGmlName()
 
 #Overwriting
-BP_BaugebietsTeilFlaeche/besondereArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:besondereArtDerBaulNutzung'), 'XP_BesondereArtDerBaulNutzung-XPlan3.xml')
+BP_BaugebietsTeilFlaeche/besondereArtDerBaulNutzung=xplanExternalCodeLookup(xpath('xplan:besondereArtDerBaulNutzung'), 'XP_BesondereArtDerBaulNutzung-XPlan4.xml')
    

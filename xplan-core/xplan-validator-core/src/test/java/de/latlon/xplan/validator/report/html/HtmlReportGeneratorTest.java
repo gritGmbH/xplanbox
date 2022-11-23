@@ -98,6 +98,19 @@ public class HtmlReportGeneratorTest {
 		assertThat(html.toString(), hasXPath("/html/body/p[9]", containsString("syntaktischen")));
 	}
 
+	@Test
+	public void testGenerateHtmlReport_Profil() throws Exception {
+		ByteArrayOutputStream html = new ByteArrayOutputStream();
+		HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
+
+		htmlReportGenerator.generateHtmlReport(createValidatorReportWithAllTypesAndProfile(), html);
+
+		assertThat(html.toString(), hasXPath("/html/body/p[7]", containsString("semantischen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[8]", containsString("geometrischen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[9]", containsString("syntaktischen")));
+		assertThat(html.toString(), hasXPath("/html/body/p[10]", containsString("gegen das Profil")));
+	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testGenerateXmlReportWithNullReport() throws Exception {
 		HtmlReportGenerator htmlReportGenerator = new HtmlReportGenerator();
@@ -154,6 +167,18 @@ public class HtmlReportGeneratorTest {
 
 		GeometricValidatorResult geometricValidatorResult = new GeometricValidatorResult(SYNTAX_ERRORS);
 		validatorReport.setGeometricValidatorResult(geometricValidatorResult);
+		return validatorReport;
+	}
+
+	private ValidatorReport createValidatorReportWithAllTypesAndProfile() {
+		ValidatorReport validatorReport = createValidatorReportWithAllTypes();
+
+		SemanticValidatorResult profileValidatorResult = new SemanticValidatorResult();
+		profileValidatorResult.addRule("a", "Test valid", Collections.emptyList());
+		InvalidFeaturesResult invalidFeaturesResult = new InvalidFeaturesResult("id_profile10");
+		profileValidatorResult.addRule("b", "Test invalid", Collections.singletonList(invalidFeaturesResult));
+
+		validatorReport.addSemanticProfileValidatorResults(profileValidatorResult);
 		return validatorReport;
 	}
 

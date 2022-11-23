@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
+import de.latlon.xplan.validator.geometric.inspector.doppelbelegung.DoppelbelegungInspector;
 import de.latlon.xplan.validator.geometric.inspector.flaechenschluss.OptimisedFlaechenschlussInspector;
 import de.latlon.xplan.validator.geometric.inspector.geltungsbereich.GeltungsbereichInspector;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
@@ -32,7 +33,6 @@ import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import org.deegree.commons.tom.ReferenceResolvingException;
 import org.deegree.commons.tom.gml.GMLReference;
-import org.deegree.commons.xml.XMLParsingException;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.FeatureCollection;
@@ -48,7 +48,8 @@ import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.String.format;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 
 /**
@@ -133,13 +134,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
 
 			resolveAndValidateXlinks(gmlStream, result, aenderungenInspector);
 		}
-		catch (XMLParsingException e) {
-			String msg = "Die geometrische Validierung wurde aufgrund von schwerwiegenden Geometriefehlern abgebrochen.";
-			result.addError(msg);
-			LOG.info("Unexpected failure by geometry validation ", e);
-		}
 		catch (Exception e) {
-			String msg = "Die geometrische Validierung wurde aufgrund von schwerwiegenden Geometriefehlern abgebrochen.";
+			String msg = getMessage("GeometricValidationImpl_error");
 			result.addError(msg);
 			LOG.info("Unexpected failure by geometry validation ", e);
 		}
@@ -159,6 +155,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 			inspectors.add(new OptimisedFlaechenschlussInspector(version));
 		if (!isOptionTrue(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
 			inspectors.add(new GeltungsbereichInspector());
+		inspectors.add(new DoppelbelegungInspector());
 		return inspectors;
 	}
 
@@ -174,8 +171,11 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		gmlStream.setGeometryFactory(geomFac);
 		gmlStream.setApplicationSchema(schema);
 		gmlStream.setSkipBrokenGeometries(true);
-		for (GeometricFeatureInspector featureInspector : featureInspectors)
-			gmlStream.addInspector(featureInspector);
+		for (GeometricFeatureInspector featureInspector : featureInspectors) {
+			if (featureInspector.applicableForVersion(archive.getVersion())) {
+				gmlStream.addInspector(featureInspector);
+			}
+		}
 		gmlStream.addInspector(aenderungenInspector);
 		return gmlStream;
 	}
@@ -194,26 +194,20 @@ public class GeometricValidatorImpl implements GeometricValidator {
 						gmlReference.getReferencedObject();
 					}
 					catch (ReferenceResolvingException e) {
-						if (!treatAenderungIntegrityAsFailure && aenderungenInspector
-								.getLokalAendertAndWurdeGeandertVonReferences().contains("#" + id)) {
-							String warning = format(
-									"Die XLink-Integrität für die Referenz aendert oder wurdeGeandertVon mit der %s  konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht.",
-									id);
+						if (!treatAenderungIntegrityAsFailure && aenderungenInspector.isAenderungReference(id)) {
+							String warning = format("GeometricValidatorImpl_error_XLink_intern_aenderungsplaene", id);
 							LOG.info(warning);
 							result.addWarning(warning);
 						}
 						else {
-							String errorMessage = format(
-									"Die XLink-Integrität für die Referenz %s konnte nicht sichergestellt werden, ein Feature mit dieser ID existiert nicht.",
-									id);
+							String errorMessage = format("GeometricValidatorImpl_error_XLink_intern", id);
 							LOG.info(errorMessage);
 							result.addError(errorMessage);
 						}
 					}
 				}
 				else {
-					String msg = format("Fehler: Dokument enthält eine externe Feature-Referenz ('%s'). "
-							+ "Nur Dokument-lokale xlinks werden unterstützt.", gmlReference.getURI());
+					String msg = format("GeometricValidatorImpl_error_XLink_extern", gmlReference.getURI());
 					LOG.info(msg);
 					result.addError(msg);
 				}
@@ -276,9 +270,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		ArrayList<String> extendedBrokenGeometryErrors = new ArrayList<>();
 		List<String> brokenGeometryErrors = gmlStream.getSkippedBrokenGeometryErrors();
 		for (String brokenGeometryError : brokenGeometryErrors) {
-			extendedBrokenGeometryErrors.add(brokenGeometryError + " - Achtung: Die Geometrie ist so stark "
-					+ "besch\u00e4digt, dass sie nicht f\u00fcr die Shapefile- und Bildgenerierung verwendet "
-					+ "werden kann.");
+			extendedBrokenGeometryErrors.add(brokenGeometryError + getMessage("GeometricValidatorImpl_brokenGeom"));
 		}
 		return extendedBrokenGeometryErrors;
 	}

@@ -8,25 +8,26 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.validator.geometric.report;
 
+import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
+import de.latlon.xplan.validator.report.ValidatorResult;
+import org.deegree.cs.coordinatesystems.ICRS;
+
 import java.util.Collections;
 import java.util.List;
 
-import org.deegree.cs.coordinatesystems.ICRS;
-
-import de.latlon.xplan.validator.report.ValidatorResult;
-import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 
 /**
  * contains the validator result of the geometric validator
@@ -36,7 +37,7 @@ import de.latlon.xplan.validator.report.ReportUtils.SkipCode;
 
 public class GeometricValidatorResult extends ValidatorResult {
 
-	private static final String VALIDATION_TYPE_NAME = "Geometrische Validierung";
+	private static final String VALIDATION_TYPE_NAME = getMessage("validationType_geometric");
 
 	private final List<String> warnings;
 

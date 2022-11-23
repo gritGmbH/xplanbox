@@ -13,17 +13,6 @@ Inhalt des Verzeichnisses:
             ├── hale
             │   └── xplan41nach51
             │       └── V4_1_ID_103.gml
-            ├── xplan3
-            │   ├── BP2070-Finkenwerder.zip
-            │   ├── BP2070.zip
-            │   ├── BP2135.zip
-            │   ├── Demo.zip
-            │   ├── FPlan.zip
-            │   ├── LA22.zip
-            │   ├── LA67.zip
-            │   ├── Plessa.zip
-            │   ├── Wuerdenhain.zip
-            │   └── hc7.zip
             ├── xplan40
             │   └── V4_1_ID_66.zip
             ├── xplan41
@@ -77,17 +66,9 @@ Inhalt des Verzeichnisses:
             │   ├── V4_1_ID_103_rasterBasisAlsRefScan.zip
             │   ├── V4_1_ID_103_wirksamkeit.zip
             │   └── V4_1_ID_103_withtolerance.zip
-            ├── xplan52
-            │   ├── BP2070.zip
-            │   ├── BP2135.zip
-            │   ├── LA22.zip
-            │   ├── LA67.zip
-            │   └── V4_1_ID_103.zip
-            └── xplansyn
-                ├── BP2070_XPLAN3.gml
-                ├── BP2135_XPLAN3.gml
-                ├── Demo_XPLAN3.gml
-                ├── FPlan_XPLAN3.gml
-                ├── LA22_XPLAN3.gml
-                ├── LA67_XPLAN3.gml
-                └── hc7_XPLAN3.gml
+            └── xplan52
+                      ├── BP2070.zip
+                      ├── BP2135.zip
+                      ├── LA22.zip
+                      ├── LA67.zip
+                      └── V4_1_ID_103.zip

@@ -1,56 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="100%"
    height="100%"
    viewBox="-5 -5 100 100"
-   id="svg2">
+   id="svg2"
+   sodipodi:docname="schutzgebgeschbio_sym.svg"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="6.0104076"
+     inkscape:cx="56.968534"
+     inkscape:cy="51.608123"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     inkscape:document-rotation="0" />
   <defs
      id="defs4">
     <style
        type="text/css"
        id="style6" />
-    <symbol
-       id="SymbolGesetzlichGeschuetztesBiotop"
-       style="overflow:visible">
-      <text
-         x="0"
-         y="1.5"
-         id="text11"
-         style="font-size:4px;font-weight:100;text-anchor:middle;fill:#000000;stroke:none">BT</text>
-    </symbol>
   </defs>
-  <use
-     transform="matrix(10.482208,0,0,10.482208,45.040486,45.040486)"
-     id="use13"
-     x="0"
-     y="0"
-     width="10"
-     height="10"
-     xlink:href="#SymbolGesetzlichGeschuetztesBiotop" />
+  <g
+     aria-label="§"
+     id="text870"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     transform="translate(-0.5005835,-0.652042)">
+    <path
+       d="m 54.836521,44.98798 q 0,2.070312 -1.152344,3.652344 -1.152343,1.582031 -3.085937,2.65625 v 0.136718 q 1.894531,0.898438 2.753906,2.324219 0.859375,1.40625 0.859375,3.164063 0,1.503906 -0.644531,2.851562 -0.644531,1.347656 -1.914063,2.324219 -1.40625,1.09375 -3.300781,1.621094 -1.894531,0.527343 -4.316406,0.527343 -1.699219,0 -3.339844,-0.273437 -1.621094,-0.253906 -3.417969,-0.859375 v -3.789063 h 0.195313 q 1.542969,0.722657 3.300781,1.210938 1.757813,0.488281 3.867188,0.488281 2.617187,0 4.199218,-0.957031 1.582032,-0.9375 1.582032,-2.636719 0,-1.09375 -0.390625,-1.71875 -0.371094,-0.644531 -1.25,-1.132812 -0.800782,-0.449219 -2.207032,-0.800782 -1.40625,-0.371093 -3.007812,-0.761718 -4.179688,-1.015625 -5.78125,-2.597657 -1.621094,-1.582031 -1.621094,-4.101562 0,-1.914063 1.113281,-3.554688 1.113282,-1.660156 3.105469,-2.773437 v -0.136719 q -1.972656,-0.9375 -2.792969,-2.363281 -0.820312,-1.425781 -0.820312,-3.164063 0,-1.582031 0.625,-2.851562 0.625,-1.289063 1.933594,-2.304688 1.25,-0.976562 3.183593,-1.542968 1.953125,-0.566407 4.453125,-0.566407 1.699219,0 3.339844,0.273438 1.640625,0.273437 3.417969,0.839844 v 3.789062 h -0.195313 q -1.132812,-0.527344 -2.988281,-1.113281 -1.835937,-0.585938 -4.199219,-0.585938 -2.480468,0 -4.140625,0.898438 -1.640625,0.898437 -1.640625,2.597656 0,1.113281 0.410157,1.816406 0.429687,0.683594 1.269531,1.132813 0.839844,0.449219 2.128906,0.820312 1.289063,0.351563 3.066406,0.761719 3.90625,0.898438 5.664063,2.441406 1.738281,1.542969 1.738281,4.257813 z m -4.824219,3.945312 q 0.546875,-0.644531 0.839844,-1.269531 0.292969,-0.644531 0.292969,-1.777344 0,-0.996093 -0.332031,-1.679687 -0.3125,-0.683594 -0.878907,-1.132813 -0.546875,-0.46875 -1.308593,-0.761718 -0.761719,-0.3125 -1.621094,-0.546875 -0.761719,-0.214844 -1.679688,-0.410157 -0.898437,-0.214843 -2.265625,-0.605468 -0.351562,0.175781 -0.957031,0.625 -0.605469,0.429687 -1.035156,0.898437 -0.46875,0.507813 -0.839844,1.347656 -0.371094,0.839844 -0.371094,1.796875 0,0.976563 0.292969,1.660157 0.3125,0.683593 0.878906,1.152343 0.527344,0.449219 1.308594,0.761719 0.800781,0.3125 1.660156,0.527344 0.742188,0.195312 1.679688,0.429687 0.9375,0.234375 2.246094,0.605469 0.390625,-0.214844 1.035156,-0.664062 0.644531,-0.46875 1.054687,-0.957032 z"
+       id="path914"
+       style="stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
+  <path
+     id="rect907"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none"
+     d="M 9.6446873,44.956813 45.043187,9.644687 l 35.312126,35.3985 -35.3985,35.312126 z" />
 </svg>

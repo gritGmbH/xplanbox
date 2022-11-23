@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<GDALTileStore xmlns="http://www.deegree.org/datasource/tile/gdal" configVersion="3.4.0">
+<GDALTileStore xmlns="http://www.deegree.org/datasource/tile/gdal">
     <TileDataSet>
         <Identifier>dummy</Identifier>
         <TileMatrixSetId>dummy</TileMatrixSetId>

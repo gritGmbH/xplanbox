@@ -20,18 +20,8 @@
  */
 package de.latlon.xplan.validator.semantic.xquery;
 
-import static java.lang.String.format;
-
-import java.io.IOException;
-import java.util.List;
-
-import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
-import de.latlon.xplan.validator.semantic.configuration.RulesMessagesAccessor;
-import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorDetail;
@@ -41,7 +31,16 @@ import de.latlon.xplan.validator.semantic.SemanticValidatorRule;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.xquery.XQuerySemanticValidatorConfigurationRetriever;
+import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.List;
+
+import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
+import static java.lang.String.format;
 
 /**
  * Validates <link>XPlanArchives</link> semantically using XQuery The file path must be
@@ -53,8 +52,6 @@ import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 public class XQuerySemanticValidator implements SemanticValidator {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XQuerySemanticValidator.class);
-
-	private static final String DETAILS_HINT = "Details zu den angewendeten Regeln können in folgenden Dokument nachgeschlagen werden: %s";
 
 	private final SemanticValidatorConfiguration semanticValidatorConfiguration;
 
@@ -119,8 +116,8 @@ public class XQuerySemanticValidator implements SemanticValidator {
 		String name = semanticValidatorRule.getName();
 		try {
 			List<InvalidFeaturesResult> invalidFeatures = semanticValidatorRule.validate(archive);
-			String passedMessage = RulesMessagesAccessor.retrieveMessageForRule(name, archive.getVersion());
-			return result.addRule(name, passedMessage, invalidFeatures);
+			String message = semanticValidatorRule.getMessage();
+			return result.addRule(name, message, invalidFeatures);
 		}
 		catch (ValidatorException e) {
 			LOG.error("Error while semantically validating validation rule " + name, e);
@@ -132,7 +129,7 @@ public class XQuerySemanticValidator implements SemanticValidator {
 		if (semanticConformityLinkConfiguration != null) {
 			String link = semanticConformityLinkConfiguration.retrieveLink(archive.getVersion());
 			if (link != null && !"".equals(link)) {
-				return new ValidatorDetail(DETAILS_HINT, link);
+				return new ValidatorDetail(getMessage("XQuerySemanticValidator_linkKonformitaetsbedingungen"), link);
 			}
 		}
 		return null;

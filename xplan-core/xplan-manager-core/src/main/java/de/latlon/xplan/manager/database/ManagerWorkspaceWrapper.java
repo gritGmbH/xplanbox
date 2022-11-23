@@ -96,12 +96,10 @@ public class ManagerWorkspaceWrapper {
 	 */
 	public FeatureStore lookupStore(XPlanVersion version, PlanStatus planStatus) {
 		String store = version.name().replace("_", "").toLowerCase();
-		if (managerConfiguration.isSeperatedDataManagementActived()) {
-			if (IN_AUFSTELLUNG.equals(planStatus))
-				return lookupStore(store + PRE_SUFFIX);
-			else if (ARCHIVIERT.equals(planStatus))
-				return lookupStore(store + ARCHIVE_SUFFIX);
-		}
+		if (IN_AUFSTELLUNG.equals(planStatus))
+			return lookupStore(store + PRE_SUFFIX);
+		else if (ARCHIVIERT.equals(planStatus))
+			return lookupStore(store + ARCHIVE_SUFFIX);
 		return lookupStore(store);
 	}
 

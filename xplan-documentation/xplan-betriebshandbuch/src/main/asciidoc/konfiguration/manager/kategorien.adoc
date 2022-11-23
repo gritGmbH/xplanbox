@@ -43,6 +43,6 @@ categoriesToParts=Altona(Altona-Altstadt,Altona-Nord);
 
 IMPORTANT: Umlaute müssen in Unicode für Java codiert werden. Und Sonderzeichen wie z. B. Zeilenumbrüche müssen entfernt werden.
 
-NOTE: Im XPlanGML können mehrere Elemente des Typs `<xplan:XP_Gemeinde/>` angegeben werden (erfordert XPlanGML 4.0 oder aktueller). Aktuell wird bei mehreren Elementen nur das letzte Element ausgewertet! Beinhaltet dieses Element ein `<xplan:ortsteilName/>` dann können hier mehrere Ortsteilnamen kommasepariert angegeben werden. Die Zuordnung zu der Gemeinde erfolgt dann anhand des ersten Ortsteilnamens.
+NOTE: Im XPlanGML können mehrere Elemente des Typs `xplan:XP_Gemeinde` angegeben werden (erfordert XPlanGML 4.0 oder aktueller). Aktuell wird bei mehreren Elementen nur das letzte Element ausgewertet! Beinhaltet dieses Element ein `xplan:ortsteilName` dann können hier mehrere Ortsteilnamen kommasepariert angegeben werden. Die Zuordnung zu der Gemeinde erfolgt dann anhand des ersten Ortsteilnamens.
 
 Um den Zugriff auf Pläne im XPlanManagerWeb anhand der Filterkategorien einzuschränken, muss zusätzlich der XPlanManagerWeb für den Rollen-basierten Zugriff (siehe Kapitel <<ldap_security>>) abgesichert werden.

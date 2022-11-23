@@ -35,13 +35,10 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS_OPTION;
-import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_GELTUNGSBEREICH;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_OPTIONS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -139,13 +136,6 @@ public class GeometricValidatorImplTest {
 		XPlanVersion version = archive.getVersion();
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		return new GeometricValidatorImpl().validateGeometry(archive, archive.getCrs(), schema, true, voOptions);
-	}
-
-	private List<ValidationOption> createValidVoOptions() {
-		List<ValidationOption> voOptions = new ArrayList<>();
-		voOptions.add(SKIP_FLAECHENSCHLUSS);
-		voOptions.add(SKIP_GELTUNGSBEREICH);
-		return voOptions;
 	}
 
 }

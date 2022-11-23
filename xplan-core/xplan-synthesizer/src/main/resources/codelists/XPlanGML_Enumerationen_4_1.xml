@@ -1,33 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) XPlanGML-Toolbox, Erstellungsdatum: 08/15/13 -->
-<Dictionary gml:id="CodeLists" xmlns="http://www.opengis.net/gml" xmlns:gml="http://www.opengis.net/gml"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <!-- <dictionaryEntry> <DefinitionCollection gml:id="D:\XPlanung\XPlanGML-Toolbox_Executable\GMLSchemata\XPlanGML_4_1\ExternalCodelists\xplan_BP_DetailArtDerBaulNutzung.xml"> 
-    <name>D:\XPlanung\XPlanGML-Toolbox_Executable\GMLSchemata\XPlanGML_4_1\ExternalCodelists\xplan_BP_DetailArtDerBaulNutzung.xml</name> 
-    </DefinitionCollection> </dictionaryEntry> <dictionaryEntry> <DefinitionCollection gml:id="D:\XPlanung\XPlanGML-Toolbox_Executable\GMLSchemata\XPlanGML_4_1\ExternalCodelists\xplan_SO_DetailKlassifizNachDenkmalschutzrecht.xml"> 
-    <name>D:\XPlanung\XPlanGML-Toolbox_Executable\GMLSchemata\XPlanGML_4_1\ExternalCodelists\xplan_SO_DetailKlassifizNachDenkmalschutzrecht.xml</name> 
-    </DefinitionCollection> </dictionaryEntry> <dictionaryEntry> <DefinitionCollection gml:id="D:\XPlanung\XPlanGML-Toolbox_Executable\GMLSchemata\XPlanGML_4_1\ExternalCodelists\xplan_XP_StylesheetListe.xml"> 
-    <name>D:\XPlanung\XPlanGML-Toolbox_Executable\GMLSchemata\XPlanGML_4_1\ExternalCodelists\xplan_XP_StylesheetListe.xml</name> 
-    </DefinitionCollection> </dictionaryEntry> -->
+<!--Erzeugt mit KIT (www.kit.edu) XPlanGML-Toolbox, Erstellungsdatum: 09/11/13-->
+<Dictionary   gml:id="CodeLists" xmlns="http://www.opengis.net/gml" xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <dictionaryEntry>
-    <DefinitionCollection gml:id="BP_ABEMassnahmenTypen">
-      <name>xplan:BP_ABEMassnahmenTypen</name>
+    <DefinitionCollection gml:id="BP_AbgrenzungenTypen">
+      <name>xplan:BP_AbgrenzungenTypen</name>
       <definitionMember>
-        <Definition gml:id="BP_ABEMassnahmenTypen_1000">
-          <description>BindungErhaltung</description>
+        <Definition gml:id="BP_AbgrenzungenTypen_1000">
+          <description>Nutzungsartengrenze</description>
           <name>1000</name>
         </Definition>
       </definitionMember>
       <definitionMember>
-        <Definition gml:id="BP_ABEMassnahmenTypen_2000">
-          <description>Anpflanzung</description>
-          <name>2000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_ABEMassnahmenTypen_3000">
-          <description>AnpflanzungBindungErhaltung</description>
-          <name>3000</name>
+        <Definition gml:id="BP_AbgrenzungenTypen_9999">
+          <description>SonstigeAbgrenzung</description>
+          <name>9999</name>
         </Definition>
       </definitionMember>
     </DefinitionCollection>
@@ -35,65 +21,6 @@
   <dictionaryEntry>
     <DefinitionCollection gml:id="BP_AbweichendeBauweise">
       <name>xplan:BP_AbweichendeBauweise</name>
-    </DefinitionCollection>
-  </dictionaryEntry>
-  <dictionaryEntry>
-    <DefinitionCollection gml:id="BP_AnpflanzungBindungErhaltungsGegenstand">
-      <name>xplan:BP_AnpflanzungBindungErhaltungsGegenstand</name>
-      <definitionMember>
-        <Definition gml:id="BP_AnpflanzungBindungErhaltungsGegenstand_1000">
-          <description>Baeume</description>
-          <name>1000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_AnpflanzungBindungErhaltungsGegenstand_1100">
-          <description>Kopfbaeume</description>
-          <name>1100</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_AnpflanzungBindungErhaltungsGegenstand_2000">
-          <description>Straeucher</description>
-          <name>2000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_AnpflanzungBindungErhaltungsGegenstand_2100">
-          <description>Hecke</description>
-          <name>2100</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_AnpflanzungBindungErhaltungsGegenstand_2200">
-          <description>Knick</description>
-          <name>2200</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_AnpflanzungBindungErhaltungsGegenstand_3000">
-          <description>SonstBepflanzung</description>
-          <name>3000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_AnpflanzungBindungErhaltungsGegenstand_4000">
-          <description>Gewaesser</description>
-          <name>4000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_AnpflanzungBindungErhaltungsGegenstand_5000">
-          <description>Fassadenbegruenung</description>
-          <name>5000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_AnpflanzungBindungErhaltungsGegenstand_6000">
-          <description>Dachbegruenung</description>
-          <name>6000</name>
-        </Definition>
-      </definitionMember>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
@@ -285,6 +212,11 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="BP_DetailAbgrenzungenTypen">
+      <name>xplan:BP_DetailAbgrenzungenTypen</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="BP_DetailArtDerBaulNutzung">
       <name>xplan:BP_DetailArtDerBaulNutzung</name>
     </DefinitionCollection>
@@ -305,6 +237,11 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="BP_DetailZweckbestGewaesser">
+      <name>xplan:BP_DetailZweckbestGewaesser</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="BP_DetailZweckbestGruenFlaeche">
       <name>xplan:BP_DetailZweckbestGruenFlaeche</name>
     </DefinitionCollection>
@@ -320,13 +257,33 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="BP_DetailZweckbestNebenanlagen">
+      <name>xplan:BP_DetailZweckbestNebenanlagen</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="BP_DetailZweckbestSpielSportanlage">
       <name>xplan:BP_DetailZweckbestSpielSportanlage</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="BP_DetailZweckbestStrassenverkehr">
+      <name>xplan:BP_DetailZweckbestStrassenverkehr</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="BP_DetailZweckbestVerEntsorgung">
       <name>xplan:BP_DetailZweckbestVerEntsorgung</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="BP_DetailZweckbestWaldFlaeche">
+      <name>xplan:BP_DetailZweckbestWaldFlaeche</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="BP_DetailZweckbestWasserwirtschaft">
+      <name>xplan:BP_DetailZweckbestWasserwirtschaft</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
@@ -693,9 +650,44 @@
         </Definition>
       </definitionMember>
       <definitionMember>
+        <Definition gml:id="BP_WegerechtTypen_4100">
+          <description>GehLeitungsrecht</description>
+          <name>4100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_WegerechtTypen_4200">
+          <description>FahrLeitungsrecht</description>
+          <name>4200</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
         <Definition gml:id="BP_WegerechtTypen_5000">
           <description>GehFahrLeitungsrecht</description>
           <name>5000</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="BP_ZulaessigkeitVergnuegungsstaetten">
+      <name>xplan:BP_ZulaessigkeitVergnuegungsstaetten</name>
+      <definitionMember>
+        <Definition gml:id="BP_ZulaessigkeitVergnuegungsstaetten_1000">
+          <description>Zulaessig</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_ZulaessigkeitVergnuegungsstaetten_2000">
+          <description>NichtZulaessig</description>
+          <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="BP_ZulaessigkeitVergnuegungsstaetten_3000">
+          <description>AusnahmsweiseZulaessig</description>
+          <name>3000</name>
         </Definition>
       </definitionMember>
     </DefinitionCollection>
@@ -1191,8 +1183,23 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="FP_DetailZweckbestGewaesser">
+      <name>xplan:FP_DetailZweckbestGewaesser</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="FP_DetailZweckbestGruen">
+      <name>xplan:FP_DetailZweckbestGruen</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="FP_DetailZweckbestLandwirtschaftsFlaeche">
       <name>xplan:FP_DetailZweckbestLandwirtschaftsFlaeche</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="FP_DetailZweckbestSpielSportanlage">
+      <name>xplan:FP_DetailZweckbestSpielSportanlage</name>
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
@@ -1821,6 +1828,51 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="LP_MassnahmeLandschaftsbild">
+      <name>xplan:LP_MassnahmeLandschaftsbild</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="LP_Pflanzart">
+      <name>xplan:LP_Pflanzart</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="LP_PlanArt">
+      <name>xplan:LP_PlanArt</name>
+      <definitionMember>
+        <Definition gml:id="LP_PlanArt_1000">
+          <description>Landschaftsprogramm</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_PlanArt_2000">
+          <description>Landschaftsrahmenplan</description>
+          <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_PlanArt_3000">
+          <description>Landschaftsplan</description>
+          <name>3000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_PlanArt_4000">
+          <description>Gruenordnungsplan</description>
+          <name>4000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_PlanArt_9999">
+          <description>Sonstiges</description>
+          <name>9999</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="LP_Rechtsstand">
       <name>xplan:LP_Rechtsstand</name>
       <definitionMember>
@@ -1878,6 +1930,11 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="LP_SonstPlanArt">
+      <name>xplan:LP_SonstPlanArt</name>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="LP_SonstRechtDetailTypen">
       <name>xplan:LP_SonstRechtDetailTypen</name>
     </DefinitionCollection>
@@ -1924,6 +1981,18 @@
         <Definition gml:id="LP_Status_3000">
           <description>NachrichtlichUebernommen</description>
           <name>3000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_Status_4000">
+          <description>DarstellungKennzeichnung</description>
+          <name>4000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="LP_Status_5000">
+          <description>FestsetzungInBPlan</description>
+          <name>5000</name>
         </Definition>
       </definitionMember>
       <definitionMember>
@@ -3078,95 +3147,6 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
-    <DefinitionCollection gml:id="SO_GrenzeTypen">
-      <name>xplan:SO_GrenzeTypen</name>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1000">
-          <description>Bundesgrenze</description>
-          <name>1000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1100">
-          <description>Landesgrenze</description>
-          <name>1100</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1200">
-          <description>Regierungsbezirksgrenze</description>
-          <name>1200</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1250">
-          <description>Bezirksgrenze</description>
-          <name>1250</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1300">
-          <description>Kreisgrenze</description>
-          <name>1300</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1400">
-          <description>Gemeindegrenze</description>
-          <name>1400</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1450">
-          <description>Verbandsgemeindegrenze</description>
-          <name>1450</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1500">
-          <description>Samtgemeindegrenze</description>
-          <name>1500</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1510">
-          <description>Mitgliedsgemeindegrenze</description>
-          <name>1510</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1550">
-          <description>Amtsgrenze</description>
-          <name>1550</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_1600">
-          <description>Stadtteilgrenze</description>
-          <name>1600</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_2000">
-          <description>VorgeschlageneGrundstuecksgrenze</description>
-          <name>2000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_2100">
-          <description>GrenzeBestehenderBebauungsplan</description>
-          <name>2100</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_GrenzeTypen_9999">
-          <description>SonstGrenze</description>
-          <name>9999</name>
-        </Definition>
-      </definitionMember>
-    </DefinitionCollection>
-  </dictionaryEntry>
-  <dictionaryEntry>
     <DefinitionCollection gml:id="SO_KlassifizNachBodenschutzrecht">
       <name>xplan:SO_KlassifizNachBodenschutzrecht</name>
       <definitionMember>
@@ -3489,89 +3469,6 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
-    <DefinitionCollection gml:id="SO_KlassifizSchutzgebietNaturschutzrecht">
-      <name>xplan:SO_KlassifizSchutzgebietNaturschutzrecht</name>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_1000">
-          <description>Naturschutzgebiet</description>
-          <name>1000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_1100">
-          <description>Nationalpark</description>
-          <name>1100</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_1200">
-          <description>Biosphaerenreservat</description>
-          <name>1200</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_1300">
-          <description>Landschaftsschutzgebiet</description>
-          <name>1300</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_1400">
-          <description>Naturpark</description>
-          <name>1400</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_1500">
-          <description>Naturdenkmal</description>
-          <name>1500</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_1600">
-          <description>GeschuetzterLandschaftsBestandteil</description>
-          <name>1600</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_1700">
-          <description>GesetzlichGeschuetztesBiotop</description>
-          <name>1700</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_1800">
-          <description>Natura2000</description>
-          <name>1800</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_18000">
-          <description>GebietGemeinschaftlicherBedeutung</description>
-          <name>18000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_18001">
-          <description>EuropaeischesVogelschutzgebiet</description>
-          <name>18001</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_2000">
-          <description>NationalesNaturmonument</description>
-          <name>2000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="SO_KlassifizSchutzgebietNaturschutzrecht_9999">
-          <description>Sonstiges</description>
-          <name>9999</name>
-        </Definition>
-      </definitionMember>
-    </DefinitionCollection>
-  </dictionaryEntry>
-  <dictionaryEntry>
     <DefinitionCollection gml:id="SO_KlassifizSchutzgebietSonstRecht">
       <name>xplan:SO_KlassifizSchutzgebietSonstRecht</name>
       <definitionMember>
@@ -3848,6 +3745,29 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_ABEMassnahmenTypen">
+      <name>xplan:XP_ABEMassnahmenTypen</name>
+      <definitionMember>
+        <Definition gml:id="XP_ABEMassnahmenTypen_1000">
+          <description>BindungErhaltung</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_ABEMassnahmenTypen_2000">
+          <description>Anpflanzung</description>
+          <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_ABEMassnahmenTypen_3000">
+          <description>AnpflanzungBindungErhaltung</description>
+          <name>3000</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="XP_AbweichungBauNVOTypen">
       <name>xplan:XP_AbweichungBauNVOTypen</name>
       <definitionMember>
@@ -3907,6 +3827,71 @@
         <Definition gml:id="XP_AllgArtDerBaulNutzung_9999">
           <description>SonstigeBauflaeche</description>
           <name>9999</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_AnpflanzungBindungErhaltungsGegenstand">
+      <name>xplan:XP_AnpflanzungBindungErhaltungsGegenstand</name>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_1000">
+          <description>Baeume</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_1100">
+          <description>Kopfbaeume</description>
+          <name>1100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_1200">
+          <description>Baumreihe</description>
+          <name>1200</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_2000">
+          <description>Straeucher</description>
+          <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_2100">
+          <description>Hecke</description>
+          <name>2100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_2200">
+          <description>Knick</description>
+          <name>2200</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_3000">
+          <description>SonstBepflanzung</description>
+          <name>3000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_4000">
+          <description>Gewaesser</description>
+          <name>4000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_5000">
+          <description>Fassadenbegruenung</description>
+          <name>5000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_6000">
+          <description>Dachbegruenung</description>
+          <name>6000</name>
         </Definition>
       </definitionMember>
     </DefinitionCollection>
@@ -5000,6 +4985,95 @@
     </DefinitionCollection>
   </dictionaryEntry>
   <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_GrenzeTypen">
+      <name>xplan:XP_GrenzeTypen</name>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1000">
+          <description>Bundesgrenze</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1100">
+          <description>Landesgrenze</description>
+          <name>1100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1200">
+          <description>Regierungsbezirksgrenze</description>
+          <name>1200</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1250">
+          <description>Bezirksgrenze</description>
+          <name>1250</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1300">
+          <description>Kreisgrenze</description>
+          <name>1300</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1400">
+          <description>Gemeindegrenze</description>
+          <name>1400</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1450">
+          <description>Verbandsgemeindegrenze</description>
+          <name>1450</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1500">
+          <description>Samtgemeindegrenze</description>
+          <name>1500</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1510">
+          <description>Mitgliedsgemeindegrenze</description>
+          <name>1510</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1550">
+          <description>Amtsgrenze</description>
+          <name>1550</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_1600">
+          <description>Stadtteilgrenze</description>
+          <name>1600</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_2000">
+          <description>VorgeschlageneGrundstuecksgrenze</description>
+          <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_2100">
+          <description>GrenzeBestehenderBebauungsplan</description>
+          <name>2100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_GrenzeTypen_9999">
+          <description>SonstGrenze</description>
+          <name>9999</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
     <DefinitionCollection gml:id="XP_HorizontaleAusrichtung">
       <name>xplan:XP_HorizontaleAusrichtung</name>
       <definitionMember>
@@ -5018,6 +5092,89 @@
         <Definition gml:id="XP_HorizontaleAusrichtung_zentrisch">
           <description>zentrisch</description>
           <name>zentrisch</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_KlassifizSchutzgebietNaturschutzrecht">
+      <name>xplan:XP_KlassifizSchutzgebietNaturschutzrecht</name>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1000">
+          <description>Naturschutzgebiet</description>
+          <name>1000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1100">
+          <description>Nationalpark</description>
+          <name>1100</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1200">
+          <description>Biosphaerenreservat</description>
+          <name>1200</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1300">
+          <description>Landschaftsschutzgebiet</description>
+          <name>1300</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1400">
+          <description>Naturpark</description>
+          <name>1400</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1500">
+          <description>Naturdenkmal</description>
+          <name>1500</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1600">
+          <description>GeschuetzterLandschaftsBestandteil</description>
+          <name>1600</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1700">
+          <description>GesetzlichGeschuetztesBiotop</description>
+          <name>1700</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_1800">
+          <description>Natura2000</description>
+          <name>1800</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_18000">
+          <description>GebietGemeinschaftlicherBedeutung</description>
+          <name>18000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_18001">
+          <description>EuropaeischesVogelschutzgebiet</description>
+          <name>18001</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_2000">
+          <description>NationalesNaturmonument</description>
+          <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_KlassifizSchutzgebietNaturschutzrecht_9999">
+          <description>Sonstiges</description>
+          <name>9999</name>
         </Definition>
       </definitionMember>
     </DefinitionCollection>
@@ -5294,6 +5451,18 @@
         <Definition gml:id="XP_SPEZiele_2000">
           <description>Entwicklung</description>
           <name>2000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_SPEZiele_3000">
+          <description>Anlage</description>
+          <name>3000</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_SPEZiele_4000">
+          <description>SchutzPflegeEntwicklung</description>
+          <name>4000</name>
         </Definition>
       </definitionMember>
       <definitionMember>
@@ -5998,109 +6167,4 @@
       </definitionMember>
     </DefinitionCollection>
   </dictionaryEntry>
-  <dictionaryEntry>
-    <DefinitionCollection gml:id="BP_AbgrenzungenTypen">
-      <name>xplan:BP_AbgrenzungenTypen</name>
-      <definitionMember>
-        <Definition gml:id="BP_AbgrenzungenTypen_1000">
-          <description>Nutzungsartengrenze</description>
-          <name>1000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="BP_AbgrenzungenTypen_9999">
-          <description>SonstigeAbgrenzung</description>
-          <name>9999</name>
-        </Definition>
-      </definitionMember>
-    </DefinitionCollection>
-  </dictionaryEntry>
-  <dictionaryEntry>
-    <DefinitionCollection gml:id="XP_ABEMassnahmenTypen">
-      <name>xplan:BP_ABEMassnahmenTypen</name>
-      <definitionMember>
-        <Definition gml:id="XP_ABEMassnahmenTypen_1000">
-          <description>BindungErhaltung</description>
-          <name>1000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_ABEMassnahmenTypen_2000">
-          <description>Anpflanzung</description>
-          <name>2000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_ABEMassnahmenTypen_3000">
-          <description>AnpflanzungBindungErhaltung</description>
-          <name>3000</name>
-        </Definition>
-      </definitionMember>
-    </DefinitionCollection>
-  </dictionaryEntry>
-  <dictionaryEntry>
-    <DefinitionCollection gml:id="XP_AnpflanzungBindungErhaltungsGegenstand">
-      <name>XP_AnpflanzungBindungErhaltungsGegenstand</name>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_1000">
-          <description>Baeume</description>
-          <name>1000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_1100">
-          <description>Kopfbaeume</description>
-          <name>1100</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_1200">
-          <description>Baumreihe</description>
-          <name>1200</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_2000">
-          <description>Straeucher</description>
-          <name>2000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_2100">
-          <description>Hecke</description>
-          <name>2100</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_2200">
-          <description>Knick</description>
-          <name>2200</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_3000">
-          <description>SonstBepflanzung</description>
-          <name>3000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_4000">
-          <description>Gewaesser</description>
-          <name>4000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_5000">
-          <description>Fassadenbegruenung</description>
-          <name>5000</name>
-        </Definition>
-      </definitionMember>
-      <definitionMember>
-        <Definition gml:id="XP_AnpflanzungBindungErhaltungsGegenstand_6000">
-          <description>Dachbegruenung</description>
-          <name>6000</name>
-        </Definition>
-      </definitionMember>
-    </DefinitionCollection>
-  </dictionaryEntry>
-</Dictionary>
+</Dictionary  >

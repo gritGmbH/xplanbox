@@ -8,20 +8,20 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.castToArray;
-import static de.latlon.xplan.manager.synthesizer.expression.Expressions.toPrimitiveValue;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
@@ -66,7 +66,7 @@ public abstract class AbstractXplanCodeLookup implements Expression {
 				translation = "";
 				for (TypedObjectNode o : codes.getElements()) {
 					String code = toString(o);
-					String desc = xPlanCodeLists.getDescription(codeListName, code);
+					String desc = xPlanCodeLists.getTranslation(codeListName, code);
 					translation += "[" + escape(desc) + "]";
 				}
 				if (codes.getElements().length == 1) {

@@ -1,56 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-  #%L
-  xplan-workspaces - Modul zur Gruppierung aller Workspaces
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU Affero General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%
-  -->
-
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="100%"
    height="100%"
    viewBox="-5 -5 100 100"
-   id="svg2">
+   id="svg2"
+   sodipodi:docname="schutzgebnaturpark_sym.svg"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="6.0104076"
+     inkscape:cx="51.023351"
+     inkscape:cy="49.463959"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     inkscape:document-rotation="0" />
   <defs
      id="defs4">
     <style
        type="text/css"
        id="style6" />
-    <symbol
-       id="SymbolNaturpark"
-       style="overflow:visible">
-      <text
-         x="0"
-         y="1.5"
-         id="text11"
-         style="font-size:4px;font-weight:100;text-anchor:middle;fill:#000000;stroke:none">NP</text>
-    </symbol>
   </defs>
-  <use
-     transform="matrix(10.503516,0,0,10.503516,45.1417,45.1417)"
+  <g
      id="use13"
-     x="0"
-     y="0"
-     width="10"
-     height="10"
-     xlink:href="#SymbolNaturpark" />
+     transform="matrix(10.503516,0,0,10.503516,45.1417,45.1417)"
+     style="stroke-width:0.19041243;stroke-miterlimit:4;stroke-dasharray:none">
+    <g
+       aria-label="NP"
+       id="text870"
+       style="font-weight:100;font-size:4px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.19041243;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         d="M -0.09277344,1.5 H -0.57128906 L -1.9501953,-1.1015625 V 1.5 h -0.3613281 v -2.9082031 h 0.5996093 l 1.25781254,2.37499998 V -1.4082031 h 0.36132812 z"
+         style="font-weight:100;font-size:4px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.19041243;stroke-miterlimit:4;stroke-dasharray:none"
+         id="path874" />
+      <path
+         d="m 2.5830078,-0.52929687 q 0,0.19335937 -0.068359,0.359375 -0.066406,0.16406249 -0.1875,0.28515624 Q 2.1767578,0.265625 1.9716797,0.34179688 1.7666016,0.41601563 1.4541016,0.41601563 H 1.0673828 V 1.5 H 0.68066406 V -1.4082031 H 1.4697266 q 0.2617187,0 0.4433593,0.044922 0.1816407,0.042969 0.3222657,0.1367187 0.1660156,0.1113281 0.2558593,0.27734375 0.091797,0.16601563 0.091797,0.41992178 z m -0.4023437,0.009766 q 0,-0.15039062 -0.052734,-0.26171875 -0.052734,-0.11132813 -0.1601563,-0.18164063 -0.09375,-0.0605469 -0.2148437,-0.0859374 -0.1191406,-0.027344 -0.3027344,-0.027344 H 1.0673828 V 0.085937 h 0.3261719 q 0.234375,0 0.3808594,-0.04101563 0.1464843,-0.04296874 0.2382812,-0.13476562 0.091797,-0.09375 0.1289063,-0.19726563 0.039063,-0.10351562 0.039063,-0.23242099 z"
+         style="font-weight:100;font-size:4px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.19041243;stroke-miterlimit:4;stroke-dasharray:none"
+         id="path876" />
+    </g>
+  </g>
+  <path
+     id="path883-4"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none"
+     d="M 86.496977,44.999999 A 41.496976,41.496976 0 0 1 44.999999,86.496977 41.496976,41.496976 0 0 1 3.503023,44.999999 41.496976,41.496976 0 0 1 44.999999,3.503023 41.496976,41.496976 0 0 1 86.496977,44.999999 Z" />
 </svg>

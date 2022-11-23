@@ -163,16 +163,16 @@ public class ReportWriter {
 	private void addZipEntry(ArtifactType artifactType, String validationName, ZipOutputStream zipOutputStream,
 			File sourceDirectory) throws IOException {
 		switch (artifactType) {
-		case SHP:
-			addShpArtifact(zipOutputStream, sourceDirectory);
-			break;
-		case HTML:
-		case XML:
-		case PDF:
-			addSimpleArtifact(artifactType, validationName, zipOutputStream, sourceDirectory);
-			break;
-		default:
-			break;
+			case SHP:
+				addShpArtifact(zipOutputStream, sourceDirectory);
+				break;
+			case HTML:
+			case XML:
+			case PDF:
+				addSimpleArtifact(artifactType, validationName, zipOutputStream, sourceDirectory);
+				break;
+			default:
+				break;
 		}
 	}
 

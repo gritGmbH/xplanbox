@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>5.1-SNAPSHOT</version>
+    <version>6.0-SNAPSHOT</version>
   </parent>
 
   <modules>
@@ -17,7 +17,7 @@
     <module>xplan-transform-cli</module>
     <module>xplan-evaluation-schema-synchronize-cli</module>
     <module>xplan-validatedb-cli</module>
-    <module>xplan-update-database-cli</module>
+    <module>xplan-update-data-cli</module>
   </modules>
 
 </project>

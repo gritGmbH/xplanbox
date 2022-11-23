@@ -1,23 +1,20 @@
 [[bekannte-probleme]]
 == Bekannte Probleme
 
-[[internet-explorer]]
-=== Internet Explorer
+=== Verwendung von Internet Explorer
 
-Beim Importieren (Hochladen) von XPlanArchiven über den XPlanManagerWeb mit Microsoft Internet Explorer 9/10/11 kann es vorkommen, dass das XPlanArchiv für die Dauer der Sitzung im Windows Dateisystem blockiert wird.
+IMPORTANT: Die Unterstützung von Microsoft Internet Explorer 9/10/11 ist mit Version 4.2 der xPlanBox abgekündigt worden. Bitte nutzen Sie einen anderen Browser wie z. B. Microsoft Edge, Firefox oder Google Chrome.
 
-Der Fehler ist Microsoft bekannt und es wird folgender Workaround empfohlen:
+=== XPlanValidator - Darstellung von geometrischen Fehlern in einer Grafik und im Shape-Datei
 
-    - Neu-Laden der Seite mit "Refresh/F5" oder
-    - Schließen des Browser-Fenster/Tabs mit "Ctrl+w"
+Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) im Validierungsbericht des XPlanValidator ausgegeben, Multigeometrien werden nicht dargestellt. In die Shape-Datei können nur Geometrien geschrieben werden, wenn diese auch gerendert werden können.
 
-Referenzen:
+=== XPlanValidator - Anzeige der Zeilennummern im Validierungsbericht
 
-    - https://connect.microsoft.com/IE/feedback/details/817183/ie10-and-ie11-keep-files-locked-after-uploading[IE10 and IE11 keep files locked after uploading]
-    - https://connect.microsoft.com/IE/feedback/details/794708/uploaded-file-is-locked-on-file-system-after-upload[Uploaded file is locked on file system after upload]
+Die Ausgabe der Zeilennummer bei semantischen Validierungsfehlern, kann je nach Formatierung des XML-Dokuments von der Zeile des verursachenden Elements abweichen.
+Gute und exakte Ergebnisse bei der Ausgabe der Zeilennummer des Elements lassen sich dann erzielen, wenn das XML-Dokument ohne Formatierung der Attribute erfolgt, insbesondere der Deklaration der Namensräume im Wurzelelement. Die Zeilen werden entsprechend der https://www.w3.org/TR/REC-xml/#sec-line-ends[XML-Spezifikation] gezählt und stellen nur eine Annäherung an die Zeilennummer der Dokumententität oder der externen geparsten Entität dar, in der das Element erscheint, das das Ereignis auslöst.
 
-[[xplanbox---durch-kartenvorschau-generierter-getmap-request]]
-=== xPlanBox - Durch Kartenvorschau generierter GetMap-Request
+=== XPlanWMS - Mit Kartenvorschau im XPlanManagerWeb generierter GetMap-Request
 
 Der durch den Button "Plan im neuen Fenster öffnen" unterhalb der Kartenvorschau im XPlanManagerWeb generierte WMS GetMap-Request gibt im Fall, dass noch kein Rasterplan in das System importiert wurde, folgende erwartete Meldung aus:
 
@@ -31,9 +28,43 @@ fehlender Rasterpläne noch nicht von dem WMS angeboten wird.
 Wenn die URL dennoch genutzt werden soll, muss der Layer [*]P_Planraster
 manuell aus der Request URL entfernt werden (Wert des Parameters "LAYERS").
 
-Dies gilt für jeden einzeln Plan-Typ: Für die URL für BPläne muss z. B.
+Dies gilt für jede einzelne Planart: Für die URL für BPläne muss z. B.
 mindestens ein BPlan mit Rasterdaten vorliegen, für FPläne mindestens
 ein FPlan mit Rasterdaten.
+
+=== XPlanManagerWeb - Anzeige der Pläne auf der letzten Seite
+
+Die Ansicht der Pläne im XPlanManagerWeb zeigt auf der letzten Seite immer die letzten 15 Pläne an. Dieses Verhalten tritt sowohl mit oder ohne Auswahl eines Filters auf (siehe dazu die Funktionsbeschreibung in <<xplanmanager-web-auflistung>>).
+
+=== XPlanManagerWeb - Transformation in das INSPIRE Planned Land Use Datenschema
+
+Bei der Transformation von XPlanGML in das INSPIRE Planned Land Use Datenschema können in der vorliegenden Version der xPlanBox die Daten nicht vollständig transformiert werden.
+So fehlen u.a. Transformationsregeln für Werte aus Codelisten als auch konfigurierbare Abbildungsregeln für Elemente wie z. B. der INSPIRE ID.
+Zugesichert werden kann, dass das über den XPlanInspirePluWFS abgegebene GML gegen das GML-Applikationsschema validiert.
+Nicht zugesichert werden kann, dass das GML die Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use vollständig erfüllt, sowie dass die Daten aus XPlanGML vollständig in das Zielschema INSPIRE PLU transformiert werden.
+
+=== XPlanManagerWeb - Löschen von einzelnen Plänen aus dem InspirePLU Diensten
+
+Aktuell kann über den XPlanManager ein XPlanArchiv nur aus der XPlanDB-Datenhaltung entfernt werden. Wird ein Plan von XPlanGML nach INSPIRE PLU transformiert und in die InspirePLUDB-Datenhaltung übertragen, kann der transformierte Datensatz nicht über den XPlanManager aus der InspirePLUDB-Datenhaltung entfernt werden.
+
+Eine Umgehung ist das Löschen des Datensatzes aus der InspirePLUDB-Datenhaltung direkt in der Datenbank oder über die WFS-T Schnittstelle des InspirePLUWFS. Zum Löschen eines oder mehrerer Datensätze muss an den InspirePLUWFS eine WFS-T 2.0.0 DELETE Aktion geschickt werden.
+
+=== XPlanManagerWeb - Änderungen der Rasterbasis über die Editorfunktion im XPlanManagerWeb werden nicht übernommen
+
+Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl" statt "Scan") der Eintrag nicht in das XPlanGML-Instanzdokument übernommen. Die Referenz auf die Rasterbasis wird beim Speichern nicht in das XPlanGML geschrieben, befindet sich aber in der ZIP-Datei.
+
+=== XPlanManagerWeb - Hinzufügen von einer Datei xplan.gml über die Editorfunktion im XPlanManagerWeb resultiert in korrupten XPlanArchiv
+
+Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über die Editorfunktion des XPlanManagerWeb hinzugefügt und gespeichert, kann dieses XPlanArchiv danach nicht mehr geöffnet werden. Beim wiederholten Aufruf der Editorfunktion zeigt das System dann den Fehler "500" an.
+
+Der Fehler kann nicht in der xPlanBox behoben werden! Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
+
+=== XPlanValidatorAPI - Verwendung von vollqualifizierten Pfaden im HTTP-Header "X-Filename"
+
+Wird der HTTP-Header "X-Filename" mit einem vollqualifizierten Pfad angegeben, kommt es bei der Anfrage eines Reports im Format PDF zu einem HTTP-Statusfehler 500.
+
+Der Fehler kann dadurch umgangen werden, dass im HTTP-Header nur der Dateiname angegeben wird. Der Fehler tritt nicht auf, wenn über den HTTP-Header "Accept" Json oder XML angefragt werden.
+
 
 === XPlanManagerCLI - Nutzung falscher Bibliotheken kann beim Import eines Plans zu fehlerhaft erzeugter Konfiguration führen
 
@@ -44,38 +75,11 @@ Falls diese Voraussetzungen nicht erfüllt werden, können die erzeugten deegree
 Diese Konfigurationsdateien können nicht von deegree geparst werden. Und führen zu einem Systemfehler und verhindern den Start der Dienste.
 Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namespace-Attribute manuell entfernt werden, ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
 
-=== Transformation in das INSPIRE Planned Land Use Datenschema
-
-Bei der Transformation von XPlanGML in das INSPIRE Planned Land Use Datenschema können in der vorliegenden Version der xPlanBox nicht alle Daten vollständig transformiert werden.
-So fehlen u.a. Transformationsregeln für Werte aus Codelisten als auch konfigurierbare Abbildungsregeln für Elemente wie z. B. der INSPIRE ID.
-Zugesichert werden kann, dass das über den XPlanInspirePluWFS abgegebene GML gegen das GML-Applikationsschema validiert.
-Nicht zugesichert werden kann, dass das GML alle Vorgaben aus den Technical Guidelines für das INSPIRE Annex III Datenthema Land Use erfüllt sowie dass alle Daten aus dem XPlanGML in das
-Zielschema INSPIRE PLU transformiert werden.
-
-=== Löschen von einzelnen Plänen aus dem InspirePLU Diensten
-
-Aktuell kann über den XPlanManager ein XPlanArchiv nur aus der XPlanDB-Datenhaltung entfernt werden. Wird ein Plan von XPlanGML nach INSPIRE PLU transformiert und in die InspirePLUDB-Datenhaltung
-übertragen, kann dieser Datensatz nicht mehr über den XPlanManager aus der InspirePLUDB-Datenhaltung entfernt werden.
-
-Eine Umgehung ist das Löschen des Datensatzes aus der InspirePLUDB-Datenhaltung über die WFS-T Schnittstelle des InspirePLUWFS. Zum Löschen eines oder mehrerer Datensätze muss an den InspirePLUWFS eine WFS-T 2.0.0 DELETE Aktion geschickt werden.
-
-=== Darstellungsvorschriften für Raumordnungspläne
+=== XPlanWMS - Darstellungsvorschriften für Raumordnungspläne
 
 Die Darstellungsvorschriften für Raumordnungspläne sind zum Teil unvollständig. Durch den XPlanWMS werden die betroffenen Ebenen daher nur in der Standarddarstellung ausgegeben.
 
-=== Darstellung von geometrischen Fehlern in einer Grafik und im Shapefile
-
-Es werden derzeit nur einfache Geometrien (Punkte, Linien und Polygone) ausgegeben, Multigeometrien werden nicht dargestellt. Die Grafik und das Shapefile enthalten die fehlerhaften Geometrien nur, wenn diese nicht zu fehlerhaft sind, um gerendert zu werden.
-
-=== Änderungen der Rasterbasis über die Editorfunktion im XPlanManagerWeb werden nicht übernommen
-
-Bei dem Hinzufügen einer Rasterbasis wird ohne Angabe des Typs ("Keine Auswahl" statt "Scan") der Eintrag nicht in das XPlanGML-Instanzdokument übernommen. Die Referenz auf die Rasterbasis wird beim Speichern nicht in das XPlanGML geschrieben, befindet sich aber in der ZIP-Datei.
-
-=== XPlanManagerWeb - Hinzufügen von einer Datei xplan.gml über die Editorfunktion im XPlanManagerWeb resultiert in korrupten XPlanArchiv
-
-Wird ein Text, Dokument oder eine Rasterbasis mit dem Namen _xplan.gml_ über die Editorfunktion des XPlanManagerWeb hinzugefügt und gespeichert, kann dieses XPlanArchiv danach nicht mehr geöffnet werden. Beim wiederholten Aufruf der Editorfunktion zeigt das System dann den Fehler "500" an. Der Fehler kann nicht in der xPlanBox behoben werden. Das XPlanArchiv muss aus der Datenhaltung entfernt, korrigiert und dann erneut über den XPlanManager importiert werden.
-
-=== Umsetzung von Präsentationsobjekte
+=== XPlanWMS - Umsetzung von Präsentationsobjekte
 
 Im XPlanWMS ist der Umfang der Darstellung von Präsentationsobjekten nur eingeschränkt implementiert. Über die folgenden Layer werden diese angezeigt:
 
@@ -132,12 +136,10 @@ Derzeit werden die folgenden Attribute bei der Visualisierung berücksichtigt:
  ** Darstellung erfolgt als Kreis mit grauem Umring
  ** position
 
-Nicht umgesetzt ist dagegen insbesondere die Auswertung der Attribute _art_ und _index_.
-
 [[fehler-melden]]
 == Fehler melden
 
-Für den Fall, dass Sie einen Fehler in einer der xPlanBox Komponenten finden, schicken Sie bitte eine E-mail an das Support-Postfach: ​support@lat-lon.de​ oder Sie öffnen ein Ticket unter https://bitbucket.org/latlon/xplanbox-ep/issues.
+Für den Fall, dass Sie einen Fehler in der xPlanBox finden, erstellen Sie bitte einen  Fehlerbericht unter https://gitlab.opencode.de/diplanung/ozgxplanung/-/issues[OpenCoDE Gitlab Issues].
 
 [[support]]
 == Support

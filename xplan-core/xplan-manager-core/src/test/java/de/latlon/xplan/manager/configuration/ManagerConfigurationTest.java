@@ -25,7 +25,6 @@ import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
-import org.deegree.geometry.Envelope;
 import org.junit.Test;
 
 import java.util.List;
@@ -33,10 +32,9 @@ import java.util.Map;
 import java.util.Properties;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.CATEGORIES_TO_PARTS_KEY;
-import static de.latlon.xplan.manager.configuration.ManagerConfiguration.DEFAULT_BBOX_IN_4326;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_CONFIG_CRS;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_LAYER_SCALE_DENOMINATOR_MAX;
 import static de.latlon.xplan.manager.configuration.ManagerConfiguration.RASTER_LAYER_SCALE_DENOMINATOR_MIN;
@@ -96,27 +94,6 @@ public class ManagerConfigurationTest {
 	}
 
 	@Test
-	public void testGetDefaultBboxIn4326() throws Exception {
-		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoader());
-
-		Envelope defaultBboxIn4326 = managerConfiguration.getDefaultBboxIn4326();
-
-		assertThat(defaultBboxIn4326.getMin().get0(), is(-180.0));
-		assertThat(defaultBboxIn4326.getMin().get1(), is(-90.0));
-		assertThat(defaultBboxIn4326.getMax().get0(), is(180.0));
-		assertThat(defaultBboxIn4326.getMax().get1(), is(90.0));
-	}
-
-	@Test
-	public void testGetDefaultBboxIn4326WithNullValue() throws Exception {
-		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoaderReturningNull());
-
-		Envelope defaultBboxIn4326 = managerConfiguration.getDefaultBboxIn4326();
-
-		assertThat(defaultBboxIn4326, nullValue());
-	}
-
-	@Test
 	public void testGetSortConfiguration() throws Exception {
 		ManagerConfiguration managerConfiguration = new ManagerConfiguration(mockPropertiesLoader());
 
@@ -133,7 +110,7 @@ public class ManagerConfigurationTest {
 		SemanticConformityLinkConfiguration semanticConformityLinkConfiguration = managerConfiguration
 				.getSemanticConformityLinkConfiguration();
 		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_50), is("http://link.de/to.pdf"));
-		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_3), nullValue());
+		assertThat(semanticConformityLinkConfiguration.retrieveLink(XPLAN_51), nullValue());
 	}
 
 	@Test
@@ -199,7 +176,6 @@ public class ManagerConfigurationTest {
 		Properties properties = new Properties();
 		properties.put(CATEGORIES_TO_PARTS_KEY, "Cat1(A,B,C D);Cat2(1 , 7)");
 		properties.put(RASTER_CONFIG_CRS, "epsg:4326");
-		properties.put(DEFAULT_BBOX_IN_4326, "-180,-90,180,90");
 		properties.put("wmsSortDate_BP_Plan_XPLAN_50", "BP_Plan,rechtsverordnungsDatum");
 		properties.put("linkSemanticConformity_XPLAN_50", "http://link.de/to.pdf");
 		properties.put(WORKSPACE_RELOAD_URLS, "url1,url2");

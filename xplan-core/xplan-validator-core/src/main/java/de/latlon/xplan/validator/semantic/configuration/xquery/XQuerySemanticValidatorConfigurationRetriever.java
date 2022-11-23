@@ -24,8 +24,9 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfiguration;
 import de.latlon.xplan.validator.semantic.configuration.SemanticValidatorConfigurationRetriever;
+import de.latlon.xplan.validator.semantic.configuration.message.DefaultRulesMessagesAccessor;
+import de.latlon.xplan.validator.semantic.configuration.message.RulesMessagesAccessor;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
-import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadataParser;
 import de.latlon.xplan.validator.semantic.xquery.XQuerySemanticValidatorRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Path;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_3;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
@@ -42,6 +42,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
@@ -65,19 +66,28 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
 	private final Path rulesPath;
 
-	private final RulesMetadataParser rulesMetadataParser = new RulesMetadataParser();
+	private final RulesMetadata rulesMetadata;
 
-	public XQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
+	private final RulesMessagesAccessor rulesMessagesAccessor;
+
+	public XQuerySemanticValidatorConfigurationRetriever(Path rulesPath, RulesMetadata rulesMetadata) {
 		this.rulesPath = rulesPath;
+		this.rulesMetadata = rulesMetadata;
+		this.rulesMessagesAccessor = new DefaultRulesMessagesAccessor();
+	}
+
+	public XQuerySemanticValidatorConfigurationRetriever(Path rulesPath, RulesMetadata rulesMetadata,
+			RulesMessagesAccessor rulesMessagesAccessor) {
+		this.rulesPath = rulesPath;
+		this.rulesMetadata = rulesMetadata;
+		this.rulesMessagesAccessor = rulesMessagesAccessor;
 	}
 
 	@Override
 	public SemanticValidatorConfiguration retrieveConfiguration() throws IOException {
 		SemanticValidatorConfiguration config = new SemanticValidatorConfiguration();
-
+		config.setRulesMetadata(rulesMetadata);
 		if (rulesPath != null && isDirectory(rulesPath)) {
-			RulesMetadata rulesMetadata = rulesMetadataParser.parserMetadata(rulesPath);
-			config.setRulesMetadata(rulesMetadata);
 			try (DirectoryStream<Path> directoryStream = retrieveDirectoriesAndRules(rulesPath)) {
 				for (Path path : directoryStream) {
 					if (isDirectory(path)) {
@@ -100,9 +110,6 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 					}
 				}
 			}
-		}
-		else {
-			createAndAddRule(config, rulesPath, UNKNOWN_VERSION, UNKNOWN_OPTION);
 		}
 
 		return config;
@@ -147,8 +154,9 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 		LOG.debug("Parse rule {}", path);
 		String name = getNameWithoutExtension(path);
 		try {
+			String message = rulesMessagesAccessor.retrieveMessageForRule(name, version);
 			XQuerySemanticValidatorRule rule = new XQuerySemanticValidatorRule(newInputStream(path), name, version,
-					option);
+					option, message);
 			config.addRule(rule);
 			LOG.debug(format("New rule: %s from file rulesPath %s", name, path.toAbsolutePath().toString()));
 		}
@@ -191,6 +199,8 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
 	private XPlanVersion parseXPlanVersion(Path path) {
 		String dirName = extractDirectoryName(path);
+		if ("xplangml60".equals(dirName))
+			return XPLAN_60;
 		if ("xplangml54".equals(dirName))
 			return XPLAN_54;
 		if ("xplangml53".equals(dirName))
@@ -205,8 +215,6 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 			return XPLAN_41;
 		if ("xplangml40".equals(dirName))
 			return XPLAN_40;
-		if ("xplangml3".equals(dirName))
-			return XPLAN_3;
 		LOG.info("{} is not a known XPlanVersion", dirName);
 		return UNKNOWN_VERSION;
 	}

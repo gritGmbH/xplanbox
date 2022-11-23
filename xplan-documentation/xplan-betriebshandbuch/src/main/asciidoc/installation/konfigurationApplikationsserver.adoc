@@ -16,7 +16,7 @@ _managerWebConfiguration.properties_ und _validatorConfiguration.properties_. Wu
 . Die Bibliothek JTS muss über die Variable `jts.overlay=ng` konfiguriert werden.
 . Die Bibliothek deegree muss über die Variable `javax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl` konfiguriert werden.
 
-IMPORTANT: Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ zusätzlich erforderlich.
+IMPORTANT: Wurden die Workspaces nicht im Verzeichnis _.deegree_ des Home-Verzeichnis abgelegt, ist das Setzen der Umgebungsvariable _DEEGREE_WORKSPACE_ROOT_ zwingend erforderlich.
 
 TIP: Es wird empfohlen die Zeitzone im _Anwendungs-Tomcat_ auf "Europe/Berlin" zu konfigurieren, wenn dies nicht bereits auf Ebene des Betriebssystems gesetzt ist. Andernfalls kann es beim Editieren eines Plans veränderten Datumsangaben (z. B. Herstellungsdatum) kommen. Für die Konfiguration im Tomcat muss folgende Option zusätzlich in den `CATALINA_OPTS` ergänzt werden: `-Duser.timezone=Europe/Berlin`.
 

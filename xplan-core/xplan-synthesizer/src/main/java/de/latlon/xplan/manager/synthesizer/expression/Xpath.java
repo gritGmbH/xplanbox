@@ -20,8 +20,10 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.commons.util.XPlanVersionUtils;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
+import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.commons.xml.NamespaceBindings;
 import org.deegree.feature.Feature;
@@ -30,7 +32,7 @@ import org.deegree.feature.xpath.TypedObjectNodeXPathEvaluator;
 import org.deegree.filter.FilterEvaluationException;
 import org.deegree.filter.expression.ValueReference;
 
-import de.latlon.xplan.commons.util.XPlanVersionUtils;
+import java.util.List;
 
 /**
  * {@link Expression} that fetches a specific property or node (of the feature).
@@ -73,7 +75,19 @@ public class Xpath implements Expression {
 				return new PrimitiveValue(defaultValue);
 		}
 		if (valueNodes.length == 1) {
-			return valueNodes[0];
+			TypedObjectNode valueNode = valueNodes[0];
+			if (valueNode instanceof GenericXMLElement) {
+				List<TypedObjectNode> children = ((GenericXMLElement) valueNode).getChildren();
+				if (children != null) {
+					if (children.size() == 1) {
+						return children.get(0);
+					}
+					else if (children.size() > 1) {
+						return new TypedObjectNodeArray<>(children.toArray(new TypedObjectNode[] {}));
+					}
+				}
+			}
+			return valueNode;
 		}
 		return new TypedObjectNodeArray<>(valueNodes);
 	}

@@ -64,3 +64,5 @@ Configuration:
         level: warn
       - name: de.latlon.xplan.validator.geometric.XPlanGeometryInspector
         level: warn
+      - name: org.deegree.gml.schema.GMLSchemaInfoSet
+        level: error

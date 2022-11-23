@@ -63,6 +63,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.activation.MimetypesFileTypeMap;
+import javax.xml.namespace.QName;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -76,23 +77,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalType;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
+import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
+import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.apache.commons.io.IOUtils.copyLarge;
@@ -299,9 +303,11 @@ public class XPlanDao {
 	 * @param sortDate may be <code>null</code>
 	 * @throws Exception
 	 */
-	public void updateXPlanSynFeatureCollection(XPlan xplan, FeatureCollection synFc, Date sortDate) throws Exception {
-		PreparedStatement stmt = null;
+	public void updateXPlanSynFeatureCollection(XPlan xplan, FeatureCollection synFc, XPlanFeatureCollection originalFc,
+			Date sortDate, boolean updateFeaturesAndBlob) throws Exception {
+		Connection conn = null;
 		SQLFeatureStoreTransaction taSyn = null;
+		SQLFeatureStoreTransaction taBlob = null;
 		try {
 			int planId = getXPlanIdAsInt(xplan.getId());
 			AdditionalPlanData xplanMetadata = xplan.getXplanMetadata();
@@ -310,28 +316,79 @@ public class XPlanDao {
 			FeatureStore synFeatureStore = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
 			taSyn = (SQLFeatureStoreTransaction) synFeatureStore.acquireTransaction();
 
-			Set<String> ids = selectFids(planId);
+			conn = managerWorkspaceWrapper.openConnection();
+			conn.setAutoCommit(false);
+
+			Set<String> ids = selectFids(conn, planId);
 			IdFilter idFilter = new IdFilter(ids);
 
 			addAdditionalProperties(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(),
 					synFeatureStore, planId, sortDate);
-			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
-			taSyn.performDelete(idFilter, null);
-			insertXPlanSyn(synFeatureStore, synFc);
+			if (updateFeaturesAndBlob) {
+				FeatureStore blobFeatureStore = managerWorkspaceWrapper.lookupStore(originalFc.getVersion(),
+						planStatus);
+				taBlob = (SQLFeatureStoreTransaction) blobFeatureStore.acquireTransaction();
+
+				LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + originalFc.getVersion() + ")...");
+				taBlob.performDelete(idFilter, null);
+				Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTa = insertXPlan(blobFeatureStore,
+						originalFc);
+				taBlob = fidsAndXPlanTa.second;
+				LOG.info("OK");
+
+				AppSchema schema = synFeatureStore.getSchema();
+				List<QName> featureTypeNames = Arrays.stream(schema.getFeatureTypes())
+						.map(featureType -> featureType.getName()).collect(Collectors.toList());
+
+				Set<String> validIds = ids.stream().filter(oldFeatureId -> {
+					Optional<QName> featureType = featureTypeNames.stream()
+							.filter(featureTypeName -> oldFeatureId
+									.startsWith(SYN_FEATURETYPE_PREFIX + featureTypeName.getLocalPart().toUpperCase()))
+							.findFirst();
+					if (featureType.isPresent()) {
+						return true;
+					}
+					LOG.info("Es konnte kein feature type zu dem feature mit der ID " + oldFeatureId
+							+ " gefunden werden. Es wird angenommen, dass dieser FeatureType nicht mehr existiert und die dazugehoerige Tabelle bereits geloescht wurde.");
+					return false;
+				}).collect(Collectors.toSet());
+
+				IdFilter idFilterValidIds = new IdFilter(validIds);
+				LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
+				taSyn.performDelete(idFilterValidIds, null);
+				insertXPlanSyn(synFeatureStore, synFc);
+
+				updateFeatureMetadata(conn, fidsAndXPlanTa.first, planId);
+			}
+			else {
+				LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
+				taSyn.performDelete(idFilter, null);
+				insertXPlanSyn(synFeatureStore, synFc);
+			}
 			LOG.info("OK");
 
 			LOG.info("- Persistierung...");
+			conn.commit();
 			taSyn.commit();
+			if (taBlob != null)
+				taBlob.commit();
 			LOG.info("OK");
 		}
 		catch (Exception e) {
-			LOG.error("Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e);
-			if (taSyn != null)
+			LOG.error("Fehler beim Aktualisieren der Features. Ein Rollback wird durchgeführt.", e);
+			if (conn != null) {
+				conn.rollback();
+			}
+			if (taSyn != null) {
 				taSyn.rollback();
-			throw new Exception("Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e);
+			}
+			if (taBlob != null) {
+				taBlob.rollback();
+			}
+			throw new Exception("Fehler beim Aktualisieren des Plans: " + e.getMessage() + ".", e);
 		}
 		finally {
-			closeQuietly(stmt);
+			closeQuietly(conn);
 		}
 	}
 
@@ -629,21 +686,21 @@ public class XPlanDao {
 			StringBuilder sqlBuilder = new StringBuilder();
 			sqlBuilder.append("SELECT xplan_internalid FROM ");
 			switch (type) {
-			case BP_Plan:
-				sqlBuilder.append("xplansyn.xplan_bp_plan");
-				break;
-			case FP_Plan:
-				sqlBuilder.append("xplansyn.xplan_fp_plan");
-				break;
-			case LP_Plan:
-				sqlBuilder.append("xplansyn.xplan_lp_plan");
-				break;
-			case RP_Plan:
-				sqlBuilder.append("xplansyn.xplan_rp_plan");
-				break;
-			default:
-				LOG.warn("Unsupported xplan type " + type);
-				return null;
+				case BP_Plan:
+					sqlBuilder.append("xplansyn.xplan_bp_plan");
+					break;
+				case FP_Plan:
+					sqlBuilder.append("xplansyn.xplan_fp_plan");
+					break;
+				case LP_Plan:
+					sqlBuilder.append("xplansyn.xplan_lp_plan");
+					break;
+				case RP_Plan:
+					sqlBuilder.append("xplansyn.xplan_rp_plan");
+					break;
+				default:
+					LOG.warn("Unsupported xplan type " + type);
+					return null;
 
 			}
 			sqlBuilder.append(" WHERE ");
@@ -1065,16 +1122,7 @@ public class XPlanDao {
 			SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
 			SQLFeatureStoreTransaction taSyn = (SQLFeatureStoreTransaction) fsSyn.acquireTransaction();
 
-			stmt = conn.prepareStatement("SELECT fid FROM xplanmgr.features WHERE plan=?");
-			stmt.setInt(1, id);
-			rs = stmt.executeQuery();
-			Set<String> ids = new HashSet<>();
-			while (rs.next()) {
-				ids.add(rs.getString(1));
-			}
-			rs.close();
-			stmt.close();
-
+			Set<String> ids = selectFids(conn, id);
 			IdFilter idFilter = new IdFilter(ids);
 			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ")...");
 			ta.performDelete(idFilter, null);
@@ -1105,25 +1153,14 @@ public class XPlanDao {
 	}
 
 	private Set<String> determineFeatureIds(int planId) throws SQLException {
-		Set<String> ids = new LinkedHashSet<>();
-
-		Connection mgrConn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
+		Connection conn = null;
 		try {
-			mgrConn = managerWorkspaceWrapper.openConnection();
-			stmt = mgrConn.prepareStatement("SELECT fid FROM xplanmgr.features WHERE plan=? ORDER BY num");
-			stmt.setInt(1, planId);
-			rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				ids.add(rs.getString(1));
-			}
+			conn = managerWorkspaceWrapper.openConnection();
+			return selectFids(conn, planId);
 		}
 		finally {
-			closeQuietly(mgrConn, stmt, rs);
+			closeQuietly(conn);
 		}
-		return ids;
 	}
 
 	private FeatureCollection restoreFeatureCollection(int id, XPlanMetadata xPlanMetadata) throws Exception {
@@ -1175,8 +1212,7 @@ public class XPlanDao {
 
 			FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus);
 			FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus);
-			sameSourceAndTarget = oldPlanStatus == newPlanStatus
-					|| !managerConfiguration.isSeperatedDataManagementActived();
+			sameSourceAndTarget = oldPlanStatus == newPlanStatus;
 			FeatureStore fsTarget = sameSourceAndTarget ? fsSource
 					: managerWorkspaceWrapper.lookupStore(version, newPlanStatus);
 			FeatureStore synFsTarget = sameSourceAndTarget ? synFsSource
@@ -1202,13 +1238,7 @@ public class XPlanDao {
 			taSynTarget = fidsAndXPlanSynTa.second;
 			LOG.info("OK");
 
-			LOG.info("- Aktualisiere Features von XPlan " + planId + " in der Manager-DB...");
-			String sql = "DELETE FROM xplanmgr.features WHERE plan=?";
-			LOG.trace("SQL Delete XPlanManager Features: " + sql);
-			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, planId);
-			stmt.executeUpdate();
-			insertFeatureMetadata(conn, fidsAndXPlanTa.first, planId);
+			updateFeatureMetadata(conn, fidsAndXPlanTa.first, planId);
 			LOG.info("OK");
 
 			LOG.info("- Persistierung...");
@@ -1256,6 +1286,22 @@ public class XPlanDao {
 		return planId;
 	}
 
+	private void updateFeatureMetadata(Connection conn, List<String> fids, int planId) throws SQLException {
+		PreparedStatement stmt = null;
+		try {
+			LOG.info("- Aktualisiere Features von XPlan " + planId + " in der Manager-DB...");
+			String sql = "DELETE FROM xplanmgr.features WHERE plan=?";
+			LOG.trace("SQL Delete XPlanManager Features: " + sql);
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, planId);
+			stmt.executeUpdate();
+			insertFeatureMetadata(conn, fids, planId);
+		}
+		finally {
+			closeQuietly(stmt);
+		}
+	}
+
 	private void insertFeatureMetadata(Connection conn, List<String> fids, int planId) throws SQLException {
 		PreparedStatement stmt = null;
 		try {
@@ -1293,11 +1339,11 @@ public class XPlanDao {
 			stmt.setString(5, fc.getPlanNummer());
 			stmt.setString(6, fc.getPlanGkz());
 			stmt.setBoolean(7, fc.getHasRaster());
-			stmt.setString(8, retrieveRechtsstand(synFc, archive.getType()));
+			stmt.setString(8, retrieveRechtsstandWert(synFc, archive.getType()));
 			stmt.setTimestamp(9, convertToSqlTimestamp(fc.getPlanReleaseDate()));
-			stmt.setString(10, retrieveAdditionalType(synFc, archive.getType()));
+			stmt.setString(10, retrieveAdditionalTypeWert(synFc, archive.getType()));
 			stmt.setString(11, retrievePlanStatusMessage(planStatus));
-			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType(), archive.getVersion()));
+			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType()));
 			stmt.setTimestamp(13, convertToSqlTimestamp(sortDate));
 			stmt.setTimestamp(14, convertToSqlTimestamp(beginValidity));
 			stmt.setTimestamp(15, convertToSqlTimestamp(endValidity));
@@ -1379,8 +1425,8 @@ public class XPlanDao {
 			XPlanType type = XPlanType.valueOf(xplan.getType());
 			stmt = conn.prepareStatement(updateSql);
 			stmt.setString(1, fc.getPlanName());
-			stmt.setString(2, retrieveRechtsstand(synFc, type));
-			stmt.setString(3, retrieveAdditionalType(synFc, type));
+			stmt.setString(2, retrieveRechtsstandWert(synFc, type));
+			stmt.setString(3, retrieveAdditionalTypeWert(synFc, type));
 			stmt.setTimestamp(4, convertToSqlTimestamp(sortDate));
 			stmt.setTimestamp(5, convertToSqlTimestamp(newXPlanMetadata.getStartDateTime()));
 			stmt.setTimestamp(6, convertToSqlTimestamp(newXPlanMetadata.getEndDateTime()));
@@ -1657,17 +1703,6 @@ public class XPlanDao {
 			String georeference = ref.getGeoReference();
 			if (georeference != null && !"".equals(georeference))
 				referenceFileNames.add(georeference);
-		}
-	}
-
-	private Set<String> selectFids(int planId) throws SQLException {
-		Connection mgrConn = null;
-		try {
-			mgrConn = managerWorkspaceWrapper.openConnection();
-			return selectFids(mgrConn, planId);
-		}
-		finally {
-			closeQuietly(mgrConn);
 		}
 	}
 
