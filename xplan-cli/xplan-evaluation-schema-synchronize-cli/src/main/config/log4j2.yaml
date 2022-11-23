@@ -24,7 +24,7 @@ Configuration:
   Properties:
     Property:
       - name: log.file
-        value: xplan-evaluation-schema-synchronize.log
+        value: xplan-evaluation-schema-synchronize-cli.log
       - name: log.path
         value: ${sys:basedir:-.}/logs
   Appenders:
