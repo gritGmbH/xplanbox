@@ -40,7 +40,7 @@ Configuration:
       - name: de.latlon.xplan.manager
         level: info
       - name: org.springframework
-        level: warn
+        level: info
       - name: org.glassfish
         level: warn
       - name: org.apache

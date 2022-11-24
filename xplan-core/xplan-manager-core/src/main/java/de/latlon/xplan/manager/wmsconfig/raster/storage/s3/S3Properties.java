@@ -18,24 +18,46 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage;
+package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
 
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class AmazonS3Factory {
+@Component
+@ConfigurationProperties(prefix = "s3")
+public class S3Properties {
 
-	public static final String PROFILE_NAME = "xplanbox";
+	private String accessKeyId;
 
-	private final AmazonS3ClientBuilder builder = AmazonS3ClientBuilder.standard()
-			.withCredentials(new ProfileCredentialsProvider(PROFILE_NAME));
+	private String secretKey;
 
-	public AmazonS3 createClient() {
-		return builder.build();
+	private String bucketName;
+
+	public String getAccessKeyId() {
+		return accessKeyId;
+	}
+
+	public void setAccessKeyId(String accessKeyId) {
+		this.accessKeyId = accessKeyId;
+	}
+
+	public String getSecretKey() {
+		return secretKey;
+	}
+
+	public void setSecretKey(String secretKey) {
+		this.secretKey = secretKey;
+	}
+
+	public String getBucketName() {
+		return bucketName;
+	}
+
+	public void setBucketName(String bucketName) {
+		this.bucketName = bucketName;
 	}
 
 }

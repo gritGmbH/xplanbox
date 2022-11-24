@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage;
+package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
@@ -29,6 +29,8 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,21 +50,21 @@ public class S3RasterStorage implements RasterStorage {
 
 	private static final Logger LOG = LoggerFactory.getLogger(S3RasterStorage.class);
 
-	static final String BUCKET_NAME = "xplanbox";
-
 	private final GdalRasterAdapter rasterAdapter;
 
-	private final AmazonS3Factory amazonS3Factory;
+	private final AmazonS3 client;
 
-	public S3RasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3Factory amazonS3Factory) {
+	private final String bucketName;
+
+	public S3RasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 client, String bucketName) {
 		this.rasterAdapter = rasterAdapter;
-		this.amazonS3Factory = amazonS3Factory;
+		this.client = client;
+		this.bucketName = bucketName;
 	}
 
 	@Override
 	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive)
 			throws IOException, StorageException {
-		AmazonS3 client = amazonS3Factory.createClient();
 		try {
 			createBucketIfNotExists(client);
 			String objectKey = insertObject(planId, entryName, archive, client);
@@ -100,38 +102,35 @@ public class S3RasterStorage implements RasterStorage {
 			throws StorageException {
 		String key = createKey(planId, entryName);
 		try {
-			LOG.info("Insert object with key {} in bucket {}.", key, BUCKET_NAME);
+			LOG.info("Insert object with key {} in bucket {}.", key, bucketName);
 			InputStream entry = archive.retrieveInputStreamFor(entryName);
 			ObjectMetadata metadata = new ObjectMetadata();
-			client.putObject(BUCKET_NAME, key, entry, metadata);
+			client.putObject(bucketName, key, entry, metadata);
 			return key;
 		}
 		catch (AmazonServiceException e) {
-			throw new StorageException("Could not insert object with key " + key + " in bucket " + BUCKET_NAME + ".",
-					e);
+			throw new StorageException("Could not insert object with key " + key + " in bucket " + bucketName + ".", e);
 		}
 	}
 
 	private void insertObject(String key, Path file, AmazonS3 client) throws StorageException {
 		try {
-			LOG.info("Insert object with key {} in bucket {}.", key, BUCKET_NAME);
-			client.putObject(BUCKET_NAME, key, file.toFile());
+			LOG.info("Insert object with key {} in bucket {}.", key, bucketName);
+			client.putObject(bucketName, key, file.toFile());
 		}
 		catch (AmazonServiceException e) {
-			throw new StorageException("Could not insert object with key " + key + " in bucket " + BUCKET_NAME + ".",
-					e);
+			throw new StorageException("Could not insert object with key " + key + " in bucket " + bucketName + ".", e);
 		}
 	}
 
 	private void deleteObject(String prefix) {
-		AmazonS3 client = amazonS3Factory.createClient();
 		try {
-			ObjectListing objectsToDelete = client.listObjects(BUCKET_NAME, prefix);
+			ObjectListing objectsToDelete = client.listObjects(bucketName, prefix);
 			List<S3ObjectSummary> objects = objectsToDelete.getObjectSummaries();
 			for (S3ObjectSummary object : objects) {
 				String key = object.getKey();
-				LOG.info("Delete object with key {} from bucket {}.", key, BUCKET_NAME);
-				client.deleteObject(BUCKET_NAME, key);
+				LOG.info("Delete object with key {} from bucket {}.", key, bucketName);
+				client.deleteObject(bucketName, key);
 			}
 		}
 		finally {
@@ -144,14 +143,14 @@ public class S3RasterStorage implements RasterStorage {
 	}
 
 	private Bucket createBucketIfNotExists(AmazonS3 client) throws StorageException {
-		if (client.doesBucketExistV2(BUCKET_NAME)) {
-			LOG.info("Bucket {} already exists.", BUCKET_NAME);
+		if (client.doesBucketExistV2(bucketName)) {
+			LOG.info("Bucket {} already exists.", bucketName);
 			return getBucket(client);
 		}
 		else {
 			try {
-				LOG.info("Create bucket with name {}.", BUCKET_NAME);
-				return client.createBucket(BUCKET_NAME);
+				LOG.info("Create bucket with name {}.", bucketName);
+				return client.createBucket(bucketName);
 			}
 			catch (AmazonS3Exception e) {
 				throw new StorageException("Could not create bucket", e);
@@ -159,10 +158,10 @@ public class S3RasterStorage implements RasterStorage {
 		}
 	}
 
-	public static Bucket getBucket(AmazonS3 client) {
+	public Bucket getBucket(AmazonS3 client) {
 		List<Bucket> buckets = client.listBuckets();
 		for (Bucket bucket : buckets) {
-			if (bucket.getName().equals(BUCKET_NAME)) {
+			if (bucket.getName().equals(bucketName)) {
 				return bucket;
 			}
 		}

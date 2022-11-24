@@ -1,4 +1,24 @@
-package de.latlon.xplan.manager.wmsconfig.raster.storage;
+/*-
+ * #%L
+ * xplan-manager-core - XPlan Manager Core Komponente
+ * %%
+ * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * #L%
+ */
+package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectListing;
@@ -6,6 +26,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -13,7 +34,6 @@ import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.storage.S3RasterStorage.BUCKET_NAME;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -28,6 +48,8 @@ import static org.mockito.Mockito.when;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class S3RasterStorageTest {
+
+	private static final String BUCKET_NAME = "xplanbox";
 
 	@Test
 	public void testAddRasterFile() throws IOException, StorageException {
@@ -82,19 +104,11 @@ public class S3RasterStorageTest {
 
 	private S3RasterStorage createS2RasterStorage(AmazonS3 client) {
 		GdalRasterAdapter rasterAdapter = mockGdalRasterAdapter();
-		AmazonS3Factory amazonS3Factory = mockAmazonS3Factory(client);
-		S3RasterStorage s3RasterStorage = new S3RasterStorage(rasterAdapter, amazonS3Factory);
-		return s3RasterStorage;
+		return new S3RasterStorage(rasterAdapter, client, BUCKET_NAME);
 	}
 
 	private GdalRasterAdapter mockGdalRasterAdapter() {
 		return mock(GdalRasterAdapter.class);
-	}
-
-	private AmazonS3Factory mockAmazonS3Factory(AmazonS3 client) {
-		AmazonS3Factory mock = mock(AmazonS3Factory.class);
-		when(mock.createClient()).thenReturn(client);
-		return mock;
 	}
 
 	private XPlanArchiveContentAccess mockArchive() {
