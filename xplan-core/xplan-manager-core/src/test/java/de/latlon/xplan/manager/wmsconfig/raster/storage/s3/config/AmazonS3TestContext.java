@@ -18,30 +18,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
+package de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config;
 
-import com.amazonaws.services.s3.AmazonS3;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
+import static org.mockito.Mockito.mock;
 
 /**
+ * Spring Configuration to enable usage of mock objects for integration tests.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @Configuration
-public class S3TestContext {
-
-	@Autowired
-	private AmazonS3 client;
-
-	@Autowired
-	private String bucketName;
+public class AmazonS3TestContext {
 
 	@Bean
-	public S3RasterStorage s3RasterStorage() {
-		GdalRasterAdapter rasterAdapter = new GdalRasterAdapter();
-		return new S3RasterStorage(rasterAdapter, client, bucketName);
+	@Primary
+	public GdalRasterAdapter rasterAdapter() {
+		return mock(GdalRasterAdapter.class);
 	}
 
 }

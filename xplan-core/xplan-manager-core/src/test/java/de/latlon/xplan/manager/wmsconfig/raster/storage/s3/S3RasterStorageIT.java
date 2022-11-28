@@ -24,10 +24,11 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.config.AmazonS3Context;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3TestContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -39,11 +40,13 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
+ * ATTENTION: Executing this test class can run up the bill for the AWS account
+ * configured! Ensure that the S3 client is using a free account or is substituted by a mock.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { AmazonS3Config.class, S3TestContext.class })
-@EnableConfigurationProperties(value = S3Properties.class)
+@ContextConfiguration(classes = { AmazonS3Context.class, AmazonS3TestContext.class })
 @TestPropertySource("classpath:s3.properties")
 public class S3RasterStorageIT {
 

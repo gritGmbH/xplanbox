@@ -62,7 +62,6 @@ public class S3RasterStorageTest {
 		assertThat(key, is("1_test"));
 		verify(client).doesBucketExistV2(eq(BUCKET_NAME));
 		verify(client).putObject(eq(BUCKET_NAME), eq("1_test"), nullable(InputStream.class), any(ObjectMetadata.class));
-		verify(client).shutdown();
 	}
 
 	@Test
@@ -81,7 +80,6 @@ public class S3RasterStorageTest {
 
 		verify(client).listObjects(BUCKET_NAME, "1_");
 		verify(client).deleteObject(BUCKET_NAME, "1_test");
-		verify(client).shutdown();
 	}
 
 	@Test
@@ -99,7 +97,6 @@ public class S3RasterStorageTest {
 		s3RasterStorage.deleteRasterFiles("1", "test");
 
 		verify(client).deleteObject(BUCKET_NAME, "1_test");
-		verify(client).shutdown();
 	}
 
 	private S3RasterStorage createS2RasterStorage(AmazonS3 client) {

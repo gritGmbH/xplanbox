@@ -45,6 +45,7 @@ import java.util.Vector;
  * {@link RasterStorage} implementation storing and deleting raster files in a S3 bucket.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 6.1
  */
 public class S3RasterStorage implements RasterStorage {
 
@@ -65,24 +66,19 @@ public class S3RasterStorage implements RasterStorage {
 	@Override
 	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive)
 			throws IOException, StorageException {
-		try {
-			createBucketIfNotExists(client);
-			String objectKey = insertObject(planId, entryName, archive, client);
-			Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(archive, entryName);
-			if (referencedFiles != null) {
-				for (Object referencedFile : referencedFiles) {
-					Path file = Paths.get(referencedFile.toString());
-					String newObjectKey = createKey(planId, file.getFileName().toString());
-					if (!newObjectKey.equals(objectKey)) {
-						insertObject(newObjectKey, file, client);
-					}
+		createBucketIfNotExists();
+		String objectKey = insertObject(planId, entryName, archive);
+		Vector<?> referencedFiles = rasterAdapter.getReferencedFiles(archive, entryName);
+		if (referencedFiles != null) {
+			for (Object referencedFile : referencedFiles) {
+				Path file = Paths.get(referencedFile.toString());
+				String newObjectKey = createKey(planId, file.getFileName().toString());
+				if (!newObjectKey.equals(objectKey)) {
+					insertObject(newObjectKey, file);
 				}
 			}
-			return objectKey;
 		}
-		finally {
-			client.shutdown();
-		}
+		return objectKey;
 	}
 
 	@Override
@@ -98,7 +94,7 @@ public class S3RasterStorage implements RasterStorage {
 
 	}
 
-	private String insertObject(int planId, String entryName, XPlanArchiveContentAccess archive, AmazonS3 client)
+	private String insertObject(int planId, String entryName, XPlanArchiveContentAccess archive)
 			throws StorageException {
 		String key = createKey(planId, entryName);
 		try {
@@ -113,7 +109,7 @@ public class S3RasterStorage implements RasterStorage {
 		}
 	}
 
-	private void insertObject(String key, Path file, AmazonS3 client) throws StorageException {
+	private void insertObject(String key, Path file) throws StorageException {
 		try {
 			LOG.info("Insert object with key {} in bucket {}.", key, bucketName);
 			client.putObject(bucketName, key, file.toFile());
@@ -124,17 +120,12 @@ public class S3RasterStorage implements RasterStorage {
 	}
 
 	private void deleteObject(String prefix) {
-		try {
-			ObjectListing objectsToDelete = client.listObjects(bucketName, prefix);
-			List<S3ObjectSummary> objects = objectsToDelete.getObjectSummaries();
-			for (S3ObjectSummary object : objects) {
-				String key = object.getKey();
-				LOG.info("Delete object with key {} from bucket {}.", key, bucketName);
-				client.deleteObject(bucketName, key);
-			}
-		}
-		finally {
-			client.shutdown();
+		ObjectListing objectsToDelete = client.listObjects(bucketName, prefix);
+		List<S3ObjectSummary> objects = objectsToDelete.getObjectSummaries();
+		for (S3ObjectSummary object : objects) {
+			String key = object.getKey();
+			LOG.info("Delete object with key {} from bucket {}.", key, bucketName);
+			client.deleteObject(bucketName, key);
 		}
 	}
 
@@ -142,10 +133,10 @@ public class S3RasterStorage implements RasterStorage {
 		return planId + "_" + entry;
 	}
 
-	private Bucket createBucketIfNotExists(AmazonS3 client) throws StorageException {
+	private Bucket createBucketIfNotExists() throws StorageException {
 		if (client.doesBucketExistV2(bucketName)) {
 			LOG.info("Bucket {} already exists.", bucketName);
-			return getBucket(client);
+			return getBucket();
 		}
 		else {
 			try {
@@ -158,7 +149,7 @@ public class S3RasterStorage implements RasterStorage {
 		}
 	}
 
-	public Bucket getBucket(AmazonS3 client) {
+	public Bucket getBucket() {
 		List<Bucket> buckets = client.listBuckets();
 		for (Bucket bucket : buckets) {
 			if (bucket.getName().equals(bucketName)) {
