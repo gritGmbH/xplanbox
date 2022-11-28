@@ -62,9 +62,9 @@ public class AmazonS3TestContext {
 	@Bean
 	@Profile("mock")
 	public S3Mock s3Mock(@Value("${s3.endpoint.port}") int port) {
-		S3Mock api = new S3Mock.Builder().withPort(8001).withInMemoryBackend().build();
-		api.start();
-		return api;
+		S3Mock s3Mock = new S3Mock.Builder().withPort(port).withInMemoryBackend().build();
+		s3Mock.start();
+		return s3Mock;
 	}
 
 	@Bean
