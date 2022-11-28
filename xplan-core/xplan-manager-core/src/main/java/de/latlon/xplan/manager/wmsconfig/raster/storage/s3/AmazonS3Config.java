@@ -43,8 +43,9 @@ public class AmazonS3Config {
 
 	@Bean
 	public AmazonS3 client() {
+		Regions region = Regions.valueOf(s3Properties.getRegion().toUpperCase());
 		return AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials()))
-				.withRegion(Regions.EU_CENTRAL_1).build();
+				.withRegion(region).build();
 	}
 
 	@Bean

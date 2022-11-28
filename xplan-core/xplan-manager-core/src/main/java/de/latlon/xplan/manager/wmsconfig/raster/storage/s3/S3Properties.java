@@ -24,6 +24,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
+ * Encapsulates propertie sto confiure the AmazonS3 client.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @Component
@@ -35,6 +37,8 @@ public class S3Properties {
 	private String secretKey;
 
 	private String bucketName;
+
+	private String region;
 
 	public String getAccessKeyId() {
 		return accessKeyId;
@@ -58,6 +62,14 @@ public class S3Properties {
 
 	public void setBucketName(String bucketName) {
 		this.bucketName = bucketName;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 
 }
