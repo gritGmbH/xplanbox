@@ -29,6 +29,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3TestCo
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -41,12 +42,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * ATTENTION: Executing this test class can run up the bill for the AWS account
- * configured! Ensure that the S3 client is using a free account or is substituted by a mock.
+ * configured! Ensure that the S3 client is using a free account or is substituted by a
+ * mock.
+ *
+ * To run the IT against a AWS S3 account disable the profile "mock" and set accessKeyId
+ * and secretKey in the s3.properties file.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { AmazonS3Context.class, AmazonS3TestContext.class })
+@ActiveProfiles({ "mock" })
 @TestPropertySource("classpath:s3.properties")
 public class S3RasterStorageIT {
 

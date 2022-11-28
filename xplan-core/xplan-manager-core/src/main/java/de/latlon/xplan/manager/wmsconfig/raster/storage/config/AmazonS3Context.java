@@ -50,7 +50,8 @@ public class AmazonS3Context {
 	private AmazonS3 s3Client;
 
 	@Bean
-	public S3RasterStorage s3RasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 s3Client, @Value("${s3.bucketName}") String bucketName) {
+	public S3RasterStorage s3RasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 s3Client,
+			@Value("${s3.bucketName}") String bucketName) {
 		return new S3RasterStorage(rasterAdapter, s3Client, bucketName);
 	}
 
@@ -66,7 +67,7 @@ public class AmazonS3Context {
 	}
 
 	@Bean
-	public Regions regions(@Value("${s3.region}") String regions){
+	public Regions regions(@Value("${s3.region}") String regions) {
 		Regions defaultRegion = Regions.fromName(regions);
 		return defaultRegion;
 	}
