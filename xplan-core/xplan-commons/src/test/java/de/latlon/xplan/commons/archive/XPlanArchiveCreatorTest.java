@@ -170,6 +170,14 @@ public class XPlanArchiveCreatorTest {
 		assertTrue(archive.hasVerbundenerPlanBereich());
 	}
 
+	@Test//(expected = IllegalArgumentException.class)
+	public void testCreateXPlanArchive_withEntity() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream zipAsStream = XPlanArchiveCreatorTest.class
+				.getResourceAsStream("Blankenese29_Test_60_withEntity.zip");
+		archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60_withEntity.zip", zipAsStream);
+	}
+
 	private XPlanArchive getTestArchive(String name) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
