@@ -109,7 +109,7 @@ public class PlanArchiveManager {
 		return reportDirectory.toFile();
 	}
 
-	private void checkContentTypes(Path uploadedFile) throws IOException {
+	void checkContentTypes(Path uploadedFile) throws IOException {
 		Tika tika = new Tika();
 		LOG.debug("Detecting content type of uploaded file {}", uploadedFile);
 		String contentType = tika.detect(uploadedFile);
