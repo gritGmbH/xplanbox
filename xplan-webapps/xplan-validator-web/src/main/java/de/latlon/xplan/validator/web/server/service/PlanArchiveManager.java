@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -23,17 +23,24 @@ package de.latlon.xplan.validator.web.server.service;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.ValidatorException;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.tika.Tika;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 /**
  * Access to plan archive from session and filesystem.
@@ -49,6 +56,8 @@ public class PlanArchiveManager {
 	private static final Path UPLOAD_FOLDER = Paths.get(System.getProperty("java.io.tmpdir"), "xplanvalidator");
 
 	private static final String LOCAL_PLAN_ATTRIBUTE = "localPlan";
+
+	private static final List<String> ALLOWED_CONTENT_TYPES = List.of("application/xml", "image/png", "text/plain");
 
 	public PlanArchiveManager() {
 		if (!Files.exists(UPLOAD_FOLDER)) {
@@ -90,6 +99,7 @@ public class PlanArchiveManager {
 			Files.copy(uploadedFileItemInputStream, uploadedFile);
 			LOG.debug("File was written to {}", uploadedFile);
 		}
+		checkContentTypes(uploadedFile);
 	}
 
 	File createReportDirectory(String planUuid) throws IOException {
@@ -97,6 +107,43 @@ public class PlanArchiveManager {
 		if (!Files.exists(reportDirectory))
 			Files.createDirectory(reportDirectory);
 		return reportDirectory.toFile();
+	}
+
+	private void checkContentTypes(Path uploadedFile) throws IOException {
+		Tika tika = new Tika();
+		LOG.debug("Detecting content type of uploaded file {}", uploadedFile);
+		String contentType = tika.detect(uploadedFile);
+		LOG.debug("Content type of uploaded file {} is {}", uploadedFile, contentType);
+		if (!"application/zip".equals(contentType) && !"application/xml".equals(contentType)) {
+			handleNotAllowedContentType(uploadedFile, uploadedFile.toString(), contentType);
+		}
+		if ("application/zip".equals(contentType)) {
+			checkContentTypesOfZipEntries(uploadedFile, tika);
+		}
+	}
+
+	private void checkContentTypesOfZipEntries(Path uploadedFile, Tika tika) throws IOException {
+		ZipFile zipFile = new ZipFile(uploadedFile.toString());
+		ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(uploadedFile.toFile()),
+				Charset.forName("UTF-8"));
+		ZipEntry entry;
+		while ((entry = zipInputStream.getNextEntry()) != null) {
+			String name = entry.getName();
+			LOG.debug("Detecting content type of zip entry {}", name);
+			String contentType = tika.detect(zipFile.getInputStream(entry));
+			LOG.debug("Content type of zip entry {} is {}", name, contentType);
+			if (!ALLOWED_CONTENT_TYPES.contains(contentType)) {
+				handleNotAllowedContentType(uploadedFile, name, contentType);
+			}
+		}
+	}
+
+	private void handleNotAllowedContentType(Path uploadedFile, String fileName, String contentType) {
+		String message = "Content type of " + fileName + " is not allowed: " + contentType;
+		LOG.error(message);
+		uploadedFile.toFile().delete();
+		LOG.debug("Deleted file {}", uploadedFile);
+		throw new SecurityException(message);
 	}
 
 	private String parseSuffix(FileItem uploadedFileItem) {
