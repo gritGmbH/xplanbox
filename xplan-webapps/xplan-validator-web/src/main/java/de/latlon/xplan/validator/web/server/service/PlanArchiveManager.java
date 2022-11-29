@@ -57,7 +57,11 @@ public class PlanArchiveManager {
 
 	private static final String LOCAL_PLAN_ATTRIBUTE = "localPlan";
 
-	private static final List<String> ALLOWED_CONTENT_TYPES = List.of("application/xml", "image/png", "text/plain");
+	private static final List<String> ALLOWED_CONTENT_TYPES_UPLOADED_FILE = List.of("application/zip",
+			"application/xml");
+
+	private static final List<String> ALLOWED_CONTENT_TYPES_ZIP_ENTRY = List.of("application/xml", "image/png",
+			"text/plain");
 
 	public PlanArchiveManager() {
 		if (!Files.exists(UPLOAD_FOLDER)) {
@@ -114,9 +118,8 @@ public class PlanArchiveManager {
 		LOG.debug("Detecting content type of uploaded file {}", uploadedFile);
 		String contentType = tika.detect(uploadedFile);
 		LOG.debug("Content type of uploaded file {} is {}", uploadedFile, contentType);
-		if (!"application/zip".equals(contentType) && !"application/xml".equals(contentType)) {
-			handleNotAllowedContentType(uploadedFile, uploadedFile.toString(), contentType);
-		}
+		checkIfContentTypeAllowed(uploadedFile, uploadedFile.toString(), contentType,
+				ALLOWED_CONTENT_TYPES_UPLOADED_FILE);
 		if ("application/zip".equals(contentType)) {
 			checkContentTypesOfZipEntries(uploadedFile, tika);
 		}
@@ -132,18 +135,19 @@ public class PlanArchiveManager {
 			LOG.debug("Detecting content type of zip entry {}", name);
 			String contentType = tika.detect(zipFile.getInputStream(entry));
 			LOG.debug("Content type of zip entry {} is {}", name, contentType);
-			if (!ALLOWED_CONTENT_TYPES.contains(contentType)) {
-				handleNotAllowedContentType(uploadedFile, name, contentType);
-			}
+			checkIfContentTypeAllowed(uploadedFile, name, contentType, ALLOWED_CONTENT_TYPES_ZIP_ENTRY);
 		}
 	}
 
-	private void handleNotAllowedContentType(Path uploadedFile, String fileName, String contentType) {
-		String message = "Content type of " + fileName + " is not allowed: " + contentType;
-		LOG.error(message);
-		uploadedFile.toFile().delete();
-		LOG.debug("Deleted file {}", uploadedFile);
-		throw new SecurityException(message);
+	private void checkIfContentTypeAllowed(Path uploadedFile, String fileName, String contentType,
+			List<String> allowedContentTypes) throws IOException {
+		if (!allowedContentTypes.contains(contentType)) {
+			String message = "Content type of " + fileName + " is not allowed: " + contentType;
+			LOG.warn(message);
+			uploadedFile.toFile().delete();
+			LOG.debug("Deleted file {}", uploadedFile);
+			throw new IOException(message);
+		}
 	}
 
 	private String parseSuffix(FileItem uploadedFileItem) {

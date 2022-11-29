@@ -74,7 +74,7 @@ public class XPlanUploadService extends RemoteServiceServlet {
 		}
 	}
 
-	private void handleMultiPart(HttpServletRequest request, HttpServletResponse response) {
+	private void handleMultiPart(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
 		try {
 			FileItem uploadedFileItem = retrieveFirstUploadedFile(request, upload);
@@ -91,7 +91,7 @@ public class XPlanUploadService extends RemoteServiceServlet {
 				super.service(request, response);
 			}
 		}
-		catch (SecurityException e) {
+		catch (IOException e) {
 			throw e;
 		}
 		catch (Exception e) {

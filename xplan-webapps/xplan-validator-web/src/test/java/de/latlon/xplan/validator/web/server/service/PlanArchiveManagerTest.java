@@ -14,7 +14,7 @@ public class PlanArchiveManagerTest {
 		new PlanArchiveManager().checkContentTypes(path);
 	}
 
-	@Test(expected = SecurityException.class)
+	@Test(expected = IOException.class)
 	public void checkContentTypes_ExpectException() throws IOException {
 		Path path = new File(getClass().getResource("Blankenese29_Test_60_InvalidContent.zip").getFile()).toPath();
 		new PlanArchiveManager().checkContentTypes(path);

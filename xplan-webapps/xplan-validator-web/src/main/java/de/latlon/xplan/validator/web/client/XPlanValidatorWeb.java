@@ -214,7 +214,7 @@ public class XPlanValidatorWeb implements EntryPoint {
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
 				uploading.hide();
-				if (event.getResults().contains("java.lang.SecurityException"))
+				if (event.getResults().contains("java.io.IOException"))
 					Window.alert(messages.uploadSecurityException());
 				else
 					showSuccessfulUploadedDialog(event);
