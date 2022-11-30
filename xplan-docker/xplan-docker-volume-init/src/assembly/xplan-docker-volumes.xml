@@ -59,6 +59,15 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+    <!--xplan-validator-config-->
+    <dependencySet>
+      <outputDirectory>/xplan-mapserver-config</outputDirectory>
+      <includes>
+        <include>${project.groupId}:xplan-mapserver-config</include>
+      </includes>
+      <unpack>true</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+    </dependencySet>
     <!--xplan-inspireplu-workspaces-->
     <dependencySet>
       <outputDirectory>/xplan-inspireplu-workspaces/xplan-inspireplu-workspace</outputDirectory>
