@@ -57,7 +57,7 @@ cd $XPLANBOX_VOLUMES
 sed -i 's/apiUrl=/apiUrl=http:\/\/xplanbox.lat-lon.de/g' xplan-validator-config/validatorApiConfiguration.properties
 sed -i 's/apiUrl=/apiUrl=http:\/\/xplanbox.lat-lon.de/g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's/wmsUrl=/wmsUrl=http:\/\/xplanbox.lat-lon.de\/xplan-wms/g' xplan-manager-config/managerApiConfiguration.properties
-sed -i 's/workspaceReloadUrls=/workspaceReloadUrls=http:\/\/xplan-services-docker:8080\/xplan-wms/g' xplan-manager-config/managerConfiguration.properties
+sed -i 's/workspaceReloadUrls=/workspaceReloadUrls=http:\/\/xplan-services:8080\/xplan-wms/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadUser=/workspaceReloadUser=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadPassword=/workspaceReloadPassword=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
@@ -93,7 +93,7 @@ else
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterarchive<\/Layer>-->/planrasterarchive<\/Layer>/g' {} \;
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterpre<\/Layer>-->/planrasterpre<\/Layer>/g' {} \;
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planraster<\/Layer>-->/planraster<\/Layer>/g' {} \;
-  sed -i 's/http:\/\/localhost:8080\/mapserver/http:\/\/xplan-mapserver-docker\/mapserver/g' xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.xml
+  sed -i 's/http:\/\/localhost:8080\/mapserver/http:\/\/xplan-mapserver\/mapserver/g' xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.xml
 fi
 
 sed -i 's/validatorWmsEndpoint=/validatorWmsEndpoint='$XPLANVALIDATORWMS_HOST_NAME'\/xplan-validator-wms\/services\/wms/g' xplan-validator-config/validatorConfiguration.properties
