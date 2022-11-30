@@ -22,6 +22,7 @@
         xmlns:s="http://www.deegree.org/metadata/spatial" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.deegree.org/themes/standard https://schemas.deegree.org/3.5/themes/themes.xsd">
   <!--<LayerStoreId>dummyrasterlayer</LayerStoreId>-->
+  <!--<LayerStoreId>mapserver</LayerStoreId>-->
   <Theme>
     <Identifier>SO_Planraster</Identifier>
     <d:Title>SOPlan Raster</d:Title>
@@ -31,6 +32,7 @@
       <Identifier>soplanraster_sortiert</Identifier>
       <d:Title>SOPlan Raster Theme</d:Title>
       <!--<Layer layerStore="dummyrasterlayer">dummyraster</Layer>-->
+      <!--<Layer layerStore="mapserver">soplanrasterpre</Layer>-->
     </Theme>
   </Theme>
 </Themes>
