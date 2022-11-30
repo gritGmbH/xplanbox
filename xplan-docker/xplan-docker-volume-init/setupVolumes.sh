@@ -35,7 +35,7 @@ then
 	exit 0
 fi
 
-cp -r /home/lyn/checkouts/xplanbox/xplanbox/xplan-docker/xplan-docker-volume-init/target/xplan-docker-volumes/* $XPLANBOX_VOLUMES
+cp -r /xplan-volume-init/xplan-docker-volumes/* $XPLANBOX_VOLUMES
 
 # by default on same host
 #XPLANWMS_HOST_NAME="${XPLANWMS_HOST_NAME:-localhost:8083}"
