@@ -41,13 +41,9 @@ cp -r /xplan-volume-init/xplan-docker-volumes/* $XPLANBOX_VOLUMES
 #XPLANWMS_HOST_NAME="${XPLANWMS_HOST_NAME:-localhost:8083}"
 #XPLANVALIDATORWMS_HOST_NAME="${XPLANVALIDATORWMS_HOST_NAME:-localhost:8081}"
 
-XPLANDB_HOST_NAME="${XPLANDB_HOST_NAME:-xplan-db-docker}"
+XPLANDB_HOST_NAME="${XPLANDB_HOST_NAME:-xplan-db}"
 XPLANDB_PORT="${XPLANDB_PORT:-5432}"
 XPLANDB="$XPLANDB_HOST_NAME:$XPLANDB_PORT"
-
-XPLANINSPIREPLUDB_HOST_NAME="${XPLANDB_HOST_NAME:-xplan-db-inspireplu-docker}"
-XPLANINSPIREPLUDB_PORT="${XPLANDB_PORT:-5432}"
-XPLANINSPIREPLUDB="$XPLANDB_HOST_NAME:$XPLANDB_PORT"
 
 #############################
 # Update content of volumes #
@@ -68,10 +64,10 @@ sed -i 's/activatePublishingInspirePlu=false/activatePublishingInspirePlu=true/g
 
 find -iname xplan.xml -exec sed -i 's/localhost:5432/'$XPLANDB'/g' {} \;
 find -iname xplan.xml -exec sed -i 's/"xplanbox"/"postgres"/g' {} \;
-sed -i 's/localhost:5432/'$XPLANINSPIREPLUDB'/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
+sed -i 's/localhost:5432/'$XPLANDB'/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
 sed -i 's/"xplanbox"/"postgres"/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
 sed -i 's/http:\/\/localhost:8080\/xplan-wms/https:\/\/xplanbox.lat-lon.de\/xplan-wms/g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
-sed -i 's/localhost:5432/'$XPLANINSPIREPLUDB'/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
+sed -i 's/localhost:5432/'$XPLANDB'/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 sed -i 's/"xplanbox"/"postgres"/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 
 mv xplan-workspaces/xplansyn-wms-workspace/gdal.ignore xplan-workspaces/xplansyn-wms-workspace/gdal.xml

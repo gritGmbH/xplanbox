@@ -12,9 +12,6 @@ RUN cd / && wget https://github.com/halestudio/hale-cli/releases/download/v3.4.0
 RUN apt update && apt -y install openjdk-8-jdk
 RUN sed -i '2iJAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' /hale/bin/hale
 
-# Fix for #96 (java.awt.AWTError: Assistive Technology not found: org.GNOME.Accessibility.AtkWrapper)
-RUN > /etc/java-8-openjdk/accessibility.properties
-
 # add xplan-api-manager
 ADD target/xplan-api-manager-*.war /root/
 RUN cd /root/ && unzip -q xplan-api-manager-*.war -d /usr/local/tomcat/webapps/xplan-api-manager
