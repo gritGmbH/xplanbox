@@ -18,6 +18,10 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- #L%
 ---
+
+CREATE SCHEMA inspireplu;
+SET search_path TO inspireplu,public;
+
 CREATE TABLE ad_address (
     attr_gml_id text,
     gml_identifier text,

@@ -26,7 +26,7 @@
                  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd">
   <JDBCConnId>inspireplu</JDBCConnId>
 
-  <FeatureTypeMapping name="app:SpatialPlan" table="VIEWSERVICE_SPATIALPLAN">
+  <FeatureTypeMapping name="app:SpatialPlan" table="inspireplu.VIEWSERVICE_SPATIALPLAN">
     <FIDMapping prefix="SPATIALPLAN_">
       <Column name="spatialplan_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -46,7 +46,7 @@
     <Primitive path="endlifespanversion" mapping="endlifespanversion" type="dateTime"/>
   </FeatureTypeMapping>
 
-  <FeatureTypeMapping name="app:SupplementaryRegulation" table="VIEWSERVICE_SUPPLEMENTARY_REGULATION">
+  <FeatureTypeMapping name="app:SupplementaryRegulation" table="inspireplu.VIEWSERVICE_SUPPLEMENTARY_REGULATION">
     <FIDMapping prefix="SUPPLEMENTARY_REGULATION_">
       <Column name="supplementaryregulation_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -69,7 +69,7 @@
     <Primitive path="endlifespanversion" mapping="endlifespanversion" type="dateTime"/>
   </FeatureTypeMapping>
 
-  <FeatureTypeMapping name="app:ZoningElement" table="VIEWSERVICE_ZONING_ELEMENT">
+  <FeatureTypeMapping name="app:ZoningElement" table="inspireplu.VIEWSERVICE_ZONING_ELEMENT">
     <FIDMapping prefix="ZONING_ELEMENT_">
       <Column name="zoningelement_gml_id" type="string"/>
       <UUIDGenerator/>

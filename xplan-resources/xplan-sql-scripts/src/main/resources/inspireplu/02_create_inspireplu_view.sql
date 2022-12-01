@@ -19,6 +19,9 @@
 -- #L%
 ---
 --DROP VIEW VIEWSERVICE_SPATIALPLAN;
+
+SET search_path TO inspireplu,public;
+
 CREATE OR REPLACE VIEW VIEWSERVICE_SPATIALPLAN AS
 SELECT
   sp.attr_gml_id as spatialplan_gml_id,
