@@ -20,6 +20,8 @@
  */
 package de.latlon.xplan.update.updater;
 
+import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
@@ -29,6 +31,7 @@ import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +52,8 @@ public class ArtefactsTableUpdater {
 
 	private final XPlanDao xplanDao;
 
+	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
+
 	private final ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 
 	public ArtefactsTableUpdater(XPlanDao xplanDao) {
@@ -66,7 +71,7 @@ public class ArtefactsTableUpdater {
 		LOG.info("Update plan with id {}, version {}, type {}", plan.getId(), plan.getVersion(), plan.getType());
 		xplanDao.updateArtefacttype(plan.getId(), singletonList(MAIN_FILE), XPLANGML);
 
-		FeatureCollection featureCollection = xplanDao.retrieveFeatureCollection(plan);
+		FeatureCollection featureCollection = retrieveFeatureCollection(plan);
 		if (featureCollection.isEmpty()) {
 			LOG.warn("FeatureCollection is not available! Plan with id {} is skipped.", plan.getId());
 			return;
@@ -77,6 +82,12 @@ public class ArtefactsTableUpdater {
 			return;
 		}
 		xplanDao.updateArtefacttype(plan.getId(), rasterFileNames, RASTERBASIS);
+	}
+
+	private FeatureCollection retrieveFeatureCollection(XPlan plan) throws Exception {
+		XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
+		InputStream originalPlan = xplanDao.retrieveXPlanArtefact(plan.getId());
+		return xPlanGmlParser.parseFeatureCollection(originalPlan, version);
 	}
 
 	private List<String> scanRasterReferenceFileNames(FeatureCollection featureCollection) {

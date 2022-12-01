@@ -638,7 +638,7 @@ public class XPlanDao {
 		}
 	}
 
-	public InputStream retrieveXPlanArtefact(Connection conn, int planId) throws Exception {
+	private InputStream retrieveXPlanArtefact(Connection conn, int planId) throws Exception {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -802,6 +802,8 @@ public class XPlanDao {
 			updateArtefacttype(conn, id, fileNames, artefactType);
 		}
 		catch (Exception e) {
+			LOG.error("Could not set artefacttype " + artefactType + " for plan with id " + id + " and files "
+					+ fileNames + ".", e);
 			conn.rollback();
 		}
 		finally {
@@ -963,7 +965,7 @@ public class XPlanDao {
 			throws Exception {
 		StringBuilder updateSql = new StringBuilder();
 		updateSql.append("UPDATE xplanmgr.artefacts");
-		updateSql.append(" SET artefacttype = ?");
+		updateSql.append(" SET artefacttype = ?::xplanmgr.artefacttype");
 		updateSql.append(" WHERE");
 		updateSql.append(" plan = ? AND");
 		updateSql.append(" filename = ?");
