@@ -32,9 +32,9 @@ import de.latlon.xplan.manager.log.SystemLog;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
-import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManagerFactory;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
@@ -46,6 +46,7 @@ import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -57,12 +58,12 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static de.latlon.xplan.manager.cli.XPlanManagerCLI.printUsage;
-import static de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluationFactory.createRasterEvaluation;
-import static de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorageFactory.createRasterStorage;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+// TODO use Spring configuration for object creation
+@Component
 public class XPlanManagerApplicationRunner implements ApplicationRunner {
 
 	@Override
@@ -316,6 +317,8 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 		return Paths.get(jarLocation.getParentFile().getParent()).resolve("etc");
 	}
 
+	// TODO refactor code to use Spring configuration for creating XPlanManager object,
+	// class is eligible for Spring DI
 	private XPlanManager createManager(Path directoryContainingTheManagerConfig) {
 		try {
 			PropertiesLoader propertiesLoader = new ConfigurationDirectoryPropertiesLoader(
@@ -333,10 +336,10 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
 			RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
 			XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
-			Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
-			RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory, rasterEvaluation);
-			RasterConfigManager rasterManagerConfig = RasterConfigManagerFactory
-					.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+			RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper,
+					rasterEvaluation);
+			RasterConfigManager rasterManagerConfig = createRasterConfigManager(wmsWorkspaceWrapper,
+					managerConfiguration);
 			XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterManagerConfig);
 			return new XPlanManager(xplanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
 					wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
@@ -345,6 +348,23 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			endWithFatalError(e.getMessage());
 		}
 		return null;
+	}
+
+	private RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+	}
+
+	private RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration,
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+	}
+
+	private RasterEvaluation createRasterEvaluation(ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterEvaluation(managerConfiguration);
 	}
 
 	private ServiceMetadataRecordCreator createServiceMetadataRecordCreator(Path directoryContainingTheManagerConfig) {

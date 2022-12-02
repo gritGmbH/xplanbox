@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage.config;
+package de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -26,23 +26,35 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.FileSystemStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.GdalRasterStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.S3RasterStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.annotation.PreDestroy;
+import java.nio.file.Path;
 
 /**
- * Spring configuration for Amazon S3 client.
+ * Spring configuration for using AWS S3 as a storage for raster data. This requires
+ * MapServer to be used as WMS service. Check the <code>RasterStorageContext</code>
+ * configuration how to set MapServer as WMS.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  * @since 6.1
+ * @see de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext
  */
 @Configuration
+@Profile("s3")
 @PropertySource("classpath:s3.properties")
 public class AmazonS3Context {
 
@@ -50,7 +62,7 @@ public class AmazonS3Context {
 	private AmazonS3 s3Client;
 
 	@Bean
-	public S3RasterStorage s3RasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 s3Client,
+	public S3RasterStorage rasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 s3Client,
 			@Value("${s3.bucketName}") String bucketName) {
 		return new S3RasterStorage(rasterAdapter, s3Client, bucketName);
 	}

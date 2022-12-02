@@ -34,11 +34,10 @@ import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.server.service.ManagerReportProvider;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
-import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManagerFactory;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluationFactory;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
@@ -68,6 +67,7 @@ import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import java.io.IOException;
@@ -81,7 +81,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorageFactory.createRasterStorage;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLAN_MANAGER_WORKSPACE;
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorkspace;
@@ -93,6 +92,7 @@ import static java.nio.file.Paths.get;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 @Configuration
+@Import(RasterStorageContext.class)
 public class BasicSpringConfig {
 
 	private static final String RULES_DIRECTORY = "/rules";
@@ -200,17 +200,8 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public RasterEvaluation getRasterEvaluation(ManagerConfiguration managerConfiguration) {
-		return RasterEvaluationFactory.createRasterEvaluation(managerConfiguration);
-	}
-
-	@Bean
-	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			ManagerConfiguration managerConfiguration, RasterEvaluation rasterEvaluation) throws WorkspaceException {
-		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
-		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory, rasterEvaluation);
-		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
-				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
+			throws WorkspaceException {
 		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
 	}
 

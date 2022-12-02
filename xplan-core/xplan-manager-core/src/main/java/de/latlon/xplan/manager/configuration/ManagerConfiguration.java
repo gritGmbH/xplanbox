@@ -125,15 +125,15 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return the type to use in the raster configuration (gdal or geotiff), never
-	 * <code>null</code>
+	 * @return the type to use in the raster configuration (gdal, geotiff or mapserver),
+	 * never <code>null</code>
 	 */
 	public RasterConfigurationType getRasterConfigurationType() {
 		return rasterConfigurationType;
 	}
 
 	/**
-	 * @return the max scale denominator the raster layer is visible (a value less then 0
+	 * @return the max scale denominator the raster layer is visible (a value less than 0
 	 * means the visibility is not limited)
 	 */
 	public double getRasterLayerMaxScaleDenominator() {
@@ -141,7 +141,7 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return the min scale denominator the raster layer is visible (a value less then 0
+	 * @return the min scale denominator the raster layer is visible (a value less than 0
 	 * means the visibility is not limited)
 	 */
 	public double getRasterLayerMinScaleDenominator() {

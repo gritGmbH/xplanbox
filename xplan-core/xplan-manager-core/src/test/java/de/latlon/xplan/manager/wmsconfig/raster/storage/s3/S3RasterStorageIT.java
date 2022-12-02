@@ -24,7 +24,7 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.config.AmazonS3Context;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3Context;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3TestContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;

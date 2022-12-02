@@ -23,6 +23,7 @@ package de.latlon.xplan.manager;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
+import de.latlon.xplan.manager.config.CoreTestContext;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
@@ -30,9 +31,9 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
-import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManagerFactory;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
@@ -40,19 +41,19 @@ import org.deegree.commons.utils.Pair;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 
 import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
 import static de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter.isGdalSuccessfullInitialized;
-import static de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluationFactory.createRasterEvaluation;
-import static de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorageFactory.createRasterStorage;
 import static org.apache.commons.io.IOUtils.close;
 import static org.apache.commons.io.IOUtils.copy;
 import static org.hamcrest.CoreMatchers.is;
@@ -65,6 +66,10 @@ import static org.mockito.Mockito.when;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version 1.0
  */
+// TODO enable Sprint TestContext and turn all mock objects created here into Spring
+// Beans.
+// @RunWith(SpringRunner.class)
+// @ContextConfiguration(classes = {CoreTestContext.class, RasterStorageContext.class})
 public class XPlanManagerTest {
 
 	private static final String CONFIGURED_CRS = "epsg:4326";
@@ -126,13 +131,28 @@ public class XPlanManagerTest {
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
 		RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
 		XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
-		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
-		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory, rasterEvaluation);
-		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
-				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+		RasterConfigManager rasterConfigManager = createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
 		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager);
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, wmsWorkspaceWrapper,
 				xPlanRasterEvaluator, xPlanRasterManager);
+	}
+
+	private RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+	}
+
+	private RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration,
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+	}
+
+	private RasterEvaluation createRasterEvaluation(ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterEvaluation(managerConfiguration);
 	}
 
 	private ManagerConfiguration mockManagerConfig() {

@@ -90,7 +90,7 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 
 /**
  * An instance of XPlanManager provides the service methods to manage instances of XPlan.
- * Supports XPlan version 3, 4.x, and 5.x.
+ * Supports XPlan version 4.x, 5.x. and 6.x.
  *
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
  * @since 1.0

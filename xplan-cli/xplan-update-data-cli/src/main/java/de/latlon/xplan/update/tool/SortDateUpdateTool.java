@@ -30,11 +30,10 @@ import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
-import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManagerFactory;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluationFactory;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceUtils;
 import de.latlon.xplan.update.updater.SortPropertyUpdater;
@@ -52,15 +51,14 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorageFactory.createRasterStorage;
-
 /**
  * Main entry point to update the sort date in databases.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class SortDateUpdateTool {
+// TODO refactor to SpringBoot CommandLineRunner or ApplicationRunner
+public final class SortDateUpdateTool {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SortDateUpdateTool.class);
 
@@ -136,15 +134,30 @@ public class SortDateUpdateTool {
 			throws Exception {
 		DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
-		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
-		RasterEvaluation rasterEvaluation = RasterEvaluationFactory.createRasterEvaluation(managerConfiguration);
-		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, dataDirectory, rasterEvaluation);
-		RasterConfigManager rasterConfigManager = RasterConfigManagerFactory
-				.createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+		RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+		RasterConfigManager rasterConfigManager = createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
 		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
 	}
 
-	private SortPropertyReader createSortPropertyReader(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
+	private static RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+	}
+
+	private static RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration,
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+	}
+
+	private static RasterEvaluation createRasterEvaluation(ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterEvaluation(managerConfiguration);
+	}
+
+	private static SortPropertyReader createSortPropertyReader(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		return sortPropertyReader;
@@ -156,13 +169,13 @@ public class SortDateUpdateTool {
 		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
 	}
 
-	private SortConfiguration createSortConfiguration(ManagerConfiguration managerConfiguration) {
+	private static SortConfiguration createSortConfiguration(ManagerConfiguration managerConfiguration) {
 		if (managerConfiguration != null)
 			return managerConfiguration.getSortConfiguration();
 		return new SortConfiguration();
 	}
 
-	private ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)
+	private static ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)
 			throws ConfigurationException {
 		Path directoryContainingTheManagerConfig = configurationFilePathVariable != null
 				? Paths.get(configurationFilePathVariable) : null;
