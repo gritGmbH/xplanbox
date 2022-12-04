@@ -53,7 +53,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { AmazonS3Context.class, AmazonS3TestContext.class })
-@ActiveProfiles({ "mock" })
+@ActiveProfiles({ "s3", "mock" })
 @TestPropertySource("classpath:s3.properties")
 public class S3RasterStorageIT {
 
