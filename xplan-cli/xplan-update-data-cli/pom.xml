@@ -33,6 +33,10 @@
               <id>bereichUpdate</id>
             </program>
             <program>
+              <mainClass>de.latlon.xplan.update.tool.ArtefactsTableUpdateTool</mainClass>
+              <id>artefactsTableUpdate</id>
+            </program>
+            <program>
               <mainClass>de.latlon.xplan.update.tool.DistrictUpdateTool</mainClass>
               <id>districtUpdate</id>
             </program>
@@ -76,7 +80,8 @@
               <target>
                 <chmod perm="+x">
                   <fileset dir="target/appassembler/bin">
-                    <include name="databaseUpdate" />
+                    <include name="bereichUpdate" />
+                    <include name="artefactsTableUpdate" />
                     <include name="districtUpdate" />
                     <include name="reSynthesizer" />
                     <include name="serviceMetadataRecordCreator" />

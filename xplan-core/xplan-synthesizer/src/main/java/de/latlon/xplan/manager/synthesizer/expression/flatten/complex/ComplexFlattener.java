@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.util.XPlanVersionUtils;
+import de.latlon.xplan.manager.dictionary.XPlanCodelists;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.AbstractFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.model.DataTypeFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.model.FlattenerProperty;
@@ -54,7 +55,8 @@ public class ComplexFlattener extends AbstractFlattener {
 
 	private final Map<String, DataTypeFlattener> complexFlattener;
 
-	public ComplexFlattener() {
+	public ComplexFlattener(XPlanCodelists xPlanCodelists) {
+		super(xPlanCodelists);
 		List<DataTypeFlattener> dataTypeFlatteners = loadDataTypeFlattener();
 		this.complexFlattener = dataTypeFlatteners.stream()
 				.collect(Collectors.toMap(DataTypeFlattener::getAcceptedClass, Function.identity()));
@@ -76,7 +78,11 @@ public class ComplexFlattener extends AbstractFlattener {
 			flattenerProperties.forEach(flattenerProperty -> {
 				String label = flattenerProperty.getLabel();
 				String propertyName = flattenerProperty.getPropertyName();
-				if (flattenerProperty.getCodeListName() != null) {
+				if (flattenerProperty.getEnumerationName() != null) {
+					appendEnum(label, element, propertyName, version, flattenerProperty.getEnumerationName(), keepCodes,
+							properties);
+				}
+				else if (flattenerProperty.getCodeListName() != null) {
 					appendCode(label, element, propertyName, version, flattenerProperty.getCodeListName(), keepCodes,
 							properties);
 				}

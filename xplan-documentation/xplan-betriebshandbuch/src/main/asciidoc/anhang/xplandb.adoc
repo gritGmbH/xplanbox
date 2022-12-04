@@ -11,7 +11,7 @@ Die Datenbankschema je XPlanGML-Version unterscheiden sich nur im Namen des Sche
 Das folgende Diagramm zeigt exemplarisch die Tabellenstruktur aus dem Datenbankschema `xplan53` für die Ablage von XPlanGML-Dokumenten in der Version 5.3.
 In der Tabelle `feature_types` werden die in XPlanGML 5.3 enthaltenen Feature Types gespeichert. In der Tabelle `gml_objects` werden die in den XPlanGML-Dokumenten enthaltenen Features in `xplan53.gml_objects.binary_object` gespeichert.
 
-.Datenbankschema 'xplan53' für XPlanGML Version 5.3
+.Datenbankschema 'xplan53' für XPlanGML-Version 5.3
 image::xplandb_schema_53.png[Schema xplan53]
 
 Die Tabellenstruktur aus diesem Schema unterscheidet sich nicht zu den anderen von der xPlanBox unterstützten XPlanGML-Versionen. Nur die Inhalte in den jeweiligen `feature_types` Tabellen der anderen Schemata unterscheiden sich je nach XPlanGML-Version.

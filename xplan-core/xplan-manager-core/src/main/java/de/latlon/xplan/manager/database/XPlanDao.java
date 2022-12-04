@@ -638,7 +638,7 @@ public class XPlanDao {
 		}
 	}
 
-	public InputStream retrieveXPlanArtefact(Connection conn, int planId) throws Exception {
+	private InputStream retrieveXPlanArtefact(Connection conn, int planId) throws Exception {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -789,6 +789,29 @@ public class XPlanDao {
 	}
 
 	/**
+	 * Updates the column artefacttype of the table xplanmgr.artefacts.
+	 * @param id of the plan to update, never <code>null</code>
+	 * @param fileNames the fileNames to update, never <code>null</code>
+	 * @param artefactType the artefactType to set, never <code>null</code>
+	 * @throws SQLException
+	 */
+	public void updateArtefacttype(String id, List<String> fileNames, ArtefactType artefactType) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			updateArtefacttype(conn, id, fileNames, artefactType);
+		}
+		catch (Exception e) {
+			LOG.error("Could not set artefacttype " + artefactType + " for plan with id " + id + " and files "
+					+ fileNames + ".", e);
+			conn.rollback();
+		}
+		finally {
+			closeQuietly(conn);
+		}
+	}
+
+	/**
 	 * @param planId of the plan to set the status
 	 * @throws SQLException if the sql could not be executed
 	 */
@@ -930,6 +953,31 @@ public class XPlanDao {
 				stmt.setString(2, bereich.getNummer());
 				stmt.setString(3, bereich.getName());
 				LOG.trace("SQL Update XPlan Manager bereich column: " + stmt);
+				stmt.executeUpdate();
+			}
+		}
+		finally {
+			closeQuietly(stmt);
+		}
+	}
+
+	private void updateArtefacttype(Connection conn, String planId, List<String> fileNames, ArtefactType artefactType)
+			throws Exception {
+		StringBuilder updateSql = new StringBuilder();
+		updateSql.append("UPDATE xplanmgr.artefacts");
+		updateSql.append(" SET artefacttype = ?::xplanmgr.artefacttype");
+		updateSql.append(" WHERE");
+		updateSql.append(" plan = ? AND");
+		updateSql.append(" filename = ?");
+
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(updateSql.toString());
+			for (String rasterReference : fileNames) {
+				stmt.setString(1, artefactType.name());
+				stmt.setInt(2, getXPlanIdAsInt(planId));
+				stmt.setString(3, rasterReference);
+				LOG.trace("SQL Update xplanmgr.artefacts, column artefacttype: " + stmt);
 				stmt.executeUpdate();
 			}
 		}

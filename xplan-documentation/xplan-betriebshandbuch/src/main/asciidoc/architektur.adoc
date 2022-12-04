@@ -80,7 +80,7 @@ XPlanGML-Dokumente über das Terminal zu validieren.
 Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator der xPlanBox ermöglicht,
 bereits über den XPlanManagerWeb oder das XPlanManagerCLI
-importierte Pläne in eine aktuellere XPlanGML Version zu transformieren und in der <<xplandb>> zu speichern.
+importierte Pläne in eine aktuellere XPlanGML-Version zu transformieren und in der <<xplandb>> zu speichern.
 
 [[xplanevaluationschemasynchronize-cli]]
 === XPlanAuswerteschemaCLI

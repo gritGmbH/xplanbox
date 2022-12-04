@@ -21,8 +21,8 @@
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
-import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
+import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
+import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -69,7 +69,7 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 	private String createSchriftinhalt(List<AttributeProperty> attributeProperties, XPlanVersion xPlanVersion) {
 		return attributeProperties.stream().map(attributeProperty -> {
 			if (ENUM.equals(attributeProperty.getAttributePropertyType())) {
-				XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(xPlanVersion);
+				XPlanDictionaries xPlanCodeLists = XPlanEnumerationFactory.get(xPlanVersion);
 				String codeListId = attributeProperty.getCodeListId();
 				if (XPlanVersion.XPLAN_40.equals(xPlanVersion) && codeListId.endsWith("Type"))
 					codeListId = codeListId.substring(0, codeListId.length() - 4);

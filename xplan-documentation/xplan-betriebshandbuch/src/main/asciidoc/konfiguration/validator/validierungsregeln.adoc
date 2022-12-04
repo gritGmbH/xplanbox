@@ -13,7 +13,7 @@ NOTE: Diese Konfiguration wirkt sich auf die Komponenten XPlanManagerAPI, XPlanM
 
 NOTE: Ist der Pfad nicht konfiguriert, werden die internen Validierungsregeln für die genannten Komponenten verwendet.
 
-IMPORTANT: Das Basisverzeichnis _rules/_ darf nur Unterverzeichnisse enthalten, die der Namenskonvention _xplangml<VERSION>_ entsprechen, wobei der Bezeichner _<VERSION>_ eine Versionsnummer ohne Trennzeichen enthält z. B. _54_ für XPlanGML Version 5.4. Des Weiteren dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
+IMPORTANT: Das Basisverzeichnis _rules/_ darf nur Unterverzeichnisse enthalten, die der Namenskonvention _xplangml<VERSION>_ entsprechen, wobei der Bezeichner _<VERSION>_ eine Versionsnummer ohne Trennzeichen enthält z. B. _54_ für XPlanGML-Version 5.4. Des Weiteren dürfen nur Unterverzeichnisse mit Validierungsregeln vorkommen, deren XPlanGML-Version von der xPlanBox unterstützt wird.
 
 Wenn innerhalb des Validierungsberichts die Version und die Quelle der semantischen Validierungsregeln angezeigt werden sollen, dann muss im Verzeichnis aus _validationRulesDirectory_ eine Textdatei mit dem Dateinamen _version.properties_ und folgendem Inhalt angelegt werden:
 

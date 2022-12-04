@@ -21,6 +21,7 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
  * #L%
  */
 
+import de.latlon.xplan.manager.dictionary.XPlanCodelists;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.AbstractFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.DefaultFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.Flattener;
@@ -36,12 +37,16 @@ import java.util.List;
  */
 public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 
+	private final XPlanCodelists xPlanCodelists;
+
 	private boolean keepCodes;
 
 	/**
+	 * @param xPlanCodelists
 	 * @param keepCodes <code>true</code> if code properties should be translated
 	 */
-	public LpBiologischeVielfaltKomplexFlattener(boolean keepCodes) {
+	public LpBiologischeVielfaltKomplexFlattener(XPlanCodelists xPlanCodelists, boolean keepCodes) {
+		this.xPlanCodelists = xPlanCodelists;
 		this.keepCodes = keepCodes;
 	}
 
@@ -53,10 +58,11 @@ public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 	@Override
 	public String flatten(TypedObjectNode node, boolean keepCodes) {
 		List<Pair<String, String>> properties = new ArrayList<>();
-		appendFlattenedValue("Biologische Vielfalt", node, new ComplexFlattener(), "bioVielfaltTypus", properties);
-		appendFlattenedValue("Planzenart", node, new ComplexFlattener(), "bioVfPflanzenArt", properties);
-		appendFlattenedValue("Tierart", node, new ComplexFlattener(), "bioVfTierArt", properties);
-		appendFlattenedValue("Biotoptyp", node, new ComplexFlattener(), "bioVfBiotoptyp", properties);
+		appendFlattenedValue("Biologische Vielfalt", node, new ComplexFlattener(xPlanCodelists), "bioVielfaltTypus",
+				properties);
+		appendFlattenedValue("Planzenart", node, new ComplexFlattener(xPlanCodelists), "bioVfPflanzenArt", properties);
+		appendFlattenedValue("Tierart", node, new ComplexFlattener(xPlanCodelists), "bioVfTierArt", properties);
+		appendFlattenedValue("Biotoptyp", node, new ComplexFlattener(xPlanCodelists), "bioVfBiotoptyp", properties);
 		appendBoolean("von gemeinschaftlichem Interesse kartiert", node, "bioVfArtFFHAnhangII", properties);
 		return encode(properties);
 	}

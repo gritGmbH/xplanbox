@@ -59,7 +59,7 @@ public class SemanticInvalidRuleResult {
 		return this;
 	}
 
-	@ArraySchema(schema = @Schema(description = "GML-ID", example = "GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2"))
+	@ArraySchema(schema = @Schema(description = "GML-Id", example = "GML_b4e47d29-d21c-42ab-85b7-b12ea57e89f2"))
 	@JsonProperty("invalidGmlIds")
 	public List<String> getInvalidGmlIds() {
 		return invalidGmlIds;
