@@ -88,9 +88,10 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorksp
 import static java.nio.file.Paths.get;
 
 /**
- * Basic XPlanManagerWeb Application Configuration.
+ * Spring Application Context for initialising XPlanManagerWeb components.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
 @Import({ RasterStorageContext.class, AmazonS3Context.class })
@@ -292,7 +293,7 @@ public class BasicSpringConfig {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
 		if (validationRulesDirectory != null)
 			return validationRulesDirectory;
-		URI rulesPath = BasicSpringConfig.class.getResource(RULES_DIRECTORY).toURI();
+		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
 	}
 
