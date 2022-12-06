@@ -15,9 +15,9 @@ else
     #Create ```INSPIRE``` databases:
     echo "01: create db with postgis extension"
     psql -q -p $PORT -U $POSTGRES_USER -c "CREATE DATABASE xplanbox"
-    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -c "CREATE EXTENSION postgis"
-    echo "02: setup xplan schemas"
-    cd /xplan-sql-scripts && psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/create.sql
+
+    echo "02: setup xplan schemas will be done with liquibase by xplan-db-updater"
+
     echo "03: setup inspireplu schema"
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/inspireplu/01_create_inspireplu_schema.sql
     psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/inspireplu/02_create_inspireplu_view.sql
