@@ -53,6 +53,8 @@ XPLANDB="$XPLANDB_HOST_NAME:$XPLANDB_PORT"
 # by default mapserver
 RASTERTYPE="${XPLAN_RASTERTYPE:-mapserver}"
 
+INSPIRE_PLU="${INSPIRE_PLU:-disabled}"
+
 #############################
 # Update content of volumes #
 #############################
@@ -67,7 +69,10 @@ sed -i 's/workspaceReloadUser=/workspaceReloadUser=deegree/g' xplan-manager-conf
 sed -i 's/workspaceReloadPassword=/workspaceReloadPassword=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's|http://localhost:8080|'$XPLANWMS_HOST_NAME'|g' xplan-manager-config/managerWebConfiguration.properties
-sed -i 's/activatePublishingInspirePlu=false/activatePublishingInspirePlu=true/g' xplan-manager-config/managerWebConfiguration.properties
+if [ $INSPIRE_PLU = "enabled" ]
+then
+  sed -i 's/activatePublishingInspirePlu=false/activatePublishingInspirePlu=true/g' xplan-manager-config/managerWebConfiguration.properties
+fi
 
 find -iname xplan.xml -exec sed -i 's/localhost:5432/'$XPLANDB'/g' {} \;
 find -iname xplan.xml -exec sed -i 's/"xplanbox"/"postgres"/g' {} \;
