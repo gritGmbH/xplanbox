@@ -10,8 +10,14 @@ fi
 MARKER_FILE=$XPLANBOX_VOLUMES/init-marker.txt
 
 if [ -f "$MARKER_FILE" ]; then
-	echo "[$(date -Iseconds)] Init already done in $XPLANBOX_VOLUMES ($(cat $MARKER_FILE))"
-	exit 0 
+  if [[ -n "$XPLANBOX_VOLUME_INIT" && $XPLANBOX_VOLUME_INIT = "reset" ]]; then
+    echo "[$(date -Iseconds)] Reset of existing dir $XPLANBOX_VOLUMES forced ..."
+    rm $MARKER_FILE
+    rm -rf $XPLANBOX_VOLUMES/xplan-*
+  else
+    echo "[$(date -Iseconds)] Init already done in $XPLANBOX_VOLUMES ($(cat $MARKER_FILE))"
+    exit 0
+	fi
 fi
 
 echo "[$(date -Iseconds)] Initializing dir $XPLANBOX_VOLUMES ..."
@@ -97,6 +103,6 @@ fi
 
 sed -i 's|validatorWmsEndpoint=|validatorWmsEndpoint='$XPLANVALIDATORWMS_HOST_NAME'\/xplan-validator-wms\/services\/wms|g' xplan-validator-config/validatorConfiguration.properties
 
-
+rm $INIT_STARTED_FILE
 echo "Initialization finished at $(date)" > $MARKER_FILE 
 cat $MARKER_FILE
