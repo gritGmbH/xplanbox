@@ -2239,8 +2239,9 @@ assert actualHeader != null</scriptText>
             <con:attachment>
               <con:name>BP_6.0.zip</con:name>
               <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>Blankenese29_Test_60_withEntity.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/Blankenese29_Test_60_withEntity.zip</con:url>
+              <con:contentId>BP_5.0_Entity.zip</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_5.0_Entity.zip</con:url>
               <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -11547,91 +11548,91 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>2</con:value>
+        <con:value>20</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>4</con:value>
+        <con:value>22</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML53</con:name>
-        <con:value>10</con:value>
+        <con:value>28</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdText</con:name>
-        <con:value>11</con:value>
+        <con:value>29</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdAenderung</con:name>
-        <con:value>5</con:value>
+        <con:value>23</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdDokument</con:name>
-        <con:value>6</con:value>
+        <con:value>24</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdFPlan</con:name>
-        <con:value>15</con:value>
+        <con:value>33</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-        <con:value>12</con:value>
+        <con:value>30</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-        <con:value>13</con:value>
+        <con:value>31</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdV2</con:name>
-        <con:value>3</con:value>
+        <con:value>21</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-        <con:value>8</con:value>
+        <con:value>26</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBereiche</con:name>
-        <con:value>9</con:value>
+        <con:value>27</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60</con:name>
-        <con:value>14</con:value>
+        <con:value>32</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSOPlan</con:name>
-        <con:value>18</con:value>
+        <con:value>36</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdRPlan</con:name>
-        <con:value>17</con:value>
+        <con:value>35</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdLPlan</con:name>
-        <con:value>16</con:value>
+        <con:value>34</con:value>
       </con:property>
       <con:property>
         <con:name>textIdSOPlan</con:name>
-        <con:value>XPLAN_texte_f3811613-0265-4083-aeac-defe85213d13</con:value>
+        <con:value>XPLAN_texte_4db1d9d7-9052-4602-8ccb-285e8ef6d220</con:value>
       </con:property>
       <con:property>
         <con:name>textIdLPlan</con:name>
-        <con:value>XPLAN_texte_cbac7701-f602-4835-871c-3e77b996466c</con:value>
+        <con:value>XPLAN_texte_6b770563-0808-4490-b8bf-73b0ad6e4f07</con:value>
       </con:property>
       <con:property>
         <con:name>textIdFPlan</con:name>
-        <con:value>XPLAN_texte_069320c8-bd46-4766-8338-c232a52a0275</con:value>
+        <con:value>XPLAN_texte_26bcff9f-7689-4223-b552-6a72a2222c49</con:value>
       </con:property>
       <con:property>
         <con:name>textIdRPlan</con:name>
-        <con:value>XPLAN_texte_ce2698a8-f332-40af-90fd-d4c109c59bb5</con:value>
+        <con:value>XPLAN_texte_0570f28e-3c86-4d32-a9db-cb05aa8e99d8</con:value>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBPlanOhneBereich</con:name>
-        <con:value>7</con:value>
+        <con:value>25</con:value>
       </con:property>
       <con:property>
         <con:name>planId40</con:name>
-        <con:value>1</con:value>
+        <con:value>19</con:value>
       </con:property>
     </con:properties>
   </con:testSuite>
