@@ -35,6 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationSorter;
 import org.deegree.theme.persistence.standard.jaxb.ThemeType.Layer;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
