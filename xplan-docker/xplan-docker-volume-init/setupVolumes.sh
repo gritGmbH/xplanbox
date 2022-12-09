@@ -10,8 +10,14 @@ fi
 MARKER_FILE=$XPLANBOX_VOLUMES/init-marker.txt
 
 if [ -f "$MARKER_FILE" ]; then
-	echo "[$(date -Iseconds)] Init already done in $XPLANBOX_VOLUMES ($(cat $MARKER_FILE))"
-	exit 0 
+  if [[ -n "$XPLANBOX_VOLUME_INIT" && $XPLANBOX_VOLUME_INIT = "reset" ]]; then
+    echo "[$(date -Iseconds)] Reset of existing dir $XPLANBOX_VOLUMES forced ..."
+    rm $MARKER_FILE
+    rm -rf $XPLANBOX_VOLUMES/xplan-*
+  else
+    echo "[$(date -Iseconds)] Init already done in $XPLANBOX_VOLUMES ($(cat $MARKER_FILE))"
+    exit 0
+	fi
 fi
 
 echo "[$(date -Iseconds)] Initializing dir $XPLANBOX_VOLUMES ..."
@@ -47,6 +53,8 @@ XPLANDB="$XPLANDB_HOST_NAME:$XPLANDB_PORT"
 # by default mapserver
 RASTERTYPE="${XPLAN_RASTERTYPE:-mapserver}"
 
+INSPIRE_PLU="${INSPIRE_PLU:-disabled}"
+
 #############################
 # Update content of volumes #
 #############################
@@ -61,7 +69,10 @@ sed -i 's/workspaceReloadUser=/workspaceReloadUser=deegree/g' xplan-manager-conf
 sed -i 's/workspaceReloadPassword=/workspaceReloadPassword=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's|http://localhost:8080|'$XPLANWMS_HOST_NAME'|g' xplan-manager-config/managerWebConfiguration.properties
-sed -i 's/activatePublishingInspirePlu=false/activatePublishingInspirePlu=true/g' xplan-manager-config/managerWebConfiguration.properties
+if [ $INSPIRE_PLU = "enabled" ]
+then
+  sed -i 's/activatePublishingInspirePlu=false/activatePublishingInspirePlu=true/g' xplan-manager-config/managerWebConfiguration.properties
+fi
 
 find -iname xplan.xml -exec sed -i 's/localhost:5432/'$XPLANDB'/g' {} \;
 find -iname xplan.xml -exec sed -i 's/"xplanbox"/"postgres"/g' {} \;
@@ -80,7 +91,7 @@ then
   mv xplan-workspaces/xplansyn-wms-workspace/datasources/tile/tilematrixset/dummy.ignore xplan-workspaces/xplansyn-wms-workspace/datasources/tile/tilematrixset/dummy.xml
   mv xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.ignore xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.xml
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>dummyrasterlayer/<LayerStoreId>dummyrasterlayer/g' {} \;
-  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/dummyraster<\/LayerStoreId>-->/dummyraster<\/LayerStoreId>/g' {} \;
+  find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/dummyrasterlayer<\/LayerStoreId>-->/dummyrasterlayer<\/LayerStoreId>/g' {} \;
 else
   echo "Configure rastertype mapserver"
   sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=mapserver/g' xplan-manager-config/managerConfiguration.properties
@@ -97,6 +108,6 @@ fi
 
 sed -i 's|validatorWmsEndpoint=|validatorWmsEndpoint='$XPLANVALIDATORWMS_HOST_NAME'\/xplan-validator-wms\/services\/wms|g' xplan-validator-config/validatorConfiguration.properties
 
-
+rm $INIT_STARTED_FILE
 echo "Initialization finished at $(date)" > $MARKER_FILE 
 cat $MARKER_FILE
