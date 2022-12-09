@@ -26,12 +26,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.FileSystemStorage;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.GdalRasterStorage;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.S3RasterStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,7 +36,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.annotation.PreDestroy;
-import java.nio.file.Path;
 
 /**
  * Spring configuration for using AWS S3 as a storage for raster data. This requires
@@ -55,7 +49,7 @@ import java.nio.file.Path;
  */
 @Configuration
 @Profile("s3")
-@PropertySource("classpath:s3.properties")
+@PropertySource(value = "classpath:s3.properties", ignoreResourceNotFound = true)
 public class AmazonS3Context {
 
 	@Autowired
