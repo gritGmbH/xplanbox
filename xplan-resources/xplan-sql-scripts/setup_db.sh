@@ -19,7 +19,7 @@ else
     echo "02: setup xplan schemas will be done with liquibase by xplan-db-updater"
 
     echo "03: setup inspireplu schema"
-    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/inspireplu/01_create_inspireplu_schema.sql
-    psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/inspireplu/02_create_inspireplu_view.sql
+    #psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/inspireplu/01_create_inspireplu_schema.sql
+    #psql -q -p $PORT -U $POSTGRES_USER -d xplanbox -f /xplan-sql-scripts/inspireplu/02_create_inspireplu_view.sql
 
 fi
