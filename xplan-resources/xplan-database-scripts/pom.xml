@@ -462,6 +462,18 @@
                                     </outputChangeLogFile>
                                 </configuration>
                             </execution>
+                            <execution>
+                                <id>inspireplu</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>generateChangeLog</goal>
+                                </goals>
+                                <configuration>
+                                    <defaultSchemaName>inspireplu</defaultSchemaName>
+                                    <outputChangeLogFile>${project.basedir}/target/generated-resources/changelog_inspireplu.yaml
+                                    </outputChangeLogFile>
+                                </configuration>
+                            </execution>
                         </executions>
                     </plugin>
                 </plugins>
