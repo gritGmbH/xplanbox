@@ -14288,8 +14288,8 @@ databaseChangeLog:
               sp.plu_validto AS validto,
               sp.plu_beginlifespanversion AS beginlifespanversion,
               sp.plu_endlifespanversion AS endlifespanversion
-             FROM (plu_spatialplan sp
-               LEFT JOIN plu_spatialplan_plu_ordinance spo ON ((sp.attr_gml_id = spo.parentfk)))
+             FROM (inspireplu.plu_spatialplan sp
+               LEFT JOIN inspireplu.plu_spatialplan_plu_ordinance spo ON ((sp.attr_gml_id = spo.parentfk)))
             GROUP BY sp.attr_gml_id;
         viewName: viewservice_spatialplan
 - changeSet:
@@ -14323,11 +14323,11 @@ databaseChangeLog:
               sr.plu_validto AS validto,
               sr.plu_beginlifespanversion AS beginlifespanversion,
               sr.plu_endlifespanversion AS endlifespanversion
-             FROM ((((plu_supplementaryregulation sr
-               LEFT JOIN plu_supplementaryregulation_plu_supplementaryregulation srsr ON ((sr.attr_gml_id = srsr.parentfk)))
-               LEFT JOIN plu_supplementaryregulation_plu_specificsupplementaryregula_113 srssr ON ((sr.attr_gml_id = srssr.parentfk)))
-               LEFT JOIN plu_supplementaryregulation_plu_name srn ON ((sr.attr_gml_id = srn.parentfk)))
-               LEFT JOIN plu_supplementaryregulation_plu_dimensioningindication srdi ON ((sr.attr_gml_id = srdi.parentfk)))
+             FROM ((((inspireplu.plu_supplementaryregulation sr
+               LEFT JOIN inspireplu.plu_supplementaryregulation_plu_supplementaryregulation srsr ON ((sr.attr_gml_id = srsr.parentfk)))
+               LEFT JOIN inspireplu.plu_supplementaryregulation_plu_specificsupplementaryregula_113 srssr ON ((sr.attr_gml_id = srssr.parentfk)))
+               LEFT JOIN inspireplu.plu_supplementaryregulation_plu_name srn ON ((sr.attr_gml_id = srn.parentfk)))
+               LEFT JOIN inspireplu.plu_supplementaryregulation_plu_dimensioningindication srdi ON ((sr.attr_gml_id = srdi.parentfk)))
             GROUP BY sr.attr_gml_id;
         viewName: viewservice_supplementary_regulation
 - changeSet:
@@ -14358,10 +14358,10 @@ databaseChangeLog:
               ze.plu_validto AS validto,
               ze.plu_beginlifespanversion AS beginlifespanversion,
               ze.plu_endlifespanversion AS endlifespanversion
-             FROM (((plu_zoningelement ze
-               LEFT JOIN plu_zoningelement_plu_hilucslanduse zeh ON ((ze.attr_gml_id = zeh.parentfk)))
-               LEFT JOIN plu_zoningelement_plu_specificlanduse zeslu ON ((ze.attr_gml_id = zeslu.parentfk)))
-               LEFT JOIN plu_zoningelement_plu_dimensioningindication zedi ON ((ze.attr_gml_id = zedi.parentfk)))
+             FROM (((inspireplu.plu_zoningelement ze
+               LEFT JOIN inspireplu.plu_zoningelement_plu_hilucslanduse zeh ON ((ze.attr_gml_id = zeh.parentfk)))
+               LEFT JOIN inspireplu.plu_zoningelement_plu_specificlanduse zeslu ON ((ze.attr_gml_id = zeslu.parentfk)))
+               LEFT JOIN inspireplu.plu_zoningelement_plu_dimensioningindication zedi ON ((ze.attr_gml_id = zedi.parentfk)))
             GROUP BY ze.attr_gml_id;
         viewName: viewservice_zoning_element
 
