@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: 6.1/changelog_xplanmgr.yaml
+  - include:
+      file: 6.1/changelog_schemas.yaml
+  - include:
+      file: 6.1/changelog_inspireplu.yaml
+  - changeSet:
+      id:  tagDatabase-v61
+      author:  latlon
+      changes:
+        - tagDatabase:
+            tag:  v_6.1
