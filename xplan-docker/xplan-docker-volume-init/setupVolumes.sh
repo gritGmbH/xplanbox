@@ -45,6 +45,7 @@ cp -r /xplan-volume-init/xplan-docker-volumes/* $XPLANBOX_VOLUMES
 
 XPLANWMS_HOST_NAME="${XPLANWMS_HOST_NAME:-http://localhost:8083}"
 XPLANVALIDATORWMS_HOST_NAME="${XPLANVALIDATORWMS_HOST_NAME:-http://localhost:8088}"
+XPLANMAPSERVER_HOST_NAME="${XPLANMAPSERVER_HOST_NAME:-http://xplan-mapserver:8080}"
 
 XPLANDB_HOST_NAME="${XPLANDB_HOST_NAME:-xplan-db}"
 XPLANDB_PORT="${XPLANDB_PORT:-5432}"
@@ -103,7 +104,7 @@ else
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterarchive<\/Layer>-->/planrasterarchive<\/Layer>/g' {} \;
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterpre<\/Layer>-->/planrasterpre<\/Layer>/g' {} \;
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planraster<\/Layer>-->/planraster<\/Layer>/g' {} \;
-  sed -i 's/http:\/\/localhost:8080\/mapserver/http:\/\/xplan-mapserver\/mapserver/g' xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.xml
+  sed -i 's|http://localhost:8080/mapserver|'$XPLANMAPSERVER_HOST_NAME'/mapserver|g' xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.xml
 fi
 
 sed -i 's|validatorWmsEndpoint=|validatorWmsEndpoint='$XPLANVALIDATORWMS_HOST_NAME'\/xplan-validator-wms\/services\/wms|g' xplan-validator-config/validatorConfiguration.properties
