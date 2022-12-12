@@ -57,7 +57,7 @@ public class AmazonS3Context {
 
 	@Bean
 	public S3RasterStorage rasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 s3Client,
-			@Value("${s3.bucketName}") String bucketName) {
+			@Value("${s3.bucketName:#{environment.MAPSERVER_S3_BUCKET_NAME}}") String bucketName) {
 		return new S3RasterStorage(rasterAdapter, s3Client, bucketName);
 	}
 
@@ -73,14 +73,15 @@ public class AmazonS3Context {
 	}
 
 	@Bean
-	public Regions regions(@Value("${s3.region}") String regions) {
+	public Regions regions(@Value("${s3.region:#{environment.MAPSERVER_S3_REGION}}") String regions) {
 		Regions defaultRegion = Regions.fromName(regions);
 		return defaultRegion;
 	}
 
 	@Bean
-	public AWSCredentials credentials(@Value("${s3.accessKeyId}") String accessKeyId,
-			@Value("${s3.secretKey}") String secretKey) {
+	public AWSCredentials credentials(
+			@Value("${s3.accessKeyId:#{environment.MAPSERVER_S3_ACCESS_KEY}}") String accessKeyId,
+			@Value("${s3.secretKey:#{environment.MAPSERVER_S3_SECRET_ACCESS_KEY}}") String secretKey) {
 		return new BasicAWSCredentials(accessKeyId, secretKey);
 	}
 
