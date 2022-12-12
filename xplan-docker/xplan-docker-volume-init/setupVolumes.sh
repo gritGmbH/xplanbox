@@ -84,7 +84,7 @@ sed -i 's/"xplanbox"/"postgres"/g' xplan-inspireplu-workspaces/xplan-inspireplu-
 
 if [ $RASTERTYPE = "gdal" ]
 then
-  echo "Configure rastertype gdal"
+  echo "[$(date -Iseconds)] Configure rastertype gdal"
   sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=gdal/g' xplan-manager-config/managerConfiguration.properties
   mv xplan-workspaces/xplansyn-wms-workspace/gdal.ignore xplan-workspaces/xplansyn-wms-workspace/gdal.xml
   mv xplan-workspaces/xplansyn-wms-workspace/datasources/tile/dummy.ignore xplan-workspaces/xplansyn-wms-workspace/datasources/tile/dummy.xml
@@ -93,7 +93,7 @@ then
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>dummyrasterlayer/<LayerStoreId>dummyrasterlayer/g' {} \;
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/dummyrasterlayer<\/LayerStoreId>-->/dummyrasterlayer<\/LayerStoreId>/g' {} \;
 else
-  echo "Configure rastertype mapserver"
+  echo "[$(date -Iseconds)] Configure rastertype mapserver"
   sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=mapserver/g' xplan-manager-config/managerConfiguration.properties
   mv xplan-workspaces/xplansyn-wms-workspace/layers/mapserver.ignore xplan-workspaces/xplansyn-wms-workspace/layers/mapserver.xml
   mv xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.ignore xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.xml
@@ -107,6 +107,24 @@ else
 fi
 
 sed -i 's|validatorWmsEndpoint=|validatorWmsEndpoint='$XPLANVALIDATORWMS_HOST_NAME'\/xplan-validator-wms\/services\/wms|g' xplan-validator-config/validatorConfiguration.properties
+
+BERLINER_PROFILE="${BERLINER_PROFILE:-disabled}"
+if [ $BERLINER_PROFILE = "enabled" ]
+then
+  BERLINER_PROFILE_VERSION="${BERLINER_PROFILE_VERSION:-0.3}"
+  BERLINER_PROFILE_URL=https://gitlab.opencode.de/api/v4/projects/397/packages/maven/de/xleitstelle/xplanung/regeln-berlin/$BERLINER_PROFILE_VERSION/regeln-berlin-$BERLINER_PROFILE_VERSION.jar
+  echo "[$(date -Iseconds)] Add Berliner Profile: $BERLINER_PROFILE_URL"
+  # Copy berliner profile
+  curl $BERLINER_PROFILE_URL -s -o /tmp/regeln-berlin.jar
+  # XPlanValidator
+  mkdir $XPLANBOX_VOLUMES/xplan-validator-config/profiles
+  unzip -q /tmp/regeln-berlin.jar -x "META-INF/*" -d $XPLANBOX_VOLUMES/xplan-validator-config/profiles
+  # XPlanManager
+  mkdir $XPLANBOX_VOLUMES/xplan-manager-config/profiles
+  unzip -q /tmp/regeln-berlin.jar -x "META-INF/*" -d $XPLANBOX_VOLUMES/xplan-manager-config/profiles
+  # cleanup
+  rm /tmp/regeln-berlin.jar
+fi
 
 rm $INIT_STARTED_FILE
 echo "Initialization finished at $(date)" > $MARKER_FILE 
