@@ -61,6 +61,7 @@ INSPIRE_PLU="${INSPIRE_PLU:-disabled}"
 XPLANSERVICES_BASEURL_INTERNAL=${XPLANSERVICES_BASEURL_INTERNAL:-http://xplan-services:8080}
 XPLANWMS_URL=${XPLANWMS_URL:-xplan-services/xplan-wms/}
 XPLANAPIMANAGER_URL=${XPLANAPIMANAGER_URL:-xplan-api-manager}
+XPLANAPIVALIDATOR_URL=${XPLANAPIVALIDATOR_URL:-xplan-api-validator}
 
 #############################
 # Update content of volumes #
@@ -68,7 +69,7 @@ XPLANAPIMANAGER_URL=${XPLANAPIMANAGER_URL:-xplan-api-manager}
 
 cd $XPLANBOX_VOLUMES
 
-sed -i 's|apiUrl=|apiUrl='$XPLANAPIMANAGER_URL'|g' xplan-validator-config/validatorApiConfiguration.properties
+sed -i 's|apiUrl=|apiUrl='$XPLANAPIVALIDATOR_URL'|g' xplan-validator-config/validatorApiConfiguration.properties
 sed -i 's|apiUrl=|apiUrl='$XPLANAPIMANAGER_URL'|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|wmsUrl=|wmsUrl='$XPLANWMS_URL'|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLANSERVICES_BASEURL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
