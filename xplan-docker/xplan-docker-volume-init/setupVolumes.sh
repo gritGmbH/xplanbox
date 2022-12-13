@@ -49,6 +49,8 @@ XPLANMAPSERVER_HOST_NAME="${XPLANMAPSERVER_HOST_NAME:-http://xplan-mapserver:808
 
 XPLANDB_HOST_NAME="${XPLANDB_HOST_NAME:-xplan-db}"
 XPLANDB_PORT="${XPLANDB_PORT:-5432}"
+XPLANDB_USER="${XPLANDB_USER:-posgres}"
+XPLANDB_PASSWORD="${XPLANDB_PASSWORD:-posgres}"
 XPLANDB="$XPLANDB_HOST_NAME:$XPLANDB_PORT"
 
 # by default mapserver
@@ -56,16 +58,20 @@ RASTERTYPE="${XPLAN_RASTERTYPE:-mapserver}"
 
 INSPIRE_PLU="${INSPIRE_PLU:-disabled}"
 
+XPLANSERVICES_BASEURL_INTERNAL=${XPLANSERVICES_BASEURL_INTERNAL:-http://xplan-services:8080}
+XPLANWMS_URL=${XPLANWMS_URL:-xplan-services/xplan-wms/}
+XPLANAPIMANAGER_URL=${XPLANAPIMANAGER_URL:-xplan-api-manager}
+
 #############################
 # Update content of volumes #
 #############################
 
 cd $XPLANBOX_VOLUMES
 
-sed -i 's/apiUrl=/apiUrl=http:\/\/xplanbox.lat-lon.de/g' xplan-validator-config/validatorApiConfiguration.properties
-sed -i 's/apiUrl=/apiUrl=http:\/\/xplanbox.lat-lon.de/g' xplan-manager-config/managerApiConfiguration.properties
-sed -i 's/wmsUrl=/wmsUrl=http:\/\/xplanbox.lat-lon.de\/xplan-wms/g' xplan-manager-config/managerApiConfiguration.properties
-sed -i 's/workspaceReloadUrls=/workspaceReloadUrls=http:\/\/xplan-services:8080\/xplan-wms/g' xplan-manager-config/managerConfiguration.properties
+sed -i 's|apiUrl=|apiUrl='$XPLANAPIMANAGER_URL'|g' xplan-validator-config/validatorApiConfiguration.properties
+sed -i 's|apiUrl=|apiUrl='$XPLANAPIMANAGER_URL'|g' xplan-manager-config/managerApiConfiguration.properties
+sed -i 's|wmsUrl=|wmsUrl='$XPLANWMS_URL'|g' xplan-manager-config/managerApiConfiguration.properties
+sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLANSERVICES_BASEURL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadUser=/workspaceReloadUser=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadPassword=/workspaceReloadPassword=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
@@ -76,12 +82,17 @@ then
 fi
 
 find -iname xplan.xml -exec sed -i 's/localhost:5432/'$XPLANDB'/g' {} \;
-find -iname xplan.xml -exec sed -i 's/"xplanbox"/"postgres"/g' {} \;
+find -iname xplan.xml -exec sed -i 's/name="username" value="xplanbox"/name="username" value="'$XPLANDB_USER'"/g' {} \;
+find -iname xplan.xml -exec sed -i 's/name="password" value="xplanbox"/name="password" value="'$XPLANDB_PASSWORD'"/g' {} \;
+
 sed -i 's/localhost:5432/'$XPLANDB'/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
-sed -i 's/"xplanbox"/"postgres"/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
-sed -i 's/http:\/\/localhost:8080\/xplan-wms/https:\/\/xplanbox.lat-lon.de\/xplan-wms/g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
+sed -i 's/name="username" value="xplanbox"/name="username" value="'$XPLANDB_USER'"/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
+sed -i 's/name="password" value="xplanbox"/name="password" value="'$XPLANDB_PASSWORD'"/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
+
+sed -i 's|http://localhost:8080/xplan-wms|'$XPLANWMS_URL'|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
 sed -i 's/localhost:5432/'$XPLANDB'/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
-sed -i 's/"xplanbox"/"postgres"/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
+sed -i 's/name="username" value="xplanbox"/name="username" value="'$XPLANDB_USER'"/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
+sed -i 's/name="password" value="xplanbox"/name="password" value="'$XPLANDB_PASSWORD'"/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 
 if [ $RASTERTYPE = "gdal" ]
 then
@@ -127,6 +138,5 @@ then
   rm /tmp/regeln-berlin.jar
 fi
 
-rm $INIT_STARTED_FILE
 echo "Initialization finished at $(date)" > $MARKER_FILE 
 cat $MARKER_FILE
