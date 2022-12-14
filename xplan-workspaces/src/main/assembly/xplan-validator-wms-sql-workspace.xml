@@ -31,7 +31,6 @@
       <includes>
         <include>jdbc/xplan.xml</include>
         <include>datasources/feature/xplanvalidator.xml</include>
-        <include>themes/planart-wms/**</include>
         <include>services/html.gfi</include>
       </includes>
       <excludes>
@@ -43,6 +42,17 @@
     <fileSet>
       <directory>${basedir}/src/main/workspace/layers/validator-wms/sql</directory>
       <outputDirectory>layers/planart-wms/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/themes/planart-wms</directory>
+      <outputDirectory>themes/</outputDirectory>
+      <includes>
+        <include>bplan.xml</include>
+        <include>fplan.xml</include>
+        <include>lplan.xml</include>
+        <include>rplan.xml</include>
+        <include>soplan.xml</include>
+      </includes>
     </fileSet>
     <fileSet>
       <directory>${basedir}/src/main/workspace/services/validator-wms</directory>
