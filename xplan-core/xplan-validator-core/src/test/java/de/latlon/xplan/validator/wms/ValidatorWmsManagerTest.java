@@ -26,6 +26,8 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.validator.wms.storage.PlanStorage;
+import de.latlon.xplan.validator.wms.storage.WorkspacePlanStorage;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -53,7 +55,8 @@ public class ValidatorWmsManagerTest {
 	@Test
 	public void testInsert() throws Exception {
 		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
-		ValidatorWmsManager validatorWmsManager = new ValidatorWmsManager(synthesizer, workspaceLocation);
+		PlanStorage planStorage = new WorkspacePlanStorage(workspaceLocation);
+		ValidatorWmsManager validatorWmsManager = new ValidatorWmsManager(synthesizer, planStorage);
 
 		XPlanFeatureCollection featureCollection = parseFeatureCollection("xplan51/BP2070.zip");
 		validatorWmsManager.insert(featureCollection);
