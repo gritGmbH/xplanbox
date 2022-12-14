@@ -47,9 +47,9 @@
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
           </execution>
-          <!-- XPlanValidatorWMS Workspace -->
+          <!-- XPlanValidatorWMS Workspace - InMemory -->
           <execution>
-            <id>xplan-validator-wms-workspace</id>
+            <id>xplan-validator-wms-memory-workspace</id>
             <goals>
               <goal>single</goal>
             </goals>
@@ -57,7 +57,7 @@
             <configuration>
               <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/xplan-validator-wms-workspace.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/assembly/xplan-validator-wms-memory-workspace.xml</descriptor>
               </descriptors>
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>

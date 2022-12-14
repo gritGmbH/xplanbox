@@ -79,7 +79,7 @@ public class ApplicationContext {
 
 	private static final String RULES_DIRECTORY = "/rules";
 
-	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-workspace";
+	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-memory-workspace";
 
 	@Bean
 	public SystemConfigHandler systemConfigHandler(XQuerySemanticValidatorConfigurationRetriever configurationRetriever,

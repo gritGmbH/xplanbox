@@ -65,7 +65,7 @@
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-validator-wms-workspace</classifier>
+      <classifier>xplan-validator-wms-memory-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>

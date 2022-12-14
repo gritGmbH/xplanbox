@@ -77,11 +77,11 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
-    <!-- xplan-validator-workspaces -->
+    <!-- xplan-validator-wms-memory-workspaces -->
     <dependencySet>
-      <outputDirectory>/xplan-validator-workspaces/xplan-validator-wms-workspace</outputDirectory>
+      <outputDirectory>/xplan-validator-workspaces/xplan-validator-wms-memory-workspace</outputDirectory>
       <includes>
-        <include>${project.groupId}:xplan-workspaces::xplan-validator-wms-workspace</include>
+        <include>${project.groupId}:xplan-workspaces::xplan-validator-wms-memory-workspace</include>
       </includes>
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
