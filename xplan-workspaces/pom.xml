@@ -62,6 +62,21 @@
               <appendAssemblyId>true</appendAssemblyId>
             </configuration>
           </execution>
+          <!-- XPlanValidatorWMS Workspace SQLFeatureStore-->
+          <execution>
+            <id>xplan-validator-wms-sql-workspace</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/assembly/xplan-validator-wms-sql-workspace.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>true</appendAssemblyId>
+            </configuration>
+          </execution>
           <!-- XPlanWFS Workspace -->
           <execution>
             <id>xplan-wfs-workspace</id>

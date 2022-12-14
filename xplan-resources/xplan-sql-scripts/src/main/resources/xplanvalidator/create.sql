@@ -16,7 +16,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L% --- */
-/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 14.12.2022, 11:54:40 --- */
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 14.12.2022, 14:36:07 --- */
 CREATE SCHEMA xplanvalidator; 
 SET search_path TO xplanvalidator,public;
 CREATE TABLE xplanvalidator.xplan_bp_abgrabungsflaeche (
