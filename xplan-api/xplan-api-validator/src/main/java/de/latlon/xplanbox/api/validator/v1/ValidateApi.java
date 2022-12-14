@@ -57,6 +57,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypes;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF;
@@ -143,6 +144,7 @@ public class ValidateApi {
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
+		checkContentTypes(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromGml(body, validationName);
 
@@ -165,6 +167,7 @@ public class ValidateApi {
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
+		checkContentTypes(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromZip(body, validationName);
 

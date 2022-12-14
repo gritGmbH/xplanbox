@@ -80,6 +80,7 @@ import java.util.EmptyStackException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypes;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstand;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
@@ -394,6 +395,8 @@ public class XPlanManager {
 	@PreAuthorize("(hasPermission(#oldXplan, 'hasDistrictPermission') and hasRole('ROLE_XPLAN_EDITOR')) or hasRole('ROLE_XPLAN_SUPERUSER')")
 	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
 			List<File> uploadedArtefacts) throws Exception {
+		for (File artefact : uploadedArtefacts)
+			checkContentTypes(artefact.toPath());
 		xPlanEditManager.editPlan(oldXplan, xPlanToEdit, makeRasterConfig, uploadedArtefacts);
 	}
 

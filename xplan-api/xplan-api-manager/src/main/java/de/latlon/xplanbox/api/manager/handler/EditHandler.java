@@ -39,6 +39,7 @@ import java.nio.file.Files;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.LP_Plan;
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypes;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -75,6 +76,7 @@ public abstract class EditHandler {
 			return null;
 		java.nio.file.Path tmpDir = Files.createTempDirectory("postDokument");
 		java.nio.file.Path targetFile = tmpDir.resolve(fileMetadata.getFileName());
+		checkContentTypes(targetFile);
 		Files.copy(content, targetFile);
 		content.close();
 		return targetFile.toFile();
