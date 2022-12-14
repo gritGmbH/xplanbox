@@ -29,7 +29,7 @@
 
     <!-- Configuration of DataSource properties -->
     <Property name="driverClassName" value="org.postgresql.Driver"/>
-    <Property name="url" value="jdbc:postgresql://localhost:5432/inspireplu"/>
+    <Property name="url" value="jdbc:postgresql://localhost:5432/xplanbox"/>
     <Property name="username" value="xplanbox"/>
     <Property name="password" value="xplanbox"/>
     <Property name="initialSize" value="1"/>

@@ -58,6 +58,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.deegree.commons.utils.Pair;
@@ -89,7 +90,7 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 
 /**
  * An instance of XPlanManager provides the service methods to manage instances of XPlan.
- * Supports XPlan version 3, 4.x, and 5.x.
+ * Supports XPlan version 4.x, 5.x. and 6.x.
  *
  * @author <a href="mailto:schneider@occamlabs.de">Markus Schneider</a>
  * @since 1.0
@@ -107,6 +108,8 @@ public class XPlanManager {
 	private final XPlanToEditFactory planToEditFactory = new XPlanToEditFactory();
 
 	private final XPlanRasterManager xPlanRasterManager;
+
+	private final XPlanRasterEvaluator xPlanRasterEvaluator;
 
 	private final SortPropertyReader sortPropertyReader;
 
@@ -128,27 +131,26 @@ public class XPlanManager {
 	 * workspace is reloaded
 	 * @param inspirePluTransformator transforms XPlanGML to INSPIRE PLU, may be
 	 * <code>null</code>
-	 * @param xPlanGmlTransformer transforms between different versions of XPlanGML, may
-	 * be <code>null</code>
 	 * @param wmsWorkspaceWrapper mandatory WMS workspace configuration
 	 * @throws Exception if mandatory arguments are missing or something went wrong
 	 */
 	public XPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
+			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager) throws Exception {
 		if (xPlanDao == null || archiveCreator == null || managerWorkspaceWrapper == null
 				|| wmsWorkspaceWrapper == null) {
 			throw new IllegalArgumentException("Mandatory argument must not be null");
 		}
 		this.xplanDao = xPlanDao;
 		this.archiveCreator = archiveCreator;
+		this.xPlanRasterEvaluator = xPlanRasterEvaluator;
+		this.xPlanRasterManager = xPlanRasterManager;
 
 		ManagerConfigurationAnalyser managerConfigurationAnalyser = new ManagerConfigurationAnalyser(
 				managerWorkspaceWrapper.getConfiguration(), wmsWorkspaceWrapper);
 		managerConfigurationAnalyser.checkConfiguration();
 
-		this.xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper,
-				managerWorkspaceWrapper.getConfiguration());
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		this.xPlanExporter = new XPlanExporter();
@@ -268,7 +270,7 @@ public class XPlanManager {
 			throws IOException, XMLStreamException, XMLParsingException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
 		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive);
-		return xPlanRasterManager.evaluateRasterdata(archive, fc);
+		return xPlanRasterEvaluator.evaluateRasterdata(archive, fc);
 	}
 
 	/**
@@ -320,7 +322,7 @@ public class XPlanManager {
 		XPlanArchiveContentAccess archive = new XPlanPartArchive(uploadedArtefacts);
 		ExternalReferenceInfo externalReferenceInfoToUpdate = createExternalRefAddedOrUpdated(xPlanToEdit,
 				uploadedArtefacts);
-		return xPlanRasterManager.evaluateRasterdata(archive, externalReferenceInfoToUpdate);
+		return xPlanRasterEvaluator.evaluateRasterdata(archive, externalReferenceInfoToUpdate);
 	}
 
 	/**

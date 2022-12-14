@@ -35,4 +35,13 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>false</docker-image.skip>
+        <docker-image.name>xplan-db</docker-image.name>
+      </properties>
+    </profile>
+  </profiles>
 </project>

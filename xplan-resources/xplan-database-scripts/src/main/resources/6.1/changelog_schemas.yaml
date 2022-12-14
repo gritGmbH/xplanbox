@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: inspireplu-schema
+      author: tfr42
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS inspireplu;
+
