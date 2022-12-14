@@ -72,6 +72,13 @@
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
+      <classifier>xplan-validator-wms-sql-workspace</classifier>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-workspaces</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
       <classifier>xplan-manager-workspace</classifier>
     </dependency>
     <!--xplan-manager-config-->
