@@ -21,7 +21,7 @@
   <JDBCConnId>xplan</JDBCConnId>
   <StorageCRS srid="0" dim="2D">EPSG:25832</StorageCRS>
   <GMLSchema>../../appschemas/XPlanGML_Syn/XPlanSyn.xsd</GMLSchema>
-  <FeatureTypeMapping name="xplan:BP_AbgrabungsFlaeche" table="xplansynpre.xplan_bp_abgrabungsflaeche">
+  <FeatureTypeMapping name="xplan:BP_AbgrabungsFlaeche" table="xplanvalidator.xplan_bp_abgrabungsflaeche">
     <FIDMapping prefix="XPLAN_BP_ABGRABUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -77,7 +77,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_AbstandsFlaeche" table="xplansynpre.xplan_bp_abstandsflaeche">
+  <FeatureTypeMapping name="xplan:BP_AbstandsFlaeche" table="xplanvalidator.xplan_bp_abstandsflaeche">
     <FIDMapping prefix="XPLAN_BP_ABSTANDSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -134,7 +134,7 @@
     <Primitive path="xplan:tiefe" mapping="xplan_tiefe"/>
     <Primitive path="xplan:tiefeUOM" mapping="xplan_tiefeuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_AbstandsMass" table="xplansynpre.xplan_bp_abstandsmass">
+  <FeatureTypeMapping name="xplan:BP_AbstandsMass" table="xplanvalidator.xplan_bp_abstandsmass">
     <FIDMapping prefix="XPLAN_BP_ABSTANDSMASS_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -200,7 +200,7 @@
     <Primitive path="xplan:endWinkel" mapping="xplan_endwinkel"/>
     <Primitive path="xplan:endWinkelUOM" mapping="xplan_endwinkeluom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_AbweichungVonBaugrenze" table="xplansynpre.xplan_bp_abweichungvonbaugrenze">
+  <FeatureTypeMapping name="xplan:BP_AbweichungVonBaugrenze" table="xplanvalidator.xplan_bp_abweichungvonbaugrenze">
     <FIDMapping prefix="XPLAN_BP_ABWEICHUNGVONBAUGRENZE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -248,7 +248,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche" table="xplansynpre.xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche">
+  <FeatureTypeMapping name="xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche" table="xplanvalidator.xplan_bp_abweichungvonueberbaubarergrundstuecksflaeche">
     <FIDMapping prefix="XPLAN_BP_ABWEICHUNGVONUEBERBAUBARERGRUNDSTUECKSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -297,7 +297,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_AnpflanzungBindungErhaltung" table="xplansynpre.xplan_bp_anpflanzungbindungerhaltung">
+  <FeatureTypeMapping name="xplan:BP_AnpflanzungBindungErhaltung" table="xplanvalidator.xplan_bp_anpflanzungbindungerhaltung">
     <FIDMapping prefix="XPLAN_BP_ANPFLANZUNGBINDUNGERHALTUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -370,7 +370,7 @@
     <Primitive path="xplan:pflanztiefe" mapping="xplan_pflanztiefe"/>
     <Primitive path="xplan:pflanztiefeUOM" mapping="xplan_pflanztiefeuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_AufschuettungsFlaeche" table="xplansynpre.xplan_bp_aufschuettungsflaeche">
+  <FeatureTypeMapping name="xplan:BP_AufschuettungsFlaeche" table="xplanvalidator.xplan_bp_aufschuettungsflaeche">
     <FIDMapping prefix="XPLAN_BP_AUFSCHUETTUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -426,7 +426,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_AusgleichsFlaeche" table="xplansynpre.xplan_bp_ausgleichsflaeche">
+  <FeatureTypeMapping name="xplan:BP_AusgleichsFlaeche" table="xplanvalidator.xplan_bp_ausgleichsflaeche">
     <FIDMapping prefix="XPLAN_BP_AUSGLEICHSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -489,7 +489,7 @@
     <Primitive path="xplan:ziel" mapping="xplan_ziel"/>
     <Primitive path="xplan:zielWert" mapping="xplan_zielwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_AusgleichsMassnahme" table="xplansynpre.xplan_bp_ausgleichsmassnahme">
+  <FeatureTypeMapping name="xplan:BP_AusgleichsMassnahme" table="xplanvalidator.xplan_bp_ausgleichsmassnahme">
     <FIDMapping prefix="XPLAN_BP_AUSGLEICHSMASSNAHME_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -555,7 +555,7 @@
     <Primitive path="xplan:ziel" mapping="xplan_ziel"/>
     <Primitive path="xplan:zielWert" mapping="xplan_zielwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_BauGrenze" table="xplansynpre.xplan_bp_baugrenze">
+  <FeatureTypeMapping name="xplan:BP_BauGrenze" table="xplanvalidator.xplan_bp_baugrenze">
     <FIDMapping prefix="XPLAN_BP_BAUGRENZE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -613,7 +613,7 @@
     <Primitive path="xplan:bautiefe" mapping="xplan_bautiefe"/>
     <Primitive path="xplan:bautiefeUOM" mapping="xplan_bautiefeuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_BauLinie" table="xplansynpre.xplan_bp_baulinie">
+  <FeatureTypeMapping name="xplan:BP_BauLinie" table="xplanvalidator.xplan_bp_baulinie">
     <FIDMapping prefix="XPLAN_BP_BAULINIE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -671,7 +671,7 @@
     <Primitive path="xplan:bautiefe" mapping="xplan_bautiefe"/>
     <Primitive path="xplan:bautiefeUOM" mapping="xplan_bautiefeuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Baugebiet" table="xplansynpre.xplan_bp_baugebiet">
+  <FeatureTypeMapping name="xplan:BP_Baugebiet" table="xplanvalidator.xplan_bp_baugebiet">
     <FIDMapping prefix="XPLAN_BP_BAUGEBIET_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -821,7 +821,7 @@
     <Primitive path="xplan:bebauungSeitlicheGrenzeWert" mapping="xplan_bebauungseitlichegrenzewert"/>
     <Primitive path="xplan:refGebaedequerschnitt" mapping="xplan_refgebaedequerschnitt"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_BaugebietsTeilFlaeche" table="xplansynpre.xplan_bp_baugebietsteilflaeche">
+  <FeatureTypeMapping name="xplan:BP_BaugebietsTeilFlaeche" table="xplanvalidator.xplan_bp_baugebietsteilflaeche">
     <FIDMapping prefix="XPLAN_BP_BAUGEBIETSTEILFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -999,7 +999,7 @@
     <Primitive path="xplan:bebauungSeitlicheGrenzeWert" mapping="xplan_bebauungseitlichegrenzewert"/>
     <Primitive path="xplan:refGebaedequerschnitt" mapping="xplan_refgebaedequerschnitt"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Bereich" table="xplansynpre.xplan_bp_bereich">
+  <FeatureTypeMapping name="xplan:BP_Bereich" table="xplanvalidator.xplan_bp_bereich">
     <FIDMapping prefix="XPLAN_BP_BEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1046,7 +1046,7 @@
     <Primitive path="xplan:versionBauNVO" mapping="xplan_versionbaunvo"/>
     <Primitive path="xplan:versionBauNVOWert" mapping="xplan_versionbaunvowert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_BereichOhneEinAusfahrtLinie" table="xplansynpre.xplan_bp_bereichohneeinausfahrtlinie">
+  <FeatureTypeMapping name="xplan:BP_BereichOhneEinAusfahrtLinie" table="xplanvalidator.xplan_bp_bereichohneeinausfahrtlinie">
     <FIDMapping prefix="XPLAN_BP_BEREICHOHNEEINAUSFAHRTLINIE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1102,7 +1102,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_BesondererNutzungszweckFlaeche" table="xplansynpre.xplan_bp_besonderernutzungszweckflaeche">
+  <FeatureTypeMapping name="xplan:BP_BesondererNutzungszweckFlaeche" table="xplanvalidator.xplan_bp_besonderernutzungszweckflaeche">
     <FIDMapping prefix="XPLAN_BP_BESONDERERNUTZUNGSZWECKFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1244,7 +1244,7 @@
     <Primitive path="xplan:GR_Ausn" mapping="xplan_gr_ausn"/>
     <Primitive path="xplan:GR_AusnUOM" mapping="xplan_gr_ausnuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_BodenschaetzeFlaeche" table="xplansynpre.xplan_bp_bodenschaetzeflaeche">
+  <FeatureTypeMapping name="xplan:BP_BodenschaetzeFlaeche" table="xplanvalidator.xplan_bp_bodenschaetzeflaeche">
     <FIDMapping prefix="XPLAN_BP_BODENSCHAETZEFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1300,7 +1300,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_DenkmalschutzEinzelanlage" table="xplansynpre.xplan_bp_denkmalschutzeinzelanlage">
+  <FeatureTypeMapping name="xplan:BP_DenkmalschutzEinzelanlage" table="xplanvalidator.xplan_bp_denkmalschutzeinzelanlage">
     <FIDMapping prefix="XPLAN_BP_DENKMALSCHUTZEINZELANLAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1348,7 +1348,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_DenkmalschutzEnsembleFlaeche" table="xplansynpre.xplan_bp_denkmalschutzensembleflaeche">
+  <FeatureTypeMapping name="xplan:BP_DenkmalschutzEnsembleFlaeche" table="xplanvalidator.xplan_bp_denkmalschutzensembleflaeche">
     <FIDMapping prefix="XPLAN_BP_DENKMALSCHUTZENSEMBLEFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1397,7 +1397,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_EinfahrtPunkt" table="xplansynpre.xplan_bp_einfahrtpunkt">
+  <FeatureTypeMapping name="xplan:BP_EinfahrtPunkt" table="xplanvalidator.xplan_bp_einfahrtpunkt">
     <FIDMapping prefix="XPLAN_BP_EINFAHRTPUNKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1457,7 +1457,7 @@
     <Primitive path="xplan:richtung" mapping="xplan_richtung"/>
     <Primitive path="xplan:richtungUOM" mapping="xplan_richtunguom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_EinfahrtsbereichLinie" table="xplansynpre.xplan_bp_einfahrtsbereichlinie">
+  <FeatureTypeMapping name="xplan:BP_EinfahrtsbereichLinie" table="xplanvalidator.xplan_bp_einfahrtsbereichlinie">
     <FIDMapping prefix="XPLAN_BP_EINFAHRTSBEREICHLINIE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1513,7 +1513,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_EingriffsBereich" table="xplansynpre.xplan_bp_eingriffsbereich">
+  <FeatureTypeMapping name="xplan:BP_EingriffsBereich" table="xplanvalidator.xplan_bp_eingriffsbereich">
     <FIDMapping prefix="XPLAN_BP_EINGRIFFSBEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1568,7 +1568,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_ErhaltungsBereichFlaeche" table="xplansynpre.xplan_bp_erhaltungsbereichflaeche">
+  <FeatureTypeMapping name="xplan:BP_ErhaltungsBereichFlaeche" table="xplanvalidator.xplan_bp_erhaltungsbereichflaeche">
     <FIDMapping prefix="XPLAN_BP_ERHALTUNGSBEREICHFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1625,7 +1625,7 @@
     <Primitive path="xplan:grund" mapping="xplan_grund"/>
     <Primitive path="xplan:grundWert" mapping="xplan_grundwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_ErneuerbareEnergieFlaeche" table="xplansynpre.xplan_bp_erneuerbareenergieflaeche">
+  <FeatureTypeMapping name="xplan:BP_ErneuerbareEnergieFlaeche" table="xplanvalidator.xplan_bp_erneuerbareenergieflaeche">
     <FIDMapping prefix="XPLAN_BP_ERNEUERBAREENERGIEFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1673,7 +1673,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_FestsetzungNachLandesrecht" table="xplansynpre.xplan_bp_festsetzungnachlandesrecht">
+  <FeatureTypeMapping name="xplan:BP_FestsetzungNachLandesrecht" table="xplanvalidator.xplan_bp_festsetzungnachlandesrecht">
     <FIDMapping prefix="XPLAN_BP_FESTSETZUNGNACHLANDESRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1732,7 +1732,7 @@
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
     <Primitive path="xplan:gehoertZuBP_Bereich" mapping="xplan_gehoertzubp_bereich"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_FirstRichtungsLinie" table="xplansynpre.xplan_bp_firstrichtungslinie">
+  <FeatureTypeMapping name="xplan:BP_FirstRichtungsLinie" table="xplanvalidator.xplan_bp_firstrichtungslinie">
     <FIDMapping prefix="XPLAN_BP_FIRSTRICHTUNGSLINIE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1786,7 +1786,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_FlaecheOhneFestsetzung" table="xplansynpre.xplan_bp_flaecheohnefestsetzung">
+  <FeatureTypeMapping name="xplan:BP_FlaecheOhneFestsetzung" table="xplanvalidator.xplan_bp_flaecheohnefestsetzung">
     <FIDMapping prefix="XPLAN_BP_FLAECHEOHNEFESTSETZUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1835,7 +1835,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_FoerderungsFlaeche" table="xplansynpre.xplan_bp_foerderungsflaeche">
+  <FeatureTypeMapping name="xplan:BP_FoerderungsFlaeche" table="xplanvalidator.xplan_bp_foerderungsflaeche">
     <FIDMapping prefix="XPLAN_BP_FOERDERUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1890,7 +1890,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_FreiFlaeche" table="xplansynpre.xplan_bp_freiflaeche">
+  <FeatureTypeMapping name="xplan:BP_FreiFlaeche" table="xplanvalidator.xplan_bp_freiflaeche">
     <FIDMapping prefix="XPLAN_BP_FREIFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -1946,7 +1946,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_GebaeudeFlaeche" table="xplansynpre.xplan_bp_gebaeudeflaeche">
+  <FeatureTypeMapping name="xplan:BP_GebaeudeFlaeche" table="xplanvalidator.xplan_bp_gebaeudeflaeche">
     <FIDMapping prefix="XPLAN_BP_GEBAEUDEFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2001,7 +2001,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_GebaeudeStellung" table="xplansynpre.xplan_bp_gebaeudestellung">
+  <FeatureTypeMapping name="xplan:BP_GebaeudeStellung" table="xplanvalidator.xplan_bp_gebaeudestellung">
     <FIDMapping prefix="XPLAN_BP_GEBAEUDESTELLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2050,7 +2050,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_GemeinbedarfsFlaeche" table="xplansynpre.xplan_bp_gemeinbedarfsflaeche">
+  <FeatureTypeMapping name="xplan:BP_GemeinbedarfsFlaeche" table="xplanvalidator.xplan_bp_gemeinbedarfsflaeche">
     <FIDMapping prefix="XPLAN_BP_GEMEINBEDARFSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2226,7 +2226,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung4" mapping="xplan_weiteredetailzweckbestimmung4"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung4Wert" mapping="xplan_weiteredetailzweckbestimmung4wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_GemeinschaftsanlagenFlaeche" table="xplansynpre.xplan_bp_gemeinschaftsanlagenflaeche">
+  <FeatureTypeMapping name="xplan:BP_GemeinschaftsanlagenFlaeche" table="xplanvalidator.xplan_bp_gemeinschaftsanlagenflaeche">
     <FIDMapping prefix="XPLAN_BP_GEMEINSCHAFTSANLAGENFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2305,7 +2305,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung4" mapping="xplan_weiteredetailzweckbestimmung4"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung4Wert" mapping="xplan_weiteredetailzweckbestimmung4wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_GemeinschaftsanlagenZuordnung" table="xplansynpre.xplan_bp_gemeinschaftsanlagenzuordnung">
+  <FeatureTypeMapping name="xplan:BP_GemeinschaftsanlagenZuordnung" table="xplanvalidator.xplan_bp_gemeinschaftsanlagenzuordnung">
     <FIDMapping prefix="XPLAN_BP_GEMEINSCHAFTSANLAGENZUORDNUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2364,7 +2364,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_GenerischesObjekt" table="xplansynpre.xplan_bp_generischesobjekt">
+  <FeatureTypeMapping name="xplan:BP_GenerischesObjekt" table="xplanvalidator.xplan_bp_generischesobjekt">
     <FIDMapping prefix="XPLAN_BP_GENERISCHESOBJEKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2432,7 +2432,7 @@
     <Primitive path="xplan:weitereZweckbestimmung4" mapping="xplan_weiterezweckbestimmung4"/>
     <Primitive path="xplan:weitereZweckbestimmung4Wert" mapping="xplan_weiterezweckbestimmung4wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_GewaesserFlaeche" table="xplansynpre.xplan_bp_gewaesserflaeche">
+  <FeatureTypeMapping name="xplan:BP_GewaesserFlaeche" table="xplanvalidator.xplan_bp_gewaesserflaeche">
     <FIDMapping prefix="XPLAN_BP_GEWAESSERFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2491,7 +2491,7 @@
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung"/>
     <Primitive path="xplan:detaillierteZweckbestimmungWert" mapping="xplan_detailliertezweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_GruenFlaeche" table="xplansynpre.xplan_bp_gruenflaeche">
+  <FeatureTypeMapping name="xplan:BP_GruenFlaeche" table="xplanvalidator.xplan_bp_gruenflaeche">
     <FIDMapping prefix="XPLAN_BP_GRUENFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2645,7 +2645,7 @@
     <Primitive path="xplan:nutzungsform" mapping="xplan_nutzungsform"/>
     <Primitive path="xplan:nutzungsformWert" mapping="xplan_nutzungsformwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_HoehenMass" table="xplansynpre.xplan_bp_hoehenmass">
+  <FeatureTypeMapping name="xplan:BP_HoehenMass" table="xplanvalidator.xplan_bp_hoehenmass">
     <FIDMapping prefix="XPLAN_BP_HOEHENMASS_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2703,7 +2703,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Immissionsschutz" table="xplansynpre.xplan_bp_immissionsschutz">
+  <FeatureTypeMapping name="xplan:BP_Immissionsschutz" table="xplanvalidator.xplan_bp_immissionsschutz">
     <FIDMapping prefix="XPLAN_BP_IMMISSIONSSCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2774,7 +2774,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_KennzeichnungsFlaeche" table="xplansynpre.xplan_bp_kennzeichnungsflaeche">
+  <FeatureTypeMapping name="xplan:BP_KennzeichnungsFlaeche" table="xplanvalidator.xplan_bp_kennzeichnungsflaeche">
     <FIDMapping prefix="XPLAN_BP_KENNZEICHNUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2835,7 +2835,7 @@
     <Primitive path="xplan:weitereZweckbestimmung" mapping="xplan_weiterezweckbestimmung"/>
     <Primitive path="xplan:weitereZweckbestimmungWert" mapping="xplan_weiterezweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_KleintierhaltungFlaeche" table="xplansynpre.xplan_bp_kleintierhaltungflaeche">
+  <FeatureTypeMapping name="xplan:BP_KleintierhaltungFlaeche" table="xplanvalidator.xplan_bp_kleintierhaltungflaeche">
     <FIDMapping prefix="XPLAN_BP_KLEINTIERHALTUNGFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2890,7 +2890,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Landwirtschaft" table="xplansynpre.xplan_bp_landwirtschaft">
+  <FeatureTypeMapping name="xplan:BP_Landwirtschaft" table="xplanvalidator.xplan_bp_landwirtschaft">
     <FIDMapping prefix="XPLAN_BP_LANDWIRTSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -2964,7 +2964,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung3" mapping="xplan_weiteredetailzweckbestimmung3"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung3Wert" mapping="xplan_weiteredetailzweckbestimmung3wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_LandwirtschaftsFlaeche" table="xplansynpre.xplan_bp_landwirtschaftsflaeche">
+  <FeatureTypeMapping name="xplan:BP_LandwirtschaftsFlaeche" table="xplanvalidator.xplan_bp_landwirtschaftsflaeche">
     <FIDMapping prefix="XPLAN_BP_LANDWIRTSCHAFTSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3019,7 +3019,7 @@
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung"/>
     <Primitive path="xplan:detaillierteZweckbestimmungWert" mapping="xplan_detailliertezweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_LuftreinhalteFlaeche" table="xplansynpre.xplan_bp_luftreinhalteflaeche">
+  <FeatureTypeMapping name="xplan:BP_LuftreinhalteFlaeche" table="xplanvalidator.xplan_bp_luftreinhalteflaeche">
     <FIDMapping prefix="XPLAN_BP_LUFTREINHALTEFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3066,7 +3066,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_NebenanlagenAusschlussFlaeche" table="xplansynpre.xplan_bp_nebenanlagenausschlussflaeche">
+  <FeatureTypeMapping name="xplan:BP_NebenanlagenAusschlussFlaeche" table="xplanvalidator.xplan_bp_nebenanlagenausschlussflaeche">
     <FIDMapping prefix="XPLAN_BP_NEBENANLAGENAUSSCHLUSSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3124,7 +3124,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_NebenanlagenFlaeche" table="xplansynpre.xplan_bp_nebenanlagenflaeche">
+  <FeatureTypeMapping name="xplan:BP_NebenanlagenFlaeche" table="xplanvalidator.xplan_bp_nebenanlagenflaeche">
     <FIDMapping prefix="XPLAN_BP_NEBENANLAGENFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3202,7 +3202,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung4" mapping="xplan_weiteredetailzweckbestimmung4"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung4Wert" mapping="xplan_weiteredetailzweckbestimmung4wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_NichtUeberbaubareGrundstuecksflaeche" table="xplansynpre.xplan_bp_nichtueberbaubaregrundstuecksflaeche">
+  <FeatureTypeMapping name="xplan:BP_NichtUeberbaubareGrundstuecksflaeche" table="xplanvalidator.xplan_bp_nichtueberbaubaregrundstuecksflaeche">
     <FIDMapping prefix="XPLAN_BP_NICHTUEBERBAUBAREGRUNDSTUECKSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3253,7 +3253,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_NutzungsartenGrenze" table="xplansynpre.xplan_bp_nutzungsartengrenze">
+  <FeatureTypeMapping name="xplan:BP_NutzungsartenGrenze" table="xplanvalidator.xplan_bp_nutzungsartengrenze">
     <FIDMapping prefix="XPLAN_BP_NUTZUNGSARTENGRENZE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3311,7 +3311,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_PersGruppenBestimmteFlaeche" table="xplansynpre.xplan_bp_persgruppenbestimmteflaeche">
+  <FeatureTypeMapping name="xplan:BP_PersGruppenBestimmteFlaeche" table="xplanvalidator.xplan_bp_persgruppenbestimmteflaeche">
     <FIDMapping prefix="XPLAN_BP_PERSGRUPPENBESTIMMTEFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3366,7 +3366,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Plan" table="xplansynpre.xplan_bp_plan">
+  <FeatureTypeMapping name="xplan:BP_Plan" table="xplanvalidator.xplan_bp_plan">
     <FIDMapping prefix="XPLAN_BP_PLAN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3464,7 +3464,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_RasterplanAenderung" table="xplansynpre.xplan_bp_rasterplanaenderung">
+  <FeatureTypeMapping name="xplan:BP_RasterplanAenderung" table="xplanvalidator.xplan_bp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_BP_RASTERPLANAENDERUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3499,7 +3499,7 @@
     <Primitive path="xplan:rechtsverordnungsDatum" mapping="xplan_rechtsverordnungsdatum" type="date"/>
     <Primitive path="xplan:inkrafttretensDatum" mapping="xplan_inkrafttretensdatum" type="date"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_RegelungVergnuegungsstaetten" table="xplansynpre.xplan_bp_regelungvergnuegungsstaetten">
+  <FeatureTypeMapping name="xplan:BP_RegelungVergnuegungsstaetten" table="xplanvalidator.xplan_bp_regelungvergnuegungsstaetten">
     <FIDMapping prefix="XPLAN_BP_REGELUNGVERGNUEGUNGSSTAETTEN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3556,7 +3556,7 @@
     <Primitive path="xplan:zulaessigkeit" mapping="xplan_zulaessigkeit"/>
     <Primitive path="xplan:zulaessigkeitWert" mapping="xplan_zulaessigkeitwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_RekultivierungsFlaeche" table="xplansynpre.xplan_bp_rekultivierungsflaeche">
+  <FeatureTypeMapping name="xplan:BP_RekultivierungsFlaeche" table="xplanvalidator.xplan_bp_rekultivierungsflaeche">
     <FIDMapping prefix="XPLAN_BP_REKULTIVIERUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3611,7 +3611,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_RichtungssektorGrenze" table="xplansynpre.xplan_bp_richtungssektorgrenze">
+  <FeatureTypeMapping name="xplan:BP_RichtungssektorGrenze" table="xplanvalidator.xplan_bp_richtungssektorgrenze">
     <FIDMapping prefix="XPLAN_BP_RICHTUNGSSEKTORGRENZE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3661,7 +3661,7 @@
     <Primitive path="xplan:winkel" mapping="xplan_winkel"/>
     <Primitive path="xplan:winkelUOM" mapping="xplan_winkeluom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_SchutzPflegeEntwicklungsFlaeche" table="xplansynpre.xplan_bp_schutzpflegeentwicklungsflaeche">
+  <FeatureTypeMapping name="xplan:BP_SchutzPflegeEntwicklungsFlaeche" table="xplanvalidator.xplan_bp_schutzpflegeentwicklungsflaeche">
     <FIDMapping prefix="XPLAN_BP_SCHUTZPFLEGEENTWICKLUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3725,7 +3725,7 @@
     <Primitive path="xplan:ziel" mapping="xplan_ziel"/>
     <Primitive path="xplan:zielWert" mapping="xplan_zielwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_SchutzPflegeEntwicklungsMassnahme" table="xplansynpre.xplan_bp_schutzpflegeentwicklungsmassnahme">
+  <FeatureTypeMapping name="xplan:BP_SchutzPflegeEntwicklungsMassnahme" table="xplanvalidator.xplan_bp_schutzpflegeentwicklungsmassnahme">
     <FIDMapping prefix="XPLAN_BP_SCHUTZPFLEGEENTWICKLUNGSMASSNAHME_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3792,7 +3792,7 @@
     <Primitive path="xplan:ziel" mapping="xplan_ziel"/>
     <Primitive path="xplan:zielWert" mapping="xplan_zielwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Schutzgebiet" table="xplansynpre.xplan_bp_schutzgebiet">
+  <FeatureTypeMapping name="xplan:BP_Schutzgebiet" table="xplanvalidator.xplan_bp_schutzgebiet">
     <FIDMapping prefix="XPLAN_BP_SCHUTZGEBIET_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3843,7 +3843,7 @@
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung"/>
     <Primitive path="xplan:detaillierteZweckbestimmungWert" mapping="xplan_detailliertezweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Sichtflaeche" table="xplansynpre.xplan_bp_sichtflaeche">
+  <FeatureTypeMapping name="xplan:BP_Sichtflaeche" table="xplanvalidator.xplan_bp_sichtflaeche">
     <FIDMapping prefix="XPLAN_BP_SICHTFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3899,7 +3899,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_SpezielleBauweise" table="xplansynpre.xplan_bp_speziellebauweise">
+  <FeatureTypeMapping name="xplan:BP_SpezielleBauweise" table="xplanvalidator.xplan_bp_speziellebauweise">
     <FIDMapping prefix="XPLAN_BP_SPEZIELLEBAUWEISE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -3967,7 +3967,7 @@
     <Primitive path="xplan:Tmax" mapping="xplan_tmax"/>
     <Primitive path="xplan:TmaxUOM" mapping="xplan_tmaxuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_SpielSportanlagenFlaeche" table="xplansynpre.xplan_bp_spielsportanlagenflaeche">
+  <FeatureTypeMapping name="xplan:BP_SpielSportanlagenFlaeche" table="xplanvalidator.xplan_bp_spielsportanlagenflaeche">
     <FIDMapping prefix="XPLAN_BP_SPIELSPORTANLAGENFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4097,7 +4097,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung1" mapping="xplan_weiteredetailzweckbestimmung1"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung1Wert" mapping="xplan_weiteredetailzweckbestimmung1wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_StrassenVerkehrsFlaeche" table="xplansynpre.xplan_bp_strassenverkehrsflaeche">
+  <FeatureTypeMapping name="xplan:BP_StrassenVerkehrsFlaeche" table="xplanvalidator.xplan_bp_strassenverkehrsflaeche">
     <FIDMapping prefix="XPLAN_BP_STRASSENVERKEHRSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4218,7 +4218,7 @@
     <Primitive path="xplan:nutzungsform" mapping="xplan_nutzungsform"/>
     <Primitive path="xplan:nutzungsformWert" mapping="xplan_nutzungsformwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_StrassenbegrenzungsLinie" table="xplansynpre.xplan_bp_strassenbegrenzungslinie">
+  <FeatureTypeMapping name="xplan:BP_StrassenbegrenzungsLinie" table="xplanvalidator.xplan_bp_strassenbegrenzungslinie">
     <FIDMapping prefix="XPLAN_BP_STRASSENBEGRENZUNGSLINIE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4274,7 +4274,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Strassenkoerper" table="xplansynpre.xplan_bp_strassenkoerper">
+  <FeatureTypeMapping name="xplan:BP_Strassenkoerper" table="xplanvalidator.xplan_bp_strassenkoerper">
     <FIDMapping prefix="XPLAN_BP_STRASSENKOERPER_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4334,7 +4334,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_TechnischeMassnahmenFlaeche" table="xplansynpre.xplan_bp_technischemassnahmenflaeche">
+  <FeatureTypeMapping name="xplan:BP_TechnischeMassnahmenFlaeche" table="xplanvalidator.xplan_bp_technischemassnahmenflaeche">
     <FIDMapping prefix="XPLAN_BP_TECHNISCHEMASSNAHMENFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4386,7 +4386,7 @@
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung"/>
     <Primitive path="xplan:zweckbestimmungWert" mapping="xplan_zweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_TextAbschnitt" table="xplansynpre.xplan_bp_textabschnitt">
+  <FeatureTypeMapping name="xplan:BP_TextAbschnitt" table="xplanvalidator.xplan_bp_textabschnitt">
     <FIDMapping prefix="XPLAN_BP_TEXTABSCHNITT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4408,7 +4408,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_TextAbschnittFlaeche" table="xplansynpre.xplan_bp_textabschnittflaeche">
+  <FeatureTypeMapping name="xplan:BP_TextAbschnittFlaeche" table="xplanvalidator.xplan_bp_textabschnittflaeche">
     <FIDMapping prefix="XPLAN_BP_TEXTABSCHNITTFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4456,7 +4456,7 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_TextlicheFestsetzungsFlaeche" table="xplansynpre.xplan_bp_textlichefestsetzungsflaeche">
+  <FeatureTypeMapping name="xplan:BP_TextlicheFestsetzungsFlaeche" table="xplanvalidator.xplan_bp_textlichefestsetzungsflaeche">
     <FIDMapping prefix="XPLAN_BP_TEXTLICHEFESTSETZUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4511,7 +4511,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_UeberbaubareGrundstuecksFlaeche" table="xplansynpre.xplan_bp_ueberbaubaregrundstuecksflaeche">
+  <FeatureTypeMapping name="xplan:BP_UeberbaubareGrundstuecksFlaeche" table="xplanvalidator.xplan_bp_ueberbaubaregrundstuecksflaeche">
     <FIDMapping prefix="XPLAN_BP_UEBERBAUBAREGRUNDSTUECKSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4677,7 +4677,7 @@
     <Primitive path="xplan:GR_Ausn" mapping="xplan_gr_ausn"/>
     <Primitive path="xplan:GR_AusnUOM" mapping="xplan_gr_ausnuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_UnverbindlicheVormerkung" table="xplansynpre.xplan_bp_unverbindlichevormerkung">
+  <FeatureTypeMapping name="xplan:BP_UnverbindlicheVormerkung" table="xplanvalidator.xplan_bp_unverbindlichevormerkung">
     <FIDMapping prefix="XPLAN_BP_UNVERBINDLICHEVORMERKUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4736,7 +4736,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_VerEntsorgung" table="xplansynpre.xplan_bp_verentsorgung">
+  <FeatureTypeMapping name="xplan:BP_VerEntsorgung" table="xplanvalidator.xplan_bp_verentsorgung">
     <FIDMapping prefix="XPLAN_BP_VERENTSORGUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4886,7 +4886,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung3" mapping="xplan_weiteredetailzweckbestimmung3"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung3Wert" mapping="xplan_weiteredetailzweckbestimmung3wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Veraenderungssperre" table="xplansynpre.xplan_bp_veraenderungssperre">
+  <FeatureTypeMapping name="xplan:BP_Veraenderungssperre" table="xplanvalidator.xplan_bp_veraenderungssperre">
     <FIDMapping prefix="XPLAN_BP_VERAENDERUNGSSPERRE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -4948,7 +4948,7 @@
     <Primitive path="xplan:verlaengerung" mapping="xplan_verlaengerung"/>
     <Primitive path="xplan:verlaengerungWert" mapping="xplan_verlaengerungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_VerkehrsflaecheBesondererZweckbestimmung" table="xplansynpre.xplan_bp_verkehrsflaechebesondererzweckbestimmung">
+  <FeatureTypeMapping name="xplan:BP_VerkehrsflaecheBesondererZweckbestimmung" table="xplanvalidator.xplan_bp_verkehrsflaechebesondererzweckbestimmung">
     <FIDMapping prefix="XPLAN_BP_VERKEHRSFLAECHEBESONDERERZWECKBESTIMMUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5077,7 +5077,7 @@
     <Primitive path="xplan:nutzungsform" mapping="xplan_nutzungsform"/>
     <Primitive path="xplan:nutzungsformWert" mapping="xplan_nutzungsformwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_WaldFlaeche" table="xplansynpre.xplan_bp_waldflaeche">
+  <FeatureTypeMapping name="xplan:BP_WaldFlaeche" table="xplanvalidator.xplan_bp_waldflaeche">
     <FIDMapping prefix="XPLAN_BP_WALDFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5150,7 +5150,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung2" mapping="xplan_weiteredetailzweckbestimmung2"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung2Wert" mapping="xplan_weiteredetailzweckbestimmung2wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_WasserwirtschaftsFlaeche" table="xplansynpre.xplan_bp_wasserwirtschaftsflaeche">
+  <FeatureTypeMapping name="xplan:BP_WasserwirtschaftsFlaeche" table="xplanvalidator.xplan_bp_wasserwirtschaftsflaeche">
     <FIDMapping prefix="XPLAN_BP_WASSERWIRTSCHAFTSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5209,7 +5209,7 @@
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung"/>
     <Primitive path="xplan:detaillierteZweckbestimmungWert" mapping="xplan_detailliertezweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_Wegerecht" table="xplansynpre.xplan_bp_wegerecht">
+  <FeatureTypeMapping name="xplan:BP_Wegerecht" table="xplanvalidator.xplan_bp_wegerecht">
     <FIDMapping prefix="XPLAN_BP_WEGERECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5274,7 +5274,7 @@
     <Primitive path="xplan:breite" mapping="xplan_breite"/>
     <Primitive path="xplan:breiteUOM" mapping="xplan_breiteuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_WohngebaeudeFlaeche" table="xplansynpre.xplan_bp_wohngebaeudeflaeche">
+  <FeatureTypeMapping name="xplan:BP_WohngebaeudeFlaeche" table="xplanvalidator.xplan_bp_wohngebaeudeflaeche">
     <FIDMapping prefix="XPLAN_BP_WOHNGEBAEUDEFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5430,7 +5430,7 @@
     <Primitive path="xplan:bebauungSeitlicheGrenze" mapping="xplan_bebauungseitlichegrenze"/>
     <Primitive path="xplan:bebauungSeitlicheGrenzeWert" mapping="xplan_bebauungseitlichegrenzewert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_ZentralerVersorgungsbereich" table="xplansynpre.xplan_bp_zentralerversorgungsbereich">
+  <FeatureTypeMapping name="xplan:BP_ZentralerVersorgungsbereich" table="xplanvalidator.xplan_bp_zentralerversorgungsbereich">
     <FIDMapping prefix="XPLAN_BP_ZENTRALERVERSORGUNGSBEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5479,7 +5479,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_ZusatzkontingentLaerm" table="xplansynpre.xplan_bp_zusatzkontingentlaerm">
+  <FeatureTypeMapping name="xplan:BP_ZusatzkontingentLaerm" table="xplanvalidator.xplan_bp_zusatzkontingentlaerm">
     <FIDMapping prefix="XPLAN_BP_ZUSATZKONTINGENTLAERM_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5531,7 +5531,7 @@
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkeluom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:BP_ZusatzkontingentLaermFlaeche" table="xplansynpre.xplan_bp_zusatzkontingentlaermflaeche">
+  <FeatureTypeMapping name="xplan:BP_ZusatzkontingentLaermFlaeche" table="xplanvalidator.xplan_bp_zusatzkontingentlaermflaeche">
     <FIDMapping prefix="XPLAN_BP_ZUSATZKONTINGENTLAERMFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5582,7 +5582,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Abgrabung" table="xplansynpre.xplan_fp_abgrabung">
+  <FeatureTypeMapping name="xplan:FP_Abgrabung" table="xplanvalidator.xplan_fp_abgrabung">
     <FIDMapping prefix="XPLAN_FP_ABGRABUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5636,7 +5636,7 @@
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_AbgrabungsFlaeche" table="xplansynpre.xplan_fp_abgrabungsflaeche">
+  <FeatureTypeMapping name="xplan:FP_AbgrabungsFlaeche" table="xplanvalidator.xplan_fp_abgrabungsflaeche">
     <FIDMapping prefix="XPLAN_FP_ABGRABUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5680,7 +5680,7 @@
     <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung"/>
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_AnpassungKlimawandel" table="xplansynpre.xplan_fp_anpassungklimawandel">
+  <FeatureTypeMapping name="xplan:FP_AnpassungKlimawandel" table="xplanvalidator.xplan_fp_anpassungklimawandel">
     <FIDMapping prefix="XPLAN_FP_ANPASSUNGKLIMAWANDEL_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5737,7 +5737,7 @@
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Aufschuettung" table="xplansynpre.xplan_fp_aufschuettung">
+  <FeatureTypeMapping name="xplan:FP_Aufschuettung" table="xplanvalidator.xplan_fp_aufschuettung">
     <FIDMapping prefix="XPLAN_FP_AUFSCHUETTUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5791,7 +5791,7 @@
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_AufschuettungsFlaeche" table="xplansynpre.xplan_fp_aufschuettungsflaeche">
+  <FeatureTypeMapping name="xplan:FP_AufschuettungsFlaeche" table="xplanvalidator.xplan_fp_aufschuettungsflaeche">
     <FIDMapping prefix="XPLAN_FP_AUFSCHUETTUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5835,7 +5835,7 @@
     <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung"/>
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_AusgleichsFlaeche" table="xplansynpre.xplan_fp_ausgleichsflaeche">
+  <FeatureTypeMapping name="xplan:FP_AusgleichsFlaeche" table="xplanvalidator.xplan_fp_ausgleichsflaeche">
     <FIDMapping prefix="XPLAN_FP_AUSGLEICHSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5893,7 +5893,7 @@
     <Primitive path="xplan:ziel" mapping="xplan_ziel"/>
     <Primitive path="xplan:zielWert" mapping="xplan_zielwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_BebauungsFlaeche" table="xplansynpre.xplan_fp_bebauungsflaeche">
+  <FeatureTypeMapping name="xplan:FP_BebauungsFlaeche" table="xplanvalidator.xplan_fp_bebauungsflaeche">
     <FIDMapping prefix="XPLAN_FP_BEBAUUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -5962,7 +5962,7 @@
     <Primitive path="xplan:detaillierteArtDerBaulNutzung" mapping="xplan_detaillierteartderbaulnutzung"/>
     <Primitive path="xplan:detaillierteArtDerBaulNutzungWert" mapping="xplan_detaillierteartderbaulnutzungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Bereich" table="xplansynpre.xplan_fp_bereich">
+  <FeatureTypeMapping name="xplan:FP_Bereich" table="xplanvalidator.xplan_fp_bereich">
     <FIDMapping prefix="XPLAN_FP_BEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6007,7 +6007,7 @@
     <Primitive path="xplan:versionBauNVO" mapping="xplan_versionbaunvo"/>
     <Primitive path="xplan:versionBauNVOWert" mapping="xplan_versionbaunvowert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Bodenschaetze" table="xplansynpre.xplan_fp_bodenschaetze">
+  <FeatureTypeMapping name="xplan:FP_Bodenschaetze" table="xplanvalidator.xplan_fp_bodenschaetze">
     <FIDMapping prefix="XPLAN_FP_BODENSCHAETZE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6061,7 +6061,7 @@
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
     <Primitive path="xplan:gehoertZuFP_Bereich" mapping="xplan_gehoertzufp_bereich"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_BodenschaetzeFlaeche" table="xplansynpre.xplan_fp_bodenschaetzeflaeche">
+  <FeatureTypeMapping name="xplan:FP_BodenschaetzeFlaeche" table="xplanvalidator.xplan_fp_bodenschaetzeflaeche">
     <FIDMapping prefix="XPLAN_FP_BODENSCHAETZEFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6106,7 +6106,7 @@
     <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung"/>
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_DarstellungNachLandesrecht" table="xplansynpre.xplan_fp_darstellungnachlandesrecht">
+  <FeatureTypeMapping name="xplan:FP_DarstellungNachLandesrecht" table="xplanvalidator.xplan_fp_darstellungnachlandesrecht">
     <FIDMapping prefix="XPLAN_FP_DARSTELLUNGNACHLANDESRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6156,7 +6156,7 @@
     <Primitive path="xplan:detailZweckbestimmung" mapping="xplan_detailzweckbestimmung"/>
     <Primitive path="xplan:detailZweckbestimmungWert" mapping="xplan_detailzweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_FlaecheOhneDarstellung" table="xplansynpre.xplan_fp_flaecheohnedarstellung">
+  <FeatureTypeMapping name="xplan:FP_FlaecheOhneDarstellung" table="xplanvalidator.xplan_fp_flaecheohnedarstellung">
     <FIDMapping prefix="XPLAN_FP_FLAECHEOHNEDARSTELLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6200,7 +6200,7 @@
     <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung"/>
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Gemeinbedarf" table="xplansynpre.xplan_fp_gemeinbedarf">
+  <FeatureTypeMapping name="xplan:FP_Gemeinbedarf" table="xplanvalidator.xplan_fp_gemeinbedarf">
     <FIDMapping prefix="XPLAN_FP_GEMEINBEDARF_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6294,7 +6294,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung5" mapping="xplan_weiteredetailzweckbestimmung5"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung5Wert" mapping="xplan_weiteredetailzweckbestimmung5wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_GenerischesObjekt" table="xplansynpre.xplan_fp_generischesobjekt">
+  <FeatureTypeMapping name="xplan:FP_GenerischesObjekt" table="xplanvalidator.xplan_fp_generischesobjekt">
     <FIDMapping prefix="XPLAN_FP_GENERISCHESOBJEKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6355,7 +6355,7 @@
     <Primitive path="xplan:weitereZweckbestimmung3" mapping="xplan_weiterezweckbestimmung3"/>
     <Primitive path="xplan:weitereZweckbestimmung3Wert" mapping="xplan_weiterezweckbestimmung3wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Gewaesser" table="xplansynpre.xplan_fp_gewaesser">
+  <FeatureTypeMapping name="xplan:FP_Gewaesser" table="xplanvalidator.xplan_fp_gewaesser">
     <FIDMapping prefix="XPLAN_FP_GEWAESSER_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6412,7 +6412,7 @@
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung"/>
     <Primitive path="xplan:detaillierteZweckbestimmungWert" mapping="xplan_detailliertezweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Gruen" table="xplansynpre.xplan_fp_gruen">
+  <FeatureTypeMapping name="xplan:FP_Gruen" table="xplanvalidator.xplan_fp_gruen">
     <FIDMapping prefix="XPLAN_FP_GRUEN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6506,7 +6506,7 @@
     <Primitive path="xplan:nutzungsform" mapping="xplan_nutzungsform"/>
     <Primitive path="xplan:nutzungsformWert" mapping="xplan_nutzungsformwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_KeineZentrAbwasserBeseitigungFlaeche" table="xplansynpre.xplan_fp_keinezentrabwasserbeseitigungflaeche">
+  <FeatureTypeMapping name="xplan:FP_KeineZentrAbwasserBeseitigungFlaeche" table="xplanvalidator.xplan_fp_keinezentrabwasserbeseitigungflaeche">
     <FIDMapping prefix="XPLAN_FP_KEINEZENTRABWASSERBESEITIGUNGFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6556,7 +6556,7 @@
     <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung"/>
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Kennzeichnung" table="xplansynpre.xplan_fp_kennzeichnung">
+  <FeatureTypeMapping name="xplan:FP_Kennzeichnung" table="xplanvalidator.xplan_fp_kennzeichnung">
     <FIDMapping prefix="XPLAN_FP_KENNZEICHNUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6615,7 +6615,7 @@
     <Primitive path="xplan:weitereZweckbestimmung1" mapping="xplan_weiterezweckbestimmung1"/>
     <Primitive path="xplan:weitereZweckbestimmung1Wert" mapping="xplan_weiterezweckbestimmung1wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Landwirtschaft" table="xplansynpre.xplan_fp_landwirtschaft">
+  <FeatureTypeMapping name="xplan:FP_Landwirtschaft" table="xplanvalidator.xplan_fp_landwirtschaft">
     <FIDMapping prefix="XPLAN_FP_LANDWIRTSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6668,7 +6668,7 @@
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung"/>
     <Primitive path="xplan:detaillierteZweckbestimmungWert" mapping="xplan_detailliertezweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_LandwirtschaftsFlaeche" table="xplansynpre.xplan_fp_landwirtschaftsflaeche">
+  <FeatureTypeMapping name="xplan:FP_LandwirtschaftsFlaeche" table="xplanvalidator.xplan_fp_landwirtschaftsflaeche">
     <FIDMapping prefix="XPLAN_FP_LANDWIRTSCHAFTSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6734,7 +6734,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung3" mapping="xplan_weiteredetailzweckbestimmung3"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung3Wert" mapping="xplan_weiteredetailzweckbestimmung3wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Nutzungsbeschraenkung" table="xplansynpre.xplan_fp_nutzungsbeschraenkung">
+  <FeatureTypeMapping name="xplan:FP_Nutzungsbeschraenkung" table="xplanvalidator.xplan_fp_nutzungsbeschraenkung">
     <FIDMapping prefix="XPLAN_FP_NUTZUNGSBESCHRAENKUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6787,7 +6787,7 @@
     <Primitive path="xplan:detaillierteTechnVorkehrung" mapping="xplan_detailliertetechnvorkehrung"/>
     <Primitive path="xplan:detaillierteTechnVorkehrungWert" mapping="xplan_detailliertetechnvorkehrungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_NutzungsbeschraenkungsFlaeche" table="xplansynpre.xplan_fp_nutzungsbeschraenkungsflaeche">
+  <FeatureTypeMapping name="xplan:FP_NutzungsbeschraenkungsFlaeche" table="xplanvalidator.xplan_fp_nutzungsbeschraenkungsflaeche">
     <FIDMapping prefix="XPLAN_FP_NUTZUNGSBESCHRAENKUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6837,7 +6837,7 @@
     <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung"/>
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Plan" table="xplansynpre.xplan_fp_plan">
+  <FeatureTypeMapping name="xplan:FP_Plan" table="xplanvalidator.xplan_fp_plan">
     <FIDMapping prefix="XPLAN_FP_PLAN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6921,7 +6921,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_PrivilegiertesVorhaben" table="xplansynpre.xplan_fp_privilegiertesvorhaben">
+  <FeatureTypeMapping name="xplan:FP_PrivilegiertesVorhaben" table="xplanvalidator.xplan_fp_privilegiertesvorhaben">
     <FIDMapping prefix="XPLAN_FP_PRIVILEGIERTESVORHABEN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -6987,7 +6987,7 @@
     <Primitive path="xplan:weitereBesondZweckbestimmung2" mapping="xplan_weiterebesondzweckbestimmung2"/>
     <Primitive path="xplan:weitereBesondZweckbestimmung2Wert" mapping="xplan_weiterebesondzweckbestimmung2wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_RasterplanAenderung" table="xplansynpre.xplan_fp_rasterplanaenderung">
+  <FeatureTypeMapping name="xplan:FP_RasterplanAenderung" table="xplanvalidator.xplan_fp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_FP_RASTERPLANAENDERUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7022,7 +7022,7 @@
     <Primitive path="xplan:planbeschlussDatum" mapping="xplan_planbeschlussdatum" type="date"/>
     <Primitive path="xplan:wirksamkeitsDatum" mapping="xplan_wirksamkeitsdatum" type="date"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_SchutzPflegeEntwicklung" table="xplansynpre.xplan_fp_schutzpflegeentwicklung">
+  <FeatureTypeMapping name="xplan:FP_SchutzPflegeEntwicklung" table="xplanvalidator.xplan_fp_schutzpflegeentwicklung">
     <FIDMapping prefix="XPLAN_FP_SCHUTZPFLEGEENTWICKLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7082,7 +7082,7 @@
     <Primitive path="xplan:ziel" mapping="xplan_ziel"/>
     <Primitive path="xplan:zielWert" mapping="xplan_zielwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_SpielSportanlage" table="xplansynpre.xplan_fp_spielsportanlage">
+  <FeatureTypeMapping name="xplan:FP_SpielSportanlage" table="xplanvalidator.xplan_fp_spielsportanlage">
     <FIDMapping prefix="XPLAN_FP_SPIELSPORTANLAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7146,7 +7146,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung1" mapping="xplan_weiteredetailzweckbestimmung1"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung1Wert" mapping="xplan_weiteredetailzweckbestimmung1wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Strassenverkehr" table="xplansynpre.xplan_fp_strassenverkehr">
+  <FeatureTypeMapping name="xplan:FP_Strassenverkehr" table="xplanvalidator.xplan_fp_strassenverkehr">
     <FIDMapping prefix="XPLAN_FP_STRASSENVERKEHR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7207,7 +7207,7 @@
     <Primitive path="xplan:nutzungsform" mapping="xplan_nutzungsform"/>
     <Primitive path="xplan:nutzungsformWert" mapping="xplan_nutzungsformwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_TextAbschnitt" table="xplansynpre.xplan_fp_textabschnitt">
+  <FeatureTypeMapping name="xplan:FP_TextAbschnitt" table="xplanvalidator.xplan_fp_textabschnitt">
     <FIDMapping prefix="XPLAN_FP_TEXTABSCHNITT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7229,7 +7229,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_TextAbschnittFlaeche" table="xplansynpre.xplan_fp_textabschnittflaeche">
+  <FeatureTypeMapping name="xplan:FP_TextAbschnittFlaeche" table="xplanvalidator.xplan_fp_textabschnittflaeche">
     <FIDMapping prefix="XPLAN_FP_TEXTABSCHNITTFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7272,7 +7272,7 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_TextlicheDarstellungsFlaeche" table="xplansynpre.xplan_fp_textlichedarstellungsflaeche">
+  <FeatureTypeMapping name="xplan:FP_TextlicheDarstellungsFlaeche" table="xplanvalidator.xplan_fp_textlichedarstellungsflaeche">
     <FIDMapping prefix="XPLAN_FP_TEXTLICHEDARSTELLUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7322,7 +7322,7 @@
     <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung"/>
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_UnverbindlicheVormerkung" table="xplansynpre.xplan_fp_unverbindlichevormerkung">
+  <FeatureTypeMapping name="xplan:FP_UnverbindlicheVormerkung" table="xplanvalidator.xplan_fp_unverbindlichevormerkung">
     <FIDMapping prefix="XPLAN_FP_UNVERBINDLICHEVORMERKUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7376,7 +7376,7 @@
     <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung"/>
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_VerEntsorgung" table="xplansynpre.xplan_fp_verentsorgung">
+  <FeatureTypeMapping name="xplan:FP_VerEntsorgung" table="xplanvalidator.xplan_fp_verentsorgung">
     <FIDMapping prefix="XPLAN_FP_VERENTSORGUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7457,7 +7457,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung3" mapping="xplan_weiteredetailzweckbestimmung3"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung3Wert" mapping="xplan_weiteredetailzweckbestimmung3wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_VorbehalteFlaeche" table="xplansynpre.xplan_fp_vorbehalteflaeche">
+  <FeatureTypeMapping name="xplan:FP_VorbehalteFlaeche" table="xplanvalidator.xplan_fp_vorbehalteflaeche">
     <FIDMapping prefix="XPLAN_FP_VORBEHALTEFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7508,7 +7508,7 @@
     <Primitive path="xplan:spezifischePraegung" mapping="xplan_spezifischepraegung"/>
     <Primitive path="xplan:spezifischePraegungWert" mapping="xplan_spezifischepraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_WaldFlaeche" table="xplansynpre.xplan_fp_waldflaeche">
+  <FeatureTypeMapping name="xplan:FP_WaldFlaeche" table="xplanvalidator.xplan_fp_waldflaeche">
     <FIDMapping prefix="XPLAN_FP_WALDFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7576,7 +7576,7 @@
     <Primitive path="xplan:weitereDetailZweckbestimmung2" mapping="xplan_weiteredetailzweckbestimmung2"/>
     <Primitive path="xplan:weitereDetailZweckbestimmung2Wert" mapping="xplan_weiteredetailzweckbestimmung2wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_Wasserwirtschaft" table="xplansynpre.xplan_fp_wasserwirtschaft">
+  <FeatureTypeMapping name="xplan:FP_Wasserwirtschaft" table="xplanvalidator.xplan_fp_wasserwirtschaft">
     <FIDMapping prefix="XPLAN_FP_WASSERWIRTSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7633,7 +7633,7 @@
     <Primitive path="xplan:detaillierteZweckbestimmung" mapping="xplan_detailliertezweckbestimmung"/>
     <Primitive path="xplan:detaillierteZweckbestimmungWert" mapping="xplan_detailliertezweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:FP_ZentralerVersorgungsbereich" table="xplansynpre.xplan_fp_zentralerversorgungsbereich">
+  <FeatureTypeMapping name="xplan:FP_ZentralerVersorgungsbereich" table="xplanvalidator.xplan_fp_zentralerversorgungsbereich">
     <FIDMapping prefix="XPLAN_FP_ZENTRALERVERSORGUNGSBEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7685,7 +7685,7 @@
     <Primitive path="xplan:auspraegung" mapping="xplan_auspraegung"/>
     <Primitive path="xplan:auspraegungWert" mapping="xplan_auspraegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Abgrenzung" table="xplansynpre.xplan_lp_abgrenzung">
+  <FeatureTypeMapping name="xplan:LP_Abgrenzung" table="xplanvalidator.xplan_lp_abgrenzung">
     <FIDMapping prefix="XPLAN_LP_ABGRENZUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7732,7 +7732,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_AllgGruenflaeche" table="xplansynpre.xplan_lp_allggruenflaeche">
+  <FeatureTypeMapping name="xplan:LP_AllgGruenflaeche" table="xplanvalidator.xplan_lp_allggruenflaeche">
     <FIDMapping prefix="XPLAN_LP_ALLGGRUENFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7779,7 +7779,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_AnpflanzungBindungErhaltung" table="xplansynpre.xplan_lp_anpflanzungbindungerhaltung">
+  <FeatureTypeMapping name="xplan:LP_AnpflanzungBindungErhaltung" table="xplanvalidator.xplan_lp_anpflanzungbindungerhaltung">
     <FIDMapping prefix="XPLAN_LP_ANPFLANZUNGBINDUNGERHALTUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7843,7 +7843,7 @@
     <Primitive path="xplan:mindesthoehe" mapping="xplan_mindesthoehe"/>
     <Primitive path="xplan:mindesthoeheUOM" mapping="xplan_mindesthoeheuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Ausgleich" table="xplansynpre.xplan_lp_ausgleich">
+  <FeatureTypeMapping name="xplan:LP_Ausgleich" table="xplanvalidator.xplan_lp_ausgleich">
     <FIDMapping prefix="XPLAN_LP_AUSGLEICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7897,7 +7897,7 @@
     <Primitive path="xplan:ziel" mapping="xplan_ziel"/>
     <Primitive path="xplan:zielWert" mapping="xplan_zielwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Bereich" table="xplansynpre.xplan_lp_bereich">
+  <FeatureTypeMapping name="xplan:LP_Bereich" table="xplanvalidator.xplan_lp_bereich">
     <FIDMapping prefix="XPLAN_LP_BEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7933,7 +7933,7 @@
     <Primitive path="xplan:bedeutung" mapping="xplan_bedeutung"/>
     <Primitive path="xplan:bedeutungWert" mapping="xplan_bedeutungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_BiotopverbundBiotopvernetzung" table="xplansynpre.xplan_lp_biotopverbundbiotopvernetzung">
+  <FeatureTypeMapping name="xplan:LP_BiotopverbundBiotopvernetzung" table="xplanvalidator.xplan_lp_biotopverbundbiotopvernetzung">
     <FIDMapping prefix="XPLAN_LP_BIOTOPVERBUNDBIOTOPVERNETZUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -7992,7 +7992,7 @@
     <Primitive path="xplan:bioVerbundsystemText" mapping="xplan_bioverbundsystemtext"/>
     <Primitive path="xplan:foerdermoeglichkeit" mapping="xplan_foerdermoeglichkeit"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Biotopverbundflaeche" table="xplansynpre.xplan_lp_biotopverbundflaeche">
+  <FeatureTypeMapping name="xplan:LP_Biotopverbundflaeche" table="xplanvalidator.xplan_lp_biotopverbundflaeche">
     <FIDMapping prefix="XPLAN_LP_BIOTOPVERBUNDFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8042,7 +8042,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Bodenschutzrecht" table="xplansynpre.xplan_lp_bodenschutzrecht">
+  <FeatureTypeMapping name="xplan:LP_Bodenschutzrecht" table="xplanvalidator.xplan_lp_bodenschutzrecht">
     <FIDMapping prefix="XPLAN_LP_BODENSCHUTZRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8096,7 +8096,7 @@
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp"/>
     <Primitive path="xplan:detailTypWert" mapping="xplan_detailtypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Denkmalschutzrecht" table="xplansynpre.xplan_lp_denkmalschutzrecht">
+  <FeatureTypeMapping name="xplan:LP_Denkmalschutzrecht" table="xplanvalidator.xplan_lp_denkmalschutzrecht">
     <FIDMapping prefix="XPLAN_LP_DENKMALSCHUTZRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8138,7 +8138,7 @@
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp"/>
     <Primitive path="xplan:detailTypWert" mapping="xplan_detailtypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Eingriffsregelung" table="xplansynpre.xplan_lp_eingriffsregelung">
+  <FeatureTypeMapping name="xplan:LP_Eingriffsregelung" table="xplanvalidator.xplan_lp_eingriffsregelung">
     <FIDMapping prefix="XPLAN_LP_EINGRIFFSREGELUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8191,7 +8191,7 @@
     <Primitive path="xplan:massnahmentypWert" mapping="xplan_massnahmentypwert"/>
     <Primitive path="xplan:kompensationText" mapping="xplan_kompensationtext"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_ErholungFreizeit" table="xplansynpre.xplan_lp_erholungfreizeit">
+  <FeatureTypeMapping name="xplan:LP_ErholungFreizeit" table="xplanvalidator.xplan_lp_erholungfreizeit">
     <FIDMapping prefix="XPLAN_LP_ERHOLUNGFREIZEIT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8253,7 +8253,7 @@
     <Primitive path="xplan:weitereDetailFunktion2" mapping="xplan_weiteredetailfunktion2"/>
     <Primitive path="xplan:weitereDetailFunktion2Wert" mapping="xplan_weiteredetailfunktion2wert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Forstrecht" table="xplansynpre.xplan_lp_forstrecht">
+  <FeatureTypeMapping name="xplan:LP_Forstrecht" table="xplanvalidator.xplan_lp_forstrecht">
     <FIDMapping prefix="XPLAN_LP_FORSTRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8307,7 +8307,7 @@
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp"/>
     <Primitive path="xplan:detailTypWert" mapping="xplan_detailtypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_GenerischesObjekt" table="xplansynpre.xplan_lp_generischesobjekt">
+  <FeatureTypeMapping name="xplan:LP_GenerischesObjekt" table="xplanvalidator.xplan_lp_generischesobjekt">
     <FIDMapping prefix="XPLAN_LP_GENERISCHESOBJEKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8366,7 +8366,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Landschaftsbild" table="xplansynpre.xplan_lp_landschaftsbild">
+  <FeatureTypeMapping name="xplan:LP_Landschaftsbild" table="xplanvalidator.xplan_lp_landschaftsbild">
     <FIDMapping prefix="XPLAN_LP_LANDSCHAFTSBILD_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8418,7 +8418,7 @@
     <Primitive path="xplan:massnahme" mapping="xplan_massnahme"/>
     <Primitive path="xplan:massnahmeWert" mapping="xplan_massnahmewert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_NutzungsAusschluss" table="xplansynpre.xplan_lp_nutzungsausschluss">
+  <FeatureTypeMapping name="xplan:LP_NutzungsAusschluss" table="xplanvalidator.xplan_lp_nutzungsausschluss">
     <FIDMapping prefix="XPLAN_LP_NUTZUNGSAUSSCHLUSS_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8472,7 +8472,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_NutzungserfordernisRegelung" table="xplansynpre.xplan_lp_nutzungserfordernisregelung">
+  <FeatureTypeMapping name="xplan:LP_NutzungserfordernisRegelung" table="xplanvalidator.xplan_lp_nutzungserfordernisregelung">
     <FIDMapping prefix="XPLAN_LP_NUTZUNGSERFORDERNISREGELUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8528,7 +8528,7 @@
     <Primitive path="xplan:regelung" mapping="xplan_regelung"/>
     <Primitive path="xplan:regelungWert" mapping="xplan_regelungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Plan" table="xplansynpre.xplan_lp_plan">
+  <FeatureTypeMapping name="xplan:LP_Plan" table="xplanvalidator.xplan_lp_plan">
     <FIDMapping prefix="XPLAN_LP_PLAN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8611,7 +8611,7 @@
     <Primitive path="xplan:rechtsstand" mapping="xplan_rechtsstand"/>
     <Primitive path="xplan:rechtsstandWert" mapping="xplan_rechtsstandwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_PlanerischeVertiefung" table="xplansynpre.xplan_lp_planerischevertiefung">
+  <FeatureTypeMapping name="xplan:LP_PlanerischeVertiefung" table="xplanvalidator.xplan_lp_planerischevertiefung">
     <FIDMapping prefix="XPLAN_LP_PLANERISCHEVERTIEFUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8662,7 +8662,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_RasterplanAenderung" table="xplansynpre.xplan_lp_rasterplanaenderung">
+  <FeatureTypeMapping name="xplan:LP_RasterplanAenderung" table="xplanvalidator.xplan_lp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_LP_RASTERPLANAENDERUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8696,7 +8696,7 @@
     <Primitive path="xplan:inkrafttretenDatum" mapping="xplan_inkrafttretendatum" type="date"/>
     <Primitive path="xplan:sonstVerfahrensDatum" mapping="xplan_sonstverfahrensdatum" type="date"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_SchutzBestimmterTeileVonNaturUndLandschaft" table="xplansynpre.xplan_lp_schutzbestimmterteilevonnaturundlandschaft">
+  <FeatureTypeMapping name="xplan:LP_SchutzBestimmterTeileVonNaturUndLandschaft" table="xplanvalidator.xplan_lp_schutzbestimmterteilevonnaturundlandschaft">
     <FIDMapping prefix="XPLAN_LP_SCHUTZBESTIMMTERTEILEVONNATURUNDLANDSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8759,7 +8759,7 @@
     <Primitive path="xplan:schutzzoneWert" mapping="xplan_schutzzonewert"/>
     <Primitive path="xplan:schutzzonenText" mapping="xplan_schutzzonentext"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_SchutzPflegeEntwicklung" table="xplansynpre.xplan_lp_schutzpflegeentwicklung">
+  <FeatureTypeMapping name="xplan:LP_SchutzPflegeEntwicklung" table="xplanvalidator.xplan_lp_schutzpflegeentwicklung">
     <FIDMapping prefix="XPLAN_LP_SCHUTZPFLEGEENTWICKLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8816,7 +8816,7 @@
     <Primitive path="xplan:massnahme" mapping="xplan_massnahme"/>
     <Primitive path="xplan:massnahmeWert" mapping="xplan_massnahmewert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_SchutzobjektBundesrecht" table="xplansynpre.xplan_lp_schutzobjektbundesrecht">
+  <FeatureTypeMapping name="xplan:LP_SchutzobjektBundesrecht" table="xplanvalidator.xplan_lp_schutzobjektbundesrecht">
     <FIDMapping prefix="XPLAN_LP_SCHUTZOBJEKTBUNDESRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8859,7 +8859,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_SchutzobjektInternatRecht" table="xplansynpre.xplan_lp_schutzobjektinternatrecht">
+  <FeatureTypeMapping name="xplan:LP_SchutzobjektInternatRecht" table="xplanvalidator.xplan_lp_schutzobjektinternatrecht">
     <FIDMapping prefix="XPLAN_LP_SCHUTZOBJEKTINTERNATRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8914,7 +8914,7 @@
     <Primitive path="xplan:sonstTyp" mapping="xplan_sonsttyp"/>
     <Primitive path="xplan:sonstTypWert" mapping="xplan_sonsttypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_SonstigeAbgrenzuung" table="xplansynpre.xplan_lp_sonstigeabgrenzuung">
+  <FeatureTypeMapping name="xplan:LP_SonstigeAbgrenzuung" table="xplanvalidator.xplan_lp_sonstigeabgrenzuung">
     <FIDMapping prefix="XPLAN_LP_SONSTIGEABGRENZUUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8930,7 +8930,7 @@
     <Primitive path="xplan:gueltigkeitEnde" mapping="xplan_gueltigkeitende" type="dateTime"/>
     <Primitive path="xplan:wmsSortDate" mapping="xplan_wmssortdate" type="date"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_SonstigesRecht" table="xplansynpre.xplan_lp_sonstigesrecht">
+  <FeatureTypeMapping name="xplan:LP_SonstigesRecht" table="xplanvalidator.xplan_lp_sonstigesrecht">
     <FIDMapping prefix="XPLAN_LP_SONSTIGESRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -8984,7 +8984,7 @@
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp"/>
     <Primitive path="xplan:detailTypWert" mapping="xplan_detailtypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_TextAbschnitt" table="xplansynpre.xplan_lp_textabschnitt">
+  <FeatureTypeMapping name="xplan:LP_TextAbschnitt" table="xplanvalidator.xplan_lp_textabschnitt">
     <FIDMapping prefix="XPLAN_LP_TEXTABSCHNITT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9008,7 +9008,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_TextAbschnittObjekt" table="xplansynpre.xplan_lp_textabschnittobjekt">
+  <FeatureTypeMapping name="xplan:LP_TextAbschnittObjekt" table="xplanvalidator.xplan_lp_textabschnittobjekt">
     <FIDMapping prefix="XPLAN_LP_TEXTABSCHNITTOBJEKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9055,7 +9055,7 @@
     <Primitive path="xplan:nordwinkel" mapping="xplan_nordwinkel"/>
     <Primitive path="xplan:nordwinkelUOM" mapping="xplan_nordwinkeluom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_TextlicheFestsetzungsFlaeche" table="xplansynpre.xplan_lp_textlichefestsetzungsflaeche">
+  <FeatureTypeMapping name="xplan:LP_TextlicheFestsetzungsFlaeche" table="xplanvalidator.xplan_lp_textlichefestsetzungsflaeche">
     <FIDMapping prefix="XPLAN_LP_TEXTLICHEFESTSETZUNGSFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9102,7 +9102,7 @@
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
     <Primitive path="xplan:gehoertZuLP_Bereich" mapping="xplan_gehoertzulp_bereich"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutz" table="xplansynpre.xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz">
+  <FeatureTypeMapping name="xplan:LP_WasserrechtGemeingebrEinschraenkungNaturschutz" table="xplanvalidator.xplan_lp_wasserrechtgemeingebreinschraenkungnaturschutz">
     <FIDMapping prefix="XPLAN_LP_WASSERRECHTGEMEINGEBREINSCHRAENKUNGNATURSCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9154,7 +9154,7 @@
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp"/>
     <Primitive path="xplan:detailTypWert" mapping="xplan_detailtypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_WasserrechtSchutzgebiet" table="xplansynpre.xplan_lp_wasserrechtschutzgebiet">
+  <FeatureTypeMapping name="xplan:LP_WasserrechtSchutzgebiet" table="xplanvalidator.xplan_lp_wasserrechtschutzgebiet">
     <FIDMapping prefix="XPLAN_LP_WASSERRECHTSCHUTZGEBIET_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9209,7 +9209,7 @@
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp"/>
     <Primitive path="xplan:detailTypWert" mapping="xplan_detailtypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_WasserrechtSonstige" table="xplansynpre.xplan_lp_wasserrechtsonstige">
+  <FeatureTypeMapping name="xplan:LP_WasserrechtSonstige" table="xplanvalidator.xplan_lp_wasserrechtsonstige">
     <FIDMapping prefix="XPLAN_LP_WASSERRECHTSONSTIGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9261,7 +9261,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_WasserrechtWirtschaftAbflussHochwSchutz" table="xplansynpre.xplan_lp_wasserrechtwirtschaftabflusshochwschutz">
+  <FeatureTypeMapping name="xplan:LP_WasserrechtWirtschaftAbflussHochwSchutz" table="xplanvalidator.xplan_lp_wasserrechtwirtschaftabflusshochwschutz">
     <FIDMapping prefix="XPLAN_LP_WASSERRECHTWIRTSCHAFTABFLUSSHOCHWSCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9315,7 +9315,7 @@
     <Primitive path="xplan:detailTyp" mapping="xplan_detailtyp"/>
     <Primitive path="xplan:detailTypWert" mapping="xplan_detailtypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_ZieleErfordernisseMassnahmen" table="xplansynpre.xplan_lp_zieleerfordernissemassnahmen">
+  <FeatureTypeMapping name="xplan:LP_ZieleErfordernisseMassnahmen" table="xplanvalidator.xplan_lp_zieleerfordernissemassnahmen">
     <FIDMapping prefix="XPLAN_LP_ZIELEERFORDERNISSEMASSNAHMEN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9378,7 +9378,7 @@
     <Primitive path="xplan:foerdermoeglichkeit" mapping="xplan_foerdermoeglichkeit"/>
     <Primitive path="xplan:nutzungseinschraenkung" mapping="xplan_nutzungseinschraenkung"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_ZuBegruenendeGrundstueckflaeche" table="xplansynpre.xplan_lp_zubegruenendegrundstueckflaeche">
+  <FeatureTypeMapping name="xplan:LP_ZuBegruenendeGrundstueckflaeche" table="xplanvalidator.xplan_lp_zubegruenendegrundstueckflaeche">
     <FIDMapping prefix="XPLAN_LP_ZUBEGRUENENDEGRUNDSTUECKFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9427,7 +9427,7 @@
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
     <Primitive path="xplan:gehoertZuLP_Bereich" mapping="xplan_gehoertzulp_bereich"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:LP_Zwischennutzung" table="xplansynpre.xplan_lp_zwischennutzung">
+  <FeatureTypeMapping name="xplan:LP_Zwischennutzung" table="xplanvalidator.xplan_lp_zwischennutzung">
     <FIDMapping prefix="XPLAN_LP_ZWISCHENNUTZUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9481,7 +9481,7 @@
     <Primitive path="xplan:ziel" mapping="xplan_ziel"/>
     <Primitive path="xplan:zielWert" mapping="xplan_zielwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Achse" table="xplansynpre.xplan_rp_achse">
+  <FeatureTypeMapping name="xplan:RP_Achse" table="xplanvalidator.xplan_rp_achse">
     <FIDMapping prefix="XPLAN_RP_ACHSE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9540,7 +9540,7 @@
     <Primitive path="xplan:achsenTyp" mapping="xplan_achsentyp"/>
     <Primitive path="xplan:achsenTypWert" mapping="xplan_achsentypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Bereich" table="xplansynpre.xplan_rp_bereich">
+  <FeatureTypeMapping name="xplan:RP_Bereich" table="xplanvalidator.xplan_rp_bereich">
     <FIDMapping prefix="XPLAN_RP_BEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9581,7 +9581,7 @@
     <Primitive path="xplan:bedeutung" mapping="xplan_bedeutung"/>
     <Primitive path="xplan:bedeutungWert" mapping="xplan_bedeutungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Bodenschutz" table="xplansynpre.xplan_rp_bodenschutz">
+  <FeatureTypeMapping name="xplan:RP_Bodenschutz" table="xplanvalidator.xplan_rp_bodenschutz">
     <FIDMapping prefix="XPLAN_RP_BODENSCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9640,7 +9640,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Einzelhandel" table="xplansynpre.xplan_rp_einzelhandel">
+  <FeatureTypeMapping name="xplan:RP_Einzelhandel" table="xplanvalidator.xplan_rp_einzelhandel">
     <FIDMapping prefix="XPLAN_RP_EINZELHANDEL_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9693,7 +9693,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Energieversorgung" table="xplansynpre.xplan_rp_energieversorgung">
+  <FeatureTypeMapping name="xplan:RP_Energieversorgung" table="xplanvalidator.xplan_rp_energieversorgung">
     <FIDMapping prefix="XPLAN_RP_ENERGIEVERSORGUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9754,7 +9754,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Entsorgung" table="xplansynpre.xplan_rp_entsorgung">
+  <FeatureTypeMapping name="xplan:RP_Entsorgung" table="xplanvalidator.xplan_rp_entsorgung">
     <FIDMapping prefix="XPLAN_RP_ENTSORGUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9818,7 +9818,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Erholung" table="xplansynpre.xplan_rp_erholung">
+  <FeatureTypeMapping name="xplan:RP_Erholung" table="xplanvalidator.xplan_rp_erholung">
     <FIDMapping prefix="XPLAN_RP_ERHOLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9875,7 +9875,7 @@
     <Primitive path="xplan:besondererTyp" mapping="xplan_besonderertyp"/>
     <Primitive path="xplan:besondererTypWert" mapping="xplan_besonderertypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_ErneuerbareEnergie" table="xplansynpre.xplan_rp_erneuerbareenergie">
+  <FeatureTypeMapping name="xplan:RP_ErneuerbareEnergie" table="xplanvalidator.xplan_rp_erneuerbareenergie">
     <FIDMapping prefix="XPLAN_RP_ERNEUERBAREENERGIE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9928,7 +9928,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Forstwirtschaft" table="xplansynpre.xplan_rp_forstwirtschaft">
+  <FeatureTypeMapping name="xplan:RP_Forstwirtschaft" table="xplanvalidator.xplan_rp_forstwirtschaft">
     <FIDMapping prefix="XPLAN_RP_FORSTWIRTSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -9987,7 +9987,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Freiraum" table="xplansynpre.xplan_rp_freiraum">
+  <FeatureTypeMapping name="xplan:RP_Freiraum" table="xplanvalidator.xplan_rp_freiraum">
     <FIDMapping prefix="XPLAN_RP_FREIRAUM_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10038,7 +10038,7 @@
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit"/>
     <Primitive path="xplan:bedeutsamkeitWert" mapping="xplan_bedeutsamkeitwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_FreizeitErholung" table="xplansynpre.xplan_rp_freizeiterholung">
+  <FeatureTypeMapping name="xplan:RP_FreizeitErholung" table="xplanvalidator.xplan_rp_freizeiterholung">
     <FIDMapping prefix="XPLAN_RP_FREIZEITERHOLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10081,7 +10081,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Funktionszuweisung" table="xplansynpre.xplan_rp_funktionszuweisung">
+  <FeatureTypeMapping name="xplan:RP_Funktionszuweisung" table="xplanvalidator.xplan_rp_funktionszuweisung">
     <FIDMapping prefix="XPLAN_RP_FUNKTIONSZUWEISUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10133,7 +10133,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_GemeindeFunktionSiedlungsentwicklung" table="xplansynpre.xplan_rp_gemeindefunktionsiedlungsentwicklung">
+  <FeatureTypeMapping name="xplan:RP_GemeindeFunktionSiedlungsentwicklung" table="xplanvalidator.xplan_rp_gemeindefunktionsiedlungsentwicklung">
     <FIDMapping prefix="XPLAN_RP_GEMEINDEFUNKTIONSIEDLUNGSENTWICKLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10177,7 +10177,7 @@
     <Primitive path="xplan:funktion" mapping="xplan_funktion"/>
     <Primitive path="xplan:funktionWert" mapping="xplan_funktionwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_GenerischesObjekt" table="xplansynpre.xplan_rp_generischesobjekt">
+  <FeatureTypeMapping name="xplan:RP_GenerischesObjekt" table="xplanvalidator.xplan_rp_generischesobjekt">
     <FIDMapping prefix="XPLAN_RP_GENERISCHESOBJEKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10236,7 +10236,7 @@
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung"/>
     <Primitive path="xplan:zweckbestimmungWert" mapping="xplan_zweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Gewaesser" table="xplansynpre.xplan_rp_gewaesser">
+  <FeatureTypeMapping name="xplan:RP_Gewaesser" table="xplanvalidator.xplan_rp_gewaesser">
     <FIDMapping prefix="XPLAN_RP_GEWAESSER_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10294,7 +10294,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Grenze" table="xplansynpre.xplan_rp_grenze">
+  <FeatureTypeMapping name="xplan:RP_Grenze" table="xplanvalidator.xplan_rp_grenze">
     <FIDMapping prefix="XPLAN_RP_GRENZE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10355,7 +10355,7 @@
     <Primitive path="xplan:sonstTyp" mapping="xplan_sonsttyp"/>
     <Primitive path="xplan:sonstTypWert" mapping="xplan_sonsttypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_GruenzugGruenzaesur" table="xplansynpre.xplan_rp_gruenzuggruenzaesur">
+  <FeatureTypeMapping name="xplan:RP_GruenzugGruenzaesur" table="xplanvalidator.xplan_rp_gruenzuggruenzaesur">
     <FIDMapping prefix="XPLAN_RP_GRUENZUGGRUENZAESUR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10414,7 +10414,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Hochwasserschutz" table="xplansynpre.xplan_rp_hochwasserschutz">
+  <FeatureTypeMapping name="xplan:RP_Hochwasserschutz" table="xplanvalidator.xplan_rp_hochwasserschutz">
     <FIDMapping prefix="XPLAN_RP_HOCHWASSERSCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10467,7 +10467,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_IndustrieGewerbe" table="xplansynpre.xplan_rp_industriegewerbe">
+  <FeatureTypeMapping name="xplan:RP_IndustrieGewerbe" table="xplanvalidator.xplan_rp_industriegewerbe">
     <FIDMapping prefix="XPLAN_RP_INDUSTRIEGEWERBE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10520,7 +10520,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Klimaschutz" table="xplansynpre.xplan_rp_klimaschutz">
+  <FeatureTypeMapping name="xplan:RP_Klimaschutz" table="xplanvalidator.xplan_rp_klimaschutz">
     <FIDMapping prefix="XPLAN_RP_KLIMASCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10579,7 +10579,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Kommunikation" table="xplansynpre.xplan_rp_kommunikation">
+  <FeatureTypeMapping name="xplan:RP_Kommunikation" table="xplanvalidator.xplan_rp_kommunikation">
     <FIDMapping prefix="XPLAN_RP_KOMMUNIKATION_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10636,7 +10636,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_KulturellesSachgut" table="xplansynpre.xplan_rp_kulturellessachgut">
+  <FeatureTypeMapping name="xplan:RP_KulturellesSachgut" table="xplanvalidator.xplan_rp_kulturellessachgut">
     <FIDMapping prefix="XPLAN_RP_KULTURELLESSACHGUT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10679,7 +10679,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Kulturlandschaft" table="xplansynpre.xplan_rp_kulturlandschaft">
+  <FeatureTypeMapping name="xplan:RP_Kulturlandschaft" table="xplanvalidator.xplan_rp_kulturlandschaft">
     <FIDMapping prefix="XPLAN_RP_KULTURLANDSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10732,7 +10732,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_LaermschutzBauschutz" table="xplansynpre.xplan_rp_laermschutzbauschutz">
+  <FeatureTypeMapping name="xplan:RP_LaermschutzBauschutz" table="xplanvalidator.xplan_rp_laermschutzbauschutz">
     <FIDMapping prefix="XPLAN_RP_LAERMSCHUTZBAUSCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10783,7 +10783,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Laermschutzbereich" table="xplansynpre.xplan_rp_laermschutzbereich">
+  <FeatureTypeMapping name="xplan:RP_Laermschutzbereich" table="xplanvalidator.xplan_rp_laermschutzbereich">
     <FIDMapping prefix="XPLAN_RP_LAERMSCHUTZBEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10825,7 +10825,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Landwirtschaft" table="xplansynpre.xplan_rp_landwirtschaft">
+  <FeatureTypeMapping name="xplan:RP_Landwirtschaft" table="xplanvalidator.xplan_rp_landwirtschaft">
     <FIDMapping prefix="XPLAN_RP_LANDWIRTSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10884,7 +10884,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Legendenobjekt" table="xplansynpre.xplan_rp_legendenobjekt">
+  <FeatureTypeMapping name="xplan:RP_Legendenobjekt" table="xplanvalidator.xplan_rp_legendenobjekt">
     <FIDMapping prefix="XPLAN_RP_LEGENDENOBJEKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10903,7 +10903,7 @@
     <Primitive path="xplan:reflegendenBild" mapping="xplan_reflegendenbild"/>
     <Primitive path="xplan:gehoertZuPraesentationsobjekt" mapping="xplan_gehoertzupraesentationsobjekt"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Luftverkehr" table="xplansynpre.xplan_rp_luftverkehr">
+  <FeatureTypeMapping name="xplan:RP_Luftverkehr" table="xplanvalidator.xplan_rp_luftverkehr">
     <FIDMapping prefix="XPLAN_RP_LUFTVERKEHR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -10959,7 +10959,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NaturLandschaft" table="xplansynpre.xplan_rp_naturlandschaft">
+  <FeatureTypeMapping name="xplan:RP_NaturLandschaft" table="xplanvalidator.xplan_rp_naturlandschaft">
     <FIDMapping prefix="XPLAN_RP_NATURLANDSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11018,7 +11018,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_NaturschutzrechtlichesSchutzgebiet" table="xplansynpre.xplan_rp_naturschutzrechtlichesschutzgebiet">
+  <FeatureTypeMapping name="xplan:RP_NaturschutzrechtlichesSchutzgebiet" table="xplanvalidator.xplan_rp_naturschutzrechtlichesschutzgebiet">
     <FIDMapping prefix="XPLAN_RP_NATURSCHUTZRECHTLICHESSCHUTZGEBIET_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11080,7 +11080,7 @@
     <Primitive path="xplan:zweckbestimmung" mapping="xplan_zweckbestimmung"/>
     <Primitive path="xplan:zweckbestimmungWert" mapping="xplan_zweckbestimmungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Plan" table="xplansynpre.xplan_rp_plan">
+  <FeatureTypeMapping name="xplan:RP_Plan" table="xplanvalidator.xplan_rp_plan">
     <FIDMapping prefix="XPLAN_RP_PLAN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11158,7 +11158,7 @@
     <Primitive path="xplan:status" mapping="xplan_status"/>
     <Primitive path="xplan:statusWert" mapping="xplan_statuswert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Planungsraum" table="xplansynpre.xplan_rp_planungsraum">
+  <FeatureTypeMapping name="xplan:RP_Planungsraum" table="xplanvalidator.xplan_rp_planungsraum">
     <FIDMapping prefix="XPLAN_RP_PLANUNGSRAUM_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11208,7 +11208,7 @@
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit"/>
     <Primitive path="xplan:bedeutsamkeitWert" mapping="xplan_bedeutsamkeitwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_RadwegWanderweg" table="xplansynpre.xplan_rp_radwegwanderweg">
+  <FeatureTypeMapping name="xplan:RP_RadwegWanderweg" table="xplanvalidator.xplan_rp_radwegwanderweg">
     <FIDMapping prefix="XPLAN_RP_RADWEGWANDERWEG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11261,7 +11261,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_RasterplanAenderung" table="xplansynpre.xplan_rp_rasterplanaenderung">
+  <FeatureTypeMapping name="xplan:RP_RasterplanAenderung" table="xplanvalidator.xplan_rp_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_RP_RASTERPLANAENDERUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11296,7 +11296,7 @@
     <Primitive path="xplan:satzungsbeschlussDatum" mapping="xplan_satzungsbeschlussdatum" type="date"/>
     <Primitive path="xplan:datumDesInkrafttretens" mapping="xplan_datumdesinkrafttretens" type="date"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Raumkategorie" table="xplansynpre.xplan_rp_raumkategorie">
+  <FeatureTypeMapping name="xplan:RP_Raumkategorie" table="xplanvalidator.xplan_rp_raumkategorie">
     <FIDMapping prefix="XPLAN_RP_RAUMKATEGORIE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11355,7 +11355,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Rohstoff" table="xplansynpre.xplan_rp_rohstoff">
+  <FeatureTypeMapping name="xplan:RP_Rohstoff" table="xplanvalidator.xplan_rp_rohstoff">
     <FIDMapping prefix="XPLAN_RP_ROHSTOFF_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11420,7 +11420,7 @@
     <Primitive path="xplan:bergbauplanungTyp" mapping="xplan_bergbauplanungtyp"/>
     <Primitive path="xplan:bergbauplanungTypWert" mapping="xplan_bergbauplanungtypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Rohstoffsicherung" table="xplansynpre.xplan_rp_rohstoffsicherung">
+  <FeatureTypeMapping name="xplan:RP_Rohstoffsicherung" table="xplanvalidator.xplan_rp_rohstoffsicherung">
     <FIDMapping prefix="XPLAN_RP_ROHSTOFFSICHERUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11465,7 +11465,7 @@
     <Primitive path="xplan:abbaugut" mapping="xplan_abbaugut"/>
     <Primitive path="xplan:abbaugutWert" mapping="xplan_abbaugutwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Schienenverkehr" table="xplansynpre.xplan_rp_schienenverkehr">
+  <FeatureTypeMapping name="xplan:RP_Schienenverkehr" table="xplanvalidator.xplan_rp_schienenverkehr">
     <FIDMapping prefix="XPLAN_RP_SCHIENENVERKEHR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11523,7 +11523,7 @@
     <Primitive path="xplan:besondererTyp" mapping="xplan_besonderertyp"/>
     <Primitive path="xplan:besondererTypWert" mapping="xplan_besonderertypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Siedlung" table="xplansynpre.xplan_rp_siedlung">
+  <FeatureTypeMapping name="xplan:RP_Siedlung" table="xplanvalidator.xplan_rp_siedlung">
     <FIDMapping prefix="XPLAN_RP_SIEDLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11574,7 +11574,7 @@
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit"/>
     <Primitive path="xplan:bedeutsamkeitWert" mapping="xplan_bedeutsamkeitwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_SonstVerkehr" table="xplansynpre.xplan_rp_sonstverkehr">
+  <FeatureTypeMapping name="xplan:RP_SonstVerkehr" table="xplanvalidator.xplan_rp_sonstverkehr">
     <FIDMapping prefix="XPLAN_RP_SONSTVERKEHR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11630,7 +11630,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_SonstigeInfrastruktur" table="xplansynpre.xplan_rp_sonstigeinfrastruktur">
+  <FeatureTypeMapping name="xplan:RP_SonstigeInfrastruktur" table="xplanvalidator.xplan_rp_sonstigeinfrastruktur">
     <FIDMapping prefix="XPLAN_RP_SONSTIGEINFRASTRUKTUR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11685,7 +11685,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_SonstigeSiedlungsstruktur" table="xplansynpre.xplan_rp_sonstigesiedlungsstruktur">
+  <FeatureTypeMapping name="xplan:RP_SonstigeSiedlungsstruktur" table="xplanvalidator.xplan_rp_sonstigesiedlungsstruktur">
     <FIDMapping prefix="XPLAN_RP_SONSTIGESIEDLUNGSSTRUKTUR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11727,7 +11727,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_SonstigerFreiraumschutz" table="xplansynpre.xplan_rp_sonstigerfreiraumschutz">
+  <FeatureTypeMapping name="xplan:RP_SonstigerFreiraumschutz" table="xplanvalidator.xplan_rp_sonstigerfreiraumschutz">
     <FIDMapping prefix="XPLAN_RP_SONSTIGERFREIRAUMSCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11778,7 +11778,7 @@
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit"/>
     <Primitive path="xplan:bedeutsamkeitWert" mapping="xplan_bedeutsamkeitwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_SonstigerFreiraumstruktur" table="xplansynpre.xplan_rp_sonstigerfreiraumstruktur">
+  <FeatureTypeMapping name="xplan:RP_SonstigerFreiraumstruktur" table="xplanvalidator.xplan_rp_sonstigerfreiraumstruktur">
     <FIDMapping prefix="XPLAN_RP_SONSTIGERFREIRAUMSTRUKTUR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11821,7 +11821,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_SonstigerSiedlungsbereich" table="xplansynpre.xplan_rp_sonstigersiedlungsbereich">
+  <FeatureTypeMapping name="xplan:RP_SonstigerSiedlungsbereich" table="xplanvalidator.xplan_rp_sonstigersiedlungsbereich">
     <FIDMapping prefix="XPLAN_RP_SONSTIGERSIEDLUNGSBEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11872,7 +11872,7 @@
     <Primitive path="xplan:bedeutsamkeit" mapping="xplan_bedeutsamkeit"/>
     <Primitive path="xplan:bedeutsamkeitWert" mapping="xplan_bedeutsamkeitwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_SozialeInfrastruktur" table="xplansynpre.xplan_rp_sozialeinfrastruktur">
+  <FeatureTypeMapping name="xplan:RP_SozialeInfrastruktur" table="xplanvalidator.xplan_rp_sozialeinfrastruktur">
     <FIDMapping prefix="XPLAN_RP_SOZIALEINFRASTRUKTUR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11929,7 +11929,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Sperrgebiet" table="xplansynpre.xplan_rp_sperrgebiet">
+  <FeatureTypeMapping name="xplan:RP_Sperrgebiet" table="xplanvalidator.xplan_rp_sperrgebiet">
     <FIDMapping prefix="XPLAN_RP_SPERRGEBIET_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -11986,7 +11986,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Sportanlage" table="xplansynpre.xplan_rp_sportanlage">
+  <FeatureTypeMapping name="xplan:RP_Sportanlage" table="xplanvalidator.xplan_rp_sportanlage">
     <FIDMapping prefix="XPLAN_RP_SPORTANLAGE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12039,7 +12039,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Strassenverkehr" table="xplansynpre.xplan_rp_strassenverkehr">
+  <FeatureTypeMapping name="xplan:RP_Strassenverkehr" table="xplanvalidator.xplan_rp_strassenverkehr">
     <FIDMapping prefix="XPLAN_RP_STRASSENVERKEHR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12097,7 +12097,7 @@
     <Primitive path="xplan:besondererTyp" mapping="xplan_besonderertyp"/>
     <Primitive path="xplan:besondererTypWert" mapping="xplan_besonderertypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_TextAbschnitt" table="xplansynpre.xplan_rp_textabschnitt">
+  <FeatureTypeMapping name="xplan:RP_TextAbschnitt" table="xplanvalidator.xplan_rp_textabschnitt">
     <FIDMapping prefix="XPLAN_RP_TEXTABSCHNITT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12119,7 +12119,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Verkehr" table="xplansynpre.xplan_rp_verkehr">
+  <FeatureTypeMapping name="xplan:RP_Verkehr" table="xplanvalidator.xplan_rp_verkehr">
     <FIDMapping prefix="XPLAN_RP_VERKEHR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12181,7 +12181,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_VorbHochwasserschutz" table="xplansynpre.xplan_rp_vorbhochwasserschutz">
+  <FeatureTypeMapping name="xplan:RP_VorbHochwasserschutz" table="xplanvalidator.xplan_rp_vorbhochwasserschutz">
     <FIDMapping prefix="XPLAN_RP_VORBHOCHWASSERSCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12224,7 +12224,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Wasserschutz" table="xplansynpre.xplan_rp_wasserschutz">
+  <FeatureTypeMapping name="xplan:RP_Wasserschutz" table="xplanvalidator.xplan_rp_wasserschutz">
     <FIDMapping prefix="XPLAN_RP_WASSERSCHUTZ_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12285,7 +12285,7 @@
     <Primitive path="xplan:zone" mapping="xplan_zone"/>
     <Primitive path="xplan:zoneWert" mapping="xplan_zonewert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Wasserverkehr" table="xplansynpre.xplan_rp_wasserverkehr">
+  <FeatureTypeMapping name="xplan:RP_Wasserverkehr" table="xplanvalidator.xplan_rp_wasserverkehr">
     <FIDMapping prefix="XPLAN_RP_WASSERVERKEHR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12341,7 +12341,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Wasserwirtschaft" table="xplansynpre.xplan_rp_wasserwirtschaft">
+  <FeatureTypeMapping name="xplan:RP_Wasserwirtschaft" table="xplanvalidator.xplan_rp_wasserwirtschaft">
     <FIDMapping prefix="XPLAN_RP_WASSERWIRTSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12398,7 +12398,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_Windenergienutzung" table="xplansynpre.xplan_rp_windenergienutzung">
+  <FeatureTypeMapping name="xplan:RP_Windenergienutzung" table="xplanvalidator.xplan_rp_windenergienutzung">
     <FIDMapping prefix="XPLAN_RP_WINDENERGIENUTZUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12441,7 +12441,7 @@
     <Primitive path="xplan:gebietsTyp" mapping="xplan_gebietstyp"/>
     <Primitive path="xplan:gebietsTypWert" mapping="xplan_gebietstypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_WohnenSiedlung" table="xplansynpre.xplan_rp_wohnensiedlung">
+  <FeatureTypeMapping name="xplan:RP_WohnenSiedlung" table="xplanvalidator.xplan_rp_wohnensiedlung">
     <FIDMapping prefix="XPLAN_RP_WOHNENSIEDLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12494,7 +12494,7 @@
     <Primitive path="xplan:typ" mapping="xplan_typ"/>
     <Primitive path="xplan:typWert" mapping="xplan_typwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:RP_ZentralerOrt" table="xplansynpre.xplan_rp_zentralerort">
+  <FeatureTypeMapping name="xplan:RP_ZentralerOrt" table="xplanvalidator.xplan_rp_zentralerort">
     <FIDMapping prefix="XPLAN_RP_ZENTRALERORT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12555,7 +12555,7 @@
     <Primitive path="xplan:funktion" mapping="xplan_funktion"/>
     <Primitive path="xplan:funktionWert" mapping="xplan_funktionwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Baubeschraenkung" table="xplansynpre.xplan_so_baubeschraenkung">
+  <FeatureTypeMapping name="xplan:SO_Baubeschraenkung" table="xplanvalidator.xplan_so_baubeschraenkung">
     <FIDMapping prefix="XPLAN_SO_BAUBESCHRAENKUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12606,7 +12606,7 @@
     <Primitive path="xplan:name" mapping="xplan_name"/>
     <Primitive path="xplan:nummer" mapping="xplan_nummer"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Bauverbotszone" table="xplansynpre.xplan_so_bauverbotszone">
+  <FeatureTypeMapping name="xplan:SO_Bauverbotszone" table="xplanvalidator.xplan_so_bauverbotszone">
     <FIDMapping prefix="XPLAN_SO_BAUVERBOTSZONE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12658,7 +12658,7 @@
     <Primitive path="xplan:rechtlicheGrundlage" mapping="xplan_rechtlichegrundlage"/>
     <Primitive path="xplan:rechtlicheGrundlageWert" mapping="xplan_rechtlichegrundlagewert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Bereich" table="xplansynpre.xplan_so_bereich">
+  <FeatureTypeMapping name="xplan:SO_Bereich" table="xplanvalidator.xplan_so_bereich">
     <FIDMapping prefix="XPLAN_SO_BEREICH_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12694,7 +12694,7 @@
     <Primitive path="xplan:bedeutung" mapping="xplan_bedeutung"/>
     <Primitive path="xplan:bedeutungWert" mapping="xplan_bedeutungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Bodenschutzrecht" table="xplansynpre.xplan_so_bodenschutzrecht">
+  <FeatureTypeMapping name="xplan:SO_Bodenschutzrecht" table="xplanvalidator.xplan_so_bodenschutzrecht">
     <FIDMapping prefix="XPLAN_SO_BODENSCHUTZRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12751,7 +12751,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Denkmalschutzrecht" table="xplansynpre.xplan_so_denkmalschutzrecht">
+  <FeatureTypeMapping name="xplan:SO_Denkmalschutzrecht" table="xplanvalidator.xplan_so_denkmalschutzrecht">
     <FIDMapping prefix="XPLAN_SO_DENKMALSCHUTZRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12808,7 +12808,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Forstrecht" table="xplansynpre.xplan_so_forstrecht">
+  <FeatureTypeMapping name="xplan:SO_Forstrecht" table="xplanvalidator.xplan_so_forstrecht">
     <FIDMapping prefix="XPLAN_SO_FORSTRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12868,7 +12868,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Gebiet" table="xplansynpre.xplan_so_gebiet">
+  <FeatureTypeMapping name="xplan:SO_Gebiet" table="xplanvalidator.xplan_so_gebiet">
     <FIDMapping prefix="XPLAN_SO_GEBIET_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12928,7 +12928,7 @@
     <Primitive path="xplan:sonstRechtsstandGebiet" mapping="xplan_sonstrechtsstandgebiet"/>
     <Primitive path="xplan:sonstRechtsstandGebietWert" mapping="xplan_sonstrechtsstandgebietwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Gelaendemorphologie" table="xplansynpre.xplan_so_gelaendemorphologie">
+  <FeatureTypeMapping name="xplan:SO_Gelaendemorphologie" table="xplanvalidator.xplan_so_gelaendemorphologie">
     <FIDMapping prefix="XPLAN_SO_GELAENDEMORPHOLOGIE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -12978,7 +12978,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Gewaesser" table="xplansynpre.xplan_so_gewaesser">
+  <FeatureTypeMapping name="xplan:SO_Gewaesser" table="xplanvalidator.xplan_so_gewaesser">
     <FIDMapping prefix="XPLAN_SO_GEWAESSER_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13028,7 +13028,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Grenze" table="xplansynpre.xplan_so_grenze">
+  <FeatureTypeMapping name="xplan:SO_Grenze" table="xplanvalidator.xplan_so_grenze">
     <FIDMapping prefix="XPLAN_SO_GRENZE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13078,7 +13078,7 @@
     <Primitive path="xplan:sonstTyp" mapping="xplan_sonsttyp"/>
     <Primitive path="xplan:sonstTypWert" mapping="xplan_sonsttypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Linienobjekt" table="xplansynpre.xplan_so_linienobjekt">
+  <FeatureTypeMapping name="xplan:SO_Linienobjekt" table="xplanvalidator.xplan_so_linienobjekt">
     <FIDMapping prefix="XPLAN_SO_LINIENOBJEKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13124,7 +13124,7 @@
     <Primitive path="xplan:sonstRechtscharakter" mapping="xplan_sonstrechtscharakter"/>
     <Primitive path="xplan:sonstRechtscharakterWert" mapping="xplan_sonstrechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Luftverkehrsrecht" table="xplansynpre.xplan_so_luftverkehrsrecht">
+  <FeatureTypeMapping name="xplan:SO_Luftverkehrsrecht" table="xplanvalidator.xplan_so_luftverkehrsrecht">
     <FIDMapping prefix="XPLAN_SO_LUFTVERKEHRSRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13182,7 +13182,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Objekt" table="xplansynpre.xplan_so_objekt">
+  <FeatureTypeMapping name="xplan:SO_Objekt" table="xplanvalidator.xplan_so_objekt">
     <FIDMapping prefix="XPLAN_SO_OBJEKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13227,7 +13227,7 @@
     <Primitive path="xplan:sonstRechtscharakter" mapping="xplan_sonstrechtscharakter"/>
     <Primitive path="xplan:sonstRechtscharakterWert" mapping="xplan_sonstrechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Plan" table="xplansynpre.xplan_so_plan">
+  <FeatureTypeMapping name="xplan:SO_Plan" table="xplanvalidator.xplan_so_plan">
     <FIDMapping prefix="XPLAN_SO_PLAN_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13288,7 +13288,7 @@
     <Primitive path="xplan:planTyp" mapping="xplan_plantyp"/>
     <Primitive path="xplan:planTypWert" mapping="xplan_plantypwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_RasterplanAenderung" table="xplansynpre.xplan_so_rasterplanaenderung">
+  <FeatureTypeMapping name="xplan:SO_RasterplanAenderung" table="xplanvalidator.xplan_so_rasterplanaenderung">
     <FIDMapping prefix="XPLAN_SO_RASTERPLANAENDERUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13314,7 +13314,7 @@
     <Geometry path="xplan:geltungsbereichAenderung" mapping="xplan_geltungsbereichaenderung"/>
     <Primitive path="xplan:besonderheiten" mapping="xplan_besonderheiten"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Schienenverkehrsrecht" table="xplansynpre.xplan_so_schienenverkehrsrecht">
+  <FeatureTypeMapping name="xplan:SO_Schienenverkehrsrecht" table="xplanvalidator.xplan_so_schienenverkehrsrecht">
     <FIDMapping prefix="XPLAN_SO_SCHIENENVERKEHRSRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13372,7 +13372,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_SchutzgebietNaturschutzrecht" table="xplansynpre.xplan_so_schutzgebietnaturschutzrecht">
+  <FeatureTypeMapping name="xplan:SO_SchutzgebietNaturschutzrecht" table="xplanvalidator.xplan_so_schutzgebietnaturschutzrecht">
     <FIDMapping prefix="XPLAN_SO_SCHUTZGEBIETNATURSCHUTZRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13430,7 +13430,7 @@
     <Primitive path="xplan:zone" mapping="xplan_zone"/>
     <Primitive path="xplan:zoneWert" mapping="xplan_zonewert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_SchutzgebietSonstigesRecht" table="xplansynpre.xplan_so_schutzgebietsonstigesrecht">
+  <FeatureTypeMapping name="xplan:SO_SchutzgebietSonstigesRecht" table="xplanvalidator.xplan_so_schutzgebietsonstigesrecht">
     <FIDMapping prefix="XPLAN_SO_SCHUTZGEBIETSONSTIGESRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13488,7 +13488,7 @@
     <Primitive path="xplan:zone" mapping="xplan_zone"/>
     <Primitive path="xplan:zoneWert" mapping="xplan_zonewert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_SchutzgebietWasserrecht" table="xplansynpre.xplan_so_schutzgebietwasserrecht">
+  <FeatureTypeMapping name="xplan:SO_SchutzgebietWasserrecht" table="xplanvalidator.xplan_so_schutzgebietwasserrecht">
     <FIDMapping prefix="XPLAN_SO_SCHUTZGEBIETWASSERRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13546,7 +13546,7 @@
     <Primitive path="xplan:zone" mapping="xplan_zone"/>
     <Primitive path="xplan:zoneWert" mapping="xplan_zonewert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Sichtflaeche" table="xplansynpre.xplan_so_sichtflaeche">
+  <FeatureTypeMapping name="xplan:SO_Sichtflaeche" table="xplanvalidator.xplan_so_sichtflaeche">
     <FIDMapping prefix="XPLAN_SO_SICHTFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13593,7 +13593,7 @@
     <Primitive path="xplan:schenkellaenge" mapping="xplan_schenkellaenge"/>
     <Primitive path="xplan:schenkellaengeUOM" mapping="xplan_schenkellaengeuom"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_SonstigesRecht" table="xplansynpre.xplan_so_sonstigesrecht">
+  <FeatureTypeMapping name="xplan:SO_SonstigesRecht" table="xplanvalidator.xplan_so_sonstigesrecht">
     <FIDMapping prefix="XPLAN_SO_SONSTIGESRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13649,7 +13649,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Strassenverkehr" table="xplansynpre.xplan_so_strassenverkehr">
+  <FeatureTypeMapping name="xplan:SO_Strassenverkehr" table="xplanvalidator.xplan_so_strassenverkehr">
     <FIDMapping prefix="XPLAN_SO_STRASSENVERKEHR_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13764,7 +13764,7 @@
     <Primitive path="xplan:hatDarstellungMitBesondZweckbest" mapping="xplan_hatdarstellungmitbesondzweckbest"/>
     <Primitive path="xplan:begrenzungslinie" mapping="xplan_begrenzungslinie"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Strassenverkehrsrecht" table="xplansynpre.xplan_so_strassenverkehrsrecht">
+  <FeatureTypeMapping name="xplan:SO_Strassenverkehrsrecht" table="xplanvalidator.xplan_so_strassenverkehrsrecht">
     <FIDMapping prefix="XPLAN_SO_STRASSENVERKEHRSRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13820,7 +13820,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_TextAbschnitt" table="xplansynpre.xplan_so_textabschnitt">
+  <FeatureTypeMapping name="xplan:SO_TextAbschnitt" table="xplanvalidator.xplan_so_textabschnitt">
     <FIDMapping prefix="XPLAN_SO_TEXTABSCHNITT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13842,7 +13842,7 @@
     <Primitive path="xplan:rechtscharakter" mapping="xplan_rechtscharakter"/>
     <Primitive path="xplan:rechtscharakterWert" mapping="xplan_rechtscharakterwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_TextAbschnittFlaeche" table="xplansynpre.xplan_so_textabschnittflaeche">
+  <FeatureTypeMapping name="xplan:SO_TextAbschnittFlaeche" table="xplanvalidator.xplan_so_textabschnittflaeche">
     <FIDMapping prefix="XPLAN_SO_TEXTABSCHNITTFLAECHE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13882,7 +13882,7 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:flaechenschluss" mapping="xplan_flaechenschluss"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Wasserrecht" table="xplansynpre.xplan_so_wasserrecht">
+  <FeatureTypeMapping name="xplan:SO_Wasserrecht" table="xplanvalidator.xplan_so_wasserrecht">
     <FIDMapping prefix="XPLAN_SO_WASSERRECHT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13939,7 +13939,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:SO_Wasserwirtschaft" table="xplansynpre.xplan_so_wasserwirtschaft">
+  <FeatureTypeMapping name="xplan:SO_Wasserwirtschaft" table="xplanvalidator.xplan_so_wasserwirtschaft">
     <FIDMapping prefix="XPLAN_SO_WASSERWIRTSCHAFT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -13986,7 +13986,7 @@
     <Primitive path="xplan:detailArtDerFestlegung" mapping="xplan_detailartderfestlegung"/>
     <Primitive path="xplan:detailArtDerFestlegungWert" mapping="xplan_detailartderfestlegungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_BegruendungAbschnitt" table="xplansynpre.xplan_xp_begruendungabschnitt">
+  <FeatureTypeMapping name="xplan:XP_BegruendungAbschnitt" table="xplanvalidator.xplan_xp_begruendungabschnitt">
     <FIDMapping prefix="XPLAN_XP_BEGRUENDUNGABSCHNITT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14005,7 +14005,7 @@
     <Primitive path="xplan:text" mapping="xplan_text"/>
     <Primitive path="xplan:refText" mapping="xplan_reftext"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_FPO" table="xplansynpre.xplan_xp_fpo">
+  <FeatureTypeMapping name="xplan:XP_FPO" table="xplanvalidator.xplan_xp_fpo">
     <FIDMapping prefix="XPLAN_XP_FPO_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14028,7 +14028,7 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:index" mapping="xplan_index"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_LPO" table="xplansynpre.xplan_xp_lpo">
+  <FeatureTypeMapping name="xplan:XP_LPO" table="xplanvalidator.xplan_xp_lpo">
     <FIDMapping prefix="XPLAN_XP_LPO_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14051,7 +14051,7 @@
     <Geometry path="xplan:position" mapping="xplan_position"/>
     <Primitive path="xplan:index" mapping="xplan_index"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_LTO" table="xplansynpre.xplan_xp_lto">
+  <FeatureTypeMapping name="xplan:XP_LTO" table="xplanvalidator.xplan_xp_lto">
     <FIDMapping prefix="XPLAN_XP_LTO_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14084,7 +14084,7 @@
     <Primitive path="xplan:vertikaleAusrichtung" mapping="xplan_vertikaleausrichtung"/>
     <Primitive path="xplan:vertikaleAusrichtungWert" mapping="xplan_vertikaleausrichtungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_Nutzungsschablone" table="xplansynpre.xplan_xp_nutzungsschablone">
+  <FeatureTypeMapping name="xplan:XP_Nutzungsschablone" table="xplanvalidator.xplan_xp_nutzungsschablone">
     <FIDMapping prefix="XPLAN_XP_NUTZUNGSSCHABLONE_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14122,7 +14122,7 @@
     <Primitive path="xplan:vertikaleAusrichtung" mapping="xplan_vertikaleausrichtung"/>
     <Primitive path="xplan:vertikaleAusrichtungWert" mapping="xplan_vertikaleausrichtungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_PPO" table="xplansynpre.xplan_xp_ppo">
+  <FeatureTypeMapping name="xplan:XP_PPO" table="xplanvalidator.xplan_xp_ppo">
     <FIDMapping prefix="XPLAN_XP_PPO_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14150,7 +14150,7 @@
     <Primitive path="xplan:drehwinkelUOM" mapping="xplan_drehwinkeluom"/>
     <Primitive path="xplan:index" mapping="xplan_index"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_PTO" table="xplansynpre.xplan_xp_pto">
+  <FeatureTypeMapping name="xplan:XP_PTO" table="xplanvalidator.xplan_xp_pto">
     <FIDMapping prefix="XPLAN_XP_PTO_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14185,7 +14185,7 @@
     <Primitive path="xplan:vertikaleAusrichtung" mapping="xplan_vertikaleausrichtung"/>
     <Primitive path="xplan:vertikaleAusrichtungWert" mapping="xplan_vertikaleausrichtungwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_Praesentationsobjekt" table="xplansynpre.xplan_xp_praesentationsobjekt">
+  <FeatureTypeMapping name="xplan:XP_Praesentationsobjekt" table="xplanvalidator.xplan_xp_praesentationsobjekt">
     <FIDMapping prefix="XPLAN_XP_PRAESENTATIONSOBJEKT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14208,7 +14208,7 @@
     <Primitive path="xplan:stylesheetId" mapping="xplan_stylesheetid"/>
     <Primitive path="xplan:stylesheetIdWert" mapping="xplan_stylesheetidwert"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_Rasterdarstellung" table="xplansynpre.xplan_xp_rasterdarstellung">
+  <FeatureTypeMapping name="xplan:XP_Rasterdarstellung" table="xplanvalidator.xplan_xp_rasterdarstellung">
     <FIDMapping prefix="XPLAN_XP_RASTERDARSTELLUNG_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14227,7 +14227,7 @@
     <Primitive path="xplan:refText" mapping="xplan_reftext"/>
     <Primitive path="xplan:refLegende" mapping="xplan_reflegende"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_RasterplanBasis" table="xplansynpre.xplan_xp_rasterplanbasis">
+  <FeatureTypeMapping name="xplan:XP_RasterplanBasis" table="xplanvalidator.xplan_xp_rasterplanbasis">
     <FIDMapping prefix="XPLAN_XP_RASTERPLANBASIS_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
@@ -14246,7 +14246,7 @@
     <Primitive path="xplan:refText" mapping="xplan_reftext"/>
     <Primitive path="xplan:refLegende" mapping="xplan_reflegende"/>
   </FeatureTypeMapping>
-  <FeatureTypeMapping name="xplan:XP_TextAbschnitt" table="xplansynpre.xplan_xp_textabschnitt">
+  <FeatureTypeMapping name="xplan:XP_TextAbschnitt" table="xplanvalidator.xplan_xp_textabschnitt">
     <FIDMapping prefix="XPLAN_XP_TEXTABSCHNITT_">
       <Column name="attr_gml_id" type="string"/>
       <UUIDGenerator/>
