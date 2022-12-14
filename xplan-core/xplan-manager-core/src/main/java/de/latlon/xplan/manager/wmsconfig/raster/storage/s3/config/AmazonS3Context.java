@@ -71,7 +71,8 @@ public class AmazonS3Context {
 			@Value("${s3.region:#{environment.MAPSERVER_S3_REGION}}") String signingRegion,
 			@Value("${s3.endpoint.url:#{environment.MAPSERVER_S3_ENDPOINT}}") String endpointUrl) {
 		AmazonS3 client;
-		// TODO refactoring if/else to @ConditionalOnExpression with SpringBoot into 2 SpringBeans
+		// TODO refactoring if/else to @ConditionalOnExpression with SpringBoot into 2
+		// SpringBeans
 		if (endpointUrl == null || endpointUrl.isEmpty()) {
 			client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
 					.withRegion(signingRegion).build();
