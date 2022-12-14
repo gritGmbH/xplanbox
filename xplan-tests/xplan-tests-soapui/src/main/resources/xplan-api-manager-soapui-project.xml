@@ -12318,7 +12318,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profilesSecondId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>

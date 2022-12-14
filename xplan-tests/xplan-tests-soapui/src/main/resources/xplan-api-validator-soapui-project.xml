@@ -2222,7 +2222,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="transfer" name="Property Transfer" id="1981f43d-8575-437e-a961-5eb93451d0e6">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profilesId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
@@ -2233,7 +2233,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profilesSecondId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
@@ -2469,11 +2469,11 @@ Validate XPlanGML or XPlanArchive</con:description>
     <con:properties>
       <con:property>
         <con:name>profilesId</con:name>
-        <con:value>test2</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>profilesSecondId</con:name>
-        <con:value>test1</con:value>
+        <con:value/>
       </con:property>
     </con:properties>
   </con:testSuite>
