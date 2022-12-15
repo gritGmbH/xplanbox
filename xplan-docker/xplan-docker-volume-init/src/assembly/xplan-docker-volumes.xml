@@ -41,6 +41,14 @@
       <unpack>true</unpack>
       <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
+    <dependencySet>
+      <outputDirectory>/xplan-validator-workspaces/xplan-validator-workspace</outputDirectory>
+      <includes>
+        <include>${project.groupId}:xplan-workspaces::xplan-validator-workspace</include>
+      </includes>
+      <unpack>true</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+    </dependencySet>
     <!--xplan-manager-config-->
     <dependencySet>
       <outputDirectory>/xplan-manager-config</outputDirectory>

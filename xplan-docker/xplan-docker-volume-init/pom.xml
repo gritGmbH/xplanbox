@@ -81,6 +81,13 @@
       <type>zip</type>
       <classifier>xplan-manager-workspace</classifier>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-workspaces</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+      <classifier>xplan-validator-workspace</classifier>
+    </dependency>
     <!--xplan-manager-config-->
     <dependency>
       <groupId>${project.groupId}</groupId>
