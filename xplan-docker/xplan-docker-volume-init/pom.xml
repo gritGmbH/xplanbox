@@ -97,12 +97,5 @@
       <type>zip</type>
       <classifier>xplan-inspireplu-workspace</classifier>
     </dependency>
-    <!--xplan-mapserver-config-->
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-mapserver-config</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
-    </dependency>
   </dependencies>
 </project>
