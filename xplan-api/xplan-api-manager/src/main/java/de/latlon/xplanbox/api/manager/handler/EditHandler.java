@@ -76,8 +76,8 @@ public abstract class EditHandler {
 			return null;
 		java.nio.file.Path tmpDir = Files.createTempDirectory("postDokument");
 		java.nio.file.Path targetFile = tmpDir.resolve(fileMetadata.getFileName());
-		checkContentTypes(targetFile);
 		Files.copy(content, targetFile);
+		checkContentTypes(targetFile);
 		content.close();
 		return targetFile.toFile();
 	}
