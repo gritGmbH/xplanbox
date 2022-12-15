@@ -20,34 +20,32 @@
  */
 package de.latlon.xplan.validator.wms.config;
 
-import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.storage.PlanStorage;
-import de.latlon.xplan.validator.wms.storage.SqlPlanStorage;
-import de.latlon.xplan.validator.wms.workspace.ValidatorWorkspaceWrapper;
+import de.latlon.xplan.validator.wms.storage.WorkspacePlanStorage;
+import org.deegree.commons.config.DeegreeWorkspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @Configuration
-@Profile("validatorwmssql")
-public class ValidatorWmsSqlContext {
+public class ValidatorWmsWorkspaceContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ValidatorWmsWorkspaceContext.class);
 
-	@Bean
-	public ValidatorWorkspaceWrapper validatorWorkspaceWrapper() throws MapPreviewCreationException {
-		return new ValidatorWorkspaceWrapper();
-	}
+	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-workspace";
 
 	@Bean
-	public PlanStorage planStorage(ValidatorWorkspaceWrapper validatorWorkspaceWrapper) {
+	public PlanStorage planStorage() {
 		try {
-			return new SqlPlanStorage(validatorWorkspaceWrapper);
+			Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
+			return new WorkspacePlanStorage(workspaceLocation);
 		}
 		catch (Exception e) {
 			LOG.error("Could not initialise WorkspacePlanStorage. Reason: {}. MapPreview will not be available.",

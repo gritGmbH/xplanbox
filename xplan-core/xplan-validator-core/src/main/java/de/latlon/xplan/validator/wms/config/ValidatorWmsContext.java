@@ -35,7 +35,7 @@ import org.springframework.context.annotation.Import;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @Configuration
-@Import(ValidatorWmsMemoryContext.class)
+@Import({ ValidatorWmsWorkspaceContext.class, ValidatorWmsSqlContext.class })
 public class ValidatorWmsContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ValidatorWmsContext.class);

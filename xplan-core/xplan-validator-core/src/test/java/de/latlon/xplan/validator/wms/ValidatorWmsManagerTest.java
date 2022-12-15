@@ -28,10 +28,10 @@ import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.validator.wms.storage.PlanStorage;
 import de.latlon.xplan.validator.wms.storage.WorkspacePlanStorage;
-import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -45,15 +45,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ValidatorWmsManagerTest {
 
-	private static Path workspaceLocation;
-
-	@BeforeClass
-	public static void initWorkspace() throws IOException {
-		workspaceLocation = Files.createTempDirectory("ValidatorWmsManagerTest");
-	}
+	@Rule
+	public TemporaryFolder tempFolder = new TemporaryFolder();
 
 	@Test
 	public void testInsert() throws Exception {
+		Path workspaceLocation = tempFolder.getRoot().toPath();
 		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
 		PlanStorage planStorage = new WorkspacePlanStorage(workspaceLocation);
 		ValidatorWmsManager validatorWmsManager = new ValidatorWmsManager(synthesizer, planStorage);
@@ -70,7 +67,6 @@ public class ValidatorWmsManagerTest {
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
 		return new XPlanGmlParser().parseXPlanFeatureCollection(archive);
-
 	}
 
 }
