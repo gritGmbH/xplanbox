@@ -220,6 +220,19 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>latlon</id>
+      <distributionManagement>
+        <repository>
+          <id>latlon-deploy</id>
+          <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
+        </repository>
+        <snapshotRepository>
+          <id>latlon-deploy</id>
+          <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
   </profiles>
 
   <reporting>
@@ -1287,6 +1300,16 @@
   </scm>
 
   <repositories>
+    <repository> <!-- better to try central first as long as most dependencies comes from there -->
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
     <repository>
       <id>latlon</id>
       <url>https://repo.lat-lon.de/repository/maven-public/</url>
@@ -1342,12 +1365,12 @@
 
   <distributionManagement>
     <repository>
-      <id>latlon-deploy</id>
-      <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
+      <id>gitlab-maven</id>
+      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
     </repository>
     <snapshotRepository>
-      <id>latlon-deploy</id>
-      <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
+      <id>gitlab-maven</id>
+      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
     </snapshotRepository>
   </distributionManagement>
 
