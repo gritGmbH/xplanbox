@@ -8,11 +8,12 @@ if [ -z ${XPLANBOX_VOLUMES+x} ]; then
 fi
 
 MARKER_FILE=$XPLANBOX_VOLUMES/init-marker.txt
+INIT_STARTED_FILE=$XPLANBOX_VOLUMES/init-start-marker.txt
 
 if [ -f "$MARKER_FILE" ]; then
   if [[ -n "$XPLANBOX_VOLUME_INIT" && $XPLANBOX_VOLUME_INIT = "reset" ]]; then
     echo "[$(date -Iseconds)] Reset of existing dir $XPLANBOX_VOLUMES forced ..."
-    rm $MARKER_FILE
+    rm $MARKER_FILE $INIT_STARTED_FILE
     rm -rf $XPLANBOX_VOLUMES/xplan-*
   else
     echo "[$(date -Iseconds)] Init already done in $XPLANBOX_VOLUMES ($(cat $MARKER_FILE))"
@@ -25,7 +26,6 @@ echo "[$(date -Iseconds)] Initializing dir $XPLANBOX_VOLUMES ..."
 mkdir -p $XPLANBOX_VOLUMES
 
 # handle case of concurrently running inits
-INIT_STARTED_FILE=$XPLANBOX_VOLUMES/init-start-marker.txt
 tmpFile=$(mktemp /tmp/init-script.XXXXXX)
 echo "Init started by $(hostname) at $(date -Iseconds)" > $tmpFile
 mv -n $tmpFile $INIT_STARTED_FILE
