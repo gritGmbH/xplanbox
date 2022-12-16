@@ -41,7 +41,7 @@ maven-release:
     - 'cd deegree3'
     - 'mvn -q $MAVEN_CLI_OPTS install -DskipTests'
     - 'cd ..'
-    - mvn release:prepare release:perform $MAVEN_CLI_OPTS -DscmReleaseCommitComment="release @{releaseLabel}" -DtagNameFormat="v@{project.version}"
+    - mvn release:prepare release:perform $MAVEN_CLI_OPTS -DscmReleaseCommitComment="release @{releaseLabel}" -DtagNameFormat="v@{project.version}" -DskipTests -Darguments=-DskipTests
 
 gitlab-release:
   stage: deploy
