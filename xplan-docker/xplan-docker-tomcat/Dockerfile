@@ -1,9 +1,17 @@
-FROM tomcat:9-jdk11
+FROM bitnami/tomcat:9.0.69
 
-RUN apt-get update && apt-get install -y unzip
+ENV TOMCAT_INSTALL_DEFAULT_WEBAPPS=false
+ENV ALLOW_EMPTY_PASSWORD=yes
 
-# set environment variables
-ENV CATALINA_OPTS="-DXPLANBOX_CONFIG=/root/xplan-validator-config/ -Dlog4j2.configurationFile=classpath:/log4j2.yaml -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin"
+USER root
 
-# run tomcat
-CMD ["catalina.sh", "run"]
+# see https://github.com/adoptium/temurin-build/issues/693
+RUN apt-get update && apt-get -y install fontconfig
+
+RUN chmod o+w /opt/bitnami/tomcat/bin/setenv.sh \
+	&& chmod o+w /opt/bitnami/tomcat/logs/ \
+	&& chmod o+w /opt/bitnami/tomcat/conf /opt/bitnami/tomcat/conf/* \
+	&& chmod o+w /opt/bitnami/tomcat/work/ \
+	&& chmod o+w /opt/bitnami/tomcat/temp
+
+USER 1001

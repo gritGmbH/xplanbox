@@ -5,6 +5,9 @@ FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat:$XPLANBOX_VERSION
 ARG WEB_CONTEXT=ROOT
 
 # add xplan-api-validator
-RUN mkdir /usr/local/tomcat/webapps/$WEB_CONTEXT
-ADD target/exploded-webapp /usr/local/tomcat/webapps/$WEB_CONTEXT
+RUN mkdir /opt/bitnami/tomcat/webapps/$WEB_CONTEXT
+ADD target/exploded-webapp /opt/bitnami/tomcat/webapps/$WEB_CONTEXT
 
+# set environment variables
+ENV TOMCAT_EXTRA_JAVA_OPTS="-DXPLANBOX_CONFIG=/xplanbox/xplan-validator-config/ -Dlog4j2.configurationFile=classpath:/log4j2.yaml -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin"
+ENV DEEGREE_WORKSPACE_ROOT=/xplanbox/deegree
