@@ -16,7 +16,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L% --- */
-/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 14.12.2022, 14:36:07 --- */
+/* --- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.12.2022, 13:45:34 --- */
 CREATE SCHEMA xplansynarchive; 
 SET search_path TO xplansynarchive,public;
 CREATE TABLE xplansynarchive.xplan_bp_abgrabungsflaeche (

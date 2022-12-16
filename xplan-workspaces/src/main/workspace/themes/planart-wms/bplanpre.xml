@@ -17,7 +17,7 @@
 
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 14.12.2022, 14:36:07
+  #L%/nDiese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.12.2022, 13:45:34
 -->
 <Themes xmlns="http://www.deegree.org/themes/standard" xmlns:d="http://www.deegree.org/metadata/description" xmlns:s="http://www.deegree.org/metadata/spatial">
   <LayerStoreId>planart-wms/bp-soplanpre</LayerStoreId>
@@ -26,8 +26,8 @@
   <LayerStoreId>planart-wms/bp-fplanpre</LayerStoreId>
   <LayerStoreId>planart-wms/bp-bplanpre</LayerStoreId>
   <Theme>
-    <Identifier>BP_Plan</Identifier>
-    <d:Title>BP Plan Objekte</d:Title>
+    <Identifier>BP_Planvektor</Identifier>
+    <d:Title>BPlan Vektor</d:Title>
     <s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839</s:CRS>
     <Theme>
       <Identifier>bp</Identifier>
