@@ -626,6 +626,11 @@
       </dependency>
       <dependency>
         <groupId>de.latlon</groupId>
+        <artifactId>deegree-core-workspace</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-connectionprovider-datasource</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
@@ -647,6 +652,11 @@
       <dependency>
         <groupId>de.latlon</groupId>
         <artifactId>deegree-protocol-csw</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
+        <artifactId>deegree-protocol-wfs</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
@@ -868,6 +878,11 @@
         <version>1.19.0</version>
       </dependency>
       <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.3.2</version>
+      </dependency>
+      <dependency>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-core</artifactId>
         <version>${liquibase.version}</version>
@@ -1074,6 +1089,11 @@
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
         <artifactId>spring-expression</artifactId>
         <version>${spring.version}</version>
       </dependency>
@@ -1090,6 +1110,11 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <dependency>

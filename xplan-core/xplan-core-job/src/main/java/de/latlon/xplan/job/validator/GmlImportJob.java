@@ -8,17 +8,17 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.wms;
+package de.latlon.xplan.job.validator;
 
 import org.apache.commons.io.IOUtils;
 import org.deegree.commons.config.DeegreeWorkspace;
@@ -29,7 +29,6 @@ import org.deegree.feature.persistence.FeatureStoreProvider;
 import org.deegree.feature.persistence.FeatureStoreTransaction;
 import org.deegree.gml.GMLInputFactory;
 import org.deegree.gml.GMLStreamReader;
-import org.deegree.services.controller.OGCFrontController;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -37,6 +36,7 @@ import org.quartz.SchedulerContext;
 import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -51,24 +51,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static de.latlon.xplan.validator.wms.GmlImportServlet.MEMORY_FEATURESTORE;
-import static de.latlon.xplan.validator.wms.InsertedFids.INSERTED_FIDS_KEY;
+import static de.latlon.xplan.job.validator.InsertedFids.INSERTED_FIDS_KEY;
 import static org.deegree.gml.GMLVersion.GML_32;
 import static org.deegree.protocol.wfs.transaction.action.IDGenMode.GENERATE_NEW;
 
 /**
+ * Job to import GML files.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class GmlImportJob implements Job {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GmlImportJob.class);
 
+	private static final String MEMORY_FEATURESTORE = "xplansyn";
+
+	@Autowired
+	private DeegreeWorkspace workspace;
+
 	@Override
-	public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-		DeegreeWorkspace workspace = OGCFrontController.getServiceWorkspace();
-		if (workspace == null) {
-			return;
-		}
+	public void execute(final JobExecutionContext jobExecutionContext) throws JobExecutionException {
 		File workspaceLocation = workspace.getLocation();
 		Path path = Paths.get(workspaceLocation.toURI()).resolve("data");
 		if (!Files.exists(path)) {
@@ -89,6 +91,7 @@ public class GmlImportJob implements Job {
 		catch (SchedulerException e) {
 			LOG.warn("Could not retrieve scheduler context", e);
 		}
+		LOG.trace("GmlImportJob done");
 	}
 
 	private List<InsertedFids> getInsertedFids(SchedulerContext jobDataMap) {

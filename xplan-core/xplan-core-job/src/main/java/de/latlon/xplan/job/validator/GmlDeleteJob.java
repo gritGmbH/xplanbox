@@ -8,17 +8,17 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.wms;
+package de.latlon.xplan.job.validator;
 
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.feature.persistence.FeatureStore;
@@ -26,7 +26,6 @@ import org.deegree.feature.persistence.FeatureStoreException;
 import org.deegree.feature.persistence.FeatureStoreProvider;
 import org.deegree.feature.persistence.FeatureStoreTransaction;
 import org.deegree.filter.IdFilter;
-import org.deegree.services.controller.OGCFrontController;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
@@ -35,33 +34,37 @@ import org.quartz.SchedulerContext;
 import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.validator.wms.GmlImportServlet.MEMORY_FEATURESTORE;
-import static de.latlon.xplan.validator.wms.InsertedFids.INSERTED_FIDS_KEY;
+import static de.latlon.xplan.job.validator.InsertedFids.INSERTED_FIDS_KEY;
 import static java.util.Calendar.MINUTE;
 
 /**
+ * Job to delete GML files.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class GmlDeleteJob implements Job {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GmlDeleteJob.class);
 
-	public static final String DELETE_AFTER_KEY = "DELETEAFTERINMINUTES";
+	public static final String DELETE_AFTER_KEY = "DELETE_AFTER_MINUTES";
 
-	public static final int DEFAULT_DELETE_AFTER_IN_MINUTES = 5;
+	private static final int DEFAULT_DELETE_AFTER_IN_MINUTES = 5;
+
+	private static final String MEMORY_FEATURESTORE = "xplansyn";
+
+	@Autowired
+	private DeegreeWorkspace workspace;
 
 	@Override
-	public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+	public void execute(final JobExecutionContext jobExecutionContext) throws JobExecutionException {
 		int deleteAfter = getDeleteAfter(jobExecutionContext);
-		DeegreeWorkspace workspace = OGCFrontController.getServiceWorkspace();
-		if (workspace == null) {
-			return;
-		}
+
 		try {
 			SchedulerContext context = jobExecutionContext.getScheduler().getContext();
 			List<InsertedFids> insertedFids = (List<InsertedFids>) context.get(INSERTED_FIDS_KEY);
@@ -79,7 +82,7 @@ public class GmlDeleteJob implements Job {
 		catch (SchedulerException e) {
 			LOG.warn("Could not retrieve scheduler context", e);
 		}
-
+		LOG.trace("GmlDeleteJob done");
 	}
 
 	private void deleteGml(List<String> fidsToDelete, DeegreeWorkspace workspace) {

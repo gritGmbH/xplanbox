@@ -18,12 +18,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.wms;
+package de.latlon.xplan.job.validator;
 
 import java.util.Calendar;
 import java.util.List;
 
 /**
+ * Container storing the list of inserted IDs.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class InsertedFids {
@@ -43,7 +45,7 @@ public class InsertedFids {
 	}
 
 	/**
-	 * @return the date this {@link InsertedFids} insatence was created, never
+	 * @return the date this {@link InsertedFids} instance was created, never
 	 * <code>null</code>
 	 */
 	public Calendar getInsertTime() {

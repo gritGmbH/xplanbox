@@ -33,10 +33,11 @@
       <artifactId>log4j-web</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.quartz-scheduler</groupId>
-      <artifactId>quartz</artifactId>
-      <version>2.3.2</version>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-core-job</artifactId>
+      <version>${project.version}</version>
     </dependency>
+
   </dependencies>
 
   <profiles>
