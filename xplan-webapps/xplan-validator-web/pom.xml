@@ -254,6 +254,14 @@
       <properties>
         <docker-image.skip>false</docker-image.skip>
       </properties>
+	  <dependencies>
+	    <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
+	      <groupId>de.latlon.product.xplanbox</groupId>
+	      <artifactId>xplan-docker-tomcat</artifactId>
+	      <version>${project.version}</version>
+	      <type>pom</type>
+	    </dependency>
+	  </dependencies>
     </profile>
   </profiles>
 

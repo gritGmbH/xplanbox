@@ -42,6 +42,7 @@ then
 fi
 
 cp -r /xplan-volume-init/xplan-docker-volumes/* $XPLANBOX_VOLUMES
+chmod -R a+w $XPLANBOX_VOLUMES
 
 XPLANWMS_HOST_NAME="${XPLANWMS_HOST_NAME:-http://localhost:8083}"
 XPLANVALIDATORWMS_HOST_NAME="${XPLANVALIDATORWMS_HOST_NAME:-http://localhost:8088}"
