@@ -17,4 +17,6 @@ RUN mkdir /opt/bitnami/tomcat/webapps/$WEB_CONTEXT \
 	&& jar xf /tmp/xplan-validator-web-*.war \
 	&& rm /tmp/xplan-validator-web-*.war
 
+RUN chmod -R a+w /bitnami/tomcat/webapps/xplan-validator-web/masterportal
+
 USER 1001
