@@ -1,5 +1,51 @@
 databaseChangeLog:
 - changeSet:
+    id:  xplanvaidator_plans_features
+    author:  latlon
+    changes:
+      - createTable:
+          columns:
+            - column:
+                autoIncrement: true
+                constraints:
+                  nullable: false
+                  primaryKey: true
+                  primaryKeyName: plans_pkey
+                name: id
+                type: INTEGER
+            - column:
+                constraints:
+                  nullable: false
+                name: import_date
+                type: TIMESTAMP WITHOUT TIME ZONE
+          schemaName: xplanvalidator
+          tableName: plans
+      - createTable:
+          columns:
+            - column:
+                name: plan
+                type: INTEGER
+            - column:
+                constraints:
+                  nullable: false
+                name: fid
+                type: text
+          schemaName: xplanvalidator
+          tableName: features
+      - addForeignKeyConstraint:
+          baseColumnNames: plan
+          baseTableName: features
+          baseTableSchemaName: xplanvalidator
+          constraintName: features_plan_fkey
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: CASCADE
+          onUpdate: NO ACTION
+          referencedColumnNames: id
+          referencedTableName: plans
+          referencedTableSchemaName: xplanvalidator
+          validate: true
+- changeSet:
     id: 1663512731199-1
     author: latlon
     changes:
