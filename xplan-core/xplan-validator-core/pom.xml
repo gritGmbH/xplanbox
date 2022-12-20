@@ -37,6 +37,14 @@
     </dependency>
     <dependency>
       <groupId>de.latlon</groupId>
+      <artifactId>deegree-connectionprovider-datasource</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon</groupId>
+      <artifactId>deegree-sqldialect-postgis</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.latlon</groupId>
       <artifactId>deegree-core-theme</artifactId>
     </dependency>
     <dependency>
@@ -58,6 +66,10 @@
     <dependency>
       <groupId>de.latlon</groupId>
       <artifactId>deegree-core-geometry</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-core-job</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -178,6 +190,10 @@
       <artifactId>jackson-dataformat-yaml</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
     </dependency>
@@ -218,6 +234,10 @@
       <groupId>pl.pragmatists</groupId>
       <artifactId>JUnitParams</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
     </dependency>
   </dependencies>
 

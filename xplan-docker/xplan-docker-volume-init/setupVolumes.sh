@@ -140,5 +140,13 @@ then
   rm /tmp/regeln-berlin.jar
 fi
 
+# memory or sql
+VALIDATOR_WMS="${VALIDATOR_WMS:-memory}"
+if [ $VALIDATOR_WMS = "sql" ]
+then
+  sed -i 's|xplan-validator-wms-memory-workspace|xplan-validator-wms-sql-workspace|g' xplan-validator-workspaces/webapps.properties
+fi
+
+rm $INIT_STARTED_FILE
 echo "Initialization finished at $(date)" > $MARKER_FILE 
 cat $MARKER_FILE
