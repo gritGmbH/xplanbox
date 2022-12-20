@@ -18,15 +18,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.wms.workspace;
+package de.latlon.xplan.job.validator.workspace;
 
-import de.latlon.xplan.validator.wms.MapPreviewCreationException;
+import de.latlon.xplan.job.validator.exception.JobConfigException;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.db.ConnectionProvider;
 import org.deegree.db.ConnectionProviderProvider;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.FeatureStoreProvider;
-import org.deegree.feature.persistence.sql.SQLFeatureStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,15 +51,15 @@ public class ValidatorWorkspaceWrapper {
 
 	private final DeegreeWorkspace validatorWorkspace;
 
-	public ValidatorWorkspaceWrapper() throws MapPreviewCreationException {
+	public ValidatorWorkspaceWrapper() throws JobConfigException {
 		this.validatorWorkspace = initValidatorWorkspace();
 	}
 
-	private DeegreeWorkspace initValidatorWorkspace() throws MapPreviewCreationException {
+	private DeegreeWorkspace initValidatorWorkspace() throws JobConfigException {
 		LOG.info("Get workspace instance '{}' from deegree workspace root '{}'", XPLAN_VALIDATOR_WORKSPACE,
 				DeegreeWorkspace.getWorkspaceRoot());
 		if (!isWorkspace(XPLAN_VALIDATOR_WORKSPACE)) {
-			throw new MapPreviewCreationException("Workspace '" + XPLAN_VALIDATOR_WORKSPACE + "' does not exist.");
+			throw new JobConfigException("Workspace '" + XPLAN_VALIDATOR_WORKSPACE + "' does not exist.");
 		}
 		try {
 			DeegreeWorkspace workspace = getInstance(XPLAN_VALIDATOR_WORKSPACE);
@@ -68,7 +67,7 @@ public class ValidatorWorkspaceWrapper {
 			return workspace;
 		}
 		catch (Exception e) {
-			throw new MapPreviewCreationException(
+			throw new JobConfigException(
 					"Workspace '" + XPLAN_VALIDATOR_WORKSPACE + "' could not be initialised: " + e.getMessage(), e);
 		}
 	}
@@ -89,14 +88,14 @@ public class ValidatorWorkspaceWrapper {
 	 * @return the SQLFeatureStore, never <code>null</code>
 	 * @throws IllegalArgumentException if a FeatureStore can not be found
 	 */
-	public SQLFeatureStore lookupSqlFeatureStore() {
+	public FeatureStore lookupFeatureStore() {
 		ensureWorkspaceInitialized();
 		FeatureStore sfs = validatorWorkspace.getNewWorkspace().getResource(FeatureStoreProvider.class,
 				SQLFEATURESTORE_ID);
 		if (sfs == null) {
 			throw new IllegalArgumentException("Feature Store '" + SQLFEATURESTORE_ID + "' is not available");
 		}
-		return (SQLFeatureStore) sfs;
+		return sfs;
 	}
 
 	public DeegreeWorkspace getWorkspace() {

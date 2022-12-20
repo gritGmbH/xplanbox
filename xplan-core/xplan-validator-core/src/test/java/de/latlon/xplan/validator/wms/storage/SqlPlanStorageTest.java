@@ -35,7 +35,7 @@ public class SqlPlanStorageTest {
 	@Test
 	public void test() throws Exception {
 		FeatureCollection synFeatureCollection = createSynFeatureCollection();
-		planStorage.storeSynFeatureCollection(synFeatureCollection);
+		planStorage.storeSynFeatureCollection(1, synFeatureCollection);
 	}
 
 	private FeatureCollection createSynFeatureCollection() throws Exception {

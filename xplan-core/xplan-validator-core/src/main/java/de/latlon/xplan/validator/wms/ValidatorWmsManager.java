@@ -39,8 +39,6 @@ public class ValidatorWmsManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ValidatorWmsManager.class);
 
-	private static int PLANID = 1;
-
 	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
 	private final XPlanSynthesizer synthesizer;
@@ -64,12 +62,12 @@ public class ValidatorWmsManager {
 	 */
 	public int insert(XPlanFeatureCollection featureCollection) throws MapPreviewCreationException {
 		try {
-			int managerId = PLANID++;
+			int planId = planStorage.retrieveUniquePlanid();
 			AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 			FeatureCollection fc = synthesizer.synthesize(featureCollection);
-			featureCollectionManipulator.addPlanIdToFeatures(fc, synSchema, managerId);
-			planStorage.storeSynFeatureCollection(fc);
-			return managerId;
+			featureCollectionManipulator.addPlanIdToFeatures(fc, synSchema, planId);
+			planStorage.storeSynFeatureCollection(planId, fc);
+			return planId;
 		}
 		catch (MapPreviewCreationException e) {
 			throw e;

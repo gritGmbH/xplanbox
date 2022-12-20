@@ -20,19 +20,13 @@
  */
 package de.latlon.xplan.job.validator.config;
 
-import de.latlon.xplan.job.validator.GmlDeleteJob;
-import de.latlon.xplan.job.validator.GmlImportJob;
-import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-
-import static de.latlon.xplan.job.validator.GmlDeleteJob.DELETE_AFTER_KEY;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
 /**
  * Spring configuration for Quartz scheduler and jobs.
@@ -40,53 +34,19 @@ import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
+@Import({ MemoryJobContext.class, SqlJobContext.class })
 public class JobContext {
 
-	private static final int IMPORT_INTERVAL_IN_SECONDS = 1;
+	public static final String DELETE_AFTER_KEY = "DELETE_AFTER_MINUTES";
 
-	private static final int DELETE_INTERVAL_IN_SECONDS = 30;
+	public static final int DEFAULT_DELETE_AFTER_IN_MINUTES = 5;
+
+	static final int IMPORT_INTERVAL_IN_SECONDS = 1;
+
+	static final int DELETE_INTERVAL_IN_SECONDS = 30;
 
 	@Autowired
 	private ApplicationContext applicationContext;
-
-	@Bean
-	public JobDetail importJob() {
-		return JobBuilder.newJob().ofType(GmlImportJob.class).withIdentity("importJob", "xplan-validator-wms")
-				.storeDurably().withDescription("Import GML files into FeatureStore ...").build();
-	}
-
-	@Bean
-	public JobDetail deleteJob(@Value("${#{environment.DELETE_AFTER_MINUTES}:5}") int deleteAfterInMinutes) {
-		return JobBuilder.newJob().ofType(GmlDeleteJob.class).withIdentity("deleteJob", "xplan-validator-wms")
-				.storeDurably().withDescription("Delete GML files from FeatureStore ...")
-				.usingJobData(DELETE_AFTER_KEY, deleteAfterInMinutes).build();
-	}
-
-	@Bean
-	public Trigger importTrigger(JobDetail importJob) {
-		return TriggerBuilder.newTrigger().forJob(importJob).withIdentity("importTrigger", "xplan-validator-wms")
-				.withDescription("Import trigger")
-				.withSchedule(simpleSchedule().withIntervalInSeconds(IMPORT_INTERVAL_IN_SECONDS).repeatForever())
-				.startNow().build();
-	}
-
-	@Bean
-	Trigger deleteTrigger(JobDetail deleteJob) {
-		return TriggerBuilder.newTrigger().forJob(deleteJob).withIdentity("deleteTrigger", "xplan-validator-wms")
-				.withDescription("Delete trigger")
-				.withSchedule(simpleSchedule().withIntervalInSeconds(DELETE_INTERVAL_IN_SECONDS).repeatForever())
-				.startNow().build();
-	}
-
-	@Bean
-	public Scheduler scheduler(JobDetail importJob, Trigger importTrigger, JobDetail deleteJob, Trigger deleteTrigger,
-			SchedulerFactoryBean schedulerFactory) throws SchedulerException {
-		Scheduler scheduler = schedulerFactory.getScheduler();
-		scheduler.scheduleJob(importJob, importTrigger);
-		scheduler.scheduleJob(deleteJob, deleteTrigger);
-		scheduler.start();
-		return scheduler;
-	}
 
 	@Bean
 	public SchedulerFactoryBean schedulerFactory() {

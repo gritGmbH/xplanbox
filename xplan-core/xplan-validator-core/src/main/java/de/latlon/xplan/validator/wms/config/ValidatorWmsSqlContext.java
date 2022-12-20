@@ -20,14 +20,16 @@
  */
 package de.latlon.xplan.validator.wms.config;
 
-import de.latlon.xplan.validator.wms.MapPreviewCreationException;
+import de.latlon.xplan.job.validator.config.JobContext;
+import de.latlon.xplan.job.validator.exception.JobConfigException;
+import de.latlon.xplan.job.validator.workspace.ValidatorWorkspaceWrapper;
 import de.latlon.xplan.validator.wms.storage.PlanStorage;
 import de.latlon.xplan.validator.wms.storage.SqlPlanStorage;
-import de.latlon.xplan.validator.wms.workspace.ValidatorWorkspaceWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 
 /**
@@ -35,19 +37,20 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 @Profile("validatorwmssql")
+@Import(JobContext.class)
 public class ValidatorWmsSqlContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ValidatorWmsWorkspaceContext.class);
 
 	@Bean
-	public ValidatorWorkspaceWrapper validatorWorkspaceWrapper() throws MapPreviewCreationException {
+	public ValidatorWorkspaceWrapper validatorWorkspaceWrapper() throws JobConfigException {
 		return new ValidatorWorkspaceWrapper();
 	}
 
 	@Bean
-	public PlanStorage planStorage(ValidatorWorkspaceWrapper validatorWorkspaceWrapper) {
+	public PlanStorage planStorage() {
 		try {
-			return new SqlPlanStorage(validatorWorkspaceWrapper);
+			return new SqlPlanStorage();
 		}
 		catch (Exception e) {
 			LOG.error("Could not initialise WorkspacePlanStorage. Reason: {}. MapPreview will not be available.",

@@ -942,6 +942,11 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-core-job</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
         <artifactId>xplan-manager-core</artifactId>
         <version>${project.version}</version>
       </dependency>

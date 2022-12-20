@@ -1,6 +1,6 @@
 /*-
  * #%L
- * xplan-validator-core - XPlan Validator Core Komponente
+ * xplan-validator-wms - XPlanValidatorWMS
  * %%
  * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
  * %%
@@ -18,28 +18,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.validator.wms.storage;
-
-import de.latlon.xplan.validator.wms.MapPreviewCreationException;
-import org.deegree.feature.FeatureCollection;
+package de.latlon.xplan.job.validator.exception;
 
 /**
+ * Indicates that a configuration for a job could not be initialized.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public interface PlanStorage {
+public class JobConfigException extends Exception {
 
-	/**
-	 * @return a unique ID for the plan to store
-	 */
-	int retrieveUniquePlanid() throws MapPreviewCreationException;
+	public JobConfigException(String message) {
+		super(message);
+	}
 
-	/**
-	 * @param planId
-	 * @param synFeatureCollection the feature collection to store, never
-	 * <code>null</code>
-	 * @throws MapPreviewCreationException if the feature collection could not be stored
-	 */
-	void storeSynFeatureCollection(int planId, FeatureCollection synFeatureCollection)
-			throws MapPreviewCreationException;
+	public JobConfigException(String message, Exception e) {
+		super(message, e);
+	}
 
 }

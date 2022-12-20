@@ -58,6 +58,8 @@ public class WorkspacePlanStorage implements PlanStorage {
 
 	private static final String RELATIVE_PATH_TO_DATA_DIR = "data";
 
+	private static int PLANID = 1;
+
 	private final Path pathToDataDirectory;
 
 	/**
@@ -74,7 +76,13 @@ public class WorkspacePlanStorage implements PlanStorage {
 	}
 
 	@Override
-	public void storeSynFeatureCollection(FeatureCollection synFeatureCollection) throws MapPreviewCreationException {
+	public int retrieveUniquePlanid() {
+		return PLANID++;
+	}
+
+	@Override
+	public void storeSynFeatureCollection(int planId, FeatureCollection synFeatureCollection)
+			throws MapPreviewCreationException {
 		AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 		String fileName = UUID.randomUUID() + ".gml";
 		Path pathToFile = pathToDataDirectory.resolve(fileName);

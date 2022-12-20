@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.job.validator.InsertedFids.INSERTED_FIDS_KEY;
+import static de.latlon.xplan.job.validator.config.JobContext.DEFAULT_DELETE_AFTER_IN_MINUTES;
+import static de.latlon.xplan.job.validator.config.JobContext.DELETE_AFTER_KEY;
 import static java.util.Calendar.MINUTE;
 
 /**
@@ -51,10 +53,6 @@ import static java.util.Calendar.MINUTE;
 public class GmlDeleteJob implements Job {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GmlDeleteJob.class);
-
-	public static final String DELETE_AFTER_KEY = "DELETE_AFTER_MINUTES";
-
-	private static final int DEFAULT_DELETE_AFTER_IN_MINUTES = 5;
 
 	private static final String MEMORY_FEATURESTORE = "xplansyn";
 
