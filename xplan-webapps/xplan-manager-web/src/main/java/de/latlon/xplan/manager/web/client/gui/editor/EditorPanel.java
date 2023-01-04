@@ -53,6 +53,7 @@ import org.fusesource.restygwt.client.MethodCallback;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_CENTER;
+import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan;
 import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 import static de.latlon.xplan.manager.web.client.service.ManagerService.Util.getService;
 
@@ -163,7 +164,7 @@ public class EditorPanel extends DecoratorPanel {
 		panel.setSpacing(10);
 		panel.setHorizontalAlignment(ALIGN_CENTER);
 		panel.add(baseDataPanel);
-		if ("BP_Plan".equals(planType)) {
+		if (BP_Plan.equals(planType)) {
 			panel.add(validityPeriodPanel);
 		}
 		panel.add(changesPanel);
