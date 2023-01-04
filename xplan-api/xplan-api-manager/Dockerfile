@@ -5,7 +5,6 @@ FROM ${XPLANBOX_IMAGE_NAME_PREFIX}/xplan-docker-tomcat-gdal:$XPLANBOX_VERSION
 
 # set environment variables
 ENV CATALINA_OPTS="-DXPLANBOX_CONFIG=/root/xplan-manager-config/ -Dlog4j2.configurationFile=classpath:/log4j2.yaml -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Djts.overlay=ng -Duser.timezone=Europe/Berlin"
-ENV LD_LIBRARY_PATH="/usr/lib/jni"
 
 # add xplan-api-manager
 ADD target/xplan-api-manager-*.war /root/

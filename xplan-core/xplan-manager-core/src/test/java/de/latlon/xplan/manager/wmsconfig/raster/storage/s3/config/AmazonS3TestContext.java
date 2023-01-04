@@ -78,7 +78,6 @@ public class AmazonS3TestContext {
 		AmazonS3 client = AmazonS3ClientBuilder.standard().withPathStyleAccessEnabled(true)
 				.withEndpointConfiguration(endpoint)
 				.withCredentials(new AWSStaticCredentialsProvider(new AnonymousAWSCredentials())).build();
-
 		client.createBucket(bucketName);
 		return client;
 	}

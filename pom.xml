@@ -19,7 +19,7 @@
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
     <deegree3.version>3.5-PRE1</deegree3.version>
-    <xplanung.regeln.version>1.0</xplanung.regeln.version>
+    <xplanung.regeln.version>1.1</xplanung.regeln.version>
     <gwt.version>2.10.0</gwt.version>
     <geotools.version>26.6</geotools.version>
     <log4j.version>2.17.2</log4j.version>
@@ -219,6 +219,19 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <profile>
+      <id>latlon</id>
+      <distributionManagement>
+        <repository>
+          <id>latlon-deploy</id>
+          <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
+        </repository>
+        <snapshotRepository>
+          <id>latlon-deploy</id>
+          <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
     </profile>
   </profiles>
 
@@ -613,6 +626,11 @@
       </dependency>
       <dependency>
         <groupId>de.latlon</groupId>
+        <artifactId>deegree-core-workspace</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-connectionprovider-datasource</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
@@ -634,6 +652,11 @@
       <dependency>
         <groupId>de.latlon</groupId>
         <artifactId>deegree-protocol-csw</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
+        <artifactId>deegree-protocol-wfs</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
       <dependency>
@@ -855,6 +878,11 @@
         <version>1.19.0</version>
       </dependency>
       <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.3.2</version>
+      </dependency>
+      <dependency>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-core</artifactId>
         <version>${liquibase.version}</version>
@@ -910,6 +938,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>xplan-validator-web-commons</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-core-job</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -1061,6 +1094,11 @@
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
         <artifactId>spring-expression</artifactId>
         <version>${spring.version}</version>
       </dependency>
@@ -1077,6 +1115,11 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <dependency>
@@ -1287,6 +1330,16 @@
   </scm>
 
   <repositories>
+    <repository> <!-- better to try central first as long as most dependencies comes from there -->
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
     <repository>
       <id>latlon</id>
       <url>https://repo.lat-lon.de/repository/maven-public/</url>
@@ -1342,12 +1395,12 @@
 
   <distributionManagement>
     <repository>
-      <id>latlon-deploy</id>
-      <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
+      <id>gitlab-maven</id>
+      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
     </repository>
     <snapshotRepository>
-      <id>latlon-deploy</id>
-      <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
+      <id>gitlab-maven</id>
+      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
     </snapshotRepository>
   </distributionManagement>
 

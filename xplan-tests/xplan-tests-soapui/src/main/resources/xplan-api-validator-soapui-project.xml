@@ -2222,7 +2222,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="transfer" name="Property Transfer" id="1981f43d-8575-437e-a961-5eb93451d0e6">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profilesId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
@@ -2233,12 +2233,12 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profilesSecondId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
             <con:sourcePath>$.profiles[1].id</con:sourcePath>
-            <con:targetType>profilesSecondId</con:targetType>
+            <con:targetType xsi:nil="true"/>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -2329,110 +2329,21 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 6.0 pf validatePlanWithMultipleProfile" id="a99e442f-4e9c-4758-b479-0c4262783c59">
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="f37b9039-1b55-4870-9b1d-61f0e352bbc0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Cleanup Properies" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="transfer" name="Property Transfer" id="b7495b1f-8626-4198-b433-87c453ce2797">
         <con:settings/>
-        <con:config service="XPlanValidatorAPI" methodName="validate" resourcePath="/validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 6.0 pf validatePlanWithMultipleProfile" id="c6f9a486-2252-4934-aa53-bfdfd986768e" mediaType="application/octet-stream" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:encoding>UTF-8</con:encoding>
-            <con:endpoint>http://localhost:8085/xplan-api-validator/xvalidator/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-validator/xvalidator/api/v1/validate</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="5f4dcada-c13f-4671-84c1-8a94197dfc67" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match profile">
-              <con:configuration>
-                <path>$.validationResult.profile</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match profile name">
-              <con:configuration>
-                <path>$.validationResult.profile[0].name</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match profile description">
-              <con:configuration>
-                <path>$.validationResult.profile[0].description</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match profile ergebnis">
-              <con:configuration>
-                <path>$.validationResult.profile[0].ergebnis</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match second profile name">
-              <con:configuration>
-                <path>$.validationResult.profile[1].name</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match second profile description">
-              <con:configuration>
-                <path>$.validationResult.profile[1].description</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="27319365-9c0b-46e0-85a0-3ff01ee895ed" name="JsonPath Existence Match second profile ergebnis">
-              <con:configuration>
-                <path>$.validationResult.profile[1].ergebnis</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
-              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
-              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-              <con:preemptive>true</con:preemptive>
-              <con:authType>Preemptive</con:authType>
-            </con:credentials>
-            <con:attachment>
-              <con:name>BP_6.0.zip</con:name>
-              <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>BP_6.0.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-validator/plans/BP_6.0.zip</con:url>
-              <con:id>3940446e-fc4f-45cd-93d1-9f53341835ba</con:id>
-            </con:attachment>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="profiles" value="${#TestSuite#profilesId},${#TestSuite#profilesSecondId}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-            <con:parameterOrder>
-              <con:entry>profiles</con:entry>
-            </con:parameterOrder>
-          </con:restRequest>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>profilesId</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:targetType>profilesId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -2440,15 +2351,16 @@ Validate XPlanGML or XPlanArchive</con:description>
     <con:properties>
       <con:property>
         <con:name>profilesId</con:name>
-        <con:value>test2</con:value>
-      </con:property>
-      <con:property>
-        <con:name>profilesSecondId</con:name>
-        <con:value>test1</con:value>
+        <con:value/>
       </con:property>
     </con:properties>
   </con:testSuite>
-  <con:properties/>
+  <con:properties>
+    <con:property>
+      <con:name>null</con:name>
+      <con:value/>
+    </con:property>
+  </con:properties>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>

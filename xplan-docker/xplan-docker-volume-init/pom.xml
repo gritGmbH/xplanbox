@@ -65,7 +65,14 @@
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <type>zip</type>
-      <classifier>xplan-validator-wms-workspace</classifier>
+      <classifier>xplan-validator-wms-memory-workspace</classifier>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-workspaces</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+      <classifier>xplan-validator-wms-sql-workspace</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -73,6 +80,13 @@
       <version>${project.version}</version>
       <type>zip</type>
       <classifier>xplan-manager-workspace</classifier>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-workspaces</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+      <classifier>xplan-validator-workspace</classifier>
     </dependency>
     <!--xplan-manager-config-->
     <dependency>
@@ -96,13 +110,6 @@
       <version>${project.version}</version>
       <type>zip</type>
       <classifier>xplan-inspireplu-workspace</classifier>
-    </dependency>
-    <!--xplan-mapserver-config-->
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>xplan-mapserver-config</artifactId>
-      <version>${project.version}</version>
-      <type>zip</type>
     </dependency>
   </dependencies>
 </project>

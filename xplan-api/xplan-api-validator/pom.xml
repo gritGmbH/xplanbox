@@ -332,8 +332,8 @@
                 <configuration>
                   <webappDirectory>${project.build.directory}/exploded-webapp</webappDirectory>
                 </configuration>
-                </execution>
-              </executions>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>

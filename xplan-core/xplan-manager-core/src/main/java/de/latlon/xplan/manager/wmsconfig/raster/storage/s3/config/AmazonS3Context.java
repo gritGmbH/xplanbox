@@ -23,7 +23,7 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
+import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
@@ -67,15 +67,23 @@ public class AmazonS3Context {
 	}
 
 	@Bean
-	public AmazonS3 s3Client(AWSCredentials credentials, Regions regions) {
-		return AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
-				.withRegion(regions).build();
-	}
-
-	@Bean
-	public Regions regions(@Value("${s3.region:#{environment.MAPSERVER_S3_REGION}}") String regions) {
-		Regions defaultRegion = Regions.fromName(regions);
-		return defaultRegion;
+	public AmazonS3 s3Client(AWSCredentials credentials,
+			@Value("${s3.region:#{environment.MAPSERVER_S3_REGION}}") String signingRegion,
+			@Value("${s3.endpoint.url:#{environment.MAPSERVER_S3_ENDPOINT}}") String endpointUrl) {
+		AmazonS3 client;
+		// TODO refactoring if/else to @ConditionalOnExpression with SpringBoot into 2
+		// SpringBeans
+		if (endpointUrl == null || endpointUrl.isEmpty()) {
+			client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+					.withRegion(signingRegion).build();
+		}
+		else {
+			AwsClientBuilder.EndpointConfiguration endpoint = new AwsClientBuilder.EndpointConfiguration(endpointUrl,
+					signingRegion);
+			client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+					.withEndpointConfiguration(endpoint).build();
+		}
+		return client;
 	}
 
 	@Bean
