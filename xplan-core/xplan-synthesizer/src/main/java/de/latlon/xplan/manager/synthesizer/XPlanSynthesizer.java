@@ -25,8 +25,7 @@ import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
-import de.latlon.xplan.manager.synthesizer.rules.SynRulesParser;
-import org.apache.commons.collections4.map.MultiKeyMap;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import org.apache.xerces.xs.XSElementDeclaration;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -41,8 +40,6 @@ import org.deegree.feature.GenericFeatureCollection;
 import org.deegree.feature.property.GenericProperty;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
 import java.nio.file.Path;
@@ -61,13 +58,11 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
  */
 public class XPlanSynthesizer {
 
-	private static final Logger LOG = LoggerFactory.getLogger(XPlanSynthesizer.class);
-
 	private final static String SYN_NS = XPLAN_SYN.getNamespace();
 
 	private static final AppSchema synSchema;
 
-	private final MultiKeyMap synRules;
+	private final SynRulesAccessor synRulesAccessor;
 
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
@@ -93,8 +88,7 @@ public class XPlanSynthesizer {
 	 * internal rules, may be <code>null</code>
 	 */
 	public XPlanSynthesizer(Path rulesDirectory) {
-		SynRulesParser synRulesParser = new SynRulesParser(rulesDirectory);
-		synRules = synRulesParser.parseRules();
+		this.synRulesAccessor = new SynRulesAccessor(rulesDirectory);
 	}
 
 	/**
@@ -149,7 +143,7 @@ public class XPlanSynthesizer {
 		for (PropertyType propType : propTypes) {
 			// the rule keys are specified in "<featureName>/<propName>" format
 			String key = synFeatureTypeName + "/" + propType.getName().getLocalPart();
-			Expression expression = (Expression) synRules.get(version, key);
+			Expression expression = synRulesAccessor.getExpression(version, key);
 			if (expression != null) {
 				TypedObjectNode newPropValue = expression.evaluate(feature, features, planContext);
 				if (newPropValue == null) {

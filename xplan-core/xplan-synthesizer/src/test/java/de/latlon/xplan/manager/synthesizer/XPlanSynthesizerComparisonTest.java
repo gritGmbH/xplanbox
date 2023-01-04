@@ -59,12 +59,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class XPlanSynthesizerComparisonTest {
 
+	private XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+
 	@Parameters({ "xplan41/BP2070", "xplan41/BP2135", "xplan41/LA22", "xplan41/LA67", "xplan50/BP2070",
 			"xplan50/BP2135", "xplan50/LA22", "xplan50/LA67", "xplan51/BP2070", "xplan51/BP2135", "xplan51/LA22",
 			"xplan51/LA67", "xplan52/BP2070", "xplan52/BP2135", "xplan52/LA22", "xplan52/LA67" })
 	@Test
 	public void test(String archiveName) throws Exception {
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
 		XPlanFeatureCollection xplanFc = TestFeaturesUtils.getTestFeatureCollection(archiveName + ".zip");
 		FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(xplanFc.getVersion(), xplanFc);
 		String synthesizedFeatures = writeFeatures(xplanFc.getVersion(), synthesizedFeatureCollection);

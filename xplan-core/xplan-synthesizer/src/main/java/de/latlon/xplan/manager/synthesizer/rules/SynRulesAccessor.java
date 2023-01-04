@@ -24,7 +24,6 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.synthesizer.RuleParser;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
-import org.apache.commons.collections4.map.MultiKeyMap;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,56 +32,64 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class SynRulesParser {
+public class SynRulesAccessor {
 
-	private static final Logger LOG = LoggerFactory.getLogger(SynRulesParser.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SynRulesAccessor.class);
 
 	private final Path rulesDirectory;
 
 	private final RuleParser ruleParser;
 
-	public SynRulesParser() {
-		this(null);
-	}
+	private final Map<XPlanVersion, Map<String, Expression>> synRulesPerVersion = new HashMap<>();
 
 	/**
 	 * @param rulesDirectory the directory containing additional rules overwriting the
 	 * internal rules, may be <code>null</code>
 	 */
-	public SynRulesParser(Path rulesDirectory) {
+	public SynRulesAccessor(Path rulesDirectory) {
 		this.rulesDirectory = rulesDirectory;
 		this.ruleParser = new RuleParser(rulesDirectory);
 	}
 
-	public MultiKeyMap parseRules() {
-		MultiKeyMap synRules = new MultiKeyMap();
-		Arrays.stream(XPlanVersion.values()).filter(xPlanVersion -> xPlanVersion.getSynRulesFileName() != null)
-				.forEach(xPlanVersion -> {
-					String rulesFileName = xPlanVersion.getSynRulesFileName();
-					InputStream rulesFromClasspath = retrieveRulesFileFromClasspath(rulesFileName);
-					parseRules(synRules, xPlanVersion, rulesFromClasspath);
-					InputStream rulesFromFileSystem = retrieveRulesFileFromFileSystem(rulesFileName);
-					if (rulesFromFileSystem != null)
-						parseRules(synRules, xPlanVersion, rulesFromFileSystem);
-				});
-		return synRules;
+	public Expression getExpression(XPlanVersion xPlanVersion, String propertyPath) {
+		Map<String, Expression> expressions = parseRules(xPlanVersion);
+		return expressions.get(propertyPath);
 	}
 
-	private void parseRules(MultiKeyMap synRules, XPlanVersion xPlanVersion, InputStream is) {
+	private Map<String, Expression> parseRules(XPlanVersion xPlanVersion) {
+		if (!synRulesPerVersion.containsKey(xPlanVersion)) {
+			parseAndAddSynRules(xPlanVersion);
+		}
+		return synRulesPerVersion.get(xPlanVersion);
+	}
+
+	private synchronized void parseAndAddSynRules(XPlanVersion xPlanVersion) {
+		Map<String, Expression> synRules = new HashMap<>();
+		String rulesFileName = detectRulesFileName(xPlanVersion);
+		InputStream rulesFromClasspath = retrieveRulesFileFromClasspath(rulesFileName);
+		parseRules(synRules, rulesFromClasspath);
+		InputStream rulesFromFileSystem = retrieveRulesFileFromFileSystem(rulesFileName);
+		if (rulesFromFileSystem != null)
+			parseRules(synRules, rulesFromFileSystem);
+		synRulesPerVersion.put(xPlanVersion, synRules);
+	}
+
+	private void parseRules(Map<String, Expression> synRules, InputStream is) {
 		try {
 			for (String line : IOUtils.readLines(is)) {
 				if (!line.startsWith("#") && !"".equals(line.trim())) {
 					int firstEquals = line.indexOf("=");
 					String propertyPath = line.substring(0, firstEquals);
 					Expression expression = ruleParser.parse(line.substring(firstEquals + 1));
-					synRules.put(xPlanVersion, propertyPath, expression);
+					synRules.put(propertyPath, expression);
 				}
 			}
 		}
@@ -115,6 +122,14 @@ public class SynRulesParser {
 		String rulesResource = "/rules/" + rulesFileName;
 		LOG.info("Read rules from internal directory: {}", rulesResource);
 		return XPlanSynthesizer.class.getResourceAsStream(rulesResource);
+	}
+
+	private String detectRulesFileName(XPlanVersion version) {
+		String synRulesFileName = version.getSynRulesFileName();
+		if (synRulesFileName == null) {
+			throw new IllegalArgumentException("Could not find rules file for XPlan version " + version);
+		}
+		return synRulesFileName;
 	}
 
 }
