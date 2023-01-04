@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.genericxml.GenericXMLElement;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -79,8 +80,8 @@ public class Ausrichtung implements Expression {
 	}
 
 	@Override
-	public TypedObjectNode evaluate(Feature feature, FeatureCollection features) {
-		TypedObjectNode property = exp.evaluate(feature, features);
+	public TypedObjectNode evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
+		TypedObjectNode property = exp.evaluate(feature, features, planContext);
 		if (property != null) {
 			if (property instanceof SimpleProperty) {
 				return asTypedObjectNode(((SimpleProperty) property).getValue());

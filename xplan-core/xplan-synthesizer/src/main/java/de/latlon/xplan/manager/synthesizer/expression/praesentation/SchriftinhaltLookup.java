@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.manager.codelists.XPlanCodeLists;
 import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -53,10 +54,10 @@ public class SchriftinhaltLookup extends PraesentationsobjektLookup {
 	}
 
 	@Override
-	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, Feature referencedFeature,
-			List<AttributeProperty> attributeProperty) {
+	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, PlanContext planContext,
+			Feature referencedFeature, List<AttributeProperty> attributeProperty) {
 		XPlanVersion xPlanVersion = XPlanVersion.valueOfNamespace(feature.getName().getNamespaceURI());
-		TypedObjectNode originalSchriftinhalt = schriftinhalt.evaluate(feature, features);
+		TypedObjectNode originalSchriftinhalt = schriftinhalt.evaluate(feature, features, planContext);
 		if (originalSchriftinhalt != null)
 			return originalSchriftinhalt;
 		if (referencedFeature != null && attributeProperty != null) {

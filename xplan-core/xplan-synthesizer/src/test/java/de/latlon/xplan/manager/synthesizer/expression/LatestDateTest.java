@@ -20,12 +20,14 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.property.SimpleProperty;
 import org.junit.Test;
 
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
@@ -40,19 +42,21 @@ public class LatestDateTest {
 
 	@Test
 	public void testEvaluate_Empty() throws Exception {
+		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "Praesentationsobjekte.gml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		LatestDate latestDate = new LatestDate(new Xpath("xplan:auslegungsStartDatum"));
-		TypedObjectNode property = latestDate.evaluate(feature, features);
+		TypedObjectNode property = latestDate.evaluate(feature, features, planContext);
 		assertThat(property, is(nullValue()));
 	}
 
 	@Test
 	public void testEvaluate() throws Exception {
+		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_51, "MultipleDates.gml");
 		Feature feature = getTestFeature(features, "BP_PLAN");
 		LatestDate latestDate = new LatestDate(new Xpath("xplan:auslegungsStartDatum"));
-		SimpleProperty property = (SimpleProperty) latestDate.evaluate(feature, features);
+		SimpleProperty property = (SimpleProperty) latestDate.evaluate(feature, features, planContext);
 		assertThat(property.getValue().getAsText(), is("1998-01-01"));
 	}
 

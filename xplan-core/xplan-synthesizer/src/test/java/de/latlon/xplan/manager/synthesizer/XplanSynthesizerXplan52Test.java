@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import junitparams.JUnitParamsRunner;
@@ -29,7 +28,6 @@ import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.xmlunit.matchers.EvaluateXPathMatcher.hasXPath;
@@ -55,11 +53,6 @@ public class XplanSynthesizerXplan52Test extends AbstractXplanSynthesizerTest {
 
 		assertThat(synGml,
 				hasXPath("count(//xplansyn:rechtscharakter[text() = ''])", is("0")).withNamespaceContext(nsContext()));
-	}
-
-	@Override
-	XPlanVersion getXPlanVersion() {
-		return XPLAN_52;
 	}
 
 }

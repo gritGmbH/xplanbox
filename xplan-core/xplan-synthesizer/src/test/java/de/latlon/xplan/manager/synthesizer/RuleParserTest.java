@@ -37,7 +37,7 @@ public class RuleParserTest {
 
 	@Test
 	public void testParse_Xpath() {
-		RuleParser ruleParser = new RuleParser("BP_Plan", "Name", null);
+		RuleParser ruleParser = new RuleParser();
 		Xpath xpath = (Xpath) ruleParser.parse("xpath('xplan:drehwinkel/text()')");
 
 		assertThat(xpath.getDefaultValue(), is(nullValue()));
@@ -45,7 +45,7 @@ public class RuleParserTest {
 
 	@Test
 	public void testParse_XpathWithDefaultValue() {
-		RuleParser ruleParser = new RuleParser("BP_Plan", "Name", null);
+		RuleParser ruleParser = new RuleParser();
 		Xpath xpath = (Xpath) ruleParser.parse("xpath('xplan:drehwinkel/text()', 42.0)");
 
 		assertThat(xpath.getDefaultValue(), is(42.0));
@@ -53,7 +53,7 @@ public class RuleParserTest {
 
 	@Test
 	public void testParse_SchriftinhaltLookup() {
-		RuleParser ruleParser = new RuleParser("BP_Plan", "Name", null);
+		RuleParser ruleParser = new RuleParser();
 		Expression expression = ruleParser.parse("schriftinhaltLookup()");
 
 		assertThat(expression, is(instanceOf(SchriftinhaltLookup.class)));

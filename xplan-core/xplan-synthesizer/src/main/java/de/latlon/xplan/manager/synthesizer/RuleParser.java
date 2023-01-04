@@ -38,33 +38,31 @@ import de.latlon.xplan.manager.synthesizer.expression.praesentation.Schriftinhal
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SkalierungLookup;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.StylesheetIdLookup;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The <code>RuleParser</code> class parses the Syn rules into corresponding objects.
- * These will be used for evalution in the context of a feature.
+ * These will be used for evaluation in the context of a feature.
  *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
  * @version 1.0, Date: 2010-05-25
  */
-class RuleParser {
+public class RuleParser {
 
-	private final String xplanType;
+	private final Path externalConfigurationFile;
 
-	private final String xplanName;
-
-	private final XPlanSynthesizer xPlanSynthesizer;
+	public RuleParser() {
+		this(null);
+	}
 
 	/**
-	 * @param xplanType the type of xplan document. See {@link XPlanType}
-	 * @param xplanName the name of xplan document, i.e. the name of the
-	 * XP_Plan-descendant feature in the document
+	 * @param externalConfigurationFilePath path to the external configuration file, can
+	 * be <code>null</code>
 	 */
-	public RuleParser(String xplanType, String xplanName, XPlanSynthesizer xPlanSynthesizer) {
-		this.xplanType = xplanType;
-		this.xplanName = xplanName;
-		this.xPlanSynthesizer = xPlanSynthesizer;
+	public RuleParser(Path externalConfigurationFilePath) {
+		this.externalConfigurationFile = externalConfigurationFilePath;
 	}
 
 	private String trimString(String s) {
@@ -123,8 +121,7 @@ class RuleParser {
 		Expression expression = parse(args.get(0));
 		String codeListFile = trimString(args.get(1));
 		String codeListName = args.size() > 2 ? trimString(args.get(2)) : null;
-		return new XPlanExternalCodeLookup(expression, codeListFile, codeListName,
-				xPlanSynthesizer.getExternalConfigurationFile());
+		return new XPlanExternalCodeLookup(expression, codeListFile, codeListName, externalConfigurationFile);
 	}
 
 	private Expression parseAusrichtungLookup(List<String> args) {
@@ -164,9 +161,9 @@ class RuleParser {
 			case "xplanAggregateFlaechenteil":
 				return parseXPlanAggregateFlaechenteil();
 			case "xplanType":
-				return new XPlanType(xplanType);
+				return new XPlanType();
 			case "xplanName":
-				return new XPlanName(xplanName);
+				return new XPlanName();
 			case "xplanExternalCodeLookup":
 				// Required to resolve codelist from external files
 				return parseXPlanExternalCodeLookup(args);

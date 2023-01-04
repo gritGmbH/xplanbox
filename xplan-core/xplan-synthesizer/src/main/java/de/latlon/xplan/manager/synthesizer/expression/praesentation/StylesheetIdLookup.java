@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -71,15 +72,15 @@ public class StylesheetIdLookup extends PraesentationsobjektLookup {
 	}
 
 	@Override
-	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, Feature referencedFeature,
-			List<AttributeProperty> attributeProperty) {
+	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, PlanContext planContext,
+			Feature referencedFeature, List<AttributeProperty> attributeProperty) {
 		if (referencedFeature != null) {
 			GeometryTypeAbbreviation geomTypeAbbr = parseGeometryType(referencedFeature);
 			String objectClass = referencedFeature.getType().getName().getLocalPart();
 			String stylesheetId = createStylesheetId(objectClass, attributeProperty, geomTypeAbbr);
 			return toPrimitiveValue(stylesheetId);
 		}
-		return stylesheetId.evaluate(feature, features);
+		return stylesheetId.evaluate(feature, features, planContext);
 	}
 
 	private String createStylesheetId(String objectClass, List<AttributeProperty> attributeProperties,

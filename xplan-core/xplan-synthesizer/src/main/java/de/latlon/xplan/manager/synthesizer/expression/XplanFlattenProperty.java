@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.DefaultFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.Flattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.complex.ComplexFlattener;
@@ -112,11 +113,11 @@ public class XplanFlattenProperty implements Expression {
 	}
 
 	@Override
-	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
+	public PrimitiveValue evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
 		List<String> flattenedValues = new ArrayList<>();
 		XpExterneReferenzFlattener extRefFlattener = new XpExterneReferenzFlattener(feature);
 		try {
-			TypedObjectNodeArray<TypedObjectNode> props = castToArray(exp.evaluate(feature, features));
+			TypedObjectNodeArray<TypedObjectNode> props = castToArray(exp.evaluate(feature, features, planContext));
 			if (props != null && props.getElements().length > 0) {
 				for (TypedObjectNode o : props.getElements()) {
 					if (!(o instanceof Property)) {

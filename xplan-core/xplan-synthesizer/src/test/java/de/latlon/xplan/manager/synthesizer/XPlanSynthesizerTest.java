@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import org.deegree.commons.tom.gml.property.Property;
@@ -36,7 +35,6 @@ import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
@@ -46,11 +44,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
-
-	@Override
-	XPlanVersion getXPlanVersion() {
-		return XPLAN_41;
-	}
 
 	@Test
 	public void testSynthesize_ConfigDirectoryWithRule() throws Exception {

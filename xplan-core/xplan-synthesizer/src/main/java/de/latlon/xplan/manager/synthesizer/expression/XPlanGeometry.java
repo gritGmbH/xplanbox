@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.feature.Feature;
@@ -64,8 +65,8 @@ public class XPlanGeometry implements Expression {
 	}
 
 	@Override
-	public Geometry evaluate(Feature feature, FeatureCollection features) {
-		TypedObjectNodeArray<?> geometries = castToArray(xpath.evaluate(feature, features));
+	public Geometry evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
+		TypedObjectNodeArray<?> geometries = castToArray(xpath.evaluate(feature, features, planContext));
 		if (geometries == null) {
 			return null;
 		}

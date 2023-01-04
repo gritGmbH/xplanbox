@@ -25,7 +25,8 @@ import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
-import org.apache.commons.io.IOUtils;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesParser;
+import org.apache.commons.collections4.map.MultiKeyMap;
 import org.apache.xerces.xs.XSElementDeclaration;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -44,17 +45,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static org.apache.commons.io.IOUtils.closeQuietly;
 
 /**
  * Transforms an {@link XPlanFeatureCollection} (with XPlan 3/4.0/4.1/5.0/5.1/5.2
@@ -72,9 +67,7 @@ public class XPlanSynthesizer {
 
 	private static final AppSchema synSchema;
 
-	private final Map<String, Expression> rules = new HashMap<String, Expression>();
-
-	private final Path rulesDirectory;
+	private final MultiKeyMap synRules;
 
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
@@ -83,8 +76,7 @@ public class XPlanSynthesizer {
 			synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -101,7 +93,8 @@ public class XPlanSynthesizer {
 	 * internal rules, may be <code>null</code>
 	 */
 	public XPlanSynthesizer(Path rulesDirectory) {
-		this.rulesDirectory = rulesDirectory;
+		SynRulesParser synRulesParser = new SynRulesParser(rulesDirectory);
+		synRules = synRulesParser.parseRules();
 	}
 
 	/**
@@ -126,94 +119,23 @@ public class XPlanSynthesizer {
 	 * <code>null</code>
 	 */
 	public FeatureCollection synthesize(XPlanVersion version, XPlanFeatureCollection xplanFc) {
-
 		XPlanType xplanType = xplanFc.getType();
 		String xplanName = xplanFc.getPlanName();
 		FeatureCollection fc = xplanFc.getFeatures();
 
-		processRuleFile(version, xplanType.name(), xplanName);
-
-		List<Feature> featureMembers = new ArrayList<Feature>();
+		List<Feature> featureMembers = new ArrayList<>();
 		for (Feature feature : fc) {
-			Feature synFeature = synthesize(feature, fc);
+			PlanContext planContext = new PlanContext(xplanType, xplanName);
+			Feature synFeature = synthesize(version, feature, fc, planContext);
 			featureMembers.add(synFeature);
 		}
 
 		return new GenericFeatureCollection(fc.getId(), featureMembers);
 	}
 
-	/**
-	 * Retrieve the directory containing the external rules configuration used for the
-	 * transformation.
-	 * @return the external rules configuration file of the transformation. may be
-	 * <code>null</code>if not set)
-	 *
-	 */
-	public Path getExternalConfigurationFile() {
-		return rulesDirectory;
-	}
-
-	private void processRuleFile(XPlanVersion version, String xplanType, String xplanName) {
-		rules.clear();
-		String rulesFileName = detectRulesFileName(version);
-		InputStream rulesFromClasspath = retrieveRulesFileFromClasspath(rulesFileName);
-		processRules(xplanType, xplanName, rulesFromClasspath);
-		InputStream rulesFromFileSystem = retrieveRulesFileFromFileSystem(rulesFileName);
-		if (rulesFromFileSystem != null)
-			processRules(xplanType, xplanName, rulesFromFileSystem);
-	}
-
-	private void processRules(String xplanType, String xplanName, InputStream is) {
-		try {
-			RuleParser parser = new RuleParser(xplanType, xplanName, this);
-			for (String line : IOUtils.readLines(is)) {
-				if (!line.startsWith("#") && !"".equals(line.trim())) {
-					int firstEquals = line.indexOf("=");
-					rules.put(line.substring(0, firstEquals), parser.parse(line.substring(firstEquals + 1)));
-				}
-			}
-		}
-		catch (IOException e) {
-			throw new RuntimeException("Error while reading the rules file ", e);
-		}
-		finally {
-			closeQuietly(is);
-		}
-	}
-
-	private InputStream retrieveRulesFileFromFileSystem(String rulesFileName) {
-		if (rulesDirectory != null) {
-			Path rulesFile = rulesDirectory.resolve(rulesFileName);
-			LOG.info("Read additional/overwriting rules from directory: {}", rulesFile);
-			if (Files.exists(rulesFile)) {
-				try {
-					return Files.newInputStream(rulesFile);
-				}
-				catch (IOException e) {
-					LOG.info("Could not read rules in configuration directory.");
-				}
-			}
-			LOG.info("Could not find rules in configuration directory.");
-		}
-		return null;
-	}
-
-	private InputStream retrieveRulesFileFromClasspath(String rulesFileName) {
-		String rulesResource = "/rules/" + rulesFileName;
-		LOG.info("Read rules from internal directory: {}", rulesResource);
-		return XPlanSynthesizer.class.getResourceAsStream(rulesResource);
-	}
-
-	private String detectRulesFileName(XPlanVersion version) {
-		String synRulesFileName = version.getSynRulesFileName();
-		if (synRulesFileName == null) {
-			throw new IllegalArgumentException("Could not find rules file for XPlan version " + version);
-		}
-		return synRulesFileName;
-	}
-
-	private Feature synthesize(Feature feature, FeatureCollection features) {
-		List<Property> newProps = new ArrayList<Property>();
+	private Feature synthesize(XPlanVersion version, Feature feature, FeatureCollection features,
+			PlanContext planContext) {
+		List<Property> newProps = new ArrayList<>();
 		String synFeatureTypeName = featureTypeNameSynthesizer.detectSynFeatureTypeName(feature.getType().getName());
 		QName synFeatureName = new QName(SYN_NS, synFeatureTypeName);
 
@@ -227,8 +149,9 @@ public class XPlanSynthesizer {
 		for (PropertyType propType : propTypes) {
 			// the rule keys are specified in "<featureName>/<propName>" format
 			String key = synFeatureTypeName + "/" + propType.getName().getLocalPart();
-			if (rules.containsKey(key)) {
-				TypedObjectNode newPropValue = rules.get(key).evaluate(feature, features);
+			Expression expression = (Expression) synRules.get(version, key);
+			if (expression != null) {
+				TypedObjectNode newPropValue = expression.evaluate(feature, features, planContext);
 				if (newPropValue == null) {
 					continue;
 				}
