@@ -5,6 +5,8 @@ databaseChangeLog:
       file: 6.1/changelog_schemas.yaml
   - include:
       file: 6.1/changelog_inspireplu.yaml
+  - include:
+      file: 6.1/changelog_xplanvalidator.yaml
   - changeSet:
       id:  tagDatabase-v61
       author:  latlon

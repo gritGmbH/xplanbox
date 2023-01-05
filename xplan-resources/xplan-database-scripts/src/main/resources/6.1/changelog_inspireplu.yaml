@@ -14291,7 +14291,7 @@ databaseChangeLog:
              FROM (inspireplu.plu_spatialplan sp
                LEFT JOIN inspireplu.plu_spatialplan_plu_ordinance spo ON ((sp.attr_gml_id = spo.parentfk)))
             GROUP BY sp.attr_gml_id;
-        viewName: viewservice_spatialplan
+        viewName: VIEWSERVICE_SPATIALPLAN
 - changeSet:
     id: 1670839971321-279
     author: lyn (generated)
@@ -14329,7 +14329,7 @@ databaseChangeLog:
                LEFT JOIN inspireplu.plu_supplementaryregulation_plu_name srn ON ((sr.attr_gml_id = srn.parentfk)))
                LEFT JOIN inspireplu.plu_supplementaryregulation_plu_dimensioningindication srdi ON ((sr.attr_gml_id = srdi.parentfk)))
             GROUP BY sr.attr_gml_id;
-        viewName: viewservice_supplementary_regulation
+        viewName: VIEWSERVICE_SUPPLEMENTARY_REGULATION
 - changeSet:
     id: 1670839971321-280
     author: lyn (generated)
@@ -14363,5 +14363,5 @@ databaseChangeLog:
                LEFT JOIN inspireplu.plu_zoningelement_plu_specificlanduse zeslu ON ((ze.attr_gml_id = zeslu.parentfk)))
                LEFT JOIN inspireplu.plu_zoningelement_plu_dimensioningindication zedi ON ((ze.attr_gml_id = zedi.parentfk)))
             GROUP BY ze.attr_gml_id;
-        viewName: viewservice_zoning_element
+        viewName: VIEWSERVICE_ZONING_ELEMENT
 

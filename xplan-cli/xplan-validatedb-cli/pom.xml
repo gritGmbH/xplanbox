@@ -108,6 +108,12 @@
     <dependency>
       <groupId>de.latlon.product.xplanbox</groupId>
       <artifactId>xplan-validator-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>de.latlon.product.xplanbox</groupId>
+          <artifactId>xplan-core-job</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>de.latlon</groupId>
