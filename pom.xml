@@ -31,6 +31,7 @@
     <jackson.version>2.13.4</jackson.version>
     <liquibase.version>4.15.0</liquibase.version>
     <postgresql.version>42.4.3</postgresql.version>
+    <dependency-check-maven.version>7.4.3</dependency-check-maven.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
@@ -287,7 +288,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.4.3</version>
+        <version>${dependency-check-maven.version}</version>
       </plugin>
     </plugins>
   </reporting>
@@ -369,7 +370,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.4.3</version>
+        <version>${dependency-check-maven.version}</version>
         <configuration>
           <failBuildOnCVSS>10</failBuildOnCVSS>
         </configuration>
