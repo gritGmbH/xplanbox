@@ -40,6 +40,8 @@ public interface XPlanWebMessages extends Messages {
 
 	String uploadFailed();
 
+	String uploadSecurityException();
+
 	String nameColumn();
 
 	String idColumn();

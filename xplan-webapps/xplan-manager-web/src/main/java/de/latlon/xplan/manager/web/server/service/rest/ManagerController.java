@@ -67,6 +67,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypes;
 import static java.lang.Double.doubleToLongBits;
 import static java.lang.Long.toHexString;
 import static java.lang.Math.random;
@@ -296,7 +297,7 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public void uploadPlan( @RequestParam("planZipFile" ) MultipartFile file, HttpServletRequest request,
-                            HttpServletResponse response) {
+                            HttpServletResponse response) throws IOException {
         // @formatter:on
 		LOG.info("Try to upload plan.");
 		try {
@@ -313,6 +314,7 @@ public class ManagerController {
 		catch (Exception e) {
 			String message = BUNDLE.getString("loadFailed") + ": " + e.getMessage();
 			LOG.info(message);
+			throw e;
 		}
 	}
 
@@ -596,6 +598,7 @@ public class ManagerController {
 		try (FileOutputStream localOutput = new FileOutputStream(localFile)) {
 			write(file.getBytes(), localOutput);
 		}
+		checkContentTypes(localFile.toPath());
 	}
 
 }
