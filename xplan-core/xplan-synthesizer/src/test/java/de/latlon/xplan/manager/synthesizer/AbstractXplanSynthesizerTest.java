@@ -27,6 +27,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
@@ -58,13 +59,15 @@ import static org.deegree.gml.GMLVersion.GML_32;
  */
 public abstract class AbstractXplanSynthesizerTest {
 
-	private final XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+	protected XPlanSynthesizer xPlanSynthesizer;
 
 	private AppSchema synSchema;
 
 	@Before
 	public void setup() {
 		synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		this.xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 	}
 
 	protected Map<String, String> nsContext() {

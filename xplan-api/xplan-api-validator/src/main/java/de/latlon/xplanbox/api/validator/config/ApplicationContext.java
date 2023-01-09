@@ -24,6 +24,7 @@ import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -199,7 +200,8 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public ValidatorWmsManager validatorWmsManager(ValidatorConfiguration validatorConfiguration) {
+	public ValidatorWmsManager validatorWmsManager(XPlanSynthesizer xPlanSynthesizer,
+			ValidatorConfiguration validatorConfiguration) {
 		LOG.trace("Using validatorConfiguration: " + validatorConfiguration);
 		String validatorWmsEndpoint = validatorConfiguration.getValidatorWmsEndpoint();
 		if (validatorWmsEndpoint == null) {
@@ -207,9 +209,8 @@ public class ApplicationContext {
 			return null;
 		}
 		try {
-			XPlanSynthesizer synthesizer = new XPlanSynthesizer();
 			Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
-			return new ValidatorWmsManager(synthesizer, workspaceLocation);
+			return new ValidatorWmsManager(xPlanSynthesizer, workspaceLocation);
 		}
 		catch (IOException | IllegalArgumentException e) {
 			LOG.error("Could not initialise ValidatorWmsManager. WMS resources cannot be created. Reason: {}",
@@ -225,6 +226,16 @@ public class ApplicationContext {
 			return validationRulesDirectory;
 		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
+	}
+
+	@Bean
+	public XPlanSynthesizer xPlanSynthesizer(SynRulesAccessor synRulesAccessor) {
+		return new XPlanSynthesizer(synRulesAccessor);
+	}
+
+	@Bean
+	public SynRulesAccessor synRulesAccessor() {
+		return new SynRulesAccessor();
 	}
 
 }

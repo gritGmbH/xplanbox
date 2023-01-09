@@ -42,7 +42,6 @@ import org.deegree.feature.types.AppSchema;
 import org.deegree.feature.types.FeatureType;
 
 import javax.xml.namespace.QName;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,19 +75,10 @@ public class XPlanSynthesizer {
 	}
 
 	/**
-	 * Instantiates a new XPlanSynthesizer with default rules (from internal rules
-	 * directory).
+	 * @param synRulesAccessor used to retrieve the syn rules, never <code>null</code>
 	 */
-	public XPlanSynthesizer() {
-		this(null);
-	}
-
-	/**
-	 * @param rulesDirectory the directory containing additional rules overwriting the
-	 * internal rules, may be <code>null</code>
-	 */
-	public XPlanSynthesizer(Path rulesDirectory) {
-		this.synRulesAccessor = new SynRulesAccessor(rulesDirectory);
+	public XPlanSynthesizer(SynRulesAccessor synRulesAccessor) {
+		this.synRulesAccessor = synRulesAccessor;
 	}
 
 	/**
@@ -118,8 +108,8 @@ public class XPlanSynthesizer {
 		FeatureCollection fc = xplanFc.getFeatures();
 
 		List<Feature> featureMembers = new ArrayList<>();
+		PlanContext planContext = new PlanContext(xplanType, xplanName);
 		for (Feature feature : fc) {
-			PlanContext planContext = new PlanContext(xplanType, xplanName);
 			Feature synFeature = synthesize(version, feature, fc, planContext);
 			featureMembers.add(synFeature);
 		}

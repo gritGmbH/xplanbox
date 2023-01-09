@@ -50,6 +50,10 @@ public class SynRulesAccessor {
 
 	private final Map<XPlanVersion, Map<String, Expression>> synRulesPerVersion = new HashMap<>();
 
+	public SynRulesAccessor() {
+		this(null);
+	}
+
 	/**
 	 * @param rulesDirectory the directory containing additional rules overwriting the
 	 * internal rules, may be <code>null</code>

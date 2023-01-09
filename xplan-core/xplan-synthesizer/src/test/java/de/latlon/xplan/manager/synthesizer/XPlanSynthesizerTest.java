@@ -22,10 +22,14 @@ package de.latlon.xplan.manager.synthesizer;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import javax.xml.namespace.QName;
 import java.io.IOException;
@@ -45,11 +49,34 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 
+	@ClassRule
+	public static TemporaryFolder folder = new TemporaryFolder();
+
+	private static Path configDirectoryWithRule;
+
+	private static Path configDirectoryWithEnum;
+
+	private static Path configDirectoryWithCodelist;
+
+	@BeforeClass
+	public static void copyRules() throws IOException {
+		configDirectoryWithRule = folder.newFolder("configDirectoryWithRule").toPath();
+		createTmpDirectoryAndCopyRuleFile(configDirectoryWithRule, "xplan41.syn",
+				"XP_BesondereArtDerBaulNutzung-XPlan4.xml");
+
+		configDirectoryWithEnum = folder.newFolder("configDirectoryWithEnum").toPath();
+		createTmpDirectoryAndCopyRuleFile(configDirectoryWithEnum, "xplan41_XP_BesondereArtDerBaulNutzung.syn",
+				"XP_BesondereArtDerBaulNutzung-XPlan4.xml");
+
+		configDirectoryWithCodelist = folder.newFolder("configDirectoryWithCodelist").toPath();
+		createTmpDirectoryAndCopyRuleFile(configDirectoryWithCodelist, "xplan41_BP_DetailArtDerBaulNutzung.syn",
+				"BP_DetailArtDerBaulNutzung.xml");
+	}
+
 	@Test
 	public void testSynthesize_ConfigDirectoryWithRule() throws Exception {
-		Path configDirectory = createTmpDirectoryAndCopyRuleFile("xplan41.syn",
-				"XP_BesondereArtDerBaulNutzung-XPlan4.xml");
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(configDirectory);
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor(configDirectoryWithRule);
+		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 
 		XPlanArchive archive = getTestArchive("xplan41/LA22.zip");
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
@@ -68,9 +95,8 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 
 	@Test
 	public void testSynthesize_Synthesize_Enumeration_XP_BesondereArtDerBaulNutzung() throws Exception {
-		Path configDirectory = createTmpDirectoryAndCopyRuleFile("xplan41_XP_BesondereArtDerBaulNutzung.syn",
-				"XP_BesondereArtDerBaulNutzung-XPlan4.xml");
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(configDirectory);
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor(configDirectoryWithEnum);
+		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 
 		XPlanArchive archive = getTestArchive("xplan41/LA22.zip");
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
@@ -83,9 +109,8 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 
 	@Test
 	public void testSynthesize_Synthesize_Codelist_BP_DetailArtDerBaulNutzung() throws Exception {
-		Path configDirectory = createTmpDirectoryAndCopyRuleFile("xplan41_BP_DetailArtDerBaulNutzung.syn",
-				"BP_DetailArtDerBaulNutzung.xml");
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(configDirectory);
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor(configDirectoryWithCodelist);
+		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 
 		XPlanArchive archive = getTestArchive("xplan41/BP2070-detailierteArtDerBaulNutzung.zip");
 		XPlanFeatureCollection xplanFc = parseFeatureCollection(archive);
@@ -105,15 +130,14 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		return xplanFc;
 	}
 
-	private Path createTmpDirectoryAndCopyRuleFile(String synFile, String codelistFile) throws IOException {
-		Path tmpDirectory = createTmpDirectory();
-		copyFile(tmpDirectory, synFile, "xplan41.syn");
-		copyFile(tmpDirectory, codelistFile, codelistFile);
-		return tmpDirectory;
+	private static void createTmpDirectoryAndCopyRuleFile(Path targetDir, String synFile, String codelistFile)
+			throws IOException {
+		copyFile(targetDir, synFile, "xplan41.syn");
+		copyFile(targetDir, codelistFile, codelistFile);
 	}
 
-	private void copyFile(Path tmpDirectory, String fileName, String targetFileName) throws IOException {
-		Path targetFile = tmpDirectory.resolve(targetFileName);
+	private static void copyFile(Path targetDir, String fileName, String targetFileName) throws IOException {
+		Path targetFile = targetDir.resolve(targetFileName);
 		InputStream resourceAsStream = XPlanSynthesizerTest.class.getResourceAsStream(fileName);
 		try {
 			Files.copy(resourceAsStream, targetFile);
@@ -121,10 +145,6 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 		finally {
 			closeQuietly(resourceAsStream);
 		}
-	}
-
-	private Path createTmpDirectory() throws IOException {
-		return Files.createTempDirectory("configDirectory");
 	}
 
 	private String valueOfFirstProperty(FeatureCollection synthesizedFeatures, String featureType,

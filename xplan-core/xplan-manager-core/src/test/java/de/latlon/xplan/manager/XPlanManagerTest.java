@@ -26,6 +26,8 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.Rechtsstand;
@@ -112,7 +114,10 @@ public class XPlanManagerTest {
 		when(managerWorkspaceWrapper.getConfiguration()).thenReturn(managerConfiguration);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = mock(WmsWorkspaceWrapper.class);
 		when(wmsWorkspaceWrapper.getLocation()).thenReturn(wmsWorkspaceDirectory.getAbsoluteFile());
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null, wmsWorkspaceWrapper);
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
+		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null,
+				wmsWorkspaceWrapper);
 	}
 
 	private ManagerConfiguration mockManagerConfig() {

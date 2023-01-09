@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.synthesizer;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.apache.commons.io.IOUtils;
@@ -33,6 +34,7 @@ import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLStreamWriter;
 import org.deegree.gml.XPlanGmlWriter;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.w3c.dom.Attr;
@@ -59,7 +61,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class XPlanSynthesizerComparisonTest {
 
-	private XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
+	private XPlanSynthesizer xPlanSynthesizer;
+
+	@Before
+	public void setup() {
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		this.xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
+	}
 
 	@Parameters({ "xplan41/BP2070", "xplan41/BP2135", "xplan41/LA22", "xplan41/LA67", "xplan50/BP2070",
 			"xplan50/BP2135", "xplan50/LA22", "xplan50/LA67", "xplan51/BP2070", "xplan51/BP2135", "xplan51/LA22",
