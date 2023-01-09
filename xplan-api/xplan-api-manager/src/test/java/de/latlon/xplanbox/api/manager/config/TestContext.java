@@ -39,6 +39,13 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.NoConfigRasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.GeotiffRasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.FileSystemStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -78,13 +85,13 @@ import java.util.Optional;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
-import static de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType.gdal;
+import static de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType.gdal;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.ArgumentMatchers.nullable;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -118,10 +125,10 @@ public class TestContext {
 	@Primary
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper)
-			throws Exception {
+			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager) throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper);
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
 	}
 
 	@Bean
@@ -166,9 +173,32 @@ public class TestContext {
 
 	@Bean
 	@Primary
-	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			ManagerConfiguration managerConfiguration) throws WorkspaceException {
-		return new XPlanRasterManager(wmsWorkspaceWrapper, managerConfiguration);
+	public XPlanRasterEvaluator xPlanRasterEvaluator(RasterEvaluation rasterEvaluation) {
+		return new XPlanRasterEvaluator(rasterEvaluation);
+	}
+
+	@Bean
+	@Primary
+	public RasterEvaluation getRasterEvaluation(ManagerConfiguration managerConfiguration) {
+		return new GeotiffRasterEvaluation(managerConfiguration.getRasterConfigurationCrs());
+	}
+
+	@Bean
+	@Primary
+	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
+			throws WorkspaceException {
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
+	}
+
+	@Bean
+	public RasterStorage rasterStorage(WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+		Path dataDirectory = wmsWorkspaceWrapper.getDataDirectory();
+		return new FileSystemStorage(dataDirectory, rasterEvaluation);
+	}
+
+	@Bean
+	public RasterConfigManager rasterConfigManager() {
+		return new NoConfigRasterConfigManager();
 	}
 
 	@Bean

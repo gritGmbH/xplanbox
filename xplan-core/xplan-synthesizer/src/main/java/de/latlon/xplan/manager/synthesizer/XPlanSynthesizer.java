@@ -24,6 +24,7 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.manager.dictionary.XPlanCodelists;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import org.apache.commons.io.IOUtils;
 import org.apache.xerces.xs.XSElementDeclaration;
@@ -44,6 +45,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
+import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -76,6 +78,8 @@ public class XPlanSynthesizer {
 
 	private final Path rulesDirectory;
 
+	private final XPlanCodelists codelists;
+
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
 	static {
@@ -102,6 +106,7 @@ public class XPlanSynthesizer {
 	 */
 	public XPlanSynthesizer(Path rulesDirectory) {
 		this.rulesDirectory = rulesDirectory;
+		this.codelists = parseExternalCodelists(rulesDirectory);
 	}
 
 	/**
@@ -146,11 +151,18 @@ public class XPlanSynthesizer {
 	 * Retrieve the directory containing the external rules configuration used for the
 	 * transformation.
 	 * @return the external rules configuration file of the transformation. may be
-	 * <code>null</code>if not set)
+	 * <code>null</code>if not set
 	 *
 	 */
 	public Path getExternalConfigurationFile() {
 		return rulesDirectory;
+	}
+
+	/**
+	 * @return the parsed external codelists, never <code>null</code>
+	 */
+	public XPlanCodelists getCodelists() {
+		return codelists;
 	}
 
 	private void processRuleFile(XPlanVersion version, String xplanType, String xplanName) {
@@ -249,6 +261,15 @@ public class XPlanSynthesizer {
 			}
 		}
 		return synFeatureType.newFeature(feature.getId(), newProps, null);
+	}
+
+	private XPlanCodelists parseExternalCodelists(Path rulesDirectory) {
+		try {
+			return new XPlanCodelists(rulesDirectory);
+		}
+		catch (IOException | XMLStreamException e) {
+			throw new RuntimeException("Die extern konfigurierten Codelisten konnten nicht geparst werden", e);
+		}
 	}
 
 	private PrimitiveValue toString(TypedObjectNodeArray<?> array) {

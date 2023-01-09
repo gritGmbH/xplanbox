@@ -3,7 +3,7 @@
 
 Der XPlanSynWFS ist ein auf der Open Source Software https://www.deegree.org[deegree] basierender Dienst zur Abfrage von Vektordaten und ist konform zum Standard Web Feature Service (Version 1.1.0 und 2.0.0) des Open Geospatial Consortium (OGC).
 
-Der XPlanSynWFS dient der Abbildung des synthetisierten XPlanGML-Anwendungsschemas (XPlanSynGML). Dieses stellt eine vereinfachte und zusammenfassende Form der von der xPlanBox unterstützten XPlanGML Versionen dar. Die vom XPlanSynWFS bereitgestellten Geometrien basieren auf dem  https://www.ogc.org/standards/sfa[Simple Feature Model des OGC]. Die Werte aus den Codelisten von XPlanGML werden durch die textlichen Äquivalente dargestellt.
+Der XPlanSynWFS dient der Abbildung des synthetisierten XPlanGML-Anwendungsschemas (XPlanSynGML). Dieses stellt eine vereinfachte und zusammenfassende Form der von der xPlanBox unterstützten XPlanGML-Versionen dar. Die vom XPlanSynWFS bereitgestellten Geometrien basieren auf dem  https://www.ogc.org/standards/sfa[Simple Feature Model des OGC]. Die Werte aus den Codelisten von XPlanGML werden durch die textlichen Äquivalente dargestellt.
 
 [[xplansynwfs-benutzung-des-xplansynwfs]]
 === Benutzung des XPlanSynWFS

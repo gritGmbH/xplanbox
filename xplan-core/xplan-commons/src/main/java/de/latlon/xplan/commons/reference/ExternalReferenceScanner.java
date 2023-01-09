@@ -28,13 +28,9 @@ import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
-import javax.xml.namespace.QName;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
 import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
 
 /**
@@ -87,32 +83,6 @@ public class ExternalReferenceScanner {
 			default:
 				throw new IllegalArgumentException("Unsupported XPlanGML Version: " + version);
 		}
-	}
-
-	private Map<String, ExternalReference> scanForExternalReferencesXplan2or3(FeatureCollection fc) {
-		Map<String, ExternalReference> fidToExternalReference = new HashMap<String, ExternalReference>();
-		for (Feature feature : fc) {
-			String name = feature.getName().getLocalPart();
-			if ("XP_ExterneReferenz".equals(name) || "XP_ExterneReferenzPlan".equals(name)) {
-				String ns = feature.getName().getNamespaceURI();
-				String referenzName = getPropertyStringValue(feature, new QName(ns, "referenzName"));
-				String referenzUrl = getPropertyStringValue(feature, new QName(ns, "referenzURL"));
-				String referenzMimeTypeCode = getPropertyStringValue(feature, new QName(ns, "referenzMimeType"));
-				String geoRefUrl = null;
-				String geoRefMimeTypeCode = null;
-				boolean isPlan = false;
-				if ("XP_ExterneReferenzPlan".equals(name)) {
-					geoRefUrl = getPropertyStringValue(feature, new QName(ns, "georefURL"));
-					geoRefMimeTypeCode = getPropertyStringValue(feature, new QName(ns, "georefMimeType"));
-					isPlan = true;
-				}
-				ExternalReference externalRef = new ExternalReference(geoRefUrl, geoRefMimeTypeCode, referenzUrl,
-						referenzName, referenzMimeTypeCode, isPlan);
-				externalRefs.add(externalRef);
-				fidToExternalReference.put(feature.getId(), externalRef);
-			}
-		}
-		return fidToExternalReference;
 	}
 
 	private void scanXplan4(FeatureCollection fc) {

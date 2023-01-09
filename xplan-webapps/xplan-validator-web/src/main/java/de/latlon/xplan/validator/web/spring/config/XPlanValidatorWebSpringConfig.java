@@ -22,7 +22,6 @@ package de.latlon.xplan.validator.web.spring.config;
 
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -49,17 +48,18 @@ import de.latlon.xplan.validator.web.server.service.ValidatorReportProvider;
 import de.latlon.xplan.validator.wms.MapPreviewCreationException;
 import de.latlon.xplan.validator.wms.MapPreviewManager;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
-import org.deegree.commons.config.DeegreeWorkspace;
+import de.latlon.xplan.validator.wms.config.ValidatorWmsContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,13 +74,15 @@ import static java.nio.file.Paths.get;
  * @author <a href="mailto:erben@lat-lon.de">Alexander Erben</a>
  */
 @Configuration
+@Import(ValidatorWmsContext.class)
 public class XPlanValidatorWebSpringConfig {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanValidatorWebSpringConfig.class);
 
 	private static final String RULES_DIRECTORY = "/rules";
 
-	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-workspace";
+	@Autowired(required = false)
+	private ValidatorWmsManager validatorWmsManager;
 
 	@Bean
 	public SyntacticValidator syntacticValidator() {
@@ -191,10 +193,9 @@ public class XPlanValidatorWebSpringConfig {
 			return null;
 		}
 		try {
-			ValidatorWmsManager validatorWmsManager = createValidatorWmsManager();
 			return new MapPreviewManager(validatorWmsManager, geometricValidator, validatorWmsEndpoint);
 		}
-		catch (IOException | IllegalArgumentException | MapPreviewCreationException e) {
+		catch (IllegalArgumentException | MapPreviewCreationException e) {
 			LOG.error("Could not initialise ValidatorWmsManager. WMS resources cannot be created. Reason: {}",
 					e.getMessage(), e);
 		}
@@ -208,12 +209,6 @@ public class XPlanValidatorWebSpringConfig {
 			return validationRulesDirectory;
 		URI rulesPath = XPlanValidatorWebSpringConfig.class.getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
-	}
-
-	private ValidatorWmsManager createValidatorWmsManager() throws IOException {
-		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
-		Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
-		return new ValidatorWmsManager(synthesizer, workspaceLocation);
 	}
 
 }

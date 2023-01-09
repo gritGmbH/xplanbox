@@ -69,20 +69,12 @@ public class ExternalReferenceInfo {
 		this.rasterPlanBaseScans.add(rasterPlanBaseScan);
 	}
 
-	public void addRasterPlanBaseScans(List<ExternalReference> rasterPlanBaseScans) {
-		this.rasterPlanBaseScans.addAll(rasterPlanBaseScans);
-	}
-
 	public List<ExternalReference> getRasterPlanUpdateScans() {
 		return rasterPlanUpdateScans;
 	}
 
 	public void addRasterPlanUpdateScan(ExternalReference rasterPlanUpdateScan) {
 		this.rasterPlanUpdateScans.add(rasterPlanUpdateScan);
-	}
-
-	public void addRasterPlanUpdateScans(List<ExternalReference> rasterPlanUpdateScans) {
-		this.rasterPlanUpdateScans.addAll(rasterPlanUpdateScans);
 	}
 
 	public List<ExternalReference> getRasterPlanBaseAndUpdateScans() {

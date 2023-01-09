@@ -84,11 +84,13 @@ Show system and application configuration</con:description>
         <con:request name="Request 1" id="e9ab8dcf-b755-40af-baf7-aa17a2ca4cdc" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -166,7 +168,7 @@ Import the plan</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>406 500</con:status>
+          <con:status>406 500 415</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -254,6 +256,14 @@ Import the plan</con:description>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/xml</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>text/xml</con:mediaType>
+          <con:params/>
+        </con:representation>
         <con:request name="Request 1" id="0ab9bfa6-1c76-41df-b253-dabff57568f7" mediaType="application/json" postQueryString="false">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -309,11 +319,13 @@ Get plan identified by the given planName</con:description>
         <con:request name="Request 1" id="1136be8a-8ab3-4338-b970-bdc7d6136107" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -373,11 +385,13 @@ Get plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="e6485926-de88-473c-8d2e-7024821be289" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -421,11 +435,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="50f2a59c-46df-4ec0-a6b0-1563bd5134fd" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -467,11 +483,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="9a6babf2-17f7-4150-bdc4-256475643d67" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -521,11 +539,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="41062d8d-a552-4f74-bf93-5dd8aea7ea60" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -567,11 +587,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="c2f2fca3-fec9-4269-a2f1-b09f09df4489" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -617,11 +639,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="1a319a67-8260-4562-b5ea-10793656067f" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -663,11 +687,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="87e0eac4-0a2c-4372-b086-982734318482" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -713,11 +739,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="b69af4bd-30cb-44e0-8868-be3711e788dd" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -764,11 +792,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="d93c4498-f9da-4fed-8585-1fccdd240e8e" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -819,11 +849,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="72b1bed4-4aa7-4b52-91b9-725e21aa80c0" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -870,11 +902,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="86128e07-a3ed-4a8e-abb8-780c510deef1" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -910,11 +944,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="583a5cf2-5c74-437e-a474-3e8889c187e3" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -962,11 +998,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="d14def40-10d9-475d-a7e3-f59808c0e93c" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1008,11 +1046,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="9c7337a1-1eb2-4f30-b174-dd4f06295f84" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1047,7 +1087,7 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>415 500 400</con:status>
+          <con:status>415 500 400 404</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -1116,11 +1156,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="d50d9d89-a79c-4f53-9bbb-fc25fbad91d4" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1167,11 +1209,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="8c83a30b-1df8-4785-9061-49bab1b2dd62" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1218,11 +1262,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="8fd7802b-990d-4841-91fd-43efaab9af08" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1264,11 +1310,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="e25c6225-1794-4ce1-a8cf-f48f33780290" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1314,11 +1362,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="8613b216-8b18-4574-a618-26ad549b4a47" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1365,11 +1415,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="83c97031-5db4-4b28-b513-c5155d85bb32" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1420,11 +1472,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="28b499de-91dc-4be8-bc4d-b8f57ecad272" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1471,11 +1525,13 @@ Delete plan identified by the given plan ID</con:description>
         <con:request name="Request 1" id="3b4fce2f-311a-46fc-ab7e-103c64d71ba4" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -1502,11 +1558,13 @@ Search for plan by name</con:description>
         <con:request name="Request 1" id="4c698a47-e7d1-4e83-bdf0-c61cfc21c738" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+          <con:request/>
           <con:credentials>
             <con:username xsi:nil="true"/>
             <con:password xsi:nil="true"/>
             <con:domain xsi:nil="true"/>
           </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
           <con:parameterOrder>
             <con:entry>planName</con:entry>
@@ -1650,7 +1708,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan/{planId}/basisdaten">
               <con:configuration>
                 <path>$.paths./plan/{planId}/basisdaten</path>
-                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"planId of the plan basisdaten to be returned","required":true,"schema":{"type":"string"},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid plan ID, plan not found"},"400":{"description":"Unsupported Plan version or Plan ID is not a valid int value"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"planId of the plan to be returned","required":true,"schema":{"type":"string"},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid plan ID, plan not found"},"400":{"description":"Unsupported Plan version or Plan ID is not a valid int value"}}}}</content>
+                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan basisdaten to be returned","required":true,"schema":{"type":"string"},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid planID, plan not found"},"400":{"description":"Unsupported plan version or planID is not a valid int value"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan to be returned","required":true,"schema":{"type":"string"},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid plan ID, plan not found"},"400":{"description":"Unsupported plan version or planID is not a valid int value"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1659,7 +1717,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan profiles parameter">
               <con:configuration>
                 <path>$.paths./plan.post.parameters.[?(@.name == 'profiles')]</path>
-                <content>[{"name":"profiles","in":"query","description":"Angabe der Profile, gegen die validiert werden soll","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
+                <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -2972,6 +3030,82 @@ assert actualHeader != null</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0 sF importPlanAsGML" id="472fb2b1-e763-49cd-835f-bb86f8ac6004">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0 sF importPlanAsGML" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="text/xml" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>201</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="8d5bc177-2019-4544-a9f7-299bcc0ffce2" name="has id">
+              <con:configuration>
+                <path>$.id</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="331b52ad-ec82-4ee1-96aa-4a2b7c3502cf" name="name">
+              <con:configuration>
+                <path>$.xplanModelData.name</path>
+                <content>BPlan002_6-0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="46617d13-a860-44b4-abab-73c9a3756d8d" name="has location header">
+              <con:configuration>
+                <scriptText>def headers = messageExchange.response.responseHeaders
+def actualHeader = headers['Location']
+assert actualHeader != null</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_5.1.gml</con:name>
+              <con:contentType>text/xml</con:contentType>
+              <con:contentId>BP_6.0.gml</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/BP_6.0.gml</con:url>
+              <con:id>c0a5e97e-011d-4699-94af-85d81146066d</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="skipFlaechenschluss" value="true"/>
+              <con:entry key="profiles" value=""/>
+              <con:entry key="skipLaufrichtung" value=""/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="POST BP 6.0 XX importPlan" id="70a0cee1-2eca-44a1-9223-50368989f013">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -3571,6 +3705,18 @@ assert actualHeader != null</scriptText>
             <con:sourcePath>$.id</con:sourcePath>
             <con:targetType>planId40</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdXPlanGML60asGML</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>POST BP 6.0 sF importPlanAsGML</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>currentPlanIdXPlanGML60asGML</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath/>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
@@ -7087,10 +7233,10 @@ assert actualHeader != null</scriptText>
               <con:id>469ec73a-ffc0-4648-9de6-e197c9190268</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>postImgWf.pgw</con:name>
+              <con:name>postImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
               <con:id>2d9affa0-aaa8-4e76-bb8d-42b14a3cd18a</con:id>
             </con:attachment>
             <con:attachment>
@@ -7141,10 +7287,10 @@ assert actualHeader != null</scriptText>
               <con:id>40298a71-f3a1-42e2-ad6b-c17f5791bc3c</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>postImgWf.pgw</con:name>
+              <con:name>postImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
               <con:id>3cd273fa-dcc9-4b17-ba3b-49f4e365219b</con:id>
             </con:attachment>
             <con:attachment>
@@ -7182,7 +7328,7 @@ assert actualHeader != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImgWf.pgw')].id</path>
+                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
                 <content>[postImg-postImgpng]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -7241,11 +7387,11 @@ assert actualHeader != null</scriptText>
               <con:id>38e4252d-803d-48eb-a1a4-abb41f92c8cb</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>postImgWf.pgw</con:name>
+              <con:name>postImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
               <con:id>9125af9a-4c06-46ae-b173-a37b267bb18a</con:id>
             </con:attachment>
             <con:attachment>
@@ -7296,10 +7442,10 @@ assert actualHeader != null</scriptText>
               <con:id>54d6c6b6-c5c6-46d3-a23d-c915d9294c90</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>postImgWf.pgw</con:name>
+              <con:name>postImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
               <con:id>aaf0f323-c87b-4405-8dbd-8c0f6d76f1b6</con:id>
             </con:attachment>
             <con:attachment>
@@ -7406,11 +7552,11 @@ assert actualHeader != null</scriptText>
               <con:id>8b264d05-82e5-4966-a0f4-ff33de0e1c42</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>postImgWf.pgw</con:name>
+              <con:name>postImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
               <con:id>acb4a198-0452-4433-aee6-ad3287f915b5</con:id>
             </con:attachment>
             <con:attachment>
@@ -7484,6 +7630,107 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <entry key="planId" value="${#TestSuite#currentPlanIdBereiche}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0 pI modifyStatusGML" id="dff35add-7848-4f46-a75c-029eb246160f">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis" methodName="addRasterBasis" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0 pI modifyStatusGML" id="e18e8142-72bd-457f-aaf4-6656c0313839" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="c3c53e02-be1b-4e5f-9aa7-8adc8570c200" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="aece5b54-d5c5-44fd-a3d7-24b608e0ccbe" name="id">
+              <con:configuration>
+                <path>$.id</path>
+                <content>postImg-postImgpng</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>postImg.png</con:name>
+              <con:contentType>image/png</con:contentType>
+              <con:contentId>rasterdatei</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.png</con:url>
+              <con:id>469ec73a-ffc0-4648-9de6-e197c9190268</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>postImg.pgw</con:name>
+              <con:contentType>text/plain</con:contentType>
+              <con:contentId>georeferenzdatei</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
+              <con:id>2d9affa0-aaa8-4e76-bb8d-42b14a3cd18a</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>postDokRaster.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>rasterbasismodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postDokRaster.json</con:url>
+              <con:id>791eb8ed-2a62-4bb6-9687-0c328c00562b</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>planId</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET BP 6.0 pI currentStatusGML" id="04cd90d7-7dd6-468f-889c-ad60bbaa6bce">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis" methodName="getRasterBasis" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 6.0 pI currentStatusGML" id="db9a041f-e0a5-40dc-af67-04479f9de7c9" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="38a2586d-5ba6-4c6f-a393-cc6c031ece20" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="id">
+              <con:configuration>
+                <path>$[0].id</path>
+                <content>postImg-postImgpng</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
@@ -7564,11 +7811,11 @@ assert actualHeader != null</scriptText>
               <con:id>668fb897-46ec-4085-b92c-49cc07db9e61</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>postImgWf.pgw</con:name>
+              <con:name>postImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
               <con:id>31ee731f-e32f-4d72-931c-62da6f0acaab</con:id>
             </con:attachment>
             <con:attachment>
@@ -7606,7 +7853,7 @@ assert actualHeader != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImgWf.pgw')].id</path>
+                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
                 <content>[postImg-postImgpng]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -7703,10 +7950,10 @@ assert actualHeader != null</scriptText>
               <con:id>be8c7b53-fd72-4c0e-bdcd-826729bd8a4d</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>postImgWf.pgw</con:name>
+              <con:name>postImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
               <con:id>35836a01-e4ac-4b22-8a7f-f3ed365099a6</con:id>
             </con:attachment>
             <con:attachment>
@@ -7744,7 +7991,7 @@ assert actualHeader != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImgWf.pgw')].id</path>
+                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
                 <content>[postImg-postImgpng]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -7841,10 +8088,10 @@ assert actualHeader != null</scriptText>
               <con:id>bc7091d4-5f65-491d-ae70-ede97911b311</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>postImgWf.pgw</con:name>
+              <con:name>postImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
               <con:id>f159205c-7bb6-49a9-a6fb-2b7cdff59679</con:id>
             </con:attachment>
             <con:attachment>
@@ -7882,7 +8129,7 @@ assert actualHeader != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImgWf.pgw')].id</path>
+                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
                 <content>[postImg-postImgpng]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -7979,11 +8226,11 @@ assert actualHeader != null</scriptText>
               <con:id>06cfb8d0-1d65-42cf-ac28-ea701582ae56</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>postImgWf.pgw</con:name>
+              <con:name>postImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager/attachments/postImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/postImg.pgw</con:url>
               <con:id>f4a3a6d9-9e6e-412d-947c-048871486f84</con:id>
             </con:attachment>
             <con:attachment>
@@ -8021,7 +8268,7 @@ assert actualHeader != null</scriptText>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="6fb132e6-927b-47e8-a7e3-76d0d028a6ed" name="JsonPath Match">
               <con:configuration>
-                <path>$[?(@.georefURL == 'postImgWf.pgw')].id</path>
+                <path>$[?(@.georefURL == 'postImg.pgw')].id</path>
                 <content>[postImg-postImgpng]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -8108,11 +8355,11 @@ assert actualHeader != null</scriptText>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>putImgWf.pgw</con:name>
+              <con:name>putImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.pgw</con:url>
               <con:id>ce543129-b910-44f0-b189-a07905576ae7</con:id>
             </con:attachment>
             <con:attachment>
@@ -8289,10 +8536,10 @@ assert actualHeader != null</scriptText>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>putImgWf.pgw</con:name>
+              <con:name>putImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.pgw</con:url>
               <con:id>56660e23-bf25-47cf-aabe-528f30ca7211</con:id>
             </con:attachment>
             <con:attachment>
@@ -8340,10 +8587,10 @@ assert actualHeader != null</scriptText>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>putImgWf.pgw</con:name>
+              <con:name>putImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.pgw</con:url>
               <con:id>847e7d1d-7b26-468c-97c1-0351a46e2623</con:id>
             </con:attachment>
             <con:attachment>
@@ -8507,11 +8754,11 @@ assert actualHeader != null</scriptText>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>putImgWf.pgw</con:name>
+              <con:name>putImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
               <con:part xsi:nil="true"/>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.pgw</con:url>
               <con:id>124a4f58-d301-444f-ad2a-6fac3a4a23bc</con:id>
             </con:attachment>
             <con:attachment>
@@ -8615,6 +8862,75 @@ assert actualHeader != null</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="GET BP 6.0 pI,id currentStatusGML" id="4eb389d8-ac99-48d1-acee-4a92612c3f06">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="getRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 6.0 pI,id currentStatusGML" id="170c2217-1c2e-4220-98cc-3c1f42061cc9" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="801d9d24-d33b-49de-876e-7d0e2b2e37b2" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0626e0c2-64d7-4c81-a20b-ab5dff80302e" name="id">
+              <con:configuration>
+                <path>$.id</path>
+                <content>postImg-postImgpng</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}"/>
+              <con:entry key="id" value="postImg-postImgpng"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="DEL BP 6.0 pI,id modifyStatusGML" id="95cc547b-78da-46e9-ade1-0a7f5af43817">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="deleteRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="DEL BP 6.0 pI,id modifyStatusGML" id="e2912344-f8cb-4508-8045-b82c8668dd9d" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="62b4e9ab-64fc-4591-b13c-39f1b3867d5d" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}"/>
+              <con:entry key="id" value="postImg-postImgpng"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="PUT FP 5.0 pI,id modifyStatus" id="1d0de6db-80f4-4d6d-91a9-78b7f66dc49c">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="replaceRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -8637,10 +8953,10 @@ assert actualHeader != null</scriptText>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>putImgWf.pgw</con:name>
+              <con:name>putImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.pgw</con:url>
               <con:id>f7ec1cc4-a02a-44f9-a3c6-ac05821905c7</con:id>
             </con:attachment>
             <con:attachment>
@@ -8788,10 +9104,10 @@ assert actualHeader != null</scriptText>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>putImgWf.pgw</con:name>
+              <con:name>putImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.pgw</con:url>
               <con:id>0f10668c-c8c3-4888-b1a4-a8287f0b096f</con:id>
             </con:attachment>
             <con:attachment>
@@ -8938,10 +9254,10 @@ assert actualHeader != null</scriptText>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>putImgWf.pgw</con:name>
+              <con:name>putImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.pgw</con:url>
               <con:id>e77837ae-659c-4a7f-87d2-3b370330b826</con:id>
             </con:attachment>
             <con:attachment>
@@ -9088,10 +9404,10 @@ assert actualHeader != null</scriptText>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:attachment>
-              <con:name>putImgWf.pgw</con:name>
+              <con:name>putImg.pgw</con:name>
               <con:contentType>text/plain</con:contentType>
               <con:contentId>georeferenzdatei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putImgWf.pgw</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putImg.pgw</con:url>
               <con:id>fda1ce22-ef6e-4430-9be8-82f9e154376f</con:id>
             </con:attachment>
             <con:attachment>
@@ -11383,6 +11699,77 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="DEL BP 6.0 pI deletePlanAsGML" id="9539a2ce-cba7-41c1-9cc2-d757699891f3">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="DEL BP 6.0 pI deletePlanAsGML" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Existence Match" id="265e523e-b027-4418-ada5-9044a1a6e4b2" name="message">
+              <con:configuration>
+                <path>$..message</path>
+                <content>true</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML60asGML}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="DEL BP 6.0 pI deletePlanNotExistingId" id="02d6f2db-c94a-413f-abca-0f6ce2ed42fe">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="DEL BP 6.0 pI deletePlanNotExistingId" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>404</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="99999" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="DEL FP 5.0 pI deletePlan" id="9020206f-2fe7-4dd1-9e13-dbcde87bb7f1">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -11541,6 +11928,287 @@ assert expectedHeader == actualHeader</scriptText>
               <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="ed9f2bfa-a4c8-4d72-8998-801a64239d82" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Cleanup Properties" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="transfer" name="Property Transfer" id="769e5afc-6e57-49fa-a774-d1a7ccc60e54">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>currentPlanIdImport</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:targetType>currentPlanIdImport</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdSkipAll</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdSkipAll</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdXPlanGML53</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdXPlanGML53</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdText</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdText</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdAenderung</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdAenderung</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdDokument</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdDokument</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdFPlan</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdFPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdMultiplePlansHafenCity11</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdMultiplePlansHafenCity14</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdV2</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdV2</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdSkipLaufrichtungTrue</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdBereiche</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdBereiche</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdXPlanGML60</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdXPlanGML60</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdSOPlan</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdSOPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdRPlan</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdRPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdLPlan</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdLPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>textIdSOPlan</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>textIdSOPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>textIdLPlan</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>textIdLPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>textIdFPlan</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>textIdFPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>textIdRPlan</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>textIdRPlan</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdBPlanOhneBereich</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdBPlanOhneBereich</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planId40</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>planId40</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>currentPlanIdXPlanGML60asGML</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>currentPlanIdXPlanGML60asGML</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -11716,23 +12384,23 @@ assert expectedHeader == actualHeader</scriptText>
       <con:testStep type="transfer" name="Property Transfer" id="35c10770-7e76-448c-873a-6e998e802208">
         <con:settings/>
         <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profilesId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
             <con:sourcePath>$.profiles[0].id</con:sourcePath>
-            <con:targetType>profilesId</con:targetType>
+            <con:targetType>profileId</con:targetType>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
             <con:upgraded>true</con:upgraded>
           </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>profilesSecondId</con:name>
             <con:sourceType>Response</con:sourceType>
             <con:sourceStep>GET XX X.X XX showConfig</con:sourceStep>
             <con:sourcePath>$.profiles[1].id</con:sourcePath>
-            <con:targetType>profilesSecondId</con:targetType>
+            <con:targetType xsi:nil="true"/>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -11779,59 +12447,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <con:entry key="skipFlaechenschluss" value="true"/>
-              <con:entry key="profiles" value="${#TestSuite#profilesId}"/>
-              <con:entry key="skipSemantisch" value="true"/>
-              <con:entry key="skipLaufrichtung" value=""/>
-            </con:parameters>
-            <con:parameterOrder>
-              <con:entry>X-Filename</con:entry>
-              <con:entry>skipSemantisch</con:entry>
-              <con:entry>skipFlaechenschluss</con:entry>
-              <con:entry>skipGeltungsbereich</con:entry>
-              <con:entry>internalId</con:entry>
-              <con:entry>planStatus</con:entry>
-              <con:entry>skipLaufrichtung</con:entry>
-              <con:entry>profiles</con:entry>
-            </con:parameterOrder>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="POST BP 4.1 sF,sS,pf importPlanWithMultipleProfile" id="b9689ea9-3487-4658-b9df-b22cce6d3c04">
-        <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 4.1 sF,sS,pf importPlanWithMultipleProfile" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
-            </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>201,400</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
-              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
-              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
-              <con:preemptive>true</con:preemptive>
-              <con:authType>Preemptive</con:authType>
-            </con:credentials>
-            <con:attachment>
-              <con:name>BP_4.1.zip</con:name>
-              <con:contentType>application/octet-stream</con:contentType>
-              <con:contentId>BP_4.1.zip</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/plans/BP_4.1.zip</con:url>
-              <con:id>f164f967-c936-4019-aa8b-4fb3bda60c80</con:id>
-            </con:attachment>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <con:entry key="skipFlaechenschluss" value="true"/>
-              <con:entry key="profiles" value="${#TestSuite#profilesId},${#TestSuite#profilesSecondId}"/>
+              <con:entry key="profiles" value="${#TestSuite#profileId}"/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
             </con:parameters>
@@ -11864,10 +12480,10 @@ assert expectedHeader == actualHeader</scriptText>
           </con:transfers>
           <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
             <con:name>planIdProfiles</con:name>
-            <con:sourceType>Response</con:sourceType>
-            <con:sourceStep>POST BP 4.1 sF,sS,pf importPlanWithMultipleProfile</con:sourceStep>
+            <con:sourceType xsi:nil="true"/>
+            <con:sourceStep>POST BP 4.1 sF,sS,pf importPlanWithProfil</con:sourceStep>
             <con:sourcePath>$.id</con:sourcePath>
-            <con:targetType>planIdProfiles</con:targetType>
+            <con:targetType xsi:nil="true"/>
             <con:targetStep>#TestSuite#</con:targetStep>
             <con:type>JSONPATH</con:type>
             <con:targetTransferType>JSONPATH</con:targetTransferType>
@@ -11910,59 +12526,54 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="DEL BP 4.1 pI deletePlanWithMultipleProfile" id="b7df5aa0-7277-4365-aa1e-a445281fa238">
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="aedaa003-bb2b-42b6-958c-57575e10ec85" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Cleanup Properties" searchProperties="true">
+      <con:settings/>
+      <con:testStep type="transfer" name="Property Transfer" id="e40cda18-0926-49de-8cac-07dd1d3f6f89">
         <con:settings/>
-        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}" methodName="delete" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="DEL BP 4.1 pI deletePlanWithMultipleProfile" id="d1cd7d2d-f354-4a5a-9fa0-1137ede48dcd" mediaType="application/json" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
-            </con:settings>
-            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
-            <con:request/>
-            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="859dc093-1e4d-4794-bcc1-58695077093f" name="Valid HTTP Status Codes">
-              <con:configuration>
-                <codes>200,404</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:username xsi:nil="true"/>
-              <con:password xsi:nil="true"/>
-              <con:domain xsi:nil="true"/>
-              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
-              <con:preemptive>true</con:preemptive>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:jmsPropertyConfig/>
-            <con:parameters>
-              <entry key="planId" value="${#TestSuite#planIdProfiles}" xmlns="http://eviware.com/soapui/config"/>
-            </con:parameters>
-          </con:restRequest>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>profileId</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:targetType>profileId</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="false" disabled="false" entitize="false" ignoreEmpty="false" transferChildNodes="false" transferToAll="false" useXQuery="false">
+            <con:name>planIdProfile</con:name>
+            <con:sourceType>null</con:sourceType>
+            <con:sourceStep>#Project#</con:sourceStep>
+            <con:sourcePath xsi:nil="true"/>
+            <con:targetType>planIdProfile</con:targetType>
+            <con:targetStep>#TestSuite#</con:targetStep>
+            <con:targetPath xsi:nil="true"/>
+            <con:type>XPATH</con:type>
+            <con:targetTransferType>XPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
         </con:config>
       </con:testStep>
       <con:properties/>
     </con:testCase>
     <con:properties>
       <con:property>
-        <con:name>profilesId</con:name>
-        <con:value>p2</con:value>
-      </con:property>
-      <con:property>
-        <con:name>profilesSecondId</con:name>
-        <con:value>p1</con:value>
+        <con:name>profileId</con:name>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>planIdProfile</con:name>
-        <con:value>144</con:value>
-      </con:property>
-      <con:property>
-        <con:name>planIdProfiles</con:name>
-        <con:value>145</con:value>
+        <con:value/>
       </con:property>
     </con:properties>
   </con:testSuite>
-  <con:properties/>
+  <con:properties>
+    <con:property>
+      <con:name>null</con:name>
+      <con:value/>
+    </con:property>
+  </con:properties>
   <con:wssContainer/>
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>

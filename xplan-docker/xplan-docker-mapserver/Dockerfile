@@ -1,0 +1,7 @@
+FROM camptocamp/mapserver:8.0
+
+RUN mkdir -p /xplan-docker-mapserver
+ADD target/xplan-docker-mapserver-*.tgz /
+ADD startupWithConfiguredMapserver.sh /xplan-docker-mapserver/
+
+CMD ["/xplan-docker-mapserver/startupWithConfiguredMapserver.sh"]

@@ -173,7 +173,7 @@
 
     <xsl:template match="ValidationReport/Validation/Profile">
       <p>
-        Ergebnis der Validierung gegen das Profil <xsl:value-of select="RulesMetadata/name"/>:
+        Ergebnis der Validierung gegen das Profil "<xsl:value-of select="RulesMetadata/name"/>":
         <i>
           <xsl:value-of select="result"/>
         </i>

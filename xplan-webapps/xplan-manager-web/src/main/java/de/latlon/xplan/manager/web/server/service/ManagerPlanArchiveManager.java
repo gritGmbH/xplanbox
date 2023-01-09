@@ -20,10 +20,11 @@
  */
 package de.latlon.xplan.manager.web.server.service;
 
-import static org.apache.commons.io.IOUtils.write;
+import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.validator.web.shared.ValidationException;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
@@ -31,10 +32,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import javax.servlet.http.HttpSession;
-
-import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.validator.web.shared.ValidationException;
+import static org.apache.commons.io.IOUtils.write;
 
 /**
  * Access to plan archive from session and filesystem
@@ -60,8 +58,13 @@ public class ManagerPlanArchiveManager {
 	}
 
 	public File readArchiveFromFilesystem(XPlan plan) throws IOException {
-		String fileToBeValidated = plan.getId() + ".zip";
+		String fileToBeValidated = determineFileNameAndFolder(plan);
 		return new File(getUploadFolder(), fileToBeValidated);
+	}
+
+	public String determineFileNameAndFolder(XPlan plan) {
+		return plan.getId() + "/" + plan.getName();
+
 	}
 
 	public void savePlanInSession(HttpSession session, XPlan plan) {
@@ -83,8 +86,7 @@ public class ManagerPlanArchiveManager {
 		throw new ValidationException("Could not find a plan to validate!");
 	}
 
-	public void saveArtefactInFilesystem(HttpSession session, String fileName, byte[] artefact)
-			throws FileNotFoundException, IOException {
+	public void saveArtefactInFilesystem(HttpSession session, String fileName, byte[] artefact) throws IOException {
 		checkAndSetSessionAttributeIfRequired(session);
 		File artefactFolder = (File) session.getAttribute(SESSION_ATTRIBUTE_ARTEFACTS_FOLDER);
 		File artefactFile = new File(artefactFolder, fileName);

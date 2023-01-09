@@ -5,7 +5,7 @@ Die GDAL Unterstützung erfordert die Installation von GDAL, diese ist im
 Abschnitt Installation <<installation-gdal>> beschrieben.
 
 Um die GDAL Unterstützung zu aktivieren, muss die
-GDAL-Hauptkonfiguration erzeugt werden. Dazu wird im Root-Ordner des
+GDAL-Hauptkonfiguration erzeugt werden. Dazu wird im Basisverzeichnis des
 Workspaces _xplansyn-wms-workspace_ eine Datei mit dem Namen _gdal.xml_
 und mit folgendem Inhalt abgelegt:
 

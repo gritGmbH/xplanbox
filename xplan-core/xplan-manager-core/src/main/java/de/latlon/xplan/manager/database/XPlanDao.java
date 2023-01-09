@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -68,7 +69,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -95,6 +95,8 @@ import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
+import static de.latlon.xplan.manager.database.ArtefactType.RASTERBASIS;
+import static de.latlon.xplan.manager.database.ArtefactType.XPLANGML;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
@@ -278,7 +280,7 @@ public class XPlanDao {
 
 			updatePlanMetadata(conn, oldXplan, newAdditionalPlanData, fc, synFc, sortDate);
 			updatePlanArtefact(conn, oldXplan, planArtefact);
-			updateArtefacts(conn, oldXplan, xPlanToEdit, uploadedArtefacts, removedRefs);
+			updateArtefacts(conn, oldXplan, fc, xPlanToEdit, uploadedArtefacts, removedRefs);
 			updateXPlanAndXPlanSyn(conn, oldXplan, newAdditionalPlanData, fc, synFc, sortDate);
 
 			long begin = System.currentTimeMillis();
@@ -636,13 +638,13 @@ public class XPlanDao {
 		}
 	}
 
-	public InputStream retrieveXPlanArtefact(Connection conn, int planId) throws Exception {
+	private InputStream retrieveXPlanArtefact(Connection conn, int planId) throws Exception {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = conn.prepareStatement("SELECT data FROM xplanmgr.artefacts WHERE plan=? and filename=?");
+			stmt = conn
+					.prepareStatement("SELECT data FROM xplanmgr.artefacts WHERE plan=? and artefacttype='XPLANGML'");
 			stmt.setInt(1, planId);
-			stmt.setString(2, MAIN_FILE);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				return unzipArtefact(rs.getBinaryStream(1));
@@ -779,6 +781,29 @@ public class XPlanDao {
 			updateBereichInMgrSchema(conn, plan, bereiche);
 		}
 		catch (Exception e) {
+			conn.rollback();
+		}
+		finally {
+			closeQuietly(conn);
+		}
+	}
+
+	/**
+	 * Updates the column artefacttype of the table xplanmgr.artefacts.
+	 * @param id of the plan to update, never <code>null</code>
+	 * @param fileNames the fileNames to update, never <code>null</code>
+	 * @param artefactType the artefactType to set, never <code>null</code>
+	 * @throws SQLException
+	 */
+	public void updateArtefacttype(String id, List<String> fileNames, ArtefactType artefactType) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			updateArtefacttype(conn, id, fileNames, artefactType);
+		}
+		catch (Exception e) {
+			LOG.error("Could not set artefacttype " + artefactType + " for plan with id " + id + " and files "
+					+ fileNames + ".", e);
 			conn.rollback();
 		}
 		finally {
@@ -928,6 +953,31 @@ public class XPlanDao {
 				stmt.setString(2, bereich.getNummer());
 				stmt.setString(3, bereich.getName());
 				LOG.trace("SQL Update XPlan Manager bereich column: " + stmt);
+				stmt.executeUpdate();
+			}
+		}
+		finally {
+			closeQuietly(stmt);
+		}
+	}
+
+	private void updateArtefacttype(Connection conn, String planId, List<String> fileNames, ArtefactType artefactType)
+			throws Exception {
+		StringBuilder updateSql = new StringBuilder();
+		updateSql.append("UPDATE xplanmgr.artefacts");
+		updateSql.append(" SET artefacttype = ?::xplanmgr.artefacttype");
+		updateSql.append(" WHERE");
+		updateSql.append(" plan = ? AND");
+		updateSql.append(" filename = ?");
+
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(updateSql.toString());
+			for (String rasterReference : fileNames) {
+				stmt.setString(1, artefactType.name());
+				stmt.setInt(2, getXPlanIdAsInt(planId));
+				stmt.setString(3, rasterReference);
+				LOG.trace("SQL Update xplanmgr.artefacts, column artefacttype: " + stmt);
 				stmt.executeUpdate();
 			}
 		}
@@ -1472,14 +1522,15 @@ public class XPlanDao {
 			try {
 				InputStream is = archiveEntry.retrieveContentAsStream();
 				String mimetype = getArtefactMimeType(name);
-				String insertStatement = "INSERT INTO xplanmgr.artefacts (plan,filename,data,num,mimetype)"
-						+ " VALUES (?,?,?,?,?)";
+				String insertStatement = "INSERT INTO xplanmgr.artefacts (plan,filename,data,num,mimetype,artefacttype)"
+						+ " VALUES (?,?,?,?,?,?::xplanmgr.artefacttype)";
 				stmt = conn.prepareStatement(insertStatement);
 				stmt.setInt(1, planId);
 				stmt.setString(2, name);
 				stmt.setBytes(3, createZipArtefact(is));
 				stmt.setInt(4, i++);
 				stmt.setString(5, mimetype);
+				stmt.setString(6, detectArtefactType(xPlanFeatureCollection, archiveEntry));
 				stmt.executeUpdate();
 				stmt.close();
 				is.close();
@@ -1498,6 +1549,24 @@ public class XPlanDao {
 		}
 	}
 
+	private static String detectArtefactType(XPlanFeatureCollection xPlanFeatureCollection,
+			ZipEntryWithContent archiveEntry) {
+		if (archiveEntry.isXPlanGml()) {
+			return XPLANGML.name();
+		}
+		return detectNonXPlanGmlArtefactType(xPlanFeatureCollection, archiveEntry.getName());
+	}
+
+	private static String detectNonXPlanGmlArtefactType(XPlanFeatureCollection xPlanFeatureCollection, String name) {
+		List<ExternalReference> rasterPlanBaseAndUpdateScans = xPlanFeatureCollection.getExternalReferenceInfo()
+				.getRasterPlanBaseAndUpdateScans();
+		boolean isRasterBasis = rasterPlanBaseAndUpdateScans.stream()
+				.anyMatch(rasterPlanBaseAndUpdateScan -> name.equals(rasterPlanBaseAndUpdateScan.getReferenzUrl()));
+		if (isRasterBasis)
+			return RASTERBASIS.name();
+		return null;
+	}
+
 	private void updatePlanArtefact(Connection conn, XPlan xplan, byte[] planArtefact) throws Exception {
 		PreparedStatement stmt = null;
 		long begin = System.currentTimeMillis();
@@ -1506,12 +1575,11 @@ public class XPlanDao {
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE xplanmgr.artefacts SET ");
 			sql.append("data = ? ");
-			sql.append("WHERE plan = ? AND filename = ?");
+			sql.append("WHERE plan = ? AND artefacttype='XPLANGML'");
 			String updateSql = sql.toString();
 			stmt = conn.prepareStatement(updateSql);
 			stmt.setBytes(1, createZipArtefact(new ByteArrayInputStream(planArtefact)));
 			stmt.setInt(2, Integer.parseInt(xplan.getId()));
-			stmt.setString(3, "xplan.gml");
 			LOG.trace("SQL Update XPlanManager Artefacts: {}", stmt);
 			stmt.executeUpdate();
 			stmt.close();
@@ -1526,8 +1594,8 @@ public class XPlanDao {
 		}
 	}
 
-	private void updateArtefacts(Connection conn, XPlan xPlan, XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts,
-			Set<String> removedRefs) throws Exception {
+	private void updateArtefacts(Connection conn, XPlan xPlan, XPlanFeatureCollection featureCollection,
+			XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {
 		LOG.info("- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", xPlan.getId());
 		int id = getXPlanIdAsInt(xPlan.getId());
 		long begin = System.currentTimeMillis();
@@ -1541,7 +1609,7 @@ public class XPlanDao {
 						refFileName);
 			}
 			executeUpdateArtefacts(conn, id, artefactsToUpdate);
-			executeInsertArtefacts(conn, id, artefactsToInsert);
+			executeInsertArtefacts(conn, id, artefactsToInsert, featureCollection);
 			executeDeleteArtefacts(conn, id, removedRefs);
 
 			long elapsed = System.currentTimeMillis() - begin;
@@ -1580,7 +1648,7 @@ public class XPlanDao {
 	}
 
 	private void executeUpdateArtefacts(Connection conn, int id, Map<String, File> artefactsToUpdate)
-			throws SQLException, IOException, FileNotFoundException {
+			throws SQLException, IOException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE xplanmgr.artefacts SET ");
 		sql.append("data = ? ");
@@ -1604,11 +1672,12 @@ public class XPlanDao {
 		}
 	}
 
-	private void executeInsertArtefacts(Connection conn, int id, Map<String, File> artefactsToInsert) throws Exception {
+	private void executeInsertArtefacts(Connection conn, int id, Map<String, File> artefactsToInsert,
+			XPlanFeatureCollection featureCollection) throws Exception {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO xplanmgr.artefacts ");
-		sql.append("(plan,filename,data,num,mimetype) ");
-		sql.append("VALUES (?,?,?,?,?)");
+		sql.append("(plan,filename,data,num,mimetype,artefacttype) ");
+		sql.append("VALUES (?,?,?,?,?,?::xplanmgr.artefacttype)");
 		String insertSql = sql.toString();
 		int num = selectNextArtefactNumber(conn, id);
 		PreparedStatement stmt = null;
@@ -1622,6 +1691,7 @@ public class XPlanDao {
 				stmt.setBytes(3, createZipArtefact(fileInputStream));
 				stmt.setInt(4, num++);
 				stmt.setString(5, getArtefactMimeType(fileName));
+				stmt.setString(6, detectNonXPlanGmlArtefactType(featureCollection, fileName));
 				LOG.trace("SQL Insert XPlanManager Artefacts: {}", stmt);
 				stmt.executeUpdate();
 			}

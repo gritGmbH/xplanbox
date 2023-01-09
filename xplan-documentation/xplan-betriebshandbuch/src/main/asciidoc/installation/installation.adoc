@@ -11,7 +11,7 @@ Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (Vorgabewert ist das _.deegree_ im Home-V
 * _xplansyn-wfs-workspace_
 * _xplansyn-wms-workspace_
 * _xplan-inspireplu-workspace_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
-* _xplan-validator-wms-workspace_
+* _xplan-validator-wms-memory-workspace_
 * _xplan-manager-workspace_
 * _xplan-manager-config_
 * _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
@@ -75,7 +75,7 @@ Das Kommandozeilenwerkzeug XPlanAuswerteschemaCLI erzeugt ein weiteres Datenbank
 ====== Installation
 
 Die Installation dieses Kommandozeilenwerkzeugs sowie das Anlegen des zusätzlichen Datenbankschemas ist optional. Für den Betrieb der xPlanBox sind diese nicht erforderlich.
-Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte aus dem Ordner _scripts/_ angelegt werden. Folgende Reihenfolge muss beibehalten werden:
+Das Datenbankschema für die Auswertung muss durch Ausführen der SQL-Skripte aus dem Verzeichnis _scripts/_ angelegt werden. Folgende Reihenfolge muss beibehalten werden:
 
 . _00_create_schema.sql_
 . _01_create_function.sql_

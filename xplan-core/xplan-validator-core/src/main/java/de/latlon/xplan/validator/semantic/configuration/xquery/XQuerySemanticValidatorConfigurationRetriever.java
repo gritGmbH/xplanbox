@@ -35,14 +35,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Path;
 
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
-import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.validator.semantic.configuration.SemanticValidationOptions.NONE;
 import static java.lang.String.format;
 import static java.lang.String.valueOf;
@@ -167,12 +159,8 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 	}
 
 	private static DirectoryStream<Path> retrieveDirectoriesAndRules(Path filesPath) throws IOException {
-		return newDirectoryStream(filesPath, new DirectoryStream.Filter<Path>() {
-			@Override
-			public boolean accept(Path entry) throws IOException {
-				return isDirectory(entry) || valueOf(entry.getFileName()).endsWith(".xq");
-			}
-		});
+		return newDirectoryStream(filesPath,
+				entry -> isDirectory(entry) || valueOf(entry.getFileName()).endsWith(".xq"));
 	}
 
 	private String getNameWithoutExtension(Path path) {
@@ -199,24 +187,13 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 
 	private XPlanVersion parseXPlanVersion(Path path) {
 		String dirName = extractDirectoryName(path);
-		if ("xplangml60".equals(dirName))
-			return XPLAN_60;
-		if ("xplangml54".equals(dirName))
-			return XPLAN_54;
-		if ("xplangml53".equals(dirName))
-			return XPLAN_53;
-		if ("xplangml52".equals(dirName))
-			return XPLAN_52;
-		if ("xplangml51".equals(dirName))
-			return XPLAN_51;
-		if ("xplangml50".equals(dirName))
-			return XPLAN_50;
-		if ("xplangml41".equals(dirName))
-			return XPLAN_41;
-		if ("xplangml40".equals(dirName))
-			return XPLAN_40;
-		LOG.info("{} is not a known XPlanVersion", dirName);
-		return UNKNOWN_VERSION;
+		try {
+			return XPlanVersion.valueOfVersionDir(dirName);
+		}
+		catch (IllegalArgumentException e) {
+			LOG.info("{} cannnot be assigned to a known XPlanVersion", dirName);
+			return UNKNOWN_VERSION;
+		}
 	}
 
 	private String extractDirectoryName(Path path) {

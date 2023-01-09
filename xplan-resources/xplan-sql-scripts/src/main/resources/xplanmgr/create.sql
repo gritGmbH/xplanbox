@@ -55,12 +55,15 @@ CREATE TABLE features (
 );
 COMMENT ON TABLE features IS 'Feature ids for plans';
 
+CREATE TYPE artefacttype AS ENUM ('XPLANGML', 'RASTERBASIS');
+
 CREATE TABLE artefacts (
     plan integer references plans ON DELETE CASCADE,
     filename text NOT NULL,
     data bytea NOT NULL,
     num integer NOT NULL,
-    mimetype text NOT NULL
+    mimetype text NOT NULL,
+    artefacttype artefacttype
 );
 COMMENT ON TABLE artefacts IS 'Plan artefacts';
 

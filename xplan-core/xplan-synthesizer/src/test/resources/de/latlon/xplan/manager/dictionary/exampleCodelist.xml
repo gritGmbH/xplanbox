@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Dictionary   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/gml/3.2" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="Enumerationen">
+  <identifier codeSpace="urn:xplan">Enumerationen</identifier>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_Abc">
+      <description>Aufzählung verschiedener Arten von Abc.</description>
+      <identifier codeSpace="urn:xplan">XP_Abc</identifier>
+      <definitionMember>
+        <Definition gml:id="XP_Abc_1000">
+          <description>ab</description>
+          <identifier codeSpace="urn:xplan">XP_Abc:1000</identifier>
+          <name>AB</name>
+          <name codeSpace="lesbarerName">A und B</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_Abc_10000">
+          <description>bc</description>
+          <identifier codeSpace="urn:xplan">XP_Abc:10000</identifier>
+          <name>BC</name>
+          <name codeSpace="lesbarerName">B und C</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_Def">
+      <description />
+      <identifier codeSpace="urn:xplan">XP_Def</identifier>
+      <definitionMember>
+        <Definition gml:id="XP_Def_1000">
+          <description>de</description>
+          <identifier codeSpace="urn:xplan">XP_Def:1000</identifier>
+          <name>DE</name>
+          <name codeSpace="lesbarerName">D und E</name>
+          <name codeSpace="kuerzel">DE</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+</Dictionary  >

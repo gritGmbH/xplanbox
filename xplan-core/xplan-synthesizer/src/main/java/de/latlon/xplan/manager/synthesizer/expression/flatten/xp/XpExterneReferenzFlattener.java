@@ -21,8 +21,8 @@
 package de.latlon.xplan.manager.synthesizer.expression.flatten.xp;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
-import de.latlon.xplan.manager.codelists.XPlanCodeListsFactory;
+import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
+import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.AbstractFlattener;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -94,7 +94,7 @@ public class XpExterneReferenzFlattener extends AbstractFlattener {
 		TypedObjectNode typ = getPropertyValue(xpExterneReferenz, "typ");
 		if (typ == null)
 			return null;
-		XPlanCodeLists xPlanCodeLists = XPlanCodeListsFactory.get(version);
+		XPlanDictionaries xPlanCodeLists = XPlanEnumerationFactory.get(version);
 		String code = toString(typ);
 		return xPlanCodeLists.getTranslation("XP_ExterneReferenzTyp", code);
 	}

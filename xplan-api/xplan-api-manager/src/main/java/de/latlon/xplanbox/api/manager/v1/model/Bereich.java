@@ -46,7 +46,7 @@ public class Bereich {
 		return this;
 	}
 
-	@Schema(example = "0", description = "Nummer of the Bereich")
+	@Schema(example = "0", description = "Number of the Bereich")
 	@JsonProperty("nummer")
 	public String getNummer() {
 		return nummer;

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-manager-core</artifactId>
   <packaging>jar</packaging>
@@ -108,12 +109,21 @@
     </dependency>
     <!-- Spring Security -->
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
+    </dependency>
+    <!-- AWS SDK For Java -->
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-s3</artifactId>
     </dependency>
     <!-- test -->
     <dependency>
@@ -138,6 +148,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>io.findify</groupId>
+      <artifactId>s3mock_2.13</artifactId>
+      <version>0.2.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-tests-resources</artifactId>
       <scope>test</scope>
@@ -154,6 +170,10 @@
       <artifactId>deegree-layers-feature</artifactId>
       <version>${deegree3.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
     </dependency>
   </dependencies>
 

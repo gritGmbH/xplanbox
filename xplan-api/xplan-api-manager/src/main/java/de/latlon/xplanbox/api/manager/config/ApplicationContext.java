@@ -38,7 +38,13 @@ import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3Context;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -67,6 +73,7 @@ import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.io.IOException;
 import java.net.URI;
@@ -84,11 +91,14 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorksp
 import static java.nio.file.Paths.get;
 
 /**
+ * Spring Application Context for initialising XPlanManagerAPI components.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager" })
+@Import({ RasterStorageContext.class, AmazonS3Context.class })
 public class ApplicationContext {
 
 	private static final String RULES_DIRECTORY = "/rules";
@@ -96,9 +106,10 @@ public class ApplicationContext {
 	@Bean
 	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, XPlanRasterEvaluator xPlanRasterEvaluator,
+			XPlanRasterManager xPlanRasterManager) throws Exception {
 		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
-				wmsWorkspaceWrapper);
+				wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
 	}
 
 	@Bean
@@ -205,14 +216,18 @@ public class ApplicationContext {
 	@Bean
 	public WmsWorkspaceWrapper wmsWorkspaceWrapper() throws WorkspaceException {
 		DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper(DEFAULT_XPLANSYN_WMS_WORKSPACE);
-		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
-		return wmsWorkspaceWrapper;
+		return new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
 	}
 
 	@Bean
-	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			ManagerConfiguration managerConfiguration) throws WorkspaceException {
-		return new XPlanRasterManager(wmsWorkspaceWrapper, managerConfiguration);
+	public XPlanRasterEvaluator xPlanRasterEvaluator(RasterEvaluation rasterEvaluation) {
+		return new XPlanRasterEvaluator(rasterEvaluation);
+	}
+
+	@Bean
+	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
+			throws WorkspaceException {
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
 	}
 
 	@Bean

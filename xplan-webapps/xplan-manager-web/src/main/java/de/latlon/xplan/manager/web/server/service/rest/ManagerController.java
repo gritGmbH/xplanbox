@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -58,7 +58,6 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -338,7 +337,7 @@ public class ManagerController {
 			LOG.info("Found local plan to import.");
 			archiveManager.savePlanInSession(session, plan);
 			try {
-				String fileToBeImported = archiveManager.getUploadFolder() + "/" + planId + ".zip";
+				String fileToBeImported = retrieveFileToBeImported(plan);
 				XPlanArchive archive = manager.analyzeArchive(fileToBeImported);
 				ICRS crs = null;
 				if (defaultCrs != null)
@@ -360,13 +359,16 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public Map<String, String> retrieveMatchingInternalIds( @PathVariable String id,
-                                                            @Context HttpServletResponse response )
+															@Context HttpServletRequest request,
+															@Context HttpServletResponse response )
                                                                             throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Retrieve internal id of plan with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			String planName = manager.retrievePlanName(fileToBeImported);
 			Map<String, String> matchingInternalIds = internalIdRetriever.getMatchingInternalIds(planName);
 			if (!matchingInternalIds.isEmpty())
@@ -385,13 +387,15 @@ public class ManagerController {
 	@RequestMapping(value = "/crs/{id}", method = GET)
 	@ResponseBody
 	// @formatter:off
-    public boolean isCrsSet( @PathVariable String id, @Context HttpServletResponse response )
+    public boolean isCrsSet( @PathVariable String id,@Context HttpServletRequest request,  @Context HttpServletResponse response )
                     throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Retrieve crs of plan with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			return manager.isCrsSet(fileToBeImported);
 		}
 		catch (Exception e) {
@@ -404,13 +408,15 @@ public class ManagerController {
 	@RequestMapping(value = "/raster/{id}", method = GET)
 	@ResponseBody
 	// @formatter:off
-    public List<RasterEvaluationResult> evaluateRaster( @PathVariable String id, @Context HttpServletResponse response )
+    public List<RasterEvaluationResult> evaluateRaster( @PathVariable String id, @Context HttpServletRequest request, @Context HttpServletResponse response )
                     throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate raster of with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			return manager.evaluateRasterdata(fileToBeImported);
 		}
 		catch (Exception e) {
@@ -423,13 +429,16 @@ public class ManagerController {
 	@RequestMapping(value = "/plannamestatus/{id}/{status}", method = GET)
 	@ResponseBody
 	public List<PlanNameWithStatusResult> evaluatePlanNameAndStatus(@PathVariable String id,
-			@PathVariable String status, @Context HttpServletResponse response) throws Exception {
+			@PathVariable String status, @Context HttpServletRequest request, @Context HttpServletResponse response)
+			throws Exception {
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate name of plan with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
 			if ("null".equals(status))
 				status = null;
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			return manager.evaluatePlanNameAndStatus(fileToBeImported, status);
 		}
 		catch (Exception e) {
@@ -443,13 +452,15 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public RechtsstandAndPlanStatus determineLegislationStatus( @PathVariable String id,
-																@Context HttpServletResponse response )
+																@Context HttpServletRequest request, @Context HttpServletResponse response )
                                                                          throws Exception {
         // @formatter:on
 		response.addHeader("Expires", "-1");
 		LOG.info("Evaluate legislation status of plan with id {}.", id);
+		HttpSession session = request.getSession();
+		XPlan plan = archiveManager.retrievePlanFromSession(session);
 		try {
-			String fileToBeImported = archiveManager.getUploadFolder() + "/" + id + ".zip";
+			String fileToBeImported = retrieveFileToBeImported(plan);
 			Pair<Rechtsstand, PlanStatus> rechtsstandPlanStatusPair = manager.determineRechtsstand(fileToBeImported);
 			return new RechtsstandAndPlanStatus(rechtsstandPlanStatusPair.first, rechtsstandPlanStatusPair.second);
 		}
@@ -512,7 +523,7 @@ public class ManagerController {
 	}
 
 	private void uploadArtefact(MultipartFile artefact, HttpServletRequest request, HttpServletResponse response)
-			throws FileNotFoundException, IOException {
+			throws IOException {
 		if (artefact != null && !artefact.isEmpty()) {
 			String fileName = artefact.getOriginalFilename();
 			LOG.info("Add artefact {}.", fileName);
@@ -520,6 +531,11 @@ public class ManagerController {
 			archiveManager.saveArtefactInFilesystem(session, fileName, artefact.getBytes());
 			populateArtefactUploadResponse(response, fileName);
 		}
+	}
+
+	private String retrieveFileToBeImported(XPlan xPlan) {
+		String fileName = archiveManager.determineFileNameAndFolder(xPlan);
+		return archiveManager.getUploadFolder() + "/" + fileName;
 	}
 
 	private void populateResponseAndWriteOutput(HttpServletResponse response, XPlan requestedPlan,
@@ -575,6 +591,8 @@ public class ManagerController {
 
 	private void uploadZipFile(MultipartFile file, XPlan plan) throws IOException {
 		File localFile = archiveManager.readArchiveFromFilesystem(plan);
+		localFile.getParentFile().mkdir();
+		localFile.createNewFile();
 		try (FileOutputStream localOutput = new FileOutputStream(localFile)) {
 			write(file.getBytes(), localOutput);
 		}

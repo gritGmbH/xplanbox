@@ -21,7 +21,7 @@
 package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager;
+import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
 import de.latlon.xplanbox.api.manager.config.DefaultValidationConfiguration;
 import de.latlon.xplanbox.api.manager.config.ManagerApiConfiguration;
@@ -56,8 +56,7 @@ public class ConfigHandler {
 	public ManagerSystemConfig describeManagerSystem() throws IOException {
 		LOG.debug("Generating manager config information");
 		String rasterCrs = managerConfiguration.getRasterConfigurationCrs();
-		WorkspaceRasterLayerManager.RasterConfigurationType rasterType = managerConfiguration
-				.getRasterConfigurationType();
+		RasterConfigurationType rasterType = managerConfiguration.getRasterConfigurationType();
 		DefaultValidationConfiguration defaultValidationConfiguration = managerApiConfiguration
 				.getDefaultValidationConfiguration();
 

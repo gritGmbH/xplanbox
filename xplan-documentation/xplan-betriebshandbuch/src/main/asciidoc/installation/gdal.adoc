@@ -53,7 +53,7 @@ müssen folgende Einstellungen vorgenommen werden:
 
 * Setzen der Variable `JAVA_HOME` mit der Referenz zur Java Installation
 (JDK), z. B.: `C:\Program Files\Java\jdk-11.0.11`
-* Setzen der Variable `GDAL_DATA` mit der Referenz auf den Ordner, der
+* Setzen der Variable `GDAL_DATA` mit der Referenz auf das Verzeichnis, dass die
 Datei "gcs.csv" enthält, z. B.:
 `C:\Program Files (x86)\gdal\bin\gdal-data`
 * Zur Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt
