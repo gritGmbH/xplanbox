@@ -58,6 +58,7 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -210,6 +211,10 @@ public class ApplicationContext {
 		}
 		try {
 			Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
+			if (!Files.exists(workspaceLocation)) {
+				LOG.warn("Workspace ar {} does not exists. Map preview will not be available.");
+				return null;
+			}
 			return new ValidatorWmsManager(xPlanSynthesizer, workspaceLocation);
 		}
 		catch (IOException | IllegalArgumentException e) {

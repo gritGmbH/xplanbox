@@ -59,6 +59,7 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -213,8 +214,19 @@ public class XPlanValidatorWebSpringConfig {
 
 	@Bean
 	public ValidatorWmsManager createValidatorWmsManager(XPlanSynthesizer synthesizer) throws IOException {
-		Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
-		return new ValidatorWmsManager(synthesizer, workspaceLocation);
+		try {
+			Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
+			if (!Files.exists(workspaceLocation)) {
+				LOG.warn("Workspace ar {} does not exists. Map preview will not be available.");
+				return null;
+			}
+			return new ValidatorWmsManager(synthesizer, workspaceLocation);
+		}
+		catch (IOException | IllegalArgumentException e) {
+			LOG.error("Could not initialise ValidatorWmsManager. WMS resources cannot be created. Reason: {}",
+					e.getMessage(), e);
+		}
+		return null;
 	}
 
 	@Bean
