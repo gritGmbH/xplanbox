@@ -126,7 +126,7 @@ Folgende Verzeichnisse des neuen _xplansyn-wms-workspace_ müssen in die bestehe
 * _styles/_
 * _themes/_
 
-CAUTION: Im Verzeichnis _themes/_ nicht die Dateien, die auf _raster.xml_ enden, ersetzen!
+IMPORTANT: Im Verzeichnis _themes/_ nicht die Dateien, die auf _raster.xml_ enden, ersetzen!
 
 
 [[aktualisierung-der-schemas]]
