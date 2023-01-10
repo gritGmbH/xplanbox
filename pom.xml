@@ -31,10 +31,11 @@
     <jackson.version>2.13.4</jackson.version>
     <liquibase.version>4.15.0</liquibase.version>
     <postgresql.version>42.4.3</postgresql.version>
-    <dependency-check-maven.version>7.4.3</dependency-check-maven.version>
+    <owasp.version>7.4.4</owasp.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
+    <skip.owasp.check>false</skip.owasp.check>
   </properties>
 
   <modules>
@@ -288,7 +289,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>${dependency-check-maven.version}</version>
+        <version>${owasp.version}</version>
       </plugin>
     </plugins>
   </reporting>
@@ -370,9 +371,11 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>${dependency-check-maven.version}</version>
+        <version>${owasp.version}</version>
         <configuration>
+          <cveValidForHours>24</cveValidForHours>
           <failBuildOnCVSS>10</failBuildOnCVSS>
+          <skip>${skip.owasp.check}</skip>
         </configuration>
         <executions>
           <execution>
@@ -902,6 +905,12 @@
         <groupId>org.quartz-scheduler</groupId>
         <artifactId>quartz</artifactId>
         <version>2.3.2</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP-java7</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.liquibase</groupId>
