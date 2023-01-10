@@ -11,7 +11,7 @@ Verzeichnis _<DEEGREE_WORKSPACE_ROOT>_ (Vorgabewert ist das _.deegree_ im Home-V
 * _xplansyn-wfs-workspace_
 * _xplansyn-wms-workspace_
 * _xplan-inspireplu-workspace_ (XPlanInspirePluWMS und XPlanInspirePluWFS)
-* _xplan-validator-wms-memory-workspace_
+* _xplan-validator-wms-memory-workspace_ oder xplan-validator-wms-sql-workspace (siehe <<konfiguration-xplanvalidatorwms>>)
 * _xplan-manager-workspace_
 * _xplan-manager-config_
 * _xplan-validator-config_ (nur erforderlich, wenn ausschließlich der XPlanValidator installiert werden soll)
