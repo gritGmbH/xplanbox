@@ -39,7 +39,7 @@ public class ValidatorWmsWorkspaceContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ValidatorWmsWorkspaceContext.class);
 
-	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-workspace";
+	private static final String XPLAN_GML_WMS_WORKSPACE = "xplan-validator-wms-memory-workspace";
 
 	@Bean
 	public PlanStorage planStorage() {
