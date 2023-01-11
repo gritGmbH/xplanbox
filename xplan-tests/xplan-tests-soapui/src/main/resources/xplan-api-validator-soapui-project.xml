@@ -855,7 +855,7 @@ Validate XPlanGML or XPlanArchive</con:description>
       <con:testStep type="restrequest" name="POST BP 5.0 XX validatePlanExpectError" id="8d1802b2-8658-407c-b77c-1796e336f477">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 5.0 XX validatePlanExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/gml+xml" postQueryString="false">
+          <con:restRequest name="POST BP 5.0 XX validatePlanExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -878,7 +878,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             </con:credentials>
             <con:attachment>
               <con:name>BP_6.0.gml</con:name>
-              <con:contentType>application/gml+xml</con:contentType>
+              <con:contentType>application/octet-stream</con:contentType>
               <con:contentId>BP_5.0_Entity.zip</con:contentId>
               <con:url>${projectDir}/xplan-api-validator/plans/BP_5.0_Entity.zip</con:url>
               <con:id>5fa7fb2a-562f-42f8-bf35-1dcbfd8f3987</con:id>
