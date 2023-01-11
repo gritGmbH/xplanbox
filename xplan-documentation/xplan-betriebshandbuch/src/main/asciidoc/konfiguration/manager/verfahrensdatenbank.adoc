@@ -1,16 +1,15 @@
 [[verfahrensdatenbank]]
 === Schnittstelle zur Verfahrensdatenbank (optional)
 
-Um beim Import eines Plans die Verfahrens-Id aus einer vorhandenen Verfahrensdatenbank abzurufen, muss die Schnittstelle
+Um beim Import eines Plans die Verfahrens-Id aus einer vorhandenen Verfahrensdatenbank abzurufen, muss die Datenbankverbindung zur Verfahrensdatenbank konfiguriert und aktiviert werden.
 
-kann in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder deaktiviert werden mit:
+Der Dialog im XPlanManagerWeb kann in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder deaktiviert werden mit:
 
 ----
 activateInternalIdDialog=[true|false]
 ----
 
-Die Datenbankverbindung zu einer Verfahrensdatenbank und die SQL-Abfragen zur Abfrage der Verfahrens-Id erfolgt in der Datei
-__managerConfiguration.properties__:
+Die Datenbankverbindung zu einer Verfahrensdatenbank und die SQL-Abfragen zur Abfrage der Verfahrens-Id erfolgt in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_:
 
 .Beispiel für managerConfiguration.properties mit SQL-Abfragen:
 [source,properties]

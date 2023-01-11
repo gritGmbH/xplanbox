@@ -10,27 +10,27 @@ muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ die folgen
 rasterConfigurationType=mapserver
 ----
 
+Die Konfiguration des XPlanWMS mit MapServer ist im Kapitel <<konfiguration-xplanwms-mapserver>> beschrieben.
+
 ==== S3 Storage
 
 Optional kann als Ablageort von Rasterdaten die AWS S3 API zusammen mit MapServer verwendet werden.
-Dazu müssen in der Konfiguration für MapServer und XPlanManager folgende Angaben über Umgebungsvariablen gesetzt werden:
+Dazu müssen in der Konfiguration für MapServer und XPlanManager die Verbindundsdaten für die AWS S3 API angegeben werden. Für den MapServer steht in dem Distributionspaket _xplan-mapserver-config-<VERSION>.zip_ eine Konfigurationsdatei _mapserver.map_ bereit. In dieser Datei müssen die Angaben für `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_S3_ENDPOINT` (optional) und der `SHAPEPATH` angepasst werden. Für den XPlanManager müssen die Angaben über Umgebungsvariablen gesetzt werden:
 
 [source,properties]
 ----
-MAPSERVER_STORAGETYPE=s3 <1>
-MAPSERVER_S3_ACCESS_KEY=XXXX <2>
-MAPSERVER_S3_SECRET_ACCESS_KEY=XXXX <3>
-MAPSERVER_S3_BUCKET_NAME=mybucket <4>
-MAPSERVER_S3_REGION=eu-central-1 <5>
-MAPSERVER_S3_ENDPOINT=https://bucket.domain.com <6>
+MAPSERVER_S3_ACCESS_KEY=XXXX <1>
+MAPSERVER_S3_SECRET_ACCESS_KEY=XXXX <2>
+MAPSERVER_S3_BUCKET_NAME=mybucket <3>
+MAPSERVER_S3_REGION=eu-central-1 <4>
+MAPSERVER_S3_ENDPOINT=https://s3.amazonaws.com <5>
 ----
-<1> Für die Aktivierung der S3 API muss `s3` gesetzt werden
-<2> Hier muss der AWS S3 Accesskey gesetzt werden
-<3> Hier muss der AWS S3 Secretkey gesetzt werden
-<4> Hier muss der Name des S3-Bucket gesetzt werden
-<5> Hier muss die S3 Region gesetzt werden
-<6> Hier muss die S3 Endpoint URL gesetzt werden (optional)
+<1> Hier muss der AWS S3 Accesskey gesetzt werden
+<2> Hier muss der AWS S3 Secretkey gesetzt werden
+<3> Hier muss der Name des S3-Bucket gesetzt werden
+<4> Hier muss die S3 Region gesetzt werden
+<5> Hier kann die S3 Endpoint URL gesetzt werden (optional)
 
-Weitere Information zur Konfiguration von MapServer für https://aws.amazon.com/de/s3/[AWS S3] im https://mapserver.org/mapfile/map.html[Mapfile] und zum GDAL Virtual File Systems[https://gdal.org/user/virtual_file_systems.html].
+Weitere Information zur Konfiguration von MapServer für https://aws.amazon.com/de/s3/[AWS S3] im https://mapserver.org/mapfile/map.html[Mapfile] und zum https://gdal.org/user/virtual_file_systems.html[GDAL Virtual File Systems].
 
 NOTE: Für die Aktivierung der S3 API für die Ablage von Rasterdaten muss zusätzlich auch die Umgebungsvariable `spring_profiles_active=s3` gesetzt werden.

@@ -6,7 +6,7 @@ in dem diese durch den XPlanWMS und XPlanWerkWMS angezeigt werden.
 
 Der Massstabsbereich kann in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ konfiguriert werden.
 Sollen die Rasterdaten beispielsweise im Massstabsbereich 1 : 100 bis 1 : 50.000
-angezeigt werden, ist folgendes zu konfigurieren:
+angezeigt werden, ist Folgendes zu konfigurieren:
 
 ----
 rasterLayerMinScaleDenominator=100

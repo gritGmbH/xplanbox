@@ -82,7 +82,7 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 
 Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teilweisen Aktualisierung zu unterscheiden. Bei der im Abschnitt <<vollstaendige-aktualisierung>> beschriebenen vollständigen Aktualisierung werden z. B. Rasterdaten aus Plänen, die bereits importiert wurden, verworfen. Sollen vorhandene Daten beibehalten werden, ist das im Abschnitt <<teilweise-aktualisierung>> beschriebene Vorgehen durchzuführen.
 
-IMPORTANT: Das HTML-Template für die XPlanWMS GFI Ausgabe muss, wie in <<konfiguration_xplanwms>> beschrieben, angepasst werden.
+IMPORTANT: Das HTML-Template für die XPlanWMS GFI Ausgabe muss, wie in <<konfiguration-xplanwms-gfi>> beschrieben, angepasst werden.
 
 IMPORTANT: Alle Konfigurationsänderungen in _xplan-manager-config.properties_ und _xplan-validator-config.properties_  müssen manuell übertragen werden.
 

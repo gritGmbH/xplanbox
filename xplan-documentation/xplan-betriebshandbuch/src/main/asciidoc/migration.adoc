@@ -47,4 +47,4 @@ kommunizieren.
 
 Dazu muss der Wert der Variable `WMS_URL` in der Datei angepasst werden.
 
-Für mehr Details siehe Kapitel <<konfiguration_xplanwms>>.
+Für mehr Details siehe Kapitel <<konfiguration-xplanwms-gfi>>.
