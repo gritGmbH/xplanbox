@@ -82,7 +82,7 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 
 Bei der Aktualisierung der Workspaces ist zwischen einer vollständigen und teilweisen Aktualisierung zu unterscheiden. Bei der im Abschnitt <<vollstaendige-aktualisierung>> beschriebenen vollständigen Aktualisierung werden z. B. Rasterdaten aus Plänen, die bereits importiert wurden, verworfen. Sollen vorhandene Daten beibehalten werden, ist das im Abschnitt <<teilweise-aktualisierung>> beschriebene Vorgehen durchzuführen.
 
-IMPORTANT: Das HTML-Template für die XPlanWMS GFI Ausgabe muss, wie in <<konfiguration_xplanwms>> beschrieben, angepasst werden.
+IMPORTANT: Das HTML-Template für die XPlanWMS GFI Ausgabe muss, wie in <<konfiguration-xplanwms-gfi>> beschrieben, angepasst werden.
 
 IMPORTANT: Alle Konfigurationsänderungen in _xplan-manager-config.properties_ und _xplan-validator-config.properties_  müssen manuell übertragen werden.
 
@@ -126,7 +126,7 @@ Folgende Verzeichnisse des neuen _xplansyn-wms-workspace_ müssen in die bestehe
 * _styles/_
 * _themes/_
 
-CAUTION: Im Verzeichnis _themes/_ nicht die Dateien, die auf _raster.xml_ enden, ersetzen!
+IMPORTANT: Im Verzeichnis _themes/_ nicht die Dateien, die auf _raster.xml_ enden, ersetzen!
 
 
 [[aktualisierung-der-schemas]]
@@ -237,12 +237,12 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 ** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_5.0.2_to_6.0_ im Modul _xplan-manager-workspace_
 ** Ausführen des Skripts _databasechangelog_v60.sql_ im Verzeichnis _sql/changelog_ im Modul _xplan-manager-workspace_
 ** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
-** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (wenn benötigt)
+** Installation bzw. Inbetriebnahme des neuen Kommandozeilenwerkzeugs <<xplanevaluationschemasynchronize-cli, XPlanAuswerteschemaCLI>> (optional)
 
 [[aktualisierung-auf-xplanbox-version-6.1]]
 === Aktualisierung auf die Version 6.1 der xPlanBox
 
-In der Version 6.1 der xPlanBox erfolgte eine Umstellung des Loggings. Es werden für die Anwendungen XPlanManagerWeb, XPlanManagerApi, XPlanValidatorWeb und XPlanValidatorApi, sowie alle XPlanDienste keine Log-Dateien mehr geschrieben. Die Log-Ausgaben werden standardmäßig nur noch nach Standard-Out geschrieben.
+Mit der Version 6.1 der xPlanBox erfolgte eine Anpassung der Werkseinstellungen für das Logging. Für die Anwendungen XPlanManagerWeb, XPlanManagerAPI, XPlanValidatorWeb und XPlanValidatorAPI sowie alle XPlanDienste werden keine Log-Dateien mehr geschrieben. Alle Log-Ausgaben werden nur noch in die Standardausgabe (stdout) geschrieben. Um das Logging so anzupassen, dass die Log-Ausgaben zusätzlich ach in Log-Dateien geschrieben werden, müssen Anpassungen an der Konfiguration vorgenommen werden. Beispiele dafür sind im Kapitel <<logging>> zu finden.
 
 === Troubleshooting
 

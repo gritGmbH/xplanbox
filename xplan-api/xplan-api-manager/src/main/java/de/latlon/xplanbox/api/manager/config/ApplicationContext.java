@@ -34,6 +34,7 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
@@ -104,12 +105,12 @@ public class ApplicationContext {
 	private static final String RULES_DIRECTORY = "/rules";
 
 	@Bean
-	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper, XPlanRasterEvaluator xPlanRasterEvaluator,
-			XPlanRasterManager xPlanRasterManager) throws Exception {
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
-				wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
+	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			WorkspaceReloader workspaceReloader, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager) throws Exception {
+		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
+				null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
 	}
 
 	@Bean
@@ -231,15 +232,15 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanInsertManager xPlanInsertManager(XPlanDao xPlanDao, XPlanExporter xPlanExporter,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanRasterManager xPlanRasterManager,
-			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader) throws Exception {
+	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			XPlanRasterManager xPlanRasterManager, ManagerConfiguration managerConfiguration,
+			WorkspaceReloader workspaceReloader) throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration(managerConfiguration);
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 
-		return new XPlanInsertManager(xPlanSynthesizer(managerConfiguration), xPlanDao, xPlanExporter,
-				xPlanRasterManager, workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
-				sortPropertyReader);
+		return new XPlanInsertManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
+				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
 	}
 
 	@Bean
@@ -322,16 +323,22 @@ public class ApplicationContext {
 		return get(rulesPath);
 	}
 
+	@Bean
+	public XPlanSynthesizer xPlanSynthesizer(SynRulesAccessor synRulesAccessor) {
+		return new XPlanSynthesizer(synRulesAccessor);
+	}
+
+	@Bean
+	public SynRulesAccessor synRulesAccessor(ManagerConfiguration managerConfiguration) {
+		if (managerConfiguration != null)
+			return new SynRulesAccessor(managerConfiguration.getSynthesizerConfigurationDirectory());
+		return new SynRulesAccessor();
+	}
+
 	private SortConfiguration createSortConfiguration(ManagerConfiguration managerConfiguration) {
 		if (managerConfiguration != null)
 			return managerConfiguration.getSortConfiguration();
 		return new SortConfiguration();
-	}
-
-	private XPlanSynthesizer xPlanSynthesizer(ManagerConfiguration managerConfiguration) {
-		if (managerConfiguration != null)
-			return new XPlanSynthesizer(managerConfiguration.getSynthesizerConfigurationDirectory());
-		return new XPlanSynthesizer();
 	}
 
 }

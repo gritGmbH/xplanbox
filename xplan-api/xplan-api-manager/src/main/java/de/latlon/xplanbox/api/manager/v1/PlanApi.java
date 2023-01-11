@@ -132,7 +132,7 @@ public class PlanApi {
 					@ApiResponse(responseCode = "400", description = "Invalid input",
 							content = @Content(schema = @Schema(implementation = ValidationReport.class))),
 					@ApiResponse(responseCode = "406",
-							description = "Invalid content - only XPlanGML or ZIP with XPlanGML is accepted") },
+							description = "Invalid content - only xml/gml, zip are accepted; all zip files entries must also match the supported content types for XPlanArchives and the content of the XPlanGML file must conform to specification of xPlanBox XPlanGML files") },
 			requestBody = @RequestBody(
 					content = {
 							@Content(mediaType = "application/octet-stream",

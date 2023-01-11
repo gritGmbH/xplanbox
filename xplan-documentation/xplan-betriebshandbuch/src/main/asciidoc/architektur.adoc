@@ -60,7 +60,7 @@ XPlanGML-Dokumente über den Browser zu validieren.
 ==== XPlanValidatorWMS
 
 Bei der Komponente XPlanValidatorWMS handelt es sich um eine Subkomponente
-des XPlanValidatorWeb. Validierte Plänen können über den XPlanValidatorWMS in der Kartenvorschau angezeigt werden, ohne das ein Plan in die Datenhaltung importiert wird. Dieser Dienst nutzt keine persistente Datenhaltung.
+des XPlanValidatorWeb. Validierte Plänen können über den XPlanValidatorWMS in der Kartenvorschau angezeigt werden, ohne das ein Plan in die Datenhaltung importiert wird. Dieser Dienst kann ohne persistente Datenhaltung betrieben werden.
 
 [[xplanvalidator-api]]
 === XPlanValidatorAPI

@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -29,6 +29,7 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
@@ -65,7 +66,7 @@ public class XplanBaugebietFlaechenteile implements Expression {
 	private final int MAX_NUM_POINTS = 500;
 
 	@Override
-	public Geometry evaluate(Feature feature, FeatureCollection features) {
+	public Geometry evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
 		List<Surface> members = new ArrayList<Surface>();
 		String ns = feature.getName().getNamespaceURI();
 		List<Property> props = feature.getProperties(new QName(ns, "flaechenteil"));

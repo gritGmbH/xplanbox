@@ -18,30 +18,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.synthesizer.expression;
+package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.manager.synthesizer.PlanContext;
-import org.deegree.commons.tom.primitive.PrimitiveValue;
-import org.deegree.feature.Feature;
-import org.deegree.feature.FeatureCollection;
+import de.latlon.xplan.commons.XPlanType;
 
 /**
- * {@link Expression} that returns a string constant.
- *
- * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider</a>
- * @since 1.0
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class StringConstant implements Expression {
+public class PlanContext {
 
-	private final PrimitiveValue value;
+	private final XPlanType planType;
 
-	public StringConstant(String s) {
-		this.value = new PrimitiveValue(s);
+	private final String planName;
+
+	/**
+	 * @param planType the type of xplan document. See {@link XPlanType}
+	 * @param planName the name of xplan document, i.e. the name of the XP_Plan-descendant
+	 * feature in the document
+	 */
+	public PlanContext(XPlanType planType, String planName) {
+		this.planType = planType;
+		this.planName = planName;
 	}
 
-	@Override
-	public PrimitiveValue evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
-		return value;
+	public XPlanType getPlanType() {
+		return planType;
+	}
+
+	public String getPlanName() {
+		return planName;
 	}
 
 }

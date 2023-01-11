@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.synthesizer.expression.dictionary;
 
 import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
@@ -54,14 +55,14 @@ public abstract class AbstractXPlanDictionaryLookup implements Expression {
 	}
 
 	@Override
-	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
+	public PrimitiveValue evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
 		XPlanDictionaries xPlanDictionaries = getXPlanDictionaries(feature);
 		if (xPlanDictionaries == null)
 			return null;
 
 		String translation = null;
 		try {
-			TypedObjectNodeArray<TypedObjectNode> codes = castToArray(exp.evaluate(feature, features));
+			TypedObjectNodeArray<TypedObjectNode> codes = castToArray(exp.evaluate(feature, features, planContext));
 			if (codes != null) {
 				translation = "";
 				for (TypedObjectNode o : codes.getElements()) {

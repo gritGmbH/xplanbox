@@ -76,7 +76,7 @@ Für den _Dienste-Tomcat_ muss auch die Variable `CATALINA_OPTS` wie folgt erwei
 export CATALINA_OPTS='-DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl'
 ----
 
-CAUTION: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+IMPORTANT: Der _Dienste-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
 [[api-tomcat]]
@@ -88,7 +88,7 @@ Für den _API-Tomcat_ muss auch die Variable `CATALINA_OPTS` wie auch für den <
 export CATALINA_OPTS='-DXPLANBOX_CONFIG=/home/xplanbox/.deegree/xplan-manager-config -DDEEGREE_WORKSPACE_ROOT=/pfad/zu/den/workspaces -Djts.overlay=ng -Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl -Duser.timezone=Europe/Berlin'
 ----
 
-CAUTION: Der _API-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
+IMPORTANT: Der _API-Tomcat_ muss ebenfalls mindestens über 4GB Arbeitsspeicher verfügen,
 dies kann durch Setzen der Umgebungsvariable: `export JAVA_OPTS='-Xmx4096m'` erfolgen.
 
 ==== Absicherung des Tomcat und der Webanwendungen
@@ -97,8 +97,12 @@ Wenn die xPlanBox in einer produktiven Umgebung betrieben wird, sollte der Apach
 
 Zusätzlich sollte die xPlanBox wie folgt konfiguriert sein:
 
-. die deegree webservice console für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
-. die deegree REST-Schnittstelle ist durch Benutzername und Kennwort abgesichert (Datei _web.xml_ und _tomcat-users.xml_ im Tomcat-Konfigurationsverzeichnis, siehe Kapitel <<dienste-tomcat>>).
-. der Zugriff auf die deegree webservice console ist auf IP-Adressbereiche bzw. Domänen eingeschränkt (Datei _context.xml_ innerhalb der Webanwendungen).
-. die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd) betrieben (Datei _server.xml_ im Tomcat-Konfigurationsverzeichnis).
+. die deegree webservice console (Kontextpfad _/console_) für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ im _Dienste-Tomcat_ ist durch ein Kennwort geschützt (Datei _console.pw_ im deegree Workspace).
+. die deegree REST-Schnittstelle (Kontextpfad _/config_) für die Dienste _xplan-wms_, _xplan-wfs_, _xplansyn-wfs_ und _xplan-inspireplu_ ist durch Benutzername und Kennwort abgesichert (Datei _web.xml_ und _tomcat-users.xml_ im Tomcat-Konfigurationsverzeichnis, siehe Kapitel <<dienste-tomcat>>).
+. zusätzlich wird die Einschränkung des Zugriffs auf die deegree webservice console und deegree REST-Schnittstelle auf IP-Adressbereiche bzw. Domänen empfohlen (Datei _context.xml_ innerhalb der Webanwendungen).
+. die Tomcat-Instanzen werden hinter einem Proxy (z. B. Apache httpd oder nginx) betrieben.
 . der Zugriff auf den XPlanManagerWeb ist durch Benutzername und Kennwort abgesichert (siehe Kapitel <<security>>).
+. die Komponente XPlanManagerAPI ist ebenfalls über Benutzername und Kennwort abgesichert.
+. die über den XPlanManagerAPI/Web sowie XPlanValidatorAPI/Web hochgeladenen Dateien sollten vorher durch einen Proxy mit Virenscanner auf Viren und Malware geprüft werden.
+
+CAUTION: Der Betrieb der xPlanBox *ohne* die Umsetzung dieser Maßnahmen kann die IT-Sicherheit der Anwendung gefährden!

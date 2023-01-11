@@ -8096,6 +8096,171 @@ exists(/wms:WMS_Capabilities)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplanraster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='bplanraster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplanrasterpre">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='bplanrasterpre'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer bplanrasterarchive">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='bplanrasterarchive'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplanraster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='fplanraster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplanrasterpre">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='fplanrasterpre'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer fplanrasterarchive">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='fplanrasterarchive'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplanraster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='lplanraster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplanrasterpre">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='lplanrasterpre'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer lplanrasterarchive">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='lplanrasterarchive'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplanraster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='rplanraster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplanrasterpre">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='rplanrasterpre'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer rplanrasterarchive">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='rplanrasterarchive'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplanraster">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='soplanraster'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplanrasterpre">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='soplanrasterpre'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="72194f5a-8b51-4dd6-9d22-94b68289bfb6" name="Layer soplanrasterarchive">
+            <con:configuration>
+              <path>declare namespace wms='http://www.opengis.net/wms';
+
+exists(//wms:Layer[wms:Name='soplanrasterarchive'])</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
             <con:password>${#Project#password}</con:password>

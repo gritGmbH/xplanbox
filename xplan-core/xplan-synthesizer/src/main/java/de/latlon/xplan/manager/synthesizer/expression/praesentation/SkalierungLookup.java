@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
 import org.deegree.commons.tom.TypedObjectNode;
@@ -67,9 +68,9 @@ public class SkalierungLookup extends PraesentationsobjektLookup {
 	}
 
 	@Override
-	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, Feature referencedFeature,
-			List<AttributeProperty> attributeProperty) {
-		TypedObjectNode originalSkalierung = skalierung.evaluate(feature, features);
+	protected TypedObjectNode evaluate(Feature feature, FeatureCollection features, PlanContext planContext,
+			Feature referencedFeature, List<AttributeProperty> attributeProperty) {
+		TypedObjectNode originalSkalierung = skalierung.evaluate(feature, features, planContext);
 		if (originalSkalierung != null)
 			return originalSkalierung;
 		if (referencedFeature != null && attributeProperty != null) {

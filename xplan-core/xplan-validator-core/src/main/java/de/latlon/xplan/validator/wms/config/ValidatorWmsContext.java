@@ -21,6 +21,7 @@
 package de.latlon.xplan.validator.wms.config;
 
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
 import de.latlon.xplan.validator.wms.ValidatorWmsManager;
 import de.latlon.xplan.validator.wms.storage.PlanStorage;
@@ -47,7 +48,7 @@ public class ValidatorWmsContext {
 	private ValidatorConfiguration validatorConfiguration;
 
 	@Bean
-	public ValidatorWmsManager validatorWmsManager() {
+	public ValidatorWmsManager validatorWmsManager(XPlanSynthesizer synthesizer) {
 		if (planStorage == null) {
 			LOG.warn("PlanStorage is not available. Map preview will not be available.");
 			return null;
@@ -59,7 +60,6 @@ public class ValidatorWmsContext {
 			return null;
 		}
 		try {
-			XPlanSynthesizer synthesizer = new XPlanSynthesizer();
 			return new ValidatorWmsManager(synthesizer, planStorage);
 		}
 		catch (IllegalArgumentException e) {
@@ -67,6 +67,16 @@ public class ValidatorWmsContext {
 					e.getMessage(), e);
 		}
 		return null;
+	}
+
+	@Bean
+	public XPlanSynthesizer xPlanSynthesizer(SynRulesAccessor synRulesAccessor) {
+		return new XPlanSynthesizer(synRulesAccessor);
+	}
+
+	@Bean
+	public SynRulesAccessor synRulesAccessor() {
+		return new SynRulesAccessor();
 	}
 
 }

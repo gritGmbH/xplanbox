@@ -125,6 +125,7 @@ public class XPlanManager {
 	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	/**
+	 * @param xPlanSynthesizer used to synthesize plans, never <code>null</code>
 	 * @param xPlanDao mandatory XPlan data access object
 	 * @param archiveCreator mandatory archive creator
 	 * @param managerWorkspaceWrapper mandatory manager workspace configuration
@@ -135,7 +136,7 @@ public class XPlanManager {
 	 * @param wmsWorkspaceWrapper mandatory WMS workspace configuration
 	 * @throws Exception if mandatory arguments are missing or something went wrong
 	 */
-	public XPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
+	public XPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
 			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager) throws Exception {
@@ -155,7 +156,6 @@ public class XPlanManager {
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		this.sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		this.xPlanExporter = new XPlanExporter();
-		XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer(managerWorkspaceWrapper.getConfiguration());
 		if (inspirePluTransformator != null)
 			this.inspirePluPublisher = new InspirePluPublisher(xplanDao, inspirePluTransformator);
 		else
@@ -493,12 +493,6 @@ public class XPlanManager {
 		if (managerConfiguration != null)
 			return managerConfiguration.getSortConfiguration();
 		return new SortConfiguration();
-	}
-
-	private XPlanSynthesizer createXPlanSynthesizer(ManagerConfiguration managerConfiguration) {
-		if (managerConfiguration != null)
-			return new XPlanSynthesizer(managerConfiguration.getSynthesizerConfigurationDirectory());
-		return new XPlanSynthesizer();
 	}
 
 }

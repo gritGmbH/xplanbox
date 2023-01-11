@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
  */
 
 import de.latlon.xplan.manager.dictionary.XPlanCodelists;
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.XplanFlattenProperty;
@@ -30,6 +31,7 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
+import static de.latlon.xplan.commons.XPlanType.LP_Plan;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static org.junit.Assert.assertEquals;
 
@@ -40,11 +42,12 @@ public class LpBiologischeVielfaltKomplexFlattenerTest {
 
 	@Test
 	public void testFlatten_biologischeVielfalt() throws Exception {
+		PlanContext planContext = new PlanContext(LP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load("xplan60/LP-Test_60.zip");
 		Feature feature = getTestFeature(features, "Gml_8AC988AC-0E6C-44C6-9522-A32244FBBCE0");
 		XplanFlattenProperty expr = new XplanFlattenProperty(new XPlanCodelists(),
 				new Xpath("xplan:biologischeVielfalt"));
-		PrimitiveValue value = expr.evaluate(feature, features);
+		PrimitiveValue value = expr.evaluate(feature, features, planContext);
 		assertEquals(
 				"[Biologische Vielfalt: [Bestandteil: Lebensstätte, Arthabitat]|von gemeinschaftlichem Interesse kartiert: ja]",
 				value.toString());

@@ -1,5 +1,7 @@
 [[standard-crs-import]]
-=== Standard-Koordinatenreferenzsystem (Import)
+=== Standard-Koordinatenreferenzsystem
+
+Der Dialog mit der Angabe des Koordinatenreferenzsystems kann wie folgt konfiguriert werden.
 
 [[vektordaten]]
 ==== Vektordaten

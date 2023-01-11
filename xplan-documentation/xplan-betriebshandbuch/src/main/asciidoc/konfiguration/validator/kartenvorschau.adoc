@@ -29,16 +29,19 @@ jar uf xplan-validator-web.war masterportal/template/services-internet.template.
 
 NOTE: Die Zeilen mit den Angaben für `${SERVICESCONFIG}`, `id` und `name` dürfen nicht angepasst werden!
 
+[[konfiguration-xplanvalidatorwms]]
 ==== Konfiguration des XPlanValidatorWMS
 
 Im XPlanValidatorWMS werden die im XPlanValidator hochgeladenen XPlanGML-Dateien visualisiert und über die Kartenvorschau im XPlanValidatorWeb angezeigt. Der XPlanValidatorWMS kann für die temporäre Datenhaltung so konfiguriert werden, dass die Daten ausschliesslich im Arbeitsspeicher vorgehalten oder in einer Datenbank gespeichert werden.
 
-Über den _xplan-validator-wms-memory-workspace_ (dies ist der Vorgabewert) steht eine Konfiguration für den XPlanValidatorWMS bereit, die die Daten ausschliesslich im Arbeitsspeicher vorhält. Mit dem _xplan-validator-wms-sql-workspace_ kann die XPlanDB als Datenhaltung ausgewählt werden. Dabei muss ein separates Schema für den XPlanValidatorWMS in der XPlanDB angelegt werden.
+Über den _xplan-validator-wms-memory-workspace_ (dies ist der Vorgabewert) steht eine Konfiguration für den XPlanValidatorWMS bereit, die die Daten ausschliesslich im Arbeitsspeicher vorhält. Mit dem _xplan-validator-wms-sql-workspace_ kann stattdessen die XPlanDB als Datenhaltung ausgewählt werden. Dabei muss ein separates Schema für den XPlanValidatorWMS in der XPlanDB angelegt werden (weitere Informationen zur Einrichtung der XPlanDB im Kapitel <<konfiguration-der-datenbank>>).
 
-Die Konfiguration erfolgt über die Datei _xplan-validator-workspaces/webapps.properties_.
+Die Aktivierung des jeweiligen Workspace erfolgt über die Datei _<DEEGREE_WORKSPACE_ROOT>/webapps.properties_.
 
-.Beispiel für webapps.properties mit der Auswahl der XPlanDB als Datenhaltung für den XPlanValidatorWMS:
+.Beispiel für den Eintrag in der webapps.properties mit der Auswahl der XPlanDB als Datenhaltung für den XPlanValidatorWMS:
 [source,properties]
 ----
 /xplan-validator-wms=xplan-validator-wms-sql-workspace
 ----
+
+NOTE: Für die Aktivierung der XPlanDB als Datenhaltung muss zusätzlich die Umgebungsvariable `spring_profiles_active=validatorwmssql` für XPlanValidatorWeb und XPlanValidatorAPI gesetzt werden.
