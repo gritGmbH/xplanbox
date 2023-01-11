@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -45,8 +46,8 @@ public class LatestDate implements Expression {
 	}
 
 	@Override
-	public TypedObjectNode evaluate(Feature feature, FeatureCollection features) {
-		TypedObjectNode prop = expression.evaluate(feature, features);
+	public TypedObjectNode evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
+		TypedObjectNode prop = expression.evaluate(feature, features, planContext);
 		TypedObjectNodeArray<TypedObjectNode> props = castToArray(prop);
 		if (props == null || props.getElements().length == 0)
 			return null;

@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.validator.wms.storage.PlanStorage;
 import de.latlon.xplan.validator.wms.storage.WorkspacePlanStorage;
 import org.junit.Rule;
@@ -51,7 +52,8 @@ public class ValidatorWmsManagerTest {
 	@Test
 	public void testInsert() throws Exception {
 		Path workspaceLocation = tempFolder.getRoot().toPath();
-		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		XPlanSynthesizer synthesizer = new XPlanSynthesizer(synRulesAccessor);
 		PlanStorage planStorage = new WorkspacePlanStorage(workspaceLocation);
 		ValidatorWmsManager validatorWmsManager = new ValidatorWmsManager(synthesizer, planStorage);
 

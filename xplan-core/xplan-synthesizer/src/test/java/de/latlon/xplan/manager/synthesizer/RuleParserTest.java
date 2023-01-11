@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.synthesizer;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SchriftinhaltLookup;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -37,7 +38,8 @@ public class RuleParserTest {
 
 	@Test
 	public void testParse_Xpath() {
-		RuleParser ruleParser = new RuleParser("BP_Plan", "Name", null);
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		RuleParser ruleParser = new RuleParser(synRulesAccessor);
 		Xpath xpath = (Xpath) ruleParser.parse("xpath('xplan:drehwinkel/text()')");
 
 		assertThat(xpath.getDefaultValue(), is(nullValue()));
@@ -45,7 +47,8 @@ public class RuleParserTest {
 
 	@Test
 	public void testParse_XpathWithDefaultValue() {
-		RuleParser ruleParser = new RuleParser("BP_Plan", "Name", null);
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		RuleParser ruleParser = new RuleParser(synRulesAccessor);
 		Xpath xpath = (Xpath) ruleParser.parse("xpath('xplan:drehwinkel/text()', 42.0)");
 
 		assertThat(xpath.getDefaultValue(), is(42.0));
@@ -53,7 +56,8 @@ public class RuleParserTest {
 
 	@Test
 	public void testParse_SchriftinhaltLookup() {
-		RuleParser ruleParser = new RuleParser("BP_Plan", "Name", null);
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		RuleParser ruleParser = new RuleParser(synRulesAccessor);
 		Expression expression = ruleParser.parse("schriftinhaltLookup()");
 
 		assertThat(expression, is(instanceOf(SchriftinhaltLookup.class)));

@@ -8,6 +8,7 @@ import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.validator.wms.config.TestContext;
 import de.latlon.xplan.validator.wms.config.ValidatorWmsSqlContext;
 import org.deegree.feature.FeatureCollection;
@@ -41,7 +42,8 @@ public class SqlPlanStorageTest {
 	private FeatureCollection createSynFeatureCollection() throws Exception {
 		XPlanFeatureCollection featureCollection = parseFeatureCollection("xplan51/BP2070.zip");
 		AppSchema synSchema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
-		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		XPlanSynthesizer synthesizer = new XPlanSynthesizer(synRulesAccessor);
 
 		FeatureCollection synFeatureCollection = synthesizer.synthesize(featureCollection);
 		FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();

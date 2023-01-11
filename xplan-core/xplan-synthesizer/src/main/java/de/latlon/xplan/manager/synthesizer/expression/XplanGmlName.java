@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -26,6 +26,7 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.ElementNode;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
@@ -55,7 +56,7 @@ public class XplanGmlName implements Expression {
 	 * <code>null</code> (if the feature does not have any)
 	 */
 	@Override
-	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
+	public PrimitiveValue evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
 		StringBuilder sBuilder = new StringBuilder("");
 		QName gmlName = getGmlNameQName(feature);
 		List<Property> props = feature.getProperties(gmlName);

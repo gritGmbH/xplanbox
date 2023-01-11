@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression.dictionary;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -27,6 +28,7 @@ import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.junit.Test;
 
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
@@ -41,29 +43,32 @@ public class XplanEnumerationLookupTest {
 
 	@Test
 	public void testEvaluateXplan40() throws Exception {
+		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_40);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XPlanEnumerationLookup expr = new XPlanEnumerationLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
-		PrimitiveValue value = expr.evaluate(feature, features);
+		PrimitiveValue value = expr.evaluate(feature, features, planContext);
 		assertThat(value.getAsText(), is("BPlan"));
 	}
 
 	@Test
 	public void testEvaluateXplan41() throws Exception {
+		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XPlanEnumerationLookup expr = new XPlanEnumerationLookup(new Xpath("xplan:planArt"), "BP_PlanArt");
-		PrimitiveValue value = expr.evaluate(feature, features);
+		PrimitiveValue value = expr.evaluate(feature, features, planContext);
 		assertThat(value.getAsText(), is("BPlan"));
 	}
 
 	@Test
 	public void testComplexProperty() throws Exception {
+		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_60);
 		Feature feature = getTestFeature(features, "GML_fa0eea57-ebb1-4d50-b205-95865d6b9284");
 		Xpath xpath = new Xpath("xplan:zweckbestimmung/xplan:BP_KomplexeZweckbestGruen/xplan:allgemein");
 		XPlanEnumerationLookup expr = new XPlanEnumerationLookup(xpath, "XP_ZweckbestimmungGruen");
-		PrimitiveValue value = expr.evaluate(feature, features);
+		PrimitiveValue value = expr.evaluate(feature, features, planContext);
 		assertThat(value.getAsText(), is("Parkanlage"));
 	}
 

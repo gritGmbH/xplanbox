@@ -27,6 +27,7 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.update.updater.ReSynthesizer;
 import org.apache.commons.cli.CommandLine;
@@ -109,8 +110,9 @@ public class ReSynthesizerTool {
 		DeegreeWorkspace workspace = initWorkspace(workspaceName);
 		ManagerConfiguration managerConfiguration = createManagerConfiguration(configurationDirectory);
 		XPlanDao xplanDao = createXplanDao(workspace, managerConfiguration);
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor(
 				managerConfiguration.getSynthesizerConfigurationDirectory());
+		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(managerConfiguration.getSortConfiguration());
 		return new ReSynthesizer(xplanDao, xPlanSynthesizer, sortPropertyReader);
 	}

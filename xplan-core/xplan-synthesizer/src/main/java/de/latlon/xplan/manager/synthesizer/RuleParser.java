@@ -37,34 +37,27 @@ import de.latlon.xplan.manager.synthesizer.expression.praesentation.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SchriftinhaltLookup;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SkalierungLookup;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.StylesheetIdLookup;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The <code>RuleParser</code> class parses the Syn rules into corresponding objects.
- * These will be used for evalution in the context of a feature.
+ * These will be used for evaluation in the context of a feature.
  *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
  * @version 1.0, Date: 2010-05-25
  */
-class RuleParser {
+public class RuleParser {
 
-	private final String xplanType;
-
-	private final String xplanName;
-
-	private final XPlanSynthesizer xPlanSynthesizer;
+	private SynRulesAccessor synRulesAccessor;
 
 	/**
-	 * @param xplanType the type of xplan document. See {@link XPlanType}
-	 * @param xplanName the name of xplan document, i.e. the name of the
-	 * XP_Plan-descendant feature in the document
+	 * @param synRulesAccessor to access the syn rules, can be <code>null</code>
 	 */
-	public RuleParser(String xplanType, String xplanName, XPlanSynthesizer xPlanSynthesizer) {
-		this.xplanType = xplanType;
-		this.xplanName = xplanName;
-		this.xPlanSynthesizer = xPlanSynthesizer;
+	public RuleParser(SynRulesAccessor synRulesAccessor) {
+		this.synRulesAccessor = synRulesAccessor;
 	}
 
 	private String trimString(String s) {
@@ -103,14 +96,14 @@ class RuleParser {
 
 	private Expression parseXPlanFlattenFeature(List<String> args) {
 		if (args.size() > 2) {
-			return new XplanFlattenProperty(xPlanSynthesizer.getCodelists(), parse(args.get(0)), asBoolean(args.get(1)),
-					asBoolean(args.get(2)));
+			return new XplanFlattenProperty(synRulesAccessor.getExternalCodelists(), parse(args.get(0)),
+					asBoolean(args.get(1)), asBoolean(args.get(2)));
 		}
 		if (args.size() > 1) {
-			return new XplanFlattenProperty(xPlanSynthesizer.getCodelists(), parse(args.get(0)),
+			return new XplanFlattenProperty(synRulesAccessor.getExternalCodelists(), parse(args.get(0)),
 					asBoolean(args.get(1)));
 		}
-		return new XplanFlattenProperty(xPlanSynthesizer.getCodelists(), parse(args.get(0)));
+		return new XplanFlattenProperty(synRulesAccessor.getExternalCodelists(), parse(args.get(0)));
 	}
 
 	private Expression parseXPlanCodeLookup(List<String> args) {
@@ -126,7 +119,7 @@ class RuleParser {
 		String codeListFile = trimString(args.get(1));
 		String codeListName = args.size() > 2 ? trimString(args.get(2)) : null;
 		return new XPlanExternalCodeLookup(expression, codeListFile, codeListName,
-				xPlanSynthesizer.getExternalConfigurationFile());
+				synRulesAccessor.getExternalConfigurationFile());
 	}
 
 	private Expression parseAusrichtungLookup(List<String> args) {
@@ -166,9 +159,9 @@ class RuleParser {
 			case "xplanAggregateFlaechenteil":
 				return parseXPlanAggregateFlaechenteil();
 			case "xplanType":
-				return new XPlanType(xplanType);
+				return new XPlanType();
 			case "xplanName":
-				return new XPlanName(xplanName);
+				return new XPlanName();
 			case "xplanExternalCodeLookup":
 				// Required to resolve codelist from external files
 				return parseXPlanExternalCodeLookup(args);
