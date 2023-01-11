@@ -20,9 +20,8 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
-import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
-import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
-
+import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.array.TypedObjectNodeArray;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -32,7 +31,8 @@ import org.deegree.feature.property.GenericProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.latlon.xplan.manager.codelists.XPlanCodeLists;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.castToArray;
+import static de.latlon.xplan.manager.synthesizer.utils.CastUtils.toPrimitiveValue;
 
 /**
  * {@link Expression} for translating codes from {@link XPlanCodeLists} to their textual
@@ -54,14 +54,14 @@ public abstract class AbstractXplanCodeLookup implements Expression {
 	}
 
 	@Override
-	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
+	public PrimitiveValue evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
 		XPlanCodeLists xPlanCodeLists = getXplanCodeLists(feature);
 		if (xPlanCodeLists == null)
 			return null;
 
 		String translation = null;
 		try {
-			TypedObjectNodeArray<TypedObjectNode> codes = castToArray(exp.evaluate(feature, features));
+			TypedObjectNodeArray<TypedObjectNode> codes = castToArray(exp.evaluate(feature, features, planContext));
 			if (codes != null) {
 				translation = "";
 				for (TypedObjectNode o : codes.getElements()) {

@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -35,6 +36,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.load;
@@ -51,29 +53,32 @@ public class XplanGeometryTest {
 
 	@Test
 	public void testEvaluate() throws Exception {
+		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Plan_1");
 		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:raeumlicherGeltungsbereich"));
-		Geometry value = expr.evaluate(feature, features);
+		Geometry value = expr.evaluate(feature, features, planContext);
 		assertNotNull(value);
 	}
 
 	@Test
 	public void testEvaluateEmptyProperty() throws Exception {
+		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "XP_PPO_3");
 		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:position"));
-		Geometry value = expr.evaluate(feature, features);
+		Geometry value = expr.evaluate(feature, features, planContext);
 		assertNull(value);
 	}
 
 	@Test
 	public void testEvaluateCurve() throws Exception {
+		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		FeatureCollection features = load(XPLAN_41, "FeatureWithCurve.xml");
 		Feature feature = getTestFeature(features, "BP_BaugebietsTeilFlaeche");
 
 		XPlanGeometry expr = new XPlanGeometry(new Xpath("xplan:position"));
-		Geometry value = expr.evaluate(feature, features);
+		Geometry value = expr.evaluate(feature, features, planContext);
 		assertNotNull(value);
 
 		String geom = writeGMLGeometry(value);

@@ -29,6 +29,8 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.log.SystemLog;
+import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
@@ -323,8 +325,11 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 			WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
 			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
-			return new XPlanManager(xplanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
-					wmsWorkspaceWrapper);
+			SynRulesAccessor synRulesAccessor = new SynRulesAccessor(
+					managerConfiguration.getSynthesizerConfigurationDirectory());
+			XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
+			return new XPlanManager(xPlanSynthesizer, xplanDao, archiveCreator, managerWorkspaceWrapper,
+					workspaceReloader, null, wmsWorkspaceWrapper);
 		}
 		catch (Exception e) {
 			endWithFatalError(e.getMessage());

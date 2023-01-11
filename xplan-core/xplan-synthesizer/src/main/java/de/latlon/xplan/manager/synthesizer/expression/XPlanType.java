@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.synthesizer.expression;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -34,18 +35,9 @@ import org.deegree.feature.FeatureCollection;
  */
 public class XPlanType implements Expression {
 
-	private final PrimitiveValue xplanType;
-
-	/**
-	 * @param xplanType
-	 */
-	public XPlanType(String xplanType) {
-		this.xplanType = new PrimitiveValue(xplanType);
-	}
-
 	@Override
-	public PrimitiveValue evaluate(Feature feature, FeatureCollection features) {
-		return xplanType;
+	public PrimitiveValue evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
+		return new PrimitiveValue(planContext.getPlanType().name());
 	}
 
 }

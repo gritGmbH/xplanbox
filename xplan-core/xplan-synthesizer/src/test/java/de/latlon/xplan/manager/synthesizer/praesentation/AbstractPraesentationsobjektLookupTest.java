@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.synthesizer.praesentation;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.PraesentationsobjektLookup;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -33,6 +34,7 @@ import org.deegree.feature.property.SimpleProperty;
 
 import java.io.IOException;
 
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils.getTestFeature;
 
 /**
@@ -42,8 +44,9 @@ public abstract class AbstractPraesentationsobjektLookupTest {
 
 	protected static PrimitiveValue getEvaluate(FeatureCollection features, String gmlId,
 			PraesentationsobjektLookup lookup) {
+		PlanContext planContext = new PlanContext(BP_Plan, "dummy");
 		Feature feature = getTestFeature(features, gmlId);
-		TypedObjectNode evaluate = lookup.evaluate(feature, features);
+		TypedObjectNode evaluate = lookup.evaluate(feature, features, planContext);
 		if (evaluate instanceof GenericProperty) {
 			GenericProperty genericProperty = (GenericProperty) evaluate;
 			TypedObjectNode child = genericProperty.getChildren().get(0);

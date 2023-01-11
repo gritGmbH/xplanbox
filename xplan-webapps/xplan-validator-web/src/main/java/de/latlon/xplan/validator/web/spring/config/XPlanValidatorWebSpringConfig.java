@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.web.spring.config;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
@@ -58,6 +59,7 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -184,14 +186,14 @@ public class XPlanValidatorWebSpringConfig {
 
 	@Bean
 	public MapPreviewManager mapPreviewManager(GeometricValidator geometricValidator,
-			ValidatorConfiguration validatorConfiguration) {
+			ValidatorConfiguration validatorConfiguration, XPlanSynthesizer xPlanSynthesizer) {
 		String validatorWmsEndpoint = validatorConfiguration.getValidatorWmsEndpoint();
 		if (validatorWmsEndpoint == null) {
 			LOG.warn("XPlanValidatorWMS endpoint URL is not configured. Map preview will not be available.");
 			return null;
 		}
 		try {
-			ValidatorWmsManager validatorWmsManager = createValidatorWmsManager();
+			ValidatorWmsManager validatorWmsManager = createValidatorWmsManager(xPlanSynthesizer);
 			return new MapPreviewManager(validatorWmsManager, geometricValidator, validatorWmsEndpoint);
 		}
 		catch (IOException | IllegalArgumentException | MapPreviewCreationException e) {
@@ -210,10 +212,31 @@ public class XPlanValidatorWebSpringConfig {
 		return get(rulesPath);
 	}
 
-	private ValidatorWmsManager createValidatorWmsManager() throws IOException {
-		XPlanSynthesizer synthesizer = new XPlanSynthesizer();
-		Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
-		return new ValidatorWmsManager(synthesizer, workspaceLocation);
+	@Bean
+	public ValidatorWmsManager createValidatorWmsManager(XPlanSynthesizer synthesizer) throws IOException {
+		try {
+			Path workspaceLocation = Paths.get(DeegreeWorkspace.getWorkspaceRoot()).resolve(XPLAN_GML_WMS_WORKSPACE);
+			if (!Files.exists(workspaceLocation)) {
+				LOG.warn("Workspace ar {} does not exists. Map preview will not be available.");
+				return null;
+			}
+			return new ValidatorWmsManager(synthesizer, workspaceLocation);
+		}
+		catch (IOException | IllegalArgumentException e) {
+			LOG.error("Could not initialise ValidatorWmsManager. WMS resources cannot be created. Reason: {}",
+					e.getMessage(), e);
+		}
+		return null;
+	}
+
+	@Bean
+	public XPlanSynthesizer xPlanSynthesizer(SynRulesAccessor synRulesAccessor) {
+		return new XPlanSynthesizer(synRulesAccessor);
+	}
+
+	@Bean
+	public SynRulesAccessor synRulesAccessor() {
+		return new SynRulesAccessor();
 	}
 
 }
