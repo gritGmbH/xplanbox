@@ -36,12 +36,12 @@ Im XPlanValidatorWMS werden die im XPlanValidator hochgeladenen XPlanGML-Dateien
 
 Über den _xplan-validator-wms-memory-workspace_ (dies ist der Vorgabewert) steht eine Konfiguration für den XPlanValidatorWMS bereit, die die Daten ausschliesslich im Arbeitsspeicher vorhält. Mit dem _xplan-validator-wms-sql-workspace_ kann stattdessen die XPlanDB als Datenhaltung ausgewählt werden. Dabei muss ein separates Schema für den XPlanValidatorWMS in der XPlanDB angelegt werden (weitere Informationen zur Einrichtung der XPlanDB im Kapitel <<konfiguration-der-datenbank>>).
 
-Die Aktivierung des jeweiligen Workspace erfolgt über die Datei _xplan-validator-workspaces/webapps.properties_.
+Die Aktivierung des jeweiligen Workspace erfolgt über die Datei _<DEEGREE_WORKSPACE_ROOT>/webapps.properties_.
 
-.Beispiel für webapps.properties mit der Auswahl der XPlanDB als Datenhaltung für den XPlanValidatorWMS:
+.Beispiel für den Eintrag in der webapps.properties mit der Auswahl der XPlanDB als Datenhaltung für den XPlanValidatorWMS:
 [source,properties]
 ----
 /xplan-validator-wms=xplan-validator-wms-sql-workspace
 ----
 
-NOTE: Für die Aktivierung der XPlanDB als Datenhaltung muss zusätzlich auch die Umgebungsvariable `spring_profiles_active=validatorwmssql` gesetzt werden.
+NOTE: Für die Aktivierung der XPlanDB als Datenhaltung muss zusätzlich die Umgebungsvariable `spring_profiles_active=validatorwmssql` für XPlanValidatorWeb und XPlanValidatorAPI gesetzt werden.
