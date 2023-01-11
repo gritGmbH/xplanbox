@@ -99,7 +99,8 @@ public class XPlanArchiveCreator {
 					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException | FactoryConfigurationError e) {
-			String message = format("Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage());
+			String message = format("Kann Archiv '%s' nicht lesen.\nTechnischer Hinweis zur Fehlerursache: %s", name,
+					e.getLocalizedMessage());
 			throw new IllegalArgumentException(message, e);
 		}
 		finally {
@@ -135,7 +136,8 @@ public class XPlanArchiveCreator {
 					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException e) {
-			String message = format("Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage());
+			String message = format("Kann Archiv '%s' nicht lesen.\nTechnischer Hinweis zur Fehlerursache: %s", name,
+					e.getLocalizedMessage());
 			throw new IllegalArgumentException(message, e);
 		}
 		finally {
