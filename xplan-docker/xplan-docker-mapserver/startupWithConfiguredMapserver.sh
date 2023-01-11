@@ -53,4 +53,4 @@ then
 fi
 
 echo "start mapserver..."
-sh /usr/local/bin/start-server
+exec /usr/local/bin/start-server
