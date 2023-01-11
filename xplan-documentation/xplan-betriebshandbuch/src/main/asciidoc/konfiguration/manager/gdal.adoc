@@ -20,7 +20,7 @@ Damit beim Import von Rasterdaten eine GDAL Konfiguration erzeugt wird,
 muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ die folgende Option aktiviert sein:
 
 ----
-#must be gdal or geotiff, default is gdal
+# must be gdal, geotiff or mapserver, default is gdal
 rasterConfigurationType=gdal
 ----
 

@@ -1,7 +1,9 @@
 [[verfahrensdatenbank]]
 === Schnittstelle zur Verfahrensdatenbank (optional)
 
-Die Schnittstelle zu einer bereits vorhandenen Verfahrensdatenbank kann in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder deaktiviert werden mit:
+Um beim Import eines Plans die Verfahrens-Id aus einer vorhandenen Verfahrensdatenbank abzurufen, muss die Schnittstelle
+
+kann in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ aktiviert oder deaktiviert werden mit:
 
 ----
 activateInternalIdDialog=[true|false]

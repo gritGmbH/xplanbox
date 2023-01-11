@@ -36,7 +36,7 @@ Beispiel:
 termsOfServiceUrl=
 ----
 
-==== URL zur Dokumentation der xPLanBox
+==== URL zur Dokumentation der xPlanBox
 
 URL zur Dokumentation, die im OpenAPI Dokument ausgegeben wird. Diese Konfiguration ist optional.
 Beispiel:

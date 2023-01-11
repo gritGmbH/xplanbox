@@ -45,7 +45,7 @@ MSVC 11.0 (1700) werden Windows XP and Windows Server 2003 nicht mehr
 unterstützt. Die Version des Microsoft C/C++ Runtime Library (CRT) kann mit
 dem Befehl `cl` abgefragt oder über die Windows Systemsteuerung angezeigt werden.
 
-Dieses ZIP-Archiv kann an einem beliebigen Ort entpackt werden.
+Das ZIP-Archiv kann an einem beliebigen Ort entpackt werden.
 
 Unter
 _Systemsteuerung->System und Sicherheit->System->Erweiterte Systemeinstellungen->Erweitert->Umgebungsvariablen_

@@ -33,6 +33,8 @@ include::konfiguration/dienste/main.adoc[]
 
 include::xplandb.adoc[]
 
+include::ressourcen.adoc[]
+
 include::logging.adoc[]
 
 include::bekannteProbleme.adoc[]
