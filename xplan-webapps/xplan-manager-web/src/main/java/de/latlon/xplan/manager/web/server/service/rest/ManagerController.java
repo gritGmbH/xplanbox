@@ -306,8 +306,9 @@ public class ManagerController {
 				String contentType = file.getContentType();
 				long size = file.getSize();
 				HttpSession session = request.getSession(true);
-				XPlan plan = createAndSavePlan(session, contentType, fileName);
+				XPlan plan = new XPlan(fileName, toHexString(doubleToLongBits(random())), contentType);
 				uploadZipFile(file, plan);
+				archiveManager.savePlanInSession(session, plan);
 				populateResponse(response, size, fileName);
 			}
 		}
