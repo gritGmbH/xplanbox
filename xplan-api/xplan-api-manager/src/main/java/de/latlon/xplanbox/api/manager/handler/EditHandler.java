@@ -23,6 +23,7 @@ package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
@@ -71,7 +72,8 @@ public abstract class EditHandler {
 	 * @return the file, <code>null</code> if content is <code>null</code>
 	 * @throws IOException
 	 */
-	public File storeAsFile(InputStream content, FormDataContentDisposition fileMetadata) throws IOException {
+	public File storeAsFile(InputStream content, FormDataContentDisposition fileMetadata)
+			throws IOException, UnsupportedContentTypeException {
 		if (content == null)
 			return null;
 		java.nio.file.Path tmpDir = Files.createTempDirectory("postDokument");

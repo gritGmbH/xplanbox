@@ -21,6 +21,7 @@
 package de.latlon.xplanbox.api.validator.v1;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
@@ -143,7 +144,8 @@ public class ValidateApi {
 			@QueryParam("profiles") @Parameter(
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
-			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
+			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive,
+			UnsupportedContentTypeException {
 		checkContentTypes(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromGml(body, validationName);
@@ -166,7 +168,8 @@ public class ValidateApi {
 			@QueryParam("profiles") @Parameter(
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
-			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
+			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive,
+			UnsupportedContentTypeException {
 		checkContentTypes(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromZip(body, validationName);

@@ -38,7 +38,7 @@ public class ContentTypeChecker {
 	 * @param path to be checked, never <code>null</code>
 	 * @throws IOException if mime type is not allowed
 	 */
-	public static void checkContentTypes(Path path) throws IOException {
+	public static void checkContentTypes(Path path) throws IOException, UnsupportedContentTypeException {
 		Tika tika = new Tika();
 		LOG.debug("Detecting content type of file {}", path);
 		String contentType = tika.detect(path);
@@ -49,7 +49,8 @@ public class ContentTypeChecker {
 		}
 	}
 
-	private static void checkContentTypesOfZipEntries(Path path, Tika tika) throws IOException {
+	private static void checkContentTypesOfZipEntries(Path path, Tika tika)
+			throws IOException, UnsupportedContentTypeException {
 		ZipFile zipFile = new ZipFile(path.toString());
 		ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(path.toFile()),
 				Charset.forName("UTF-8"));
@@ -63,13 +64,14 @@ public class ContentTypeChecker {
 		}
 	}
 
-	private static void checkIfContentTypeAllowed(Path path, String fileName, String contentType) throws IOException {
+	private static void checkIfContentTypeAllowed(Path path, String fileName, String contentType)
+			throws UnsupportedContentTypeException {
 		if (!ALLOWED_CONTENT_TYPES.contains(contentType)) {
 			String message = "Content type of " + fileName + " is not allowed: " + contentType;
 			LOG.warn(message);
 			path.toFile().delete();
 			LOG.debug("Deleted file {}", path);
-			throw new IOException(message);
+			throw new UnsupportedContentTypeException(message);
 		}
 	}
 

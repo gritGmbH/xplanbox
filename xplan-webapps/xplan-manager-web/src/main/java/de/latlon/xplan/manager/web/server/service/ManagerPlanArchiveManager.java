@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.web.server.service;
 
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationException;
 
@@ -87,7 +88,8 @@ public class ManagerPlanArchiveManager {
 		throw new ValidationException("Could not find a plan to validate!");
 	}
 
-	public void saveArtefactInFilesystem(HttpSession session, String fileName, byte[] artefact) throws IOException {
+	public void saveArtefactInFilesystem(HttpSession session, String fileName, byte[] artefact)
+			throws IOException, UnsupportedContentTypeException {
 		checkAndSetSessionAttributeIfRequired(session);
 		File artefactFolder = (File) session.getAttribute(SESSION_ATTRIBUTE_ARTEFACTS_FOLDER);
 		File artefactFile = new File(artefactFolder, fileName);
