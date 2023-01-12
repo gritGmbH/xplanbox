@@ -121,6 +121,18 @@ public class GeometricValidatorImplTest {
 		assertThat(report.getBadGeometries().size(), is(2));
 	}
 
+	@Test
+	public void testValidateGeometry_InvalidSelfintersectionDetected() throws Exception {
+		XPlanArchive archive = getTestArchive(getClass().getResourceAsStream("invalidSelfintersectionDeteced.gml"));
+		GeometricValidatorResult report = (GeometricValidatorResult) validateGeometryAndReturnReport(archive,
+				SKIP_OPTIONS);
+
+		assertThat(report.isValid(), is(true));
+		assertThat(report.getErrors().size(), is(0));
+		assertThat(report.getWarnings().size(), is(0));
+		assertThat(report.getBadGeometries().size(), is(0));
+	}
+
 	private XPlanArchive getTestArchive(String name) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
