@@ -12302,6 +12302,10 @@ assert expectedHeader == actualHeader</scriptText>
         <con:name>planId40</con:name>
         <con:value>19</con:value>
       </con:property>
+      <con:property>
+        <con:name>currentPlanIdXPlanGML60asGML</con:name>
+        <con:value/>
+      </con:property>
     </con:properties>
   </con:testSuite>
   <con:testSuite id="0b9ba577-517d-4770-ae8b-842f1a09f403" name="Profiles TestSuite">
