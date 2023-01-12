@@ -53,7 +53,7 @@ public class JtsParser {
 
 	public JtsParser() {
 		this.jtsFactory = new org.locationtech.jts.geom.GeometryFactory();
-		this.crit = new MaxErrorCriterion(1.0, 500);
+		this.crit = new MaxErrorCriterion(0.1, 500);
 		this.linearizer = new CurveLinearizer(new GeometryFactory());
 	}
 
