@@ -83,7 +83,7 @@
       <artifactId>el-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-user</artifactId>
       <scope>provided</scope>
       <exclusions>
@@ -94,7 +94,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-servlet</artifactId>
       <scope>runtime</scope>
     </dependency>
@@ -289,7 +289,7 @@
                 <image>
                   <name>${docker-image.namePrefix}/${docker-image.name}-hale</name>
                   <build>
-                    <dockerFileDir>${project.basedir}</dockerFileDir>
+                    <contextDir>${project.basedir}</contextDir>
                     <dockerFile>DockerfileHale</dockerFile>
                     <args>
                       <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
