@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.util.List;
@@ -82,11 +83,13 @@ public class ContentTypeChecker {
 
 	private static String loadAllowedContentTypesProperty() {
 		try {
-			Properties properties = new DefaultPropertiesLoader(ContentTypeChecker.class)
-					.loadProperties(CONTENT_TYPE_CHECKER_PROPERTIES);
+			InputStream stream = Thread.currentThread().getContextClassLoader()
+					.getResourceAsStream(CONTENT_TYPE_CHECKER_PROPERTIES);
+			Properties properties = new Properties();
+			properties.load(stream);
 			return properties.getProperty(ALLOWED_CONTENT_TYPES_PROPERTY);
 		}
-		catch (ConfigurationException e) {
+		catch (IOException e) {
 			LOG.error(ALLOWED_CONTENT_TYPES_PROPERTY + " of " + CONTENT_TYPE_CHECKER_PROPERTIES
 					+ " could not be loaded! An empty string is used instead. Message: " + e.getMessage(), e);
 			return "";
