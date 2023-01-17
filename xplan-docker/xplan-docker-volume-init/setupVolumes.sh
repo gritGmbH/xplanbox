@@ -59,7 +59,7 @@ XPLAN_DB_USER="${XPLAN_DB_USER:-tobedefined}"
 XPLAN_DB_PASSWORD="${XPLAN_DB_PASSWORD:-tobedefined}"
 XPLAN_DB="$XPLAN_DB_HOSTNAME:$XPLAN_DB_PORT/$XPLAN_DB_NAME"
 
-XPLAN_INIT_RASTERTYPE="${XPLAN_XPLAN_INIT_RASTERTYPE:-mapserver}"
+XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
 XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
 
 #############################
@@ -94,6 +94,7 @@ sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-inspireplu-workspaces/xpl
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 
+echo "[$(date -Iseconds)] Configured rastertype: $XPLAN_INIT_RASTERTYPE"
 if [ $XPLAN_INIT_RASTERTYPE = "gdal" ]
 then
   echo "[$(date -Iseconds)] Configure rastertype gdal"
@@ -104,6 +105,12 @@ then
   mv xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.ignore xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.xml
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>dummyrasterlayer/<LayerStoreId>dummyrasterlayer/g' {} \;
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/dummyrasterlayer<\/LayerStoreId>-->/dummyrasterlayer<\/LayerStoreId>/g' {} \;
+elif [ $XPLAN_INIT_RASTERTYPE = "geotiff" ]
+then
+  echo "[$(date -Iseconds)] Configure rastertype geotiff"
+  rm xplan-workspaces/xplansyn-wms-workspace/datasources/tile/dummy.ignore
+  rm xplan-workspaces/xplansyn-wms-workspace/datasources/tile/tilematrixset/dummy.ignore
+  rm xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.ignore
 else
   echo "[$(date -Iseconds)] Configure rastertype mapserver"
   sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=mapserver/g' xplan-manager-config/managerConfiguration.properties
