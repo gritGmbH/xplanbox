@@ -44,13 +44,13 @@ fi
 cp -r /xplan-volume-init/xplan-docker-volumes/* $XPLANBOX_VOLUMES
 chmod -R a+w $XPLANBOX_VOLUMES
 
-XPLAN_WMS_URL_PUBLIC="${XPLAN_WMS_URL_PUBLIC:-http://localhost:8083}"
-XPLAN_VALIDATORWMS_URL_PUBLIC="${XPLAN_VALIDATORWMS_URL_PUBLIC:-http://localhost:8088}"
+XPLAN_WMS_URL_PUBLIC="${XPLAN_WMS_URL_PUBLIC:-tobedefined}"
+XPLAN_VALIDATORWMS_URL_PUBLIC="${XPLAN_VALIDATORWMS_URL_PUBLIC:-tobedefined}"
 XPLAN_MANAGERAPI_URL_PUBLIC=${XPLAN_MANAGERAPI_URL_PUBLIC:-xplan-api-manager}
 XPLAN_VALIDATORAPI_URL_PUBLIC=${XPLAN_VALIDATORAPI_URL_PUBLIC:-xplan-api-validator}
-XPLAN_MAPSERVER_URL_INTERNAL="${XPLAN_MAPSERVER_URL_INTERNAL:-http://xplan-mapserver:8080}"
-XPLAN_SERVICES_URL_INTERNAL=${XPLAN_SERVICES_URL_INTERNAL:-http://xplan-services:8080}
-XPLAN_WMS_URL_INTERNAL=${XPLAN_WMS_URL_INTERNAL:-xplan-services/xplan-wms/}
+XPLAN_MAPSERVER_URL_INTERNAL="${XPLAN_MAPSERVER_URL_INTERNAL:-http://xplan-mapserver}"
+XPLAN_SERVICES_URL_INTERNAL=${XPLAN_SERVICES_URL_INTERNAL:-http://xplan-services}
+XPLAN_WMS_URL_INTERNAL=${XPLAN_WMS_URL_INTERNAL:-xplan-services}
 
 XPLAN_DB_HOSTNAME="${XPLAN_DB_HOSTNAME:-tobedefined}"
 XPLAN_DB_PORT="${XPLAN_DB_PORT:-5432}"
@@ -70,7 +70,7 @@ cd $XPLANBOX_VOLUMES
 
 sed -i 's|apiUrl=|apiUrl='$XPLAN_VALIDATORAPI_URL_PUBLIC'|g' xplan-validator-config/validatorApiConfiguration.properties
 sed -i 's|apiUrl=|apiUrl='$XPLAN_MANAGERAPI_URL_PUBLIC'|g' xplan-manager-config/managerApiConfiguration.properties
-sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_INTERNAL'|g' xplan-manager-config/managerApiConfiguration.properties
+sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLAN_SERVICES_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadUser=/workspaceReloadUser=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadPassword=/workspaceReloadPassword=deegree/g' xplan-manager-config/managerConfiguration.properties
