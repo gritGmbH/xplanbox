@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "MapServer config initialization..."
 
@@ -9,7 +9,7 @@ fi
 
 if [ -f "$MS_MAPFILE" ]; then
 	echo "[$(date -Iseconds)] Init already done ($MS_MAPFILE)"
-	sh /usr/local/bin/start-server
+	exec /usr/local/bin/start-server
 	exit 0
 fi
 
@@ -49,5 +49,5 @@ then
   sed -i 's|SHAPEPATH "/etc/mapserver/data/"|# SHAPEPATH "/etc/mapserver/data/"|g' $MS_MAPFILE
 fi
 
-echo "start mapserver..."
+echo "[$(date -Iseconds)] Start mapserver..."
 exec /usr/local/bin/start-server

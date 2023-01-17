@@ -4,4 +4,6 @@ RUN mkdir -p /xplan-docker-mapserver
 ADD target/xplan-docker-mapserver-*.tgz /
 ADD startupWithConfiguredMapserver.sh /xplan-docker-mapserver/
 
+USER 1001
+
 CMD ["/xplan-docker-mapserver/startupWithConfiguredMapserver.sh"]
