@@ -157,7 +157,8 @@ public class ManagerWebConfiguration implements Serializable {
 
 	/**
 	 * @param planListColumnType
-	 * @return return <code>true</code> if given column is visible, otherwise <code>false</code>.
+	 * @return return <code>true</code> if given column is visible, otherwise
+	 * <code>false</code>.
 	 */
 	public boolean isColumnVisible(PlanListColumnType planListColumnType) {
 		for (String hiddenColumn : hiddenColumns) {
