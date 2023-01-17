@@ -50,7 +50,7 @@ public class SqlJobContext {
 	@Bean
 	public JobDetail deleteJob(@Value("${#{environment.DELETE_AFTER_MINUTES}:5}") int deleteAfterInMinutes) {
 		return JobBuilder.newJob().ofType(SqlDeleteJob.class).withIdentity("sqlDeleteJob", "xplan-validator-wms")
-				.storeDurably().withDescription("Delete features from MemoryFeatureStore ...")
+				.storeDurably().withDescription("Delete features from SQLFeatureStore ...")
 				.usingJobData(DELETE_AFTER_KEY, deleteAfterInMinutes).build();
 	}
 
