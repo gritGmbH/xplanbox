@@ -83,8 +83,7 @@ public class ContentTypeChecker {
 	}
 
 	private static String loadAllowedContentTypesProperty() {
-		try (InputStream stream = Thread.currentThread().getContextClassLoader()
-				.getResourceAsStream(CONTENT_TYPE_CHECKER_PROPERTIES)) {
+		try (InputStream stream = ContentTypeChecker.class.getResourceAsStream(CONTENT_TYPE_CHECKER_PROPERTIES)) {
 			Properties properties = new Properties();
 			properties.load(stream);
 			return properties.getProperty(ALLOWED_CONTENT_TYPES_PROPERTY);
