@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "XPlan volume initialization..."
 
@@ -59,6 +59,10 @@ XPLAN_DB_USER="${XPLAN_DB_USER:-tobedefined}"
 XPLAN_DB_PASSWORD="${XPLAN_DB_PASSWORD:-tobedefined}"
 XPLAN_DB="$XPLAN_DB_HOSTNAME:$XPLAN_DB_PORT/$XPLAN_DB_NAME"
 
+XPLAN_SERVICES_DEFAULT_CRS="${XPLAN_SERVICES_DEFAULT_CRS:-EPSG:25832}"
+XPLAN_SERVICES_QUERY_CRS="${XPLAN_SERVICES_QUERY_CRS:-EPSG:4326 EPSG:3857 EPSG:25833}"
+XPLAN_SERVICES_QUERY_CRS_ARR=($XPLAN_SERVICES_QUERY_CRS)
+
 XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
 XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
 
@@ -76,6 +80,12 @@ sed -i 's/workspaceReloadUser=/workspaceReloadUser=deegree/g' xplan-manager-conf
 sed -i 's/workspaceReloadPassword=/workspaceReloadPassword=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's|http://localhost:8080|'$XPLAN_WMS_URL_PUBLIC'|g' xplan-manager-config/managerWebConfiguration.properties
+sed -i 's|rasterConfigurationCrs=EPSG:25832|rasterConfigurationCrs='$XPLAN_SERVICES_DEFAULT_CRS'|g' xplan-manager-config/managerConfiguration.properties
+sed -i 's|defaultCrs=EPSG:25832|defaultCrs='$XPLAN_SERVICES_DEFAULT_CRS'|g' xplan-manager-config/managerWebConfiguration.properties
+chooseCrs=$( echo "$XPLAN_SERVICES_QUERY_CRS" | sed 's/^[ \t]*//;s/[ \t]*$//;s/[ ]/,/g' )
+chooseCrs=$XPLAN_SERVICES_DEFAULT_CRS','$chooseCrs
+sed -i 's|chooseCrs=EPSG:4326,EPSG:25833,EPSG:31466,EPSG:31467,EPSG:31468,EPSG:31469|chooseCrs='$chooseCrs'|g' xplan-manager-config/managerWebConfiguration.properties
+
 if [ $XPLAN_INIT_INSPIREPLU = "enabled" ]
 then
   sed -i 's/activatePublishingInspirePlu=false/activatePublishingInspirePlu=true/g' xplan-manager-config/managerWebConfiguration.properties
@@ -94,6 +104,32 @@ sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-inspireplu-workspaces/xpl
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 
+echo "[$(date -Iseconds)] Configure XPlanServices StorageCRS"
+find xplan-workspaces/xplan-manager-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
+find xplan-workspaces/xplan-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
+find xplan-workspaces/xplansyn-wms-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
+find xplan-workspaces/xplansyn-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
+echo "[$(date -Iseconds)] Configure XPlanWMS CRS"
+find xplan-workspaces/xplansyn-wms-workspace/themes -iname *.xml -exec sed -i 's/<s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839<\/s:CRS>/<s:CRS>'"$XPLAN_SERVICES_DEFAULT_CRS $( echo ${XPLAN_SERVICES_QUERY_CRS_ARR[@]} )"'<\/s:CRS>/g' {} \;
+echo "[$(date -Iseconds)] Configure XPlanWFS QueryCRS"
+find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i '/<QueryCRS>EPSG:.*<\/QueryCRS>/d' {} \;
+for crs in "${XPLAN_SERVICES_QUERY_CRS_ARR[@]}"
+do
+  find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$crs'<\/QueryCRS>/g' {} \;
+done
+find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$XPLAN_SERVICES_DEFAULT_CRS'<\/QueryCRS>/g' {} \;
+find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>//g' {} \;
+
+echo "[$(date -Iseconds)] Configure XPlanSynWFS QueryCRS"
+find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i '/<QueryCRS>EPSG:.*<\/QueryCRS>/d' {} \;
+for crs in "${XPLAN_SERVICES_QUERY_CRS_ARR[@]}"
+do
+  find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$crs'<\/QueryCRS>/g' {} \;
+done
+find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>/<QueryCRS>CRS:84<\/QueryCRS><QueryCRS>'$XPLAN_SERVICES_DEFAULT_CRS'<\/QueryCRS>/g' {} \;
+find xplan-workspaces/xplansyn-wfs-workspace/services -iname xplansynwfs*.xml -not -iname *_metadata.xml -exec sed -i 's/<QueryCRS>CRS:84<\/QueryCRS>//g' {} \;
+
+# Rastertype
 echo "[$(date -Iseconds)] Configured rastertype: $XPLAN_INIT_RASTERTYPE"
 if [ $XPLAN_INIT_RASTERTYPE = "gdal" ]
 then
