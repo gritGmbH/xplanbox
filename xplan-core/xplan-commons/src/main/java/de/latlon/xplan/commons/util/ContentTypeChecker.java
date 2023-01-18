@@ -1,7 +1,5 @@
 package de.latlon.xplan.commons.util;
 
-import de.latlon.xplan.commons.configuration.DefaultPropertiesLoader;
-import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import org.apache.tika.Tika;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +23,9 @@ public class ContentTypeChecker {
 
 	public static final String CONTENT_TYPE_CHECKER_PROPERTIES = "contentTypeChecker.properties";
 
-	public static final String ALLOWED_CONTENT_TYPES_PROPERTY = "allowedContentTypes";
+	private static final String ALLOWED_CONTENT_TYPES_XPLANARCHIVE_AND_GML_PROPERTY = "allowedContentTypesXPlanArchiveAndGml";
 
-	private static final List<String> ALLOWED_CONTENT_TYPES = createListOfAllowedContentTypes();
+	private static final String ALLOWED_CONTENT_TYPES_FILES_OF_XPLANARCHIVE_PROPERTY = "allowedContentTypesFilesOfXPlanArchive";
 
 	private ContentTypeChecker() {
 	}
@@ -39,19 +37,29 @@ public class ContentTypeChecker {
 	 * @param path to be checked, never <code>null</code>
 	 * @throws IOException if mime type is not allowed
 	 */
-	public static void checkContentTypes(Path path) throws IOException, UnsupportedContentTypeException {
-		Tika tika = new Tika();
-		LOG.debug("Detecting content type of file {}", path);
-		String contentType = tika.detect(path);
-		LOG.debug("Content type of file {} is {}", path, contentType);
-		checkIfContentTypeAllowed(path, path.toString(), contentType);
-		if ("application/zip".equals(contentType)) {
-			checkContentTypesOfZipEntries(path, tika);
-		}
+	public static void checkContentTypesOfXPlanArchiveOrGml(Path path)
+			throws IOException, UnsupportedContentTypeException {
+		String contentType = checkContentType(path,
+				createListOfAllowedContentTypes(ALLOWED_CONTENT_TYPES_XPLANARCHIVE_AND_GML_PROPERTY));
+		if ("application/zip".equals(contentType))
+			checkContentTypesOfZipEntries(path);
 	}
 
-	private static void checkContentTypesOfZipEntries(Path path, Tika tika)
+	public static void checkContentTypeOfFileOfXPlanArchive(Path path)
 			throws IOException, UnsupportedContentTypeException {
+		checkContentType(path, createListOfAllowedContentTypes(ALLOWED_CONTENT_TYPES_FILES_OF_XPLANARCHIVE_PROPERTY));
+	}
+
+	private static String checkContentType(Path path, List<String> allowedContentTypes)
+			throws IOException, UnsupportedContentTypeException {
+		LOG.debug("Detecting content type of file {}", path);
+		String contentType = new Tika().detect(path);
+		LOG.debug("Content type of file {} is {}", path, contentType);
+		checkIfContentTypeAllowed(path, contentType, allowedContentTypes);
+		return contentType;
+	}
+
+	private static void checkContentTypesOfZipEntries(Path path) throws IOException, UnsupportedContentTypeException {
 		ZipFile zipFile = new ZipFile(path.toString());
 		try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(path.toFile()),
 				Charset.forName("UTF-8"))) {
@@ -59,17 +67,18 @@ public class ContentTypeChecker {
 			while ((entry = zipInputStream.getNextEntry()) != null) {
 				String name = entry.getName();
 				LOG.debug("Detecting content type of zip entry {}", name);
-				String contentType = tika.detect(zipFile.getInputStream(entry));
+				String contentType = new Tika().detect(zipFile.getInputStream(entry));
 				LOG.debug("Content type of zip entry {} is {}", name, contentType);
-				checkIfContentTypeAllowed(path, name, contentType);
+				checkIfContentTypeAllowed(path, contentType,
+						createListOfAllowedContentTypes(ALLOWED_CONTENT_TYPES_FILES_OF_XPLANARCHIVE_PROPERTY));
 			}
 		}
 	}
 
-	private static void checkIfContentTypeAllowed(Path path, String fileName, String contentType)
+	private static void checkIfContentTypeAllowed(Path path, String contentType, List<String> allowedContentTypes)
 			throws UnsupportedContentTypeException {
-		if (!ALLOWED_CONTENT_TYPES.contains(contentType)) {
-			String message = "Content type of " + fileName + " is not allowed: " + contentType;
+		if (!allowedContentTypes.contains(contentType)) {
+			String message = "Content type of " + path + " is not allowed: " + contentType;
 			LOG.warn(message);
 			path.toFile().delete();
 			LOG.debug("Deleted file {}", path);
@@ -77,19 +86,19 @@ public class ContentTypeChecker {
 		}
 	}
 
-	private static List<String> createListOfAllowedContentTypes() {
-		String allowedContentTypes = loadAllowedContentTypesProperty();
+	private static List<String> createListOfAllowedContentTypes(String property) {
+		String allowedContentTypes = loadAllowedContentTypesProperty(property);
 		return asList(allowedContentTypes.split(","));
 	}
 
-	private static String loadAllowedContentTypesProperty() {
+	private static String loadAllowedContentTypesProperty(String property) {
 		try (InputStream stream = ContentTypeChecker.class.getResourceAsStream(CONTENT_TYPE_CHECKER_PROPERTIES)) {
 			Properties properties = new Properties();
 			properties.load(stream);
-			return properties.getProperty(ALLOWED_CONTENT_TYPES_PROPERTY);
+			return properties.getProperty(property);
 		}
 		catch (IOException e) {
-			LOG.error(ALLOWED_CONTENT_TYPES_PROPERTY + " of " + CONTENT_TYPE_CHECKER_PROPERTIES
+			LOG.error(property + " of " + CONTENT_TYPE_CHECKER_PROPERTIES
 					+ " could not be loaded! An empty string is used instead. Message: " + e.getMessage(), e);
 			return "";
 		}

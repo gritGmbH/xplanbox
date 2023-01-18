@@ -35,7 +35,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
 
-import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypes;
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
 
 /**
  * Access to plan archive from session and filesystem.
@@ -92,7 +92,7 @@ public class PlanArchiveManager {
 			Files.copy(uploadedFileItemInputStream, uploadedFile);
 			LOG.debug("File was written to {}", uploadedFile);
 		}
-		checkContentTypes(uploadedFile);
+		checkContentTypesOfXPlanArchiveOrGml(uploadedFile);
 	}
 
 	File createReportDirectory(String planUuid) throws IOException {

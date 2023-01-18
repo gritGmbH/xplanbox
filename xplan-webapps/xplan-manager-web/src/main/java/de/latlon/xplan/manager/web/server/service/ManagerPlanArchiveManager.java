@@ -33,7 +33,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypes;
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypeOfFileOfXPlanArchive;
 import static org.apache.commons.io.IOUtils.write;
 
 /**
@@ -96,7 +96,7 @@ public class ManagerPlanArchiveManager {
 		try (FileOutputStream localOutput = new FileOutputStream(artefactFile)) {
 			write(artefact, localOutput);
 		}
-		checkContentTypes(artefactFile.toPath());
+		checkContentTypeOfFileOfXPlanArchive(artefactFile.toPath());
 	}
 
 	public List<File> retrieveUploadedArtefacts(HttpSession session) {

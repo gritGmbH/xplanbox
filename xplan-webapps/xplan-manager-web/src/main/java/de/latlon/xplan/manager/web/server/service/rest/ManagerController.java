@@ -68,7 +68,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypes;
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
 import static java.lang.Double.doubleToLongBits;
 import static java.lang.Long.toHexString;
 import static java.lang.Math.random;
@@ -600,7 +600,7 @@ public class ManagerController {
 		try (FileOutputStream localOutput = new FileOutputStream(localFile)) {
 			write(file.getBytes(), localOutput);
 		}
-		checkContentTypes(localFile.toPath());
+		checkContentTypesOfXPlanArchiveOrGml(localFile.toPath());
 	}
 
 }
