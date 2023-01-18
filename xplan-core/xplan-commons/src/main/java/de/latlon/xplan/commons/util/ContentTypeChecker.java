@@ -53,15 +53,16 @@ public class ContentTypeChecker {
 	private static void checkContentTypesOfZipEntries(Path path, Tika tika)
 			throws IOException, UnsupportedContentTypeException {
 		ZipFile zipFile = new ZipFile(path.toString());
-		ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(path.toFile()),
-				Charset.forName("UTF-8"));
-		ZipEntry entry;
-		while ((entry = zipInputStream.getNextEntry()) != null) {
-			String name = entry.getName();
-			LOG.debug("Detecting content type of zip entry {}", name);
-			String contentType = tika.detect(zipFile.getInputStream(entry));
-			LOG.debug("Content type of zip entry {} is {}", name, contentType);
-			checkIfContentTypeAllowed(path, name, contentType);
+		try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(path.toFile()),
+				Charset.forName("UTF-8"))) {
+			ZipEntry entry;
+			while ((entry = zipInputStream.getNextEntry()) != null) {
+				String name = entry.getName();
+				LOG.debug("Detecting content type of zip entry {}", name);
+				String contentType = tika.detect(zipFile.getInputStream(entry));
+				LOG.debug("Content type of zip entry {} is {}", name, contentType);
+				checkIfContentTypeAllowed(path, name, contentType);
+			}
 		}
 	}
 
@@ -82,9 +83,8 @@ public class ContentTypeChecker {
 	}
 
 	private static String loadAllowedContentTypesProperty() {
-		try {
-			InputStream stream = Thread.currentThread().getContextClassLoader()
-					.getResourceAsStream(CONTENT_TYPE_CHECKER_PROPERTIES);
+		try (InputStream stream = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream(CONTENT_TYPE_CHECKER_PROPERTIES)) {
 			Properties properties = new Properties();
 			properties.load(stream);
 			return properties.getProperty(ALLOWED_CONTENT_TYPES_PROPERTY);
