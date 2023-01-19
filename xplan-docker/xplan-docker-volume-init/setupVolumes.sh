@@ -152,6 +152,13 @@ then
   sed -i 's|xplan-validator-wms-memory-workspace|xplan-validator-wms-sql-workspace|g' xplan-validator-workspaces/webapps.properties
 fi
 
+# filesystem or s3
+if [[ -z "${spring_profiles_active##*filesystem*}" ]]
+then
+  echo "[$(date -Iseconds)] Create data directory to store raster files"
+  mkdir workspaces/xplansyn-wms-workspace/data
+fi
+
 rm $INIT_STARTED_FILE
 echo "Initialization finished at $(date)" > $MARKER_FILE 
 cat $MARKER_FILE
