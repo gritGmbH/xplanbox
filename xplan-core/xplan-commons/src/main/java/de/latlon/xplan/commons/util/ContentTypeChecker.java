@@ -23,9 +23,11 @@ public class ContentTypeChecker {
 
 	public static final String CONTENT_TYPE_CHECKER_PROPERTIES = "contentTypeChecker.properties";
 
-	private static final String ALLOWED_CONTENT_TYPES_XPLANARCHIVE_AND_GML_PROPERTY = "allowedContentTypesXPlanArchiveAndGml";
+	private static final List<String> ALLOWED_CONTENT_TYPES_XPLANARCHIVE_AND_GML = createListOfAllowedContentTypes(
+			"allowedContentTypesXPlanArchiveAndGml");
 
-	private static final String ALLOWED_CONTENT_TYPES_FILES_OF_XPLANARCHIVE_PROPERTY = "allowedContentTypesFilesOfXPlanArchive";
+	private static final List<String> ALLOWED_CONTENT_TYPES_FILES_OF_XPLANARCHIVE = createListOfAllowedContentTypes(
+			"allowedContentTypesFilesOfXPlanArchive");
 
 	private ContentTypeChecker() {
 	}
@@ -39,15 +41,14 @@ public class ContentTypeChecker {
 	 */
 	public static void checkContentTypesOfXPlanArchiveOrGml(Path path)
 			throws IOException, UnsupportedContentTypeException {
-		String contentType = checkContentType(path,
-				createListOfAllowedContentTypes(ALLOWED_CONTENT_TYPES_XPLANARCHIVE_AND_GML_PROPERTY));
+		String contentType = checkContentType(path, ALLOWED_CONTENT_TYPES_XPLANARCHIVE_AND_GML);
 		if ("application/zip".equals(contentType))
 			checkContentTypesOfZipEntries(path);
 	}
 
 	public static void checkContentTypeOfFileOfXPlanArchive(Path path)
 			throws IOException, UnsupportedContentTypeException {
-		checkContentType(path, createListOfAllowedContentTypes(ALLOWED_CONTENT_TYPES_FILES_OF_XPLANARCHIVE_PROPERTY));
+		checkContentType(path, ALLOWED_CONTENT_TYPES_FILES_OF_XPLANARCHIVE);
 	}
 
 	private static String checkContentType(Path path, List<String> allowedContentTypes)
@@ -69,8 +70,7 @@ public class ContentTypeChecker {
 				LOG.debug("Detecting content type of zip entry {}", name);
 				String contentType = new Tika().detect(zipFile.getInputStream(entry));
 				LOG.debug("Content type of zip entry {} is {}", name, contentType);
-				checkIfContentTypeAllowed(path, contentType,
-						createListOfAllowedContentTypes(ALLOWED_CONTENT_TYPES_FILES_OF_XPLANARCHIVE_PROPERTY));
+				checkIfContentTypeAllowed(path, contentType, ALLOWED_CONTENT_TYPES_FILES_OF_XPLANARCHIVE);
 			}
 		}
 	}
