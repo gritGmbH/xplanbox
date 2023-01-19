@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
+import de.latlon.xplan.commons.util.XPlanVersionUtils;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -132,8 +133,7 @@ public class XPlanFeatureCollectionBuilder {
 		}
 		FeatureCollection featuresOfFirstCollection = featuresCollections.get(0);
 		Feature planFeatures = findPlanFeature(featuresOfFirstCollection, xPlanType);
-		String planFeatureNamespaceUri = planFeatures.getName().getNamespaceURI();
-		XPlanVersion version = XPlanVersion.valueOfNamespace(planFeatureNamespaceUri);
+		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(planFeatures.getName());
 
 		List<XPlanFeatureCollection> xPlanGmlInstances = createListOfXPlanGmlInstances(featuresOfFirstCollection,
 				version);
@@ -143,7 +143,7 @@ public class XPlanFeatureCollectionBuilder {
 	private XPlanSingleInstanceFeatureCollection build(FeatureCollection features) {
 		Feature planFeature = findPlanFeature(features, xPlanType);
 		String planFeatureNamespaceUri = planFeature.getName().getNamespaceURI();
-		XPlanVersion version = XPlanVersion.valueOfNamespace(planFeatureNamespaceUri);
+		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(planFeature.getName());
 		String name = FeatureCollectionUtils.retrievePlanName(planFeature);
 		String nummer = parsePlanNummer(planFeature);
 		String gkz = parsePlanGemeindeKennzahl(planFeature);

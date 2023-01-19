@@ -121,6 +121,9 @@ public class XPlanGmlReader {
 		filter.setDelegate(writer);
 		writeAll(reader, filter);
 		this.districts = filter.getDistricts();
+		if (version == null) {
+			throw new IllegalArgumentException("Could not determine version of the XPlanGML");
+		}
 	}
 
 	private XMLStreamReader createReader(InputStream stream) throws XMLStreamException, FactoryConfigurationError {
@@ -248,7 +251,12 @@ public class XPlanGmlReader {
 		if (namespaceUri == null)
 			return;
 		if (version == null) {
-			version = XPlanVersionUtils.determineBaseVersion(namespaceUri);
+			try {
+				version = XPlanVersionUtils.determineBaseVersion(namespaceUri);
+			}
+			catch (IllegalArgumentException e) {
+				// skip until feature with xplan namspace is found
+			}
 		}
 	}
 
