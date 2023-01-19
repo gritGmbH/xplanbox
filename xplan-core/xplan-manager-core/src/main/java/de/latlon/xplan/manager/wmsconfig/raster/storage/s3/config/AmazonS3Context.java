@@ -57,7 +57,7 @@ public class AmazonS3Context {
 
 	@Bean
 	public S3RasterStorage rasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 s3Client,
-			@Value("${s3.bucketName:#{environment.MAPSERVER_S3_BUCKET_NAME}}") String bucketName) {
+			@Value("${s3.bucketName:#{environment.XPLAN_S3_BUCKET_NAME}}") String bucketName) {
 		return new S3RasterStorage(rasterAdapter, s3Client, bucketName);
 	}
 
@@ -68,8 +68,8 @@ public class AmazonS3Context {
 
 	@Bean
 	public AmazonS3 s3Client(AWSCredentials credentials,
-			@Value("${s3.region:#{environment.MAPSERVER_S3_REGION}}") String signingRegion,
-			@Value("${s3.endpoint.url:#{environment.MAPSERVER_S3_ENDPOINT}}") String endpointUrl) {
+			@Value("${s3.region:#{environment.XPLAN_S3_REGION}}") String signingRegion,
+			@Value("${s3.endpoint.url:#{environment.XPLAN_S3_ENDPOINT}}") String endpointUrl) {
 		AmazonS3 client;
 		// TODO refactoring if/else to @ConditionalOnExpression with SpringBoot into 2
 		// SpringBeans
@@ -87,9 +87,8 @@ public class AmazonS3Context {
 	}
 
 	@Bean
-	public AWSCredentials credentials(
-			@Value("${s3.accessKeyId:#{environment.MAPSERVER_S3_ACCESS_KEY}}") String accessKeyId,
-			@Value("${s3.secretKey:#{environment.MAPSERVER_S3_SECRET_ACCESS_KEY}}") String secretKey) {
+	public AWSCredentials credentials(@Value("${s3.accessKeyId:#{environment.XPLAN_S3_ACCESS_KEY}}") String accessKeyId,
+			@Value("${s3.secretKey:#{environment.XPLAN_S3_SECRET_ACCESS_KEY}}") String secretKey) {
 		return new BasicAWSCredentials(accessKeyId, secretKey);
 	}
 

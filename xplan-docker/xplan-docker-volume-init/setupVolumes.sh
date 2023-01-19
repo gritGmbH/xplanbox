@@ -44,25 +44,23 @@ fi
 cp -r /xplan-volume-init/xplan-docker-volumes/* $XPLANBOX_VOLUMES
 chmod -R a+w $XPLANBOX_VOLUMES
 
-XPLANWMS_HOST_NAME="${XPLANWMS_HOST_NAME:-http://localhost:8083}"
-XPLANVALIDATORWMS_HOST_NAME="${XPLANVALIDATORWMS_HOST_NAME:-http://localhost:8088}"
-XPLANMAPSERVER_HOST_NAME="${XPLANMAPSERVER_HOST_NAME:-http://xplan-mapserver:8080}"
+XPLAN_WMS_URL_PUBLIC="${XPLAN_WMS_URL_PUBLIC:-tobedefined}"
+XPLAN_VALIDATORWMS_URL_PUBLIC="${XPLAN_VALIDATORWMS_URL_PUBLIC:-tobedefined}"
+XPLAN_MANAGERAPI_URL_PUBLIC=${XPLAN_MANAGERAPI_URL_PUBLIC:-xplan-api-manager}
+XPLAN_VALIDATORAPI_URL_PUBLIC=${XPLAN_VALIDATORAPI_URL_PUBLIC:-xplan-api-validator}
+XPLAN_MAPSERVER_URL_INTERNAL="${XPLAN_MAPSERVER_URL_INTERNAL:-http://xplan-mapserver}"
+XPLAN_SERVICES_URL_INTERNAL=${XPLAN_SERVICES_URL_INTERNAL:-http://xplan-services}
+XPLAN_WMS_URL_INTERNAL=${XPLAN_WMS_URL_INTERNAL:-xplan-services}
 
-XPLANDB_HOST_NAME="${XPLANDB_HOST_NAME:-xplan-db}"
-XPLANDB_PORT="${XPLANDB_PORT:-5432}"
-XPLANDB_USER="${XPLANDB_USER:-postgres}"
-XPLANDB_PASSWORD="${XPLANDB_PASSWORD:-postgres}"
-XPLANDB="$XPLANDB_HOST_NAME:$XPLANDB_PORT"
+XPLAN_DB_HOSTNAME="${XPLAN_DB_HOSTNAME:-tobedefined}"
+XPLAN_DB_PORT="${XPLAN_DB_PORT:-5432}"
+XPLAN_DB_NAME="${XPLAN_DB_NAME:-xplanbox}"
+XPLAN_DB_USER="${XPLAN_DB_USER:-tobedefined}"
+XPLAN_DB_PASSWORD="${XPLAN_DB_PASSWORD:-tobedefined}"
+XPLAN_DB="$XPLAN_DB_HOSTNAME:$XPLAN_DB_PORT/$XPLAN_DB_NAME"
 
-# by default mapserver
-RASTERTYPE="${XPLAN_RASTERTYPE:-mapserver}"
-
-INSPIRE_PLU="${INSPIRE_PLU:-disabled}"
-
-XPLANSERVICES_BASEURL_INTERNAL=${XPLANSERVICES_BASEURL_INTERNAL:-http://xplan-services:8080}
-XPLANWMS_URL=${XPLANWMS_URL:-xplan-services/xplan-wms/}
-XPLANAPIMANAGER_URL=${XPLANAPIMANAGER_URL:-xplan-api-manager}
-XPLANAPIVALIDATOR_URL=${XPLANAPIVALIDATOR_URL:-xplan-api-validator}
+XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
+XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
 
 #############################
 # Update content of volumes #
@@ -70,33 +68,34 @@ XPLANAPIVALIDATOR_URL=${XPLANAPIVALIDATOR_URL:-xplan-api-validator}
 
 cd $XPLANBOX_VOLUMES
 
-sed -i 's|apiUrl=|apiUrl='$XPLANAPIVALIDATOR_URL'|g' xplan-validator-config/validatorApiConfiguration.properties
-sed -i 's|apiUrl=|apiUrl='$XPLANAPIMANAGER_URL'|g' xplan-manager-config/managerApiConfiguration.properties
-sed -i 's|wmsUrl=|wmsUrl='$XPLANWMS_URL'|g' xplan-manager-config/managerApiConfiguration.properties
-sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLANSERVICES_BASEURL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
+sed -i 's|apiUrl=|apiUrl='$XPLAN_VALIDATORAPI_URL_PUBLIC'|g' xplan-validator-config/validatorApiConfiguration.properties
+sed -i 's|apiUrl=|apiUrl='$XPLAN_MANAGERAPI_URL_PUBLIC'|g' xplan-manager-config/managerApiConfiguration.properties
+sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
+sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLAN_SERVICES_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadUser=/workspaceReloadUser=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/workspaceReloadPassword=/workspaceReloadPassword=deegree/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
-sed -i 's|http://localhost:8080|'$XPLANWMS_HOST_NAME'|g' xplan-manager-config/managerWebConfiguration.properties
-if [ $INSPIRE_PLU = "enabled" ]
+sed -i 's|http://localhost:8080|'$XPLAN_WMS_URL_PUBLIC'|g' xplan-manager-config/managerWebConfiguration.properties
+if [ $XPLAN_INIT_INSPIREPLU = "enabled" ]
 then
   sed -i 's/activatePublishingInspirePlu=false/activatePublishingInspirePlu=true/g' xplan-manager-config/managerWebConfiguration.properties
 fi
 
-find -iname xplan.xml -exec sed -i 's/localhost:5432/'$XPLANDB'/g' {} \;
-find -iname xplan.xml -exec sed -i 's/name="username" value="xplanbox"/name="username" value="'$XPLANDB_USER'"/g' {} \;
-find -iname xplan.xml -exec sed -i 's/name="password" value="xplanbox"/name="password" value="'$XPLANDB_PASSWORD'"/g' {} \;
+find -iname xplan.xml -exec sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' {} \;
+find -iname xplan.xml -exec sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' {} \;
+find -iname xplan.xml -exec sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' {} \;
 
-sed -i 's/localhost:5432/'$XPLANDB'/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
-sed -i 's/name="username" value="xplanbox"/name="username" value="'$XPLANDB_USER'"/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
-sed -i 's/name="password" value="xplanbox"/name="password" value="'$XPLANDB_PASSWORD'"/g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
+sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
+sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
+sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
 
-sed -i 's|http://localhost:8080/xplan-wms|'$XPLANWMS_URL'|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
-sed -i 's/localhost:5432/'$XPLANDB'/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
-sed -i 's/name="username" value="xplanbox"/name="username" value="'$XPLANDB_USER'"/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
-sed -i 's/name="password" value="xplanbox"/name="password" value="'$XPLANDB_PASSWORD'"/g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
+sed -i 's|http://localhost:8080/xplan-wms|'$XPLAN_WMS_URL_INTERNAL'|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
+sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
+sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
+sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 
-if [ $RASTERTYPE = "gdal" ]
+echo "[$(date -Iseconds)] Configured rastertype: $XPLAN_INIT_RASTERTYPE"
+if [ $XPLAN_INIT_RASTERTYPE = "gdal" ]
 then
   echo "[$(date -Iseconds)] Configure rastertype gdal"
   sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=gdal/g' xplan-manager-config/managerConfiguration.properties
@@ -106,6 +105,12 @@ then
   mv xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.ignore xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.xml
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/<!--<LayerStoreId>dummyrasterlayer/<LayerStoreId>dummyrasterlayer/g' {} \;
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/dummyrasterlayer<\/LayerStoreId>-->/dummyrasterlayer<\/LayerStoreId>/g' {} \;
+elif [ $XPLAN_INIT_RASTERTYPE = "geotiff" ]
+then
+  echo "[$(date -Iseconds)] Configure rastertype geotiff"
+  rm xplan-workspaces/xplansyn-wms-workspace/datasources/tile/dummy.ignore
+  rm xplan-workspaces/xplansyn-wms-workspace/datasources/tile/tilematrixset/dummy.ignore
+  rm xplan-workspaces/xplansyn-wms-workspace/layers/dummyrasterlayer.ignore
 else
   echo "[$(date -Iseconds)] Configure rastertype mapserver"
   sed -i 's/rasterConfigurationType=geotiff/rasterConfigurationType=mapserver/g' xplan-manager-config/managerConfiguration.properties
@@ -117,19 +122,19 @@ else
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterarchive<\/Layer>-->/planrasterarchive<\/Layer>/g' {} \;
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planrasterpre<\/Layer>-->/planrasterpre<\/Layer>/g' {} \;
   find xplan-workspaces/xplansyn-wms-workspace/themes -iname *raster.xml -exec sed -i 's/planraster<\/Layer>-->/planraster<\/Layer>/g' {} \;
-  sed -i 's|http://localhost:8080/mapserver|'$XPLANMAPSERVER_HOST_NAME'/mapserver|g' xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.xml
+  sed -i 's|http://localhost:8080/mapserver|'$XPLAN_MAPSERVER_URL_INTERNAL'/mapserver|g' xplan-workspaces/xplansyn-wms-workspace/datasources/remoteows/mapserver.xml
 fi
 
-sed -i 's|validatorWmsEndpoint=|validatorWmsEndpoint='$XPLANVALIDATORWMS_HOST_NAME'\/xplan-validator-wms\/services\/wms|g' xplan-validator-config/validatorConfiguration.properties
+sed -i 's|validatorWmsEndpoint=|validatorWmsEndpoint='$XPLAN_VALIDATORWMS_URL_PUBLIC'\/xplan-validator-wms\/services\/wms|g' xplan-validator-config/validatorConfiguration.properties
 
-BERLINER_PROFILE="${BERLINER_PROFILE:-disabled}"
-if [ $BERLINER_PROFILE = "enabled" ]
+XPLAN_INIT_BERLINERPROFIL="${XPLAN_INIT_BERLINERPROFIL:-disabled}"
+if [ $XPLAN_INIT_BERLINERPROFIL = "enabled" ]
 then
-  BERLINER_PROFILE_VERSION="${BERLINER_PROFILE_VERSION:-0.3}"
-  BERLINER_PROFILE_URL=https://gitlab.opencode.de/api/v4/projects/397/packages/maven/de/xleitstelle/xplanung/regeln-berlin/$BERLINER_PROFILE_VERSION/regeln-berlin-$BERLINER_PROFILE_VERSION.jar
-  echo "[$(date -Iseconds)] Add Berliner Profile: $BERLINER_PROFILE_URL"
+  XPLAN_INIT_BERLINERPROFIL_VERSION="${XPLAN_INIT_BERLINERPROFIL_VERSION:-0.3}"
+  BERLINERPROFIL_URL=https://gitlab.opencode.de/api/v4/projects/397/packages/maven/de/xleitstelle/xplanung/regeln-berlin/$XPLAN_INIT_BERLINERPROFIL_VERSION/regeln-berlin-$XPLAN_INIT_BERLINERPROFIL_VERSION.jar
+  echo "[$(date -Iseconds)] Add Berliner Profile: $BERLINERPROFIL_URL"
   # Copy berliner profile
-  curl $BERLINER_PROFILE_URL -s -o /tmp/regeln-berlin.jar
+  curl $BERLINERPROFIL_URL -s -o /tmp/regeln-berlin.jar
   # XPlanValidator
   mkdir $XPLANBOX_VOLUMES/xplan-validator-config/profiles
   unzip -q /tmp/regeln-berlin.jar -x "META-INF/*" -d $XPLANBOX_VOLUMES/xplan-validator-config/profiles
@@ -141,10 +146,17 @@ then
 fi
 
 # memory or sql
-VALIDATOR_WMS="${VALIDATOR_WMS:-memory}"
-if [ $VALIDATOR_WMS = "sql" ]
+if [[ -z "${spring_profiles_active##*validatorwmssql*}" ]]
 then
+  echo "[$(date -Iseconds)] Configure XPlanValidatorWMS with database"
   sed -i 's|xplan-validator-wms-memory-workspace|xplan-validator-wms-sql-workspace|g' xplan-validator-workspaces/webapps.properties
+fi
+
+# filesystem or s3
+if [[ -z "${spring_profiles_active##*filesystem*}" ]]
+then
+  echo "[$(date -Iseconds)] Create data directory to store raster files"
+  mkdir workspaces/xplansyn-wms-workspace/data
 fi
 
 rm $INIT_STARTED_FILE
