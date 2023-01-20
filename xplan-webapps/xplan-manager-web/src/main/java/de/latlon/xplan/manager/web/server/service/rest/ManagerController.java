@@ -516,6 +516,13 @@ public class ManagerController {
 		return e.getMessage();
 	}
 
+	@ExceptionHandler(UnsupportedContentTypeException.class)
+	@ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
+	@ResponseBody
+	public String handleUnsupportedContentTypeExceptions(UnsupportedContentTypeException e) {
+		return e.getMessage();
+	}
+
 	private void exportPlan(String id, ByteArrayOutputStream exportOutputStream) {
 		try {
 			manager.export(id, exportOutputStream);
