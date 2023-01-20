@@ -91,7 +91,10 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
 		form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
 			@Override
 			public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
-				informSaveHandler();
+				if (event.getResults().contains("Content type"))
+					Window.alert(MESSAGES.uploadSecurityException());
+				else
+					informSaveHandler();
 				uploading.hide();
 			}
 		});

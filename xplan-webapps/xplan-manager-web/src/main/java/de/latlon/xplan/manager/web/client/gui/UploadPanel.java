@@ -318,9 +318,8 @@ public class UploadPanel extends DecoratorPanel {
 				reload();
 				if (event.getResults().contains("Content type"))
 					Window.alert(messages.uploadSecurityException());
-				else {
+				else
 					Window.alert(event.getResults());
-				}
 			}
 		});
 
