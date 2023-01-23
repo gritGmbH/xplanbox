@@ -24,6 +24,7 @@ package de.latlon.xplan.commons.feature;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.util.XPlanVersionUtils;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.junit.Test;
@@ -31,6 +32,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -45,6 +47,26 @@ public class XPlanGmlParserTest {
 		XPlanArchive testArchive = getTestArchive("xplan41/Eidelstedt_4_V4.zip");
 		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(testArchive);
 		assertThat(xPlanFeatureCollection.getFeatures().size(), is(56));
+	}
+
+	@Test
+	public void testParseWfsFeatureCollection() throws Exception {
+		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
+		XPlanArchive testArchive = getArchive("wfs20FeatureCollection.gml");
+		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(testArchive);
+		assertThat(xPlanFeatureCollection.getFeatures().size(), is(3));
+		assertThat(XPlanVersionUtils.determineBaseVersion(xPlanFeatureCollection.getFeatures().getName()),
+				is(XPLAN_51));
+	}
+
+	@Test
+	public void testParseWfsFeatureCollectionWithAdditionalObjects() throws Exception {
+		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
+		XPlanArchive testArchive = getArchive("wfs20FeatureCollection-additionalObjects.gml");
+		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(testArchive);
+		assertThat(xPlanFeatureCollection.getFeatures().size(), is(3));
+		assertThat(XPlanVersionUtils.determineBaseVersion(xPlanFeatureCollection.getFeatures().getName()),
+				is(XPLAN_51));
 	}
 
 	@Test

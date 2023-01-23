@@ -28,22 +28,29 @@ import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
+import org.deegree.feature.stream.FeatureInputStream;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.GeometryFactory;
 import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.GMLVersion;
+import org.slf4j.Logger;
 
+import javax.xml.namespace.QName;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.InputStream;
 
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
+import static org.deegree.protocol.wfs.WFSConstants.WFS_200_NS;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public class XPlanGmlParser {
+
+	private static final Logger LOG = getLogger(XPlanGmlParser.class);
 
 	/**
 	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
@@ -197,8 +204,18 @@ public class XPlanGmlParser {
 	private XPlanFeatureCollection parseXPlanFeatureCollection(XPlanVersion version, XPlanType type, ICRS defaultCrs,
 			XMLStreamReaderWrapper xmlStream, boolean fixOrientation) throws XMLStreamException, UnknownCRSException {
 		GMLStreamReader gmlStream = createGmlStreamReader(version, defaultCrs, xmlStream, fixOrientation);
-		FeatureCollection features = gmlStream.readFeatureCollection();
+		FeatureCollection features = parseFeatures(version, xmlStream, gmlStream);
 		return new XPlanFeatureCollectionBuilder(features, type).build();
+	}
+
+	private static FeatureCollection parseFeatures(XPlanVersion version, XMLStreamReaderWrapper xmlStream,
+			GMLStreamReader gmlStream) throws XMLStreamException, UnknownCRSException {
+		if (new QName(WFS_200_NS, "FeatureCollection").equals(xmlStream.getName())) {
+			LOG.debug("Features embedded in wfs20:FeatureCollection");
+			FeatureInputStream featuresStream = new WfsFeatureInputStream(xmlStream, gmlStream, version);
+			return featuresStream.toCollection();
+		}
+		return gmlStream.readFeatureCollection();
 	}
 
 	private GMLStreamReader createGmlStreamReader(XPlanVersion version, ICRS defaultCrs,

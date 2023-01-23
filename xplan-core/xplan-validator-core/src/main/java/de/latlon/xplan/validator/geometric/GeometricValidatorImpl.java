@@ -22,6 +22,7 @@ package de.latlon.xplan.validator.geometric;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.feature.WfsFeatureInputStream;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
@@ -35,7 +36,9 @@ import org.deegree.commons.tom.ReferenceResolvingException;
 import org.deegree.commons.tom.gml.GMLReference;
 import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
+import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
+import org.deegree.feature.stream.FeatureInputStream;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.GeometryFactory;
 import org.deegree.gml.GMLStreamReader;
@@ -44,6 +47,7 @@ import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +55,7 @@ import java.util.List;
 import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
 import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
+import static org.deegree.protocol.wfs.WFSConstants.WFS_200_NS;
 
 /**
  * Validates <link>XPlanArchives</link> geometrically
@@ -122,7 +127,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		GMLStreamReader gmlStream = createGmlStreamReader(archive, crs, schema, xmlStream, geometryInspector,
 				featureInspectors, aenderungenInspector);
 		try {
-			FeatureCollection xPlanFeatures = (FeatureCollection) gmlStream.readFeature();
+			FeatureCollection xPlanFeatures = parseFeatureCollection(xmlStream, gmlStream, archive.getVersion());
 			result.setXplanFeatures(xPlanFeatures);
 			result.elapsed = System.currentTimeMillis() - begin;
 			result.addErrors(geometryInspector.getErrors());
@@ -140,6 +145,16 @@ public class GeometricValidatorImpl implements GeometricValidator {
 			LOG.info("Unexpected failure by geometry validation ", e);
 		}
 		return result;
+	}
+
+	private static FeatureCollection parseFeatureCollection(XMLStreamReaderWrapper xmlStream, GMLStreamReader gmlStream,
+			XPlanVersion version) throws XMLStreamException, UnknownCRSException {
+		if (new QName(WFS_200_NS, "FeatureCollection").equals(xmlStream.getName())) {
+			LOG.debug("Features embedded in wfs20:FeatureCollection");
+			FeatureInputStream featuresStream = new WfsFeatureInputStream(xmlStream, gmlStream, version);
+			return featuresStream.toCollection();
+		}
+		return gmlStream.readFeatureCollection();
 	}
 
 	private void checkAndAddRules(GeometricFeatureInspector fi, ValidatorResult result) {
