@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.job.validator;
+package de.latlon.xplan.job.validator.memory;
 
 import java.util.Calendar;
 import java.util.List;

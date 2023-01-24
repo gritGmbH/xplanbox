@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.job.validator;
+package de.latlon.xplan.job.validator.memory;
 
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.feature.persistence.FeatureStore;
@@ -40,7 +40,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static de.latlon.xplan.job.validator.InsertedFids.INSERTED_FIDS_KEY;
+import static de.latlon.xplan.job.validator.memory.InsertedFids.INSERTED_FIDS_KEY;
 import static de.latlon.xplan.job.validator.config.JobContext.DEFAULT_DELETE_AFTER_IN_MINUTES;
 import static de.latlon.xplan.job.validator.config.JobContext.DELETE_AFTER_KEY;
 import static java.util.Calendar.MINUTE;

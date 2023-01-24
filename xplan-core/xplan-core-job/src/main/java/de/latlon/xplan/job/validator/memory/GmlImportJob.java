@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.job.validator;
+package de.latlon.xplan.job.validator.memory;
 
 import org.apache.commons.io.IOUtils;
 import org.deegree.commons.config.DeegreeWorkspace;
@@ -51,7 +51,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static de.latlon.xplan.job.validator.InsertedFids.INSERTED_FIDS_KEY;
+import static de.latlon.xplan.job.validator.memory.InsertedFids.INSERTED_FIDS_KEY;
 import static org.deegree.gml.GMLVersion.GML_32;
 import static org.deegree.protocol.wfs.transaction.action.IDGenMode.GENERATE_NEW;
 
