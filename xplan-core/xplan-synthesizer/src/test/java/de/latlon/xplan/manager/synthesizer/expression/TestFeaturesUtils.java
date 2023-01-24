@@ -21,27 +21,17 @@
 package de.latlon.xplan.manager.synthesizer.expression;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.GMLVersion;
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import java.io.InputStream;
 
 import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -57,11 +47,7 @@ public class TestFeaturesUtils {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(resourceName,
 				ResourceAccessor.readResourceStream(resourceName));
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion());
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
-		GMLStreamReader gmlStream = createGmlStreamReader(archive.getVersion(), schema, xmlStream);
-		FeatureCollection features = (FeatureCollection) gmlStream.readFeature();
-		return new XPlanFeatureCollectionBuilder(features, archive.getType()).build();
+		return XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
 	}
 
 	public static Feature getTestFeature(FeatureCollection fc, String gmlId) {
@@ -91,36 +77,13 @@ public class TestFeaturesUtils {
 
 	public static FeatureCollection load(XPlanVersion version, String resource) throws Exception {
 		InputStream is = null;
-		XMLStreamReader xmlReader = null;
-		GMLStreamReader gmlReader = null;
 		try {
 			is = TestFeaturesUtils.class.getResourceAsStream(resource);
-			xmlReader = XMLInputFactory.newInstance().createXMLStreamReader(is);
-			gmlReader = createGmlStreamReader(version, XPlanSchemas.getInstance().getAppSchema(version), xmlReader);
-			FeatureCollection fc = gmlReader.readFeatureCollection();
-			gmlReader.getIdContext().resolveLocalRefs();
-			return fc;
+			return XPlanGmlParser.newParser().parseFeatureCollection(is, version);
 		}
 		finally {
-			if (gmlReader != null) {
-				gmlReader.close();
-			}
-			if (xmlReader != null) {
-				xmlReader.close();
-			}
 			closeQuietly(is);
 		}
-	}
-
-	private static GMLStreamReader createGmlStreamReader(XPlanVersion xplanVersion, AppSchema schema,
-			XMLStreamReader xmlStream) throws XMLStreamException {
-		GMLVersion gmlVersion = xplanVersion.getGmlVersion();
-		GeometryFactory geomFac = new GeometryFactory();
-		GMLStreamReader gmlStream = createGMLStreamReader(gmlVersion, xmlStream);
-		gmlStream.setGeometryFactory(geomFac);
-		gmlStream.setApplicationSchema(schema);
-		gmlStream.setSkipBrokenGeometries(true);
-		return gmlStream;
 	}
 
 }

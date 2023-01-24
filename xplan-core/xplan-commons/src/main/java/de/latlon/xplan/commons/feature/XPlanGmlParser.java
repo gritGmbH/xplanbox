@@ -74,6 +74,7 @@ public class XPlanGmlParser {
 	}
 
 	/**
+	 * Parses a {@link XPlanFeatureCollections} from the passed {@link XPlanArchive}
 	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
 	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
 	 * @throws XMLStreamException
@@ -98,6 +99,7 @@ public class XPlanGmlParser {
 	}
 
 	/**
+	 * Parses a {@link XPlanFeatureCollection} from the passed {@link XPlanArchive}
 	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
 	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
 	 * @throws XMLStreamException
@@ -127,7 +129,21 @@ public class XPlanGmlParser {
 	}
 
 	/**
-	 * Parses a FeatureCollection from the passed stream
+	 * Parses a {@link FeatureCollection} from the passed {@link XPlanArchive}
+	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
+	 * @return never <code>null</code>
+	 * @throws XMLStreamException if the plan could not be read
+	 * @throws UnknownCRSException if the CRS of a geometry in the plan is not known
+	 */
+	public FeatureCollection parseFeatureCollection(XPlanArchive xPlanArchive)
+			throws XMLStreamException, UnknownCRSException {
+		XPlanVersion version = xPlanArchive.getVersion();
+		XMLStreamReader xmlStreamReader = xPlanArchive.getMainFileXmlReader();
+		return parseFeatureCollection(xmlStreamReader, version);
+	}
+
+	/**
+	 * Parses a {@link FeatureCollection} from the passed {@link InputStream}
 	 * @param plan as InputStream, never <code>null</code>
 	 * @param version of the plan, never <code>null</code>
 	 * @return never <code>null</code>
@@ -141,7 +157,7 @@ public class XPlanGmlParser {
 	}
 
 	/**
-	 * Parses a FeatureCollection from the passed stream
+	 * Parses a {@link FeatureCollection} from the passed {@link XMLStreamReader}
 	 * @param plan as XMLStreamReader, never <code>null</code>
 	 * @param version of the plan, should not be <code>null</code>
 	 * @return never <code>null</code>

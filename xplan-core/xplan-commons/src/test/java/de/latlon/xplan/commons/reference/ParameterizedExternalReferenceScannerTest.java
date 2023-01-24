@@ -21,20 +21,15 @@
 package de.latlon.xplan.commons.reference;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.gml.GMLStreamReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.xml.stream.XMLStreamReader;
-
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -58,15 +53,7 @@ public class ParameterizedExternalReferenceScannerTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		XPlanVersion version = archive.getVersion();
-		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
-		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
-		FeatureCollection fc = gmlReader.readFeatureCollection();
-		gmlReader.getIdContext().resolveLocalRefs();
-		gmlReader.close();
-		xmlReader.close();
-		return fc;
+		return XPlanGmlParser.newParser().parseFeatureCollection(archive);
 	}
 
 }
