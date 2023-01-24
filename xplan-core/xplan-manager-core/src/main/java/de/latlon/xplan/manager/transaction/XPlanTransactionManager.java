@@ -95,8 +95,6 @@ public abstract class XPlanTransactionManager {
 
 	protected final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
-	protected final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-
 	private final MetadataCouplingHandler metadataCouplingHandler;
 
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
@@ -176,7 +174,7 @@ public abstract class XPlanTransactionManager {
 		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
 		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
 		try {
-			return xPlanGmlParser.parseFeatureCollection(originalPlanAsXmlReader, version);
+			return XPlanGmlParser.newParser().parseFeatureCollection(originalPlanAsXmlReader, version);
 		}
 		finally {
 			originalPlanAsXmlReader.close();

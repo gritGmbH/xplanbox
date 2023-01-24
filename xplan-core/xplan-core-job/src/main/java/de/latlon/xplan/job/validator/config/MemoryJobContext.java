@@ -20,8 +20,8 @@
  */
 package de.latlon.xplan.job.validator.config;
 
-import de.latlon.xplan.job.validator.GmlDeleteJob;
-import de.latlon.xplan.job.validator.GmlImportJob;
+import de.latlon.xplan.job.validator.memory.GmlDeleteJob;
+import de.latlon.xplan.job.validator.memory.GmlImportJob;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;

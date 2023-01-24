@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CrsUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -152,8 +153,8 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			throws Exception {
 		performSchemaValidation(archive);
 		try {
-			XPlanFeatureCollections xPlanInstances = xPlanGmlParser
-					.parseXPlanFeatureCollectionAllowMultipleInstances(archive, crs, true);
+			XPlanFeatureCollections xPlanInstances = XPlanGmlParser.newParser().withDefaultCrs(crs)
+					.withFixOrientation(true).parseXPlanFeatureCollectionAllowMultipleInstances(archive);
 			reassignFids(xPlanInstances);
 			for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 				long begin = System.currentTimeMillis();

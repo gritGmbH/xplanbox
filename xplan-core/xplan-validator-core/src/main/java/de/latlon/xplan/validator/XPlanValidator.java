@@ -93,8 +93,6 @@ public class XPlanValidator {
 
 	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-
 	private XPlanSchemas schemas;
 
 	public XPlanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
@@ -309,7 +307,7 @@ public class XPlanValidator {
 
 	private void parseReferencesAndPlanNames(XPlanArchive archive, ValidatorReport report) {
 		try {
-			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+			XPlanFeatureCollection featureCollection = XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
 			report.setBBoxIn4326(featureCollection.getBboxIn4326());
 			parseAndAddExternalReferences(report, featureCollection);
 			parseAndAddPlanNames(report, featureCollection);

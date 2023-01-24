@@ -151,7 +151,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 			XPlanVersion version) throws XMLStreamException, UnknownCRSException {
 		if (new QName(WFS_200_NS, "FeatureCollection").equals(xmlStream.getName())) {
 			LOG.debug("Features embedded in wfs20:FeatureCollection");
-			FeatureInputStream featuresStream = new WfsFeatureInputStream(xmlStream, gmlStream, version);
+			FeatureInputStream featuresStream = new WfsFeatureInputStream(xmlStream, gmlStream);
 			return featuresStream.toCollection();
 		}
 		return gmlStream.readFeatureCollection();

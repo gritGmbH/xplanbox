@@ -25,7 +25,6 @@ import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -117,11 +116,6 @@ public class ApplicationContext {
 	public SystemConfigHandler systemConfigHandler(XQuerySemanticValidatorConfigurationRetriever configurationRetriever,
 			List<RulesMetadata> profileMetadata) {
 		return new SystemConfigHandler(configurationRetriever, profileMetadata);
-	}
-
-	@Bean
-	public XPlanGmlParser xPlanGmlParser() {
-		return new XPlanGmlParser();
 	}
 
 	@Bean

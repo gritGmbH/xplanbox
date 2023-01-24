@@ -21,6 +21,7 @@
 package de.latlon.xplan.commons.feature;
 
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.util.XPlanVersionUtils;
 import org.deegree.commons.xml.stax.XMLStreamUtils;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -67,10 +68,13 @@ public class WfsFeatureInputStream implements FeatureInputStream {
 
 	private Feature next;
 
-	public WfsFeatureInputStream(XMLStreamReader xmlStream, GMLStreamReader gmlStream, XPlanVersion version) {
+	/**
+	 * @param xmlStream to parse, never <code>null</code>
+	 * @param gmlStream used to parse the XPlanGML, never <code>null</code>
+	 */
+	public WfsFeatureInputStream(XMLStreamReader xmlStream, GMLStreamReader gmlStream) {
 		this.xmlStream = xmlStream;
 		this.gmlStream = gmlStream;
-		this.version = version;
 		this.next = retrieveNext(xmlStream, gmlStream);
 	}
 
@@ -126,6 +130,7 @@ public class WfsFeatureInputStream implements FeatureInputStream {
 				if (WFS_20_MEMBER.equals(elName)) {
 					xmlStream.nextTag();
 					Feature feature = gmlStream.readFeature();
+					determineVersion(feature.getName());
 					xmlStream.nextTag();
 					return feature;
 				}
@@ -143,6 +148,17 @@ public class WfsFeatureInputStream implements FeatureInputStream {
 			LOG.error("Failed", e);
 		}
 		return null;
+	}
+
+	private void determineVersion(QName elName) {
+		if (version == null) {
+			try {
+				version = XPlanVersionUtils.determineBaseVersion(elName);
+			}
+			catch (IllegalArgumentException e) {
+				LOG.debug("Could not determine XPlanGML version from {}", elName);
+			}
+		}
 	}
 
 	private FeatureCollectionType extractFcCollectionType(XPlanVersion version) {

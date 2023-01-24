@@ -355,7 +355,7 @@ public class XPlanValidatorTest {
 	}
 
 	private XPlanGmlParser mockXPlanGmlParser() {
-		return spy(new XPlanGmlParser());
+		return spy(XPlanGmlParser.newParser());
 	}
 
 	private List emptyList() {

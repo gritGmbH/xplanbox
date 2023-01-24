@@ -49,8 +49,6 @@ public class MapPreviewManager {
 
 	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-
 	private final ValidatorWmsManager validatorWmsManager;
 
 	private final MasterportalConfigWriter configWriter;
@@ -79,7 +77,7 @@ public class MapPreviewManager {
 	public MapPreviewMetadata createConfigurations(File xPlan) throws MapPreviewCreationException {
 		try {
 			XPlanArchive archive = archiveCreator.createXPlanArchive(xPlan);
-			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+			XPlanFeatureCollection featureCollection = XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
 			int managerId = this.validatorWmsManager.insert(featureCollection);
 			String configFileName = this.configWriter.createMasterportalConfig(managerId, archive.getType());
 

@@ -52,8 +52,6 @@ public class ArtefactsTableUpdater {
 
 	private final XPlanDao xplanDao;
 
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-
 	private final ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 
 	public ArtefactsTableUpdater(XPlanDao xplanDao) {
@@ -87,7 +85,7 @@ public class ArtefactsTableUpdater {
 	private FeatureCollection retrieveFeatureCollection(XPlan plan) throws Exception {
 		XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 		InputStream originalPlan = xplanDao.retrieveXPlanArtefact(plan.getId());
-		return xPlanGmlParser.parseFeatureCollection(originalPlan, version);
+		return XPlanGmlParser.newParser().parseFeatureCollection(originalPlan, version);
 	}
 
 	private List<String> scanRasterReferenceFileNames(FeatureCollection featureCollection) {

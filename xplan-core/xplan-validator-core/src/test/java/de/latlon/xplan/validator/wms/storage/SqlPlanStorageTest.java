@@ -55,7 +55,7 @@ public class SqlPlanStorageTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		return new XPlanGmlParser().parseXPlanFeatureCollection(archive);
+		return XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
 	}
 
 }

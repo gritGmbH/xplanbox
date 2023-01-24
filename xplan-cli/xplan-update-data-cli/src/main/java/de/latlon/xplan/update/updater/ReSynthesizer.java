@@ -65,8 +65,6 @@ public class ReSynthesizer {
 
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-
 	/**
 	 * @param dao used to access the database, never <code>null</code>
 	 * @param xPlanSynthesizer used to synthesize the plans, never <code>null</code>
@@ -117,7 +115,8 @@ public class ReSynthesizer {
 		boolean useOriginalXPlan = !featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
 		if (useOriginalXPlan) {
 			try (InputStream originalPlan = xPlanDao.retrieveXPlanArtefact(planId)) {
-				xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan, version, planType);
+				xPlanFeatureCollection = XPlanGmlParser.newParser().parseXPlanFeatureCollection(originalPlan, version,
+						planType);
 				reassignFids(xPlanFeatureCollection);
 			}
 		}

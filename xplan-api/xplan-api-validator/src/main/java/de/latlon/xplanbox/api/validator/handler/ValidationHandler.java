@@ -86,9 +86,6 @@ public class ValidationHandler {
 	@Autowired
 	private GeometricValidator geometricValidator;
 
-	@Autowired
-	public XPlanGmlParser xPlanGmlParser;
-
 	private XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
 	public ValidatorReport validate(XPlanArchive archive, String xFileName, ValidationSettings validationSettings)
@@ -124,7 +121,8 @@ public class ValidationHandler {
 	public URI addToWms(XPlanArchive archive) {
 		try {
 			if (validatorWmsManager != null) {
-				XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+				XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParser.newParser()
+						.parseXPlanFeatureCollection(archive);
 				int id = validatorWmsManager.insert(xPlanFeatureCollection);
 				return createWmsUrl(id);
 			}

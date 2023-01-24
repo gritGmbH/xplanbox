@@ -66,8 +66,7 @@ public class XPlanGmlFeatureWriterTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-		return xPlanGmlParser.parseXPlanFeatureCollection(archive);
+		return XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
 	}
 
 	private Map<String, String> nsContext() {

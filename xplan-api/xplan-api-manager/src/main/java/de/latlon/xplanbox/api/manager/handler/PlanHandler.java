@@ -88,9 +88,6 @@ public class PlanHandler {
 	@Autowired
 	private XPlanExporter xPlanExporter;
 
-	@Autowired
-	private XPlanGmlParser xPlanGmlParser;
-
 	public List<XPlan> importPlan(XPlanArchive xPlanArchive, String xFileName, ValidationSettings validationSettings,
 			String internalId, String planStatus) throws Exception {
 		LOG.info("Importing plan using validation settings '{}'", validationSettings);
@@ -188,7 +185,7 @@ public class PlanHandler {
 
 	private PlanStatus determinePlanStatusByRechtsstand(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException {
-		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(xPlanArchive);
+		XPlanFeatureCollection fc = XPlanGmlParser.newParser().parseXPlanFeatureCollection(xPlanArchive);
 		String legislationStatus = retrieveRechtsstand(fc.getFeatures(), fc.getType());
 		if (legislationStatus != null && !legislationStatus.isEmpty()) {
 			try {

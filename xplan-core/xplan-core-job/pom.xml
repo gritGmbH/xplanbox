@@ -13,6 +13,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>de.latlon.product.xplanbox</groupId>
+      <artifactId>xplan-commons</artifactId>
+    </dependency>
+    <dependency>
       <groupId>de.latlon</groupId>
       <artifactId>deegree-core-base</artifactId>
     </dependency>

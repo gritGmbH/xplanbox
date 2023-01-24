@@ -52,57 +52,25 @@ public class XPlanGmlParser {
 
 	private static final Logger LOG = getLogger(XPlanGmlParser.class);
 
-	/**
-	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
-	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
-	 * @throws XMLStreamException
-	 * @throws UnknownCRSException
-	 */
-	public XPlanFeatureCollection parseXPlanFeatureCollection(XPlanArchive xPlanArchive)
-			throws XMLStreamException, UnknownCRSException {
-		return parseXPlanFeatureCollection(xPlanArchive, xPlanArchive.getCrs());
+	private ICRS defaultCrs;
+
+	private boolean fixOrientation = false;
+
+	private XPlanGmlParser() {
 	}
 
-	/**
-	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
-	 * @param fixOrientation <code>true</code> if the orientation should be fixed,
-	 * <code>false</code> otherwise
-	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
-	 * @throws XMLStreamException
-	 * @throws UnknownCRSException
-	 */
-	public XPlanFeatureCollection parseXPlanFeatureCollection(XPlanArchive xPlanArchive, boolean fixOrientation)
-			throws XMLStreamException, UnknownCRSException {
-		return parseXPlanFeatureCollection(xPlanArchive, xPlanArchive.getCrs(), fixOrientation);
+	public static XPlanGmlParser newParser() {
+		return new XPlanGmlParser();
 	}
 
-	/**
-	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
-	 * @param defaultCrs of the geometries if not specified, may be <code>null</code>
-	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
-	 * @throws XMLStreamException
-	 * @throws UnknownCRSException
-	 */
-	public XPlanFeatureCollection parseXPlanFeatureCollection(XPlanArchive xPlanArchive, ICRS defaultCrs)
-			throws XMLStreamException, UnknownCRSException {
-		return parseXPlanFeatureCollection(xPlanArchive, defaultCrs, false);
+	public XPlanGmlParser withDefaultCrs(ICRS defaultCrs) {
+		this.defaultCrs = defaultCrs;
+		return this;
 	}
 
-	/**
-	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
-	 * @param defaultCrs of the geometries if not specified, may be <code>null</code>
-	 * @param fixOrientation <code>true</code> if the orientation should be fixed, *
-	 * <code>false</code> otherwise
-	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
-	 * @throws XMLStreamException
-	 * @throws UnknownCRSException
-	 */
-	public XPlanFeatureCollection parseXPlanFeatureCollection(XPlanArchive xPlanArchive, ICRS defaultCrs,
-			boolean fixOrientation) throws XMLStreamException, UnknownCRSException {
-		XPlanVersion version = xPlanArchive.getVersion();
-		XPlanType type = xPlanArchive.getType();
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
-		return parseXPlanFeatureCollection(version, type, defaultCrs, xmlStream, fixOrientation);
+	public XPlanGmlParser withFixOrientation(boolean fixOrientation) {
+		this.fixOrientation = fixOrientation;
+		return this;
 	}
 
 	/**
@@ -113,28 +81,34 @@ public class XPlanGmlParser {
 	 */
 	public XPlanFeatureCollections parseXPlanFeatureCollectionAllowMultipleInstances(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
-		return parseXPlanFeatureCollectionAllowMultipleInstances(xPlanArchive, null, false);
+		GMLStreamReader gmlStreamReader = null;
+		try {
+			XPlanVersion version = xPlanArchive.getVersion();
+			XPlanType type = xPlanArchive.getType();
+			XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
+			gmlStreamReader = createGmlStreamReader(xmlStream, version);
+			XPlanFeatureCollections xPlanFeatureCollection = new MultipleInstanceParser().parse(gmlStreamReader,
+					version, type);
+			gmlStreamReader.getIdContext().resolveLocalRefs();
+			return xPlanFeatureCollection;
+		}
+		finally {
+			close(gmlStreamReader);
+		}
 	}
 
 	/**
 	 * @param xPlanArchive containing the gml file to parse, never <code>null</code>
-	 * @param defaultCrs of the geometries if not specified, may be <code>null</code>
-	 * @param fixOrientation <code>true</code> if the orientation should be fixed, *
-	 * <code>false</code> otherwise
 	 * @return the parsed XPlanFeatureCollection, never <code>null</code>
 	 * @throws XMLStreamException
 	 * @throws UnknownCRSException
 	 */
-	public XPlanFeatureCollections parseXPlanFeatureCollectionAllowMultipleInstances(XPlanArchive xPlanArchive,
-			ICRS defaultCrs, boolean fixOrientation)
-			throws XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
+	public XPlanFeatureCollection parseXPlanFeatureCollection(XPlanArchive xPlanArchive)
+			throws XMLStreamException, UnknownCRSException {
 		XPlanVersion version = xPlanArchive.getVersion();
 		XPlanType type = xPlanArchive.getType();
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
-		GMLStreamReader gmlStream = createGmlStreamReader(version, defaultCrs, xmlStream, fixOrientation);
-		XPlanFeatureCollections parse = new MultipleInstanceParser().parse(gmlStream, version, type);
-		gmlStream.getIdContext().resolveLocalRefs();
-		return parse;
+		XMLStreamReader xmlStreamReader = xPlanArchive.getMainFileXmlReader();
+		return parseXPlanFeatureCollection(xmlStreamReader, version, type);
 	}
 
 	/**
@@ -148,33 +122,8 @@ public class XPlanGmlParser {
 	 */
 	public XPlanFeatureCollection parseXPlanFeatureCollection(InputStream plan, XPlanVersion version, XPlanType type)
 			throws XMLStreamException, UnknownCRSException {
-		XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-		XMLStreamReader xmlStreamReader = null;
-		try {
-			xmlStreamReader = xmlInputFactory.createXMLStreamReader(plan);
-			return parseXPlanFeatureCollection(xmlStreamReader, type, version);
-		}
-		finally {
-			if (xmlStreamReader != null)
-				xmlStreamReader.close();
-		}
-	}
-
-	/**
-	 * Parses a FeatureCollection from the passed stream
-	 * @param plan as XMLStreamReader, never <code>null</code>
-	 * @param version of the plan, never <code>null</code>
-	 * @return never <code>null</code>
-	 * @throws XMLStreamException if the plan could not be read
-	 * @throws UnknownCRSException if the CRS of a geometry in the plan is not known
-	 */
-	public FeatureCollection parseFeatureCollection(XMLStreamReader plan, XPlanVersion version)
-			throws XMLStreamException, UnknownCRSException {
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(plan, null);
-		GMLStreamReader gmlStreamReader = createGmlStreamReader(version, null, xmlStream);
-		FeatureCollection features = gmlStreamReader.readFeatureCollection();
-		gmlStreamReader.getIdContext().resolveLocalRefs();
-		return features;
+		XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(plan);
+		return parseXPlanFeatureCollection(xmlStreamReader, version, type);
 	}
 
 	/**
@@ -188,39 +137,50 @@ public class XPlanGmlParser {
 	public FeatureCollection parseFeatureCollection(InputStream plan, XPlanVersion version)
 			throws XMLStreamException, UnknownCRSException {
 		XMLStreamReader xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(plan);
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xmlStreamReader, null);
-		GMLStreamReader gmlStreamReader = createGmlStreamReader(version, null, xmlStream);
-		FeatureCollection features = gmlStreamReader.readFeatureCollection();
-		gmlStreamReader.getIdContext().resolveLocalRefs();
-		return features;
+		return parseFeatureCollection(xmlStreamReader, version);
 	}
 
-	private XPlanFeatureCollection parseXPlanFeatureCollection(XMLStreamReader plan, XPlanType type,
-			XPlanVersion version) throws XMLStreamException, UnknownCRSException {
-		FeatureCollection xplanFeatures = parseFeatureCollection(plan, version);
-		return new XPlanFeatureCollectionBuilder(xplanFeatures, type).build();
+	/**
+	 * Parses a FeatureCollection from the passed stream
+	 * @param plan as XMLStreamReader, never <code>null</code>
+	 * @param version of the plan, should not be <code>null</code>
+	 * @return never <code>null</code>
+	 * @throws XMLStreamException if the plan could not be read
+	 * @throws UnknownCRSException if the CRS of a geometry in the plan is not known
+	 */
+	public FeatureCollection parseFeatureCollection(XMLStreamReader plan, XPlanVersion version)
+			throws XMLStreamException, UnknownCRSException {
+		GMLStreamReader gmlStreamReader = null;
+		try {
+			XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(plan, null);
+			gmlStreamReader = createGmlStreamReader(xmlStream, version);
+			FeatureCollection features = parseFeatures(xmlStream, gmlStreamReader);
+			gmlStreamReader.getIdContext().resolveLocalRefs();
+			return features;
+		}
+		finally {
+			close(gmlStreamReader);
+		}
 	}
 
-	private XPlanFeatureCollection parseXPlanFeatureCollection(XPlanVersion version, XPlanType type, ICRS defaultCrs,
-			XMLStreamReaderWrapper xmlStream, boolean fixOrientation) throws XMLStreamException, UnknownCRSException {
-		GMLStreamReader gmlStream = createGmlStreamReader(version, defaultCrs, xmlStream, fixOrientation);
-		FeatureCollection features = parseFeatures(version, xmlStream, gmlStream);
+	private XPlanFeatureCollection parseXPlanFeatureCollection(XMLStreamReader xmlStream, XPlanVersion version,
+			XPlanType type) throws XMLStreamException, UnknownCRSException {
+		FeatureCollection features = parseFeatureCollection(xmlStream, version);
 		return new XPlanFeatureCollectionBuilder(features, type).build();
 	}
 
-	private static FeatureCollection parseFeatures(XPlanVersion version, XMLStreamReaderWrapper xmlStream,
-			GMLStreamReader gmlStream) throws XMLStreamException, UnknownCRSException {
+	private FeatureCollection parseFeatures(XMLStreamReader xmlStream, GMLStreamReader gmlStream)
+			throws XMLStreamException, UnknownCRSException {
 		if (new QName(WFS_200_NS, "FeatureCollection").equals(xmlStream.getName())) {
 			LOG.debug("Features embedded in wfs20:FeatureCollection");
-			FeatureInputStream featuresStream = new WfsFeatureInputStream(xmlStream, gmlStream, version);
+			FeatureInputStream featuresStream = new WfsFeatureInputStream(xmlStream, gmlStream);
 			return featuresStream.toCollection();
 		}
 		return gmlStream.readFeatureCollection();
 	}
 
-	private GMLStreamReader createGmlStreamReader(XPlanVersion version, ICRS defaultCrs,
-			XMLStreamReaderWrapper xmlStream, boolean fixOrientation) throws XMLStreamException {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
+	private GMLStreamReader createGmlStreamReader(XMLStreamReader xmlStream, XPlanVersion version)
+			throws XMLStreamException {
 		GMLVersion gmlVersion = version.getGmlVersion();
 		GeometryFactory geomFac = new GeometryFactory();
 		if (fixOrientation) {
@@ -229,14 +189,14 @@ public class XPlanGmlParser {
 		GMLStreamReader gmlStream = createGMLStreamReader(gmlVersion, xmlStream);
 		gmlStream.setDefaultCRS(defaultCrs);
 		gmlStream.setGeometryFactory(geomFac);
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		gmlStream.setApplicationSchema(schema);
 		return gmlStream;
-
 	}
 
-	private GMLStreamReader createGmlStreamReader(XPlanVersion version, ICRS defaultCrs,
-			XMLStreamReaderWrapper xmlStream) throws XMLStreamException {
-		return createGmlStreamReader(version, defaultCrs, xmlStream, false);
+	private static void close(GMLStreamReader gmlStreamReader) throws XMLStreamException {
+		if (gmlStreamReader != null)
+			gmlStreamReader.close();
 	}
 
 }

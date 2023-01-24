@@ -61,8 +61,6 @@ public class TransformationSynchronizer implements Synchronizer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TransformationSynchronizer.class);
 
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-
 	private final XPlanDao xPlanDao;
 
 	private final TransformingValidator transformingValidator;
@@ -176,7 +174,7 @@ public class TransformationSynchronizer implements Synchronizer {
 		byte[] resultAsBytes = transformationResult.getTransformationResult();
 		XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
 		try (InputStream inputStream = new ByteArrayInputStream(resultAsBytes)) {
-			return xPlanGmlParser.parseXPlanFeatureCollection(inputStream, resultVersion, type);
+			return XPlanGmlParser.newParser().parseXPlanFeatureCollection(inputStream, resultVersion, type);
 		}
 	}
 
