@@ -1206,6 +1206,39 @@ Delete plan identified by the given plan ID</con:description>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/octet-stream</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>406</con:status>
+          <con:params/>
+        </con:representation>
         <con:request name="Request 1" id="8c83a30b-1df8-4785-9061-49bab1b2dd62" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -8422,6 +8455,50 @@ assert actualHeader != null</scriptText>
               <con:contentType>image/png</con:contentType>
               <con:contentId>rasterdatei</con:contentId>
               <con:url>${projectDir}/xplan-api-manager/attachments/putImg.png</con:url>
+              <con:id>3337e3a8-9bdd-4eea-b518-0fbed2402a50</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>putDokRaster.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>rasterbasismodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRaster.json</con:url>
+              <con:id>003d976e-910c-4f2f-8dc4-dba5d26e725c</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
+              <con:entry key="id" value="-HafenCity13png"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="06ad277f-e481-40e8-8997-613e2f6934f2">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="replaceRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="PUT BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="c7099c59-8423-45ed-885c-e2a6bbb8fe4f" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="9c7d9868-acad-4332-bba4-e2c44f1e4a78" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>406</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>putImg.png</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>rasterdatei</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/Blankenese29_Test_60_InvalidContent.zip</con:url>
               <con:id>3337e3a8-9bdd-4eea-b518-0fbed2402a50</con:id>
             </con:attachment>
             <con:attachment>
