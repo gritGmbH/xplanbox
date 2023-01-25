@@ -110,7 +110,7 @@ find xplan-workspaces/xplan-wfs-workspace/datasources/feature -iname *.xml -exec
 find xplan-workspaces/xplansyn-wms-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
 find xplan-workspaces/xplansyn-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
 echo "[$(date -Iseconds)] Configure XPlanWMS CRS"
-find xplan-workspaces/xplansyn-wms-workspace/themes -iname *.xml -exec sed -i 's/<s:CRS>EPSG:25832 EPSG:325833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839<\/s:CRS>/<s:CRS>'"$XPLAN_SERVICES_DEFAULT_CRS $( echo ${XPLAN_SERVICES_QUERY_CRS_ARR[@]} )"'<\/s:CRS>/g' {} \;
+find xplan-workspaces/xplansyn-wms-workspace/themes -iname *.xml -exec sed -i 's/<s:CRS>EPSG:25832 EPSG:25833 EPSG:31466 EPSG:31467 EPSG:31468 EPSG:31469 EPSG:4258 EPSG:4326 CRS:84 EPSG:4839<\/s:CRS>/<s:CRS>'"$XPLAN_SERVICES_DEFAULT_CRS $( echo ${XPLAN_SERVICES_QUERY_CRS_ARR[@]} )"'<\/s:CRS>/g' {} \;
 echo "[$(date -Iseconds)] Configure XPlanWFS QueryCRS"
 find xplan-workspaces/xplan-wfs-workspace/services -iname wfs*.xml -not -iname *_metadata.xml -exec sed -i '/<QueryCRS>EPSG:.*<\/QueryCRS>/d' {} \;
 for crs in "${XPLAN_SERVICES_QUERY_CRS_ARR[@]}"
