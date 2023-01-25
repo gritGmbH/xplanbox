@@ -51,11 +51,11 @@ public class OrientationFixerTest {
 	@Test
 	public void testOrientationFixer_validLaufrichtung() throws Exception {
 		XPlanArchive testArchive = getArchive("geometryOrientationValid.gml");
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParser.newParser()
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointOriginal = getSecondPoint(xPlanFeatureCollection);
-		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = XPlanGmlParser.newParser()
-				.withFixOrientation(true).parseXPlanFeatureCollection(testArchive);
+		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = XPlanGmlParserBuilder.newBuilder()
+				.withFixOrientation(true).build().parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
 		assertThat(startPointRepaired.getX(), is(startPointOriginal.getX()));
 		assertThat(startPointRepaired.getY(), is(startPointOriginal.getY()));
@@ -64,11 +64,11 @@ public class OrientationFixerTest {
 	@Test
 	public void testOrientationFixer_invalidLaufrichtung() throws Exception {
 		XPlanArchive testArchive = getArchive("geometryOrientationInvalid.gml");
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParser.newParser()
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointOriginal = getSecondPoint(xPlanFeatureCollection);
-		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = XPlanGmlParser.newParser()
-				.withFixOrientation(true).parseXPlanFeatureCollection(testArchive);
+		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = XPlanGmlParserBuilder.newBuilder()
+				.withFixOrientation(true).build().parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
 		assertThat(startPointRepaired.getX(), not(startPointOriginal.getX()));
 		assertThat(startPointRepaired.getY(), not(startPointOriginal.getY()));

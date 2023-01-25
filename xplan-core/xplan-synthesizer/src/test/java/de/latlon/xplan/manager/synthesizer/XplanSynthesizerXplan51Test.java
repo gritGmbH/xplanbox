@@ -22,7 +22,7 @@ package de.latlon.xplan.manager.synthesizer;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.deegree.feature.FeatureCollection;
@@ -44,7 +44,7 @@ public class XplanSynthesizerXplan51Test extends AbstractXplanSynthesizerTest {
 	@Test
 	public void testCreateSynFeatures(String archiveName) throws Exception {
 		XPlanArchive archive = getTestArchive(archiveName);
-		XPlanFeatureCollection originalFeatureCollection = XPlanGmlParser.newParser()
+		XPlanFeatureCollection originalFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollection(archive);
 		FeatureCollection synFeatureCollection = createSynFeatures(archive.getVersion(), originalFeatureCollection);
 

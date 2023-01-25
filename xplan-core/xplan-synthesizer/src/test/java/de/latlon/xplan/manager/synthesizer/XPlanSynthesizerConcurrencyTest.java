@@ -24,7 +24,7 @@ import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
 import com.anarsoft.vmlens.concurrent.junit.ThreadCount;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.feature.Feature;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +46,8 @@ public class XPlanSynthesizerConcurrencyTest extends AbstractXplanSynthesizerTes
 	}
 
 	private XPlanFeatureCollection parseFeatureCollection(XPlanArchive archive) throws Exception {
-		XPlanFeatureCollection xplanFc = XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection xplanFc = XPlanGmlParserBuilder.newBuilder().build()
+				.parseXPlanFeatureCollection(archive);
 		int id = 1;
 		for (Feature feature : xplanFc.getFeatures()) {
 			feature.setId("FEATURE_" + id++);

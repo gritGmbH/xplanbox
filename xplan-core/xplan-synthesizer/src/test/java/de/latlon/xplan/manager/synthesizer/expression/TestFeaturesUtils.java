@@ -25,7 +25,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
@@ -47,7 +47,7 @@ public class TestFeaturesUtils {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(resourceName,
 				ResourceAccessor.readResourceStream(resourceName));
-		return XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
+		return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 	}
 
 	public static Feature getTestFeature(FeatureCollection fc, String gmlId) {
@@ -79,7 +79,7 @@ public class TestFeaturesUtils {
 		InputStream is = null;
 		try {
 			is = TestFeaturesUtils.class.getResourceAsStream(resource);
-			return XPlanGmlParser.newParser().parseFeatureCollection(is, version);
+			return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(is, version);
 		}
 		finally {
 			closeQuietly(is);

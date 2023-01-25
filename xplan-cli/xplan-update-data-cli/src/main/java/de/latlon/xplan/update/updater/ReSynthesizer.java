@@ -27,7 +27,7 @@ import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -115,8 +115,8 @@ public class ReSynthesizer {
 		boolean useOriginalXPlan = !featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
 		if (useOriginalXPlan) {
 			try (InputStream originalPlan = xPlanDao.retrieveXPlanArtefact(planId)) {
-				xPlanFeatureCollection = XPlanGmlParser.newParser().parseXPlanFeatureCollection(originalPlan, version,
-						planType);
+				xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
+						.parseXPlanFeatureCollection(originalPlan, version, planType);
 				reassignFids(xPlanFeatureCollection);
 			}
 		}

@@ -23,7 +23,7 @@ package de.latlon.xplan.commons.reference;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 import org.deegree.feature.FeatureCollection;
@@ -53,7 +53,7 @@ public class ParameterizedExternalReferenceScannerTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		return XPlanGmlParser.newParser().parseFeatureCollection(archive);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(archive);
 	}
 
 }

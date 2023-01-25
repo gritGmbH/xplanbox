@@ -27,7 +27,7 @@ import de.latlon.xplan.commons.cli.Operation;
 import de.latlon.xplan.commons.cli.SynchronizationException;
 import de.latlon.xplan.commons.cli.Synchronizer;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -174,7 +174,8 @@ public class TransformationSynchronizer implements Synchronizer {
 		byte[] resultAsBytes = transformationResult.getTransformationResult();
 		XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
 		try (InputStream inputStream = new ByteArrayInputStream(resultAsBytes)) {
-			return XPlanGmlParser.newParser().parseXPlanFeatureCollection(inputStream, resultVersion, type);
+			return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(inputStream, resultVersion,
+					type);
 		}
 	}
 

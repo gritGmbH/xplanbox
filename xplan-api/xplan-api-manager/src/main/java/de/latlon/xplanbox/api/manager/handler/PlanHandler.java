@@ -23,7 +23,7 @@ package de.latlon.xplanbox.api.manager.handler;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
@@ -185,7 +185,8 @@ public class PlanHandler {
 
 	private PlanStatus determinePlanStatusByRechtsstand(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException {
-		XPlanFeatureCollection fc = XPlanGmlParser.newParser().parseXPlanFeatureCollection(xPlanArchive);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder().build()
+				.parseXPlanFeatureCollection(xPlanArchive);
 		String legislationStatus = retrieveRechtsstand(fc.getFeatures(), fc.getType());
 		if (legislationStatus != null && !legislationStatus.isEmpty()) {
 			try {

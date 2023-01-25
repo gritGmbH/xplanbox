@@ -26,7 +26,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
 import org.deegree.cs.exceptions.UnknownCRSException;
@@ -73,7 +73,8 @@ public abstract class AbstractXplanSynthesizerTest {
 	protected FeatureCollection createSynFeatures(String archiveName)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = getTestArchive(archiveName);
-		XPlanFeatureCollection xplanFc = XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection xplanFc = XPlanGmlParserBuilder.newBuilder().build()
+				.parseXPlanFeatureCollection(archive);
 		int id = 1;
 		for (Feature feature : xplanFc.getFeatures()) {
 			feature.setId("FEATURE_" + id++);

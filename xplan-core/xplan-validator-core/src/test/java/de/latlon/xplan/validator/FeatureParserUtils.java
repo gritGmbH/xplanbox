@@ -23,7 +23,7 @@ package de.latlon.xplan.validator;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.feature.FeatureInspector;
@@ -51,7 +51,8 @@ public class FeatureParserUtils {
 	 */
 	public static FeatureCollection readFeatures(XPlanArchive archive, FeatureInspector... inspectors)
 			throws XMLStreamException, UnknownCRSException {
-		return XPlanGmlParser.newParser().withFeatureInspector(inspectors).parseFeatureCollection(archive);
+		return XPlanGmlParserBuilder.newBuilder().withFeatureInspector(inspectors).build()
+				.parseFeatureCollection(archive);
 	}
 
 	/**

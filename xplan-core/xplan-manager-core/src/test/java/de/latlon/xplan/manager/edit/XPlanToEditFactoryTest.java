@@ -25,7 +25,7 @@ import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
@@ -473,7 +473,7 @@ public class XPlanToEditFactoryTest {
 
 	private FeatureCollection readXPlanGml(XPlanVersion xplanVersion, String plan) throws Exception {
 		InputStream xplanGml = this.getClass().getResourceAsStream(plan);
-		return XPlanGmlParser.newParser().parseFeatureCollection(xplanGml, xplanVersion);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(xplanGml, xplanVersion);
 	}
 
 	private FeatureCollection readXPlanArchive(XPlanVersion xplanVersion, String resource)
@@ -482,7 +482,7 @@ public class XPlanToEditFactoryTest {
 		InputStream inputStream = ResourceAccessor.readResourceStream(resource);
 		XPlanArchive xPlanArchiveFromZip = archiveCreator.createXPlanArchiveFromZip(resource, inputStream);
 		InputStream mainFileInputStream = xPlanArchiveFromZip.getMainFileInputStream();
-		return XPlanGmlParser.newParser().parseFeatureCollection(mainFileInputStream, xplanVersion);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(mainFileInputStream, xplanVersion);
 	}
 
 	private Date asDate(String string) throws ParseException {

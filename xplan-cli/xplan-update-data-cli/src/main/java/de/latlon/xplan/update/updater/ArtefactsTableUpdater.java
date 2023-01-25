@@ -21,7 +21,7 @@
 package de.latlon.xplan.update.updater;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
@@ -85,7 +85,7 @@ public class ArtefactsTableUpdater {
 	private FeatureCollection retrieveFeatureCollection(XPlan plan) throws Exception {
 		XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 		InputStream originalPlan = xplanDao.retrieveXPlanArtefact(plan.getId());
-		return XPlanGmlParser.newParser().parseFeatureCollection(originalPlan, version);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(originalPlan, version);
 	}
 
 	private List<String> scanRasterReferenceFileNames(FeatureCollection featureCollection) {

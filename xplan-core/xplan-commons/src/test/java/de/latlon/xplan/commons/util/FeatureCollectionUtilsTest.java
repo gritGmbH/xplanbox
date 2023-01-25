@@ -23,7 +23,7 @@ package de.latlon.xplan.commons.util;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
@@ -133,7 +133,7 @@ public class FeatureCollectionUtilsTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		return XPlanGmlParser.newParser().parseFeatureCollection(archive);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(archive);
 	}
 
 }

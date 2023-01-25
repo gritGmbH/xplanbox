@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.Change;
@@ -1179,13 +1180,13 @@ public class XPlanManipulatorTest {
 	private FeatureCollection readXPlanGml(XPlanVersion xplanVersion, String plan) throws Exception {
 		InputStream xplanGml = this.getClass().getResourceAsStream(plan);
 		XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(xplanGml);
-		return XPlanGmlParser.newParser().parseFeatureCollection(reader, xplanVersion);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(reader, xplanVersion);
 	}
 
 	private FeatureCollection readXPlanGmlFromZip(InputStream resourceAsStream) throws Exception {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip("test", resourceAsStream);
-		return XPlanGmlParser.newParser().parseFeatureCollection(xPlanArchive);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(xPlanArchive);
 	}
 
 	private Text retrieveText(XPlanToEdit xplanToEdit, String featureId) {

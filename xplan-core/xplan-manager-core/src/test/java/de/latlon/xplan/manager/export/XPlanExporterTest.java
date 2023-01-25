@@ -25,7 +25,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
@@ -148,7 +148,8 @@ public class XPlanExporterTest {
 		ICRS defaultCrs = CRSManager.lookup("EPSG:31467");
 		if (archive.getCrs() != null)
 			defaultCrs = archive.getCrs();
-		return XPlanGmlParser.newParser().withDefaultCrs(defaultCrs).parseXPlanFeatureCollection(archive);
+		return XPlanGmlParserBuilder.newBuilder().withDefaultCrs(defaultCrs).build()
+				.parseXPlanFeatureCollection(archive);
 	}
 
 	private ByteArrayInputStream createZippedContent(String name) throws IOException {

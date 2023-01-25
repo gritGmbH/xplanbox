@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.geometric;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
@@ -146,8 +147,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		List<FeatureInspector> allFeatureInspectors = featureInspectors.stream().collect(Collectors.toList());
 		allFeatureInspectors.add(aenderungenInspector);
 
-		return XPlanGmlParser.newParser().withSkipBrokenGeometries(true).withDefaultCrs(crs)
-				.withFeatureInspectors(allFeatureInspectors).withGeometryInspectors(geometryInspector);
+		return XPlanGmlParserBuilder.newBuilder().withSkipBrokenGeometries(true).withDefaultCrs(crs)
+				.withFeatureInspectors(allFeatureInspectors).withGeometryInspectors(geometryInspector).build();
 	}
 
 	private void checkAndAddRules(GeometricFeatureInspector fi, ValidatorResult result) {

@@ -43,8 +43,6 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
@@ -58,61 +56,27 @@ public class XPlanGmlParser {
 
 	private static final Logger LOG = getLogger(XPlanGmlParser.class);
 
-	private ICRS defaultCrs;
+	private final ICRS defaultCrs;
 
-	private boolean fixOrientation = false;
+	private final boolean fixOrientation;
 
-	private boolean skipBrokenGeometries;
+	private final boolean skipBrokenGeometries;
 
-	private List<FeatureInspector> featureInspectors = new ArrayList<>();
+	private final List<FeatureInspector> featureInspectors;
 
-	private List<GeometryInspector> geometryInspectors = new ArrayList<>();
+	private final List<GeometryInspector> geometryInspectors;
 
-	private List<String> skippedBrokenGeoemtryErrors;
+	private List<String> skippedBrokenGeometryErrors;
 
 	private GmlDocumentIdContext idContext;
 
-	private XPlanGmlParser() {
-	}
-
-	public static XPlanGmlParser newParser() {
-		return new XPlanGmlParser();
-	}
-
-	public XPlanGmlParser withDefaultCrs(ICRS defaultCrs) {
+	XPlanGmlParser(ICRS defaultCrs, boolean fixOrientation, boolean skipBrokenGeometries,
+			List<FeatureInspector> featureInspectors, List<GeometryInspector> geometryInspectors) {
 		this.defaultCrs = defaultCrs;
-		return this;
-	}
-
-	public XPlanGmlParser withSkipBrokenGeometries(boolean skipBrokenGeometries) {
-		this.skipBrokenGeometries = skipBrokenGeometries;
-		return this;
-	}
-
-	public XPlanGmlParser withFixOrientation(boolean fixOrientation) {
 		this.fixOrientation = fixOrientation;
-		return this;
-	}
-
-	public XPlanGmlParser withFeatureInspector(FeatureInspector... featureInspectors) {
-		if (featureInspectors.length > 0) {
-			this.featureInspectors = Arrays.asList(featureInspectors);
-		}
-		return this;
-	}
-
-	public XPlanGmlParser withFeatureInspectors(List<FeatureInspector> featureInspectors) {
-		if (!featureInspectors.isEmpty()) {
-			this.featureInspectors = featureInspectors;
-		}
-		return this;
-	}
-
-	public XPlanGmlParser withGeometryInspectors(GeometryInspector... geometryInspectors) {
-		if (geometryInspectors.length > 0) {
-			this.geometryInspectors = Arrays.asList(geometryInspectors);
-		}
-		return this;
+		this.skipBrokenGeometries = skipBrokenGeometries;
+		this.featureInspectors = featureInspectors;
+		this.geometryInspectors = geometryInspectors;
 	}
 
 	public GmlDocumentIdContext getIdContext() {
@@ -120,7 +84,7 @@ public class XPlanGmlParser {
 	}
 
 	public List<String> getSkippedBrokenGeometryErrors() {
-		return skippedBrokenGeoemtryErrors;
+		return skippedBrokenGeometryErrors;
 	}
 
 	/**
@@ -265,7 +229,7 @@ public class XPlanGmlParser {
 	}
 
 	private void populateResults(GMLStreamReader gmlStreamReader) {
-		this.skippedBrokenGeoemtryErrors = gmlStreamReader.getSkippedBrokenGeometryErrors();
+		this.skippedBrokenGeometryErrors = gmlStreamReader.getSkippedBrokenGeometryErrors();
 		this.idContext = gmlStreamReader.getIdContext();
 	}
 

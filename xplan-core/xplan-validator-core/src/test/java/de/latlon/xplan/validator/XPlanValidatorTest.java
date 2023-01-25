@@ -23,6 +23,7 @@ package de.latlon.xplan.validator;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.geometric.GeometricValidatorImpl;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
@@ -355,7 +356,7 @@ public class XPlanValidatorTest {
 	}
 
 	private XPlanGmlParser mockXPlanGmlParser() {
-		return spy(XPlanGmlParser.newParser());
+		return spy(XPlanGmlParserBuilder.newBuilder().build());
 	}
 
 	private List emptyList() {

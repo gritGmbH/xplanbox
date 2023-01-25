@@ -44,7 +44,7 @@ public class XPlanGmlParserTest {
 	@Test
 	public void testParseFeatureCollection() throws Exception {
 		XPlanArchive testArchive = getTestArchive("xplan41/Eidelstedt_4_V4.zip");
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParser.newParser()
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollection(testArchive);
 		assertThat(xPlanFeatureCollection.getFeatures().size(), is(56));
 	}
@@ -52,7 +52,7 @@ public class XPlanGmlParserTest {
 	@Test
 	public void testParseWfsFeatureCollection() throws Exception {
 		XPlanArchive testArchive = getArchive("wfs20FeatureCollection.gml");
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParser.newParser()
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollection(testArchive);
 		assertThat(xPlanFeatureCollection.getFeatures().size(), is(3));
 		assertThat(XPlanVersionUtils.determineBaseVersion(xPlanFeatureCollection.getFeatures().getName()),
@@ -62,7 +62,7 @@ public class XPlanGmlParserTest {
 	@Test
 	public void testParseWfsFeatureCollectionWithAdditionalObjects() throws Exception {
 		XPlanArchive testArchive = getArchive("wfs20FeatureCollection-additionalObjects.gml");
-		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParser.newParser()
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollection(testArchive);
 		assertThat(xPlanFeatureCollection.getFeatures().size(), is(3));
 		assertThat(XPlanVersionUtils.determineBaseVersion(xPlanFeatureCollection.getFeatures().getName()),
@@ -72,7 +72,7 @@ public class XPlanGmlParserTest {
 	@Test
 	public void testParseFeatureCollectionMultipleInstance() throws Exception {
 		XPlanArchive testArchive = getArchive("xplan-multipleInstances.gml");
-		XPlanFeatureCollections xPlanFeatureCollections = XPlanGmlParser.newParser()
+		XPlanFeatureCollections xPlanFeatureCollections = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollectionAllowMultipleInstances(testArchive);
 		assertThat(xPlanFeatureCollections.getxPlanGmlInstances().size(), is(3));
 		assertThat(xPlanFeatureCollections, containsInstanceWithNoOFFeatures(5));
@@ -83,7 +83,7 @@ public class XPlanGmlParserTest {
 	@Test(expected = FeatureCollectionParseException.class)
 	public void testParseFeatureCollectionMultipleInstanceWithUnreferencedFeature() throws Exception {
 		XPlanArchive testArchive = getArchive("xplan-multipleInstances-withUnreferenced.gml");
-		XPlanGmlParser.newParser().parseXPlanFeatureCollectionAllowMultipleInstances(testArchive);
+		XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollectionAllowMultipleInstances(testArchive);
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {

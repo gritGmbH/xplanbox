@@ -24,7 +24,7 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.geometric.GeometricValidator;
 import de.latlon.xplan.validator.web.shared.MapPreviewMetadata;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
@@ -77,7 +77,8 @@ public class MapPreviewManager {
 	public MapPreviewMetadata createConfigurations(File xPlan) throws MapPreviewCreationException {
 		try {
 			XPlanArchive archive = archiveCreator.createXPlanArchive(xPlan);
-			XPlanFeatureCollection featureCollection = XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
+			XPlanFeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder().build()
+					.parseXPlanFeatureCollection(archive);
 			int managerId = this.validatorWmsManager.insert(featureCollection);
 			String configFileName = this.configWriter.createMasterportalConfig(managerId, archive.getType());
 

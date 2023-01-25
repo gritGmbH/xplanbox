@@ -108,7 +108,7 @@ public class SortPropertyReaderTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		return XPlanGmlParser.newParser().parseFeatureCollection(archive);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(archive);
 	}
 
 	private Date asDate(String string) throws ParseException {

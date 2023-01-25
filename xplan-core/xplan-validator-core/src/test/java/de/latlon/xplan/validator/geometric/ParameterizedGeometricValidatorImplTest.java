@@ -26,7 +26,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorResult;
@@ -73,7 +73,7 @@ public class ParameterizedGeometricValidatorImplTest {
 	public void testRetrieveGeometricallyValidXPlanFeatures(String testResource, String expectedPlanName,
 			String expectedPlanGz, String expectedPlanNumber, int expectedNumberOfFeatures) throws Exception {
 		XPlanArchive archive = getTestArchive(testResource);
-		XPlanFeatureCollection fc = XPlanGmlParser.newParser().parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 		if (!NULL.equals(expectedPlanName))
 			assertThat(fc.getPlanName(), is(expectedPlanName));
 		if (NULL.equals(expectedPlanGz))
