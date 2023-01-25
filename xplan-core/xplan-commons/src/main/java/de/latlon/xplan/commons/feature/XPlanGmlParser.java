@@ -31,8 +31,11 @@ import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.stream.FeatureInputStream;
 import org.deegree.feature.types.AppSchema;
 import org.deegree.geometry.GeometryFactory;
+import org.deegree.geometry.GeometryInspector;
 import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.GMLVersion;
+import org.deegree.gml.feature.FeatureInspector;
+import org.deegree.gml.reference.GmlDocumentIdContext;
 import org.slf4j.Logger;
 
 import javax.xml.namespace.QName;
@@ -40,6 +43,9 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.deegree.protocol.wfs.WFSConstants.WFS_200_NS;
@@ -56,6 +62,16 @@ public class XPlanGmlParser {
 
 	private boolean fixOrientation = false;
 
+	private boolean skipBrokenGeometries;
+
+	private List<FeatureInspector> featureInspectors = new ArrayList<>();
+
+	private List<GeometryInspector> geometryInspectors = new ArrayList<>();
+
+	private List<String> skippedBrokenGeoemtryErrors;
+
+	private GmlDocumentIdContext idContext;
+
 	private XPlanGmlParser() {
 	}
 
@@ -68,9 +84,43 @@ public class XPlanGmlParser {
 		return this;
 	}
 
+	public XPlanGmlParser withSkipBrokenGeometries(boolean skipBrokenGeometries) {
+		this.skipBrokenGeometries = skipBrokenGeometries;
+		return this;
+	}
+
 	public XPlanGmlParser withFixOrientation(boolean fixOrientation) {
 		this.fixOrientation = fixOrientation;
 		return this;
+	}
+
+	public XPlanGmlParser withFeatureInspector(FeatureInspector... featureInspectors) {
+		if (featureInspectors.length > 0) {
+			this.featureInspectors = Arrays.asList(featureInspectors);
+		}
+		return this;
+	}
+
+	public XPlanGmlParser withFeatureInspectors(List<FeatureInspector> featureInspectors) {
+		if (!featureInspectors.isEmpty()) {
+			this.featureInspectors = featureInspectors;
+		}
+		return this;
+	}
+
+	public XPlanGmlParser withGeometryInspectors(GeometryInspector... geometryInspectors) {
+		if (geometryInspectors.length > 0) {
+			this.geometryInspectors = Arrays.asList(geometryInspectors);
+		}
+		return this;
+	}
+
+	public GmlDocumentIdContext getIdContext() {
+		return idContext;
+	}
+
+	public List<String> getSkippedBrokenGeometryErrors() {
+		return skippedBrokenGeoemtryErrors;
 	}
 
 	/**
@@ -171,6 +221,7 @@ public class XPlanGmlParser {
 			XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(plan, null);
 			gmlStreamReader = createGmlStreamReader(xmlStream, version);
 			FeatureCollection features = parseFeatures(xmlStream, gmlStreamReader);
+			populateResults(gmlStreamReader);
 			gmlStreamReader.getIdContext().resolveLocalRefs();
 			return features;
 		}
@@ -202,12 +253,20 @@ public class XPlanGmlParser {
 		if (fixOrientation) {
 			geomFac.addInspector(new OrientationFixer());
 		}
+		geometryInspectors.forEach(inspector -> geomFac.addInspector(inspector));
 		GMLStreamReader gmlStream = createGMLStreamReader(gmlVersion, xmlStream);
 		gmlStream.setDefaultCRS(defaultCrs);
 		gmlStream.setGeometryFactory(geomFac);
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
 		gmlStream.setApplicationSchema(schema);
+		gmlStream.setSkipBrokenGeometries(skipBrokenGeometries);
+		featureInspectors.forEach(inspector -> gmlStream.addInspector(inspector));
 		return gmlStream;
+	}
+
+	private void populateResults(GMLStreamReader gmlStreamReader) {
+		this.skippedBrokenGeoemtryErrors = gmlStreamReader.getSkippedBrokenGeometryErrors();
+		this.idContext = gmlStreamReader.getIdContext();
 	}
 
 	private static void close(GMLStreamReader gmlStreamReader) throws XMLStreamException {
