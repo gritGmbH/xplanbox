@@ -2233,7 +2233,7 @@ Validate XPlanGML or XPlanArchive</con:description>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="POST XX X.X XX validateFileExternalEntityExpectError" id="0c665025-9cf6-4f59-b5c1-afade57e42bb">
+      <con:testStep type="restrequest" name="POST XX X.X XX validateFileUnsupportedContentTypeExpectError" id="0c665025-9cf6-4f59-b5c1-afade57e42bb">
         <con:settings/>
         <con:config service="XPlanValidatorAPI" resourcePath="/validate" methodName="validate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:restRequest name="POST XX X.X XX validateFileExternalEntityExpectError" id="1e838fd1-d5da-4a94-9638-1e66e478df75" mediaType="application/octet-stream" postQueryString="false">
