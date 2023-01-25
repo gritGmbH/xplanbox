@@ -9,7 +9,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Unterstützung von Profilen mit zusätzlichen Validierungsregeln für den XPlanValidator
 - Neuer Dienst XPlanArtWMS eingeführt, für jede spezifische Planklasse ein eigener WMS
 - Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden
-- Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstige Pläne geändert werden
+- Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
 - Versionierung des Datenbankschemas mit Liquibase
 - Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
 - Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML-Version 6.0.1
