@@ -176,10 +176,7 @@ public class XPlanGmlParser {
 		try {
 			XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(plan, null);
 			gmlStreamReader = createGmlStreamReader(xmlStream, version);
-			FeatureCollection features = parseFeatures(xmlStream, gmlStreamReader);
-			populateResults(gmlStreamReader);
-			gmlStreamReader.getIdContext().resolveLocalRefs();
-			return features;
+			return parseAndResolveContext(xmlStream, gmlStreamReader);
 		}
 		finally {
 			close(gmlStreamReader);
@@ -192,7 +189,15 @@ public class XPlanGmlParser {
 		return new XPlanFeatureCollectionBuilder(features, type).build();
 	}
 
-	FeatureCollection parseFeatures(XMLStreamReader xmlStream, GMLStreamReader gmlStream)
+	FeatureCollection parseAndResolveContext(XMLStreamReader xmlStream, GMLStreamReader gmlStreamReader)
+			throws XMLStreamException, UnknownCRSException {
+		FeatureCollection features = parseFeatures(xmlStream, gmlStreamReader);
+		populateResults(gmlStreamReader);
+		gmlStreamReader.getIdContext().resolveLocalRefs();
+		return features;
+	}
+
+	private FeatureCollection parseFeatures(XMLStreamReader xmlStream, GMLStreamReader gmlStream)
 			throws XMLStreamException, UnknownCRSException {
 		if (new QName(WFS_200_NS, "FeatureCollection").equals(xmlStream.getName())) {
 			LOG.debug("Features embedded in wfs20:FeatureCollection");

@@ -96,7 +96,7 @@ public class MultipleInstanceParser {
 			idContext.setApplicationSchema(gmlStream.getAppSchema());
 			gmlStream.setIdContext(idContext);
 
-			FeatureCollection features = xPlanGmlParser.parseFeatures(xmlStream, gmlStream);
+			FeatureCollection features = xPlanGmlParser.parseAndResolveContext(xmlStream, gmlStream);
 			if (rootIds.size() == 1) {
 				return new XPlanFeatureCollectionBuilder(Collections.singletonList(features), type)
 						.buildAllowMultipleInstances();
@@ -108,7 +108,6 @@ public class MultipleInstanceParser {
 			addReferenced(featuresPerInstance);
 
 			List<FeatureCollection> featureCollections = asFeatureCollections(features, featuresPerInstance);
-
 			return new XPlanFeatureCollectionBuilder(featureCollections, type).buildAllowMultipleInstances();
 		}
 		finally {
