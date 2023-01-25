@@ -2,6 +2,23 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-6.1]]
+=== Version 6.1
+Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 6.1 der xPlanBox kann der XPlanWMS als MapServer-Instanz konfiguriert werden. Mit der Version 6.1 wurde die Ausgabe von Log-Meldungen in separate Log-Dateien je xPlanBox-Komponente aus der Logging-Konfiguration entfernt.
+
+==== Erweiterungen
+- Unterstützung für XPlanGML 6.0.2 in allen Komponenten der xPlanBox
+- Unterstützung für MapServer 8.0 zur Bereitstellung des XPlanWMS
+- Ablage von Rasterdaten über ein AWS S3-kompatibles API
+- Der XML-Prozessor ist so konfiguriert, dass nur lokale statische DTD verwendet werden können, jede externe und jede deklarierte DTD wird nicht mehr zugelassen
+- Verbesserung der Geltungsbereichsprüfung im XPlanValidator
+- Der Import von XPlanGML-Dateien über den XPlanManagerWeb/API wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich
+- Der XPlanValidator kann jetzt auch Daten für den XPlanValidatorWMS temporär in der XPlanDB speichern
+
+==== Fehlerbehebungen
+- Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
+- Fehler in XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
+
 [[Aenderungshistorie-6.0]]
 === Version 6.0
 
@@ -12,7 +29,7 @@ Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neb
 - Unterstützung von Profilen mit zusätzlichen Validierungsregeln für den XPlanValidator
 - Neuer Dienst XPlanArtWMS eingeführt, für jede spezifische Planklasse ein eigener WMS
 - Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden
-- Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
+- Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstige Pläne geändert werden
 - Versionierung des Datenbankschemas mit Liquibase
 - Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
 - Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML-Version 6.0.1
@@ -99,7 +116,7 @@ Mit der Version 5.0 der xPlanBox wird die Version XPlanGML 5.4 unterstützt. Neb
 - Hinzufügen des Kommandozeilenwerkzeugs XPlanValidateDB
 - Hinzufügen des Kommandozeilenwerkzeugs XPlanAuswerteschemaCLI
 - Alternativen Betriebsmodus aus XPlanManagerCLI und Handbuch entfernt
-- Entfernern der Erweiterung für ADE/NSM
+- Entfernen der Erweiterung für ADE/NSM
 - Log-Warnungen und Fehlermeldungen verbessert
 - Aufrechterhaltung der HTTP Verbindung bei langlaufenden Validierungsprozessen
 - Aktualisierung der Validierungsregeln auf v0.11.1
