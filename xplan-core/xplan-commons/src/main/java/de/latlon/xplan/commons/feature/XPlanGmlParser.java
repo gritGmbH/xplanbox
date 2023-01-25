@@ -96,20 +96,12 @@ public class XPlanGmlParser {
 	 */
 	public XPlanFeatureCollections parseXPlanFeatureCollectionAllowMultipleInstances(XPlanArchive xPlanArchive)
 			throws XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
-		GMLStreamReader gmlStreamReader = null;
-		try {
-			XPlanVersion version = xPlanArchive.getVersion();
-			XPlanType type = xPlanArchive.getType();
-			XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
-			gmlStreamReader = createGmlStreamReader(xmlStream, version);
-			XPlanFeatureCollections xPlanFeatureCollection = new MultipleInstanceParser().parse(gmlStreamReader,
-					version, type);
-			gmlStreamReader.getIdContext().resolveLocalRefs();
-			return xPlanFeatureCollection;
-		}
-		finally {
-			close(gmlStreamReader);
-		}
+		XPlanVersion version = xPlanArchive.getVersion();
+		XPlanType type = xPlanArchive.getType();
+		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(xPlanArchive.getMainFileXmlReader(), null);
+		XPlanFeatureCollections xPlanFeatureCollection = new MultipleInstanceParser().parse(this, xmlStream, version,
+				type);
+		return xPlanFeatureCollection;
 	}
 
 	/**
@@ -200,7 +192,7 @@ public class XPlanGmlParser {
 		return new XPlanFeatureCollectionBuilder(features, type).build();
 	}
 
-	private FeatureCollection parseFeatures(XMLStreamReader xmlStream, GMLStreamReader gmlStream)
+	FeatureCollection parseFeatures(XMLStreamReader xmlStream, GMLStreamReader gmlStream)
 			throws XMLStreamException, UnknownCRSException {
 		if (new QName(WFS_200_NS, "FeatureCollection").equals(xmlStream.getName())) {
 			LOG.debug("Features embedded in wfs20:FeatureCollection");
@@ -210,8 +202,7 @@ public class XPlanGmlParser {
 		return gmlStream.readFeatureCollection();
 	}
 
-	private GMLStreamReader createGmlStreamReader(XMLStreamReader xmlStream, XPlanVersion version)
-			throws XMLStreamException {
+	GMLStreamReader createGmlStreamReader(XMLStreamReader xmlStream, XPlanVersion version) throws XMLStreamException {
 		GMLVersion gmlVersion = version.getGmlVersion();
 		GeometryFactory geomFac = new GeometryFactory();
 		if (fixOrientation) {
