@@ -21,6 +21,7 @@
 package de.latlon.xplanbox.api.validator.v1;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
@@ -57,6 +58,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF;
@@ -142,7 +144,9 @@ public class ValidateApi {
 			@QueryParam("profiles") @Parameter(
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
-			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
+			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive,
+			UnsupportedContentTypeException {
+		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromGml(body, validationName);
 
@@ -164,7 +168,9 @@ public class ValidateApi {
 			@QueryParam("profiles") @Parameter(
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
-			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive {
+			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive,
+			UnsupportedContentTypeException {
+		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromZip(body, validationName);
 

@@ -72,6 +72,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
@@ -173,6 +174,7 @@ public class PlanApi {
 					schema = @Schema(allowableValues = { "IN_AUFSTELLUNG", "FESTGESTELLT", "ARCHIVIERT" },
 							example = "FESTGESTELLT")) String planStatus)
 			throws Exception {
+		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
 		XPlanArchive xPlanArchive;
 		try {
 			xPlanArchive = archiveCreator.createXPlanArchiveFromZip(body);
@@ -196,6 +198,7 @@ public class PlanApi {
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") Boolean skipLaufrichtung,
 			@QueryParam("profiles") List<String> profiles, @QueryParam("internalId") String internalId,
 			@QueryParam("planStatus") String planStatus) throws Exception {
+		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
 		XPlanArchive xPlanArchive;
 		try {
 			xPlanArchive = archiveCreator.createXPlanArchiveFromGml(body);

@@ -21,6 +21,7 @@
 package de.latlon.xplan.manager.web.server.service.rest;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
 import de.latlon.xplan.manager.web.server.service.ManagerPlanArchiveManager;
@@ -67,6 +68,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
 import static java.lang.Double.doubleToLongBits;
 import static java.lang.Long.toHexString;
 import static java.lang.Math.random;
@@ -296,7 +298,7 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public void uploadPlan( @RequestParam("planZipFile" ) MultipartFile file, HttpServletRequest request,
-                            HttpServletResponse response) {
+                            HttpServletResponse response) throws IOException, UnsupportedContentTypeException {
         // @formatter:on
 		LOG.info("Try to upload plan.");
 		try {
@@ -305,14 +307,16 @@ public class ManagerController {
 				String contentType = file.getContentType();
 				long size = file.getSize();
 				HttpSession session = request.getSession(true);
-				XPlan plan = createAndSavePlan(session, contentType, fileName);
+				XPlan plan = new XPlan(fileName, toHexString(doubleToLongBits(random())), contentType);
 				uploadZipFile(file, plan);
+				archiveManager.savePlanInSession(session, plan);
 				populateResponse(response, size, fileName);
 			}
 		}
 		catch (Exception e) {
 			String message = BUNDLE.getString("loadFailed") + ": " + e.getMessage();
 			LOG.info(message);
+			throw e;
 		}
 	}
 
@@ -512,6 +516,13 @@ public class ManagerController {
 		return e.getMessage();
 	}
 
+	@ExceptionHandler(UnsupportedContentTypeException.class)
+	@ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
+	@ResponseBody
+	public String handleUnsupportedContentTypeExceptions(UnsupportedContentTypeException e) {
+		return e.getMessage();
+	}
+
 	private void exportPlan(String id, ByteArrayOutputStream exportOutputStream) {
 		try {
 			manager.export(id, exportOutputStream);
@@ -523,7 +534,7 @@ public class ManagerController {
 	}
 
 	private void uploadArtefact(MultipartFile artefact, HttpServletRequest request, HttpServletResponse response)
-			throws IOException {
+			throws IOException, UnsupportedContentTypeException {
 		if (artefact != null && !artefact.isEmpty()) {
 			String fileName = artefact.getOriginalFilename();
 			LOG.info("Add artefact {}.", fileName);
@@ -589,13 +600,14 @@ public class ManagerController {
 		response.flushBuffer();
 	}
 
-	private void uploadZipFile(MultipartFile file, XPlan plan) throws IOException {
+	private void uploadZipFile(MultipartFile file, XPlan plan) throws IOException, UnsupportedContentTypeException {
 		File localFile = archiveManager.readArchiveFromFilesystem(plan);
 		localFile.getParentFile().mkdir();
 		localFile.createNewFile();
 		try (FileOutputStream localOutput = new FileOutputStream(localFile)) {
 			write(file.getBytes(), localOutput);
 		}
+		checkContentTypesOfXPlanArchiveOrGml(localFile.toPath());
 	}
 
 }

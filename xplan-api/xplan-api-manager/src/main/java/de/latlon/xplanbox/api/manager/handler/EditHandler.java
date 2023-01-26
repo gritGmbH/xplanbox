@@ -23,6 +23,7 @@ package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
+import de.latlon.xplan.commons.util.UnsupportedContentTypeException;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
@@ -39,6 +40,7 @@ import java.nio.file.Files;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanType.LP_Plan;
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypeOfFileOfXPlanArchive;
 import static org.slf4j.LoggerFactory.getLogger;
 
 /**
@@ -70,12 +72,14 @@ public abstract class EditHandler {
 	 * @return the file, <code>null</code> if content is <code>null</code>
 	 * @throws IOException
 	 */
-	public File storeAsFile(InputStream content, FormDataContentDisposition fileMetadata) throws IOException {
+	public File storeAsFile(InputStream content, FormDataContentDisposition fileMetadata)
+			throws IOException, UnsupportedContentTypeException {
 		if (content == null)
 			return null;
 		java.nio.file.Path tmpDir = Files.createTempDirectory("postDokument");
 		java.nio.file.Path targetFile = tmpDir.resolve(fileMetadata.getFileName());
 		Files.copy(content, targetFile);
+		checkContentTypeOfFileOfXPlanArchive(targetFile);
 		content.close();
 		return targetFile.toFile();
 	}

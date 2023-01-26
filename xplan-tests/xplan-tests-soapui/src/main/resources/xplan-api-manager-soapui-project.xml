@@ -180,7 +180,7 @@ Import the plan</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>application/json</con:mediaType>
-          <con:status>400</con:status>
+          <con:status>400 406</con:status>
           <con:params/>
           <con:element xmlns:plan="http://localhost/xplan-api-manager/xmanager/api/v1/plan">plan:Fault</con:element>
         </con:representation>
@@ -262,6 +262,10 @@ Import the plan</con:description>
         </con:representation>
         <con:representation type="REQUEST">
           <con:mediaType>text/xml</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/vnd.oasis.opendocument.text</con:mediaType>
           <con:params/>
         </con:representation>
         <con:request name="Request 1" id="0ab9bfa6-1c76-41df-b253-dabff57568f7" mediaType="application/json" postQueryString="false">
@@ -1206,6 +1210,39 @@ Delete plan identified by the given plan ID</con:description>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/octet-stream</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>406</con:status>
+          <con:params/>
+        </con:representation>
         <con:request name="Request 1" id="8c83a30b-1df8-4785-9061-49bab1b2dd62" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -1467,6 +1504,11 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="REQUEST">
           <con:mediaType>multipart/form-data</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>406</con:status>
           <con:params/>
         </con:representation>
         <con:request name="Request 1" id="28b499de-91dc-4be8-bc4d-b8f57ecad272" mediaType="application/json">
@@ -3180,6 +3222,56 @@ assert actualHeader != null</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 6.0 XX importPlanUnsupportedContentTypeExpectError" id="e2984b7f-a42e-4bc0-9057-ced0126c448d">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 6.0 XX importPlanUnsupportedContentTypeExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>406</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>BP_6.0.zip</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>Blankenese29_Test_60_InvalidContent.zip</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-manager/plans/Blankenese29_Test_60_InvalidContent.zip</con:url>
+              <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="skipLaufrichtung" value="" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="POST FP 5.0 sF,sG,Ss importPlan" id="3b879191-5bde-41bd-bc6a-826b6562055c">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -3492,6 +3584,56 @@ assert actualHeader != null</scriptText>
               <con:entry key="skipGeltungsbereich" value="true"/>
               <con:entry key="skipSemantisch" value="true"/>
               <con:entry key="skipLaufrichtung" value=""/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>X-Filename</con:entry>
+              <con:entry>skipSemantisch</con:entry>
+              <con:entry>skipFlaechenschluss</con:entry>
+              <con:entry>skipGeltungsbereich</con:entry>
+              <con:entry>internalId</con:entry>
+              <con:entry>planStatus</con:entry>
+              <con:entry>skipLaufrichtung</con:entry>
+              <con:entry>profiles</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST XX X.X XX importFileUnsupportedContentTypeExpectError" id="c8713233-ef5a-45e8-b0cf-b6f032422a2a">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST XX X.X XX importFileUnsupportedContentTypeExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>406</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+              <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+              <con:preemptive>true</con:preemptive>
+              <con:authType>Preemptive</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>invalidContentType.odt</con:name>
+              <con:contentType>application/vnd.oasis.opendocument.text</con:contentType>
+              <con:contentId>invalidContentType.odt</con:contentId>
+              <con:part xsi:nil="true"/>
+              <con:url>${projectDir}/xplan-api-manager/attachments/invalidContentType.odt</con:url>
+              <con:id>0c70fade-2e59-43eb-a59a-ee6dcbd05e46</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="skipLaufrichtung" value="" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>X-Filename</con:entry>
@@ -8385,6 +8527,50 @@ assert actualHeader != null</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
+      <con:testStep type="restrequest" name="PUT BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="06ad277f-e481-40e8-8997-613e2f6934f2">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="replaceRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="PUT BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="c7099c59-8423-45ed-885c-e2a6bbb8fe4f" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="9c7d9868-acad-4332-bba4-e2c44f1e4a78" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>406</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>putImg.png</con:name>
+              <con:contentType>application/octet-stream</con:contentType>
+              <con:contentId>rasterdatei</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/plans/Blankenese29_Test_60_InvalidContent.zip</con:url>
+              <con:id>3337e3a8-9bdd-4eea-b518-0fbed2402a50</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>putDokRaster.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>rasterbasismodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putDokRaster.json</con:url>
+              <con:id>003d976e-910c-4f2f-8dc4-dba5d26e725c</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="planId" value="${#TestSuite#currentPlanIdXPlanGML53}"/>
+              <con:entry key="id" value="-HafenCity13png"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
       <con:testStep type="restrequest" name="GET BP 5.3 pI,id verifyStatus" id="d25b4c59-1a85-4192-8bcc-3f5784ae2995">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/rasterbasis/{id}" methodName="getRasterbasisById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -10550,10 +10736,54 @@ assert actualHeader != null</scriptText>
               <con:id>3aed2ad7-03bc-499c-962e-0f6315a3fb33</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>putText.odt</con:name>
-              <con:contentType>application/odt</con:contentType>
+              <con:name>putText.txt</con:name>
+              <con:contentType>text/plain</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.txt</con:url>
+              <con:id>6293fd5d-2401-4e14-932b-05cf02053106</con:id>
+            </con:attachment>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <con:entry key="planId" value="${#TestSuite#currentPlanIdText}"/>
+              <con:entry key="id" value="GML_684fb51c-3d0f-4993-8ff0-dc3b62686b88"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="POST BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="77616f7c-0228-40fa-bebc-a5af9addb62a">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/text/{id}" methodName="replaceTextById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="POST BP 5.3 pI,id modifyStatusUnsupportedContentTypeExpectError" id="b5d04874-8aeb-42d1-96d6-2c2ab73c5339" mediaType="multipart/form-data" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="1c8de8a0-7d65-45b5-898b-71f8f9468e09" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>406</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:username xsi:nil="true"/>
+              <con:password xsi:nil="true"/>
+              <con:domain xsi:nil="true"/>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:attachment>
+              <con:name>putText.json</con:name>
+              <con:contentType>application/json</con:contentType>
+              <con:contentId>textmodel</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.json</con:url>
+              <con:id>3aed2ad7-03bc-499c-962e-0f6315a3fb33</con:id>
+            </con:attachment>
+            <con:attachment>
+              <con:name>invalidContentType.odt</con:name>
+              <con:contentType>application/vnd.oasis.opendocument.text</con:contentType>
+              <con:contentId>datei</con:contentId>
+              <con:url>${projectDir}/xplan-api-manager/attachments/invalidContentType.odt</con:url>
               <con:id>6293fd5d-2401-4e14-932b-05cf02053106</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -10663,10 +10893,10 @@ assert actualHeader != null</scriptText>
               <con:id>343f2a08-8466-4199-9fb0-e3f37541c520</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>putText.odt</con:name>
-              <con:contentType>application/odt</con:contentType>
+              <con:name>putText.txt</con:name>
+              <con:contentType>text/plain</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.txt</con:url>
               <con:id>e0752e01-914d-4974-b67b-919114e4495e</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -10746,10 +10976,10 @@ assert actualHeader != null</scriptText>
               <con:id>f4514300-8579-40bd-b471-e69239e52ab4</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>putText.odt</con:name>
-              <con:contentType>application/odt</con:contentType>
+              <con:name>putText.txt</con:name>
+              <con:contentType>text/plain</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.txt</con:url>
               <con:id>a17f6038-870e-4f86-898b-852b36d961dc</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -10829,10 +11059,10 @@ assert actualHeader != null</scriptText>
               <con:id>ec3b63fb-4b3e-46f6-a926-771209a839d5</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>putText.odt</con:name>
-              <con:contentType>application/odt</con:contentType>
+              <con:name>putText.txt</con:name>
+              <con:contentType>text/plain</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.txt</con:url>
               <con:id>dfe9e5a8-5ec3-4c5b-a336-c78f84971d50</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -10912,10 +11142,10 @@ assert actualHeader != null</scriptText>
               <con:id>999b9fcb-b790-408b-9972-d53bbacc8e2a</con:id>
             </con:attachment>
             <con:attachment>
-              <con:name>putText.odt</con:name>
-              <con:contentType>application/odt</con:contentType>
+              <con:name>putText.txt</con:name>
+              <con:contentType>text/plain</con:contentType>
               <con:contentId>datei</con:contentId>
-              <con:url>${projectDir}/xplan-api-manager/attachments/putText.odt</con:url>
+              <con:url>${projectDir}/xplan-api-manager/attachments/putText.txt</con:url>
               <con:id>b7f8ef2a-56a7-4969-b5ac-99362cd5714a</con:id>
             </con:attachment>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
@@ -12216,91 +12446,91 @@ assert expectedHeader == actualHeader</scriptText>
     <con:properties>
       <con:property>
         <con:name>currentPlanIdImport</con:name>
-        <con:value>20</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipAll</con:name>
-        <con:value>22</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML53</con:name>
-        <con:value>28</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdText</con:name>
-        <con:value>29</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdAenderung</con:name>
-        <con:value>23</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdDokument</con:name>
-        <con:value>24</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdFPlan</con:name>
-        <con:value>33</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity11</con:name>
-        <con:value>30</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdMultiplePlansHafenCity14</con:name>
-        <con:value>31</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdV2</con:name>
-        <con:value>21</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSkipLaufrichtungTrue</con:name>
-        <con:value>26</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBereiche</con:name>
-        <con:value>27</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60</con:name>
-        <con:value>32</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdSOPlan</con:name>
-        <con:value>36</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdRPlan</con:name>
-        <con:value>35</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdLPlan</con:name>
-        <con:value>34</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>textIdSOPlan</con:name>
-        <con:value>XPLAN_texte_4db1d9d7-9052-4602-8ccb-285e8ef6d220</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>textIdLPlan</con:name>
-        <con:value>XPLAN_texte_6b770563-0808-4490-b8bf-73b0ad6e4f07</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>textIdFPlan</con:name>
-        <con:value>XPLAN_texte_26bcff9f-7689-4223-b552-6a72a2222c49</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>textIdRPlan</con:name>
-        <con:value>XPLAN_texte_0570f28e-3c86-4d32-a9db-cb05aa8e99d8</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdBPlanOhneBereich</con:name>
-        <con:value>25</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>planId40</con:name>
-        <con:value>19</con:value>
+        <con:value/>
       </con:property>
       <con:property>
         <con:name>currentPlanIdXPlanGML60asGML</con:name>

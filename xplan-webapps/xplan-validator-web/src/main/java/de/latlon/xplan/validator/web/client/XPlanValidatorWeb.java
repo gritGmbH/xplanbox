@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -25,7 +25,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FileUpload;
@@ -33,13 +32,11 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.commons.web.CloseableDialogBox;
 
 /**
@@ -217,10 +214,13 @@ public class XPlanValidatorWeb implements EntryPoint {
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
 				uploading.hide();
-				showSucessfulUploadedDialog(event);
+				if (event.getResults().contains("java.io.IOException"))
+					Window.alert(messages.uploadSecurityException());
+				else
+					showSuccessfulUploadedDialog(event);
 			}
 
-			private void showSucessfulUploadedDialog(SubmitCompleteEvent event) {
+			private void showSuccessfulUploadedDialog(SubmitCompleteEvent event) {
 				String filename = getFilename(uploadItem);
 				UploadFinishedDialogBox dialogBox = new UploadFinishedDialogBox(XPlanValidatorWeb.this,
 						event.getResults(), filename);

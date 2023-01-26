@@ -316,7 +316,10 @@ public class UploadPanel extends DecoratorPanel {
 			public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
 				uploading.hide();
 				reload();
-				Window.alert(event.getResults());
+				if (event.getResults().contains("Content type"))
+					Window.alert(messages.uploadSecurityException());
+				else
+					Window.alert(event.getResults());
 			}
 		});
 

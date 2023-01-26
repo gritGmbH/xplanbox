@@ -50,7 +50,9 @@ interface XPlanValidatorWebMessages extends Messages {
 
 	String uploadFailed();
 
-	String uploadSucessTitle();
+	String uploadSecurityException();
+
+	String uploadSuccessTitle();
 
 	String fieldLabelRunName();
 
