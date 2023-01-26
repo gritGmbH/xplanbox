@@ -1,6 +1,6 @@
 FROM alpine:3.16.2
 
-RUN apk --no-cache add curl unzip
+RUN apk --no-cache add bash curl unzip
 # TODO: update
 
 RUN mkdir -p /xplan-volume-init
