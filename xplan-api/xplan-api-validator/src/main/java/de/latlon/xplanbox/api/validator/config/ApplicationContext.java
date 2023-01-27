@@ -46,6 +46,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.wms.config.ValidatorWmsContext;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -54,6 +55,9 @@ import org.springframework.context.annotation.Import;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -192,10 +196,21 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException {
+	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException, IOException {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
 		if (validationRulesDirectory != null)
 			return validationRulesDirectory;
+
+		String aResourceInRulesJar = RULES_DIRECTORY + "/xplangml60/2.1.5.xq";
+		URL uri = getClass().getResource(aResourceInRulesJar);
+		if ("jar".equals(uri.getProtocol())) {
+			String jarPath = uri.getFile().replaceFirst("file:(.*)!.*", "$1");
+			if (jarPath != null) {
+				FileSystem zipfs = FileSystems.newFileSystem(Path.of(jarPath), getClass().getClassLoader());
+				return zipfs.getPath(RULES_DIRECTORY);
+			}
+		}
+
 		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
 	}
