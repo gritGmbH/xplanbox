@@ -3,7 +3,7 @@
 
 Der XPlanManager dient zur Verwaltung von Planwerken innerhalb der xPlanBox. Mit
 dem XPlanManager können XPlanGML-Dateien und XPlanArchive importiert, editiert oder gelöscht werden.
-Nachdem ein Planwerk erfolgreich über den XPlanManager importiert wurde, können die Daten über die Dienste XPlanWFS und XPlanWMS abgerufen werden. Im folgenden Abschnitt werden die Anforderungen an ein XPlanGML-Dokument und XPlanArchiv beschrieben.
+Nachdem ein Planwerk erfolgreich über den XPlanManager importiert wurde, können die Daten über die Dienste XPlanWFS und XPlanWMS abgerufen werden. In den folgendenen Abschnitten werden die Anforderungen an ein XPlanGML-Dokument und XPlanArchiv beschrieben.
 
 [[xplangmlfile]]
 ==== Das XPlanGML-Dokument
@@ -11,7 +11,7 @@ Nachdem ein Planwerk erfolgreich über den XPlanManager importiert wurde, könne
 Das XPlanGML-Dokument muss folgende Eigenschaften aufweisen:
 
  * Das XPlanGML-Dokument ist wohlgeformt und hat die Dateiendung `.gml` oder `.xml` (Dateiformat `application/xml`).
- * Das Wurzelelement ist vom Typ `xplan:XPlanAuszugType` oder `wfs:FeatureCollectionType`
+ * Das Wurzelelement ist `xplan:XPlanAuszug` (im Namespace des XPlanGMLs) oder `wfs:FeatureCollection` (im Namespace http://www.opengis.net/wfs/2.0 aus WFS 2.0)
  * Das XPlanGML-Dokument beinhaltet nur ein oder mehrere Elemente vom Typ `xplan:XP_PLAN`. Beinhaltet eine Datei mehrere dieser Elemente, so dürfen keine nicht referenzierte Features im XPlanGML-Dokument vorkommen, wie z. B. ein freies Präsentationsobjekt ohne Bezug zum Bereich.
  * Wenn das XPlanGML-Dokument mehrere `BP_Bereich`-Elemente beinhaltet, muss das Element `xplan:nummer` für jeden `xplan:BP_Bereich` eindeutig sein.
  * Das XPlanGML-Dokument beinhaltet keine interne Referenzen auf andere Planobjekte über eines der folgenden Elemente `aendert/XP_VerbundenerPlan/verbundenerPlan` oder `wurdeGeaendertVon/XP_VerbundenerPlan/verbundenerPlan` bzw. in XPlanGML 6.0 über
