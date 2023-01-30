@@ -1,4 +1,4 @@
-FROM bitnami/tomcat:9.0.69
+FROM bitnami/tomcat:9.0.71
 
 ENV TOMCAT_INSTALL_DEFAULT_WEBAPPS=false
 ENV ALLOW_EMPTY_PASSWORD=yes
