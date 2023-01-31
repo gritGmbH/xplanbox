@@ -5,6 +5,10 @@ import org.junit.Test;
 import java.io.File;
 import java.nio.file.Path;
 
+/**
+ * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
+ * @since 6.1
+ */
 public class ContentTypeCheckerTest {
 
 	@Test

@@ -17,7 +17,14 @@ import java.util.zip.ZipInputStream;
 
 import static java.util.Arrays.asList;
 
-public class ContentTypeChecker {
+/**
+ * The class <code>ContentTypeChecker</code> provides methods to check for specific file
+ * and content types.
+ *
+ * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
+ * @since 6.1
+ */
+public final class ContentTypeChecker {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ContentTypeChecker.class);
 
@@ -37,7 +44,7 @@ public class ContentTypeChecker {
 	 * addition, if file is a ZIP archive, all zip entries are checked as well. The file
 	 * is deleted if content type is not allowed and an IOException is thrown.
 	 * @param path to be checked, never <code>null</code>
-	 * @throws IOException if mime type is not allowed
+	 * @throws java.io.IOException if mime type is not allowed
 	 */
 	public static void checkContentTypesOfXPlanArchiveOrGml(Path path)
 			throws IOException, UnsupportedContentTypeException {
