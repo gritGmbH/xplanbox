@@ -27,13 +27,18 @@ import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -55,6 +60,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 public class ValidateApiTest extends JerseyTest {
+
+	@ClassRule
+	public final static TemporaryFolder tempFolder = new TemporaryFolder();
+
+	@BeforeClass
+	public static void setupFakedWorkspace() throws IOException {
+		File workspace = tempFolder.newFolder("xplan-validator-wms-memory-workspace");
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
+	}
 
 	@Autowired
 	private List<RulesMetadata> profileMetadata;

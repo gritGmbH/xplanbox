@@ -164,7 +164,7 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 	}
 
 	private String getNameWithoutExtension(Path path) {
-		String name = path.getFileName().toFile().getName();
+		String name = path.getFileName().toString();
 		int indexOfExtensionBegin = name.lastIndexOf(".");
 		if (indexOfExtensionBegin > 0) {
 			return name.substring(0, indexOfExtensionBegin);
@@ -181,12 +181,12 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 	}
 
 	private SemanticValidationOptions parseSemanticValidationOption(Path path) {
-		String dirName = extractDirectoryName(path);
+		String dirName = path.getFileName().toString();
 		return SemanticValidationOptions.getByDirectoryName(dirName);
 	}
 
 	private XPlanVersion parseXPlanVersion(Path path) {
-		String dirName = extractDirectoryName(path);
+		String dirName = path.getFileName().toString();
 		try {
 			return XPlanVersion.valueOfVersionDir(dirName);
 		}
@@ -194,11 +194,6 @@ public class XQuerySemanticValidatorConfigurationRetriever implements SemanticVa
 			LOG.info("{} cannnot be assigned to a known XPlanVersion", dirName);
 			return UNKNOWN_VERSION;
 		}
-	}
-
-	private String extractDirectoryName(Path path) {
-		Path name = path.getFileName();
-		return name.toFile().getName();
 	}
 
 }
