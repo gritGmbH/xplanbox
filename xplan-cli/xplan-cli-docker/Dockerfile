@@ -18,7 +18,7 @@ RUN mkdir /xplanbox/xplan-manager-cli/logs \
 	&& chmod a+xw /xplanbox/xplan-manager-cli/logs /xplanbox/xplan-transform-cli/logs /xplanbox/xplan-update-data/logs
 
 COPY --from=volumeInitBuilder /xplan-volume-init/ ./xplan-volume-init
-COPY resynthetize.sh /xplanbox/
+COPY resynthesize.sh /xplanbox/
 
 ENTRYPOINT ["/bin/bash"]
-CMD ["/xplanbox/resynthetize.sh"]
+CMD ["/xplanbox/resynthesize.sh"]
