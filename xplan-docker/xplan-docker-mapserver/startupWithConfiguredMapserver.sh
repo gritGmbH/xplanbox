@@ -27,7 +27,7 @@ XPLAN_S3_ACCESS_KEY="${XPLAN_S3_ACCESS_KEY:-tobedefined}"
 XPLAN_S3_SECRET_ACCESS_KEY="${XPLAN_S3_SECRET_ACCESS_KEY:-tobedefined}"
 XPLAN_S3_REGION="${XPLAN_S3_REGION:-eu-central-1}"
 XPLAN_S3_BUCKET_NAME="${XPLAN_S3_BUCKET_NAME:-tobedefined}"
-XPLAN_S3_ENDPOINT="${XPLAN_S3_ENDPOINT:-tobedefined}"
+XPLAN_S3_ENDPOINT="${XPLAN_S3_ENDPOINT}"
 # Remove http:// / https:// from endpoint URL
 XPLAN_S3_ENDPOINT=$(sed -E 's/^(https|http):\/\///' <<< $XPLAN_S3_ENDPOINT)
 
