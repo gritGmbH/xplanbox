@@ -20,4 +20,13 @@
     <module>xplan-update-data-cli</module>
   </modules>
 
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <modules>
+        <module>xplan-cli-docker</module>
+      </modules>
+    </profile>
+  </profiles>
+
 </project>
