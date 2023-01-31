@@ -96,7 +96,7 @@
               <inceptionYear>${project.inceptionYear}</inceptionYear>
               <organizationName>${project.organization.name}</organizationName>
               <projectName>${project.name} - ${project.description}</projectName>
-              <copyrightOwners>lat/lon GmbH, info@lat-lon.de, www.lat-lon.de</copyrightOwners>
+              <copyrightOwners>Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH</copyrightOwners>
               <licenseName>agpl_v3</licenseName>
               <roots>
                 <root>src/main</root>
