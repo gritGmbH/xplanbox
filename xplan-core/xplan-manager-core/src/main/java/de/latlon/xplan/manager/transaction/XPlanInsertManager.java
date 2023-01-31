@@ -129,7 +129,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 					synFc);
 			planIds.add(planId);
 		}
-		LOG.info("Alle {0} XPlan GML Instanzen aus dem XPlanArchiv wurden erfolgreich importiert.",
+		LOG.info("Alle {} XPlan GML Instanzen aus dem XPlanArchiv wurden erfolgreich importiert.",
 				xPlanInstances.getxPlanGmlInstances().size());
 		return planIds;
 	}
