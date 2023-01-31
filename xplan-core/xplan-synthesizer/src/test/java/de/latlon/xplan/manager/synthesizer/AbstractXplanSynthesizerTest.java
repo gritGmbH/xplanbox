@@ -26,20 +26,15 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import org.deegree.commons.xml.stax.IndentingXMLStreamWriter;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
-import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
 import org.deegree.gml.GMLOutputFactory;
-import org.deegree.gml.GMLStreamReader;
 import org.deegree.gml.GMLStreamWriter;
-import org.deegree.gml.GMLVersion;
 import org.junit.Before;
 
 import javax.xml.stream.XMLOutputFactory;
@@ -51,7 +46,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.deegree.gml.GMLVersion.GML_32;
 
 /**
@@ -79,7 +73,8 @@ public abstract class AbstractXplanSynthesizerTest {
 	protected FeatureCollection createSynFeatures(String archiveName)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = getTestArchive(archiveName);
-		XPlanFeatureCollection xplanFc = readFeatures(archive);
+		XPlanFeatureCollection xplanFc = XPlanGmlParserBuilder.newBuilder().build()
+				.parseXPlanFeatureCollection(archive);
 		int id = 1;
 		for (Feature feature : xplanFc.getFeatures()) {
 			feature.setId("FEATURE_" + id++);
@@ -112,28 +107,6 @@ public abstract class AbstractXplanSynthesizerTest {
 	protected XPlanArchive getTestArchive(String name) throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		return archiveCreator.createXPlanArchiveFromZip(name, ResourceAccessor.readResourceStream(name));
-	}
-
-	protected XPlanFeatureCollection readFeatures(XPlanArchive archive) throws XMLStreamException, UnknownCRSException {
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(archive.getVersion());
-		ICRS crs = archive.getCrs();
-
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
-		GMLStreamReader gmlStream = createGmlStreamReader(archive, crs, schema, xmlStream);
-		FeatureCollection features = (FeatureCollection) gmlStream.readFeature();
-		return new XPlanFeatureCollectionBuilder(features, archive.getType()).build();
-	}
-
-	private GMLStreamReader createGmlStreamReader(XPlanArchive archive, ICRS crs, AppSchema schema,
-			XMLStreamReaderWrapper xmlStream) throws XMLStreamException {
-		GMLVersion gmlVersion = archive.getVersion().getGmlVersion();
-		GeometryFactory geomFac = new GeometryFactory();
-		GMLStreamReader gmlStream = createGMLStreamReader(gmlVersion, xmlStream);
-		gmlStream.setDefaultCRS(crs);
-		gmlStream.setGeometryFactory(geomFac);
-		gmlStream.setApplicationSchema(schema);
-		gmlStream.setSkipBrokenGeometries(true);
-		return gmlStream;
 	}
 
 }

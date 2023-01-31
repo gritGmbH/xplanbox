@@ -27,6 +27,7 @@ import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
@@ -93,8 +94,8 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
 			AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus).getSchema();
 			originalPlan = xplanDao.retrieveXPlanArtefact(planId);
-			XPlanFeatureCollection originalPlanFC = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan, version,
-					type);
+			XPlanFeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder().build()
+					.parseXPlanFeatureCollection(originalPlan, version, type);
 			String oldDescription = retrieveDescription(originalPlanFC.getFeatures(), type);
 			String oldLegislationStatus = FeatureCollectionUtils.retrieveRechtsstand(originalPlanFC.getFeatures(),
 					type);

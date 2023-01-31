@@ -24,7 +24,7 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.junit.Test;
 
@@ -66,8 +66,7 @@ public class XPlanGmlFeatureWriterTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-		return xPlanGmlParser.parseXPlanFeatureCollection(archive);
+		return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 	}
 
 	private Map<String, String> nsContext() {

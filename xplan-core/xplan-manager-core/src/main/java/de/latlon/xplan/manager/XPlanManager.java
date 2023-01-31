@@ -32,6 +32,7 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -120,8 +121,6 @@ public class XPlanManager {
 	private final XPlanEditManager xPlanEditManager;
 
 	private final XPlanDeleteManager xPlanDeleteManager;
-
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	/**
 	 * @param xPlanSynthesizer used to synthesize plans, never <code>null</code>
@@ -224,7 +223,8 @@ public class XPlanManager {
 	public String retrievePlanName(String archiveFileName) throws Exception {
 		XPlanArchive archive = analyzeArchive(archiveFileName);
 		ICRS crs = CrsUtils.determineActiveCrs(CRSManager.getCRSRef("EPSG:4326"), archive, LOG);
-		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive, crs);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder().withDefaultCrs(crs).build()
+				.parseXPlanFeatureCollection(archive);
 		return fc.getPlanName();
 	}
 
@@ -252,7 +252,8 @@ public class XPlanManager {
 	public Pair<Rechtsstand, PlanStatus> determineRechtsstand(String pathToArchive)
 			throws IOException, XMLStreamException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
+				.parseXPlanFeatureCollection(archive);
 		return determineRechtsstandAndPlanstatus(xPlanFeatureCollection, archive.getType());
 	}
 
@@ -269,7 +270,7 @@ public class XPlanManager {
 	public List<RasterEvaluationResult> evaluateRasterdata(String pathToArchive)
 			throws IOException, XMLStreamException, XMLParsingException, UnknownCRSException {
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollection fc = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 		return xPlanRasterEvaluator.evaluateRasterdata(archive, fc);
 	}
 
@@ -285,7 +286,7 @@ public class XPlanManager {
 			throws IOException, XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
 		LOG.info("- Analyse des Vorkommens eines Plans mit gleichem Namen und Planstatus...");
 		XPlanArchive archive = analyzeArchive(pathToArchive);
-		XPlanFeatureCollections xPlanFeatureCollections = xPlanGmlParser
+		XPlanFeatureCollections xPlanFeatureCollections = XPlanGmlParserBuilder.newBuilder().build()
 				.parseXPlanFeatureCollectionAllowMultipleInstances(archive);
 		return xPlanFeatureCollections.getxPlanGmlInstances().stream().map(xPlanFeatureCollection -> {
 			String planName = xPlanFeatureCollection.getPlanName();
@@ -371,7 +372,8 @@ public class XPlanManager {
 		try {
 			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 			originalPlan = xplanDao.retrieveXPlanArtefact(plan.getId());
-			FeatureCollection originalPlanFC = xPlanGmlParser.parseFeatureCollection(originalPlan, version);
+			FeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder().build()
+					.parseFeatureCollection(originalPlan, version);
 			return planToEditFactory.createXPlanToEdit(plan, originalPlanFC);
 		}
 		finally {

@@ -170,6 +170,24 @@ public class XPlanArchiveCreatorTest {
 		assertTrue(archive.hasVerbundenerPlanBereich());
 	}
 
+	@Test
+	public void testCreateXPlanArchive_WfsCollection() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
+				.getResourceAsStream("V4_1_ID_103-asWfsFeatureCollection.gml");
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103-asWfsFeatureCollection.gml",
+				gmlAsStream);
+		assertEquals(XPLAN_51, archive.getVersion());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreateXPlanArchive_NoXPlanGml() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
+				.getResourceAsStream("V4_1_ID_103-noXPlanGmlCollection.gml");
+		archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103-noXPlanGmlCollection.gml", gmlAsStream);
+	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateXPlanArchive_withEntity() throws IOException {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());

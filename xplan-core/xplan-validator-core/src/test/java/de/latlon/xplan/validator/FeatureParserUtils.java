@@ -21,24 +21,16 @@
 package de.latlon.xplan.validator;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.GMLVersion;
 import org.deegree.gml.feature.FeatureInspector;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 
 /**
  * Convenient access to resources in this module
@@ -59,9 +51,8 @@ public class FeatureParserUtils {
 	 */
 	public static FeatureCollection readFeatures(XPlanArchive archive, FeatureInspector... inspectors)
 			throws XMLStreamException, UnknownCRSException {
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
-		XPlanVersion version = archive.getVersion();
-		return readFeatures(xmlStream, version, inspectors);
+		return XPlanGmlParserBuilder.newBuilder().withFeatureInspector(inspectors).build()
+				.parseFeatureCollection(archive);
 	}
 
 	/**
@@ -130,21 +121,6 @@ public class FeatureParserUtils {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromGml(name, inputStream);
 		return readFeatures(xPlanArchive, inspectors);
-	}
-
-	private static FeatureCollection readFeatures(XMLStreamReaderWrapper xmlStream, XPlanVersion version,
-			FeatureInspector... inspectors) throws XMLStreamException, UnknownCRSException {
-		GMLVersion gmlVersion = version.getGmlVersion();
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(version);
-
-		GeometryFactory geomFac = new GeometryFactory();
-		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(gmlVersion, xmlStream);
-		gmlStream.setGeometryFactory(geomFac);
-		gmlStream.setApplicationSchema(schema);
-		gmlStream.setSkipBrokenGeometries(true);
-		Arrays.stream(inspectors).forEach(inspector -> gmlStream.addInspector(inspector));
-
-		return gmlStream.readFeatureCollection();
 	}
 
 }

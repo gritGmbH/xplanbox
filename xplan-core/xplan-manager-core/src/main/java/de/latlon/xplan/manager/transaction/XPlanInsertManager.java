@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CrsUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
@@ -128,7 +129,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 					synFc);
 			planIds.add(planId);
 		}
-		LOG.info("Alle {0} XPlan GML Instanzen aus dem XPlanArchiv wurden erfolgreich importiert.",
+		LOG.info("Alle {} XPlan GML Instanzen aus dem XPlanArchiv wurden erfolgreich importiert.",
 				xPlanInstances.getxPlanGmlInstances().size());
 		return planIds;
 	}
@@ -152,8 +153,8 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			throws Exception {
 		performSchemaValidation(archive);
 		try {
-			XPlanFeatureCollections xPlanInstances = xPlanGmlParser
-					.parseXPlanFeatureCollectionAllowMultipleInstances(archive, crs, true);
+			XPlanFeatureCollections xPlanInstances = XPlanGmlParserBuilder.newBuilder().withDefaultCrs(crs)
+					.withFixOrientation(true).build().parseXPlanFeatureCollectionAllowMultipleInstances(archive);
 			reassignFids(xPlanInstances);
 			for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 				long begin = System.currentTimeMillis();

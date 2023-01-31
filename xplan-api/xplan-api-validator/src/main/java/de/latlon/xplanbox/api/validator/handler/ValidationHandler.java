@@ -23,7 +23,7 @@ package de.latlon.xplanbox.api.validator.handler;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.configuration.ValidatorConfiguration;
@@ -86,9 +86,6 @@ public class ValidationHandler {
 	@Autowired
 	private GeometricValidator geometricValidator;
 
-	@Autowired
-	public XPlanGmlParser xPlanGmlParser;
-
 	private XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 
 	public ValidatorReport validate(XPlanArchive archive, String xFileName, ValidationSettings validationSettings)
@@ -124,7 +121,8 @@ public class ValidationHandler {
 	public URI addToWms(XPlanArchive archive) {
 		try {
 			if (validatorWmsManager != null) {
-				XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+				XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
+						.parseXPlanFeatureCollection(archive);
 				int id = validatorWmsManager.insert(xPlanFeatureCollection);
 				return createWmsUrl(id);
 			}

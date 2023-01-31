@@ -24,7 +24,7 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.validator.wms.storage.PlanStorage;
@@ -68,7 +68,7 @@ public class ValidatorWmsManagerTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		return new XPlanGmlParser().parseXPlanFeatureCollection(archive);
+		return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 	}
 
 }

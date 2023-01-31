@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.synthesizer;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.feature.Feature;
@@ -122,7 +123,8 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 	}
 
 	private XPlanFeatureCollection parseFeatureCollection(XPlanArchive archive) throws Exception {
-		XPlanFeatureCollection xplanFc = readFeatures(archive);
+		XPlanFeatureCollection xplanFc = XPlanGmlParserBuilder.newBuilder().build()
+				.parseXPlanFeatureCollection(archive);
 		int id = 1;
 		for (Feature feature : xplanFc.getFeatures()) {
 			feature.setId("FEATURE_" + id++);

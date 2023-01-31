@@ -24,7 +24,6 @@
 			</gml:boundedBy>
 			<xplan:ebene>0</xplan:ebene>
 			<xplan:gehoertZuBereich xlink:href="#GML_a17ad9ff-ef49-4375-b1b7-9a401cb24038"/>
-			<xplan:wirdDargestelltDurch xlink:href="#GML_df3aeba4-934f-4dea-a357-6895786f9496"/>
 			<xplan:rechtscharakter>3000</xplan:rechtscharakter>
 			<xplan:refTextInhalt xlink:href="#GML_eff5c36c-591e-4739-8f92-4e12928d4cee"/>
 			<xplan:position>

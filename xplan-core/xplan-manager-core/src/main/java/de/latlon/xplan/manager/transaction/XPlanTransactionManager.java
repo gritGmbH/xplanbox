@@ -27,7 +27,7 @@ import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
@@ -94,8 +94,6 @@ public abstract class XPlanTransactionManager {
 	protected final XPlanManipulator planModifier = new XPlanManipulator();
 
 	protected final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
-
-	protected final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final MetadataCouplingHandler metadataCouplingHandler;
 
@@ -176,7 +174,7 @@ public abstract class XPlanTransactionManager {
 		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
 		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
 		try {
-			return xPlanGmlParser.parseFeatureCollection(originalPlanAsXmlReader, version);
+			return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(originalPlanAsXmlReader, version);
 		}
 		finally {
 			originalPlanAsXmlReader.close();

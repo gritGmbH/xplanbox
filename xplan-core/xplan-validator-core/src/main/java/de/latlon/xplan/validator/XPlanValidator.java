@@ -25,7 +25,7 @@ import de.latlon.xplan.commons.archive.SemanticValidableXPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
@@ -92,8 +92,6 @@ public class XPlanValidator {
 	private final ReportArchiveGenerator reportArchiveGenerator;
 
 	private final XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private XPlanSchemas schemas;
 
@@ -309,7 +307,8 @@ public class XPlanValidator {
 
 	private void parseReferencesAndPlanNames(XPlanArchive archive, ValidatorReport report) {
 		try {
-			XPlanFeatureCollection featureCollection = xPlanGmlParser.parseXPlanFeatureCollection(archive);
+			XPlanFeatureCollection featureCollection = XPlanGmlParserBuilder.newBuilder().build()
+					.parseXPlanFeatureCollection(archive);
 			report.setBBoxIn4326(featureCollection.getBboxIn4326());
 			parseAndAddExternalReferences(report, featureCollection);
 			parseAndAddPlanNames(report, featureCollection);

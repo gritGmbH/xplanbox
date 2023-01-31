@@ -22,6 +22,8 @@ package de.latlon.xplan.validator.geometric;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.aenderungen.AenderungenInspector;
@@ -37,9 +39,7 @@ import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLStreamReader;
-import org.deegree.gml.GMLVersion;
+import org.deegree.gml.feature.FeatureInspector;
 import org.deegree.gml.reference.FeatureReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,10 +47,10 @@ import org.slf4j.LoggerFactory;
 import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.validator.i18n.ValidationMessages.format;
 import static de.latlon.xplan.validator.i18n.ValidationMessages.getMessage;
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 
 /**
  * Validates <link>XPlanArchives</link> geometrically
@@ -97,7 +97,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 	public GeometricValidatorResult validateGeometry(XPlanArchive archive, ICRS crs, AppSchema schema, boolean force,
 			List<ValidationOption> voOptions) throws ValidatorException {
 		try {
-			ValidatorResult result = readAndValidateArchive(archive, crs, schema, voOptions);
+			ValidatorResult result = readAndValidateArchive(archive, crs, voOptions);
 			logResult(force, result);
 			return new GeometricValidatorResult(result.warnings, result.errors, result.badGeometries, crs,
 					result.isValid());
@@ -109,30 +109,30 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		}
 	}
 
-	private ValidatorResult readAndValidateArchive(XPlanArchive archive, ICRS crs, AppSchema schema,
-			List<ValidationOption> voOptions) throws XMLStreamException {
+	private ValidatorResult readAndValidateArchive(XPlanArchive archive, ICRS crs, List<ValidationOption> voOptions)
+			throws XMLStreamException {
 		ValidatorResult result = new ValidatorResult();
 		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(archive.getMainFileXmlReader(), null);
 		long begin = System.currentTimeMillis();
 		LOG.info("- Einlesen der Features (+ Geometrievalidierung)...");
 		boolean skipOrientation = isOptionTrue(voOptions, SKIP_LAUFRICHTUNG_OPTION);
 		XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector(xmlStream, skipOrientation);
-		List<GeometricFeatureInspector> featureInspectors = createInspectors(archive.getVersion(), voOptions);
+		List<GeometricFeatureInspector> featureInspectors = createInspectorsForVersion(archive.getVersion(), voOptions);
 		AenderungenInspector aenderungenInspector = new AenderungenInspector();
-		GMLStreamReader gmlStream = createGmlStreamReader(archive, crs, schema, xmlStream, geometryInspector,
-				featureInspectors, aenderungenInspector);
 		try {
-			FeatureCollection xPlanFeatures = (FeatureCollection) gmlStream.readFeature();
+			XPlanGmlParser xPlanGmlParser = createXPlanGmlParser(crs, geometryInspector, featureInspectors,
+					aenderungenInspector);
+			FeatureCollection xPlanFeatures = xPlanGmlParser.parseFeatureCollection(archive);
 			result.setXplanFeatures(xPlanFeatures);
 			result.elapsed = System.currentTimeMillis() - begin;
 			result.addErrors(geometryInspector.getErrors());
-			List<String> brokenGeometryErrors = extendMessagesOfBrokenGeometryErrors(gmlStream);
+			List<String> brokenGeometryErrors = extendMessagesOfBrokenGeometryErrors(xPlanGmlParser);
 			result.addErrors(brokenGeometryErrors);
 			result.addWarnings(geometryInspector.getWarnings());
 			result.addBadGeometries(geometryInspector.getBadGeometries());
 			featureInspectors.stream().forEach(fi -> checkAndAddRules(fi, result));
 
-			resolveAndValidateXlinks(gmlStream, result, aenderungenInspector);
+			resolveAndValidateXlinks(xPlanGmlParser, result, aenderungenInspector);
 		}
 		catch (Exception e) {
 			String msg = getMessage("GeometricValidationImpl_error");
@@ -142,6 +142,15 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		return result;
 	}
 
+	private static XPlanGmlParser createXPlanGmlParser(ICRS crs, XPlanGeometryInspector geometryInspector,
+			List<GeometricFeatureInspector> featureInspectors, AenderungenInspector aenderungenInspector) {
+		List<FeatureInspector> allFeatureInspectors = featureInspectors.stream().collect(Collectors.toList());
+		allFeatureInspectors.add(aenderungenInspector);
+
+		return XPlanGmlParserBuilder.newBuilder().withSkipBrokenGeometries(true).withDefaultCrs(crs)
+				.withFeatureInspectors(allFeatureInspectors).withGeometryInspectors(geometryInspector).build();
+	}
+
 	private void checkAndAddRules(GeometricFeatureInspector fi, ValidatorResult result) {
 		fi.checkGeometricRule();
 		result.addErrors(fi.getErrors());
@@ -149,42 +158,23 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		result.addBadGeometries(fi.getBadGeometries());
 	}
 
-	private List<GeometricFeatureInspector> createInspectors(XPlanVersion version, List<ValidationOption> voOptions) {
+	private List<GeometricFeatureInspector> createInspectorsForVersion(XPlanVersion version,
+			List<ValidationOption> voOptions) {
 		List<GeometricFeatureInspector> inspectors = new ArrayList<>();
 		if (!isOptionTrue(voOptions, SKIP_FLAECHENSCHLUSS_OPTION))
 			inspectors.add(new OptimisedFlaechenschlussInspector(version));
 		if (!isOptionTrue(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
 			inspectors.add(new GeltungsbereichInspector());
 		inspectors.add(new DoppelbelegungInspector());
-		return inspectors;
+		return inspectors.stream().filter(inspector -> inspector.applicableForVersion(version))
+				.collect(Collectors.toList());
 	}
 
-	private GMLStreamReader createGmlStreamReader(XPlanArchive archive, ICRS crs, AppSchema schema,
-			XMLStreamReaderWrapper xmlStream, XPlanGeometryInspector inspector,
-			List<GeometricFeatureInspector> featureInspectors, AenderungenInspector aenderungenInspector)
-			throws XMLStreamException {
-		GMLVersion gmlVersion = archive.getVersion().getGmlVersion();
-		GeometryFactory geomFac = new GeometryFactory();
-		geomFac.addInspector(inspector);
-		GMLStreamReader gmlStream = createGMLStreamReader(gmlVersion, xmlStream);
-		gmlStream.setDefaultCRS(crs);
-		gmlStream.setGeometryFactory(geomFac);
-		gmlStream.setApplicationSchema(schema);
-		gmlStream.setSkipBrokenGeometries(true);
-		for (GeometricFeatureInspector featureInspector : featureInspectors) {
-			if (featureInspector.applicableForVersion(archive.getVersion())) {
-				gmlStream.addInspector(featureInspector);
-			}
-		}
-		gmlStream.addInspector(aenderungenInspector);
-		return gmlStream;
-	}
-
-	private void resolveAndValidateXlinks(GMLStreamReader gmlStream, ValidatorResult result,
+	private void resolveAndValidateXlinks(XPlanGmlParser xPlanGmlParser, ValidatorResult result,
 			AenderungenInspector aenderungenInspector) {
 		long begin = System.currentTimeMillis();
 		LOG.info("- Überprüfung der XLink-Integrität...");
-		List<GMLReference<?>> gmlRefs = gmlStream.getIdContext().getReferences();
+		List<GMLReference<?>> gmlRefs = xPlanGmlParser.getIdContext().getReferences();
 		for (GMLReference<?> gmlReference : gmlRefs) {
 			if (gmlReference instanceof FeatureReference) {
 				if (gmlReference.isLocal()) {
@@ -266,9 +256,9 @@ public class GeometricValidatorImpl implements GeometricValidator {
 			LOG.info("Fortsetzung trotz Geometrie-Fehlern (--force).");
 	}
 
-	private List<String> extendMessagesOfBrokenGeometryErrors(GMLStreamReader gmlStream) {
+	private List<String> extendMessagesOfBrokenGeometryErrors(XPlanGmlParser xPlanGmlParser) {
 		ArrayList<String> extendedBrokenGeometryErrors = new ArrayList<>();
-		List<String> brokenGeometryErrors = gmlStream.getSkippedBrokenGeometryErrors();
+		List<String> brokenGeometryErrors = xPlanGmlParser.getSkippedBrokenGeometryErrors();
 		for (String brokenGeometryError : brokenGeometryErrors) {
 			extendedBrokenGeometryErrors.add(brokenGeometryError + getMessage("GeometricValidatorImpl_brokenGeom"));
 		}
