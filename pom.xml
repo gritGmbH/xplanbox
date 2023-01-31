@@ -137,6 +137,7 @@
                 <syn>properties</syn>
                 <yaml>properties</yaml>
                 <yuml>properties</yuml>
+                <map>properties</map>
               </extraExtensions>
             </configuration>
           </plugin>
