@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>xplan-schemas</artifactId>
   <packaging>jar</packaging>
-  <description>Ressourcen fuer JUnit- und Integrationstests</description>
+  <description>Ressourcen fuer XPlan Schemas</description>
 
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
