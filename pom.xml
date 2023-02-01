@@ -104,27 +104,6 @@
                 <root>src/main</root>
                 <root>src/test</root>
               </roots>
-              <excludes>
-                <exclude>*/codelists/**</exclude>
-                <exclude>*/appschemas/**</exclude>
-                <exclude>*/masterportal/**</exclude>
-                <exclude>*/xplanmgrweb/js/**</exclude>
-                <exclude>*/appschemas/XPlanGML_3_0/**</exclude>
-                <exclude>*/appschemas/XPlanGML_4_0/**</exclude>
-                <exclude>*/appschemas/XPlanGML_4_1/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_0/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_1/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
-                <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
-                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
-                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
-                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
-                <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
-                <exclude>**/*.json</exclude>
-              </excludes>
               <extraExtensions>
                 <xq>xml</xq>
                 <gfi>xml</gfi>
@@ -140,6 +119,53 @@
                 <map>properties</map>
               </extraExtensions>
             </configuration>
+            <executions>
+              <execution>
+                <id>javaAndOther</id>
+                <goals>
+                  <goal>update-file-header</goal>
+                </goals>
+                <phase>process-sources</phase>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <excludes>
+                    <exclude>*/codelists/**</exclude>
+                    <exclude>*/appschemas/**</exclude>
+                    <exclude>*/masterportal/**</exclude>
+                    <exclude>*/xplanmgrweb/js/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_3_0/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_4_0/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_4_1/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_0/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_1/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+                    <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
+                    <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
+                    <exclude>**/*.json</exclude>
+                    <exclude>**./.properties</exclude>
+                  </excludes>
+                </configuration>
+              </execution>
+              <execution>
+                <id>properties</id>
+                <goals>
+                  <goal>update-file-header</goal>
+                </goals>
+                <phase>process-sources</phase>
+                <configuration>
+                  <encoding>ISO-8859-1</encoding>
+                  <includes>
+                    <include>**/*.properties</include>
+                  </includes>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
           <!-- Workaround to replace XML comments with XQuery comments,
                since licence:update-file-header goal does not support xq files yet! -->
@@ -164,6 +190,12 @@
                       <include name="**/*.xq" />
                       <replacetoken><![CDATA[-->]]></replacetoken>
                     </replace>
+                    <!--
+                    <replace dir="${project.basedir}" value="fuer">
+                      <include name="**/*.properties" />
+                      <replacetoken>für</replacetoken>
+                    </replace>
+                    -->
                   </target>
                 </configuration>
               </execution>
