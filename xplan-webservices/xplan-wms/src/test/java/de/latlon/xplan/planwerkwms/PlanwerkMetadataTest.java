@@ -1,5 +1,3 @@
-package de.latlon.xplan.planwerkwms;
-
 /*-
  * #%L
  * xplan-wms - deegree XPlan WebMapService
@@ -20,6 +18,7 @@ package de.latlon.xplan.planwerkwms;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.planwerkwms;
 
 import de.latlon.xplan.planwerkwms.jaxb.Planwerk;
 

@@ -1,5 +1,3 @@
-package de.latlon.xplan.manager.web.client.gui.editor.dialog;
-
 /*-
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
@@ -20,6 +18,7 @@ package de.latlon.xplan.manager.web.client.gui.editor.dialog;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.manager.web.client.gui.editor.dialog;
 
 import com.google.gwt.user.client.ui.TextBox;
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;

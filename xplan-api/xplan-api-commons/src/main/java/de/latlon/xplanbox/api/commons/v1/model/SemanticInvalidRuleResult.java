@@ -1,5 +1,3 @@
-package de.latlon.xplanbox.api.commons.v1.model;
-
 /*-
  * #%L
  * xplan-api-commons - xplan-api-commons
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.commons.v1.model;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.commons.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

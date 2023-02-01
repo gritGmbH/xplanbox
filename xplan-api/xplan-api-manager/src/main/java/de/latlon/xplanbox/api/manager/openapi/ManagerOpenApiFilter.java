@@ -1,5 +1,3 @@
-package de.latlon.xplanbox.api.manager.openapi;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.manager.openapi;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.openapi;
 
 import io.swagger.v3.core.model.ApiDescription;
 import io.swagger.v3.oas.models.Operation;

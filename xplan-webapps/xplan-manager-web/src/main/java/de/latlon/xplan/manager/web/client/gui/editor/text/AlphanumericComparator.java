@@ -1,5 +1,3 @@
-package de.latlon.xplan.manager.web.client.gui.editor.text;
-
 /*-
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
@@ -20,6 +18,7 @@ package de.latlon.xplan.manager.web.client.gui.editor.text;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.manager.web.client.gui.editor.text;
 
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;

@@ -1,5 +1,3 @@
-package de.latlon.xplanbox.api.manager;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.manager;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager;
 
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import liquibase.changelog.RanChangeSet;

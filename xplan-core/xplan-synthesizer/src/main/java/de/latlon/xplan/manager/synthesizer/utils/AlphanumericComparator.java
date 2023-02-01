@@ -1,5 +1,3 @@
-package de.latlon.xplan.manager.synthesizer.utils;
-
 /*-
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
@@ -20,6 +18,7 @@ package de.latlon.xplan.manager.synthesizer.utils;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.manager.synthesizer.utils;
 
 import java.util.ArrayList;
 import java.util.Comparator;

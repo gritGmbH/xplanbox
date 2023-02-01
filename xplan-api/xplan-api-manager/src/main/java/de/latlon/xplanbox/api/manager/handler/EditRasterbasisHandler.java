@@ -1,5 +1,3 @@
-package de.latlon.xplanbox.api.manager.handler;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.manager.handler;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.handler;
 
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;

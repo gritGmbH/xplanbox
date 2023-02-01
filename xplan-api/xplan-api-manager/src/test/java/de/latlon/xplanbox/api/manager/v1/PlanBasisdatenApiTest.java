@@ -1,5 +1,3 @@
-package de.latlon.xplanbox.api.manager.v1;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.manager.v1;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.v1;
 
 import de.latlon.xplanbox.api.commons.exception.XPlanApiExceptionMapper;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;

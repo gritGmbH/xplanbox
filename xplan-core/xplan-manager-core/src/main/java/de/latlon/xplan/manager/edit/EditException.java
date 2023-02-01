@@ -1,5 +1,3 @@
-package de.latlon.xplan.manager.edit;
-
 /*-
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
@@ -20,6 +18,7 @@ package de.latlon.xplan.manager.edit;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.manager.edit;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>

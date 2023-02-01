@@ -1,5 +1,3 @@
-package de.latlon.xplan.validator.geometric.inspector.doppelbelegung;
-
 /*-
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
@@ -20,6 +18,7 @@ package de.latlon.xplan.validator.geometric.inspector.doppelbelegung;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.validator.geometric.inspector.doppelbelegung;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;

@@ -1,5 +1,3 @@
-package de.latlon.xplan.commons.jts;
-
 /*-
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
@@ -20,6 +18,7 @@ package de.latlon.xplan.commons.jts;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.commons.jts;
 
 import org.deegree.geometry.GeometryFactory;
 import org.deegree.geometry.linearization.CurveLinearizer;

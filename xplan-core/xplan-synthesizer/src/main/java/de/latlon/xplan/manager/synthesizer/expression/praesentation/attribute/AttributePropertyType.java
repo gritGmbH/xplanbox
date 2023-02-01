@@ -1,5 +1,3 @@
-package de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute;
-
 /*-
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
@@ -20,6 +18,7 @@ package de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute;
 
 /**
  * Discriminates between types of attribute properties.

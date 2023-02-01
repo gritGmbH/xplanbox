@@ -1,4 +1,3 @@
-package de.latlon.xplanbox.api.manager.exception;
 
 /*-
  * #%L
@@ -20,6 +19,7 @@ package de.latlon.xplanbox.api.manager.exception;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.exception;
 
 import de.latlon.xplanbox.api.commons.exception.XPlanApiException;
 

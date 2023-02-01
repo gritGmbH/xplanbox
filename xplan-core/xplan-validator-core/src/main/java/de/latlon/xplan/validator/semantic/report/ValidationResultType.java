@@ -1,5 +1,3 @@
-package de.latlon.xplan.validator.semantic.report;
-
 /*-
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
@@ -20,6 +18,7 @@ package de.latlon.xplan.validator.semantic.report;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.validator.semantic.report;
 
 /**
  * Differentiate between validation results like warnings and errors.

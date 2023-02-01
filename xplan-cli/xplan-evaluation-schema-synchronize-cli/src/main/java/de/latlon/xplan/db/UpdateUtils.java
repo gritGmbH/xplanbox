@@ -1,5 +1,3 @@
-package de.latlon.xplan.db;
-
 /*-
  * #%L
  * xplan-evaluation-schema-synchronize-cli - Datenbankschema für die Auswertung der XPlanGML-Daten
@@ -20,6 +18,7 @@ package de.latlon.xplan.db;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.db;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
