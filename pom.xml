@@ -150,6 +150,10 @@
                     <exclude>**/*.json</exclude>
                     <exclude>**./.properties</exclude>
                   </excludes>
+                  <includes>
+                    <include>**/bbox_cache_gml.properties</include>
+                    <include>**/bbox_cache_syn.properties</include>
+                  </includes>
                 </configuration>
               </execution>
               <execution>
@@ -160,6 +164,10 @@
                 <phase>process-sources</phase>
                 <configuration>
                   <encoding>ISO-8859-1</encoding>
+                  <excludes>
+                    <exclude>**/bbox_cache_gml.properties</exclude>
+                    <exclude>**/bbox_cache_syn.properties</exclude>
+                  </excludes>
                   <includes>
                     <include>**/*.properties</include>
                   </includes>
@@ -190,12 +198,6 @@
                       <include name="**/*.xq" />
                       <replacetoken><![CDATA[-->]]></replacetoken>
                     </replace>
-                    <!--
-                    <replace dir="${project.basedir}" value="fuer">
-                      <include name="**/*.properties" />
-                      <replacetoken>für</replacetoken>
-                    </replace>
-                    -->
                   </target>
                 </configuration>
               </execution>
