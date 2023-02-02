@@ -26,6 +26,16 @@ package de.latlon.xplan.validator.report.reference;
  */
 public enum ExternalReferenceStatus {
 
-	AVAILABLE, MISSING, UNCHECKED
+	AVAILABLE("vorhanden"), MISSING("fehlt"), UNCHECKED("nicht geprüft");
+
+	private String label;
+
+	private ExternalReferenceStatus(String label) {
+		this.label = label;
+	}
+
+	public String getLabel() {
+		return label;
+	}
 
 }

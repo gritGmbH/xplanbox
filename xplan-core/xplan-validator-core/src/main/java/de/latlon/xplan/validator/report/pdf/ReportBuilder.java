@@ -199,7 +199,7 @@ class ReportBuilder {
 			MultiPageListBuilder rules = cmp.multiPageList();
 			references.forEach((name, status) -> {
 				StyleBuilder style = stl.style(simpleStyle).setLeftIndent(10);
-				String nameAndStatus = String.format("%s (%s)", name, status);
+				String nameAndStatus = String.format("%s (%s)", name, status.getLabel());
 				TextFieldBuilder<String> referenceField = cmp.text(nameAndStatus).setStyle(style);
 				rules.add(cmp.horizontalList().add(referenceField));
 			});

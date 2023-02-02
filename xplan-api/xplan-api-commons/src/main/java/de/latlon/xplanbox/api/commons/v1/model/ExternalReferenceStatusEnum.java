@@ -32,7 +32,7 @@ public enum ExternalReferenceStatusEnum {
 
 	MISSING("MISSING"),
 
-	UNCHECKED("UNCHECKEDE");
+	UNCHECKED("UNCHECKED");
 
 	private String value;
 

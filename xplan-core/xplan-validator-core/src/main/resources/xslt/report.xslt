@@ -131,7 +131,20 @@
               <ul>
                 <xsl:for-each select="ExternalReference">
                   <li>
-                    <xsl:value-of select="."/> (<xsl:value-of select="@status"/>)
+                    <xsl:choose>
+                      <xsl:when test="@status='available'">
+                        <xsl:value-of select="."/> (<font color="#00FF00">vorhanden</font>)
+                      </xsl:when>
+                      <xsl:when test="@status='missing'">
+                        <xsl:value-of select="."/> (<font color="#FF0000">fehlt</font>)
+                      </xsl:when>
+                      <xsl:when test="@status='unchecked'">
+                        <xsl:value-of select="."/> (<font color="#CCCC33">nicht geprüft</font>)
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="."/>
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </li>
                 </xsl:for-each>
               </ul>
