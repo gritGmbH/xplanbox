@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.report.ValidatorDetail;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.ValidatorResult;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceStatus;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
@@ -193,14 +194,15 @@ class ReportBuilder {
 			TextFieldBuilder<String> skipCodeField = cmp.text(skipCode.getMessage()).setStyle(style);
 			verticalList = verticalList.add(skipCodeField);
 		}
-		List<String> references = externalReferenceReport.getReferences();
+		Map<String, ExternalReferenceStatus> references = externalReferenceReport.getReferencesAndStatus();
 		if (references != null && !references.isEmpty()) {
 			MultiPageListBuilder rules = cmp.multiPageList();
-			for (String reference : references) {
+			references.forEach((name, status) -> {
 				StyleBuilder style = stl.style(simpleStyle).setLeftIndent(10);
-				TextFieldBuilder<String> referenceField = cmp.text(reference).setStyle(style);
+				String nameAndStatus = String.format("%s (%s)", name, status);
+				TextFieldBuilder<String> referenceField = cmp.text(nameAndStatus).setStyle(style);
 				rules.add(cmp.horizontalList().add(referenceField));
-			}
+			});
 			verticalList = verticalList.add(rules);
 		}
 		return verticalList;

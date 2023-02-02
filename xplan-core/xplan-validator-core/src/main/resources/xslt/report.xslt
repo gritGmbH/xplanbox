@@ -131,7 +131,7 @@
               <ul>
                 <xsl:for-each select="ExternalReference">
                   <li>
-                    <xsl:value-of select="."/>
+                    <xsl:value-of select="."/> (<xsl:value-of select="@status"/>)
                   </li>
                 </xsl:for-each>
               </ul>
