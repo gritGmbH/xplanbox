@@ -54,7 +54,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -319,7 +318,7 @@ public class XPlanValidatorTest {
 
 	private ValidatorReport executeValidator(GeometricValidator geomVal, SemanticValidator semVal,
 			SyntacticValidator synVal, ValidationSettings settings)
-			throws IOException, ValidatorException, ParseException, ReportGenerationException {
+			throws IOException, ValidatorException, ReportGenerationException {
 		return executeValidator(geomVal, semVal, synVal, Collections.emptyList(), settings);
 	}
 
