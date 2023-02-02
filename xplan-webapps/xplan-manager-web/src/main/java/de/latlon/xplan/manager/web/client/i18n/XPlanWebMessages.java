@@ -72,7 +72,9 @@ public interface XPlanWebMessages extends Messages {
 
 	String validationNoteInvalid();
 
-	String validationNoteMultipleXPlanElements();
+	String validationNoteUnresolvedReferences();
+
+	String validationNoteInvalidAndUnresolvedReferences();
 
 	String validationTitle();
 

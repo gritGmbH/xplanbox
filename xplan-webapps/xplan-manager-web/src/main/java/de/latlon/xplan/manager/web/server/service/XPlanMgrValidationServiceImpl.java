@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceStatus;
 import de.latlon.xplan.validator.web.client.service.ValidationService;
 import de.latlon.xplan.validator.web.shared.ValidationException;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
@@ -119,6 +120,11 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
 		planToVerify.setValidated(true);
 		planToVerify.setValid(report.isReportValid());
 		planToVerify.setHasMultipleXPlanElements(report.hasMultipleXPlanElements());
+		boolean hasUnresolvedReferences = false;
+		if (report.getExternalReferenceReport() != null)
+			hasUnresolvedReferences = report.getExternalReferenceReport().getReferencesAndStatus()
+					.containsValue(ExternalReferenceStatus.MISSING);
+		planToVerify.setHasUnresolvedReferences(hasUnresolvedReferences);
 	}
 
 }
