@@ -14,6 +14,7 @@ Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind
 - Verbesserung der Geltungsbereichsprüfung im XPlanValidator
 - Der Import von XPlanGML-Dateien über den XPlanManagerWeb/API wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich
 - Der XPlanValidator kann jetzt auch Daten für den XPlanValidatorWMS temporär in der XPlanDB speichern
+- Aktualisierung auf GDAL 3.5
 
 ==== Fehlerbehebungen
 - Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
