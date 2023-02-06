@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.manager.ApplicationPathConfig;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
@@ -70,6 +71,8 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
@@ -101,6 +104,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 public class PlanApi {
+
+	private final static String INTERNALID_PATTERN = "^[A-Za-z0-9-]*$";
 
 	private final static MediaType[] MEDIA_TYPES_SEARCH = { APPLICATION_JSON_TYPE, XPLANBOX_NO_VERSION_JSON_TYPE,
 			XPLANBOX_V1_JSON_TYPE, XPLANBOX_V2_JSON_TYPE, APPLICATION_XML_TYPE, APPLICATION_ZIP_TYPE };
@@ -168,7 +173,8 @@ public class PlanApi {
 			@QueryParam("profiles") @Parameter(
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles,
-			@QueryParam("internalId") @Parameter(description = "internalId links to VerfahrensId") String internalId,
+			@QueryParam("internalId") @Parameter(description = "internalId links to VerfahrensId",
+					schema = @Schema(pattern = INTERNALID_PATTERN)) String internalId,
 			@QueryParam("planStatus") @Parameter(
 					description = "target for data storage, overrides the default derived from xplan:rechtsstand",
 					schema = @Schema(allowableValues = { "IN_AUFSTELLUNG", "FESTGESTELLT", "ARCHIVIERT" },
@@ -196,9 +202,11 @@ public class PlanApi {
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
 			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") Boolean skipLaufrichtung,
-			@QueryParam("profiles") List<String> profiles, @QueryParam("internalId") String internalId,
+			@QueryParam("profiles") List<String> profiles,
+			@QueryParam("internalId") @Parameter(schema = @Schema(pattern = INTERNALID_PATTERN)) String internalId,
 			@QueryParam("planStatus") String planStatus) throws Exception {
 		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
+		checkInternalId(internalId);
 		XPlanArchive xPlanArchive;
 		try {
 			xPlanArchive = archiveCreator.createXPlanArchiveFromGml(body);
@@ -279,6 +287,7 @@ public class PlanApi {
 	private Response callImport(Request request, String xFilename, Boolean skipSemantisch, Boolean skipFlaechenschluss,
 			Boolean skipGeltungsbereich, Boolean skipLaufrichtung, List<String> profiles, String internalId,
 			String planStatus, XPlanArchive xPlanArchive) throws Exception {
+		checkInternalId(internalId);
 		String validationName = detectOrCreateValidationName(xFilename);
 		DefaultValidationConfiguration validationConfig = managerApiConfiguration.getDefaultValidationConfiguration();
 		ValidationSettings validationSettings = createValidationSettings(validationName, WITH_GEOMETRISCH_VALIDATION,
@@ -370,6 +379,15 @@ public class PlanApi {
 			Log.warn("Could not create self reference: " + e.getMessage(), e);
 		}
 		return null;
+	}
+
+	private void checkInternalId(String internalId) throws UnsupportedParameterValue {
+		Pattern pattern = Pattern.compile(INTERNALID_PATTERN);
+		Matcher matcher = pattern.matcher(internalId);
+		if (!matcher.matches()) {
+			throw new UnsupportedParameterValue("internalId", internalId);
+		}
+
 	}
 
 }
