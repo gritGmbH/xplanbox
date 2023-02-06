@@ -28,8 +28,8 @@ zeigen, in dem sich die Datei _libgdaljni.so_ befindet.
 ==== Windows
 
 GDAL 3.5 für Windows kann bei http://www.gisinternals.com/[GISInternals]
-heruntergeladen werden. Die Version 3.0 befindet sich
-unter "Older Releases". Die Architektur der GDAL-Bibliothek (32bit
+heruntergeladen werden. Die Version 3.5 befindet sich
+unter "Older Releases/Archive Versions". Die Architektur der GDAL-Bibliothek (32bit
 oder 64bit) muss der Architektur von Java und dem Betriebssystem
 http://windows.microsoft.com/de-de/windows/32-bit-and-64-bit-windows[Windows]
 entsprechen. Bei den Downloads sollten die kompilierten Binaries in
