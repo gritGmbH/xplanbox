@@ -383,6 +383,8 @@ public class PlanApi {
 	}
 
 	private void checkInternalId(String internalId) throws UnsupportedParameterValue {
+		if (internalId == null)
+			return;
 		Pattern pattern = Pattern.compile(INTERNALID_PATTERN);
 		Matcher matcher = pattern.matcher(internalId);
 		if (!matcher.matches()) {
