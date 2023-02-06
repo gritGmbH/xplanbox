@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.client.service.ValidationService;
+import de.latlon.xplan.validator.web.shared.InvalidParameterException;
 import de.latlon.xplan.validator.web.shared.ValidationException;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
@@ -83,8 +84,9 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 
 	@Override
 	public ValidationSummary validate(ValidationSettings validationSettings)
-			throws ValidationException, IllegalArgumentException {
+			throws ValidationException, InvalidParameterException {
 		LOG.debug("Starting validation of plan with {}", validationSettings.toString());
+		ValidationUtils.validate(validationSettings);
 		try {
 			XPlan planToVerify = planArchiveManager.readPlanFromSession(session);
 			String planUuid = planToVerify.getId();
