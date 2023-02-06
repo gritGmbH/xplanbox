@@ -61,6 +61,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
+import static de.latlon.xplanbox.api.commons.ValidatorConverter.NAME_PATTERN;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF;
@@ -130,9 +131,9 @@ public class ValidateApi {
 	public Response validate(@Context Request request, @Valid File body,
 			@HeaderParam("X-Filename") @Parameter(description = "Name of the file to be uploaded",
 					example = "File names such as xplan.gml, xplan.xml, xplan.zip",
-					schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$")) String xFilename,
+					schema = @Schema(pattern = NAME_PATTERN)) String xFilename,
 			@QueryParam("name") @Parameter(description = "Name of the validation",
-					schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$"),
+					schema = @Schema(pattern = NAME_PATTERN),
 					example = "xplan-1Pruefbericht_Torstrasse_10_report-4223") String name,
 			@QueryParam("skipSemantisch") @DefaultValue("false") @Parameter(
 					description = "skip semantische Validierung") Boolean skipSemantisch,
@@ -162,8 +163,8 @@ public class ValidateApi {
 	@Produces({ "application/json", "application/xml", "text/xml", "application/pdf", "application/zip" })
 	@Hidden
 	public Response validateZip(@Context Request request, @Valid File body,
-			@HeaderParam("X-Filename") @Parameter(schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$")) String xFilename,
-			@QueryParam("name") @Parameter(schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$")) String name,
+			@HeaderParam("X-Filename") @Parameter(schema = @Schema(pattern = NAME_PATTERN)) String xFilename,
+			@QueryParam("name") @Parameter(schema = @Schema(pattern = NAME_PATTERN)) String name,
 			@QueryParam("skipSemantisch") @DefaultValue("false") Boolean skipSemantisch,
 			@QueryParam("skipGeometrisch") @DefaultValue("false") Boolean skipGeometrisch,
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
