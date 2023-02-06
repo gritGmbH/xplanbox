@@ -18,9 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplanbox.api.manager.exception;
-
-import de.latlon.xplanbox.api.commons.exception.XPlanApiException;
+package de.latlon.xplanbox.api.commons.exception;
 
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 

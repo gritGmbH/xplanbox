@@ -23,10 +23,14 @@ package de.latlon.xplanbox.api.commons;
 import de.latlon.xplan.validator.web.shared.ValidationOption;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationType;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedHeaderValue;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_GELTUNGSBEREICH;
@@ -40,23 +44,32 @@ import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
  */
 public final class ValidatorConverter {
 
+	public final static String NAME_PATTERN = "^[A-Za-z0-9.()_-]*$";
+
 	private ValidatorConverter() {
 	}
 
-	public static String detectOrCreateValidationName(String xFilename) {
+	public static String detectOrCreateValidationName(String xFilename)
+			throws UnsupportedParameterValue, UnsupportedHeaderValue {
 		return detectOrCreateValidationName(xFilename, null);
 	}
 
-	public static String detectOrCreateValidationName(String xFilename, String name) {
-		if (name != null) {
-			return name;
+	public static String detectOrCreateValidationName(String xFilenameHeader, String nameParameter)
+			throws UnsupportedParameterValue, UnsupportedHeaderValue {
+		if (nameParameter != null) {
+			if (!matchesNamePattern(nameParameter)) {
+				throw new UnsupportedParameterValue("name", nameParameter);
+			}
+			return nameParameter;
 		}
-		if (xFilename != null) {
-
-			int suffixStart = xFilename.lastIndexOf(".");
+		if (xFilenameHeader != null) {
+			if (!matchesNamePattern(xFilenameHeader)) {
+				throw new UnsupportedHeaderValue("X-Filename", xFilenameHeader);
+			}
+			int suffixStart = xFilenameHeader.lastIndexOf(".");
 			if (suffixStart < 0)
-				return xFilename;
-			return xFilename.substring(0, suffixStart);
+				return xFilenameHeader;
+			return xFilenameHeader.substring(0, suffixStart);
 		}
 		return UUID.randomUUID().toString();
 	}
@@ -92,6 +105,12 @@ public final class ValidatorConverter {
 		if (skipLaufrichtung)
 			validationOptions.add(SKIP_LAUFRICHTUNG);
 		return validationOptions;
+	}
+
+	private static boolean matchesNamePattern(String nameToCheck) {
+		Pattern pattern = Pattern.compile(NAME_PATTERN);
+		Matcher matcher = pattern.matcher(nameToCheck);
+		return matcher.matches();
 	}
 
 }

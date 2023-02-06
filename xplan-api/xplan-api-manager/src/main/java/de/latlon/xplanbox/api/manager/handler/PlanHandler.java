@@ -39,7 +39,7 @@ import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlan;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanId;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanIdSyntax;
-import de.latlon.xplanbox.api.manager.exception.UnsupportedParameterValue;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.manager.v1.model.StatusMessage;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.slf4j.Logger;

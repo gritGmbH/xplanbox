@@ -37,7 +37,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -82,6 +81,7 @@ public class ValidateApiTest extends JerseyTest {
 		resourceConfig.property("contextConfig", context);
 		resourceConfig.register(this);
 		resourceConfig.packages("de.latlon.xplanbox.api.commons.converter");
+		resourceConfig.packages("de.latlon.xplanbox.api.commons.exception");
 		return resourceConfig;
 	}
 
@@ -180,6 +180,27 @@ public class ValidateApiTest extends JerseyTest {
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 		String actual = response.readEntity(String.class);
 		assertThat(actual, containsString("profil"));
+	}
+
+	@Test
+	public void verifyThat_validationWithInvalidXFileName_Response_IsStatusCode400()
+			throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").request().header("X-Filename", "invalid.filename with blanks")
+				.accept(APPLICATION_JSON).post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+	}
+
+	@Test
+	public void verifyThat_validationWithInvalidName_Response_IsStatusCode400() throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").queryParam("name", "invalid.name with blanks").request()
+				.accept(APPLICATION_JSON).post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 
 }

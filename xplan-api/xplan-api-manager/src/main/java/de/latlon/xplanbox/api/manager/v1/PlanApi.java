@@ -191,7 +191,7 @@ public class PlanApi {
 	@Produces({ "application/json", XPLANBOX_NO_VERSION_JSON, XPLANBOX_V1_JSON, XPLANBOX_V2_JSON })
 	@Hidden
 	public Response callImportGml(@Context Request request, @Valid File body,
-			@HeaderParam("X-Filename") String xFilename,
+			@HeaderParam("X-Filename") @Parameter(schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$")) String xFilename,
 			@QueryParam("skipSemantisch") @DefaultValue("false") Boolean skipSemantisch,
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
 			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,
