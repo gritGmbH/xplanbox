@@ -133,7 +133,7 @@
                   <li>
                     <xsl:choose>
                       <xsl:when test="@status='available'">
-                        <xsl:value-of select="."/> (<font color="#00FF00">vorhanden</font>)
+                        <xsl:value-of select="."/> (<font color="#00C000">vorhanden</font>)
                       </xsl:when>
                       <xsl:when test="@status='missing'">
                         <xsl:value-of select="."/> (<font color="#FF0000">fehlt</font>)
