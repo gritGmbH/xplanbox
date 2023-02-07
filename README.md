@@ -53,7 +53,7 @@ Für die Erstellung der ausführbaren Binärdateien ist ein [JDK 11](https://ado
 
 Folgen Sie der [Installationsanleitung von Maven](https://maven.apache.org/install.html).
 
-Weitere Informationen zu Konfiguration von Maven stehen in der [Referenzdokumentation zu den Maven Settings](https://maven.apache.org/settings.html).
+Weitere Informationen zur Konfiguration von Maven finden Sie in der [Referenzdokumentation zu den Maven Settings](https://maven.apache.org/settings.html).
 
 #### deegree webservices erstellen
 
