@@ -24,7 +24,7 @@ import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3Context;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3TestContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,7 +52,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { AmazonS3Context.class, AmazonS3TestContext.class })
+@ContextConfiguration(classes = { AmazonS3RasterStorageContext.class, AmazonS3TestContext.class })
 @ActiveProfiles({ "s3", "mock" })
 @TestPropertySource("classpath:s3Mock.properties")
 public class S3RasterStorageIT {

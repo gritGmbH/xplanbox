@@ -44,7 +44,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3Context;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -98,7 +98,7 @@ import static java.nio.file.Paths.get;
  */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager" })
-@Import({ RasterStorageContext.class, AmazonS3Context.class })
+@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class })
 public class ApplicationContext {
 
 	private static final String RULES_DIRECTORY = "/rules";

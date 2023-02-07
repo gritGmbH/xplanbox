@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config;
+package de.latlon.xplan.manager.storage.s3.config;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -26,8 +26,6 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.S3RasterStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -38,14 +36,11 @@ import org.springframework.context.annotation.PropertySource;
 import javax.annotation.PreDestroy;
 
 /**
- * Spring configuration for using AWS S3 as a storage for raster data. This requires
- * MapServer to be used as WMS service. Check the <code>RasterStorageContext</code>
- * configuration how to set MapServer as WMS.
+ * Spring configuration for using AWS S3 as a storage.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  * @since 6.1
- * @see de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext
  */
 @Configuration
 @Profile("s3")
@@ -54,17 +49,6 @@ public class AmazonS3Context {
 
 	@Autowired
 	private AmazonS3 s3Client;
-
-	@Bean
-	public S3RasterStorage rasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 s3Client,
-			@Value("${s3.bucketName:#{environment.XPLAN_S3_BUCKET_NAME}}") String bucketName) {
-		return new S3RasterStorage(rasterAdapter, s3Client, bucketName);
-	}
-
-	@Bean
-	public GdalRasterAdapter rasterAdapter() {
-		return new GdalRasterAdapter();
-	}
 
 	@Bean
 	public AmazonS3 s3Client(AWSCredentials credentials,
