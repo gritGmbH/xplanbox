@@ -24,8 +24,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 
 /**
  * Encapsulates a change of a plan.
@@ -36,7 +36,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 public class Change {
 
 	@Size(max = 100)
-	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Pattern(regexp = NAME_PATTERN)
 	@Valid
 	private String planName;
 
@@ -44,7 +44,7 @@ public class Change {
 	private int legalNatureCode = -1;
 
 	@Size(max = 100)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = SIMPLE_NAME_PATTERN)
 	@Valid
 	private String number;
 

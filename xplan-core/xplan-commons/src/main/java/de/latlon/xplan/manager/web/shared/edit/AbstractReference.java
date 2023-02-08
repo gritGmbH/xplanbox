@@ -25,8 +25,9 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.URL_PATTERN;
 
 /**
  * TODO add class documentation here
@@ -37,7 +38,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 public abstract class AbstractReference {
 
 	@Size(max = 250)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = URL_PATTERN)
 	@Valid
 	private String geoReference;
 
@@ -48,12 +49,12 @@ public abstract class AbstractReference {
 	private ExterneReferenzArt art;
 
 	@Size(max = 250)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = URL_PATTERN)
 	@Valid
 	private String informationssystemURL;
 
 	@Size(max = 250)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = URL_PATTERN)
 	@Valid
 	private String reference;
 
@@ -61,12 +62,12 @@ public abstract class AbstractReference {
 	private MimeTypes referenzMimeType;
 
 	@Size(max = 100)
-	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Pattern(regexp = NAME_PATTERN)
 	@Valid
 	private String referenzName;
 
 	@Size(max = 1000)
-	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Pattern(regexp = DESCRIPTION_PATTERN)
 	@Valid
 	private String beschreibung;
 

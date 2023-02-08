@@ -76,7 +76,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
-import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.INTERNALID_PATTERN;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
@@ -161,7 +161,7 @@ public class PlanApi {
 	public Response callImportZip(@Context Request request, @Valid File body,
 			@HeaderParam("X-Filename") @Parameter(description = "Name of the file to be uploaded",
 					example = "File names such as xplan.gml, xplan.xml, xplan.zip",
-					schema = @Schema(pattern = NAME_PATTERN)) String xFilename,
+					schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String xFilename,
 			@QueryParam("skipSemantisch") @DefaultValue("false") @Parameter(
 					description = "skip semantische Validierung") Boolean skipSemantisch,
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") @Parameter(
@@ -197,7 +197,7 @@ public class PlanApi {
 	@Produces({ "application/json", XPLANBOX_NO_VERSION_JSON, XPLANBOX_V1_JSON, XPLANBOX_V2_JSON })
 	@Hidden
 	public Response callImportGml(@Context Request request, @Valid File body,
-			@HeaderParam("X-Filename") @Parameter(schema = @Schema(pattern = NAME_PATTERN)) String xFilename,
+			@HeaderParam("X-Filename") @Parameter(schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String xFilename,
 			@QueryParam("skipSemantisch") @DefaultValue("false") Boolean skipSemantisch,
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
 			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,

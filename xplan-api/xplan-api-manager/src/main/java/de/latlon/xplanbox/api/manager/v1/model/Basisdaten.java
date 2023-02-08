@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.Objects;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 
 /**
  * Datatype for Basisdaten.
@@ -49,11 +50,11 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PA
 public class Basisdaten {
 
 	@Size(max = 100)
-	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String name;
 
 	@Size(max = 1000)
-	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Pattern(regexp = DESCRIPTION_PATTERN)
 	private @Valid String beschreibung;
 
 	@DecimalMin("1000")

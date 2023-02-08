@@ -31,13 +31,19 @@ public class TextPatternConstants {
 	private TextPatternConstants() {
 	}
 
+	public final static String SIMPLE_NAME_PATTERN = "^[A-Za-z0-9.()_\\-]*$";
+
 	public final static String INTERNALID_PATTERN = "^[A-Za-z0-9\\-]*$";
 
-	public final static String NAME_PATTERN = "^[A-Za-z0-9.()_\\-]*$";
+	public final static String NAME_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß]*$";
 
-	public final static String EXTENDED_NAME_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß\\s]*$";
+	public final static String DESCRIPTION_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß§\\s]*$";
 
-	public final static String TEXT_KEY_PATTERN = "^[A-Za-z0-9.()_\\-§]*$\\s";
+	public final static String URL_PATTERN = "^[A-Za-z0-9.@:%_\\+.~#?&//=\\-]*$";
+
+	public final static String TEXT_KEY_PATTERN = "^[A-Za-z0-9.()_\\-§\\s]*$";
+
+	public final static String TEXT_GESETZ_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß§\\s]*$";
 
 	public final static String TEXT_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß§\",\\s]*$";
 

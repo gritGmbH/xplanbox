@@ -46,8 +46,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.URL_PATTERN;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
@@ -81,9 +82,9 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private final TextBox referenzName;
 
-	private final PatternTextBox informationssystemURL = createPatternTextInput(NAME_PATTERN);
+	private final PatternTextBox informationssystemURL = createPatternTextInput(URL_PATTERN);
 
-	private final PatternTextArea beschreibung = createPatternTextAreaInput(EXTENDED_NAME_PATTERN);
+	private final PatternTextArea beschreibung = createPatternTextAreaInput(DESCRIPTION_PATTERN);
 
 	private final StrictDateBox datum = createDateInput();
 
@@ -255,9 +256,9 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private TextBox createRasterName(EditVersion version) {
 		if (XPLAN_60.equals(version)) {
-			return createMandatoryTextInput(EXTENDED_NAME_PATTERN);
+			return createMandatoryTextInput(NAME_PATTERN);
 		}
-		return createPatternTextInput(EXTENDED_NAME_PATTERN);
+		return createPatternTextInput(NAME_PATTERN);
 	}
 
 	private boolean validate(boolean includeReferences) {

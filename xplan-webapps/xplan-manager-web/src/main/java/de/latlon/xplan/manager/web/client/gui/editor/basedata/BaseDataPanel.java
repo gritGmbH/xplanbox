@@ -38,7 +38,8 @@ import de.latlon.xplan.manager.web.shared.edit.BaseData;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static com.google.gwt.user.client.ui.HasVerticalAlignment.ALIGN_TOP;
-import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.SO_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
@@ -62,9 +63,9 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private static final String TEXTAREA_HEIGHT = "125px";
 
-	private final PatternTextBox name = createTextInput(EXTENDED_NAME_PATTERN);
+	private final PatternTextBox name = createTextInput(NAME_PATTERN);
 
-	private final PatternTextArea description = createTextAreaInput(EXTENDED_NAME_PATTERN);
+	private final PatternTextArea description = createTextAreaInput(DESCRIPTION_PATTERN);
 
 	private final StrictDateBox creationDate = createDateInput();
 

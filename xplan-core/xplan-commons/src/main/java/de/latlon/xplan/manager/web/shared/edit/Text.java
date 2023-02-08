@@ -24,7 +24,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_GESETZ_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
 
@@ -45,7 +45,7 @@ public class Text extends AbstractReference {
 	private String key;
 
 	@Size(max = 100)
-	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Pattern(regexp = TEXT_GESETZ_PATTERN)
 	@Valid
 	private String basis;
 

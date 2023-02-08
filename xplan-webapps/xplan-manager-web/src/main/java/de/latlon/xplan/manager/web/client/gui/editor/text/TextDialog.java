@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
-import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_GESETZ_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
@@ -55,7 +55,7 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 
 	private final PatternTextArea text = createPatternTextAreaInput(TEXT_PATTERN);
 
-	private final PatternTextBox basis = createPatternTextInput(EXTENDED_NAME_PATTERN);
+	private final PatternTextBox basis = createPatternTextInput(TEXT_GESETZ_PATTERN);
 
 	private final Text textToEdit;
 

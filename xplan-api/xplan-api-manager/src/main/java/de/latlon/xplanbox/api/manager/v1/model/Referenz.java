@@ -28,8 +28,9 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.URL_PATTERN;
 
 /**
  * Datatype for Referenz.
@@ -41,7 +42,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 public class Referenz {
 
 	@Size(max = 250)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = URL_PATTERN)
 	private @Valid String georefURL;
 
 	private @Valid String georefMimeType;
@@ -49,21 +50,21 @@ public class Referenz {
 	private @Valid String art;
 
 	@Size(max = 250)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = URL_PATTERN)
 	private @Valid String informationssystemURL;
 
 	@Size(max = 100)
-	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String referenzName;
 
 	@Size(max = 250)
-	@Pattern(regexp = NAME_PATTERN)
+	@Pattern(regexp = URL_PATTERN)
 	private @Valid String referenzURL;
 
 	private @Valid String referenzMimeType;
 
 	@Size(max = 1000)
-	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Pattern(regexp = DESCRIPTION_PATTERN)
 	private @Valid String beschreibung;
 
 	private @Valid Date datum;

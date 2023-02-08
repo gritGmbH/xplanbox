@@ -32,7 +32,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_GELTUNGSBEREICH;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_LAUFRICHTUNG;
@@ -107,7 +107,7 @@ public final class ValidatorConverter {
 	}
 
 	private static boolean matchesNamePattern(String nameToCheck) {
-		Pattern pattern = Pattern.compile(NAME_PATTERN);
+		Pattern pattern = Pattern.compile(SIMPLE_NAME_PATTERN);
 		Matcher matcher = pattern.matcher(nameToCheck);
 		return matcher.matches();
 	}
