@@ -20,6 +20,13 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+
 /**
  * Encapsulates a change of a plan.
  *
@@ -28,12 +35,20 @@ package de.latlon.xplan.manager.web.shared.edit;
  */
 public class Change {
 
+	@Size(max = 100)
+	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Valid
 	private String planName;
 
+	@Valid
 	private int legalNatureCode = -1;
 
+	@Size(max = 100)
+	@Pattern(regexp = NAME_PATTERN)
+	@Valid
 	private String number;
 
+	@Valid
 	private ChangeType type;
 
 	public Change() {

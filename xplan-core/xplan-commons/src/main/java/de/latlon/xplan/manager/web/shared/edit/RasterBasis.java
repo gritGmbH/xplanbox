@@ -20,8 +20,13 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 
 /**
  * Encapsulate a raster basis.
@@ -31,10 +36,15 @@ import java.util.List;
  */
 public class RasterBasis {
 
+	@Valid
 	private String featureId;
 
+	@Size(max = 100)
+	@Pattern(regexp = NAME_PATTERN)
+	@Valid
 	private String bereichNummer;
 
+	@Valid
 	private List<RasterReference> rasterReferences;
 
 	public RasterBasis() {

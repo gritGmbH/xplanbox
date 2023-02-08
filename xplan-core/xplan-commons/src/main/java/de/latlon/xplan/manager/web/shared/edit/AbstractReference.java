@@ -20,7 +20,13 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 
 /**
  * TODO add class documentation here
@@ -30,22 +36,41 @@ import java.util.Date;
  */
 public abstract class AbstractReference {
 
+	@Size(max = 250)
+	@Pattern(regexp = NAME_PATTERN)
+	@Valid
 	private String geoReference;
 
+	@Valid
 	private MimeTypes georefMimeType;
 
+	@Valid
 	private ExterneReferenzArt art;
 
+	@Size(max = 250)
+	@Pattern(regexp = NAME_PATTERN)
+	@Valid
 	private String informationssystemURL;
 
+	@Size(max = 250)
+	@Pattern(regexp = NAME_PATTERN)
+	@Valid
 	private String reference;
 
+	@Valid
 	private MimeTypes referenzMimeType;
 
+	@Size(max = 100)
+	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Valid
 	private String referenzName;
 
+	@Size(max = 1000)
+	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Valid
 	private String beschreibung;
 
+	@Valid
 	private Date datum;
 
 	public AbstractReference() {

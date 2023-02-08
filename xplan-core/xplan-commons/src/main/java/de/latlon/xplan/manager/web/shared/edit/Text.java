@@ -20,6 +20,14 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
+
 /**
  * Encapsulates the text of a plan.
  *
@@ -28,14 +36,25 @@ package de.latlon.xplan.manager.web.shared.edit;
  */
 public class Text extends AbstractReference {
 
+	@Valid
 	private String featureId;
 
+	@Size(max = 50)
+	@Pattern(regexp = TEXT_KEY_PATTERN)
+	@Valid
 	private String key;
 
+	@Size(max = 100)
+	@Pattern(regexp = EXTENDED_NAME_PATTERN)
+	@Valid
 	private String basis;
 
+	@Size(max = 1000)
+	@Pattern(regexp = TEXT_PATTERN)
+	@Valid
 	private String text;
 
+	@Valid
 	private TextRechtscharacterType rechtscharakter;
 
 	public Text() {

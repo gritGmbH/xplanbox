@@ -57,6 +57,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import javax.ws.rs.core.Context;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -193,7 +194,7 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public void editPlan( @PathVariable int planId,
-                          @RequestBody XPlanToEdit xPlanToEdit,
+						  @RequestBody @Valid XPlanToEdit xPlanToEdit,
                           @RequestParam(value = "updateRasterConfig", required = false) boolean updateRasterConfig,
                           @Context HttpServletRequest request, @Context HttpServletResponse response )
                                           throws Exception {

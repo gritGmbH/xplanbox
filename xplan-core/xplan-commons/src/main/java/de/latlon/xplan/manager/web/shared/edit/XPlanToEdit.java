@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,16 +32,22 @@ import java.util.List;
  */
 public class XPlanToEdit {
 
+	@Valid
 	private BaseData baseData;
 
+	@Valid
 	private ValidityPeriod validityPeriod;
 
+	@Valid
 	private List<Change> changes;
 
+	@Valid
 	private List<Text> texts;
 
+	@Valid
 	private List<Reference> references;
 
+	@Valid
 	private List<RasterBasis> rasterBasis;
 
 	private boolean hasBereich = false;
