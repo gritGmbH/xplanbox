@@ -26,14 +26,11 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-
-import javax.annotation.PreDestroy;
 
 /**
  * Spring configuration for using AWS S3 as a storage.
@@ -47,10 +44,7 @@ import javax.annotation.PreDestroy;
 @PropertySource(value = "classpath:s3.properties", ignoreResourceNotFound = true)
 public class AmazonS3Context {
 
-	@Autowired
-	private AmazonS3 s3Client;
-
-	@Bean
+	@Bean(destroyMethod = "shutdown")
 	public AmazonS3 s3Client(AWSCredentials credentials,
 			@Value("${s3.region:#{environment.XPLAN_S3_REGION}}") String signingRegion,
 			@Value("${s3.endpoint.url:#{environment.XPLAN_S3_ENDPOINT}}") String endpointUrl) {
@@ -74,11 +68,6 @@ public class AmazonS3Context {
 	public AWSCredentials credentials(@Value("${s3.accessKeyId:#{environment.XPLAN_S3_ACCESS_KEY}}") String accessKeyId,
 			@Value("${s3.secretKey:#{environment.XPLAN_S3_SECRET_ACCESS_KEY}}") String secretKey) {
 		return new BasicAWSCredentials(accessKeyId, secretKey);
-	}
-
-	@PreDestroy
-	public void shutdown() {
-		s3Client.shutdown();
 	}
 
 }
