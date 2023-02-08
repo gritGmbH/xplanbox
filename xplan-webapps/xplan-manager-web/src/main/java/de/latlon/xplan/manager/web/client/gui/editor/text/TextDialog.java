@@ -22,12 +22,12 @@ package de.latlon.xplan.manager.web.client.gui.editor.text;
 
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextArea;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextBox;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.TextRechtscharacterType;
@@ -36,8 +36,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
+import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 
 /**
  * Dialog to edit an existing or create a new {@link Text}
@@ -47,11 +51,11 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60
  */
 public class TextDialog extends EditDialogBoxWithRasterUpload {
 
-	private final TextBox key = createTextInput();
+	private final PatternTextBox key = createPatternTextInput(TEXT_KEY_PATTERN);
 
-	private final TextArea text = createTextAreaInput();
+	private final PatternTextArea text = createPatternTextAreaInput(TEXT_PATTERN);
 
-	private final TextBox basis = createTextInput();
+	private final PatternTextBox basis = createPatternTextInput(EXTENDED_NAME_PATTERN);
 
 	private final Text textToEdit;
 
@@ -107,7 +111,7 @@ public class TextDialog extends EditDialogBoxWithRasterUpload {
 
 	@Override
 	public boolean isValid() {
-		return validate();
+		return areComponentsValid(key, text, basis) & validate();
 	}
 
 	private boolean validate() {

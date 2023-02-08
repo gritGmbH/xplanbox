@@ -294,6 +294,8 @@ public interface XPlanWebMessages extends Messages {
 
 	String editInvalidInput();
 
+	String editInvalidAgainstPatternInput(String pattern);
+
 	String editInputRequired();
 
 	String editInvalidDate();

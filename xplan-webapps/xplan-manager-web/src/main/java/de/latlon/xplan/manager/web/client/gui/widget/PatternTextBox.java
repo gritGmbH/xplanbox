@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -30,17 +30,16 @@ import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 import static de.latlon.xplan.manager.web.client.gui.StyleNames.EDITOR_VALIDATION_ERROR;
 
 /**
- * {@link TextBox} with required input.
- *
- * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 6.1
  */
-public class MandatoryTextBox extends TextBox implements Validable {
+public class PatternTextBox extends TextBox implements Validable {
 
 	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
-	private String pattern;
+	private final String pattern;
 
-	public MandatoryTextBox(String pattern) {
+	public PatternTextBox(String pattern) {
 		this.pattern = pattern;
 		addValueChangeHandler(new ValueChangeHandler<String>() {
 			@Override
@@ -72,26 +71,14 @@ public class MandatoryTextBox extends TextBox implements Validable {
 	private String validateAndParse() {
 		reset();
 		String value = super.getText();
-		if (value != null && value.length() > 0) {
-			if (isValidAgainstPattern(value)) {
-				return value;
-			}
-			else {
-				addStyleName(EDITOR_VALIDATION_ERROR);
-				setTitle(MESSAGES.editInvalidAgainstPatternInput(pattern));
-				return null;
-			}
+		if (isValidAgainstPattern(value)) {
+			return value;
 		}
 		else {
 			addStyleName(EDITOR_VALIDATION_ERROR);
-			setTitle(MESSAGES.editInputRequired());
+			setTitle(MESSAGES.editInvalidAgainstPatternInput(pattern));
 			return null;
 		}
-	}
-
-	private void reset() {
-		removeStyleName(EDITOR_VALIDATION_ERROR);
-		setTitle("");
 	}
 
 	private boolean isValidAgainstPattern(String value) {
@@ -99,6 +86,11 @@ public class MandatoryTextBox extends TextBox implements Validable {
 			return true;
 		RegExp regExp = RegExp.compile(pattern);
 		return regExp.test(value);
+	}
+
+	private void reset() {
+		removeStyleName(EDITOR_VALIDATION_ERROR);
+		setTitle("");
 	}
 
 }

@@ -24,12 +24,12 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.CaptionPanel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType;
 import de.latlon.xplan.manager.web.client.gui.widget.CodeListBox;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextArea;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextBox;
 import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
 import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBoxFormat;
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
@@ -38,6 +38,7 @@ import de.latlon.xplan.manager.web.shared.edit.BaseData;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static com.google.gwt.user.client.ui.HasVerticalAlignment.ALIGN_TOP;
+import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.SO_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
@@ -61,9 +62,9 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private static final String TEXTAREA_HEIGHT = "125px";
 
-	private final TextBox name = createTextInput();
+	private final PatternTextBox name = createTextInput(EXTENDED_NAME_PATTERN);
 
-	private final TextArea description = createTextAreaInput();
+	private final PatternTextArea description = createTextAreaInput(EXTENDED_NAME_PATTERN);
 
 	private final StrictDateBox creationDate = createDateInput();
 
@@ -129,8 +130,8 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 	@Override
 	public boolean isValid() {
 		if (SO_Plan.equals(type))
-			return areComponentsValid(creationDate, lossDate, regulationDate);
-		return areComponentsValid(planType, creationDate, lossDate, regulationDate);
+			return areComponentsValid(name, description, creationDate, lossDate, regulationDate);
+		return areComponentsValid(name, description, planType, creationDate, lossDate, regulationDate);
 	}
 
 	private FlexTable createBaseDataLayout(EditVersion version, EditPlanType type) {
@@ -207,15 +208,15 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 		return codeListBox;
 	}
 
-	private TextArea createTextAreaInput() {
-		TextArea textArea = new TextArea();
+	private PatternTextArea createTextAreaInput(String pattern) {
+		PatternTextArea textArea = new PatternTextArea(pattern);
 		textArea.setWidth("100%");
 		textArea.setHeight(TEXTAREA_HEIGHT);
 		return textArea;
 	}
 
-	private TextBox createTextInput() {
-		TextBox textBox = new TextBox();
+	private PatternTextBox createTextInput(String pattern) {
+		PatternTextBox textBox = new PatternTextBox(pattern);
 		textBox.setWidth(DEFAULT_WIDTH);
 		return textBox;
 	}
