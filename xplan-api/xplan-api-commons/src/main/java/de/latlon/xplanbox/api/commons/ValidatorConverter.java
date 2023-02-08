@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -32,6 +32,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_FLAECHENSCHLUSS;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_GELTUNGSBEREICH;
 import static de.latlon.xplan.validator.geometric.GeometricValidatorImpl.SKIP_LAUFRICHTUNG;
@@ -43,8 +44,6 @@ import static de.latlon.xplan.validator.web.shared.ValidationType.SYNTACTIC;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 public final class ValidatorConverter {
-
-	public final static String NAME_PATTERN = "^[A-Za-z0-9.()_-]*$";
 
 	private ValidatorConverter() {
 	}

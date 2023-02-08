@@ -61,7 +61,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
-import static de.latlon.xplanbox.api.commons.ValidatorConverter.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF;

@@ -76,7 +76,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
-import static de.latlon.xplanbox.api.commons.ValidatorConverter.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.INTERNALID_PATTERN;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
@@ -105,8 +106,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML_TYPE;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
 		date = "2020-08-28T13:42:47.160+02:00[Europe/Berlin]")
 public class PlanApi {
-
-	private final static String INTERNALID_PATTERN = "^[A-Za-z0-9-]*$";
 
 	private final static MediaType[] MEDIA_TYPES_SEARCH = { APPLICATION_JSON_TYPE, XPLANBOX_NO_VERSION_JSON_TYPE,
 			XPLANBOX_V1_JSON_TYPE, XPLANBOX_V2_JSON_TYPE, APPLICATION_XML_TYPE, APPLICATION_ZIP_TYPE };

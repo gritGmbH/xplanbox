@@ -25,10 +25,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 
 /**
  * Datatype for Aenderung.
@@ -41,12 +46,16 @@ import java.util.Objects;
 		date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Aenderung {
 
+	@Size(max = 100)
+	@Pattern(regexp = EXTENDED_NAME_PATTERN)
 	private @Valid String planName;
 
 	@DecimalMin("1000")
 	@DecimalMax("99999")
 	private @Valid Integer rechtscharakter;
 
+	@Size(max = 100)
+	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String nummer;
 
 	/**

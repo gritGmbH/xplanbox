@@ -27,11 +27,15 @@ import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.Objects;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
 
 /**
  * Datatype for Basisdaten.
@@ -44,8 +48,12 @@ import java.util.Objects;
 		date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Basisdaten {
 
+	@Size(max = 100)
+	@Pattern(regexp = EXTENDED_NAME_PATTERN)
 	private @Valid String name;
 
+	@Size(max = 1000)
+	@Pattern(regexp = EXTENDED_NAME_PATTERN)
 	private @Valid String beschreibung;
 
 	@DecimalMin("1000")

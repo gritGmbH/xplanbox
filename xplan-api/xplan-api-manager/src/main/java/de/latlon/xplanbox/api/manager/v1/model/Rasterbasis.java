@@ -25,11 +25,14 @@ import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
 import de.latlon.xplan.manager.web.shared.edit.MimeTypes;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 
 /**
@@ -45,6 +48,8 @@ public class Rasterbasis extends Referenz {
 
 	private String id;
 
+	@Size(max = 100)
+	@Pattern(regexp = NAME_PATTERN)
 	private String bereichNummer;
 
 	public static Rasterbasis fromRasterReference(String rasterbasisId, RasterReference rasterReference) {

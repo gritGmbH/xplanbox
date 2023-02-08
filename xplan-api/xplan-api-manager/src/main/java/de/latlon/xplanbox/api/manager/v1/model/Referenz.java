@@ -23,8 +23,13 @@ package de.latlon.xplanbox.api.manager.v1.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.EXTENDED_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 
 /**
  * Datatype for Referenz.
@@ -35,20 +40,30 @@ import java.util.Objects;
 		date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Referenz {
 
+	@Size(max = 250)
+	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String georefURL;
 
 	private @Valid String georefMimeType;
 
 	private @Valid String art;
 
+	@Size(max = 250)
+	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String informationssystemURL;
 
+	@Size(max = 100)
+	@Pattern(regexp = EXTENDED_NAME_PATTERN)
 	private @Valid String referenzName;
 
+	@Size(max = 250)
+	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String referenzURL;
 
 	private @Valid String referenzMimeType;
 
+	@Size(max = 1000)
+	@Pattern(regexp = EXTENDED_NAME_PATTERN)
 	private @Valid String beschreibung;
 
 	private @Valid Date datum;

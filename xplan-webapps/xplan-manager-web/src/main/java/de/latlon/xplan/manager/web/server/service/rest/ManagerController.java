@@ -72,6 +72,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
+import static de.latlon.xplan.commons.util.TextPatternConstants.INTERNALID_PATTERN;
 import static java.lang.Double.doubleToLongBits;
 import static java.lang.Long.toHexString;
 import static java.lang.Math.random;
@@ -97,8 +98,6 @@ public class ManagerController {
 
 	private static final ResourceBundle BUNDLE = ResourceBundle
 			.getBundle("de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages");
-
-	private final static String INTERNALID_PATTERN = "^[A-Za-z0-9-]*$";
 
 	private final ManagerPlanArchiveManager archiveManager = new ManagerPlanArchiveManager();
 
