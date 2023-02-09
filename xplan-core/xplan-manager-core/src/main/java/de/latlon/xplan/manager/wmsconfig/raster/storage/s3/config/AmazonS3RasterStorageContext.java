@@ -41,7 +41,7 @@ import org.springframework.context.annotation.Profile;
  * @see de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext
  */
 @Configuration
-@Profile("s3")
+@Profile("s3img")
 @Import({ AmazonS3Context.class })
 public class AmazonS3RasterStorageContext {
 
