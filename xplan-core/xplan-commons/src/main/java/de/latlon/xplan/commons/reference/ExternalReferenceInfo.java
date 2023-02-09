@@ -50,7 +50,7 @@ public class ExternalReferenceInfo {
 	}
 
 	public List<ExternalReference> getNonRasterRefs() {
-		return getNonRasterRefs();
+		return nonRasterRefs;
 	}
 
 	public List<ExternalReference> getRasterPlanBaseScans() {

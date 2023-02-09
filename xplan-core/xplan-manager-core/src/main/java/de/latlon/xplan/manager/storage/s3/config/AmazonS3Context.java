@@ -30,7 +30,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
 
 /**
  * Spring configuration for using AWS S3 as a storage.
@@ -40,7 +39,7 @@ import org.springframework.context.annotation.PropertySource;
  * @since 6.1
  */
 @Configuration
-@Profile("s3")
+@Profile("s3 | s3doc")
 public class AmazonS3Context {
 
 	@Bean(destroyMethod = "shutdown")

@@ -20,25 +20,16 @@
  */
 package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
 
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.AmazonS3Exception;
-import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.ObjectListing;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Vector;
 
 /**
@@ -47,20 +38,13 @@ import java.util.Vector;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
-public class S3RasterStorage implements RasterStorage {
-
-	private static final Logger LOG = LoggerFactory.getLogger(S3RasterStorage.class);
+public class S3RasterStorage extends S3Storage implements RasterStorage {
 
 	private final GdalRasterAdapter rasterAdapter;
 
-	private final AmazonS3 client;
-
-	private final String bucketName;
-
 	public S3RasterStorage(GdalRasterAdapter rasterAdapter, AmazonS3 client, String bucketName) {
+		super(client, bucketName);
 		this.rasterAdapter = rasterAdapter;
-		this.client = client;
-		this.bucketName = bucketName;
 	}
 
 	@Override
@@ -92,71 +76,6 @@ public class S3RasterStorage implements RasterStorage {
 		String prefix = planId + "_" + rasterId;
 		deleteObject(prefix);
 
-	}
-
-	private String insertObject(int planId, String entryName, XPlanArchiveContentAccess archive)
-			throws StorageException {
-		String key = createKey(planId, entryName);
-		try {
-			LOG.info("Insert object with key {} in bucket {}.", key, bucketName);
-			InputStream entry = archive.retrieveInputStreamFor(entryName);
-			ObjectMetadata metadata = new ObjectMetadata();
-			client.putObject(bucketName, key, entry, metadata);
-			return key;
-		}
-		catch (AmazonServiceException e) {
-			throw new StorageException("Could not insert object with key " + key + " in bucket " + bucketName + ".", e);
-		}
-	}
-
-	private void insertObject(String key, Path file) throws StorageException {
-		try {
-			LOG.info("Insert object with key {} in bucket {}.", key, bucketName);
-			client.putObject(bucketName, key, file.toFile());
-		}
-		catch (AmazonServiceException e) {
-			throw new StorageException("Could not insert object with key " + key + " in bucket " + bucketName + ".", e);
-		}
-	}
-
-	private void deleteObject(String prefix) {
-		ObjectListing objectsToDelete = client.listObjects(bucketName, prefix);
-		List<S3ObjectSummary> objects = objectsToDelete.getObjectSummaries();
-		for (S3ObjectSummary object : objects) {
-			String key = object.getKey();
-			LOG.info("Delete object with key {} from bucket {}.", key, bucketName);
-			client.deleteObject(bucketName, key);
-		}
-	}
-
-	private String createKey(int planId, String entry) {
-		return planId + "_" + entry;
-	}
-
-	private Bucket createBucketIfNotExists() throws StorageException {
-		if (client.doesBucketExistV2(bucketName)) {
-			LOG.info("Bucket {} already exists.", bucketName);
-			return getBucket();
-		}
-		else {
-			try {
-				LOG.info("Create bucket with name {}.", bucketName);
-				return client.createBucket(bucketName);
-			}
-			catch (AmazonS3Exception e) {
-				throw new StorageException("Could not create bucket", e);
-			}
-		}
-	}
-
-	public Bucket getBucket() {
-		List<Bucket> buckets = client.listBuckets();
-		for (Bucket bucket : buckets) {
-			if (bucket.getName().equals(bucketName)) {
-				return bucket;
-			}
-		}
-		return null;
 	}
 
 }

@@ -32,6 +32,7 @@ import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
@@ -83,6 +84,8 @@ public abstract class XPlanTransactionManager {
 
 	protected final XPlanRasterManager xPlanRasterManager;
 
+	protected final XPlanDocumentManager xPlanDocumentManager;
+
 	protected final WorkspaceReloader workspaceReloader;
 
 	protected final ManagerConfiguration managerConfiguration;
@@ -100,13 +103,15 @@ public abstract class XPlanTransactionManager {
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
 	public XPlanTransactionManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
-			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
-			ManagerConfiguration managerConfiguration, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			SortPropertyReader sortPropertyReader) throws DataServiceCouplingException {
+			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
+			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
 		this.xPlanSynthesizer = xPlanSynthesizer;
 		this.xplanDao = xplanDao;
 		this.xPlanExporter = xPlanExporter;
 		this.xPlanRasterManager = xPlanRasterManager;
+		this.xPlanDocumentManager = xPlanDocumentManager;
 		this.workspaceReloader = workspaceReloader;
 		this.managerConfiguration = managerConfiguration;
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;

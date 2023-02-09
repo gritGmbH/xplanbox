@@ -34,6 +34,7 @@ import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -74,11 +75,12 @@ public class XPlanEditManager extends XPlanTransactionManager {
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanEditManager.class);
 
 	public XPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
-			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
-			ManagerConfiguration managerConfiguration, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			SortPropertyReader sortPropertyReader) throws DataServiceCouplingException {
-		super(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration,
-				managerWorkspaceWrapper, sortPropertyReader);
+			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
+			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
+		super(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager, xPlanDocumentManager, workspaceReloader,
+				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
 	}
 
 	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,

@@ -28,6 +28,7 @@ import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.log.SystemLog;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
@@ -346,8 +347,10 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			SynRulesAccessor synRulesAccessor = new SynRulesAccessor(
 					managerConfiguration.getSynthesizerConfigurationDirectory());
 			XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
+			XPlanDocumentManager xPlanDocumentManager = createDocumentManager();
 			return new XPlanManager(xPlanSynthesizer, xplanDao, archiveCreator, managerWorkspaceWrapper,
-					workspaceReloader, null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
+					workspaceReloader, null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
+					xPlanDocumentManager);
 		}
 		catch (Exception e) {
 			endWithFatalError(e.getMessage());
@@ -370,6 +373,11 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 	private RasterEvaluation createRasterEvaluation(ManagerConfiguration managerConfiguration) {
 		// TODO turn into autowired field
 		return new RasterStorageContext().rasterEvaluation(managerConfiguration);
+	}
+
+	private XPlanDocumentManager createDocumentManager() {
+		// TODO turn into autowired field
+		return null;
 	}
 
 	private ServiceMetadataRecordCreator createServiceMetadataRecordCreator(Path directoryContainingTheManagerConfig) {

@@ -31,6 +31,7 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -128,9 +129,11 @@ public class TestContext {
 			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, Optional<InspirePluTransformator> inspirePluTransformator,
 			WmsWorkspaceWrapper wmsWorkspaceWrapper, XPlanRasterEvaluator xPlanRasterEvaluator,
-			XPlanRasterManager xPlanRasterManager) throws Exception {
+			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager)
+			throws Exception {
 		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
+				xPlanDocumentManager.orElse(null));
 	}
 
 	@Bean

@@ -8,25 +8,24 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
+package de.latlon.xplan.manager.document.s3;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
+import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.manager.document.s3.config.AmazonS3DocumentStorageContext;
 import de.latlon.xplan.manager.storage.s3.config.AmazonS3TestContext;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.S3RasterStorageTestContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +36,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -53,35 +54,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(
-		classes = { AmazonS3RasterStorageContext.class, S3RasterStorageTestContext.class, AmazonS3TestContext.class })
-@ActiveProfiles({ "s3", "mock" })
+@ContextConfiguration(classes = { AmazonS3DocumentStorageContext.class, AmazonS3TestContext.class })
+@ActiveProfiles({ "s3doc", "mock" })
 @TestPropertySource("classpath:s3Mock.properties")
-public class S3RasterStorageIT {
+public class S3DocumentStorageIT {
 
 	@Autowired
-	private S3RasterStorage s3RasterStorage;
+	private S3DocumentStorage s3DocumentStorage;
 
 	@Test
-	public void testAddRasterFile() throws IOException, StorageException {
-		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/Blankenese29_Test_60.zip");
+	public void testImportDocuments() throws IOException, StorageException {
+		InputStream inputStream = ResourceAccessor.readResourceStream("xplan60/StErhVO_Hamm_60.zip");
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
-		XPlanArchiveContentAccess archive = archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60.zip",
-				inputStream);
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip("StErhVO_Hamm_60.zip", inputStream);
 
-		String key = s3RasterStorage.addRasterFile(1, "Blankenese29.png", archive);
+		List<String> keys = s3DocumentStorage.importDocuments(1, archive,
+				Collections.singletonList("StErhVO_Hamm.pdf"));
 
-		assertThat(key, is("1_Blankenese29.png"));
-	}
-
-	@Test
-	public void testDeleteRasterFiles() {
-		s3RasterStorage.deleteRasterFiles("1");
-	}
-
-	@Test
-	public void testDeleteRasterFile() {
-		s3RasterStorage.deleteRasterFiles("1", "Blankenese29");
+		assertThat(keys.size(), is(1));
+		assertThat(keys.get(0), is("1_StErhVO_Hamm.pdf"));
 	}
 
 }
