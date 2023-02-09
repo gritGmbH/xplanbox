@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class ExternalReferenceInfo {
 
-	private final List<ExternalReference> externalRefs;
+	private final List<ExternalReference> nonRasterRefs;
 
 	private final List<ExternalReference> rasterPlanBaseScans;
 
@@ -42,39 +42,23 @@ public class ExternalReferenceInfo {
 	 */
 	private final List<ExternalReference> rasterPlanUpdateScans;
 
-	public ExternalReferenceInfo() {
-		this(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-	}
-
-	public ExternalReferenceInfo(List<ExternalReference> externalRefs, List<ExternalReference> rasterPlanBaseScans,
+	ExternalReferenceInfo(List<ExternalReference> nonRasterRefs, List<ExternalReference> rasterPlanBaseScans,
 			List<ExternalReference> rasterPlanUpdateScans) {
-		this.externalRefs = externalRefs;
+		this.nonRasterRefs = nonRasterRefs;
 		this.rasterPlanBaseScans = rasterPlanBaseScans;
 		this.rasterPlanUpdateScans = rasterPlanUpdateScans;
 	}
 
-	public List<ExternalReference> getExternalRefs() {
-		return externalRefs;
-	}
-
-	public void addExternalRefs(List<ExternalReference> externalRefs) {
-		this.externalRefs.addAll(externalRefs);
+	public List<ExternalReference> getNonRasterRefs() {
+		return getNonRasterRefs();
 	}
 
 	public List<ExternalReference> getRasterPlanBaseScans() {
 		return rasterPlanBaseScans;
 	}
 
-	public void addRasterPlanBaseScan(ExternalReference rasterPlanBaseScan) {
-		this.rasterPlanBaseScans.add(rasterPlanBaseScan);
-	}
-
 	public List<ExternalReference> getRasterPlanUpdateScans() {
 		return rasterPlanUpdateScans;
-	}
-
-	public void addRasterPlanUpdateScan(ExternalReference rasterPlanUpdateScan) {
-		this.rasterPlanUpdateScans.add(rasterPlanUpdateScan);
 	}
 
 	public List<ExternalReference> getRasterPlanBaseAndUpdateScans() {
@@ -86,7 +70,7 @@ public class ExternalReferenceInfo {
 
 	public List<ExternalReference> getAllReferences() {
 		List<ExternalReference> allReferences = new ArrayList<>();
-		allReferences.addAll(externalRefs);
+		allReferences.addAll(nonRasterRefs);
 		allReferences.addAll(rasterPlanBaseScans);
 		allReferences.addAll(rasterPlanUpdateScans);
 		return allReferences;
@@ -94,7 +78,7 @@ public class ExternalReferenceInfo {
 
 	@Override
 	public String toString() {
-		return "ExternalReferenceInfo {externalRefs=" + externalRefs + ", rasterPlanBaseScans=" + rasterPlanBaseScans
+		return "ExternalReferenceInfo {externalRefs=" + nonRasterRefs + ", rasterPlanBaseScans=" + rasterPlanBaseScans
 				+ ", rasterPlanUpdateScans=" + rasterPlanUpdateScans + "}";
 	}
 

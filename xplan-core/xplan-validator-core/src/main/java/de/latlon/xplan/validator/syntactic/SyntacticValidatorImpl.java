@@ -78,7 +78,7 @@ public class SyntacticValidatorImpl implements SyntacticValidator {
 	@Override
 	public void validateReferences(XPlanArchive archive, ExternalReferenceInfo externalReferenceInfo, boolean force)
 			throws ValidatorException {
-		for (ExternalReference ref : externalReferenceInfo.getExternalRefs()) {
+		for (ExternalReference ref : externalReferenceInfo.getAllReferences()) {
 			String referenceUrl = ref.getReferenzUrl();
 			if (referenceUrl != null && !referenceUrl.contains(":/") && archive.getEntry(referenceUrl) == null) {
 				sendErrorReference(referenceUrl, force);

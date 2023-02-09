@@ -330,7 +330,7 @@ public class XPlanValidator {
 	private ExternalReferenceReport parseAndAddExternalReferences(FeatureCollection fc) {
 		ExternalReferenceScanner scanner = new ExternalReferenceScanner();
 		ExternalReferenceInfo externalReferenceInfo = scanner.scan(fc);
-		List<ExternalReference> allExternalReferences = externalReferenceInfo.getExternalRefs();
+		List<ExternalReference> allExternalReferences = externalReferenceInfo.getAllReferences();
 		List<String> references = new ArrayList<>();
 		for (ExternalReference ref : allExternalReferences) {
 			String referenzUrl = ref.getReferenzUrl();
