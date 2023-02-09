@@ -26,7 +26,10 @@ import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import org.deegree.feature.FeatureCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +39,8 @@ import java.util.List;
  */
 public class XPlanDocumentManager {
 
+	private static final Logger LOG = LoggerFactory.getLogger(XPlanDocumentManager.class);
+
 	private final DocumentStorage documentStorage;
 
 	public XPlanDocumentManager(DocumentStorage documentStorage) {
@@ -43,7 +48,7 @@ public class XPlanDocumentManager {
 	}
 
 	/**
-	 * Imports all non raster documents from XPlanArchive.
+	 * Imports all (non raster) documents from XPlanArchive.
 	 * @param planId the id of the plan, never <code>null</code>
 	 * @param featureCollection the parsed feature collection, never <code>null</code>
 	 * @param xPlanArchive containing the documents, never <code>null</code>
@@ -54,13 +59,50 @@ public class XPlanDocumentManager {
 		ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 		ExternalReferenceInfo externalReferenceInfo = externalReferenceScanner.scan(featureCollection,
 				xPlanArchive.getVersion());
-		List<String> referencesToAdd = collectReferencesToAdd(externalReferenceInfo);
+		List<String> referencesToAdd = collectReferencesToAdd(externalReferenceInfo.getNonRasterRefs());
 		documentStorage.importDocuments(planId, xPlanArchive, referencesToAdd);
 	}
 
-	private List<String> collectReferencesToAdd(ExternalReferenceInfo externalReferenceInfo) {
+	/**
+	 * Updates (removes outdated and adds new) documents.
+	 * @param planId the id of the plan, never <code>null</code>
+	 * @param uploadedArtefacts a list of all uploaded artefacts, may be empty but never
+	 * <code>null</code>
+	 * @param documentsToAdd a list of documents added, may be empty but never *
+	 * <code>null</code>
+	 * @param documentsToRemove a list of documents removed, may be empty but never * *
+	 * <code>null</code>
+	 * @throws StorageException if the documents could not be updated
+	 */
+	public void updateDocuments(int planId, List<Path> uploadedArtefacts, List<ExternalReference> documentsToAdd,
+			List<ExternalReference> documentsToRemove) throws StorageException {
+		for (String referenceToAdd : collectReferencesToAdd(documentsToAdd)) {
+			Path fileToAdd = getFileToAdd(referenceToAdd, uploadedArtefacts);
+			if (fileToAdd != null) {
+				documentStorage.importDocument(planId, referenceToAdd, fileToAdd);
+			}
+			else {
+				LOG.warn("Could not find document with name {} to import in storage", referenceToAdd);
+			}
+		}
+
+		for (ExternalReference referenceToRemove : documentsToRemove) {
+			documentStorage.deleteDocument(planId, referenceToRemove.getReferenzUrl());
+			documentStorage.deleteDocument(planId, referenceToRemove.getGeoRefUrl());
+		}
+	}
+
+	private Path getFileToAdd(String referenceToAdd, List<Path> uploadedArtefacts) {
+		for (Path uploadedArtefact : uploadedArtefacts) {
+			if (referenceToAdd.equals(uploadedArtefact.getFileName().toString()))
+				return uploadedArtefact;
+		}
+		return null;
+	}
+
+	private List<String> collectReferencesToAdd(List<ExternalReference> externalReferences) {
 		List<String> referencesToAdd = new ArrayList<>();
-		for (ExternalReference reference : externalReferenceInfo.getNonRasterRefs()) {
+		for (ExternalReference reference : externalReferences) {
 			addReference(reference.getReferenzUrl(), referencesToAdd);
 			addReference(reference.getGeoRefUrl(), referencesToAdd);
 		}

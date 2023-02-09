@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.document;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 
+import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -42,5 +43,9 @@ public interface DocumentStorage {
 	 */
 	List<String> importDocuments(int planId, XPlanArchive xPlanArchive, List<String> documentsToAdd)
 			throws StorageException;
+
+	void importDocument(int planId, String referenceToAdd, Path fileToAdd) throws StorageException;
+
+	void deleteDocument(int planId, String referenzUrl);
 
 }

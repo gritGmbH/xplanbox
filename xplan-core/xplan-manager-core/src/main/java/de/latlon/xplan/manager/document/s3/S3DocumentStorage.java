@@ -26,6 +26,7 @@ import de.latlon.xplan.manager.document.DocumentStorage;
 import de.latlon.xplan.manager.storage.s3.S3Storage;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,20 @@ public class S3DocumentStorage extends S3Storage implements DocumentStorage {
 			keys.add(key);
 		}
 		return keys;
+	}
+
+	@Override
+	public void importDocument(int planId, String referenceToAdd, Path fileToAdd) throws StorageException {
+		String key = createKey(planId, referenceToAdd);
+		insertObject(key, fileToAdd);
+	}
+
+	@Override
+	public void deleteDocument(int planId, String referenzUrl) {
+		if (referenzUrl != null) {
+			String key = createKey(planId, referenzUrl);
+			deleteObject(key);
+		}
 	}
 
 }
