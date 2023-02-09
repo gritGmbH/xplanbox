@@ -48,4 +48,6 @@ public interface DocumentStorage {
 
 	void deleteDocument(int planId, String referenzUrl);
 
+	void deleteDocuments(String planId);
+
 }

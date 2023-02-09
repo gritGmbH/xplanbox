@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.transaction;
 
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.slf4j.Logger;
@@ -40,14 +41,18 @@ public class XPlanDeleteManager {
 
 	private final XPlanRasterManager xPlanRasterManager;
 
+	private XPlanDocumentManager xPlanDocumentManager;
+
 	private final WorkspaceReloader workspaceReloader;
 
 	private final ManagerConfiguration managerConfiguration;
 
 	public XPlanDeleteManager(XPlanDao xPlanDao, XPlanRasterManager xPlanRasterManager,
-			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration) {
+			XPlanDocumentManager xPlanDocumentManager, WorkspaceReloader workspaceReloader,
+			ManagerConfiguration managerConfiguration) {
 		this.xPlanDao = xPlanDao;
 		this.xPlanRasterManager = xPlanRasterManager;
+		this.xPlanDocumentManager = xPlanDocumentManager;
 		this.workspaceReloader = workspaceReloader;
 		this.managerConfiguration = managerConfiguration;
 	}
@@ -61,6 +66,7 @@ public class XPlanDeleteManager {
 	public void delete(String planId) throws Exception {
 		xPlanDao.deletePlan(planId);
 		xPlanRasterManager.removeRasterLayers(planId);
+		deleteDocuments(planId);
 		reloadWorkspace(planId);
 		LOG.info("XPlanArchiv mit Id {} wurde gelöscht", planId);
 	}
@@ -68,6 +74,12 @@ public class XPlanDeleteManager {
 	private void reloadWorkspace(String planId) {
 		if (workspaceReloader != null) {
 			workspaceReloader.reloadWorkspace(parseInt(planId));
+		}
+	}
+
+	private void deleteDocuments(String planId) {
+		if (xPlanDocumentManager != null) {
+			xPlanDocumentManager.deleteDocuments(planId);
 		}
 	}
 

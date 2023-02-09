@@ -67,4 +67,9 @@ public class S3DocumentStorage extends S3Storage implements DocumentStorage {
 		}
 	}
 
+	@Override
+	public void deleteDocuments(String planId) {
+		deleteObject(planId);
+	}
+
 }

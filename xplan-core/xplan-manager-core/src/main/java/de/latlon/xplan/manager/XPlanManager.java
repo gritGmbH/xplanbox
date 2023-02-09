@@ -165,8 +165,8 @@ public class XPlanManager {
 		this.xPlanEditManager = new XPlanEditManager(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager,
 				xPlanDocumentManager, workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
 				managerWorkspaceWrapper, sortPropertyReader);
-		this.xPlanDeleteManager = new XPlanDeleteManager(xplanDao, xPlanRasterManager, workspaceReloader,
-				managerWorkspaceWrapper.getConfiguration());
+		this.xPlanDeleteManager = new XPlanDeleteManager(xplanDao, xPlanRasterManager, xPlanDocumentManager,
+				workspaceReloader, managerWorkspaceWrapper.getConfiguration());
 	}
 
 	public XPlanArchive analyzeArchive(String fileName) throws IOException {

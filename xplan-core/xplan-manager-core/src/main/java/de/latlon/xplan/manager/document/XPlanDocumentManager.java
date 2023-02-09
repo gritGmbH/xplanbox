@@ -92,6 +92,15 @@ public class XPlanDocumentManager {
 		}
 	}
 
+	/**
+	 * Deletes all documents of the plan.
+	 * @param planId the id of the plan, never <code>null</code>
+	 * @throws StorageException if the documents could not be deleted
+	 */
+	public void deleteDocuments(String planId) {
+		documentStorage.deleteDocuments(planId);
+	}
+
 	private Path getFileToAdd(String referenceToAdd, List<Path> uploadedArtefacts) {
 		for (Path uploadedArtefact : uploadedArtefacts) {
 			if (referenceToAdd.equals(uploadedArtefact.getFileName().toString()))

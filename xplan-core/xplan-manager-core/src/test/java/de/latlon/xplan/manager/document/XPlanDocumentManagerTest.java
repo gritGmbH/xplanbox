@@ -76,6 +76,15 @@ public class XPlanDocumentManagerTest {
 		verify(storage).deleteDocument(eq(1), eq(referenceToRemove));
 	}
 
+	@Test
+	public void testDeleteDocuments() throws Exception {
+		DocumentStorage storage = mock(DocumentStorage.class);
+		XPlanDocumentManager xPlanDocumentManager = new XPlanDocumentManager(storage);
+
+		xPlanDocumentManager.deleteDocuments("1");
+		verify(storage).deleteDocuments(eq("1"));
+	}
+
 	private static Path createMockedPath(String referenceToAdd) {
 		Path uploadedArtefact = mock(Path.class);
 		when(uploadedArtefact.getFileName()).thenReturn(uploadedArtefact);
