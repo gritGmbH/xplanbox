@@ -46,7 +46,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * mock.
  *
  * To run the IT against a AWS S3 account disable the profile "mock" and set accessKeyId
- * and secretKey in the s3.properties file.
+ * and secretKey in the s3Mock.properties file.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>

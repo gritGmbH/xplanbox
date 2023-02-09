@@ -41,7 +41,6 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @Profile("s3")
-@PropertySource(value = "classpath:s3.properties", ignoreResourceNotFound = true)
 public class AmazonS3Context {
 
 	@Bean(destroyMethod = "shutdown")
