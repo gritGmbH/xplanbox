@@ -1,9 +1,9 @@
 :doctype: book
 :encoding: utf-8
 :toc: macro
+:toc-title: Inhaltsverzeichnis
 :chapter-label:
 :numbered:
-:toc-title: Inhaltsverzeichnis
 :docinfo: shared,private-head
 :icons: font
 :imagesdir: images
