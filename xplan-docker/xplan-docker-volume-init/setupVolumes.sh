@@ -66,6 +66,8 @@ XPLAN_SERVICES_QUERY_CRS_ARR=($XPLAN_SERVICES_QUERY_CRS)
 XPLAN_INIT_RASTERTYPE="${XPLAN_INIT_RASTERTYPE:-mapserver}"
 XPLAN_INIT_INSPIREPLU="${XPLAN_INIT_INSPIREPLU:-disabled}"
 
+XPLAN_S3_PUBLIC_URL="${XPLAN_S3_PUBLIC_URL}"
+
 #############################
 # Update content of volumes #
 #############################
@@ -99,7 +101,14 @@ sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-workspaces/xplan-manager-
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
 sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-workspaces/xplan-manager-workspace/jdbc/inspireplu.xml
 
-sed -i 's|http://localhost:8080/xplan-wms|'$XPLAN_WMS_URL_INTERNAL'|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
+if [[ -z "${spring_profiles_active##*s3doc*}" ]]
+then
+  echo "[$(date -Iseconds)] Document storage type is S3"
+  sed -i 's|var S3_URL;|var S3_URL="'$XPLAN_S3_PUBLIC_URL'";|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
+else
+  sed -i 's|http://localhost:8080/xplan-wms|'$XPLAN_WMS_URL_PUBLIC'/xplan-wms|g' xplan-workspaces/xplansyn-wms-workspace/services/html.gfi
+fi
+
 sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml

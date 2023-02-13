@@ -37,9 +37,9 @@ XPLAN_S3_ENDPOINT=$(sed -E 's/^(https|http):\/\///' <<< $XPLAN_S3_ENDPOINT)
 
 sed -i 's|CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"|CONNECTION "user='$XPLAN_DB_USER' password='$XPLAN_DB_PASSWORD' dbname='$XPLAN_DB_NAME' host='$XPLAN_DB_HOSTNAME' port='$XPLAN_DB_PORT'"|g' $MS_MAPFILE
 
-if [[ -z "${spring_profiles_active##*s3*}" ]]
+if [[ -z "${spring_profiles_active##*s3img*}" ]]
 then
-  echo "[$(date -Iseconds)] MapServer storage type is s3"
+  echo "[$(date -Iseconds)] MapServer storage type is S3"
   sed -i 's|# CONFIG "AWS_ACCESS_KEY_ID" "XXX"|CONFIG "AWS_ACCESS_KEY_ID" "'$XPLAN_S3_ACCESS_KEY'"|g' $MS_MAPFILE
   sed -i 's|# CONFIG "AWS_SECRET_ACCESS_KEY" "XXX"|CONFIG "AWS_SECRET_ACCESS_KEY" "'$XPLAN_S3_SECRET_ACCESS_KEY'"|g' $MS_MAPFILE
   sed -i 's|# CONFIG "AWS_REGION" "eu-central-1"|CONFIG "AWS_REGION" "'$XPLAN_S3_REGION'"|g' $MS_MAPFILE
