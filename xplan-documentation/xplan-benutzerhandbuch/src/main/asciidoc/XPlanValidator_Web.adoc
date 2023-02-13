@@ -164,7 +164,7 @@ Der Kopf des Validierungsberichts gibt Ihnen einen Überblick über die Informat
 [.bordered]
 image::validator/Validierungsbericht_2.png[Validierungsbericht]
 
-Neben dem Namen des XPlanArchivs bzw. der XPlanGML-Datei, des Datums der Validierung sowie die Version des XPlanGML-Dokuments werden auch die in dem XPlanGML-Dokument enthaltenen Instanzen mit deren Namen aufgelistet.
+Neben dem Namen des XPlanArchivs bzw. der XPlanGML-Datei, des Datums der Validierung sowie der Version des XPlanGML-Dokuments werden auch die in dem XPlanGML-Dokument enthaltenen Instanzen mit deren Namen aufgelistet.
 
 Wenn Rasterdaten z. B. als PNG- mit PGW-Dateien im XPlanGML-Dokument referenziert werden, so werden diese aufgelistet und zu jeder Datei angezeigt, ob diese im XPlanArchiv vorhanden ist oder nicht. Für Dateien, die über eine URL referenziert werden, wird keine Prüfung durchgeführt und als Status immer _"nicht geprüft"_ angezeigt.
 
