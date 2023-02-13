@@ -24,6 +24,7 @@ import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import de.latlon.xplanbox.api.commons.v1.model.ExternalReferenceStatusEnum;
 import de.latlon.xplanbox.api.commons.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
 import de.latlon.xplanbox.api.commons.v1.model.SemanticInvalidRuleResult;
@@ -38,7 +39,9 @@ import org.deegree.geometry.Envelope;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
@@ -91,9 +94,14 @@ public class ValidationReportBuilder {
 		return null;
 	}
 
-	private List<String> externalReferences() {
-		if (validatorReport != null && validatorReport.getExternalReferenceReport() != null)
-			return validatorReport.getExternalReferenceReport().getReferences();
+	private Map<String, ExternalReferenceStatusEnum> externalReferences() {
+		if (validatorReport != null && validatorReport.getExternalReferenceReport() != null) {
+			Map<String, ExternalReferenceStatusEnum> externalReferenceAndStatus = new HashMap<>();
+			validatorReport.getExternalReferenceReport().getReferencesAndStatus().forEach((name, status) -> {
+				externalReferenceAndStatus.put(name, ExternalReferenceStatusEnum.fromExternalReferenceStatus(status));
+			});
+			return externalReferenceAndStatus;
+		}
 		return null;
 	}
 
