@@ -1446,6 +1446,16 @@
       </snapshots>
     </repository>
     <repository>
+      <id>opencode-xplan-deegree</id>
+      <url>https://gitlab.opencode.de/api/v4/projects/622/packages/maven</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
       <id>deegree</id>
       <url>https://repo.deegree.org/repository/public/</url>
       <releases>

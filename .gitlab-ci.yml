@@ -7,10 +7,6 @@ maven-build:
   image: maven:3.8.6-jdk-11
   script:
     - 'echo "with Maven goal: $MAVEN_GOAL"'
-    - 'git clone --branch xplanbox-deegree3.5 https://github.com/lat-lon/deegree3.git'
-    - 'cd deegree3'
-    - 'mvn -q $MAVEN_CLI_OPTS install -DskipTests'
-    - 'cd ..'
     - 'mvn $MAVEN_CLI_OPTS $MAVEN_GOAL -DskipTests'
   rules:
     - if: $CI_COMMIT_MESSAGE =~ /^release /
@@ -37,10 +33,6 @@ maven-release:
     - git config --global user.name "xplanung GitLab CI"
     - git checkout -B "$CI_COMMIT_REF_NAME"
   script:
-    - 'git clone --branch xplanbox-deegree3.5 https://github.com/lat-lon/deegree3.git'
-    - 'cd deegree3'
-    - 'mvn -q $MAVEN_CLI_OPTS install -DskipTests'
-    - 'cd ..'
     - mvn release:prepare release:perform $MAVEN_CLI_OPTS -DscmReleaseCommitComment="release @{releaseLabel}" -DtagNameFormat="v@{project.version}"
 
 gitlab-release:
