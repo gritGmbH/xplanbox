@@ -45,6 +45,7 @@
   <QueryCRS>CRS:84</QueryCRS>
   
   <StoredQuery>../storedqueries/xplansyn/planName.xml</StoredQuery>
+  <StoredQuery>../storedqueries/xplansyn/planNameAndTypes.xml</StoredQuery>
   <StoredQuery>../storedqueries/xplansyn/planId.xml</StoredQuery>
   <StoredQuery>../storedqueries/xplansyn/internalId.xml</StoredQuery>
 
