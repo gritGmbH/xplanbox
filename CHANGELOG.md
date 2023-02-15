@@ -14,7 +14,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
 - Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML-Version 6.0.1
 - VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
-- Validierung eines XPlan GML mit xsi:type ermöglicht
+- Validierung eines XPlanGML mit `xsi:type` ermöglicht
 - Verbesserungen am XPlanSyn-Schema
 - Langfassung für Übersetzung von Enumerationswerten im XPlanSynWFS und XPlanWMS
 - Vereinheitlichen der Layernamen im XPlanWMS und XPlanWerkWMS

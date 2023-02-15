@@ -75,5 +75,12 @@
       <version>${project.version}</version>
       <type>zip</type>
     </dependency>
+    <dependency> <!-- faked maven dependency to be after volume initializer in the reactor build  -->
+      <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-docker-volume-init</artifactId>
+      <version>${project.version}</version>
+      <type>pom</type>
+      <optional>true</optional>
+    </dependency>
   </dependencies>
 </project>

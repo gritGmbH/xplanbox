@@ -180,7 +180,8 @@ public class UploadPanel extends DecoratorPanel {
 			@Override
 			public String getCellStyleNames(Cell.Context context, XPlan object) {
 				if (object.isValidated())
-					return "cellButton " + (object.isValid() ? "buttonValid" : "buttonNotValid");
+					return "cellButton " + (object.isValid() && !object.isHasUnresolvedReferences() ? "buttonValid"
+							: "buttonNotValid");
 				else
 					return "cellButton buttonNotValidated";
 			}
@@ -195,10 +196,14 @@ public class UploadPanel extends DecoratorPanel {
 			public String getValue(XPlan object) {
 				if (!object.isValidated())
 					return messages.validationNoteNotValidated();
-				else if (object.isValid())
-					return messages.validationNoteValid();
-				else
-					return messages.validationNoteInvalid();
+				else if (!object.isValid())
+					if (object.isHasUnresolvedReferences())
+						return messages.validationNoteInvalidAndUnresolvedReferences();
+					else
+						return messages.validationNoteInvalid();
+				if (object.isHasUnresolvedReferences())
+					return messages.validationNoteUnresolvedReferences();
+				return messages.validationNoteValid();
 			}
 		};
 		xPlanTable.addColumn(validatedColumn);
@@ -210,7 +215,7 @@ public class UploadPanel extends DecoratorPanel {
 		Column<XPlan, String> importButtonColumn = new Column<XPlan, String>(importButtonCell) {
 			@Override
 			public String getValue(XPlan object) {
-				if (object.isValid())
+				if (object.isValid() && !object.isHasUnresolvedReferences())
 					importButtonCell.setEnabled();
 				else
 					importButtonCell.setDisabled();
@@ -219,7 +224,7 @@ public class UploadPanel extends DecoratorPanel {
 		};
 		importButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
 			public void update(int index, XPlan object, String value) {
-				if (object.isValid()) {
+				if (object.isValid() && !object.isHasUnresolvedReferences()) {
 					importWizardCreator.importPlan(object.getId(), object.isHasMultipleXPlanElements());
 				}
 				else {

@@ -26,7 +26,7 @@ info@lat-lon.de.
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Sebastian Goerke, Lyn Elisa Goltz,
 Lena Rippolz, Sabine Schmitz, Dirk Stenger, Carmen Tawalika, Jeronimo Wanhoff.
 
-Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
+Copyright (C) 2010 - 2023, lat/lon GmbH, Bonn.
 
 [[lizenz-des-dokuments]]
 === Lizenz des Dokuments

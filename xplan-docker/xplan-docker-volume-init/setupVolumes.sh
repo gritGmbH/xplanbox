@@ -50,6 +50,9 @@ XPLAN_MANAGERAPI_URL_PUBLIC=${XPLAN_MANAGERAPI_URL_PUBLIC:-xplan-api-manager}
 XPLAN_VALIDATORAPI_URL_PUBLIC=${XPLAN_VALIDATORAPI_URL_PUBLIC:-xplan-api-validator}
 XPLAN_MAPSERVER_URL_INTERNAL="${XPLAN_MAPSERVER_URL_INTERNAL:-http://xplan-mapserver}"
 XPLAN_SERVICES_URL_INTERNAL=${XPLAN_SERVICES_URL_INTERNAL:-http://xplan-services}
+XPLAN_SERVICES_API_USER=${XPLAN_SERVICES_API_USER:-tobedefined}
+XPLAN_SERVICES_API_PASSWORT=${XPLAN_SERVICES_API_PASSWORT:-tobedefined}
+XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION=${XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION:-ALL}
 XPLAN_WMS_URL_INTERNAL=${XPLAN_WMS_URL_INTERNAL:-xplan-services}
 
 XPLAN_DB_HOSTNAME="${XPLAN_DB_HOSTNAME:-tobedefined}"
@@ -76,8 +79,9 @@ sed -i 's|apiUrl=|apiUrl='$XPLAN_VALIDATORAPI_URL_PUBLIC'|g' xplan-validator-con
 sed -i 's|apiUrl=|apiUrl='$XPLAN_MANAGERAPI_URL_PUBLIC'|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|wmsUrl=|wmsUrl='$XPLAN_WMS_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerApiConfiguration.properties
 sed -i 's|workspaceReloadUrls=|workspaceReloadUrls='$XPLAN_SERVICES_URL_INTERNAL'/xplan-wms|g' xplan-manager-config/managerConfiguration.properties
-sed -i 's/workspaceReloadUser=/workspaceReloadUser=deegree/g' xplan-manager-config/managerConfiguration.properties
-sed -i 's/workspaceReloadPassword=/workspaceReloadPassword=deegree/g' xplan-manager-config/managerConfiguration.properties
+sed -i 's/workspaceReloadUser=/workspaceReloadUser='$XPLAN_SERVICES_API_USER'/g' xplan-manager-config/managerConfiguration.properties
+sed -i 's/workspaceReloadPassword=/workspaceReloadPassword='$XPLAN_SERVICES_API_PASSWORT'/g' xplan-manager-config/managerConfiguration.properties
+sed -i 's/workspaceReloadAction=ALL/workspaceReloadAction='$XPLAN_MANAGER_WORKSPACE_RELOAD_ACTION'/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's/pathToHaleCli=/pathToHaleCli=\/hale\/bin\/hale/g' xplan-manager-config/managerConfiguration.properties
 sed -i 's|http://localhost:8080|'$XPLAN_WMS_URL_PUBLIC'|g' xplan-manager-config/managerWebConfiguration.properties
 sed -i 's|rasterConfigurationCrs=EPSG:25832|rasterConfigurationCrs='$XPLAN_SERVICES_DEFAULT_CRS'|g' xplan-manager-config/managerConfiguration.properties

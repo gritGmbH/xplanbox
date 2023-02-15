@@ -52,23 +52,23 @@ IMPORTANT: Der _Anwendungs-Tomcat_ muss mindestens über 4GB Arbeitsspeicher ver
 ==== Dienste-Tomcat
 
 Falls der XPlanManager nach jedem Einfügen und Löschen eines Plan den
-XPlanWMS und XPlanWerkWMS aktualisieren soll, muss ein Tomcat-Nutzer angelegt werden.
-Ansonsten ist ein manueller Workspace-Reload nötig, um die neu
-importieren bzw. gelöschten Rasterpläne im XPlanWMS darzustellen bzw. zu
-entfernen.
+XPlanWMS und XPlanWerkWMS aktualisieren soll, muss ein Workspace-Reload ausgeführt werden. Damit der XPlanManager auf die REST-Schnittstelle des XPlanWMS/XPlanWerkWMS zugreifen kann, muss ein Tomcat-Nutzer angelegt werden. Ansonsten ist ein manueller Workspace-Reload nötig, um die neu
+importieren bzw. gelöschten Rasterpläne im XPlanWMS darzustellen bzw. zu entfernen.
 
-Dafür müssen in der Datei _<CATALINA_HOME>/conf/tomcat-users.xml_ der Instanz _Dienste-Tomcat_ folgende
+Für die Instanz _Dienste-Tomcat_ müssen in der Datei _<CATALINA_HOME>/conf/tomcat-users.xml_ folgende
 Zeilen hinzugefügt werden:
 
+.Konfigurationselemente in der tomcat-users.xml Datei:
+[source,xml]
 ----
-<role rolename="deegree"/>
-<user username="<NUTZERNAME>" password="<PASSWORT>" roles="deegree"/>
+<role rolename="deegree"/> <1>
+<user username="<NUTZERNAME>" password="<PASSWORT>" roles="deegree"/> <2>
 ----
-Weitere Informationen zur https://tomcat.apache.org/tomcat-9.0-doc/realm-howto.html[Konfiguration von Benutzern] ist in der Dokumentation von Apache Tomcat zu finden.
+<1> Definition der Rolle mit dem Namen _deegree_.
+<2> Anlegen eines Benutzers mit _<NUTZERNAME>_ und _<PASSWORT>_ und der Rolle _deegree_. Der Nutzername und das Passwort müssen auch in die _managerConfiguration.properties_ eingetragen werden (s. Kapitel
+<<automatischer-workspace-reload>>!
 
-NOTE: Der Nutzername und das Passwort müssen in die
-_managerConfiguration.properties_ eingetragen werden (s. Kapitel
-<<automatischer-workspace-reload>>.
+NOTE: Weitere Informationen zur https://tomcat.apache.org/tomcat-9.0-doc/realm-howto.html[Konfiguration von Benutzern] ist in der Dokumentation von Apache Tomcat zu finden.
 
 Für den _Dienste-Tomcat_ muss auch die Variable `CATALINA_OPTS` wie folgt erweitert werden:
 

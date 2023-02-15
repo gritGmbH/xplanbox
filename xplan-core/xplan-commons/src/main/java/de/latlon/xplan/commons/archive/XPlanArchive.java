@@ -194,6 +194,19 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 		throw new IllegalArgumentException(message);
 	}
 
+	/**
+	 * @param name the name of the entry to check, should not be <code>null</code>
+	 * @return <code>true</code> if an entry with the passed name is available,
+	 * <code>false</code> otherwise
+	 */
+	public boolean hasEntry(String name) {
+		for (ZipEntryWithContent zipEntry : zipFileEntries) {
+			if (zipEntry.getName().equals(name))
+				return true;
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		return format("[%s, %s, %s]", version, type, crs != null ? crs.getName() : "undefiniertes Bezugssystem");

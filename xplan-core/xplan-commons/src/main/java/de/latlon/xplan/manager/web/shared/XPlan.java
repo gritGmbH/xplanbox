@@ -79,6 +79,8 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
 	private boolean hasMultipleXPlanElements;
 
+	private boolean hasUnresolvedReferences;
+
 	private List<Bereich> bereiche;
 
 	public XPlan() {
@@ -261,6 +263,14 @@ public class XPlan implements Serializable, Comparable<XPlan> {
 
 	public boolean isHasMultipleXPlanElements() {
 		return this.hasMultipleXPlanElements;
+	}
+
+	public void setHasUnresolvedReferences(boolean hasUnresolvedReferences) {
+		this.hasUnresolvedReferences = hasUnresolvedReferences;
+	}
+
+	public boolean isHasUnresolvedReferences() {
+		return hasUnresolvedReferences;
 	}
 
 	public List<Bereich> getBereiche() {

@@ -262,6 +262,18 @@
     </profile>
     <profile>
       <id>latlon</id>
+      <repositories>
+        <repository>
+           <id>latlon</id>
+           <url>https://repo.lat-lon.de/repository/maven-public/</url>
+           <releases>
+             <updatePolicy>never</updatePolicy>
+           </releases>
+           <snapshots>
+             <enabled>true</enabled>
+           </snapshots>
+        </repository>
+      </repositories>
       <distributionManagement>
         <repository>
           <id>latlon-deploy</id>
@@ -952,7 +964,7 @@
       <dependency>
         <groupId>org.gdal</groupId>
         <artifactId>gdal</artifactId>
-        <version>3.0.0</version>
+        <version>3.5.0</version>
       </dependency>
       <dependency>
         <groupId>org.locationtech.jts</groupId>
@@ -1434,8 +1446,8 @@
       </snapshots>
     </repository>
     <repository>
-      <id>latlon</id>
-      <url>https://repo.lat-lon.de/repository/maven-public/</url>
+      <id>deegree</id>
+      <url>https://repo.deegree.org/repository/public/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
@@ -1477,8 +1489,8 @@
 
   <pluginRepositories>
     <pluginRepository>
-      <id>latlon</id>
-      <url>https://repo.lat-lon.de/repository/maven-public/</url>
+      <id>deegree</id>
+      <url>https://repo.deegree.org/repository/public/</url>
     </pluginRepository>
     <pluginRepository>
       <id>SmartBearPluginRepository</id>

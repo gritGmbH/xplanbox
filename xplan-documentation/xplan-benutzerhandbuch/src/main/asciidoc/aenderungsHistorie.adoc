@@ -14,6 +14,7 @@ Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind
 - Verbesserung der Geltungsbereichsprüfung im XPlanValidator
 - Der Import von XPlanGML-Dateien über den XPlanManagerWeb/API wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich
 - Der XPlanValidator kann jetzt auch Daten für den XPlanValidatorWMS temporär in der XPlanDB speichern
+- Aktualisierung auf GDAL 3.5
 
 ==== Fehlerbehebungen
 - Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
@@ -34,7 +35,7 @@ Mit der Version 6.0 der xPlanBox wird die Version XPlanGML 6.0 unterstützt. Neb
 - Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
 - Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML-Version 6.0.1
 - VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
-- Validierung eines XPlan GML mit xsi:type ermöglicht
+- Validierung eines XPlanGML mit `xsi:type` ermöglicht
 - Verbesserungen am XPlanSyn-Schema
 - Langfassung für Übersetzung von Enumerationswerten im XPlanSynWFS und XPlanWMS
 - Vereinheitlichen der Layernamen im XPlanWMS und XPlanWerkWMS
