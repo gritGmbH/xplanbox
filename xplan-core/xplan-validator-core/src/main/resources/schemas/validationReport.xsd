@@ -47,9 +47,24 @@
   <xs:complexType name="ExternalReferencesType">
     <xs:choice>
       <xs:element name="SkipMessage" type="xs:string"/>
-      <xs:element name="ExternalReference" type="xs:string" maxOccurs="unbounded"/>
+      <xs:element name="ExternalReference" type="ExternalReferenceType" maxOccurs="unbounded"/>
     </xs:choice>
   </xs:complexType>
+  <xs:complexType name="ExternalReferenceType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="status" type="ExternalReferenceStatus">
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="ExternalReferenceStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="available" />
+      <xs:enumeration value="missing" />
+      <xs:enumeration value="unchecked" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="ValidationType">
     <xs:sequence>
       <xs:element type="SemType" name="Sem"/>
