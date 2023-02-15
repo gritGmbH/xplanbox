@@ -734,16 +734,10 @@
         <ogc:PropertyIsNull>
           <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
-        <ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:artDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:Literal>2100</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
-            <ogc:Literal>2100</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:Literal>2100</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>
