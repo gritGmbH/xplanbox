@@ -8,20 +8,20 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage;
+package de.latlon.xplan.manager.storage.filesystem;
 
-import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
-import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.FileSystemStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,50 +34,22 @@ import java.util.stream.Stream;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @since 6.1
  */
-public class FileSystemStorage implements RasterStorage {
+public class FilesystemStorageCleanUpManager implements StorageCleanUpManager {
 
 	private static final Logger LOG = LoggerFactory.getLogger(FileSystemStorage.class);
 
 	private final Path dataDirectory;
 
-	private final RasterEvaluation rasterEvaluation;
-
-	public FileSystemStorage(Path dataDirectory, RasterEvaluation rasterEvaluation) {
+	public FilesystemStorageCleanUpManager(Path dataDirectory) {
 		this.dataDirectory = dataDirectory;
-		this.rasterEvaluation = rasterEvaluation;
 	}
 
 	@Override
-	public String addRasterFile(int planId, String entryName, XPlanArchiveContentAccess archive) throws IOException {
-		if (rasterEvaluation.isSupportedFile(entryName)) {
-			String rasterFileName = createFileName(planId, entryName);
-			Path target = createTargetFile(rasterFileName);
-			Files.copy(archive.retrieveInputStreamFor(entryName), target);
-			return rasterFileName;
-		}
-		return null;
-	}
-
-	@Override
-	public void deleteRasterFiles(String planId, String rasterId) throws IOException {
-		final String rasterLayerFileName = planId + "_" + rasterId;
-		deleteFilesWithPrefix((path, basicFileAttributes) -> {
-			String fileName = path.getFileName().toString();
-			String nameWithoutPrefix = fileName;
-			int lastIndexOfDot = fileName.lastIndexOf(".");
-			if (lastIndexOfDot > 0)
-				nameWithoutPrefix = fileName.substring(0, lastIndexOfDot);
-			return rasterLayerFileName.startsWith(nameWithoutPrefix);
-		});
-	}
-
-	protected String createFileName(int planId, String fileName) {
-		return planId + "_" + fileName;
-	}
-
-	protected Path createTargetFile(String newFileName) {
-		return dataDirectory.resolve(newFileName);
+	public void deleteAll(String id) throws IOException {
+		String prefix = id + "_";
+		deleteFilesWithPrefix((path, basicFileAttributes) -> path.getFileName().toString().startsWith(prefix));
 	}
 
 	private void deleteFilesWithPrefix(BiPredicate<Path, BasicFileAttributes> filenameFilter) throws IOException {

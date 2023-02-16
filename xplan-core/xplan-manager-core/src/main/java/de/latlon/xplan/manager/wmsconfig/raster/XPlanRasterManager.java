@@ -79,13 +79,7 @@ public class XPlanRasterManager {
 	 * @param planId the id of the plan to remove, should not be <code>null</code>
 	 */
 	public void removeRasterLayers(String planId) {
-		try {
-			rasterConfigManager.removeRasterLayers(planId);
-			rasterStorage.deleteRasterFiles(planId);
-		}
-		catch (IOException e) {
-			LOG.error("Löschen der Raster-Datei/Konfiguration fehlgeschlagen: {}", e.getMessage());
-		}
+		rasterConfigManager.removeRasterLayers(planId);
 	}
 
 	/**

@@ -30,6 +30,7 @@ import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.log.SystemLog;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
@@ -348,9 +349,10 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 					managerConfiguration.getSynthesizerConfigurationDirectory());
 			XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 			XPlanDocumentManager xPlanDocumentManager = createDocumentManager();
+			StorageCleanUpManager storageCleanUpManager = createStorageCleanUpManager();
 			return new XPlanManager(xPlanSynthesizer, xplanDao, archiveCreator, managerWorkspaceWrapper,
 					workspaceReloader, null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
-					xPlanDocumentManager);
+					xPlanDocumentManager, storageCleanUpManager);
 		}
 		catch (Exception e) {
 			endWithFatalError(e.getMessage());
@@ -376,6 +378,11 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 	}
 
 	private XPlanDocumentManager createDocumentManager() {
+		// TODO turn into autowired field
+		return null;
+	}
+
+	private StorageCleanUpManager createStorageCleanUpManager() {
 		// TODO turn into autowired field
 		return null;
 	}

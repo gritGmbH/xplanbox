@@ -34,6 +34,8 @@ import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.document.config.DocumentStorageContext;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.config.StorageCleanUpContext;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
@@ -101,7 +103,8 @@ import static java.nio.file.Paths.get;
  */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager" })
-@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class, DocumentStorageContext.class })
+@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class, DocumentStorageContext.class,
+		StorageCleanUpContext.class })
 public class ApplicationContext {
 
 	private static final String RULES_DIRECTORY = "/rules";
@@ -111,9 +114,11 @@ public class ApplicationContext {
 			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager,
-			Optional<XPlanDocumentManager> xPlanDocumentManager) throws Exception {
+			Optional<XPlanDocumentManager> xPlanDocumentManager, StorageCleanUpManager storageCleanUpManager)
+			throws Exception {
 		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, xPlanDocumentManager.orElse(null));
+				null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, xPlanDocumentManager.orElse(null),
+				storageCleanUpManager);
 	}
 
 	@Bean
@@ -249,10 +254,10 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanDeleteManager xPlanDeleteManager(XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
-			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
+			XPlanRasterManager xPlanRasterManager, StorageCleanUpManager storageCleanUpManager,
 			ManagerConfiguration managerConfiguration) {
-		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, xPlanDocumentManager.orElse(null),
-				workspaceReloader, managerConfiguration);
+		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader,
+				managerConfiguration);
 	}
 
 	@Bean

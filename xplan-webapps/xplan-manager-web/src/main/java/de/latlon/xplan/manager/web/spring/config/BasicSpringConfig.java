@@ -33,6 +33,8 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.document.config.DocumentStorageContext;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.config.StorageCleanUpContext;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.server.service.ManagerReportProvider;
@@ -98,7 +100,8 @@ import static java.nio.file.Paths.get;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
-@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class, DocumentStorageContext.class })
+@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class, DocumentStorageContext.class,
+		StorageCleanUpContext.class })
 public class BasicSpringConfig {
 
 	private static final String RULES_DIRECTORY = "/rules";
@@ -196,11 +199,11 @@ public class BasicSpringConfig {
 			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, Optional<InspirePluTransformator> inspirePluTransformator,
 			WmsWorkspaceWrapper wmsWorkspaceWrapper, XPlanRasterEvaluator xPlanRasterEvaluator,
-			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager)
-			throws Exception {
+			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
+			StorageCleanUpManager storageCleanUpManager) throws Exception {
 		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
 				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
-				xPlanDocumentManager.orElse(null));
+				xPlanDocumentManager.orElse(null), storageCleanUpManager);
 	}
 
 	@Bean

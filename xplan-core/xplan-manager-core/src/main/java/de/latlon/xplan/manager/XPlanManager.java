@@ -45,6 +45,7 @@ import de.latlon.xplan.manager.edit.XPlanToEditFactory;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.UnsupportPlanException;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
@@ -138,7 +139,7 @@ public class XPlanManager {
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
 			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
 			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager,
-			XPlanDocumentManager xPlanDocumentManager) throws Exception {
+			XPlanDocumentManager xPlanDocumentManager, StorageCleanUpManager storageCleanUpManager) throws Exception {
 		if (xPlanDao == null || archiveCreator == null || managerWorkspaceWrapper == null
 				|| wmsWorkspaceWrapper == null) {
 			throw new IllegalArgumentException("Mandatory argument must not be null");
@@ -165,7 +166,7 @@ public class XPlanManager {
 		this.xPlanEditManager = new XPlanEditManager(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager,
 				xPlanDocumentManager, workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
 				managerWorkspaceWrapper, sortPropertyReader);
-		this.xPlanDeleteManager = new XPlanDeleteManager(xplanDao, xPlanRasterManager, xPlanDocumentManager,
+		this.xPlanDeleteManager = new XPlanDeleteManager(xplanDao, xPlanRasterManager, storageCleanUpManager,
 				workspaceReloader, managerWorkspaceWrapper.getConfiguration());
 	}
 

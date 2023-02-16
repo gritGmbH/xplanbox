@@ -66,16 +66,9 @@ public class S3RasterStorage extends S3Storage implements RasterStorage {
 	}
 
 	@Override
-	public void deleteRasterFiles(String planId) {
-		String prefix = planId + "_";
-		deleteObject(prefix);
-	}
-
-	@Override
 	public void deleteRasterFiles(String planId, String rasterId) {
 		String prefix = planId + "_" + rasterId;
 		deleteObject(prefix);
-
 	}
 
 }

@@ -22,7 +22,7 @@ package de.latlon.xplan.manager.transaction;
 
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
-import de.latlon.xplan.manager.document.XPlanDocumentManager;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.slf4j.Logger;
@@ -41,18 +41,18 @@ public class XPlanDeleteManager {
 
 	private final XPlanRasterManager xPlanRasterManager;
 
-	private XPlanDocumentManager xPlanDocumentManager;
+	private StorageCleanUpManager storageCleanUpManager;
 
 	private final WorkspaceReloader workspaceReloader;
 
 	private final ManagerConfiguration managerConfiguration;
 
 	public XPlanDeleteManager(XPlanDao xPlanDao, XPlanRasterManager xPlanRasterManager,
-			XPlanDocumentManager xPlanDocumentManager, WorkspaceReloader workspaceReloader,
+			StorageCleanUpManager storageCleanUpManager, WorkspaceReloader workspaceReloader,
 			ManagerConfiguration managerConfiguration) {
 		this.xPlanDao = xPlanDao;
 		this.xPlanRasterManager = xPlanRasterManager;
-		this.xPlanDocumentManager = xPlanDocumentManager;
+		this.storageCleanUpManager = storageCleanUpManager;
 		this.workspaceReloader = workspaceReloader;
 		this.managerConfiguration = managerConfiguration;
 	}
@@ -66,7 +66,7 @@ public class XPlanDeleteManager {
 	public void delete(String planId) throws Exception {
 		xPlanDao.deletePlan(planId);
 		xPlanRasterManager.removeRasterLayers(planId);
-		deleteDocuments(planId);
+		storageCleanUpManager.deleteAll(planId);
 		reloadWorkspace(planId);
 		LOG.info("XPlanArchiv mit Id {} wurde gelöscht", planId);
 	}
@@ -74,12 +74,6 @@ public class XPlanDeleteManager {
 	private void reloadWorkspace(String planId) {
 		if (workspaceReloader != null) {
 			workspaceReloader.reloadWorkspace(parseInt(planId));
-		}
-	}
-
-	private void deleteDocuments(String planId) {
-		if (xPlanDocumentManager != null) {
-			xPlanDocumentManager.deleteDocuments(planId);
 		}
 	}
 

@@ -34,6 +34,7 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
@@ -129,11 +130,11 @@ public class TestContext {
 			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, Optional<InspirePluTransformator> inspirePluTransformator,
 			WmsWorkspaceWrapper wmsWorkspaceWrapper, XPlanRasterEvaluator xPlanRasterEvaluator,
-			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager)
-			throws Exception {
+			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
+			StorageCleanUpManager storageCleanUpManager) throws Exception {
 		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
 				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
-				xPlanDocumentManager.orElse(null));
+				xPlanDocumentManager.orElse(null), storageCleanUpManager);
 	}
 
 	@Bean

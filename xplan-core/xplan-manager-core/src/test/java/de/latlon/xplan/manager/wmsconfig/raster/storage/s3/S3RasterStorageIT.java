@@ -75,11 +75,6 @@ public class S3RasterStorageIT {
 	}
 
 	@Test
-	public void testDeleteRasterFiles() {
-		s3RasterStorage.deleteRasterFiles("1");
-	}
-
-	@Test
 	public void testDeleteRasterFile() {
 		s3RasterStorage.deleteRasterFiles("1", "Blankenese29");
 	}
