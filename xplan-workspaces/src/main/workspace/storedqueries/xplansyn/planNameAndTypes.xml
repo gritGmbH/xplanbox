@@ -18,7 +18,7 @@
                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                            xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd"
                            id="urn:ogc:def:query:OGC-WFS::PlanNameAndTypes">
-  <wfs:Title>planName</wfs:Title>
+  <wfs:Title>planNameAndTypes</wfs:Title>
   <wfs:Abstract>Es koennen die zu dem PlanNamen gehoerenden Features der angefragten FeatureTypes im XPlanSyn-Schema heruntergeladen werden.</wfs:Abstract>
   <wfs:Parameter name="planName" xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string">
     <wfs:Abstract>planName (Mandatory)</wfs:Abstract>
