@@ -35,9 +35,9 @@ public class TextPatternConstants {
 
 	public final static String INTERNALID_PATTERN = "^[A-Za-z0-9\\-]*$";
 
-	public final static String NAME_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß]*$";
+	public final static String NAME_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß\\s]*$";
 
-	public final static String DESCRIPTION_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß§\\s]*$";
+	public final static String DESCRIPTION_PATTERN = "^[A-Za-z0-9.,;:\\[\\]()–_\\-äüöÄÜÖß§\\s]*$";
 
 	public final static String URL_PATTERN = "^[A-Za-z0-9.@:%_\\+.~#?&//=\\-]*$";
 
@@ -45,6 +45,6 @@ public class TextPatternConstants {
 
 	public final static String TEXT_GESETZ_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß§\\s]*$";
 
-	public final static String TEXT_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß§\",\\s]*$";
+	public final static String TEXT_PATTERN = "^[A-Za-z0-9.,;:\\[\\]()–_\\-äüöÄÜÖß§\"„“²\\s]*$";
 
 }
