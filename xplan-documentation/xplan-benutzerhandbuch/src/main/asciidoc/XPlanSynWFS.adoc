@@ -91,6 +91,7 @@ drei weitere StoredQueries an:
  * urn:ogc:def:query:OGC-WFS::InternalId
  * urn:ogc:def:query:OGC-WFS::PlanId
  * urn:ogc:def:query:OGC-WFS::PlanName
+ * urn:ogc:def:query:OGC-WFS::PlanNameAndTypes
 
 Darüber lassen sich die Vektordaten eines einzelnen Plans über die vom
 XPlanManager vergebene interne Id, die im XPlanGML vergebene Nummer bzw.
@@ -101,8 +102,9 @@ _PlanName_ zu einem Plan gehörigen Vektordaten abrufen.
 Die StoredQueries _InternalId_ und _PlanId_
 geben nur die Vektordaten des feature types BP_Plan (bzw. FP_Plan, LP_Plan, RP_Plan und SO_Plan) zurück,
 nicht ggf. referenzierte Vektordaten.
+Die StoredQuery _PlanNameAndTypes_ gibt dagegen alle Vektordaten der mit dem Parameter _typeNames_ angefragten feature types zurück.
 
-Um die Eindeutigkeit der StoredQueries _PlanId_ und _PlanName_ zu gewährleisten,
+Um die Eindeutigkeit der StoredQueries _PlanId_, _PlanName_ und _PlanNameAndTypes_ zu gewährleisten,
 muss sichergestellt werden, dass bei den importierten Plänen die Nummer und der Name
 des Plans eindeutig sind.
 
