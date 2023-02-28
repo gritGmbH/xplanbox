@@ -5584,6 +5584,30 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match FeatureType BP_Plan">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+exists(//wfs:member/xplan:BP_Plan)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match FeatureType BP_Bereich">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+exists(//wfs:member/xplan:BP_Bereich)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
           <con:credentials>
             <con:username>${#Project#username}</con:username>
             <con:password>${#Project#password}</con:password>
@@ -5627,7 +5651,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
             </con:parameter>
             <con:parameter>
               <con:name>typeNames</con:name>
-              <con:value>BP_Plan</con:value>
+              <con:value>BP_Plan BP_Bereich</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
