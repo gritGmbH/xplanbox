@@ -546,6 +546,11 @@ Delete plan identified by the given plan ID</con:description>
           <con:params/>
           <con:element>data</con:element>
         </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>application/json</con:mediaType>
+          <con:status>422</con:status>
+          <con:params/>
+        </con:representation>
         <con:request name="Request 1" id="41062d8d-a552-4f74-bf93-5dd8aea7ea60" mediaType="application/json">
           <con:settings/>
           <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
@@ -4485,12 +4490,12 @@ assert actualHeader != null</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//aenderung/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="b55ab5ea-0394-4b3e-ad44-c7fa0370944b" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>400</codes>
+                <codes>422</codes>
               </con:configuration>
             </con:assertion>
             <con:assertion type="Simple Contains" id="d5841f16-98fa-401a-bb0b-65a124e6437c" name="Contains">
               <con:configuration>
-                <token>must match "^[A-Za-z0-9.()_\-äüöÄÜÖß]*$"</token>
+                <token>replaceAenderung.arg1.aendert[0].planName: must match</token>
                 <ignoreCase>false</ignoreCase>
                 <useRegEx>false</useRegEx>
               </con:configuration>
@@ -5263,12 +5268,12 @@ assert actualHeader != null</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//basisdaten/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="5d774568-0387-45e2-88f7-ef9ba2625f5e" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>400</codes>
+                <codes>422</codes>
               </con:configuration>
             </con:assertion>
             <con:assertion type="Simple Contains" id="c8a22d62-0e66-4f9a-916f-02e8b923f436" name="Contains">
               <con:configuration>
-                <token>must match "^[A-Za-z0-9.()_\-äüöÄÜÖß]*$"</token>
+                <token>replaceBasisdaten.arg1.name: must matc</token>
                 <ignoreCase>false</ignoreCase>
                 <useRegEx>false</useRegEx>
               </con:configuration>
