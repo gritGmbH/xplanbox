@@ -262,18 +262,6 @@
     </profile>
     <profile>
       <id>latlon</id>
-      <repositories>
-        <repository>
-           <id>latlon</id>
-           <url>https://repo.lat-lon.de/repository/maven-public/</url>
-           <releases>
-             <updatePolicy>never</updatePolicy>
-           </releases>
-           <snapshots>
-             <enabled>true</enabled>
-           </snapshots>
-        </repository>
-      </repositories>
       <distributionManagement>
         <repository>
           <id>latlon-deploy</id>
