@@ -57,7 +57,7 @@ import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.
  */
 public class BaseDataPanel extends CaptionPanel implements Validable {
 
-	private static final XPlanWebMessages MASSAGE = GWT.create(XPlanWebMessages.class);
+	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
 	private static final String DEFAULT_WIDTH = "175px";
 
@@ -85,7 +85,7 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	public BaseDataPanel(EditVersion version, EditPlanType type) {
 		this.type = type;
-		setCaptionText(MASSAGE.editCaptionBasedata());
+		setCaptionText(MESSAGES.editCaptionBasedata());
 		this.planType = createMandatoryCodeListInput(version, type, PlanArt);
 		this.otherPlanType = createCodeListInput(version, type, SonstPlanArt);
 		this.method = createMethodInput(version, type);
@@ -152,38 +152,38 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 		formatter.setColSpan(5, 2, 3);
 
-		layout.setWidget(1, 1, new Label(MASSAGE.editCaptionBasedataName()));
+		layout.setWidget(1, 1, new Label(MESSAGES.editCaptionBasedataName()));
 		layout.setWidget(1, 2, name);
 		if (!SO_Plan.equals(type)) {
-			layout.setWidget(1, 3, new Label(MASSAGE.editCaptionBasedataPlanType()));
+			layout.setWidget(1, 3, new Label(MESSAGES.editCaptionBasedataPlanType()));
 			layout.setWidget(1, 4, planType);
 		}
 
-		layout.setWidget(2, 1, new Label(MASSAGE.editCaptionBasedataCreationDate()));
+		layout.setWidget(2, 1, new Label(MESSAGES.editCaptionBasedataCreationDate()));
 		layout.setWidget(2, 2, creationDate);
 
 		// https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1227
 		// layout.setWidget(2, 3, new Label(MASSAGE.editCaptionBasedataOtherPlanType()));
 		// layout.setWidget(2, 4, otherPlanType);
 
-		layout.setWidget(3, 1, new Label(MASSAGE.editCaptionBasedataLossDate()));
+		layout.setWidget(3, 1, new Label(MESSAGES.editCaptionBasedataLossDate()));
 		layout.setWidget(3, 2, lossDate);
 
 		if (!XPLAN_60.equals(version) && !SO_Plan.equals(type)) {
-			layout.setWidget(3, 3, new Label(MASSAGE.editCaptionBasedataMethod()));
+			layout.setWidget(3, 3, new Label(MESSAGES.editCaptionBasedataMethod()));
 			layout.setWidget(3, 4, method);
 		}
 
 		if (BP_Plan.equals(type)) {
-			layout.setWidget(4, 1, new Label(MASSAGE.editCaptionBasedataRegulationDate()));
+			layout.setWidget(4, 1, new Label(MESSAGES.editCaptionBasedataRegulationDate()));
 			layout.setWidget(4, 2, regulationDate);
 		}
 
 		if (!SO_Plan.equals(type)) {
-			layout.setWidget(4, 3, new Label(MASSAGE.editCaptionBasedataLegislationStatus()));
+			layout.setWidget(4, 3, new Label(MESSAGES.editCaptionBasedataLegislationStatus()));
 			layout.setWidget(4, 4, legislationStatus);
 		}
-		layout.setWidget(5, 1, new Label(MASSAGE.editCaptionBasedataDescription()));
+		layout.setWidget(5, 1, new Label(MESSAGES.editCaptionBasedataDescription()));
 		layout.setWidget(5, 2, description);
 
 		return layout;
@@ -211,6 +211,7 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private PatternTextArea createTextAreaInput(String pattern) {
 		PatternTextArea textArea = new PatternTextArea(pattern);
+		setTitle(MESSAGES.textPatternTooltip(pattern));
 		textArea.setWidth("100%");
 		textArea.setHeight(TEXTAREA_HEIGHT);
 		return textArea;
@@ -218,6 +219,7 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private PatternTextBox createTextInput(String pattern) {
 		PatternTextBox textBox = new PatternTextBox(pattern);
+		setTitle(MESSAGES.textPatternTooltip(pattern));
 		textBox.setWidth(DEFAULT_WIDTH);
 		return textBox;
 	}

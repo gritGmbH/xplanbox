@@ -42,6 +42,7 @@ public class MandatoryTextBox extends TextBox implements Validable {
 
 	public MandatoryTextBox(String pattern) {
 		this.pattern = pattern;
+		setTitle(MESSAGES.textPatternTooltip(pattern));
 		addValueChangeHandler(new ValueChangeHandler<String>() {
 			@Override
 			public void onValueChange(ValueChangeEvent<String> event) {
@@ -74,6 +75,7 @@ public class MandatoryTextBox extends TextBox implements Validable {
 		String value = super.getText();
 		if (value != null && value.length() > 0) {
 			if (isValidAgainstPattern(value)) {
+				setTitle(MESSAGES.textPatternTooltip(pattern));
 				return value;
 			}
 			else {

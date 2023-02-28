@@ -41,6 +41,7 @@ public class PatternTextBox extends TextBox implements Validable {
 
 	public PatternTextBox(String pattern) {
 		this.pattern = pattern;
+		setTitle(MESSAGES.textPatternTooltip(pattern));
 		addValueChangeHandler(new ValueChangeHandler<String>() {
 			@Override
 			public void onValueChange(ValueChangeEvent<String> event) {
@@ -72,6 +73,7 @@ public class PatternTextBox extends TextBox implements Validable {
 		reset();
 		String value = super.getText();
 		if (isValidAgainstPattern(value)) {
+			setTitle(MESSAGES.textPatternTooltip(pattern));
 			return value;
 		}
 		else {
