@@ -72,6 +72,7 @@ public class PlanAenderungenApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Aenderungen.class))),
 					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 					@ApiResponse(responseCode = "400",
 							description = "Unsupported plan version or planID is not a valid int value") },
 			requestBody = @RequestBody(content = {

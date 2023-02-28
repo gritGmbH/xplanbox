@@ -81,6 +81,7 @@ public class PlanDokumentApi {
 					content = @Content(schema = @Schema(implementation = Dokument.class))),
 			@ApiResponse(responseCode = "404",
 					description = "Invalid planID or dokument ID, plan or dokument not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value") })
 	public Dokument addDokument(
@@ -128,6 +129,7 @@ public class PlanDokumentApi {
 					content = @Content(schema = @Schema(implementation = Dokument.class))),
 			@ApiResponse(responseCode = "404",
 					description = "Invalid planID or dokument ID, plan or dokument not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value") })
 	public Dokument replaceDokumentById(

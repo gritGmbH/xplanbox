@@ -80,6 +80,7 @@ public class PlanRasterbasisApi {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
 			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value") })
 	public Rasterbasis addRasterBasis(
@@ -134,6 +135,7 @@ public class PlanRasterbasisApi {
 					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
 			@ApiResponse(responseCode = "404",
 					description = "Invalid planID or rasterbasis ID, plan or rasterbasis not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value") })
 	public Rasterbasis replaceRasterbasisById(

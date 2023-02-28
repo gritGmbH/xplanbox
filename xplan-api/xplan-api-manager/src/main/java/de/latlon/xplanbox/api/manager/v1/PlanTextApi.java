@@ -78,6 +78,7 @@ public class PlanTextApi {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
 			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value") })
 	public Text addText(
@@ -120,6 +121,7 @@ public class PlanTextApi {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
 			@ApiResponse(responseCode = "404", description = "Invalid planID or text ID, plan or Text not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value") })
 	public Text replaceTextById(
