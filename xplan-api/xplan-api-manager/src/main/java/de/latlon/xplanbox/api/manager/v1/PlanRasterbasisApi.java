@@ -23,6 +23,7 @@ package de.latlon.xplanbox.api.manager.v1;
 import de.latlon.xplanbox.api.manager.exception.MissingRequestEntity;
 import de.latlon.xplanbox.api.manager.handler.EditRasterbasisHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Rasterbasis;
+import de.latlon.xplanbox.api.manager.validation.ModelValidator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -34,6 +35,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -87,7 +89,7 @@ public class PlanRasterbasisApi {
 			@PathParam("planId") @Parameter(description = "ID of the plan to add rasterbasis",
 					example = "123") String planId,
 			@Parameter(schema = @Schema(implementation = Rasterbasis.class),
-					required = true) @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
+					required = true) @Valid @ModelValidator(Rasterbasis.class) @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
 			@Parameter(schema = @Schema(type = "string",
 					format = "binary")) @FormDataParam("rasterdatei") InputStream rasterdatei,
 			@Parameter(hidden = true) @FormDataParam("rasterdatei") FormDataContentDisposition rasterdateiMeta,
@@ -145,7 +147,7 @@ public class PlanRasterbasisApi {
 					description = "ID of the rasterbasis to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed",
 					example = "Referenz123-") String id,
 			@Parameter(schema = @Schema(implementation = Rasterbasis.class),
-					required = true) @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
+					required = true) @Valid @ModelValidator(Rasterbasis.class) @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
 			@Parameter(schema = @Schema(type = "string",
 					format = "binary")) @FormDataParam("rasterdatei") InputStream rasterdatei,
 			@Parameter(hidden = true) @FormDataParam("rasterdatei") FormDataContentDisposition rasterdateiMeta,
