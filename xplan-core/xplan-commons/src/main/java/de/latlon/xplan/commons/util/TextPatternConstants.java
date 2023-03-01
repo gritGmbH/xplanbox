@@ -47,4 +47,12 @@ public class TextPatternConstants {
 
 	public final static String TEXT_PATTERN = "^[A-Za-z0-9.,;:\\[\\]()–_\\-äüöÄÜÖß§\"„“²\\s]*$";
 
+	public final static int XS_LENGTH = 50;
+
+	public final static int S_LENGTH = 100;
+
+	public final static int M_LENGTH = 250;
+
+	public final static int L_LENGTH = 1000;
+
 }

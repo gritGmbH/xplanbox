@@ -95,20 +95,20 @@ public abstract class EditDialogBox extends DialogBox {
 		informSaveHandler();
 	}
 
-	protected PatternTextBox createPatternTextInput(String pattern) {
-		PatternTextBox textBox = new PatternTextBox(pattern);
+	protected PatternTextBox createPatternTextInput(String pattern, int maxLength) {
+		PatternTextBox textBox = new PatternTextBox(pattern, maxLength);
 		textBox.setWidth(DEFAULT_WIDTH);
 		return textBox;
 	}
 
-	protected MandatoryTextBox createMandatoryTextInput(String pattern) {
-		MandatoryTextBox textBox = new MandatoryTextBox(pattern);
+	protected MandatoryTextBox createMandatoryTextInput(String pattern, int maxLength) {
+		MandatoryTextBox textBox = new MandatoryTextBox(pattern, maxLength);
 		textBox.setWidth(DEFAULT_WIDTH);
 		return textBox;
 	}
 
-	protected PatternTextArea createPatternTextAreaInput(String pattern) {
-		PatternTextArea textArea = new PatternTextArea(pattern);
+	protected PatternTextArea createPatternTextAreaInput(String pattern, int maxLength) {
+		PatternTextArea textArea = new PatternTextArea(pattern, maxLength);
 		textArea.setWidth(DEFAULT_WIDTH);
 		textArea.setHeight("150px");
 		return textArea;

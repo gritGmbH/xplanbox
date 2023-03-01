@@ -296,7 +296,9 @@ public interface XPlanWebMessages extends Messages {
 
 	String editInvalidInput();
 
-	String editInvalidAgainstPatternInput(String pattern);
+	String editInvalidAgainstPatternOrLengthInput(String pattern, int maxLength);
+
+	String textPatternTooltip(String pattern, int maxLength);
 
 	String editInputRequired();
 
@@ -469,7 +471,5 @@ public interface XPlanWebMessages extends Messages {
 	String duplicatePlanName(String planName, String planStatus);
 
 	String duplicatePlanNames();
-
-	String textPatternTooltip(String pattern);
 
 }

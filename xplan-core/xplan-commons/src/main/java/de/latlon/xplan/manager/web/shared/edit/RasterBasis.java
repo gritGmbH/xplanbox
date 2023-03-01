@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 
 /**
  * Encapsulate a raster basis.
@@ -39,7 +40,7 @@ public class RasterBasis {
 	@Valid
 	private String featureId;
 
-	@Size(max = 100)
+	@Size(max = S_LENGTH)
 	@Pattern(regexp = SIMPLE_NAME_PATTERN)
 	@Valid
 	private String bereichNummer;

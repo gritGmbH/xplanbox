@@ -26,6 +26,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 
 /**
  * Encapsulate a raster reference (refScan, refLegend, refText).
@@ -41,7 +42,7 @@ public class RasterReference extends AbstractReference {
 	@Valid
 	private String featureId;
 
-	@Size(max = 100)
+	@Size(max = S_LENGTH)
 	@Pattern(regexp = SIMPLE_NAME_PATTERN)
 	@Valid
 	private String bereichNummer;

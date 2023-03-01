@@ -39,9 +39,12 @@ public class PatternTextBox extends TextBox implements Validable {
 
 	private final String pattern;
 
-	public PatternTextBox(String pattern) {
+	private final int maxLength;
+
+	public PatternTextBox(String pattern, int maxLength) {
 		this.pattern = pattern;
-		setTitle(MESSAGES.textPatternTooltip(pattern));
+		this.maxLength = maxLength;
+		setTitle(MESSAGES.textPatternTooltip(pattern, maxLength));
 		addValueChangeHandler(new ValueChangeHandler<String>() {
 			@Override
 			public void onValueChange(ValueChangeEvent<String> event) {
@@ -72,20 +75,23 @@ public class PatternTextBox extends TextBox implements Validable {
 	private String validateAndParse() {
 		reset();
 		String value = super.getText();
-		if (isValidAgainstPattern(value)) {
-			setTitle(MESSAGES.textPatternTooltip(pattern));
+		if (isValidAgainstPatternAndLength(value)) {
+			setTitle(MESSAGES.textPatternTooltip(pattern, maxLength));
 			return value;
 		}
 		else {
 			addStyleName(EDITOR_VALIDATION_ERROR);
-			setTitle(MESSAGES.editInvalidAgainstPatternInput(pattern));
+			setTitle(MESSAGES.editInvalidAgainstPatternOrLengthInput(pattern, maxLength));
 			return null;
 		}
 	}
 
-	private boolean isValidAgainstPattern(String value) {
+	private boolean isValidAgainstPatternAndLength(String value) {
 		if (value == null || "".equals(value))
 			return true;
+		if (maxLength > 0 && value.length() > maxLength) {
+			return false;
+		}
 		RegExp regExp = RegExp.compile(pattern);
 		return regExp.test(value);
 	}

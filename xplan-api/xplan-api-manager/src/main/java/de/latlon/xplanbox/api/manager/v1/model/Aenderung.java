@@ -34,6 +34,7 @@ import java.util.Objects;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 
 /**
  * Datatype for Aenderung.
@@ -46,7 +47,7 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATT
 		date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Aenderung {
 
-	@Size(max = 100)
+	@Size(max = S_LENGTH)
 	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String planName;
 
@@ -54,7 +55,7 @@ public class Aenderung {
 	@DecimalMax("99999")
 	private @Valid Integer rechtscharakter;
 
-	@Size(max = 100)
+	@Size(max = S_LENGTH)
 	@Pattern(regexp = SIMPLE_NAME_PATTERN)
 	private @Valid String nummer;
 

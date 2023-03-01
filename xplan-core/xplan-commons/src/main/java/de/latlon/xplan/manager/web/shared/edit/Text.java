@@ -24,9 +24,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_GESETZ_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.XS_LENGTH;
 
 /**
  * Encapsulates the text of a plan.
@@ -39,17 +42,17 @@ public class Text extends AbstractReference {
 	@Valid
 	private String featureId;
 
-	@Size(max = 50)
+	@Size(max = XS_LENGTH)
 	@Pattern(regexp = TEXT_KEY_PATTERN)
 	@Valid
 	private String key;
 
-	@Size(max = 100)
+	@Size(max = S_LENGTH)
 	@Pattern(regexp = TEXT_GESETZ_PATTERN)
 	@Valid
 	private String basis;
 
-	@Size(max = 1000)
+	@Size(max = L_LENGTH)
 	@Pattern(regexp = TEXT_PATTERN)
 	@Valid
 	private String text;

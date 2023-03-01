@@ -26,7 +26,9 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 
 /**
  * Encapsulates the base data of a plan.
@@ -36,12 +38,12 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
  */
 public class BaseData {
 
-	@Size(max = 100)
+	@Size(max = S_LENGTH)
 	@Pattern(regexp = NAME_PATTERN)
 	@Valid
 	private String planName;
 
-	@Size(max = 1000)
+	@Size(max = L_LENGTH)
 	@Pattern(regexp = DESCRIPTION_PATTERN)
 	@Valid
 	private String description;

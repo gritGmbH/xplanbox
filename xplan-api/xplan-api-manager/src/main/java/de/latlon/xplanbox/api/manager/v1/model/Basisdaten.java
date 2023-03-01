@@ -36,7 +36,9 @@ import java.util.Date;
 import java.util.Objects;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 
 /**
  * Datatype for Basisdaten.
@@ -49,11 +51,11 @@ import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
 		date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Basisdaten {
 
-	@Size(max = 100)
+	@Size(max = S_LENGTH)
 	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String name;
 
-	@Size(max = 1000)
+	@Size(max = L_LENGTH)
 	@Pattern(regexp = DESCRIPTION_PATTERN)
 	private @Valid String beschreibung;
 

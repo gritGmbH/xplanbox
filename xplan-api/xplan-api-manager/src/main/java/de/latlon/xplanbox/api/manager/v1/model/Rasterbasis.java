@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.SCAN;
 
 /**
@@ -48,7 +49,7 @@ public class Rasterbasis extends Referenz {
 
 	private String id;
 
-	@Size(max = 100)
+	@Size(max = S_LENGTH)
 	@Pattern(regexp = SIMPLE_NAME_PATTERN)
 	private String bereichNummer;
 

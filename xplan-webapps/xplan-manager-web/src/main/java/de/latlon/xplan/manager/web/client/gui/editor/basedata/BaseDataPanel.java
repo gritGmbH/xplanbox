@@ -39,7 +39,9 @@ import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
 import static com.google.gwt.user.client.ui.HasVerticalAlignment.ALIGN_TOP;
 import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.BP_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditPlanType.SO_Plan;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
@@ -63,9 +65,9 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 
 	private static final String TEXTAREA_HEIGHT = "125px";
 
-	private final PatternTextBox name = createTextInput(NAME_PATTERN);
+	private final PatternTextBox name = createTextInput(NAME_PATTERN, S_LENGTH);
 
-	private final PatternTextArea description = createTextAreaInput(DESCRIPTION_PATTERN);
+	private final PatternTextArea description = createTextAreaInput(DESCRIPTION_PATTERN, L_LENGTH);
 
 	private final StrictDateBox creationDate = createDateInput();
 
@@ -209,17 +211,17 @@ public class BaseDataPanel extends CaptionPanel implements Validable {
 		return codeListBox;
 	}
 
-	private PatternTextArea createTextAreaInput(String pattern) {
-		PatternTextArea textArea = new PatternTextArea(pattern);
-		setTitle(MESSAGES.textPatternTooltip(pattern));
+	private PatternTextArea createTextAreaInput(String pattern, int maxLength) {
+		PatternTextArea textArea = new PatternTextArea(pattern, maxLength);
+		setTitle(MESSAGES.textPatternTooltip(pattern, maxLength));
 		textArea.setWidth("100%");
 		textArea.setHeight(TEXTAREA_HEIGHT);
 		return textArea;
 	}
 
-	private PatternTextBox createTextInput(String pattern) {
-		PatternTextBox textBox = new PatternTextBox(pattern);
-		setTitle(MESSAGES.textPatternTooltip(pattern));
+	private PatternTextBox createTextInput(String pattern, int maxLength) {
+		PatternTextBox textBox = new PatternTextBox(pattern, maxLength);
+		setTitle(MESSAGES.textPatternTooltip(pattern, maxLength));
 		textBox.setWidth(DEFAULT_WIDTH);
 		return textBox;
 	}

@@ -36,9 +36,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_GESETZ_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_KEY_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.TEXT_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.XS_LENGTH;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
 import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
@@ -51,11 +54,11 @@ import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.
  */
 public class TextDialog extends EditDialogBoxWithRasterUpload {
 
-	private final PatternTextBox key = createPatternTextInput(TEXT_KEY_PATTERN);
+	private final PatternTextBox key = createPatternTextInput(TEXT_KEY_PATTERN, XS_LENGTH);
 
-	private final PatternTextArea text = createPatternTextAreaInput(TEXT_PATTERN);
+	private final PatternTextArea text = createPatternTextAreaInput(TEXT_PATTERN, L_LENGTH);
 
-	private final PatternTextBox basis = createPatternTextInput(TEXT_GESETZ_PATTERN);
+	private final PatternTextBox basis = createPatternTextInput(TEXT_GESETZ_PATTERN, S_LENGTH);
 
 	private final Text textToEdit;
 

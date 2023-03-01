@@ -40,9 +40,12 @@ public class MandatoryTextBox extends TextBox implements Validable {
 
 	private String pattern;
 
-	public MandatoryTextBox(String pattern) {
+	private int maxLength;
+
+	public MandatoryTextBox(String pattern, int maxLength) {
 		this.pattern = pattern;
-		setTitle(MESSAGES.textPatternTooltip(pattern));
+		this.maxLength = maxLength;
+		setTitle(MESSAGES.textPatternTooltip(pattern, maxLength));
 		addValueChangeHandler(new ValueChangeHandler<String>() {
 			@Override
 			public void onValueChange(ValueChangeEvent<String> event) {
@@ -74,13 +77,13 @@ public class MandatoryTextBox extends TextBox implements Validable {
 		reset();
 		String value = super.getText();
 		if (value != null && value.length() > 0) {
-			if (isValidAgainstPattern(value)) {
-				setTitle(MESSAGES.textPatternTooltip(pattern));
+			if (isValidAgainstPatternAndLength(value)) {
+				setTitle(MESSAGES.textPatternTooltip(pattern, maxLength));
 				return value;
 			}
 			else {
 				addStyleName(EDITOR_VALIDATION_ERROR);
-				setTitle(MESSAGES.editInvalidAgainstPatternInput(pattern));
+				setTitle(MESSAGES.editInvalidAgainstPatternOrLengthInput(pattern, maxLength));
 				return null;
 			}
 		}
@@ -91,16 +94,19 @@ public class MandatoryTextBox extends TextBox implements Validable {
 		}
 	}
 
+	private boolean isValidAgainstPatternAndLength(String value) {
+		if (value == null || "".equals(value))
+			return true;
+		if (maxLength > 0 && value.length() > maxLength) {
+			return false;
+		}
+		RegExp regExp = RegExp.compile(pattern);
+		return regExp.test(value);
+	}
+
 	private void reset() {
 		removeStyleName(EDITOR_VALIDATION_ERROR);
 		setTitle("");
-	}
-
-	private boolean isValidAgainstPattern(String value) {
-		if (value == null || "".equals(value))
-			return true;
-		RegExp regExp = RegExp.compile(pattern);
-		return regExp.test(value);
 	}
 
 }
