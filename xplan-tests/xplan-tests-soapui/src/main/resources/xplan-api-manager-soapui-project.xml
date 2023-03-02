@@ -554,6 +554,53 @@ Delete plan identified by the given plan ID</con:description>
         </con:request>
       </con:method>
     </con:resource>
+    <con:resource name="/plan/{planId}/archive" path="/plan/{planId}/archive" id="a7b815b6-a596-4c6c-9071-4871b610248f">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>planId</con:name>
+          <con:style>TEMPLATE</con:style>
+          <con:description>ID of the plan to be returned</con:description>
+        </con:parameter>
+      </con:parameters>
+      <con:method name="getArchiveById" id="e342abdc-6e19-449c-90b0-b8ae843df9d7" method="GET">
+        <con:description>Returns the XPlanArchive of an existing plan identified by the given planID
+          Get plan as XPlanArchive identified by the given planID</con:description>
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>400</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/yaml</con:mediaType>
+          <con:status>404</con:status>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/zip</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>text/html;charset=utf-8</con:mediaType>
+          <con:status>406</con:status>
+          <con:params/>
+          <con:element>html</con:element>
+        </con:representation>
+        <con:request name="Request 1" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
+          <con:settings/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
     <con:resource name="/plan/{planId}/basisdaten" path="/plan/{planId}/basisdaten" id="878c07c2-2b7c-49a0-a989-d7e466ba36df">
       <con:settings/>
       <con:parameters/>
@@ -5082,6 +5129,105 @@ assert actualHeader != null</scriptText>
             <con:jmsPropertyConfig/>
             <con:parameters>
               <entry key="planId" value="${#TestSuite#currentPlanIdSOPlan}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    </con:testCase>
+    <con:testCase id="7ac87e87-93c0-49ed-96cd-8cbe10cd7bf0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="/plan/{planId}/archive TestCase" searchProperties="true">
+      <con:description>TestCase generated for REST Resource [/plan/{planId}/archive] located at [/plan/{planId}/archive]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="GET BP 5.4 pI getArchiveByWithoutAcceptHeader" id="37186fdf-cf7c-4b76-b240-32b329ff1751">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/archive" methodName="getArchiveById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 5.4 pI getArchiveByWithoutAcceptHeader" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/16/archive</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="e9015f96-a31d-4648-a24a-f31f8eaa4ccb" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="62f1d417-a6f2-42d8-a9f1-81badaa1c189" name="accept header">
+              <con:configuration>
+                <scriptText>def expectedHeader = ['application/zip']
+def headers = messageExchange.response.responseHeaders
+def actualHeader = headers['Content-Type']
+assert expectedHeader == actualHeader</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdMultiplePlansHafenCity14}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET BP 5.4 pI getArchiveByIdExplicitAcceptHeader" id="253d7c8d-8532-4660-ab1f-0a1f29664d0f">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/archive" methodName="getArchiveById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 5.4 pI getArchiveByIdExplicitAcceptHeader" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/zip" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/16/archive</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="e9015f96-a31d-4648-a24a-f31f8eaa4ccb" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="GroovyScriptAssertion" id="62f1d417-a6f2-42d8-a9f1-81badaa1c189" name="accept header">
+              <con:configuration>
+                <scriptText>def expectedHeader = ['application/zip']
+def headers = messageExchange.response.responseHeaders
+def actualHeader = headers['Content-Type']
+assert expectedHeader == actualHeader</scriptText>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdMultiplePlansHafenCity14}" xmlns="http://eviware.com/soapui/config"/>
+            </con:parameters>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError" id="ccd698f4-3559-4e11-8c82-b3fcbefe7636">
+        <con:settings/>
+        <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/archive" methodName="getArchiveById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
+            </con:settings>
+            <con:endpoint>http://localhost:8086/xplan-api-manager/xmanager/api/v1</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan/16/archive</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="e9015f96-a31d-4648-a24a-f31f8eaa4ccb" name="Valid HTTP Status Codes">
+              <con:configuration>
+                <codes>406</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters>
+              <entry key="planId" value="${#TestSuite#currentPlanIdMultiplePlansHafenCity14}" xmlns="http://eviware.com/soapui/config"/>
             </con:parameters>
           </con:restRequest>
         </con:config>
