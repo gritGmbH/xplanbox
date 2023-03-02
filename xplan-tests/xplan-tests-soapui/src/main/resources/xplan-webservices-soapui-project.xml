@@ -5202,7 +5202,7 @@ count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='planName
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='planNameAndTypes'])</path>
+count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='planNameAndType'])</path>
               <content>1</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -5300,11 +5300,11 @@ exists(//wfs:DescribeStoredQueriesResponse)</path>
               <ignoreComments>false</ignoreComments>
             </con:configuration>
           </con:assertion>
-          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match PlanNameAndTypes">
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match PlanNameAndType">
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-//wfs:DescribeStoredQueriesResponse/wfs:StoredQueryDescription/@id="urn:ogc:def:query:OGC-WFS::PlanNameAndTypes"</path>
+//wfs:DescribeStoredQueriesResponse/wfs:StoredQueryDescription/@id="urn:ogc:def:query:OGC-WFS::PlanNameAndType"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -5547,9 +5547,9 @@ count(//wfs:member)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
-      <con:testStep type="httprequest" name="XPlanSynWFS PlanNameAndTypes" id="59497d67-9a1d-4d63-bf0d-0765928c85cd">
+      <con:testStep type="httprequest" name="XPlanSynWFS PlanNameAndType" id="59497d67-9a1d-4d63-bf0d-0765928c85cd">
         <con:settings/>
-        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="XPlanSynWFS PlanNameAndTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="XPlanSynWFS PlanNameAndType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
@@ -5641,7 +5641,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
             </con:parameter>
             <con:parameter>
               <con:name>StoredQuery_ID</con:name>
-              <con:value>urn:ogc:def:query:OGC-WFS::PlanNameAndTypes</con:value>
+              <con:value>urn:ogc:def:query:OGC-WFS::PlanNameAndType</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
             <con:parameter>
