@@ -255,6 +255,27 @@ public class PlanApi {
 	}
 
 	@GET
+	@Path("/{planId}/archive")
+	@Produces("application/zip")
+	@Operation(summary = "Get plan as XPlanArchive identified by the given planID",
+			description = "Returns the XPlanArchive of an existing plan identified by the given planID",
+			tags = { "manage", "search", },
+			responses = {
+					@ApiResponse(responseCode = "200", description = "successful operation",
+							content = { @Content(mediaType = "application/zip",
+									schema = @Schema(type = "string", format = "binary")) }),
+					@ApiResponse(responseCode = "400", description = "PlanID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found") })
+	public Response getArchiveById(@Context Request request,
+			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
+					example = "123") String planId)
+			throws Exception {
+		StreamingOutput plan = planHandler.exportPlan(planId);
+		return Response.ok(plan).type(APPLICATION_ZIP)
+				.header("Content-Disposition", "attachment; filename=\"" + planId + ".zip\"").build();
+	}
+
+	@GET
 	@Path("/name/{planName}")
 	@Produces({ "application/json", "application/xml" })
 	@Operation(summary = "Get plan identified by the given planName",

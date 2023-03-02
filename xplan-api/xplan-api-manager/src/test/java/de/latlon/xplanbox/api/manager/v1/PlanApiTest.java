@@ -213,4 +213,17 @@ public class PlanApiTest extends JerseyTest {
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 	}
 
+	@Test
+	public void verifyThat_GetPlanArchiveById_ReturnsCorrectStatusAndContent() {
+		final Response response = target("/plan/123/archive").request().accept(APPLICATION_ZIP).get();
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_ZIP));
+	}
+
+	@Test
+	public void verifyThat_GetPlanArchiveById_ReturnsCorrectStatusCodeForInvalidAcceptHeader() {
+		final Response response = target("/plan/123/archive").request().accept(APPLICATION_JSON).get();
+		assertThat(response.getStatus(), is(Response.Status.NOT_ACCEPTABLE.getStatusCode()));
+	}
+
 }
