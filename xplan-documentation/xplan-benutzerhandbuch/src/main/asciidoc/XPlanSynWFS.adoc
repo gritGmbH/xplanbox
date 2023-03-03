@@ -100,9 +100,9 @@ den im XPlanGML angegebenen Namen abrufen.
 Aufgrund der Eigenschaften des XPlanSynWFS lassen sich aktuell nur für die StoredQuery
 _PlanName_ alle zu einem Plan gehörigen Vektordaten abrufen.
 Die StoredQueries _InternalId_ und _PlanId_
-geben nur die Vektordaten des feature types BP_Plan (bzw. FP_Plan, LP_Plan, RP_Plan und SO_Plan) zurück,
+geben nur die Vektordaten des Feature Types BP_Plan (bzw. FP_Plan, LP_Plan, RP_Plan und SO_Plan) zurück,
 nicht ggf. referenzierte Vektordaten.
-Die StoredQuery _PlanNameAndType_ gibt dagegen die Vektordaten des mit dem Parameter _typeNames_ angefragten feature type zurück, es kann an dieser Stelle nur ein feature type angegeben werden.
+Die StoredQuery _PlanNameAndType_ gibt dagegen die Vektordaten des mit dem Parameter _typeNames_ angefragten Feature Types zurück. Es kann an dieser Stelle nur ein Feature Type angegeben werden.
 
 Um die Eindeutigkeit der StoredQueries _PlanId_, _PlanName_ und _PlanNameAndType_ zu gewährleisten,
 muss sichergestellt werden, dass bei den importierten Plänen die Nummer und der Name
