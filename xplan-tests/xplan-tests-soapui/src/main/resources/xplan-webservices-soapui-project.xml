@@ -3551,11 +3551,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>2</con:value>
+          <con:value>20</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_5b569ea9-3982-4afd-9d2a-1f1060e7fc40</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_918c02eb-a29c-4e38-8c2c-d1a7c2b5f358</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3813,7 +3813,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>3</con:value>
+          <con:value>21</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4029,7 +4029,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>4</con:value>
+          <con:value>22</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4757,11 +4757,11 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>5</con:value>
+          <con:value>23</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>6</con:value>
+          <con:value>24</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5539,11 +5539,6 @@ count(//wfs:member)</path>
               <con:value>Eidelstedt 4 soapui-webservices</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
-            <con:parameter>
-              <con:name/>
-              <con:value/>
-              <con:style>QUERY</con:style>
-            </con:parameter>
           </con:parameters>
         </con:config>
       </con:testStep>
@@ -5565,7 +5560,7 @@ count(//wfs:member)</path>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+//wfs:member/xplan:BP_Bereich/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -5577,7 +5572,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-//wfs:member/xplan:BP_Plan/xplan:xpPlanType="BP_Plan"</path>
+//wfs:member/xplan:BP_Bereich/xplan:xpPlanType="BP_Plan"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -5589,7 +5584,7 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 declare namespace xplan='http://www.deegree.org/xplanung/1/0';
 
-exists(//wfs:member/xplan:BP_Plan)</path>
+exists(//wfs:member/xplan:BP_Bereich)</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -5651,7 +5646,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
             </con:parameter>
             <con:parameter>
               <con:name>typeNames</con:name>
-              <con:value>BP_Plan BP_Bereich</con:value>
+              <con:value>BP_Bereich</con:value>
               <con:style>QUERY</con:style>
             </con:parameter>
           </con:parameters>
@@ -5685,7 +5680,7 @@ exists(//wfs:member/xplan:BP_Bereich)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>13</con:value>
+          <con:value>25</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -6205,11 +6200,11 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>14</con:value>
+          <con:value>26</con:value>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value>15</con:value>
+          <con:value>27</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -8131,7 +8126,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>10</con:value>
+          <con:value>28</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
