@@ -7943,6 +7943,338 @@ count(//wfs:member)</path>
         </con:property>
       </con:properties>
     </con:testCase>
+    <con:testCase id="80fa51c6-4aa7-46f2-83a6-9905e4b4c51f" failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="StoredQuery-ArchivedPlan" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="">
+      <con:settings/>
+      <con:testStep type="httprequest" name="Import Osdorf48_Test_60" id="6663019d-6406-4645-b527-549751520b34">
+        <con:settings/>
+        <con:config method="POST" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Import Osdorf48_Test_60" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>201</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:preemptive>true</con:preemptive>
+            <con:authType>Preemptive</con:authType>
+          </con:credentials>
+          <con:attachment>
+            <con:name>Osdorf48_Test_60.zip</con:name>
+            <con:contentType>application/octet-stream</con:contentType>
+            <con:contentId>Osdorf48_Test_60.zip</con:contentId>
+            <con:url>${projectDir}/xplan-webservices/plans/Osdorf48_Test_60.zip</con:url>
+            <con:id>127400ce-5339-4159-800b-e88299de3971</con:id>
+          </con:attachment>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>skipSemantisch</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipFlaechenschluss</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>skipGeltungsbereich</con:name>
+              <con:value>true</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="8b717eda-f031-4cc2-bee7-dbd3841e8c6d">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>planId</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Import Osdorf48_Test_60</con:sourceStep>
+            <con:sourcePath>$.id</con:sourcePath>
+            <con:targetType>planId</con:targetType>
+            <con:targetStep>#TestCase#</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:targetTransferType>JSONPATH</con:targetTransferType>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="XPlanWFS ListStoredQueries" id="624143ff-dc2e-4e0d-b38c-bf6e64f7dc2a">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="XPlanWFS ListStoredQueries" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs60archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(//wfs:ListStoredQueriesResponse)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match BP_Plan">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:ReturnFeatureType[text()='xplan:BP_Plan'])</path>
+              <content>5</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>ListStoredQueries</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="XPlanWFS DescribeStoredQueries" id="75d646bb-e86f-4df2-bbd4-024fb9d005ba">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="XPlanWFS DescribeStoredQueries" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs60archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+exists(//wfs:DescribeStoredQueriesResponse)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match InternalId">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+//wfs:DescribeStoredQueriesResponse/wfs:StoredQueryDescription/@id="urn:ogc:def:query:OGC-WFS::InternalId"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match PlanId">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+//wfs:DescribeStoredQueriesResponse/wfs:StoredQueryDescription/@id="urn:ogc:def:query:OGC-WFS::PlanId"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match PlanName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+//wfs:DescribeStoredQueriesResponse/wfs:StoredQueryDescription/@id="urn:ogc:def:query:OGC-WFS::PlanName"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>DescribeStoredQueries</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="XPlanWFS PlanName" id="0e0e2933-4c7a-40e2-ab15-d5633e25720d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="XPlanWFS PlanName" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplan-wfs/services/wfs60archive</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+count(//wfs:member)</path>
+              <content>75</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>StoredQuery_ID</con:name>
+              <con:value>urn:ogc:def:query:OGC-WFS::PlanName</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>planName</con:name>
+              <con:value>Osdorf48_Testplan_60</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>resolvedepth</con:name>
+              <con:value>*</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Delete Osdorf48_Test_60" id="9c901ac2-0c86-47ff-a8d6-cf538a9fe450">
+        <con:settings/>
+        <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete Osdorf48_Test_60" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrlManagerApi}/xmanager/api/v1/plan/${#TestCase#planId}</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:properties>
+        <con:property>
+          <con:name>planId</con:name>
+          <con:value>9</con:value>
+        </con:property>
+      </con:properties>
+    </con:testCase>
     <con:properties/>
   </con:testSuite>
   <con:testSuite id="6527f28b-3b4b-4009-a40c-8651534a22a3" name="xplan-inspireplu">
