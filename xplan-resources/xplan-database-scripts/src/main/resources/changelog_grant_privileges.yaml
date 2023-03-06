@@ -36,10 +36,8 @@ databaseChangeLog:
       author: tfr42
       changes:
         - sql:
-            sql: GRANT SELECT ON ALL TABLES IN SCHEMA ${xplan.schema_names} TO ${xplan.db.user};
+            sql: GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA ${xplan.schema_names} TO ${xplan.db.user};
         - sql:
             sql: GRANT SELECT ON ALL SEQUENCES IN SCHEMA ${xplan.schema_names} TO ${xplan.db.user};
         - sql:
-            sql: GRANT SELECT ON ALL TABLES IN SCHEMA ${xplan.schema_names} TO ${xplan.db.user};
-        - sql:
-            sql: GRANT SELECT ON ALL SEQUENCES IN SCHEMA ${xplan.schema_names} TO ${xplan.db.user};
+            sql: GRANT USAGE ON SCHEMA ${xplan.schema_names} TO ${xplan.db.user};
