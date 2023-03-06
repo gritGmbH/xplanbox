@@ -23,6 +23,7 @@ package de.latlon.xplanbox.api.manager.v1;
 import de.latlon.xplanbox.api.manager.exception.MissingRequestEntity;
 import de.latlon.xplanbox.api.manager.handler.EditRasterbasisHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Rasterbasis;
+import de.latlon.xplanbox.api.manager.validation.ModelValidator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -34,6 +35,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -80,13 +82,14 @@ public class PlanRasterbasisApi {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
 			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value") })
 	public Rasterbasis addRasterBasis(
 			@PathParam("planId") @Parameter(description = "ID of the plan to add rasterbasis",
 					example = "123") String planId,
 			@Parameter(schema = @Schema(implementation = Rasterbasis.class),
-					required = true) @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
+					required = true) @Valid @ModelValidator(Rasterbasis.class) @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
 			@Parameter(schema = @Schema(type = "string",
 					format = "binary")) @FormDataParam("rasterdatei") InputStream rasterdatei,
 			@Parameter(hidden = true) @FormDataParam("rasterdatei") FormDataContentDisposition rasterdateiMeta,
@@ -134,6 +137,7 @@ public class PlanRasterbasisApi {
 					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
 			@ApiResponse(responseCode = "404",
 					description = "Invalid planID or rasterbasis ID, plan or rasterbasis not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value") })
 	public Rasterbasis replaceRasterbasisById(
@@ -143,7 +147,7 @@ public class PlanRasterbasisApi {
 					description = "ID of the rasterbasis to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed",
 					example = "Referenz123-") String id,
 			@Parameter(schema = @Schema(implementation = Rasterbasis.class),
-					required = true) @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
+					required = true) @Valid @ModelValidator(Rasterbasis.class) @FormDataParam("rasterbasismodel") FormDataBodyPart rasterbasismodel,
 			@Parameter(schema = @Schema(type = "string",
 					format = "binary")) @FormDataParam("rasterdatei") InputStream rasterdatei,
 			@Parameter(hidden = true) @FormDataParam("rasterdatei") FormDataContentDisposition rasterdateiMeta,

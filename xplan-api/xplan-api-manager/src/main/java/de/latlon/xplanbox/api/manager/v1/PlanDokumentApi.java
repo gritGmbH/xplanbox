@@ -23,6 +23,7 @@ package de.latlon.xplanbox.api.manager.v1;
 import de.latlon.xplanbox.api.manager.exception.MissingRequestEntity;
 import de.latlon.xplanbox.api.manager.handler.EditDokumentHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Dokument;
+import de.latlon.xplanbox.api.manager.validation.ModelValidator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -34,6 +35,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -81,13 +83,14 @@ public class PlanDokumentApi {
 					content = @Content(schema = @Schema(implementation = Dokument.class))),
 			@ApiResponse(responseCode = "404",
 					description = "Invalid planID or dokument ID, plan or dokument not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value") })
 	public Dokument addDokument(
 			@PathParam("planId") @Parameter(description = "ID of the plan to add a dokument",
 					example = "123") String planId,
 			@Parameter(schema = @Schema(implementation = Dokument.class),
-					required = true) @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
+					required = true) @Valid @ModelValidator(Dokument.class) @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
 			@Parameter(schema = @Schema(type = "string", format = "binary")) @FormDataParam("datei") InputStream datei,
 			@Parameter(hidden = true) @FormDataParam("datei") FormDataContentDisposition dateiMeta) throws Exception {
 		if (dokumentmodel == null) {
@@ -128,6 +131,7 @@ public class PlanDokumentApi {
 					content = @Content(schema = @Schema(implementation = Dokument.class))),
 			@ApiResponse(responseCode = "404",
 					description = "Invalid planID or dokument ID, plan or dokument not found"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
 					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value") })
 	public Dokument replaceDokumentById(
@@ -137,7 +141,7 @@ public class PlanDokumentApi {
 					description = "ID of the dokument to be updated (Pattern of the ID: referenzName-referenzURL, other characters than [a-z,A-Z,0-9,_,-] are removed)",
 					example = "Legende123-") String id,
 			@Parameter(schema = @Schema(implementation = Dokument.class),
-					required = true) @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
+					required = true) @Valid @ModelValidator(Dokument.class) @FormDataParam("dokumentmodel") FormDataBodyPart dokumentmodel,
 			@Parameter(schema = @Schema(type = "string", format = "binary")) @FormDataParam("datei") InputStream datei,
 			@Parameter(hidden = true) @FormDataParam("datei") FormDataContentDisposition dateiMeta) throws Exception {
 		if (dokumentmodel == null) {

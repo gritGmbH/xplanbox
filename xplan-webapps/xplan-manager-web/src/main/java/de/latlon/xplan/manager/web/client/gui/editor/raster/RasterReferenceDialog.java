@@ -27,13 +27,14 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBoxWithRasterUpload;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
 import de.latlon.xplan.manager.web.client.gui.widget.MandatoryTextBox;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextArea;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextBox;
 import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt;
@@ -45,6 +46,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.M_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.URL_PATTERN;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_41;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_50;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_51;
@@ -52,6 +59,7 @@ import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_52
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_53;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_54;
 import static de.latlon.xplan.manager.web.client.gui.editor.EditVersion.XPLAN_60;
+import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 import static de.latlon.xplan.manager.web.shared.edit.ExterneReferenzArt.DOKUMENT;
 import static de.latlon.xplan.manager.web.shared.edit.RasterReferenceType.TEXT;
 
@@ -77,9 +85,9 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private final TextBox referenzName;
 
-	private final TextBox informationssystemURL = createTextInput();
+	private final PatternTextBox informationssystemURL = createPatternTextInput(URL_PATTERN, M_LENGTH);
 
-	private final TextArea beschreibung = createTextAreaInput();
+	private final PatternTextArea beschreibung = createPatternTextAreaInput(DESCRIPTION_PATTERN, L_LENGTH);
 
 	private final StrictDateBox datum = createDateInput();
 
@@ -121,7 +129,7 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	@Override
 	public boolean isValid() {
-		return validate(true);
+		return areComponentsValid(informationssystemURL, beschreibung) & validate(true);
 	}
 
 	public RasterReference getEditedRasterReference() {
@@ -251,9 +259,9 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 
 	private TextBox createRasterName(EditVersion version) {
 		if (XPLAN_60.equals(version)) {
-			return createMandatoryTextInput();
+			return createMandatoryTextInput(NAME_PATTERN, S_LENGTH);
 		}
-		return createTextInput();
+		return createPatternTextInput(NAME_PATTERN, S_LENGTH);
 	}
 
 	private boolean validate(boolean includeReferences) {

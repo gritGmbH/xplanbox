@@ -20,7 +20,15 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 
 /**
  * Encapsulates the base data of a plan.
@@ -30,22 +38,35 @@ import java.util.Date;
  */
 public class BaseData {
 
+	@Size(max = S_LENGTH)
+	@Pattern(regexp = NAME_PATTERN)
+	@Valid
 	private String planName;
 
+	@Size(max = L_LENGTH)
+	@Pattern(regexp = DESCRIPTION_PATTERN)
+	@Valid
 	private String description;
 
+	@Valid
 	private Date creationDate;
 
+	@Valid
 	private Date lossDate;
 
+	@Valid
 	private int planTypeCode = -1;
 
+	@Valid
 	private int otherPlanTypeCode = -1;
 
+	@Valid
 	private int methodCode = -1;
 
+	@Valid
 	private int legislationStatusCode = -1;
 
+	@Valid
 	private Date regulationDate;
 
 	public BaseData() {

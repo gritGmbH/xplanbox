@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.manager.ApplicationPathConfig;
 import de.latlon.xplanbox.api.manager.PlanInfoBuilder;
@@ -70,9 +71,13 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.INTERNALID_PATTERN;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
@@ -156,7 +161,7 @@ public class PlanApi {
 	public Response callImportZip(@Context Request request, @Valid File body,
 			@HeaderParam("X-Filename") @Parameter(description = "Name of the file to be uploaded",
 					example = "File names such as xplan.gml, xplan.xml, xplan.zip",
-					schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$")) String xFilename,
+					schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String xFilename,
 			@QueryParam("skipSemantisch") @DefaultValue("false") @Parameter(
 					description = "skip semantische Validierung") Boolean skipSemantisch,
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") @Parameter(
@@ -168,7 +173,8 @@ public class PlanApi {
 			@QueryParam("profiles") @Parameter(
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles,
-			@QueryParam("internalId") @Parameter(description = "internalId links to VerfahrensId") String internalId,
+			@QueryParam("internalId") @Parameter(description = "internalId links to VerfahrensId",
+					schema = @Schema(pattern = INTERNALID_PATTERN)) String internalId,
 			@QueryParam("planStatus") @Parameter(
 					description = "target for data storage, overrides the default derived from xplan:rechtsstand",
 					schema = @Schema(allowableValues = { "IN_AUFSTELLUNG", "FESTGESTELLT", "ARCHIVIERT" },
@@ -191,14 +197,16 @@ public class PlanApi {
 	@Produces({ "application/json", XPLANBOX_NO_VERSION_JSON, XPLANBOX_V1_JSON, XPLANBOX_V2_JSON })
 	@Hidden
 	public Response callImportGml(@Context Request request, @Valid File body,
-			@HeaderParam("X-Filename") String xFilename,
+			@HeaderParam("X-Filename") @Parameter(schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String xFilename,
 			@QueryParam("skipSemantisch") @DefaultValue("false") Boolean skipSemantisch,
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
 			@QueryParam("skipGeltungsbereich") @DefaultValue("false") Boolean skipGeltungsbereich,
 			@QueryParam("skipLaufrichtung") @DefaultValue("false") Boolean skipLaufrichtung,
-			@QueryParam("profiles") List<String> profiles, @QueryParam("internalId") String internalId,
+			@QueryParam("profiles") List<String> profiles,
+			@QueryParam("internalId") @Parameter(schema = @Schema(pattern = INTERNALID_PATTERN)) String internalId,
 			@QueryParam("planStatus") String planStatus) throws Exception {
 		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
+		checkInternalId(internalId);
 		XPlanArchive xPlanArchive;
 		try {
 			xPlanArchive = archiveCreator.createXPlanArchiveFromGml(body);
@@ -279,6 +287,7 @@ public class PlanApi {
 	private Response callImport(Request request, String xFilename, Boolean skipSemantisch, Boolean skipFlaechenschluss,
 			Boolean skipGeltungsbereich, Boolean skipLaufrichtung, List<String> profiles, String internalId,
 			String planStatus, XPlanArchive xPlanArchive) throws Exception {
+		checkInternalId(internalId);
 		String validationName = detectOrCreateValidationName(xFilename);
 		DefaultValidationConfiguration validationConfig = managerApiConfiguration.getDefaultValidationConfiguration();
 		ValidationSettings validationSettings = createValidationSettings(validationName, WITH_GEOMETRISCH_VALIDATION,
@@ -370,6 +379,17 @@ public class PlanApi {
 			Log.warn("Could not create self reference: " + e.getMessage(), e);
 		}
 		return null;
+	}
+
+	private void checkInternalId(String internalId) throws UnsupportedParameterValue {
+		if (internalId == null)
+			return;
+		Pattern pattern = Pattern.compile(INTERNALID_PATTERN);
+		Matcher matcher = pattern.matcher(internalId);
+		if (!matcher.matches()) {
+			throw new UnsupportedParameterValue("internalId", internalId);
+		}
+
 	}
 
 }

@@ -150,6 +150,25 @@ public class PlanApiTest extends JerseyTest {
 	}
 
 	@Test
+	public void verifyThat_PostPlanGml_ReturnsCorrectStatusCodeForInvalidXFilename()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
+		final Response response = target("/plan").queryParam("skipLaufrichtung", "true").request()
+				.header("X-Filename", "invalid.filename with blanks").accept(APPLICATION_JSON)
+				.post(Entity.entity(data, "application/gml+xml"));
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+	}
+
+	@Test
+	public void verifyThat_PostPlanGml_ReturnsCorrectStatusCodeForInvalidInternalId()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
+		final Response response = target("/plan").queryParam("internalId", "a23 7D8").request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, "application/gml+xml"));
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+	}
+
+	@Test
 	public void verifyThat_PostPlan_ReturnsCorrectStatusCodeForInvalidMediaType()
 			throws IOException, URISyntaxException {
 		final String data = new String(

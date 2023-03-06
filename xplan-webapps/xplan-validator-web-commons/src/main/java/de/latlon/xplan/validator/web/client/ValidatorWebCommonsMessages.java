@@ -88,7 +88,7 @@ public interface ValidatorWebCommonsMessages extends Messages {
 
 	String planIsNotValid();
 
-	String correctInputText();
+	String correctValidationName();
 
 	String correctValidationType();
 

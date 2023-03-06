@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -25,6 +25,7 @@ import de.latlon.xplanbox.api.manager.config.ApplicationContext;
 import de.latlon.xplanbox.api.manager.config.TestContext;
 import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
 import org.junit.Test;
@@ -56,6 +57,7 @@ public class PlanBasisdatenApiTest extends JerseyTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContext.class,
 				TestContext.class);
 		resourceConfig.property("contextConfig", context);
+		resourceConfig.property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
 		return resourceConfig;
 	}
 
@@ -75,6 +77,17 @@ public class PlanBasisdatenApiTest extends JerseyTest {
 		Response response = target("/plan/2/basisdaten").request().put(Entity.entity(data, APPLICATION_JSON_TYPE));
 		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
+
+	@Test
+	public void verifyThat_replaceBasisdaten_returnsCorrectStatusCodeForInvalidBeschreibung()
+			throws URISyntaxException, IOException {
+		final byte[] data = Files.readAllBytes(
+				Paths.get(getClass().getResource("basisdatenmodel_invalidBeschreibungAndName.json").toURI()));
+
+		Response response = target("/plan/2/basisdaten").request().put(Entity.entity(data, APPLICATION_JSON_TYPE));
+		// Test fails in IntelliJ IDEA!
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 
 }

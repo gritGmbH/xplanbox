@@ -20,6 +20,8 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
+
 /**
  * Encapsulates a reference of a plan.
  *
@@ -28,6 +30,7 @@ package de.latlon.xplan.manager.web.shared.edit;
  */
 public class Reference extends AbstractReference {
 
+	@Valid
 	private ReferenceType type;
 
 	public Reference() {

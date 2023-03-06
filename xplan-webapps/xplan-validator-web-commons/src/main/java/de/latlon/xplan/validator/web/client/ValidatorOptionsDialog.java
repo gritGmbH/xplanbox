@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.web.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -272,9 +273,9 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 	private boolean validateForm() {
 		boolean validForm = true;
-		if ("".equals(validationName.getText())) {
+		if (!validationNameIsValid(validationName.getText())) {
 			validForm = false;
-			Window.alert(messages.correctInputText());
+			Window.alert(messages.correctValidationName());
 		}
 		if (!validationTypeSyn.isChecked() && !validationTypeGeom.isChecked() && !validationTypeSem.isChecked()) {
 			Window.alert(messages.correctValidationType());
@@ -346,6 +347,13 @@ public class ValidatorOptionsDialog extends FormPanel {
 			validating.hide();
 			pollingTextBox.stop();
 		}
+	}
+
+	private boolean validationNameIsValid(String validationName) {
+		if (validationName == null || "".equals(validationName))
+			return false;
+		RegExp regExp = RegExp.compile("^[A-Za-z0-9.()_-]*$");
+		return regExp.test(validationName);
 	}
 
 }

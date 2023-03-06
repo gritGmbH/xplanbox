@@ -34,6 +34,7 @@ import de.latlon.xplan.manager.web.shared.Rechtsstand;
 import de.latlon.xplan.manager.web.shared.RechtsstandAndPlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import de.latlon.xplan.validator.web.shared.InvalidParameterException;
 import org.deegree.commons.utils.Pair;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
@@ -56,6 +57,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import javax.ws.rs.core.Context;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -67,8 +69,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
+import static de.latlon.xplan.commons.util.TextPatternConstants.INTERNALID_PATTERN;
 import static java.lang.Double.doubleToLongBits;
 import static java.lang.Long.toHexString;
 import static java.lang.Math.random;
@@ -189,7 +194,7 @@ public class ManagerController {
 	@ResponseBody
 	// @formatter:off
     public void editPlan( @PathVariable int planId,
-                          @RequestBody XPlanToEdit xPlanToEdit,
+						  @RequestBody @Valid XPlanToEdit xPlanToEdit,
                           @RequestParam(value = "updateRasterConfig", required = false) boolean updateRasterConfig,
                           @Context HttpServletRequest request, @Context HttpServletResponse response )
                                           throws Exception {
@@ -333,6 +338,7 @@ public class ManagerController {
                                @Context HttpServletRequest request, @Context HttpServletResponse response)
                                                throws Exception {
         // @formatter:on
+		checkInternalId(internalId);
 		response.addHeader("Expires", "-1");
 		LOG.info("Try to import plan with id {}", planId);
 		HttpSession session = request.getSession();
@@ -608,6 +614,17 @@ public class ManagerController {
 			write(file.getBytes(), localOutput);
 		}
 		checkContentTypesOfXPlanArchiveOrGml(localFile.toPath());
+	}
+
+	private void checkInternalId(String internalIdToCheck) throws InvalidParameterException {
+		if (internalIdToCheck == null)
+			return;
+		Pattern pattern = Pattern.compile(INTERNALID_PATTERN);
+		Matcher matcher = pattern.matcher(internalIdToCheck);
+		if (!matcher.matches()) {
+			throw new InvalidParameterException("InternalId does not match expected patter " + INTERNALID_PATTERN
+					+ " but was " + internalIdToCheck);
+		}
 	}
 
 }

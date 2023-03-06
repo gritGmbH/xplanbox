@@ -20,6 +20,8 @@
  */
 package de.latlon.xplan.validator.web.shared;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +36,8 @@ public class ValidationSettings implements Serializable {
 
 	private static final long serialVersionUID = 6120360074178016611L;
 
+	@NotNull
+	@Pattern(regexp = "^[A-Za-z0-9.()_-]*$")
 	private String validationName;
 
 	private List<ValidationType> validationTypes;

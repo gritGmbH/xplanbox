@@ -27,6 +27,8 @@ import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.commons.ValidationReportBuilder;
 import de.latlon.xplanbox.api.commons.exception.InvalidXPlanGmlOrArchive;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedHeaderValue;
+import de.latlon.xplanbox.api.commons.exception.UnsupportedParameterValue;
 import de.latlon.xplanbox.api.commons.v1.model.ValidationReport;
 import de.latlon.xplanbox.api.validator.handler.ValidationHandler;
 import io.swagger.v3.oas.annotations.Hidden;
@@ -59,6 +61,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_PDF;
@@ -128,9 +131,10 @@ public class ValidateApi {
 	public Response validate(@Context Request request, @Valid File body,
 			@HeaderParam("X-Filename") @Parameter(description = "Name of the file to be uploaded",
 					example = "File names such as xplan.gml, xplan.xml, xplan.zip",
-					schema = @Schema(pattern = "^[A-Za-z0-9.()_-]*$")) String xFilename,
+					schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String xFilename,
 			@QueryParam("name") @Parameter(description = "Name of the validation",
-					example = "xplan-1, Prüfbericht_Torstrasse_10, report#4223") String name,
+					schema = @Schema(pattern = SIMPLE_NAME_PATTERN),
+					example = "xplan-1Pruefbericht_Torstrasse_10_report-4223") String name,
 			@QueryParam("skipSemantisch") @DefaultValue("false") @Parameter(
 					description = "skip semantische Validierung") Boolean skipSemantisch,
 			@QueryParam("skipGeometrisch") @DefaultValue("false") @Parameter(
@@ -145,7 +149,7 @@ public class ValidateApi {
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive,
-			UnsupportedContentTypeException {
+			UnsupportedContentTypeException, UnsupportedParameterValue, UnsupportedHeaderValue {
 		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromGml(body, validationName);
@@ -158,8 +162,9 @@ public class ValidateApi {
 	@Consumes({ "application/octet-stream", "application/zip", "application/x-zip", "application/x-zip-compressed" })
 	@Produces({ "application/json", "application/xml", "text/xml", "application/pdf", "application/zip" })
 	@Hidden
-	public Response validateZip(@Context Request request, @Valid File body, @HeaderParam("X-Filename") String xFilename,
-			@QueryParam("name") String name,
+	public Response validateZip(@Context Request request, @Valid File body,
+			@HeaderParam("X-Filename") @Parameter(schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String xFilename,
+			@QueryParam("name") @Parameter(schema = @Schema(pattern = SIMPLE_NAME_PATTERN)) String name,
 			@QueryParam("skipSemantisch") @DefaultValue("false") Boolean skipSemantisch,
 			@QueryParam("skipGeometrisch") @DefaultValue("false") Boolean skipGeometrisch,
 			@QueryParam("skipFlaechenschluss") @DefaultValue("false") Boolean skipFlaechenschluss,
@@ -169,7 +174,7 @@ public class ValidateApi {
 					description = "Names of profiles which shall be additionaly used for validation",
 					explode = FALSE) List<String> profiles)
 			throws IOException, ValidatorException, URISyntaxException, InvalidXPlanGmlOrArchive,
-			UnsupportedContentTypeException {
+			UnsupportedContentTypeException, UnsupportedParameterValue, UnsupportedHeaderValue {
 		checkContentTypesOfXPlanArchiveOrGml(body.toPath());
 		String validationName = detectOrCreateValidationName(xFilename, name);
 		XPlanArchive archive = validationHandler.createArchiveFromZip(body, validationName);

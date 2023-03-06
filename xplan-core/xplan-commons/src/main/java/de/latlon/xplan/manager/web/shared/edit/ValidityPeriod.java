@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.web.shared.edit;
 
+import javax.validation.Valid;
 import java.util.Date;
 
 /**
@@ -30,8 +31,10 @@ import java.util.Date;
  */
 public class ValidityPeriod {
 
+	@Valid
 	private Date start;
 
+	@Valid
 	private Date end;
 
 	public ValidityPeriod() {

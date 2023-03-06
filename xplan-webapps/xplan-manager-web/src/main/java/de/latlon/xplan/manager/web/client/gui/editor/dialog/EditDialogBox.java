@@ -27,8 +27,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
@@ -36,6 +34,8 @@ import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
 import de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType;
 import de.latlon.xplan.manager.web.client.gui.widget.CodeListBox;
 import de.latlon.xplan.manager.web.client.gui.widget.MandatoryTextBox;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextArea;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextBox;
 import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBox;
 import de.latlon.xplan.manager.web.client.gui.widget.StrictDateBoxFormat;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
@@ -95,20 +95,20 @@ public abstract class EditDialogBox extends DialogBox {
 		informSaveHandler();
 	}
 
-	protected TextBox createTextInput() {
-		TextBox textBox = new TextBox();
+	protected PatternTextBox createPatternTextInput(String pattern, int maxLength) {
+		PatternTextBox textBox = new PatternTextBox(pattern, maxLength);
 		textBox.setWidth(DEFAULT_WIDTH);
 		return textBox;
 	}
 
-	protected MandatoryTextBox createMandatoryTextInput() {
-		MandatoryTextBox textBox = new MandatoryTextBox();
+	protected MandatoryTextBox createMandatoryTextInput(String pattern, int maxLength) {
+		MandatoryTextBox textBox = new MandatoryTextBox(pattern, maxLength);
 		textBox.setWidth(DEFAULT_WIDTH);
 		return textBox;
 	}
 
-	protected TextArea createTextAreaInput() {
-		TextArea textArea = new TextArea();
+	protected PatternTextArea createPatternTextAreaInput(String pattern, int maxLength) {
+		PatternTextArea textArea = new PatternTextArea(pattern, maxLength);
 		textArea.setWidth(DEFAULT_WIDTH);
 		textArea.setHeight("150px");
 		return textArea;
