@@ -411,6 +411,7 @@
         <artifactId>dependency-check-maven</artifactId>
         <version>${owasp.version}</version>
         <configuration>
+          <formats>HTML,XML</formats>
           <cveValidForHours>24</cveValidForHours>
           <failBuildOnCVSS>10</failBuildOnCVSS>
           <skip>${skip.owasp.check}</skip>
