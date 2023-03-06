@@ -3551,11 +3551,11 @@ exists(/wms:WMS_Capabilities)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>1</con:value>
+          <con:value>20</con:value>
         </con:property>
         <con:property>
           <con:name>gmlId</con:name>
-          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_412a3abf-9a8d-4558-9c10-5c770ff5dccd</con:value>
+          <con:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">XPLAN_BP_PLAN_918c02eb-a29c-4e38-8c2c-d1a7c2b5f358</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -3813,7 +3813,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>2</con:value>
+          <con:value>21</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4029,7 +4029,7 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>3</con:value>
+          <con:value>22</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -4757,11 +4757,11 @@ exists(ogc:ServiceExceptionReport)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>4</con:value>
+          <con:value>23</con:value>
         </con:property>
         <con:property>
           <con:name>planIdBPlan002_5-3</con:name>
-          <con:value>5</con:value>
+          <con:value>24</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -5137,7 +5137,73 @@ exists(//wfs:ListStoredQueriesResponse)</path>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
 count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:ReturnFeatureType[text()='xplan:BP_Plan'])</path>
-              <content>5</content>
+              <content>6</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="37276590-5ba7-46ad-ae50-5df44838edae" name="XPath Match Title GetFeatureById">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='GetFeatureById'])</path>
+              <content>1</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="37276590-5ba7-46ad-ae50-5df44838edae" name="XPath Match Title GetFeatureByType">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='GetFeatureByType'])</path>
+              <content>1</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="37276590-5ba7-46ad-ae50-5df44838edae" name="XPath Match Title internalId">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='internalId'])</path>
+              <content>1</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="37276590-5ba7-46ad-ae50-5df44838edae" name="XPath Match Title planId">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='planId'])</path>
+              <content>1</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="37276590-5ba7-46ad-ae50-5df44838edae" name="XPath Match Title planName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='planName'])</path>
+              <content>1</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="37276590-5ba7-46ad-ae50-5df44838edae" name="XPath Match Title planNameAndType">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+count(//wfs:ListStoredQueriesResponse/wfs:StoredQuery/wfs:Title[text()='planNameAndType'])</path>
+              <content>1</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
               <ignoreComments>false</ignoreComments>
@@ -5228,6 +5294,17 @@ exists(//wfs:DescribeStoredQueriesResponse)</path>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
 //wfs:DescribeStoredQueriesResponse/wfs:StoredQueryDescription/@id="urn:ogc:def:query:OGC-WFS::PlanName"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match PlanNameAndType">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+
+//wfs:DescribeStoredQueriesResponse/wfs:StoredQueryDescription/@id="urn:ogc:def:query:OGC-WFS::PlanNameAndType"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -5465,6 +5542,116 @@ count(//wfs:member)</path>
           </con:parameters>
         </con:config>
       </con:testStep>
+      <con:testStep type="httprequest" name="XPlanSynWFS PlanNameAndType" id="59497d67-9a1d-4d63-bf0d-0765928c85cd">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="XPlanSynWFS PlanNameAndType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>${#Project#baseUrl}/xplansyn-wfs/services/xplansynwfs</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="801e8b11-7329-4cf3-bdad-a11ed56f57c5" name="Valid HTTP Status Codes">
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match Title PlanName">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Bereich/xplan:xpPlanName="Eidelstedt 4 soapui-webservices"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match Title PlanType">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+//wfs:member/xplan:BP_Bereich/xplan:xpPlanType="BP_Plan"</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match FeatureType BP_Plan">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+exists(//wfs:member/xplan:BP_Bereich)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:assertion type="XPath Match" id="e42e211d-78d0-403e-b5d4-07669de8af80" name="XPath Match FeatureType BP_Bereich">
+            <con:configuration>
+              <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
+declare namespace xplan='http://www.deegree.org/xplanung/1/0';
+
+exists(//wfs:member/xplan:BP_Bereich)</path>
+              <content>true</content>
+              <allowWildcards>false</allowWildcards>
+              <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+              <ignoreComments>false</ignoreComments>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:username>${#Project#username}</con:username>
+            <con:password>${#Project#password}</con:password>
+            <con:selectedAuthProfile>Basic</con:selectedAuthProfile>
+            <con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes>
+            <con:authType>Global HTTP Settings</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:parameter>
+              <con:name>service</con:name>
+              <con:value>WFS</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>WFS</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>request</con:name>
+              <con:value>GetFeature</con:value>
+              <con:style>QUERY</con:style>
+              <con:default>GetCapabilities</con:default>
+              <con:path xsi:nil="true"/>
+              <con:description xsi:nil="true"/>
+            </con:parameter>
+            <con:parameter>
+              <con:name>version</con:name>
+              <con:value>2.0.0</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>StoredQuery_ID</con:name>
+              <con:value>urn:ogc:def:query:OGC-WFS::PlanNameAndType</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>planName</con:name>
+              <con:value>Eidelstedt 4 soapui-webservices</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+            <con:parameter>
+              <con:name>typeNames</con:name>
+              <con:value>BP_Bereich</con:value>
+              <con:style>QUERY</con:style>
+            </con:parameter>
+          </con:parameters>
+        </con:config>
+      </con:testStep>
       <con:testStep type="httprequest" name="Delete Eidelstedt4V4-with-nummer-soapui-webservices.zip" id="d14b4df1-f690-41af-977d-2b078d690417">
         <con:settings/>
         <con:config method="DELETE" xsi:type="con:HttpRequest" id="81e086dd-d7e1-453d-b813-a19540c01243" name="Delete Eidelstedt4V4-with-nummer-soapui-webservices.zip" mediaType="application/octet-stream" postQueryString="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -5493,7 +5680,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>6</con:value>
+          <con:value>25</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -6013,11 +6200,11 @@ declare namespace xplan='http://www.deegree.org/xplanung/1/0';
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>7</con:value>
+          <con:value>26</con:value>
         </con:property>
         <con:property>
           <con:name>planIdOsdorf48</con:name>
-          <con:value>8</con:value>
+          <con:value>27</con:value>
         </con:property>
       </con:properties>
     </con:testCase>
@@ -7939,7 +8126,7 @@ count(//wfs:member)</path>
       <con:properties>
         <con:property>
           <con:name>planId</con:name>
-          <con:value>9</con:value>
+          <con:value>28</con:value>
         </con:property>
       </con:properties>
     </con:testCase>

@@ -2840,7 +2840,7 @@ assert actualHeader != null</scriptText>
       <con:testStep type="restrequest" name="POST BP 5.2 XX importPlanMissingReferenceExpectError" id="40cd30dd-3a50-486d-bbc9-82fab1da0961">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 5.2 importPlanMissingReferenceExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="POST BP 5.2 XX importPlanMissingReferenceExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/vnd.xplanbox.api+json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
