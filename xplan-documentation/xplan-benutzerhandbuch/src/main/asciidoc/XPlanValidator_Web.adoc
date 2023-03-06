@@ -42,7 +42,7 @@ image::validator/Validierungsbezeichnung_Datei.png[Dateiname als Bezeichner des 
 
 Sie können der aktuellen Validierung, falls notwendig, eine beliebige Bezeichnung geben. Diese erscheint ausschließlich auf dem Validierungsbericht.
 
-TIP: Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen.
+TIP: Vermeiden Sie auch hier Umlaute, Sonderzeichen und/oder Leerzeichen. Es gelten die gleichen Anforderungen wie an den Dateinamen.
 
 [.bordered]
 image::validator/Validierungsbezeichnung.png[Bezeichnung des Validierungsberichts]
