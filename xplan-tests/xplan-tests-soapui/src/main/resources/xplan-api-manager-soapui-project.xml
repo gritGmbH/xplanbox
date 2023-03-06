@@ -480,7 +480,7 @@ Delete plan identified by the given plan ID</con:description>
         </con:representation>
         <con:representation type="FAULT">
           <con:mediaType>text/html;charset=utf-8</con:mediaType>
-          <con:status>404 400</con:status>
+          <con:status>404 400 406</con:status>
           <con:params/>
           <con:element>html</con:element>
         </con:representation>
@@ -5206,10 +5206,10 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError406" id="ccd698f4-3559-4e11-8c82-b3fcbefe7636">
+      <con:testStep type="restrequest" name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError" id="ccd698f4-3559-4e11-8c82-b3fcbefe7636">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/archive" methodName="getArchiveById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError406" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
+          <con:restRequest name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -5232,10 +5232,10 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError400" id="2e218f76-6dda-4a58-b1ec-bf65000aced3">
+      <con:testStep type="restrequest" name="GET BP 5.4 pI getArchiveByIdInvalidPlanIdExpectError" id="2e218f76-6dda-4a58-b1ec-bf65000aced3">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/archive" methodName="getArchiveById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError400" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
+          <con:restRequest name="GET BP 5.4 pI getArchiveByIdInvalidPlanIdExpectError" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
@@ -5258,10 +5258,10 @@ assert expectedHeader == actualHeader</scriptText>
           </con:restRequest>
         </con:config>
       </con:testStep>
-      <con:testStep type="restrequest" name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError404" id="edf9a5fe-9e00-46a7-b713-5a8509366f61">
+      <con:testStep type="restrequest" name="GET BP 5.4 pI getArchiveByUnknownPlanIdExpectError" id="edf9a5fe-9e00-46a7-b713-5a8509366f61">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan/{planId}/archive" methodName="getArchiveById" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET BP 5.4 pI getArchiveByIdInvalidAcceptHeaderExpectError404" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
+          <con:restRequest name="GET BP 5.4 pI getArchiveByUnknownPlanIdExpectError" id="8dc5f71d-f103-4943-861e-3cc0043d31bd" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
