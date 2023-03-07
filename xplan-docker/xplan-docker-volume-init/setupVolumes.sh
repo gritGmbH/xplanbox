@@ -108,7 +108,12 @@ sed -i 's|localhost:5432/xplanbox|'$XPLAN_DB'|g' xplan-inspireplu-workspaces/xpl
 sed -i 's|name="username" value="xplanbox"|name="username" value="'$XPLAN_DB_USER'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 sed -i 's|name="password" value="xplanbox"|name="password" value="'$XPLAN_DB_PASSWORD'"|g' xplan-inspireplu-workspaces/xplan-inspireplu-workspace/jdbc/inspireplu.xml
 
-echo "[$(date -Iseconds)] Configure XPlanServices StorageCRS"
+srid=$( echo "$XPLAN_SERVICES_DEFAULT_CRS" | sed 's|.*:||g' )
+echo "[$(date -Iseconds)] Configure XPlanServices StorageCRS with srid $srid"
+find xplan-workspaces/xplan-manager-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$srid'"|g' {} \;
+find xplan-workspaces/xplan-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$srid'"|g' {} \;
+find xplan-workspaces/xplansyn-wms-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$srid'"|g' {} \;
+find xplan-workspaces/xplansyn-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|<StorageCRS srid="25832"|<StorageCRS srid="'$srid'"|g' {} \;
 find xplan-workspaces/xplan-manager-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
 find xplan-workspaces/xplan-wfs-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
 find xplan-workspaces/xplansyn-wms-workspace/datasources/feature -iname *.xml -exec sed -i 's|EPSG:25832</StorageCRS>|'$XPLAN_SERVICES_DEFAULT_CRS'</StorageCRS>|g' {} \;
