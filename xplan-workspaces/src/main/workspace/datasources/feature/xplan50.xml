@@ -22,7 +22,7 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:schemaLocation="http://www.deegree.org/datasource/feature/sql https://schemas.deegree.org/3.5/datasource/feature/sql/sql.xsd">
     <JDBCConnId>xplan</JDBCConnId>
-    <StorageCRS srid="-1" dim="2D">EPSG:25832</StorageCRS>
+    <StorageCRS srid="25832" dim="2D">EPSG:25832</StorageCRS>
     <GMLSchema>../../appschemas/XPlanGML_5_0/XPlanung-Operationen.xsd</GMLSchema>
     <BLOBMapping>
         <BlobTable>xplan50.gml_objects</BlobTable>
