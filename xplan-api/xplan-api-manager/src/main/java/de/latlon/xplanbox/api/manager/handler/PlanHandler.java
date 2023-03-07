@@ -113,6 +113,7 @@ public class PlanHandler {
 
 	public StreamingOutput exportPlan(String planId) throws Exception {
 		try {
+			checkIdAndConvertIdToInt(planId);
 			LOG.info("Exporting plan with Id '{}'", planId);
 			XPlanArchiveContent archiveContent = xPlanDao.retrieveAllXPlanArtefacts(planId);
 			return outputStream -> xPlanExporter.export(outputStream, archiveContent);
@@ -124,13 +125,8 @@ public class PlanHandler {
 
 	public XPlan findPlanById(String planId) throws Exception {
 		LOG.info("Finding plan by Id '{}'", planId);
-		try {
-			int id = Integer.parseInt(planId);
-			return findPlanById(id);
-		}
-		catch (NumberFormatException e) {
-			throw new InvalidPlanIdSyntax(planId);
-		}
+		int id = checkIdAndConvertIdToInt(planId);
+		return findPlanById(id);
 	}
 
 	public List<XPlan> findPlansByName(String planName) throws Exception {
@@ -198,6 +194,15 @@ public class PlanHandler {
 			}
 		}
 		return IN_AUFSTELLUNG;
+	}
+
+	private int checkIdAndConvertIdToInt(String planId) throws InvalidPlanIdSyntax {
+		try {
+			return Integer.parseInt(planId);
+		}
+		catch (NumberFormatException e) {
+			throw new InvalidPlanIdSyntax(planId);
+		}
 	}
 
 }
