@@ -62,9 +62,12 @@ public class OpenApiFilter extends AbstractSpecFilter {
 	}
 
 	private void addOpenApiPath(OpenAPI openAPI) {
-		ApiResponses apiResponses = new ApiResponses().addApiResponse("200",
-				new ApiResponse().description("successful operation").content(new Content()
-						.addMediaType("application/json", new MediaType().schema(new Schema().type("object")))));
+		ApiResponses apiResponses = new ApiResponses()
+				.addApiResponse("200",
+						new ApiResponse().description("successful operation")
+								.content(new Content().addMediaType("application/json",
+										new MediaType().schema(new Schema().type("object")))))
+				.addApiResponse("406", new ApiResponse().description("Requested format is not available"));
 		PathItem openApiPath = new PathItem().get(new Operation().operationId("openApi").summary("OpenAPI document")
 				.description("API documentation").responses(apiResponses));
 		openAPI.getPaths().addPathItem("/", openApiPath);
