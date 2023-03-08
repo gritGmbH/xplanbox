@@ -57,7 +57,8 @@ public class DefaultApi extends BaseOpenApiResource {
 	@GET
 	@Produces({ "application/json" })
 	@Operation(summary = "OpenAPI document", description = "API documentation",
-			responses = { @ApiResponse(responseCode = "200", description = "successful operation") })
+			responses = { @ApiResponse(responseCode = "200", description = "successful operation"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response openApi(@Context HttpHeaders headers, @Context UriInfo uriInfo) throws Exception {
 		return super.getOpenApi(headers, this.config, this.app, uriInfo, APPLICATION_JSON);
 	}

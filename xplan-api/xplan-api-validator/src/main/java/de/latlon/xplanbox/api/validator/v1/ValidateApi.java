@@ -109,8 +109,11 @@ public class ValidateApi {
 											description = "XPlanGML or XPlanArchive (application/zip) file to upload",
 											implementation = Object.class)) }),
 					@ApiResponse(responseCode = "400", description = "Invalid input"),
-					@ApiResponse(responseCode = "406",
-							description = "Invalid content - only xml/gml, zip are accepted; all zip files entries must also match the supported content types for XPlanArchives and the content of the XPlanGML file must conform to specification of xPlanBox XPlanGML files") },
+					@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+					@ApiResponse(responseCode = "415",
+							description = "Unsupported media type or content - only xml/gml, zip are accepted; all zip files entries must also match the supported content types for XPlanArchives"),
+					@ApiResponse(responseCode = "422",
+							description = "Invalid content - the content of the XPlanGML file must conform to the specification of xPlanBox XPlanGML files") },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/octet-stream",
 							schema = @Schema(type = "string", format = "binary",

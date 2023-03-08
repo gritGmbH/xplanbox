@@ -65,9 +65,10 @@ public class PlanTextApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(array = @ArraySchema(schema = @Schema(implementation = Text.class)))),
-					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported plan version or planID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public List<Text> getTexte(@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 			example = "123") String planId) throws Exception {
 		return editTextHandler.retrieveTexte(planId);
@@ -79,10 +80,12 @@ public class PlanTextApi {
 	@Operation(operationId = "addText", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
-			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value") })
+					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+			@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+			@ApiResponse(responseCode = "415", description = "Unsupported media type"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content") })
 	public Text addText(
 			@PathParam("planId") @Parameter(description = "ID of the plan to add text", example = "123") String planId,
 			@Parameter(schema = @Schema(implementation = Text.class),
@@ -103,9 +106,10 @@ public class PlanTextApi {
 	@Operation(operationId = "getTextById", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid planID or text ID, plan or text not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported plan version or planID is not a valid int value") })
+					description = "Unsupported plan version or planID is not a valid int value"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID or text ID, plan or text not found"),
+			@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Text getTextById(
 			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 					example = "123") String planId,
@@ -122,10 +126,12 @@ public class PlanTextApi {
 	@Operation(operationId = "replaceTextById", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid planID or text ID, plan or Text not found"),
-			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value") })
+					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID or text ID, plan or Text not found"),
+			@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+			@ApiResponse(responseCode = "415", description = "Unsupported media type"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content") })
 	public Text replaceTextById(
 			@PathParam("planId") @Parameter(description = "ID of the plan to be updated",
 					example = "123") String planId,

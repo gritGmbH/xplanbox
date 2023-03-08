@@ -56,9 +56,10 @@ public class PlanAenderungenApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Aenderungen.class))),
-					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported plan version or planID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Aenderungen getAenderung(@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 			example = "123") String planId) throws Exception {
 		return editAenderungenHandler.retrieveAenderungen(planId);
@@ -71,10 +72,11 @@ public class PlanAenderungenApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Aenderungen.class))),
-					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
-					@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported plan version or planID is not a valid int value") },
+							description = "Unsupported plan version or planID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+					@ApiResponse(responseCode = "422", description = "Request body contains invalid content"), },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Aenderungen.class)) }))
 	public Aenderungen replaceAenderung(@PathParam("planId") @Parameter(description = "ID of the plan to be returned",

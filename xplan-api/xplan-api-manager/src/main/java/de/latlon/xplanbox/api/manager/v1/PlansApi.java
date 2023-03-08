@@ -67,8 +67,12 @@ public class PlansApi {
 	@Produces({ "application/json" })
 	@Operation(summary = "Search for plan by name",
 			description = "Returns a list of plans where the plan name contains the query string case insensitve",
-			tags = { "search" }, responses = { @ApiResponse(responseCode = "200", description = "OK",
-					content = @Content(array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class)))) })
+			tags = { "search" },
+			responses = {
+					@ApiResponse(responseCode = "200", description = "OK",
+							content = @Content(
+									array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class)))),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response findByNameOrId(
 			@QueryParam("planName") @Parameter(description = "The name of the plan to search for",
 					example = "bplan_123, fplan-123, rplan20200803") String planName,

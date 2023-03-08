@@ -67,9 +67,10 @@ public class PlanRasterbasisApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(
 									array = @ArraySchema(schema = @Schema(implementation = Rasterbasis.class)))),
-					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported plan version or planID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public List<Rasterbasis> getRasterBasis(@PathParam("planId") @Parameter(
 			description = "ID of the plan to be returned", example = "123") String planId) throws Exception {
 		return editRasterbasisHandler.retrieveRasterbasis(planId);
@@ -81,10 +82,12 @@ public class PlanRasterbasisApi {
 	@Operation(operationId = "addRasterBasis", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
-			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value") })
+					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+			@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+			@ApiResponse(responseCode = "415", description = "Unsupported media type"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content") })
 	public Rasterbasis addRasterBasis(
 			@PathParam("planId") @Parameter(description = "ID of the plan to add rasterbasis",
 					example = "123") String planId,
@@ -114,10 +117,11 @@ public class PlanRasterbasisApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported plan version or planID is not a valid int value"),
 					@ApiResponse(responseCode = "404",
 							description = "Invalid planID or rasterbasis ID, plan or rasterbasis not found"),
-					@ApiResponse(responseCode = "400",
-							description = "Unsupported plan version or planID is not a valid int value") })
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Rasterbasis getRasterbasisById(
 			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 					example = "123") String planId,
@@ -135,11 +139,13 @@ public class PlanRasterbasisApi {
 	@Operation(operationId = "replaceRasterbasisById", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value"),
 			@ApiResponse(responseCode = "404",
 					description = "Invalid planID or rasterbasis ID, plan or rasterbasis not found"),
-			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
-			@ApiResponse(responseCode = "400",
-					description = "Unsupported plan type or version, missing bereich nummer or rasterbasismodel or planID is not a valid int value") })
+			@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+			@ApiResponse(responseCode = "415", description = "Unsupported media type"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content") })
 	public Rasterbasis replaceRasterbasisById(
 			@PathParam("planId") @Parameter(description = "ID of the plan to be updated",
 					example = "123") String planId,
@@ -172,10 +178,11 @@ public class PlanRasterbasisApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Rasterbasis.class))),
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported plan version or planID is not a valid int value"),
 					@ApiResponse(responseCode = "404",
 							description = "Invalid planID or rasterbasis ID, plan or rasterbasis not found"),
-					@ApiResponse(responseCode = "400",
-							description = "Unsupported plan version or planID is not a valid int value") })
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Rasterbasis deleteRasterbasisById(
 			@PathParam("planId") @Parameter(description = "ID of the plan to be deleted",
 					example = "123") String planId,
