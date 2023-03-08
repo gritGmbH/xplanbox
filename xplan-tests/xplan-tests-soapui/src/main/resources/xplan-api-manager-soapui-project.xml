@@ -1815,7 +1815,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /">
               <con:configuration>
                 <path>$.paths./</path>
-                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object"}}}}}}}</content>
+                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object"}}}},"406":{"description":"Requested format is not available"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1824,7 +1824,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan/{planId}/basisdaten">
               <con:configuration>
                 <path>$.paths./plan/{planId}/basisdaten</path>
-                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan basisdaten to be returned","required":true,"schema":{"type":"string"},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid planID, plan not found"},"400":{"description":"Unsupported plan version or planID is not a valid int value"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan to be returned","required":true,"schema":{"type":"string"},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"404":{"description":"Invalid plan ID, plan not found"},"422":{"description":"Request body contains invalid content"},"400":{"description":"Unsupported plan version or planID is not a valid int value"}}}}</content>
+                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan basisdaten to be returned","required":true,"schema":{"type":"string"},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"406":{"description":"Requested format is not available"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan to be returned","required":true,"schema":{"type":"string"},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"422":{"description":"Request body contains invalid content"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -2398,7 +2398,7 @@ assert actualHeader != null</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>406</codes>
+                <codes>422</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -2522,7 +2522,7 @@ assert actualHeader != null</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>406</codes>
+                <codes>422</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -3136,7 +3136,7 @@ assert actualHeader != null</scriptText>
       <con:testStep type="restrequest" name="POST BP 5.3 XX importPlanInvalidXSSExpectError" id="a24792d3-2835-4dfb-95b1-62516766f454">
         <con:settings/>
         <con:config service="XPlanManagerAPI" resourcePath="/plan" methodName="import" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST BP 5.3 XX importPlanInvalidXFilenameExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
+          <con:restRequest name="POST BP 5.3 XX importPlanInvalidXSSExpectError" id="bf7971d6-e318-4bdc-b279-2bb920237af7" mediaType="application/octet-stream" postQueryString="false">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Accept" value="application/json" xmlns="http://eviware.com/soapui/config"/></con:setting>
             </con:settings>
@@ -3580,7 +3580,7 @@ assert actualHeader != null</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>406</codes>
+                <codes>415</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -3956,7 +3956,7 @@ assert actualHeader != null</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="175f3cab-acc4-43f8-857f-68775292193b" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>406</codes>
+                <codes>415</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -9269,7 +9269,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//rasterbasis/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="9c7d9868-acad-4332-bba4-e2c44f1e4a78" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>406</codes>
+                <codes>415</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -11551,7 +11551,7 @@ assert expectedHeader == actualHeader</scriptText>
             <con:originalUri>http://localhost/xplan-api-manager/xmanager/api/v1/plan//text/</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="1c8de8a0-7d65-45b5-898b-71f8f9468e09" name="Valid HTTP Status Codes">
               <con:configuration>
-                <codes>406</codes>
+                <codes>415</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
