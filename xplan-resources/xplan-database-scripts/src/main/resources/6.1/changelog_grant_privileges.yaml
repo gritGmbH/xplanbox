@@ -24,7 +24,7 @@ databaseChangeLog:
 # The property can be passed a JVM system property or as an environment variable XPLAN_DB_USER
 #
   - preConditions:
-      - onFail: CONTINUE
+      - onFail: WARN
       - changeLogPropertyDefined:
           property: xplan.db.user
   - property:
@@ -34,6 +34,13 @@ databaseChangeLog:
   - changeSet:
       id: grant-privileges-to-application-database-user
       author: tfr42
+      preConditions:
+        - onError: CONTINUE
+        - onFail: CONTINUE
+        - changeLogPropertyDefined:
+            not:
+              property: xplan.skip_permissions
+              value: true
       changes:
         - sql:
             sql: GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA ${xplan.schema_names} TO ${xplan.db.user};
