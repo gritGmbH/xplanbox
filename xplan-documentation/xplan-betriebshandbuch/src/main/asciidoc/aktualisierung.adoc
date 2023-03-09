@@ -7,7 +7,7 @@ Datenunabhängige Aktualisierungsschritte:
 
 * Stoppen aller Tomcat-Instanzen
 * <<austausch-der-web-archive, Austausch der Web-Archive in den Tomcat-Instanzen>>
-* <<austausch-der-commandline-tools, Austausch der Commandline-Tools>>
+* <<austausch-der-commandline-tools, Austausch der Kommandozeilenwerkzeuge>>
 
 Aktualisierungsschritte, die die Datenhaltung betreffen:
 
@@ -47,9 +47,9 @@ NOTE: Falls die Hintergrundkarte der Kartenvorschau im XPlanValidatorWeb angepas
 Es müssen alle Tomcat-Instanzen neu gestartet werden. Der Neustart muss nach der Aktualisierung der Workspaces erfolgen (s. <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>>).
 
 [[austausch-der-commandline-tools]]
-=== Austausch der Commandline-Tools
+=== Austausch der Kommandozeilenwerkzeuge
 
-Die ZIP-Archive mit den Kommandozeilen-Tools müssen entpackt werden:
+Die ZIP-Archive mit den Kommandozeilenwerkzeugen müssen entpackt werden:
 
 ----
 unzip ${WORK_DIR}/cli/xplan-manager-cli-${VERSION}.zip 
@@ -147,6 +147,8 @@ Führen Sie die zu der Version passenden SQL-Skripte aus dem entsprechenden Unte
 - von 5.0.2 auf 6.0 aus dem Verzeichnis _from_5.0.2_to_6.0/_
 
 NOTE: Bei der Aktualisierung der XPlanDB kann es bei Ausführung der SQL zu folgender Fehlermeldungen kommen: _ERROR:  relation "databasechangeloglock" already exists_ kommen. Diese Fehlermeldung kann ignoriert werden.
+
+IMPORTANT: Achten Sie bei der Ausführung der SQL-Skripte darauf, dass diese vollständig ausgeführt werden. Nutzen Sie für die Ausführung der SQL-Skripte das `psql`-Tool z.B. mit dem Aufruf `psql -h $PGHOST -p $PGPORT -U $PGUSER -d $PGDATABASE -f $PATH_TO_SCRIPTS/UPDATE_SCRIPT.sql`.
 
 [[aktualisierung-der-daten]]
 === Aktualisierung der Daten
@@ -248,6 +250,7 @@ Mit der Version 6.1 der xPlanBox erfolgte eine Anpassung der Werkseinstellungen 
 
 Bei unerwartetem Verhalten der xPlanBox nach der Aktualisierung können folgende Punkte helfen:
 
+* Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten.
 * Löschen des Verzeichnisses _<CATALINA_HOME>/work/_ der Tomcat-Server. Der Tomcat-Server muss zuvor gestoppt und anschließend neu gestartet werden.
 * Reload der Workspaces der XPlanDienste.
 * Löschen des Browser-Caches.

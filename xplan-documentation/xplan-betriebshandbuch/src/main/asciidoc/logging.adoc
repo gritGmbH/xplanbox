@@ -22,6 +22,8 @@ In die Log-Dateien werden Informationen, Warnungen und Fehler geschrieben.
 |XPlanUpdateDataCLI |./xplan-update-data-cli.log
 |===
 
+NOTE: Ab der xPlanBox Version 6.1 ist die Ausgabe in Log-Dateien deaktiviert. Für die Konfiguration kann das Beispiel für die Ausgabe über einen `RollingFile`-Appender im folgenden Kapitel <<logging-konfiguration>> verwendet werden.
+
 === Protokollebenen
 
 In den Anwendungen werden für die Nachrichten verschiedenen Protokollebenen (Log-Level) verwendet. Diese haben folgende Bedeutung:
@@ -33,6 +35,7 @@ In den Anwendungen werden für die Nachrichten verschiedenen Protokollebenen (Lo
 - DEBUG: Detaillierte Informationen zum Programmablauf, die vom Entwickler zur Fehler- und Laufzeitanalyse ausgewertet werden können (Vorgabeeinstellung: deaktiviert, wird bei Bedarf und nur temporär aktiviert)
 - TRACE: noch detailliertere Informationen zum Programmablauf (Vorgabeeinstellung: deaktiviert, wird bei Bedarf und nur temporär aktiviert, erzeugt viele Nachrichten)
 
+[[logging-konfiguration]]
 === Konfiguration
 
 Die Konfiguration des verwendeten Apache Log4j-Frameworks erfolgt über die Konfigurationsdatei `log4j2.yaml`. Diese Datei ist in allen Komponenten enthalten und liegt in den Webapps im Verzeichnis `WEB-INF/classes` und bei den Kommandozeilenwerkzeugen im Verzeichnis `etc/`.
