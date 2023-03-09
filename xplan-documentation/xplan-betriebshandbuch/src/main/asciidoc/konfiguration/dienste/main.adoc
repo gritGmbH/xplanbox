@@ -1,7 +1,7 @@
 [[konfiguration-dienste]]
 == XPlanDienste
 
-In den nachfolgenden Kapiteln wird die Konfiguration der XPlanDienste: <<xplanwms,XPlanWMS/XPlanWerkWMS>>, <<xplanwfs,XPlanWFS>> und <<xplansynwfs,XPlanSynWFS>> beschrieben.
+In den nachfolgenden Kapiteln wird die Konfiguration der XPlanDienste: <<xplanwms,XPlanWMS/XPlanWerkWMS/XPlanArtWMS>>, <<xplanwfs,XPlanWFS>> und <<xplansynwfs,XPlanSynWFS>> beschrieben.
 
 include::bbox_cache.adoc[]
 

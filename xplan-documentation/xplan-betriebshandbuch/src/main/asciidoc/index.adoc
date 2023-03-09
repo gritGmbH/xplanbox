@@ -35,6 +35,8 @@ include::xplandb.adoc[]
 
 include::ressourcen.adoc[]
 
+include::s3storage.adoc[]
+
 include::logging.adoc[]
 
 include::bekannteProbleme.adoc[]
