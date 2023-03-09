@@ -37,10 +37,10 @@ databaseChangeLog:
       preConditions:
         - onError: CONTINUE
         - onFail: CONTINUE
-        - changeLogPropertyDefined:
-            not:
-              property: xplan.skip_permissions
-              value: true
+        - not:
+          changeLogPropertyDefined:
+            property: xplan.skip_permissions
+            value: true
       changes:
         - sql:
             sql: GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA ${xplan.schema_names} TO ${xplan.db.user};
