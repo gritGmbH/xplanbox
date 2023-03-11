@@ -19,7 +19,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 14.02.2023, 15:10:18 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 11.03.2023, 13:15:58 -->
 <html>
   <head>
     <title>XPlanWMS Sachdatenanzeige</title>
@@ -65,7 +65,7 @@
           var referenzRows = document.getElementsByClassName('referenz');
           for(var i = 0; i < referenzRows.length; i++) {
             var referenzRow = referenzRows[i];
-            var xPlanMgrId = referenzRow.previousElementSibling.firstChild.innerText;
+            var xPlanMgrId = retrieveXPlanMgrId(referenzRow);
             var referenzKey = referenzRow.getElementsByTagName("td")[0];
             var referenzProperty = referenzRow.getElementsByTagName("td")[1].getElementsByTagName("a")[0];
             var indexOfPipe = referenzKey.innerText.indexOf('|');
@@ -117,7 +117,6 @@
 
         function createLink(referenz, xPlanMgrId){
             if(S3_URL){
-                // extRef.append("/getAttachment?featureID=").append(fid).append("&planId=").append(planId).append("&filename=").append(escape(georefUrlString));
                 var filename = referenz.substring( referenz.indexOf('&filename=') +10, referenz.length );
                 return S3_URL + "/" + xPlanMgrId + "_" + filename;
             }
@@ -130,7 +129,7 @@
               if (prevSib.className == 'xplanMgrPlanId'){
                 return prevSib.firstChild.innerText;
               }
-              retrieveXPlanMgrId(prevSib);
+              return retrieveXPlanMgrId(prevSib);
             }
             return null;
         }
