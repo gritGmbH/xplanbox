@@ -75,6 +75,7 @@ public class PlanBasisdatenApi {
 					@ApiResponse(responseCode = "400",
 							description = "Unsupported plan version or planID is not a valid int value"),
 					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available"),
 					@ApiResponse(responseCode = "422", description = "Request body contains invalid content"), },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Basisdaten.class)) }))
