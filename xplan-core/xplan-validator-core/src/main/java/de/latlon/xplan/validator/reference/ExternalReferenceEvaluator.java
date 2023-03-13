@@ -60,7 +60,7 @@ public class ExternalReferenceEvaluator {
 	private ExternalReferenceReport parseAndAddExternalReferences(FeatureCollection fc, XPlanArchive archive) {
 		ExternalReferenceScanner scanner = new ExternalReferenceScanner();
 		ExternalReferenceInfo externalReferenceInfo = scanner.scan(fc);
-		List<ExternalReference> allExternalReferences = externalReferenceInfo.getExternalRefs();
+		List<ExternalReference> allExternalReferences = externalReferenceInfo.getAllReferences();
 		Map<String, ExternalReferenceStatus> references = new HashMap<>();
 		for (ExternalReference ref : allExternalReferences) {
 			addUrl(archive, references, ref.getReferenzUrl());

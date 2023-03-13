@@ -31,7 +31,6 @@ import de.latlon.xplan.commons.feature.FeatureCollectionParseException;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
@@ -41,10 +40,12 @@ import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
 import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.transaction.UnsupportPlanException;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
@@ -137,7 +138,8 @@ public class XPlanManager {
 	public XPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
 			InspirePluTransformator inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager) throws Exception {
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager,
+			XPlanDocumentManager xPlanDocumentManager, StorageCleanUpManager storageCleanUpManager) throws Exception {
 		if (xPlanDao == null || archiveCreator == null || managerWorkspaceWrapper == null
 				|| wmsWorkspaceWrapper == null) {
 			throw new IllegalArgumentException("Mandatory argument must not be null");
@@ -159,13 +161,13 @@ public class XPlanManager {
 		else
 			this.inspirePluPublisher = null;
 		this.xPlanInsertManager = new XPlanInsertManager(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager,
-				workspaceReloader, managerWorkspaceWrapper.getConfiguration(), managerWorkspaceWrapper,
-				sortPropertyReader);
+				xPlanDocumentManager, workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
+				managerWorkspaceWrapper, sortPropertyReader);
 		this.xPlanEditManager = new XPlanEditManager(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager,
-				workspaceReloader, managerWorkspaceWrapper.getConfiguration(), managerWorkspaceWrapper,
-				sortPropertyReader);
-		this.xPlanDeleteManager = new XPlanDeleteManager(xplanDao, xPlanRasterManager, workspaceReloader,
-				managerWorkspaceWrapper.getConfiguration());
+				xPlanDocumentManager, workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
+				managerWorkspaceWrapper, sortPropertyReader);
+		this.xPlanDeleteManager = new XPlanDeleteManager(xplanDao, xPlanRasterManager, storageCleanUpManager,
+				workspaceReloader, managerWorkspaceWrapper.getConfiguration());
 	}
 
 	public XPlanArchive analyzeArchive(String fileName) throws IOException {

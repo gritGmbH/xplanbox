@@ -9,7 +9,8 @@ Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind
 ==== Erweiterungen
 - Unterstützung für XPlanGML 6.0.2 in allen Komponenten der xPlanBox
 - Unterstützung für MapServer 8.0 zur Bereitstellung des XPlanWMS
-- Ablage von Rasterdaten über ein AWS S3-kompatibles API
+- Ablage von Rasterdaten in einem AWS S3-kompatiblen Objektspeicher
+- Ablage von Begleitdokumenten in einem AWS S3-kompatiblen Objektspeicher
 - Der XML-Prozessor ist so konfiguriert, dass nur lokale statische DTD verwendet werden können, jede externe und jede deklarierte DTD wird nicht mehr zugelassen
 - Verbesserung der Geltungsbereichsprüfung im XPlanValidator
 - Der Import von XPlanGML-Dateien über den XPlanManagerWeb/API wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich

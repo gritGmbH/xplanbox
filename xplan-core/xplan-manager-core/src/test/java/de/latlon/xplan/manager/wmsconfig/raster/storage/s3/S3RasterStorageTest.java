@@ -65,24 +65,6 @@ public class S3RasterStorageTest {
 	}
 
 	@Test
-	public void testDeleteRasterFiles() {
-		AmazonS3 client = spy(AmazonS3.class);
-		ObjectListing objectListing = mock(ObjectListing.class);
-		when(client.listObjects(eq(BUCKET_NAME), eq("1_"))).thenReturn(objectListing);
-
-		S3ObjectSummary objectToDelete = mock(S3ObjectSummary.class);
-		when(objectToDelete.getKey()).thenReturn("1_test");
-		List<S3ObjectSummary> objectSummaries = Collections.singletonList(objectToDelete);
-		when(objectListing.getObjectSummaries()).thenReturn(objectSummaries);
-		S3RasterStorage s3RasterStorage = createS2RasterStorage(client);
-
-		s3RasterStorage.deleteRasterFiles("1");
-
-		verify(client).listObjects(BUCKET_NAME, "1_");
-		verify(client).deleteObject(BUCKET_NAME, "1_test");
-	}
-
-	@Test
 	public void testDeleteRasterFile() {
 		AmazonS3 client = spy(AmazonS3.class);
 		ObjectListing objectListing = mock(ObjectListing.class);

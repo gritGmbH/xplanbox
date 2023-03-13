@@ -31,12 +31,15 @@ import de.latlon.xplan.manager.CrsUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
+import de.latlon.xplan.manager.edit.EditException;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
@@ -64,11 +67,12 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanInsertManager.class);
 
 	public XPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
-			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
-			ManagerConfiguration managerConfiguration, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			SortPropertyReader sortPropertyReader) throws DataServiceCouplingException {
-		super(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration,
-				managerWorkspaceWrapper, sortPropertyReader);
+			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
+			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
+		super(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager, xPlanDocumentManager, workspaceReloader,
+				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
 	}
 
 	/**
@@ -141,6 +145,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 				xPlanInstance.getFeatures());
 		int planId = xplanDao.insert(archive, xPlanInstance, synFc, selectedPlanStatus,
 				xPlanMetadata.getStartDateTime(), xPlanMetadata.getEndDateTime(), sortDate, null);
+		insertDocuments(planId, xPlanInstance, archive);
 		createRasterConfigurations(archive, makeRasterConfig, xPlanInstance, planId, selectedPlanStatus, sortDate);
 		startCreationOfDataServicesCoupling(planId, xPlanInstance, crs);
 		reloadWorkspace(planId);
@@ -176,6 +181,13 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			int planId, PlanStatus planStatus, Date sortDate) throws Exception {
 		if (makeRasterConfig) {
 			createRasterConfiguration(archive, fc, planId, archive.getType(), planStatus, null, sortDate);
+		}
+	}
+
+	private void insertDocuments(int planId, XPlanFeatureCollection xPlanInstance, XPlanArchive archive)
+			throws StorageException, EditException {
+		if (xPlanDocumentManager != null) {
+			xPlanDocumentManager.importDocuments(planId, xPlanInstance.getFeatures(), archive);
 		}
 	}
 

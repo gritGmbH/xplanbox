@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.edit;
 
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfoBuilder;
 import de.latlon.xplan.manager.web.shared.edit.RasterBasis;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
@@ -32,8 +33,10 @@ import org.junit.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.collectRemovedRefs;
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefAddedOrUpdated;
@@ -112,13 +115,10 @@ public class ExternalReferenceUtilsTest {
 	}
 
 	private ExternalReferenceInfo createExternalReferenceInfo(String rasterPlanBaseScan, String... rasterUploads) {
-		ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceInfo();
-		externalReferenceInfo.addRasterPlanBaseScan(new ExternalReference(rasterPlanBaseScan));
-		for (String rasterUpload : rasterUploads) {
-			externalReferenceInfo.addRasterPlanUpdateScan(new ExternalReference(rasterUpload));
-		}
-		externalReferenceInfo.addExternalRefs(externalReferenceInfo.getRasterPlanBaseAndUpdateScans());
-		return externalReferenceInfo;
+		List<ExternalReference> updateScans = Arrays.stream(rasterUploads)
+				.map(rasterUpload -> new ExternalReference(rasterUpload)).collect(Collectors.toList());
+		return new ExternalReferenceInfoBuilder().addRasterPlanBaseScan(new ExternalReference(rasterPlanBaseScan))
+				.addRasterPlanUpdateScans(updateScans).build();
 	}
 
 	private List<File> createUploadedFileList(String... fileNames) {
