@@ -28,6 +28,8 @@ databaseChangeLog:
   - include:
       file: 6.1/changelog_xplanvalidator.yaml
   - include:
+      file: 6.1/changelog_srid.yaml
+  - include:
       file: 6.1/changelog_grant_privileges.yaml
   - changeSet:
       id:  tagDatabase-v61

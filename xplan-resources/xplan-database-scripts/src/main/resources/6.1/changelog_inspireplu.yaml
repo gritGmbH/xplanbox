@@ -8222,6 +8222,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: ad_address_ad_position
+    - sql: SELECT UpdateGeometrySRID('inspireplu','ad_address_ad_position','ad_geographicposition_ad_geometry_value',25832);
 - changeSet:
     id: 1670839971321-121
     author: lyn (generated)
@@ -8771,6 +8772,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: au_administrativeboundary
+    - sql: SELECT UpdateGeometrySRID('inspireplu','au_administrativeboundary','au_geometry_value',25832);
 - changeSet:
     id: 1670839971321-126
     author: lyn (generated)
@@ -8888,6 +8890,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: au_administrativeunit
+    - sql: SELECT UpdateGeometrySRID('inspireplu','au_administrativeunit','au_geometry_value',25832);
 - changeSet:
     id: 1670839971321-127
     author: lyn (generated)
@@ -9049,6 +9052,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: au_administrativeunit_au_residenceofauthority
+    - sql: SELECT UpdateGeometrySRID('inspireplu','au_administrativeunit_au_residenceofauthority','au_residenceofauthority_au_geometry_value',25832);
 - changeSet:
     id: 1670839971321-128
     author: lyn (generated)
@@ -9115,6 +9119,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: au_condominium
+    - sql: SELECT UpdateGeometrySRID('inspireplu','au_condominium','au_geometry_value',25832);
 - changeSet:
     id: 1670839971321-129
     author: lyn (generated)
@@ -9316,6 +9321,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: cp_cadastralboundary
+    - sql: SELECT UpdateGeometrySRID('inspireplu','cp_cadastralboundary','cp_geometry_value',25832);
 - changeSet:
     id: 1670839971321-131
     author: lyn (generated)
@@ -9469,6 +9475,8 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: cp_cadastralparcel
+    - sql: SELECT UpdateGeometrySRID('inspireplu','cp_cadastralparcel','cp_geometry_value',25832);
+    - sql: SELECT UpdateGeometrySRID('inspireplu','cp_cadastralparcel','cp_referencepoint_value',25832);
 - changeSet:
     id: 1670839971321-132
     author: lyn (generated)
@@ -9631,6 +9639,8 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: cp_cadastralzoning
+    - sql: SELECT UpdateGeometrySRID('inspireplu','cp_cadastralzoning','cp_geometry_value',25832);
+    - sql: SELECT UpdateGeometrySRID('inspireplu','cp_cadastralzoning','cp_referencepoint_value',25832);
 - changeSet:
     id: 1670839971321-133
     author: lyn (generated)
@@ -9958,6 +9968,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: gn_namedplace
+    - sql: SELECT UpdateGeometrySRID('inspireplu','gn_namedplace','gn_geometry_value',25832);
 - changeSet:
     id: 1670839971321-141
     author: lyn (generated)
@@ -10831,6 +10842,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: plu_spatialplan
+    - sql: SELECT UpdateGeometrySRID('inspireplu','plu_spatialplan','plu_extent_value',25832);
 - changeSet:
     id: 1670839971321-147
     author: lyn (generated)
@@ -11002,6 +11014,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: plu_supplementaryregulation
+    - sql: SELECT UpdateGeometrySRID('inspireplu','plu_supplementaryregulation','plu_geometry_value',25832);
 - changeSet:
     id: 1670839971321-148
     author: lyn (generated)
@@ -11197,6 +11210,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: plu_zoningelement
+    - sql: SELECT UpdateGeometrySRID('inspireplu','plu_zoningelement','plu_geometry_value',25832);
 - changeSet:
     id: 1670839971321-149
     author: lyn (generated)
@@ -11776,6 +11790,7 @@ databaseChangeLog:
             type: GEOMETRY
         schemaName: inspireplu
         tableName: tn_markerpost
+    - sql: SELECT UpdateGeometrySRID('inspireplu','tn_markerpost','tn_geometry_value',25832);
 - changeSet:
     id: 1670839971321-153
     author: lyn (generated)
