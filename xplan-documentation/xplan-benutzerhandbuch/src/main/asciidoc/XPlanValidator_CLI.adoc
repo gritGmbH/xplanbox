@@ -6,7 +6,7 @@ Analog zum XPlanManagerWeb können XPlanGML-Dokumente mit der Komponente XPlanVa
 [[xplanvalidator-cli-benutzungsanleitung]]
 ==== Benutzungsanleitung
 
-Beim XPlanValidatorCLI handelt es sich um ein Kommandozeilentool, das
+Beim XPlanValidatorCLI handelt es sich um ein Kommandozeilenwerkzeug, das
 parametrisiert aufgerufen wird. Da diese Anwendung bei der Installation
 in die PATH Variable aufgenommen wird, ist diese von einem beliebigen
 Ort aufrufbar.
@@ -17,7 +17,7 @@ Ort aufrufbar.
 In dem Verzeichnis _<validator-cli-directory>/etc/_ befindet sich die
 Konfigurationsdatei __validatorConfiguration.properties__, welche
 genutzt werden kann, um generelle Konfigurationen an dem
-Kommandozeilentool durchzuführen.
+Kommandozeilenwerkzeug durchzuführen.
 
 Über _validationReportDirectory=<directory>_ kann konfiguriert werden,
 wo die Reports mit dem Validierungsergebnis, die während der Ausführung

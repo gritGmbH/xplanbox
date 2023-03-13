@@ -23,9 +23,10 @@ package de.latlon.xplan.manager.wmsconfig.raster.storage.s3;
 import de.latlon.xplan.ResourceAccessor;
 import de.latlon.xplan.commons.archive.XPlanArchiveContentAccess;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.manager.storage.s3.config.AmazonS3TestContext;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3Context;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3TestContext;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.S3RasterStorageTestContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,14 +47,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * mock.
  *
  * To run the IT against a AWS S3 account disable the profile "mock" and set accessKeyId
- * and secretKey in the s3.properties file.
+ * and secretKey in the s3Mock.properties file.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { AmazonS3Context.class, AmazonS3TestContext.class })
-@ActiveProfiles({ "s3", "mock" })
+@ContextConfiguration(
+		classes = { AmazonS3RasterStorageContext.class, S3RasterStorageTestContext.class, AmazonS3TestContext.class })
+@ActiveProfiles({ "s3img", "mock" })
 @TestPropertySource("classpath:s3Mock.properties")
 public class S3RasterStorageIT {
 
@@ -70,11 +72,6 @@ public class S3RasterStorageIT {
 		String key = s3RasterStorage.addRasterFile(1, "Blankenese29.png", archive);
 
 		assertThat(key, is("1_Blankenese29.png"));
-	}
-
-	@Test
-	public void testDeleteRasterFiles() {
-		s3RasterStorage.deleteRasterFiles("1");
 	}
 
 	@Test

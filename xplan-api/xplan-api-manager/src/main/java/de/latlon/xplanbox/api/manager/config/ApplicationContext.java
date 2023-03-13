@@ -30,8 +30,12 @@ import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
+import de.latlon.xplan.manager.document.config.DocumentStorageContext;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.config.StorageCleanUpContext;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
@@ -44,7 +48,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3Context;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -83,6 +87,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
@@ -98,7 +103,8 @@ import static java.nio.file.Paths.get;
  */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager" })
-@Import({ RasterStorageContext.class, AmazonS3Context.class })
+@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class, DocumentStorageContext.class,
+		StorageCleanUpContext.class })
 public class ApplicationContext {
 
 	private static final String RULES_DIRECTORY = "/rules";
@@ -107,9 +113,12 @@ public class ApplicationContext {
 	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
 			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			WorkspaceReloader workspaceReloader, WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager) throws Exception {
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager,
+			Optional<XPlanDocumentManager> xPlanDocumentManager, StorageCleanUpManager storageCleanUpManager)
+			throws Exception {
 		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
+				null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, xPlanDocumentManager.orElse(null),
+				storageCleanUpManager);
 	}
 
 	@Bean
@@ -228,13 +237,14 @@ public class ApplicationContext {
 	@Bean
 	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
 			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			XPlanRasterManager xPlanRasterManager, ManagerConfiguration managerConfiguration,
-			WorkspaceReloader workspaceReloader) throws Exception {
+			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
+			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader) throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration(managerConfiguration);
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 
-		return new XPlanInsertManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager, workspaceReloader,
-				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
+		return new XPlanInsertManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
+				xPlanDocumentManager.orElse(null), workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
+				sortPropertyReader);
 	}
 
 	@Bean
@@ -244,8 +254,10 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanDeleteManager xPlanDeleteManager(XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
-			XPlanRasterManager xPlanRasterManager, ManagerConfiguration managerConfiguration) {
-		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, workspaceReloader, managerConfiguration);
+			XPlanRasterManager xPlanRasterManager, StorageCleanUpManager storageCleanUpManager,
+			ManagerConfiguration managerConfiguration) {
+		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader,
+				managerConfiguration);
 	}
 
 	@Bean

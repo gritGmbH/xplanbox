@@ -22,6 +22,7 @@ package de.latlon.xplan.manager.edit;
 
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.commons.reference.ExternalReferenceInfoBuilder;
 import de.latlon.xplan.manager.web.shared.edit.RasterReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import net.sf.saxon.functions.Empty;
@@ -57,22 +58,27 @@ public class ExternalReferenceUtils {
 	public static ExternalReferenceInfo createExternalRefRemovedOrUpdated(
 			ExternalReferenceInfo externalReferencesModified, List<File> uploadedArtefacts,
 			ExternalReferenceInfo externalReferencesOriginal) {
-		ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceInfo();
+		ExternalReferenceInfoBuilder externalReferenceInfoBuilder = new ExternalReferenceInfoBuilder();
 
+		List<ExternalReference> nonRastersOriginal = externalReferencesOriginal.getNonRasterRefs();
+		List<ExternalReference> nonRastersModified = externalReferencesModified.getNonRasterRefs();
+		for (ExternalReference nonRasterOriginal : nonRastersOriginal) {
+			if (wasRemovedOrRequiresUpdate(nonRasterOriginal, nonRastersModified, uploadedArtefacts))
+				externalReferenceInfoBuilder.addNonRasterReference(nonRasterOriginal);
+		}
 		List<ExternalReference> baseScansOriginal = externalReferencesOriginal.getRasterPlanBaseScans();
 		List<ExternalReference> baseScansModified = externalReferencesModified.getRasterPlanBaseScans();
 		for (ExternalReference baseScanOriginal : baseScansOriginal) {
 			if (wasRemovedOrRequiresUpdate(baseScanOriginal, baseScansModified, uploadedArtefacts))
-				externalReferenceInfo.addRasterPlanBaseScan(baseScanOriginal);
+				externalReferenceInfoBuilder.addRasterPlanBaseScan(baseScanOriginal);
 		}
 		List<ExternalReference> updateScansOriginal = externalReferencesOriginal.getRasterPlanUpdateScans();
 		List<ExternalReference> updateScansModified = externalReferencesModified.getRasterPlanUpdateScans();
 		for (ExternalReference updateScanOriginal : updateScansOriginal) {
 			if (wasRemovedOrRequiresUpdate(updateScanOriginal, updateScansModified, uploadedArtefacts))
-				externalReferenceInfo.addRasterPlanBaseScan(updateScanOriginal);
+				externalReferenceInfoBuilder.addRasterPlanBaseScan(updateScanOriginal);
 		}
-
-		return externalReferenceInfo;
+		return externalReferenceInfoBuilder.build();
 	}
 
 	/**
@@ -88,16 +94,20 @@ public class ExternalReferenceUtils {
 	 */
 	public static ExternalReferenceInfo createExternalRefAddedOrUpdated(ExternalReferenceInfo externalReferences,
 			List<File> uploadedArtefacts) {
-		ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceInfo();
+		ExternalReferenceInfoBuilder externalReferenceInfoBuilder = new ExternalReferenceInfoBuilder();
+		for (ExternalReference nonRasterRef : externalReferences.getNonRasterRefs()) {
+			if (wasUploaded(nonRasterRef, uploadedArtefacts))
+				externalReferenceInfoBuilder.addNonRasterReference(nonRasterRef);
+		}
 		for (ExternalReference baseScan : externalReferences.getRasterPlanBaseScans()) {
 			if (wasUploaded(baseScan, uploadedArtefacts))
-				externalReferenceInfo.addRasterPlanBaseScan(baseScan);
+				externalReferenceInfoBuilder.addRasterPlanBaseScan(baseScan);
 		}
 		for (ExternalReference rasterChange : externalReferences.getRasterPlanUpdateScans()) {
 			if (wasUploaded(rasterChange, uploadedArtefacts))
-				externalReferenceInfo.addRasterPlanUpdateScan(rasterChange);
+				externalReferenceInfoBuilder.addRasterPlanUpdateScan(rasterChange);
 		}
-		return externalReferenceInfo;
+		return externalReferenceInfoBuilder.build();
 	}
 
 	/**
@@ -112,16 +122,16 @@ public class ExternalReferenceUtils {
 	 */
 	public static ExternalReferenceInfo createExternalRefAddedOrUpdated(XPlanToEdit planToEdit,
 			List<File> uploadedArtefacts) {
-		ExternalReferenceInfo externalReferenceInfo = new ExternalReferenceInfo();
+		ExternalReferenceInfoBuilder externalReferenceInfoBuilder = new ExternalReferenceInfoBuilder();
 		planToEdit.getRasterBasis().forEach(rasterBasis -> {
 			for (RasterReference rasterReference : rasterBasis.getRasterReferences()) {
 				String referenceUrl = rasterReference.getReference();
 				if (SCAN.equals(rasterReference.getType()) && wasUploaded(referenceUrl, uploadedArtefacts)) {
-					externalReferenceInfo.addRasterPlanBaseScan(new ExternalReference(referenceUrl));
+					externalReferenceInfoBuilder.addRasterPlanBaseScan(new ExternalReference(referenceUrl));
 				}
 			}
 		});
-		return externalReferenceInfo;
+		return externalReferenceInfoBuilder.build();
 	}
 
 	/**
@@ -137,8 +147,8 @@ public class ExternalReferenceUtils {
 			ExternalReferenceInfo externalReferencesOriginal) {
 		Set<String> removedRefs = new HashSet<>();
 
-		List<ExternalReference> externalRefsOriginal = externalReferencesOriginal.getExternalRefs();
-		List<ExternalReference> externalRefModified = externalReferencesModified.getExternalRefs();
+		List<ExternalReference> externalRefsOriginal = externalReferencesOriginal.getAllReferences();
+		List<ExternalReference> externalRefModified = externalReferencesModified.getAllReferences();
 		for (ExternalReference externalRefOriginal : externalRefsOriginal) {
 			String ref = externalRefOriginal.getReferenzUrl();
 			if (ref != null && !isReferenced(ref, externalRefModified))
@@ -169,11 +179,11 @@ public class ExternalReferenceUtils {
 		return false;
 	}
 
-	private static boolean wasRemovedOrRequiresUpdate(ExternalReference baseScanOriginal,
-			List<ExternalReference> baseScansModified, List<File> uploadedArtefacts) {
-		if (baseScanOriginal != null && baseScanOriginal.getReferenzUrl() != null) {
-			ExternalReference externalRefModifiedWithSameUrl = findExternalReferenceByReferenzUrl(baseScanOriginal,
-					baseScansModified);
+	private static boolean wasRemovedOrRequiresUpdate(ExternalReference originalReference,
+			List<ExternalReference> modifiedReferences, List<File> uploadedArtefacts) {
+		if (originalReference != null && originalReference.getReferenzUrl() != null) {
+			ExternalReference externalRefModifiedWithSameUrl = findExternalReferenceByReferenzUrl(originalReference,
+					modifiedReferences);
 			if (externalRefModifiedWithSameUrl == null)
 				return true;
 			else if (wasUploaded(externalRefModifiedWithSameUrl, uploadedArtefacts))
@@ -182,12 +192,12 @@ public class ExternalReferenceUtils {
 		return false;
 	}
 
-	private static ExternalReference findExternalReferenceByReferenzUrl(ExternalReference baseScanOriginal,
-			List<ExternalReference> baseScansModified) {
-		for (ExternalReference baseScanModified : baseScansModified) {
-			String baseScanUrl = baseScanModified.getReferenzUrl();
-			if (baseScanUrl != null && baseScanUrl.equals(baseScanOriginal.getReferenzUrl())) {
-				return baseScanModified;
+	private static ExternalReference findExternalReferenceByReferenzUrl(ExternalReference referenceToFind,
+			List<ExternalReference> referencesToSearch) {
+		for (ExternalReference referenceToSearch : referencesToSearch) {
+			String referenzUrl = referenceToSearch.getReferenzUrl();
+			if (referenzUrl != null && referenzUrl.equals(referenceToFind.getReferenzUrl())) {
+				return referenceToSearch;
 			}
 		}
 		return null;

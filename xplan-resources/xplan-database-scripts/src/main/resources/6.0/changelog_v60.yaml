@@ -20,8 +20,6 @@
 ###
 databaseChangeLog:
   - include:
-      file: 6.0/changelog_postgisext.yaml
-  - include:
       file: 6.0/changelog_schemas.yaml
   - include:
       file: 6.0/changelog_xplanmgr.yaml

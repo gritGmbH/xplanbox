@@ -44,7 +44,7 @@ public class ParameterizedExternalReferenceScannerTest {
 			throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection(resourceUnderTest);
 		ExternalReferenceInfo referenceInfo = new ExternalReferenceScanner().scan(fc);
-		assertEquals(externalRefs, referenceInfo.getExternalRefs().size());
+		assertEquals(externalRefs, referenceInfo.getAllReferences().size());
 		assertEquals(rasterPlanBaseScans, referenceInfo.getRasterPlanBaseScans().size());
 
 	}

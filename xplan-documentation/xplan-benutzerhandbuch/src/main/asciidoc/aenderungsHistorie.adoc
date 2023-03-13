@@ -4,12 +4,13 @@
 
 [[Aenderungshistorie-6.1]]
 === Version 6.1
-Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 6.1 der xPlanBox kann der XPlanWMS als MapServer-Instanz konfiguriert werden. Mit der Version 6.1 wurde die Ausgabe von Log-Meldungen in separate Log-Dateien je xPlanBox-Komponente aus der Logging-Konfiguration entfernt.
+Neben der Aktualisierung auf die aktuelle deegree webservices Version 3.5.0 sind einige Erweiterungen und Verbesserungen an den Komponenten der xPlanBox vorgenommen worden. Ab Version 6.1 der xPlanBox kann der XPlanWMS als MapServer-Instanz konfiguriert und ein AWS S3-kompatibler Objektspeicher genutzt werden. Mit der Version 6.1 wurde die Ausgabe von Log-Meldungen in separate Log-Dateien je xPlanBox-Komponente aus den mitgelieferten Logging-Konfiguration entfernt. Bitte beachten Sie dazu die Hinweise im Betriebshandbuch, Kapitel Logging.
 
 ==== Erweiterungen
 - Unterstützung für XPlanGML 6.0.2 in allen Komponenten der xPlanBox
 - Unterstützung für MapServer 8.0 zur Bereitstellung des XPlanWMS
-- Ablage von Rasterdaten über ein AWS S3-kompatibles API
+- Ablage von Rasterdaten in einem AWS S3-kompatiblen Objektspeicher
+- Ablage von Begleitdokumenten in einem AWS S3-kompatiblen Objektspeicher
 - Der XML-Prozessor ist so konfiguriert, dass nur lokale statische DTD verwendet werden können, jede externe und jede deklarierte DTD wird nicht mehr zugelassen
 - Verbesserung der Geltungsbereichsprüfung im XPlanValidator
 - Der Import von XPlanGML-Dateien über den XPlanManagerWeb/API wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich

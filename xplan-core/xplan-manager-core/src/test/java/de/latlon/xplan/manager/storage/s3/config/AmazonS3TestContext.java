@@ -18,14 +18,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config;
+package de.latlon.xplan.manager.storage.s3.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import de.latlon.xplan.manager.wmsconfig.raster.access.GdalRasterAdapter;
 import io.findify.s3mock.S3Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,8 +34,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PreDestroy;
-
-import static org.mockito.Mockito.mock;
 
 /**
  * Spring Configuration to enable usage of mock objects for integration tests.
@@ -52,12 +49,6 @@ public class AmazonS3TestContext {
 
 	@Autowired
 	private AmazonS3 s3TestClient;
-
-	@Bean
-	@Primary
-	public GdalRasterAdapter rasterAdapter() {
-		return mock(GdalRasterAdapter.class);
-	}
 
 	@Bean
 	@Profile("mock")

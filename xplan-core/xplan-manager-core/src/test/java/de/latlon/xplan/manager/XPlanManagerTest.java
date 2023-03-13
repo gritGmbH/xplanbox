@@ -134,7 +134,7 @@ public class XPlanManagerTest {
 		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterConfigManager);
 		XPlanSynthesizer xPlanSynthesizer = createXPlanSynthesizer();
 		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, null, null,
-				wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager);
+				wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, null, null);
 	}
 
 	private static XPlanSynthesizer createXPlanSynthesizer() {
