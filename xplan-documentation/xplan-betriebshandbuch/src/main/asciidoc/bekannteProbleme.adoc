@@ -40,7 +40,7 @@ Wenn die erzeugten deegree Konfigurationsdateien für Layer und Themes leere XML
 - Eine Umgehung des Fehlers ist möglich, wenn die leeren XML-Namensraum-Attribute manuell entfernt werden. Dann ist ein erfolgreiches Parsen und Nutzen der Konfiguration durch deegree wieder möglich.
 
 [[troubleshooting-managercli-gdal]]
-=== XPlanManagerCLI - Installation von GDAL erforderlich
+=== XPlanManagerCLI - Fehler aufgrund fehlender Installation von GDAL
 
 ==== Problembeschreibung
 
@@ -48,7 +48,13 @@ Tritt bei Aufruf des XPlanManagerCLI der Fehler `java.lang.UnsatisfiedLinkError:
 
 ==== Lösungsansätze
 
-- Installation der GDAL-Bibliothek wie im Abschnitt <<installation-gdal>> beschrieben.
+* Ist das Rasterdatenformat *GeoTIFF* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=geotiff` konfiguriert, müssen folgenden Dateien aus dem _<DEEGREE_WORKSPACE_ROOT>/xplansyn-wms-workspace/_ gelöscht werden:
+
+** datasources/tile/dummy.ignore
+** datasources/tile/tilematrixset/dummy.ignore
+** layers/dummyrasterlayer.ignore
+
+* Ist das Rasterdatenformat *GDAL* für die Datenhaltung des XPlanWMS über den Eintrag `rasterConfigurationType=gdal` konfiguriert, muss die Installation der GDAL-Bibliothek wie im Abschnitt <<installation-gdal>> beschrieben erfolgen.
 
 [[troubleshooting-resources]]
 === Kapazitätsbezogene Einschränkungen
