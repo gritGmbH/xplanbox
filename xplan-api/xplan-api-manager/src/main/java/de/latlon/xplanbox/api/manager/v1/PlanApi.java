@@ -76,8 +76,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
-import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplan.commons.util.TextPatternConstants.INTERNALID_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.createValidationSettings;
 import static de.latlon.xplanbox.api.commons.ValidatorConverter.detectOrCreateValidationName;
 import static de.latlon.xplanbox.api.commons.XPlanBoxMediaType.APPLICATION_ZIP;
@@ -136,8 +136,11 @@ public class PlanApi {
 									array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class))) }),
 					@ApiResponse(responseCode = "400", description = "Invalid input",
 							content = @Content(schema = @Schema(implementation = ValidationReport.class))),
-					@ApiResponse(responseCode = "406",
-							description = "Invalid content - only xml/gml, zip are accepted; all zip files entries must also match the supported content types for XPlanArchives and the content of the XPlanGML file must conform to specification of xPlanBox XPlanGML files") },
+					@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+					@ApiResponse(responseCode = "415",
+							description = "Unsupported media type or content - only xml/gml, zip are accepted; all zip files entries must also match the supported content types for XPlanArchives"),
+					@ApiResponse(responseCode = "422",
+							description = "Invalid content - the content of the XPlanGML file must conform to the specification of xPlanBox XPlanGML files") },
 			requestBody = @RequestBody(
 					content = {
 							@Content(mediaType = "application/octet-stream",
@@ -227,7 +230,8 @@ public class PlanApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = StatusMessage.class))),
 					@ApiResponse(responseCode = "400", description = "PlanID is not a valid int value"),
-					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found") })
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response delete(@PathParam("planId") @Parameter(description = "ID of the plan to be removed",
 			example = "123") String planId) throws Exception {
 		StatusMessage statusMessage = planHandler.deletePlan(planId);
@@ -246,7 +250,8 @@ public class PlanApi {
 							@Content(mediaType = "application/zip",
 									schema = @Schema(type = "string", format = "binary")) }),
 					@ApiResponse(responseCode = "400", description = "PlanID is not a valid int value"),
-					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found") })
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response getById(@Context Request request,
 			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 					example = "123") String planId)
@@ -273,7 +278,8 @@ public class PlanApi {
 							content = { @Content(mediaType = "application/zip",
 									schema = @Schema(type = "string", format = "binary")) }),
 					@ApiResponse(responseCode = "400", description = "PlanID is not a valid int value"),
-					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found") })
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response getArchiveById(@Context Request request,
 			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 					example = "123") String planId)
@@ -292,7 +298,8 @@ public class PlanApi {
 					@ApiResponse(responseCode = "200", description = "OK",
 							content = { @Content(mediaType = "application/json",
 									array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class))) }),
-					@ApiResponse(responseCode = "404", description = "Invalid planName, plan not found") })
+					@ApiResponse(responseCode = "404", description = "Invalid planName, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response getByName(@Context Request request,
 			@PathParam("planName") @Parameter(description = "name of the plan to be returned",
 					example = "bplan_123, fplan-123, rplan20200803") String planName)

@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import static javax.ws.rs.core.Response.Status.NOT_ACCEPTABLE;
+import static javax.ws.rs.core.Response.Status.UNSUPPORTED_MEDIA_TYPE;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -36,7 +36,7 @@ public class UnsupportedContentTypeExceptionMapper implements ExceptionMapper<Un
 
 	@Override
 	public Response toResponse(UnsupportedContentTypeException exception) {
-		return Response.status(NOT_ACCEPTABLE).entity(exception.getMessage()).build();
+		return Response.status(UNSUPPORTED_MEDIA_TYPE).entity(exception.getMessage()).build();
 	}
 
 }

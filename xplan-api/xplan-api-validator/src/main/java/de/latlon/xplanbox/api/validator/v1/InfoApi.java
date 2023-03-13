@@ -53,8 +53,10 @@ public class InfoApi {
 	@Produces({ "application/json" })
 	@Operation(summary = "Show system and application configuration",
 			description = "Returns the system and application configuration",
-			responses = { @ApiResponse(responseCode = "200", description = "successful operation",
-					content = @Content(schema = @Schema(implementation = SystemConfig.class))) })
+			responses = {
+					@ApiResponse(responseCode = "200", description = "successful operation",
+							content = @Content(schema = @Schema(implementation = SystemConfig.class))),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response showConfig() throws IOException {
 		return Response.ok().entity(configHandler.describeSystem()).build();
 	}

@@ -67,9 +67,10 @@ public class PlanDokumentApi {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(
 									array = @ArraySchema(schema = @Schema(implementation = Dokument.class)))),
-					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported plan version or planID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public List<Dokument> getDokumente(@PathParam("planId") @Parameter(
 			description = "ID of the plan to return dokumente", example = "123") String planId) throws Exception {
 		return editDokumentHandler.retrieveDokumente(planId);
@@ -81,11 +82,13 @@ public class PlanDokumentApi {
 	@Operation(operationId = "addDokument", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Dokument.class))),
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value"),
 			@ApiResponse(responseCode = "404",
 					description = "Invalid planID or dokument ID, plan or dokument not found"),
-			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
-			@ApiResponse(responseCode = "400",
-					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value") })
+			@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+			@ApiResponse(responseCode = "415", description = "Unsupported media type"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content") })
 	public Dokument addDokument(
 			@PathParam("planId") @Parameter(description = "ID of the plan to add a dokument",
 					example = "123") String planId,
@@ -108,10 +111,11 @@ public class PlanDokumentApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Dokument.class))),
+					@ApiResponse(responseCode = "400",
+							description = "Unsupported plan version or planID is not a valid int value"),
 					@ApiResponse(responseCode = "404",
 							description = "Invalid planID or dokument ID, plan or dokument not found"),
-					@ApiResponse(responseCode = "400",
-							description = "Unsupported plan version or planID is not a valid int value") })
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Dokument getDokumentById(
 			@PathParam("planId") @Parameter(description = "ID of the plan to get dokument",
 					example = "123") String planId,
@@ -129,11 +133,13 @@ public class PlanDokumentApi {
 	@Operation(operationId = "replaceDokumentById", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Dokument.class))),
+			@ApiResponse(responseCode = "400",
+					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value"),
 			@ApiResponse(responseCode = "404",
 					description = "Invalid planID or dokument ID, plan or dokument not found"),
-			@ApiResponse(responseCode = "422", description = "Request body contains invalid content"),
-			@ApiResponse(responseCode = "400",
-					description = "Unsupported plan version or dokumentmodel is missing or planID is not a valid int value") })
+			@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+			@ApiResponse(responseCode = "415", description = "Unsupported media type"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content") })
 	public Dokument replaceDokumentById(
 			@PathParam("planId") @Parameter(description = "ID of the plan to replace dokument",
 					example = "123") String planId,
@@ -162,7 +168,8 @@ public class PlanDokumentApi {
 					@ApiResponse(responseCode = "404",
 							description = "Invalid planID or dokument ID, plan or dokument not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported plan version or planID is not a valid int value") })
+							description = "Unsupported plan version or planID is not a valid int value"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Dokument deleteDokumentById(
 			@PathParam("planId") @Parameter(description = "ID of the plan to delete dokument",
 					example = "123") String planId,

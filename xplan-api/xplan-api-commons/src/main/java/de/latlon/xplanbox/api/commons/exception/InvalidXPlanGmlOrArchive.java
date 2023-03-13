@@ -20,7 +20,7 @@
  */
 package de.latlon.xplanbox.api.commons.exception;
 
-import javax.ws.rs.core.Response;
+import static de.latlon.xplanbox.api.commons.exception.StatusCodes.UNPROCESSABLE_CONTENT;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -33,7 +33,7 @@ public class InvalidXPlanGmlOrArchive extends XPlanApiException {
 
 	@Override
 	public int getStatusCode() {
-		return Response.Status.NOT_ACCEPTABLE.getStatusCode();
+		return UNPROCESSABLE_CONTENT;
 	}
 
 }
