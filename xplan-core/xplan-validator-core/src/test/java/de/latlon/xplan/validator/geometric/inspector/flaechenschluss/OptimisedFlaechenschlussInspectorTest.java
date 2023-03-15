@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static de.latlon.xplan.commons.XPlanType.BP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
@@ -41,7 +42,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 	@Ignore
 	@Test
 	public void testCheckFlaechenschluss_executionTime() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54,
+				BP_Plan);
 		long start = System.currentTimeMillis();
 		readFeaturesFromZip("Testplan.zip", OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
 		flaechenschlussInspector.checkGeometricRule();
@@ -52,7 +54,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
+				BP_Plan);
 		readFeaturesFromZip("xplan51/V4_1_ID_103.zip", flaechenschlussInspector);
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
@@ -61,7 +64,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_wirksamkeit() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
+				BP_Plan);
 		readFeaturesFromZip("xplan51/V4_1_ID_103_wirksamkeit.zip", flaechenschlussInspector);
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
@@ -70,7 +74,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_invalid() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
+				BP_Plan);
 		readFeaturesFromZip("xplan51/V4_1_ID_103_kein-flaechenschluss.zip", flaechenschlussInspector);
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
@@ -79,7 +84,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_equalFlaechenschlussGeometries() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
+				BP_Plan);
 		readFeaturesFromGml("equalFlaechenschlussGeometries.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -90,7 +96,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_vollstaendigeUeberlappungFlaechenschlussGeometries() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
+				BP_Plan);
 		readFeaturesFromGml("xplan52_Flaechenschlussfehler_vollstaendige_Ueberlappung.gml",
 				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
 
@@ -101,7 +108,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_LueckeGeltungsbereich() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52,
+				BP_Plan);
 		readFeaturesFromGml("xplan52_Flaechenschlussfehler_Luecke_Geltungsbereich.gml",
 				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
 
@@ -114,7 +122,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 	public void testCheckFlaechenschluss_Luecken() throws Exception {
 		// same plan as xplan52_Flaechenschlussfehler_Luecke_Geltungsbereich.gml but
 		// XPlanGML 5.4
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54,
+				BP_Plan);
 		readFeaturesFromGml("xplan54_Flaechenschlussfehler_Luecken.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -126,7 +135,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_TestLuecke() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52,
+				BP_Plan);
 		readFeaturesFromGml("Test_Luecke.gml", OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
 
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
@@ -136,7 +146,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_TestInsel() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52,
+				BP_Plan);
 		readFeaturesFromGml("FNP_Insel-Test.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -147,7 +158,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_TestAenderungsplanWithLuecke() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52,
+				BP_Plan);
 		readFeaturesFromGml("xplan60_Aenderungsplan_Luecke.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -158,7 +170,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_TestAenderungsplanValid() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52,
+				BP_Plan);
 		readFeaturesFromGml("xplan60_Aenderungsplan_valide.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -169,7 +182,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_Toleranz() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52,
+				BP_Plan);
 		readFeaturesFromGml("Flaechenschluss-Test_1mm.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -180,7 +194,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_Toleranz_nichtUeberlappend() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_52,
+				BP_Plan);
 		readFeaturesFromGml("Flaechenschluss-Test_1mm-nichtUeberlappend.gml",
 				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
 
@@ -191,7 +206,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_Luecke_Ebene1() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
+				BP_Plan);
 		readFeaturesFromGml("xplan51-5_1_4_1_Flaechenschlussfehler.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -206,7 +222,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_Luecke_Missing() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
+				BP_Plan);
 		readFeaturesFromGml("xplan51-5_1_4_2_Flaechenschlussfehler.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -221,7 +238,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_Luecke_FlaechenschlussFalse() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_51,
+				BP_Plan);
 		readFeaturesFromGml("xplan51-5_5_4_2_Flaechenschlussfehler.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -236,7 +254,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_Luecke_RandGeltungsbereich() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_53);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_53,
+				BP_Plan);
 		readFeaturesFromGml("xplan53-4_1_7_1_Flaechenschlussfehler.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -247,7 +266,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_Luecke_LochGeltungsbereichImToleranzbereich() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54,
+				BP_Plan);
 		readFeaturesFromGml("BPlan001_5-4_Toleranz_Geltungsbereich_0008.gml",
 				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
 
@@ -258,7 +278,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_missing_gehoertZuBereich() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54,
+				BP_Plan);
 		readFeaturesFromGml("test41-54_1-missing-gehoertZuBereich.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 
@@ -270,7 +291,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_missing_gehoertZuBereich_multipleBereiche() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54,
+				BP_Plan);
 		readFeaturesFromGml("test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml",
 				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
 
@@ -282,7 +304,8 @@ public class OptimisedFlaechenschlussInspectorTest {
 
 	@Test
 	public void testCheckFlaechenschluss_OneFlaechenschlussFeature_Luecke() throws Exception {
-		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54);
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_54,
+				BP_Plan);
 		readFeaturesFromGml("Test_Insel_Luecke_5mm.gml", OptimisedFlaechenschlussInspectorTest.class,
 				flaechenschlussInspector);
 

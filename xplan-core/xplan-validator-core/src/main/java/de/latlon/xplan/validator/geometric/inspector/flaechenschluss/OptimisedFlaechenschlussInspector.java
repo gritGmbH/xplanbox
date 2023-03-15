@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
@@ -83,6 +84,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.commons.XPlanType.LP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
@@ -166,10 +168,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	private static final AbstractDefaultGeometry DEFAULT_GEOM = new DefaultPoint(null, null, null,
 			new double[] { 0.0, 0.0 });
 
-	private static final String POSSIBLE_LUECKE_MSG_PLAN = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung bei der Pruefung des Geltungsbereichs des Plans an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
-
-	private static final String POSSIBLE_LUECKE_MSG_BEREICH = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung bei der Pruefung des Geltungsbereichs des Bereichs an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
-
 	private final List<String> flaechenschlussErrors = new ArrayList<>();
 
 	private final List<String> flaechenschlussWarnings = new ArrayList<>();
@@ -178,10 +176,13 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private final XPlanVersion xPlanVersion;
 
+	private final XPlanType xPlanType;
+
 	private final FlaechenschlussContext flaechenschlussContext = new FlaechenschlussContext();
 
-	public OptimisedFlaechenschlussInspector(XPlanVersion xPlanVersion) {
+	public OptimisedFlaechenschlussInspector(XPlanVersion xPlanVersion, XPlanType xPlanType) {
 		this.xPlanVersion = xPlanVersion;
+		this.xPlanType = xPlanType;
 	}
 
 	private enum TestStep {
@@ -219,13 +220,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 							bereichFeaturesWithFeaturesUnderTest, planFeaturesWithFeaturesUnderTest);
 				}
 			});
-			bereichFeaturesWithFeaturesUnderTest.forEach((bereichFeature, featuresUnderTest) -> {
-				analyseFlaechenschlussUnionOfBereich(bereichFeature, featuresUnderTest);
-			});
-			planFeaturesWithFeaturesUnderTest.forEach((planFeature, featuresUnderTest) -> {
-				analyseFlaechenschlussUnionOfPlan(planFeature, featuresUnderTest);
-			});
-
+			if (!LP_Plan.equals(xPlanType)) {
+				bereichFeaturesWithFeaturesUnderTest.forEach((bereichFeature, featuresUnderTest) -> {
+					analyseFlaechenschlussUnionOfBereich(bereichFeature, featuresUnderTest);
+				});
+				planFeaturesWithFeaturesUnderTest.forEach((planFeature, featuresUnderTest) -> {
+					analyseFlaechenschlussUnionOfPlan(planFeature, featuresUnderTest);
+				});
+			}
 			if (flaechenschlussErrors.isEmpty()) {
 				LOG.info("No features with invalid flaechenschluss");
 			}
