@@ -19,7 +19,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 31.10.2022, 09:04:57 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.03.2023, 10:57:58 -->
 <html>
   <head>
     <title>XPlanWMS Sachdatenanzeige</title>
@@ -967,7 +967,14 @@ wertUOM=Wert (Einheit)
 winkel=Winkel
 winkelUOM=Winkel (Einheit)
 wirdAusgeglichenDurchABE=Wird ausgeglichen durch ABE
+wirdAusgeglichenDurchBPABE=wirdAusgeglichenDurchBPABE
+wirdAusgeglichenDurchBPFlaeche=wirdAusgeglichenDurchBPFlaeche
+wirdAusgeglichenDurchBPMassnahme=wirdAusgeglichenDurchBPMassnahme
+wirdAusgeglichenDurchBPSPEFlaeche=wirdAusgeglichenDurchBPSPEFlaeche
+wirdAusgeglichenDurchBPSPEMassnahme=wirdAusgeglichenDurchBPSPEMassnahme
 wirdAusgeglichenDurchFlaeche=Wird ausgeglichen durch Fl&auml;che
+wirdAusgeglichenDurchFPFlaeche=wirdAusgeglichenDurchFPFlaeche
+wirdAusgeglichenDurchFPSPE=wirdAusgeglichenDurchFPSPE
 wirdAusgeglichenDurchMassnahme=Wird ausgeglichen durch Ma&szlig;nahme
 wirdAusgeglichenDurchSPE=Wird ausgeglichen durch SPE
 wirdAusgeglichenDurchSPEFlaeche=Wird ausgeglichen durch SPE Fl&auml;che
