@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 16:06:45-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.1">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 02.11.2022 15:52:00-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.2">
   <include schemaLocation="XPlanGML_Basisschema.xsd" />
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />
   <!--=========================================================================================-->
@@ -194,7 +194,7 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="laermkontingent" minOccurs="0" type="xplan:BP_EmissionskontingentLaermPropertyType">
             <annotation>
-              <documentation>Festsetzung eines Lärmemissionskontingent nach DIN 45691</documentation>
+              <documentation>Festsetzung eines Lärmemissionskontingent</documentation>
             </annotation>
           </element>
           <element name="laermkontingentGebiet" minOccurs="0" maxOccurs="unbounded" type="xplan:BP_EmissionskontingentLaermGebietPropertyType">
@@ -265,6 +265,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="sonstPlanArt" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_SonstPlanArt</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste spezifizierte  "Sonstige Planart", wenn das Attribut "&lt;i&gt;planArt" &lt;/i&gt;den Wert &lt;i&gt;9999 &lt;/i&gt;(Sonstiges) hat.</documentation>
             </annotation>
           </element>
@@ -275,6 +278,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="status" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_Status</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierter aktueller Status des Plans.</documentation>
             </annotation>
           </element>
@@ -1111,6 +1117,9 @@ in Gebäuden eine im Bebauungsplan bestimmte Größe der Geschossfläche für ge
           </element>
           <element name="detaillierteArtDerBaulNutzung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_DetailArtDerBaulNutzung</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere Nutzungsart, mit der die allgemeine und/oder besondere Art der baulichen Nutzung weiter detailliert werden können.</documentation>
             </annotation>
           </element>
@@ -1131,6 +1140,9 @@ in Gebäuden eine im Bebauungsplan bestimmte Größe der Geschossfläche für ge
           </element>
           <element name="abweichendeBauweise" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_AbweichendeBauweise</referenzierteCodelist>
+              </appinfo>
               <documentation>Nähere Bezeichnung einer "Abweichenden Bauweise" ("&lt;i&gt;bauweise" == 3000&lt;/i&gt;).</documentation>
             </annotation>
           </element>
@@ -1566,6 +1578,9 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
           </element>
           <element name="abweichendeBauweise" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_AbweichendeBauweise</referenzierteCodelist>
+              </appinfo>
               <documentation>Nähere Bezeichnung einer "Abweichenden Bauweise" ("&lt;i&gt;bauweise" == 3000&lt;/i&gt;).</documentation>
             </annotation>
           </element>
@@ -1728,6 +1743,9 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
       </element>
       <element name="detaillierteDachform" minOccurs="0" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailDachform</referenzierteCodelist>
+          </appinfo>
           <documentation>&amp;#220;ber eine Codeliste definierte detailliertere Dachform. </documentation>
         </annotation>
       </element>
@@ -1937,6 +1955,9 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailSondernutzung</referenzierteCodelist>
+          </appinfo>
           <documentation>&amp;#220;ber eine Codeliste definierte Sondernutzung, die die allgemeine Sondernutzung n&amp;#228;her detailliert.</documentation>
         </annotation>
       </element>
@@ -1975,6 +1996,9 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailZweckbestGemeinschaftsanlagen</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codelist definierte detailliertere Festlegung der Zweckbestimmung. </documentation>
         </annotation>
       </element>
@@ -2013,6 +2037,9 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailZweckbestNebenanlagen</referenzierteCodelist>
+          </appinfo>
           <documentation>&amp;#220;ber eine Codeliste definierte detailliertere Festlegung der Zweckbestimmung. </documentation>
         </annotation>
       </element>
@@ -2126,6 +2153,9 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
         <sequence>
           <element name="nutzung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_NutzungNichtUeberbaubGrundstFlaeche</referenzierteCodelist>
+              </appinfo>
               <documentation>Zulässige Nutzung der Fläche</documentation>
             </annotation>
           </element>
@@ -2194,6 +2224,9 @@ Durch die Digitalisierungsreihenfolge der Linienstützpunkte muss sichergestellt
           </element>
           <element name="sonstTyp" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_SpezielleBauweiseSonstTypen</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierter Typ der speziellen Bauweise, wenn &lt;i&gt;typ &lt;/i&gt;den Wert 9999 (Sonstiges) hat.</documentation>
             </annotation>
           </element>
@@ -2610,6 +2643,9 @@ Dieser Wert hat Priorität gegenüber einer im umschließenden Baugebiet (&lt;i&
           </element>
           <element name="abweichendeBauweise" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_AbweichendeBauweise</referenzierteCodelist>
+              </appinfo>
               <documentation>Nähere Bezeichnung einer "Abweichenden Bauweise" ("&lt;i&gt;bauweise == 3000"&lt;/i&gt;).
 Dieser Wert hat Priorität gegenüber einer im umschließenden Baugebiet (BP_BaugebietsTeilFlaeche) getroffenen Festsetzung</documentation>
             </annotation>
@@ -2980,6 +3016,9 @@ in Gebäuden eine im Bebauungsplan bestimmte Größe der Geschossfläche für ge
           </element>
           <element name="abweichendeBauweise" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_AbweichendeBauweise</referenzierteCodelist>
+              </appinfo>
               <documentation>Nähere Bezeichnung einer "Abweichenden Bauweise" ("&lt;i&gt;bauweise" == 3000&lt;/i&gt;).</documentation>
             </annotation>
           </element>
@@ -3475,6 +3514,9 @@ in Gebäuden eine im Bebauungsplan bestimmte Größe der Geschossfläche für ge
           </element>
           <element name="abweichendeBauweise" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_AbweichendeBauweise</referenzierteCodelist>
+              </appinfo>
               <documentation>Nähere Bezeichnung einer "Abweichenden Bauweise" ("&lt;i&gt;bauweise" == 3000&lt;/i&gt;).</documentation>
             </annotation>
           </element>
@@ -3515,6 +3557,9 @@ in Gebäuden eine im Bebauungsplan bestimmte Größe der Geschossfläche für ge
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailZweckbestGemeinbedarf</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -3553,6 +3598,9 @@ in Gebäuden eine im Bebauungsplan bestimmte Größe der Geschossfläche für ge
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailZweckbestSpielSportanlage</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -4323,6 +4371,9 @@ in Gebäuden eine im Bebauungsplan bestimmte Größe der Geschossfläche für ge
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailZweckbestGruenFlaeche</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -4361,6 +4412,9 @@ in Gebäuden eine im Bebauungsplan bestimmte Größe der Geschossfläche für ge
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailZweckbestLandwirtschaft</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -4399,6 +4453,9 @@ in Gebäuden eine im Bebauungsplan bestimmte Größe der Geschossfläche für ge
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailZweckbestWaldFlaeche</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -4871,6 +4928,9 @@ Bei Maßkreisen (typ == 2000) darf position nur einen einfachen Kreisbogen (gml:
         <sequence>
           <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_ZweckbestimmungGenerischeObjekte</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine CodeList definierte Zweckbestimmung des Objektes.</documentation>
             </annotation>
           </element>
@@ -4947,6 +5007,9 @@ Bei Maßkreisen (typ == 2000) darf position nur einen einfachen Kreisbogen (gml:
           </element>
           <element name="detailTyp" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_DetailAbgrenzungenTypen</referenzierteCodelist>
+              </appinfo>
               <documentation>Detaillierter Typ der Abgrenzung, wenn das Attribut &lt;i&gt;typ &lt;/i&gt;den Wert &lt;i&gt;9999 &lt;/i&gt;(Sonstige Abgrenzung) hat.</documentation>
             </annotation>
           </element>
@@ -5140,6 +5203,9 @@ Die Klasse wird innbesondere benutzt, um 5 db Lärmpegelbereiche gemäß DIN-410
           </element>
           <element name="sonstLaermpegelbereich" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:BP_SonstLaermpegelbereich</referenzierteCodelist>
+              </appinfo>
               <documentation>Spezifikation eines nicht in der DIN-4109:2016-1 spezifizierten Lärmpegelbereiches über eine Codeliste. Dies Attribut darf nur verwendet werden, wenn &lt;i&gt;laermpegelbereich &lt;/i&gt;den Wert 1700 hat oder unbelegt ist.</documentation>
             </annotation>
           </element>
@@ -5165,6 +5231,9 @@ Die Klasse wird innbesondere benutzt, um 5 db Lärmpegelbereiche gemäß DIN-410
           </element>
           <element name="detaillierteTechnVorkehrung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:XP_DetailTechnVorkehrungImmissionsschutz</referenzierteCodelist>
+              </appinfo>
               <documentation>Detaillierte Klassifizierung der auf der Fläche zu treffenden baulichen oder sonstigen technischen Vorkehrungen</documentation>
             </annotation>
           </element>
@@ -5303,6 +5372,9 @@ Die Klasse wird innbesondere benutzt, um 5 db Lärmpegelbereiche gemäß DIN-410
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:BP_DetailZweckbestVerEntsorgung</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>

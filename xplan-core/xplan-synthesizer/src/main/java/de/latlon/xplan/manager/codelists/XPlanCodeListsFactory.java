@@ -50,7 +50,7 @@ public class XPlanCodeListsFactory {
 
 	private static final String XPLAN_54_CODE_LISTS = "/codelists/XPlanGML_5_4_Enumerationen.xml";
 
-	private static final String XPLAN_60_CODE_LISTS = "/codelists/XPlanGML_6_0_1_Enumerationen.xml";
+	private static final String XPLAN_60_CODE_LISTS = "/codelists/XPlanGML_6_0_2_Enumerationen.xml";
 
 	private static final String XPLAN_SYN_CODE_LISTS = "/appschemas/XPlanGML_Syn/XPlanSyn_CodeLists.xml";
 

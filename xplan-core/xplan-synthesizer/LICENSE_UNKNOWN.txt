@@ -12,7 +12,7 @@ Inhalt des Verzeichnisses src/main/resources:
 │   ├── XPlanGML_5_2_Enumerationen.xml
 │   ├── XPlanGML_5_3_Enumerationen.xml
 │   ├── XPlanGML_5_4_Enumerationen.xml
-│   ├── XPlanGML_6_0_1_Enumerationen.xml
+│   ├── XPlanGML_6_0_2_Enumerationen.xml
 │   ├── XPlanGML_Enumerationen_4_0.xml
 │   └── XPlanGML_Enumerationen_4_1.xml
 
