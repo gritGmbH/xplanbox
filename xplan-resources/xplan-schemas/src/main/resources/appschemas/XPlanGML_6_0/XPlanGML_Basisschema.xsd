@@ -720,20 +720,24 @@ Das Attribut sollte nur verwendet werden, wenn es für die planerische Aussage n
             </annotation>
           </element>
           <element name="startBedingung" minOccurs="0" type="xplan:XP_WirksamkeitBedingungPropertyType">
+            <!--
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_WirksamkeitBedingung</gml:targetElement>
               </appinfo>
               <documentation>Notwendige Bedingung für die Wirksamkeit eines Planinhalts.</documentation>
             </annotation>
+            -->
           </element>
           <element name="endeBedingung" minOccurs="0" type="xplan:XP_WirksamkeitBedingungPropertyType">
+            <!--
             <annotation>
               <appinfo>
                 <gml:targetElement>xplan:XP_WirksamkeitBedingung</gml:targetElement>
               </appinfo>
               <documentation>Notwendige Bedingung für das Ende der Wirksamkeit eines Planinhalts.</documentation>
             </annotation>
+            -->
           </element>
           <element name="aufschrift" minOccurs="0" type="string">
             <annotation>
