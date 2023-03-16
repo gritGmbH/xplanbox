@@ -72,6 +72,8 @@ databaseChangeLog:
       - sql: SELECT UpdateGeometrySRID('xplan60archive','gml_objects','gml_bounded_by',25832);
       - sql: SELECT UpdateGeometrySRID('xplan60pre','feature_types','bbox',25832);
       - sql: SELECT UpdateGeometrySRID('xplan60pre','gml_objects','gml_bounded_by',25832);
+      - sql: SELECT UpdateGeometrySRID('xplanmgr','plans','bbox',4326);
+      - sql: SELECT UpdateGeometrySRID('xplanmgr','planslog','bbox',4326);
       - sql: SELECT UpdateGeometrySRID('xplansyn','xplan_bp_abgrabungsflaeche','xplan_position',25832);
       - sql: SELECT UpdateGeometrySRID('xplansyn','xplan_bp_abstandsflaeche','xplan_position',25832);
       - sql: SELECT UpdateGeometrySRID('xplansyn','xplan_bp_abstandsmass','xplan_position',25832);
