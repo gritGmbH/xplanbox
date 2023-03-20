@@ -28,6 +28,7 @@ import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_53;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_60;
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromGml;
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromZip;
 import static org.hamcrest.CoreMatchers.hasItem;
@@ -312,6 +313,29 @@ public class OptimisedFlaechenschlussInspectorTest {
 		boolean isValid = flaechenschlussInspector.checkGeometricRule();
 		assertThat(isValid, is(true));
 		assertThat(flaechenschlussInspector.getWarnings().size(), is(1));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Kompensationsbereich() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_60,
+				BP_Plan);
+		readFeaturesFromGml("BPlan_Kompensationsbereich_6-0-2.gml", OptimisedFlaechenschlussInspectorTest.class,
+				flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+	}
+
+	@Test
+	public void testCheckFlaechenschluss_Wirksamkeit() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_60,
+				BP_Plan);
+		readFeaturesFromGml("BPlan_Wirksamkeit_6-0-2.gml", OptimisedFlaechenschlussInspectorTest.class,
+				flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(flaechenschlussInspector.getErrors().size(), is(1));
 	}
 
 }
