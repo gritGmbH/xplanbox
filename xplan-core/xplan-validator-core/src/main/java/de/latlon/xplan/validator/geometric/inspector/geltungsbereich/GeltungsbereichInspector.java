@@ -94,7 +94,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		List<String> featureIdOfInvalidFeatures = new ArrayList<>();
 		for (FeatureUnderTest featureUnderTest : geltungsbereichInspectorContext.getFeaturesUnderTest()) {
 			BereichFeature bereichFeature = featureUnderTest.getBereichFeature();
-			PlanFeature planFeature = featureUnderTest.getPlanFeature();
+			PlanFeature planFeature = findPlanFeature(bereichFeature, featureUnderTest);
 			if (bereichFeature == null && planFeature == null) {
 				warnings.add("Das Objekt mit der ID " + featureUnderTest.getFeatureId()
 						+ " kann keinem Plan oder Bereich zugeordnet werden, die Geltungsbereichspruefung fuer dieses Objekt kann nicht durchgeführt werden.");
@@ -147,6 +147,14 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	@Override
 	public boolean applicableForVersion(XPlanVersion version) {
 		return true;
+	}
+
+	private PlanFeature findPlanFeature(BereichFeature bereichFeature, FeatureUnderTest featureUnderTest) {
+		if (bereichFeature != null && bereichFeature.isKompensationsbereichOrOutsideGeltungsbereich()) {
+			LOG.debug("Feature with id {} is allowed to be outside of the Geltungsbereich ");
+			return null;
+		}
+		return featureUnderTest.getPlanFeature();
 	}
 
 	private Geometry retrieveGeltungsbereichWithBuffer(GeltungsbereichFeature geltungsbereichFeature) {

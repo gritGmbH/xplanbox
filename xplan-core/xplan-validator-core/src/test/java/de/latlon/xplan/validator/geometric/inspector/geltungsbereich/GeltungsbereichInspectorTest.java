@@ -381,4 +381,14 @@ public class GeltungsbereichInspectorTest {
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
 	}
 
+	@Test
+	public void testCheck_Kompensationsbereich_valide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
+		readFeaturesFromGml("BPlan_Kompensationsbereich_6-0-2_valide.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+	}
+
 }
