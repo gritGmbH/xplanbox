@@ -69,13 +69,17 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GeltungsbereichInspector.class);
 
-	private GeltungsbereichInspectorContext geltungsbereichInspectorContext = new GeltungsbereichInspectorContext();
+	private final GeltungsbereichInspectorContext geltungsbereichInspectorContext;
 
-	private List<BadGeometry> badGeometries = new ArrayList<>();
+	private final List<BadGeometry> badGeometries = new ArrayList<>();
 
-	private List<String> errors = new ArrayList<>();
+	private final List<String> errors = new ArrayList<>();
 
-	private List<String> warnings = new ArrayList<>();
+	private final List<String> warnings = new ArrayList<>();
+
+	public GeltungsbereichInspector(XPlanVersion xPlanVersion) {
+		this.geltungsbereichInspectorContext = new GeltungsbereichInspectorContext(xPlanVersion);
+	}
 
 	@Override
 	public Feature inspect(Feature feature) throws FeatureInspectionException {

@@ -22,6 +22,9 @@ package de.latlon.xplan.validator.geometric.inspector.model;
 
 import org.deegree.feature.Feature;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
@@ -60,6 +63,19 @@ public class BereichFeature extends GeltungsbereichFeature {
 	 */
 	public boolean isAendertPlanBereich() {
 		return getPropertyValue("aendertPlanBereich") != null;
+	}
+
+	/**
+	 * @return <code>true</code> if this bereich has the property aendertPlanBereich,
+	 * <code>false</code> otherwise
+	 */
+	public boolean isKompensationsbereichOrOutsideGeltungsbereich() {
+		String bedeutung = getPropertyValue("bedeutung");
+		if (bedeutung == null)
+			return false;
+		if (XPLAN_41.equals(inspectorContext.getxPlanVersion()) || XPLAN_40.equals(inspectorContext.getxPlanVersion()))
+			return "1800".equals(bedeutung);
+		return "1800".equals(bedeutung) || "2000".equals(bedeutung);
 	}
 
 }

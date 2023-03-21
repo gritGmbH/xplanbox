@@ -178,11 +178,12 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private final XPlanType xPlanType;
 
-	private final FlaechenschlussContext flaechenschlussContext = new FlaechenschlussContext();
+	private final FlaechenschlussContext flaechenschlussContext;
 
 	public OptimisedFlaechenschlussInspector(XPlanVersion xPlanVersion, XPlanType xPlanType) {
 		this.xPlanVersion = xPlanVersion;
 		this.xPlanType = xPlanType;
+		flaechenschlussContext = new FlaechenschlussContext(xPlanVersion);
 	}
 
 	private enum TestStep {
@@ -540,7 +541,8 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	private void addPlanFeature(Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest,
 			GeltungsbereichFeature geltungsbereichFeature, List<FeatureUnderTest> featuresUnderTest,
 			Geometry flaechenschlussUnion) {
-		if (geltungsbereichFeature instanceof BereichFeature) {
+		if (geltungsbereichFeature instanceof BereichFeature
+				&& !((BereichFeature) geltungsbereichFeature).isKompensationsbereichOrOutsideGeltungsbereich()) {
 			FeaturesUnderTest featuresUnderTest1 = new FeaturesUnderTest(flaechenschlussUnion, featuresUnderTest);
 			PlanFeature planFeature = ((BereichFeature) geltungsbereichFeature).getPlanFeature();
 			if (!planFeaturesWithFeaturesUnderTest.containsKey(planFeature)) {

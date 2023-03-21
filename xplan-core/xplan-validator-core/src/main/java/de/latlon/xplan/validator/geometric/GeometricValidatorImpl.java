@@ -157,7 +157,7 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		if (!isOptionTrue(voOptions, SKIP_FLAECHENSCHLUSS_OPTION))
 			inspectors.add(new OptimisedFlaechenschlussInspector(version, type));
 		if (!isOptionTrue(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
-			inspectors.add(new GeltungsbereichInspector());
+			inspectors.add(new GeltungsbereichInspector(version));
 		inspectors.add(new DoppelbelegungInspector());
 		return inspectors;
 	}
