@@ -338,7 +338,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			List<FeatureUnderTest> flaechenschlussFeatures, Geometry flaechenschlussUnion, TestStep testStep) {
 		if (flaechenschlussUnion == null)
 			return;
-		Geometry diffGeltungsbereich = geltungsbereichFeature.getOriginalGeometry().getDifference(flaechenschlussUnion);
+		Geometry diffGeltungsbereich = calculateDifference(geltungsbereichFeature, flaechenschlussUnion);
 		LOG.debug("Difference with Geltungsbereich: " + WKTWriter.write(diffGeltungsbereich));
 		if (diffGeltungsbereich == null)
 			return;
@@ -350,6 +350,20 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			checkFlaechenschlussFeaturesIntersectingGeltungsbereich(flaechenschlussFeatures, geltungsbereichFeature,
 					(MultiSurface) diffGeltungsbereich, testStep);
 		}
+	}
+
+	private Geometry calculateDifference(GeltungsbereichFeature geltungsbereichFeature, Geometry flaechenschlussUnion) {
+		Geometry diffGeltungsbereich1 = geltungsbereichFeature.getOriginalGeometry()
+				.getDifference(flaechenschlussUnion);
+		Geometry diffGeltungsbereich2 = flaechenschlussUnion
+				.getDifference(geltungsbereichFeature.getOriginalGeometry());
+		if (diffGeltungsbereich1 == null && diffGeltungsbereich2 == null)
+			return null;
+		if (diffGeltungsbereich1 != null && diffGeltungsbereich2 == null)
+			return diffGeltungsbereich1;
+		if (diffGeltungsbereich1 == null && diffGeltungsbereich2 != null)
+			return diffGeltungsbereich2;
+		return diffGeltungsbereich1.getUnion(diffGeltungsbereich2);
 	}
 
 	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(GeltungsbereichFeature geltungsbereichFeature,
@@ -444,6 +458,21 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				}
 			}
 		}
+		else if (relate.isDisjoint()) {
+			String disjointMessage;
+			if (TestStep.GELTUNGSBEREICH_BEREICH.equals(testStep)) {
+				disjointMessage = getMessage("FlaechenschlussInspector_error_bereich_disjoint");
+			}
+			else if (TestStep.GELTUNGSBEREICH_PLAN.equals(testStep)) {
+				disjointMessage = getMessage("FlaechenschlussInspector_error_plan_disjoint");
+			}
+			else {
+				return;
+			}
+			BadGeometry badGeometry = new BadGeometry(diffGeltungsbereich, disjointMessage);
+			badGeometries.add(badGeometry);
+			flaechenschlussErrors.add(disjointMessage);
+		}
 	}
 
 	private boolean isDiffInTolerance(DefaultSurface diffGeltungsbereich) {
@@ -513,12 +542,11 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			Geometry flaechenschlussUnion) {
 		if (geltungsbereichFeature instanceof BereichFeature) {
 			FeaturesUnderTest featuresUnderTest1 = new FeaturesUnderTest(flaechenschlussUnion, featuresUnderTest);
-			if (!planFeaturesWithFeaturesUnderTest.containsKey(geltungsbereichFeature)) {
-				planFeaturesWithFeaturesUnderTest.put(((BereichFeature) geltungsbereichFeature).getPlanFeature(),
-						new ArrayList<>());
+			PlanFeature planFeature = ((BereichFeature) geltungsbereichFeature).getPlanFeature();
+			if (!planFeaturesWithFeaturesUnderTest.containsKey(planFeature)) {
+				planFeaturesWithFeaturesUnderTest.put(planFeature, new ArrayList<>());
 			}
-			planFeaturesWithFeaturesUnderTest.get(((BereichFeature) geltungsbereichFeature).getPlanFeature())
-					.add(featuresUnderTest1);
+			planFeaturesWithFeaturesUnderTest.get(planFeature).add(featuresUnderTest1);
 		}
 		else if (geltungsbereichFeature instanceof PlanFeature) {
 			FeaturesUnderTest planFeaturesUnderTest = new FeaturesUnderTest(flaechenschlussUnion, featuresUnderTest);

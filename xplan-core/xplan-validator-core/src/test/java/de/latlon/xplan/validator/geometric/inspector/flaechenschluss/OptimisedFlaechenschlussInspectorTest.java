@@ -316,6 +316,19 @@ public class OptimisedFlaechenschlussInspectorTest {
 	}
 
 	@Test
+	public void testCheckFlaechenschluss_TeilbereichAusserhalbPlanbereich() throws Exception {
+		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_60,
+				BP_Plan);
+		readFeaturesFromGml("BPlan_TeilbereichAusserhalbPlanbereich_6-0-2.gml",
+				OptimisedFlaechenschlussInspectorTest.class, flaechenschlussInspector);
+
+		boolean isValid = flaechenschlussInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(flaechenschlussInspector.getErrors().size(), is(1));
+		assertThat(flaechenschlussInspector.getBadGeometries().size(), is(1));
+	}
+
+	@Test
 	public void testCheckFlaechenschluss_Kompensationsbereich() throws Exception {
 		OptimisedFlaechenschlussInspector flaechenschlussInspector = new OptimisedFlaechenschlussInspector(XPLAN_60,
 				BP_Plan);
