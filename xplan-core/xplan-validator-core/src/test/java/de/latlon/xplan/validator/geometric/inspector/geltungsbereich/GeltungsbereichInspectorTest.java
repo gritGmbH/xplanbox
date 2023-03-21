@@ -364,4 +364,21 @@ public class GeltungsbereichInspectorTest {
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
 	}
 
+	@Test
+	public void testCheck_Teilbereich_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
+		readFeaturesFromGml("BPlan_Teilbereich_6-0-2_invalide.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+		String error = geltungsbereichInspector.getErrors().get(0);
+		assertThat(error, containsString("Gml_303B15E7-1CC4-4829-A81F-5CAA4E7D1E74"));
+
+		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
+	}
+
 }

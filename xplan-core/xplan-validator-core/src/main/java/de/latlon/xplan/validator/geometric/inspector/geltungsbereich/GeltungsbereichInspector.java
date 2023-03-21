@@ -23,8 +23,10 @@ package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
 import de.latlon.xplan.validator.geometric.inspector.InvalidGeometryException;
+import de.latlon.xplan.validator.geometric.inspector.model.BereichFeature;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
 import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
+import de.latlon.xplan.validator.geometric.inspector.model.PlanFeature;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.deegree.commons.uom.Measure;
 import org.deegree.feature.Feature;
@@ -91,23 +93,24 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	public boolean checkGeometricRule() {
 		List<String> featureIdOfInvalidFeatures = new ArrayList<>();
 		for (FeatureUnderTest featureUnderTest : geltungsbereichInspectorContext.getFeaturesUnderTest()) {
-			GeltungsbereichFeature geltungsbereichFeature = featureUnderTest.getGeltungsbereichFeature();
-			if (geltungsbereichFeature == null) {
+			BereichFeature bereichFeature = featureUnderTest.getBereichFeature();
+			PlanFeature planFeature = featureUnderTest.getPlanFeature();
+			if (bereichFeature == null && planFeature == null) {
 				warnings.add("Das Objekt mit der ID " + featureUnderTest.getFeatureId()
-						+ " kann keinem Plan or Bereich zugeordnet werden, die  Geltungsbereichspruefung fuer dieses Objekt kann nicht durchgeführt werden.");
+						+ " kann keinem Plan oder Bereich zugeordnet werden, die Geltungsbereichspruefung fuer dieses Objekt kann nicht durchgeführt werden.");
 			}
 			else {
-				if (!geltungsbereichFeature.isGeometryValid()) {
-					String error = format("GeltungsbereichInspector_invalid_geltungsbereich",
-							geltungsbereichFeature.getFeatureId());
-					addErrorAndBadGeometry(error, geltungsbereichFeature.getOriginalGeometry());
-					return false;
-				}
-				Geometry geltungsbereichWithBuffer = geltungsbereichFeature.getBufferedGeometry();
+				Geometry bereichGeltungsbereichWithBuffer = retrieveGeltungsbereichWithBuffer(bereichFeature);
+				Geometry planGeltungsbereichWithBuffer = retrieveGeltungsbereichWithBuffer(planFeature);
 				try {
-					if (!isInsideGeom(featureUnderTest, geltungsbereichWithBuffer)) {
+					boolean isInsideBereichGeltungsbereich = isInsideGeom(featureUnderTest,
+							bereichGeltungsbereichWithBuffer);
+					boolean isInsidePlanGeltungsbereich = isInsideGeom(featureUnderTest, planGeltungsbereichWithBuffer);
+					if (!isInsideBereichGeltungsbereich || !isInsidePlanGeltungsbereich) {
 						featureIdOfInvalidFeatures.add(featureUnderTest.getFeatureId());
-						addInvalidGeometry(geltungsbereichFeature, geltungsbereichWithBuffer, featureUnderTest);
+						addInvalidGeometry(bereichFeature, planFeature, bereichGeltungsbereichWithBuffer,
+								planGeltungsbereichWithBuffer, featureUnderTest, isInsideBereichGeltungsbereich,
+								isInsidePlanGeltungsbereich);
 					}
 				}
 				catch (InvalidGeometryException e) {
@@ -146,19 +149,88 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		return true;
 	}
 
-	private void addInvalidGeometry(GeltungsbereichFeature geltungsbereichFeature, Geometry geltungsbereichWithBuffer,
-			FeatureUnderTest inGeltungsbereichFeature) throws InvalidGeometryException {
-		AbstractDefaultGeometry featureGeom = inGeltungsbereichFeature.getOriginalGeometry();
-		AbstractDefaultGeometry geltungsbereichGeom = geltungsbereichFeature.getOriginalGeometry();
-		try {
-			if (geltungsbereichGeom.isDisjoint(featureGeom)) {
-				String error = format("GeltungsbereichInspector_error_outOfGeltungsbereich",
-						inGeltungsbereichFeature.getFeatureId());
-				addErrorAndBadGeometry(error, inGeltungsbereichFeature.getOriginalGeometry());
+	private Geometry retrieveGeltungsbereichWithBuffer(GeltungsbereichFeature geltungsbereichFeature) {
+		if (geltungsbereichFeature != null) {
+			if (geltungsbereichFeature.isGeometryValid()) {
+				return geltungsbereichFeature.getBufferedGeometry();
 			}
 			else {
-				createAndAddErrorWithIntersectionPoints(geltungsbereichGeom, geltungsbereichWithBuffer,
-						inGeltungsbereichFeature);
+				String error = format("GeltungsbereichInspector_invalid_geltungsbereich",
+						geltungsbereichFeature.getFeatureId());
+				addErrorAndBadGeometry(error, geltungsbereichFeature.getOriginalGeometry());
+			}
+		}
+		return null;
+	}
+
+	private void addInvalidGeometry(BereichFeature bereichFeature, PlanFeature planFeature,
+			Geometry bufferedBereichGeltungsbereich, Geometry bufferedPlanGeltungsbereich,
+			FeatureUnderTest featureUnderTest, boolean isInsideBereichGeltungsbereich,
+			boolean isInsidePlanGeltungsbereich) throws InvalidGeometryException {
+		AbstractDefaultGeometry featureGeom = featureUnderTest.getOriginalGeometry();
+		try {
+			if (!isInsideBereichGeltungsbereich && !isInsideBereichGeltungsbereich) {
+				AbstractDefaultGeometry planGeom = planFeature.getOriginalGeometry();
+				AbstractDefaultGeometry bereichGeom = bereichFeature.getOriginalGeometry();
+				boolean isDisjointPlanGeom = planGeom.isDisjoint(featureGeom);
+				boolean isDisjointBereichGeom = bereichGeom.isDisjoint(featureGeom);
+				if (isDisjointPlanGeom && isDisjointPlanGeom) {
+					String error = format("GeltungsbereichInspector_error_outOfPlanAndBereichGeltungsbereich",
+							featureUnderTest.getFeatureId());
+					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
+				}
+				else if (isDisjointPlanGeom) {
+					String error = format("GeltungsbereichInspector_error_outOfPlanGeltungsbereich",
+							featureUnderTest.getFeatureId());
+					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
+					createAndAddErrorWithIntersectionPoints(null, bereichFeature, bereichGeom,
+							bufferedBereichGeltungsbereich, featureUnderTest);
+				}
+				else if (isDisjointBereichGeom) {
+					String error = format("GeltungsbereichInspector_error_outOfBereichGeltungsbereich",
+							featureUnderTest.getFeatureId());
+					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
+					createAndAddErrorWithIntersectionPoints(planFeature, null, planGeom, bufferedPlanGeltungsbereich,
+							featureUnderTest);
+				}
+				else {
+					if (planGeom.equals(bereichGeom)) {
+						createAndAddErrorWithIntersectionPoints(planFeature, bereichFeature, planGeom,
+								bufferedPlanGeltungsbereich, featureUnderTest);
+					}
+					else {
+						createAndAddErrorWithIntersectionPoints(planFeature, null, planGeom,
+								bufferedPlanGeltungsbereich, featureUnderTest);
+						createAndAddErrorWithIntersectionPoints(null, bereichFeature, bereichGeom,
+								bufferedBereichGeltungsbereich, featureUnderTest);
+					}
+				}
+			}
+			else if (!isInsidePlanGeltungsbereich) {
+				AbstractDefaultGeometry planGeom = planFeature.getOriginalGeometry();
+				boolean isDisjointPlanGeom = planGeom.isDisjoint(featureGeom);
+				if (isDisjointPlanGeom) {
+					String error = format("GeltungsbereichInspector_error_outOfPlanGeltungsbereich",
+							featureUnderTest.getFeatureId());
+					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
+				}
+				else {
+					createAndAddErrorWithIntersectionPoints(planFeature, null, planGeom, bufferedPlanGeltungsbereich,
+							featureUnderTest);
+				}
+			}
+			else if (!isInsideBereichGeltungsbereich) {
+				AbstractDefaultGeometry bereichGeom = bereichFeature.getOriginalGeometry();
+				boolean isDisjointBereichGeom = bereichGeom.isDisjoint(featureGeom);
+				if (isDisjointBereichGeom) {
+					String error = format("GeltungsbereichInspector_error_outOfBereichGeltungsbereich",
+							featureUnderTest.getFeatureId());
+					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
+				}
+				else {
+					createAndAddErrorWithIntersectionPoints(null, bereichFeature, bereichGeom,
+							bufferedBereichGeltungsbereich, featureUnderTest);
+				}
 			}
 		}
 		catch (TopologyException | IllegalArgumentException e) {
@@ -166,8 +238,9 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 		}
 	}
 
-	private void createAndAddErrorWithIntersectionPoints(AbstractDefaultGeometry geltungsbereichGeom,
-			Geometry geltungsbereichWithBuffer, FeatureUnderTest inGeltungsbereichFeature) {
+	private void createAndAddErrorWithIntersectionPoints(PlanFeature planFeature, BereichFeature bereichFeature,
+			AbstractDefaultGeometry geltungsbereichGeom, Geometry geltungsbereichWithBuffer,
+			FeatureUnderTest inGeltungsbereichFeature) {
 		AbstractDefaultGeometry featureGeom = inGeltungsbereichFeature.getOriginalGeometry();
 		List<? extends org.deegree.geometry.Geometry> featureGeoms = extractExteriorRingOrPrimitive(featureGeom);
 		List<? extends org.deegree.geometry.Geometry> geltungsbereichGeoms = extractExteriorRingOrPrimitive(
@@ -186,18 +259,33 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 			});
 		});
 
-		String error = crateErrorMessage(inGeltungsbereichFeature, points);
+		String error = crateErrorMessage(planFeature, bereichFeature, inGeltungsbereichFeature, points);
 		BadGeometry badGeometry = addErrorAndBadGeometry(error, inGeltungsbereichFeature.getOriginalGeometry());
 		addGeometryOutsideGeltungsbereich(inGeltungsbereichFeature.getFeatureId(), differencesOutsideGeltungsbereich,
 				badGeometry);
 	}
 
-	private String crateErrorMessage(FeatureUnderTest inGeltungsbereichFeature, List<String> points) {
+	private String crateErrorMessage(PlanFeature planFeature, BereichFeature bereichFeature,
+			FeatureUnderTest inGeltungsbereichFeature, List<String> points) {
+		if (planFeature != null && bereichFeature != null) {
+			if (points.isEmpty()) {
+				return format("GeltungsbereichInspector_error_nogeom_bereichAndPlan", planFeature.getFeatureId(),
+						bereichFeature.getPlanId(), inGeltungsbereichFeature.getFeatureId());
+			}
+			String pointList = points.stream().collect(Collectors.joining(","));
+			return format("GeltungsbereichInspector_error_withgeom_bereichAndPlan", planFeature.getFeatureId(),
+					bereichFeature.getPlanId(), inGeltungsbereichFeature.getFeatureId(), pointList);
+		}
+		String suffix = "plan";
+		if (bereichFeature != null)
+			suffix = "bereich";
 		if (points.isEmpty()) {
-			return format("GeltungsbereichInspector_error_nogeom", inGeltungsbereichFeature.getFeatureId());
+			return format("GeltungsbereichInspector_error_nogeom_" + suffix, planFeature.getFeatureId(),
+					inGeltungsbereichFeature.getFeatureId());
 		}
 		String pointList = points.stream().collect(Collectors.joining(","));
-		return format("GeltungsbereichInspector_error_withgeom", inGeltungsbereichFeature.getFeatureId(), pointList);
+		return format("GeltungsbereichInspector_error_withgeom_" + suffix, planFeature.getFeatureId(),
+				inGeltungsbereichFeature.getFeatureId(), pointList);
 	}
 
 	private List<AbstractDefaultGeometry> findRelevantDifferenceOutsideGeltungsbereich(
@@ -307,6 +395,8 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 	private boolean isInsideGeom(FeatureUnderTest inGeltungsbereichFeature, Geometry geltungsbereichWithBuffer)
 			throws InvalidGeometryException {
 		try {
+			if (geltungsbereichWithBuffer == null)
+				return true;
 			Geometry featureGeometry = inGeltungsbereichFeature.getJtsGeometry();
 			if (featureGeometry == null) {
 				throw new InvalidGeometryException("Geometry of feature with ID "

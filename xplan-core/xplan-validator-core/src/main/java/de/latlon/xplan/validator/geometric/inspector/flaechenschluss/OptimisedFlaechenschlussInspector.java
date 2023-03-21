@@ -183,7 +183,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	public OptimisedFlaechenschlussInspector(XPlanVersion xPlanVersion, XPlanType xPlanType) {
 		this.xPlanVersion = xPlanVersion;
 		this.xPlanType = xPlanType;
-		flaechenschlussContext = new FlaechenschlussContext(xPlanVersion);
+		this.flaechenschlussContext = new FlaechenschlussContext(xPlanVersion);
 	}
 
 	private enum TestStep {
