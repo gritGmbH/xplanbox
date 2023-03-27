@@ -11,7 +11,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Verfahren kann nicht mehr über die Editierfunktion im XPlanManagerWeb für XPlanGML 6.0 geändert werden
 - Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
 - Versionierung des Datenbankschemas mit Liquibase
-- Aktualisierung der XPlanGML Schemadateien auf Version 6.0.1
+- Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.1
 - Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML Version 6.0.1
 - VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
 - Validierung eines XPlan GML mit xsi:type ermöglicht
