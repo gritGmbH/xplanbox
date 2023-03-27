@@ -2273,6 +2273,15 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch invalid">
+              <con:configuration>
+                <path>$.validationResult.semantisch.valid</path>
+                <content>false</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
@@ -2437,6 +2446,15 @@ Validate XPlanGML or XPlanArchive</con:description>
               <con:configuration>
                 <path>$.validationResult.geometrisch.errors.length()</path>
                 <content>0</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="0a872c3a-c062-4b18-a202-4d2737fa295b" name="semantisch invalid">
+              <con:configuration>
+                <path>$.validationResult.semantisch.valid</path>
+                <content>false</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
