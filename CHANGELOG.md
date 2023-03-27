@@ -2,6 +2,21 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 6.0.1 (2023-04-01)
+
+### Erweiterungen
+- Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.2
+
+### Fehlerbehebungen
+- Aktualisierung der Validierungsregeln auf v1.1.2 für die XPlanGML-Version 6.0.2
+- Korrektur der Reihenfolge der Textabschnitte im XPlanSynWMS und GFI des XPlanWMS, wenn kein Schlüssel angegeben ist
+- Wiederherstellung der Bearbeitungsmöglichkeit des Gültigkeitszeitraums im Editiermodus des XPlanManagerWeb
+- Verbesserung der geometrischen Validierung bzgl. inkorrekten Meldungen von Selbstüberschneidungen
+- Hinzufügen fehlender Layer im XPlanWMS und FeatureTypes im XPlanSynWFS
+- Warnung XPlanWMS "Error while trying to repair an expression" im Log behoben
+- Fehlerkorrektur bei der parallelen Ausführung von Validierungen
+
+
 ## Version 6.0 (2022-10-28)
 
 ### Erweiterungen
@@ -12,7 +27,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Im XPlanManagerWeb können über die Editierfunktion nun auch Flächennutzungspläne, Regionalpläne, Landschaftspläne und Sonstigen Pläne geändert werden
 - Versionierung des Datenbankschemas mit Liquibase
 - Aktualisierung der XPlanGML Schemadateien auf Version 6.0.1
-- Aktualisierung der Validierungsregeln auf v0.12.2 für XPlanGML Version 6.0.1
+- Aktualisierung der Validierungsregeln auf v1.1 für XPlanGML Version 6.0.1
 - VERSION.txt durch version.properties-Datei für Standard-Validierungsregeln ersetzt
 - Validierung eines XPlan GML mit xsi:type ermöglicht
 - Verbesserungen am XPlanSyn-Schema
