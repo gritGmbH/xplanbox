@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric;
 
+import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.validator.ValidatorException;
@@ -117,7 +118,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		LOG.info("- Einlesen der Features (+ Geometrievalidierung)...");
 		boolean skipOrientation = isOptionTrue(voOptions, SKIP_LAUFRICHTUNG_OPTION);
 		XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector(xmlStream, skipOrientation);
-		List<GeometricFeatureInspector> featureInspectors = createInspectors(archive.getVersion(), voOptions);
+		List<GeometricFeatureInspector> featureInspectors = createInspectors(archive.getVersion(), archive.getType(),
+				voOptions);
 		AenderungenInspector aenderungenInspector = new AenderungenInspector();
 		GMLStreamReader gmlStream = createGmlStreamReader(archive, crs, schema, xmlStream, geometryInspector,
 				featureInspectors, aenderungenInspector);
@@ -149,12 +151,13 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		result.addBadGeometries(fi.getBadGeometries());
 	}
 
-	private List<GeometricFeatureInspector> createInspectors(XPlanVersion version, List<ValidationOption> voOptions) {
+	private List<GeometricFeatureInspector> createInspectors(XPlanVersion version, XPlanType type,
+			List<ValidationOption> voOptions) {
 		List<GeometricFeatureInspector> inspectors = new ArrayList<>();
 		if (!isOptionTrue(voOptions, SKIP_FLAECHENSCHLUSS_OPTION))
-			inspectors.add(new OptimisedFlaechenschlussInspector(version));
+			inspectors.add(new OptimisedFlaechenschlussInspector(version, type));
 		if (!isOptionTrue(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
-			inspectors.add(new GeltungsbereichInspector());
+			inspectors.add(new GeltungsbereichInspector(version));
 		inspectors.add(new DoppelbelegungInspector());
 		return inspectors;
 	}

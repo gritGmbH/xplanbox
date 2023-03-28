@@ -23,6 +23,10 @@ package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 import de.latlon.xplan.validator.geometric.report.BadGeometry;
 import org.junit.Test;
 
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_51;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_52;
+import static de.latlon.xplan.commons.XPlanVersion.XPLAN_54;
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromGml;
 import static de.latlon.xplan.validator.FeatureParserUtils.readFeaturesFromZip;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -39,7 +43,7 @@ public class GeltungsbereichInspectorTest {
 	@Test
 	public void testCheck() throws Exception {
 		long startTimeMillis = System.currentTimeMillis();
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
 		readFeaturesFromZip("xplan51/V4_1_ID_103_geltungsbereich-erfuellt.zip", geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
@@ -53,7 +57,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_invalid() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
 		readFeaturesFromZip("xplan51/V4_1_ID_103.zip", geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
@@ -66,7 +70,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_invalid_41() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_41);
 		readFeaturesFromZip("xplan41/V4_1_ID_103.zip", geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
@@ -79,7 +83,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_invalid_withLine() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
 		readFeaturesFromZip("xplan51/BP2070.zip", geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
@@ -98,7 +102,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_valid_tolerance() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
 		readFeaturesFromZip("xplan51/V4_1_ID_103_withtolerance.zip", geltungsbereichInspector);
 
 		boolean isValid = geltungsbereichInspector.checkGeometricRule();
@@ -107,7 +111,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_MultipePlanNoBereich() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_54);
 		readFeaturesFromGml("HafenCity11_HafenCity14_Bereich_ohne_Geometrie.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -117,7 +121,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_missing_gehoertZuBereich() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_41);
 		readFeaturesFromGml("test41-54_1-missing-gehoertZuBereich.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -129,7 +133,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_missing_gehoertZuBereich_multipleBereiche() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_41);
 		readFeaturesFromGml("test41-54_1-missing-gehoertZuBereich-multipleBereiche.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -141,7 +145,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_LinienPolygon() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_54);
 		readFeaturesFromGml("BPlan001_5-4_Sliver-Polygon.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -151,7 +155,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_ZweiSchnittpunkteGeltungsbereich_Polygon() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
 		readFeaturesFromGml("BPlan002_5-2_Schnittpunkt_Geltungsbereich.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -167,7 +171,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_1_Schnittpunkte_Geltungsbereich_Polygon() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
 		readFeaturesFromGml("1_Schnittpunkte_Geltungsbereich_Polygon.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -187,7 +191,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_2_Schnittpunkte_Geltungsbereich_Polygon() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
 		readFeaturesFromGml("2_Schnittpunkte_Geltungsbereich_Polygon.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -209,7 +213,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_3_Schnittpunkte_Geltungsbereich_Polygon() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
 		readFeaturesFromGml("3_Schnittpunkte_Geltungsbereich_Polygon.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -229,7 +233,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_4_Schnittpunkte_Geltungsbereich_Polygon() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
 		readFeaturesFromGml("4_Schnittpunkte_Geltungsbereich_Polygon.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -248,7 +252,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_5_Schnittpunkte_Geltungsbereich_Linie() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
 		readFeaturesFromGml("5_Schnittpunkte_Geltungsbereich_Linie.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -266,7 +270,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_6_Schnittpunkte_Geltungsbereich_Linie() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
 		readFeaturesFromGml("6_Schnittpunkte_Geltungsbereich_Linie.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -286,7 +290,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_7_Schnittpunkte_Geltungsbereich_Linie() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
 		readFeaturesFromGml("7_Schnittpunkte_Geltungsbereich_Linie.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -304,7 +308,7 @@ public class GeltungsbereichInspectorTest {
 
 	@Test
 	public void testCheck_8_Schnittpunkte_Geltungsbereich_Linie() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
 		readFeaturesFromGml("8_Schnittpunkte_Geltungsbereich_Linie.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -330,7 +334,7 @@ public class GeltungsbereichInspectorTest {
 	 */
 	@Test
 	public void testCheck_FeatureGeometryIsGeltungsbereich() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
 		readFeaturesFromGml("Testplan_position_geltungsbereich.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -345,7 +349,7 @@ public class GeltungsbereichInspectorTest {
 	 */
 	@Test
 	public void testCheck_FeatureGeometryIsGeltungsbereichWithoutHole() throws Exception {
-		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector();
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
 		readFeaturesFromGml("Testplan_position_geltungsbereichLoch.gml", GeltungsbereichInspector.class,
 				geltungsbereichInspector);
 
@@ -358,6 +362,33 @@ public class GeltungsbereichInspectorTest {
 		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
 		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
+	}
+
+	@Test
+	public void testCheck_Teilbereich_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
+		readFeaturesFromGml("BPlan_Teilbereich_6-0-2_invalide.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+		String error = geltungsbereichInspector.getErrors().get(0);
+		assertThat(error, containsString("Gml_303B15E7-1CC4-4829-A81F-5CAA4E7D1E74"));
+
+		assertThat(geltungsbereichInspector.getBadGeometries().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getErrors().size(), is(1));
+		assertThat(geltungsbereichInspector.getBadGeometries().get(0).getMarkerGeometries().size(), is(0));
+	}
+
+	@Test
+	public void testCheck_Kompensationsbereich_valide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_51);
+		readFeaturesFromGml("BPlan_Kompensationsbereich_6-0-2_valide.gml", GeltungsbereichInspector.class,
+				geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
 	}
 
 }

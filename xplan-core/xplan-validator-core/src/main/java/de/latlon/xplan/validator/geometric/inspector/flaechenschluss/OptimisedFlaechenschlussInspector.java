@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.GeometricFeatureInspector;
@@ -83,6 +84,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static de.latlon.xplan.commons.XPlanType.LP_Plan;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_40;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_50;
@@ -166,10 +168,6 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	private static final AbstractDefaultGeometry DEFAULT_GEOM = new DefaultPoint(null, null, null,
 			new double[] { 0.0, 0.0 });
 
-	private static final String POSSIBLE_LUECKE_MSG_PLAN = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung bei der Pruefung des Geltungsbereichs des Plans an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
-
-	private static final String POSSIBLE_LUECKE_MSG_BEREICH = "2.2.1.1: Das Flaechenschlussobjekt mit der gml id %s erfuellt die Flaechenschlussbedingung bei der Pruefung des Geltungsbereichs des Bereichs an folgender Stelle nicht, es koennte sich um eine Luecke handeln: %s";
-
 	private final List<String> flaechenschlussErrors = new ArrayList<>();
 
 	private final List<String> flaechenschlussWarnings = new ArrayList<>();
@@ -178,10 +176,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 
 	private final XPlanVersion xPlanVersion;
 
-	private final FlaechenschlussContext flaechenschlussContext = new FlaechenschlussContext();
+	private final XPlanType xPlanType;
 
-	public OptimisedFlaechenschlussInspector(XPlanVersion xPlanVersion) {
+	private final FlaechenschlussContext flaechenschlussContext;
+
+	public OptimisedFlaechenschlussInspector(XPlanVersion xPlanVersion, XPlanType xPlanType) {
 		this.xPlanVersion = xPlanVersion;
+		this.xPlanType = xPlanType;
+		this.flaechenschlussContext = new FlaechenschlussContext(xPlanVersion);
 	}
 
 	private enum TestStep {
@@ -219,13 +221,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 							bereichFeaturesWithFeaturesUnderTest, planFeaturesWithFeaturesUnderTest);
 				}
 			});
-			bereichFeaturesWithFeaturesUnderTest.forEach((bereichFeature, featuresUnderTest) -> {
-				analyseFlaechenschlussUnionOfBereich(bereichFeature, featuresUnderTest);
-			});
-			planFeaturesWithFeaturesUnderTest.forEach((planFeature, featuresUnderTest) -> {
-				analyseFlaechenschlussUnionOfPlan(planFeature, featuresUnderTest);
-			});
-
+			if (!LP_Plan.equals(xPlanType)) {
+				bereichFeaturesWithFeaturesUnderTest.forEach((bereichFeature, featuresUnderTest) -> {
+					analyseFlaechenschlussUnionOfBereich(bereichFeature, featuresUnderTest);
+				});
+				planFeaturesWithFeaturesUnderTest.forEach((planFeature, featuresUnderTest) -> {
+					analyseFlaechenschlussUnionOfPlan(planFeature, featuresUnderTest);
+				});
+			}
 			if (flaechenschlussErrors.isEmpty()) {
 				LOG.info("No features with invalid flaechenschluss");
 			}
@@ -336,7 +339,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			List<FeatureUnderTest> flaechenschlussFeatures, Geometry flaechenschlussUnion, TestStep testStep) {
 		if (flaechenschlussUnion == null)
 			return;
-		Geometry diffGeltungsbereich = geltungsbereichFeature.getOriginalGeometry().getDifference(flaechenschlussUnion);
+		Geometry diffGeltungsbereich = calculateDifference(geltungsbereichFeature, flaechenschlussUnion);
 		LOG.debug("Difference with Geltungsbereich: " + WKTWriter.write(diffGeltungsbereich));
 		if (diffGeltungsbereich == null)
 			return;
@@ -348,6 +351,20 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			checkFlaechenschlussFeaturesIntersectingGeltungsbereich(flaechenschlussFeatures, geltungsbereichFeature,
 					(MultiSurface) diffGeltungsbereich, testStep);
 		}
+	}
+
+	private Geometry calculateDifference(GeltungsbereichFeature geltungsbereichFeature, Geometry flaechenschlussUnion) {
+		Geometry diffGeltungsbereich1 = geltungsbereichFeature.getOriginalGeometry()
+				.getDifference(flaechenschlussUnion);
+		Geometry diffGeltungsbereich2 = flaechenschlussUnion
+				.getDifference(geltungsbereichFeature.getOriginalGeometry());
+		if (diffGeltungsbereich1 == null && diffGeltungsbereich2 == null)
+			return null;
+		if (diffGeltungsbereich1 != null && diffGeltungsbereich2 == null)
+			return diffGeltungsbereich1;
+		if (diffGeltungsbereich1 == null && diffGeltungsbereich2 != null)
+			return diffGeltungsbereich2;
+		return diffGeltungsbereich1.getUnion(diffGeltungsbereich2);
 	}
 
 	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(GeltungsbereichFeature geltungsbereichFeature,
@@ -442,6 +459,21 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				}
 			}
 		}
+		else if (relate.isDisjoint()) {
+			String disjointMessage;
+			if (TestStep.GELTUNGSBEREICH_BEREICH.equals(testStep)) {
+				disjointMessage = getMessage("FlaechenschlussInspector_error_bereich_disjoint");
+			}
+			else if (TestStep.GELTUNGSBEREICH_PLAN.equals(testStep)) {
+				disjointMessage = getMessage("FlaechenschlussInspector_error_plan_disjoint");
+			}
+			else {
+				return;
+			}
+			BadGeometry badGeometry = new BadGeometry(diffGeltungsbereich, disjointMessage);
+			badGeometries.add(badGeometry);
+			flaechenschlussErrors.add(disjointMessage);
+		}
 	}
 
 	private boolean isDiffInTolerance(DefaultSurface diffGeltungsbereich) {
@@ -509,14 +541,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	private void addPlanFeature(Map<PlanFeature, List<FeaturesUnderTest>> planFeaturesWithFeaturesUnderTest,
 			GeltungsbereichFeature geltungsbereichFeature, List<FeatureUnderTest> featuresUnderTest,
 			Geometry flaechenschlussUnion) {
-		if (geltungsbereichFeature instanceof BereichFeature) {
+		if (geltungsbereichFeature instanceof BereichFeature
+				&& !((BereichFeature) geltungsbereichFeature).isKompensationsbereichOrOutsideGeltungsbereich()) {
 			FeaturesUnderTest featuresUnderTest1 = new FeaturesUnderTest(flaechenschlussUnion, featuresUnderTest);
-			if (!planFeaturesWithFeaturesUnderTest.containsKey(geltungsbereichFeature)) {
-				planFeaturesWithFeaturesUnderTest.put(((BereichFeature) geltungsbereichFeature).getPlanFeature(),
-						new ArrayList<>());
+			PlanFeature planFeature = ((BereichFeature) geltungsbereichFeature).getPlanFeature();
+			if (!planFeaturesWithFeaturesUnderTest.containsKey(planFeature)) {
+				planFeaturesWithFeaturesUnderTest.put(planFeature, new ArrayList<>());
 			}
-			planFeaturesWithFeaturesUnderTest.get(((BereichFeature) geltungsbereichFeature).getPlanFeature())
-					.add(featuresUnderTest1);
+			planFeaturesWithFeaturesUnderTest.get(planFeature).add(featuresUnderTest1);
 		}
 		else if (geltungsbereichFeature instanceof PlanFeature) {
 			FeaturesUnderTest planFeaturesUnderTest = new FeaturesUnderTest(flaechenschlussUnion, featuresUnderTest);
