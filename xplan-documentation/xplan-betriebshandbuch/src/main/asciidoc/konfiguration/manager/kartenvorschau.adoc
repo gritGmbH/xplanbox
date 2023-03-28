@@ -45,7 +45,7 @@ kann über den Schlüssel _mapCrs_ und dem dazugehörigen Wert konfiguriert
 werden:
 
 ----
-mapCrs=epsg:25832
+mapCrs=EPSG:25832
 ----
 
 [[kartenausschnitt]]

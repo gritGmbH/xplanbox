@@ -2,6 +2,24 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 6.1 (2023-MM-TT)
+
+### Erweiterungen
+- Unterstützung für MapServer 8.0 zur Bereitstellung des XPlanWMS
+- Ablage von Rasterdaten in einem AWS S3-kompatiblen Objektspeicher wird unterstützt
+- Ablage von Begleitdokumenten in einem AWS S3-kompatiblen Objektspeicher wird unterstützt
+- Der XML-Prozessor ist so konfiguriert, dass nur lokale statische DTD verwendet werden können, jede externe und jede deklarierte DTD wird nicht mehr zugelassen
+- Verbesserung der Geltungsbereichsprüfung im XPlanValidator
+- Der Import von XPlanGML-Dateien über den XPlanManagerWeb/API wird unterstützt; eine ZIP-Datei ist nicht mehr erforderlich
+- Der XPlanValidator kann Daten für den XPlanValidatorWMS temporär in der XPlanDB speichern
+- Konfiguration der PostGIS-Erweiterung mit der Angabe des `srid` für alle Geometriespalten hinzugefügt
+- Aktualisierung auf GDAL 3.5
+
+### Fehlerbehebungen
+- Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
+- Fehler in XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
+
+
 ## Version 6.0 (2022-10-28)
 
 ### Erweiterungen
