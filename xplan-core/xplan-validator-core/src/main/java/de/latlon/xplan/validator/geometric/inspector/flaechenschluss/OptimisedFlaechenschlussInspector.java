@@ -43,7 +43,6 @@ import org.deegree.geometry.multi.MultiLineString;
 import org.deegree.geometry.multi.MultiSurface;
 import org.deegree.geometry.points.Points;
 import org.deegree.geometry.primitive.Curve;
-import org.deegree.geometry.primitive.GeometricPrimitive;
 import org.deegree.geometry.primitive.Point;
 import org.deegree.geometry.primitive.Ring;
 import org.deegree.geometry.primitive.Surface;
@@ -477,7 +476,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		}
 	}
 
-	private boolean isDiffInTolerance(DefaultSurface diffGeltungsbereich) {
+	private boolean isDiffInTolerance(AbstractDefaultGeometry diffGeltungsbereich) {
 		double negativeAllowedTolerance = ALLOWEDDISTANCE_METRE / 2 * -1;
 		org.locationtech.jts.geom.Geometry diffGeltungsbereichBufferAllowedTolerance = diffGeltungsbereich
 				.getJTSGeometry().buffer(negativeAllowedTolerance);
@@ -700,7 +699,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		switch (intersection.getGeometryType()) {
 			case PRIMITIVE_GEOMETRY:
 				checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2,
-						(GeometricPrimitive) intersection, testStep);
+						(AbstractDefaultGeometry) intersection, testStep);
 				break;
 			case MULTI_GEOMETRY:
 				checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2,
@@ -718,7 +717,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 	}
 
 	private void checkAndAddInvalidFlaechenschlussFeature(FeatureUnderTest flaechenschlussFeature1,
-			FeatureUnderTest flaechenschlussFeature2, GeometricPrimitive intersection, TestStep testStep) {
+			FeatureUnderTest flaechenschlussFeature2, AbstractDefaultGeometry intersection, TestStep testStep) {
 		if (!(intersection instanceof Point) && !(intersection instanceof Curve)) {
 			LOG.debug("Analyse intersection of {} ({}) and {} ({}): {}", flaechenschlussFeature1.getFeatureId(),
 					flaechenschlussFeature1.getFeatureType(), flaechenschlussFeature2.getFeatureId(),
@@ -738,7 +737,24 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 			List<ControlPoint> controlPointsToCheck = new ArrayList<>();
 			controlPointsToCheck.addAll(controlPointsFlaechenschlussFeature1);
 			controlPointsToCheck.addAll(controlPointsFlaechenschlussFeature2);
-			checkControlPointsAndAddFailures(controlPointsToCheck, testStep);
+			checkControlPointsAndAddFailuresFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2,
+					intersection, controlPointsToCheck, testStep);
+		}
+	}
+
+	private void checkControlPointsAndAddFailuresFlaechenschlussFeature(FeatureUnderTest flaechenschlussFeature1,
+			FeatureUnderTest flaechenschlussFeature2, AbstractDefaultGeometry intersection,
+			List<ControlPoint> controlPointsToCheck, TestStep testStep) {
+		boolean foundControlPointFailures = checkControlPointsAndAddFailures(controlPointsToCheck, testStep);
+		if (!foundControlPointFailures && !isDiffInTolerance(intersection)) {
+			String intersectionAsWkt = WKTWriter.write(intersection);
+			String msg = format("FlaechenschlussInspector_error_ueberlappung", flaechenschlussFeature1.getFeatureId(),
+					flaechenschlussFeature2.getFeatureId(), intersectionAsWkt);
+			BadGeometry badGeometry = new BadGeometry(intersection, msg);
+			if (!badGeometries.contains(badGeometry)) {
+				badGeometries.add(badGeometry);
+				flaechenschlussErrors.add(msg);
+			}
 		}
 	}
 
