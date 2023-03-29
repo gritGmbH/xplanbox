@@ -86,6 +86,8 @@ public class AbstractGeltungsbereichFeature {
 		TypedObjectNode value = property.getValue();
 		if (value instanceof FeatureReference)
 			return ((FeatureReference) value).getURI().substring(1);
+		if (value == null)
+			return null;
 		return value.toString();
 	}
 

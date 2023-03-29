@@ -247,6 +247,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		catch (Exception e) {
 			String msg = getMessage("FlaechenschlussInspector_abort");
 			flaechenschlussErrors.add(msg);
+			LOG.debug(msg, e);
 		}
 		return flaechenschlussErrors.isEmpty();
 	}
