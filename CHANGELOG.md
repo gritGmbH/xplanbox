@@ -19,7 +19,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 - Fehler in XPlanManagerAPI bei Aufruf von HTTP DELETE für einen Plan behoben
 - Fehler in XPlanWMS bei Aufruf mit GetMap-Anfrage mit WMS 1.1.1 und EPSG:4326 behoben
 
-## Version 6.0.1 (2023-04-01)
+## Version 6.0.1 (2023-03-30)
 
 ### Erweiterungen
 - Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.2
