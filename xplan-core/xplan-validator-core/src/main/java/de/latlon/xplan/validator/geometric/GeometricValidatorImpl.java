@@ -8,18 +8,19 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.validator.geometric;
 
+import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.XPlanGmlParser;
@@ -117,7 +118,8 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		LOG.info("- Einlesen der Features (+ Geometrievalidierung)...");
 		boolean skipOrientation = isOptionTrue(voOptions, SKIP_LAUFRICHTUNG_OPTION);
 		XPlanGeometryInspector geometryInspector = new XPlanGeometryInspector(xmlStream, skipOrientation);
-		List<GeometricFeatureInspector> featureInspectors = createInspectorsForVersion(archive.getVersion(), voOptions);
+		List<GeometricFeatureInspector> featureInspectors = createInspectorsForVersion(archive.getVersion(),
+				archive.getType(), voOptions);
 		AenderungenInspector aenderungenInspector = new AenderungenInspector();
 		try {
 			XPlanGmlParser xPlanGmlParser = createXPlanGmlParser(crs, geometryInspector, featureInspectors,
@@ -158,13 +160,13 @@ public class GeometricValidatorImpl implements GeometricValidator {
 		result.addBadGeometries(fi.getBadGeometries());
 	}
 
-	private List<GeometricFeatureInspector> createInspectorsForVersion(XPlanVersion version,
+	private List<GeometricFeatureInspector> createInspectorsForVersion(XPlanVersion version, XPlanType type,
 			List<ValidationOption> voOptions) {
 		List<GeometricFeatureInspector> inspectors = new ArrayList<>();
 		if (!isOptionTrue(voOptions, SKIP_FLAECHENSCHLUSS_OPTION))
-			inspectors.add(new OptimisedFlaechenschlussInspector(version));
+			inspectors.add(new OptimisedFlaechenschlussInspector(version, type));
 		if (!isOptionTrue(voOptions, SKIP_GELTUNGSBEREICH_OPTION))
-			inspectors.add(new GeltungsbereichInspector());
+			inspectors.add(new GeltungsbereichInspector(version));
 		inspectors.add(new DoppelbelegungInspector());
 		return inspectors.stream().filter(inspector -> inspector.applicableForVersion(version))
 				.collect(Collectors.toList());

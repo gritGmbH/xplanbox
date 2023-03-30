@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.flaechenschluss;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
 import de.latlon.xplan.validator.geometric.inspector.model.GeltungsbereichFeature;
@@ -37,6 +38,10 @@ import java.util.Map;
 public class FlaechenschlussContext extends InspectorContext {
 
 	private final FlaechenschlussFeatureInspector flaechenschlussFeatureInspector = new FlaechenschlussFeatureInspector();
+
+	public FlaechenschlussContext(XPlanVersion xPlanVersion) {
+		super(xPlanVersion);
+	}
 
 	@Override
 	protected void addFeatureUnderTest(Feature feature) {

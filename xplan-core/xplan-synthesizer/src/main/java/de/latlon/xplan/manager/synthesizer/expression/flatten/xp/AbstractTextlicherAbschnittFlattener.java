@@ -48,9 +48,9 @@ public abstract class AbstractTextlicherAbschnittFlattener extends AbstractFlatt
 			schluessel = replaceDelimiter(schluessel);
 			textAbschnittText.append(schluessel);
 		}
+		textAbschnittText.append(" | ");
+		int lengthWithSchluessel = textAbschnittText.length();
 		if (text != null && !text.isEmpty()) {
-			if (textAbschnittText.length() > 1)
-				textAbschnittText.append(" | ");
 			text = replaceDelimiter(text);
 			textAbschnittText.append(text);
 		}
@@ -60,7 +60,7 @@ public abstract class AbstractTextlicherAbschnittFlattener extends AbstractFlatt
 			textAbschnittText.append(" (Gesetzliche Grundlage: ").append(gesetzlicheGrundlage).append(")");
 		}
 		if (externeReferenzUrl != null && !externeReferenzUrl.isEmpty()) {
-			if (textAbschnittText.length() > 1)
+			if (textAbschnittText.length() > lengthWithSchluessel)
 				textAbschnittText.append(" | ");
 			textAbschnittText.append("Externe Referenz: ").append(externeReferenzUrl);
 		}

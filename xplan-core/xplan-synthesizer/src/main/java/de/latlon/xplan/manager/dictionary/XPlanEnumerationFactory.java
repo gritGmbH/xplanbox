@@ -45,7 +45,7 @@ public class XPlanEnumerationFactory {
 
 	private static final String XPLAN_54_CODE_LISTS = "/enumeration/XPlanGML_5_4_Enumerationen.xml";
 
-	private static final String XPLAN_60_CODE_LISTS = "/enumeration/XPlanGML_6_0_1_Enumerationen.xml";
+	private static final String XPLAN_60_CODE_LISTS = "/enumeration/XPlanGML_6_0_2_Enumerationen.xml";
 
 	private static XPlanDictionaries xplan40Enumerations;
 

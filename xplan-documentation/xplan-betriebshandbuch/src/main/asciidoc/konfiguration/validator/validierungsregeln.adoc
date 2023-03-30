@@ -6,7 +6,7 @@ Um statt der mit dem xPlanBox ausgelieferten Regeln externen Regeln zu verwenden
 Der Pfad zu den semantischen Regeln muss in der Datei _<XPLANBOX_CONFIG>/validatorConfiguration.properties_ wie folgt konfiguriert werden:
 
 ----
-validationRulesDirectory=/home/xplanbox/semantischeRegeln/0.12.1/
+validationRulesDirectory=/home/xplanbox/semantischeRegeln/1.0/
 ----
 
 NOTE: Diese Konfiguration wirkt sich auf die Komponenten XPlanManagerAPI, XPlanManagerWeb und XPlanManagerCLI sowie XPlanValidatorAPI, XPlanValidatorWeb und XPlanValidatorCLI aus.
@@ -21,8 +21,8 @@ Wenn innerhalb des Validierungsberichts die Version und die Quelle der semantisc
 .Beispiel für version.properties:
 [source,properties]
 ----
-version=0.12.1 <1>
-source=https://bitbucket.org/geowerkstatt-hamburg/xplanung/get/v0.12.1.zip <2>
+version=1.0 <1>
+source=https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard/-/tree/v1.0 <2>
 ----
 <1> Angabe zur Version der Validierungsregeln (optional)
 <2> Angabe zur Quelle der Validierungsregeln (optional)

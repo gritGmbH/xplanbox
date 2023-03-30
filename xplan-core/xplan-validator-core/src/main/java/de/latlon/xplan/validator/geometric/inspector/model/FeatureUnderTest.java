@@ -59,7 +59,7 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 	}
 
 	/**
-	 * @return The Plan or Bereich feature of this InGeltungsbereichFeature, may be
+	 * @return The Plan or Bereich feature of this FeatureUnderTest, may be
 	 * <code>null</code> if no Plan or Bereich feature is assigned
 	 */
 	public GeltungsbereichFeature getGeltungsbereichFeature() {
@@ -72,6 +72,31 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 			return bereichFeature;
 		String planId = bereichFeature.getPlanId();
 		return inspectorContext.getPlanFeatures().get(planId);
+	}
+
+	/**
+	 * @return The Plan feature of this FeatureUnderTest, may be * <code>null</code> if no
+	 * Plan feature is assigned
+	 */
+	public PlanFeature getPlanFeature() {
+		GeltungsbereichFeature geltungsbereichFeature = getGeltungsbereichFeature();
+		if (geltungsbereichFeature instanceof BereichFeature) {
+			return ((BereichFeature) geltungsbereichFeature).getPlanFeature();
+		}
+		if (geltungsbereichFeature instanceof PlanFeature)
+			return (PlanFeature) geltungsbereichFeature;
+		return null;
+	}
+
+	/**
+	 * @return The Bereich feature of this FeatureUnderTest, may be * <code>null</code> if
+	 * no Bereich feature is assigned
+	 */
+	public BereichFeature getBereichFeature() {
+		GeltungsbereichFeature geltungsbereichFeature = getGeltungsbereichFeature();
+		if (geltungsbereichFeature instanceof BereichFeature)
+			return (BereichFeature) geltungsbereichFeature;
+		return null;
 	}
 
 	/**

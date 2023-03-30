@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.model;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.feature.Feature;
 
 import java.util.ArrayList;
@@ -39,6 +40,12 @@ public abstract class InspectorContext {
 	private Map<String, BereichFeature> bereichFeatures = new HashMap<>();
 
 	protected List<FeatureUnderTest> featuresUnderTest = new ArrayList<>();
+
+	private final XPlanVersion xPlanVersion;
+
+	public InspectorContext(XPlanVersion xPlanVersion) {
+		this.xPlanVersion = xPlanVersion;
+	}
 
 	/**
 	 * Adds a new feature to the context.
@@ -87,6 +94,13 @@ public abstract class InspectorContext {
 	 */
 	public List<FeatureUnderTest> getFeaturesUnderTest() {
 		return featuresUnderTest;
+	}
+
+	/**
+	 * @return the version of the plan, never <code>null</code>
+	 */
+	public XPlanVersion getxPlanVersion() {
+		return xPlanVersion;
 	}
 
 	private boolean isPlanFeature(Feature feature) {

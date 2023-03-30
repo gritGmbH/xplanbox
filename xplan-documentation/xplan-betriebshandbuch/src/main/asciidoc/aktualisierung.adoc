@@ -74,6 +74,7 @@ Die Aktualisierungswerkzeuge und -skripte werden nur für die genannten Versione
 | xPlanBox Version | Änderungen an den Workspaces/ der Konfiguration? | Änderungen am Datenbankschema?
 | 5.0              | ja (<<aktualisierung-auf-die-version-5.0, Details>>)  | ja (<<aktualisierung-auf-die-version-5.0, Details>>)
 | 6.0              | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0, Details>>)
+| 6.0.1              | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)  | ja (<<aktualisierung-auf-xplanbox-version-6.0.1, Details>>)
 |Durchzuführende Aktualisierungen | <<aktualisierung-der-betroffenen-konfigurationsdateien-in-den-workspaces>> | <<aktualisierung-der-schemas>> und <<aktualisierung-der-daten>>
 |===
 
@@ -245,6 +246,18 @@ Für die Aktualisierung auf die Version 6.0 sind folgende Schritte auszuführen:
 === Aktualisierung auf die Version 6.1 der xPlanBox
 
 Mit der Version 6.1 der xPlanBox erfolgte eine Anpassung der Werkseinstellungen für das Logging. Für die Anwendungen XPlanManagerWeb, XPlanManagerAPI, XPlanValidatorWeb und XPlanValidatorAPI sowie alle XPlanDienste werden keine Log-Dateien mehr geschrieben. Alle Log-Ausgaben werden nur noch in die Standardausgabe (stdout) geschrieben. Um das Logging so anzupassen, dass die Log-Ausgaben zusätzlich ach in Log-Dateien geschrieben werden, müssen Anpassungen an der Konfiguration vorgenommen werden. Beispiele dafür sind im Kapitel <<logging>> zu finden.
+
+[[aktualisierung-auf-xplanbox-version-6.0.1]]
+=== Aktualisierung auf die Version 6.0.1 der xPlanBox
+
+Mit der Version 6.0.1 der xPlanBox ist unter anderem die Umsetzung der Bugfix Version XPlanGML 6.0.2 erfolgt. Von den Änderungen betroffen sind alle Komponenten der xPlanBox.
+
+Für die Aktualisierung auf die Version 6.0.1 sind folgende Schritte auszuführen:
+
+* Aktualisierung der Workspaces und Konfigurationen (s. <<teilweise-aktualisierung>>)
+* Aktualisierung der Datenbank:
+** Ausführen des Skripts _migrate.sql_ im Verzeichnis _sql/update/from_6.0_to_6.0.1_ im Modul _xplan-manager-workspace_
+** Ausführen des Kommandozeilenwerkzeugs __reSynthesizer__ im Modul _xplan-update-data-cli_ zur Aktualisierung der in der XPlanSyn-Datenhaltung gespeicherten Daten ist erforderlich. Der Aufruf des Tools mit `--help` liefert Hinweise zur Verwendung.
 
 === Troubleshooting
 

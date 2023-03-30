@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 16:07:38-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.1">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 02.11.2022 15:52:55-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.2">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />
   <include schemaLocation="XPlanGML_Basisschema.xsd" />
   <!--=========================================================================================-->
@@ -17,6 +17,11 @@
           <element name="position" type="gml:GeometryPropertyType">
             <annotation>
               <documentation>Raumbezug - Entweder punktförmig, linienförmig oder flächenhaft, gemischte Geometrie ist nicht zugelassen.</documentation>
+            </annotation>
+          </element>
+          <element name="flaechenschluss" minOccurs="0" type="boolean">
+            <annotation>
+              <documentation>Zeigt bei flächenhaftem Raumbezug an, ob das Objekt als Flächenschlussobjekt oder Überlagerungsobjekt gebildet werden soll. Das Attribut ist nur relevant, wenn das Objekt in einem Planwerk mit Flächenschluss verwendet wird. Ansonsten sollte das Attribut nicht belegt oder mit dem Wert false belegt werden.</documentation>
             </annotation>
           </element>
           <element name="flussrichtung" minOccurs="0" type="boolean">
@@ -92,6 +97,9 @@ LP_Bereich kann z.B. ein eigenes Kartenblatt, einen Teilplan, eine Detail- oder 
           </element>
           <element name="sonstPlanArt" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:LP_SonstPlanArt</referenzierteCodelist>
+              </appinfo>
               <documentation>Spezifikation einer "Sonstigen Planart", wenn kein Plantyp aus der Enumeration &lt;i&gt;LP_PlanArt &lt;/i&gt;zutreffend ist. Das Attribut "&lt;i&gt;planArt" &lt;/i&gt;muss in diesem Fall der Wert &lt;i&gt;9999 &lt;/i&gt;haben.</documentation>
             </annotation>
           </element>
@@ -538,6 +546,9 @@ Oder ein Objekt der Klasse &lt;i&gt;LP_BiotopverbundBiotopvernetzung &lt;/i&gt;r
           </element>
           <element name="detailGesetzlGeschBiotopLR" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:LP_DetailGesetzlGeschBiotopLR</referenzierteCodelist>
+              </appinfo>
               <documentation>&amp;#220;ber eine Codeliste definierte weitere gesetzlich gesch&amp;#252;tzte Biotope z.B. nach Landesrecht.</documentation>
             </annotation>
           </element>
@@ -1792,18 +1803,27 @@ Fl&amp;#228;chen und Ma&amp;#223;nahmen zum Ausgleich von Eingriffen im Sinne de
     <sequence>
       <element name="bioVfBiotoptyp_BKompV" minOccurs="0" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:LP_BioVfBiotoptyp_BKompV</referenzierteCodelist>
+          </appinfo>
           <documentation>Biotoptypen-Katalog der Bundeskompensationsverordnung (Anlage 2 (zu &amp;#167; 5 Absatz 1 BKompV )
 </documentation>
         </annotation>
       </element>
       <element name="bioVfBiotoptyp_LandesKS" minOccurs="0" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:LP_BioVfBiotoptyp_LandesKS</referenzierteCodelist>
+          </appinfo>
           <documentation>Biotoptyp gem. eines Landeskartierschl&amp;#252;ssels
 </documentation>
         </annotation>
       </element>
       <element name="bioVf_FFH_LRT" minOccurs="0" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:LP_BioVf_FFH_LRT</referenzierteCodelist>
+          </appinfo>
           <documentation>FFH-Lebensraumtypen gem. Anhang I der Fauna Flora Habitatrichtlinie</documentation>
         </annotation>
       </element>
@@ -3518,6 +3538,9 @@ Fl&amp;#228;chen und Ma&amp;#223;nahmen zum Ausgleich von Eingriffen im Sinne de
         <sequence>
           <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:LP_ZweckbestimmungGenerischeObjekte</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte Zweckbestimmung des Generischen Objektes.</documentation>
             </annotation>
           </element>

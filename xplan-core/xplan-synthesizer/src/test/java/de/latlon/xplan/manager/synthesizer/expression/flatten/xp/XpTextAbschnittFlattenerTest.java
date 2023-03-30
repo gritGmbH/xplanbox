@@ -70,7 +70,7 @@ public class XpTextAbschnittFlattenerTest {
 		XplanFlattenProperty expr = new XplanFlattenProperty(new XPlanCodelists(), new Xpath("xplan:texte"), true);
 		PrimitiveValue value = expr.evaluate(feature, features, planContext);
 		assertEquals(
-				"[§2 Nr.9 | Externe Referenz: schluesseltest.pdf][§2 Nr.21 | text 3 | Externe Referenz: test.pdf][Externe Referenz: test.pdf]",
+				"[§2 Nr.9 | Externe Referenz: schluesseltest.pdf][§2 Nr.21 | text 3 | Externe Referenz: test.pdf][ | Externe Referenz: test.pdf]",
 				value.toString());
 	}
 

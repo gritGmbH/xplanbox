@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 16:07:12-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.1">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 02.11.2022 15:52:28-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.2">
   <include schemaLocation="XPlanGML_Basisschema.xsd" />
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />
   <!--=========================================================================================-->
@@ -149,6 +149,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
         <sequence>
           <element name="spezifischePraegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:FP_SpezifischePraegungTypen</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte spezifische bauliche Prägung einer Darstellung.</documentation>
             </annotation>
           </element>
@@ -213,6 +216,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="sonstPlanArt" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:FP_SonstPlanArt</referenzierteCodelist>
+              </appinfo>
               <documentation>Sonstiger Typ des FPlans bei "&lt;i&gt;planArt" &lt;/i&gt;== &lt;i&gt;9999&lt;/i&gt;.</documentation>
             </annotation>
           </element>
@@ -233,6 +239,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="status" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:FP_Status</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierter Status des Plans.</documentation>
             </annotation>
           </element>
@@ -602,6 +611,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detaillierteArtDerBaulNutzung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:FP_DetailArtDerBaulNutzung</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere Art der baulichen Nutzung, mit der die allgemeine und/oder besondere Art der baulichen Nutzung näher detailliert werden</documentation>
             </annotation>
           </element>
@@ -649,6 +661,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:FP_DetailSondernutzung</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Sondernutzung, die die allgemeine Sondernutzung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -719,6 +734,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:FP_DetailZweckbestGemeinbedarf</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -757,6 +775,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:FP_DetailZweckbestSpielSportanlage</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -854,6 +875,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:FP_DetailZweckbestGruen</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -892,6 +916,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:FP_DetailZweckbestLandwirtschaftsFlaeche</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -930,6 +957,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:FP_DetailZweckbestWaldFlaeche</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -1024,6 +1054,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailMassnahme" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:FP_DetailMassnahmeKlimawandel</referenzierteCodelist>
+              </appinfo>
               <documentation>Detaillierung der durch das Attribut &lt;i&gt;massnahme &lt;/i&gt;festgelegten Maßnahme über eine Codeliste.</documentation>
             </annotation>
           </element>
@@ -1162,6 +1195,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
         <sequence>
           <element name="detailZweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:FP_DetailZweckbestimmungNachLandesrecht</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detaillierte Zweckbestimmung der Planinhalts-</documentation>
             </annotation>
           </element>
@@ -1206,6 +1242,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
         <sequence>
           <element name="zweckbestimmung" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:FP_ZweckbestimmungGenerischeObjekte</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte Zweckbestimmung des Generischen Objekts.</documentation>
             </annotation>
           </element>
@@ -1275,6 +1314,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detaillierteTechnVorkehrung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:XP_DetailTechnVorkehrungImmissionsschutz</referenzierteCodelist>
+              </appinfo>
               <documentation>Detaillierte Klassifizierung der auf der Fläche zu treffenden baulichen oder sonstigen technischen Vorkehrungen.</documentation>
             </annotation>
           </element>
@@ -1571,6 +1613,9 @@ Telekommunikationsdienstleistungen, Wärme und Wasser, der Abwasserwirtschaft" .
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:FP_DetailZweckbestVerEntsorgung</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -1634,6 +1679,9 @@ Telekommunikationsdienstleistungen, Wärme und Wasser, der Abwasserwirtschaft" .
         <sequence>
           <element name="auspraegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:FP_ZentralerVersorgungsbereichAuspraegung</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte Ausprägung eines zentralen Versorgungsbereiches.</documentation>
             </annotation>
           </element>

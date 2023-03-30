@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.validator.geometric.inspector.geltungsbereich;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.validator.geometric.inspector.model.FeatureUnderTest;
 import de.latlon.xplan.validator.geometric.inspector.model.InspectorContext;
 import org.deegree.feature.Feature;
@@ -32,6 +33,10 @@ import org.deegree.feature.Feature;
 public class GeltungsbereichInspectorContext extends InspectorContext {
 
 	private final GeltungsbereichFeatureAnalyser featureAnalyser = new GeltungsbereichFeatureAnalyser();
+
+	public GeltungsbereichInspectorContext(XPlanVersion xPlanVersion) {
+		super(xPlanVersion);
+	}
 
 	@Override
 	protected void addFeatureUnderTest(Feature feature) {
