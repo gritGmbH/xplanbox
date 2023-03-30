@@ -48,7 +48,7 @@ Informationen zur xPlanBox erhalten Sie bei https://www.lat-lon.de[lat/lon GmbH,
 Danilo Bretschneider, Jens Fitzke, Torsten Friebe, Sebastian Goerke, Lyn Elisa Goltz,
 Lena Rippolz, Sabine Schmitz, Dirk Stenger, Carmen Tawalika, Jeronimo Wanhoff.
 
-Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
+Copyright (C) 2010 - 2023, lat/lon GmbH, Bonn.
 
 === Lizenzen und Anerkennung der Rechte Dritter
 
@@ -78,7 +78,7 @@ Zum Lieferumfang der xPlanBox gehören Bibliotheken und andere Softwareprogramme
 - Mozilla Public License, Version 2.0
 
 Die Komponenten der xPlanBox sind urheberrechtlich geschützt und werden unter der https://www.gnu.org/licenses/agpl-3.0.en.html[GNU Affero General Public License, Version 3 oder jeder späteren Version] veröffentlicht. +
-Copyright (C) 2010 - 2022, lat/lon GmbH, Bonn.
+Copyright (C) 2010 - 2023, lat/lon GmbH, Bonn.
 
 [[nutzungsbedingungen]]
 ==== Nutzungsbedingungen

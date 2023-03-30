@@ -21,8 +21,8 @@ Wenn innerhalb des Validierungsberichts die Version und die Quelle der semantisc
 .Beispiel für version.properties:
 [source,properties]
 ----
-version=1.0 <1>
-source=https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard/-/tree/v1.0 <2>
+version=1.1.2 <1>
+source=https://gitlab.opencode.de/xleitstelle/xplanung/validierungsregeln/standard/-/tree/v1.1.2 <2>
 ----
 <1> Angabe zur Version der Validierungsregeln (optional)
 <2> Angabe zur Quelle der Validierungsregeln (optional)

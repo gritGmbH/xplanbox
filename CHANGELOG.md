@@ -2,7 +2,7 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-## Version 6.0.1 (2023-04-01)
+## Version 6.0.1 (2023-03-30)
 
 ### Erweiterungen
 - Aktualisierung der XPlanGML-Schemadateien auf Version 6.0.2
