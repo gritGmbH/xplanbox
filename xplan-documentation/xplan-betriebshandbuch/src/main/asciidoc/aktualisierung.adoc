@@ -146,6 +146,7 @@ Führen Sie die zu der Version passenden SQL-Skripte aus dem entsprechenden Unte
 
 - von 5.0 auf 5.0.2 aus dem Verzeichnis _from_5.0_to_5.0.2/_
 - von 5.0.2 auf 6.0 aus dem Verzeichnis _from_5.0.2_to_6.0/_
+- von 6.0 auf 6.0.1 aus dem Verzeichnis _from_6.0_to_6.0.1/_
 
 NOTE: Bei der Aktualisierung der XPlanDB kann es bei Ausführung der SQL zu folgender Fehlermeldungen kommen: _ERROR:  relation "databasechangeloglock" already exists_ kommen. Diese Fehlermeldung kann ignoriert werden.
 
