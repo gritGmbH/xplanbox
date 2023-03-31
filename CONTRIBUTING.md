@@ -6,6 +6,8 @@ Eine Mitarbeit an dem Projekt ist erwünscht und auf verschiedenen Wegen möglic
 
 Wenn Sie Fehler in der Anwendung finden, dann können Sie unter [Issues > Create Issue](../../issues/new) einen Fehlerbericht erstellen. Eine Übersicht aller bereits erstellten Fehlerberichte finden Sie ebenfalls unter [Issues](../../issues).
 
+Bitte beachten Sie, dass Fehler oder Probleme im Hinblick "klassische" Installationen und Betriebsarten mit dem Label "classic" versehen und nachrangig behandelt werden.
+
 ## Änderungen
 
 Wenn Sie Verbesserungen oder Erweiterungen zum Projekt beisteuern möchten, dann stellen Sie bitte Ihre Änderungen als [Pull bzw. Merge Request](../../merge_requests/) zur Verfügung. 
