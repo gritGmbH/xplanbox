@@ -1,6 +1,14 @@
 # xPlanBox
 
-In diesem Repository ist der Quellcode für die Open Source-Version der Anwendung "xPlanBox" der Firma [lat/lon](https://www.lat-lon.de) enthalten. Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung auf Basis des Standards [XPlanung](https://xleitstelle.de/xplanung/ueber_xplanung). Die Anwendung basiert zudem auf den Standards des [Open Geospatial Consortium](https://www.ogc.org/), den technischen Empfehlungen der [INSPIRE Richtlinie](https://inspire.ec.europa.eu/) und insbesondere der Abbildung des deutschen Planungsrechts durch das [GML-Anwendungsschema XPlanGML](https://xleitstelle.de/xplanung/releases-xplanung). Die Komponenten der Anwendung wurden u.a. unter der Verwendung der Open Source-Software [deegree webservices](https://www.deegree.org) implementiert.
+In diesem Repository ist der Quellcode für die Open Source-Version der Anwendung "xPlanBox" der Firma [lat/lon](https://www.lat-lon.de) enthalten. Die Anwendung dient der Abbildung der Bauleit- und der Landschaftsplanung sowie der Raumordnung auf Basis des Standards [XPlanung](https://xleitstelle.de/xplanung/ueber_xplanung). Die Anwendung basiert zudem auf den Standards des [Open Geospatial Consortium](https://www.ogc.org/), den technischen Empfehlungen der [INSPIRE Richtlinie](https://inspire.ec.europa.eu/) und insbesondere der Abbildung des deutschen Planungsrechts durch das [GML-Anwendungsschema XPlanGML](https://xleitstelle.de/xplanung/releases-xplanung). Die Komponenten der Anwendung wurden u.a. unter der Verwendung der Open Source-Software [deegree webservices](https://www.deegree.org) implementiert.
+
+Die Anwendung ist Bestandteil der [DiPlanung](https://diplanung.de)-Plattform zur Umsetzung der [OZG](https://www.onlinezugangsgesetz.de)-Leistungen "Beteiligungsverfahren nach dem Baugesetzbuch, dem Raumordnungsgesetz und in der Planfeststellung" und "Einstellen von raumbezogenen Planwerken in das Internet" im Themenfeld "Bauen und Wohnen". Sie wird in diesem Zusammenhang per Software-as-a-Service (SaaS) als sog. [EfA-Lösung](https://www.onlinezugangsgesetz.de/Webs/OZG/DE/grundlagen/nachnutzung/nachnutzung-node.html) zur Nachnutzung bereitgestellt. Anfragen zur Nachnutzung können an ozg-buw@bsw.hamburg.de gerichtet werden.
+
+## xPlanBox im OZG-Kontext
+
+Aus nicht-funktionaler Sicht liegt der Fokus der Weiterentwicklung als Bestandteil einer EfA-Lösung auf der Optimierung für eine containerisierte, Cloud-basierte Umgebung. Dazu gehört u.a., dass die Auslieferung von Rasterbildern zu Plänen über die Integration von Mapserver erfolgt, und dass Rasterbilder und Begleitdokumente, die Bestandteil eines XPlanArchivs sind, in einem Objektspeicher (aktuell unterstützt: S3-kompatibel) abgelegt werden.
+
+Probleme und Fehler, die klassische Installationen oder Betriebsarten (z.B. deegree GeoTIFF/GDAL Tile Store für Rasterbilder) betreffen, können aus Kapazitätsgründen nur nachrangig bearbeitet werden. Supportanfragen können generell nicht beantwortet werden..
 
 ## Lizenz
 
