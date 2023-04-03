@@ -21,7 +21,7 @@
     <deegree3.version>3.5.0-SNAPSHOT</deegree3.version>
     <xplanung.regeln.version>1.1.2</xplanung.regeln.version>
     <gwt.version>2.10.0</gwt.version>
-    <geotools.version>26.6</geotools.version>
+    <geotools.version>28.2</geotools.version>
     <log4j.version>2.17.2</log4j.version>
     <slf4j.version>1.7.36</slf4j.version>
     <spring.version>5.3.23</spring.version>
@@ -1475,8 +1475,8 @@
       </snapshots>
     </repository>
     <repository>
-      <id>geotools-releases</id>
-      <url>https://repo.osgeo.org/repository/geotools-releases/</url>
+      <id>terrestris-geotools</id>
+      <url>https://nexus.terrestris.de/repository/public/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
