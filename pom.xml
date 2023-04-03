@@ -29,7 +29,7 @@
     <spring-batch.version>4.3.6</spring-batch.version>
     <spring-security.version>5.5.8</spring-security.version>
     <jackson.version>2.13.4</jackson.version>
-    <liquibase.version>4.15.0</liquibase.version>
+    <liquibase.version>4.20.0</liquibase.version>
     <postgresql.version>42.4.3</postgresql.version>
     <owasp.version>7.4.4</owasp.version>
     <!-- project properties -->
