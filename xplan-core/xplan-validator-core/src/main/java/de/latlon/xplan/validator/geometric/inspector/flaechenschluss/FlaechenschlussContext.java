@@ -55,7 +55,7 @@ public class FlaechenschlussContext extends InspectorContext {
 	 */
 	public Map<GeltungsbereichFeature, List<FeatureUnderTest>> getAllFlaechenschlussFeaturesOfAPlan()
 			throws ValidatorException {
-		Map<GeltungsbereichFeature, List<FeatureUnderTest>> geltungsbereichFeatureToFeaturesUnderTest = new HashMap();
+		Map<GeltungsbereichFeature, List<FeatureUnderTest>> geltungsbereichFeatureToFeaturesUnderTest = new HashMap<>();
 		for (FeatureUnderTest featureUnderTest : featuresUnderTest) {
 			GeltungsbereichFeature geltungsbereichFeature = featureUnderTest.getGeltungsbereichFeature();
 			if (geltungsbereichFeature == null)

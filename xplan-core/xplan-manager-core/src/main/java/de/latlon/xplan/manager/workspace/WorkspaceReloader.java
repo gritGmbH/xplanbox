@@ -25,7 +25,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -99,7 +100,8 @@ public class WorkspaceReloader {
 			LOG.info("Attempting to delete XPlanWerkWMS configuration with URL {}", reloadUrl);
 			HttpDelete httpDelete = new HttpDelete(reloadUrl);
 			addBasicAuth(configuration.getUser(), configuration.getPassword(), httpDelete);
-			DefaultHttpClient client = new DefaultHttpClient();
+
+			CloseableHttpClient client = HttpClientBuilder.create().build();
 			HttpResponse response = client.execute(httpDelete);
 			if (isResponseCodeOk(response)) {
 				LOG.info("Delete completed successfully.");
@@ -133,7 +135,7 @@ public class WorkspaceReloader {
 			LOG.info("Attempting to reload workspace with URL {}", reloadUrl);
 			HttpGet httpGet = new HttpGet(reloadUrl);
 			addBasicAuth(configuration.getUser(), configuration.getPassword(), httpGet);
-			DefaultHttpClient client = new DefaultHttpClient();
+			CloseableHttpClient client = HttpClientBuilder.create().build();
 			HttpResponse response = client.execute(httpGet);
 			if (isResponseCodeOk(response)) {
 				LOG.info("Reload completed successfully.");

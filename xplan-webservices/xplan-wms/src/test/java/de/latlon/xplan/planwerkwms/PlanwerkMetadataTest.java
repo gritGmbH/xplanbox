@@ -31,8 +31,9 @@ import org.deegree.services.wms.controller.WmsMetadata;
 import org.deegree.workspace.ResourceLocation;
 import org.deegree.workspace.Workspace;
 import org.deegree.workspace.standard.DefaultWorkspace;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.xml.sax.SAXException;
 
@@ -55,7 +56,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**
@@ -76,12 +77,13 @@ public class PlanwerkMetadataTest {
 		URL planwerkConfigFile = PlanwerkMetadata.class.getResource("/planwerkwms.xml");
 		Planwerk planwerkConfig = (Planwerk) unmarshaller.unmarshal(planwerkConfigFile.openStream());
 
-		assertThat(planwerkConfig.getName(), equalTo("Bergedorf1101Aend"));
+		MatcherAssert.assertThat(planwerkConfig.getName(), equalTo("Bergedorf1101Aend"));
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Test
 	public void verifyThatUnmarshallingWorksWithResourceBuilder() throws IOException {
-		final List<String> versionsAsList = Arrays.asList(new String[] { "1.3.0", "1.1.1" });
+		final List<String> versionsAsList = Arrays.asList("1.3.0", "1.1.1");
 		final DeegreeWMS.SupportedVersions supportedVersions = Mockito.mock(DeegreeWMS.SupportedVersions.class);
 		when(supportedVersions.getVersion()).thenReturn(versionsAsList);
 		final DeegreeWMS planwerkWms = Mockito.mock(DeegreeWMS.class);
@@ -90,7 +92,8 @@ public class PlanwerkMetadataTest {
 		when(planwerkWmsMD.getCfg()).thenReturn(planwerkWms);
 		final Workspace workspace = Mockito.mock(DefaultWorkspace.class);
 		when(workspace.getModuleClassLoader()).thenReturn(PlanwerkMetadata.class.getClassLoader());
-		when(workspace.getResourceMetadata(Matchers.<Class<OWSProvider>>any(), anyString())).thenReturn(planwerkWmsMD);
+		when(workspace.getResourceMetadata(ArgumentMatchers.<Class<OWSProvider>>any(), anyString()))
+				.thenReturn(planwerkWmsMD);
 		final ResourceLocation<OWS> location = Mockito.mock(PlanwerkResourceLocation.class);
 		when(location.getAsStream()).thenReturn(PlanwerkMetadata.class.getResource("/planwerkwms.xml").openStream());
 		final OWSProvider provider = Mockito.mock(PlanwerkProvider.class);
@@ -102,8 +105,8 @@ public class PlanwerkMetadataTest {
 
 		PlanwerkBuilder planwerkBuilder = (PlanwerkBuilder) resource.prepare();
 
-		assertThat(planwerkBuilder, is(notNullValue()));
-		assertThat(planwerkBuilder.build(), is(notNullValue()));
+		MatcherAssert.assertThat(planwerkBuilder, is(notNullValue()));
+		MatcherAssert.assertThat(planwerkBuilder.build(), is(notNullValue()));
 	}
 
 	private Schema loadSchema(String schemaFile) throws IOException, SAXException {

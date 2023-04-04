@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -63,7 +64,7 @@ public class FileTransformationResultWriter implements TransformationResultWrite
 			write(transformationResult.getTransformationResult(), gmlOutputStream);
 			String validationResult = validatorResult.isValid() ? "valid"
 					: validatorResult.getMessages().stream().collect(Collectors.joining(","));
-			write(validationResult, validationResultOutputStream);
+			write(validationResult, validationResultOutputStream, Charset.defaultCharset());
 		}
 		catch (IOException e) {
 			LOG.warn("Could not write results to file");

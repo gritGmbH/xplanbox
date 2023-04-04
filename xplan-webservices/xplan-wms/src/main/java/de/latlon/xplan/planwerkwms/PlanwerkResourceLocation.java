@@ -39,7 +39,7 @@ import java.net.URL;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class PlanwerkResourceLocation extends DefaultResourceLocation {
+public class PlanwerkResourceLocation extends DefaultResourceLocation<OWS> {
 
 	private byte[] bytes;
 
