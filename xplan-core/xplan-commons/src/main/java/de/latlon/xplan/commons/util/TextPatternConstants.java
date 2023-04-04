@@ -45,7 +45,7 @@ public class TextPatternConstants {
 
 	public final static String TEXT_GESETZ_PATTERN = "^[A-Za-z0-9.()_\\-äüöÄÜÖß§\\s]*$";
 
-	public final static String TEXT_PATTERN = "^[A-Za-z0-9.,;:\\[\\]()–_\\-äüöÄÜÖß§\"„“²\\s]*$";
+	public final static String TEXT_PATTERN = "^[A-Za-z0-9.,;:\\[\\]()–_\\-äüöÄÜÖß§\"„“²°\\s]*$";
 
 	public final static int XS_LENGTH = 50;
 
@@ -55,4 +55,5 @@ public class TextPatternConstants {
 
 	public final static int L_LENGTH = 1000;
 
+	public final static int XL_LENGTH = 10000;
 }
