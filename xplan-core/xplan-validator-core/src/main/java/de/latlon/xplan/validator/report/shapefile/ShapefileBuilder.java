@@ -20,17 +20,7 @@
  */
 package de.latlon.xplan.validator.report.shapefile;
 
-import static org.geotools.data.DataUtilities.createType;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
+import de.latlon.xplan.validator.report.ReportGenerationException;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.geotools.data.DefaultTransaction;
 import org.geotools.data.Transaction;
@@ -46,7 +36,17 @@ import org.geotools.geometry.jts.Geometries;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 
-import de.latlon.xplan.validator.report.ReportGenerationException;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.geotools.data.DataUtilities.createType;
 
 /**
  * Creates Shapefiles of different Types
@@ -135,6 +135,7 @@ class ShapefileBuilder {
 			params.put("url", shapeFile.toURI().toURL());
 			params.put("create spatial index", Boolean.TRUE);
 			ShapefileDataStore newDataStore = (ShapefileDataStore) dataStoreFactory.createNewDataStore(params);
+			newDataStore.setCharset(UTF_8);
 
 			newDataStore.createSchema(TYPE);
 
