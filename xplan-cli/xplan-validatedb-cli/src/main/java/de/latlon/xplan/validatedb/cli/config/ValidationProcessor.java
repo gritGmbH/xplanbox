@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 
-import static java.util.Collections.EMPTY_LIST;
+import java.util.Collections;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -48,7 +48,8 @@ public class ValidationProcessor implements ItemProcessor<XPlanWithFeatureCollec
 	public ValidationResultSummary process(XPlanWithFeatureCollection xPlanWithFeatureCollection) {
 		try {
 			LOG.info("Validate xplan with id {}", xPlanWithFeatureCollection.getId());
-			ValidatorResult validatorReport = validator.validateSemantic(xPlanWithFeatureCollection, EMPTY_LIST);
+			ValidatorResult validatorReport = validator.validateSemantic(xPlanWithFeatureCollection,
+					Collections.emptyList());
 			return new ValidationResultSummary(xPlanWithFeatureCollection.getId(),
 					xPlanWithFeatureCollection.getXp_version(), xPlanWithFeatureCollection.getName(),
 					xPlanWithFeatureCollection.getDistrict(), validatorReport);

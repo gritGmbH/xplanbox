@@ -101,7 +101,7 @@ public class MasterportalConfigWriter {
 			throw new MapPreviewCreationException("Could not write config file " + configFile, e);
 		}
 		finally {
-			closeQuietly(out);
+			closeQuietly(out, null);
 		}
 	}
 

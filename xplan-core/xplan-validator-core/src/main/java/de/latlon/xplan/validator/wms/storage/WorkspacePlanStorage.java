@@ -103,7 +103,7 @@ public class WorkspacePlanStorage implements PlanStorage {
 		}
 		finally {
 			closeQuietly(gmlWriter);
-			IOUtils.closeQuietly(output);
+			IOUtils.closeQuietly(output, null);
 		}
 	}
 

@@ -36,6 +36,7 @@ import java.util.List;
 @Provider
 public class StringListConverterProvider implements ParamConverterProvider {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> ParamConverter<T> getConverter(Class<T> aClass, Type type, Annotation[] annotations) {
 		if (isListWithStrings(aClass, type)) {
@@ -50,7 +51,7 @@ public class StringListConverterProvider implements ParamConverterProvider {
 			if (actualTypeArguments.length == 1) {
 				Type actualTypeArgument = actualTypeArguments[0];
 				if (actualTypeArgument instanceof Class
-						&& ((Class) actualTypeArgument).isAssignableFrom(String.class)) {
+						&& ((Class<?>) actualTypeArgument).isAssignableFrom(String.class)) {
 					return true;
 				}
 			}

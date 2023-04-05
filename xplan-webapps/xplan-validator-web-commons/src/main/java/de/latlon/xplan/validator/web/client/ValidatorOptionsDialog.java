@@ -277,7 +277,7 @@ public class ValidatorOptionsDialog extends FormPanel {
 			validForm = false;
 			Window.alert(messages.correctValidationName());
 		}
-		if (!validationTypeSyn.isChecked() && !validationTypeGeom.isChecked() && !validationTypeSem.isChecked()) {
+		if (!validationTypeSyn.getValue() && !validationTypeGeom.getValue() && !validationTypeSem.getValue()) {
 			Window.alert(messages.correctValidationType());
 			validForm = false;
 		}

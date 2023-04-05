@@ -26,7 +26,7 @@ import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
-import org.junit.Assert;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -35,9 +35,9 @@ import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
@@ -58,8 +58,8 @@ public class InfoApiTest extends JerseyTest {
 	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
 		final Response response = target("/info").request(APPLICATION_JSON).get();
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+		assertEquals(APPLICATION_JSON, response.getHeaderString(HttpHeaders.CONTENT_TYPE));
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class InfoApiTest extends JerseyTest {
 		final String response = target("/info").request(APPLICATION_JSON).get(String.class);
 
 		assertThat(response, containsString("supportedXPlanGmlVersions"));
-		Assert.assertThat(response, not(containsString("profiles")));
+		MatcherAssert.assertThat(response, not(containsString("profiles")));
 	}
 
 }

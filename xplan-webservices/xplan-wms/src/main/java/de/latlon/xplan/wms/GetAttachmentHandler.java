@@ -126,22 +126,15 @@ public class GetAttachmentHandler extends HttpServlet {
 	private void writeData(ResultSet rs, HttpServletResponse response, String filename, String featureID)
 			throws SQLException, IOException {
 		if (rs.next()) {
-			ServletOutputStream out = null;
-			GZIPInputStream inputstream = null;
-			try {
-				response.setContentType(rs.getString(1));
-				response.setHeader("Content-Disposition", "inline; filename=" + filename);
-				out = response.getOutputStream();
-				inputstream = new GZIPInputStream(rs.getBinaryStream(2));
+			response.setContentType(rs.getString(1));
+			response.setHeader("Content-Disposition", "inline; filename=" + filename);
+			try (ServletOutputStream out = response.getOutputStream();
+					GZIPInputStream inputstream = new GZIPInputStream(rs.getBinaryStream(2))) {
 				byte[] buffer = new byte[10240];
 				int read = -1;
 				while ((read = inputstream.read(buffer)) != -1) {
 					out.write(buffer, 0, read);
 				}
-			}
-			finally {
-				closeQuietly(inputstream);
-				closeQuietly(out);
 			}
 		}
 		else {

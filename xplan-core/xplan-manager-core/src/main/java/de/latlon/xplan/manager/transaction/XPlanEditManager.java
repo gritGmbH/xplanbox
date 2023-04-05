@@ -68,7 +68,6 @@ import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternal
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
-import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.deegree.cs.persistence.CRSManager.lookup;
 
 /**
@@ -89,17 +88,15 @@ public class XPlanEditManager extends XPlanTransactionManager {
 
 	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
 			List<File> uploadedArtefacts) throws Exception {
-		InputStream originalPlan = null;
-		try {
-			String planId = oldXplan.getId();
-			LOG.info("- Editiere Plan mit ID {}", planId);
-			LOG.debug("zu editierender Plan: {}", xPlanToEdit);
-			String oldPlanName = oldXplan.getName();
-			XPlanVersion version = XPlanVersion.valueOf(oldXplan.getVersion());
-			XPlanType type = XPlanType.valueOf(oldXplan.getType());
-			PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
-			AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus).getSchema();
-			originalPlan = xplanDao.retrieveXPlanArtefact(planId);
+		String planId = oldXplan.getId();
+		LOG.info("- Editiere Plan mit ID {}", planId);
+		LOG.debug("zu editierender Plan: {}", xPlanToEdit);
+		String oldPlanName = oldXplan.getName();
+		XPlanVersion version = XPlanVersion.valueOf(oldXplan.getVersion());
+		XPlanType type = XPlanType.valueOf(oldXplan.getType());
+		PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
+		AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus).getSchema();
+		try (InputStream originalPlan = xplanDao.retrieveXPlanArtefact(planId)) {
 			XPlanFeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder().build()
 					.parseXPlanFeatureCollection(originalPlan, version, type);
 			String oldDescription = retrieveDescription(originalPlanFC.getFeatures(), type);
@@ -152,9 +149,6 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			}
 			updateDocuments(planIdInt, uploadedArtefacts, externalReferenceInfoToUpdate, externalReferenceInfoToRemove);
 			LOG.info("Rasterkonfiguration für den Plan mit der ID {} wurde ausgetauscht (falls vorhanden).", planId);
-		}
-		finally {
-			closeQuietly(originalPlan);
 		}
 	}
 

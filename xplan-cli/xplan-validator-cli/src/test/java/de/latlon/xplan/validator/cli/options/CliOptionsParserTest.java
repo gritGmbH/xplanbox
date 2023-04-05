@@ -124,6 +124,7 @@ public class CliOptionsParserTest {
 	private BaseMatcher<List<ValidationOption>> hasCorrectArgument(final String parameter, final String value) {
 		return new BaseMatcher<List<ValidationOption>>() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public boolean matches(Object item) {
 				// noinspection unchecked

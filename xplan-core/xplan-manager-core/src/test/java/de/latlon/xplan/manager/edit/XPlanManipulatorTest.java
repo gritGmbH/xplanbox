@@ -694,6 +694,7 @@ public class XPlanManipulatorTest {
 		assertThatPlanIsSchemaValid(featureCollection, version);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testModifyXPlan_FP() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
@@ -736,6 +737,7 @@ public class XPlanManipulatorTest {
 		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testModifyXPlan_LP() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
@@ -778,6 +780,7 @@ public class XPlanManipulatorTest {
 		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testModifyXPlan_RP() throws Exception {
 		XPlanVersion version = XPLAN_51;
@@ -820,6 +823,7 @@ public class XPlanManipulatorTest {
 		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testModifyXPlan_SO() throws Exception {
 		XPlanVersion version = XPlanVersion.XPLAN_60;
@@ -931,6 +935,7 @@ public class XPlanManipulatorTest {
 		assertThatPlanIsSchemaValid(exportedPlan, version);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void assertThatPlanIsSchemaValid(String exportedPlan, XPlanVersion version) throws Exception {
 		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(version.getSchemaUrl().toURI())));
 	}

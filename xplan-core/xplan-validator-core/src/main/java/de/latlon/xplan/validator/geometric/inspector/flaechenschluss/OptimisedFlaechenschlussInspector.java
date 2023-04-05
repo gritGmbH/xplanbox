@@ -318,6 +318,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				TestStep.GELTUNGSBEREICH_PLAN);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void checkFlaechenschlussFeaturesIntersectingAnInteriorRing(GeltungsbereichFeature geltungsbereichFeature,
 			List<FeatureUnderTest> flaechenschlussFeatures, Geometry flaechenschlussUnion, TestStep testStep) {
 		if (flaechenschlussUnion == null)
@@ -331,10 +332,11 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		}
 		else if (flaechenschlussUnion instanceof MultiSurface) {
 			checkFlaechenschlussFeaturesIntersectingAnInteriorRing(geltungsbereichFeature, flaechenschlussFeatures,
-					(MultiSurface) flaechenschlussUnion, testStep);
+					(MultiSurface<Surface>) flaechenschlussUnion, testStep);
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void checkFlaechenschlussFeaturesWithGeltungsbereich(GeltungsbereichFeature geltungsbereichFeature,
 			List<FeatureUnderTest> flaechenschlussFeatures, Geometry flaechenschlussUnion, TestStep testStep) {
 		if (flaechenschlussUnion == null)
@@ -349,7 +351,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		}
 		else if (diffGeltungsbereich instanceof MultiSurface) {
 			checkFlaechenschlussFeaturesIntersectingGeltungsbereich(flaechenschlussFeatures, geltungsbereichFeature,
-					(MultiSurface) diffGeltungsbereich, testStep);
+					(MultiSurface<Surface>) diffGeltungsbereich, testStep);
 		}
 	}
 
@@ -578,6 +580,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		return intersectingFlaechenschlussFeatures;
 	}
 
+	@SuppressWarnings("deprecation")
 	private Geometry createFlaechenschlussUnion(GeltungsbereichFeature geltungsbereichFeature,
 			List<FeatureUnderTest> featuresUnderTest) {
 		ICRS coordinateSystem = null;
@@ -595,6 +598,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 		return DEFAULT_GEOM.createFromJTS(union, coordinateSystem);
 	}
 
+	@SuppressWarnings("deprecation")
 	private Geometry createFlaechenschlussUnion(List<FeaturesUnderTest> featuresUnderTests) {
 		ICRS coordinateSystem = null;
 		GeometryFactory factory = new GeometryFactory();
@@ -703,13 +707,14 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 				break;
 			case MULTI_GEOMETRY:
 				checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1, flaechenschlussFeature2,
-						(MultiGeometry) intersection, testStep);
+						(MultiGeometry<?>) intersection, testStep);
 				break;
+			default:
 		}
 	}
 
 	private void checkAndAddInvalidFlaechenschlussFeature(FeatureUnderTest flaechenschlussFeature1,
-			FeatureUnderTest flaechenschlussFeature2, MultiGeometry intersection, TestStep testStep) {
+			FeatureUnderTest flaechenschlussFeature2, MultiGeometry<?> intersection, TestStep testStep) {
 		if (intersection instanceof MultiLineString)
 			return;
 		intersection.stream().forEach(geom -> checkAndAddInvalidFlaechenschlussFeature(flaechenschlussFeature1,
@@ -797,7 +802,7 @@ public class OptimisedFlaechenschlussInspector implements GeometricFeatureInspec
 					surface, intersection, handleAsHasIdenticalControlPoints));
 		}
 		else if (flaechenschlussFeatureGeometry instanceof MultiSurface) {
-			MultiSurface multiSurface = (MultiSurface) flaechenschlussFeatureGeometry;
+			MultiSurface<?> multiSurface = (MultiSurface<?>) flaechenschlussFeatureGeometry;
 			multiSurface.stream().forEach(o -> parseControlPointsInIntersection(flaechenschlussFeature, (Geometry) o,
 					intersection, controlPointsInIntersection, handleAsHasIdenticalControlPoints));
 		}
