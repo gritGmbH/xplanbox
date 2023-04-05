@@ -1247,6 +1247,16 @@
       </snapshots>
     </repository>
     <repository>
+      <id>xleitstelle-xplanung-validierungsregeln-berlin</id>
+      <url>https://gitlab.opencode.de/api/v4/projects/397/packages/maven</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
       <id>jfrog-thirdparty</id>
       <url>https://jaspersoft.jfrog.io/artifactory/third-party-ce-artifacts/</url>
       <releases>
