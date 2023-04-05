@@ -1493,8 +1493,8 @@
       </snapshots>
     </repository>
     <repository>
-      <id>terrestris-geotools</id>
-      <url>https://nexus.terrestris.de/repository/public/</url>
+      <id>geotools-releases</id>
+      <url>https://repo.osgeo.org/repository/geotools-releases/</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
