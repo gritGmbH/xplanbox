@@ -512,7 +512,7 @@
           <configuration>
             <disableCastChecking>true</disableCastChecking>
             <disableClassMetadata>true</disableClassMetadata>
-            <extraJvmArgs>-Xmx2g -Xss1024k</extraJvmArgs>
+            <extraJvmArgs>-Xmx500M</extraJvmArgs>
             <module>${gwt.moduleName}</module>
             <runTarget>index.html</runTarget>
             <hostedWebapp>${project.build.directory}/${project.build.finalName}</hostedWebapp>

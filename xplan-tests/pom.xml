@@ -11,6 +11,11 @@
     <version>6.1-SNAPSHOT</version>
   </parent>
 
+  <properties>
+	<xplan-tests.maven.deploy.skip>false</xplan-tests.maven.deploy.skip>
+	<maven.deploy.skip>${xplan-tests.maven.deploy.skip}</maven.deploy.skip>
+  </properties>
+  
   <modules>
     <module>xplan-tests-resources</module>
     <module>xplan-tests-soapui</module>
