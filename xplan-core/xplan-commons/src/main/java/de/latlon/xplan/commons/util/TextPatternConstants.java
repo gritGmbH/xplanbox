@@ -56,4 +56,5 @@ public class TextPatternConstants {
 	public final static int L_LENGTH = 1000;
 
 	public final static int XL_LENGTH = 10000;
+
 }
