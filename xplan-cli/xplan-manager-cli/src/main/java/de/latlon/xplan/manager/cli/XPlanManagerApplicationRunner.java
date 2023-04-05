@@ -337,7 +337,7 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 					managerConfiguration);
 			DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 			WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
-			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper);
 			RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
 			XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
 			RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper,
@@ -396,7 +396,7 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			DeegreeWorkspace managerWorkspace = WorkspaceUtils.instantiateManagerWorkspace(null);
 			ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(managerWorkspace,
 					managerConfiguration);
-			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper);
 			return new ServiceMetadataRecordCreator(xplanDao, managerConfiguration);
 		}
 		catch (Exception e) {

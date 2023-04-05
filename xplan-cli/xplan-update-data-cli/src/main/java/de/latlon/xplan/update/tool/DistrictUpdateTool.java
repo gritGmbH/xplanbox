@@ -23,10 +23,10 @@ package de.latlon.xplan.update.tool;
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.update.updater.DistrictUpdater;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
+import de.latlon.xplan.update.updater.DistrictUpdater;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -108,7 +108,7 @@ public class DistrictUpdateTool {
 		ManagerConfiguration managerConfiguration = new ManagerConfiguration(loader);
 		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
-		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper);
 	}
 
 	private static Options initOptions() {

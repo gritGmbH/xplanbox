@@ -128,7 +128,7 @@ public class ReSynthesizerTool {
 	private static XPlanDao createXplanDao(DeegreeWorkspace workspace, ManagerConfiguration managerConfiguration) {
 		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
-		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper);
 	}
 
 	private static ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)

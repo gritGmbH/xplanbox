@@ -178,9 +178,8 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public XPlanDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper,
-			ManagerConfiguration managerConfiguration) {
-		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+	public XPlanDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper);
 	}
 
 	@Bean

@@ -37,7 +37,6 @@ import org.apache.commons.cli.PosixParser;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.deegree.commons.config.ResourceInitException;
 import org.deegree.commons.tools.CommandUtils;
-import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -189,7 +188,7 @@ public class TransformTool {
 		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = createManagerWorkspaceWrapper(workspaceName,
 				managerConfiguration);
-		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper);
 	}
 
 	private static ManagerWorkspaceWrapper createManagerWorkspaceWrapper(String workspaceName,

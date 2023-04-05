@@ -29,7 +29,6 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CategoryMapper;
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanArtefactIterator;
@@ -119,8 +118,6 @@ public class XPlanDao {
 
 	private final CategoryMapper categoryMapper;
 
-	private final ManagerConfiguration managerConfiguration;
-
 	private FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
 	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
@@ -133,13 +130,10 @@ public class XPlanDao {
 	 * </p>
 	 * @param managerWorkspaceWrapper workspace, never <code>null</code>
 	 * @param categoryMapper mapping configuration, never <code>null</code>
-	 * @param managerConfiguration
 	 */
-	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper,
-			ManagerConfiguration managerConfiguration) {
+	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
 		this.categoryMapper = categoryMapper;
-		this.managerConfiguration = managerConfiguration;
 	}
 
 	/**

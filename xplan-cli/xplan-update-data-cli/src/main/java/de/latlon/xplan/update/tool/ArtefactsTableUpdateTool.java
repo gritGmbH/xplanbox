@@ -117,7 +117,7 @@ public class ArtefactsTableUpdateTool {
 	private static XPlanDao createXplanDao(ManagerConfiguration managerConfiguration,
 			ManagerWorkspaceWrapper managerWorkspaceWrapper) {
 		CategoryMapper categoryMapper = new CategoryMapper(managerConfiguration);
-		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper);
 	}
 
 	private ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)

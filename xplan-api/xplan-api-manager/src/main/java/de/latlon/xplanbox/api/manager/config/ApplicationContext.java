@@ -203,9 +203,8 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			ManagerConfiguration managerConfiguration) {
-		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
+	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper) {
+		return new XPlanDao(managerWorkspaceWrapper, categoryMapper);
 	}
 
 	@Bean
