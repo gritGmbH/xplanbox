@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.database;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
@@ -44,7 +45,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.zip.GZIPOutputStream;
 
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
@@ -144,6 +147,75 @@ public class XPlanDbAdapter {
 		}
 		finally {
 			closeQuietly(conn);
+		}
+	}
+
+	public void deletePlan(int planId) throws Exception {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			conn.setAutoCommit(false);
+
+			LOG.info("- Entferne XPlan " + planId + " aus der Manager-DB...");
+			stmt = conn.prepareStatement("DELETE FROM xplanmgr.plans WHERE id=?");
+			stmt.setInt(1, planId);
+			stmt.executeUpdate();
+			conn.commit();
+			LOG.info("OK");
+		}
+		catch (Exception e) {
+			throw new Exception("Fehler beim Löschen des Plans: " + e.getMessage() + ".", e);
+		}
+		finally {
+			closeQuietly(conn, stmt, rs);
+		}
+	}
+
+	public XPlanVersionAndPlanStatus selectXPlanMetadata(int id) throws Exception {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
+			stmt = conn.prepareStatement("SELECT xp_version, planstatus FROM xplanmgr.plans WHERE id=?");
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			if (!rs.next()) {
+				throw new PlanNotFoundException(id);
+			}
+			XPlanVersion version = XPlanVersion.valueOf(rs.getString(1));
+			PlanStatus planStatus = retrievePlanStatus(rs.getString(2));
+			return new XPlanVersionAndPlanStatus(version, planStatus);
+		}
+		catch (PlanNotFoundException pe) {
+			throw pe;
+		}
+		catch (Exception e) {
+			throw new Exception("Interner-/Konfigurations-Fehler. Kann XPlan-Informationen nicht aus DB lesen: "
+					+ e.getLocalizedMessage(), e);
+		}
+		finally {
+			closeQuietly(stmt, rs);
+		}
+	}
+
+	public Set<String> selectFids(int planId) throws SQLException {
+		PreparedStatement stmt = null;
+		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
+			stmt = conn.prepareStatement("SELECT fid FROM xplanmgr.features WHERE plan=?");
+			stmt.setInt(1, planId);
+			ResultSet rs = stmt.executeQuery();
+			Set<String> ids = new HashSet<>();
+			while (rs.next()) {
+				ids.add(rs.getString(1));
+			}
+			return ids;
+		}
+		catch (SQLException e) {
+			throw e;
+		}
+		finally {
+			closeQuietly(stmt);
 		}
 	}
 
@@ -318,10 +390,25 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
+	private PlanStatus retrievePlanStatus(String planStatusMessage) {
+		if (planStatusMessage != null && planStatusMessage.length() > 0)
+			return PlanStatus.findByMessage(planStatusMessage);
+		return FESTGESTELLT;
+	}
+
 	private String retrievePlanStatusMessage(PlanStatus planStatus) {
 		if (planStatus != null)
 			return planStatus.getMessage();
 		return FESTGESTELLT.getMessage();
+	}
+
+	private int getXPlanIdAsInt(String planId) throws Exception {
+		try {
+			return Integer.parseInt(planId);
+		}
+		catch (NumberFormatException e) {
+			throw new Exception("Spezifizierter Wert '" + planId + "' ist keine gültige XPlan-Id (Ganzzahl).", e);
+		}
 	}
 
 	private Date convertToDate(java.sql.Date dateToConvert) {

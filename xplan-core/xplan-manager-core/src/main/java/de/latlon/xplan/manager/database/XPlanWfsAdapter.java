@@ -20,14 +20,17 @@
  */
 package de.latlon.xplan.manager.database;
 
+import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
+import org.deegree.filter.IdFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.deegree.protocol.wfs.transaction.action.IDGenMode.USE_EXISTING;
 
@@ -58,6 +61,25 @@ public class XPlanWfsAdapter {
 		}
 		catch (Exception e) {
 			throw new Exception("Fehler beim Einfügen: " + e.getMessage(), e);
+		}
+	}
+
+	public void deletePlan(XPlanVersionAndPlanStatus xPlanMetadata, Set<String> ids, int planId) throws Exception {
+		try {
+			XPlanVersion version = xPlanMetadata.version;
+			PlanStatus planStatus = xPlanMetadata.planStatus;
+
+			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
+			SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
+
+			IdFilter idFilter = new IdFilter(ids);
+			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ")...");
+			ta.performDelete(idFilter, null);
+			ta.commit();
+			LOG.info("OK");
+		}
+		catch (Exception e) {
+			throw new Exception("Fehler beim Löschen des Plans: " + e.getMessage() + ".", e);
 		}
 	}
 

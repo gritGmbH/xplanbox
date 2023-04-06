@@ -78,7 +78,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -232,8 +231,12 @@ public class XPlanDao {
 	 */
 	public void deletePlan(String planId) throws Exception {
 		managerWorkspaceWrapper.ensureWorkspaceInitialized();
-		XPlanMetadata xPlanMetadata = selectXPlanMetadata(planId);
-		deletePlan(xPlanMetadata, planId);
+		int id = getXPlanIdAsInt(planId);
+		XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(id);
+		Set<String> fids = xPlanDbAdapter.selectFids(id);
+		xPlanSynWfsAdapter.deletePlan(xPlanMetadata, fids, id);
+		xPlanWfsAdapter.deletePlan(xPlanMetadata, fids, id);
+		xPlanDbAdapter.deletePlan(id);
 	}
 
 	/**
@@ -302,7 +305,7 @@ public class XPlanDao {
 			conn = managerWorkspaceWrapper.openConnection();
 			conn.setAutoCommit(false);
 
-			Set<String> ids = selectFids(conn, planId);
+			Set<String> ids = xPlanDbAdapter.selectFids(planId);
 			IdFilter idFilter = new IdFilter(ids);
 
 			addAdditionalProperties(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(), planId,
@@ -571,7 +574,7 @@ public class XPlanDao {
 		int id = getXPlanIdAsInt(planId);
 		try {
 			Connection conn = managerWorkspaceWrapper.openConnection();
-			XPlanMetadata xPlanMetadata = selectXPlanMetadata(planId);
+			XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(id);
 			PreparedStatement stmt = conn
 					.prepareStatement("SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num");
 			stmt.setInt(1, id);
@@ -599,7 +602,7 @@ public class XPlanDao {
 	public FeatureCollection retrieveFeatureCollection(XPlan xPlanById) throws Exception {
 		managerWorkspaceWrapper.ensureWorkspaceInitialized();
 		int xPlanIdAsInt = getXPlanIdAsInt(xPlanById.getId());
-		XPlanMetadata xPlanMetadata = selectXPlanMetadata(xPlanIdAsInt);
+		XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(xPlanIdAsInt);
 		return restoreFeatureCollection(xPlanIdAsInt, xPlanMetadata);
 	}
 
@@ -1039,37 +1042,6 @@ public class XPlanDao {
 		}
 	}
 
-	private XPlanMetadata selectXPlanMetadata(String planId) throws Exception {
-		int id = getXPlanIdAsInt(planId);
-		return selectXPlanMetadata(id);
-	}
-
-	private XPlanMetadata selectXPlanMetadata(int id) throws Exception {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
-			stmt = mgrConn.prepareStatement("SELECT xp_version, planstatus FROM xplanmgr.plans WHERE id=?");
-			stmt.setInt(1, id);
-			rs = stmt.executeQuery();
-			if (!rs.next()) {
-				throw new PlanNotFoundException(id);
-			}
-			XPlanVersion version = XPlanVersion.valueOf(rs.getString(1));
-			PlanStatus planStatus = retrievePlanStatus(rs.getString(2));
-			return new XPlanMetadata(version, planStatus);
-		}
-		catch (PlanNotFoundException pe) {
-			throw pe;
-		}
-		catch (Exception e) {
-			throw new Exception("Interner-/Konfigurations-Fehler. Kann XPlan-Informationen nicht aus DB lesen: "
-					+ e.getLocalizedMessage(), e);
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
-	}
-
 	private List<String> selectArtefactFileNames(Connection conn, int id) throws Exception {
 		List<String> artefactFileNames = new ArrayList<String>();
 		PreparedStatement stmt = null;
@@ -1135,69 +1107,11 @@ public class XPlanDao {
 		}
 	}
 
-	private void deletePlan(XPlanMetadata xPlanMetadata, String planId) throws Exception {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			XPlanVersion version = xPlanMetadata.version;
-			PlanStatus planStatus = xPlanMetadata.planStatus;
-			int id = getXPlanIdAsInt(planId);
-
-			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
-			FeatureStore fsSyn = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
-
-			conn = managerWorkspaceWrapper.openConnection();
-			conn.setAutoCommit(false);
-
-			SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
-			SQLFeatureStoreTransaction taSyn = (SQLFeatureStoreTransaction) fsSyn.acquireTransaction();
-
-			Set<String> ids = selectFids(conn, id);
-			IdFilter idFilter = new IdFilter(ids);
-			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ")...");
-			ta.performDelete(idFilter, null);
-			LOG.info("OK");
-
-			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (XPLAN_SYN)...");
-			taSyn.performDelete(idFilter, null);
-			LOG.info("OK");
-
-			LOG.info("- Entferne XPlan " + planId + " aus der Manager-DB...");
-			stmt = conn.prepareStatement("DELETE FROM xplanmgr.plans WHERE id=?");
-			stmt.setInt(1, id);
-			stmt.executeUpdate();
-			LOG.info("OK");
-
-			LOG.info("- Persistierung...");
-			ta.commit();
-			taSyn.commit();
-			conn.commit();
-			LOG.info("OK");
-		}
-		catch (Exception e) {
-			throw new Exception("Fehler beim Löschen des Plans: " + e.getMessage() + ".", e);
-		}
-		finally {
-			closeQuietly(conn, stmt, rs);
-		}
-	}
-
-	private Set<String> determineFeatureIds(int planId) throws SQLException {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			return selectFids(conn, planId);
-		}
-		finally {
-			closeQuietly(conn);
-		}
-	}
-
-	private FeatureCollection restoreFeatureCollection(int id, XPlanMetadata xPlanMetadata) throws Exception {
+	private FeatureCollection restoreFeatureCollection(int id, XPlanVersionAndPlanStatus xPlanMetadata)
+			throws Exception {
 		XPlanVersion version = xPlanMetadata.version;
 		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, xPlanMetadata.planStatus);
-		Set<String> ids = determineFeatureIds(id);
+		Set<String> ids = xPlanDbAdapter.selectFids(id);
 
 		IdFilter filter = new IdFilter(ids);
 		Query query = new Query(new TypeName[0], filter, null, null, null);
@@ -1252,7 +1166,7 @@ public class XPlanDao {
 			taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
 			taSynSource = (SQLFeatureStoreTransaction) synFsSource.acquireTransaction();
 
-			Set<String> ids = selectFids(conn, planId);
+			Set<String> ids = xPlanDbAdapter.selectFids(planId);
 
 			IdFilter idFilter = new IdFilter(ids);
 			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")...");
@@ -1626,26 +1540,6 @@ public class XPlanDao {
 		}
 	}
 
-	private Set<String> selectFids(Connection conn, int planId) throws SQLException {
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement("SELECT fid FROM xplanmgr.features WHERE plan=?");
-			stmt.setInt(1, planId);
-			ResultSet rs = stmt.executeQuery();
-			Set<String> ids = new HashSet<>();
-			while (rs.next()) {
-				ids.add(rs.getString(1));
-			}
-			return ids;
-		}
-		catch (SQLException e) {
-			throw e;
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
 	private byte[] createZipArtefact(InputStream is) throws IOException {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		GZIPOutputStream gos = new GZIPOutputStream(bos);
@@ -1725,23 +1619,6 @@ public class XPlanDao {
 				LOG.trace("Rollback failed.", e);
 
 			}
-	}
-
-	private class XPlanMetadata {
-
-		XPlanVersion version;
-
-		PlanStatus planStatus;
-
-		/**
-		 * @param version may be <code>null</code>
-		 * @param planStatus may be <code>null</code>
-		 */
-		XPlanMetadata(XPlanVersion version, PlanStatus planStatus) {
-			this.version = version;
-			this.planStatus = planStatus;
-		}
-
 	}
 
 }

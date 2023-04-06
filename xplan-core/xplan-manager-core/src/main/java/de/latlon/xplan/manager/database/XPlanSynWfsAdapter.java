@@ -24,10 +24,12 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
+import org.deegree.filter.IdFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Set;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static org.deegree.protocol.wfs.transaction.action.IDGenMode.USE_EXISTING;
@@ -61,6 +63,24 @@ public class XPlanSynWfsAdapter {
 		}
 		catch (Exception e) {
 			throw new Exception("Fehler beim Einfügen: " + e.getMessage(), e);
+		}
+	}
+
+	public void deletePlan(XPlanVersionAndPlanStatus xPlanMetadata, Set<String> ids, int planId) throws Exception {
+		try {
+			PlanStatus planStatus = xPlanMetadata.planStatus;
+
+			FeatureStore fsSyn = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
+			SQLFeatureStoreTransaction taSyn = (SQLFeatureStoreTransaction) fsSyn.acquireTransaction();
+
+			IdFilter idFilter = new IdFilter(ids);
+			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (XPLAN_SYN)...");
+			taSyn.performDelete(idFilter, null);
+			LOG.info("OK");
+			taSyn.commit();
+		}
+		catch (Exception e) {
+			throw new Exception("Fehler beim Löschen des Plans: " + e.getMessage() + ".", e);
 		}
 	}
 
