@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.manager.database;
 
+import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
@@ -27,7 +28,6 @@ import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
-import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
@@ -55,7 +55,6 @@ import org.deegree.filter.IdFilter;
 import org.deegree.geometry.Envelope;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.io.WKTReader;
-import org.deegree.geometry.io.WKTWriter;
 import org.deegree.protocol.wfs.getfeature.TypeName;
 import org.deegree.protocol.wfs.transaction.action.IDGenMode;
 import org.locationtech.jts.io.ParseException;
@@ -92,14 +91,12 @@ import java.util.zip.GZIPOutputStream;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.manager.database.ArtefactType.RASTERBASIS;
 import static de.latlon.xplan.manager.database.ArtefactType.XPLANGML;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
-import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.apache.commons.io.IOUtils.copyLarge;
 import static org.deegree.protocol.wfs.transaction.action.IDGenMode.USE_EXISTING;
 
@@ -118,9 +115,15 @@ public class XPlanDao {
 
 	private final CategoryMapper categoryMapper;
 
-	private FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
+	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
-	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
+	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
+
+	private final XPlanDbAdapter xPlanDbAdapter;
+
+	private final XPlanWfsAdapter xPlanWfsAdapter;
+
+	private final XPlanSynWfsAdapter xPlanSynWfsAdapter;
 
 	/**
 	 * Creates a new {@link XPlanDao} instance.
@@ -134,6 +137,9 @@ public class XPlanDao {
 	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
 		this.categoryMapper = categoryMapper;
+		this.xPlanDbAdapter = new XPlanDbAdapter(managerWorkspaceWrapper);
+		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper);
+		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper);
 	}
 
 	/**
@@ -144,40 +150,24 @@ public class XPlanDao {
 	 * @param synFc flattened features (of the main GML document from the archive), must
 	 * not be <code>null</code>
 	 * @param planStatus the status of the plan, may be <code>null</code>
-	 * @param beginValidity the begin of the validity, may be <code>null</code>
-	 * @param beginValidity the endo of the validity, may be <code>null</code>
+	 * @param beginValidity the start of the validity, may be <code>null</code>
+	 * @param beginValidity the end of the validity, may be <code>null</code>
 	 * <code>null</code>
 	 * @param internalId
 	 * @return database id of the plan
 	 */
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
 			Date beginValidity, Date endValidity, Date sortDate, String internalId) throws Exception {
-		Connection conn = null;
 		try {
 			LOG.info("Insert XPlan");
-
-			FeatureStore xplanFs = managerWorkspaceWrapper.lookupStore(fc.getVersion(), planStatus);
-			FeatureStore synFs = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
-
-			conn = managerWorkspaceWrapper.openConnection();
-			conn.setAutoCommit(false);
-			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTA = insertXPlan(xplanFs, fc);
-			int planId = insertMetadata(conn, archive, fc, synFc, fidsAndXPlanTA.first, planStatus, beginValidity,
-					endValidity, sortDate, internalId);
-
-			addAdditionalProperties(synFc, beginValidity, endValidity, synFs, planId, sortDate);
-
-			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanSynTA = insertXPlanSyn(synFs, synFc);
-
-			insertBereiche(conn, planId, synFc);
-			insertArtefacts(fc, archive, conn, planId);
-
 			long begin = System.currentTimeMillis();
-			LOG.info("- Persistierung...");
 
-			fidsAndXPlanTA.second.commit();
-			fidsAndXPlanSynTA.second.commit();
-			conn.commit();
+			List<String> fidsXPlanWfs = xPlanWfsAdapter.insert(fc, planStatus);
+			int planId = xPlanDbAdapter.insert(archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate,
+					internalId, fidsXPlanWfs);
+			addAdditionalProperties(synFc, beginValidity, endValidity, planId, sortDate);
+			xPlanSynWfsAdapter.insert(synFc, planStatus);
+			xPlanDbAdapter.insertArtefacts(fc, archive, planId);
 
 			long elapsed = System.currentTimeMillis() - begin;
 			LOG.info("OK [" + elapsed + " ms].");
@@ -188,9 +178,6 @@ public class XPlanDao {
 		}
 		catch (Exception e) {
 			throw new Exception("Fehler beim Einfügen: " + e.getMessage(), e);
-		}
-		finally {
-			closeQuietly(conn);
 		}
 	}
 
@@ -318,8 +305,8 @@ public class XPlanDao {
 			Set<String> ids = selectFids(conn, planId);
 			IdFilter idFilter = new IdFilter(ids);
 
-			addAdditionalProperties(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(),
-					synFeatureStore, planId, sortDate);
+			addAdditionalProperties(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(), planId,
+					sortDate);
 			if (updateFeaturesAndBlob) {
 				FeatureStore blobFeatureStore = managerWorkspaceWrapper.lookupStore(originalFc.getVersion(),
 						planStatus);
@@ -980,9 +967,9 @@ public class XPlanDao {
 		}
 	}
 
-	private void addAdditionalProperties(FeatureCollection synFc, Date beginValidity, Date endValidity,
-			FeatureStore synFs, int planId, Date sortDate) {
-		AppSchema schema = synFs.getSchema();
+	private void addAdditionalProperties(FeatureCollection synFc, Date beginValidity, Date endValidity, int planId,
+			Date sortDate) {
+		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 		featureCollectionManipulator.addAdditionalPropertiesToFeatures(synFc, schema, planId, sortDate, beginValidity,
 				endValidity);
 	}
@@ -1275,7 +1262,7 @@ public class XPlanDao {
 			LOG.info("OK");
 
 			addAdditionalProperties(synFc, newXPlanMetadata.getStartDateTime(), newXPlanMetadata.getEndDateTime(),
-					synFsSource, planId, sortDate);
+					planId, sortDate);
 			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
 			taSynSource.performDelete(idFilter, null);
 			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanSynTa = insertXPlanSyn(synFsTarget, synFc);
@@ -1314,22 +1301,6 @@ public class XPlanDao {
 
 	}
 
-	private int insertMetadata(Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
-			FeatureCollection synFc, List<String> fids, PlanStatus planStatus, Date beginValidity, Date endValidity,
-			Date sortDate, String internalId) throws SQLException {
-
-		long begin = System.currentTimeMillis();
-		LOG.info("- Einfügen der XPlan-Metadaten (XPLAN_MGR)...");
-
-		int planId = insertPlanMetadata(mgrConn, archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate,
-				internalId);
-		insertFeatureMetadata(mgrConn, fids, planId);
-
-		long elapsed = System.currentTimeMillis() - begin;
-		LOG.info("OK [" + elapsed + " ms].");
-		return planId;
-	}
-
 	private void updateFeatureMetadata(Connection conn, List<String> fids, int planId) throws SQLException {
 		PreparedStatement stmt = null;
 		try {
@@ -1360,72 +1331,6 @@ public class XPlanDao {
 		}
 		finally {
 			closeQuietly(stmt);
-		}
-	}
-
-	private int insertPlanMetadata(Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
-			FeatureCollection synFc, PlanStatus planStatus, Date beginValidity, Date endValidity, Date sortDate,
-			String internalId) throws SQLException {
-		String insertPlansSql = "INSERT INTO xplanmgr.plans "
-				+ "(import_date, xp_version, xp_type, name, nummer, gkz, has_raster, rechtsstand, "
-				+ "release_date, sonst_plan_art, planstatus, district, "
-				+ "wmsSortDate, gueltigkeitBeginn, gueltigkeitEnde, internalid, bbox)"
-				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,ST_GeometryFromText(?, 4326))";
-		PreparedStatement stmt = null;
-		int planId;
-		try {
-			stmt = mgrConn.prepareStatement(insertPlansSql, PreparedStatement.RETURN_GENERATED_KEYS);
-
-			stmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
-			stmt.setString(2, archive.getVersion().name());
-			stmt.setString(3, archive.getType().name());
-			stmt.setString(4, fc.getPlanName());
-			stmt.setString(5, fc.getPlanNummer());
-			stmt.setString(6, fc.getPlanGkz());
-			stmt.setBoolean(7, fc.getHasRaster());
-			stmt.setString(8, retrieveRechtsstandWert(synFc, archive.getType()));
-			stmt.setTimestamp(9, convertToSqlTimestamp(fc.getPlanReleaseDate()));
-			stmt.setString(10, retrieveAdditionalTypeWert(synFc, archive.getType()));
-			stmt.setString(11, retrievePlanStatusMessage(planStatus));
-			stmt.setString(12, retrieveDistrict(fc.getFeatures(), archive.getType()));
-			stmt.setTimestamp(13, convertToSqlTimestamp(sortDate));
-			stmt.setTimestamp(14, convertToSqlTimestamp(beginValidity));
-			stmt.setTimestamp(15, convertToSqlTimestamp(endValidity));
-			stmt.setString(16, internalId);
-			stmt.setString(17, createWktFromBboxIn4326(fc));
-
-			stmt.executeUpdate();
-			planId = detectPlanId(stmt);
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-		return planId;
-	}
-
-	private void insertBereiche(Connection conn, int planId, FeatureCollection fc)
-			throws SQLException, AmbiguousBereichNummernException {
-		PreparedStatement stmt = null;
-		List<Bereich> bereiche = FeatureCollectionUtils.retrieveBereiche(fc);
-		checkBereichNummern(bereiche);
-		for (Bereich bereich : bereiche) {
-			long begin = System.currentTimeMillis();
-			String nummer = bereich.getNummer();
-			LOG.info(String.format("- Einfügen von Bereich '%s'...", nummer));
-			try {
-				String insertStatement = "INSERT INTO xplanmgr.bereiche (plan,nummer,name) VALUES (?,?,?)";
-				stmt = conn.prepareStatement(insertStatement);
-				stmt.setInt(1, planId);
-				stmt.setString(2, bereich.getNummer());
-				stmt.setString(3, bereich.getName());
-				stmt.executeUpdate();
-				stmt.close();
-				long elapsed = System.currentTimeMillis() - begin;
-				LOG.info("OK [" + elapsed + " ms]");
-			}
-			finally {
-				closeQuietly(stmt);
-			}
 		}
 	}
 
@@ -1501,45 +1406,6 @@ public class XPlanDao {
 		}
 		finally {
 			closeQuietly(stmt);
-		}
-	}
-
-	private void insertArtefacts(XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive, Connection conn,
-			int planId) throws Exception {
-		PreparedStatement stmt = null;
-		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
-		int i = 0;
-		for (ZipEntryWithContent archiveEntry : archiveEntries) {
-			long begin = System.currentTimeMillis();
-			String name = archiveEntry.getName();
-			LOG.info(String.format("- Einfügen von XPlan-Artefakt '%s'...", name));
-			try {
-				InputStream is = archiveEntry.retrieveContentAsStream();
-				String mimetype = getArtefactMimeType(name);
-				String insertStatement = "INSERT INTO xplanmgr.artefacts (plan,filename,data,num,mimetype,artefacttype)"
-						+ " VALUES (?,?,?,?,?,?::xplanmgr.artefacttype)";
-				stmt = conn.prepareStatement(insertStatement);
-				stmt.setInt(1, planId);
-				stmt.setString(2, name);
-				stmt.setBytes(3, createZipArtefact(is));
-				stmt.setInt(4, i++);
-				stmt.setString(5, mimetype);
-				stmt.setString(6, detectArtefactType(xPlanFeatureCollection, archiveEntry));
-				stmt.executeUpdate();
-				stmt.close();
-				is.close();
-				long elapsed = System.currentTimeMillis() - begin;
-				LOG.info("OK [" + elapsed + " ms]");
-			}
-			catch (IOException e) {
-				throw new Exception("Fehler beim Lesen des Archiv-Eintrags: " + e.getLocalizedMessage(), e);
-			}
-			catch (SQLException e) {
-				throw new Exception("Fehler beim Einfügen in DB: " + e.getLocalizedMessage(), e);
-			}
-			finally {
-				closeQuietly(stmt);
-			}
 		}
 	}
 
@@ -1802,13 +1668,6 @@ public class XPlanDao {
 		return mimeMap.getContentType(fileName);
 	}
 
-	private String createWktFromBboxIn4326(XPlanFeatureCollection fc) {
-		Envelope bboxIn4326 = fc.getBboxIn4326();
-		if (bboxIn4326 != null)
-			return WKTWriter.write(bboxIn4326);
-		return null;
-	}
-
 	private XPlanEnvelope createBboxFromWkt(String bboxAsWkt) {
 		if (bboxAsWkt != null && !bboxAsWkt.isEmpty()) {
 			try {
@@ -1826,22 +1685,6 @@ public class XPlanDao {
 		return null;
 	}
 
-	private int detectPlanId(PreparedStatement stmt) throws SQLException {
-		ResultSet generatedKeys = stmt.getGeneratedKeys();
-		try {
-			if (generatedKeys.next()) {
-				return generatedKeys.getInt(1);
-			}
-			else {
-				LOG.error("Detecting the generated planId failed!");
-				throw new SQLException("Detecting planId failed, no generated key obtained.");
-			}
-		}
-		finally {
-			generatedKeys.close();
-		}
-	}
-
 	private PlanStatus retrievePlanStatus(String planStatusMessage) {
 		if (planStatusMessage != null && planStatusMessage.length() > 0)
 			return PlanStatus.findByMessage(planStatusMessage);
@@ -1852,16 +1695,6 @@ public class XPlanDao {
 		if (planStatus != null)
 			return planStatus.getMessage();
 		return FESTGESTELLT.getMessage();
-	}
-
-	private void checkBereichNummern(List<Bereich> bereiche) throws AmbiguousBereichNummernException {
-		List<String> bereichNummern = new ArrayList<>();
-		for (Bereich bereich : bereiche) {
-			String nummer = bereich.getNummer();
-			if (bereichNummern.contains(nummer))
-				throw new AmbiguousBereichNummernException(nummer);
-			bereichNummern.add(nummer);
-		}
 	}
 
 	private Date convertToDate(java.sql.Date dateToConvert) {
