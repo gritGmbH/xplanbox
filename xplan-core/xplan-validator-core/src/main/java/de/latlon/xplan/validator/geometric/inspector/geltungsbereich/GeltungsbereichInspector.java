@@ -331,7 +331,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 			((LineString) intersection).getControlPoints().forEach(cp -> addIntersectionPoints(points, difference, cp));
 		}
 		else if (intersection instanceof DefaultMultiGeometry) {
-			for (Object geom : (DefaultMultiGeometry) intersection) {
+			for (Object geom : (DefaultMultiGeometry<?>) intersection) {
 				addIntersectionPoints(points, difference, (org.deegree.geometry.Geometry) geom);
 			}
 		}
@@ -355,9 +355,10 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 				org.deegree.geometry.Geometry primitive = extractExteriorRingOrPrimitive((GeometricPrimitive) geometry);
 				return Collections.singletonList(primitive);
 			case MULTI_GEOMETRY:
-				return extractExteriorRingOrPrimitive((MultiGeometry) geometry);
+				return extractExteriorRingOrPrimitive((MultiGeometry<?>) geometry);
+			default:
+				return Collections.singletonList(geometry);
 		}
-		return Collections.singletonList(geometry);
 	}
 
 	private org.deegree.geometry.Geometry extractExteriorRingOrPrimitive(GeometricPrimitive geometry) {
@@ -368,20 +369,23 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 					case Polygon:
 						Polygon polygon = (Polygon) surface;
 						return polygon.getExteriorRing();
+					default:
 				}
+			default:
 		}
 		return geometry;
 	}
 
-	private List<Ring> extractExteriorRingOrPrimitive(MultiGeometry geometry) {
+	@SuppressWarnings("unchecked")
+	private List<Ring> extractExteriorRingOrPrimitive(MultiGeometry<?> geometry) {
 		switch (geometry.getMultiGeometryType()) {
 			case MULTI_CURVE:
-				return geometry;
+				return (List<Ring>) geometry;
 			case MULTI_POLYGON:
 				MultiPolygon multiPolygon = (MultiPolygon) geometry;
 				return multiPolygon.stream().map(p -> p.getExteriorRing()).collect(Collectors.toList());
 			case MULTI_SURFACE:
-				MultiSurface multiSurface = (MultiSurface) geometry;
+				MultiSurface<?> multiSurface = (MultiSurface<?>) geometry;
 				List<Ring> exteriorRingsSurface = new ArrayList<>();
 				for (Object surfaceObject : multiSurface) {
 					Surface surface = (Surface) surfaceObject;
@@ -394,6 +398,7 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 					}
 				}
 				return exteriorRingsSurface;
+			default:
 		}
 		LOG.warn("Intersection with geometries of typ {} are currently not supported.",
 				geometry.getMultiGeometryType());

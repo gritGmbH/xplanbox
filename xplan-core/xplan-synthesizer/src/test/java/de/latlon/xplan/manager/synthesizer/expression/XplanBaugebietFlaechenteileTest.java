@@ -43,6 +43,7 @@ public class XplanBaugebietFlaechenteileTest {
 		FeatureCollection features = TestFeaturesUtils.load(XPLAN_41);
 		Feature feature = getTestFeature(features, "BP_Baugebiet_1");
 		XplanBaugebietFlaechenteile expr = new XplanBaugebietFlaechenteile();
+		@SuppressWarnings("unchecked")
 		MultiGeometry<Surface> geom = (MultiGeometry<Surface>) expr.evaluate(feature, features, planContext);
 		assertEquals(3, geom.size());
 	}

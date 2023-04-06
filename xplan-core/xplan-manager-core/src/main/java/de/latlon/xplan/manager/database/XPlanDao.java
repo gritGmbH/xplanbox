@@ -1018,7 +1018,7 @@ public class XPlanDao {
 		if (includeNoOfFeature)
 			numFeatures = rs.getInt(19);
 
-		XPlan xPlan = new XPlan((name != null ? name : "-"), (new Integer(id)).toString(), xpType);
+		XPlan xPlan = new XPlan((name != null ? name : "-"), Integer.toString(id), xpType);
 		xPlan.setVersion(xpVersion);
 		xPlan.setNumber(number != null ? number : "-");
 		xPlan.setGkz(gkz);
@@ -1648,20 +1648,15 @@ public class XPlanDao {
 		sql.append("data = ? ");
 		sql.append("WHERE plan = ? AND filename = ?");
 		String updateSql = sql.toString();
-		PreparedStatement stmt = null;
 		for (Entry<String, File> artefactToUpdate : artefactsToUpdate.entrySet()) {
-			FileInputStream fileInputStream = new FileInputStream(artefactToUpdate.getValue());
-			try {
-				stmt = conn.prepareStatement(updateSql);
-				stmt.setBytes(1, createZipArtefact(fileInputStream));
-				stmt.setInt(2, id);
-				stmt.setString(3, artefactToUpdate.getKey());
-				LOG.trace("SQL Update XPlanManager Artefacts: {}", stmt);
-				stmt.executeUpdate();
-			}
-			finally {
-				closeQuietly(stmt);
-				closeQuietly(fileInputStream);
+			try (FileInputStream fileInputStream = new FileInputStream(artefactToUpdate.getValue())) {
+				try (PreparedStatement stmt = conn.prepareStatement(updateSql)) {
+					stmt.setBytes(1, createZipArtefact(fileInputStream));
+					stmt.setInt(2, id);
+					stmt.setString(3, artefactToUpdate.getKey());
+					LOG.trace("SQL Update XPlanManager Artefacts: {}", stmt);
+					stmt.executeUpdate();
+				}
 			}
 		}
 	}
@@ -1674,24 +1669,19 @@ public class XPlanDao {
 		sql.append("VALUES (?,?,?,?,?,?::xplanmgr.artefacttype)");
 		String insertSql = sql.toString();
 		int num = selectNextArtefactNumber(conn, id);
-		PreparedStatement stmt = null;
 		for (Entry<String, File> artefactToInsert : artefactsToInsert.entrySet()) {
-			FileInputStream fileInputStream = new FileInputStream(artefactToInsert.getValue());
-			String fileName = artefactToInsert.getKey();
-			try {
-				stmt = conn.prepareStatement(insertSql);
-				stmt.setInt(1, id);
-				stmt.setString(2, fileName);
-				stmt.setBytes(3, createZipArtefact(fileInputStream));
-				stmt.setInt(4, num++);
-				stmt.setString(5, getArtefactMimeType(fileName));
-				stmt.setString(6, detectNonXPlanGmlArtefactType(featureCollection, fileName));
-				LOG.trace("SQL Insert XPlanManager Artefacts: {}", stmt);
-				stmt.executeUpdate();
-			}
-			finally {
-				closeQuietly(stmt);
-				closeQuietly(fileInputStream);
+			try (FileInputStream fileInputStream = new FileInputStream(artefactToInsert.getValue())) {
+				String fileName = artefactToInsert.getKey();
+				try (PreparedStatement stmt = conn.prepareStatement(insertSql)) {
+					stmt.setInt(1, id);
+					stmt.setString(2, fileName);
+					stmt.setBytes(3, createZipArtefact(fileInputStream));
+					stmt.setInt(4, num++);
+					stmt.setString(5, getArtefactMimeType(fileName));
+					stmt.setString(6, detectNonXPlanGmlArtefactType(featureCollection, fileName));
+					LOG.trace("SQL Insert XPlanManager Artefacts: {}", stmt);
+					stmt.executeUpdate();
+				}
 			}
 		}
 	}

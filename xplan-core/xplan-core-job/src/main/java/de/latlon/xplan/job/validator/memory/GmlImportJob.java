@@ -97,6 +97,7 @@ public class GmlImportJob implements Job {
 	private List<InsertedFids> getInsertedFids(SchedulerContext jobDataMap) {
 		if (!jobDataMap.containsKey(INSERTED_FIDS_KEY))
 			return Collections.synchronizedList(new ArrayList<>());
+		@SuppressWarnings("unchecked")
 		List<InsertedFids> insertedFids = (List<InsertedFids>) jobDataMap.get(INSERTED_FIDS_KEY);
 		jobDataMap.put(INSERTED_FIDS_KEY, insertedFids);
 		return insertedFids;
@@ -104,12 +105,10 @@ public class GmlImportJob implements Job {
 
 	private List<String> importGml(Path p, DeegreeWorkspace workspace) {
 		LOG.info("Insert {}", p);
-		InputStream inputStream = null;
 		XMLStreamReader xmlStreamReader = null;
 		GMLStreamReader gmlStreamReader = null;
 		FeatureStoreTransaction ta = null;
-		try {
-			inputStream = Files.newInputStream(p);
+		try (InputStream inputStream = Files.newInputStream(p)) {
 			xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(inputStream);
 			gmlStreamReader = GMLInputFactory.createGMLStreamReader(GML_32, xmlStreamReader);
 			FeatureCollection fc = gmlStreamReader.readFeatureCollection();
@@ -129,7 +128,6 @@ public class GmlImportJob implements Job {
 		finally {
 			closeQuietly(gmlStreamReader);
 			closeQuietly(xmlStreamReader);
-			IOUtils.closeQuietly(inputStream);
 		}
 		return Collections.emptyList();
 	}

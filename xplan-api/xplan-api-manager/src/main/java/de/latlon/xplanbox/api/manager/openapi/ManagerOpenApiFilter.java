@@ -44,7 +44,8 @@ public class ManagerOpenApiFilter extends de.latlon.xplanbox.api.commons.openapi
 		if (content.containsKey("multipart/form-data")) {
 			MediaType mediaType = content.get("multipart/form-data");
 			if (mediaType != null && mediaType.getSchema() != null) {
-				Schema schema = mediaType.getSchema();
+				Schema<?> schema = mediaType.getSchema();
+				@SuppressWarnings("rawtypes")
 				Map<String, Schema> properties = schema.getProperties();
 				if (properties.containsKey("datei")) {
 					mediaType.addEncoding("datei",

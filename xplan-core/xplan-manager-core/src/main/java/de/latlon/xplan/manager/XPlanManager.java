@@ -379,7 +379,7 @@ public class XPlanManager {
 			return planToEditFactory.createXPlanToEdit(plan, originalPlanFC);
 		}
 		finally {
-			closeQuietly(originalPlan);
+			closeQuietly(originalPlan, null);
 		}
 	}
 

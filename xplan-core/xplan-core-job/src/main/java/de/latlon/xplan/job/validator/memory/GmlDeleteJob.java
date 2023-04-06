@@ -65,6 +65,7 @@ public class GmlDeleteJob implements Job {
 
 		try {
 			SchedulerContext context = jobExecutionContext.getScheduler().getContext();
+			@SuppressWarnings("unchecked")
 			List<InsertedFids> insertedFids = (List<InsertedFids>) context.get(INSERTED_FIDS_KEY);
 			Calendar deleteBeforeThis = Calendar.getInstance();
 			deleteBeforeThis.add(MINUTE, -deleteAfter);

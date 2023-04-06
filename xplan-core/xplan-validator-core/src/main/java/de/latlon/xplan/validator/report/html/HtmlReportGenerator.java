@@ -76,7 +76,7 @@ public class HtmlReportGenerator {
 			return xmlOut;
 		}
 		finally {
-			IOUtils.closeQuietly(xmlOut);
+			IOUtils.closeQuietly(xmlOut, null);
 		}
 	}
 

@@ -140,12 +140,8 @@ public class XPlanSynthesizerTest extends AbstractXplanSynthesizerTest {
 
 	private static void copyFile(Path targetDir, String fileName, String targetFileName) throws IOException {
 		Path targetFile = targetDir.resolve(targetFileName);
-		InputStream resourceAsStream = XPlanSynthesizerTest.class.getResourceAsStream(fileName);
-		try {
+		try (InputStream resourceAsStream = XPlanSynthesizerTest.class.getResourceAsStream(fileName)) {
 			Files.copy(resourceAsStream, targetFile);
-		}
-		finally {
-			closeQuietly(resourceAsStream);
 		}
 	}
 

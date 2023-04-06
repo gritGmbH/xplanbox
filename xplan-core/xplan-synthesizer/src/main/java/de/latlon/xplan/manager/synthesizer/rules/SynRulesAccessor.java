@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -110,7 +111,7 @@ public class SynRulesAccessor {
 
 	private void parseRules(Map<String, Expression> synRules, InputStream is) {
 		try {
-			for (String line : IOUtils.readLines(is)) {
+			for (String line : IOUtils.readLines(is, Charset.defaultCharset())) {
 				if (!line.startsWith("#") && !"".equals(line.trim())) {
 					int firstEquals = line.indexOf("=");
 					String propertyPath = line.substring(0, firstEquals);
@@ -123,7 +124,7 @@ public class SynRulesAccessor {
 			throw new RuntimeException("Error while reading the rules file ", e);
 		}
 		finally {
-			closeQuietly(is);
+			closeQuietly(is, null);
 		}
 	}
 
