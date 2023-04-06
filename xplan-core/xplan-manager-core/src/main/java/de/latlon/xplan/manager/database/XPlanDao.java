@@ -24,7 +24,6 @@ import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
-import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
@@ -46,7 +45,6 @@ import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.FeatureStoreException;
-import org.deegree.feature.persistence.FeatureStoreTransaction;
 import org.deegree.feature.persistence.query.Query;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
 import org.deegree.feature.types.AppSchema;
@@ -55,12 +53,10 @@ import org.deegree.geometry.Envelope;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.io.WKTReader;
 import org.deegree.protocol.wfs.getfeature.TypeName;
-import org.deegree.protocol.wfs.transaction.action.IDGenMode;
 import org.locationtech.jts.io.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.activation.MimetypesFileTypeMap;
 import javax.xml.namespace.QName;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -80,16 +76,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.manager.database.ArtefactType.RASTERBASIS;
-import static de.latlon.xplan.manager.database.ArtefactType.XPLANGML;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
-import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
-import static org.apache.commons.io.IOUtils.copyLarge;
 import static org.deegree.protocol.wfs.transaction.action.IDGenMode.USE_EXISTING;
 
 /**
@@ -117,6 +109,8 @@ public class XPlanDao {
 
 	private final XPlanSynWfsAdapter xPlanSynWfsAdapter;
 
+	private final XPlanInspirePluAdapter xPlanInspirePluAdapter;
+
 	/**
 	 * Creates a new {@link XPlanDao} instance.
 	 * <p>
@@ -132,6 +126,7 @@ public class XPlanDao {
 		this.xPlanDbAdapter = new XPlanDbAdapter(managerWorkspaceWrapper);
 		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper);
 		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper);
+		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper);
 	}
 
 	/**
@@ -174,19 +169,7 @@ public class XPlanDao {
 	}
 
 	public void insertInspirePlu(FeatureCollection featureCollection) throws Exception {
-		FeatureStoreTransaction transaction = null;
-		try {
-			LOG.info("Insert INSPIRE PLU dataset");
-			FeatureStore inspirePluStore = managerWorkspaceWrapper.lookupInspirePluStore();
-			transaction = inspirePluStore.acquireTransaction();
-
-			transaction.performInsert(featureCollection, IDGenMode.GENERATE_NEW);
-			transaction.commit();
-		}
-		catch (FeatureStoreException e) {
-			rollbackTransaction(transaction, e);
-			throw new Exception("Fehler beim Einfügen des INSPIRE PLU Datensatz: " + e.getMessage(), e);
-		}
+		xPlanInspirePluAdapter.insertInspirePlu(featureCollection);
 	}
 
 	/**
@@ -1075,23 +1058,6 @@ public class XPlanDao {
 		return new Pair<>(fids, ta);
 	}
 
-	private void insertFeatureMetadata(Connection conn, List<String> fids, int planId) throws SQLException {
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement("INSERT INTO xplanmgr.features (plan,fid,num) VALUES (?,?,?)");
-			stmt.setInt(1, planId);
-			for (int i = 0; i < fids.size(); i++) {
-				stmt.setString(2, fids.get(i));
-				stmt.setInt(3, i);
-				stmt.addBatch();
-			}
-			stmt.executeBatch();
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
 	private void insertOrReplacePlanWerkWmsMetadata(Connection conn, int planId, String title,
 			String resourceIdentifier, String datasetMetadataUrl, String serviceMetadataUrl) throws SQLException {
 		PreparedStatement stmt = null;
@@ -1134,14 +1100,6 @@ public class XPlanDao {
 		}
 	}
 
-	private static String detectArtefactType(XPlanFeatureCollection xPlanFeatureCollection,
-			ZipEntryWithContent archiveEntry) {
-		if (archiveEntry.isXPlanGml()) {
-			return XPLANGML.name();
-		}
-		return detectNonXPlanGmlArtefactType(xPlanFeatureCollection, archiveEntry.getName());
-	}
-
 	private static String detectNonXPlanGmlArtefactType(XPlanFeatureCollection xPlanFeatureCollection, String name) {
 		List<ExternalReference> rasterPlanBaseAndUpdateScans = xPlanFeatureCollection.getExternalReferenceInfo()
 				.getRasterPlanBaseAndUpdateScans();
@@ -1172,28 +1130,6 @@ public class XPlanDao {
 		}
 	}
 
-	private byte[] createZipArtefact(InputStream is) throws IOException {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		GZIPOutputStream gos = new GZIPOutputStream(bos);
-		copyLarge(is, gos);
-		gos.close();
-		return bos.toByteArray();
-	}
-
-	private String getArtefactMimeType(String fileName) {
-		MimetypesFileTypeMap mimeMap = new MimetypesFileTypeMap();
-		mimeMap.addMimeTypes("text/xml gml xml");
-		mimeMap.addMimeTypes("application/pdf pdf");
-		mimeMap.addMimeTypes("application/zip zip");
-		mimeMap.addMimeTypes("image/jpeg jpg jpeg");
-		mimeMap.addMimeTypes("image/png png");
-		mimeMap.addMimeTypes("image/tiff tif tiff");
-		mimeMap.addMimeTypes("image/ecw ecw");
-		mimeMap.addMimeTypes("text/html html");
-		mimeMap.addMimeTypes("text/plain txt text");
-		return mimeMap.getContentType(fileName);
-	}
-
 	private XPlanEnvelope createBboxFromWkt(String bboxAsWkt) {
 		if (bboxAsWkt != null && !bboxAsWkt.isEmpty()) {
 			try {
@@ -1211,27 +1147,8 @@ public class XPlanDao {
 		return null;
 	}
 
-	private PlanStatus retrievePlanStatus(String planStatusMessage) {
-		if (planStatusMessage != null && planStatusMessage.length() > 0)
-			return PlanStatus.findByMessage(planStatusMessage);
-		return FESTGESTELLT;
-	}
-
-	private String retrievePlanStatusMessage(PlanStatus planStatus) {
-		if (planStatus != null)
-			return planStatus.getMessage();
-		return FESTGESTELLT.getMessage();
-	}
-
 	private Date convertToDate(java.sql.Date dateToConvert) {
 		return dateToConvert != null ? new Date(dateToConvert.getTime()) : null;
-	}
-
-	private Timestamp convertToSqlTimestamp(Date dateToConvert) {
-		if (dateToConvert != null) {
-			return new Timestamp(dateToConvert.getTime());
-		}
-		return null;
 	}
 
 	private java.sql.Date convertToSqlDate(Date dateToConvert) {
@@ -1239,18 +1156,6 @@ public class XPlanDao {
 			return new java.sql.Date(dateToConvert.getTime());
 		}
 		return null;
-	}
-
-	private void rollbackTransaction(FeatureStoreTransaction transaction, FeatureStoreException e) {
-		if (transaction != null)
-			try {
-				transaction.rollback();
-			}
-			catch (FeatureStoreException fse) {
-				LOG.warn("Rollback failed: " + e.getMessage());
-				LOG.trace("Rollback failed.", e);
-
-			}
 	}
 
 }
