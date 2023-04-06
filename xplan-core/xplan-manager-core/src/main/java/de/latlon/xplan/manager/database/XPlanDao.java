@@ -183,22 +183,8 @@ public class XPlanDao {
 	 */
 	public void insertOrReplacePlanWerkWmsMetadata(int planId, String title, String resourceIdentifier,
 			String datasetMetadataUrl, String serviceMetadataUrl) throws Exception {
-		Connection conn = null;
-		try {
-			LOG.info("Insert PlanWerkWmsMetadata");
-			conn = managerWorkspaceWrapper.openConnection();
-			conn.setAutoCommit(false);
-
-			insertOrReplacePlanWerkWmsMetadata(conn, planId, title, resourceIdentifier, datasetMetadataUrl,
-					serviceMetadataUrl);
-			conn.commit();
-		}
-		catch (Exception e) {
-			throw new Exception("Fehler beim Einfügen: " + e.getMessage(), e);
-		}
-		finally {
-			closeQuietly(conn);
-		}
+		xPlanDbAdapter.insertOrReplacePlanWerkWmsMetadata(planId, title, resourceIdentifier, datasetMetadataUrl,
+				serviceMetadataUrl);
 	}
 
 	/**
@@ -1056,28 +1042,6 @@ public class XPlanDao {
 		long elapsed = System.currentTimeMillis() - begin;
 		LOG.info("OK [" + elapsed + " ms].");
 		return new Pair<>(fids, ta);
-	}
-
-	private void insertOrReplacePlanWerkWmsMetadata(Connection conn, int planId, String title,
-			String resourceIdentifier, String datasetMetadataUrl, String serviceMetadataUrl) throws SQLException {
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement("DELETE FROM xplanmgr.planwerkwmsmetadata WHERE plan = ?");
-			stmt.setInt(1, planId);
-			stmt.execute();
-
-			stmt = conn.prepareStatement(
-					"INSERT INTO xplanmgr.planwerkwmsmetadata (plan, title, resourceidentifier, datametadataurl, servicemetadataurl) VALUES (?,?,?,?,?)");
-			stmt.setInt(1, planId);
-			stmt.setString(2, title);
-			stmt.setString(3, resourceIdentifier);
-			stmt.setString(4, datasetMetadataUrl);
-			stmt.setString(5, serviceMetadataUrl);
-			stmt.execute();
-		}
-		finally {
-			closeQuietly(stmt);
-		}
 	}
 
 	private void updateInspirePublishedStatus(Connection conn, String xplanId, boolean isPiublished)
