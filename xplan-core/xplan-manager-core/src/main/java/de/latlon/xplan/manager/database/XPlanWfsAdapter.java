@@ -22,7 +22,9 @@ package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
+import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
 import org.deegree.filter.IdFilter;
@@ -80,6 +82,51 @@ public class XPlanWfsAdapter {
 		}
 		catch (Exception e) {
 			throw new Exception("Fehler beim Löschen des Plans: " + e.getMessage() + ".", e);
+		}
+	}
+
+	public List<String> update(int planId, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata,
+			XPlanFeatureCollection fc, Set<String> oldFids) throws Exception {
+		SQLFeatureStoreTransaction taSource = null;
+		SQLFeatureStoreTransaction taTarget = null;
+		boolean sameSourceAndTarget = false;
+		try {
+			XPlanVersion version = fc.getVersion();
+			PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
+			PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();
+
+			FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus);
+			sameSourceAndTarget = oldPlanStatus == newPlanStatus;
+			taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
+			if (sameSourceAndTarget) {
+				taTarget = taSource;
+			}
+			else {
+				FeatureStore fsTarget = managerWorkspaceWrapper.lookupStore(version, newPlanStatus);
+				taTarget = (SQLFeatureStoreTransaction) fsTarget.acquireTransaction();
+			}
+
+			IdFilter idFilter = new IdFilter(oldFids);
+			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")...");
+			taSource.performDelete(idFilter, null);
+			List<String> newFids = taTarget.performInsert(fc.getFeatures(), USE_EXISTING);
+
+			taSource.commit();
+			if (!sameSourceAndTarget) {
+				taTarget.commit();
+			}
+			LOG.info("OK");
+			return newFids;
+		}
+		catch (Exception e) {
+			LOG.error("Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e);
+			if (taSource != null)
+				taSource.rollback();
+			if (!sameSourceAndTarget) {
+				if (taTarget != null)
+					taTarget.rollback();
+			}
+			throw new Exception("Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e);
 		}
 	}
 

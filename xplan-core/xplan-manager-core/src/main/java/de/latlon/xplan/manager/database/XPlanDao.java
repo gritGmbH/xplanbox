@@ -37,7 +37,6 @@ import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import org.apache.commons.io.IOUtils;
@@ -66,7 +65,6 @@ import javax.xml.namespace.QName;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -77,10 +75,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -89,8 +84,6 @@ import java.util.zip.GZIPOutputStream;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
-import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.manager.database.ArtefactType.RASTERBASIS;
 import static de.latlon.xplan.manager.database.ArtefactType.XPLANGML;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
@@ -255,31 +248,27 @@ public class XPlanDao {
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
 			List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {
-		Connection conn = null;
 		try {
 			LOG.info("Update XPlan");
-
-			conn = managerWorkspaceWrapper.openConnection();
-			conn.setAutoCommit(false);
-
-			updatePlanMetadata(conn, oldXplan, newAdditionalPlanData, fc, synFc, sortDate);
-			updatePlanArtefact(conn, oldXplan, planArtefact);
-			updateArtefacts(conn, oldXplan, fc, xPlanToEdit, uploadedArtefacts, removedRefs);
-			updateXPlanAndXPlanSyn(conn, oldXplan, newAdditionalPlanData, fc, synFc, sortDate);
-
 			long begin = System.currentTimeMillis();
-			LOG.info("- Persistierung...");
-			conn.commit();
+
+			int planId = getXPlanIdAsInt(oldXplan.getId());
+			Set<String> oldFids = xPlanDbAdapter.selectFids(planId);
+
+			xPlanDbAdapter.update(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate,
+					uploadedArtefacts, removedRefs);
+			addAdditionalProperties(synFc, newAdditionalPlanData.getStartDateTime(),
+					newAdditionalPlanData.getEndDateTime(), planId, sortDate);
+
+			List<String> newFids = xPlanSynWfsAdapter.update(planId, oldXplan, newAdditionalPlanData, synFc, oldFids);
+			xPlanWfsAdapter.update(planId, oldXplan, newAdditionalPlanData, fc, oldFids);
+			xPlanDbAdapter.updateFids(planId, newFids);
+
 			long elapsed = System.currentTimeMillis() - begin;
 			LOG.info("OK [" + elapsed + " ms].");
 		}
 		catch (Exception e) {
-			if (conn != null)
-				conn.rollback();
 			throw new Exception("Fehler beim Einfügen: " + e.getMessage(), e);
-		}
-		finally {
-			closeQuietly(conn);
 		}
 	}
 
@@ -344,7 +333,7 @@ public class XPlanDao {
 				taSyn.performDelete(idFilterValidIds, null);
 				insertXPlanSyn(synFeatureStore, synFc);
 
-				updateFeatureMetadata(conn, fidsAndXPlanTa.first, planId);
+				xPlanDbAdapter.updateFeatureMetadata(conn, fidsAndXPlanTa.first, planId);
 			}
 			else {
 				LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
@@ -643,17 +632,6 @@ public class XPlanDao {
 			closeQuietly(stmt, rs);
 		}
 		return null;
-	}
-
-	public List<String> reftrieveArtefactFileNames(String planId) throws Exception {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			return selectArtefactFileNames(conn, getXPlanIdAsInt(planId));
-		}
-		finally {
-			closeQuietly(conn);
-		}
 	}
 
 	/**
@@ -1042,50 +1020,6 @@ public class XPlanDao {
 		}
 	}
 
-	private List<String> selectArtefactFileNames(Connection conn, int id) throws Exception {
-		List<String> artefactFileNames = new ArrayList<String>();
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			stmt = conn.prepareStatement("SELECT filename FROM xplanmgr.artefacts WHERE plan=?");
-			stmt.setInt(1, id);
-			LOG.trace("SQL Select artefacts filenames: {}", stmt);
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				String fileName = rs.getString(1);
-				if (fileName != null && !"".equals(fileName))
-					artefactFileNames.add(fileName);
-			}
-		}
-		catch (Exception e) {
-			throw new Exception("Interner-/Konfigurations-Fehler. Kann XPlan-Artefakte nicht aus DB lesen: "
-					+ e.getLocalizedMessage(), e);
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
-		return artefactFileNames;
-	}
-
-	private int selectNextArtefactNumber(Connection conn, int id) throws Exception {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			stmt = conn.prepareStatement("SELECT max(num) FROM xplanmgr.artefacts WHERE plan = ?");
-			stmt.setInt(1, id);
-			LOG.trace("SQL Select artefacts max num value: {}", stmt);
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				int maxNum = rs.getInt(1);
-				return maxNum + 1;
-			}
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
-		return 0;
-	}
-
 	public List<Bereich> selectBereiche(Connection conn, int planId) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -1127,7 +1061,7 @@ public class XPlanDao {
 		List<String> fids = ta.performInsert(fc.getFeatures(), USE_EXISTING);
 		long elapsed = System.currentTimeMillis() - begin;
 		LOG.info("OK [" + elapsed + " ms].");
-		return new Pair<List<String>, SQLFeatureStoreTransaction>(fids, ta);
+		return new Pair<>(fids, ta);
 	}
 
 	private Pair<List<String>, SQLFeatureStoreTransaction> insertXPlanSyn(FeatureStore fs, FeatureCollection synFc)
@@ -1139,96 +1073,6 @@ public class XPlanDao {
 		long elapsed = System.currentTimeMillis() - begin;
 		LOG.info("OK [" + elapsed + " ms].");
 		return new Pair<>(fids, ta);
-	}
-
-	private void updateXPlanAndXPlanSyn(Connection conn, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata,
-			XPlanFeatureCollection fc, FeatureCollection synFc, Date sortDate) throws Exception {
-		PreparedStatement stmt = null;
-		SQLFeatureStoreTransaction taSource = null;
-		SQLFeatureStoreTransaction taSynSource = null;
-		SQLFeatureStoreTransaction taTarget = null;
-		SQLFeatureStoreTransaction taSynTarget = null;
-		boolean sameSourceAndTarget = false;
-		try {
-			int planId = getXPlanIdAsInt(oldXPlan.getId());
-			XPlanVersion version = fc.getVersion();
-			PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
-			PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();
-
-			FeatureStore fsSource = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus);
-			FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus);
-			sameSourceAndTarget = oldPlanStatus == newPlanStatus;
-			FeatureStore fsTarget = sameSourceAndTarget ? fsSource
-					: managerWorkspaceWrapper.lookupStore(version, newPlanStatus);
-			FeatureStore synFsTarget = sameSourceAndTarget ? synFsSource
-					: managerWorkspaceWrapper.lookupStore(XPLAN_SYN, newPlanStatus);
-
-			taSource = (SQLFeatureStoreTransaction) fsSource.acquireTransaction();
-			taSynSource = (SQLFeatureStoreTransaction) synFsSource.acquireTransaction();
-
-			Set<String> ids = xPlanDbAdapter.selectFids(planId);
-
-			IdFilter idFilter = new IdFilter(ids);
-			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + version + ")...");
-			taSource.performDelete(idFilter, null);
-			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTa = insertXPlan(fsTarget, fc);
-			taTarget = fidsAndXPlanTa.second;
-			LOG.info("OK");
-
-			addAdditionalProperties(synFc, newXPlanMetadata.getStartDateTime(), newXPlanMetadata.getEndDateTime(),
-					planId, sortDate);
-			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
-			taSynSource.performDelete(idFilter, null);
-			Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanSynTa = insertXPlanSyn(synFsTarget, synFc);
-			taSynTarget = fidsAndXPlanSynTa.second;
-			LOG.info("OK");
-
-			updateFeatureMetadata(conn, fidsAndXPlanTa.first, planId);
-			LOG.info("OK");
-
-			LOG.info("- Persistierung...");
-			taSource.commit();
-			taSynSource.commit();
-			if (!sameSourceAndTarget) {
-				taTarget.commit();
-				taSynTarget.commit();
-			}
-			LOG.info("OK");
-		}
-		catch (Exception e) {
-			LOG.error("Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e);
-			if (taSource != null)
-				taSource.rollback();
-			if (taSynSource != null)
-				taSynSource.rollback();
-			if (!sameSourceAndTarget) {
-				if (taTarget != null)
-					taTarget.rollback();
-				if (taSynTarget != null)
-					taSynTarget.rollback();
-			}
-			throw new Exception("Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e);
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-
-	}
-
-	private void updateFeatureMetadata(Connection conn, List<String> fids, int planId) throws SQLException {
-		PreparedStatement stmt = null;
-		try {
-			LOG.info("- Aktualisiere Features von XPlan " + planId + " in der Manager-DB...");
-			String sql = "DELETE FROM xplanmgr.features WHERE plan=?";
-			LOG.trace("SQL Delete XPlanManager Features: " + sql);
-			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, planId);
-			stmt.executeUpdate();
-			insertFeatureMetadata(conn, fids, planId);
-		}
-		finally {
-			closeQuietly(stmt);
-		}
 	}
 
 	private void insertFeatureMetadata(Connection conn, List<String> fids, int planId) throws SQLException {
@@ -1264,39 +1108,6 @@ public class XPlanDao {
 			stmt.setString(4, datasetMetadataUrl);
 			stmt.setString(5, serviceMetadataUrl);
 			stmt.execute();
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
-	private void updatePlanMetadata(Connection conn, XPlan xplan, AdditionalPlanData newXPlanMetadata,
-			XPlanFeatureCollection fc, FeatureCollection synFc, Date sortDate) throws SQLException {
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE xplanmgr.plans SET ");
-		sql.append("name = ?, ");
-		sql.append("rechtsstand = ?, ");
-		sql.append("sonst_plan_art = ?, ");
-		sql.append("wmsSortDate = ?, ");
-		sql.append("gueltigkeitbeginn = ?, ");
-		sql.append("gueltigkeitende = ?, ");
-		sql.append("planstatus = ? ");
-		sql.append("WHERE id = ? ");
-		String updateSql = sql.toString();
-		PreparedStatement stmt = null;
-		try {
-			XPlanType type = XPlanType.valueOf(xplan.getType());
-			stmt = conn.prepareStatement(updateSql);
-			stmt.setString(1, fc.getPlanName());
-			stmt.setString(2, retrieveRechtsstandWert(synFc, type));
-			stmt.setString(3, retrieveAdditionalTypeWert(synFc, type));
-			stmt.setTimestamp(4, convertToSqlTimestamp(sortDate));
-			stmt.setTimestamp(5, convertToSqlTimestamp(newXPlanMetadata.getStartDateTime()));
-			stmt.setTimestamp(6, convertToSqlTimestamp(newXPlanMetadata.getEndDateTime()));
-			stmt.setString(7, retrievePlanStatusMessage(newXPlanMetadata.getPlanStatus()));
-			stmt.setObject(8, Integer.parseInt(xplan.getId()));
-			LOG.trace("SQL Update XPlanManager Metadata: {}", stmt);
-			stmt.executeUpdate();
 		}
 		finally {
 			closeQuietly(stmt);
@@ -1341,153 +1152,6 @@ public class XPlanDao {
 		return null;
 	}
 
-	private void updatePlanArtefact(Connection conn, XPlan xplan, byte[] planArtefact) throws Exception {
-		PreparedStatement stmt = null;
-		long begin = System.currentTimeMillis();
-		LOG.info(String.format("- Aktualisierung von XPlan-Artefakt 'xplan.gml'"));
-		try {
-			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE xplanmgr.artefacts SET ");
-			sql.append("data = ? ");
-			sql.append("WHERE plan = ? AND artefacttype='XPLANGML'");
-			String updateSql = sql.toString();
-			stmt = conn.prepareStatement(updateSql);
-			stmt.setBytes(1, createZipArtefact(new ByteArrayInputStream(planArtefact)));
-			stmt.setInt(2, Integer.parseInt(xplan.getId()));
-			LOG.trace("SQL Update XPlanManager Artefacts: {}", stmt);
-			stmt.executeUpdate();
-			stmt.close();
-			long elapsed = System.currentTimeMillis() - begin;
-			LOG.info("OK [" + elapsed + " ms]");
-		}
-		catch (SQLException e) {
-			throw new Exception("Fehler beim Einfügen in DB: " + e.getLocalizedMessage(), e);
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
-	private void updateArtefacts(Connection conn, XPlan xPlan, XPlanFeatureCollection featureCollection,
-			XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {
-		LOG.info("- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", xPlan.getId());
-		int id = getXPlanIdAsInt(xPlan.getId());
-		long begin = System.currentTimeMillis();
-		try {
-			List<String> referenceFileNames = retrieveReferenceFileNames(xPlanToEdit);
-			List<String> artefactFileNames = selectArtefactFileNames(conn, id);
-			Map<String, File> artefactsToUpdate = new HashMap<String, File>();
-			Map<String, File> artefactsToInsert = new HashMap<String, File>();
-			for (String refFileName : referenceFileNames) {
-				updateArtefactIfRequired(uploadedArtefacts, artefactFileNames, artefactsToUpdate, artefactsToInsert,
-						refFileName);
-			}
-			executeUpdateArtefacts(conn, id, artefactsToUpdate);
-			executeInsertArtefacts(conn, id, artefactsToInsert, featureCollection);
-			executeDeleteArtefacts(conn, id, removedRefs);
-
-			long elapsed = System.currentTimeMillis() - begin;
-			LOG.info("OK [" + elapsed + " ms]");
-		}
-		catch (SQLException e) {
-			throw new Exception("Fehler beim Aktualisieren der XPlan-Artefakte in DB: " + e.getLocalizedMessage(), e);
-		}
-	}
-
-	private void updateArtefactIfRequired(List<File> uploadedArtefacts, List<String> artefactFileNames,
-			Map<String, File> artefactsToUpdate, Map<String, File> artefactsToInsert, String refFileName)
-			throws Exception {
-		LOG.debug("Handle reference '{}'.", refFileName);
-		if (refFileName.startsWith("http")) {
-			LOG.debug("Found http reference, update of artefacts is not required.");
-			return;
-		}
-		File uploadedFile = retrieveUploadedArtefact(refFileName, uploadedArtefacts);
-		boolean isStoredInArtefactsTable = artefactFileNames.contains(refFileName);
-		if (uploadedFile != null) {
-			LOG.debug("Reference was uploaded, update in DB required.");
-			if (isStoredInArtefactsTable) {
-				artefactsToUpdate.put(refFileName, uploadedFile);
-			}
-			else {
-				artefactsToInsert.put(refFileName, uploadedFile);
-			}
-		}
-		else if (isStoredInArtefactsTable) {
-			LOG.debug("Reference was not changed");
-		}
-		else {
-			throw new Exception("Could not find referenced artefact with name " + refFileName);
-		}
-	}
-
-	private void executeUpdateArtefacts(Connection conn, int id, Map<String, File> artefactsToUpdate)
-			throws SQLException, IOException {
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE xplanmgr.artefacts SET ");
-		sql.append("data = ? ");
-		sql.append("WHERE plan = ? AND filename = ?");
-		String updateSql = sql.toString();
-		for (Entry<String, File> artefactToUpdate : artefactsToUpdate.entrySet()) {
-			try (FileInputStream fileInputStream = new FileInputStream(artefactToUpdate.getValue())) {
-				try (PreparedStatement stmt = conn.prepareStatement(updateSql)) {
-					stmt.setBytes(1, createZipArtefact(fileInputStream));
-					stmt.setInt(2, id);
-					stmt.setString(3, artefactToUpdate.getKey());
-					LOG.trace("SQL Update XPlanManager Artefacts: {}", stmt);
-					stmt.executeUpdate();
-				}
-			}
-		}
-	}
-
-	private void executeInsertArtefacts(Connection conn, int id, Map<String, File> artefactsToInsert,
-			XPlanFeatureCollection featureCollection) throws Exception {
-		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO xplanmgr.artefacts ");
-		sql.append("(plan,filename,data,num,mimetype,artefacttype) ");
-		sql.append("VALUES (?,?,?,?,?,?::xplanmgr.artefacttype)");
-		String insertSql = sql.toString();
-		int num = selectNextArtefactNumber(conn, id);
-		for (Entry<String, File> artefactToInsert : artefactsToInsert.entrySet()) {
-			try (FileInputStream fileInputStream = new FileInputStream(artefactToInsert.getValue())) {
-				String fileName = artefactToInsert.getKey();
-				try (PreparedStatement stmt = conn.prepareStatement(insertSql)) {
-					stmt.setInt(1, id);
-					stmt.setString(2, fileName);
-					stmt.setBytes(3, createZipArtefact(fileInputStream));
-					stmt.setInt(4, num++);
-					stmt.setString(5, getArtefactMimeType(fileName));
-					stmt.setString(6, detectNonXPlanGmlArtefactType(featureCollection, fileName));
-					LOG.trace("SQL Insert XPlanManager Artefacts: {}", stmt);
-					stmt.executeUpdate();
-				}
-			}
-		}
-	}
-
-	private void executeDeleteArtefacts(Connection conn, int id, Set<String> artefactsToDelete) throws Exception {
-		LOG.debug("Artefacts to delete: {}", artefactsToDelete);
-		StringBuilder sql = new StringBuilder();
-		sql.append("DELETE FROM xplanmgr.artefacts ");
-		sql.append("WHERE plan = ? AND filename = ? ");
-		String deleteSql = sql.toString();
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement(deleteSql);
-			stmt.setInt(1, id);
-			for (String artefactToDelete : artefactsToDelete) {
-				stmt.setString(2, artefactToDelete);
-				LOG.trace("SQL Delete XPlanManager Artefacts: {}", stmt);
-				stmt.addBatch();
-			}
-			stmt.executeBatch();
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
 	private boolean checkIfPlanWithSameNameAndStatusExists(Connection conn, String planName, String status)
 			throws SQLException {
 		StringBuilder sql = new StringBuilder();
@@ -1505,38 +1169,6 @@ public class XPlanDao {
 		}
 		finally {
 			closeQuietly(stmt);
-		}
-	}
-
-	private File retrieveUploadedArtefact(String refFileName, List<File> uploadedArtefacts) {
-		if (uploadedArtefacts != null) {
-			for (File uploadedArtefact : uploadedArtefacts) {
-				if (refFileName.equals(uploadedArtefact.getName()))
-					return uploadedArtefact;
-			}
-		}
-		return null;
-	}
-
-	private List<String> retrieveReferenceFileNames(XPlanToEdit xPlanToEdit) {
-		List<String> referenceFileNames = new ArrayList<String>();
-		addReferences(referenceFileNames, xPlanToEdit.getTexts());
-		addReferences(referenceFileNames, xPlanToEdit.getReferences());
-		xPlanToEdit.getRasterBasis().forEach(rasterBasis -> {
-			if (rasterBasis.getRasterReferences() != null)
-				addReferences(referenceFileNames, rasterBasis.getRasterReferences());
-		});
-		return referenceFileNames;
-	}
-
-	private void addReferences(List<String> referenceFileNames, List<? extends AbstractReference> references) {
-		for (AbstractReference ref : references) {
-			String reference = ref.getReference();
-			if (reference != null && !"".equals(reference))
-				referenceFileNames.add(reference);
-			String georeference = ref.getGeoReference();
-			if (georeference != null && !"".equals(georeference))
-				referenceFileNames.add(georeference);
 		}
 	}
 

@@ -20,7 +20,9 @@
  */
 package de.latlon.xplan.manager.database;
 
+import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
+import de.latlon.xplan.manager.web.shared.XPlan;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.persistence.FeatureStore;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
@@ -48,8 +50,6 @@ public class XPlanSynWfsAdapter {
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
 	}
 
-	// addAdditionalProperties(synFc, beginValidity, endValidity, synFs, planId,
-	// sortDate);
 	public List<String> insert(FeatureCollection synFc, PlanStatus planStatus) throws Exception {
 		try {
 			LOG.info("Insert XPlan in XPlanSynWF");
@@ -81,6 +81,51 @@ public class XPlanSynWfsAdapter {
 		}
 		catch (Exception e) {
 			throw new Exception("Fehler beim Löschen des Plans: " + e.getMessage() + ".", e);
+		}
+	}
+
+	public List<String> update(int planId, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata, FeatureCollection synFc,
+			Set<String> oldFids) throws Exception {
+		SQLFeatureStoreTransaction taSynSource = null;
+		SQLFeatureStoreTransaction taSynTarget = null;
+		boolean sameSourceAndTarget = false;
+		try {
+			PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
+			PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();
+
+			FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus);
+			sameSourceAndTarget = oldPlanStatus == newPlanStatus;
+
+			taSynSource = (SQLFeatureStoreTransaction) synFsSource.acquireTransaction();
+			if (sameSourceAndTarget) {
+				taSynTarget = taSynSource;
+			}
+			else {
+				FeatureStore synFsTarget = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, newPlanStatus);
+				taSynTarget = (SQLFeatureStoreTransaction) synFsTarget.acquireTransaction();
+			}
+			IdFilter idFilter = new IdFilter(oldFids);
+
+			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
+			taSynSource.performDelete(idFilter, null);
+
+			List<String> newFids = taSynTarget.performInsert(synFc, USE_EXISTING);
+			taSynSource.commit();
+			if (!sameSourceAndTarget) {
+				taSynTarget.commit();
+			}
+			LOG.info("OK");
+			return newFids;
+		}
+		catch (Exception e) {
+			LOG.error("Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e);
+			if (taSynSource != null)
+				taSynSource.rollback();
+			if (!sameSourceAndTarget) {
+				if (taSynTarget != null)
+					taSynTarget.rollback();
+			}
+			throw new Exception("Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e);
 		}
 	}
 
