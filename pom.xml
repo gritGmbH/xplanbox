@@ -30,8 +30,8 @@
     <spring-security.version>5.5.8</spring-security.version>
     <jackson.version>2.14.2</jackson.version>
     <liquibase.version>4.20.0</liquibase.version>
-    <postgresql.version>42.4.3</postgresql.version>
     <owasp.version>7.4.4</owasp.version>
+    <postgresql.version>42.5.2</postgresql.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
