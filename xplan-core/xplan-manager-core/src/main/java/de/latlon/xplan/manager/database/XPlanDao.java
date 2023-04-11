@@ -249,91 +249,42 @@ public class XPlanDao {
 	 */
 	public void updateXPlanSynFeatureCollection(XPlan xplan, FeatureCollection synFc, XPlanFeatureCollection originalFc,
 			Date sortDate, boolean updateFeaturesAndBlob) throws Exception {
-		Connection conn = null;
-		SQLFeatureStoreTransaction taSyn = null;
-		SQLFeatureStoreTransaction taBlob = null;
-		try {
-			int planId = getXPlanIdAsInt(xplan.getId());
-			AdditionalPlanData xplanMetadata = xplan.getXplanMetadata();
-			PlanStatus planStatus = xplanMetadata.getPlanStatus();
+		int planId = getXPlanIdAsInt(xplan.getId());
+		AdditionalPlanData xplanMetadata = xplan.getXplanMetadata();
+		PlanStatus planStatus = xplanMetadata.getPlanStatus();
 
-			FeatureStore synFeatureStore = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
-			taSyn = (SQLFeatureStoreTransaction) synFeatureStore.acquireTransaction();
+		Set<String> ids = xPlanDbAdapter.selectFids(planId);
 
-			conn = managerWorkspaceWrapper.openConnection();
-			conn.setAutoCommit(false);
+		addAdditionalProperties(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(), planId,
+				sortDate);
 
-			Set<String> ids = xPlanDbAdapter.selectFids(planId);
-			IdFilter idFilter = new IdFilter(ids);
+		if (updateFeaturesAndBlob) {
+			List<String> newFids = xPlanWfsAdapter.update(planId, planStatus, originalFc, ids);
 
-			addAdditionalProperties(synFc, xplanMetadata.getStartDateTime(), xplanMetadata.getEndDateTime(), planId,
-					sortDate);
-			if (updateFeaturesAndBlob) {
-				FeatureStore blobFeatureStore = managerWorkspaceWrapper.lookupStore(originalFc.getVersion(),
-						planStatus);
-				taBlob = (SQLFeatureStoreTransaction) blobFeatureStore.acquireTransaction();
+			AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
+			List<QName> featureTypeNames = Arrays.stream(schema.getFeatureTypes())
+					.map(featureType -> featureType.getName()).collect(Collectors.toList());
 
-				LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (" + originalFc.getVersion() + ")...");
-				taBlob.performDelete(idFilter, null);
-				Pair<List<String>, SQLFeatureStoreTransaction> fidsAndXPlanTa = insertXPlan(blobFeatureStore,
-						originalFc);
-				taBlob = fidsAndXPlanTa.second;
-				LOG.info("OK");
+			Set<String> validIds = ids.stream().filter(oldFeatureId -> {
+				Optional<QName> featureType = featureTypeNames.stream()
+						.filter(featureTypeName -> oldFeatureId
+								.startsWith(SYN_FEATURETYPE_PREFIX + featureTypeName.getLocalPart().toUpperCase()))
+						.findFirst();
+				if (featureType.isPresent()) {
+					return true;
+				}
+				LOG.info("Es konnte kein feature type zu dem feature mit der ID " + oldFeatureId
+						+ " gefunden werden. Es wird angenommen, dass dieser FeatureType nicht mehr existiert und die dazugehoerige Tabelle bereits geloescht wurde.");
+				return false;
+			}).collect(Collectors.toSet());
 
-				AppSchema schema = synFeatureStore.getSchema();
-				List<QName> featureTypeNames = Arrays.stream(schema.getFeatureTypes())
-						.map(featureType -> featureType.getName()).collect(Collectors.toList());
-
-				Set<String> validIds = ids.stream().filter(oldFeatureId -> {
-					Optional<QName> featureType = featureTypeNames.stream()
-							.filter(featureTypeName -> oldFeatureId
-									.startsWith(SYN_FEATURETYPE_PREFIX + featureTypeName.getLocalPart().toUpperCase()))
-							.findFirst();
-					if (featureType.isPresent()) {
-						return true;
-					}
-					LOG.info("Es konnte kein feature type zu dem feature mit der ID " + oldFeatureId
-							+ " gefunden werden. Es wird angenommen, dass dieser FeatureType nicht mehr existiert und die dazugehoerige Tabelle bereits geloescht wurde.");
-					return false;
-				}).collect(Collectors.toSet());
-
-				IdFilter idFilterValidIds = new IdFilter(validIds);
-				LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
-				taSyn.performDelete(idFilterValidIds, null);
-				insertXPlanSyn(synFeatureStore, synFc);
-
-				xPlanDbAdapter.updateFeatureMetadata(conn, fidsAndXPlanTa.first, planId);
-			}
-			else {
-				LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
-				taSyn.performDelete(idFilter, null);
-				insertXPlanSyn(synFeatureStore, synFc);
-			}
-			LOG.info("OK");
-
-			LOG.info("- Persistierung...");
-			conn.commit();
-			taSyn.commit();
-			if (taBlob != null)
-				taBlob.commit();
-			LOG.info("OK");
+			xPlanSynWfsAdapter.update(planId, planStatus, synFc, validIds);
+			xPlanDbAdapter.updateFeatureMetadata(newFids, planId);
 		}
-		catch (Exception e) {
-			LOG.error("Fehler beim Aktualisieren der Features. Ein Rollback wird durchgeführt.", e);
-			if (conn != null) {
-				conn.rollback();
-			}
-			if (taSyn != null) {
-				taSyn.rollback();
-			}
-			if (taBlob != null) {
-				taBlob.rollback();
-			}
-			throw new Exception("Fehler beim Aktualisieren des Plans: " + e.getMessage() + ".", e);
+		else {
+			xPlanSynWfsAdapter.update(planId, planStatus, synFc, ids);
 		}
-		finally {
-			closeQuietly(conn);
-		}
+
 	}
 
 	/**

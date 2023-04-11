@@ -86,34 +86,56 @@ public class XPlanSynWfsAdapter {
 
 	public List<String> update(int planId, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata, FeatureCollection synFc,
 			Set<String> oldFids) throws Exception {
+		PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
+		PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();
+		boolean sameSourceAndTarget = oldPlanStatus == newPlanStatus;
+		if (sameSourceAndTarget) {
+			return update(planId, oldPlanStatus, synFc, oldFids);
+		}
+		else {
+			return update(planId, synFc, oldFids, oldPlanStatus, newPlanStatus);
+		}
+	}
+
+	public List<String> update(int planId, PlanStatus planStatus, FeatureCollection synFc, Set<String> oldFids)
+			throws Exception {
+		SQLFeatureStoreTransaction taSyn = null;
+		try {
+			FeatureStore synFs = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, planStatus);
+			taSyn = (SQLFeatureStoreTransaction) synFs.acquireTransaction();
+			IdFilter idFilter = new IdFilter(oldFids);
+
+			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
+			taSyn.performDelete(idFilter, null);
+			List<String> newFids = taSyn.performInsert(synFc, USE_EXISTING);
+			taSyn.commit();
+			LOG.info("OK");
+			return newFids;
+		}
+		catch (Exception e) {
+			LOG.error("Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e);
+			if (taSyn != null)
+				taSyn.rollback();
+			throw new Exception("Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e);
+		}
+	}
+
+	private List<String> update(int planId, FeatureCollection synFc, Set<String> oldFids, PlanStatus oldPlanStatus,
+			PlanStatus newPlanStatus) throws Exception {
 		SQLFeatureStoreTransaction taSynSource = null;
 		SQLFeatureStoreTransaction taSynTarget = null;
-		boolean sameSourceAndTarget = false;
 		try {
-			PlanStatus oldPlanStatus = oldXPlan.getXplanMetadata().getPlanStatus();
-			PlanStatus newPlanStatus = newXPlanMetadata.getPlanStatus();
-
 			FeatureStore synFsSource = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus);
-			sameSourceAndTarget = oldPlanStatus == newPlanStatus;
-
 			taSynSource = (SQLFeatureStoreTransaction) synFsSource.acquireTransaction();
-			if (sameSourceAndTarget) {
-				taSynTarget = taSynSource;
-			}
-			else {
-				FeatureStore synFsTarget = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, newPlanStatus);
-				taSynTarget = (SQLFeatureStoreTransaction) synFsTarget.acquireTransaction();
-			}
+			FeatureStore synFsTarget = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, newPlanStatus);
+			taSynTarget = (SQLFeatureStoreTransaction) synFsTarget.acquireTransaction();
 			IdFilter idFilter = new IdFilter(oldFids);
 
 			LOG.info("- Aktualisiere XPlan " + planId + " im FeatureStore (XPLAN_SYN)...");
 			taSynSource.performDelete(idFilter, null);
-
 			List<String> newFids = taSynTarget.performInsert(synFc, USE_EXISTING);
 			taSynSource.commit();
-			if (!sameSourceAndTarget) {
-				taSynTarget.commit();
-			}
+			taSynTarget.commit();
 			LOG.info("OK");
 			return newFids;
 		}
@@ -121,10 +143,8 @@ public class XPlanSynWfsAdapter {
 			LOG.error("Fehler beim Aktualiseren der Features. Ein Rollback wird durchgeführt.", e);
 			if (taSynSource != null)
 				taSynSource.rollback();
-			if (!sameSourceAndTarget) {
-				if (taSynTarget != null)
-					taSynTarget.rollback();
-			}
+			if (taSynTarget != null)
+				taSynTarget.rollback();
 			throw new Exception("Fehler beim Aktualiseren des Plans: " + e.getMessage() + ".", e);
 		}
 	}

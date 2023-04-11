@@ -515,6 +515,12 @@ public class XPlanDbAdapter {
 		}
 	}
 
+	public void updateFeatureMetadata(List<String> fids, int planId) throws SQLException {
+		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
+			updateFeatureMetadata(fids, planId);
+		}
+	}
+
 	void updateFeatureMetadata(Connection conn, List<String> fids, int planId) throws SQLException {
 		PreparedStatement stmt = null;
 		try {
