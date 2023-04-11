@@ -267,39 +267,38 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 			});
 		});
 
-		String error = crateErrorMessage(planFeature, bereichFeature, inGeltungsbereichFeature, points);
+		String error = crateErrorMessage(planFeature, bereichFeature, inGeltungsbereichFeature.getFeatureId(), points);
 		BadGeometry badGeometry = addErrorAndBadGeometry(error, inGeltungsbereichFeature.getOriginalGeometry());
 		addGeometryOutsideGeltungsbereich(inGeltungsbereichFeature.getFeatureId(), differencesOutsideGeltungsbereich,
 				badGeometry);
 	}
 
-	private String crateErrorMessage(PlanFeature planFeature, BereichFeature bereichFeature,
-			FeatureUnderTest inGeltungsbereichFeature, List<String> points) {
+	private String crateErrorMessage(PlanFeature planFeature, BereichFeature bereichFeature, String featureId,
+			List<String> points) {
 		if (planFeature != null && bereichFeature != null) {
 			if (points.isEmpty()) {
-				return format("GeltungsbereichInspector_error_nogeom_bereichAndPlan", planFeature.getFeatureId(),
-						bereichFeature.getPlanId(), inGeltungsbereichFeature.getFeatureId());
+				return format("GeltungsbereichInspector_error_nogeom_bereichAndPlan", featureId,
+						planFeature.getFeatureId(), bereichFeature.getPlanId());
 			}
 			String pointList = points.stream().collect(Collectors.joining(","));
-			return format("GeltungsbereichInspector_error_withgeom_bereichAndPlan", planFeature.getFeatureId(),
-					bereichFeature.getPlanId(), inGeltungsbereichFeature.getFeatureId(), pointList);
+			return format("GeltungsbereichInspector_error_withgeom_bereichAndPlan", featureId,
+					planFeature.getFeatureId(), bereichFeature.getPlanId(), pointList);
 		}
-		String suffix = "plan";
-		String featureId;
 		if (bereichFeature != null) {
-			suffix = "bereich";
-			featureId = bereichFeature.getFeatureId();
-		}
-		else {
-			featureId = planFeature.getFeatureId();
+			if (points.isEmpty()) {
+				return format("GeltungsbereichInspector_error_nogeom_bereich", featureId,
+						bereichFeature.getFeatureId());
+			}
+			String pointList = points.stream().collect(Collectors.joining(","));
+			return format("GeltungsbereichInspector_error_withgeom_bereich", featureId, bereichFeature.getFeatureId(),
+					pointList);
 		}
 		if (points.isEmpty()) {
-			return format("GeltungsbereichInspector_error_nogeom_" + suffix, featureId,
-					inGeltungsbereichFeature.getFeatureId());
+			return format("GeltungsbereichInspector_error_nogeom_plan", featureId, planFeature.getFeatureId());
 		}
 		String pointList = points.stream().collect(Collectors.joining(","));
-		return format("GeltungsbereichInspector_error_withgeom_" + suffix, featureId,
-				inGeltungsbereichFeature.getFeatureId(), pointList);
+		return format("GeltungsbereichInspector_error_withgeom_plan", featureId, planFeature.getFeatureId(), pointList);
+
 	}
 
 	private List<AbstractDefaultGeometry> findRelevantDifferenceOutsideGeltungsbereich(
