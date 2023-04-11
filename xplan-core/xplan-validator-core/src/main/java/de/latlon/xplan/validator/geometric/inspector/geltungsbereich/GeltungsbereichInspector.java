@@ -285,14 +285,20 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 					bereichFeature.getPlanId(), inGeltungsbereichFeature.getFeatureId(), pointList);
 		}
 		String suffix = "plan";
-		if (bereichFeature != null)
+		String featureId;
+		if (bereichFeature != null) {
 			suffix = "bereich";
+			featureId = bereichFeature.getFeatureId();
+		}
+		else {
+			featureId = planFeature.getFeatureId();
+		}
 		if (points.isEmpty()) {
-			return format("GeltungsbereichInspector_error_nogeom_" + suffix, planFeature.getFeatureId(),
+			return format("GeltungsbereichInspector_error_nogeom_" + suffix, featureId,
 					inGeltungsbereichFeature.getFeatureId());
 		}
 		String pointList = points.stream().collect(Collectors.joining(","));
-		return format("GeltungsbereichInspector_error_withgeom_" + suffix, planFeature.getFeatureId(),
+		return format("GeltungsbereichInspector_error_withgeom_" + suffix, featureId,
 				inGeltungsbereichFeature.getFeatureId(), pointList);
 	}
 
