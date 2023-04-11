@@ -177,12 +177,12 @@ public class GeltungsbereichInspector implements GeometricFeatureInspector {
 			boolean isInsidePlanGeltungsbereich) throws InvalidGeometryException {
 		AbstractDefaultGeometry featureGeom = featureUnderTest.getOriginalGeometry();
 		try {
-			if (!isInsideBereichGeltungsbereich && !isInsideBereichGeltungsbereich) {
+			if (!isInsidePlanGeltungsbereich && !isInsideBereichGeltungsbereich) {
 				AbstractDefaultGeometry planGeom = planFeature.getOriginalGeometry();
 				AbstractDefaultGeometry bereichGeom = bereichFeature.getOriginalGeometry();
 				boolean isDisjointPlanGeom = planGeom.isDisjoint(featureGeom);
 				boolean isDisjointBereichGeom = bereichGeom.isDisjoint(featureGeom);
-				if (isDisjointPlanGeom && isDisjointPlanGeom) {
+				if (isDisjointPlanGeom && isDisjointBereichGeom) {
 					String error = format("GeltungsbereichInspector_error_outOfPlanAndBereichGeltungsbereich",
 							featureUnderTest.getFeatureId());
 					addErrorAndBadGeometry(error, featureUnderTest.getOriginalGeometry());
