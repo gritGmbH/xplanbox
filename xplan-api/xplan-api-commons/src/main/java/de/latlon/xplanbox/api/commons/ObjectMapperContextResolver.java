@@ -20,7 +20,6 @@
  */
 package de.latlon.xplanbox.api.commons;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ws.rs.ext.ContextResolver;
@@ -49,7 +48,6 @@ public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
 		mapper.setTimeZone(TimeZone.getDefault());
-		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		return mapper;
 	}
 
