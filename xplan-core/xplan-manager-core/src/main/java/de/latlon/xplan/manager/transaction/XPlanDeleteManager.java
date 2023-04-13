@@ -20,7 +20,6 @@
  */
 package de.latlon.xplan.manager.transaction;
 
-import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
@@ -45,16 +44,12 @@ public class XPlanDeleteManager {
 
 	private final WorkspaceReloader workspaceReloader;
 
-	private final ManagerConfiguration managerConfiguration;
-
 	public XPlanDeleteManager(XPlanDao xPlanDao, XPlanRasterManager xPlanRasterManager,
-			StorageCleanUpManager storageCleanUpManager, WorkspaceReloader workspaceReloader,
-			ManagerConfiguration managerConfiguration) {
+			StorageCleanUpManager storageCleanUpManager, WorkspaceReloader workspaceReloader) {
 		this.xPlanDao = xPlanDao;
 		this.xPlanRasterManager = xPlanRasterManager;
 		this.storageCleanUpManager = storageCleanUpManager;
 		this.workspaceReloader = workspaceReloader;
-		this.managerConfiguration = managerConfiguration;
 	}
 
 	/**

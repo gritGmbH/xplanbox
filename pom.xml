@@ -19,7 +19,7 @@
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
     <deegree3.version>3.5.0-SNAPSHOT</deegree3.version>
-    <xplanung.regeln.version>1.1.2</xplanung.regeln.version>
+    <xplanung.regeln.version>1.1.3-SNAPSHOT</xplanung.regeln.version>
     <gwt.version>2.10.0</gwt.version>
     <geotools.version>26.6</geotools.version>
     <log4j.version>2.17.2</log4j.version>
@@ -1468,6 +1468,16 @@
     <repository>
       <id>xleitstelle-xplanung-validierungsregeln</id>
       <url>https://gitlab.opencode.de/api/v4/projects/398/packages/maven</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>xleitstelle-xplanung-validierungsregeln-berlin</id>
+      <url>https://gitlab.opencode.de/api/v4/projects/397/packages/maven</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>

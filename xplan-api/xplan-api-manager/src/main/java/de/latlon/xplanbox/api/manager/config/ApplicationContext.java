@@ -253,10 +253,8 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanDeleteManager xPlanDeleteManager(XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
-			XPlanRasterManager xPlanRasterManager, StorageCleanUpManager storageCleanUpManager,
-			ManagerConfiguration managerConfiguration) {
-		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader,
-				managerConfiguration);
+			XPlanRasterManager xPlanRasterManager, StorageCleanUpManager storageCleanUpManager) {
+		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader);
 	}
 
 	@Bean

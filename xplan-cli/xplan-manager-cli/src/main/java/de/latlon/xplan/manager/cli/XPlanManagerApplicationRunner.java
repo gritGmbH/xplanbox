@@ -31,6 +31,7 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.log.SystemLog;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.filesystem.FilesystemStorageCleanUpManager;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
@@ -349,7 +350,8 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 					managerConfiguration.getSynthesizerConfigurationDirectory());
 			XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
 			XPlanDocumentManager xPlanDocumentManager = createDocumentManager();
-			StorageCleanUpManager storageCleanUpManager = createStorageCleanUpManager();
+			StorageCleanUpManager storageCleanUpManager = createStorageCleanUpManager(
+					wmsWorkspaceWrapper.getDataDirectory());
 			return new XPlanManager(xPlanSynthesizer, xplanDao, archiveCreator, managerWorkspaceWrapper,
 					workspaceReloader, null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
 					xPlanDocumentManager, storageCleanUpManager);
@@ -382,9 +384,8 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 		return null;
 	}
 
-	private StorageCleanUpManager createStorageCleanUpManager() {
-		// TODO turn into autowired field
-		return null;
+	private StorageCleanUpManager createStorageCleanUpManager(Path dataDirectory) {
+		return new FilesystemStorageCleanUpManager(dataDirectory);
 	}
 
 	private ServiceMetadataRecordCreator createServiceMetadataRecordCreator(Path directoryContainingTheManagerConfig) {
