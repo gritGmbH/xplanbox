@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -35,17 +35,13 @@ import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
-import org.apache.commons.io.IOUtils;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.namespace.QName;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,10 +53,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.zip.GZIPInputStream;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 
@@ -375,37 +369,8 @@ public class XPlanDao {
 	 * @throws Exception
 	 */
 	public InputStream retrieveXPlanArtefact(String planId) throws Exception {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			return retrieveXPlanArtefact(conn, getXPlanIdAsInt(planId));
-		}
-		finally {
-			closeQuietly(conn);
-		}
-	}
-
-	private InputStream retrieveXPlanArtefact(Connection conn, int planId) throws Exception {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			stmt = conn
-					.prepareStatement("SELECT data FROM xplanmgr.artefacts WHERE plan=? and artefacttype='XPLANGML'");
-			stmt.setInt(1, planId);
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				return unzipArtefact(rs.getBinaryStream(1));
-			}
-		}
-		catch (Exception e) {
-			throw new Exception(
-					"Fehler beim Rekonstruieren des XPlan-Artefakts '" + MAIN_FILE + "': " + e.getLocalizedMessage(),
-					e);
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
-		return null;
+		int planIdAsInt = getXPlanIdAsInt(planId);
+		return xPlanDbAdapter.selectXPlanArtefact(planIdAsInt);
 	}
 
 	/**
@@ -416,50 +381,7 @@ public class XPlanDao {
 	 * occurred
 	 */
 	public String retrieveInternalId(String planId, XPlanType type) {
-		managerWorkspaceWrapper.ensureWorkspaceInitialized();
-
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
-			StringBuilder sqlBuilder = new StringBuilder();
-			sqlBuilder.append("SELECT xplan_internalid FROM ");
-			switch (type) {
-				case BP_Plan:
-					sqlBuilder.append("xplansyn.xplan_bp_plan");
-					break;
-				case FP_Plan:
-					sqlBuilder.append("xplansyn.xplan_fp_plan");
-					break;
-				case LP_Plan:
-					sqlBuilder.append("xplansyn.xplan_lp_plan");
-					break;
-				case RP_Plan:
-					sqlBuilder.append("xplansyn.xplan_rp_plan");
-					break;
-				default:
-					LOG.warn("Unsupported xplan type " + type);
-					return null;
-
-			}
-			sqlBuilder.append(" WHERE ");
-			sqlBuilder.append(" xplan_mgr_planid = ?");
-
-			LOG.trace("SQL Select to retrieve the internal id: " + sqlBuilder.toString());
-
-			stmt = mgrConn.prepareStatement(sqlBuilder.toString());
-			stmt.setInt(1, getXPlanIdAsInt(planId));
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				return rs.getString(1);
-			}
-		}
-		catch (Exception e) {
-			LOG.warn("Die internalId des Plans mit der ID " + planId + " konnte nicht angefragt werden.");
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
-		return null;
+		return xPlanDbAdapter.selectInternalId(planId, type);
 	}
 
 	/**
@@ -696,14 +618,6 @@ public class XPlanDao {
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);
 		featureCollectionManipulator.addAdditionalPropertiesToFeatures(synFc, schema, planId, sortDate, beginValidity,
 				endValidity);
-	}
-
-	private InputStream unzipArtefact(InputStream zippedStream) throws IOException {
-		try (GZIPInputStream is = new GZIPInputStream(zippedStream);
-				ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
-			IOUtils.copy(is, bos);
-			return new ByteArrayInputStream(bos.toByteArray());
-		}
 	}
 
 	private int getXPlanIdAsInt(String planId) throws Exception {

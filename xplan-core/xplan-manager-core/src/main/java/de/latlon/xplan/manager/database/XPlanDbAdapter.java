@@ -36,6 +36,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
+import org.apache.commons.io.IOUtils;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
@@ -66,8 +67,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
@@ -456,6 +459,89 @@ public class XPlanDbAdapter {
 		finally {
 			closeQuietly(stmt, rs);
 		}
+	}
+
+	/**
+	 * @param planId the id of the requested plan, <code>null</code>
+	 * @return the original plan artefact, never <code>null</code>
+	 * @throws Exception
+	 */
+	public InputStream selectXPlanArtefact(int planId) throws Exception {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
+			stmt = conn
+					.prepareStatement("SELECT data FROM xplanmgr.artefacts WHERE plan=? and artefacttype='XPLANGML'");
+			stmt.setInt(1, planId);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				return unzipArtefact(rs.getBinaryStream(1));
+			}
+		}
+		catch (Exception e) {
+			throw new Exception(
+					"Fehler beim Rekonstruieren des XPlan-Artefakts '" + MAIN_FILE + "': " + e.getLocalizedMessage(),
+					e);
+		}
+		finally {
+			closeQuietly(stmt, rs);
+		}
+		return null;
+
+	}
+
+	/**
+	 * Retrieve internalId by the manager id from xplansyn schema.
+	 * @param planId the planId of the plan, never <code>null</code>
+	 * @param type the type of the plan, never <code>null</code>
+	 * @return the internal id of a plan (if available), <code>null</code> if an error
+	 * occurred
+	 */
+	public String selectInternalId(String planId, XPlanType type) {
+		managerWorkspaceWrapper.ensureWorkspaceInitialized();
+
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
+			StringBuilder sqlBuilder = new StringBuilder();
+			sqlBuilder.append("SELECT xplan_internalid FROM ");
+			switch (type) {
+				case BP_Plan:
+					sqlBuilder.append("xplansyn.xplan_bp_plan");
+					break;
+				case FP_Plan:
+					sqlBuilder.append("xplansyn.xplan_fp_plan");
+					break;
+				case LP_Plan:
+					sqlBuilder.append("xplansyn.xplan_lp_plan");
+					break;
+				case RP_Plan:
+					sqlBuilder.append("xplansyn.xplan_rp_plan");
+					break;
+				default:
+					LOG.warn("Unsupported xplan type " + type);
+					return null;
+
+			}
+			sqlBuilder.append(" WHERE ");
+			sqlBuilder.append(" xplan_mgr_planid = ?");
+
+			LOG.trace("SQL Select to retrieve the internal id: " + sqlBuilder.toString());
+
+			stmt = mgrConn.prepareStatement(sqlBuilder.toString());
+			stmt.setInt(1, getXPlanIdAsInt(planId));
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				return rs.getString(1);
+			}
+		}
+		catch (Exception e) {
+			LOG.warn("Die internalId des Plans mit der ID " + planId + " konnte nicht angefragt werden.");
+		}
+		finally {
+			closeQuietly(stmt, rs);
+		}
+		return null;
 	}
 
 	private int insertMetadata(Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
@@ -1056,6 +1142,14 @@ public class XPlanDbAdapter {
 		if (planStatus != null)
 			return planStatus.getMessage();
 		return FESTGESTELLT.getMessage();
+	}
+
+	private InputStream unzipArtefact(InputStream zippedStream) throws IOException {
+		try (GZIPInputStream is = new GZIPInputStream(zippedStream);
+				ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+			IOUtils.copy(is, bos);
+			return new ByteArrayInputStream(bos.toByteArray());
+		}
 	}
 
 	private int getXPlanIdAsInt(String planId) throws Exception {
