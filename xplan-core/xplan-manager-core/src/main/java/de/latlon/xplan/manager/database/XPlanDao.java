@@ -43,9 +43,6 @@ import org.slf4j.LoggerFactory;
 import javax.xml.namespace.QName;
 import java.io.File;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Date;
@@ -55,7 +52,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
-import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
 
 /**
@@ -431,30 +427,11 @@ public class XPlanDao {
 	 * @throws SQLException if the sql could not be executed
 	 */
 	public void setPlanWasInspirePublished(String planId) throws SQLException {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			updateInspirePublishedStatus(conn, planId, true);
-		}
-		finally {
-			closeQuietly(conn);
-		}
+		xPlanDbAdapter.setPlanWasInspirePublished(planId);
 	}
 
 	public boolean checkIfPlanWithSameNameAndStatusExists(String planName, String status) {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			return checkIfPlanWithSameNameAndStatusExists(conn, planName, status);
-		}
-		catch (Exception e) {
-			LOG.warn("Es konnte nicht geprüft werden ob ein Plan mit dem Namen {} und Status {} bereits existiert.",
-					planName, status);
-		}
-		finally {
-			closeQuietly(conn);
-		}
-		return false;
+		return xPlanDbAdapter.selectPlanWithSameNameAndStatusExists(planName, status);
 	}
 
 	private void addAdditionalProperties(FeatureCollection synFc, Date beginValidity, Date endValidity, int planId,
@@ -471,53 +448,6 @@ public class XPlanDao {
 		catch (NumberFormatException e) {
 			throw new Exception("Spezifizierter Wert '" + planId + "' ist keine gültige XPlan-Id (Ganzzahl).", e);
 		}
-	}
-
-	private void updateInspirePublishedStatus(Connection conn, String xplanId, boolean isPiublished)
-			throws SQLException {
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE xplanmgr.plans SET ");
-		sql.append("inspirepublished = ? ");
-		sql.append("WHERE id = ? ");
-		String updateSql = sql.toString();
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement(updateSql);
-			stmt.setBoolean(1, isPiublished);
-			stmt.setObject(2, Integer.parseInt(xplanId));
-			LOG.trace("SQL Update XPlanManager INSPIRE Published status: {}", stmt);
-			stmt.executeUpdate();
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
-	private boolean checkIfPlanWithSameNameAndStatusExists(Connection conn, String planName, String status)
-			throws SQLException {
-		StringBuilder sql = new StringBuilder();
-		sql.append("select count(*) > 0 from xplanmgr.plans WHERE name = ? AND planstatus = ?");
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement(sql.toString());
-			stmt.setString(1, planName);
-			stmt.setString(2, status);
-			LOG.trace("SQL Check if plan with same name and status exists: {}", stmt);
-			ResultSet resultSet = stmt.executeQuery();
-			if (resultSet.next())
-				return resultSet.getBoolean(1);
-			return false;
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
-	private java.sql.Date convertToSqlDate(Date dateToConvert) {
-		if (dateToConvert != null) {
-			return new java.sql.Date(dateToConvert.getTime());
-		}
-		return null;
 	}
 
 }

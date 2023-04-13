@@ -361,6 +361,21 @@ public class XPlanDbAdapter {
 		}
 	}
 
+	/**
+	 * @param planId of the plan to set the status
+	 * @throws SQLException if the sql could not be executed
+	 */
+	public void setPlanWasInspirePublished(String planId) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			executeUpdateInspirePublishedStatus(conn, planId, true);
+		}
+		finally {
+			closeQuietly(conn);
+		}
+	}
+
 	public XPlanVersionAndPlanStatus selectXPlanMetadata(int id) throws Exception {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -481,6 +496,22 @@ public class XPlanDbAdapter {
 			closeQuietly(stmt, rs);
 		}
 		return null;
+	}
+
+	public boolean selectPlanWithSameNameAndStatusExists(String planName, String status) {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			return checkIfPlanWithSameNameAndStatusExists(conn, planName, status);
+		}
+		catch (Exception e) {
+			LOG.warn("Es konnte nicht geprüft werden ob ein Plan mit dem Namen {} und Status {} bereits existiert.",
+					planName, status);
+		}
+		finally {
+			closeQuietly(conn);
+		}
+		return false;
 	}
 
 	public List<XPlan> getXPlanByName(String planName) throws Exception {
@@ -1065,6 +1096,26 @@ public class XPlanDbAdapter {
 		}
 	}
 
+	private void executeUpdateInspirePublishedStatus(Connection conn, String xplanId, boolean isPiublished)
+			throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE xplanmgr.plans SET ");
+		sql.append("inspirepublished = ? ");
+		sql.append("WHERE id = ? ");
+		String updateSql = sql.toString();
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(updateSql);
+			stmt.setBoolean(1, isPiublished);
+			stmt.setObject(2, Integer.parseInt(xplanId));
+			LOG.trace("SQL Update XPlanManager INSPIRE Published status: {}", stmt);
+			stmt.executeUpdate();
+		}
+		finally {
+			closeQuietly(stmt);
+		}
+	}
+
 	private File retrieveUploadedArtefact(String refFileName, List<File> uploadedArtefacts) {
 		if (uploadedArtefacts != null) {
 			for (File uploadedArtefact : uploadedArtefacts) {
@@ -1145,6 +1196,26 @@ public class XPlanDbAdapter {
 		}
 		finally {
 			closeQuietly(stmt, rs);
+		}
+	}
+
+	private boolean checkIfPlanWithSameNameAndStatusExists(Connection conn, String planName, String status)
+			throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select count(*) > 0 from xplanmgr.plans WHERE name = ? AND planstatus = ?");
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(sql.toString());
+			stmt.setString(1, planName);
+			stmt.setString(2, status);
+			LOG.trace("SQL Check if plan with same name and status exists: {}", stmt);
+			ResultSet resultSet = stmt.executeQuery();
+			if (resultSet.next())
+				return resultSet.getBoolean(1);
+			return false;
+		}
+		finally {
+			closeQuietly(stmt);
 		}
 	}
 
