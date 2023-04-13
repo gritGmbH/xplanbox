@@ -276,6 +276,91 @@ public class XPlanDbAdapter {
 		}
 	}
 
+	/**
+	 * Updates the wmsSortDate column of all tables in the syn schema and in
+	 * xplanmgr.plans table.
+	 * @param sortDate the new sort date, may be <code>null</code>
+	 * @param plan the plan to update, never <code>null</code>
+	 * @throws Exception
+	 */
+	public void updateSortProperty(Date sortDate, XPlan plan) throws Exception {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			updateSortPropertyInSynSchema(sortDate, plan, conn);
+			updateSortPropertyInMgrSchema(sortDate, plan, conn);
+		}
+		catch (Exception e) {
+			conn.rollback();
+		}
+		finally {
+			closeQuietly(conn);
+		}
+	}
+
+	/**
+	 * Updates the district column of the table xplanmgr.plans.
+	 * @param plan the plan to update, never <code>null</code>
+	 * @param district the new district, may be <code>null</code>
+	 * @throws Exception
+	 */
+	public void updateDistrict(XPlan plan, String district) throws Exception {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			updateDistrictInMgrSchema(conn, plan, district);
+		}
+		catch (Exception e) {
+			conn.rollback();
+		}
+		finally {
+			closeQuietly(conn);
+		}
+	}
+
+	/**
+	 * Updates the district column of the table xplanmgr.plans.
+	 * @param plan the plan to update, never <code>null</code>
+	 * @param bereiche the bereiche, never <code>null</code>
+	 * @throws Exception
+	 */
+	public void updateBereiche(XPlan plan, List<Bereich> bereiche) throws Exception {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			updateBereichInMgrSchema(conn, plan, bereiche);
+		}
+		catch (Exception e) {
+			conn.rollback();
+		}
+		finally {
+			closeQuietly(conn);
+		}
+	}
+
+	/**
+	 * Updates the column artefacttype of the table xplanmgr.artefacts.
+	 * @param id of the plan to update, never <code>null</code>
+	 * @param fileNames the fileNames to update, never <code>null</code>
+	 * @param artefactType the artefactType to set, never <code>null</code>
+	 * @throws SQLException
+	 */
+	public void updateArtefacttype(String id, List<String> fileNames, ArtefactType artefactType) throws SQLException {
+		Connection conn = null;
+		try {
+			conn = managerWorkspaceWrapper.openConnection();
+			updateArtefacttype(conn, id, fileNames, artefactType);
+		}
+		catch (Exception e) {
+			LOG.error("Could not set artefacttype " + artefactType + " for plan with id " + id + " and files "
+					+ fileNames + ".", e);
+			conn.rollback();
+		}
+		finally {
+			closeQuietly(conn);
+		}
+	}
+
 	public XPlanVersionAndPlanStatus selectXPlanMetadata(int id) throws Exception {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -797,6 +882,119 @@ public class XPlanDbAdapter {
 		}
 		else {
 			throw new Exception("Could not find referenced artefact with name " + refFileName);
+		}
+	}
+
+	private void updateSortPropertyInSynSchema(Date sortDate, XPlan plan, Connection conn) throws Exception {
+		String selectSchemaAndColumnsToModify = "SELECT column_name, table_schema, table_name "
+				+ "FROM information_schema.columns " + "WHERE table_schema like 'xplansyn%' "
+				+ "AND table_name like 'xplan_%' " + "AND column_name = 'xplan_wmssortdate';";
+		PreparedStatement stmt = conn.prepareStatement(selectSchemaAndColumnsToModify);
+		ResultSet schemaAndTablesToModify = stmt.executeQuery();
+
+		while (schemaAndTablesToModify.next()) {
+			String schemaname = schemaAndTablesToModify.getString("table_schema");
+			String tablename = schemaAndTablesToModify.getString("table_name");
+
+			StringBuilder updateSql = new StringBuilder();
+			updateSql.append("UPDATE ").append(schemaname).append('.').append(tablename);
+			updateSql.append(" SET xplan_wmssortdate = ? ");
+			updateSql.append(" WHERE xplan_mgr_planid = ?");
+
+			PreparedStatement updateStmt = conn.prepareStatement(updateSql.toString());
+			updateStmt.setDate(1, convertToSqlDate(sortDate));
+			updateStmt.setInt(2, getXPlanIdAsInt(plan.getId()));
+			LOG.trace("SQL Update XPlan Syn sort date property: " + updateStmt);
+			updateStmt.executeUpdate();
+			closeQuietly(updateStmt);
+		}
+		closeQuietly(stmt);
+	}
+
+	private void updateSortPropertyInMgrSchema(Date sortDate, XPlan plan, Connection conn) throws Exception {
+		StringBuilder updateSql = new StringBuilder();
+		updateSql.append("UPDATE xplanmgr.plans");
+		updateSql.append(" SET wmssortdate = ? ");
+		updateSql.append(" WHERE id = ?");
+
+		PreparedStatement updateStmt = null;
+		try {
+			updateStmt = conn.prepareStatement(updateSql.toString());
+			updateStmt.setDate(1, convertToSqlDate(sortDate));
+			updateStmt.setInt(2, getXPlanIdAsInt(plan.getId()));
+			LOG.trace("SQL Update XPlan Manager sort date property: " + updateStmt);
+			updateStmt.executeUpdate();
+		}
+		finally {
+			closeQuietly(updateStmt);
+		}
+	}
+
+	private void updateDistrictInMgrSchema(Connection conn, XPlan plan, String district) throws Exception {
+		StringBuilder updateSql = new StringBuilder();
+		updateSql.append("UPDATE xplanmgr.plans");
+		updateSql.append(" SET district = ? ");
+		updateSql.append(" WHERE id = ?");
+
+		PreparedStatement updateStmt = null;
+		try {
+			updateStmt = conn.prepareStatement(updateSql.toString());
+			updateStmt.setString(1, district);
+			updateStmt.setInt(2, getXPlanIdAsInt(plan.getId()));
+			LOG.trace("SQL Update XPlan Manager district column: " + updateStmt);
+			updateStmt.executeUpdate();
+		}
+		finally {
+			closeQuietly(updateStmt);
+		}
+	}
+
+	private void updateBereichInMgrSchema(Connection conn, XPlan plan, List<Bereich> bereiche) throws Exception {
+		StringBuilder updateSql = new StringBuilder();
+		updateSql.append("INSERT INTO xplanmgr.bereiche");
+		updateSql.append(" (plan, nummer, name)");
+		updateSql.append(" VALUES (?,?,?)");
+		updateSql.append(" ON CONFLICT");
+		updateSql.append(" DO NOTHING");
+
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(updateSql.toString());
+			for (Bereich bereich : bereiche) {
+				stmt.setInt(1, getXPlanIdAsInt(plan.getId()));
+				stmt.setString(2, bereich.getNummer());
+				stmt.setString(3, bereich.getName());
+				LOG.trace("SQL Update XPlan Manager bereich column: " + stmt);
+				stmt.executeUpdate();
+			}
+		}
+		finally {
+			closeQuietly(stmt);
+		}
+	}
+
+	private void updateArtefacttype(Connection conn, String planId, List<String> fileNames, ArtefactType artefactType)
+			throws Exception {
+		StringBuilder updateSql = new StringBuilder();
+		updateSql.append("UPDATE xplanmgr.artefacts");
+		updateSql.append(" SET artefacttype = ?::xplanmgr.artefacttype");
+		updateSql.append(" WHERE");
+		updateSql.append(" plan = ? AND");
+		updateSql.append(" filename = ?");
+
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement(updateSql.toString());
+			for (String rasterReference : fileNames) {
+				stmt.setString(1, artefactType.name());
+				stmt.setInt(2, getXPlanIdAsInt(planId));
+				stmt.setString(3, rasterReference);
+				LOG.trace("SQL Update xplanmgr.artefacts, column artefacttype: " + stmt);
+				stmt.executeUpdate();
+			}
+		}
+		finally {
+			closeQuietly(stmt);
 		}
 	}
 
