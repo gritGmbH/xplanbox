@@ -340,19 +340,19 @@ public class XPlanDbAdapter {
 
 	/**
 	 * Updates the column artefacttype of the table xplanmgr.artefacts.
-	 * @param id of the plan to update, never <code>null</code>
+	 * @param planId of the plan to update, never <code>null</code>
 	 * @param fileNames the fileNames to update, never <code>null</code>
 	 * @param artefactType the artefactType to set, never <code>null</code>
 	 * @throws SQLException
 	 */
-	public void updateArtefacttype(String id, List<String> fileNames, ArtefactType artefactType) throws SQLException {
+	public void updateArtefacttype(int planId, List<String> fileNames, ArtefactType artefactType) throws SQLException {
 		Connection conn = null;
 		try {
 			conn = managerWorkspaceWrapper.openConnection();
-			updateArtefacttype(conn, id, fileNames, artefactType);
+			updateArtefacttype(conn, planId, fileNames, artefactType);
 		}
 		catch (Exception e) {
-			LOG.error("Could not set artefacttype " + artefactType + " for plan with id " + id + " and files "
+			LOG.error("Could not set artefacttype " + artefactType + " for plan with id " + planId + " and files "
 					+ fileNames + ".", e);
 			conn.rollback();
 		}
@@ -376,15 +376,15 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	public XPlanVersionAndPlanStatus selectXPlanMetadata(int id) throws Exception {
+	public XPlanVersionAndPlanStatus selectXPlanMetadata(int planId) throws Exception {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
 			stmt = conn.prepareStatement("SELECT xp_version, planstatus FROM xplanmgr.plans WHERE id=?");
-			stmt.setInt(1, id);
+			stmt.setInt(1, planId);
 			rs = stmt.executeQuery();
 			if (!rs.next()) {
-				throw new PlanNotFoundException(id);
+				throw new PlanNotFoundException(planId);
 			}
 			XPlanVersion version = XPlanVersion.valueOf(rs.getString(1));
 			PlanStatus planStatus = retrievePlanStatus(rs.getString(2));
@@ -431,8 +431,6 @@ public class XPlanDbAdapter {
 	 * @throws Exception
 	 */
 	public List<XPlan> selectAllXPlans(boolean includeNoOfFeature) throws Exception {
-		managerWorkspaceWrapper.ensureWorkspaceInitialized();
-
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
@@ -470,8 +468,6 @@ public class XPlanDbAdapter {
 	 * @throws Exception
 	 */
 	public XPlan selectXPlanById(int planId) throws Exception {
-		managerWorkspaceWrapper.ensureWorkspaceInitialized();
-
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
@@ -561,20 +557,13 @@ public class XPlanDbAdapter {
 	 * @return
 	 * @throws Exception
 	 */
-	public DatabaseXPlanArtefactIterator selectAllXPlanArtefacts(String planId) throws Exception {
-		managerWorkspaceWrapper.ensureWorkspaceInitialized();
-		int id = getXPlanIdAsInt(planId);
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
-			stmt = conn.prepareStatement("SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num");
-			stmt.setInt(1, id);
-			rs = stmt.executeQuery();
-			return new DatabaseXPlanArtefactIterator(conn, stmt, rs);
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
+	public DatabaseXPlanArtefactIterator selectAllXPlanArtefacts(int planId) throws Exception {
+		Connection conn = managerWorkspaceWrapper.openConnection();
+		PreparedStatement stmt = conn
+				.prepareStatement("SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num");
+		stmt.setInt(1, planId);
+		ResultSet rs = stmt.executeQuery();
+		return new DatabaseXPlanArtefactIterator(conn, stmt, rs);
 	}
 
 	/**
@@ -613,9 +602,7 @@ public class XPlanDbAdapter {
 	 * @return the internal id of a plan (if available), <code>null</code> if an error
 	 * occurred
 	 */
-	public String selectInternalId(String planId, XPlanType type) {
-		managerWorkspaceWrapper.ensureWorkspaceInitialized();
-
+	public String selectInternalId(int planId, XPlanType type) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
@@ -642,10 +629,10 @@ public class XPlanDbAdapter {
 			sqlBuilder.append(" WHERE ");
 			sqlBuilder.append(" xplan_mgr_planid = ?");
 
-			LOG.trace("SQL Select to retrieve the internal id: " + sqlBuilder.toString());
+			LOG.trace("SQL Select to retrieve the internal id: " + sqlBuilder);
 
 			stmt = mgrConn.prepareStatement(sqlBuilder.toString());
-			stmt.setInt(1, getXPlanIdAsInt(planId));
+			stmt.setInt(1, planId);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				return rs.getString(1);
@@ -844,20 +831,20 @@ public class XPlanDbAdapter {
 	private void updateArtefacts(Connection conn, XPlan xPlan, XPlanFeatureCollection featureCollection,
 			XPlanToEdit xPlanToEdit, List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {
 		LOG.info("- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", xPlan.getId());
-		int id = getXPlanIdAsInt(xPlan.getId());
+		int planId = getXPlanIdAsInt(xPlan.getId());
 		long begin = System.currentTimeMillis();
 		try {
 			List<String> referenceFileNames = retrieveReferenceFileNames(xPlanToEdit);
-			List<String> artefactFileNames = selectArtefactFileNames(conn, id);
+			List<String> artefactFileNames = selectArtefactFileNames(conn, planId);
 			Map<String, File> artefactsToUpdate = new HashMap<>();
 			Map<String, File> artefactsToInsert = new HashMap<>();
 			for (String refFileName : referenceFileNames) {
 				updateArtefactIfRequired(uploadedArtefacts, artefactFileNames, artefactsToUpdate, artefactsToInsert,
 						refFileName);
 			}
-			executeUpdateArtefacts(conn, id, artefactsToUpdate);
-			executeInsertArtefacts(conn, id, artefactsToInsert, featureCollection);
-			executeDeleteArtefacts(conn, id, removedRefs);
+			executeUpdateArtefacts(conn, planId, artefactsToUpdate);
+			executeInsertArtefacts(conn, planId, artefactsToInsert, featureCollection);
+			executeDeleteArtefacts(conn, planId, removedRefs);
 
 			long elapsed = System.currentTimeMillis() - begin;
 			LOG.info("OK [" + elapsed + " ms]");
@@ -1004,7 +991,7 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	private void updateArtefacttype(Connection conn, String planId, List<String> fileNames, ArtefactType artefactType)
+	private void updateArtefacttype(Connection conn, int planId, List<String> fileNames, ArtefactType artefactType)
 			throws Exception {
 		StringBuilder updateSql = new StringBuilder();
 		updateSql.append("UPDATE xplanmgr.artefacts");
@@ -1018,7 +1005,7 @@ public class XPlanDbAdapter {
 			stmt = conn.prepareStatement(updateSql.toString());
 			for (String rasterReference : fileNames) {
 				stmt.setString(1, artefactType.name());
-				stmt.setInt(2, getXPlanIdAsInt(planId));
+				stmt.setInt(2, planId);
 				stmt.setString(3, rasterReference);
 				LOG.trace("SQL Update xplanmgr.artefacts, column artefacttype: " + stmt);
 				stmt.executeUpdate();
@@ -1029,7 +1016,7 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	private void executeUpdateArtefacts(Connection conn, int id, Map<String, File> artefactsToUpdate)
+	private void executeUpdateArtefacts(Connection conn, int planId, Map<String, File> artefactsToUpdate)
 			throws SQLException, IOException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE xplanmgr.artefacts SET ");
@@ -1040,7 +1027,7 @@ public class XPlanDbAdapter {
 			try (FileInputStream fileInputStream = new FileInputStream(artefactToUpdate.getValue())) {
 				try (PreparedStatement stmt = conn.prepareStatement(updateSql)) {
 					stmt.setBytes(1, createZipArtefact(fileInputStream));
-					stmt.setInt(2, id);
+					stmt.setInt(2, planId);
 					stmt.setString(3, artefactToUpdate.getKey());
 					LOG.trace("SQL Update XPlanManager Artefacts: {}", stmt);
 					stmt.executeUpdate();
@@ -1049,19 +1036,19 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	private void executeInsertArtefacts(Connection conn, int id, Map<String, File> artefactsToInsert,
+	private void executeInsertArtefacts(Connection conn, int planId, Map<String, File> artefactsToInsert,
 			XPlanFeatureCollection featureCollection) throws Exception {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO xplanmgr.artefacts ");
 		sql.append("(plan,filename,data,num,mimetype,artefacttype) ");
 		sql.append("VALUES (?,?,?,?,?,?::xplanmgr.artefacttype)");
 		String insertSql = sql.toString();
-		int num = selectNextArtefactNumber(conn, id);
+		int num = selectNextArtefactNumber(conn, planId);
 		for (Map.Entry<String, File> artefactToInsert : artefactsToInsert.entrySet()) {
 			try (FileInputStream fileInputStream = new FileInputStream(artefactToInsert.getValue())) {
 				String fileName = artefactToInsert.getKey();
 				try (PreparedStatement stmt = conn.prepareStatement(insertSql)) {
-					stmt.setInt(1, id);
+					stmt.setInt(1, planId);
 					stmt.setString(2, fileName);
 					stmt.setBytes(3, createZipArtefact(fileInputStream));
 					stmt.setInt(4, num++);
@@ -1074,7 +1061,7 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	private void executeDeleteArtefacts(Connection conn, int id, Set<String> artefactsToDelete) throws Exception {
+	private void executeDeleteArtefacts(Connection conn, int planId, Set<String> artefactsToDelete) throws Exception {
 		LOG.debug("Artefacts to delete: {}", artefactsToDelete);
 		StringBuilder sql = new StringBuilder();
 		sql.append("DELETE FROM xplanmgr.artefacts ");
@@ -1083,7 +1070,7 @@ public class XPlanDbAdapter {
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement(deleteSql);
-			stmt.setInt(1, id);
+			stmt.setInt(1, planId);
 			for (String artefactToDelete : artefactsToDelete) {
 				stmt.setString(2, artefactToDelete);
 				LOG.trace("SQL Delete XPlanManager Artefacts: {}", stmt);
@@ -1138,7 +1125,7 @@ public class XPlanDbAdapter {
 	}
 
 	private XPlan retrieveXPlan(ResultSet rs, boolean includeNoOfFeature) throws SQLException {
-		int id = rs.getInt(1);
+		int planId = rs.getInt(1);
 		Date importDate = rs.getTimestamp(2);
 		String xpVersion = rs.getString(3);
 		String xpType = rs.getString(4);
@@ -1160,7 +1147,7 @@ public class XPlanDbAdapter {
 		if (includeNoOfFeature)
 			numFeatures = rs.getInt(19);
 
-		XPlan xPlan = new XPlan((name != null ? name : "-"), Integer.toString(id), xpType);
+		XPlan xPlan = new XPlan((name != null ? name : "-"), Integer.toString(planId), xpType);
 		xPlan.setVersion(xpVersion);
 		xPlan.setNumber(number != null ? number : "-");
 		xPlan.setGkz(gkz);
@@ -1230,12 +1217,12 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	private int selectNextArtefactNumber(Connection conn, int id) throws Exception {
+	private int selectNextArtefactNumber(Connection conn, int planId) throws Exception {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conn.prepareStatement("SELECT max(num) FROM xplanmgr.artefacts WHERE plan = ?");
-			stmt.setInt(1, id);
+			stmt.setInt(1, planId);
 			LOG.trace("SQL Select artefacts max num value: {}", stmt);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
@@ -1249,13 +1236,13 @@ public class XPlanDbAdapter {
 		return 0;
 	}
 
-	private List<String> selectArtefactFileNames(Connection conn, int id) throws Exception {
+	private List<String> selectArtefactFileNames(Connection conn, int planId) throws Exception {
 		List<String> artefactFileNames = new ArrayList<String>();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conn.prepareStatement("SELECT filename FROM xplanmgr.artefacts WHERE plan=?");
-			stmt.setInt(1, id);
+			stmt.setInt(1, planId);
 			LOG.trace("SQL Select artefacts filenames: {}", stmt);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -1275,8 +1262,6 @@ public class XPlanDbAdapter {
 	}
 
 	private List<XPlan> selectXPlansWithNameFilter(String planName, String whereClause) throws Exception {
-		managerWorkspaceWrapper.ensureWorkspaceInitialized();
-
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try (Connection conn = managerWorkspaceWrapper.openConnection()) {

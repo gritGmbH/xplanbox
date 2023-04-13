@@ -69,8 +69,6 @@ public class XPlanDao {
 
 	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
-	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
-
 	private final XPlanDbAdapter xPlanDbAdapter;
 
 	private final XPlanWfsAdapter xPlanWfsAdapter;
@@ -89,7 +87,6 @@ public class XPlanDao {
 	 * @param categoryMapper mapping configuration, never <code>null</code>
 	 */
 	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
-		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
 		this.xPlanDbAdapter = new XPlanDbAdapter(managerWorkspaceWrapper, categoryMapper);
 		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper);
 		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper);
@@ -159,13 +156,12 @@ public class XPlanDao {
 	 * @param planId database id of the plan
 	 */
 	public void deletePlan(String planId) throws Exception {
-		managerWorkspaceWrapper.ensureWorkspaceInitialized();
-		int id = getXPlanIdAsInt(planId);
-		XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(id);
-		Set<String> fids = xPlanDbAdapter.selectFids(id);
-		xPlanSynWfsAdapter.deletePlan(xPlanMetadata, fids, id);
-		xPlanWfsAdapter.deletePlan(id, xPlanMetadata.version, xPlanMetadata.planStatus, fids);
-		xPlanDbAdapter.deletePlan(id);
+		int planIdAsInt = getXPlanIdAsInt(planId);
+		XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(planIdAsInt);
+		Set<String> fids = xPlanDbAdapter.selectFids(planIdAsInt);
+		xPlanSynWfsAdapter.deletePlan(xPlanMetadata, fids, planIdAsInt);
+		xPlanWfsAdapter.deletePlan(planIdAsInt, xPlanMetadata.version, xPlanMetadata.planStatus, fids);
+		xPlanDbAdapter.deletePlan(planIdAsInt);
 	}
 
 	/**
@@ -325,12 +321,11 @@ public class XPlanDao {
 	 * @throws Exception
 	 */
 	public XPlanArchiveContent retrieveAllXPlanArtefacts(String planId) throws Exception {
-		managerWorkspaceWrapper.ensureWorkspaceInitialized();
-		int id = getXPlanIdAsInt(planId);
+		int planIdAsInt = getXPlanIdAsInt(planId);
 		try {
-			XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(id);
-			XPlanArtefactIterator artefacts = xPlanDbAdapter.selectAllXPlanArtefacts(planId);
-			Set<String> ids = xPlanDbAdapter.selectFids(id);
+			XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(planIdAsInt);
+			XPlanArtefactIterator artefacts = xPlanDbAdapter.selectAllXPlanArtefacts(planIdAsInt);
+			Set<String> ids = xPlanDbAdapter.selectFids(planIdAsInt);
 			FeatureCollection fc = xPlanWfsAdapter.restoreFeatureCollection(xPlanMetadata.version,
 					xPlanMetadata.planStatus, ids);
 			return new XPlanArchiveContent(fc, artefacts, xPlanMetadata.version);
@@ -352,7 +347,6 @@ public class XPlanDao {
 	 * @throws Exception
 	 */
 	public FeatureCollection retrieveFeatureCollection(XPlan xPlanById) throws Exception {
-		managerWorkspaceWrapper.ensureWorkspaceInitialized();
 		int xPlanIdAsInt = getXPlanIdAsInt(xPlanById.getId());
 		XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(xPlanIdAsInt);
 		Set<String> ids = xPlanDbAdapter.selectFids(xPlanIdAsInt);
@@ -376,8 +370,9 @@ public class XPlanDao {
 	 * @return the internal id of a plan (if available), <code>null</code> if an error
 	 * occurred
 	 */
-	public String retrieveInternalId(String planId, XPlanType type) {
-		return xPlanDbAdapter.selectInternalId(planId, type);
+	public String retrieveInternalId(String planId, XPlanType type) throws Exception {
+		int planIdAsInt = getXPlanIdAsInt(planId);
+		return xPlanDbAdapter.selectInternalId(planIdAsInt, type);
 	}
 
 	/**
@@ -413,13 +408,14 @@ public class XPlanDao {
 
 	/**
 	 * Updates the column artefacttype of the table xplanmgr.artefacts.
-	 * @param id of the plan to update, never <code>null</code>
+	 * @param planId of the plan to update, never <code>null</code>
 	 * @param fileNames the fileNames to update, never <code>null</code>
 	 * @param artefactType the artefactType to set, never <code>null</code>
-	 * @throws SQLException
+	 * @throws Exception
 	 */
-	public void updateArtefacttype(String id, List<String> fileNames, ArtefactType artefactType) throws SQLException {
-		xPlanDbAdapter.updateArtefacttype(id, fileNames, artefactType);
+	public void updateArtefacttype(String planId, List<String> fileNames, ArtefactType artefactType) throws Exception {
+		int planIdAsInt = getXPlanIdAsInt(planId);
+		xPlanDbAdapter.updateArtefacttype(planIdAsInt, fileNames, artefactType);
 	}
 
 	/**
