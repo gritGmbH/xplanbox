@@ -27,15 +27,22 @@ import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
+import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
+import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
+import org.deegree.cs.exceptions.UnknownCRSException;
+import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Envelope;
+import org.deegree.geometry.Geometry;
+import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.io.WKTWriter;
+import org.locationtech.jts.io.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,8 +86,11 @@ public class XPlanDbAdapter {
 
 	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
-	public XPlanDbAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
+	private final CategoryMapper categoryMapper;
+
+	public XPlanDbAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
+		this.categoryMapper = categoryMapper;
 	}
 
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
@@ -306,6 +316,93 @@ public class XPlanDbAdapter {
 		finally {
 			closeQuietly(stmt);
 		}
+	}
+
+	/**
+	 * Retrieve a list of all XPlans.
+	 * @param includeNoOfFeature <code>true</code> if the number of features of each
+	 * feature collection should be requested, <code>false</code> otherwise
+	 * @param includeNoOfFeature
+	 * @return list of XPlans
+	 * @throws Exception
+	 */
+	public List<XPlan> selectAllXPlans(boolean includeNoOfFeature) throws Exception {
+		managerWorkspaceWrapper.ensureWorkspaceInitialized();
+
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT ");
+			sql.append(
+					"id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid ");
+			if (includeNoOfFeature)
+				sql.append(", (SELECT count(fid) FROM xplanmgr.features WHERE id = plan) AS numfeatures ");
+			sql.append("FROM xplanmgr.plans");
+			stmt = mgrConn.prepareStatement(sql.toString());
+			rs = stmt.executeQuery();
+			List<XPlan> xplanList = new ArrayList<>();
+			while (rs.next()) {
+				XPlan xPlan = retrieveXPlan(rs, includeNoOfFeature);
+				List<Bereich> bereiche = selectBereiche(mgrConn, getXPlanIdAsInt(xPlan.getId()));
+				xPlan.setBereiche(bereiche);
+				xplanList.add(xPlan);
+			}
+			return xplanList;
+		}
+		catch (Exception e) {
+			throw new Exception("Interner-/Konfigurations-Fehler. Kann importierte Pläne nicht auflisten: "
+					+ e.getLocalizedMessage(), e);
+		}
+		finally {
+			closeQuietly(stmt, rs);
+		}
+	}
+
+	/**
+	 * Retrieve a single {@link XPlan} by id.
+	 * @param planId id of a plan, must not be <code>null</code>
+	 * @return a single plan
+	 * @throws Exception
+	 */
+	public XPlan selectXPlanById(int planId) throws Exception {
+		managerWorkspaceWrapper.ensureWorkspaceInitialized();
+
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
+			stmt = conn.prepareStatement("SELECT id, import_date, xp_version, xp_type, name, "
+					+ "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
+					+ "sonst_plan_art, planstatus, rechtsstand, district, "
+					+ "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE id =?");
+			stmt.setInt(1, planId);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				List<Bereich> bereiche = selectBereiche(conn, planId);
+				XPlan xPlan = retrieveXPlan(rs, false);
+				xPlan.setBereiche(bereiche);
+				return xPlan;
+			}
+		}
+		catch (Exception e) {
+			throw new Exception(
+					"Interner-/Konfigurations-Fehler. Kann Plan nicht auflisten: " + e.getLocalizedMessage(), e);
+		}
+		finally {
+			closeQuietly(stmt, rs);
+		}
+		return null;
+	}
+
+	public List<XPlan> getXPlanByName(String planName) throws Exception {
+		String whereClause = "name = ?";
+		return selectXPlansWithNameFilter(planName, whereClause);
+	}
+
+	public List<XPlan> getXPlansLikeName(String planName) throws Exception {
+		String whereClause = "LOWER(name) LIKE ?";
+		String planNameLike = "%" + planName.toLowerCase() + "%";
+		return selectXPlansWithNameFilter(planNameLike, whereClause);
 	}
 
 	private int insertMetadata(Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,
@@ -652,6 +749,68 @@ public class XPlanDbAdapter {
 		return referenceFileNames;
 	}
 
+	private XPlan retrieveXPlan(ResultSet rs, boolean includeNoOfFeature) throws SQLException {
+		int id = rs.getInt(1);
+		Date importDate = rs.getTimestamp(2);
+		String xpVersion = rs.getString(3);
+		String xpType = rs.getString(4);
+		String name = rs.getString(5);
+		String number = rs.getString(6);
+		String gkz = rs.getString(7);
+		Boolean isRaster = rs.getBoolean(8);
+		Date releaseDate = convertToDate(rs.getDate(9));
+		XPlanEnvelope bbox = createBboxFromWkt(rs.getString(10));
+		String sonstPlanArt = rs.getString(11);
+		String planStatus = rs.getString(12);
+		String rechtsstand = rs.getString(13);
+		String district = rs.getString(14);
+		Timestamp startDateTime = rs.getTimestamp(15);
+		Timestamp endDateTime = rs.getTimestamp(16);
+		Boolean isInspirePublished = rs.getBoolean(17);
+		String internalId = rs.getString(18);
+		int numFeatures = -1;
+		if (includeNoOfFeature)
+			numFeatures = rs.getInt(19);
+
+		XPlan xPlan = new XPlan((name != null ? name : "-"), Integer.toString(id), xpType);
+		xPlan.setVersion(xpVersion);
+		xPlan.setNumber(number != null ? number : "-");
+		xPlan.setGkz(gkz);
+		xPlan.setNumFeatures(numFeatures);
+		xPlan.setRaster(isRaster);
+		xPlan.setAdditionalType(sonstPlanArt);
+		xPlan.setLegislationStatus(rechtsstand);
+		xPlan.setReleaseDate(releaseDate);
+		xPlan.setImportDate(importDate);
+		xPlan.setBbox(bbox);
+		xPlan.setXplanMetadata(createXPlanMetadata(planStatus, startDateTime, endDateTime));
+		xPlan.setDistrict(categoryMapper.mapToCategory(district));
+		xPlan.setInspirePublished(isInspirePublished);
+		xPlan.setInternalId(internalId);
+		return xPlan;
+	}
+
+	public List<Bereich> selectBereiche(Connection conn, int planId) throws SQLException {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			List<Bereich> bereiche = new ArrayList<>();
+			stmt = conn.prepareStatement("SELECT nummer, name FROM xplanmgr.bereiche WHERE plan=?");
+			stmt.setInt(1, planId);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Bereich bereich = new Bereich();
+				bereich.setNummer(rs.getString("nummer"));
+				bereich.setName(rs.getString("name"));
+				bereiche.add(bereich);
+			}
+			return bereiche;
+		}
+		finally {
+			closeQuietly(stmt, rs);
+		}
+	}
+
 	private void addReferences(List<String> referenceFileNames, List<? extends AbstractReference> references) {
 		for (AbstractReference ref : references) {
 			String reference = ref.getReference();
@@ -707,6 +866,37 @@ public class XPlanDbAdapter {
 		return artefactFileNames;
 	}
 
+	private List<XPlan> selectXPlansWithNameFilter(String planName, String whereClause) throws Exception {
+		managerWorkspaceWrapper.ensureWorkspaceInitialized();
+
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
+			stmt = conn.prepareStatement("SELECT id, import_date, xp_version, xp_type, name, "
+					+ "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
+					+ "sonst_plan_art, planstatus, rechtsstand, district, "
+					+ "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE "
+					+ whereClause);
+			stmt.setString(1, planName);
+			rs = stmt.executeQuery();
+			List<XPlan> xplanList = new ArrayList<>();
+			while (rs.next()) {
+				XPlan xPlan = retrieveXPlan(rs, false);
+				List<Bereich> bereiche = selectBereiche(conn, getXPlanIdAsInt(xPlan.getId()));
+				xPlan.setBereiche(bereiche);
+				xplanList.add(xPlan);
+			}
+			return xplanList;
+		}
+		catch (Exception e) {
+			throw new Exception(
+					"Interner-/Konfigurations-Fehler. Kann Plan nicht auflisten: " + e.getLocalizedMessage(), e);
+		}
+		finally {
+			closeQuietly(stmt, rs);
+		}
+	}
+
 	private void checkBereichNummern(List<Bereich> bereiche) throws AmbiguousBereichNummernException {
 		List<String> bereichNummern = new ArrayList<>();
 		for (Bereich bereich : bereiche) {
@@ -744,6 +934,30 @@ public class XPlanDbAdapter {
 		if (bboxIn4326 != null)
 			return WKTWriter.write(bboxIn4326);
 		return null;
+	}
+
+	private XPlanEnvelope createBboxFromWkt(String bboxAsWkt) {
+		if (bboxAsWkt != null && !bboxAsWkt.isEmpty()) {
+			try {
+				String crs = "epsg:4326";
+				WKTReader reader = new WKTReader(CRSManager.lookup(crs));
+				Geometry geometry = reader.read(bboxAsWkt);
+				Envelope envelope = geometry.getEnvelope();
+				return new XPlanEnvelope(envelope.getMin().get0(), envelope.getMin().get1(), envelope.getMax().get0(),
+						envelope.getMax().get1(), crs);
+			}
+			catch (UnknownCRSException | ParseException e) {
+				LOG.error("Could not create envelope from " + bboxAsWkt, e);
+			}
+		}
+		return null;
+	}
+
+	private AdditionalPlanData createXPlanMetadata(String planStatus, Timestamp startDateTime, Timestamp endDateTime) {
+		PlanStatus planStatusAsEnum = null;
+		if (planStatus != null)
+			planStatusAsEnum = PlanStatus.findByMessage(planStatus);
+		return new AdditionalPlanData(planStatusAsEnum, startDateTime, endDateTime);
 	}
 
 	private String detectArtefactType(XPlanFeatureCollection xPlanFeatureCollection, ZipEntryWithContent archiveEntry) {
