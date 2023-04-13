@@ -329,6 +329,100 @@ public class GeltungsbereichInspectorTest {
 	}
 
 	/**
+	 * BEGIN: https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1856
+	 *
+	 * <pre>
+	 * Systematische Tests für die Prüfung gegen Geltunsgbereich des Plans (GP) und
+	 * Bereichs (GB): Abbildung in SystematischeGeltungsbereichspruefung_GPundGB.jpg
+	 *
+	 * Tabelle:
+	 *
+	 * Nr | Beziehung Ojekt Plan/Bereich		| Gesamterg. | Ergebnis GP | Ergebnis GB
+	 *  1 | Objekt in GP und GB 				| 	ok 		 | 	ok		   |	ok
+	 *  2 | Objekt schneidet GP und GB 			| 	nOk		 | 	nOk		   |	nOk
+	 *  3 | Objekt in GP, außerhalb GB 			| 	ok 		 | 	ok		   |	nOk
+	 *  4 | Objekt schneidet GP, außerhalb GB 	| 	ok 		 | 	nOk		   |	nOk
+	 *  5 | Objekt außerhalb GP, in GB 			| 	ok 		 | 	nOk		   |	ok
+	 *  6 | Objekt außerhalb GP, schneidet GB 	| 	ok 		 | 	nOk		   |	nOk
+	 *  7 | Objekt außerhalb GP, außerhalb GB 	| 	ok 		 | 	nOk		   |	nOk
+	 *
+	 * </pre>
+	 **/
+	@Test
+	public void testCheck_1_GeltungsbereichPlanBereich_Objekt_InGP_InGB_valide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
+		readFeaturesFromGml("1_Geltungsbereich-Test.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(true));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(0));
+	}
+
+	@Test
+	public void testCheck_2_GeltungsbereichPlanBereich_Objekt_SchneidetGP_SchneidetGB_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
+		readFeaturesFromGml("2_Geltungsbereich-Test.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(2));
+	}
+
+	@Test
+	public void testCheck_3_GeltungsbereichPlanBereich_Objekt_InGP_AusserhalbGB_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
+		readFeaturesFromGml("3_Geltungsbereich-Test.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+	}
+
+	@Test
+	public void testCheck_4_GeltungsbereichPlanBereich_Objekt_SchneidetGP_AusserhalbGB_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
+		readFeaturesFromGml("4_Geltungsbereich-Test.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(2));
+	}
+
+	@Test
+	public void testCheck_5_GeltungsbereichPlanBereich_Objekt_AusserhalbGP_InGB_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
+		readFeaturesFromGml("5_Geltungsbereich-Test.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+	}
+
+	@Test
+	public void testCheck_6_GeltungsbereichPlanBereich_Objekt_AusserhalbGP_SchneidetGB_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
+		readFeaturesFromGml("6_Geltungsbereich-Test.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(2));
+	}
+
+	@Test
+	public void testCheck_7_GeltungsbereichPlanBereich_Objekt_AusserhalbGP_AusserhalbGB_invalide() throws Exception {
+		GeltungsbereichInspector geltungsbereichInspector = new GeltungsbereichInspector(XPLAN_52);
+		readFeaturesFromGml("7_Geltungsbereich-Test.gml", GeltungsbereichInspector.class, geltungsbereichInspector);
+
+		boolean isValid = geltungsbereichInspector.checkGeometricRule();
+		assertThat(isValid, is(false));
+		assertThat(geltungsbereichInspector.getErrors().size(), is(1));
+	}
+
+	/**
+	 * END: https://www.jira.geoportal-hamburg.de/browse/XPLANBOX-1856
+	 */
+
+	/**
 	 * Die Geometrie des Fachobjekts entspricht exakt dem Geltungsbereich des Plans. Das
 	 * Validierungsergebnis ist: valide.
 	 */
