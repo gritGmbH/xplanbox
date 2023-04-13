@@ -28,6 +28,7 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CategoryMapper;
+import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -403,6 +404,58 @@ public class XPlanDbAdapter {
 		String whereClause = "LOWER(name) LIKE ?";
 		String planNameLike = "%" + planName.toLowerCase() + "%";
 		return selectXPlansWithNameFilter(planNameLike, whereClause);
+	}
+
+	/**
+	 * retrieves the id of the plan closest in future to the date passed
+	 * @param releaseDate minimal release date
+	 * @return id of plan with minimal release date
+	 * @throws SQLException
+	 */
+	public String selectXPlanIdOfMoreRecentRasterPlan(Date releaseDate) throws SQLException {
+		String planId = null;
+
+		Connection mgrConn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			mgrConn = managerWorkspaceWrapper.openConnection();
+			stmt = mgrConn.prepareStatement("SELECT id FROM xplanmgr.plans WHERE has_raster = true AND wmsSortDate=("
+					+ "SELECT min(wmsSortDate) FROM xplanmgr.plans "
+					+ "WHERE wmsSortDate IS NOT NULL AND wmsSortDate > ?)");
+			stmt.setDate(1, new java.sql.Date(releaseDate.getTime()));
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				planId = rs.getString(1);
+			}
+		}
+		finally {
+			closeQuietly(mgrConn, stmt, rs);
+		}
+		return planId;
+	}
+
+	/**
+	 * exports a plan
+	 * @param planId of plan to export
+	 * @return
+	 * @throws Exception
+	 */
+	public DatabaseXPlanArtefactIterator selectAllXPlanArtefacts(String planId) throws Exception {
+		managerWorkspaceWrapper.ensureWorkspaceInitialized();
+		int id = getXPlanIdAsInt(planId);
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
+			stmt = conn.prepareStatement("SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num");
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			return new DatabaseXPlanArtefactIterator(conn, stmt, rs);
+		}
+		finally {
+			closeQuietly(stmt, rs);
+		}
 	}
 
 	private int insertMetadata(Connection mgrConn, XPlanArchive archive, XPlanFeatureCollection fc,

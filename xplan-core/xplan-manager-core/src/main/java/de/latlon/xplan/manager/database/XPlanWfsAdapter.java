@@ -25,9 +25,12 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
+import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.persistence.FeatureStore;
+import org.deegree.feature.persistence.query.Query;
 import org.deegree.feature.persistence.sql.SQLFeatureStoreTransaction;
 import org.deegree.filter.IdFilter;
+import org.deegree.protocol.wfs.getfeature.TypeName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,6 +83,14 @@ public class XPlanWfsAdapter {
 		catch (Exception e) {
 			throw new Exception("Fehler beim Löschen des Plans: " + e.getMessage() + ".", e);
 		}
+	}
+
+	public FeatureCollection restoreFeatureCollection(XPlanVersion version, PlanStatus planStatus, Set<String> ids)
+			throws Exception {
+		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
+		IdFilter filter = new IdFilter(ids);
+		Query query = new Query(new TypeName[0], filter, null, null, null);
+		return fs.query(query).toCollection();
 	}
 
 	public List<String> update(int planId, XPlan oldXPlan, AdditionalPlanData newXPlanMetadata,

@@ -27,7 +27,6 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.CategoryMapper;
-import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
 import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanArtefactIterator;
 import de.latlon.xplan.manager.export.XPlanExportException;
@@ -38,11 +37,7 @@ import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import org.apache.commons.io.IOUtils;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.persistence.FeatureStore;
-import org.deegree.feature.persistence.query.Query;
 import org.deegree.feature.types.AppSchema;
-import org.deegree.filter.IdFilter;
-import org.deegree.protocol.wfs.getfeature.TypeName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -330,27 +325,7 @@ public class XPlanDao {
 	 * @throws SQLException
 	 */
 	public String getPlanIdOfMoreRecentRasterPlan(Date releaseDate) throws SQLException {
-		String planId = null;
-
-		Connection mgrConn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			mgrConn = managerWorkspaceWrapper.openConnection();
-			stmt = mgrConn.prepareStatement("SELECT id FROM xplanmgr.plans WHERE has_raster = true AND wmsSortDate=("
-					+ "SELECT min(wmsSortDate) FROM xplanmgr.plans "
-					+ "WHERE wmsSortDate IS NOT NULL AND wmsSortDate > ?)");
-			stmt.setDate(1, new java.sql.Date(releaseDate.getTime()));
-			rs = stmt.executeQuery();
-
-			if (rs.next()) {
-				planId = rs.getString(1);
-			}
-		}
-		finally {
-			closeQuietly(mgrConn, stmt, rs);
-		}
-		return planId;
+		return xPlanDbAdapter.selectXPlanIdOfMoreRecentRasterPlan(releaseDate);
 	}
 
 	/**
@@ -363,14 +338,11 @@ public class XPlanDao {
 		managerWorkspaceWrapper.ensureWorkspaceInitialized();
 		int id = getXPlanIdAsInt(planId);
 		try {
-			Connection conn = managerWorkspaceWrapper.openConnection();
 			XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(id);
-			PreparedStatement stmt = conn
-					.prepareStatement("SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num");
-			stmt.setInt(1, id);
-			ResultSet rs = stmt.executeQuery();
-			XPlanArtefactIterator artefacts = new DatabaseXPlanArtefactIterator(conn, stmt, rs);
-			FeatureCollection fc = restoreFeatureCollection(id, xPlanMetadata);
+			XPlanArtefactIterator artefacts = xPlanDbAdapter.selectAllXPlanArtefacts(planId);
+			Set<String> ids = xPlanDbAdapter.selectFids(id);
+			FeatureCollection fc = xPlanWfsAdapter.restoreFeatureCollection(xPlanMetadata.version,
+					xPlanMetadata.planStatus, ids);
 			return new XPlanArchiveContent(fc, artefacts, xPlanMetadata.version);
 		}
 		catch (PlanNotFoundException pe) {
@@ -393,7 +365,8 @@ public class XPlanDao {
 		managerWorkspaceWrapper.ensureWorkspaceInitialized();
 		int xPlanIdAsInt = getXPlanIdAsInt(xPlanById.getId());
 		XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(xPlanIdAsInt);
-		return restoreFeatureCollection(xPlanIdAsInt, xPlanMetadata);
+		Set<String> ids = xPlanDbAdapter.selectFids(xPlanIdAsInt);
+		return xPlanWfsAdapter.restoreFeatureCollection(xPlanMetadata.version, xPlanMetadata.planStatus, ids);
 	}
 
 	/**
@@ -740,17 +713,6 @@ public class XPlanDao {
 		catch (NumberFormatException e) {
 			throw new Exception("Spezifizierter Wert '" + planId + "' ist keine gültige XPlan-Id (Ganzzahl).", e);
 		}
-	}
-
-	private FeatureCollection restoreFeatureCollection(int id, XPlanVersionAndPlanStatus xPlanMetadata)
-			throws Exception {
-		XPlanVersion version = xPlanMetadata.version;
-		FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, xPlanMetadata.planStatus);
-		Set<String> ids = xPlanDbAdapter.selectFids(id);
-
-		IdFilter filter = new IdFilter(ids);
-		Query query = new Query(new TypeName[0], filter, null, null, null);
-		return fs.query(query).toCollection();
 	}
 
 	private void updateInspirePublishedStatus(Connection conn, String xplanId, boolean isPiublished)
