@@ -2,6 +2,12 @@
 
 Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
+## Version 6.0.2 (2023-04-13)
+
+### Fehlerbehebungen
+- Aktualisierung der Validierungsregeln auf v1.1.3 mit Korrekturen der Regeln 4.5.1.3 und 5.3.1.2
+- Fehlerkorrektur in der Geltungsgbereichsprüfung
+
 ## Version 6.0.1 (2023-03-30)
 
 ### Erweiterungen

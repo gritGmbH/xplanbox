@@ -2,6 +2,13 @@
 [[Aenderungshistorie]]
 == Änderungshistorie der xPlanBox
 
+[[Aenderungshistorie-6.0.2]]
+=== Version 6.0.2
+
+==== Fehlerbehebungen
+- Aktualisierung der Validierungsregeln auf v1.1.3 mit Korrekturen der Regeln 4.5.1.3 und 5.3.1.2
+- Fehlerkorrektur in der Geltungsgbereichsprüfung
+
 [[Aenderungshistorie-6.0.1]]
 === Version 6.0.1
 
