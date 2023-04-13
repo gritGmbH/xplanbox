@@ -197,7 +197,7 @@ public class XPlanDao {
 		XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(id);
 		Set<String> fids = xPlanDbAdapter.selectFids(id);
 		xPlanSynWfsAdapter.deletePlan(xPlanMetadata, fids, id);
-		xPlanWfsAdapter.deletePlan(xPlanMetadata, fids, id);
+		xPlanWfsAdapter.deletePlan(id, xPlanMetadata.version, xPlanMetadata.planStatus, fids);
 		xPlanDbAdapter.deletePlan(id);
 	}
 
@@ -296,27 +296,7 @@ public class XPlanDao {
 	 */
 	public void insertXPlanFeatureCollection(XPlanFeatureCollection xPlanFeatureCollection, PlanStatus planStatus)
 			throws Exception {
-		PreparedStatement stmt = null;
-		SQLFeatureStoreTransaction taTarget = null;
-		try {
-			FeatureStore fsTarget = managerWorkspaceWrapper.lookupStore(xPlanFeatureCollection.getVersion(),
-					planStatus);
-
-			taTarget = insertXPlan(fsTarget, xPlanFeatureCollection).second;
-
-			LOG.info("- Persistierung...");
-			taTarget.commit();
-			LOG.info("OK");
-		}
-		catch (Exception e) {
-			LOG.error("Fehler beim Aktualiseren der FeatureCollection. Ein Rollback wird durchgeführt.", e);
-			if (taTarget != null)
-				taTarget.rollback();
-			throw new Exception("Fehler beim Aktualiseren der FeatureCollection: " + e.getMessage() + ".", e);
-		}
-		finally {
-			closeQuietly(stmt);
-		}
+		xPlanWfsAdapter.insert(xPlanFeatureCollection, planStatus);
 	}
 
 	/**
@@ -326,33 +306,9 @@ public class XPlanDao {
 	 * @param planStatus
 	 * @param fids to remove
 	 */
-	public void deleteXPlanFeatureCollection(int planId, XPlanVersion version, PlanStatus planStatus, List<String> fids)
+	public void deleteXPlanFeatureCollection(int planId, XPlanVersion version, PlanStatus planStatus, Set<String> fids)
 			throws Exception {
-		PreparedStatement stmt = null;
-		SQLFeatureStoreTransaction ta = null;
-		try {
-			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
-			ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
-
-			IdFilter idFilter = new IdFilter(fids);
-			LOG.info("- Entferne XPlan " + planId + " aus dem FeatureStore (" + version + ", " + planStatus + ")...");
-			ta.performDelete(idFilter, null);
-			LOG.info("OK");
-
-			LOG.info("- Persistierung...");
-			ta.commit();
-			LOG.info("OK");
-
-		}
-		catch (Exception e) {
-			LOG.error("Fehler beim Entfernen der FeatureCollection. Ein Rollback wird durchgeführt.", e);
-			if (ta != null)
-				ta.rollback();
-			throw new Exception("Fehler beim Entfernen der FeatureCollection: " + e.getMessage() + ".", e);
-		}
-		finally {
-			closeQuietly(stmt);
-		}
+		xPlanWfsAdapter.deletePlan(planId, version, planStatus, fids);
 	}
 
 	/**

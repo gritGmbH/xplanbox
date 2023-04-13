@@ -49,7 +49,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static de.latlon.xplan.transform.cli.TransformTool.LOG_TABLE_NAME;
@@ -134,7 +135,7 @@ public class TransformationSynchronizer implements Synchronizer {
 	private void delete(Connection conn, int logTableId, int xPlanManagerId, String oldPlanStatus)
 			throws SynchronizationException {
 		try {
-			List<String> fids = selectIds(conn, logTableId);
+			Set<String> fids = selectIds(conn, logTableId);
 			PlanStatus planStatus = PlanStatus.findByMessage(oldPlanStatus);
 			xPlanDao.deleteXPlanFeatureCollection(xPlanManagerId, XPlanVersion.XPLAN_51, planStatus, fids);
 		}
@@ -143,7 +144,7 @@ public class TransformationSynchronizer implements Synchronizer {
 		}
 	}
 
-	private List<String> selectIds(Connection conn, int logTableId) throws SynchronizationException {
+	private Set<String> selectIds(Connection conn, int logTableId) throws SynchronizationException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
@@ -157,7 +158,7 @@ public class TransformationSynchronizer implements Synchronizer {
 			if (rs.next()) {
 				Array array = rs.getArray(1);
 				String[] fids = (String[]) array.getArray();
-				return Arrays.asList(fids);
+				return new HashSet<>(Arrays.asList(fids));
 			}
 		}
 		catch (SQLException e) {
@@ -166,7 +167,7 @@ public class TransformationSynchronizer implements Synchronizer {
 		finally {
 			DatabaseUtils.closeQuietly(ps, rs);
 		}
-		return Collections.emptyList();
+		return Collections.emptySet();
 	}
 
 	private XPlanFeatureCollection createXPlanFeatureCollection(TransformationResult transformationResult,

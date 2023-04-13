@@ -66,11 +66,8 @@ public class XPlanWfsAdapter {
 		}
 	}
 
-	public void deletePlan(XPlanVersionAndPlanStatus xPlanMetadata, Set<String> ids, int planId) throws Exception {
+	public void deletePlan(int planId, XPlanVersion version, PlanStatus planStatus, Set<String> ids) throws Exception {
 		try {
-			XPlanVersion version = xPlanMetadata.version;
-			PlanStatus planStatus = xPlanMetadata.planStatus;
-
 			FeatureStore fs = managerWorkspaceWrapper.lookupStore(version, planStatus);
 			SQLFeatureStoreTransaction ta = (SQLFeatureStoreTransaction) fs.acquireTransaction();
 
