@@ -48,7 +48,7 @@ import java.sql.SQLException;
 		includeFilters = @ComponentScan.Filter(value = { PlanRepository.class }, type = FilterType.ASSIGNABLE_TYPE))
 @PropertySource("classpath:/jpa.properties")
 @EnableTransactionManagement
-public class JpaConfig {
+public class JpaContext {
 
 	@Bean
 	public DataSource dataSource(@Value("${jdbc.driverClassName}") String driverClassName,
