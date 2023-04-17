@@ -36,8 +36,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
-import static de.latlon.xplan.manager.database.ArtefactType.RASTERBASIS;
-import static de.latlon.xplan.manager.database.ArtefactType.XPLANGML;
+import static de.latlon.xplan.core.manager.db.model.ArtefactType.RASTERBASIS;
+import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
 import static java.util.Collections.singletonList;
 
 /**

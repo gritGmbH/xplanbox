@@ -28,6 +28,7 @@
     <spring-boot.version>2.5.14</spring-boot.version>
     <spring-batch.version>4.3.6</spring-batch.version>
     <spring-security.version>5.5.8</spring-security.version>
+    <spring-data.version>2.7.10</spring-data.version>
     <jackson.version>2.13.4</jackson.version>
     <liquibase.version>4.15.0</liquibase.version>
     <postgresql.version>42.4.3</postgresql.version>
@@ -650,6 +651,11 @@
         <version>2.2.1-b04</version>
         <scope>provided</scope>
       </dependency>
+      <dependency>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>2.2.3</version>
+      </dependency>
       <!-- deegree -->
       <dependency>
         <groupId>de.latlon</groupId>
@@ -877,6 +883,12 @@
         <version>2.6</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+        <version>2.7.1</version>
+        <scope>test</scope>
+      </dependency>
       <!-- xerces -->
       <dependency>
         <groupId>xerces</groupId>
@@ -1068,6 +1080,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>xplan-synthesizer</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-core-manager-db</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -1313,6 +1330,17 @@
         <artifactId>spring-security-ldap</artifactId>
         <version>${spring-security.version}</version>
       </dependency>
+      <!-- Spring Data -->
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-commons</artifactId>
+        <version>${spring-data.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>${spring-data.version}</version>
+      </dependency>
       <!-- reports -->
       <dependency>
         <groupId>net.sourceforge.dynamicreports</groupId>
@@ -1395,6 +1423,11 @@
         <groupId>org.hibernate.validator</groupId>
         <artifactId>hibernate-validator</artifactId>
         <version>6.1.7.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>5.6.15.Final</version>
       </dependency>
       <dependency>
         <groupId>jakarta.validation</groupId>
