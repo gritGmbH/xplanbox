@@ -22,13 +22,12 @@ package de.latlon.xplan.core.manager.db.config;
 
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -51,16 +50,15 @@ import java.sql.SQLException;
 @EnableTransactionManagement
 public class JpaConfig {
 
-	@Autowired
-	private Environment env;
-
 	@Bean
-	public DataSource dataSource() throws SQLException {
+	public DataSource dataSource(@Value("${jdbc.driverClassName}") String driverClassName,
+			@Value("${jdbc.url}") String jdbcUrl, @Value("${jdbc.username}") String username,
+			@Value("${jdbc.password}") String password) throws SQLException {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-		dataSource.setUrl(env.getProperty("jdbc.url"));
-		dataSource.setUsername(env.getProperty("jdbc.username"));
-		dataSource.setPassword(env.getProperty("jdbc.password"));
+		dataSource.setDriverClassName(driverClassName);
+		dataSource.setUrl(jdbcUrl);
+		dataSource.setUsername(username);
+		dataSource.setPassword(password);
 		return dataSource;
 	}
 
@@ -77,11 +75,10 @@ public class JpaConfig {
 	}
 
 	@Bean
-	public HibernateJpaVendorAdapter getJpaVendorAdapter() {
+	public HibernateJpaVendorAdapter getJpaVendorAdapter(@Value("${hibernate.dialect}") String hibernateDialect) {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setGenerateDdl(true);
 		vendorAdapter.setShowSql(true);
-		vendorAdapter.setDatabasePlatform(env.getProperty("hibernate.dialect"));
+		vendorAdapter.setDatabasePlatform(hibernateDialect);
 		return vendorAdapter;
 	}
 

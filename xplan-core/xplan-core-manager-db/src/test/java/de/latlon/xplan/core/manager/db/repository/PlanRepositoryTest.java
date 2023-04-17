@@ -2,6 +2,7 @@ package de.latlon.xplan.core.manager.db.repository;
 
 import de.latlon.xplan.core.manager.db.config.HsqlJpaConfig;
 import de.latlon.xplan.core.manager.db.config.JpaConfig;
+import de.latlon.xplan.core.manager.db.config.PostgisJpaConfig;
 import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.core.manager.db.model.Bereich;
@@ -9,6 +10,9 @@ import de.latlon.xplan.core.manager.db.model.Feature;
 import de.latlon.xplan.core.manager.db.model.Plan;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.ParseException;
+import org.locationtech.jts.io.WKTReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ActiveProfiles;
@@ -36,8 +40,8 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("test")
-@ContextConfiguration(classes = { JpaConfig.class, HsqlJpaConfig.class })
+@ActiveProfiles("test-hsql")
+@ContextConfiguration(classes = { JpaConfig.class, HsqlJpaConfig.class, PostgisJpaConfig.class })
 @Transactional
 public class PlanRepositoryTest {
 
@@ -50,7 +54,7 @@ public class PlanRepositoryTest {
 	@Autowired
 	private PlanRepository planRepository;
 
-	// @Test
+	@Test
 	public void injectedComponentsAreNotNull() {
 		assertThat(dataSource, is(notNullValue()));
 		assertThat(entityManager, is(notNullValue()));
@@ -59,15 +63,17 @@ public class PlanRepositoryTest {
 
 	@Test
 	@Commit
-	public void saveAndFindById() {
+	public void saveAndFindById() throws ParseException {
 		assertFalse(TestTransaction.isFlaggedForRollback());
-		Plan plan = new Plan().importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false);
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
 		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
 				.data("test".getBytes(UTF_8)).filename("test.xml");
-		plan.bereiche(Collections.singletonList(bereich)).features(Collections.singletonList(feature))
+		Plan plan = new Plan().importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
+				.bereiche(Collections.singletonList(bereich)).features(Collections.singletonList(feature))
 				.artefacts(Collections.singletonList(artefact));
+		// Not running with HSQL DB (@ActiveProfiles("test-hsql"))
+		// setBbox(plan);
 		assertNull(plan.getId());
 		Plan savedPlan = planRepository.save(plan);
 		assertNotNull(savedPlan.getId());
@@ -76,6 +82,11 @@ public class PlanRepositoryTest {
 		Plan foundPlan = optionalFoundPlan.get();
 		assertNotNull(foundPlan);
 		assertNotNull(foundPlan.getId());
+	}
+
+	private static void setBbox(Plan plan) throws ParseException {
+		Geometry bbox = new WKTReader().read("POLYGON((10 53, 11 53, 11 54, 10 54, 10 53))");
+		plan.bbox(bbox);
 	}
 
 }

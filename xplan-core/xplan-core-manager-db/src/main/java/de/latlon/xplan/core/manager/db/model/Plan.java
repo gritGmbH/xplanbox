@@ -22,6 +22,7 @@ package de.latlon.xplan.core.manager.db.model;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
+import org.locationtech.jts.geom.Geometry;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -100,7 +101,7 @@ public class Plan {
 
 	private @Valid Boolean inspirepublished;
 
-	// private @Valid String bbox;
+	private @Valid Geometry bbox;
 
 	@ElementCollection
 	@CollectionTable(schema = "xplanmgr", name = "bereiche", joinColumns = @JoinColumn(name = "plan"),
@@ -343,6 +344,19 @@ public class Plan {
 
 	public Plan inspirepublished(Boolean inspirepublished) {
 		this.inspirepublished = inspirepublished;
+		return this;
+	}
+
+	public Geometry getBbox() {
+		return bbox;
+	}
+
+	public void setBbox(Geometry bbox) {
+		this.bbox = bbox;
+	}
+
+	public Plan bbox(Geometry bbox) {
+		this.bbox = bbox;
 		return this;
 	}
 

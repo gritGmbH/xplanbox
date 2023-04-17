@@ -20,41 +20,17 @@
  */
 package de.latlon.xplan.core.manager.db.config;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-
-import javax.sql.DataSource;
-import java.sql.SQLException;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
 @Configuration
-@PropertySource("classpath:/jpa-hsql.properties")
-@Profile("test-hsql")
-public class HsqlJpaConfig {
-
-	@Bean
-	public DataSource dataSource() throws SQLException {
-		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		return builder.addScript("/create-schema.sql").setType(EmbeddedDatabaseType.HSQL).ignoreFailedDrops(true)
-				.build();
-	}
-
-	@Bean
-	public HibernateJpaVendorAdapter getJpaVendorAdapter(@Value("${hibernate.dialect}") String hibernateDialect) {
-		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setGenerateDdl(true);
-		vendorAdapter.setShowSql(true);
-		vendorAdapter.setDatabasePlatform(hibernateDialect);
-		return vendorAdapter;
-	}
+@PropertySource("classpath:/jpa-postgis.properties")
+@Profile("test-postgis")
+public class PostgisJpaConfig {
 
 }
