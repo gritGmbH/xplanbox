@@ -20,13 +20,6 @@
  */
 package de.latlon.xplan.core.manager.db.config;
 
-import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
-
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
@@ -34,21 +27,8 @@ import java.sql.SQLException;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
-@Configuration
-@PropertySource("classpath:/jpa-postgis.properties")
-@Profile("test-postgis")
-public class PostgisJpaContext {
+public interface DatasourceWrapper {
 
-	@Bean
-	public DataSource dataSource(@Value("${jdbc.driverClassName}") String driverClassName,
-			@Value("${jdbc.url}") String jdbcUrl, @Value("${jdbc.username}") String username,
-			@Value("${jdbc.password}") String password) throws SQLException {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(driverClassName);
-		dataSource.setUrl(jdbcUrl);
-		dataSource.setUsername(username);
-		dataSource.setPassword(password);
-		return dataSource;
-	}
+	DataSource retrieveDataSource() throws SQLException;
 
 }

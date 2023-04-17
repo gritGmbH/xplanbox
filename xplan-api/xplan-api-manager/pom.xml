@@ -189,6 +189,12 @@
       <groupId>org.liquibase.ext</groupId>
       <artifactId>liquibase-postgresql</artifactId>
     </dependency>
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
+      <version>1.14.4</version>
+      <scope>compile</scope>
+    </dependency>
     <!-- test -->
     <dependency>
       <groupId>junit</groupId>

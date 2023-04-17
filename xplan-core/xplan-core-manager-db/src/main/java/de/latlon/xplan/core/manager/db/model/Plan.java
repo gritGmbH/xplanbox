@@ -39,6 +39,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -368,6 +369,13 @@ public class Plan {
 		this.bereiche = bereiche;
 	}
 
+	public void addBereich(Bereich bereich) {
+		if (this.bereiche == null) {
+			this.bereiche = new ArrayList<>();
+		}
+		this.bereiche.add(bereich);
+	}
+
 	public Plan bereiche(List<Bereich> bereiche) {
 		this.bereiche = bereiche;
 		return this;
@@ -392,6 +400,13 @@ public class Plan {
 
 	public void setFeatures(List<Feature> features) {
 		this.features = features;
+	}
+
+	public void addFeature(Feature feature) {
+		if (this.features == null) {
+			this.features = new ArrayList<>();
+		}
+		this.features.add(feature);
 	}
 
 	public Plan features(List<Feature> features) {

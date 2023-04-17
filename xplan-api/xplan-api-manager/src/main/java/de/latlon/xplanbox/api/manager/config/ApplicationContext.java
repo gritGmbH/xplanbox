@@ -25,11 +25,14 @@ import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.database.XPlanDbAdapter;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.document.config.DocumentStorageContext;
 import de.latlon.xplan.manager.export.XPlanExporter;
@@ -74,6 +77,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplanbox.api.commons.handler.SystemConfigHandler;
 import org.deegree.commons.config.DeegreeWorkspace;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -103,11 +107,20 @@ import static java.nio.file.Paths.get;
  */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager" })
-@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class, DocumentStorageContext.class,
-		StorageCleanUpContext.class })
+@Import({ JpaContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class,
+		DocumentStorageContext.class, StorageCleanUpContext.class })
 public class ApplicationContext {
 
 	private static final String RULES_DIRECTORY = "/rules";
+
+	@Autowired
+	private PlanRepository planRepository;
+
+	@Bean
+	public XPlanDbAdapter xPlanDbAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			CategoryMapper categoryMapper) {
+		return new XPlanDbAdapter(managerWorkspaceWrapper, categoryMapper, planRepository);
+	}
 
 	@Bean
 	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
@@ -203,8 +216,9 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper) {
-		return new XPlanDao(managerWorkspaceWrapper, categoryMapper);
+	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			XPlanDbAdapter xPlanDbAdapter) {
+		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter);
 	}
 
 	@Bean

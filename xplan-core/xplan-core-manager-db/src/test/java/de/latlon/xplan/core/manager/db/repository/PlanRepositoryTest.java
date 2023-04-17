@@ -1,8 +1,8 @@
 package de.latlon.xplan.core.manager.db.repository;
 
-import de.latlon.xplan.core.manager.db.config.HsqlJpaConfig;
-import de.latlon.xplan.core.manager.db.config.JpaConfig;
-import de.latlon.xplan.core.manager.db.config.PostgisJpaConfig;
+import de.latlon.xplan.core.manager.db.config.HsqlJpaContext;
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplan.core.manager.db.config.PostgisJpaContext;
 import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.core.manager.db.model.Bereich;
@@ -41,7 +41,7 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test-hsql")
-@ContextConfiguration(classes = { JpaConfig.class, HsqlJpaConfig.class, PostgisJpaConfig.class })
+@ContextConfiguration(classes = { JpaContext.class, HsqlJpaContext.class, PostgisJpaContext.class })
 @Transactional
 public class PlanRepositoryTest {
 

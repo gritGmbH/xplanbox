@@ -21,7 +21,7 @@
 package de.latlon.xplan.core.manager.db.config;
 
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
-import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -50,16 +50,12 @@ import java.sql.SQLException;
 @EnableTransactionManagement
 public class JpaContext {
 
+	@Autowired
+	private DatasourceWrapper datasourceWrapper;
+
 	@Bean
-	public DataSource dataSource(@Value("${jdbc.driverClassName}") String driverClassName,
-			@Value("${jdbc.url}") String jdbcUrl, @Value("${jdbc.username}") String username,
-			@Value("${jdbc.password}") String password) throws SQLException {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(driverClassName);
-		dataSource.setUrl(jdbcUrl);
-		dataSource.setUsername(username);
-		dataSource.setPassword(password);
-		return dataSource;
+	public DataSource dataSource() throws SQLException {
+		return datasourceWrapper.retrieveDataSource();
 	}
 
 	@Bean

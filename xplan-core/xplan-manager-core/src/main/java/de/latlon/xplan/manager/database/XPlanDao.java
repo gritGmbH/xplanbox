@@ -88,7 +88,23 @@ public class XPlanDao {
 	 * @param categoryMapper mapping configuration, never <code>null</code>
 	 */
 	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
-		this.xPlanDbAdapter = new XPlanDbAdapter(managerWorkspaceWrapper, categoryMapper);
+		this.xPlanDbAdapter = new XPlanDbAdapter(managerWorkspaceWrapper, categoryMapper, null);
+		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper);
+		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper);
+		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper);
+	}
+
+	/**
+	 * Creates a new {@link XPlanDao} instance.
+	 * <p>
+	 * The DAO performs the initialization of the JDBC connection and feature stores on
+	 * demand.
+	 * </p>
+	 * @param managerWorkspaceWrapper workspace, never <code>null</code>
+	 * @param xPlanDbAdapter never <code>null</code>
+	 */
+	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanDbAdapter xPlanDbAdapter) {
+		this.xPlanDbAdapter = xPlanDbAdapter;
 		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper);
 		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper);
 		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper);
