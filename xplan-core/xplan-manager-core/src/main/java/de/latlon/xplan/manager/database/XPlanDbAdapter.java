@@ -27,6 +27,7 @@ import de.latlon.xplan.commons.archive.ZipEntryWithContent;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
+import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.core.manager.db.model.Feature;
 import de.latlon.xplan.core.manager.db.model.Plan;
@@ -70,8 +71,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -117,54 +120,19 @@ public class XPlanDbAdapter {
 
 	public void insertArtefacts(XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive, int planId)
 			throws Exception {
-		Connection conn = null;
-		try {
-			LOG.info("Insert XPlan in XPlanDB");
-			conn = managerWorkspaceWrapper.openConnection();
-			conn.setAutoCommit(false);
-			PreparedStatement stmt = null;
-			List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
-			int i = 0;
-			for (ZipEntryWithContent archiveEntry : archiveEntries) {
-				long begin = System.currentTimeMillis();
-				String name = archiveEntry.getName();
-				LOG.info(String.format("- Einfügen von XPlan-Artefakt '%s'...", name));
-				try {
-					InputStream is = archiveEntry.retrieveContentAsStream();
-					String mimetype = getArtefactMimeType(name);
-					String insertStatement = "INSERT INTO xplanmgr.artefacts (plan,filename,data,num,mimetype,artefacttype)"
-							+ " VALUES (?,?,?,?,?,?::xplanmgr.artefacttype)";
-					stmt = conn.prepareStatement(insertStatement);
-					stmt.setInt(1, planId);
-					stmt.setString(2, name);
-					stmt.setBytes(3, createZipArtefact(is));
-					stmt.setInt(4, i++);
-					stmt.setString(5, mimetype);
-					stmt.setString(6, detectArtefactType(xPlanFeatureCollection, archiveEntry));
-					stmt.executeUpdate();
-					stmt.close();
-					is.close();
-					long elapsed = System.currentTimeMillis() - begin;
-					LOG.info("OK [" + elapsed + " ms]");
-				}
-				catch (IOException e) {
-					throw new Exception("Fehler beim Lesen des Archiv-Eintrags: " + e.getLocalizedMessage(), e);
-				}
-				catch (SQLException e) {
-					throw new Exception("Fehler beim Einfügen in DB: " + e.getLocalizedMessage(), e);
-				}
-				finally {
-					closeQuietly(stmt);
-				}
-			}
-			conn.commit();
+		Optional<Plan> optionalPlan = planRepository.findById(planId);
+		if (!optionalPlan.isPresent()) {
+			throw new Exception(
+					"Plan mit ID " + planId + " ist nicht vorhanden. Artefakte können nicht abgespeichert werden");
 		}
-		catch (Exception e) {
-			throw new Exception("Fehler beim Einfügen: " + e.getMessage(), e);
-		}
-		finally {
-			closeQuietly(conn);
-		}
+		Plan plan = optionalPlan.get();
+		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
+		AtomicInteger i = new AtomicInteger();
+		List<Artefact> artefacts = archiveEntries.stream()
+				.map(archiveEntry -> createArtefact(xPlanFeatureCollection, i, archiveEntry))
+				.collect(Collectors.toList());
+		plan.setArtefacts(artefacts);
+		planRepository.save(plan);
 	}
 
 	public void insertOrReplacePlanWerkWmsMetadata(int planId, String title, String resourceIdentifier,
@@ -964,7 +932,8 @@ public class XPlanDbAdapter {
 					stmt.setBytes(3, createZipArtefact(fileInputStream));
 					stmt.setInt(4, num++);
 					stmt.setString(5, getArtefactMimeType(fileName));
-					stmt.setString(6, detectNonXPlanGmlArtefactType(featureCollection, fileName));
+					ArtefactType artefactType = detectNonXPlanGmlArtefactType(featureCollection, fileName);
+					stmt.setString(6, artefactType != null ? artefactType.name() : null);
 					LOG.trace("SQL Insert XPlanManager Artefacts: {}", stmt);
 					stmt.executeUpdate();
 				}
@@ -1264,9 +1233,10 @@ public class XPlanDbAdapter {
 		return new AdditionalPlanData(planStatusAsEnum, startDateTime, endDateTime);
 	}
 
-	private String detectArtefactType(XPlanFeatureCollection xPlanFeatureCollection, ZipEntryWithContent archiveEntry) {
+	private ArtefactType detectArtefactType(XPlanFeatureCollection xPlanFeatureCollection,
+			ZipEntryWithContent archiveEntry) {
 		if (archiveEntry.isXPlanGml()) {
-			return XPLANGML.name();
+			return XPLANGML;
 		}
 		return detectNonXPlanGmlArtefactType(xPlanFeatureCollection, archiveEntry.getName());
 	}
@@ -1287,13 +1257,13 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	private String detectNonXPlanGmlArtefactType(XPlanFeatureCollection xPlanFeatureCollection, String name) {
+	private ArtefactType detectNonXPlanGmlArtefactType(XPlanFeatureCollection xPlanFeatureCollection, String name) {
 		List<ExternalReference> rasterPlanBaseAndUpdateScans = xPlanFeatureCollection.getExternalReferenceInfo()
 				.getRasterPlanBaseAndUpdateScans();
 		boolean isRasterBasis = rasterPlanBaseAndUpdateScans.stream()
 				.anyMatch(rasterPlanBaseAndUpdateScan -> name.equals(rasterPlanBaseAndUpdateScan.getReferenzUrl()));
 		if (isRasterBasis)
-			return RASTERBASIS.name();
+			return RASTERBASIS;
 		return null;
 	}
 
@@ -1369,6 +1339,24 @@ public class XPlanDbAdapter {
 			plan.addFeature(feature);
 		});
 		return plan;
+	}
+
+	private Artefact createArtefact(XPlanFeatureCollection xPlanFeatureCollection, AtomicInteger i,
+			ZipEntryWithContent archiveEntry) {
+		try {
+			String name = archiveEntry.getName();
+			InputStream is = archiveEntry.retrieveContentAsStream();
+			byte[] data = createZipArtefact(is);
+			String mimetype = getArtefactMimeType(name);
+			ArtefactType artefactType = detectArtefactType(xPlanFeatureCollection, archiveEntry);
+
+			Artefact artefact = new Artefact().filename(name).data(data).mimetype(mimetype).artefacttype(artefactType)
+					.num(i.getAndIncrement());
+			return artefact;
+		}
+		catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
