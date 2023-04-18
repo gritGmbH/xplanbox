@@ -66,7 +66,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -346,15 +345,14 @@ public class XPlanDbAdapter {
 		return false;
 	}
 
-	public List<XPlan> getXPlanByName(String planName) throws Exception {
-		String whereClause = "name = ?";
-		return selectXPlansWithNameFilter(planName, whereClause);
+	public List<XPlan> getXPlanByName(String planName) {
+		List<Plan> plans = planRepository.findByName(planName);
+		return plans.stream().map(plan -> convertToXPlan(plan)).collect(Collectors.toList());
 	}
 
-	public List<XPlan> getXPlansLikeName(String planName) throws Exception {
-		String whereClause = "LOWER(name) LIKE ?";
-		String planNameLike = "%" + planName.toLowerCase() + "%";
-		return selectXPlansWithNameFilter(planNameLike, whereClause);
+	public List<XPlan> getXPlansLikeName(String planName) {
+		List<Plan> plans = planRepository.findByNameLike(planName);
+		return plans.stream().map(plan -> convertToXPlan(plan)).collect(Collectors.toList());
 	}
 
 	/**
@@ -363,28 +361,11 @@ public class XPlanDbAdapter {
 	 * @return id of plan with minimal release date
 	 * @throws SQLException
 	 */
-	public String selectXPlanIdOfMoreRecentRasterPlan(Date releaseDate) throws SQLException {
-		String planId = null;
-
-		Connection mgrConn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			mgrConn = managerWorkspaceWrapper.openConnection();
-			stmt = mgrConn.prepareStatement("SELECT id FROM xplanmgr.plans WHERE has_raster = true AND wmsSortDate=("
-					+ "SELECT min(wmsSortDate) FROM xplanmgr.plans "
-					+ "WHERE wmsSortDate IS NOT NULL AND wmsSortDate > ?)");
-			stmt.setDate(1, new java.sql.Date(releaseDate.getTime()));
-			rs = stmt.executeQuery();
-
-			if (rs.next()) {
-				planId = rs.getString(1);
-			}
-		}
-		finally {
-			closeQuietly(mgrConn, stmt, rs);
-		}
-		return planId;
+	public String selectXPlanIdOfMoreRecentRasterPlan(Date releaseDate) {
+		List<Plan> plan = planRepository.findByPlanWithMoreRecentRasterPlan(releaseDate);
+		if (plan.isEmpty())
+			return null;
+		return Integer.toString(plan.get(0).getId());
 	}
 
 	/**
@@ -662,68 +643,6 @@ public class XPlanDbAdapter {
 		return referenceFileNames;
 	}
 
-	private XPlan retrieveXPlan(ResultSet rs, boolean includeNoOfFeature) throws SQLException {
-		int planId = rs.getInt(1);
-		Date importDate = rs.getTimestamp(2);
-		String xpVersion = rs.getString(3);
-		String xpType = rs.getString(4);
-		String name = rs.getString(5);
-		String number = rs.getString(6);
-		String gkz = rs.getString(7);
-		Boolean isRaster = rs.getBoolean(8);
-		Date releaseDate = convertToDate(rs.getDate(9));
-		XPlanEnvelope bbox = createBboxFromWkt(rs.getString(10));
-		String sonstPlanArt = rs.getString(11);
-		String planStatus = rs.getString(12);
-		String rechtsstand = rs.getString(13);
-		String district = rs.getString(14);
-		Timestamp startDateTime = rs.getTimestamp(15);
-		Timestamp endDateTime = rs.getTimestamp(16);
-		Boolean isInspirePublished = rs.getBoolean(17);
-		String internalId = rs.getString(18);
-		int numFeatures = -1;
-		if (includeNoOfFeature)
-			numFeatures = rs.getInt(19);
-
-		XPlan xPlan = new XPlan((name != null ? name : "-"), Integer.toString(planId), xpType);
-		xPlan.setVersion(xpVersion);
-		xPlan.setNumber(number != null ? number : "-");
-		xPlan.setGkz(gkz);
-		xPlan.setNumFeatures(numFeatures);
-		xPlan.setRaster(isRaster);
-		xPlan.setAdditionalType(sonstPlanArt);
-		xPlan.setLegislationStatus(rechtsstand);
-		xPlan.setReleaseDate(releaseDate);
-		xPlan.setImportDate(importDate);
-		xPlan.setBbox(bbox);
-		xPlan.setXplanMetadata(createXPlanMetadata(planStatus, startDateTime, endDateTime));
-		xPlan.setDistrict(categoryMapper.mapToCategory(district));
-		xPlan.setInspirePublished(isInspirePublished);
-		xPlan.setInternalId(internalId);
-		return xPlan;
-	}
-
-	public List<Bereich> selectBereiche(Connection conn, int planId) throws SQLException {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			List<Bereich> bereiche = new ArrayList<>();
-			stmt = conn.prepareStatement("SELECT nummer, name FROM xplanmgr.bereiche WHERE plan=?");
-			stmt.setInt(1, planId);
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				Bereich bereich = new Bereich();
-				bereich.setNummer(rs.getString("nummer"));
-				bereich.setName(rs.getString("name"));
-				bereiche.add(bereich);
-			}
-			return bereiche;
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
-	}
-
 	private boolean checkIfPlanWithSameNameAndStatusExists(Connection conn, String planName, String status)
 			throws SQLException {
 		StringBuilder sql = new StringBuilder();
@@ -752,79 +671,6 @@ public class XPlanDbAdapter {
 			String georeference = ref.getGeoReference();
 			if (georeference != null && !"".equals(georeference))
 				referenceFileNames.add(georeference);
-		}
-	}
-
-	private int selectNextArtefactNumber(Connection conn, int planId) throws Exception {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			stmt = conn.prepareStatement("SELECT max(num) FROM xplanmgr.artefacts WHERE plan = ?");
-			stmt.setInt(1, planId);
-			LOG.trace("SQL Select artefacts max num value: {}", stmt);
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				int maxNum = rs.getInt(1);
-				return maxNum + 1;
-			}
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
-		return 0;
-	}
-
-	private List<String> selectArtefactFileNames(Connection conn, int planId) throws Exception {
-		List<String> artefactFileNames = new ArrayList<String>();
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			stmt = conn.prepareStatement("SELECT filename FROM xplanmgr.artefacts WHERE plan=?");
-			stmt.setInt(1, planId);
-			LOG.trace("SQL Select artefacts filenames: {}", stmt);
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				String fileName = rs.getString(1);
-				if (fileName != null && !"".equals(fileName))
-					artefactFileNames.add(fileName);
-			}
-		}
-		catch (Exception e) {
-			throw new Exception("Interner-/Konfigurations-Fehler. Kann XPlan-Artefakte nicht aus DB lesen: "
-					+ e.getLocalizedMessage(), e);
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
-		return artefactFileNames;
-	}
-
-	private List<XPlan> selectXPlansWithNameFilter(String planName, String whereClause) throws Exception {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
-			stmt = conn.prepareStatement("SELECT id, import_date, xp_version, xp_type, name, "
-					+ "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
-					+ "sonst_plan_art, planstatus, rechtsstand, district, "
-					+ "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE "
-					+ whereClause);
-			stmt.setString(1, planName);
-			rs = stmt.executeQuery();
-			List<XPlan> xplanList = new ArrayList<>();
-			while (rs.next()) {
-				XPlan xPlan = retrieveXPlan(rs, false);
-				List<Bereich> bereiche = selectBereiche(conn, getXPlanIdAsInt(xPlan.getId()));
-				xPlan.setBereiche(bereiche);
-				xplanList.add(xPlan);
-			}
-			return xplanList;
-		}
-		catch (Exception e) {
-			throw new Exception(
-					"Interner-/Konfigurations-Fehler. Kann Plan nicht auflisten: " + e.getLocalizedMessage(), e);
-		}
-		finally {
-			closeQuietly(stmt, rs);
 		}
 	}
 

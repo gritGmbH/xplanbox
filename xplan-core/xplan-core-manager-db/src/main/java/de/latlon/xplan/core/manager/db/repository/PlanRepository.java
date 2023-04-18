@@ -39,12 +39,12 @@ import java.util.Optional;
 @Transactional
 public interface PlanRepository extends CrudRepository<Plan, Integer> {
 
-	List<Plan> findByName(@Param("name") String username);
+	List<Plan> findByName(String name);
 
 	@Query(value = "from Plan as p where lower(p.name) like lower(concat('%', :name, '%'))")
-	List<Plan> findByLikeName(@Param("name") String name);
+	List<Plan> findByNameLike(@Param("name") String name);
 
-	@Query(value = "from Plan as p where p.hasRaster = true AND wmsSortDate=(SELECT min(wmsSortDate) as min FROM Plan as p1 WHERE p1.wmsSortDate IS NOT NULL AND p1.wmsSortDate > :sortDate)")
-	Optional<Plan> findPlanWithMoreRecentRasterPlan(@Param("sortDate") Date sortDate);
+	@Query(value = "from Plan as p where p.hasRaster = true AND wmssortdate=(SELECT min(wmssortdate) FROM Plan as p1 WHERE p1.wmssortdate IS NOT NULL AND p1.wmssortdate > :sortDate)")
+	List<Plan> findByPlanWithMoreRecentRasterPlan(@Param("sortDate") Date sortDate);
 
 }

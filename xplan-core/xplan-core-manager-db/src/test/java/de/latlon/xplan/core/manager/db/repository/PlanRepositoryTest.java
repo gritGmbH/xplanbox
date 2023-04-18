@@ -26,6 +26,7 @@ import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import static de.latlon.xplan.commons.XPlanType.BP_Plan;
@@ -40,7 +41,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("test-hsql")
+@ActiveProfiles("test-postgis")
 @ContextConfiguration(classes = { JpaContext.class, HsqlJpaContext.class, PostgisJpaContext.class })
 @Transactional
 public class PlanRepositoryTest {
@@ -70,8 +71,8 @@ public class PlanRepositoryTest {
 		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
 				.data("test".getBytes(UTF_8)).filename("test.xml");
 		Plan plan = new Plan().importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
-				.bereiche(Collections.singletonList(bereich)).features(Collections.singletonList(feature))
-				.artefacts(Collections.singletonList(artefact));
+				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
+				.artefacts(Collections.singleton(artefact));
 		// Not running with HSQL DB (@ActiveProfiles("test-hsql"))
 		// setBbox(plan);
 		assertNull(plan.getId());
@@ -82,6 +83,71 @@ public class PlanRepositoryTest {
 		Plan foundPlan = optionalFoundPlan.get();
 		assertNotNull(foundPlan);
 		assertNotNull(foundPlan.getId());
+	}
+
+	@Test
+	@Commit
+	public void saveAndFindByName() {
+		assertFalse(TestTransaction.isFlaggedForRollback());
+		String name = "saveAndFindByName";
+
+		Bereich bereich = new Bereich().nummer("0").name("test");
+		Feature feature = new Feature().num(1).fid("123");
+		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
+				.data("test".getBytes(UTF_8)).filename("test.xml");
+		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
+				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
+				.artefacts(Collections.singleton(artefact));
+		planRepository.save(plan);
+
+		List<Plan> existingPlan = planRepository.findByName(name);
+		assertFalse(existingPlan.isEmpty());
+
+		List<Plan> nonExistingPlan = planRepository.findByName("unknown");
+		assertTrue(nonExistingPlan.isEmpty());
+	}
+
+	@Test
+	@Commit
+	public void saveAndFindByNameLike() {
+		assertFalse(TestTransaction.isFlaggedForRollback());
+		String name = "saveAndFindByLikeName";
+		Bereich bereich = new Bereich().nummer("0").name("test");
+		Feature feature = new Feature().num(1).fid("123");
+		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
+				.data("test".getBytes(UTF_8)).filename("test.xml");
+		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
+				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
+				.artefacts(Collections.singleton(artefact));
+		planRepository.save(plan);
+		List<Plan> existingPlan = planRepository.findByNameLike("iKEnAme");
+		assertFalse(existingPlan.isEmpty());
+
+		List<Plan> nonExistingPlan = planRepository.findByNameLike("unknown");
+		assertTrue(nonExistingPlan.isEmpty());
+	}
+
+	@Test
+	@Commit
+	public void saveAndFindPlanWithMoreRecentRasterPlan() {
+		assertFalse(TestTransaction.isFlaggedForRollback());
+		Bereich bereich = new Bereich().nummer("0").name("test");
+		Feature feature = new Feature().num(1).fid("123");
+		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
+				.data("test".getBytes(UTF_8)).filename("test.xml");
+		Date wmsSortDate = new Date();
+		Plan plan = new Plan().name("saveAndFindPlanWithMoreRecentRasterPlan").importDate(new Date()).version(XPLAN_51)
+				.type(BP_Plan).hasRaster(true).wmssortdate(wmsSortDate).bereiche(Collections.singleton(bereich))
+				.features(Collections.singleton(feature)).artefacts(Collections.singleton(artefact));
+		planRepository.save(plan);
+
+		Date tomorrow = new Date(wmsSortDate.getTime() - (1000 * 60 * 60 * 24));
+		List<Plan> existingPlan = planRepository.findByPlanWithMoreRecentRasterPlan(tomorrow);
+		assertFalse(existingPlan.isEmpty());
+
+		Date yesterday = new Date(wmsSortDate.getTime() + (1000 * 60 * 60 * 24));
+		List<Plan> nonExistingPlan = planRepository.findByPlanWithMoreRecentRasterPlan(yesterday);
+		assertTrue(nonExistingPlan.isEmpty());
 	}
 
 	private static void setBbox(Plan plan) throws ParseException {
