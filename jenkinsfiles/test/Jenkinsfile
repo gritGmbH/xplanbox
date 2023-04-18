@@ -19,7 +19,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-api-manager-soapui-project.xml -Dendpoint=${ENDPOINT_MANAGER_API} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-api-manager-soapui-project.xml -Dendpoint=${ENDPOINT_MANAGER_API} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }
@@ -29,7 +29,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=${ENDPOINT_VALIDATOR_API} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=${ENDPOINT_VALIDATOR_API} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }
@@ -39,7 +39,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=${ENDPOINT_MANAGER_WEB} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=${ENDPOINT_MANAGER_WEB} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }
@@ -49,7 +49,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:"${CREDENTIALS_ID}", passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrl=${BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -Dusername=$Username -Dpassword=$Password'
+               sh 'mvn test -pl :xplan-tests-soapui -Psystem-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrl=${BASE_URL_DIENSTE} -DbaseUrlInspirePlu=${BASE_URL_INSPIRE_PLU} -DbaseUrlManagerApi=${BASE_URL_MANAGER_API} -Dusername=$Username -Dpassword=$Password'
             }
          }
       }
