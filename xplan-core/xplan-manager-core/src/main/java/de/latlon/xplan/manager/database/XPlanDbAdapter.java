@@ -156,26 +156,7 @@ public class XPlanDbAdapter {
 	}
 
 	public void deletePlan(int planId) throws Exception {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			conn.setAutoCommit(false);
-
-			LOG.info("- Entferne XPlan " + planId + " aus der Manager-DB...");
-			stmt = conn.prepareStatement("DELETE FROM xplanmgr.plans WHERE id=?");
-			stmt.setInt(1, planId);
-			stmt.executeUpdate();
-			conn.commit();
-			LOG.info("OK");
-		}
-		catch (Exception e) {
-			throw new Exception("Fehler beim Löschen des Plans: " + e.getMessage() + ".", e);
-		}
-		finally {
-			closeQuietly(conn, stmt, rs);
-		}
+		planRepository.deleteById(planId);
 	}
 
 	/**
@@ -1239,22 +1220,6 @@ public class XPlanDbAdapter {
 			return XPLANGML;
 		}
 		return detectNonXPlanGmlArtefactType(xPlanFeatureCollection, archiveEntry.getName());
-	}
-
-	private int detectPlanId(PreparedStatement stmt) throws SQLException {
-		ResultSet generatedKeys = stmt.getGeneratedKeys();
-		try {
-			if (generatedKeys.next()) {
-				return generatedKeys.getInt(1);
-			}
-			else {
-				LOG.error("Detecting the generated planId failed!");
-				throw new SQLException("Detecting planId failed, no generated key obtained.");
-			}
-		}
-		finally {
-			generatedKeys.close();
-		}
 	}
 
 	private ArtefactType detectNonXPlanGmlArtefactType(XPlanFeatureCollection xPlanFeatureCollection, String name) {
