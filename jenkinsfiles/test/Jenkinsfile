@@ -1,8 +1,8 @@
 pipeline {
    agent any
    tools {
-     maven 'maven-3.8'
-     jdk 'openjdk11'
+      maven 'maven-3.8'
+      jdk 'openjdk11'
    }
    stages {
       stage('Test XPlanManagerAPI') {
@@ -42,6 +42,12 @@ pipeline {
             ]) {
                sh 'mvn test -pl :xplan-tests-soapui  -Pintegration-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrl=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -Dusername=$Username -Dpassword=$Password'
             }
+         }
+      }
+
+      stage('Results') {
+         steps{
+            junit '**/**/target/soapui/TEST-*.xml'
          }
       }
    }
