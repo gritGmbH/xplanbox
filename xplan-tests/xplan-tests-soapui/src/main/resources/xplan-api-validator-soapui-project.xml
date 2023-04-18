@@ -722,7 +722,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="JsonPath Match path /">
               <con:configuration>
                 <path>$.paths./</path>
-                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object"}}}},"406":{"description":"Requested format is not available"}}}}</content>
+                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","example":null},"example":null}}},"406":{"description":"Requested format is not available"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -731,7 +731,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="fb838b6f-0eaa-45a1-8a43-f87364021182" name="JsonPath Match path /validate X-Filename parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'X-Filename')]</path>
-                <content>[{"name":"X-Filename","in":"header","description":"Name of the file to be uploaded","schema":{"pattern":"^[A-Za-z0-9.()_\\-]*$","type":"string"},"example":"File names such as xplan.gml, xplan.xml, xplan.zip"}]</content>
+                <content>[{"name":"X-Filename","in":"header","description":"Name of the file to be uploaded","schema":{"pattern":"^[A-Za-z0-9.()_\\-]*$","type":"string","example":null},"example":"File names such as xplan.gml, xplan.xml, xplan.zip"}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -740,7 +740,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate name parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'name')]</path>
-                <content>[{"name":"name","in":"query","description":"Name of the validation","schema":{"pattern":"^[A-Za-z0-9.()_\\-]*$","type":"string"},"example":"xplan-1Pruefbericht_Torstrasse_10_report-4223"}]</content>
+                <content>[{"name":"name","in":"query","description":"Name of the validation","schema":{"pattern":"^[A-Za-z0-9.()_\\-]*$","type":"string","example":null},"example":"xplan-1Pruefbericht_Torstrasse_10_report-4223"}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -749,7 +749,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipSemantisch parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipSemantisch')]</path>
-                <content>[{"name":"skipSemantisch","in":"query","description":"skip semantische Validierung","schema":{"type":"boolean","default":false}}]</content>
+                <content>[{"name":"skipSemantisch","in":"query","description":"skip semantische Validierung","schema":{"type":"boolean","example":null,"default":false}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -758,7 +758,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipGeometrisch parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipGeometrisch')]</path>
-                <content>[{"name":"skipGeometrisch","in":"query","description":"skip geometrische Validierung","schema":{"type":"boolean","default":false}}]</content>
+                <content>[{"name":"skipGeometrisch","in":"query","description":"skip geometrische Validierung","schema":{"type":"boolean","example":null,"default":false}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -767,7 +767,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipFlaechenschluss parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipFlaechenschluss')]</path>
-                <content>[{"name":"skipFlaechenschluss","in":"query","description":"skip Flaechenschluss Ueberpruefung","schema":{"type":"boolean","default":false}}]</content>
+                <content>[{"name":"skipFlaechenschluss","in":"query","description":"skip Flaechenschluss Ueberpruefung","schema":{"type":"boolean","example":null,"default":false}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -776,7 +776,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipGeltungsbereich parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipGeltungsbereich')]</path>
-                <content>[{"name":"skipGeltungsbereich","in":"query","description":"skip Geltungsbereich Ueberpruefung","schema":{"type":"boolean","default":false}}]</content>
+                <content>[{"name":"skipGeltungsbereich","in":"query","description":"skip Geltungsbereich Ueberpruefung","schema":{"type":"boolean","example":null,"default":false}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -785,7 +785,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate skipLaufrichtung parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'skipLaufrichtung')]</path>
-                <content>[{"name":"skipLaufrichtung","in":"query","description":"skip Laufrichtung Ueberpruefung","schema":{"type":"boolean","default":false}}]</content>
+                <content>[{"name":"skipLaufrichtung","in":"query","description":"skip Laufrichtung Ueberpruefung","schema":{"type":"boolean","example":null,"default":false}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -794,7 +794,7 @@ Validate XPlanGML or XPlanArchive</con:description>
             <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="JsonPath Match path /validate profiles parameter">
               <con:configuration>
                 <path>$.paths./validate.post.parameters.[?(@.name == 'profiles')]</path>
-                <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
+                <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","example":null,"items":{"type":"string","example":null}}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
