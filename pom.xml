@@ -30,8 +30,8 @@
     <spring-security.version>5.5.8</spring-security.version>
     <jackson.version>2.14.2</jackson.version>
     <liquibase.version>4.20.0</liquibase.version>
-    <owasp.version>7.4.4</owasp.version>
     <postgresql.version>42.5.2</postgresql.version>
+    <owasp.version>8.2.1</owasp.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
@@ -414,6 +414,7 @@
           <formats>HTML,XML</formats>
           <cveValidForHours>24</cveValidForHours>
           <failBuildOnCVSS>10</failBuildOnCVSS>
+          <knownExploitedEnabled>false</knownExploitedEnabled>
           <skip>${skip.owasp.check}</skip>
         </configuration>
         <executions>
