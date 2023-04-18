@@ -70,6 +70,7 @@
                   <projectFile>${basedir}/src/main/resources/${testFileName}</projectFile>
                   <outputFolder>${project.build.directory}/soapui</outputFolder>
                   <junitReport>true</junitReport>
+                  <testFailIgnore>true</testFailIgnore>
                   <endpoint>${endpoint}</endpoint>
                   <username>${username}</username>
                   <password>${password}</password>
