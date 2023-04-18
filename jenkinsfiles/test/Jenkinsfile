@@ -12,6 +12,11 @@ pipeline {
       string(name: 'BASE_URL_DIENSTE', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDienste')
       string(name: 'BASE_URL_INSPIRE_PLU', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of INSPIRE PLU')
       string(name: 'BASE_URL_MANAGER_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanManagerAPI')
+      string(name: 'SLACK_CHANNEL', defaultValue: "#testumgebung", description: 'Set slack channel')
+      string(name: 'SLACK_MESSAGE_SUCCESS', defaultValue: "Die SoapUI Tests wurden ohne Fehler gegen die Testumgebung https://xplanbox.lat-lon.de/ ausgefuehrt.", description: 'Set slack message for the case that all tests pass')
+      string(name: 'SLACK_MESSAGE_FAILURE', defaultValue: "ACHTUNG: Bei der Ausfuehrung der SoapUI Tests gegen die Testumgebung https://xplanbox.lat-lon.de/ traten Fehler auf.", description: 'Set slack message for the case that tests fail')
+      string(name: 'SLACK_TEAM_DOMAIN', defaultValue: "xplanbox", description: 'Set slack team domain')
+      string(name: 'SLACK_TOKEN_CREDENTIAL_ID', defaultValue: "slack-integration-id", description: 'Set slack token credential id')
    }
    stages {
       stage('Test XPlanManagerAPI') {
@@ -58,13 +63,13 @@ pipeline {
    }
    post {
       success {
-         slackSend channel: '#testumgebung', message: 'Die SoapUI Tests wurden ohne Fehler gegen die Testumgebung https://xplanbox.lat-lon.de/ ausgefuehrt.', teamDomain: 'xplanbox', tokenCredentialId: 'slack-integration-id'
+         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_SUCCESS}", teamDomain: "${SLACK_MESSAGE_FAILURE}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
       failure {
-         slackSend channel: '#testumgebung', message: 'ACHTUNG: Bei der Ausfuehrung der SoapUI Tests gegen die Testumgebung https://xplanbox.lat-lon.de/ traten Fehler auf.', teamDomain: 'xplanbox', tokenCredentialId: 'slack-integration-id'
+         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_FAILURE}", teamDomain: "${SLACK_MESSAGE_FAILURE}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
       unstable {
-         slackSend channel: '#testumgebung', message: 'ACHTUNG: Bei der Ausfuehrung der SoapUI Tests gegen die Testumgebung https://xplanbox.lat-lon.de/ traten Fehler auf.', teamDomain: 'xplanbox', tokenCredentialId: 'slack-integration-id'
+         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_FAILURE}", teamDomain: "${SLACK_MESSAGE_FAILURE}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
    }
 }
