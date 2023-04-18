@@ -23,7 +23,6 @@ pipeline {
             }
          }
       }
-
       stage('Test XPlanValidatorAPI') {
          steps {
             withCredentials([
@@ -33,7 +32,6 @@ pipeline {
             }
          }
       }
-
       stage('Test XPlanManagerWeb') {
          steps {
             withCredentials([
@@ -43,7 +41,6 @@ pipeline {
             }
          }
       }
-
       stage('Test XPlanDienste') {
          steps {
             withCredentials([
@@ -53,10 +50,20 @@ pipeline {
             }
          }
       }
-
       stage('Results') {
          steps{
             junit '**/**/target/soapui/TEST-*.xml'
+         }
+      }
+      post {
+         success {
+            slackSend channel: '#testumgebung', message: 'Die SoapUI Tests wurden ohne Fehler gegen die Testumgebung https://xplanbox.lat-lon.de/ ausgefuehrt.', teamDomain: 'xplanbox', tokenCredentialId: 'slack-integration-id'
+         }
+         failure {
+            slackSend channel: '#testumgebung', message: 'ACHTUNG: Bei der Ausfuehrung der SoapUI Tests gegen die Testumgebung https://xplanbox.lat-lon.de/ traten Fehler auf.', teamDomain: 'xplanbox', tokenCredentialId: 'slack-integration-id'
+         }
+         unstable {
+            slackSend channel: '#testumgebung', message: 'ACHTUNG: Bei der Ausfuehrung der SoapUI Tests gegen die Testumgebung https://xplanbox.lat-lon.de/ traten Fehler auf.', teamDomain: 'xplanbox', tokenCredentialId: 'slack-integration-id'
          }
       }
    }
