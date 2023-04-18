@@ -410,17 +410,19 @@ public class XPlanDao {
 	 * @throws Exception
 	 */
 	public void updateDistrict(XPlan plan, String district) throws Exception {
-		xPlanDbAdapter.updateDistrict(plan, district);
+		int planIdAsInt = getXPlanIdAsInt(plan.getId());
+		xPlanDbAdapter.updateDistrict(planIdAsInt, district);
 	}
 
 	/**
-	 * Updates the district column of the table xplanmgr.plans.
+	 * Updates the bereiche of the plan.
 	 * @param plan the plan to update, never <code>null</code>
 	 * @param bereiche the bereiche, never <code>null</code>
 	 * @throws Exception
 	 */
 	public void updateBereiche(XPlan plan, List<Bereich> bereiche) throws Exception {
-		xPlanDbAdapter.updateBereiche(plan, bereiche);
+		int planIdAsInt = getXPlanIdAsInt(plan.getId());
+		xPlanDbAdapter.updateBereiche(planIdAsInt, bereiche);
 	}
 
 	/**
@@ -439,8 +441,9 @@ public class XPlanDao {
 	 * @param planId of the plan to set the status
 	 * @throws SQLException if the sql could not be executed
 	 */
-	public void setPlanWasInspirePublished(String planId) throws SQLException {
-		xPlanDbAdapter.setPlanWasInspirePublished(planId);
+	public void setPlanWasInspirePublished(String planId) throws Exception {
+		int planIdAsInt = getXPlanIdAsInt(planId);
+		xPlanDbAdapter.updatePlanWasInspirePublished(planIdAsInt);
 	}
 
 	public boolean checkIfPlanWithSameNameAndStatusExists(String planName, String status) {

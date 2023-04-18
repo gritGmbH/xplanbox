@@ -121,12 +121,7 @@ public class XPlanDbAdapter {
 
 	public void insertArtefacts(XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive, int planId)
 			throws Exception {
-		Optional<Plan> optionalPlan = planRepository.findById(planId);
-		if (!optionalPlan.isPresent()) {
-			throw new Exception(
-					"Plan mit ID " + planId + " ist nicht vorhanden. Artefakte können nicht abgespeichert werden");
-		}
-		Plan plan = optionalPlan.get();
+		Plan plan = getRequiredPlanById(planId);
 		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
 		AtomicInteger i = new AtomicInteger();
 		List<Artefact> artefacts = archiveEntries.stream()
@@ -179,11 +174,7 @@ public class XPlanDbAdapter {
 			List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {
 		int planId = Integer.parseInt(oldXplan.getId());
 		LOG.info("- Aktualisierung der XPlan-Artefakte von Plan mit ID '{}'", planId);
-		Optional<Plan> optionalPlan = planRepository.findById(planId);
-		if (!optionalPlan.isPresent())
-			throw new Exception("Plan mit ID " + planId + " ist nicht vorhanden. Plan kann nicht aktualisiert werden.");
-
-		Plan plan = optionalPlan.get();
+		Plan plan = getRequiredPlanById(planId);
 		updatePlan(oldXplan, newAdditionalPlanData, fc, synFc, planArtefact, xPlanToEdit, sortDate, uploadedArtefacts,
 				removedRefs, planId, plan);
 		planRepository.save(plan);
@@ -192,11 +183,7 @@ public class XPlanDbAdapter {
 
 	public void updateFids(int planId, List<String> fids) throws Exception {
 		LOG.info("- Aktualisierung der XPlan-Features von Plan mit ID '{}'", planId);
-		Optional<Plan> optionalPlan = planRepository.findById(planId);
-		if (!optionalPlan.isPresent())
-			throw new Exception("Plan mit ID " + planId + " ist nicht vorhanden. Plan kann nicht aktualisiert werden.");
-
-		Plan plan = optionalPlan.get();
+		Plan plan = getRequiredPlanById(planId);
 		List<Feature> newFeatures = createFeatures(fids);
 		plan.features(newFeatures);
 
@@ -227,42 +214,27 @@ public class XPlanDbAdapter {
 
 	/**
 	 * Updates the district column of the table xplanmgr.plans.
-	 * @param plan the plan to update, never <code>null</code>
+	 * @param planId id of the plan to update, never <code>null</code>
 	 * @param district the new district, may be <code>null</code>
 	 * @throws Exception
 	 */
-	public void updateDistrict(XPlan plan, String district) throws Exception {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			updateDistrictInMgrSchema(conn, plan, district);
-		}
-		catch (Exception e) {
-			conn.rollback();
-		}
-		finally {
-			closeQuietly(conn);
-		}
+	@Transactional(rollbackOn = Exception.class)
+	public void updateDistrict(int planId, String district) throws Exception {
+		Plan plan = getRequiredPlanById(planId);
+		plan.setDistrict(district);
+		planRepository.save(plan);
 	}
 
 	/**
 	 * Updates the district column of the table xplanmgr.plans.
-	 * @param plan the plan to update, never <code>null</code>
+	 * @param planId id of the plan to update, never <code>null</code>
 	 * @param bereiche the bereiche, never <code>null</code>
 	 * @throws Exception
 	 */
-	public void updateBereiche(XPlan plan, List<Bereich> bereiche) throws Exception {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			updateBereichInMgrSchema(conn, plan, bereiche);
-		}
-		catch (Exception e) {
-			conn.rollback();
-		}
-		finally {
-			closeQuietly(conn);
-		}
+	public void updateBereiche(int planId, List<Bereich> bereiche) throws Exception {
+		Plan plan = getRequiredPlanById(planId);
+		plan.setBereiche(createBereiche(bereiche));
+		planRepository.save(plan);
 	}
 
 	/**
@@ -289,18 +261,13 @@ public class XPlanDbAdapter {
 	}
 
 	/**
-	 * @param planId of the plan to set the status
-	 * @throws SQLException if the sql could not be executed
+	 * @param planId of the plan to update, never <code>null</code>
+	 * @throws Exception if the sql could not be executed
 	 */
-	public void setPlanWasInspirePublished(String planId) throws SQLException {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			executeUpdateInspirePublishedStatus(conn, planId, true);
-		}
-		finally {
-			closeQuietly(conn);
-		}
+	public void updatePlanWasInspirePublished(int planId) throws Exception {
+		Plan plan = getRequiredPlanById(planId);
+		plan.setInspirepublished(true);
+		planRepository.save(plan);
 	}
 
 	public XPlanVersionAndPlanStatus selectXPlanMetadata(int planId) throws Exception {
@@ -707,25 +674,6 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	private void updateDistrictInMgrSchema(Connection conn, XPlan plan, String district) throws Exception {
-		StringBuilder updateSql = new StringBuilder();
-		updateSql.append("UPDATE xplanmgr.plans");
-		updateSql.append(" SET district = ? ");
-		updateSql.append(" WHERE id = ?");
-
-		PreparedStatement updateStmt = null;
-		try {
-			updateStmt = conn.prepareStatement(updateSql.toString());
-			updateStmt.setString(1, district);
-			updateStmt.setInt(2, getXPlanIdAsInt(plan.getId()));
-			LOG.trace("SQL Update XPlan Manager district column: " + updateStmt);
-			updateStmt.executeUpdate();
-		}
-		finally {
-			closeQuietly(updateStmt);
-		}
-	}
-
 	private void updateBereichInMgrSchema(Connection conn, XPlan plan, List<Bereich> bereiche) throws Exception {
 		StringBuilder updateSql = new StringBuilder();
 		updateSql.append("INSERT INTO xplanmgr.bereiche");
@@ -1103,6 +1051,13 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
+	private Plan getRequiredPlanById(int planId) throws Exception {
+		Optional<Plan> optionalPlan = planRepository.findById(planId);
+		if (!optionalPlan.isPresent())
+			throw new Exception("Plan mit ID " + planId + " ist nicht vorhanden.");
+		return optionalPlan.get();
+	}
+
 	private Plan createPlan(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc,
 			PlanStatus planStatus, Date beginValidity, Date endValidity, Date sortDate, String internalId,
 			List<String> wfsFeatureIds) throws ParseException, AmbiguousBereichNummernException {
@@ -1114,17 +1069,21 @@ public class XPlanDbAdapter {
 				.releaseDate(fc.getPlanReleaseDate()).sonstPlanArt(retrieveAdditionalTypeWert(synFc, archive.getType()))
 				.planstatus(retrievePlanStatusMessage(planStatus))
 				.district(retrieveDistrict(fc.getFeatures(), archive.getType())).wmssortdate(sortDate)
-				.gueltigkeitbeginn(beginValidity).gueltigkeitende(endValidity).internalid(internalId).bbox(bbox);
+				.gueltigkeitbeginn(beginValidity).gueltigkeitende(endValidity).internalid(internalId).bbox(bbox)
+				.bereiche(createBereiche(synFc)).features(createFeatures(wfsFeatureIds));
+		return plan;
+	}
+
+	private List<de.latlon.xplan.core.manager.db.model.Bereich> createBereiche(FeatureCollection synFc)
+			throws AmbiguousBereichNummernException {
 		List<Bereich> bereiche = FeatureCollectionUtils.retrieveBereiche(synFc);
 		checkBereichNummern(bereiche);
-		bereiche.stream().forEach(bereich -> {
-			de.latlon.xplan.core.manager.db.model.Bereich jpaBereich = new de.latlon.xplan.core.manager.db.model.Bereich()
-					.name(bereich.getName()).nummer(bereich.getNummer());
-			plan.addBereich(jpaBereich);
-		});
-		List<Feature> newFeatures = createFeatures(wfsFeatureIds);
-		plan.features(newFeatures);
-		return plan;
+		return createBereiche(bereiche);
+	}
+
+	private static List<de.latlon.xplan.core.manager.db.model.Bereich> createBereiche(List<Bereich> bereiche) {
+		return bereiche.stream().map(bereich -> new de.latlon.xplan.core.manager.db.model.Bereich()
+				.name(bereich.getName()).nummer(bereich.getNummer())).collect(Collectors.toList());
 	}
 
 	private static List<Feature> createFeatures(List<String> featureIds) {
