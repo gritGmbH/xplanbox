@@ -49,6 +49,7 @@ import org.deegree.geometry.Envelope;
 import org.deegree.geometry.Geometry;
 import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.io.WKTWriter;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.io.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,13 +70,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -124,9 +125,9 @@ public class XPlanDbAdapter {
 		Plan plan = getRequiredPlanById(planId);
 		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
 		AtomicInteger i = new AtomicInteger();
-		List<Artefact> artefacts = archiveEntries.stream()
+		Set<Artefact> artefacts = archiveEntries.stream()
 				.map(archiveEntry -> createArtefact(xPlanFeatureCollection, i, archiveEntry))
-				.collect(Collectors.toList());
+				.collect(Collectors.toSet());
 		plan.setArtefacts(artefacts);
 		planRepository.save(plan);
 	}
@@ -184,7 +185,7 @@ public class XPlanDbAdapter {
 	public void updateFids(int planId, List<String> fids) throws Exception {
 		LOG.info("- Aktualisierung der XPlan-Features von Plan mit ID '{}'", planId);
 		Plan plan = getRequiredPlanById(planId);
-		List<Feature> newFeatures = createFeatures(fids);
+		Set<Feature> newFeatures = createFeatures(fids);
 		plan.features(newFeatures);
 
 		planRepository.save(plan);
@@ -296,24 +297,9 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	public Set<String> selectFids(int planId) throws SQLException {
-		PreparedStatement stmt = null;
-		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
-			stmt = conn.prepareStatement("SELECT fid FROM xplanmgr.features WHERE plan=?");
-			stmt.setInt(1, planId);
-			ResultSet rs = stmt.executeQuery();
-			Set<String> ids = new HashSet<>();
-			while (rs.next()) {
-				ids.add(rs.getString(1));
-			}
-			return ids;
-		}
-		catch (SQLException e) {
-			throw e;
-		}
-		finally {
-			closeQuietly(stmt);
-		}
+	public Set<String> selectFids(int planId) throws Exception {
+		Plan plan = getRequiredPlanById(planId);
+		return plan.getFeatures().stream().map(feature -> feature.getFid()).collect(Collectors.toSet());
 	}
 
 	/**
@@ -325,34 +311,10 @@ public class XPlanDbAdapter {
 	 * @throws Exception
 	 */
 	public List<XPlan> selectAllXPlans(boolean includeNoOfFeature) throws Exception {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
-			StringBuffer sql = new StringBuffer();
-			sql.append("SELECT ");
-			sql.append(
-					"id, import_date, xp_version, xp_type, name, nummer, gkz, has_raster, release_date, ST_AsText(bbox), sonst_plan_art, planstatus, rechtsstand, district, gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid ");
-			if (includeNoOfFeature)
-				sql.append(", (SELECT count(fid) FROM xplanmgr.features WHERE id = plan) AS numfeatures ");
-			sql.append("FROM xplanmgr.plans");
-			stmt = mgrConn.prepareStatement(sql.toString());
-			rs = stmt.executeQuery();
-			List<XPlan> xplanList = new ArrayList<>();
-			while (rs.next()) {
-				XPlan xPlan = retrieveXPlan(rs, includeNoOfFeature);
-				List<Bereich> bereiche = selectBereiche(mgrConn, getXPlanIdAsInt(xPlan.getId()));
-				xPlan.setBereiche(bereiche);
-				xplanList.add(xPlan);
-			}
-			return xplanList;
-		}
-		catch (Exception e) {
-			throw new Exception("Interner-/Konfigurations-Fehler. Kann importierte Pläne nicht auflisten: "
-					+ e.getLocalizedMessage(), e);
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
+		// TODO: includeNoOfFeature!?
+		Iterable<Plan> plans = planRepository.findAll();
+		return StreamSupport.stream(plans.spliterator(), false).map(plan -> convertToXPlan(plan))
+				.collect(Collectors.toList());
 	}
 
 	/**
@@ -361,31 +323,11 @@ public class XPlanDbAdapter {
 	 * @return a single plan
 	 * @throws Exception
 	 */
-	public XPlan selectXPlanById(int planId) throws Exception {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
-			stmt = conn.prepareStatement("SELECT id, import_date, xp_version, xp_type, name, "
-					+ "nummer, gkz, has_raster, release_date, ST_AsText(bbox), "
-					+ "sonst_plan_art, planstatus, rechtsstand, district, "
-					+ "gueltigkeitBeginn, gueltigkeitEnde, inspirepublished, internalid FROM xplanmgr.plans WHERE id =?");
-			stmt.setInt(1, planId);
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				List<Bereich> bereiche = selectBereiche(conn, planId);
-				XPlan xPlan = retrieveXPlan(rs, false);
-				xPlan.setBereiche(bereiche);
-				return xPlan;
-			}
-		}
-		catch (Exception e) {
-			throw new Exception(
-					"Interner-/Konfigurations-Fehler. Kann Plan nicht auflisten: " + e.getLocalizedMessage(), e);
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
-		return null;
+	public XPlan selectXPlanById(int planId) {
+		Optional<Plan> optionalPlan = planRepository.findById(planId);
+		if (!optionalPlan.isPresent())
+			return null;
+		return convertToXPlan(optionalPlan.get());
 	}
 
 	public boolean selectPlanWithSameNameAndStatusExists(String planName, String status) {
@@ -674,30 +616,6 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	private void updateBereichInMgrSchema(Connection conn, XPlan plan, List<Bereich> bereiche) throws Exception {
-		StringBuilder updateSql = new StringBuilder();
-		updateSql.append("INSERT INTO xplanmgr.bereiche");
-		updateSql.append(" (plan, nummer, name)");
-		updateSql.append(" VALUES (?,?,?)");
-		updateSql.append(" ON CONFLICT");
-		updateSql.append(" DO NOTHING");
-
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement(updateSql.toString());
-			for (Bereich bereich : bereiche) {
-				stmt.setInt(1, getXPlanIdAsInt(plan.getId()));
-				stmt.setString(2, bereich.getNummer());
-				stmt.setString(3, bereich.getName());
-				LOG.trace("SQL Update XPlan Manager bereich column: " + stmt);
-				stmt.executeUpdate();
-			}
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
 	private void updateArtefacttype(Connection conn, int planId, List<String> fileNames, ArtefactType artefactType)
 			throws Exception {
 		StringBuilder updateSql = new StringBuilder();
@@ -717,26 +635,6 @@ public class XPlanDbAdapter {
 				LOG.trace("SQL Update xplanmgr.artefacts, column artefacttype: " + stmt);
 				stmt.executeUpdate();
 			}
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
-	private void executeUpdateInspirePublishedStatus(Connection conn, String xplanId, boolean isPiublished)
-			throws SQLException {
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE xplanmgr.plans SET ");
-		sql.append("inspirepublished = ? ");
-		sql.append("WHERE id = ? ");
-		String updateSql = sql.toString();
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement(updateSql);
-			stmt.setBoolean(1, isPiublished);
-			stmt.setObject(2, Integer.parseInt(xplanId));
-			LOG.trace("SQL Update XPlanManager INSPIRE Published status: {}", stmt);
-			stmt.executeUpdate();
 		}
 		finally {
 			closeQuietly(stmt);
@@ -986,7 +884,7 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
-	private AdditionalPlanData createXPlanMetadata(String planStatus, Timestamp startDateTime, Timestamp endDateTime) {
+	private AdditionalPlanData createXPlanMetadata(String planStatus, Date startDateTime, Date endDateTime) {
 		PlanStatus planStatusAsEnum = null;
 		if (planStatus != null)
 			planStatusAsEnum = PlanStatus.findByMessage(planStatus);
@@ -1074,22 +972,22 @@ public class XPlanDbAdapter {
 		return plan;
 	}
 
-	private List<de.latlon.xplan.core.manager.db.model.Bereich> createBereiche(FeatureCollection synFc)
+	private Set<de.latlon.xplan.core.manager.db.model.Bereich> createBereiche(FeatureCollection synFc)
 			throws AmbiguousBereichNummernException {
 		List<Bereich> bereiche = FeatureCollectionUtils.retrieveBereiche(synFc);
 		checkBereichNummern(bereiche);
 		return createBereiche(bereiche);
 	}
 
-	private static List<de.latlon.xplan.core.manager.db.model.Bereich> createBereiche(List<Bereich> bereiche) {
+	private static Set<de.latlon.xplan.core.manager.db.model.Bereich> createBereiche(List<Bereich> bereiche) {
 		return bereiche.stream().map(bereich -> new de.latlon.xplan.core.manager.db.model.Bereich()
-				.name(bereich.getName()).nummer(bereich.getNummer())).collect(Collectors.toList());
+				.name(bereich.getName()).nummer(bereich.getNummer())).collect(Collectors.toSet());
 	}
 
-	private static List<Feature> createFeatures(List<String> featureIds) {
+	private static Set<Feature> createFeatures(List<String> featureIds) {
 		AtomicInteger index = new AtomicInteger();
 		return featureIds.stream().map(featureId -> new Feature().fid(featureId).num(index.getAndIncrement()))
-				.collect(Collectors.toList());
+				.collect(Collectors.toSet());
 	}
 
 	private Artefact createArtefact(XPlanFeatureCollection xPlanFeatureCollection, AtomicInteger i,
@@ -1120,7 +1018,7 @@ public class XPlanDbAdapter {
 				.gueltigkeitende(newAdditionalPlanData.getEndDateTime())
 				.planstatus(retrievePlanStatusMessage(newAdditionalPlanData.getPlanStatus()));
 
-		List<Artefact> planArtefacts = plan.getArtefacts();
+		Set<Artefact> planArtefacts = plan.getArtefacts();
 		Optional<Integer> optionalNum = planArtefacts.stream().map(artefact -> artefact.getNum())
 				.max(Integer::compareTo);
 		int num = optionalNum.isPresent() ? optionalNum.get() : 0;
@@ -1169,6 +1067,59 @@ public class XPlanDbAdapter {
 				plan.getArtefacts().add(artefact);
 			}
 		}
+	}
+
+	private XPlan convertToXPlan(Plan plan) {
+		String name = plan.getName();
+		XPlan xPlan = new XPlan((name != null ? name : "-"), Integer.toString(plan.getId()), plan.getType().name());
+		xPlan.setVersion(plan.getVersion().name());
+		xPlan.setNumber(plan.getNummer() != null ? plan.getNummer() : "-");
+		xPlan.setGkz(plan.getGkz());
+		// xPlan.setNumFeatures(numFeatures);
+		xPlan.setRaster(plan.getHasRaster());
+		xPlan.setAdditionalType(plan.getSonstPlanArt());
+		xPlan.setLegislationStatus(plan.getRechtsstand());
+		xPlan.setReleaseDate(plan.getReleaseDate());
+		xPlan.setImportDate(plan.getImportDate());
+		XPlanEnvelope bbox = convertToXPlanEnvelope(plan);
+
+		xPlan.setBbox(bbox);
+		xPlan.setXplanMetadata(
+				createXPlanMetadata(plan.getPlanstatus(), plan.getGueltigkeitbeginn(), plan.getGueltigkeitende()));
+		xPlan.setDistrict(categoryMapper.mapToCategory(plan.getDistrict()));
+		xPlan.setInspirePublished(plan.getInspirepublished());
+		xPlan.setInternalId(plan.getInternalid());
+		List<Bereich> bereiche = plan.getBereiche().stream().map(bereich -> {
+			Bereich newBereich = new Bereich();
+			newBereich.setNummer(bereich.getNummer());
+			newBereich.setName(bereich.getName());
+			return newBereich;
+		}).collect(Collectors.toList());
+		xPlan.setBereiche(bereiche);
+		return xPlan;
+	}
+
+	private XPlanEnvelope convertToXPlanEnvelope(Plan plan) {
+		org.locationtech.jts.geom.Geometry bbox = plan.getBbox();
+		Coordinate[] coordinates = bbox.getCoordinates();
+		double minx = 0, miny = 0, maxx = 0, maxy = 0;
+		boolean first = true;
+		for (Coordinate coordinate : coordinates) {
+			if (first) {
+				minx = coordinate.x;
+				miny = coordinate.y;
+				maxx = coordinate.x;
+				maxy = coordinate.y;
+			}
+			else {
+				minx = Math.min(coordinate.x, minx);
+				miny = Math.min(coordinate.y, miny);
+				maxx = Math.max(coordinate.x, maxx);
+				maxy = Math.max(coordinate.y, maxy);
+			}
+			first = false;
+		}
+		return new XPlanEnvelope(minx, miny, maxx, maxy, "EPSG:4326");
 	}
 
 }

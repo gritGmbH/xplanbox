@@ -21,9 +21,15 @@
 package de.latlon.xplan.core.manager.db.repository;
 
 import de.latlon.xplan.core.manager.db.model.Plan;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -32,5 +38,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface PlanRepository extends CrudRepository<Plan, Integer> {
+
+	List<Plan> findByName(@Param("name") String username);
+
+	@Query(value = "from Plan as p where lower(p.name) like lower(concat('%', :name, '%'))")
+	List<Plan> findByLikeName(@Param("name") String name);
+
+	@Query(value = "from Plan as p where p.hasRaster = true AND wmsSortDate=(SELECT min(wmsSortDate) as min FROM Plan as p1 WHERE p1.wmsSortDate IS NOT NULL AND p1.wmsSortDate > :sortDate)")
+	Optional<Plan> findPlanWithMoreRecentRasterPlan(@Param("sortDate") Date sortDate);
 
 }

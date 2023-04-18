@@ -46,7 +46,6 @@ public class Artefact {
 	@NotNull
 	private @Valid String mimetype;
 
-	@NotNull
 	@Enumerated(EnumType.STRING)
 	private @Valid ArtefactType artefacttype;
 

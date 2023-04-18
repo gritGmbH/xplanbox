@@ -41,6 +41,7 @@ import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import javax.xml.namespace.QName;
 import java.io.File;
 import java.io.InputStream;
@@ -124,6 +125,7 @@ public class XPlanDao {
 	 * @param internalId
 	 * @return database id of the plan
 	 */
+	@Transactional
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
 			Date beginValidity, Date endValidity, Date sortDate, String internalId) throws Exception {
 		try {

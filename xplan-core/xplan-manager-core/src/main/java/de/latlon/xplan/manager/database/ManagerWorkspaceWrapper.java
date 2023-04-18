@@ -35,7 +35,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import static de.latlon.xplan.manager.web.shared.PlanStatus.ARCHIVIERT;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.IN_AUFSTELLUNG;
@@ -65,7 +64,7 @@ public class ManagerWorkspaceWrapper implements DatasourceWrapper {
 	}
 
 	@Override
-	public DataSource retrieveDataSource() throws SQLException {
+	public DataSource retrieveDataSource() {
 		ensureWorkspaceInitialized();
 		ConnectionProvider resource = managerWorkspace.getNewWorkspace().getResource(ConnectionProviderProvider.class,
 				JDBC_POOL_ID);

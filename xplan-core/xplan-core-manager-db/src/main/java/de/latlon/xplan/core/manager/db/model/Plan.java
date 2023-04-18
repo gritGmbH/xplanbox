@@ -30,6 +30,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,7 +41,7 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -103,20 +104,20 @@ public class Plan {
 
 	private @Valid Geometry bbox;
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(schema = "xplanmgr", name = "bereiche", joinColumns = @JoinColumn(name = "plan"),
 			foreignKey = @ForeignKey(name = "bereiche_plan_fkey"))
-	private @Valid List<Bereich> bereiche;
+	private @Valid Set<Bereich> bereiche;
 
 	@ElementCollection
 	@CollectionTable(schema = "xplanmgr", name = "artefacts", joinColumns = @JoinColumn(name = "plan"),
 			foreignKey = @ForeignKey(name = "artefacts_plan_fkey"))
-	private @Valid List<Artefact> artefacts;
+	private @Valid Set<Artefact> artefacts;
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(schema = "xplanmgr", name = "features", joinColumns = @JoinColumn(name = "plan"),
 			foreignKey = @ForeignKey(name = "features_plan_fkey"))
-	private @Valid List<Feature> features;
+	private @Valid Set<Feature> features;
 
 	public Integer getId() {
 		return id;
@@ -360,41 +361,41 @@ public class Plan {
 		return this;
 	}
 
-	public List<Bereich> getBereiche() {
+	public Set<Bereich> getBereiche() {
 		return bereiche;
 	}
 
-	public void setBereiche(List<Bereich> bereiche) {
+	public void setBereiche(Set<Bereich> bereiche) {
 		this.bereiche = bereiche;
 	}
 
-	public Plan bereiche(List<Bereich> bereiche) {
+	public Plan bereiche(Set<Bereich> bereiche) {
 		this.bereiche = bereiche;
 		return this;
 	}
 
-	public List<Artefact> getArtefacts() {
+	public Set<Artefact> getArtefacts() {
 		return artefacts;
 	}
 
-	public void setArtefacts(List<Artefact> artefacts) {
+	public void setArtefacts(Set<Artefact> artefacts) {
 		this.artefacts = artefacts;
 	}
 
-	public Plan artefacts(List<Artefact> artefacts) {
+	public Plan artefacts(Set<Artefact> artefacts) {
 		this.artefacts = artefacts;
 		return this;
 	}
 
-	public List<Feature> getFeatures() {
+	public Set<Feature> getFeatures() {
 		return features;
 	}
 
-	public void setFeatures(List<Feature> features) {
+	public void setFeatures(Set<Feature> features) {
 		this.features = features;
 	}
 
-	public Plan features(List<Feature> features) {
+	public Plan features(Set<Feature> features) {
 		this.features = features;
 		return this;
 	}
