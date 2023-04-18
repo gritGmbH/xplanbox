@@ -10,7 +10,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:'xplanbox.lat-lon.de', passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-api-manager-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xmanager/api/v1 -Dusername=$Password -Dpassword=§Username'
+               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-api-manager-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xmanager/api/v1 -Dusername=$Password -Dpassword=$Username'
             }
          }
       }
@@ -20,7 +20,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:'xplanbox.lat-lon.de', passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=$Password -Dpassword=§Username'
+               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-api-validator-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xvalidator/api/v1 -Dusername=$Password -Dpassword=$Username'
             }
          }
       }
@@ -30,7 +30,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:'xplanbox.lat-lon.de', passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xplan-manager-web -Dusername=$Password -Dpassword=§Username'
+               sh 'mvn test -pl :xplan-tests-soapui -Pintegration-tests -DtestFileName=xplan-manager-web-soapui-project.xml -Dendpoint=https://xplanbox.lat-lon.de/xplan-manager-web -Dusername=$Password -Dpassword=$Username'
             }
          }
       }
@@ -40,7 +40,7 @@ pipeline {
             withCredentials([
                usernamePassword(credentialsId:'xplanbox.lat-lon.de', passwordVariable: 'Password', usernameVariable: 'Username')
             ]) {
-               sh 'mvn test -pl :xplan-tests-soapui  -Pintegration-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrl=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -Dusername=$Password -Dpassword=§Username'
+               sh 'mvn test -pl :xplan-tests-soapui  -Pintegration-tests -DtestFileName=xplan-webservices-soapui-project.xml -DbaseUrl=https://xplanbox.lat-lon.de -DbaseUrlInspirePlu=https://xplanbox.lat-lon.de -DbaseUrlManagerApi=https://xplanbox.lat-lon.de -Dusername=$Password -Dpassword=$Username'
             }
          }
       }
