@@ -68,6 +68,7 @@
                 </goals>
                 <configuration>
                   <projectFile>${basedir}/src/main/resources/${testFileName}</projectFile>
+                  <settingsFile>${basedir}/src/main/resources/soapui-settings.xml</settingsFile>
                   <outputFolder>${project.build.directory}/soapui</outputFolder>
                   <junitReport>true</junitReport>
                   <testFailIgnore>true</testFailIgnore>
