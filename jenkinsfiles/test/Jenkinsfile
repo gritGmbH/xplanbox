@@ -63,13 +63,13 @@ pipeline {
    }
    post {
       success {
-         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_SUCCESS}", teamDomain: "${SLACK_MESSAGE_FAILURE}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
+         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_SUCCESS}", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
       failure {
-         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_FAILURE}", teamDomain: "${SLACK_MESSAGE_FAILURE}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
+         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_FAILURE}", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
       unstable {
-         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_FAILURE}", teamDomain: "${SLACK_MESSAGE_FAILURE}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
+         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_FAILURE}", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
    }
 }
