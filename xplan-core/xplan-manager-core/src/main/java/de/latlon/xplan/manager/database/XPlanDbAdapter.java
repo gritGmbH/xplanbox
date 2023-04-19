@@ -179,28 +179,6 @@ public class XPlanDbAdapter {
 	}
 
 	/**
-	 * Updates the wmsSortDate column of all tables in the syn schema and in
-	 * xplanmgr.plans table.
-	 * @param sortDate the new sort date, may be <code>null</code>
-	 * @param plan the plan to update, never <code>null</code>
-	 * @throws Exception
-	 */
-	public void updateSortProperty(Date sortDate, XPlan plan) throws Exception {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			updateSortPropertyInSynSchema(sortDate, plan, conn);
-			updateSortPropertyInMgrSchema(sortDate, plan, conn);
-		}
-		catch (Exception e) {
-			conn.rollback();
-		}
-		finally {
-			closeQuietly(conn);
-		}
-	}
-
-	/**
 	 * Updates the district column of the table xplanmgr.plans.
 	 * @param planId id of the plan to update, never <code>null</code>
 	 * @param district the new district, may be <code>null</code>
@@ -407,51 +385,6 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	private void updateSortPropertyInSynSchema(Date sortDate, XPlan plan, Connection conn) throws Exception {
-		String selectSchemaAndColumnsToModify = "SELECT column_name, table_schema, table_name "
-				+ "FROM information_schema.columns " + "WHERE table_schema like 'xplansyn%' "
-				+ "AND table_name like 'xplan_%' " + "AND column_name = 'xplan_wmssortdate';";
-		PreparedStatement stmt = conn.prepareStatement(selectSchemaAndColumnsToModify);
-		ResultSet schemaAndTablesToModify = stmt.executeQuery();
-
-		while (schemaAndTablesToModify.next()) {
-			String schemaname = schemaAndTablesToModify.getString("table_schema");
-			String tablename = schemaAndTablesToModify.getString("table_name");
-
-			StringBuilder updateSql = new StringBuilder();
-			updateSql.append("UPDATE ").append(schemaname).append('.').append(tablename);
-			updateSql.append(" SET xplan_wmssortdate = ? ");
-			updateSql.append(" WHERE xplan_mgr_planid = ?");
-
-			PreparedStatement updateStmt = conn.prepareStatement(updateSql.toString());
-			updateStmt.setDate(1, convertToSqlDate(sortDate));
-			updateStmt.setInt(2, getXPlanIdAsInt(plan.getId()));
-			LOG.trace("SQL Update XPlan Syn sort date property: " + updateStmt);
-			updateStmt.executeUpdate();
-			closeQuietly(updateStmt);
-		}
-		closeQuietly(stmt);
-	}
-
-	private void updateSortPropertyInMgrSchema(Date sortDate, XPlan plan, Connection conn) throws Exception {
-		StringBuilder updateSql = new StringBuilder();
-		updateSql.append("UPDATE xplanmgr.plans");
-		updateSql.append(" SET wmssortdate = ? ");
-		updateSql.append(" WHERE id = ?");
-
-		PreparedStatement updateStmt = null;
-		try {
-			updateStmt = conn.prepareStatement(updateSql.toString());
-			updateStmt.setDate(1, convertToSqlDate(sortDate));
-			updateStmt.setInt(2, getXPlanIdAsInt(plan.getId()));
-			LOG.trace("SQL Update XPlan Manager sort date property: " + updateStmt);
-			updateStmt.executeUpdate();
-		}
-		finally {
-			closeQuietly(updateStmt);
-		}
-	}
-
 	private File retrieveUploadedArtefact(String refFileName, List<File> uploadedArtefacts) {
 		if (uploadedArtefacts != null) {
 			for (File uploadedArtefact : uploadedArtefacts) {
@@ -566,22 +499,6 @@ public class XPlanDbAdapter {
 			IOUtils.copy(is, bos);
 			return new ByteArrayInputStream(bos.toByteArray());
 		}
-	}
-
-	private int getXPlanIdAsInt(String planId) throws Exception {
-		try {
-			return Integer.parseInt(planId);
-		}
-		catch (NumberFormatException e) {
-			throw new Exception("Spezifizierter Wert '" + planId + "' ist keine gültige XPlan-Id (Ganzzahl).", e);
-		}
-	}
-
-	private java.sql.Date convertToSqlDate(Date dateToConvert) {
-		if (dateToConvert != null) {
-			return new java.sql.Date(dateToConvert.getTime());
-		}
-		return null;
 	}
 
 	private Plan getRequiredPlanById(int planId) throws PlanNotFoundException {

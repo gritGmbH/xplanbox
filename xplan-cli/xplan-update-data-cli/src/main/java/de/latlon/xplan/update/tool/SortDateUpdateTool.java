@@ -36,6 +36,7 @@ import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
 import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
 import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceUtils;
+import de.latlon.xplan.update.dp.SortPropertyDbUpdater;
 import de.latlon.xplan.update.updater.SortPropertyUpdater;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
@@ -122,11 +123,12 @@ public final class SortDateUpdateTool {
 		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(workspace, managerConfiguration);
 
 		XPlanDao xplanDao = createXplanDao(managerConfiguration, managerWorkspaceWrapper);
+		SortPropertyDbUpdater sortPropertyDbUpdater = new SortPropertyDbUpdater(managerWorkspaceWrapper);
 		SortPropertyReader sortPropertyReader = createSortPropertyReader(managerWorkspaceWrapper);
 		XPlanRasterManager xPlanRasterManager = createxPlanRasterManager(managerConfiguration);
 
 		SortPropertyUpdater sortPropertyUpdater = new SortPropertyUpdater(sortPropertyReader, xplanDao,
-				xPlanRasterManager);
+				sortPropertyDbUpdater, xPlanRasterManager);
 		sortPropertyUpdater.updateSortProperty();
 	}
 

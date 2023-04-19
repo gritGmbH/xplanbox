@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.update.dp.SortPropertyDbUpdater;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,19 +49,24 @@ public class SortPropertyUpdater {
 
 	private final XPlanDao dao;
 
+	private final SortPropertyDbUpdater sortPropertyDbUpdater;
+
 	private final XPlanRasterManager xPlanRasterManager;
 
 	/**
 	 * @param sortPropertyReader used to read the sort property from a feature collection,
 	 * never <code>null</code>
 	 * @param dao used to access the database, never <code>null</code>
+	 * @param sortPropertyDbUpdater used to update the sort property in the database,
+	 * never <code>null</code>
 	 * @param xPlanRasterManager used to update the raster configuration, never
 	 * <code>null</code>
 	 */
 	public SortPropertyUpdater(SortPropertyReader sortPropertyReader, XPlanDao dao,
-			XPlanRasterManager xPlanRasterManager) {
+			SortPropertyDbUpdater sortPropertyDbUpdater, XPlanRasterManager xPlanRasterManager) {
 		this.sortPropertyReader = sortPropertyReader;
 		this.dao = dao;
+		this.sortPropertyDbUpdater = sortPropertyDbUpdater;
 		this.xPlanRasterManager = xPlanRasterManager;
 	}
 
@@ -84,7 +90,7 @@ public class SortPropertyUpdater {
 			XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 			Date sortDate = sortPropertyReader.readSortDate(planType, version, featureCollection);
 			planId2sortDate.put(plan.getId(), sortDate);
-			dao.updateSortProperty(sortDate, plan);
+			sortPropertyDbUpdater.updateSortProperty(sortDate, plan);
 		}
 		return planId2sortDate;
 	}

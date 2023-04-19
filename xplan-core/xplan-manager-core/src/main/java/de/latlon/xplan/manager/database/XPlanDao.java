@@ -390,17 +390,6 @@ public class XPlanDao {
 	}
 
 	/**
-	 * Updates the wmsSortDate column of all tables in the syn schema and in
-	 * xplanmgr.plans table.
-	 * @param sortDate the new sort date, may be <code>null</code>
-	 * @param plan the plan to update, never <code>null</code>
-	 * @throws Exception
-	 */
-	public void updateSortProperty(Date sortDate, XPlan plan) throws Exception {
-		xPlanDbAdapter.updateSortProperty(sortDate, plan);
-	}
-
-	/**
 	 * Updates the district column of the table xplanmgr.plans.
 	 * @param plan the plan to update, never <code>null</code>
 	 * @param district the new district, may be <code>null</code>
