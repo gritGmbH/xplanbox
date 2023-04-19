@@ -71,18 +71,14 @@ public class TestFeaturesUtils {
 				return load(version, "xplan53.xml");
 			case XPLAN_60:
 				return load(version, "xplan60.xml");
+			default:
+				throw new IllegalArgumentException();
 		}
-		throw new IllegalArgumentException();
 	}
 
 	public static FeatureCollection load(XPlanVersion version, String resource) throws Exception {
-		InputStream is = null;
-		try {
-			is = TestFeaturesUtils.class.getResourceAsStream(resource);
+		try (InputStream is = TestFeaturesUtils.class.getResourceAsStream(resource)) {
 			return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(is, version);
-		}
-		finally {
-			closeQuietly(is);
 		}
 	}
 

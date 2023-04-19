@@ -146,7 +146,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 					break;
 				}
 				case MULTI_GEOMETRY: {
-					inspect((MultiGeometry) geom);
+					inspect((MultiGeometry<?>) geom);
 					break;
 				}
 				case COMPOSITE_GEOMETRY: {
@@ -195,17 +195,18 @@ class XPlanGeometryInspector implements GeometryInspector {
 		return points;
 	}
 
-	private void inspect(MultiGeometry geom) throws GeometryInspectionException {
+	private void inspect(MultiGeometry<?> geom) throws GeometryInspectionException {
 		switch (geom.getMultiGeometryType()) {
 			case MULTI_POINT:
 			case MULTI_CURVE:
 				break;
 			case MULTI_SURFACE:
-				inspect((MultiSurface) geom);
+				inspect((MultiSurface<?>) geom);
+			default:
 		}
 	}
 
-	private void inspect(MultiSurface geom) throws GeometryInspectionException {
+	private void inspect(MultiSurface<?> geom) throws GeometryInspectionException {
 		List<Object> surfaces = new ArrayList<>(geom);
 		AtomicInteger intersectionIndex = new AtomicInteger(1);
 		for (Object geom1 : geom) {
@@ -449,6 +450,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		}
 		if (exteriorJTSRing.intersects(interiorJTSRing)) {
 			org.locationtech.jts.geom.Geometry intersection = exteriorJTSRing.intersection(interiorJTSRing);
+			@SuppressWarnings("deprecation")
 			AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS(intersection,
 					exteriorRing.getCoordinateSystem());
 			if (hasIntersection(intersectionGeom)) {
@@ -479,6 +481,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		}
 		if (interior1JTSRing.intersects(interior2JTSRing)) {
 			org.locationtech.jts.geom.Geometry intersection = interior1JTSRing.intersection(interior2JTSRing);
+			@SuppressWarnings("deprecation")
 			AbstractDefaultGeometry intersectionGeom = DEFAULT_GEOM.createFromJTS(intersection, crs);
 			if (hasIntersection(intersectionGeom)) {
 				String msg = createMessage(
@@ -497,11 +500,11 @@ class XPlanGeometryInspector implements GeometryInspector {
 		LineIntersector lineIntersector = new RobustLineIntersector();
 		graph.computeSelfNodes(lineIntersector, true);
 		List<Coordinate> selfInterSectionCoords = new ArrayList<>();
-		Iterator edgeIterator = graph.getEdgeIterator();
+		Iterator<?> edgeIterator = graph.getEdgeIterator();
 		while (edgeIterator.hasNext()) {
 			Edge edge = (Edge) edgeIterator.next();
 			int maxSegmentIndex = edge.getMaximumSegmentIndex();
-			Iterator edgeIntersections = edge.getEdgeIntersectionList().iterator();
+			Iterator<?> edgeIntersections = edge.getEdgeIntersectionList().iterator();
 			while (edgeIntersections.hasNext()) {
 				EdgeIntersection intersection = (EdgeIntersection) edgeIntersections.next();
 				if (!intersection.isEndPoint(maxSegmentIndex)) {
@@ -529,7 +532,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		curveSegments.stream().filter(curveSegment -> LINE_STRING_SEGMENT.equals(curveSegment.getSegmentType()))
 				.forEach(curveSegment -> {
 					Points controlPoints = ((LineStringSegment) curveSegment).getControlPoints();
-					AtomicReference<Point> previous = new AtomicReference(null);
+					AtomicReference<Point> previous = new AtomicReference<>(null);
 					controlPoints.forEach(cp -> {
 						if (previous.get() == null) {
 							previous.set(cp);
@@ -558,11 +561,12 @@ class XPlanGeometryInspector implements GeometryInspector {
 			case PRIMITIVE_GEOMETRY:
 				return primitiveAsReadableString((GeometricPrimitive) geom);
 			case MULTI_GEOMETRY:
-				return multipleAsReadableString((MultiGeometry) geom);
+				return multipleAsReadableString((MultiGeometry<?>) geom);
 			case COMPOSITE_GEOMETRY:
-				return compositeAsReadableString((CompositeGeometry) geom);
+				return compositeAsReadableString((CompositeGeometry<?>) geom);
+			default:
+				return getMessage("XPlanGeometryInspector_exportGeomInvalid");
 		}
-		return getMessage("XPlanGeometryInspector_exportGeomInvalid");
 	}
 
 	private String primitiveAsReadableString(GeometricPrimitive geom) {
@@ -572,8 +576,9 @@ class XPlanGeometryInspector implements GeometryInspector {
 			case Curve:
 				return format("XPlanGeometryInspector_geomAsString_curve", ((Curve) geom).getStartPoint(),
 						((Curve) geom).getEndPoint());
+			default:
+				return getMessage("XPlanGeometryInspector_exportGeomInvalid");
 		}
-		return getMessage("XPlanGeometryInspector_exportGeomInvalid");
 	}
 
 	private String pointAsReadableString(Point geom) {
@@ -581,7 +586,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 				.collect(Collectors.joining(",", "(", ")"));
 	}
 
-	private String multipleAsReadableString(MultiGeometry geom) {
+	private String multipleAsReadableString(MultiGeometry<?> geom) {
 		StringBuilder sb = new StringBuilder();
 		geom.stream().forEach(g -> {
 			if (sb.length() > 0)
@@ -591,7 +596,7 @@ class XPlanGeometryInspector implements GeometryInspector {
 		return sb.toString();
 	}
 
-	private String compositeAsReadableString(CompositeGeometry geom) {
+	private String compositeAsReadableString(CompositeGeometry<?> geom) {
 		StringBuilder sb = new StringBuilder();
 		geom.stream().forEach(g -> {
 			if (sb.length() > 0)

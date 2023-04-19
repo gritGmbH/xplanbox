@@ -159,7 +159,7 @@ public abstract class AbstractFlattener implements Flattener {
 			List<Pair<String, String>> properties) {
 		String propertyValue = asString(feature, propertyName);
 		if (propertyValue != null) {
-			properties.add(new Pair(label, propertyValue));
+			properties.add(new Pair<>(label, propertyValue));
 		}
 	}
 
@@ -168,7 +168,7 @@ public abstract class AbstractFlattener implements Flattener {
 		String propertyValue = asString(feature, propertyName);
 		if (propertyValue != null) {
 			String value = Boolean.parseBoolean(propertyValue) ? "ja" : "nein";
-			properties.add(new Pair(label, value));
+			properties.add(new Pair<>(label, value));
 		}
 	}
 
@@ -181,7 +181,7 @@ public abstract class AbstractFlattener implements Flattener {
 			String propertyValue = asString(feature, propertyName);
 			if (propertyValue != null) {
 				String translatedValue = XPlanEnumerationFactory.get(version).getTranslation(enumName, propertyValue);
-				properties.add(new Pair(label, translatedValue));
+				properties.add(new Pair<>(label, translatedValue));
 			}
 		}
 	}
@@ -198,10 +198,10 @@ public abstract class AbstractFlattener implements Flattener {
 				if (codelists != null) {
 					try {
 						String translatedValue = codelists.getTranslation(codeListName, propertyValue);
-						properties.add(new Pair(label, translatedValue));
+						properties.add(new Pair<>(label, translatedValue));
 					}
 					catch (IllegalArgumentException e) {
-						properties.add(new Pair(label, propertyValue));
+						properties.add(new Pair<>(label, propertyValue));
 					}
 				}
 			}

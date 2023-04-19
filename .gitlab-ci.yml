@@ -10,7 +10,7 @@ workflow:
   - when: always
 
 variables:
-  MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
+  MAVEN_OPTS: "-Xmx500m -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN"
   MAVEN_CLI_OPTS: "--batch-mode -DinstallAtEnd=true -DdeployAtEnd=true -DskipDeployBigArtefact=true -s $CI_PROJECT_DIR/ci_settings.xml"
 
 stages:
@@ -25,7 +25,7 @@ maven-build:
   image: registry.opencode.de/diplanung/ozgxplanung/mvn-build-image:latest
   script:
   - 'echo "with Maven goal: $MAVEN_GOAL"'
-  - 'mvn $MAVEN_CLI_OPTS $MAVEN_GOAL -DskipTests'
+  - 'mvn $MAVEN_CLI_OPTS $MAVEN_GOAL -DskipTests -Dskip.owasp.check=true -Dxplan-tests.maven.deploy.skip=true'
   rules:
   - if: $CI_COMMIT_MESSAGE =~ /^release /
     when: never

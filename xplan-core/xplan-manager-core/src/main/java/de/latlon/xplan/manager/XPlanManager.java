@@ -167,7 +167,7 @@ public class XPlanManager {
 				xPlanDocumentManager, workspaceReloader, managerWorkspaceWrapper.getConfiguration(),
 				managerWorkspaceWrapper, sortPropertyReader);
 		this.xPlanDeleteManager = new XPlanDeleteManager(xplanDao, xPlanRasterManager, storageCleanUpManager,
-				workspaceReloader, managerWorkspaceWrapper.getConfiguration());
+				workspaceReloader);
 	}
 
 	public XPlanArchive analyzeArchive(String fileName) throws IOException {
@@ -379,7 +379,7 @@ public class XPlanManager {
 			return planToEditFactory.createXPlanToEdit(plan, originalPlanFC);
 		}
 		finally {
-			closeQuietly(originalPlan);
+			closeQuietly(originalPlan, null);
 		}
 	}
 

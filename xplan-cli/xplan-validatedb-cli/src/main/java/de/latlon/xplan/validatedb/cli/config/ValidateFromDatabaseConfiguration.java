@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -118,14 +118,15 @@ public class ValidateFromDatabaseConfiguration {
 
 	@StepScope
 	@Bean
-	public JdbcCursorItemReader planFromDatabaseReader(@Value("#{jobParameters[jdbcurl]}") String jdbcurl,
-			@Value("#{jobParameters[user]}") String user, @Value("#{jobParameters[password]}") String password) {
+	public JdbcCursorItemReader<XPlanWithFeatureCollection> planFromDatabaseReader(
+			@Value("#{jobParameters[jdbcurl]}") String jdbcurl, @Value("#{jobParameters[user]}") String user,
+			@Value("#{jobParameters[password]}") String password) {
 		LOG.info("JDBC connection:");
 		LOG.info(" - jdbcurl: {}", jdbcurl);
 		LOG.info(" - user: {}", user);
 		LOG.info(" - password: {}", password);
 		BasicDataSource dataSource = createDataSource(jdbcurl, user, password);
-		JdbcCursorItemReader xplanItemReader = new JdbcCursorItemReader<>();
+		JdbcCursorItemReader<XPlanWithFeatureCollection> xplanItemReader = new JdbcCursorItemReader<>();
 		xplanItemReader.setSql(
 				"SELECT id, xp_version, name, district, filename, data FROM xplanmgr.plans p, xplanmgr.artefacts a "
 						+ "WHERE p.id = a.plan  AND filename = 'xplan.gml'");
@@ -141,7 +142,7 @@ public class ValidateFromDatabaseConfiguration {
 	}
 
 	@Bean
-	public ItemWriter validationResultsWriter() throws IOException {
+	public ItemWriter<ValidationResultSummary> validationResultsWriter() throws IOException {
 		File outputFile = Files.createTempFile("result", ".csv").toFile();
 		LOG.info("Write result to file {}", outputFile);
 		Resource outputResource = new FileSystemResource(outputFile);
@@ -176,6 +177,7 @@ public class ValidateFromDatabaseConfiguration {
 		return writer;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Bean
 	public Step step(JdbcCursorItemReader planFromDatabaseReader, ValidationProcessor validationProcessor,
 			ItemWriter validationResultsWriter) {

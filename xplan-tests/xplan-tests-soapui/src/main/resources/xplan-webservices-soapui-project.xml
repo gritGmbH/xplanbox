@@ -4801,7 +4801,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Name = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -4812,7 +4812,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Name = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
               <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -4823,7 +4823,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Name = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
               <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -4891,7 +4891,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Name = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -4902,7 +4902,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Name = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
               <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -4913,7 +4913,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Name = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
               <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -4981,7 +4981,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Name = "xplan:BP_AbweichungVonUeberbaubarerGrundstuecksFlaeche"</path>
               <content>true</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -4992,7 +4992,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Name = "xplan:BP: AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
               <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
@@ -5003,7 +5003,7 @@ exists(/wfs:WFS_Capabilities)</path>
             <con:configuration>
               <path>declare namespace wfs='http://www.opengis.net/wfs/2.0';
 
-/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Title = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
+/wfs:WFS_Capabilities/wfs:FeatureTypeList/wfs:FeatureType/wfs:Name = "xplan:BP_AbweichungVonUeberbaubererGrundstuecksFlaeche"</path>
               <content>false</content>
               <allowWildcards>false</allowWildcards>
               <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>

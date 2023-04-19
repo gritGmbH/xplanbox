@@ -23,9 +23,7 @@ package de.latlon.xplan.inspire.plu.transformation;
 import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xmlunit.builder.Input;
 import org.xmlunit.matchers.HasXPathMatcher;
-import org.xmlunit.matchers.ValidationMatcher;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -54,6 +52,7 @@ public class HaleCliInspirePluTransformatorTest {
 
 	private final Path haleProjectDirectory = Paths.get("/tmp/hale");
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testTransformationToPlu() throws Exception {
 		HaleCliInspirePluTransformator transformator = new HaleCliInspirePluTransformator(haleCli,

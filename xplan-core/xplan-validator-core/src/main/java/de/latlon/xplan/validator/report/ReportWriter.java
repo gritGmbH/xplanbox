@@ -34,6 +34,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -152,7 +153,7 @@ public class ReportWriter {
 			File errorlog = new File(directoryToCreateZip, ERROR_LOG_FILENAME);
 			try (FileOutputStream fos = new FileOutputStream(errorlog)) {
 				String errorlogContent = String.join("\n", failures);
-				IOUtils.write(errorlogContent, fos);
+				IOUtils.write(errorlogContent, fos, Charset.defaultCharset());
 			}
 			catch (IOException e) {
 				LOG.error("Could not write error.log", e);

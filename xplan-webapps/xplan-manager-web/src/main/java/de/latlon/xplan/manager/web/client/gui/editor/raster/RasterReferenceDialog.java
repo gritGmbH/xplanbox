@@ -253,8 +253,8 @@ public class RasterReferenceDialog extends EditDialogBoxWithRasterUpload {
 		return codeListBox;
 	}
 
-	private TypeCodeListBox createMimeTypeType() {
-		return new TypeCodeListBox(MimeTypes.class, true);
+	private TypeCodeListBox<MimeTypes> createMimeTypeType() {
+		return new TypeCodeListBox<>(MimeTypes.class, true);
 	}
 
 	private TextBox createRasterName(EditVersion version) {

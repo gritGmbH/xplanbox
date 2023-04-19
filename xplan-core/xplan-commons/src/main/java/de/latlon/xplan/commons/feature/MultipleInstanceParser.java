@@ -55,9 +55,9 @@ public class MultipleInstanceParser {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MultipleInstanceParser.class);
 
-	private List<String> referenceIds = new ArrayList();
+	private List<String> referenceIds = new ArrayList<>();
 
-	private final List<String> rootIds = new ArrayList();
+	private final List<String> rootIds = new ArrayList<>();
 
 	private final Map<String, List<String>> featuresAndReferenceIds = new HashMap<>();
 
@@ -102,7 +102,7 @@ public class MultipleInstanceParser {
 			}
 			remainingFeatures = featuresAndReferenceIds.size();
 
-			List<Set<String>> featuresPerInstance = new ArrayList();
+			List<Set<String>> featuresPerInstance = new ArrayList<>();
 			addRoots(featuresPerInstance);
 			addReferenced(featuresPerInstance);
 

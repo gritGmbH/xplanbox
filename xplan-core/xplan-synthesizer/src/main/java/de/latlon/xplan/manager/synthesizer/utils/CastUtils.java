@@ -64,6 +64,7 @@ public class CastUtils {
 		throw new IllegalArgumentException("Cannot cast '" + node.getClass() + "' to PrimitiveValue.");
 	}
 
+	@SuppressWarnings("unchecked")
 	public static TypedObjectNodeArray<TypedObjectNode> castToArray(TypedObjectNode node) {
 		if (node == null) {
 			return null;
