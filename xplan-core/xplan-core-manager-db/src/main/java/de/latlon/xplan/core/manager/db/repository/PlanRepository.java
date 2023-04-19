@@ -29,7 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -46,5 +45,7 @@ public interface PlanRepository extends CrudRepository<Plan, Integer> {
 
 	@Query(value = "from Plan as p where p.hasRaster = true AND wmssortdate=(SELECT min(wmssortdate) FROM Plan as p1 WHERE p1.wmssortdate IS NOT NULL AND p1.wmssortdate > :sortDate)")
 	List<Plan> findByPlanWithMoreRecentRasterPlan(@Param("sortDate") Date sortDate);
+
+	boolean existsPlanByNameAndPlanstatus(String name, String planstatus);
 
 }

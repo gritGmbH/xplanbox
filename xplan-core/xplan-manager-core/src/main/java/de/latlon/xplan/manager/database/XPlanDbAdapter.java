@@ -322,19 +322,7 @@ public class XPlanDbAdapter {
 	}
 
 	public boolean selectPlanWithSameNameAndStatusExists(String planName, String status) {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			return checkIfPlanWithSameNameAndStatusExists(conn, planName, status);
-		}
-		catch (Exception e) {
-			LOG.warn("Es konnte nicht geprüft werden ob ein Plan mit dem Namen {} und Status {} bereits existiert.",
-					planName, status);
-		}
-		finally {
-			closeQuietly(conn);
-		}
-		return false;
+		return planRepository.existsPlanByNameAndPlanstatus(planName, status);
 	}
 
 	public List<XPlan> getXPlanByName(String planName) {
@@ -573,26 +561,6 @@ public class XPlanDbAdapter {
 				addReferences(referenceFileNames, rasterBasis.getRasterReferences());
 		});
 		return referenceFileNames;
-	}
-
-	private boolean checkIfPlanWithSameNameAndStatusExists(Connection conn, String planName, String status)
-			throws SQLException {
-		StringBuilder sql = new StringBuilder();
-		sql.append("select count(*) > 0 from xplanmgr.plans WHERE name = ? AND planstatus = ?");
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement(sql.toString());
-			stmt.setString(1, planName);
-			stmt.setString(2, status);
-			LOG.trace("SQL Check if plan with same name and status exists: {}", stmt);
-			ResultSet resultSet = stmt.executeQuery();
-			if (resultSet.next())
-				return resultSet.getBoolean(1);
-			return false;
-		}
-		finally {
-			closeQuietly(stmt);
-		}
 	}
 
 	private void addReferences(List<String> referenceFileNames, List<? extends AbstractReference> references) {
