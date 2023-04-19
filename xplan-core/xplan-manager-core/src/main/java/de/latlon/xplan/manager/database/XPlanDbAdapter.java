@@ -31,7 +31,9 @@ import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.core.manager.db.model.Feature;
 import de.latlon.xplan.core.manager.db.model.Plan;
+import de.latlon.xplan.core.manager.db.model.PlanwerkWmsMetadata;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
+import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
@@ -99,11 +101,14 @@ public class XPlanDbAdapter {
 
 	private final PlanRepository planRepository;
 
+	private final PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository;
+
 	public XPlanDbAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper,
-			PlanRepository planRepository) {
+			PlanRepository planRepository, PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository) {
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
 		this.categoryMapper = categoryMapper;
 		this.planRepository = planRepository;
+		this.planwerkWmsMetadataRepository = planwerkWmsMetadataRepository;
 	}
 
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
@@ -129,22 +134,10 @@ public class XPlanDbAdapter {
 
 	public void insertOrReplacePlanWerkWmsMetadata(int planId, String title, String resourceIdentifier,
 			String datasetMetadataUrl, String serviceMetadataUrl) throws Exception {
-		Connection conn = null;
-		try {
-			LOG.info("Insert PlanWerkWmsMetadata");
-			conn = managerWorkspaceWrapper.openConnection();
-			conn.setAutoCommit(false);
-
-			insertOrReplacePlanWerkWmsMetadata(conn, planId, title, resourceIdentifier, datasetMetadataUrl,
-					serviceMetadataUrl);
-			conn.commit();
-		}
-		catch (Exception e) {
-			throw new Exception("Fehler beim Einfügen: " + e.getMessage(), e);
-		}
-		finally {
-			closeQuietly(conn);
-		}
+		PlanwerkWmsMetadata planwerkWmsMetadata = new PlanwerkWmsMetadata().plan(planId).title(title)
+				.resourceidentifier(resourceIdentifier).servicemetadataurl(serviceMetadataUrl)
+				.datametadataurl(datasetMetadataUrl);
+		planwerkWmsMetadataRepository.save(planwerkWmsMetadata);
 	}
 
 	public void deletePlan(int planId) throws Exception {
@@ -419,28 +412,6 @@ public class XPlanDbAdapter {
 			closeQuietly(stmt, rs);
 		}
 		return null;
-	}
-
-	private void insertOrReplacePlanWerkWmsMetadata(Connection conn, int planId, String title,
-			String resourceIdentifier, String datasetMetadataUrl, String serviceMetadataUrl) throws SQLException {
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement("DELETE FROM xplanmgr.planwerkwmsmetadata WHERE plan = ?");
-			stmt.setInt(1, planId);
-			stmt.execute();
-
-			stmt = conn.prepareStatement(
-					"INSERT INTO xplanmgr.planwerkwmsmetadata (plan, title, resourceidentifier, datametadataurl, servicemetadataurl) VALUES (?,?,?,?,?)");
-			stmt.setInt(1, planId);
-			stmt.setString(2, title);
-			stmt.setString(3, resourceIdentifier);
-			stmt.setString(4, datasetMetadataUrl);
-			stmt.setString(5, serviceMetadataUrl);
-			stmt.execute();
-		}
-		finally {
-			closeQuietly(stmt);
-		}
 	}
 
 	public void updateFeatureMetadata(int planId, List<String> fids) throws Exception {

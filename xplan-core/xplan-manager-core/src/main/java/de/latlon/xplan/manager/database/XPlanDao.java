@@ -89,7 +89,7 @@ public class XPlanDao {
 	 * @param categoryMapper mapping configuration, never <code>null</code>
 	 */
 	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
-		this.xPlanDbAdapter = new XPlanDbAdapter(managerWorkspaceWrapper, categoryMapper, null);
+		this.xPlanDbAdapter = new XPlanDbAdapter(managerWorkspaceWrapper, categoryMapper, null, null);
 		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper);
 		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper);
 		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper);
