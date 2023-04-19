@@ -119,7 +119,7 @@ public class XPlanEditManager extends XPlanTransactionManager {
 					.withExternalReferenceInfo(externalReferenceInfoToUpdate).build();
 			reassignFids(modifiedPlanFc);
 			FeatureCollection synFc = createSynFeatures(modifiedPlanFc, version);
-			String internalId = xplanDao.retrieveInternalId(planId, type);
+			String internalId = xplanDao.retrieveInternalId(planId);
 			if (internalId != null) {
 				AppSchema synSchema = managerWorkspaceWrapper.lookupStore(XPLAN_SYN, oldPlanStatus).getSchema();
 				featureCollectionManipulator.addInternalId(synFc, synSchema, internalId);

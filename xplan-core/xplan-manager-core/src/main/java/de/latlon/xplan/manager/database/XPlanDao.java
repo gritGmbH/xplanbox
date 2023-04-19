@@ -21,7 +21,6 @@
 package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
@@ -380,15 +379,14 @@ public class XPlanDao {
 	}
 
 	/**
-	 * Retrieve internalId by the manager id from xplansyn schema.
+	 * Retrieve internalId by the manager id from xplanmgr.plans.
 	 * @param planId the planId of the plan, never <code>null</code>
-	 * @param type the type of the plan, never <code>null</code>
 	 * @return the internal id of a plan (if available), <code>null</code> if an error
 	 * occurred
 	 */
-	public String retrieveInternalId(String planId, XPlanType type) throws Exception {
+	public String retrieveInternalId(String planId) throws Exception {
 		int planIdAsInt = getXPlanIdAsInt(planId);
-		return xPlanDbAdapter.selectInternalId(planIdAsInt, type);
+		return xPlanDbAdapter.selectInternalId(planIdAsInt);
 	}
 
 	/**

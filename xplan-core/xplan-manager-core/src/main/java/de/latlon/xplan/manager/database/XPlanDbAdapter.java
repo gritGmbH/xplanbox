@@ -363,53 +363,15 @@ public class XPlanDbAdapter {
 	}
 
 	/**
-	 * Retrieve internalId by the manager id from xplansyn schema.
+	 * Retrieve internalId by the manager id from xplanmgr.plans.
 	 * @param planId the planId of the plan, never <code>null</code>
-	 * @param type the type of the plan, never <code>null</code>
 	 * @return the internal id of a plan (if available), <code>null</code> if an error
 	 * occurred
 	 */
-	public String selectInternalId(int planId, XPlanType type) {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try (Connection mgrConn = managerWorkspaceWrapper.openConnection()) {
-			StringBuilder sqlBuilder = new StringBuilder();
-			sqlBuilder.append("SELECT xplan_internalid FROM ");
-			switch (type) {
-				case BP_Plan:
-					sqlBuilder.append("xplansyn.xplan_bp_plan");
-					break;
-				case FP_Plan:
-					sqlBuilder.append("xplansyn.xplan_fp_plan");
-					break;
-				case LP_Plan:
-					sqlBuilder.append("xplansyn.xplan_lp_plan");
-					break;
-				case RP_Plan:
-					sqlBuilder.append("xplansyn.xplan_rp_plan");
-					break;
-				default:
-					LOG.warn("Unsupported xplan type " + type);
-					return null;
-
-			}
-			sqlBuilder.append(" WHERE ");
-			sqlBuilder.append(" xplan_mgr_planid = ?");
-
-			LOG.trace("SQL Select to retrieve the internal id: " + sqlBuilder);
-
-			stmt = mgrConn.prepareStatement(sqlBuilder.toString());
-			stmt.setInt(1, planId);
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				return rs.getString(1);
-			}
-		}
-		catch (Exception e) {
-			LOG.warn("Die internalId des Plans mit der ID " + planId + " konnte nicht angefragt werden.");
-		}
-		finally {
-			closeQuietly(stmt, rs);
+	public String selectInternalId(int planId) {
+		Optional<Plan> plan = planRepository.findById(planId);
+		if (plan.isPresent()) {
+			return plan.get().getInternalid();
 		}
 		return null;
 	}
