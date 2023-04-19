@@ -263,29 +263,10 @@ public class XPlanDbAdapter {
 	}
 
 	public XPlanVersionAndPlanStatus selectXPlanMetadata(int planId) throws Exception {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
-			stmt = conn.prepareStatement("SELECT xp_version, planstatus FROM xplanmgr.plans WHERE id=?");
-			stmt.setInt(1, planId);
-			rs = stmt.executeQuery();
-			if (!rs.next()) {
-				throw new PlanNotFoundException(planId);
-			}
-			XPlanVersion version = XPlanVersion.valueOf(rs.getString(1));
-			PlanStatus planStatus = retrievePlanStatus(rs.getString(2));
-			return new XPlanVersionAndPlanStatus(version, planStatus);
-		}
-		catch (PlanNotFoundException pe) {
-			throw pe;
-		}
-		catch (Exception e) {
-			throw new Exception("Interner-/Konfigurations-Fehler. Kann XPlan-Informationen nicht aus DB lesen: "
-					+ e.getLocalizedMessage(), e);
-		}
-		finally {
-			closeQuietly(stmt, rs);
-		}
+		Plan plan = getRequiredPlanById(planId);
+		XPlanVersion version = plan.getVersion();
+		PlanStatus planStatus = retrievePlanStatus(plan.getPlanstatus());
+		return new XPlanVersionAndPlanStatus(version, planStatus);
 	}
 
 	public Set<String> selectFids(int planId) throws Exception {
@@ -674,10 +655,10 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
-	private Plan getRequiredPlanById(int planId) throws Exception {
+	private Plan getRequiredPlanById(int planId) throws PlanNotFoundException {
 		Optional<Plan> optionalPlan = planRepository.findById(planId);
 		if (!optionalPlan.isPresent())
-			throw new Exception("Plan mit ID " + planId + " ist nicht vorhanden.");
+			throw new PlanNotFoundException(planId);
 		return optionalPlan.get();
 	}
 
