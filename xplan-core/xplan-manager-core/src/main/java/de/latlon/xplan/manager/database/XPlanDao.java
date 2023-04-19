@@ -261,7 +261,7 @@ public class XPlanDao {
 			}).collect(Collectors.toSet());
 
 			xPlanSynWfsAdapter.update(planId, planStatus, synFc, validIds);
-			xPlanDbAdapter.updateFeatureMetadata(newFids, planId);
+			xPlanDbAdapter.updateFeatureMetadata(planId, newFids);
 		}
 		else {
 			xPlanSynWfsAdapter.update(planId, planStatus, synFc, ids);

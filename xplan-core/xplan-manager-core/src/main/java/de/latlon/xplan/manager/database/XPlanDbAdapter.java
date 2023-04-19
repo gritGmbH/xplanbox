@@ -42,12 +42,8 @@ import de.latlon.xplan.manager.web.shared.edit.AbstractReference;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.validator.web.shared.XPlanEnvelope;
 import org.apache.commons.io.IOUtils;
-import org.deegree.cs.exceptions.UnknownCRSException;
-import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.geometry.Envelope;
-import org.deegree.geometry.Geometry;
-import org.deegree.geometry.io.WKTReader;
 import org.deegree.geometry.io.WKTWriter;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.io.ParseException;
@@ -186,7 +182,6 @@ public class XPlanDbAdapter {
 		Plan plan = getRequiredPlanById(planId);
 		Set<Feature> newFeatures = createFeatures(fids);
 		plan.features(newFeatures);
-
 		planRepository.save(plan);
 	}
 
@@ -244,20 +239,17 @@ public class XPlanDbAdapter {
 	 * @param artefactType the artefactType to set, never <code>null</code>
 	 * @throws SQLException
 	 */
-	public void updateArtefacttype(int planId, List<String> fileNames, ArtefactType artefactType) throws SQLException {
-		Connection conn = null;
-		try {
-			conn = managerWorkspaceWrapper.openConnection();
-			updateArtefacttype(conn, planId, fileNames, artefactType);
+	public void updateArtefacttype(int planId, List<String> fileNames, ArtefactType artefactType) throws Exception {
+		Plan plan = getRequiredPlanById(planId);
+		Set<Artefact> artefacts = plan.getArtefacts();
+		for (String rasterReference : fileNames) {
+			Optional<Artefact> artefact = artefacts.stream()
+					.filter(candidate -> candidate.getData().equals(rasterReference)).findFirst();
+			if (artefact.isPresent()) {
+				artefact.get().artefacttype(artefactType);
+			}
 		}
-		catch (Exception e) {
-			LOG.error("Could not set artefacttype " + artefactType + " for plan with id " + planId + " and files "
-					+ fileNames + ".", e);
-			conn.rollback();
-		}
-		finally {
-			closeQuietly(conn);
-		}
+		planRepository.save(plan);
 	}
 
 	/**
@@ -464,23 +456,6 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
-	private void insertFeatureMetadata(Connection conn, List<String> fids, int planId) throws SQLException {
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement("INSERT INTO xplanmgr.features (plan,fid,num) VALUES (?,?,?)");
-			stmt.setInt(1, planId);
-			for (int i = 0; i < fids.size(); i++) {
-				stmt.setString(2, fids.get(i));
-				stmt.setInt(3, i);
-				stmt.addBatch();
-			}
-			stmt.executeBatch();
-		}
-		finally {
-			closeQuietly(stmt);
-		}
-	}
-
 	private void insertOrReplacePlanWerkWmsMetadata(Connection conn, int planId, String title,
 			String resourceIdentifier, String datasetMetadataUrl, String serviceMetadataUrl) throws SQLException {
 		PreparedStatement stmt = null;
@@ -503,26 +478,8 @@ public class XPlanDbAdapter {
 		}
 	}
 
-	public void updateFeatureMetadata(List<String> fids, int planId) throws SQLException {
-		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
-			updateFeatureMetadata(conn, fids, planId);
-		}
-	}
-
-	void updateFeatureMetadata(Connection conn, List<String> fids, int planId) throws SQLException {
-		PreparedStatement stmt = null;
-		try {
-			LOG.info("- Aktualisiere Features von XPlan " + planId + " in der Manager-DB...");
-			String sql = "DELETE FROM xplanmgr.features WHERE plan=?";
-			LOG.trace("SQL Delete XPlanManager Features: " + sql);
-			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, planId);
-			stmt.executeUpdate();
-			insertFeatureMetadata(conn, fids, planId);
-		}
-		finally {
-			closeQuietly(stmt);
-		}
+	public void updateFeatureMetadata(int planId, List<String> fids) throws Exception {
+		updateFids(planId, fids);
 	}
 
 	private void collectArtefactsToUpdateAndInsert(List<File> uploadedArtefacts, List<String> artefactFileNames,
@@ -594,31 +551,6 @@ public class XPlanDbAdapter {
 		}
 		finally {
 			closeQuietly(updateStmt);
-		}
-	}
-
-	private void updateArtefacttype(Connection conn, int planId, List<String> fileNames, ArtefactType artefactType)
-			throws Exception {
-		StringBuilder updateSql = new StringBuilder();
-		updateSql.append("UPDATE xplanmgr.artefacts");
-		updateSql.append(" SET artefacttype = ?::xplanmgr.artefacttype");
-		updateSql.append(" WHERE");
-		updateSql.append(" plan = ? AND");
-		updateSql.append(" filename = ?");
-
-		PreparedStatement stmt = null;
-		try {
-			stmt = conn.prepareStatement(updateSql.toString());
-			for (String rasterReference : fileNames) {
-				stmt.setString(1, artefactType.name());
-				stmt.setInt(2, planId);
-				stmt.setString(3, rasterReference);
-				LOG.trace("SQL Update xplanmgr.artefacts, column artefacttype: " + stmt);
-				stmt.executeUpdate();
-			}
-		}
-		finally {
-			closeQuietly(stmt);
 		}
 	}
 
@@ -713,23 +645,6 @@ public class XPlanDbAdapter {
 		return null;
 	}
 
-	private XPlanEnvelope createBboxFromWkt(String bboxAsWkt) {
-		if (bboxAsWkt != null && !bboxAsWkt.isEmpty()) {
-			try {
-				String crs = "epsg:4326";
-				WKTReader reader = new WKTReader(CRSManager.lookup(crs));
-				Geometry geometry = reader.read(bboxAsWkt);
-				Envelope envelope = geometry.getEnvelope();
-				return new XPlanEnvelope(envelope.getMin().get0(), envelope.getMin().get1(), envelope.getMax().get0(),
-						envelope.getMax().get1(), crs);
-			}
-			catch (UnknownCRSException | ParseException e) {
-				LOG.error("Could not create envelope from " + bboxAsWkt, e);
-			}
-		}
-		return null;
-	}
-
 	private AdditionalPlanData createXPlanMetadata(String planStatus, Date startDateTime, Date endDateTime) {
 		PlanStatus planStatusAsEnum = null;
 		if (planStatus != null)
@@ -782,10 +697,6 @@ public class XPlanDbAdapter {
 		catch (NumberFormatException e) {
 			throw new Exception("Spezifizierter Wert '" + planId + "' ist keine gültige XPlan-Id (Ganzzahl).", e);
 		}
-	}
-
-	private Date convertToDate(java.sql.Date dateToConvert) {
-		return dateToConvert != null ? new Date(dateToConvert.getTime()) : null;
 	}
 
 	private java.sql.Date convertToSqlDate(Date dateToConvert) {
