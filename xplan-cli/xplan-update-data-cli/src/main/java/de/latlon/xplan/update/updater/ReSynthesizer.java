@@ -81,7 +81,7 @@ public class ReSynthesizer {
 	 * re-synthesizes all available plans.
 	 */
 	public void reSynthesize() throws Exception {
-		List<XPlan> plans = xPlanDao.getXPlanList(false);
+		List<XPlan> plans = xPlanDao.getXPlanList();
 		for (XPlan plan : plans) {
 			reSynthesize(plan);
 		}

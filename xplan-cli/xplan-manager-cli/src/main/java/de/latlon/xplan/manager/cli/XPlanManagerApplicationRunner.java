@@ -8,12 +8,12 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -111,7 +111,7 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 	private void listOption(XPlanManager manager) {
 		System.out.println("---------------------------------------");
 		try {
-			List<XPlan> xPlanList = manager.list(true);
+			List<XPlan> xPlanList = manager.list();
 			printList(xPlanList);
 		}
 		catch (Exception e) {
@@ -289,7 +289,6 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			if (plan.getGkz() != null) {
 				System.out.print(", GKZ: " + plan.getGkz());
 			}
-			System.out.print(", Features: " + plan.getNumFeatures());
 			System.out.print(", Raster: " + (plan.isRaster() ? "ja" : "nein"));
 			System.out.print(", Veroeffentlichungsdatum: " + plan.getReleaseDate());
 			System.out.println(", Importiert: " + plan.getImportDate());

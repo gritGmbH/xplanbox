@@ -53,7 +53,7 @@ public class ValidateExecutor {
 	 */
 	public void validateAll(Path outDir) throws Exception {
 		try (TransformationResultWriter transformationResultWriter = new CsvTransformationResultWriter(outDir)) {
-			List<XPlan> plans = xPlanDao.getXPlanList(false);
+			List<XPlan> plans = xPlanDao.getXPlanList();
 			for (XPlan plan : plans) {
 				XPlanVersion version = XPlanVersion.valueOf(plan.getVersion());
 				if (XPLAN_41.equals(version)) {

@@ -54,7 +54,7 @@ public class DistrictUpdater {
 	 * updates the district column in the table xplanmgr.plans.
 	 */
 	public void updateDistricts() throws Exception {
-		List<XPlan> plans = dao.getXPlanList(false);
+		List<XPlan> plans = dao.getXPlanList();
 		for (XPlan plan : plans) {
 			LOG.info("Update district of plan with id {}", plan.getId());
 			FeatureCollection featureCollection = dao.retrieveFeatureCollection(plan);

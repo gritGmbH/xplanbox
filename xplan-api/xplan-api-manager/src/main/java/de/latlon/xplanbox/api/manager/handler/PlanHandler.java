@@ -138,7 +138,7 @@ public class PlanHandler {
 		LOG.info("Searching plan by name '{}'", planName);
 		if (planName != null)
 			return xPlanDao.getXPlansLikeName(planName);
-		return xPlanDao.getXPlanList(false);
+		return xPlanDao.getXPlanList();
 	}
 
 	public List<XPlan> findPlansById(List<Integer> planIds) throws Exception {

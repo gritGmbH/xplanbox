@@ -42,7 +42,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
@@ -82,10 +81,10 @@ public class ManagerControllerTest {
 	public void verifyThatManagerReturnList_WhenValidRequestIsSend() throws Exception {
 		doNothing().when(mockReportProvider).writeHtmlReport(isA(HttpServletResponse.class), isA(String.class),
 				isA(String.class));
-		Mockito.when(mockManager.list(false)).thenReturn(new ArrayList<XPlan>());
+		Mockito.when(mockManager.list()).thenReturn(new ArrayList<XPlan>());
 		assertNotNull(this.managerController);
 		mockMvc.perform(get("/manager/plans")).andExpect(status().isOk());
-		verify(mockManager, times(1)).list(any(Boolean.class));
+		verify(mockManager, times(1)).list();
 	}
 
 }

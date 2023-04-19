@@ -283,7 +283,7 @@ public class TestContext {
 		mockList.add(mockPlan_123);
 		when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);
 		when(xplanDao.getXPlansLikeName("bplan_41")).thenReturn(mockList);
-		when(xplanDao.getXPlanList(anyBoolean())).thenReturn(mockList);
+		when(xplanDao.getXPlanList()).thenReturn(mockList);
 		XPlanArchiveContent mockArchive = mock(XPlanArchiveContent.class);
 		when(xplanDao.retrieveAllXPlanArtefacts(anyString())).thenReturn(mockArchive);
 		when(xplanDao.retrieveAllXPlanArtefacts("42")).thenThrow(new PlanNotFoundException(42));

@@ -76,7 +76,7 @@ public class SortPropertyUpdater {
 
 	private Map<String, Date> updateColumnsInDB() throws Exception {
 		Map<String, Date> planId2sortDate = new HashMap<String, Date>();
-		List<XPlan> plans = dao.getXPlanList(false);
+		List<XPlan> plans = dao.getXPlanList();
 		for (XPlan plan : plans) {
 			LOG.debug("Update sort column value for plan with id {}", plan.getId());
 			FeatureCollection featureCollection = dao.retrieveFeatureCollection(plan);

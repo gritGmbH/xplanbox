@@ -59,7 +59,7 @@ public class ArtefactsTableUpdater {
 	}
 
 	public void update() throws Exception {
-		List<XPlan> plans = xplanDao.getXPlanList(false);
+		List<XPlan> plans = xplanDao.getXPlanList();
 		for (XPlan plan : plans) {
 			update(plan);
 		}

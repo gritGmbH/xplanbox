@@ -56,7 +56,7 @@ public class BereichUpdate {
 	 * @throws Exception if an error occurred during update
 	 */
 	public void update() throws Exception {
-		List<XPlan> plans = xplanDao.getXPlanList(false);
+		List<XPlan> plans = xplanDao.getXPlanList();
 		for (XPlan plan : plans) {
 			update(plan);
 		}

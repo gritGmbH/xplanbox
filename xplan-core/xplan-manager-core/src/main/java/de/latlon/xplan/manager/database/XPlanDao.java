@@ -295,14 +295,11 @@ public class XPlanDao {
 
 	/**
 	 * Retrieve a list of all XPlans.
-	 * @param includeNoOfFeature <code>true</code> if the number of features of each
-	 * feature collection should be requested, <code>false</code> otherwise
-	 * @param includeNoOfFeature
 	 * @return list of XPlans
 	 * @throws Exception
 	 */
-	public List<XPlan> getXPlanList(boolean includeNoOfFeature) throws Exception {
-		return xPlanDbAdapter.selectAllXPlans(includeNoOfFeature);
+	public List<XPlan> getXPlanList() throws Exception {
+		return xPlanDbAdapter.selectAllXPlans();
 	}
 
 	/**

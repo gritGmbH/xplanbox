@@ -276,14 +276,10 @@ public class XPlanDbAdapter {
 
 	/**
 	 * Retrieve a list of all XPlans.
-	 * @param includeNoOfFeature <code>true</code> if the number of features of each
-	 * feature collection should be requested, <code>false</code> otherwise
-	 * @param includeNoOfFeature
 	 * @return list of XPlans
 	 * @throws Exception
 	 */
-	public List<XPlan> selectAllXPlans(boolean includeNoOfFeature) throws Exception {
-		// TODO: includeNoOfFeature!?
+	public List<XPlan> selectAllXPlans() {
 		Iterable<Plan> plans = planRepository.findAll();
 		return StreamSupport.stream(plans.spliterator(), false).map(plan -> convertToXPlan(plan))
 				.collect(Collectors.toList());
