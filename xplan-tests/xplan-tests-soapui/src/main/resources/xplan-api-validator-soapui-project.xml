@@ -800,6 +800,24 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="jsonPath Match path validationReport externalReferences items type">
+              <con:configuration>
+                <path>$.components.schemas.ValidationReport.properties.externalReferences.items.type</path>
+                <content>string</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="634b1a88-6df2-49f0-9e23-8babb820f690" name="jsonPath Match path validationReport externalReferencesResult items type">
+              <con:configuration>
+                <path>$.components.schemas.ValidationReport.properties.externalReferencesResult.items.type</path>
+                <content>object</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:credentials>
               <con:username xsi:nil="true"/>
               <con:password xsi:nil="true"/>
