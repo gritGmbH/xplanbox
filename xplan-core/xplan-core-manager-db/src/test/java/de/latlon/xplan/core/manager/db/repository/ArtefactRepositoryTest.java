@@ -52,7 +52,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("test-postgis")
+@ActiveProfiles("test-hsql")
 @ContextConfiguration(classes = { JpaContext.class, HsqlJpaContext.class, PostgisJpaContext.class })
 @Transactional
 public class ArtefactRepositoryTest {

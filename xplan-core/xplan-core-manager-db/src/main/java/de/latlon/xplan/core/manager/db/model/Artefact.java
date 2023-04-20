@@ -25,6 +25,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
@@ -34,7 +35,8 @@ import java.util.Arrays;
  * @since 6.1
  */
 @Entity
-@Table(schema = "xplanmgr", name = "artefacts")
+@Table(schema = "xplanmgr", name = "artefacts",
+		uniqueConstraints = { @UniqueConstraint(columnNames = { "plan", "filename" }) })
 public class Artefact {
 
 	@EmbeddedId
