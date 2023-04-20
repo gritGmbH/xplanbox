@@ -20,8 +20,10 @@
  */
 package de.latlon.xplanbox.api.manager.handler;
 
+import de.latlon.xplan.core.manager.db.config.JpaContext;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
+import de.latlon.xplanbox.api.manager.config.HsqlJpaContext;
 import de.latlon.xplanbox.api.manager.config.TestContext;
 import de.latlon.xplanbox.api.manager.exception.InvalidPlanToEdit;
 import org.junit.Test;
@@ -37,7 +39,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { ApplicationContext.class, TestContext.class })
+@ContextConfiguration(classes = { ApplicationContext.class, JpaContext.class, HsqlJpaContext.class, TestContext.class })
 public class EditBasisdatenHandlerTest {
 
 	@Autowired
