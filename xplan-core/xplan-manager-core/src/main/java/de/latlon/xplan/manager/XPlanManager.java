@@ -33,6 +33,7 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
+import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfigurationAnalyser;
@@ -42,7 +43,6 @@ import de.latlon.xplan.manager.dictionary.XPlanDictionaries;
 import de.latlon.xplan.manager.dictionary.XPlanEnumerationFactory;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.edit.XPlanToEditFactory;
-import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.inspireplu.InspirePluPublisher;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
@@ -336,8 +336,8 @@ public class XPlanManager {
 	 * @throws Exception
 	 */
 	public void export(String planId, OutputStream outputStream) throws Exception {
-		XPlanArchiveContent xplanContentsToExport = xplanDao.retrieveAllXPlanArtefacts(planId);
-		xPlanExporter.export(outputStream, xplanContentsToExport);
+		List<Artefact> artefacts = xplanDao.retrieveAllXPlanArtefacts(planId);
+		xPlanExporter.export(outputStream, artefacts);
 		LOG.info("XPlanArchiv {} wurde erfolgreich exportiert", planId);
 	}
 
@@ -356,7 +356,7 @@ public class XPlanManager {
 	 * @return a single plan
 	 * @throws Exception
 	 */
-	public XPlan getXPlanById(int planId) throws Exception {
+	public XPlan getXPlanById(int planId) {
 		return xplanDao.getXPlanById(planId);
 	}
 

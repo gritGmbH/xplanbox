@@ -20,9 +20,11 @@
  */
 package de.latlon.xplan.core.manager.db.model;
 
-import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
@@ -31,11 +33,12 @@ import java.util.Arrays;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @since 6.1
  */
-@Embeddable
+@Entity
+@Table(schema = "xplanmgr", name = "artefacts")
 public class Artefact {
 
-	@NotNull
-	private @Valid String filename;
+	@EmbeddedId
+	private @Valid ArtefactId id;
 
 	@NotNull
 	private @Valid byte[] data;
@@ -49,16 +52,16 @@ public class Artefact {
 	@Enumerated(EnumType.STRING)
 	private @Valid ArtefactType artefacttype;
 
-	public String getFilename() {
-		return filename;
+	public ArtefactId getId() {
+		return id;
 	}
 
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setId(ArtefactId id) {
+		this.id = id;
 	}
 
-	public Artefact filename(String filename) {
-		this.filename = filename;
+	public Artefact id(ArtefactId id) {
+		this.id = id;
 		return this;
 	}
 
@@ -116,8 +119,8 @@ public class Artefact {
 
 	@Override
 	public String toString() {
-		return "Artefact{" + "filename='" + filename + '\'' + ", data=" + Arrays.toString(data) + ", num=" + num
-				+ ", mimetype='" + mimetype + '\'' + ", artefacttype=" + artefacttype + '}';
+		return "Artefact{" + "id=" + id + ", data=" + Arrays.toString(data) + ", num=" + num + ", mimetype='" + mimetype
+				+ '\'' + ", artefacttype=" + artefacttype + '}';
 	}
 
 }

@@ -28,14 +28,15 @@ import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.reference.ExternalReference;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.core.manager.db.model.Artefact;
+import de.latlon.xplan.core.manager.db.model.ArtefactId;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.core.manager.db.model.Feature;
 import de.latlon.xplan.core.manager.db.model.Plan;
 import de.latlon.xplan.core.manager.db.model.PlanwerkWmsMetadata;
+import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
 import de.latlon.xplan.manager.CategoryMapper;
-import de.latlon.xplan.manager.export.DatabaseXPlanArtefactIterator;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -60,9 +61,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -73,17 +71,16 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import static de.latlon.xplan.commons.archive.XPlanArchiveCreator.MAIN_FILE;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveAdditionalTypeWert;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistrict;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveRechtsstandWert;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.RASTERBASIS;
 import static de.latlon.xplan.core.manager.db.model.ArtefactType.XPLANGML;
-import static de.latlon.xplan.manager.database.DatabaseUtils.closeQuietly;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.FESTGESTELLT;
 import static org.apache.commons.io.IOUtils.copyLarge;
 
@@ -95,20 +92,20 @@ public class XPlanDbAdapter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanDbAdapter.class);
 
-	private final ManagerWorkspaceWrapper managerWorkspaceWrapper;
-
 	private final CategoryMapper categoryMapper;
 
 	private final PlanRepository planRepository;
 
 	private final PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository;
 
-	public XPlanDbAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper,
-			PlanRepository planRepository, PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository) {
-		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
+	private final ArtefactRepository artefactRepository;
+
+	public XPlanDbAdapter(CategoryMapper categoryMapper, PlanRepository planRepository,
+			PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository, ArtefactRepository artefactRepository) {
 		this.categoryMapper = categoryMapper;
 		this.planRepository = planRepository;
 		this.planwerkWmsMetadataRepository = planwerkWmsMetadataRepository;
+		this.artefactRepository = artefactRepository;
 	}
 
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
@@ -126,7 +123,7 @@ public class XPlanDbAdapter {
 		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
 		AtomicInteger i = new AtomicInteger();
 		Set<Artefact> artefacts = archiveEntries.stream()
-				.map(archiveEntry -> createArtefact(xPlanFeatureCollection, i, archiveEntry))
+				.map(archiveEntry -> createArtefact(plan, xPlanFeatureCollection, i, archiveEntry))
 				.collect(Collectors.toSet());
 		plan.setArtefacts(artefacts);
 		planRepository.save(plan);
@@ -302,13 +299,8 @@ public class XPlanDbAdapter {
 	 * @return
 	 * @throws Exception
 	 */
-	public DatabaseXPlanArtefactIterator selectAllXPlanArtefacts(int planId) throws Exception {
-		Connection conn = managerWorkspaceWrapper.openConnection();
-		PreparedStatement stmt = conn
-				.prepareStatement("SELECT filename,data FROM xplanmgr.artefacts WHERE plan=? ORDER BY num");
-		stmt.setInt(1, planId);
-		ResultSet rs = stmt.executeQuery();
-		return new DatabaseXPlanArtefactIterator(conn, stmt, rs);
+	public Stream<Artefact> selectAllXPlanArtefacts(int planId) {
+		return artefactRepository.findAllByPlanId(planId);
 	}
 
 	/**
@@ -316,25 +308,11 @@ public class XPlanDbAdapter {
 	 * @return the original plan artefact, never <code>null</code>
 	 * @throws Exception
 	 */
-	public InputStream selectXPlanArtefact(int planId) throws Exception {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try (Connection conn = managerWorkspaceWrapper.openConnection()) {
-			stmt = conn
-					.prepareStatement("SELECT data FROM xplanmgr.artefacts WHERE plan=? and artefacttype='XPLANGML'");
-			stmt.setInt(1, planId);
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				return unzipArtefact(rs.getBinaryStream(1));
-			}
-		}
-		catch (Exception e) {
-			throw new Exception(
-					"Fehler beim Rekonstruieren des XPlan-Artefakts '" + MAIN_FILE + "': " + e.getLocalizedMessage(),
-					e);
-		}
-		finally {
-			closeQuietly(stmt, rs);
+	public InputStream selectXPlanGmlArtefact(int planId) throws IOException {
+		Optional<Artefact> xPlanGmlByPlan = artefactRepository.findXPlanGmlByPlan(planId);
+		if (xPlanGmlByPlan.isPresent()) {
+			Artefact artefact = xPlanGmlByPlan.get();
+			return unzipArtefact(artefact.getData());
 		}
 		return null;
 
@@ -493,8 +471,9 @@ public class XPlanDbAdapter {
 		return FESTGESTELLT.getMessage();
 	}
 
-	private InputStream unzipArtefact(InputStream zippedStream) throws IOException {
-		try (GZIPInputStream is = new GZIPInputStream(zippedStream);
+	private InputStream unzipArtefact(byte[] zippedData) throws IOException {
+		try (ByteArrayInputStream bis = new ByteArrayInputStream(zippedData);
+				GZIPInputStream is = new GZIPInputStream(bis);
 				ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
 			IOUtils.copy(is, bos);
 			return new ByteArrayInputStream(bos.toByteArray());
@@ -531,18 +510,18 @@ public class XPlanDbAdapter {
 		return createBereiche(bereiche);
 	}
 
-	private static Set<de.latlon.xplan.core.manager.db.model.Bereich> createBereiche(List<Bereich> bereiche) {
+	private Set<de.latlon.xplan.core.manager.db.model.Bereich> createBereiche(List<Bereich> bereiche) {
 		return bereiche.stream().map(bereich -> new de.latlon.xplan.core.manager.db.model.Bereich()
 				.name(bereich.getName()).nummer(bereich.getNummer())).collect(Collectors.toSet());
 	}
 
-	private static Set<Feature> createFeatures(List<String> featureIds) {
+	private Set<Feature> createFeatures(List<String> featureIds) {
 		AtomicInteger index = new AtomicInteger();
 		return featureIds.stream().map(featureId -> new Feature().fid(featureId).num(index.getAndIncrement()))
 				.collect(Collectors.toSet());
 	}
 
-	private Artefact createArtefact(XPlanFeatureCollection xPlanFeatureCollection, AtomicInteger i,
+	private Artefact createArtefact(Plan plan, XPlanFeatureCollection xPlanFeatureCollection, AtomicInteger i,
 			ZipEntryWithContent archiveEntry) {
 		try {
 			String name = archiveEntry.getName();
@@ -550,8 +529,8 @@ public class XPlanDbAdapter {
 			byte[] data = createZipArtefact(is);
 			String mimetype = getArtefactMimeType(name);
 			ArtefactType artefactType = detectArtefactType(xPlanFeatureCollection, archiveEntry);
-
-			Artefact artefact = new Artefact().filename(name).data(data).mimetype(mimetype).artefacttype(artefactType)
+			ArtefactId id = new ArtefactId().plan(plan).filename(name);
+			Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).artefacttype(artefactType)
 					.num(i.getAndIncrement());
 			return artefact;
 		}
@@ -583,11 +562,11 @@ public class XPlanDbAdapter {
 		xPlanGmlArtefact.data(createZipArtefact(new ByteArrayInputStream(planArtefact)));
 
 		List<Artefact> artefactsToDelete = planArtefacts.stream()
-				.filter(artefact -> removedRefs.contains(artefact.getFilename())).collect(Collectors.toList());
+				.filter(artefact -> removedRefs.contains(artefact.getId().getFilename())).collect(Collectors.toList());
 		planArtefacts.removeAll(artefactsToDelete);
 
 		List<String> referenceFileNames = retrieveReferenceFileNames(xPlanToEdit);
-		List<String> artefactFileNames = planArtefacts.stream().map(artefact -> artefact.getFilename())
+		List<String> artefactFileNames = planArtefacts.stream().map(artefact -> artefact.getId().getFilename())
 				.collect(Collectors.toList());
 		Map<String, File> artefactsToUpdate = new HashMap<>();
 		Map<String, File> artefactsToInsert = new HashMap<>();
@@ -599,7 +578,7 @@ public class XPlanDbAdapter {
 			String fileName = entry.getKey();
 			File file = entry.getValue();
 			Optional<Artefact> artefactToUpdate = planArtefacts.stream()
-					.filter(artefact -> fileName.equals(artefact.getFilename())).findFirst();
+					.filter(artefact -> fileName.equals(artefact.getId().getFilename())).findFirst();
 			if (artefactToUpdate.isPresent()) {
 				try (FileInputStream fileInputStream = new FileInputStream(file)) {
 					artefactToUpdate.get().data(createZipArtefact(fileInputStream));
@@ -614,8 +593,9 @@ public class XPlanDbAdapter {
 				String mimetype = getArtefactMimeType(fileName);
 				ArtefactType artefactType = detectNonXPlanGmlArtefactType(fc, fileName);
 
-				Artefact artefact = new Artefact().filename(fileName).data(data).mimetype(mimetype)
-						.artefacttype(artefactType).num(num++);
+				ArtefactId id = new ArtefactId().plan(plan).filename(fileName);
+				Artefact artefact = new Artefact().id(id).data(data).mimetype(mimetype).artefacttype(artefactType)
+						.num(num++);
 				plan.getArtefacts().add(artefact);
 			}
 		}

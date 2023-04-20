@@ -21,11 +21,12 @@
 package de.latlon.xplan.manager.export;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
+import de.latlon.xplan.core.manager.db.model.Artefact;
+import de.latlon.xplan.core.manager.db.model.ArtefactId;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
@@ -62,9 +63,8 @@ public class XPlanExporterTest {
 	@Test
 	public void testExport() throws Exception {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		XPlanArtefactIterator artefacts = mockArtefactIterator();
-		XPlanArchiveContent contents = createContents(artefacts);
-		exporter.export(outputStream, contents);
+		List<Artefact> artefacts = creatertefactStream();
+		exporter.export(outputStream, artefacts);
 
 		List<String> exportedFiles = readExportedContent(outputStream);
 
@@ -77,9 +77,8 @@ public class XPlanExporterTest {
 		XPlanExporter xplanExporter = new XPlanExporter();
 
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		XPlanArtefactIterator artefacts = mockArtefactIterator();
-		XPlanArchiveContent contents = createContents(artefacts);
-		xplanExporter.export(outputStream, contents);
+		List<Artefact> artefacts = creatertefactStream();
+		xplanExporter.export(outputStream, artefacts);
 
 		List<String> exportedFiles = readExportedContent(outputStream);
 
@@ -101,25 +100,19 @@ public class XPlanExporterTest {
 		assertThat(exportedPlan, ValidationMatcher.valid(Input.fromURI(XPLAN_41.getSchemaUrl().toURI())));
 	}
 
-	private XPlanArchiveContent createContents(XPlanArtefactIterator artefacts) throws Exception {
-		FeatureCollection restoredFeatureCollection = readFeatureCollection("xplan41/V4_1_ID_103.zip");
-		return new XPlanArchiveContent(restoredFeatureCollection, artefacts, XPlanVersion.XPLAN_41);
+	private List<Artefact> creatertefactStream() throws Exception {
+		Artefact artefact1 = artefact("1.xml");
+		Artefact artefact2 = artefact("2.xml");
+		return List.of(artefact1, artefact2);
 	}
 
-	private XPlanArtefactIterator mockArtefactIterator() throws Exception {
-		XPlanArtefactIterator mockedIterator = mock(XPlanArtefactIterator.class);
-		when(mockedIterator.hasNext()).thenReturn(true, true, false);
-		XPlanArtefact stream1 = stream("1.xml");
-		XPlanArtefact stream2 = stream("2.xml");
-		when(mockedIterator.next()).thenReturn(stream1, stream2, null);
-		return mockedIterator;
-	}
-
-	private XPlanArtefact stream(String name) throws IOException {
-		XPlanArtefact xPlanArtefact = mock(XPlanArtefact.class);
-		when(xPlanArtefact.getFileName()).thenReturn(name);
-		ByteArrayInputStream content = createZippedContent(name);
-		when(xPlanArtefact.getContent()).thenReturn(content);
+	private Artefact artefact(String name) throws IOException {
+		Artefact xPlanArtefact = mock(Artefact.class);
+		ArtefactId xPlanArtefactId = mock(ArtefactId.class);
+		when(xPlanArtefactId.getFilename()).thenReturn(name);
+		when(xPlanArtefact.getId()).thenReturn(xPlanArtefactId);
+		byte[] content = createZippedContent(name);
+		when(xPlanArtefact.getData()).thenReturn(content);
 		return xPlanArtefact;
 	}
 
@@ -153,13 +146,13 @@ public class XPlanExporterTest {
 				.parseXPlanFeatureCollection(archive);
 	}
 
-	private ByteArrayInputStream createZippedContent(String name) throws IOException {
+	private byte[] createZippedContent(String name) throws IOException {
 		InputStream is = new ByteArrayInputStream(name.getBytes());
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		GZIPOutputStream gos = new GZIPOutputStream(bos);
 		copyLarge(is, gos);
 		gos.close();
-		return new ByteArrayInputStream(bos.toByteArray());
+		return bos.toByteArray();
 	}
 
 }

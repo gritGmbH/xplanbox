@@ -20,6 +20,7 @@
  */
 package de.latlon.xplan.core.manager.db.config;
 
+import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,8 @@ import java.util.Optional;
  */
 @Configuration
 @EnableJpaRepositories(basePackages = "de.latlon.xplan.core.manager.db.repository",
-		includeFilters = @ComponentScan.Filter(value = { PlanRepository.class, PlanwerkWmsMetadataRepository.class },
+		includeFilters = @ComponentScan.Filter(
+				value = { PlanRepository.class, ArtefactRepository.class, PlanwerkWmsMetadataRepository.class },
 				type = FilterType.ASSIGNABLE_TYPE))
 @PropertySource("classpath:/jpa.properties")
 @EnableTransactionManagement

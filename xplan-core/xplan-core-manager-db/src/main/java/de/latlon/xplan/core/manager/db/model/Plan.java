@@ -36,12 +36,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
+
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -109,9 +112,7 @@ public class Plan {
 			foreignKey = @ForeignKey(name = "bereiche_plan_fkey"))
 	private @Valid Set<Bereich> bereiche;
 
-	@ElementCollection
-	@CollectionTable(schema = "xplanmgr", name = "artefacts", joinColumns = @JoinColumn(name = "plan"),
-			foreignKey = @ForeignKey(name = "artefacts_plan_fkey"))
+	@OneToMany(mappedBy = "id.plan", cascade = ALL)
 	private @Valid Set<Artefact> artefacts;
 
 	@ElementCollection(fetch = FetchType.EAGER)

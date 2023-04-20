@@ -24,6 +24,7 @@ import de.latlon.xplan.core.manager.db.config.HsqlJpaContext;
 import de.latlon.xplan.core.manager.db.config.JpaContext;
 import de.latlon.xplan.core.manager.db.config.PostgisJpaContext;
 import de.latlon.xplan.core.manager.db.model.Artefact;
+import de.latlon.xplan.core.manager.db.model.ArtefactId;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.core.manager.db.model.Bereich;
 import de.latlon.xplan.core.manager.db.model.Feature;
@@ -90,9 +91,11 @@ public class PlanRepositoryTest {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
-		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
-				.data("test".getBytes(UTF_8)).filename("test.xml");
-		Plan plan = new Plan().importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
+		Plan plan = new Plan();
+		ArtefactId artefactId = new ArtefactId().plan(plan).filename("test.xml");
+		Artefact artefact = new Artefact().id(artefactId).num(1).artefacttype(ArtefactType.XPLANGML)
+				.mimetype("text/xml").data("test".getBytes(UTF_8));
+		plan.importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
 				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
 				.artefacts(Collections.singleton(artefact));
 		// Not running with HSQL DB (@ActiveProfiles("test-hsql"))
@@ -115,11 +118,8 @@ public class PlanRepositoryTest {
 
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
-		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
-				.data("test".getBytes(UTF_8)).filename("test.xml");
 		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
-				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
-				.artefacts(Collections.singleton(artefact));
+				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature));
 		planRepository.save(plan);
 
 		List<Plan> existingPlan = planRepository.findByName(name);
@@ -136,11 +136,8 @@ public class PlanRepositoryTest {
 		String name = "saveAndFindByLikeName";
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
-		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
-				.data("test".getBytes(UTF_8)).filename("test.xml");
 		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).hasRaster(false)
-				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature))
-				.artefacts(Collections.singleton(artefact));
+				.bereiche(Collections.singleton(bereich)).features(Collections.singleton(feature));
 		planRepository.save(plan);
 		List<Plan> existingPlan = planRepository.findByNameLike("iKEnAme");
 		assertFalse(existingPlan.isEmpty());
@@ -155,12 +152,10 @@ public class PlanRepositoryTest {
 		assertFalse(TestTransaction.isFlaggedForRollback());
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
-		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
-				.data("test".getBytes(UTF_8)).filename("test.xml");
 		Date wmsSortDate = new Date();
 		Plan plan = new Plan().name("saveAndFindPlanWithMoreRecentRasterPlan").importDate(new Date()).version(XPLAN_51)
 				.type(BP_Plan).hasRaster(true).wmssortdate(wmsSortDate).bereiche(Collections.singleton(bereich))
-				.features(Collections.singleton(feature)).artefacts(Collections.singleton(artefact));
+				.features(Collections.singleton(feature));
 		planRepository.save(plan);
 
 		Date tomorrow = new Date(wmsSortDate.getTime() - (1000 * 60 * 60 * 24));
@@ -180,12 +175,10 @@ public class PlanRepositoryTest {
 		String planstatus = PlanStatus.FESTGESTELLT.name();
 		Bereich bereich = new Bereich().nummer("0").name("test");
 		Feature feature = new Feature().num(1).fid("123");
-		Artefact artefact = new Artefact().num(1).artefacttype(ArtefactType.XPLANGML).mimetype("text/xml")
-				.data("test".getBytes(UTF_8)).filename("test.xml");
 		Date wmsSortDate = new Date();
 		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).planstatus(planstatus)
 				.hasRaster(true).wmssortdate(wmsSortDate).bereiche(Collections.singleton(bereich))
-				.features(Collections.singleton(feature)).artefacts(Collections.singleton(artefact));
+				.features(Collections.singleton(feature));
 		planRepository.save(plan);
 
 		boolean planExists = planRepository.existsPlanByNameAndPlanstatus(name, planstatus);

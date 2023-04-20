@@ -25,11 +25,9 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
+import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
 import de.latlon.xplan.manager.CategoryMapper;
-import de.latlon.xplan.manager.export.XPlanArchiveContent;
-import de.latlon.xplan.manager.export.XPlanArtefactIterator;
-import de.latlon.xplan.manager.export.XPlanExportException;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -88,7 +86,7 @@ public class XPlanDao {
 	 * @param categoryMapper mapping configuration, never <code>null</code>
 	 */
 	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
-		this.xPlanDbAdapter = new XPlanDbAdapter(managerWorkspaceWrapper, categoryMapper, null, null);
+		this.xPlanDbAdapter = new XPlanDbAdapter(categoryMapper, null, null, null);
 		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper);
 		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper);
 		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper);
@@ -307,15 +305,15 @@ public class XPlanDao {
 	 * @return a single plan
 	 * @throws Exception
 	 */
-	public XPlan getXPlanById(int planId) throws Exception {
+	public XPlan getXPlanById(int planId) {
 		return xPlanDbAdapter.selectXPlanById(planId);
 	}
 
-	public List<XPlan> getXPlanByName(String planName) throws Exception {
+	public List<XPlan> getXPlanByName(String planName) {
 		return xPlanDbAdapter.getXPlanByName(planName);
 	}
 
-	public List<XPlan> getXPlansLikeName(String planName) throws Exception {
+	public List<XPlan> getXPlansLikeName(String planName) {
 		return xPlanDbAdapter.getXPlansLikeName(planName);
 	}
 
@@ -325,7 +323,7 @@ public class XPlanDao {
 	 * @return id of plan with minimal release date
 	 * @throws SQLException
 	 */
-	public String getPlanIdOfMoreRecentRasterPlan(Date releaseDate) throws SQLException {
+	public String getPlanIdOfMoreRecentRasterPlan(Date releaseDate) {
 		return xPlanDbAdapter.selectXPlanIdOfMoreRecentRasterPlan(releaseDate);
 	}
 
@@ -335,24 +333,10 @@ public class XPlanDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public XPlanArchiveContent retrieveAllXPlanArtefacts(String planId) throws Exception {
-		int planIdAsInt = getXPlanIdAsInt(planId);
-		try {
-			XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(planIdAsInt);
-			XPlanArtefactIterator artefacts = xPlanDbAdapter.selectAllXPlanArtefacts(planIdAsInt);
-			Set<String> ids = xPlanDbAdapter.selectFids(planIdAsInt);
-			FeatureCollection fc = xPlanWfsAdapter.restoreFeatureCollection(xPlanMetadata.version,
-					xPlanMetadata.planStatus, ids);
-			return new XPlanArchiveContent(fc, artefacts, xPlanMetadata.version);
-		}
-		catch (PlanNotFoundException pe) {
-			throw pe;
-		}
-		catch (Exception e) {
-			LOG.error("Plan could not be exported!", e);
-			throw new XPlanExportException("Fehler beim Rekonstruieren der XPlan-Artefakte: " + e.getLocalizedMessage(),
-					e);
-		}
+	@org.springframework.transaction.annotation.Transactional(readOnly = true)
+	public List<Artefact> retrieveAllXPlanArtefacts(String planId) throws Exception {
+		int xPlanIdAsInt = getXPlanIdAsInt(planId);
+		return xPlanDbAdapter.selectAllXPlanArtefacts(xPlanIdAsInt).collect(Collectors.toList());
 	}
 
 	/**
@@ -375,7 +359,7 @@ public class XPlanDao {
 	 */
 	public InputStream retrieveXPlanArtefact(String planId) throws Exception {
 		int planIdAsInt = getXPlanIdAsInt(planId);
-		return xPlanDbAdapter.selectXPlanArtefact(planIdAsInt);
+		return xPlanDbAdapter.selectXPlanGmlArtefact(planIdAsInt);
 	}
 
 	/**

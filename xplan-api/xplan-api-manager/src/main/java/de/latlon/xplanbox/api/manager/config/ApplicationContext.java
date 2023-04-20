@@ -26,6 +26,7 @@ import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
 import de.latlon.xplan.manager.CategoryMapper;
@@ -120,11 +121,12 @@ public class ApplicationContext {
 	@Autowired
 	private PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository;
 
+	@Autowired
+	private ArtefactRepository artefactRepository;
+
 	@Bean
-	public XPlanDbAdapter xPlanDbAdapter(ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			CategoryMapper categoryMapper) {
-		return new XPlanDbAdapter(managerWorkspaceWrapper, categoryMapper, planRepository,
-				planwerkWmsMetadataRepository);
+	public XPlanDbAdapter xPlanDbAdapter(CategoryMapper categoryMapper) {
+		return new XPlanDbAdapter(categoryMapper, planRepository, planwerkWmsMetadataRepository, artefactRepository);
 	}
 
 	@Bean

@@ -32,7 +32,6 @@ import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.PlanNotFoundException;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
-import de.latlon.xplan.manager.export.XPlanArchiveContent;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.storage.StorageCleanUpManager;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -284,8 +283,7 @@ public class TestContext {
 		when(xplanDao.getXPlanByName("bplan_41")).thenReturn(mockList);
 		when(xplanDao.getXPlansLikeName("bplan_41")).thenReturn(mockList);
 		when(xplanDao.getXPlanList()).thenReturn(mockList);
-		XPlanArchiveContent mockArchive = mock(XPlanArchiveContent.class);
-		when(xplanDao.retrieveAllXPlanArtefacts(anyString())).thenReturn(mockArchive);
+		when(xplanDao.retrieveAllXPlanArtefacts(anyString())).thenReturn(mock(List.class));
 		when(xplanDao.retrieveAllXPlanArtefacts("42")).thenThrow(new PlanNotFoundException(42));
 		return xplanDao;
 	}
@@ -305,7 +303,7 @@ public class TestContext {
 	@Primary
 	public XPlanExporter xPlanExporter(ManagerConfiguration managerConfiguration) {
 		XPlanExporter xPlanExporter = mock(XPlanExporter.class);
-		doNothing().when(xPlanExporter).export(isA(OutputStream.class), isA(XPlanArchiveContent.class));
+		doNothing().when(xPlanExporter).export(isA(OutputStream.class), isA(List.class));
 		return xPlanExporter;
 	}
 
