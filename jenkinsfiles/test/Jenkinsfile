@@ -5,16 +5,17 @@ pipeline {
       jdk 'openjdk11'
    }
    parameters {
-      string(name: 'CREDENTIALS_ID', defaultValue: "xplanbox.lat-lon.de", description: 'Set id of Jenkins credentials')
+      string(name: 'BRANCH', defaultValue: "main", description: 'Set branch')
+      string(name: 'CREDENTIALS_ID', defaultValue: "xplanbox.lat-lon.de", description: 'Set id of Jenkins credentials to login to environment (BASIC AUTH)')
       string(name: 'ENDPOINT_MANAGER_API', defaultValue: "https://xplanbox.lat-lon.de/xmanager/api/v1", description: 'Set endpoint of XPlanManagerAPI')
       string(name: 'ENDPOINT_VALIDATOR_API', defaultValue: "https://xplanbox.lat-lon.de/xvalidator/api/v1", description: 'Set endpoint of XPlanValidatorAPI')
       string(name: 'ENDPOINT_MANAGER_WEB', defaultValue: "https://xplanbox.lat-lon.de/xplan-manager-web", description: 'Set endpoint of XPlanManagerWeb')
       string(name: 'BASE_URL_DIENSTE', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanDienste')
       string(name: 'BASE_URL_INSPIRE_PLU', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of INSPIRE PLU')
       string(name: 'BASE_URL_MANAGER_API', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of XPlanManagerAPI')
+      string(name: 'BASE_URL_MAPSERVER', defaultValue: "https://xplanbox.lat-lon.de", description: 'Set base URL of MapServer')
       string(name: 'SLACK_CHANNEL', defaultValue: "#testumgebung", description: 'Set slack channel')
-      string(name: 'SLACK_MESSAGE_SUCCESS', defaultValue: "Die SoapUI Tests wurden ohne Fehler gegen die Testumgebung https://xplanbox.lat-lon.de/ ausgefuehrt.", description: 'Set slack message for the case that all tests pass')
-      string(name: 'SLACK_MESSAGE_FAILURE', defaultValue: "ACHTUNG: Bei der Ausfuehrung der SoapUI Tests gegen die Testumgebung https://xplanbox.lat-lon.de/ traten Fehler auf.", description: 'Set slack message for the case that tests fail')
+      string(name: 'SLACK_TESTED_ENVIRONMENT', defaultValue: "https://xplanbox.lat-lon.de/", description: 'Set name of test environment which shall be printed in slack messages')
       string(name: 'SLACK_TEAM_DOMAIN', defaultValue: "xplanbox", description: 'Set slack team domain')
       string(name: 'SLACK_TOKEN_CREDENTIAL_ID', defaultValue: "slack-integration-id", description: 'Set slack token credential id')
    }
@@ -63,13 +64,13 @@ pipeline {
    }
    post {
       success {
-         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_SUCCESS}", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
+         slackSend channel: "${SLACK_CHANNEL}", message: "Die SoapUI Tests (Branch: ${BRANCH}) wurden ohne Fehler gegen die Testumgebung ${SLACK_TESTED_ENVIRONMENT} ausgefuehrt.", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
       failure {
-         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_FAILURE}", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
+         slackSend channel: "${SLACK_CHANNEL}", message: "ACHTUNG: Bei der Ausfuehrung der SoapUI Tests (Branch: ${BRANCH}) gegen die Testumgebung ${SLACK_TESTED_ENVIRONMENT} traten Fehler auf.", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
       unstable {
-         slackSend channel: "${SLACK_CHANNEL}", message: "${SLACK_MESSAGE_FAILURE}", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
+         slackSend channel: "${SLACK_CHANNEL}", message: "ACHTUNG: Bei der Ausfuehrung der SoapUI Tests (Branch: ${BRANCH}) gegen die Testumgebung ${SLACK_TESTED_ENVIRONMENT} traten Fehler auf.", teamDomain: "${SLACK_TEAM_DOMAIN}", tokenCredentialId: "${SLACK_TOKEN_CREDENTIAL_ID}"
       }
    }
 }
