@@ -80,8 +80,8 @@ public class ValidationReportBuilder {
 			validationReport.date(validatorReport.getDate()).name(validatorReport.getValidationName())
 					.version(fromXPlanVersion(validatorReport.getXPlanVersion())).valid(validatorReport.isReportValid())
 					.bbox(asBBox(validatorReport.getBBoxIn4326())).filename(filename)
-					.externalReferences(externalReferences()).wmsUrl(wmsUrl).rulesMetadata(rulesMetadata())
-					.validationResult(createValidationResult());
+					.externalReferences(externalReferences()).externalReferencesResult(externalReferencesResult())
+					.wmsUrl(wmsUrl).rulesMetadata(rulesMetadata()).validationResult(createValidationResult());
 		}
 		return validationReport;
 	}
@@ -94,7 +94,15 @@ public class ValidationReportBuilder {
 		return null;
 	}
 
-	private Map<String, ExternalReferenceStatusEnum> externalReferences() {
+	private List<String> externalReferences() {
+		if (validatorReport != null && validatorReport.getExternalReferenceReport() != null) {
+			return validatorReport.getExternalReferenceReport().getReferencesAndStatus().keySet().stream()
+					.collect(Collectors.toList());
+		}
+		return null;
+	}
+
+	private Map<String, ExternalReferenceStatusEnum> externalReferencesResult() {
 		if (validatorReport != null && validatorReport.getExternalReferenceReport() != null) {
 			Map<String, ExternalReferenceStatusEnum> externalReferenceAndStatus = new HashMap<>();
 			validatorReport.getExternalReferenceReport().getReferencesAndStatus().forEach((name, status) -> {
