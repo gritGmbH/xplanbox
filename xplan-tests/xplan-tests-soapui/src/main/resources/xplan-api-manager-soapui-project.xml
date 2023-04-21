@@ -1815,7 +1815,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /">
               <con:configuration>
                 <path>$.paths./</path>
-                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object"}}}},"406":{"description":"Requested format is not available"}}}}</content>
+                <content>{"get":{"summary":"OpenAPI document","description":"API documentation","operationId":"openApi","responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","example":null},"example":null}}},"406":{"description":"Requested format is not available"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1824,7 +1824,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan/{planId}/basisdaten">
               <con:configuration>
                 <path>$.paths./plan/{planId}/basisdaten</path>
-                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan basisdaten to be returned","required":true,"schema":{"type":"string"},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"406":{"description":"Requested format is not available"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan to be returned","required":true,"schema":{"type":"string"},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"}}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"406":{"description":"Requested format is not available"},"422":{"description":"Request body contains invalid content"}}}}</content>
+                <content>{"get":{"tags":["edit"],"operationId":"getBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan basisdaten to be returned","required":true,"schema":{"type":"string","example":null},"example":123}],"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"},"example":null}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"406":{"description":"Requested format is not available"}}},"put":{"tags":["edit"],"operationId":"replaceBasisdaten","parameters":[{"name":"planId","in":"path","description":"ID of the plan to be returned","required":true,"schema":{"type":"string","example":null},"example":123}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"},"example":null}}},"responses":{"200":{"description":"successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Basisdaten"},"example":null}}},"400":{"description":"Unsupported plan version or planID is not a valid int value"},"404":{"description":"Invalid planID, plan not found"},"406":{"description":"Requested format is not available"},"422":{"description":"Request body contains invalid content"}}}}</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
@@ -1833,7 +1833,7 @@ Search for plan by name</con:description>
             <con:assertion type="JsonPath Match" id="2d0d51dc-af82-422d-b284-f483450276d1" name="JsonPath Match path /plan profiles parameter">
               <con:configuration>
                 <path>$.paths./plan.post.parameters.[?(@.name == 'profiles')]</path>
-                <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","items":{"type":"string"}}}]</content>
+                <content>[{"name":"profiles","in":"query","description":"Names of profiles which shall be additionaly used for validation","explode":false,"schema":{"type":"array","example":null,"items":{"type":"string","example":null}}}]</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
