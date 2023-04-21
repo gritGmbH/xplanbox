@@ -174,7 +174,8 @@ public class ValidationReport {
 		return this;
 	}
 
-	@ArraySchema(schema = @Schema(example = "stelling.png"))
+	@ArraySchema(schema = @Schema(example = "stelling.png",
+			description = "deprecated as of v1.1.0, replaced by externalReferencesResult", deprecated = true))
 	@JsonProperty("externalReferences")
 	public List<String> getExternalReferences() {
 		return externalReferences;
@@ -192,7 +193,7 @@ public class ValidationReport {
 		return this;
 	}
 
-	@ArraySchema(schema = @Schema(example = "stelling.png"))
+	@ArraySchema(schema = @Schema(example = "stelling.png", description = "since v1.1.0, replaces externalReferences"))
 	@JsonProperty("externalReferencesResult")
 	public Map<String, ExternalReferenceStatusEnum> getExternalReferencesResult() {
 		return externalReferencesResult;
