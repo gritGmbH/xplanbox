@@ -42,13 +42,14 @@ import static org.slf4j.LoggerFactory.getLogger;
  * database using liquibase API.
  *
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @since 6.0
  */
 @Component
 public class DatabaseVerifier {
 
 	private static final Logger LOG = getLogger(DatabaseVerifier.class);
 
-	private static final String DB_VERSION = "v_6.0";
+	private static final String DB_VERSION = "v_6.1";
 
 	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
 
