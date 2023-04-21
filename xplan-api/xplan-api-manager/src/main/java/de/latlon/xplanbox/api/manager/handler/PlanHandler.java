@@ -115,6 +115,9 @@ public class PlanHandler {
 		try {
 			checkIdAndConvertIdToInt(planId);
 			LOG.info("Exporting plan with Id '{}'", planId);
+			if (!xPlanDao.existsPlan(planId)) {
+				throw new InvalidPlanId(planId);
+			}
 			List<Artefact> artefacts = xPlanDao.retrieveAllXPlanArtefacts(planId);
 			return outputStream -> xPlanExporter.export(outputStream, artefacts);
 		}

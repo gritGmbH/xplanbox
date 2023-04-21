@@ -269,6 +269,10 @@ public class XPlanDbAdapter {
 		return planRepository.existsPlanByNameAndPlanstatus(planName, status);
 	}
 
+	public boolean existsPlan(int id) {
+		return planRepository.existsPlanById(id);
+	}
+
 	public List<XPlan> getXPlanByName(String planName) {
 		List<Plan> plans = planRepository.findByName(planName);
 		return plans.stream().map(plan -> convertToXPlan(plan)).collect(Collectors.toList());

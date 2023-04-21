@@ -421,6 +421,11 @@ public class XPlanDao {
 		return xPlanDbAdapter.selectPlanWithSameNameAndStatusExists(planName, status);
 	}
 
+	public boolean existsPlan(String planId) throws Exception {
+		int planIdAsInt = getXPlanIdAsInt(planId);
+		return xPlanDbAdapter.existsPlan(planIdAsInt);
+	}
+
 	private void addAdditionalProperties(FeatureCollection synFc, Date beginValidity, Date endValidity, int planId,
 			Date sortDate) {
 		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(XPLAN_SYN);

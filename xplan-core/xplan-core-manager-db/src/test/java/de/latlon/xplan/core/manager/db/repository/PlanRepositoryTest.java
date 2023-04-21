@@ -191,6 +191,24 @@ public class PlanRepositoryTest {
 		assertFalse(notPlanExistsPlanstatus);
 	}
 
+	@Test
+	@Commit
+	public void verify_existsPlanById() {
+		assertFalse(TestTransaction.isFlaggedForRollback());
+		String name = "existsPlanByNameAndPlanstatus";
+		String planstatus = PlanStatus.FESTGESTELLT.name();
+		Date wmsSortDate = new Date();
+		Plan plan = new Plan().name(name).importDate(new Date()).version(XPLAN_51).type(BP_Plan).planstatus(planstatus)
+				.hasRaster(true).wmssortdate(wmsSortDate);
+		planRepository.save(plan);
+
+		boolean planExists = planRepository.existsPlanById(plan.getId());
+		assertTrue(planExists);
+
+		boolean notPlanExists = planRepository.existsPlanById(99999);
+		assertFalse(notPlanExists);
+	}
+
 	private static void setBbox(Plan plan) throws ParseException {
 		Geometry bbox = new WKTReader().read("POLYGON((10 53, 11 53, 11 54, 10 54, 10 53))");
 		plan.bbox(bbox);

@@ -46,6 +46,8 @@ public interface PlanRepository extends CrudRepository<Plan, Integer> {
 	@Query(value = "from Plan as p where p.hasRaster = true AND wmssortdate=(SELECT min(wmssortdate) FROM Plan as p1 WHERE p1.wmssortdate IS NOT NULL AND p1.wmssortdate > :sortDate)")
 	List<Plan> findByPlanWithMoreRecentRasterPlan(@Param("sortDate") Date sortDate);
 
+	boolean existsPlanById(Integer id);
+
 	boolean existsPlanByNameAndPlanstatus(String name, String planstatus);
 
 }
