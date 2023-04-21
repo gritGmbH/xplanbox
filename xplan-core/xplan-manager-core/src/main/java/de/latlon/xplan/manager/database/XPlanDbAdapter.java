@@ -154,7 +154,6 @@ public class XPlanDbAdapter {
 	 * @param removedRefs
 	 * @throws Exception
 	 */
-	@Transactional(rollbackOn = Exception.class)
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
 			List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {

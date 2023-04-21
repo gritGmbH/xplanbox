@@ -122,7 +122,7 @@ public class XPlanDao {
 	 * @param internalId
 	 * @return database id of the plan
 	 */
-	@Transactional
+	@Transactional(rollbackOn = Exception.class)
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
 			Date beginValidity, Date endValidity, Date sortDate, String internalId) throws Exception {
 		try {
@@ -193,6 +193,7 @@ public class XPlanDao {
 	 * @param removedRefs
 	 * @throws Exception
 	 */
+	@Transactional(rollbackOn = Exception.class)
 	public void update(XPlan oldXplan, AdditionalPlanData newAdditionalPlanData, XPlanFeatureCollection fc,
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
 			List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {

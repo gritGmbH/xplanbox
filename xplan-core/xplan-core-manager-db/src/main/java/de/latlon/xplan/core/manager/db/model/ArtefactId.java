@@ -22,6 +22,7 @@ package de.latlon.xplan.core.manager.db.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,7 +37,7 @@ import java.util.Objects;
 @Embeddable
 public class ArtefactId implements Serializable {
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(referencedColumnName = "id", name = "plan", foreignKey = @ForeignKey(name = "artefacts_plan_fkey"))
 	private @Valid Plan plan;
 
@@ -86,7 +87,7 @@ public class ArtefactId implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ArtefactId{" + "plan=" + plan + ", filename='" + filename + '\'' + '}';
+		return "ArtefactId{" + "planId=" + plan.getId() + ", filename='" + filename + '\'' + '}';
 	}
 
 }

@@ -29,6 +29,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -117,6 +118,25 @@ public class Artefact {
 	public Artefact artefacttype(ArtefactType artefacttype) {
 		this.artefacttype = artefacttype;
 		return this;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Artefact artefact = (Artefact) o;
+		return Objects.equals(getId(), artefact.getId()) && Arrays.equals(getData(), artefact.getData())
+				&& Objects.equals(getNum(), artefact.getNum()) && Objects.equals(getMimetype(), artefact.getMimetype())
+				&& getArtefacttype() == artefact.getArtefacttype();
+	}
+
+	@Override
+	public int hashCode() {
+		int result = Objects.hash(getId(), getNum(), getMimetype(), getArtefacttype());
+		result = 31 * result + Arrays.hashCode(getData());
+		return result;
 	}
 
 	@Override

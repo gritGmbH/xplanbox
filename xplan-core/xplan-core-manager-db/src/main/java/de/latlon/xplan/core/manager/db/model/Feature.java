@@ -23,6 +23,7 @@ package de.latlon.xplan.core.manager.db.model;
 import javax.persistence.Embeddable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -61,6 +62,21 @@ public class Feature {
 	public Feature num(Integer num) {
 		this.num = num;
 		return this;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Feature feature = (Feature) o;
+		return Objects.equals(getFid(), feature.getFid()) && Objects.equals(getNum(), feature.getNum());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getFid(), getNum());
 	}
 
 	@Override

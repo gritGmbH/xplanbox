@@ -22,6 +22,7 @@ package de.latlon.xplan.core.manager.db.model;
 
 import javax.persistence.Embeddable;
 import javax.validation.Valid;
+import java.util.Objects;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -59,6 +60,21 @@ public class Bereich {
 	public Bereich nummer(String nummer) {
 		this.nummer = nummer;
 		return this;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Bereich bereich = (Bereich) o;
+		return Objects.equals(getName(), bereich.getName()) && Objects.equals(getNummer(), bereich.getNummer());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getName(), getNummer());
 	}
 
 	@Override
