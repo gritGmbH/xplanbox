@@ -43,6 +43,7 @@
         <baseUrl />
         <baseUrlInspirePlu />
         <baseUrlManagerApi />
+        <baseUrlMapServer />
         <username />
         <password />
         <endpoint />
@@ -80,6 +81,7 @@
                     <value>baseUrl=${baseUrl}</value>
                     <value>baseUrlInspirePlu=${baseUrlInspirePlu}</value>
                     <value>baseUrlManagerApi=${baseUrlManagerApi}</value>
+                    <value>baseUrlMapServer=${baseUrlMapServer}</value>
                     <value>username=${username}</value>
                     <value>password=${password}</value>
                   </projectProperties>
