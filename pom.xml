@@ -1533,7 +1533,7 @@
     </pluginRepository>
     <pluginRepository>
       <id>SmartBearPluginRepository</id>
-      <url>http://smartbearsoftware.com/repository/maven2</url>
+      <url>https://smartbearsoftware.com/repository/maven2</url>
     </pluginRepository>
   </pluginRepositories>
 
