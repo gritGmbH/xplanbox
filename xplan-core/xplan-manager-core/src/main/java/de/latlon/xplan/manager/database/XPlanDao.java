@@ -172,6 +172,7 @@ public class XPlanDao {
 	 * @param planId database id of the plan
 	 */
 	public void deletePlan(String planId) throws Exception {
+		LOG.info("Delete XPlan {}", planId);
 		int planIdAsInt = getXPlanIdAsInt(planId);
 		XPlanVersionAndPlanStatus xPlanMetadata = xPlanDbAdapter.selectXPlanMetadata(planIdAsInt);
 		Set<String> fids = xPlanDbAdapter.selectFids(planIdAsInt);
@@ -198,7 +199,7 @@ public class XPlanDao {
 			FeatureCollection synFc, byte[] planArtefact, XPlanToEdit xPlanToEdit, Date sortDate,
 			List<File> uploadedArtefacts, Set<String> removedRefs) throws Exception {
 		try {
-			LOG.info("Update XPlan");
+			LOG.info("Delete XPlan {}", oldXplan.getId());
 			long begin = System.currentTimeMillis();
 
 			int planId = getXPlanIdAsInt(oldXplan.getId());

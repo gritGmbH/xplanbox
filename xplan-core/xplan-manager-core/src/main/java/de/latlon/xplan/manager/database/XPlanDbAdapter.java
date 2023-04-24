@@ -111,6 +111,7 @@ public class XPlanDbAdapter {
 	public int insert(XPlanArchive archive, XPlanFeatureCollection fc, FeatureCollection synFc, PlanStatus planStatus,
 			Date beginValidity, Date endValidity, Date sortDate, String internalId, List<String> wfsFeatureIds)
 			throws Exception {
+		LOG.info("Insert XPlan in XPlanDB");
 		Plan plan = createPlan(archive, fc, synFc, planStatus, beginValidity, endValidity, sortDate, internalId,
 				wfsFeatureIds);
 		Plan savedPlan = planRepository.save(plan);
@@ -119,6 +120,7 @@ public class XPlanDbAdapter {
 
 	public void insertArtefacts(XPlanFeatureCollection xPlanFeatureCollection, XPlanArchive archive, int planId)
 			throws Exception {
+		LOG.info("Insert XPlan in XPlanDB");
 		Plan plan = getRequiredPlanById(planId);
 		List<ZipEntryWithContent> archiveEntries = xPlanFeatureCollection.getArchiveEntries(archive);
 		AtomicInteger i = new AtomicInteger();
@@ -130,7 +132,8 @@ public class XPlanDbAdapter {
 	}
 
 	public void insertOrReplacePlanWerkWmsMetadata(int planId, String title, String resourceIdentifier,
-			String datasetMetadataUrl, String serviceMetadataUrl) throws Exception {
+			String datasetMetadataUrl, String serviceMetadataUrl) {
+		LOG.info("Insert PlanWerkWmsMetadata");
 		PlanwerkWmsMetadata planwerkWmsMetadata = new PlanwerkWmsMetadata().plan(planId).title(title)
 				.resourceidentifier(resourceIdentifier).servicemetadataurl(serviceMetadataUrl)
 				.datametadataurl(datasetMetadataUrl);
@@ -336,6 +339,7 @@ public class XPlanDbAdapter {
 	}
 
 	public void updateFeatureMetadata(int planId, List<String> fids) throws Exception {
+		LOG.info("- Aktualisiere Features von XPlan " + planId + " in der Manager-DB.");
 		updateFids(planId, fids);
 	}
 
@@ -610,7 +614,6 @@ public class XPlanDbAdapter {
 		xPlan.setVersion(plan.getVersion().name());
 		xPlan.setNumber(plan.getNummer() != null ? plan.getNummer() : "-");
 		xPlan.setGkz(plan.getGkz());
-		// xPlan.setNumFeatures(numFeatures);
 		xPlan.setRaster(plan.getHasRaster());
 		xPlan.setAdditionalType(plan.getSonstPlanArt());
 		xPlan.setLegislationStatus(plan.getRechtsstand());
