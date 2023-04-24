@@ -88,6 +88,9 @@ import org.springframework.context.annotation.Import;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,7 +107,7 @@ import static java.nio.file.Paths.get;
 /**
  * Spring Application Context for initialising XPlanManagerAPI components.
  *
- * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
+ * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
@@ -125,23 +128,6 @@ public class ApplicationContext {
 	private ArtefactRepository artefactRepository;
 
 	@Bean
-	public XPlanDbAdapter xPlanDbAdapter(CategoryMapper categoryMapper) {
-		return new XPlanDbAdapter(categoryMapper, planRepository, planwerkWmsMetadataRepository, artefactRepository);
-	}
-
-	@Bean
-	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
-			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			WorkspaceReloader workspaceReloader, WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager,
-			Optional<XPlanDocumentManager> xPlanDocumentManager, StorageCleanUpManager storageCleanUpManager)
-			throws Exception {
-		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, xPlanDocumentManager.orElse(null),
-				storageCleanUpManager);
-	}
-
-	@Bean
 	public SystemConfigHandler systemConfigHandler(XQuerySemanticValidatorConfigurationRetriever configurationRetriever,
 			List<RulesMetadata> profileMetadata) {
 		return new SystemConfigHandler(configurationRetriever, profileMetadata);
@@ -160,14 +146,22 @@ public class ApplicationContext {
 	@Bean
 	public SemanticValidator semanticValidator(ManagerConfiguration managerConfiguration,
 			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever)
-			throws URISyntaxException, ValidatorException {
+			throws ValidatorException {
 		return new XQuerySemanticValidator(xQuerySemanticValidatorConfigurationRetriever,
 				managerConfiguration.getSemanticConformityLinkConfiguration());
 	}
 
 	@Bean
+	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
+		RulesVersionParser rulesVersionParser = new RulesVersionParser();
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
+		return new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata);
+	}
+
+	@Bean
 	public Map<ValidatorProfile, RulesMetadata> profilesAndMetadata(ValidatorConfiguration validatorConfiguration,
-			PropertiesLoader validatorPropertiesLoader) throws ValidatorException {
+			PropertiesLoader validatorPropertiesLoader) {
 		Map<ValidatorProfile, RulesMetadata> profilesAndMetadata = new HashMap<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
 			String profileId = validatorProfile.getId();
@@ -207,19 +201,16 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
-		RulesVersionParser rulesMetadataParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesMetadataParser.parserRulesVersion(rulesPath);
-		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
-		return new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata);
-	}
-
-	@Bean
 	public XPlanValidator xplanValidator(GeometricValidator geometricValidator, SyntacticValidator syntacticValidator,
 			SemanticValidator semanticValidator, List<SemanticProfileValidator> profileValidators,
 			ReportArchiveGenerator reportArchiveGenerator) {
 		return new XPlanValidator(geometricValidator, syntacticValidator, semanticValidator, profileValidators,
 				reportArchiveGenerator);
+	}
+
+	@Bean
+	public XPlanDbAdapter xPlanDbAdapter(CategoryMapper categoryMapper) {
+		return new XPlanDbAdapter(categoryMapper, planRepository, planwerkWmsMetadataRepository, artefactRepository);
 	}
 
 	@Bean
@@ -255,6 +246,18 @@ public class ApplicationContext {
 	}
 
 	@Bean
+	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			WorkspaceReloader workspaceReloader, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager,
+			Optional<XPlanDocumentManager> xPlanDocumentManager, StorageCleanUpManager storageCleanUpManager)
+			throws Exception {
+		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
+				null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, xPlanDocumentManager.orElse(null),
+				storageCleanUpManager);
+	}
+
+	@Bean
 	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
 			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
 			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
@@ -268,24 +271,23 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanExporter xPlanExporter() {
-		return new XPlanExporter();
-	}
-
-	@Bean
 	public XPlanDeleteManager xPlanDeleteManager(XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
 			XPlanRasterManager xPlanRasterManager, StorageCleanUpManager storageCleanUpManager) {
 		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader);
 	}
 
 	@Bean
-	public InternalIdRetriever internalIdRetriever(ManagerConfiguration managerConfiguration) throws Exception {
+	public XPlanExporter xPlanExporter() {
+		return new XPlanExporter();
+	}
+
+	@Bean
+	public InternalIdRetriever internalIdRetriever(ManagerConfiguration managerConfiguration) {
 		return new InternalIdRetriever(managerConfiguration.getInternalIdRetrieverConfiguration());
 	}
 
 	@Bean
-	public ReportArchiveGenerator reportArchiveGenerator(ValidatorConfiguration validatorConfiguration)
-			throws IOException, ConfigurationException {
+	public ReportArchiveGenerator reportArchiveGenerator(ValidatorConfiguration validatorConfiguration) {
 		return new ReportArchiveGenerator(validatorConfiguration);
 	}
 
@@ -295,12 +297,12 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public XPlanArchiveCreator archiveCreator(CategoryMapper categoryMapper) throws ConfigurationException {
+	public XPlanArchiveCreator archiveCreator(CategoryMapper categoryMapper) {
 		return new XPlanArchiveCreator(categoryMapper);
 	}
 
 	@Bean
-	public CategoryMapper categoryMapper(ManagerConfiguration managerConfiguration) throws ConfigurationException {
+	public CategoryMapper categoryMapper(ManagerConfiguration managerConfiguration) {
 		return new CategoryMapper(managerConfiguration);
 	}
 
@@ -339,10 +341,21 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException {
+	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException, IOException {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
 		if (validationRulesDirectory != null)
 			return validationRulesDirectory;
+
+		String aResourceInRulesJar = RULES_DIRECTORY + "/xplangml60/2.1.5.xq";
+		URL uri = getClass().getResource(aResourceInRulesJar);
+		if ("jar".equals(uri.getProtocol())) {
+			String jarPath = uri.getFile().replaceFirst("file:(.*)!.*", "$1");
+			if (jarPath != null) {
+				FileSystem zipfs = FileSystems.newFileSystem(Path.of(jarPath), getClass().getClassLoader());
+				return zipfs.getPath(RULES_DIRECTORY);
+			}
+		}
+
 		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
 	}
