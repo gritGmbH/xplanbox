@@ -223,9 +223,7 @@ public class ApplicationContext {
 	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
 			throws WorkspaceException {
 		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(managerWorkspace,
-				managerConfiguration);
-		return managerWorkspaceWrapper;
+		return new ManagerWorkspaceWrapper(managerWorkspace, managerConfiguration);
 	}
 
 	@Bean

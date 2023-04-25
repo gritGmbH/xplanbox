@@ -20,10 +20,10 @@
  */
 package de.latlon.xplan.core.manager.db.config;
 
+import de.latlon.xplan.core.manager.db.DatasourceWrapper;
 import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -40,7 +40,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.util.Optional;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -55,19 +54,13 @@ import java.util.Optional;
 @EnableTransactionManagement
 public class JpaContext {
 
-	@Autowired
-	private Optional<DatasourceWrapper> datasourceWrapper;
-
 	@Bean
-	public DataSource dataSource() throws SQLException {
-		if (datasourceWrapper.isPresent())
-			return datasourceWrapper.get().retrieveDataSource();
-		return null;
+	public DataSource dataSource(DatasourceWrapper datasourceWrapper) throws SQLException {
+		return datasourceWrapper.retrieveDataSource();
 	}
 
 	@Bean
-	public EntityManagerFactory entityManagerFactory(HibernateJpaVendorAdapter vendorAdapter, DataSource dataSource)
-			throws SQLException {
+	public EntityManagerFactory entityManagerFactory(HibernateJpaVendorAdapter vendorAdapter, DataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setJpaVendorAdapter(vendorAdapter);
 		factory.setPackagesToScan("de.latlon.xplan.core.manager.db.model");

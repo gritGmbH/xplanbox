@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
-package de.latlon.xplan.core.manager.db.config;
+package de.latlon.xplan.core.manager.db;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;

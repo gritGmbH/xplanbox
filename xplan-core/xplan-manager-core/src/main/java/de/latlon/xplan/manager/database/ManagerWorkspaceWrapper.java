@@ -21,7 +21,7 @@
 package de.latlon.xplan.manager.database;
 
 import de.latlon.xplan.commons.XPlanVersion;
-import de.latlon.xplan.core.manager.db.config.DatasourceWrapper;
+import de.latlon.xplan.core.manager.db.DatasourceWrapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import org.deegree.commons.config.DeegreeWorkspace;
