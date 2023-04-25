@@ -296,24 +296,6 @@
           <type>pom</type>
         </dependency>
       </dependencies>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>exploded</goal>
-                </goals>
-                <configuration>
-                  <webappDirectory>${project.build.directory}/exploded-webapp</webappDirectory>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
 </project>
