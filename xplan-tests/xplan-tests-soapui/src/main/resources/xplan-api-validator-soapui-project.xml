@@ -1955,7 +1955,13 @@ Validate XPlanGML or XPlanArchive</con:description>
               </con:configuration>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="37c2a727-6da3-439f-a453-0b8fa39c15ca" name="Valid Reference Status AVAILABLE">
-              <con:configuration/>
+              <con:configuration>
+                <path>$.externalReferencesResult['BPlan003_5-2.png']</path>
+                <content>AVAILABLE</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
             </con:assertion>
             <con:assertion type="JsonPath Match" id="a3407af2-233e-45c5-9895-7e5a853c67a7" name="Valid Reference Status MISSING">
               <con:configuration>
