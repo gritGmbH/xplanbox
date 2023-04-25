@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,10 +20,10 @@
  */
 package de.latlon.xplan.manager.internalid;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -65,13 +65,13 @@ public class InternalIdRetrieverTest {
 	public void testGetMatchingInternalIds() throws Exception {
 		Map<String, String> internalIds = internalIdRetriever.getMatchingInternalIds("test");
 
-		assertThat(internalIds.size(), is(3));
-		assertThat(internalIds.containsKey("id1"), is(true));
-		assertThat(internalIds.containsKey("id2"), is(true));
-		assertThat(internalIds.containsKey("id3"), is(true));
-		assertThat(internalIds.containsValue("name1"), is(true));
-		assertThat(internalIds.containsValue("name2"), is(true));
-		assertThat(internalIds.containsValue("name3"), is(true));
+		assertEquals(3, internalIds.size());
+		assertTrue(internalIds.containsKey("id1"));
+		assertTrue(internalIds.containsKey("id2"));
+		assertTrue(internalIds.containsKey("id3"));
+		assertTrue(internalIds.containsValue("name1"));
+		assertTrue(internalIds.containsValue("name2"));
+		assertTrue(internalIds.containsValue("name3"));
 	}
 
 	private SimpleResultSet createResultSet() {

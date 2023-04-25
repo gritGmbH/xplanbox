@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-web - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -34,6 +34,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
+
+import static de.latlon.xplan.commons.util.ContentTypeChecker.checkContentTypesOfXPlanArchiveOrGml;
 
 /**
  * Access to plan archive from session and filesystem.
@@ -90,6 +92,7 @@ public class PlanArchiveManager {
 			Files.copy(uploadedFileItemInputStream, uploadedFile);
 			LOG.debug("File was written to {}", uploadedFile);
 		}
+		checkContentTypesOfXPlanArchiveOrGml(uploadedFile);
 	}
 
 	File createReportDirectory(String planUuid) throws IOException {

@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -49,6 +49,7 @@ import static de.latlon.xplanbox.api.manager.v1.model.PlanStatusEnum.FESTGESTELL
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_OCTET_STREAM;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
+import static javax.ws.rs.core.MediaType.TEXT_HTML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -127,12 +128,53 @@ public class PlanApiTest extends JerseyTest {
 	}
 
 	@Test
+	public void verifyThat_PostPlanXml_ReturnsCorrectStatusCodeForValidMediaType()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
+		final Response response = target("/plan").queryParam("skipLaufrichtung", "true").request()
+				.accept(APPLICATION_JSON).post(Entity.entity(data, TEXT_XML));
+		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
+	}
+
+	@Test
+	public void verifyThat_PostPlanGml_ReturnsCorrectStatusCodeForValidMediaType()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
+		final Response response = target("/plan").queryParam("skipLaufrichtung", "true").request()
+				.accept(APPLICATION_JSON).post(Entity.entity(data, "application/gml+xml"));
+		assertThat(response.getStatus(), is(Response.Status.CREATED.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertThat(response.getHeaderString(HttpHeaders.LOCATION), is(notNullValue()));
+	}
+
+	@Test
+	public void verifyThat_PostPlanGml_ReturnsCorrectStatusCodeForInvalidXFilename()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
+		final Response response = target("/plan").queryParam("skipLaufrichtung", "true").request()
+				.header("X-Filename", "invalid.filename with blanks").accept(APPLICATION_JSON)
+				.post(Entity.entity(data, "application/gml+xml"));
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+	}
+
+	@Test
+	public void verifyThat_PostPlanGml_ReturnsCorrectStatusCodeForInvalidInternalId()
+			throws IOException, URISyntaxException {
+		final byte[] data = Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI()));
+		final Response response = target("/plan").queryParam("internalId", "a23 7D8").request().accept(APPLICATION_JSON)
+				.post(Entity.entity(data, "application/gml+xml"));
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+	}
+
+	@Test
 	public void verifyThat_PostPlan_ReturnsCorrectStatusCodeForInvalidMediaType()
 			throws IOException, URISyntaxException {
 		final String data = new String(
 				Files.readAllBytes(Paths.get(PlanApiTest.class.getResource("/xplan.gml").toURI())));
 		final Response response = target("/plan").request().accept(APPLICATION_JSON)
-				.post(Entity.entity(data, TEXT_XML));
+				.post(Entity.entity(data, TEXT_HTML));
 		assertThat(response.getStatus(), is(Response.Status.UNSUPPORTED_MEDIA_TYPE.getStatusCode()));
 	}
 
@@ -188,6 +230,19 @@ public class PlanApiTest extends JerseyTest {
 	public void verifyThat_GetPlanByName_ReturnsCorrectStatus() {
 		final Response response = target("/plan/name/bplan_41").request().accept(APPLICATION_JSON).get();
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+	}
+
+	@Test
+	public void verifyThat_GetPlanArchiveById_ReturnsCorrectStatusAndContent() {
+		final Response response = target("/plan/123/archive").request().accept(APPLICATION_ZIP).get();
+		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
+		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_ZIP));
+	}
+
+	@Test
+	public void verifyThat_GetPlanArchiveById_ReturnsCorrectStatusCodeForInvalidAcceptHeader() {
+		final Response response = target("/plan/123/archive").request().accept(APPLICATION_JSON).get();
+		assertThat(response.getStatus(), is(Response.Status.NOT_ACCEPTABLE.getStatusCode()));
 	}
 
 }

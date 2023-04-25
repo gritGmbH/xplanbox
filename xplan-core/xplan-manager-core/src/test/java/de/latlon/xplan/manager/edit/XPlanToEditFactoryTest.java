@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -21,11 +21,11 @@
 package de.latlon.xplan.manager.edit;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import de.latlon.xplan.manager.web.shared.edit.Change;
@@ -37,19 +37,12 @@ import de.latlon.xplan.manager.web.shared.edit.Text;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.feature.types.AppSchema;
-import org.deegree.geometry.GeometryFactory;
-import org.deegree.gml.GMLInputFactory;
-import org.deegree.gml.GMLStreamReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -480,7 +473,7 @@ public class XPlanToEditFactoryTest {
 
 	private FeatureCollection readXPlanGml(XPlanVersion xplanVersion, String plan) throws Exception {
 		InputStream xplanGml = this.getClass().getResourceAsStream(plan);
-		return readXPlanGml(xplanVersion, xplanGml);
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(xplanGml, xplanVersion);
 	}
 
 	private FeatureCollection readXPlanArchive(XPlanVersion xplanVersion, String resource)
@@ -489,20 +482,7 @@ public class XPlanToEditFactoryTest {
 		InputStream inputStream = ResourceAccessor.readResourceStream(resource);
 		XPlanArchive xPlanArchiveFromZip = archiveCreator.createXPlanArchiveFromZip(resource, inputStream);
 		InputStream mainFileInputStream = xPlanArchiveFromZip.getMainFileInputStream();
-		return readXPlanGml(xplanVersion, mainFileInputStream);
-	}
-
-	private FeatureCollection readXPlanGml(XPlanVersion xplanVersion, InputStream xplanGml)
-			throws XMLStreamException, UnknownCRSException {
-		XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(xplanGml);
-		XMLStreamReaderWrapper xmlStream = new XMLStreamReaderWrapper(reader, null);
-
-		GeometryFactory geomFac = new GeometryFactory();
-		GMLStreamReader gmlStream = GMLInputFactory.createGMLStreamReader(xplanVersion.getGmlVersion(), xmlStream);
-		AppSchema schema = XPlanSchemas.getInstance().getAppSchema(xplanVersion);
-		gmlStream.setApplicationSchema(schema);
-		gmlStream.setGeometryFactory(geomFac);
-		return (FeatureCollection) gmlStream.readFeature();
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(mainFileInputStream, xplanVersion);
 	}
 
 	private Date asDate(String string) throws ParseException {

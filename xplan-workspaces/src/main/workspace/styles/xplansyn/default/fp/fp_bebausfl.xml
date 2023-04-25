@@ -3,7 +3,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -734,16 +734,10 @@
         <ogc:PropertyIsNull>
           <ogc:PropertyName>xplan:allgArtDerBaulNutzung</ogc:PropertyName>
         </ogc:PropertyIsNull>
-        <ogc:Or>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:artDerBaulichenNutzung</ogc:PropertyName>
-            <ogc:Literal>2100</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-          <ogc:PropertyIsEqualTo>
-            <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
-            <ogc:Literal>2100</ogc:Literal>
-          </ogc:PropertyIsEqualTo>
-        </ogc:Or>
+        <ogc:PropertyIsEqualTo>
+          <ogc:PropertyName>xplan:besondereArtDerBaulNutzung</ogc:PropertyName>
+          <ogc:Literal>2100</ogc:Literal>
+        </ogc:PropertyIsEqualTo>
         <ogc:Or>
           <ogc:PropertyIsNull>
             <ogc:PropertyName>xplan:vonGenehmigungAusgenommen</ogc:PropertyName>

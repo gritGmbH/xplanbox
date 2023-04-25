@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,20 +25,30 @@ import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
+import de.latlon.xplan.manager.document.config.DocumentStorageContext;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.config.StorageCleanUpContext;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.transaction.XPlanDeleteManager;
 import de.latlon.xplan.manager.transaction.XPlanInsertManager;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -67,6 +77,7 @@ import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.io.IOException;
 import java.net.URI;
@@ -76,6 +87,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
@@ -84,32 +96,35 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorksp
 import static java.nio.file.Paths.get;
 
 /**
+ * Spring Application Context for initialising XPlanManagerAPI components.
+ *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
 @ComponentScan(basePackages = { "de.latlon.xplanbox.api.manager" })
+@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class, DocumentStorageContext.class,
+		StorageCleanUpContext.class })
 public class ApplicationContext {
 
 	private static final String RULES_DIRECTORY = "/rules";
 
 	@Bean
-	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper) throws Exception {
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
-				wmsWorkspaceWrapper);
+	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			WorkspaceReloader workspaceReloader, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager,
+			Optional<XPlanDocumentManager> xPlanDocumentManager, StorageCleanUpManager storageCleanUpManager)
+			throws Exception {
+		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
+				null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager, xPlanDocumentManager.orElse(null),
+				storageCleanUpManager);
 	}
 
 	@Bean
 	public SystemConfigHandler systemConfigHandler(XQuerySemanticValidatorConfigurationRetriever configurationRetriever,
 			List<RulesMetadata> profileMetadata) {
 		return new SystemConfigHandler(configurationRetriever, profileMetadata);
-	}
-
-	@Bean
-	public XPlanGmlParser xPlanGmlParser() {
-		return new XPlanGmlParser();
 	}
 
 	@Bean
@@ -205,25 +220,30 @@ public class ApplicationContext {
 	@Bean
 	public WmsWorkspaceWrapper wmsWorkspaceWrapper() throws WorkspaceException {
 		DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper(DEFAULT_XPLANSYN_WMS_WORKSPACE);
-		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
-		return wmsWorkspaceWrapper;
+		return new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
 	}
 
 	@Bean
-	public XPlanRasterManager xPlanRasterManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
-			ManagerConfiguration managerConfiguration) throws WorkspaceException {
-		return new XPlanRasterManager(wmsWorkspaceWrapper, managerConfiguration);
+	public XPlanRasterEvaluator xPlanRasterEvaluator(RasterEvaluation rasterEvaluation) {
+		return new XPlanRasterEvaluator(rasterEvaluation);
 	}
 
 	@Bean
-	public XPlanInsertManager xPlanInsertManager(XPlanDao xPlanDao, XPlanExporter xPlanExporter,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, XPlanRasterManager xPlanRasterManager,
+	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
+			throws WorkspaceException {
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
+	}
+
+	@Bean
+	public XPlanInsertManager xPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanExporter xPlanExporter, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
 			ManagerConfiguration managerConfiguration, WorkspaceReloader workspaceReloader) throws Exception {
 		SortConfiguration sortConfiguration = createSortConfiguration(managerConfiguration);
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 
-		return new XPlanInsertManager(xPlanSynthesizer(managerConfiguration), xPlanDao, xPlanExporter,
-				xPlanRasterManager, workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
+		return new XPlanInsertManager(xPlanSynthesizer, xPlanDao, xPlanExporter, xPlanRasterManager,
+				xPlanDocumentManager.orElse(null), workspaceReloader, managerConfiguration, managerWorkspaceWrapper,
 				sortPropertyReader);
 	}
 
@@ -234,8 +254,8 @@ public class ApplicationContext {
 
 	@Bean
 	public XPlanDeleteManager xPlanDeleteManager(XPlanDao xPlanDao, WorkspaceReloader workspaceReloader,
-			XPlanRasterManager xPlanRasterManager, ManagerConfiguration managerConfiguration) {
-		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, workspaceReloader, managerConfiguration);
+			XPlanRasterManager xPlanRasterManager, StorageCleanUpManager storageCleanUpManager) {
+		return new XPlanDeleteManager(xPlanDao, xPlanRasterManager, storageCleanUpManager, workspaceReloader);
 	}
 
 	@Bean
@@ -307,16 +327,22 @@ public class ApplicationContext {
 		return get(rulesPath);
 	}
 
+	@Bean
+	public XPlanSynthesizer xPlanSynthesizer(SynRulesAccessor synRulesAccessor) {
+		return new XPlanSynthesizer(synRulesAccessor);
+	}
+
+	@Bean
+	public SynRulesAccessor synRulesAccessor(ManagerConfiguration managerConfiguration) {
+		if (managerConfiguration != null)
+			return new SynRulesAccessor(managerConfiguration.getSynthesizerConfigurationDirectory());
+		return new SynRulesAccessor();
+	}
+
 	private SortConfiguration createSortConfiguration(ManagerConfiguration managerConfiguration) {
 		if (managerConfiguration != null)
 			return managerConfiguration.getSortConfiguration();
 		return new SortConfiguration();
-	}
-
-	private XPlanSynthesizer xPlanSynthesizer(ManagerConfiguration managerConfiguration) {
-		if (managerConfiguration != null)
-			return new XPlanSynthesizer(managerConfiguration.getSynthesizerConfigurationDirectory());
-		return new XPlanSynthesizer();
 	}
 
 }

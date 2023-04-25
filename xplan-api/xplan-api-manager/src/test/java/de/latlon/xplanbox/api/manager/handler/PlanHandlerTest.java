@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,8 @@
  */
 package de.latlon.xplanbox.api.manager.handler;
 
+import de.latlon.xplan.commons.archive.XPlanArchive;
+import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplanbox.api.manager.config.ApplicationContext;
@@ -54,11 +56,15 @@ public class PlanHandlerTest {
 	@Autowired
 	private PlanHandler planHandler;
 
+	@Autowired
+	private XPlanArchiveCreator archiveCreator;
+
 	@Test
-	public void verifyThat_importPlan() throws Exception {
+	public void verifyThat_importPlanZip() throws Exception {
 		final File file = new File(PlanHandlerTest.class.getResource("/bplan_valid_41.zip").toURI());
 		final ValidationSettings validationSettings = Mockito.mock(ValidationSettings.class);
-		List<XPlan> xPlan = planHandler.importPlan(file, "noName", validationSettings, "noInternalId",
+		XPlanArchive xPlanArchive = archiveCreator.createXPlanArchiveFromZip(file);
+		List<XPlan> xPlan = planHandler.importPlan(xPlanArchive, "noName", validationSettings, "noInternalId",
 				FESTGESTELLT.toString());
 		assertThat(xPlan.size(), is(1));
 		assertThat(xPlan.get(0).getId(), is("123"));

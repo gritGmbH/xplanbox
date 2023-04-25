@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -180,7 +180,8 @@ public class UploadPanel extends DecoratorPanel {
 			@Override
 			public String getCellStyleNames(Cell.Context context, XPlan object) {
 				if (object.isValidated())
-					return "cellButton " + (object.isValid() ? "buttonValid" : "buttonNotValid");
+					return "cellButton " + (object.isValid() && !object.isHasUnresolvedReferences() ? "buttonValid"
+							: "buttonNotValid");
 				else
 					return "cellButton buttonNotValidated";
 			}
@@ -195,10 +196,14 @@ public class UploadPanel extends DecoratorPanel {
 			public String getValue(XPlan object) {
 				if (!object.isValidated())
 					return messages.validationNoteNotValidated();
-				else if (object.isValid())
-					return messages.validationNoteValid();
-				else
-					return messages.validationNoteInvalid();
+				else if (!object.isValid())
+					if (object.isHasUnresolvedReferences())
+						return messages.validationNoteInvalidAndUnresolvedReferences();
+					else
+						return messages.validationNoteInvalid();
+				if (object.isHasUnresolvedReferences())
+					return messages.validationNoteUnresolvedReferences();
+				return messages.validationNoteValid();
 			}
 		};
 		xPlanTable.addColumn(validatedColumn);
@@ -210,7 +215,7 @@ public class UploadPanel extends DecoratorPanel {
 		Column<XPlan, String> importButtonColumn = new Column<XPlan, String>(importButtonCell) {
 			@Override
 			public String getValue(XPlan object) {
-				if (object.isValid())
+				if (object.isValid() && !object.isHasUnresolvedReferences())
 					importButtonCell.setEnabled();
 				else
 					importButtonCell.setDisabled();
@@ -219,7 +224,7 @@ public class UploadPanel extends DecoratorPanel {
 		};
 		importButtonColumn.setFieldUpdater(new FieldUpdater<XPlan, String>() {
 			public void update(int index, XPlan object, String value) {
-				if (object.isValid()) {
+				if (object.isValid() && !object.isHasUnresolvedReferences()) {
 					importWizardCreator.importPlan(object.getId(), object.isHasMultipleXPlanElements());
 				}
 				else {
@@ -316,7 +321,10 @@ public class UploadPanel extends DecoratorPanel {
 			public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
 				uploading.hide();
 				reload();
-				Window.alert(event.getResults());
+				if (event.getResults().contains("Content type"))
+					Window.alert(messages.uploadSecurityException());
+				else
+					Window.alert(event.getResults());
 			}
 		});
 
@@ -339,7 +347,7 @@ public class UploadPanel extends DecoratorPanel {
 
 			private boolean isSupportedType(final FileUpload upload) {
 				String filename = upload.getFilename().toLowerCase();
-				return filename.endsWith(".zip");
+				return filename.endsWith(".zip") || filename.endsWith(".xml") || filename.endsWith(".gml");
 			}
 
 			private boolean isValidFileName(final FileUpload upload) {

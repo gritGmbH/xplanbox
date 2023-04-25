@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,12 +27,14 @@ import de.latlon.xplan.commons.archive.XPlanPartArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -41,6 +43,7 @@ import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.web.shared.edit.XPlanToEdit;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
@@ -50,9 +53,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDescription;
@@ -62,7 +68,6 @@ import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternal
 import static de.latlon.xplan.manager.edit.ExternalReferenceUtils.createExternalRefRemovedOrUpdated;
 import static de.latlon.xplan.manager.web.shared.PlanStatus.findByLegislationStatusCode;
 import static java.lang.Integer.parseInt;
-import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.deegree.cs.persistence.CRSManager.lookup;
 
 /**
@@ -73,28 +78,27 @@ public class XPlanEditManager extends XPlanTransactionManager {
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanEditManager.class);
 
 	public XPlanEditManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
-			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
-			ManagerConfiguration managerConfiguration, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			SortPropertyReader sortPropertyReader) throws DataServiceCouplingException {
-		super(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration,
-				managerWorkspaceWrapper, sortPropertyReader);
+			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
+			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
+		super(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager, xPlanDocumentManager, workspaceReloader,
+				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
 	}
 
 	public void editPlan(XPlan oldXplan, XPlanToEdit xPlanToEdit, boolean makeRasterConfig,
 			List<File> uploadedArtefacts) throws Exception {
-		InputStream originalPlan = null;
-		try {
-			String planId = oldXplan.getId();
-			LOG.info("- Editiere Plan mit ID {}", planId);
-			LOG.debug("zu editierender Plan: {}", xPlanToEdit);
-			String oldPlanName = oldXplan.getName();
-			XPlanVersion version = XPlanVersion.valueOf(oldXplan.getVersion());
-			XPlanType type = XPlanType.valueOf(oldXplan.getType());
-			PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
-			AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus).getSchema();
-			originalPlan = xplanDao.retrieveXPlanArtefact(planId);
-			XPlanFeatureCollection originalPlanFC = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan, version,
-					type);
+		String planId = oldXplan.getId();
+		LOG.info("- Editiere Plan mit ID {}", planId);
+		LOG.debug("zu editierender Plan: {}", xPlanToEdit);
+		String oldPlanName = oldXplan.getName();
+		XPlanVersion version = XPlanVersion.valueOf(oldXplan.getVersion());
+		XPlanType type = XPlanType.valueOf(oldXplan.getType());
+		PlanStatus oldPlanStatus = oldXplan.getXplanMetadata().getPlanStatus();
+		AppSchema appSchema = managerWorkspaceWrapper.lookupStore(version, oldPlanStatus).getSchema();
+		try (InputStream originalPlan = xplanDao.retrieveXPlanArtefact(planId)) {
+			XPlanFeatureCollection originalPlanFC = XPlanGmlParserBuilder.newBuilder().build()
+					.parseXPlanFeatureCollection(originalPlan, version, type);
 			String oldDescription = retrieveDescription(originalPlanFC.getFeatures(), type);
 			String oldLegislationStatus = FeatureCollectionUtils.retrieveRechtsstand(originalPlanFC.getFeatures(),
 					type);
@@ -143,10 +147,8 @@ public class XPlanEditManager extends XPlanTransactionManager {
 			else {
 				xPlanRasterManager.updateRasterLayers(planIdInt, type, oldPlanStatus, newPlanStatus);
 			}
+			updateDocuments(planIdInt, uploadedArtefacts, externalReferenceInfoToUpdate, externalReferenceInfoToRemove);
 			LOG.info("Rasterkonfiguration für den Plan mit der ID {} wurde ausgetauscht (falls vorhanden).", planId);
-		}
-		finally {
-			closeQuietly(originalPlan);
 		}
 	}
 
@@ -176,6 +178,17 @@ public class XPlanEditManager extends XPlanTransactionManager {
 		}
 		else {
 			LOG.info("Plan name does not change, creation of the service record is not required.");
+		}
+	}
+
+	private void updateDocuments(int planId, List<File> uploadedArtefacts,
+			ExternalReferenceInfo externalReferenceInfoToAdd, ExternalReferenceInfo externalReferenceInfoToRemove)
+			throws StorageException {
+		if (xPlanDocumentManager != null) {
+			List<Path> uploadedArtefactsAsPaths = uploadedArtefacts.stream()
+					.map(uploadedArtefact -> Paths.get(uploadedArtefact.toURI())).collect(Collectors.toList());
+			xPlanDocumentManager.updateDocuments(planId, uploadedArtefactsAsPaths,
+					externalReferenceInfoToAdd.getNonRasterRefs(), externalReferenceInfoToRemove.getNonRasterRefs());
 		}
 	}
 

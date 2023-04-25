@@ -2,18 +2,18 @@
  * #%L
  * xplan-update-data-cli - update of database
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -27,12 +27,16 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
-import de.latlon.xplan.update.updater.SortPropertyUpdater;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceUtils;
+import de.latlon.xplan.update.updater.SortPropertyUpdater;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -53,7 +57,8 @@ import java.nio.file.Paths;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  * @version $Revision: $, $Date: $
  */
-public class SortDateUpdateTool {
+// TODO refactor to SpringBoot CommandLineRunner or ApplicationRunner
+public final class SortDateUpdateTool {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SortDateUpdateTool.class);
 
@@ -118,23 +123,41 @@ public class SortDateUpdateTool {
 
 		XPlanDao xplanDao = createXplanDao(managerConfiguration, managerWorkspaceWrapper);
 		SortPropertyReader sortPropertyReader = createSortPropertyReader(managerWorkspaceWrapper);
-		XPlanRasterManager xPlanRasterManager = createxPlanRasterManager(managerWorkspaceWrapper);
+		XPlanRasterManager xPlanRasterManager = createxPlanRasterManager(managerConfiguration);
 
 		SortPropertyUpdater sortPropertyUpdater = new SortPropertyUpdater(sortPropertyReader, xplanDao,
 				xPlanRasterManager);
 		sortPropertyUpdater.updateSortProperty();
 	}
 
-	private static XPlanRasterManager createxPlanRasterManager(ManagerWorkspaceWrapper managerWorkspaceWrapper)
+	private static XPlanRasterManager createxPlanRasterManager(ManagerConfiguration managerConfiguration)
 			throws Exception {
 		DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 		WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
-		XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(wmsWorkspaceWrapper,
-				managerWorkspaceWrapper.getConfiguration());
-		return xPlanRasterManager;
+		RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
+		RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+		RasterConfigManager rasterConfigManager = createRasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
 	}
 
-	private SortPropertyReader createSortPropertyReader(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
+	private static RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+	}
+
+	private static RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration,
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+	}
+
+	private static RasterEvaluation createRasterEvaluation(ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterEvaluation(managerConfiguration);
+	}
+
+	private static SortPropertyReader createSortPropertyReader(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
 		SortConfiguration sortConfiguration = createSortConfiguration(managerWorkspaceWrapper.getConfiguration());
 		SortPropertyReader sortPropertyReader = new SortPropertyReader(sortConfiguration);
 		return sortPropertyReader;
@@ -146,13 +169,13 @@ public class SortDateUpdateTool {
 		return new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
 	}
 
-	private SortConfiguration createSortConfiguration(ManagerConfiguration managerConfiguration) {
+	private static SortConfiguration createSortConfiguration(ManagerConfiguration managerConfiguration) {
 		if (managerConfiguration != null)
 			return managerConfiguration.getSortConfiguration();
 		return new SortConfiguration();
 	}
 
-	private ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)
+	private static ManagerConfiguration createManagerConfiguration(String configurationFilePathVariable)
 			throws ConfigurationException {
 		Path directoryContainingTheManagerConfig = configurationFilePathVariable != null
 				? Paths.get(configurationFilePathVariable) : null;

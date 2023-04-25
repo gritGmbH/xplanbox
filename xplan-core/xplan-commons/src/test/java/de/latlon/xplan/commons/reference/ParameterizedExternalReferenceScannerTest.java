@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -21,20 +21,15 @@
 package de.latlon.xplan.commons.reference;
 
 import de.latlon.xplan.ResourceAccessor;
-import de.latlon.xplan.commons.XPlanSchemas;
-import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 import org.deegree.feature.FeatureCollection;
-import org.deegree.gml.GMLStreamReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.xml.stream.XMLStreamReader;
-
-import static org.deegree.gml.GMLInputFactory.createGMLStreamReader;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -49,7 +44,7 @@ public class ParameterizedExternalReferenceScannerTest {
 			throws Exception {
 		FeatureCollection fc = getMainFileAsFeatureCollection(resourceUnderTest);
 		ExternalReferenceInfo referenceInfo = new ExternalReferenceScanner().scan(fc);
-		assertEquals(externalRefs, referenceInfo.getExternalRefs().size());
+		assertEquals(externalRefs, referenceInfo.getAllReferences().size());
 		assertEquals(rasterPlanBaseScans, referenceInfo.getRasterPlanBaseScans().size());
 
 	}
@@ -58,15 +53,7 @@ public class ParameterizedExternalReferenceScannerTest {
 		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator();
 		XPlanArchive archive = archiveCreator.createXPlanArchiveFromZip(name,
 				ResourceAccessor.readResourceStream(name));
-		XPlanVersion version = archive.getVersion();
-		XMLStreamReader xmlReader = archive.getMainFileXmlReader();
-		GMLStreamReader gmlReader = createGMLStreamReader(version.getGmlVersion(), xmlReader);
-		gmlReader.setApplicationSchema(XPlanSchemas.getInstance().getAppSchema(version));
-		FeatureCollection fc = gmlReader.readFeatureCollection();
-		gmlReader.getIdContext().resolveLocalRefs();
-		gmlReader.close();
-		xmlReader.close();
-		return fc;
+		return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(archive);
 	}
 
 }

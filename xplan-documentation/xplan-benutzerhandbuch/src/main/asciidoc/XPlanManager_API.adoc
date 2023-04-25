@@ -55,12 +55,12 @@ API komplett ersetzt und in einer zukünftigen Version der xPlanBox entfernt!
 ==== Eindeutige Schlüssel für den Zugriff auf REST Ressourcen
 
 Um den Zugriff auf externe Dokumente zu ermöglichen, die über Referenzen in dem XPlanGML-Dokument definiert sind, wurden folgende Konventionen für die Bestimmung eines eindeutigen Schlüssels festgelegt. Diese Konventionen müssen von einem XPlanArchiv erfüllt werden, wenn dieses über die REST API bearbeitet werden soll.
-Im Folgenden sind die Konventionen am Beispiel der Planart "BPlan" und die jeweilige XPlanGML Version aufgeführt.
+Im Folgenden sind die Konventionen am Beispiel der Planart "BPlan" und die jeweilige XPlanGML-Version aufgeführt.
 
 Ressource: `/plan/{planId}/text/{id}`
 [width="100%",cols="20%,60%,20%",options="header",]
 |===
-|XPlanGML Version |Element |ID
+|XPlanGML-Version |Element |ID
 |4.1 	|BP_Plan/texte => BP_TextAbschnitt (FeatureType) 	|GML ID
 |5.0 	|BP_Plan/texte => BP_TextAbschnitt (FeatureType) 	|GML ID
 |5.1 	|BP_Plan/texte => BP_TextAbschnitt (FeatureType) 	|GML ID

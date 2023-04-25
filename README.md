@@ -59,21 +59,9 @@ Für die Erstellung der ausführbaren Binärdateien ist ein [JDK 11](https://ado
 
 #### Installation und Konfiguration von Maven. 
 
-Folgen Sie der [Installationsanleitung von Maven](https://maven.apache.org/install.html) und legen Sie anschliessend im Benutzerverzeichnis die Datei `${user.home}/.m2/settings.xml` mit folgendem Eintrag für einen Spiegelserver (_mirror_) an:
-```xml
-<settings>
-    <mirrors>
-        <mirror>
-            <id>deegree</id>
-            <mirrorOf>latlon</mirrorOf>
-            <url>https://repo.deegree.org/repository/public/</url>
-        </mirror>
-    </mirrors>
-</settings>
-```
-Weitere Informationen zu Konfiguration von Maven stehen in der [Referenzdokumentation zu den Maven Settings](https://maven.apache.org/settings.html).
+Folgen Sie der [Installationsanleitung von Maven](https://maven.apache.org/install.html).
 
-> **_Hinweis_**: Diese Konfiguration ist zurzeit noch erforderlich, da die verwendetet Bibliotheken von Dritten noch nicht in einem Repository von GitLab auf der OpenCoDE-Plattform verfügbar sind.
+Weitere Informationen zur Konfiguration von Maven finden Sie in der [Referenzdokumentation zu den Maven Settings](https://maven.apache.org/settings.html).
 
 #### deegree webservices erstellen
 

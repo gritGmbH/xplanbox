@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: 6.0.1/changelog_xplansyn.yaml
+  - include:
+      file: 6.0.1/changelog_xplansynarchive.yaml
+  - include:
+      file: 6.0.1/changelog_xplansynpre.yaml
+  - changeSet:
+      id:  tagDatabase-v601
+      author:  lyn
+      changes:
+        - tagDatabase:
+            tag:  v_6.0.1

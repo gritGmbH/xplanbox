@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 01.08.2022 16:07:49-->
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.1">
+<!--Erzeugt mit KIT (www.kit.edu) UmlToXmlTransformation-Software, Erstellungsdatum: 02.11.2022 15:53:08-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xplan="http://www.xplanung.de/xplangml/6/0" targetNamespace="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" version="6.0.2">
   <include schemaLocation="XPlanGML_Basisschema.xsd" />
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="GmlProfile/gmlProfilexplan.xsd" />
   <include schemaLocation="XPlanGML_BPlan.xsd" />
@@ -131,7 +131,105 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
         <sequence>
           <element name="sonstRechtscharakter" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_SonstRechtscharakter</referenzierteCodelist>
+              </appinfo>
               <documentation>Klassifizierung des Rechtscharakters wenn das Attribut "&lt;i&gt;rechtscharakter" &lt;/i&gt;den Wert "Sonstiges" (9999)  hat.</documentation>
+            </annotation>
+          </element>
+          <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean">
+            <annotation>
+              <documentation>Angabe, ob Teile des Flächennutzungsplans nach §6 Abs. 3 BauGB von der Genehmigung ausgenommen sind. Dies Attribut darf nur verwendet werden, wenn das Objekt Bestandteil eines &lt;b&gt;Flächennutzungsplans &lt;/b&gt;ist (&lt;i&gt;gehoertZuBereich &lt;/i&gt;zeogt auf ein &lt;i&gt;FP_Bereich &lt;/i&gt;Objekt).</documentation>
+            </annotation>
+          </element>
+          <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:FP_AusgleichsFlaeche</gml:targetElement>
+              </appinfo>
+              <documentation>Referenz auf eine Ausgleichsfläche im Flächennutzungsplan, die den Eingriff ausgleicht. Die Referenz darf nur verwendet werden, wenn das referierende Objekt Bestandteil eines Flächennutzungsplans ist (gehoertZuBereich zeigt auf ein FP_Bereich Objekt).</documentation>
+            </annotation>
+          </element>
+          <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:FP_SchutzPflegeEntwicklung</gml:targetElement>
+              </appinfo>
+              <documentation>Referenz auf eine Schutz-,Pflege- oder Entwicklungsmaßnahme im Flächennutzungsplan, die den Eingriff ausgleicht.Die Referenz darf nur verwendet werden, wenn das referierende Objekt Bestandteil eines Flächennutzungsplans ist (gehoertZuBereich zeigt auf ein FP_Bereich Objekt).</documentation>
+            </annotation>
+          </element>
+          <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:BP_AusgleichsFlaeche</gml:targetElement>
+              </appinfo>
+              <documentation>Referenz auf Ausgleichsfläche im Bebauungsplan, die einen Eingriff ausgleicht. Die Referenz darf nur verwendet werden, wenn das referierende Objekt Bestandteil eines Bebauungsplans ist (gehoertZuBereich zeigt auf ein BP_Bereich Objekt).</documentation>
+            </annotation>
+          </element>
+          <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:BP_AnpflanzungBindungErhaltung</gml:targetElement>
+              </appinfo>
+              <documentation>Referenz auf eine Anpflanzungs-, Bindungs- oder Erhaltungsmaßnahme im Bebauungsplan, durch die ein Eingriff ausgeglichen wird. Die Referenz darf nur verwendet werden, wenn das referierende Objekt Bestandteil eines Bebauungsplans ist (gehoertZuBereich zeigt auf ein BP_Bereich Objekt).</documentation>
+            </annotation>
+          </element>
+          <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:BP_SchutzPflegeEntwicklungsMassnahme</gml:targetElement>
+              </appinfo>
+              <documentation>Referenz auf eine Schutz-, Pflege- oder Entwicklungsmaßnahme im Bebauungsplan, durch die ein Eingriff ausgeglichen wird. Die Referenz darf nur verwendet werden, wenn das referierende Objekt Bestandteil eines Bebauungsplans ist (gehoertZuBereich zeigt auf ein BP_Bereich Objekt).</documentation>
+            </annotation>
+          </element>
+          <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:BP_SchutzPflegeEntwicklungsFlaeche</gml:targetElement>
+              </appinfo>
+              <documentation>Referenz auf eine Schutz-, Pflege- oder Entwicklungs-Fläche im Bebauungsplan, die den Eingriff ausgleicht. Die Referenz darf nur verwendet werden, wenn das referierende Objekt Bestandteil eines Bebauungsplans ist (gehoertZuBereich zeigt auf ein BP_Bereich Objekt).</documentation>
+            </annotation>
+          </element>
+          <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:BP_AusgleichsMassnahme</gml:targetElement>
+              </appinfo>
+              <documentation>Verweis auf eine  Ausgleichsmaßnahme im Bebauungsplan, die einen vorgenommenen Eingriff ausgleicht. Die Referenz darf nur verwendet werden, wenn das referierende Objekt Bestandteil eines Bebauungsplans ist (gehoertZuBereich zeigt auf ein BP_Bereich Objekt).</documentation>
+            </annotation>
+          </element>
+          <element name="laermkontingent" minOccurs="0" type="xplan:BP_EmissionskontingentLaermPropertyType">
+            <annotation>
+              <documentation>Festsetzung eines Lärmemissionskontingent. Das Attribut darf nur verwendet werden, wenn das Objekt Bestandteil eines &lt;b&gt;Bebauungsplans &lt;/b&gt;ist.</documentation>
+            </annotation>
+          </element>
+          <element name="laermkontingentGebiet" minOccurs="0" maxOccurs="unbounded" type="xplan:BP_EmissionskontingentLaermGebietPropertyType">
+            <annotation>
+              <documentation>Festsetzung von Lärmemissionskontingenten nach DIN 45691, die einzelnen Immissionsgebieten zugeordnet sind. Das Attribut darf nur verwendet werden, wenn das Objekt das Objekt Bestandteil eines &lt;b&gt;Bebauungsplans &lt;/b&gt;ist.</documentation>
+            </annotation>
+          </element>
+          <element name="zusatzkontingent" minOccurs="0" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:BP_ZusatzkontingentLaerm</gml:targetElement>
+              </appinfo>
+              <documentation>Festsetzung von Zusatzkontingenten für die Lärmemission, die einzelnen Richtungssektoren zugeordnet sind. Die einzelnen Richtungssektoren werden parametrisch definiert. Die Relation darf nur verwendet werden, wenn das referierende Objekt Bestandteil eines Bebauungsplans ist.</documentation>
+            </annotation>
+          </element>
+          <element name="zusatzkontingentFlaeche" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:BP_ZusatzkontingentLaermFlaeche</gml:targetElement>
+              </appinfo>
+              <documentation>Festsetzung von Zusatzkontingenten für die Lärmemission, die einzelnen Richtungssektoren zugeordnet sind. Die einzelnen Richtungssektoren werden durch explizite Flächen definiert.Die Relation darf nur verwendet werden, wenn das referierende Bestandteil eines Bebauungsplans ist.</documentation>
+            </annotation>
+          </element>
+          <element name="richtungssektorGrenze" minOccurs="0" maxOccurs="unbounded" type="gml:ReferenceType">
+            <annotation>
+              <appinfo>
+                <gml:targetElement>xplan:BP_RichtungssektorGrenze</gml:targetElement>
+              </appinfo>
+              <documentation>Zuordnung einer Richtungssektor-Grenze für die Festlegung zusätzlicher Lärmkontingente. Die Relation darf nur verwendet werden, wenn das referierende Objekt Bestandteil eines Bebauungsplans ist.</documentation>
             </annotation>
           </element>
           <element ref="xplan:_GenericApplicationPropertyOfSO_Objekt" minOccurs="0" maxOccurs="unbounded" />
@@ -163,6 +261,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="planArt" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_PlanArt</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierter Typ des Plans.</documentation>
             </annotation>
           </element>
@@ -252,6 +353,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizBaubeschraenkung</referenzierteCodelist>
+              </appinfo>
               <documentation>Detaillierte Klassifizierung des Bauverbots bzw. der Baubeschränkung über eine Codeliste</documentation>
             </annotation>
           </element>
@@ -295,6 +399,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizNachBodenschutzrecht</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere Klassifizierung der Festlegung.</documentation>
             </annotation>
           </element>
@@ -338,6 +445,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizNachDenkmalschutzrecht</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere rechtliche Klassifizierung der Festlegung.</documentation>
             </annotation>
           </element>
@@ -380,6 +490,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizNachForstrecht</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere Klassifizierung der Eigentumsart des Waldes</documentation>
             </annotation>
           </element>
@@ -902,6 +1015,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:SO_DetailKlassifizGewaesser</referenzierteCodelist>
+          </appinfo>
           <documentation>Über eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung näher detaillieren.</documentation>
         </annotation>
       </element>
@@ -940,6 +1056,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
       </element>
       <element name="detail" minOccurs="0" maxOccurs="unbounded" type="gml:CodeType">
         <annotation>
+          <appinfo>
+            <referenzierteCodelist>xplan:SO_DetailZweckbestStrassenverkehr</referenzierteCodelist>
+          </appinfo>
           <documentation>ber eine Codeliste definierte Zweckbestimmungen, die die allgemeine Zweckbestimmung nher detaillieren.</documentation>
         </annotation>
       </element>
@@ -1010,6 +1129,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizNachLuftverkehrsrecht</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere Klassifizierung der Festlegung.</documentation>
             </annotation>
           </element>
@@ -1052,6 +1174,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizNachSchienenverkehrsrecht</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere rechtliche Klassifizierung der Festlegung.</documentation>
             </annotation>
           </element>
@@ -1095,6 +1220,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizNachSonstigemRecht</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere rechtliche Klassifizierung der Festlegung.</documentation>
             </annotation>
           </element>
@@ -1396,7 +1524,7 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
               <documentation>Gibt an, ob es sich um eine Ortsdurchfahrt handelt</documentation>
             </annotation>
           </element>
-          <element name="nutzungsform" type="xplan:XP_Nutzungsform">
+          <element name="nutzungsform" minOccurs="0" type="xplan:XP_Nutzungsform">
             <annotation>
               <documentation>Nutzungsform der Fläche / Anlage</documentation>
             </annotation>
@@ -1443,6 +1571,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizNachWasserrecht</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere rechtliche Klassifizierung der Festlegung.</documentation>
             </annotation>
           </element>
@@ -1485,6 +1616,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizWasserwirtschaft</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere rechtliche Klassifizierung der Festlegung.</documentation>
             </annotation>
           </element>
@@ -1870,6 +2004,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizSchutzgebietWasserrecht</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codelieste definierte detailliertere Klassifizierung</documentation>
             </annotation>
           </element>
@@ -1965,6 +2102,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="sonstGebietsArt" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_SonstGebietsArt</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte Klassifikation einer nicht auf dem BauGB beruhenden, z.B. länderspezifischen Gebietsausweisung. In dem Fall muss das Attribut "&lt;i&gt;gebietsArt" &lt;/i&gt;den Wert &lt;i&gt;9999 &lt;/i&gt;(Sonstiges) haben.</documentation>
             </annotation>
           </element>
@@ -1975,6 +2115,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="sonstRechtsstandGebiet" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_SonstRechtsstandGebietTyp</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierter sonstiger Rechtsstand der Gebietsausweisung, der nicht durch die Liste &lt;i&gt;SO_RechtsstandGebietTyp &lt;/i&gt;wiedergegeben werden kann. Das Attribut "&lt;i&gt;rechtsstandGebiet" &lt;/i&gt;muss in diesem Fall den Wert &lt;i&gt;9999 &lt;/i&gt;(Sonstiges) haben.</documentation>
             </annotation>
           </element>
@@ -2169,6 +2312,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="detailArtDerFestlegung" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_DetailKlassifizGelaendemorphologie</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte detailliertere Klassifikation der Geländestruktur</documentation>
             </annotation>
           </element>
@@ -2206,6 +2352,9 @@ Ist der Attributwert &lt;i&gt;false &lt;/i&gt;oder das Attribut nicht belegt, is
           </element>
           <element name="sonstTyp" minOccurs="0" type="gml:CodeType">
             <annotation>
+              <appinfo>
+                <referenzierteCodelist>xplan:SO_SonstGrenzeTypen</referenzierteCodelist>
+              </appinfo>
               <documentation>Über eine Codeliste definierte weitere Grenztypen, wenn das Attribut &lt;i&gt;typ &lt;/i&gt;den Wert &lt;i&gt;9999 &lt;/i&gt;hat.</documentation>
             </annotation>
           </element>

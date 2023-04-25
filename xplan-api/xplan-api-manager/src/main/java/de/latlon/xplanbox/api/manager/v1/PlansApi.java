@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -67,12 +67,16 @@ public class PlansApi {
 	@Produces({ "application/json" })
 	@Operation(summary = "Search for plan by name",
 			description = "Returns a list of plans where the plan name contains the query string case insensitve",
-			tags = { "search" }, responses = { @ApiResponse(responseCode = "200", description = "OK",
-					content = @Content(array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class)))) })
+			tags = { "search" },
+			responses = {
+					@ApiResponse(responseCode = "200", description = "OK",
+							content = @Content(
+									array = @ArraySchema(schema = @Schema(implementation = PlanInfo.class)))),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response findByNameOrId(
 			@QueryParam("planName") @Parameter(description = "The name of the plan to search for",
 					example = "bplan_123, fplan-123, rplan20200803") String planName,
-			@QueryParam("planId") @Parameter(description = "The id of the plan to search for",
+			@QueryParam("planId") @Parameter(description = "The ID of the plan to search for",
 					example = "1, 2, 42") List<Integer> planIds)
 			throws Exception {
 		if (planName != null && !planIds.isEmpty())

@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,7 +27,7 @@ import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollectionBuilder;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
@@ -64,8 +64,6 @@ public class ReSynthesizer {
 	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
-
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	/**
 	 * @param dao used to access the database, never <code>null</code>
@@ -117,7 +115,8 @@ public class ReSynthesizer {
 		boolean useOriginalXPlan = !featureTypeNameSynthesizer.idsMatchSynFeatureType(xPlanFeatureCollection);
 		if (useOriginalXPlan) {
 			try (InputStream originalPlan = xPlanDao.retrieveXPlanArtefact(planId)) {
-				xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(originalPlan, version, planType);
+				xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
+						.parseXPlanFeatureCollection(originalPlan, version, planType);
 				reassignFids(xPlanFeatureCollection);
 			}
 		}

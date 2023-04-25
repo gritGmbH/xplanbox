@@ -1,0 +1,740 @@
+###
+# #%L
+# xplan-mapserver-config - Modul zur Gruppierung der Konfiguration
+# %%
+# Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+# %%
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# #L%
+###
+MAP
+    NAME "raster"
+    STATUS ON
+    #SIZE 600 400
+	EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+    UNITS meters
+	RESOLUTION 96
+	DEFRESOLUTION 96
+	MAXSIZE 5000
+    #SHAPEPATH "c:\apache24\data"
+	IMAGECOLOR 255 255 255
+	IMAGETYPE png
+    # CONFIG "AWS_ACCESS_KEY_ID" "XXX"
+    # CONFIG "AWS_SECRET_ACCESS_KEY" "XXX"
+    # CONFIG "AWS_REGION" "eu-central-1"
+    # CONFIG "AWS_S3_ENDPOINT" "s3.amazonaws.com"
+    # SHAPEPATH "/vsis3/bucket_name/"
+    SHAPEPATH "/etc/mapserver/data/"
+
+	OUTPUTFORMAT
+	   NAME png
+	   DRIVER AGG/PNG
+	   MIMETYPE "image/png"
+	   IMAGEMODE RGBA
+	   EXTENSION "png"
+	   FORMATOPTION "INTERLACE=OFF"
+	   FORMATOPTION "QUANTIZE_DITHER=OFF"
+	   FORMATOPTION "QUANTIZE_FORCE=ON"
+	   FORMATOPTION "QUANTIZE=COLORS=256"
+	END
+
+	PROJECTION
+	   "init=epsg:25832"
+	END
+
+   #
+   # Start of web interface definition
+   #
+   WEB
+      IMAGEPATH "/ms4w/tmp/ms_tmp/"
+      IMAGEURL "/ms_tmp/"
+	  #QUERYFORMAT "image/png"
+	  METADATA
+	  	 "wms_title" "xPlanBox Rasterdaten"
+	  	 #"wms_onlineresource" "http://gv-srv-w00173:8080/cgi-bin/mapserv.exe?map=c:\apache24\data\tileindex.map" #must change mapfile path
+	  	 "wms_srs" "EPSG:25832"
+	  	 "wms_enable_request" "*"
+	  END
+   END # WEB
+
+   #
+   # BPlan Festgestellt
+   #
+   LAYER
+	  NAME "bplanrastertindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Festgestellt"
+            "2"  "BP_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+   LAYER
+	  NAME "bplanraster"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "bplanrastertindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "BPlan Raster (Festgestellt)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # BPlan In Aufstellung
+   #
+   LAYER
+	  NAME "bplanrasterpretindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "In Aufstellung"
+            "2"  "BP_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "bplanrasterpre"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "bplanrasterpretindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "BPlan Raster (In Aufstellung)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # BPlan Archiviert
+   #
+   LAYER
+	  NAME "bplanrasterarchivetindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Archiviert"
+            "2"  "BP_Plan"
+         END
+	  PROJECTION
+	     "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "bplanrasterarchive"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "bplanrasterarchivetindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "BPlan Raster (Archiviert)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # FPlan Festgestellt
+   #
+   LAYER
+	  NAME "fplanrastertindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Festgestellt"
+            "2"  "FP_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+   LAYER
+	  NAME "fplanraster"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "fplanrastertindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "FPlan Raster (Festgestellt)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # FPlan In Aufstellung
+   #
+   LAYER
+	  NAME "fplanrasterpretindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "In Aufstellung"
+            "2"  "FP_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "fplanrasterpre"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "fplanrasterpretindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "FPlan Raster (In Aufstellung)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # FPlan Archiviert
+   #
+   LAYER
+	  NAME "fplanrasterarchivetindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Archiviert"
+            "2"  "FP_Plan"
+         END
+	  PROJECTION
+	     "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "fplanrasterarchive"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "fplanrasterarchivetindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "FPlan Raster (Archiviert)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # LPlan Festgestellt
+   #
+   LAYER
+	  NAME "lplanrastertindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Festgestellt"
+            "2"  "LP_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+   LAYER
+	  NAME "lplanraster"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "lplanrastertindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "LPlan Raster (Festgestellt)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # LPlan In Aufstellung
+   #
+   LAYER
+	  NAME "lplanrasterpretindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "In Aufstellung"
+            "2"  "LP_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "lplanrasterpre"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "lplanrasterpretindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "LPlan Raster (In Aufstellung)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # LPlan Archiviert
+   #
+   LAYER
+	  NAME "lplanrasterarchivetindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Archiviert"
+            "2"  "LP_Plan"
+         END
+	  PROJECTION
+	     "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "lplanrasterarchive"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "lplanrasterarchivetindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "LPlan Raster (Archiviert)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # RPlan Festgestellt
+   #
+   LAYER
+	  NAME "rplanrastertindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Festgestellt"
+            "2"  "RP_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+   LAYER
+	  NAME "rplanraster"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "rplanrastertindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "RPlan Raster (Festgestellt)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # RPlan In Aufstellung
+   #
+   LAYER
+	  NAME "rplanrasterpretindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "In Aufstellung"
+            "2"  "RP_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "rplanrasterpre"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "rplanrasterpretindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "RPlan Raster (In Aufstellung)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # RPlan Archiviert
+   #
+   LAYER
+	  NAME "rplanrasterarchivetindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Archiviert"
+            "2"  "RP_Plan"
+         END
+	  PROJECTION
+	     "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "rplanrasterarchive"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "rplanrasterarchivetindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "RPlan Raster (Archiviert)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # SOPlan Festgestellt
+   #
+   LAYER
+	  NAME "soplanrastertindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Festgestellt"
+            "2"  "SO_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+   LAYER
+	  NAME "soplanraster"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "soplanrastertindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "SOPlan Raster (Festgestellt)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # SOPlan In Aufstellung
+   #
+   LAYER
+	  NAME "soplanrasterpretindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "In Aufstellung"
+            "2"  "SO_Plan"
+         END
+	  PROJECTION
+	  	 "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "soplanrasterpre"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "soplanrasterpretindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "SOPlan Raster (In Aufstellung)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+
+   #
+   # SOPlan Archiviert
+   #
+   LAYER
+	  NAME "soplanrasterarchivetindex"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS OFF
+	  CONNECTION "user=postgres password=postgres dbname=xplanbox host=xplan-db port=5432"
+	  CONNECTIONTYPE POSTGIS
+	  PROCESSING "CLOSE_CONNECTION=DEFER"
+	  DATA "geom FROM (SELECT row_number() OVER () as ogc_fid, id || '_' || filename as location, ST_Transform(wkb_geometry,25832) as geom FROM
+                      (SELECT
+                      p.id as id,
+                      a.filename as filename,
+                      p.bbox as wkb_geometry
+                      FROM xplanmgr.artefacts a
+                      LEFT JOIN xplanmgr.plans p
+                           ON a.plan = p.id
+                      WHERE a.artefacttype='RASTERBASIS' AND p.planstatus = $1 AND xp_type = $2 ORDER BY p.wmssortdate) as sub1) as sub2 using unique ogc_fid using srid=25832"
+         BINDVALS
+            "1"  "Archiviert"
+            "2"  "SO_Plan"
+         END
+	  PROJECTION
+	     "init=epsg:25832"
+	  END
+	  TYPE POLYGON
+   END # LAYER
+
+   LAYER
+	  NAME "soplanrasterarchive"
+	  EXTENT 250063.8076 5227492.3957 961955.3570 6122928.5640
+	  STATUS ON
+	  TILEINDEX "soplanrasterarchivetindex"
+	  TILEITEM "location"
+	  METADATA
+	     "wms_title" "SOPlan Raster (Archiviert)"
+	  END
+	  PROJECTION
+	     "init=epsg:25832"
+      META
+	  END
+	  TYPE RASTER
+   END # LAYER
+END # MAP

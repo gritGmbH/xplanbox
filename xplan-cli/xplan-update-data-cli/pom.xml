@@ -7,7 +7,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-cli</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>6.1-SNAPSHOT</version>
   </parent>
 
   <build>
@@ -31,6 +31,10 @@
             <program>
               <mainClass>de.latlon.xplan.update.tool.BereichUpdateTool</mainClass>
               <id>bereichUpdate</id>
+            </program>
+            <program>
+              <mainClass>de.latlon.xplan.update.tool.ArtefactsTableUpdateTool</mainClass>
+              <id>artefactsTableUpdate</id>
             </program>
             <program>
               <mainClass>de.latlon.xplan.update.tool.DistrictUpdateTool</mainClass>
@@ -76,7 +80,8 @@
               <target>
                 <chmod perm="+x">
                   <fileset dir="target/appassembler/bin">
-                    <include name="databaseUpdate" />
+                    <include name="bereichUpdate" />
+                    <include name="artefactsTableUpdate" />
                     <include name="districtUpdate" />
                     <include name="reSynthesizer" />
                     <include name="serviceMetadataRecordCreator" />

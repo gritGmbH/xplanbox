@@ -1,10 +1,8 @@
-package de.latlon.xplanbox.api.manager.v1;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,10 +18,12 @@ package de.latlon.xplanbox.api.manager.v1;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.v1;
 
 import de.latlon.xplanbox.api.manager.exception.MissingRequestEntity;
 import de.latlon.xplanbox.api.manager.handler.EditTextHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Text;
+import de.latlon.xplanbox.api.manager.validation.ModelValidator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -35,6 +35,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -64,10 +65,11 @@ public class PlanTextApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(array = @ArraySchema(schema = @Schema(implementation = Text.class)))),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
-	public List<Text> getTexte(@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
+							description = "Unsupported plan version or planID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
+	public List<Text> getTexte(@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 			example = "123") String planId) throws Exception {
 		return editTextHandler.retrieveTexte(planId);
 	}
@@ -78,13 +80,16 @@ public class PlanTextApi {
 	@Operation(operationId = "addText", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan version or textmodel is missing or Plan ID is not a valid int value") })
+					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+			@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+			@ApiResponse(responseCode = "415", description = "Unsupported media type"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content") })
 	public Text addText(
-			@PathParam("planId") @Parameter(description = "ID of the plan to add texte", example = "123") String planId,
+			@PathParam("planId") @Parameter(description = "ID of the plan to add text", example = "123") String planId,
 			@Parameter(schema = @Schema(implementation = Text.class),
-					required = true) @FormDataParam("textmodel") FormDataBodyPart textmodel,
+					required = true) @Valid @ModelValidator(Text.class) @FormDataParam("textmodel") FormDataBodyPart textmodel,
 			@Parameter(schema = @Schema(type = "string", format = "binary")) @FormDataParam("datei") InputStream datei,
 			@Parameter(hidden = true) @FormDataParam("datei") FormDataContentDisposition dateiMeta) throws Exception {
 		if (textmodel == null) {
@@ -101,13 +106,14 @@ public class PlanTextApi {
 	@Operation(operationId = "getTextById", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan version or Plan ID is not a valid int value") })
+					description = "Unsupported plan version or planID is not a valid int value"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID or text ID, plan or text not found"),
+			@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Text getTextById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
+			@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
 					example = "123") String planId,
-			@PathParam("id") @Parameter(description = "id of the Text to be returned (GML Id of the feature)",
+			@PathParam("id") @Parameter(description = "ID of the text to be returned (GML-Id of the feature)",
 					example = "GML_ID_123") String id)
 			throws Exception {
 		return editTextHandler.retrieveText(planId, id);
@@ -120,16 +126,19 @@ public class PlanTextApi {
 	@Operation(operationId = "replaceTextById", tags = { "edit" }, responses = {
 			@ApiResponse(responseCode = "200", description = "successful operation",
 					content = @Content(schema = @Schema(implementation = Text.class))),
-			@ApiResponse(responseCode = "404", description = "Invalid plan ID or Text ID, plan or Text not found"),
 			@ApiResponse(responseCode = "400",
-					description = "Unsupported Plan version  or textmodel is missing or Plan ID is not a valid int value") })
+					description = "Unsupported plan version or textmodel is missing or planID is not a valid int value"),
+			@ApiResponse(responseCode = "404", description = "Invalid planID or text ID, plan or Text not found"),
+			@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+			@ApiResponse(responseCode = "415", description = "Unsupported media type"),
+			@ApiResponse(responseCode = "422", description = "Request body contains invalid content") })
 	public Text replaceTextById(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be updated",
+			@PathParam("planId") @Parameter(description = "ID of the plan to be updated",
 					example = "123") String planId,
-			@PathParam("id") @Parameter(description = "id of the Text to be updated (GML Id of the feature)",
+			@PathParam("id") @Parameter(description = "ID of the text to be updated (GML-Id of the feature)",
 					example = "GML_ID_123") String id,
 			@Parameter(schema = @Schema(implementation = Text.class),
-					required = true) @FormDataParam("textmodel") FormDataBodyPart textmodel,
+					required = true) @Valid @ModelValidator(Text.class) @FormDataParam("textmodel") FormDataBodyPart textmodel,
 			@Parameter(schema = @Schema(type = "string", format = "binary")) @FormDataParam("datei") InputStream datei,
 			@Parameter(hidden = true) @FormDataParam("datei") FormDataContentDisposition dateiMeta) throws Exception {
 		if (textmodel == null) {

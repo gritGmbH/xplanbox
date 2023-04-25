@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -57,7 +57,8 @@ public class DefaultApi extends BaseOpenApiResource {
 	@GET
 	@Produces({ "application/json" })
 	@Operation(summary = "OpenAPI document", description = "API documentation",
-			responses = { @ApiResponse(responseCode = "200", description = "successful operation") })
+			responses = { @ApiResponse(responseCode = "200", description = "successful operation"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
 	public Response openApi(@Context HttpHeaders headers, @Context UriInfo uriInfo) throws Exception {
 		return super.getOpenApi(headers, this.config, this.app, uriInfo, APPLICATION_JSON);
 	}

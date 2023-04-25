@@ -90,15 +90,23 @@ Erweiterung PostGIS 3.1+ erforderlich.
 
 TIP: Empfohlen wird PostgreSQL 12+ mit PostGIS 3.1+.
 
+[[gdal]]
 === GDAL
 
-Optional kann die Installation der https://gdal.org/[GDAL-Bibliothek] erforderlich sein. Liegen Teil-Vektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vor, die mit der xPlanBox verwaltet werden sollen, ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötigt.
+Optional kann die https://gdal.org/[GDAL-Bibliothek] installiert werden. Wenn teilvektorielle Pläne mit Rasterdaten in anderen Formaten als GeoTiff vorliegen, die mit der xPlanBox verwaltet werden sollen, dann ist der Einsatz von GDAL erforderlich. Liegen die Rasterdaten dagegen nur im GeoTiff-Format vor, wird GDAL nicht benötigt.
 Weitere Informationen zur Installation von GDAL befinden sich im Abschnitt <<installation-gdal>>.
 
-IMPORTANT: Erforderlich ist GDAL 3.0.
+IMPORTANT: Erforderlich ist GDAL 3.5.
+
+[[mapserver]]
+=== MapServer
+
+Optional kann der https://mapserver.org[MapServer] installiert werden. Wenn für die Bereitstellung von Rasterdaten der MapServer verwendet werden soll, dann muss dieser zusammen mit <<gdal, GDAL>> installiert werden. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-mapserver>>.
+
+IMPORTANT: Erforderlich ist MapServer 8.0.0.
 
 === HALE CLI
 
-Optional kann die Installation von https://github.com/halestudio/hale-cli/[HALE CLI] erforderlich sein. HALE CLI wird für die Transformation von Daten der xPlanBox verwendet. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
+Optional kann das https://github.com/halestudio/hale-cli/[HALE CLI] installiert werden. Wenn Daten der xPlanBox transformiert werden sollen, dann ist der Einsatz des HALE CLI erforderlich. Weitere Informationen zur Installation befinden sich im Abschnitt <<installation-hale-cli>>.
 
 IMPORTANT: Erforderlich ist HALE CLI 4.0+.

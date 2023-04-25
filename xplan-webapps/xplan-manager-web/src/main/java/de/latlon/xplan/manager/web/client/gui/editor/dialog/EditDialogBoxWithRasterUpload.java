@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -91,7 +91,10 @@ public abstract class EditDialogBoxWithRasterUpload extends EditDialogBox implem
 		form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
 			@Override
 			public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
-				informSaveHandler();
+				if (event.getResults().contains("Content type"))
+					Window.alert(MESSAGES.uploadSecurityException());
+				else
+					informSaveHandler();
 				uploading.hide();
 			}
 		});

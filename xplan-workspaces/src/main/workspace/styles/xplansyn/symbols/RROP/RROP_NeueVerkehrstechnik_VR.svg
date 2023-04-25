@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -20,25 +20,32 @@
   #L%
   -->
 
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="400" height="400"
- xmlns="http://www.w3.org/2000/svg">
- <title>SVG</title>
- <style type="text/css"><![CDATA[
+<svg
+   width="400"
+   height="400"
+   version="1.1"
+   id="svg10"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <title
+     id="title2">SVG</title>
+  <style
+     type="text/css"
+     id="style4"><![CDATA[
   text {font-size:60px; text-anchor:middle;}
  ]]></style>
-
-
-<polygon points="0 86 0 114 400 114 400 86" stroke="#FF0000" stroke-width="1px" fill="#FF0000" />
-
-
-<polygon points="0 286 0 314 400 314 400 286" stroke="#FF0000" stroke-width="1px" fill="#FF0000" />
-
-
-
-
-
-
- 
+  <polygon
+     points="0 86 0 114 400 114 400 86"
+     stroke="#FF0000"
+     stroke-width="1px"
+     fill="#FF0000"
+     id="polygon6" />
+  <polygon
+     points="0 286 0 314 400 314 400 286"
+     stroke="#FF0000"
+     stroke-width="1px"
+     fill="#FF0000"
+     id="polygon8" />
 </svg>

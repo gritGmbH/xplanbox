@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -72,8 +72,8 @@ public class XPlanArchiveCreator {
 	}
 
 	/**
-	 * Creates a new {@link XPlanArchive} instance from the given file.
-	 * @param file XPlan archive (ZIP-file), must not be <code>null</code>
+	 * Creates a new {@link XPlanArchive} instance from the given XPlanArchive.
+	 * @param file XPlanArchive (ZIP-file), never <code>null</code>
 	 * @throws IllegalArgumentException if the file can not be read or is obviously
 	 * invalid
 	 */
@@ -83,7 +83,8 @@ public class XPlanArchiveCreator {
 	}
 
 	/**
-	 * @param name never <code>null</code>
+	 * Creates a new {@link XPlanArchive} instance from the given XPlanArchive.
+	 * @param name of the file, never <code>null</code>
 	 * @param inputStream never <code>null</code> and is closed on return
 	 * @throws IOException
 	 */
@@ -98,7 +99,8 @@ public class XPlanArchiveCreator {
 					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException | FactoryConfigurationError e) {
-			String message = format("Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage());
+			String message = format("Kann Archiv '%s' nicht lesen.\nTechnischer Hinweis zur Fehlerursache: %s", name,
+					e.getLocalizedMessage());
 			throw new IllegalArgumentException(message, e);
 		}
 		finally {
@@ -107,7 +109,19 @@ public class XPlanArchiveCreator {
 	}
 
 	/**
-	 * @param name never <code>null</code>
+	 * Creates a new {@link XPlanArchive} instance from the given XPlanGML.
+	 * @param file XPlanGML (GML-file), never <code>null</code>
+	 * @throws IllegalArgumentException if the file can not be read or is obviously
+	 * invalid
+	 */
+	public XPlanArchive createXPlanArchiveFromGml(File file) throws IOException {
+		String fileName = file.getName();
+		return createXPlanArchiveFromGml(fileName, new FileInputStream(file));
+	}
+
+	/**
+	 * Creates a new {@link XPlanArchive} instance from the given XPlanGML.
+	 * @param name of the file, never <code>null</code>
 	 * @param inputStream never <code>null</code> and is closed on return
 	 * @throws IOException
 	 */
@@ -122,7 +136,8 @@ public class XPlanArchiveCreator {
 					archiveMetadata.hasMultipleXPlanElements());
 		}
 		catch (XMLStreamException e) {
-			String message = format("Kann Archiv '%s' nicht lesen. Fehlermeldung: %s", name, e.getLocalizedMessage());
+			String message = format("Kann Archiv '%s' nicht lesen.\nTechnischer Hinweis zur Fehlerursache: %s", name,
+					e.getLocalizedMessage());
 			throw new IllegalArgumentException(message, e);
 		}
 		finally {

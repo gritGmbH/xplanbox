@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -25,17 +25,21 @@ import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
 import de.latlon.xplan.manager.CrsUtils;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
+import de.latlon.xplan.manager.edit.EditException;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.StorageException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
@@ -63,11 +67,12 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 	private static final Logger LOG = LoggerFactory.getLogger(XPlanInsertManager.class);
 
 	public XPlanInsertManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
-			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
-			ManagerConfiguration managerConfiguration, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			SortPropertyReader sortPropertyReader) throws DataServiceCouplingException {
-		super(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager, workspaceReloader, managerConfiguration,
-				managerWorkspaceWrapper, sortPropertyReader);
+			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
+			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
+		super(xPlanSynthesizer, xplanDao, xPlanExporter, xPlanRasterManager, xPlanDocumentManager, workspaceReloader,
+				managerConfiguration, managerWorkspaceWrapper, sortPropertyReader);
 	}
 
 	/**
@@ -128,7 +133,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 					synFc);
 			planIds.add(planId);
 		}
-		LOG.info("Alle {0} XPlan GML Instanzen aus dem XPlanArchiv wurden erfolgreich importiert.",
+		LOG.info("Alle {} XPlan GML Instanzen aus dem XPlanArchiv wurden erfolgreich importiert.",
 				xPlanInstances.getxPlanGmlInstances().size());
 		return planIds;
 	}
@@ -140,6 +145,7 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 				xPlanInstance.getFeatures());
 		int planId = xplanDao.insert(archive, xPlanInstance, synFc, selectedPlanStatus,
 				xPlanMetadata.getStartDateTime(), xPlanMetadata.getEndDateTime(), sortDate, null);
+		insertDocuments(planId, xPlanInstance, archive);
 		createRasterConfigurations(archive, makeRasterConfig, xPlanInstance, planId, selectedPlanStatus, sortDate);
 		startCreationOfDataServicesCoupling(planId, xPlanInstance, crs);
 		reloadWorkspace(planId);
@@ -152,8 +158,8 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			throws Exception {
 		performSchemaValidation(archive);
 		try {
-			XPlanFeatureCollections xPlanInstances = xPlanGmlParser
-					.parseXPlanFeatureCollectionAllowMultipleInstances(archive, crs, true);
+			XPlanFeatureCollections xPlanInstances = XPlanGmlParserBuilder.newBuilder().withDefaultCrs(crs)
+					.withFixOrientation(true).build().parseXPlanFeatureCollectionAllowMultipleInstances(archive);
 			reassignFids(xPlanInstances);
 			for (XPlanFeatureCollection xPlanInstance : xPlanInstances.getxPlanGmlInstances()) {
 				long begin = System.currentTimeMillis();
@@ -175,6 +181,13 @@ public class XPlanInsertManager extends XPlanTransactionManager {
 			int planId, PlanStatus planStatus, Date sortDate) throws Exception {
 		if (makeRasterConfig) {
 			createRasterConfiguration(archive, fc, planId, archive.getType(), planStatus, null, sortDate);
+		}
+	}
+
+	private void insertDocuments(int planId, XPlanFeatureCollection xPlanInstance, XPlanArchive archive)
+			throws StorageException, EditException {
+		if (xPlanDocumentManager != null) {
+			xPlanDocumentManager.importDocuments(planId, xPlanInstance.getFeatures(), archive);
 		}
 	}
 

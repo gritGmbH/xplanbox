@@ -2,18 +2,18 @@
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -24,10 +24,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
@@ -37,8 +43,12 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Bereich {
 
+	@Size(max = S_LENGTH)
+	@Pattern(regexp = SIMPLE_NAME_PATTERN)
 	private @Valid String nummer;
 
+	@Size(max = S_LENGTH)
+	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String name;
 
 	public Bereich nummer(String nummer) {
@@ -46,7 +56,7 @@ public class Bereich {
 		return this;
 	}
 
-	@Schema(example = "0", description = "Nummer of the Bereich")
+	@Schema(example = "0", description = "Number of the Bereich")
 	@JsonProperty("nummer")
 	public String getNummer() {
 		return nummer;

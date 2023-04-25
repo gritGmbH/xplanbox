@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -28,13 +28,9 @@ import org.deegree.commons.tom.primitive.PrimitiveValue;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 
-import javax.xml.namespace.QName;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static de.latlon.xplan.commons.synthesizer.Features.getPropertyStringValue;
 import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersion;
 
 /**
@@ -48,12 +44,6 @@ import static de.latlon.xplan.commons.util.XPlanVersionUtils.determineBaseVersio
  */
 public class ExternalReferenceScanner {
 
-	private final List<ExternalReference> externalRefs = new ArrayList<>();
-
-	private final List<ExternalReference> rasterPlanBaseScans = new ArrayList<>();
-
-	private final List<ExternalReference> rasterPlanUpdateScans = new ArrayList<>();
-
 	/**
 	 * Scans the given XPlan {@link FeatureCollection}.
 	 * @param fc feature collection, must not be <code>null</code>
@@ -61,126 +51,92 @@ public class ExternalReferenceScanner {
 	 */
 	public ExternalReferenceInfo scan(FeatureCollection fc) {
 		XPlanVersion version = determineBaseVersion(fc.getName());
-		scanFc(fc, version);
-		return new ExternalReferenceInfo(externalRefs, rasterPlanBaseScans, rasterPlanUpdateScans);
+		return scanFc(fc, version);
 	}
 
 	public ExternalReferenceInfo scan(FeatureCollection fc, XPlanVersion version) {
-		scanFc(fc, version);
-		return new ExternalReferenceInfo(externalRefs, rasterPlanBaseScans, rasterPlanUpdateScans);
+		return scanFc(fc, version);
 	}
 
-	private void scanFc(FeatureCollection fc, XPlanVersion version) {
+	private ExternalReferenceInfo scanFc(FeatureCollection fc, XPlanVersion version) {
 		switch (version) {
 			case XPLAN_40:
 			case XPLAN_41:
-				scanXplan4(fc);
-				break;
+				return scanXplan4(fc);
 			case XPLAN_50:
 			case XPLAN_51:
 			case XPLAN_52:
 			case XPLAN_53:
 			case XPLAN_54:
 			case XPLAN_60:
-				scanXplan5or6(fc);
-				break;
+				return scanXplan5or6(fc);
 			default:
 				throw new IllegalArgumentException("Unsupported XPlanGML Version: " + version);
 		}
 	}
 
-	private Map<String, ExternalReference> scanForExternalReferencesXplan2or3(FeatureCollection fc) {
-		Map<String, ExternalReference> fidToExternalReference = new HashMap<String, ExternalReference>();
-		for (Feature feature : fc) {
-			String name = feature.getName().getLocalPart();
-			if ("XP_ExterneReferenz".equals(name) || "XP_ExterneReferenzPlan".equals(name)) {
-				String ns = feature.getName().getNamespaceURI();
-				String referenzName = getPropertyStringValue(feature, new QName(ns, "referenzName"));
-				String referenzUrl = getPropertyStringValue(feature, new QName(ns, "referenzURL"));
-				String referenzMimeTypeCode = getPropertyStringValue(feature, new QName(ns, "referenzMimeType"));
-				String geoRefUrl = null;
-				String geoRefMimeTypeCode = null;
-				boolean isPlan = false;
-				if ("XP_ExterneReferenzPlan".equals(name)) {
-					geoRefUrl = getPropertyStringValue(feature, new QName(ns, "georefURL"));
-					geoRefMimeTypeCode = getPropertyStringValue(feature, new QName(ns, "georefMimeType"));
-					isPlan = true;
-				}
-				ExternalReference externalRef = new ExternalReference(geoRefUrl, geoRefMimeTypeCode, referenzUrl,
-						referenzName, referenzMimeTypeCode, isPlan);
-				externalRefs.add(externalRef);
-				fidToExternalReference.put(feature.getId(), externalRef);
-			}
-		}
-		return fidToExternalReference;
-	}
-
-	private void scanXplan4(FeatureCollection fc) {
+	private ExternalReferenceInfo scanXplan4(FeatureCollection fc) {
+		ExternalReferenceInfoBuilder externalReferenceInfoBuilder = new ExternalReferenceInfoBuilder();
 		for (Feature feature : fc) {
 			String name = feature.getName().getLocalPart();
 			if ("XP_RasterplanBasis".equals(name)) {
 				for (Property prop : feature.getProperties()) {
 					if ("refScan".equals(prop.getName().getLocalPart())) {
-						List<ExternalReference> scanRefs = new ArrayList<ExternalReference>();
-						scanXplan4or5(prop, scanRefs);
-						externalRefs.addAll(scanRefs);
-						rasterPlanBaseScans.addAll(scanRefs);
+						externalReferenceInfoBuilder.addRasterPlanBaseScans(scanXplan4or5(prop));
 					}
 					else {
-						scanXplan4or5(prop, externalRefs);
+						externalReferenceInfoBuilder.withNonRasterReferences(scanXplan4or5(prop));
 					}
 				}
 			}
 			else if (isRasterplanAenderungFeature(name)) {
 				for (Property prop : feature.getProperties()) {
 					if ("refScan".equals(prop.getName().getLocalPart())) {
-						List<ExternalReference> scanRefs = new ArrayList<ExternalReference>();
-						scanXplan4or5(prop, scanRefs);
-						externalRefs.addAll(scanRefs);
-						rasterPlanUpdateScans.addAll(scanRefs);
+						externalReferenceInfoBuilder.addRasterPlanUpdateScans(scanXplan4or5(prop));
 					}
 					else {
-						scanXplan4or5(prop, externalRefs);
+						externalReferenceInfoBuilder.withNonRasterReferences(scanXplan4or5(prop));
 					}
 				}
 			}
 			else {
 				for (Property prop : feature.getProperties()) {
-					scanXplan4or5(prop, externalRefs);
+					externalReferenceInfoBuilder.withNonRasterReferences(scanXplan4or5(prop));
 				}
 			}
 		}
+		return externalReferenceInfoBuilder.build();
 	}
 
-	private void scanXplan5or6(FeatureCollection fc) {
+	private ExternalReferenceInfo scanXplan5or6(FeatureCollection fc) {
+		ExternalReferenceInfoBuilder externalReferenceInfoBuilder = new ExternalReferenceInfoBuilder();
 		for (Feature feature : fc) {
 			String name = feature.getName().getLocalPart();
 			if ("XP_Rasterdarstellung".equals(name) || name.matches("(BP|LP|RP|FP|SO)_Bereich")) {
 				for (Property prop : feature.getProperties()) {
 					if ("refScan".equals(prop.getName().getLocalPart())) {
-						List<ExternalReference> scanRefs = new ArrayList<ExternalReference>();
-						scanXplan4or5(prop, scanRefs);
-						externalRefs.addAll(scanRefs);
-						rasterPlanBaseScans.addAll(scanRefs);
+						externalReferenceInfoBuilder.addRasterPlanBaseScans(scanXplan4or5(prop));
 					}
 					else {
-						scanXplan4or5(prop, externalRefs);
+						externalReferenceInfoBuilder.withNonRasterReferences(scanXplan4or5(prop));
 					}
 				}
 			}
 			else {
 				for (Property prop : feature.getProperties()) {
-					scanXplan4or5(prop, externalRefs);
+					externalReferenceInfoBuilder.withNonRasterReferences(scanXplan4or5(prop));
 				}
 			}
 		}
+		return externalReferenceInfoBuilder.build();
 	}
 
 	private boolean isRasterplanAenderungFeature(String name) {
 		return "P_RasterplanAenderung".equals(name.substring(1));
 	}
 
-	private void scanXplan4or5(ElementNode elNode, List<ExternalReference> refs) {
+	private List<ExternalReference> scanXplan4or5(ElementNode elNode) {
+		List<ExternalReference> refs = new ArrayList<>();
 		String name = elNode.getName().getLocalPart();
 		if ("XP_ExterneReferenz".equals(name)) {
 			ExternalReference externalRef = createExternalReferenceXplan4or5(elNode);
@@ -193,10 +149,11 @@ public class ExternalReferenceScanner {
 		else {
 			for (TypedObjectNode childNode : elNode.getChildren()) {
 				if (childNode instanceof ElementNode) {
-					scanXplan4or5((ElementNode) childNode, refs);
+					refs.addAll(scanXplan4or5((ElementNode) childNode));
 				}
 			}
 		}
+		return refs;
 	}
 
 	private ExternalReference createExternalReferenceXplan4or5(ElementNode elNode) {

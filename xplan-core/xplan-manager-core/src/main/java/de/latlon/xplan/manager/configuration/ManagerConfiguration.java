@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -26,7 +26,7 @@ import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SemanticConformityLinkConfiguration;
 import de.latlon.xplan.commons.configuration.SortConfiguration;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
-import de.latlon.xplan.manager.wmsconfig.raster.WorkspaceRasterLayerManager.RasterConfigurationType;
+import de.latlon.xplan.manager.wmsconfig.raster.RasterConfigurationType;
 import de.latlon.xplan.manager.workspace.WorkspaceReloadAction;
 import de.latlon.xplan.manager.workspace.WorkspaceReloaderConfiguration;
 import org.slf4j.Logger;
@@ -125,15 +125,15 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return the type to use in the raster configuration (gdal or geotiff), never
-	 * <code>null</code>
+	 * @return the type to use in the raster configuration (gdal, geotiff or mapserver),
+	 * never <code>null</code>
 	 */
 	public RasterConfigurationType getRasterConfigurationType() {
 		return rasterConfigurationType;
 	}
 
 	/**
-	 * @return the max scale denominator the raster layer is visible (a value less then 0
+	 * @return the max scale denominator the raster layer is visible (a value less than 0
 	 * means the visibility is not limited)
 	 */
 	public double getRasterLayerMaxScaleDenominator() {
@@ -141,7 +141,7 @@ public class ManagerConfiguration {
 	}
 
 	/**
-	 * @return the min scale denominator the raster layer is visible (a value less then 0
+	 * @return the min scale denominator the raster layer is visible (a value less than 0
 	 * means the visibility is not limited)
 	 */
 	public double getRasterLayerMinScaleDenominator() {

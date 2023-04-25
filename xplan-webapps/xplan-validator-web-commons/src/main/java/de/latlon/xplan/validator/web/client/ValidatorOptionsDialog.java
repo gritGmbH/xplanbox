@@ -2,18 +2,18 @@
  * #%L
  * xplan-validator-web-commons - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -23,6 +23,7 @@ package de.latlon.xplan.validator.web.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -272,11 +273,11 @@ public class ValidatorOptionsDialog extends FormPanel {
 
 	private boolean validateForm() {
 		boolean validForm = true;
-		if ("".equals(validationName.getText())) {
+		if (!validationNameIsValid(validationName.getText())) {
 			validForm = false;
-			Window.alert(messages.correctInputText());
+			Window.alert(messages.correctValidationName());
 		}
-		if (!validationTypeSyn.isChecked() && !validationTypeGeom.isChecked() && !validationTypeSem.isChecked()) {
+		if (!validationTypeSyn.getValue() && !validationTypeGeom.getValue() && !validationTypeSem.getValue()) {
 			Window.alert(messages.correctValidationType());
 			validForm = false;
 		}
@@ -346,6 +347,13 @@ public class ValidatorOptionsDialog extends FormPanel {
 			validating.hide();
 			pollingTextBox.stop();
 		}
+	}
+
+	private boolean validationNameIsValid(String validationName) {
+		if (validationName == null || "".equals(validationName))
+			return false;
+		RegExp regExp = RegExp.compile("^[A-Za-z0-9.()_-]*$");
+		return regExp.test(validationName);
 	}
 
 }

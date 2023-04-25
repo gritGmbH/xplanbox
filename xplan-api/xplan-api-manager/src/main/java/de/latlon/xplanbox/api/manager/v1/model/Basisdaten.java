@@ -1,10 +1,8 @@
-package de.latlon.xplanbox.api.manager.v1.model;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.manager.v1.model;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.v1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,11 +27,18 @@ import de.latlon.xplan.manager.web.shared.edit.BaseData;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.Objects;
+
+import static de.latlon.xplan.commons.util.TextPatternConstants.DESCRIPTION_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.L_LENGTH;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 
 /**
  * Datatype for Basisdaten.
@@ -45,8 +51,12 @@ import java.util.Objects;
 		date = "2021-11-03T09:34:00.218+01:00[Europe/Berlin]")
 public class Basisdaten {
 
+	@Size(max = S_LENGTH)
+	@Pattern(regexp = NAME_PATTERN)
 	private @Valid String name;
 
+	@Size(max = L_LENGTH)
+	@Pattern(regexp = DESCRIPTION_PATTERN)
 	private @Valid String beschreibung;
 
 	@DecimalMin("1000")

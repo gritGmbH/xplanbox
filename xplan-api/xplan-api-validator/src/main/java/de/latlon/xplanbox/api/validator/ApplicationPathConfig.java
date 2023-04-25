@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -71,7 +71,7 @@ public class ApplicationPathConfig extends ResourceConfig {
 		packages("de.latlon.xplanbox.api.commons.exception");
 		packages("de.latlon.xplanbox.api.commons.converter");
 		OpenAPI openApi = new OpenAPI();
-		openApi.setInfo(new Info().title("XPlanValidatorAPI").version("1.0.0").description("XPlanValidator REST API")
+		openApi.setInfo(new Info().title("XPlanValidatorAPI").version("1.1.0").description("XPlanValidator REST API")
 				.termsOfService(getTermsOfService(validatorApiConfiguration))
 				.license(new License().name("Apache 2.0").url("http://www.apache.org/licenses/LICENSE-2.0.html")));
 		addContact(openApi, validatorApiConfiguration);

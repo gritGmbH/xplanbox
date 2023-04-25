@@ -2,18 +2,18 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.synthesizer;
 import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.manager.synthesizer.expression.TestFeaturesUtils;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.apache.commons.io.IOUtils;
@@ -33,6 +34,7 @@ import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.gml.GMLStreamWriter;
 import org.deegree.gml.XPlanGmlWriter;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.w3c.dom.Attr;
@@ -59,12 +61,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class XPlanSynthesizerComparisonTest {
 
+	private XPlanSynthesizer xPlanSynthesizer;
+
+	@Before
+	public void setup() {
+		SynRulesAccessor synRulesAccessor = new SynRulesAccessor();
+		this.xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
+	}
+
 	@Parameters({ "xplan41/BP2070", "xplan41/BP2135", "xplan41/LA22", "xplan41/LA67", "xplan50/BP2070",
 			"xplan50/BP2135", "xplan50/LA22", "xplan50/LA67", "xplan51/BP2070", "xplan51/BP2135", "xplan51/LA22",
 			"xplan51/LA67", "xplan52/BP2070", "xplan52/BP2135", "xplan52/LA22", "xplan52/LA67" })
 	@Test
 	public void test(String archiveName) throws Exception {
-		XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer();
 		XPlanFeatureCollection xplanFc = TestFeaturesUtils.getTestFeatureCollection(archiveName + ".zip");
 		FeatureCollection synthesizedFeatureCollection = xPlanSynthesizer.synthesize(xplanFc.getVersion(), xplanFc);
 		String synthesizedFeatures = writeFeatures(xplanFc.getVersion(), synthesizedFeatureCollection);

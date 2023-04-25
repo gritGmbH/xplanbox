@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -168,6 +168,32 @@ public class XPlanArchiveCreatorTest {
 		assertEquals(XPLAN_52, archive.getVersion());
 		assertEquals(BP_Plan, archive.getType());
 		assertTrue(archive.hasVerbundenerPlanBereich());
+	}
+
+	@Test
+	public void testCreateXPlanArchive_WfsCollection() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
+				.getResourceAsStream("V4_1_ID_103-asWfsFeatureCollection.gml");
+		XPlanArchive archive = archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103-asWfsFeatureCollection.gml",
+				gmlAsStream);
+		assertEquals(XPLAN_51, archive.getVersion());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreateXPlanArchive_NoXPlanGml() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream gmlAsStream = XPlanArchiveCreatorTest.class
+				.getResourceAsStream("V4_1_ID_103-noXPlanGmlCollection.gml");
+		archiveCreator.createXPlanArchiveFromGml("V4_1_ID_103-noXPlanGmlCollection.gml", gmlAsStream);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreateXPlanArchive_withEntity() throws IOException {
+		XPlanArchiveCreator archiveCreator = new XPlanArchiveCreator(mockMapper());
+		InputStream zipAsStream = XPlanArchiveCreatorTest.class
+				.getResourceAsStream("Blankenese29_Test_60_withEntity.zip");
+		archiveCreator.createXPlanArchiveFromZip("Blankenese29_Test_60_withEntity.zip", zipAsStream);
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {

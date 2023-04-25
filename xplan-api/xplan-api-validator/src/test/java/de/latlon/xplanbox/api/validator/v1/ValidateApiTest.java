@@ -2,18 +2,18 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -27,13 +27,17 @@ import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -56,6 +60,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ValidateApiTest extends JerseyTest {
 
+	@ClassRule
+	public final static TemporaryFolder tempFolder = new TemporaryFolder();
+
+	@BeforeClass
+	public static void setupFakedWorkspace() throws IOException {
+		File workspace = tempFolder.newFolder("xplan-validator-wms-memory-workspace");
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
+	}
+
 	@Autowired
 	private List<RulesMetadata> profileMetadata;
 
@@ -68,6 +81,7 @@ public class ValidateApiTest extends JerseyTest {
 		resourceConfig.property("contextConfig", context);
 		resourceConfig.register(this);
 		resourceConfig.packages("de.latlon.xplanbox.api.commons.converter");
+		resourceConfig.packages("de.latlon.xplanbox.api.commons.exception");
 		return resourceConfig;
 	}
 
@@ -166,6 +180,27 @@ public class ValidateApiTest extends JerseyTest {
 		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
 		String actual = response.readEntity(String.class);
 		assertThat(actual, containsString("profil"));
+	}
+
+	@Test
+	public void verifyThat_validationWithInvalidXFileName_Response_IsStatusCode400()
+			throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").request().header("X-Filename", "invalid.filename with blanks")
+				.accept(APPLICATION_JSON).post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
+	}
+
+	@Test
+	public void verifyThat_validationWithInvalidName_Response_IsStatusCode400() throws URISyntaxException, IOException {
+		final byte[] data = Files
+				.readAllBytes(Paths.get(ValidateApiTest.class.getResource("/bplan_valid_41.zip").toURI()));
+		final Response response = target("/validate").queryParam("name", "invalid.name with blanks").request()
+				.accept(APPLICATION_JSON).post(Entity.entity(data, APPLICATION_X_ZIP_COMPRESSED));
+
+		assertThat(response.getStatus(), is(Response.Status.BAD_REQUEST.getStatusCode()));
 	}
 
 }

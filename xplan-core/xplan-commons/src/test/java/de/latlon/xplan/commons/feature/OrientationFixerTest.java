@@ -1,10 +1,8 @@
-package de.latlon.xplan.commons.feature;
-
 /*-
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplan.commons.feature;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.commons.feature;
 
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
@@ -50,12 +49,12 @@ public class OrientationFixerTest {
 
 	@Test
 	public void testOrientationFixer_validLaufrichtung() throws Exception {
-		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 		XPlanArchive testArchive = getArchive("geometryOrientationValid.gml");
-		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(testArchive);
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
+				.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointOriginal = getSecondPoint(xPlanFeatureCollection);
-		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = xPlanGmlParser
-				.parseXPlanFeatureCollection(testArchive, true);
+		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = XPlanGmlParserBuilder.newBuilder()
+				.withFixOrientation(true).build().parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
 		assertThat(startPointRepaired.getX(), is(startPointOriginal.getX()));
 		assertThat(startPointRepaired.getY(), is(startPointOriginal.getY()));
@@ -63,12 +62,12 @@ public class OrientationFixerTest {
 
 	@Test
 	public void testOrientationFixer_invalidLaufrichtung() throws Exception {
-		XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 		XPlanArchive testArchive = getArchive("geometryOrientationInvalid.gml");
-		XPlanFeatureCollection xPlanFeatureCollection = xPlanGmlParser.parseXPlanFeatureCollection(testArchive);
+		XPlanFeatureCollection xPlanFeatureCollection = XPlanGmlParserBuilder.newBuilder().build()
+				.parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointOriginal = getSecondPoint(xPlanFeatureCollection);
-		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = xPlanGmlParser
-				.parseXPlanFeatureCollection(testArchive, true);
+		XPlanFeatureCollection xPlanFeatureCollectionFixOrientation = XPlanGmlParserBuilder.newBuilder()
+				.withFixOrientation(true).build().parseXPlanFeatureCollection(testArchive);
 		Coordinate startPointRepaired = getSecondPoint(xPlanFeatureCollectionFixOrientation);
 		assertThat(startPointRepaired.getX(), not(startPointOriginal.getX()));
 		assertThat(startPointRepaired.getY(), not(startPointOriginal.getY()));

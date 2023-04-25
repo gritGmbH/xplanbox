@@ -1,10 +1,8 @@
-package de.latlon.xplanbox.api.manager.v1;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.manager.v1;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager.v1;
 
 import de.latlon.xplanbox.api.manager.handler.EditBasisdatenHandler;
 import de.latlon.xplanbox.api.manager.v1.model.Basisdaten;
@@ -57,13 +56,12 @@ public class PlanBasisdatenApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Basisdaten.class))),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") })
-	public Basisdaten getBasisdaten(
-			@PathParam("planId") @Parameter(description = "planId of the plan basisdaten to be returned",
-					example = "123") String planId)
-			throws Exception {
+							description = "Unsupported plan version or planID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available") })
+	public Basisdaten getBasisdaten(@PathParam("planId") @Parameter(
+			description = "ID of the plan basisdaten to be returned", example = "123") String planId) throws Exception {
 		return editBasisdatenHandler.retrieveBasisdaten(planId);
 	}
 
@@ -74,15 +72,15 @@ public class PlanBasisdatenApi {
 			responses = {
 					@ApiResponse(responseCode = "200", description = "successful operation",
 							content = @Content(schema = @Schema(implementation = Basisdaten.class))),
-					@ApiResponse(responseCode = "404", description = "Invalid plan ID, plan not found"),
 					@ApiResponse(responseCode = "400",
-							description = "Unsupported Plan version or Plan ID is not a valid int value") },
+							description = "Unsupported plan version or planID is not a valid int value"),
+					@ApiResponse(responseCode = "404", description = "Invalid planID, plan not found"),
+					@ApiResponse(responseCode = "406", description = "Requested format is not available"),
+					@ApiResponse(responseCode = "422", description = "Request body contains invalid content"), },
 			requestBody = @RequestBody(content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Basisdaten.class)) }))
-	public Basisdaten replaceBasisdaten(
-			@PathParam("planId") @Parameter(description = "planId of the plan to be returned",
-					example = "123") String planId,
-			@Valid Basisdaten basisdaten) throws Exception {
+	public Basisdaten replaceBasisdaten(@PathParam("planId") @Parameter(description = "ID of the plan to be returned",
+			example = "123") String planId, @Valid Basisdaten basisdaten) throws Exception {
 		return editBasisdatenHandler.replaceBasisdaten(planId, basisdaten);
 	}
 

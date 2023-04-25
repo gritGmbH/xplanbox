@@ -9,7 +9,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-webapps</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>6.1-SNAPSHOT</version>
   </parent>
 
   <properties>
@@ -72,6 +72,7 @@
               <directory>src/main/webapp</directory>
               <includes>
                 <include>index.html</include>
+                <include>version.txt</include>
               </includes>
               <filtering>true</filtering>
             </resource>
@@ -79,6 +80,7 @@
               <directory>src/main/webapp</directory>
               <excludes>
                 <exclude>index.html</exclude>
+                <exclude>version.txt</exclude>
               </excludes>
               <filtering>false</filtering>
             </resource>
@@ -101,7 +103,7 @@
       <artifactId>el-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-user</artifactId>
       <scope>provided</scope>
       <exclusions>
@@ -112,7 +114,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>com.google.gwt</groupId>
+      <groupId>org.gwtproject</groupId>
       <artifactId>gwt-servlet</artifactId>
       <scope>runtime</scope>
     </dependency>
@@ -247,5 +249,22 @@
       <artifactId>spring-test</artifactId>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>false</docker-image.skip>
+      </properties>
+	  <dependencies>
+	    <dependency> <!-- faked maven dependency to be after base docker image in the reactor build  -->
+	      <groupId>de.latlon.product.xplanbox</groupId>
+	      <artifactId>xplan-docker-tomcat</artifactId>
+	      <version>${project.version}</version>
+	      <type>pom</type>
+	    </dependency>
+	  </dependencies>
+    </profile>
+  </profiles>
 
 </project>

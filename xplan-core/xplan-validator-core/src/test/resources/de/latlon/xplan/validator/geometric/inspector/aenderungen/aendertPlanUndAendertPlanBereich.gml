@@ -1,4 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+  #%L
+  xplan-validator-core - XPlan Validator Core Komponente
+  %%
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
 <!--Erstellt von WS LANDCAD am 18.05.2022-->
 <xplan:XPlanAuszug xmlns:xplan="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2"
                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -143,5 +164,89 @@
       <xplan:drehwinkel uom="grad">0.0</xplan:drehwinkel>
       <xplan:skalierung>1.0</xplan:skalierung>
     </xplan:XP_PPO>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_Plan gml:id="REF_1">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>563014.666 5928972.869</gml:lowerCorner>
+          <gml:upperCorner>563567.498 5929359.862</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:name>Original60_test(1Aend)</xplan:name>
+      <xplan:beschreibung>test</xplan:beschreibung>
+      <xplan:erstellungsMassstab>1000</xplan:erstellungsMassstab>
+      <xplan:raeumlicherGeltungsbereich>
+        <gml:MultiSurface srsName="EPSG:25832" gml:id="GML_619facf3-c2db-4e75-8a38-c11903dec272">
+          <gml:surfaceMember>
+            <gml:Polygon srsName="EPSG:25832" gml:id="GML_3018a8a9-fb00-4cc7-9177-ed3356b22ce8">
+              <gml:exterior>
+                <gml:LinearRing>
+                  <gml:posList srsDimension="2" count="5">563014.666 5928972.869 563567.498 5928972.869 563567.498
+                    5929359.862 563014.666 5929359.862 563014.666 5928972.869
+                  </gml:posList>
+                </gml:LinearRing>
+              </gml:exterior>
+            </gml:Polygon>
+          </gml:surfaceMember>
+        </gml:MultiSurface>
+      </xplan:raeumlicherGeltungsbereich>
+      <xplan:verfahrensMerkmale/>
+      <xplan:gemeinde>
+        <xplan:XP_Gemeinde>
+          <xplan:ags>02000000</xplan:ags>
+          <xplan:gemeindeName>Freie und Hansestadt Hamburg</xplan:gemeindeName>
+        </xplan:XP_Gemeinde>
+      </xplan:gemeinde>
+      <xplan:plangeber/>
+      <xplan:planArt>1000</xplan:planArt>
+      <xplan:rechtsstand>3000</xplan:rechtsstand>
+      <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
+      <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>
+      <xplan:durchfuehrungsVertrag>false</xplan:durchfuehrungsVertrag>
+      <xplan:gruenordnungsplan>false</xplan:gruenordnungsplan>
+    </xplan:BP_Plan>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_Plan gml:id="REF_2">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>563014.666 5928972.869</gml:lowerCorner>
+          <gml:upperCorner>563567.498 5929359.862</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:name>Original60_test(1Aend)</xplan:name>
+      <xplan:beschreibung>test</xplan:beschreibung>
+      <xplan:erstellungsMassstab>1000</xplan:erstellungsMassstab>
+      <xplan:raeumlicherGeltungsbereich>
+        <gml:MultiSurface srsName="EPSG:25832" gml:id="GML_619facf3-c2db-4e75-8a38-c11903dec272">
+          <gml:surfaceMember>
+            <gml:Polygon srsName="EPSG:25832" gml:id="GML_3018a8a9-fb00-4cc7-9177-ed3356b22ce8">
+              <gml:exterior>
+                <gml:LinearRing>
+                  <gml:posList srsDimension="2" count="5">563014.666 5928972.869 563567.498 5928972.869 563567.498
+                    5929359.862 563014.666 5929359.862 563014.666 5928972.869
+                  </gml:posList>
+                </gml:LinearRing>
+              </gml:exterior>
+            </gml:Polygon>
+          </gml:surfaceMember>
+        </gml:MultiSurface>
+      </xplan:raeumlicherGeltungsbereich>
+      <xplan:verfahrensMerkmale/>
+      <xplan:gemeinde>
+        <xplan:XP_Gemeinde>
+          <xplan:ags>02000000</xplan:ags>
+          <xplan:gemeindeName>Freie und Hansestadt Hamburg</xplan:gemeindeName>
+        </xplan:XP_Gemeinde>
+      </xplan:gemeinde>
+      <xplan:plangeber/>
+      <xplan:planArt>1000</xplan:planArt>
+      <xplan:rechtsstand>3000</xplan:rechtsstand>
+      <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
+      <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>
+      <xplan:durchfuehrungsVertrag>false</xplan:durchfuehrungsVertrag>
+      <xplan:gruenordnungsplan>false</xplan:gruenordnungsplan>
+    </xplan:BP_Plan>
   </gml:featureMember>
 </xplan:XPlanAuszug>

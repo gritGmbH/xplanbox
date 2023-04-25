@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,11 +27,12 @@ import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollections;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.configuration.CoupledResourceConfiguration;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.edit.XPlanManipulator;
 import de.latlon.xplan.manager.export.XPlanExporter;
 import de.latlon.xplan.manager.metadata.DataServiceCouplingException;
@@ -83,6 +84,8 @@ public abstract class XPlanTransactionManager {
 
 	protected final XPlanRasterManager xPlanRasterManager;
 
+	protected final XPlanDocumentManager xPlanDocumentManager;
+
 	protected final WorkspaceReloader workspaceReloader;
 
 	protected final ManagerConfiguration managerConfiguration;
@@ -95,20 +98,20 @@ public abstract class XPlanTransactionManager {
 
 	protected final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
-	protected final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
-
 	private final MetadataCouplingHandler metadataCouplingHandler;
 
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
 	public XPlanTransactionManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xplanDao, XPlanExporter xPlanExporter,
-			XPlanRasterManager xPlanRasterManager, WorkspaceReloader workspaceReloader,
-			ManagerConfiguration managerConfiguration, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			SortPropertyReader sortPropertyReader) throws DataServiceCouplingException {
+			XPlanRasterManager xPlanRasterManager, XPlanDocumentManager xPlanDocumentManager,
+			WorkspaceReloader workspaceReloader, ManagerConfiguration managerConfiguration,
+			ManagerWorkspaceWrapper managerWorkspaceWrapper, SortPropertyReader sortPropertyReader)
+			throws DataServiceCouplingException {
 		this.xPlanSynthesizer = xPlanSynthesizer;
 		this.xplanDao = xplanDao;
 		this.xPlanExporter = xPlanExporter;
 		this.xPlanRasterManager = xPlanRasterManager;
+		this.xPlanDocumentManager = xPlanDocumentManager;
 		this.workspaceReloader = workspaceReloader;
 		this.managerConfiguration = managerConfiguration;
 		this.managerWorkspaceWrapper = managerWorkspaceWrapper;
@@ -176,7 +179,7 @@ public abstract class XPlanTransactionManager {
 		ByteArrayInputStream originalPlan = new ByteArrayInputStream(outputStream.toByteArray());
 		XMLStreamReader originalPlanAsXmlReader = XMLInputFactory.newInstance().createXMLStreamReader(originalPlan);
 		try {
-			return xPlanGmlParser.parseFeatureCollection(originalPlanAsXmlReader, version);
+			return XPlanGmlParserBuilder.newBuilder().build().parseFeatureCollection(originalPlanAsXmlReader, version);
 		}
 		finally {
 			originalPlanAsXmlReader.close();

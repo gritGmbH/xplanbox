@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-core - XPlan Manager Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,7 +25,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import org.deegree.cs.coordinatesystems.ICRS;
 import org.deegree.cs.persistence.CRSManager;
 import org.deegree.feature.FeatureCollection;
@@ -46,8 +46,8 @@ import java.util.zip.ZipInputStream;
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
 import static org.apache.commons.io.IOUtils.copyLarge;
 import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -68,7 +68,7 @@ public class XPlanExporterTest {
 
 		List<String> exportedFiles = readExportedContent(outputStream);
 
-		assertThat(exportedFiles.size(), is(2));
+		assertEquals(2, exportedFiles.size());
 		assertThat(exportedFiles, hasItems("1.xml", "2.xml"));
 	}
 
@@ -83,10 +83,11 @@ public class XPlanExporterTest {
 
 		List<String> exportedFiles = readExportedContent(outputStream);
 
-		assertThat(exportedFiles.size(), is(2));
+		assertEquals(2, exportedFiles.size());
 		assertThat(exportedFiles, hasItems("1.xml", "2.xml"));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testExport_SchemaConform() throws Exception {
 		FeatureCollection featureCollection = readFeatureCollection("xplan41/V4_1_ID_103.zip");
@@ -148,7 +149,8 @@ public class XPlanExporterTest {
 		ICRS defaultCrs = CRSManager.lookup("EPSG:31467");
 		if (archive.getCrs() != null)
 			defaultCrs = archive.getCrs();
-		return new XPlanGmlParser().parseXPlanFeatureCollection(archive, defaultCrs);
+		return XPlanGmlParserBuilder.newBuilder().withDefaultCrs(defaultCrs).build()
+				.parseXPlanFeatureCollection(archive);
 	}
 
 	private ByteArrayInputStream createZippedContent(String name) throws IOException {

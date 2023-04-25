@@ -1,10 +1,8 @@
-package de.latlon.xplanbox.api.manager;
-
 /*-
  * #%L
  * xplan-api-manager - xplan-api-manager
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +18,7 @@ package de.latlon.xplanbox.api.manager;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplanbox.api.manager;
 
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import liquibase.changelog.RanChangeSet;
@@ -43,13 +42,14 @@ import static org.slf4j.LoggerFactory.getLogger;
  * database using liquibase API.
  *
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
+ * @since 6.0
  */
 @Component
 public class DatabaseVerifier {
 
 	private static final Logger LOG = getLogger(DatabaseVerifier.class);
 
-	private static final String DB_VERSION = "v_6.0";
+	private static final String DB_VERSION = "v_6.1";
 
 	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
 

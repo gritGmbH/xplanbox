@@ -2,18 +2,18 @@
  * #%L
  * xplan-transform-cli - Kommandozeilentool fuer die Transformation zwischen XPlanGML Versionen
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -27,7 +27,7 @@ import de.latlon.xplan.commons.cli.Operation;
 import de.latlon.xplan.commons.cli.SynchronizationException;
 import de.latlon.xplan.commons.cli.Synchronizer;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.transformation.TransformationResult;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -60,8 +60,6 @@ import static de.latlon.xplan.transform.cli.TransformTool.LOG_TABLE_NAME;
 public class TransformationSynchronizer implements Synchronizer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TransformationSynchronizer.class);
-
-	private final XPlanGmlParser xPlanGmlParser = new XPlanGmlParser();
 
 	private final XPlanDao xPlanDao;
 
@@ -176,7 +174,8 @@ public class TransformationSynchronizer implements Synchronizer {
 		byte[] resultAsBytes = transformationResult.getTransformationResult();
 		XPlanVersion resultVersion = transformationResult.getVersionOfTheResult();
 		try (InputStream inputStream = new ByteArrayInputStream(resultAsBytes)) {
-			return xPlanGmlParser.parseXPlanFeatureCollection(inputStream, resultVersion, type);
+			return XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(inputStream, resultVersion,
+					type);
 		}
 	}
 

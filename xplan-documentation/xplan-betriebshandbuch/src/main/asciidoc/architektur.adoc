@@ -60,7 +60,7 @@ XPlanGML-Dokumente über den Browser zu validieren.
 ==== XPlanValidatorWMS
 
 Bei der Komponente XPlanValidatorWMS handelt es sich um eine Subkomponente
-des XPlanValidatorWeb. Validierte Plänen können über den XPlanValidatorWMS in der Kartenvorschau angezeigt werden, ohne das ein Plan in die Datenhaltung importiert wird. Dieser Dienst nutzt keine persistente Datenhaltung.
+des XPlanValidatorWeb. Validierte Plänen können über den XPlanValidatorWMS in der Kartenvorschau angezeigt werden, ohne das ein Plan in die Datenhaltung importiert wird. Dieser Dienst kann ohne persistente Datenhaltung betrieben werden.
 
 [[xplanvalidator-api]]
 === XPlanValidatorAPI
@@ -80,7 +80,7 @@ XPlanGML-Dokumente über das Terminal zu validieren.
 Die Komponente XPlanTransformCLI ist ein Kommandozeilenwerkzeug,
 welches dem Fachadministrator der xPlanBox ermöglicht,
 bereits über den XPlanManagerWeb oder das XPlanManagerCLI
-importierte Pläne in eine aktuellere XPlanGML Version zu transformieren und in der <<xplandb>> zu speichern.
+importierte Pläne in eine aktuellere XPlanGML-Version zu transformieren und in der <<xplandb>> zu speichern.
 
 [[xplanevaluationschemasynchronize-cli]]
 === XPlanAuswerteschemaCLI

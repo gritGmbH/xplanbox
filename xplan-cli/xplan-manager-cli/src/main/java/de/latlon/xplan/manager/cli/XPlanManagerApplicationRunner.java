@@ -2,18 +2,18 @@
  * #%L
  * xplan-manager-cli - Kommandozeilentool des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -28,10 +28,21 @@ import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.log.SystemLog;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.filesystem.FilesystemStorageCleanUpManager;
+import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.RasterEvaluationResult;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
+import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
 import de.latlon.xplan.manager.workspace.WorkspaceUtils;
 import org.deegree.commons.config.DeegreeWorkspace;
@@ -40,6 +51,7 @@ import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.cs.persistence.CRSManager;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -55,6 +67,8 @@ import static de.latlon.xplan.manager.cli.XPlanManagerCLI.printUsage;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
+// TODO use Spring configuration for object creation
+@Component
 public class XPlanManagerApplicationRunner implements ApplicationRunner {
 
 	@Override
@@ -308,6 +322,8 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 		return Paths.get(jarLocation.getParentFile().getParent()).resolve("etc");
 	}
 
+	// TODO refactor code to use Spring configuration for creating XPlanManager object,
+	// class is eligible for Spring DI
 	private XPlanManager createManager(Path directoryContainingTheManagerConfig) {
 		try {
 			PropertiesLoader propertiesLoader = new ConfigurationDirectoryPropertiesLoader(
@@ -323,13 +339,53 @@ public class XPlanManagerApplicationRunner implements ApplicationRunner {
 			DeegreeWorkspace wmsWorkspace = WorkspaceUtils.instantiateWmsWorkspace(null);
 			WmsWorkspaceWrapper wmsWorkspaceWrapper = new WmsWorkspaceWrapper(wmsWorkspace);
 			XPlanDao xplanDao = new XPlanDao(managerWorkspaceWrapper, categoryMapper, managerConfiguration);
-			return new XPlanManager(xplanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader, null,
-					wmsWorkspaceWrapper);
+			RasterEvaluation rasterEvaluation = createRasterEvaluation(managerConfiguration);
+			XPlanRasterEvaluator xPlanRasterEvaluator = new XPlanRasterEvaluator(rasterEvaluation);
+			RasterStorage rasterStorage = createRasterStorage(managerConfiguration, wmsWorkspaceWrapper,
+					rasterEvaluation);
+			RasterConfigManager rasterManagerConfig = createRasterConfigManager(wmsWorkspaceWrapper,
+					managerConfiguration);
+			XPlanRasterManager xPlanRasterManager = new XPlanRasterManager(rasterStorage, rasterManagerConfig);
+			SynRulesAccessor synRulesAccessor = new SynRulesAccessor(
+					managerConfiguration.getSynthesizerConfigurationDirectory());
+			XPlanSynthesizer xPlanSynthesizer = new XPlanSynthesizer(synRulesAccessor);
+			XPlanDocumentManager xPlanDocumentManager = createDocumentManager();
+			StorageCleanUpManager storageCleanUpManager = createStorageCleanUpManager(
+					wmsWorkspaceWrapper.getDataDirectory());
+			return new XPlanManager(xPlanSynthesizer, xplanDao, archiveCreator, managerWorkspaceWrapper,
+					workspaceReloader, null, wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
+					xPlanDocumentManager, storageCleanUpManager);
 		}
 		catch (Exception e) {
 			endWithFatalError(e.getMessage());
 		}
 		return null;
+	}
+
+	private RasterConfigManager createRasterConfigManager(WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterConfigManager(wmsWorkspaceWrapper, managerConfiguration);
+	}
+
+	private RasterStorage createRasterStorage(ManagerConfiguration managerConfiguration,
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, RasterEvaluation rasterEvaluation) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterStorage(managerConfiguration, wmsWorkspaceWrapper, rasterEvaluation);
+	}
+
+	private RasterEvaluation createRasterEvaluation(ManagerConfiguration managerConfiguration) {
+		// TODO turn into autowired field
+		return new RasterStorageContext().rasterEvaluation(managerConfiguration);
+	}
+
+	private XPlanDocumentManager createDocumentManager() {
+		// TODO turn into autowired field
+		return null;
+	}
+
+	private StorageCleanUpManager createStorageCleanUpManager(Path dataDirectory) {
+		return new FilesystemStorageCleanUpManager(dataDirectory);
 	}
 
 	private ServiceMetadataRecordCreator createServiceMetadataRecordCreator(Path directoryContainingTheManagerConfig) {

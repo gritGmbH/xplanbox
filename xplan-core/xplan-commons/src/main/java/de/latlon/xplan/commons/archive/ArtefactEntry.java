@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -56,6 +56,11 @@ public class ArtefactEntry extends ArchiveZipEntry implements ZipEntryWithConten
 	 */
 	public InputStream retrieveContentAsStream() {
 		return new ByteArrayInputStream(content);
+	}
+
+	@Override
+	public boolean isXPlanGml() {
+		return false;
 	}
 
 }

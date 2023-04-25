@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -26,7 +26,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.archive.XPlanArchive;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
-import de.latlon.xplan.commons.feature.XPlanGmlParser;
+import de.latlon.xplan.commons.feature.XPlanGmlParserBuilder;
 import de.latlon.xplan.validator.ValidatorException;
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorResult;
@@ -73,7 +73,7 @@ public class ParameterizedGeometricValidatorImplTest {
 	public void testRetrieveGeometricallyValidXPlanFeatures(String testResource, String expectedPlanName,
 			String expectedPlanGz, String expectedPlanNumber, int expectedNumberOfFeatures) throws Exception {
 		XPlanArchive archive = getTestArchive(testResource);
-		XPlanFeatureCollection fc = new XPlanGmlParser().parseXPlanFeatureCollection(archive);
+		XPlanFeatureCollection fc = XPlanGmlParserBuilder.newBuilder().build().parseXPlanFeatureCollection(archive);
 		if (!NULL.equals(expectedPlanName))
 			assertThat(fc.getPlanName(), is(expectedPlanName));
 		if (NULL.equals(expectedPlanGz))

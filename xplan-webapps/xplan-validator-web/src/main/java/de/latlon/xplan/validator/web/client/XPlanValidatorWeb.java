@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-web - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,7 +25,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FileUpload;
@@ -33,13 +32,11 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.commons.web.CloseableDialogBox;
 
 /**
@@ -217,10 +214,13 @@ public class XPlanValidatorWeb implements EntryPoint {
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
 				uploading.hide();
-				showSucessfulUploadedDialog(event);
+				if (event.getResults().contains("java.io.IOException"))
+					Window.alert(messages.uploadSecurityException());
+				else
+					showSuccessfulUploadedDialog(event);
 			}
 
-			private void showSucessfulUploadedDialog(SubmitCompleteEvent event) {
+			private void showSuccessfulUploadedDialog(SubmitCompleteEvent event) {
 				String filename = getFilename(uploadItem);
 				UploadFinishedDialogBox dialogBox = new UploadFinishedDialogBox(XPlanValidatorWeb.this,
 						event.getResults(), filename);

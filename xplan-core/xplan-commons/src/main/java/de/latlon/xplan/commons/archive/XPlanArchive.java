@@ -2,7 +2,7 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -76,8 +76,8 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 
 	public XPlanArchive(MainZipEntry mainEntry, String fileName, XPlanVersion version, XPlanType type, ICRS crs,
 			List<String> districts, boolean hasVerbundenerPlanBereich, boolean hasMultipleXPlanElements) {
-		this(Collections.emptyList(), mainEntry, fileName, version, type, crs, districts, hasVerbundenerPlanBereich,
-				hasMultipleXPlanElements);
+		this(Collections.singletonList(mainEntry), mainEntry, fileName, version, type, crs, districts,
+				hasVerbundenerPlanBereich, hasMultipleXPlanElements);
 	}
 
 	private XPlanArchive(List<ZipEntryWithContent> zipEntries, MainZipEntry mainEntry, String fileName,
@@ -192,6 +192,19 @@ public class XPlanArchive implements XPlanArchiveContentAccess, SemanticValidabl
 			return entry.retrieveContentAsStream();
 		String message = format("Zip entry with the name %s could not be found in archive %s", name, this.fileName);
 		throw new IllegalArgumentException(message);
+	}
+
+	/**
+	 * @param name the name of the entry to check, should not be <code>null</code>
+	 * @return <code>true</code> if an entry with the passed name is available,
+	 * <code>false</code> otherwise
+	 */
+	public boolean hasEntry(String name) {
+		for (ZipEntryWithContent zipEntry : zipFileEntries) {
+			if (zipEntry.getName().equals(name))
+				return true;
+		}
+		return false;
 	}
 
 	@Override

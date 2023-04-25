@@ -1,26 +1,26 @@
-package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
-
 /*-
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.manager.synthesizer.expression.flatten.lp;
 
+import de.latlon.xplan.manager.dictionary.XPlanCodelists;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.AbstractFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.DefaultFlattener;
 import de.latlon.xplan.manager.synthesizer.expression.flatten.Flattener;
@@ -36,12 +36,16 @@ import java.util.List;
  */
 public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 
+	private final XPlanCodelists xPlanCodelists;
+
 	private boolean keepCodes;
 
 	/**
+	 * @param xPlanCodelists
 	 * @param keepCodes <code>true</code> if code properties should be translated
 	 */
-	public LpBiologischeVielfaltKomplexFlattener(boolean keepCodes) {
+	public LpBiologischeVielfaltKomplexFlattener(XPlanCodelists xPlanCodelists, boolean keepCodes) {
+		this.xPlanCodelists = xPlanCodelists;
 		this.keepCodes = keepCodes;
 	}
 
@@ -53,10 +57,11 @@ public class LpBiologischeVielfaltKomplexFlattener extends AbstractFlattener {
 	@Override
 	public String flatten(TypedObjectNode node, boolean keepCodes) {
 		List<Pair<String, String>> properties = new ArrayList<>();
-		appendFlattenedValue("Biologische Vielfalt", node, new ComplexFlattener(), "bioVielfaltTypus", properties);
-		appendFlattenedValue("Planzenart", node, new ComplexFlattener(), "bioVfPflanzenArt", properties);
-		appendFlattenedValue("Tierart", node, new ComplexFlattener(), "bioVfTierArt", properties);
-		appendFlattenedValue("Biotoptyp", node, new ComplexFlattener(), "bioVfBiotoptyp", properties);
+		appendFlattenedValue("Biologische Vielfalt", node, new ComplexFlattener(xPlanCodelists), "bioVielfaltTypus",
+				properties);
+		appendFlattenedValue("Planzenart", node, new ComplexFlattener(xPlanCodelists), "bioVfPflanzenArt", properties);
+		appendFlattenedValue("Tierart", node, new ComplexFlattener(xPlanCodelists), "bioVfTierArt", properties);
+		appendFlattenedValue("Biotoptyp", node, new ComplexFlattener(xPlanCodelists), "bioVfBiotoptyp", properties);
 		appendBoolean("von gemeinschaftlichem Interesse kartiert", node, "bioVfArtFFHAnhangII", properties);
 		return encode(properties);
 	}

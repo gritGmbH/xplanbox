@@ -2,69 +2,62 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.synthesizer;
 
-import de.latlon.xplan.manager.synthesizer.expression.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.LatestDate;
 import de.latlon.xplan.manager.synthesizer.expression.StringConstant;
-import de.latlon.xplan.manager.synthesizer.expression.XPlanExternalCodeLookup;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGeometry;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanGmlDescription;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanName;
 import de.latlon.xplan.manager.synthesizer.expression.XPlanType;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.XplanBaugebietFlaechenteile;
-import de.latlon.xplan.manager.synthesizer.expression.XplanCodeLookup;
-import de.latlon.xplan.manager.synthesizer.expression.XplanFlattenProperty;
 import de.latlon.xplan.manager.synthesizer.expression.XplanGmlName;
+import de.latlon.xplan.manager.synthesizer.expression.dictionary.XPlanEnumerationLookup;
+import de.latlon.xplan.manager.synthesizer.expression.dictionary.XPlanExternalCodeLookup;
+import de.latlon.xplan.manager.synthesizer.expression.flatten.XplanFlattenProperty;
+import de.latlon.xplan.manager.synthesizer.expression.praesentation.Ausrichtung;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SchriftinhaltLookup;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.SkalierungLookup;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.StylesheetIdLookup;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The <code>RuleParser</code> class parses the Syn rules into corresponding objects.
- * These will be used for evalution in the context of a feature.
+ * These will be used for evaluation in the context of a feature.
  *
  * @author <a href="mailto:ionita@lat-lon.de">Andrei Ionita</a>
  * @version 1.0, Date: 2010-05-25
  */
-class RuleParser {
+public class RuleParser {
 
-	private final String xplanType;
-
-	private final String xplanName;
-
-	private final XPlanSynthesizer xPlanSynthesizer;
+	private SynRulesAccessor synRulesAccessor;
 
 	/**
-	 * @param xplanType the type of xplan document. See {@link XPlanType}
-	 * @param xplanName the name of xplan document, i.e. the name of the
-	 * XP_Plan-descendant feature in the document
+	 * @param synRulesAccessor to access the syn rules, can be <code>null</code>
 	 */
-	public RuleParser(String xplanType, String xplanName, XPlanSynthesizer xPlanSynthesizer) {
-		this.xplanType = xplanType;
-		this.xplanName = xplanName;
-		this.xPlanSynthesizer = xPlanSynthesizer;
+	public RuleParser(SynRulesAccessor synRulesAccessor) {
+		this.synRulesAccessor = synRulesAccessor;
 	}
 
 	private String trimString(String s) {
@@ -103,16 +96,18 @@ class RuleParser {
 
 	private Expression parseXPlanFlattenFeature(List<String> args) {
 		if (args.size() > 2) {
-			return new XplanFlattenProperty(parse(args.get(0)), asBoolean(args.get(1)), asBoolean(args.get(2)));
+			return new XplanFlattenProperty(synRulesAccessor.getExternalCodelists(), parse(args.get(0)),
+					asBoolean(args.get(1)), asBoolean(args.get(2)));
 		}
 		if (args.size() > 1) {
-			return new XplanFlattenProperty(parse(args.get(0)), asBoolean(args.get(1)));
+			return new XplanFlattenProperty(synRulesAccessor.getExternalCodelists(), parse(args.get(0)),
+					asBoolean(args.get(1)));
 		}
-		return new XplanFlattenProperty(parse(args.get(0)));
+		return new XplanFlattenProperty(synRulesAccessor.getExternalCodelists(), parse(args.get(0)));
 	}
 
 	private Expression parseXPlanCodeLookup(List<String> args) {
-		return new XplanCodeLookup(parse(args.get(0)), trimString(args.get(1)));
+		return new XPlanEnumerationLookup(parse(args.get(0)), trimString(args.get(1)));
 	}
 
 	private Expression parseXPlanGeometry(List<String> args) {
@@ -124,7 +119,7 @@ class RuleParser {
 		String codeListFile = trimString(args.get(1));
 		String codeListName = args.size() > 2 ? trimString(args.get(2)) : null;
 		return new XPlanExternalCodeLookup(expression, codeListFile, codeListName,
-				xPlanSynthesizer.getExternalConfigurationFile());
+				synRulesAccessor.getExternalConfigurationFile());
 	}
 
 	private Expression parseAusrichtungLookup(List<String> args) {
@@ -164,9 +159,9 @@ class RuleParser {
 			case "xplanAggregateFlaechenteil":
 				return parseXPlanAggregateFlaechenteil();
 			case "xplanType":
-				return new XPlanType(xplanType);
+				return new XPlanType();
 			case "xplanName":
-				return new XPlanName(xplanName);
+				return new XPlanName();
 			case "xplanExternalCodeLookup":
 				// Required to resolve codelist from external files
 				return parseXPlanExternalCodeLookup(args);

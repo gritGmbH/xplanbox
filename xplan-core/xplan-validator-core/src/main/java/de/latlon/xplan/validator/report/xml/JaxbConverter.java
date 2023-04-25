@@ -2,18 +2,18 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -22,6 +22,7 @@ package de.latlon.xplan.validator.report.xml;
 
 import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ErrorsType;
+import de.latlon.xplan.validator.report.ExternalReferenceType;
 import de.latlon.xplan.validator.report.ExternalReferencesType;
 import de.latlon.xplan.validator.report.GeomType;
 import de.latlon.xplan.validator.report.InvalidFeaturesType;
@@ -39,6 +40,7 @@ import de.latlon.xplan.validator.report.ValidationType;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.report.WarningsType;
 import de.latlon.xplan.validator.report.reference.ExternalReferenceReport;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceStatus;
 import de.latlon.xplan.validator.semantic.configuration.metadata.RulesMetadata;
 import de.latlon.xplan.validator.semantic.report.InvalidFeaturesResult;
 import de.latlon.xplan.validator.semantic.report.RuleResult;
@@ -49,6 +51,7 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.validator.report.ReportUtils.asLabel;
@@ -94,8 +97,13 @@ public class JaxbConverter {
 		ReportUtils.SkipCode skipCode = externalReferenceReport.getSkipCode();
 		if (skipCode != null)
 			externalReferencesType.setSkipMessage(skipCode.getMessage());
-		List<String> references = externalReferenceReport.getReferences();
-		externalReferencesType.getExternalReferences().addAll(references);
+		Map<String, ExternalReferenceStatus> references = externalReferenceReport.getReferencesAndStatus();
+		references.forEach((name, status) -> {
+			ExternalReferenceType reference = new ExternalReferenceType();
+			reference.setValue(name);
+			reference.setStatus(de.latlon.xplan.validator.report.ExternalReferenceStatus.valueOf(status.name()));
+			externalReferencesType.getExternalReferences().add(reference);
+		});
 		return externalReferencesType;
 	}
 

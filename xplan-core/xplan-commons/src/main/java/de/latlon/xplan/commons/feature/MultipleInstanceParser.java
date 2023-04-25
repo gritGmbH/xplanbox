@@ -1,10 +1,8 @@
-package de.latlon.xplan.commons.feature;
-
 /*-
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,10 +18,12 @@ package de.latlon.xplan.commons.feature;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
+package de.latlon.xplan.commons.feature;
 
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.commons.XPlanVersion;
 import org.deegree.commons.tom.gml.GMLReference;
+import org.deegree.commons.xml.stax.XMLStreamReaderWrapper;
 import org.deegree.cs.exceptions.UnknownCRSException;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.xpath.TypedObjectNodeXPathEvaluator;
@@ -55,57 +55,65 @@ public class MultipleInstanceParser {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MultipleInstanceParser.class);
 
-	private List<String> referenceIds = new ArrayList();
+	private List<String> referenceIds = new ArrayList<>();
 
-	private final List<String> rootIds = new ArrayList();
+	private final List<String> rootIds = new ArrayList<>();
 
 	private final Map<String, List<String>> featuresAndReferenceIds = new HashMap<>();
 
 	private int remainingFeatures;
 
 	/**
-	 * @param gmlStream to parse, never <code>null</code>
+	 * @param xPlanGmlParser used to parse the xmlStream, never <code>null</code>
+	 * @param xmlStream to parse, never <code>null</code>
 	 * @param version the version of the XPlan GML, never <code>null</code>
 	 * @param type the type of the XPlan GML, never <code>null</code>
 	 * @return the parsed XPlan GML as XPlanFeatureCollections, never <code>null</code>
 	 * @throws XMLStreamException
 	 * @throws UnknownCRSException
 	 */
-	XPlanFeatureCollections parse(GMLStreamReader gmlStream, XPlanVersion version, XPlanType type)
-			throws XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
-		FeatureInspector fi = feature -> {
-			String id = feature.getId();
-			if (feature.getName().getLocalPart().endsWith("_Plan")) {
-				rootIds.add(id);
-				featuresAndReferenceIds.put(id, referenceIds);
-				referenceIds = new ArrayList<>();
-			}
-			else if (!"XPlanAuszug".equals(feature.getName().getLocalPart())) {
-				featuresAndReferenceIds.put(id, referenceIds);
-				referenceIds = new ArrayList<>();
-			}
-			return feature;
-		};
+	XPlanFeatureCollections parse(XPlanGmlParser xPlanGmlParser, XMLStreamReaderWrapper xmlStream, XPlanVersion version,
+			XPlanType type) throws XMLStreamException, UnknownCRSException, FeatureCollectionParseException {
+		GMLStreamReader gmlStream = null;
+		try {
+			FeatureInspector fi = feature -> {
+				String id = feature.getId();
+				if (feature.getName().getLocalPart().endsWith("_Plan")) {
+					rootIds.add(id);
+					featuresAndReferenceIds.put(id, referenceIds);
+					referenceIds = new ArrayList<>();
+				}
+				else if (!"XPlanAuszug".equals(feature.getName().getLocalPart())) {
+					featuresAndReferenceIds.put(id, referenceIds);
+					referenceIds = new ArrayList<>();
+				}
+				return feature;
+			};
+			gmlStream = xPlanGmlParser.createGmlStreamReader(xmlStream, version);
+			gmlStream.addInspector(fi);
+			GmlDocumentIdContextListening idContext = new GmlDocumentIdContextListening(version.getGmlVersion());
+			idContext.setApplicationSchema(gmlStream.getAppSchema());
+			gmlStream.setIdContext(idContext);
 
-		gmlStream.addInspector(fi);
-		GmlDocumentIdContextListening idContext = new GmlDocumentIdContextListening(version.getGmlVersion());
-		idContext.setApplicationSchema(gmlStream.getAppSchema());
-		gmlStream.setIdContext(idContext);
+			FeatureCollection features = xPlanGmlParser.parseAndResolveContext(xmlStream, gmlStream);
+			if (rootIds.size() == 1) {
+				return new XPlanFeatureCollectionBuilder(Collections.singletonList(features), type)
+						.buildAllowMultipleInstances();
+			}
+			remainingFeatures = featuresAndReferenceIds.size();
 
-		FeatureCollection features = gmlStream.readFeatureCollection();
-		if (rootIds.size() == 1) {
-			return new XPlanFeatureCollectionBuilder(Collections.singletonList(features), type)
-					.buildAllowMultipleInstances();
+			List<Set<String>> featuresPerInstance = new ArrayList<>();
+			addRoots(featuresPerInstance);
+			addReferenced(featuresPerInstance);
+
+			List<FeatureCollection> featureCollections = asFeatureCollections(features, featuresPerInstance);
+			return new XPlanFeatureCollectionBuilder(featureCollections, type).buildAllowMultipleInstances();
 		}
-		remainingFeatures = featuresAndReferenceIds.size();
-
-		List<Set<String>> featuresPerInstance = new ArrayList();
-		addRoots(featuresPerInstance);
-		addReferenced(featuresPerInstance);
-
-		List<FeatureCollection> featureCollections = asFeatureCollections(features, featuresPerInstance);
-
-		return new XPlanFeatureCollectionBuilder(featureCollections, type).buildAllowMultipleInstances();
+		finally {
+			if (gmlStream != null) {
+				gmlStream.close();
+			}
+		}
 	}
 
 	private List<FeatureCollection> asFeatureCollections(FeatureCollection features,

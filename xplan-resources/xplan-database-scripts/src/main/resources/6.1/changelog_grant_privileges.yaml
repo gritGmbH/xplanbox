@@ -1,0 +1,62 @@
+###
+# #%L
+# xplan-database-scripts - Liquibase Changelogs zum Aufsetzen/Aktualisieren der Datenhaltung.
+# %%
+# Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+# %%
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# #L%
+###
+databaseChangeLog:
+#
+# THIS CHANGESET REQUIRES THAT THE PROPERTY xplan.db.user is set.
+# The property can be passed a JVM system property or as an environment variable XPLAN_DB_USER
+#
+  - preConditions:
+      - onFail: WARN
+      - changeLogPropertyDefined:
+          property: xplan.db.user
+  - property:
+      dbms: postgresql
+      name: xplan.schema_names
+      value: "inspireplu,xplan40,xplan40archive,xplan40pre,xplan41,xplan41archive,xplan41pre,xplan50,xplan50archive,xplan50pre,xplan51,xplan51archive,xplan51pre,xplan52,xplan52archive,xplan52pre,xplan53,xplan53archive,xplan53pre,xplan54,xplan54archive,xplan54pre,xplan60,xplan60archive,xplan60pre,xplanmgr,xplansyn,xplansynarchive,xplansynpre,xplanvalidator"
+  - changeSet:
+      id: grant-privileges-to-application-database-user
+      author: tfr42
+      preConditions:
+        - onError: CONTINUE
+        - onFail: CONTINUE
+        - or:
+          - not:
+              changeLogPropertyDefined:
+                property: xplan.skip_permissions
+          - not:
+              changeLogPropertyDefined:
+                property: xplan.skip_permissions
+                value: true
+      changes:
+        - sql:
+            sql: GRANT USAGE ON SCHEMA ${xplan.schema_names} TO "${xplan.db.user}";
+        - sql:
+            sql: GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA ${xplan.schema_names} TO "${xplan.db.user}";
+        - sql:
+            sql: GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA ${xplan.schema_names} TO "${xplan.db.user}";
+        - sql:
+            sql: GRANT USAGE ON SCHEMA public TO "${xplan.db.user}";
+        - sql:
+            sql: GRANT SELECT ON ALL TABLES IN SCHEMA public TO "${xplan.db.user}";
+
+
+
+

@@ -1,22 +1,22 @@
-<!--  #%L
-  xplanbox-syn - Automatisiert erzeugte Konfiguration
-  %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Affero General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+<!-- #%L
+ xplanbox-syn - Automatisiert erzeugte Konfiguration
+ %%
+ Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+ %%
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%-->
-<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 24.10.2022, 07:13:49-->
+<!--Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.03.2023, 10:57:58-->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xplan="http://www.deegree.org/xplanung/1/0" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.deegree.org/xplanung/1/0" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <element name="BP_AbgrabungsFlaeche" substitutionGroup="gml:AbstractFeature">
@@ -8458,6 +8458,7 @@
             <element name="referenziertLPObjekt" minOccurs="0" type="string"/>
             <element name="wirdReferenziertVon" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
+            <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
             <element name="nordwinkel" minOccurs="0" type="string"/>
             <element name="nordwinkelUOM" minOccurs="0" type="string"/>
@@ -8679,6 +8680,7 @@
             <element name="referenziertLPObjekt" minOccurs="0" type="string"/>
             <element name="wirdReferenziertVon" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
+            <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
             <element name="nordwinkel" minOccurs="0" type="string"/>
             <element name="nordwinkelUOM" minOccurs="0" type="string"/>
@@ -8855,6 +8857,7 @@
             <element name="referenziertLPObjekt" minOccurs="0" type="string"/>
             <element name="wirdReferenziertVon" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
+            <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
             <element name="konkretisierung" minOccurs="0" type="string"/>
             <element name="rechtscharakter" minOccurs="0" type="string"/>
@@ -9277,6 +9280,7 @@
             <element name="referenziertLPObjekt" minOccurs="0" type="string"/>
             <element name="wirdReferenziertVon" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
+            <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
             <element name="nordwinkel" minOccurs="0" type="string"/>
             <element name="nordwinkelUOM" minOccurs="0" type="string"/>
@@ -9617,6 +9621,7 @@
             <element name="referenziertLPObjekt" minOccurs="0" type="string"/>
             <element name="wirdReferenziertVon" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
+            <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
             <element name="nordwinkel" minOccurs="0" type="string"/>
             <element name="nordwinkelUOM" minOccurs="0" type="string"/>
@@ -9948,6 +9953,7 @@
             <element name="referenziertLPObjekt" minOccurs="0" type="string"/>
             <element name="wirdReferenziertVon" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
+            <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
             <element name="nordwinkel" minOccurs="0" type="string"/>
             <element name="nordwinkelUOM" minOccurs="0" type="string"/>
@@ -13426,6 +13432,19 @@
             <element name="refTextInhalt" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakter" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakterWert" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -13570,6 +13589,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -13631,6 +13663,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -13692,6 +13737,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -13756,6 +13814,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="gemeinde" minOccurs="0" type="string"/>
@@ -13820,6 +13891,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -13874,6 +13958,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -13928,6 +14025,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="textSchluessel" minOccurs="0" type="string"/>
             <element name="textSchluesselBegruendung" minOccurs="0" type="string"/>
@@ -13982,6 +14092,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="textSchluessel" minOccurs="0" type="string"/>
             <element name="textSchluesselBegruendung" minOccurs="0" type="string"/>
@@ -14032,6 +14155,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -14094,6 +14230,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="textSchluessel" minOccurs="0" type="string"/>
             <element name="textSchluesselBegruendung" minOccurs="0" type="string"/>
             <element name="rechtsverbindlich" minOccurs="0" type="string"/>
@@ -14238,6 +14387,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -14424,6 +14586,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -14493,6 +14668,19 @@
             <element name="refTextInhalt" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakter" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakterWert" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="art" minOccurs="0" type="string"/>
@@ -14537,6 +14725,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -14604,6 +14805,19 @@
             <element name="refTextInhalt" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakter" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakterWert" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -14809,6 +15023,19 @@
             <element name="refTextInhalt" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakter" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakterWert" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
           </sequence>
@@ -14846,6 +15073,19 @@
             <element name="endeBedingung" minOccurs="0" type="string"/>
             <element name="aufschrift" minOccurs="0" type="string"/>
             <element name="refTextInhalt" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>
@@ -14914,6 +15154,19 @@
             <element name="refTextInhalt" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakter" minOccurs="0" type="string"/>
             <element name="sonstRechtscharakterWert" minOccurs="0" type="string"/>
+            <element name="vonGenehmigungAusgenommen" minOccurs="0" type="boolean"/>
+            <element name="wirdAusgeglichenDurchFPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchFPSPE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPABE" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEMassnahme" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPSPEFlaeche" minOccurs="0" type="string"/>
+            <element name="wirdAusgeglichenDurchBPMassnahme" minOccurs="0" type="string"/>
+            <element name="laermkontingent" minOccurs="0" type="string"/>
+            <element name="laermkontingentGebiet" minOccurs="0" type="string"/>
+            <element name="zusatzkontingent" minOccurs="0" type="string"/>
+            <element name="zusatzkontingentFlaeche" minOccurs="0" type="string"/>
+            <element name="richtungssektorGrenze" minOccurs="0" type="string"/>
             <element name="position" type="gml:GeometryPropertyType"/>
             <element name="flaechenschluss" minOccurs="0" type="boolean"/>
             <element name="flussrichtung" minOccurs="0" type="boolean"/>

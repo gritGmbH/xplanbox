@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-validator - Modul zur Gruppierung der REST-API
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -26,21 +26,36 @@ import org.apache.http.HttpHeaders;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 public class InfoApiTest extends JerseyTest {
+
+	@ClassRule
+	public final static TemporaryFolder tempFolder = new TemporaryFolder();
+
+	@BeforeClass
+	public static void setupFakedWorkspace() throws IOException {
+		File workspace = tempFolder.newFolder("xplan-validator-wms-memory-workspace");
+		System.setProperty("DEEGREE_WORKSPACE_ROOT", workspace.getParentFile().toString());
+	}
 
 	@Override
 	protected Application configure() {
@@ -56,8 +71,8 @@ public class InfoApiTest extends JerseyTest {
 	public void verifyThat_Response_ContainsCorrectStatusCodeAndMediaType() {
 		final Response response = target("/info").request(APPLICATION_JSON).get();
 
-		assertThat(response.getStatus(), is(Response.Status.OK.getStatusCode()));
-		assertThat(response.getHeaderString(HttpHeaders.CONTENT_TYPE), is(APPLICATION_JSON));
+		assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+		assertEquals(APPLICATION_JSON, response.getHeaderString(HttpHeaders.CONTENT_TYPE));
 	}
 
 	@Test

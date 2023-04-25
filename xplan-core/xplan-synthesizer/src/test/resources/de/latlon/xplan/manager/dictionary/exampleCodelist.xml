@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+  #%L
+  xplan-synthesizer - XPlan Manager Synthesizer Komponente
+  %%
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<Dictionary   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/gml/3.2" xmlns:gml="http://www.opengis.net/gml/3.2" gml:id="Enumerationen">
+  <identifier codeSpace="urn:xplan">Enumerationen</identifier>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_Abc">
+      <description>Aufzählung verschiedener Arten von Abc.</description>
+      <identifier codeSpace="urn:xplan">XP_Abc</identifier>
+      <definitionMember>
+        <Definition gml:id="XP_Abc_1000">
+          <description>ab</description>
+          <identifier codeSpace="urn:xplan">XP_Abc:1000</identifier>
+          <name>AB</name>
+          <name codeSpace="lesbarerName">A und B</name>
+        </Definition>
+      </definitionMember>
+      <definitionMember>
+        <Definition gml:id="XP_Abc_10000">
+          <description>bc</description>
+          <identifier codeSpace="urn:xplan">XP_Abc:10000</identifier>
+          <name>BC</name>
+          <name codeSpace="lesbarerName">B und C</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+  <dictionaryEntry>
+    <DefinitionCollection gml:id="XP_Def">
+      <description />
+      <identifier codeSpace="urn:xplan">XP_Def</identifier>
+      <definitionMember>
+        <Definition gml:id="XP_Def_1000">
+          <description>de</description>
+          <identifier codeSpace="urn:xplan">XP_Def:1000</identifier>
+          <name>DE</name>
+          <name codeSpace="lesbarerName">D und E</name>
+          <name codeSpace="kuerzel">DE</name>
+        </Definition>
+      </definitionMember>
+    </DefinitionCollection>
+  </dictionaryEntry>
+</Dictionary  >

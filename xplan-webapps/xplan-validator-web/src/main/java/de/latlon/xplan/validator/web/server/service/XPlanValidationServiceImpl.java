@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-web - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,7 @@ import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.web.client.service.ValidationService;
+import de.latlon.xplan.validator.web.shared.InvalidParameterException;
 import de.latlon.xplan.validator.web.shared.ValidationException;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
@@ -83,8 +84,9 @@ public class XPlanValidationServiceImpl extends RemoteServiceServlet implements 
 
 	@Override
 	public ValidationSummary validate(ValidationSettings validationSettings)
-			throws ValidationException, IllegalArgumentException {
+			throws ValidationException, InvalidParameterException {
 		LOG.debug("Starting validation of plan with {}", validationSettings.toString());
+		ValidationUtils.validate(validationSettings);
 		try {
 			XPlan planToVerify = planArchiveManager.readPlanFromSession(session);
 			String planUuid = planToVerify.getId();

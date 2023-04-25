@@ -2,7 +2,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -32,6 +32,7 @@
         <include>data/**</include>
         <include>datasources/feature/xplansyn*</include>
         <include>datasources/tile/**</include>
+        <include>datasources/remoteows/**</include>
         <include>jdbc/xplan.xml</include>
         <include>services/wms*</include>
         <include>services/bpwms*</include>
@@ -47,6 +48,7 @@
         <include>layers/soplan*</include>
         <include>layers/planart-wms/**</include>
         <include>layers/dummyrasterlayer.ignore</include>
+        <include>layers/mapserver.ignore</include>
         <include>services/wms*</include>
         <include>themes/bplan*</include>
         <include>themes/fplan*</include>

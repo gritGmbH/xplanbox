@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-commons - xplan-api-commons
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -24,6 +24,7 @@ import de.latlon.xplan.validator.geometric.report.GeometricValidatorResult;
 import de.latlon.xplan.validator.report.ValidatorReport;
 import de.latlon.xplan.validator.semantic.report.SemanticValidatorResult;
 import de.latlon.xplan.validator.syntactic.report.SyntacticValidatorResult;
+import de.latlon.xplanbox.api.commons.v1.model.ExternalReferenceStatusEnum;
 import de.latlon.xplanbox.api.commons.v1.model.PlanInfoBbox;
 import de.latlon.xplanbox.api.commons.v1.model.RulesMetadata;
 import de.latlon.xplanbox.api.commons.v1.model.SemanticInvalidRuleResult;
@@ -38,7 +39,9 @@ import org.deegree.geometry.Envelope;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static de.latlon.xplan.validator.semantic.report.ValidationResultType.ERROR;
@@ -77,8 +80,8 @@ public class ValidationReportBuilder {
 			validationReport.date(validatorReport.getDate()).name(validatorReport.getValidationName())
 					.version(fromXPlanVersion(validatorReport.getXPlanVersion())).valid(validatorReport.isReportValid())
 					.bbox(asBBox(validatorReport.getBBoxIn4326())).filename(filename)
-					.externalReferences(externalReferences()).wmsUrl(wmsUrl).rulesMetadata(rulesMetadata())
-					.validationResult(createValidationResult());
+					.externalReferences(externalReferences()).externalReferencesResult(externalReferencesResult())
+					.wmsUrl(wmsUrl).rulesMetadata(rulesMetadata()).validationResult(createValidationResult());
 		}
 		return validationReport;
 	}
@@ -92,8 +95,21 @@ public class ValidationReportBuilder {
 	}
 
 	private List<String> externalReferences() {
-		if (validatorReport != null && validatorReport.getExternalReferenceReport() != null)
-			return validatorReport.getExternalReferenceReport().getReferences();
+		if (validatorReport != null && validatorReport.getExternalReferenceReport() != null) {
+			return validatorReport.getExternalReferenceReport().getReferencesAndStatus().keySet().stream()
+					.collect(Collectors.toList());
+		}
+		return null;
+	}
+
+	private Map<String, ExternalReferenceStatusEnum> externalReferencesResult() {
+		if (validatorReport != null && validatorReport.getExternalReferenceReport() != null) {
+			Map<String, ExternalReferenceStatusEnum> externalReferenceAndStatus = new HashMap<>();
+			validatorReport.getExternalReferenceReport().getReferencesAndStatus().forEach((name, status) -> {
+				externalReferenceAndStatus.put(name, ExternalReferenceStatusEnum.fromExternalReferenceStatus(status));
+			});
+			return externalReferenceAndStatus;
+		}
 		return null;
 	}
 

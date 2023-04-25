@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplanbox</artifactId>
-    <version>6.0-SNAPSHOT</version>
+    <version>6.1-SNAPSHOT</version>
   </parent>
 
   <build>
@@ -184,6 +184,12 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>xplan-mapserver-config</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
       <classifier>xplan-manager-workspace</classifier>
@@ -221,7 +227,7 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>xplan-workspaces</artifactId>
       <version>${project.version}</version>
-      <classifier>xplan-validator-wms-workspace</classifier>
+      <classifier>xplan-validator-wms-memory-workspace</classifier>
       <type>zip</type>
     </dependency>
     <!-- Test -->

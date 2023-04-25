@@ -2,7 +2,7 @@
  * #%L
  * xplan-inspireplu-transformation - Transformation XPlanGML nach INSPIRE PLU
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -23,9 +23,7 @@ package de.latlon.xplan.inspire.plu.transformation;
 import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xmlunit.builder.Input;
 import org.xmlunit.matchers.HasXPathMatcher;
-import org.xmlunit.matchers.ValidationMatcher;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -54,6 +52,7 @@ public class HaleCliInspirePluTransformatorTest {
 
 	private final Path haleProjectDirectory = Paths.get("/tmp/hale");
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testTransformationToPlu() throws Exception {
 		HaleCliInspirePluTransformator transformator = new HaleCliInspirePluTransformator(haleCli,

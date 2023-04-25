@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-web - Modul zur Gruppierung aller Webapps
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -70,10 +70,11 @@ public class XPlanUploadService extends RemoteServiceServlet {
 			super.service(request, response);
 		else {
 			handleMultiPart(request, response);
+
 		}
 	}
 
-	private void handleMultiPart(HttpServletRequest request, HttpServletResponse response) {
+	private void handleMultiPart(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
 		try {
 			FileItem uploadedFileItem = retrieveFirstUploadedFile(request, upload);
@@ -89,6 +90,9 @@ public class XPlanUploadService extends RemoteServiceServlet {
 			else {
 				super.service(request, response);
 			}
+		}
+		catch (IOException e) {
+			throw e;
 		}
 		catch (Exception e) {
 			LOG.error("An error occurred during uploading a plan!", e);

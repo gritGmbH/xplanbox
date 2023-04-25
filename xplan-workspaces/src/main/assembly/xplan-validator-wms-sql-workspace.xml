@@ -1,0 +1,98 @@
+<!--
+  #%L
+  xplan-workspaces - Modul zur Gruppierung aller Workspaces
+  %%
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  <id>xplan-validator-wms-sql-workspace</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace</directory>
+      <includes>
+        <include>jdbc/xplan.xml</include>
+        <include>datasources/feature/xplanvalidator.xml</include>
+        <include>services/html.gfi</include>
+      </includes>
+      <excludes>
+        <exclude>appschemas/*</exclude>
+      </excludes>
+      <outputDirectory>.</outputDirectory>
+      <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/layers/validator-wms/sql</directory>
+      <outputDirectory>layers/planart-wms/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/themes/planart-wms</directory>
+      <outputDirectory>themes/</outputDirectory>
+      <includes>
+        <include>bplan.xml</include>
+        <include>fplan.xml</include>
+        <include>lplan.xml</include>
+        <include>rplan.xml</include>
+        <include>soplan.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/services/validator-wms</directory>
+      <outputDirectory>services/</outputDirectory>
+      <filtered>true</filtered>
+      <includes>
+        <include>wms_metadata.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/services/validator-wms</directory>
+      <outputDirectory>services/</outputDirectory>
+      <filtered>false</filtered>
+      <excludes>
+        <exclude>wms_metadata.xml</exclude>
+      </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/datasources/feature/bbox_cache-xplansyn</directory>
+      <outputDirectory>datasources/feature/</outputDirectory>
+      <filtered>false</filtered>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/workspace/styles/xplansyn</directory>
+      <outputDirectory>styles/</outputDirectory>
+      <filtered>false</filtered>
+    </fileSet>
+  </fileSets>
+  <dependencySets>
+    <dependencySet>
+      <includes>
+        <include>de.latlon.product.xplanbox:xplan-schemas</include>
+      </includes>
+      <unpack>true</unpack>
+      <unpackOptions>
+        <includes>
+          <include>appschemas/XPlanGML_Syn/**</include>
+        </includes>
+      </unpackOptions>
+      <outputDirectory>/</outputDirectory>
+    </dependencySet>
+  </dependencySets>
+</assembly>

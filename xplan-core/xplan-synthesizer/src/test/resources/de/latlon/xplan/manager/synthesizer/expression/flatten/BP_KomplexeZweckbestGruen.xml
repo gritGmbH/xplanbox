@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+  #%L
+  xplan-synthesizer - XPlan Manager Synthesizer Komponente
+  %%
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<!-- reduzierte Kopie von BPlan001_6-0.zip mit erweiteter BP_KomplexeZweckbestGruen -->
+<xplan:XPlanAuszug xmlns:xplan="http://www.xplanung.de/xplangml/6/0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wfs="http://www.opengis.net/wfs" gml:id="GML_c0490d13-8f76-4583-b348-56957aad0813" xsi:schemaLocation="http://www.xplanung.de/xplangml/6/0 https://repository.gdi-de.org/schemas/de.xleitstelle.xplanung/6.0/XPlanung-Operationen.xsd">
+  <gml:boundedBy>
+    <gml:Envelope srsName="EPSG:25832">
+      <gml:lowerCorner>564984.128 5940442.486</gml:lowerCorner>
+      <gml:upperCorner>565072.441 5940522.630</gml:upperCorner>
+    </gml:Envelope>
+  </gml:boundedBy>
+  <gml:featureMember>
+    <xplan:BP_Plan gml:id="GML_bf2168c4-c292-4340-bc50-7a2aa2cab5be">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>564984.128 5940442.486</gml:lowerCorner>
+          <gml:upperCorner>565072.441 5940522.630</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:name>BPlan001_6-0</xplan:name>
+      <xplan:beschreibung>Testdaten</xplan:beschreibung>
+      <xplan:technHerstellDatum>2021-07-01</xplan:technHerstellDatum>
+      <xplan:wurdeGeaendertVonPlanBereich>
+        <xplan:XP_VerbundenerPlanBereich>
+          <xplan:planName>Testplan_Aend</xplan:planName>
+          <xplan:aenderungsArt>10001</xplan:aenderungsArt>
+          <xplan:aenderungsdatum>2018-04-03</xplan:aenderungsdatum>
+          <xplan:bereichNummer>0</xplan:bereichNummer>
+        </xplan:XP_VerbundenerPlanBereich>
+      </xplan:wurdeGeaendertVonPlanBereich>
+      <xplan:erstellungsMassstab>1000</xplan:erstellungsMassstab>
+      <xplan:raeumlicherGeltungsbereich>
+        <gml:MultiSurface srsName="EPSG:25832" gml:id="GML_a4b76c05-e841-441f-9284-0d28c0bd2502">
+          <gml:surfaceMember>
+            <gml:Polygon srsName="EPSG:25832" gml:id="GML_63208495-2dad-4690-a072-f31868f7eece">
+              <gml:exterior>
+                <gml:LinearRing>
+                  <gml:posList srsDimension="2" count="5">564984.128 5940442.486 565072.441 5940442.486 565072.441 5940522.630 564984.128 5940522.630 564984.128 5940442.486 </gml:posList>
+                </gml:LinearRing>
+              </gml:exterior>
+            </gml:Polygon>
+          </gml:surfaceMember>
+        </gml:MultiSurface>
+      </xplan:raeumlicherGeltungsbereich>
+      <xplan:gemeinde>
+        <xplan:XP_Gemeinde>
+          <xplan:ags>02000000</xplan:ags>
+          <xplan:gemeindeName>Freie und Hansestadt Hamburg</xplan:gemeindeName>
+        </xplan:XP_Gemeinde>
+      </xplan:gemeinde>
+      <xplan:planArt>10002</xplan:planArt>
+      <xplan:rechtsstand>3000</xplan:rechtsstand>
+      <xplan:veraenderungssperre>
+        <xplan:BP_VeraenderungssperreDaten>
+          <xplan:startDatum>2021-07-02</xplan:startDatum>
+          <xplan:endDatum>2021-08-01</xplan:endDatum>
+          <xplan:verlaengerung>1000</xplan:verlaengerung>
+        </xplan:BP_VeraenderungssperreDaten>
+      </xplan:veraenderungssperre>
+      <xplan:staedtebaulicherVertrag>false</xplan:staedtebaulicherVertrag>
+      <xplan:erschliessungsVertrag>false</xplan:erschliessungsVertrag>
+      <xplan:durchfuehrungsVertrag>false</xplan:durchfuehrungsVertrag>
+      <xplan:gruenordnungsplan>false</xplan:gruenordnungsplan>
+      <xplan:bereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+    </xplan:BP_Plan>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_Bereich gml:id="GML_95a8b21b-8754-4350-9041-213259262fd8">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>564984.128 5940442.486</gml:lowerCorner>
+          <gml:upperCorner>565072.441 5940511.714</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:nummer>1</xplan:nummer>
+      <xplan:planinhalt xlink:href="#GML_fa0eea57-ebb1-4d50-b205-95865d6b9284" />
+      <xplan:verfahren>1000</xplan:verfahren>
+      <xplan:gehoertZuPlan xlink:href="#GML_bf2168c4-c292-4340-bc50-7a2aa2cab5be" />
+    </xplan:BP_Bereich>
+  </gml:featureMember>
+  <gml:featureMember>
+    <xplan:BP_GruenFlaeche gml:id="GML_fa0eea57-ebb1-4d50-b205-95865d6b9284">
+      <gml:boundedBy>
+        <gml:Envelope srsName="EPSG:25832">
+          <gml:lowerCorner>564984.128 5940468.040</gml:lowerCorner>
+          <gml:upperCorner>565042.005 5940522.630</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <xplan:ebene>0</xplan:ebene>
+      <xplan:gehoertZuBereich xlink:href="#GML_95a8b21b-8754-4350-9041-213259262fd8" />
+      <xplan:rechtscharakter>1000</xplan:rechtscharakter>
+      <xplan:position>
+        <gml:Polygon srsName="EPSG:25832" gml:id="GML_1c92b1db-bd5f-478c-a034-3b5e7bf9a81f">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList srsDimension="2" count="5">565042.005 5940522.630 564984.128 5940522.630 564984.128 5940468.040 565022.175 5940504.055 565042.005 5940522.630 </gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </xplan:position>
+      <xplan:flaechenschluss>true</xplan:flaechenschluss>
+      <xplan:zweckbestimmung>
+        <xplan:BP_KomplexeZweckbestGruen>
+          <xplan:allgemein>2700</xplan:allgemein>
+          <xplan:detail>1000</xplan:detail>
+          <xplan:textlicheErgaenzung>Textliche Ergänzung</xplan:textlicheErgaenzung>
+          <xplan:aufschrift>Grüne Hölle</xplan:aufschrift>
+        </xplan:BP_KomplexeZweckbestGruen>
+      </xplan:zweckbestimmung>
+      <xplan:nutzungsform>2000</xplan:nutzungsform>
+    </xplan:BP_GruenFlaeche>
+  </gml:featureMember>
+</xplan:XPlanAuszug>

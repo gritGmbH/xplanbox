@@ -3,7 +3,7 @@
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -19,7 +19,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #L%
   -->
-<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 24.10.2022, 07:13:49 -->
+<!-- Diese Datei wird automatisiert generiert! Aenderungen sollten nicht manuell vorgenommen werden! Datei wurde generiert am 15.03.2023, 10:57:58 -->
 <html>
   <head>
     <title>XPlanWMS Sachdatenanzeige</title>
@@ -29,6 +29,7 @@
   <body>
     <script>
         var WMS_URL = "http://localhost:8080/xplan-wms";
+        var S3_URL;
 
         window.onload = function () {
           updateComplexProperties();
@@ -64,6 +65,7 @@
           var referenzRows = document.getElementsByClassName('referenz');
           for(var i = 0; i < referenzRows.length; i++) {
             var referenzRow = referenzRows[i];
+            var xPlanMgrId = retrieveXPlanMgrId(referenzRow);
             var referenzKey = referenzRow.getElementsByTagName("td")[0];
             var referenzProperty = referenzRow.getElementsByTagName("td")[1].getElementsByTagName("a")[0];
             var indexOfPipe = referenzKey.innerText.indexOf('|');
@@ -71,10 +73,10 @@
               var newKey = referenzKey.innerText.substring( indexOfPipe + 1, referenzKey.innerText.length ).trim();
               var newReferenz = referenzKey.innerText.substring( 0, indexOfPipe ).trim();
               referenzKey.innerText = newKey;
-              replaceReferenz(newReferenz, referenzProperty);
+              replaceReferenz(newReferenz, referenzProperty, xPlanMgrId);
             } else {
               referenzKey.innerText = "Externe Referenz";
-              replaceReferenz(referenzKey.innerText, referenzProperty);
+              replaceReferenz(referenzKey.innerText, referenzProperty, xPlanMgrId);
             }
           }
         }
@@ -82,33 +84,54 @@
         function updateExterneReferenz(){
           var extRefProperties = document.getElementsByClassName('externeReferenzProperty');
           for(var i = 0; i < extRefProperties.length; i++) {
-            var indexOfPipe = extRefProperties[i].innerText.indexOf('|');
+            var extRefProperty = extRefProperties[i];
+            var xPlanMgrId = retrieveXPlanMgrId(extRefProperty.parentNode.parentNode);
+            var indexOfPipe = extRefProperty.innerText.indexOf('|');
             if( indexOfPipe > 0 ) {
-               var referenz = extRefProperties[i].innerText.substring( 0, indexOfPipe ).trim();
-               var label = extRefProperties[i].innerText.substring( indexOfPipe + 1, extRefProperties[i].innerText.length ).trim();
-               replaceReferenzAndLinkText(referenz, label, extRefProperties[i]);
+               var referenz = extRefProperty.innerText.substring( 0, indexOfPipe ).trim();
+               var label = extRefProperty.innerText.substring( indexOfPipe + 1, extRefProperty.innerText.length ).trim();
+               replaceReferenzAndLinkText(referenz, label, extRefProperty, xPlanMgrId);
             } else {
-              replaceReferenzAndLinkText(extRefProperties[i].href, extRefProperties[i].href, extRefProperties[i]);
+              replaceReferenzAndLinkText(extRefProperty.href, extRefProperty.href, extRefProperty, xPlanMgrId);
             }
           }
         }
 
-        function replaceReferenzAndLinkText(referenz, label, referenzProperty){
+        function replaceReferenzAndLinkText(referenz, label, referenzProperty, xPlanMgrId){
           if(referenz.startsWith('http')){
             referenzProperty.href = referenz;
             referenzProperty.innerText = label;
           } else {
-            referenzProperty.href = WMS_URL + referenz;
+            referenzProperty.href = createLink(referenz, xPlanMgrId);
             referenzProperty.innerText = label;
           }
         }
 
-        function replaceReferenz(referenz, referenzProperty){
+        function replaceReferenz(referenz, referenzProperty, xPlanMgrId){
           if(referenz.startsWith('http')){
             referenzProperty.href = referenz;
           } else {
-            referenzProperty.href = WMS_URL + referenz;
+            referenzProperty.href = createLink(referenz, xPlanMgrId);
           }
+        }
+
+        function createLink(referenz, xPlanMgrId){
+            if(S3_URL){
+                var filename = referenz.substring( referenz.indexOf('&filename=') +10, referenz.length );
+                return S3_URL + "/" + xPlanMgrId + "_" + filename;
+            }
+            return WMS_URL + referenz;
+        }
+
+        function retrieveXPlanMgrId(trNode){
+            var prevSib = trNode.previousElementSibling;
+            if (prevSib ) {
+              if (prevSib.className == 'xplanMgrPlanId'){
+                return prevSib.firstChild.innerText;
+              }
+              return retrieveXPlanMgrId(prevSib);
+            }
+            return null;
         }
 
         function replaceLinks(text){
@@ -135,6 +158,7 @@
       </td>
 </tr>
 <?property not(wirdDargestelltDurch,gmlId,flaechenteil,gehoert*,begrenzungslinie,uuid,wmsSortDate,praesentationsobjekt,raster*,ref*,externeReferenz,gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,texte,begruendungsTexte,*Komplex,*KomplexWert,abbaugut,abfallTyp,abweichendeBauweise,abweichungBauNVO,achsenTyp,allgArtDerBaulNutzung,allgemeinerTyp,art,artDerFestlegung,auspraegung,baumArt,bauweise,bebauungRueckwaertigeGrenze,bebauungSeitlicheGrenze,bebauungVordereGrenze,bebauungsArt,bedeutsamkeit,bedeutung,bergbauplanungTyp,besondereArtDerBaulNutzung,besondereArtDerFestlegung,besondereZweckbestimmung,besondererTyp,betreten,bioVStandortFeuchte,bioVerbundsystemArt,bundesland,dachform,detailArtDerFestlegung,detailGesetzlGeschBiotopLR,detailMassnahme,detailTyp,detailZweckbestimmung,detaillierteArtDerBaulNutzung,detaillierteDachform,detaillierteFunktion,detaillierteSondernutzung,detaillierteTechnVorkehrung,detaillierteZweckbestimmung,eigentumsart,einteilung,folgenutzung,funktion,gebietsArt,gebietsTyp,gegenstand,gesetzlGeschBiotop,gesetzlicheGrundlage,grund,horizontaleAusrichtung,knotenpunkt,laermpegelbereich,laermschutzzone,massnahme,massnahmentyp,nutzung,nutzungsform,pflanzart,planArt,planTyp,planungsEbene,primaerenergieTyp,raumkonkretisierung,rechtlicheGrundlage,rechtlicheSicherung,rechtscharakter,rechtsstand,rechtsstandGebiet,rechtsstandSchG,regelung,rohstoffTyp,schutzzone,sonderNutzung,sondernutzung,sonstGebietsArt,sonstLaermpegelbereich,sonstPlanArt,sonstRechtscharakter,sonstRechtsstandGebiet,sonstTyp,sonstigerTyp,spannung,spezifischePraegung,spezifischerTyp,status,stylesheetId,technVorkehrung,tiefe,traeger,typ,typAE,typAW,typErholung,typTourismus,umsetzungsstand,verfahren,verlaengerung,verlaengerungVeraenderungssperre,versionBauNVO,vertikaleAusrichtung,weitereBesondZweckbestimmung1,weitereBesondZweckbestimmung2,weitereBesondZweckbestimmung3,weitereBesondZweckbestimmung4,weitereBesondZweckbestimmung5,weitereDetailFunktion1,weitereDetailFunktion2,weitereDetailZweckbestimmung1,weitereDetailZweckbestimmung2,weitereDetailZweckbestimmung3,weitereDetailZweckbestimmung4,weitereDetailZweckbestimmung5,weitereFunktion1,weitereFunktion2,weitereZweckbestimmung,weitereZweckbestimmung1,weitereZweckbestimmung2,weitereZweckbestimmung3,weitereZweckbestimmung4,weitereZweckbestimmung5,wohnnutzungEGStrasse,zeitstufe,ziel,zieleErfordernisseMassnahmen,zone,zulaessigkeit,zweckbestimmung):property>
+<?property xplanMgrPlanId:xplanMgrPlanIdproperty>
 <?property externeReferenz:externeReferenzProperty>
 <?property gemeinde,hoehenangabe,aendert,wurdeGeaendertVon,dachgestaltung,*KomplexWert:complexproperty>
 <?property texte,begruendungsTexte,refBegruendungInhalt,refTextInhalt:texteproperty>
@@ -146,6 +170,7 @@
             <tr>
                 <td colspan="2" style="border: solid white 0px;"><strong>Weiterf&uuml;hrende Informationen/Links:</strong></td>
             </tr>
+            <?property xplanMgrPlanId:xplanMgrPlanIdproperty>
             <?property raster*,refBegruendung,refBeschluss,refBeschreibung,refErlaeuterung,refExternalCodeList,refGebaedequerschnitt,refGebaeudequerschnitt,refGruenordnungsplan,refGrundstuecksverzeichnis,refKoordinatenListe,refLandschaftsplan,refLegende,reflegendenBild,refMassnahmenText,refPflanzliste,refPlangrundlage,refRechtsplan,refSatzung,refScan,refText,refUmweltbericht,externeReferenz:makeitalink>
         </table>
     </td>
@@ -160,6 +185,9 @@
     <a target="_blank" href="<?value>">Dokument herunterladen</a>
   </td>
 </tr>
+
+<?template xplanMgrPlanIdproperty>
+<tr class='xplanMgrPlanId' style="display: none;"><td><?value:map propvalue></td></tr>
 
 <?template property>
 <tr>
@@ -967,7 +995,14 @@ wertUOM=Wert (Einheit)
 winkel=Winkel
 winkelUOM=Winkel (Einheit)
 wirdAusgeglichenDurchABE=Wird ausgeglichen durch ABE
+wirdAusgeglichenDurchBPABE=wirdAusgeglichenDurchBPABE
+wirdAusgeglichenDurchBPFlaeche=wirdAusgeglichenDurchBPFlaeche
+wirdAusgeglichenDurchBPMassnahme=wirdAusgeglichenDurchBPMassnahme
+wirdAusgeglichenDurchBPSPEFlaeche=wirdAusgeglichenDurchBPSPEFlaeche
+wirdAusgeglichenDurchBPSPEMassnahme=wirdAusgeglichenDurchBPSPEMassnahme
 wirdAusgeglichenDurchFlaeche=Wird ausgeglichen durch Fl&auml;che
+wirdAusgeglichenDurchFPFlaeche=wirdAusgeglichenDurchFPFlaeche
+wirdAusgeglichenDurchFPSPE=wirdAusgeglichenDurchFPSPE
 wirdAusgeglichenDurchMassnahme=Wird ausgeglichen durch Ma&szlig;nahme
 wirdAusgeglichenDurchSPE=Wird ausgeglichen durch SPE
 wirdAusgeglichenDurchSPEFlaeche=Wird ausgeglichen durch SPE Fl&auml;che

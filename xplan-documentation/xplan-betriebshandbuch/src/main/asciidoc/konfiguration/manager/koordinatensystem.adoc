@@ -1,27 +1,30 @@
-[[standard-crs-import]]
-=== Standard-Koordinatenreferenzsystem (Import)
+[[standard-crs]]
+=== Standard-Koordinatenreferenzsystem
 
-[[vektordaten]]
+Die von der xPlanBox unterstützten Koordinatenreferenzsysteme können wie folgt konfiguriert werden.
+
+[[crs-vektordaten]]
 ==== Vektordaten
 
-Die nachfolgenden Konfigurationen müssen in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ angepasst werden.
+Für den Dialog beim Import eines Plans über den XPlanManagerWeb kann die Anzeige des Standard-Koordinatenreferenzsystems über die nachfolgenden Konfigurationen in der Datei _<XPLANBOX_CONFIG>/managerWebConfiguration.properties_ angepasst werden.
 
 Das Standard-Koordinatenreferenzsystem kann über den Schlüssel
 _defaultCrs_ konfiguriert werden:
 
+[source,properties]
 ----
 defaultCrs=EPSG:25832
 ----
 
-Der Benutzer kann ein weiteres Koordinatenreferenzsystem aus einer Liste
-auswählen. Die Koordinatenreferenzsystem können über den Schlüssel
+Damit der Benutzer ein weiteres Koordinatenreferenzsystem aus einer Liste auswählen kann, muss dieses konfiguriert werden. Die zusätzlich unterstützten Koordinatenreferenzsysteme können über den Schlüssel
 _chooseCrs_ konfiguriert werden:
 
+[source,properties]
 ----
 chooseCrs=EPSG:4326,EPSG:25833,EPSG:31466,EPSG:31467,EPSG:31468,EPSG:31469
 ----
 
-[[rasterdaten]]
+[[crs-rasterdaten]]
 ==== Rasterdaten
 
 Die nachfolgende Konfiguration muss in der Datei _<XPLANBOX_CONFIG>/managerConfiguration.properties_ angepasst werden.
@@ -29,6 +32,28 @@ Die nachfolgende Konfiguration muss in der Datei _<XPLANBOX_CONFIG>/managerConfi
 Das Standard-Koordinatenreferenzsystem kann über den Schlüssel
 _rasterConfigurationCrs_ konfiguriert werden:
 
+[source,properties]
 ----
-rasterConfigurationCrs=epsg:25832
+rasterConfigurationCrs=EPSG:25832
 ----
+
+[[crs-featurestore]]
+==== Ändern des Koordinatenreferenzsystems
+
+Als Vorgabewert für das Standard-Koordinatenreferenzsystem wird EPSG:25832 in allen Konfigurationsdateien gesetzt. Wenn das Standard-Koordinatenreferenzsystem der Datenhaltung geändert werden soll, dann ist eine Anpassung sowohl der Konfiguration für <<crs-vektordaten>> und <<crs-rasterdaten>> als auch eine Anpassung an den Konfigurationsdateien für die SQLFeatureStore und der XPlanDB erforderlich.
+
+Um die Datenhaltung der XPlanDB z. B. auf EPSG:25833 umzustellen müssen in allen SQLFeatureStore-Dateien die Angabe des `StorageCRS` und der Angabe des PostGIS `srid` wie folgt angepasst werden:
+
+[source,xml]
+----
+ <StorageCRS srid="25833" dim="2D">EPSG:25833</StorageCRS>
+----
+
+Um die notwendigen Änderungen auch an der XPlanDB vorzunehmen, müssen für alle Geometrie-Spalten der XPlanDB das PostGIS `srid` gesetzt werden.
+
+Hier am Beispiel für das Schema `xplan60` für die Spalte `bbox` der Tabelle `feature_types`:
+----
+SELECT UpdateGeometrySRID('xplan60','feature_types','bbox',25833);
+----
+
+NOTE: Die vollständige Liste der Geometrie-Spalten der XPlanDB finden sie in den mitgelieferten Skripten zum Aufsetzen der XPlanDB, siehe Kapitel <<konfiguration-der-datenbank>>.

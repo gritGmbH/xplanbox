@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
   #%L
   xplan-workspaces - Modul zur Gruppierung aller Workspaces
   %%
-  Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
   %%
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Affero General Public License as published by
@@ -21,15 +21,28 @@
   -->
 
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Dr. Joachim Benner (FZK/IAI) -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-flat-20030114.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" width="100%" height="100%" viewBox="-4. -4. 8 8">
-	<defs>
-		<style type="text/css">
+
+<svg
+   width="100%"
+   height="100%"
+   viewBox="-4. -4. 8 8"
+   version="1.1"
+   id="svg11"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs7">
+    <style
+       type="text/css"
+       id="style2">
 .SchwarzGefuellt {fill:black; stroke:none; }
 </style>
-		<symbol id="SymbolEinfahrtsbereichAnfang" overflow="visible">
-			<path class="SchwarzStrich" d="M -2 0 L 0 0L 0 2 Z"/>
-		</symbol>
-	</defs>
-	<use xlink:href="#SymbolEinfahrtsbereichAnfang"/>
+  </defs>
+  <g
+     id="use9">
+    <path
+       class="SchwarzStrich"
+       d="M -2,0 H 0 V 2 Z"
+       id="path15" />
+  </g>
 </svg>

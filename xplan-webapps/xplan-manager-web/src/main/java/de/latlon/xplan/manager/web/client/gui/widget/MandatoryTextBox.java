@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +23,7 @@ package de.latlon.xplan.manager.web.client.gui.widget;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.user.client.ui.TextBox;
 import de.latlon.xplan.manager.web.client.i18n.XPlanWebMessages;
 
@@ -37,7 +38,14 @@ public class MandatoryTextBox extends TextBox implements Validable {
 
 	private static final XPlanWebMessages MESSAGES = GWT.create(XPlanWebMessages.class);
 
-	public MandatoryTextBox() {
+	private String pattern;
+
+	private int maxLength;
+
+	public MandatoryTextBox(String pattern, int maxLength) {
+		this.pattern = pattern;
+		this.maxLength = maxLength;
+		setTitle(MESSAGES.textPatternTooltip(pattern, maxLength));
 		addValueChangeHandler(new ValueChangeHandler<String>() {
 			@Override
 			public void onValueChange(ValueChangeEvent<String> event) {
@@ -69,13 +77,31 @@ public class MandatoryTextBox extends TextBox implements Validable {
 		reset();
 		String value = super.getText();
 		if (value != null && value.length() > 0) {
-			return value;
+			if (isValidAgainstPatternAndLength(value)) {
+				setTitle(MESSAGES.textPatternTooltip(pattern, maxLength));
+				return value;
+			}
+			else {
+				addStyleName(EDITOR_VALIDATION_ERROR);
+				setTitle(MESSAGES.editInvalidAgainstPatternOrLengthInput(pattern, maxLength));
+				return null;
+			}
 		}
 		else {
 			addStyleName(EDITOR_VALIDATION_ERROR);
 			setTitle(MESSAGES.editInputRequired());
 			return null;
 		}
+	}
+
+	private boolean isValidAgainstPatternAndLength(String value) {
+		if (value == null || "".equals(value))
+			return true;
+		if (maxLength > 0 && value.length() > maxLength) {
+			return false;
+		}
+		RegExp regExp = RegExp.compile(pattern);
+		return regExp.test(value);
 	}
 
 	private void reset() {

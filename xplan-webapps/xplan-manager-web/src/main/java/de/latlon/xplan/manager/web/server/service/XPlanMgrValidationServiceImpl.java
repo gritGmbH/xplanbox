@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -27,7 +27,10 @@ import de.latlon.xplan.validator.XPlanValidator;
 import de.latlon.xplan.validator.report.ReportGenerationException;
 import de.latlon.xplan.validator.report.ReportWriter;
 import de.latlon.xplan.validator.report.ValidatorReport;
+import de.latlon.xplan.validator.report.reference.ExternalReferenceStatus;
 import de.latlon.xplan.validator.web.client.service.ValidationService;
+import de.latlon.xplan.validator.web.server.service.ValidationUtils;
+import de.latlon.xplan.validator.web.shared.InvalidParameterException;
 import de.latlon.xplan.validator.web.shared.ValidationException;
 import de.latlon.xplan.validator.web.shared.ValidationSettings;
 import de.latlon.xplan.validator.web.shared.ValidationSummary;
@@ -82,7 +85,8 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
 
 	@Override
 	public ValidationSummary validate(ValidationSettings validationSettings)
-			throws ValidationException, IllegalArgumentException {
+			throws ValidationException, IllegalArgumentException, InvalidParameterException {
+		ValidationUtils.validate(validationSettings);
 		try {
 			XPlan planToVerify = archiveManager.retrieveRequiredPlanFromSession(session);
 			File archive = archiveManager.readArchiveFromFilesystem(planToVerify);
@@ -119,6 +123,11 @@ public class XPlanMgrValidationServiceImpl extends RemoteServiceServlet implemen
 		planToVerify.setValidated(true);
 		planToVerify.setValid(report.isReportValid());
 		planToVerify.setHasMultipleXPlanElements(report.hasMultipleXPlanElements());
+		boolean hasUnresolvedReferences = false;
+		if (report.getExternalReferenceReport() != null)
+			hasUnresolvedReferences = report.getExternalReferenceReport().getReferencesAndStatus()
+					.containsValue(ExternalReferenceStatus.MISSING);
+		planToVerify.setHasUnresolvedReferences(hasUnresolvedReferences);
 	}
 
 }

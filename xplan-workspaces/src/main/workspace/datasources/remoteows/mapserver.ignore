@@ -1,0 +1,7 @@
+<RemoteWMS xmlns="http://www.deegree.org/remoteows/wms" configVersion="3.4.0">
+  <CapabilitiesDocumentLocation
+          location="http://localhost:8080/mapserver?request=GetCapabilities&amp;service=WMS&amp;version=1.1.1"/>
+  <ConnectionTimeout>10</ConnectionTimeout>
+  <RequestTimeout>60</RequestTimeout>
+</RemoteWMS>
+

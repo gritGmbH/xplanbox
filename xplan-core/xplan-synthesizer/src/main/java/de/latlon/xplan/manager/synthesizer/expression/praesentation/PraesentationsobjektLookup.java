@@ -2,24 +2,25 @@
  * #%L
  * xplan-synthesizer - XPlan Manager Synthesizer Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
  */
 package de.latlon.xplan.manager.synthesizer.expression.praesentation;
 
+import de.latlon.xplan.manager.synthesizer.PlanContext;
 import de.latlon.xplan.manager.synthesizer.expression.Expression;
 import de.latlon.xplan.manager.synthesizer.expression.Xpath;
 import de.latlon.xplan.manager.synthesizer.expression.praesentation.attribute.AttributeProperty;
@@ -57,10 +58,11 @@ public abstract class PraesentationsobjektLookup implements Expression {
 	}
 
 	@Override
-	public TypedObjectNode evaluate(Feature feature, FeatureCollection features) {
-		Feature referencedFeature = resolveDientZurDarstellungVon(feature, features);
-		List<AttributeProperty> attributeProperty = parseArtProperties(feature, features, referencedFeature);
-		return evaluate(feature, features, referencedFeature, attributeProperty);
+	public TypedObjectNode evaluate(Feature feature, FeatureCollection features, PlanContext planContext) {
+		Feature referencedFeature = resolveDientZurDarstellungVon(feature, features, planContext);
+		List<AttributeProperty> attributeProperty = parseArtProperties(feature, features, planContext,
+				referencedFeature);
+		return evaluate(feature, features, planContext, referencedFeature, attributeProperty);
 	}
 
 	/**
@@ -68,6 +70,7 @@ public abstract class PraesentationsobjektLookup implements Expression {
 	 * @param feature feature to operate on, must not be <code>null</code>
 	 * @param features the feature collection the feature is part of, must not be
 	 * <code>null</code>
+	 * @param planContext
 	 * @param referencedFeature the feature referenced by "dientZurDarstellungVon", may be
 	 * <code>null</code> if not available
 	 * @param attributeProperty the parsed "art" attribute, may be <code>null</code> if
@@ -75,11 +78,13 @@ public abstract class PraesentationsobjektLookup implements Expression {
 	 * @return expression value, suitable as property value, can be <code>null</code> (no
 	 * value, omit property)
 	 */
-	protected abstract TypedObjectNode evaluate(Feature feature, FeatureCollection features, Feature referencedFeature,
-			List<AttributeProperty> attributeProperty);
+	protected abstract TypedObjectNode evaluate(Feature feature, FeatureCollection features, PlanContext planContext,
+			Feature referencedFeature, List<AttributeProperty> attributeProperty);
 
-	private Feature resolveDientZurDarstellungVon(Feature feature, FeatureCollection features) {
-		TypedObjectNode dientZurDarstellungVonProperty = dientZurDarstellungVonXPath.evaluate(feature, features);
+	private Feature resolveDientZurDarstellungVon(Feature feature, FeatureCollection features,
+			PlanContext planContext) {
+		TypedObjectNode dientZurDarstellungVonProperty = dientZurDarstellungVonXPath.evaluate(feature, features,
+				planContext);
 		if (dientZurDarstellungVonProperty instanceof GenericProperty) {
 			List<TypedObjectNode> children = ((GenericProperty) dientZurDarstellungVonProperty).getChildren();
 			if (!children.isEmpty() && children.get(0) instanceof FeatureReference)
@@ -92,11 +97,13 @@ public abstract class PraesentationsobjektLookup implements Expression {
 	}
 
 	private List<AttributeProperty> parseArtProperties(Feature feature, FeatureCollection features,
-			Feature referencedFeature) {
+			PlanContext planContext, Feature referencedFeature) {
 		if (referencedFeature == null)
 			return null;
-		TypedObjectNodeArray<TypedObjectNode> artProperties = castToArray(artXPath.evaluate(feature, features));
-		TypedObjectNodeArray<TypedObjectNode> indexProperties = castToArray(indexXPath.evaluate(feature, features));
+		TypedObjectNodeArray<TypedObjectNode> artProperties = castToArray(
+				artXPath.evaluate(feature, features, planContext));
+		TypedObjectNodeArray<TypedObjectNode> indexProperties = castToArray(
+				indexXPath.evaluate(feature, features, planContext));
 		if (artProperties != null)
 			return attributePropertyParser.parseAttributeProperties(referencedFeature, artProperties, indexProperties);
 		return null;

@@ -13,6 +13,8 @@ Dafür müssen die folgenden Schritte ausgeführt werden:
  .. _.deegree/xplan-wfs-workspace/jdbc/xplan.xml_
  .. _.deegree/xplansyn-wfs-workspace/jdbc/xplan.xml_
  .. _.deegree/xplansyn-wms-workspace/jdbc/xplan.xml_
+. Anpassen der Datenbank-Verbindungen im XPlanValidatorWMS, wenn die persistente Datenhaltung verwendet wird (siehe <<konfiguration-xplanvalidatorwms>>)
+.. _.deegree/xplan-validator-wms-sql-workspace/jdbc/xplan.xml_
 
 [[aufsetzen-plu-db-schema]]
 ==== Manuelles Aufsetzen der Datenbank für die Bereitstellung von INSPIRE PLU

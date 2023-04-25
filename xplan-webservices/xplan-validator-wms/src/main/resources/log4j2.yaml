@@ -2,7 +2,7 @@
 # #%L
 # xplan-validator-wms - XPlanValidatorWMS
 # %%
-# Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+# Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
 # %%
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -21,36 +21,17 @@
 Configuration:
   name: XPlanValidatorWMS
   status: warn
-  Properties:
-    Property:
-      - name: log.file
-        value: xplan-validator-wms.log
-      - name: log.path
-        value: ${sys:catalina.base:-.}/logs
   Appenders:
     Console:
       name: STDOUT
       target: SYSTEM_OUT
       PatternLayout:
         Pattern: "%d %p %C{1.} [%t] %m%n"
-    RollingFile:
-      name: RollingFile_Appender
-      fileName: ${log.path}/${log.file}
-      filePattern: ${log.path}/${log.file}.%d{yyyy-MM-dd-hh-mm}
-      PatternLayout:
-        pattern: "%d %p %C{1.} [%t] %m%n"
-      Policies:
-        SizeBasedTriggeringPolicy:
-          size: 100 MB
-      DefaultRollOverStrategy:
-        max: 5
   Loggers:
     Root:
       level: info
       AppenderRef:
         - ref: STDOUT
-          level: warn
-        - ref: RollingFile_Appender
           level: info
     Logger:
       - name: org.deegree

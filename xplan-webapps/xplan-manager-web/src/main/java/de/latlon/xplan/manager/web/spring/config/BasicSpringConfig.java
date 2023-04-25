@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -30,10 +30,23 @@ import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.document.XPlanDocumentManager;
+import de.latlon.xplan.manager.document.config.DocumentStorageContext;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
+import de.latlon.xplan.manager.storage.StorageCleanUpManager;
+import de.latlon.xplan.manager.storage.config.StorageCleanUpContext;
+import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
+import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.server.service.ManagerReportProvider;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
+import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
+import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.RasterEvaluation;
+import de.latlon.xplan.manager.wmsconfig.raster.evaluation.XPlanRasterEvaluator;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
+import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
 import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import de.latlon.xplan.manager.workspace.WorkspaceReloader;
@@ -61,6 +74,7 @@ import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import org.deegree.commons.config.DeegreeWorkspace;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import java.io.IOException;
@@ -80,11 +94,14 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.instantiateWorksp
 import static java.nio.file.Paths.get;
 
 /**
- * Basic XPlanManagerWeb Application Configuration.
+ * Spring Application Context for initialising XPlanManagerWeb components.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
+ * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
+@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class, DocumentStorageContext.class,
+		StorageCleanUpContext.class })
 public class BasicSpringConfig {
 
 	private static final String RULES_DIRECTORY = "/rules";
@@ -178,16 +195,30 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public XPlanManager xPlanManager(XPlanDao xPlanDao, XPlanArchiveCreator archiveCreator,
-			ManagerWorkspaceWrapper managerWorkspaceWrapper, WorkspaceReloader workspaceReloader,
-			Optional<InspirePluTransformator> inspirePluTransformator, WmsWorkspaceWrapper wmsWorkspaceWrapper)
-			throws Exception {
-		return new XPlanManager(xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper);
+	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			WorkspaceReloader workspaceReloader, Optional<InspirePluTransformator> inspirePluTransformator,
+			WmsWorkspaceWrapper wmsWorkspaceWrapper, XPlanRasterEvaluator xPlanRasterEvaluator,
+			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
+			StorageCleanUpManager storageCleanUpManager) throws Exception {
+		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
+				xPlanDocumentManager.orElse(null), storageCleanUpManager);
 	}
 
 	@Bean
-	public InternalIdRetriever internalIdRetriever(ManagerConfiguration managerConfiguration) throws Exception {
+	public XPlanRasterEvaluator xPlanRasterEvaluator(RasterEvaluation rasterEvaluation) {
+		return new XPlanRasterEvaluator(rasterEvaluation);
+	}
+
+	@Bean
+	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
+			throws WorkspaceException {
+		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
+	}
+
+	@Bean
+	public InternalIdRetriever internalIdRetriever(ManagerConfiguration managerConfiguration) {
 		return new InternalIdRetriever(managerConfiguration.getInternalIdRetrieverConfiguration());
 	}
 
@@ -272,8 +303,18 @@ public class BasicSpringConfig {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
 		if (validationRulesDirectory != null)
 			return validationRulesDirectory;
-		URI rulesPath = BasicSpringConfig.class.getResource(RULES_DIRECTORY).toURI();
+		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
+	}
+
+	@Bean
+	public XPlanSynthesizer xPlanSynthesizer(SynRulesAccessor synRulesAccessor) {
+		return new XPlanSynthesizer(synRulesAccessor);
+	}
+
+	@Bean
+	public SynRulesAccessor synRulesAccessor() {
+		return new SynRulesAccessor();
 	}
 
 }

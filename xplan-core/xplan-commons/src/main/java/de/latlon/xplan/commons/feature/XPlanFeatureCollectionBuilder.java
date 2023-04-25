@@ -2,18 +2,18 @@
  * #%L
  * xplan-commons - Commons Paket fuer XPlan Manager und XPlan Validator
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -25,6 +25,7 @@ import de.latlon.xplan.commons.XPlanVersion;
 import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
+import de.latlon.xplan.commons.util.XPlanVersionUtils;
 import org.deegree.commons.tom.TypedObjectNode;
 import org.deegree.commons.tom.gml.property.Property;
 import org.deegree.commons.tom.primitive.PrimitiveValue;
@@ -132,8 +133,7 @@ public class XPlanFeatureCollectionBuilder {
 		}
 		FeatureCollection featuresOfFirstCollection = featuresCollections.get(0);
 		Feature planFeatures = findPlanFeature(featuresOfFirstCollection, xPlanType);
-		String planFeatureNamespaceUri = planFeatures.getName().getNamespaceURI();
-		XPlanVersion version = XPlanVersion.valueOfNamespace(planFeatureNamespaceUri);
+		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(planFeatures.getName());
 
 		List<XPlanFeatureCollection> xPlanGmlInstances = createListOfXPlanGmlInstances(featuresOfFirstCollection,
 				version);
@@ -143,7 +143,7 @@ public class XPlanFeatureCollectionBuilder {
 	private XPlanSingleInstanceFeatureCollection build(FeatureCollection features) {
 		Feature planFeature = findPlanFeature(features, xPlanType);
 		String planFeatureNamespaceUri = planFeature.getName().getNamespaceURI();
-		XPlanVersion version = XPlanVersion.valueOfNamespace(planFeatureNamespaceUri);
+		XPlanVersion version = XPlanVersionUtils.determineBaseVersion(planFeature.getName());
 		String name = FeatureCollectionUtils.retrievePlanName(planFeature);
 		String nummer = parsePlanNummer(planFeature);
 		String gkz = parsePlanGemeindeKennzahl(planFeature);

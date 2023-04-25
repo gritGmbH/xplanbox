@@ -2,7 +2,7 @@
 === Installation und Konfiguration von GDAL
 
 Die xPlanBox unterstützt die Darstellung von Rasterdaten über die GDAL-Bibliothek.
-Die GDAL Unterstützung ist optional, die Konfiguration im XPlanManager ist im Abschnitt <<konfiguration-gdal>> beschrieben.
+Die GDAL Unterstützung ist optional, die Konfiguration im XPlanManagerWeb und XPlanManagerAPI ist im Abschnitt <<konfiguration-gdal>> beschrieben.
 
 IMPORTANT: Der Zugriff auf die GDAL-Bibliothek erfolgt über die Schnittstelle (Java Native Interface) JNI. Je JVM kann die
 GDAL-Bibliothek nur einmal geladen werden. Deswegen muss jede Webapp der
@@ -12,11 +12,7 @@ separaten Tomcat-Instanz installiert werden.
 [[installation-gdal-linux]]
 ==== Linux
 
-Für Ubuntu 20.04 (Focal) kann GDAL 3.0 aus einer Paketquelle installiert werden:
-
-----
-sudo apt-get install libgdal-java
-----
+Es muss GDAL 3.5 plus die dazugehörige JNI-Schnittstelle installiert werden.
 
 Damit GDAL über die JNI-Schnittstelle angesprochen werden kann, muss die
 Umgebungsvariable zur GDAL-Bibliothek gesetzt werden, z. B.:
@@ -31,9 +27,9 @@ zeigen, in dem sich die Datei _libgdaljni.so_ befindet.
 [[installation-gdal-windows]]
 ==== Windows
 
-GDAL 3.0 für Windows kann bei http://www.gisinternals.com/[GISInternals]
-heruntergeladen werden. Die Version 3.0 befindet sich
-unter "Older Releases". Die Architektur der GDAL-Bibliothek (32bit
+GDAL 3.5 für Windows kann bei http://www.gisinternals.com/[GISInternals]
+heruntergeladen werden. Die Version 3.5 befindet sich
+unter "Older Releases/Archive Versions". Die Architektur der GDAL-Bibliothek (32bit
 oder 64bit) muss der Architektur von Java und dem Betriebssystem
 http://windows.microsoft.com/de-de/windows/32-bit-and-64-bit-windows[Windows]
 entsprechen. Bei den Downloads sollten die kompilierten Binaries in
@@ -45,7 +41,7 @@ MSVC 11.0 (1700) werden Windows XP and Windows Server 2003 nicht mehr
 unterstützt. Die Version des Microsoft C/C++ Runtime Library (CRT) kann mit
 dem Befehl `cl` abgefragt oder über die Windows Systemsteuerung angezeigt werden.
 
-Dieses ZIP-Archiv kann an einem beliebigen Ort entpackt werden.
+Das ZIP-Archiv kann an einem beliebigen Ort entpackt werden.
 
 Unter
 _Systemsteuerung->System und Sicherheit->System->Erweiterte Systemeinstellungen->Erweitert->Umgebungsvariablen_
@@ -53,7 +49,7 @@ müssen folgende Einstellungen vorgenommen werden:
 
 * Setzen der Variable `JAVA_HOME` mit der Referenz zur Java Installation
 (JDK), z. B.: `C:\Program Files\Java\jdk-11.0.11`
-* Setzen der Variable `GDAL_DATA` mit der Referenz auf den Ordner, der
+* Setzen der Variable `GDAL_DATA` mit der Referenz auf das Verzeichnis, dass die
 Datei "gcs.csv" enthält, z. B.:
 `C:\Program Files (x86)\gdal\bin\gdal-data`
 * Zur Umgebungsvariable _PATH_ müssen zwei Pfade hinzugefügt

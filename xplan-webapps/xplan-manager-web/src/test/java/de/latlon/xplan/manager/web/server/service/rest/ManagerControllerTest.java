@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -41,11 +41,9 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.isA;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -85,7 +83,7 @@ public class ManagerControllerTest {
 		doNothing().when(mockReportProvider).writeHtmlReport(isA(HttpServletResponse.class), isA(String.class),
 				isA(String.class));
 		Mockito.when(mockManager.list(false)).thenReturn(new ArrayList<XPlan>());
-		assertThat(this.managerController, is(notNullValue()));
+		assertNotNull(this.managerController);
 		mockMvc.perform(get("/manager/plans")).andExpect(status().isOk());
 		verify(mockManager, times(1)).list(any(Boolean.class));
 	}

@@ -2,7 +2,7 @@
  * #%L
  * xplan-wms - deegree XPlan WebMapService
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,13 +20,6 @@
  */
 package de.latlon.xplan.wms.visibility;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
-
 import org.deegree.db.ConnectionProvider;
 import org.deegree.db.ConnectionProviderProvider;
 import org.deegree.layer.metadata.LayerMetadata;
@@ -35,6 +28,13 @@ import org.deegree.services.wms.visibility.LayerVisibilityInspector;
 import org.deegree.workspace.Workspace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
 
 /**
  * Abstract {@link LayerVisibilityInspector} to check if the plan a (raster) layer is part
@@ -49,8 +49,6 @@ public abstract class ValidityPeriodInspector implements LayerVisibilityInspecto
 
 	private static final String JDBC_CONFIG_ID = "xplan";
 
-	private final Workspace workspace;
-
 	private final String schema;
 
 	/**
@@ -59,7 +57,6 @@ public abstract class ValidityPeriodInspector implements LayerVisibilityInspecto
 	 */
 	public ValidityPeriodInspector(String schema) {
 		this.schema = schema;
-		this.workspace = OGCFrontController.getServiceWorkspace().getNewWorkspace();
 	}
 
 	public boolean isVisible(LayerMetadata layerMetadata) {
@@ -131,6 +128,7 @@ public abstract class ValidityPeriodInspector implements LayerVisibilityInspecto
 	}
 
 	private Connection openConnection() {
+		Workspace workspace = OGCFrontController.getServiceWorkspace().getNewWorkspace();
 		ConnectionProvider resource = workspace.getResource(ConnectionProviderProvider.class, JDBC_CONFIG_ID);
 		return resource.getConnection();
 	}

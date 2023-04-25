@@ -2,7 +2,7 @@
 -- #%L
 -- xplan-sql-scripts - SQL Skripte zum Aufsetzen der Datenhaltung.
 -- %%
--- Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+-- Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
 -- %%
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU Affero General Public License as published by
@@ -25,7 +25,7 @@ SET search_path TO xplan40pre,public;
 
 CREATE TABLE feature_types (id smallint PRIMARY KEY, qname text NOT NULL);
 COMMENT ON TABLE feature_types IS 'Ids and bboxes of concrete feature types';
-SELECT ADDGEOMETRYCOLUMN('xplan40pre', 'feature_types','bbox','0','GEOMETRY',2);
+SELECT ADDGEOMETRYCOLUMN('xplan40pre', 'feature_types','bbox','25832','GEOMETRY',2);
 INSERT INTO feature_types  (id,qname) VALUES (0,'{http://www.opengis.net/gml/3.2}AbstractDiscreteCoverage');
 INSERT INTO feature_types  (id,qname) VALUES (1,'{http://www.opengis.net/gml/3.2}MultiPointCoverage');
 INSERT INTO feature_types  (id,qname) VALUES (2,'{http://www.opengis.net/gml/3.2}RectifiedGridCoverage');
@@ -202,6 +202,6 @@ INSERT INTO feature_types  (id,qname) VALUES (172,'{http://www.xplanung.de/xplan
 INSERT INTO feature_types  (id,qname) VALUES (173,'{http://www.xplanung.de/xplangml/4/0}XP_TextAbschnitt');
 CREATE TABLE gml_objects (id serial PRIMARY KEY, gml_id text UNIQUE NOT NULL, ft_type smallint REFERENCES feature_types , binary_object bytea, plan_id text, plan_name text, internal_id text, rechtsstand text);
 COMMENT ON TABLE gml_objects IS 'All objects (features and geometries)';
-SELECT ADDGEOMETRYCOLUMN('xplan40pre', 'gml_objects','gml_bounded_by','0','GEOMETRY',2);
+SELECT ADDGEOMETRYCOLUMN('xplan40pre', 'gml_objects','gml_bounded_by','25832','GEOMETRY',2);
 ALTER TABLE gml_objects ADD CONSTRAINT gml_objects_geochk CHECK (ST_isValid(gml_bounded_by));
 CREATE INDEX gml_objects_sidx ON gml_objects  USING GIST (gml_bounded_by);

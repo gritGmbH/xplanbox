@@ -2,18 +2,18 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * #L%
@@ -59,7 +59,7 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 	}
 
 	/**
-	 * @return The Plan or Bereich feature of this InGeltungsbereichFeature, may be
+	 * @return The Plan or Bereich feature of this FeatureUnderTest, may be
 	 * <code>null</code> if no Plan or Bereich feature is assigned
 	 */
 	public GeltungsbereichFeature getGeltungsbereichFeature() {
@@ -72,6 +72,31 @@ public class FeatureUnderTest extends AbstractGeltungsbereichFeature {
 			return bereichFeature;
 		String planId = bereichFeature.getPlanId();
 		return inspectorContext.getPlanFeatures().get(planId);
+	}
+
+	/**
+	 * @return The Plan feature of this FeatureUnderTest, may be * <code>null</code> if no
+	 * Plan feature is assigned
+	 */
+	public PlanFeature getPlanFeature() {
+		GeltungsbereichFeature geltungsbereichFeature = getGeltungsbereichFeature();
+		if (geltungsbereichFeature instanceof BereichFeature) {
+			return ((BereichFeature) geltungsbereichFeature).getPlanFeature();
+		}
+		if (geltungsbereichFeature instanceof PlanFeature)
+			return (PlanFeature) geltungsbereichFeature;
+		return null;
+	}
+
+	/**
+	 * @return The Bereich feature of this FeatureUnderTest, may be * <code>null</code> if
+	 * no Bereich feature is assigned
+	 */
+	public BereichFeature getBereichFeature() {
+		GeltungsbereichFeature geltungsbereichFeature = getGeltungsbereichFeature();
+		if (geltungsbereichFeature instanceof BereichFeature)
+			return (BereichFeature) geltungsbereichFeature;
+		return null;
 	}
 
 	/**

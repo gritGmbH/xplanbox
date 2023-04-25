@@ -2,7 +2,7 @@
  * #%L
  * xplan-manager-web - Webanwendung des XPlan Managers
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -22,7 +22,6 @@ package de.latlon.xplan.manager.web.client.gui.editor.change;
 
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import de.latlon.xplan.manager.web.client.gui.editor.EditPlanType;
 import de.latlon.xplan.manager.web.client.gui.editor.EditVersion;
@@ -30,11 +29,15 @@ import de.latlon.xplan.manager.web.client.gui.editor.dialog.EditDialogBox;
 import de.latlon.xplan.manager.web.client.gui.editor.dialog.TypeCodeListBox;
 import de.latlon.xplan.manager.web.client.gui.widget.CodeListBox;
 import de.latlon.xplan.manager.web.client.gui.widget.MandatoryTextBox;
+import de.latlon.xplan.manager.web.client.gui.widget.PatternTextBox;
 import de.latlon.xplan.manager.web.client.gui.widget.Validable;
 import de.latlon.xplan.manager.web.shared.edit.Change;
 import de.latlon.xplan.manager.web.shared.edit.ChangeType;
 
 import static com.google.gwt.user.client.ui.HasHorizontalAlignment.ALIGN_LEFT;
+import static de.latlon.xplan.commons.util.TextPatternConstants.NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.SIMPLE_NAME_PATTERN;
+import static de.latlon.xplan.commons.util.TextPatternConstants.S_LENGTH;
 import static de.latlon.xplan.manager.web.client.gui.editor.codelist.CodelistType.XP_RechtscharakterPlanaenderung;
 import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.areComponentsValid;
 
@@ -46,9 +49,9 @@ import static de.latlon.xplan.manager.web.client.gui.validation.ValidationUtils.
  */
 public class ChangesXplanDialog extends EditDialogBox implements Validable {
 
-	private final MandatoryTextBox planName = createMandatoryTextInput();
+	private final MandatoryTextBox planName = createMandatoryTextInput(NAME_PATTERN, S_LENGTH);
 
-	private final TextBox number = createTextInput();
+	private final PatternTextBox number = createPatternTextInput(SIMPLE_NAME_PATTERN, S_LENGTH);
 
 	private final CodeListBox legalNature;
 
@@ -74,7 +77,7 @@ public class ChangesXplanDialog extends EditDialogBox implements Validable {
 
 	@Override
 	public boolean isValid() {
-		return areComponentsValid(planName, legalNature);
+		return areComponentsValid(number, planName, legalNature);
 	}
 
 	/**

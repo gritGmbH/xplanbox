@@ -2,7 +2,7 @@
  * #%L
  * xplan-validator-core - XPlan Validator Core Komponente
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -119,6 +119,18 @@ public class GeometricValidatorImplTest {
 		assertThat(report.getErrors().size(), is(2));
 		assertThat(report.getWarnings().size(), is(0));
 		assertThat(report.getBadGeometries().size(), is(2));
+	}
+
+	@Test
+	public void testValidateGeometry_InvalidSelfintersectionDetected() throws Exception {
+		XPlanArchive archive = getTestArchive(getClass().getResourceAsStream("invalidSelfintersectionDeteced.gml"));
+		GeometricValidatorResult report = (GeometricValidatorResult) validateGeometryAndReturnReport(archive,
+				SKIP_OPTIONS);
+
+		assertThat(report.isValid(), is(true));
+		assertThat(report.getErrors().size(), is(0));
+		assertThat(report.getWarnings().size(), is(0));
+		assertThat(report.getBadGeometries().size(), is(0));
 	}
 
 	private XPlanArchive getTestArchive(String name) throws IOException {

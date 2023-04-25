@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  xplan-validator-core - XPlan Validator Core Komponente
+  %%
+  Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
 <!-- Erzeugt am 14.10.2022 mit dem IP NAS Manager (22.0.0.0) von der IP SYSCON GmbH und gültig nach dem XPlanGML Schema 5.1.2.-->
 <XPlanAuszug xmlns="http://www.xplanung.de/xplangml/5/1"
 	xmlns:xplan="http://www.xplanung.de/xplangml/5/1"
@@ -24,7 +45,6 @@
 			</gml:boundedBy>
 			<xplan:ebene>0</xplan:ebene>
 			<xplan:gehoertZuBereich xlink:href="#GML_a17ad9ff-ef49-4375-b1b7-9a401cb24038"/>
-			<xplan:wirdDargestelltDurch xlink:href="#GML_df3aeba4-934f-4dea-a357-6895786f9496"/>
 			<xplan:rechtscharakter>3000</xplan:rechtscharakter>
 			<xplan:refTextInhalt xlink:href="#GML_eff5c36c-591e-4739-8f92-4e12928d4cee"/>
 			<xplan:position>

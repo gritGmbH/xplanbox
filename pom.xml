@@ -4,7 +4,7 @@
   <groupId>de.latlon.product.xplanbox</groupId>
   <artifactId>xplanbox</artifactId>
   <packaging>pom</packaging>
-  <version>6.0-SNAPSHOT</version>
+  <version>6.1-SNAPSHOT</version>
   <name>xPlanBox</name>
   <description>Software zur Verwaltung von XPlanGML Daten</description>
   <inceptionYear>2008</inceptionYear>
@@ -18,22 +18,25 @@
     <java.version>11</java.version>
     <maven.version>3.8.1</maven.version>
     <!-- version properties -->
-    <deegree3.version>3.5-PRE1</deegree3.version>
-    <xplanung.regeln.version>1.0</xplanung.regeln.version>
+    <deegree3.version>3.5.0-SNAPSHOT</deegree3.version>
+    <xplanung.regeln.version>1.1.3</xplanung.regeln.version>
     <gwt.version>2.10.0</gwt.version>
-    <geotools.version>26.6</geotools.version>
+    <geotools.version>28.2</geotools.version>
     <log4j.version>2.17.2</log4j.version>
     <slf4j.version>1.7.36</slf4j.version>
     <spring.version>5.3.23</spring.version>
-    <spring-boot.version>2.5.14</spring-boot.version>
-    <spring-batch.version>4.3.6</spring-batch.version>
+    <spring-boot.version>2.7.10</spring-boot.version>
+    <spring-batch.version>4.3.8</spring-batch.version>
     <spring-security.version>5.5.8</spring-security.version>
-    <jackson.version>2.13.4</jackson.version>
-    <liquibase.version>4.15.0</liquibase.version>
-    <postgresql.version>42.4.2</postgresql.version>
+    <jackson.version>2.14.2</jackson.version>
+    <liquibase.version>4.20.0</liquibase.version>
+    <postgresql.version>42.5.2</postgresql.version>
+    <owasp.version>8.2.1</owasp.version>
     <!-- project properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <skip.unit.tests>false</skip.unit.tests>
+    <skip.owasp.check>false</skip.owasp.check>
+    <build.key></build.key> <!-- can be set by build job -->
   </properties>
 
   <modules>
@@ -41,7 +44,6 @@
     <module>xplan-cli</module>
     <module>xplan-configuration</module>
     <module>xplan-core</module>
-    <module>xplan-documentation</module>
     <module>xplan-resources</module>
     <module>xplan-tests</module>
     <module>xplan-webapps</module>
@@ -82,6 +84,18 @@
       </modules>
     </profile>
     <profile>
+      <id>documentation</id>
+      <activation>
+        <property>
+          <name>documentation.skip</name>
+          <value>!true</value>
+        </property>
+      </activation>
+      <modules>
+        <module>xplan-documentation</module>
+      </modules>
+    </profile>
+    <profile>
       <id>licence</id>
       <build>
         <plugins>
@@ -90,36 +104,17 @@
             <artifactId>license-maven-plugin</artifactId>
             <version>2.0.0</version>
             <configuration>
+              <canUpdateCopyright>true</canUpdateCopyright>
+              <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
               <inceptionYear>${project.inceptionYear}</inceptionYear>
               <organizationName>${project.organization.name}</organizationName>
               <projectName>${project.name} - ${project.description}</projectName>
-              <copyrightOwners>lat/lon GmbH, info@lat-lon.de, www.lat-lon.de</copyrightOwners>
+              <copyrightOwners>Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH</copyrightOwners>
               <licenseName>agpl_v3</licenseName>
               <roots>
                 <root>src/main</root>
                 <root>src/test</root>
               </roots>
-              <excludes>
-                <exclude>*/codelists/**</exclude>
-                <exclude>*/appschemas/**</exclude>
-                <exclude>*/masterportal/**</exclude>
-                <exclude>*/xplanmgrweb/js/**</exclude>
-                <exclude>*/appschemas/XPlanGML_3_0/**</exclude>
-                <exclude>*/appschemas/XPlanGML_4_0/**</exclude>
-                <exclude>*/appschemas/XPlanGML_4_1/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_0/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_1/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
-                <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
-                <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
-                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
-                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
-                <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
-                <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
-                <exclude>**/*.json</exclude>
-              </excludes>
               <extraExtensions>
                 <xq>xml</xq>
                 <gfi>xml</gfi>
@@ -132,8 +127,64 @@
                 <syn>properties</syn>
                 <yaml>properties</yaml>
                 <yuml>properties</yuml>
+                <map>properties</map>
               </extraExtensions>
             </configuration>
+            <executions>
+              <execution>
+                <id>javaAndOther</id>
+                <goals>
+                  <goal>update-file-header</goal>
+                </goals>
+                <phase>process-sources</phase>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                  <excludes>
+                    <exclude>*/codelists/**</exclude>
+                    <exclude>*/appschemas/**</exclude>
+                    <exclude>*/masterportal/**</exclude>
+                    <exclude>*/xplanmgrweb/js/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_3_0/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_4_0/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_4_1/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_0/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_1/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_2/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_3/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+                    <exclude>*/appschemas/XPlanGML_5_4/**</exclude>
+                    <exclude>*/xplan-database-scripts/src/main/resource/**/*.yaml</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-manager/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-api-validator/**</exclude>
+                    <exclude>*/xplan-tests-soapui/src/main/resource/xplan-webservices/**</exclude>
+                    <exclude>*/xplan-workspaces/src/main/workspace/styles/xplansyn/symbols/**</exclude>
+                    <exclude>**/*.json</exclude>
+                    <exclude>**./.properties</exclude>
+                  </excludes>
+                  <includes>
+                    <include>**/bbox_cache_gml.properties</include>
+                    <include>**/bbox_cache_syn.properties</include>
+                  </includes>
+                </configuration>
+              </execution>
+              <execution>
+                <id>properties</id>
+                <goals>
+                  <goal>update-file-header</goal>
+                </goals>
+                <phase>process-sources</phase>
+                <configuration>
+                  <encoding>ISO-8859-1</encoding>
+                  <excludes>
+                    <exclude>**/bbox_cache_gml.properties</exclude>
+                    <exclude>**/bbox_cache_syn.properties</exclude>
+                  </excludes>
+                  <includes>
+                    <include>**/*.properties</include>
+                  </includes>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
           <!-- Workaround to replace XML comments with XQuery comments,
                since licence:update-file-header goal does not support xq files yet! -->
@@ -165,6 +216,73 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <profile>
+      <id>docker</id>
+      <properties>
+        <docker-image.skip>true</docker-image.skip>
+        <docker-image.namePrefix>xplanbox</docker-image.namePrefix>
+        <docker-image.name>${project.artifactId}</docker-image.name>
+      </properties>
+      <modules>
+        <module>xplan-docker</module>
+      </modules>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>io.fabric8</groupId>
+              <artifactId>docker-maven-plugin</artifactId>
+              <version>0.40.1</version>
+              <configuration>
+                <skip>${docker-image.skip}</skip>
+                <images>
+                  <image>
+                    <name>${docker-image.namePrefix}/${docker-image.name}</name>
+                    <build>
+                      <dockerFileDir>${project.basedir}</dockerFileDir>
+                      <args>
+                        <XPLANBOX_VERSION>${project.version}</XPLANBOX_VERSION>
+                        <XPLANBOX_IMAGE_NAME_PREFIX>${docker-image.namePrefix}</XPLANBOX_IMAGE_NAME_PREFIX>
+                        <WEB_CONTEXT>${project.artifactId}</WEB_CONTEXT>
+                      </args>
+                      <tags>
+                        <tag>${project.version}</tag>
+                      </tags>
+                    </build>
+                  </image>
+                </images>
+              </configuration>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>build</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>latlon</id>
+      <distributionManagement>
+        <repository>
+          <id>latlon-deploy</id>
+          <url>https://repo.lat-lon.de/repository/xplanbox-releases/</url>
+        </repository>
+        <snapshotRepository>
+          <id>latlon-deploy</id>
+          <url>https://repo.lat-lon.de/repository/xplanbox-snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
     </profile>
   </profiles>
 
@@ -220,7 +338,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>7.2.1</version>
+        <version>${owasp.version}</version>
       </plugin>
     </plugins>
   </reporting>
@@ -299,6 +417,45 @@
           </dependency>
         </dependencies>
       </plugin>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>${owasp.version}</version>
+        <configuration>
+          <formats>HTML,XML</formats>
+          <cveValidForHours>24</cveValidForHours>
+          <failBuildOnCVSS>10</failBuildOnCVSS>
+          <knownExploitedEnabled>false</knownExploitedEnabled>
+          <skip>${skip.owasp.check}</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+        <version>5.0.0</version>
+        <executions>
+          <execution>
+            <id>get-the-git-infos</id>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+            <phase>initialize</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <includeOnlyProperties>
+            <includeOnlyProperty>git.commit.id</includeOnlyProperty>
+          </includeOnlyProperties>
+          <verbose>true</verbose>
+        </configuration>
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -367,7 +524,7 @@
           <configuration>
             <disableCastChecking>true</disableCastChecking>
             <disableClassMetadata>true</disableClassMetadata>
-            <extraJvmArgs>-Xmx2g -Xss1024k</extraJvmArgs>
+            <extraJvmArgs>-Xmx500M</extraJvmArgs>
             <module>${gwt.moduleName}</module>
             <runTarget>index.html</runTarget>
             <hostedWebapp>${project.build.directory}/${project.build.finalName}</hostedWebapp>
@@ -406,7 +563,7 @@
             <dependency>
               <groupId>jakarta.xml.bind</groupId>
               <artifactId>jakarta.xml.bind-api</artifactId>
-              <version>2.3.2</version>
+              <version>2.3.3</version>
             </dependency>
             <dependency>
               <groupId>xerces</groupId>
@@ -467,7 +624,7 @@
             <dependency>
               <groupId>org.asciidoctor</groupId>
               <artifactId>asciidoctorj-pdf</artifactId>
-              <version>1.6.2</version>
+              <version>2.3.4</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -559,6 +716,11 @@
       </dependency>
       <dependency>
         <groupId>de.latlon</groupId>
+        <artifactId>deegree-core-workspace</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-connectionprovider-datasource</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
@@ -584,6 +746,11 @@
       </dependency>
       <dependency>
         <groupId>de.latlon</groupId>
+        <artifactId>deegree-protocol-wfs</artifactId>
+        <version>${deegree3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>de.latlon</groupId>
         <artifactId>deegree-sqldialect-postgis</artifactId>
         <version>${deegree3.version}</version>
       </dependency>
@@ -596,17 +763,17 @@
       </dependency>
       <!-- gwt -->
       <dependency>
-        <groupId>com.google.gwt</groupId>
+        <groupId>org.gwtproject</groupId>
         <artifactId>gwt-user</artifactId>
         <version>${gwt.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.google.gwt</groupId>
+        <groupId>org.gwtproject</groupId>
         <artifactId>gwt-dev</artifactId>
         <version>${gwt.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.google.gwt</groupId>
+        <groupId>org.gwtproject</groupId>
         <artifactId>gwt-servlet</artifactId>
         <version>${gwt.version}</version>
       </dependency>
@@ -650,7 +817,7 @@
       <dependency>
         <groupId>commons-fileupload</groupId>
         <artifactId>commons-fileupload</artifactId>
-        <version>1.3.3</version>
+        <version>1.5</version>
         <exclusions>
           <exclusion>
             <groupId>commons-io</groupId>
@@ -681,13 +848,23 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-dbcp2</artifactId>
-        <version>2.7.0</version>
+        <version>2.9.0</version>
         <exclusions>
           <exclusion>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>1.10.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>2.1.214</version>
       </dependency>
       <dependency>
         <groupId>org.javassist</groupId>
@@ -748,7 +925,7 @@
       <dependency>
         <groupId>com.sun.xml.bind</groupId>
         <artifactId>jaxb-impl</artifactId>
-        <version>2.3.5</version>
+        <version>2.3.7</version>
       </dependency>
       <dependency>
         <groupId>jakarta.annotation</groupId>
@@ -793,12 +970,23 @@
       <dependency>
         <groupId>org.gdal</groupId>
         <artifactId>gdal</artifactId>
-        <version>3.0.0</version>
+        <version>3.5.0</version>
       </dependency>
       <dependency>
         <groupId>org.locationtech.jts</groupId>
         <artifactId>jts-core</artifactId>
         <version>1.19.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.3.2</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP-java7</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.liquibase</groupId>
@@ -856,6 +1044,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>xplan-validator-web-commons</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>xplan-core-job</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -1007,6 +1200,11 @@
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
         <artifactId>spring-expression</artifactId>
         <version>${spring.version}</version>
       </dependency>
@@ -1023,6 +1221,11 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <dependency>
@@ -1065,6 +1268,10 @@
           <exclusion>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -1125,6 +1332,10 @@
           <exclusion>
             <groupId>net.sf.barcode4j</groupId>
             <artifactId>barcode4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -1215,6 +1426,23 @@
         <artifactId>postgresql</artifactId>
         <version>${postgresql.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.apache.tika</groupId>
+        <artifactId>tika-core</artifactId>
+        <version>2.6.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>1.33</version>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-bom</artifactId>
+        <version>1.12.343</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -1226,7 +1454,7 @@
   </scm>
 
   <repositories>
-    <repository>
+    <repository> <!-- better to try central first as long as most dependencies comes from there -->
       <id>central</id>
       <url>https://repo.maven.apache.org/maven2</url>
       <releases>
@@ -1237,12 +1465,38 @@
       </snapshots>
     </repository>
     <repository>
-      <id>latlon</id>
-      <url>https://repo.lat-lon.de/repository/maven-public/</url>
+      <id>opencode-xplan-deegree</id>
+      <url>https://gitlab.opencode.de/api/v4/projects/622/packages/maven</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>deegree</id>
+      <url>https://repo.deegree.org/repository/public/</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
     <repository>
       <id>xleitstelle-xplanung-validierungsregeln</id>
       <url>https://gitlab.opencode.de/api/v4/projects/398/packages/maven</url>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>xleitstelle-xplanung-validierungsregeln-berlin</id>
+      <url>https://gitlab.opencode.de/api/v4/projects/397/packages/maven</url>
       <releases>
         <updatePolicy>never</updatePolicy>
       </releases>
@@ -1274,12 +1528,12 @@
 
   <pluginRepositories>
     <pluginRepository>
-      <id>latlon</id>
-      <url>https://repo.lat-lon.de/repository/maven-public/</url>
+      <id>deegree</id>
+      <url>https://repo.deegree.org/repository/public/</url>
     </pluginRepository>
     <pluginRepository>
       <id>SmartBearPluginRepository</id>
-      <url>http://smartbearsoftware.com/repository/maven2</url>
+      <url>https://smartbearsoftware.com/repository/maven2</url>
     </pluginRepository>
   </pluginRepositories>
 

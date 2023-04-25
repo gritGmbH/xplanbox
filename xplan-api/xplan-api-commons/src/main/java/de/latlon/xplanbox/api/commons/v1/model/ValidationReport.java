@@ -2,7 +2,7 @@
  * #%L
  * xplan-api-commons - xplan-api-commons
  * %%
- * Copyright (C) 2008 - 2022 lat/lon GmbH, info@lat-lon.de, www.lat-lon.de
+ * Copyright (C) 2008 - 2023 Freie und Hansestadt Hamburg, developed by lat/lon gesellschaft für raumbezogene Informationssysteme mbH
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -33,7 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen",
@@ -54,7 +56,9 @@ public class ValidationReport {
 
 	private @Valid Boolean valid;
 
-	private @Valid List<String> externalReferences = new ArrayList<String>();
+	private @Valid List<String> externalReferences = new ArrayList<>();
+
+	private @Valid Map<String, ExternalReferenceStatusEnum> externalReferencesResult = new HashMap<>();
 
 	private @Valid @JsonInclude(Include.NON_NULL) URI wmsUrl;
 
@@ -165,12 +169,13 @@ public class ValidationReport {
 
 	/**
 	**/
-	public ValidationReport externalReferences(List<String> externalReferences) {
+	public ValidationReport externalReferences(@Valid List<String> externalReferences) {
 		this.externalReferences = externalReferences;
 		return this;
 	}
 
-	@ArraySchema(schema = @Schema(example = "stelling.png"))
+	@ArraySchema(schema = @Schema(example = "stelling.png",
+			description = "deprecated as of v1.1.0, replaced by externalReferencesResult", deprecated = true))
 	@JsonProperty("externalReferences")
 	public List<String> getExternalReferences() {
 		return externalReferences;
@@ -178,6 +183,24 @@ public class ValidationReport {
 
 	public void setExternalReferences(List<String> externalReferences) {
 		this.externalReferences = externalReferences;
+	}
+
+	/**
+	 **/
+	public ValidationReport externalReferencesResult(
+			@Valid Map<String, ExternalReferenceStatusEnum> externalReferencesResult) {
+		this.externalReferencesResult = externalReferencesResult;
+		return this;
+	}
+
+	@ArraySchema(schema = @Schema(example = "stelling.png", description = "since v1.1.0, replaces externalReferences"))
+	@JsonProperty("externalReferencesResult")
+	public Map<String, ExternalReferenceStatusEnum> getExternalReferencesResult() {
+		return externalReferencesResult;
+	}
+
+	public void setExternalReferencesResult(Map<String, ExternalReferenceStatusEnum> externalReferencesResult) {
+		this.externalReferencesResult = externalReferencesResult;
 	}
 
 	/**
@@ -246,6 +269,7 @@ public class ValidationReport {
 				&& Objects.equals(this.bbox, validationReport.bbox) && Objects.equals(this.date, validationReport.date)
 				&& Objects.equals(this.valid, validationReport.valid)
 				&& Objects.equals(this.externalReferences, validationReport.externalReferences)
+				&& Objects.equals(this.externalReferencesResult, validationReport.externalReferencesResult)
 				&& Objects.equals(this.wmsUrl, validationReport.wmsUrl)
 				&& Objects.equals(this.rulesMetadata, validationReport.rulesMetadata)
 				&& Objects.equals(this.validationResult, validationReport.validationResult);
@@ -269,6 +293,7 @@ public class ValidationReport {
 		sb.append("    date: ").append(toIndentedString(date)).append("\n");
 		sb.append("    valid: ").append(toIndentedString(valid)).append("\n");
 		sb.append("    externalReferences: ").append(toIndentedString(externalReferences)).append("\n");
+		sb.append("    externalReferencesResult: ").append(toIndentedString(externalReferencesResult)).append("\n");
 		sb.append("    wmsUrl: ").append(toIndentedString(wmsUrl)).append("\n");
 		sb.append("    rulesMetadata: ").append(toIndentedString(rulesMetadata)).append("\n");
 		sb.append("    validationResult: ").append(toIndentedString(validationResult)).append("\n");
