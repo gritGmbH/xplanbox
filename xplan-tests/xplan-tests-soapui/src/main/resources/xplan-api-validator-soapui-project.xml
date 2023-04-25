@@ -1954,28 +1954,22 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="Valid Reference Status AVAILABLE">
+            <con:assertion type="JsonPath Match" id="37c2a727-6da3-439f-a453-0b8fa39c15ca" name="Valid Reference Status AVAILABLE">
+              <con:configuration/>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="a3407af2-233e-45c5-9895-7e5a853c67a7" name="Valid Reference Status MISSING">
               <con:configuration>
-                <path>$.externalReferences[?(@.'BPlan003_5-2.png'=='AVAILABLE')]</path>
-                <content>true</content>
+                <path>$.externalReferencesResult['testreference.png']</path>
+                <content>MISSING</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="Valid Reference Status MISSING">
+            <con:assertion type="JsonPath Match" id="bb0dfc6c-c2b8-4341-8021-2d55f729785c" name="Valid Reference Status UNCHECKED">
               <con:configuration>
-                <path>$.externalReferences[?(@.'testreference.png'=='MISSING')]</path>
-                <content>true</content>
-                <allowWildcards>false</allowWildcards>
-                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
-                <ignoreComments>false</ignoreComments>
-              </con:configuration>
-            </con:assertion>
-            <con:assertion type="JsonPath Existence Match" id="f559e520-03c2-4806-bd43-a242a0cae1af" name="Valid Reference Status UNCHECKED">
-              <con:configuration>
-                <path>$.externalReferences[?(@.'https://www.deegree.org/'=='UNCHECKED')]</path>
-                <content>true</content>
+                <path>$.externalReferencesResult['https://www.deegree.org/']</path>
+                <content>UNCHECKED</content>
                 <allowWildcards>false</allowWildcards>
                 <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
                 <ignoreComments>false</ignoreComments>
