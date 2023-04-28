@@ -861,6 +861,15 @@ Validate XPlanGML or XPlanArchive</con:description>
                 <ignoreComments>false</ignoreComments>
               </con:configuration>
             </con:assertion>
+            <con:assertion type="JsonPath Match" id="d347e4e5-2de0-4d5f-839a-84f1312c9233" name="versionNotNull">
+              <con:configuration>
+                <path>$..[?(@.version == "null")].version</path>
+                <content>[]</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
             <con:assertion type="JsonPath Existence Match" id="d1a2a299-a358-4dcb-b245-b5ce405449b0" name="supportedXPlanGmlVersions">
               <con:configuration>
                 <path>$.supportedXPlanGmlVersions</path>
