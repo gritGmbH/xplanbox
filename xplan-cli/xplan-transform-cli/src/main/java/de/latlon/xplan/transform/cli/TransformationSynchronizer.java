@@ -53,7 +53,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_41;
-import static de.latlon.xplan.transform.cli.TransformTool.LOG_TABLE_NAME;
+import static de.latlon.xplan.transform.cli.TransformApplicationRunner.LOG_TABLE_NAME;
 
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>

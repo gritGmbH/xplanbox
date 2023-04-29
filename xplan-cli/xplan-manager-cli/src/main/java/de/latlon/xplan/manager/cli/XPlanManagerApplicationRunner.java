@@ -46,7 +46,6 @@ import static de.latlon.xplan.manager.cli.XPlanManagerCLI.printUsage;
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-// TODO use Spring configuration for object creation
 @Component
 @Import(ApplicationContext.class)
 public class XPlanManagerApplicationRunner implements ApplicationRunner {

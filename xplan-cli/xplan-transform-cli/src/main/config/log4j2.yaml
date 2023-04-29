@@ -56,6 +56,10 @@ Configuration:
         level: info
       - name: org.deegree
         level: warn
+      - name: org.springframework
+        level: debug
+      - name: org.hibernate
+        level: warn
       - name: org.reflections
         level: fatal
       - name: de.latlon.xplan.commons.hale
