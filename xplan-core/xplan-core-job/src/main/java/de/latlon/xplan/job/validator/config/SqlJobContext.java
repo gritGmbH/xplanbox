@@ -27,6 +27,8 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,8 +49,11 @@ import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 @Profile("validatorwmssql")
 public class SqlJobContext {
 
+	private static final Logger LOG = LoggerFactory.getLogger(SqlJobContext.class);
+
 	@Bean
 	public JobDetail deleteJob(@Value("${#{environment.DELETE_AFTER_MINUTES}:5}") int deleteAfterInMinutes) {
+		LOG.info("Delete validated plans after {} minutes.", deleteAfterInMinutes);
 		return JobBuilder.newJob().ofType(SqlDeleteJob.class).withIdentity("sqlDeleteJob", "xplan-validator-wms")
 				.storeDurably().withDescription("Delete features from SQLFeatureStore ...")
 				.usingJobData(DELETE_AFTER_KEY, deleteAfterInMinutes).build();
