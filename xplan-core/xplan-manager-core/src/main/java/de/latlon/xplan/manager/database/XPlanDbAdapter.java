@@ -209,17 +209,18 @@ public class XPlanDbAdapter {
 	 * @param artefactType the artefactType to set, never <code>null</code>
 	 * @throws SQLException
 	 */
-	public void updateArtefacttype(int planId, List<String> fileNames, ArtefactType artefactType) throws Exception {
-		Plan plan = getRequiredPlanById(planId);
-		Set<Artefact> artefacts = plan.getArtefacts();
+	@Transactional
+	public void updateArtefacttype(int planId, List<String> fileNames, ArtefactType artefactType) {
+		Stream<Artefact> artefacts = artefactRepository.findAllByPlanId(planId);
 		for (String rasterReference : fileNames) {
-			Optional<Artefact> artefact = artefacts.stream()
-					.filter(candidate -> candidate.getData().equals(rasterReference)).findFirst();
+			Optional<Artefact> artefact = artefacts.filter(candidate -> candidate.getData().equals(rasterReference))
+					.findFirst();
 			if (artefact.isPresent()) {
-				artefact.get().artefacttype(artefactType);
+				Artefact artefactToUpdate = artefact.get();
+				artefactToUpdate.artefacttype(artefactType);
+				artefactRepository.save(artefactToUpdate);
 			}
 		}
-		planRepository.save(plan);
 	}
 
 	/**

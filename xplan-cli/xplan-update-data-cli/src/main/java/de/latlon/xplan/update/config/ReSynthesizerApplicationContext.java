@@ -22,23 +22,11 @@ package de.latlon.xplan.update.config;
 
 import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
-import de.latlon.xplan.manager.wmsconfig.WmsWorkspaceWrapper;
-import de.latlon.xplan.manager.wmsconfig.config.RasterStorageContext;
-import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
-import de.latlon.xplan.manager.wmsconfig.raster.config.RasterConfigManager;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.RasterStorage;
-import de.latlon.xplan.manager.wmsconfig.raster.storage.s3.config.AmazonS3RasterStorageContext;
-import de.latlon.xplan.manager.workspace.DeegreeWorkspaceWrapper;
-import de.latlon.xplan.manager.workspace.WorkspaceException;
-import de.latlon.xplan.update.dp.SortPropertyDbUpdater;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
-import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_WMS_WORKSPACE;
 
 /**
  * Spring Application Context for initialising xplan-update-data-cli components.
@@ -46,8 +34,8 @@ import static de.latlon.xplan.manager.workspace.WorkspaceUtils.DEFAULT_XPLANSYN_
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
 @Configuration
-@Import({ ApplicationContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class, })
-public class SortPropertyUpdaterApplicationContext {
+@Import(ApplicationContext.class)
+public class ReSynthesizerApplicationContext {
 
 	@Bean
 	public XPlanSynthesizer XPlanSynthesizer(ManagerConfiguration managerConfiguration) {
@@ -61,24 +49,6 @@ public class SortPropertyUpdaterApplicationContext {
 	public SortPropertyReader sortPropertyReader(ManagerConfiguration managerConfiguration) {
 		return new SortPropertyReader(managerConfiguration.getSortConfiguration());
 
-	}
-
-	@Bean
-	public SortPropertyDbUpdater sortPropertyDbUpdater(ManagerWorkspaceWrapper managerWorkspaceWrapper) {
-		return new SortPropertyDbUpdater(managerWorkspaceWrapper);
-
-	}
-
-	@Bean
-	public WmsWorkspaceWrapper wmsWorkspaceWrapper() throws WorkspaceException {
-		DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper(DEFAULT_XPLANSYN_WMS_WORKSPACE);
-		return new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
-	}
-
-	@Bean
-	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
-			throws WorkspaceException {
-		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
 	}
 
 }

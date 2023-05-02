@@ -32,7 +32,7 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.XPlan;
-import de.latlon.xplan.update.config.ApplicationContext;
+import de.latlon.xplan.update.config.ReSynthesizerApplicationContext;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
@@ -59,7 +59,7 @@ import static de.latlon.xplan.update.tool.ReSynthesizerTool.OPT_PLAN_ID;
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
 @Component
-@Import(ApplicationContext.class)
+@Import(ReSynthesizerApplicationContext.class)
 public class ReSynthesizerApplicationRunner implements ApplicationRunner {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ReSynthesizerApplicationRunner.class);

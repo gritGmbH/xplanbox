@@ -27,9 +27,15 @@ import de.latlon.xplan.commons.reference.ExternalReferenceInfo;
 import de.latlon.xplan.commons.reference.ExternalReferenceScanner;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.update.config.ApplicationContext;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.util.List;
@@ -46,23 +52,24 @@ import static java.util.Collections.singletonList;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ArtefactsTableUpdater {
+@Component
+@Import(ApplicationContext.class)
+public class ArtefactsTableUpdaterApplicationRunner implements ApplicationRunner {
 
-	private final Logger LOG = LoggerFactory.getLogger(BereichUpdate.class);
+	private final Logger LOG = LoggerFactory.getLogger(ArtefactsTableUpdaterApplicationRunner.class);
 
-	private final XPlanDao xplanDao;
+	@Autowired
+	private XPlanDao xplanDao;
 
 	private final ExternalReferenceScanner externalReferenceScanner = new ExternalReferenceScanner();
 
-	public ArtefactsTableUpdater(XPlanDao xplanDao) {
-		this.xplanDao = xplanDao;
-	}
-
-	public void update() throws Exception {
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
 		List<XPlan> plans = xplanDao.getXPlanList();
 		for (XPlan plan : plans) {
 			update(plan);
 		}
+		LOG.info("ArtefactsTableUpdateTool successfully executed!");
 	}
 
 	private void update(XPlan plan) throws Exception {

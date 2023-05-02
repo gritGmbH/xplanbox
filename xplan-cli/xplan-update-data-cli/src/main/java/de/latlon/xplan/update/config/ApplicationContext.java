@@ -23,7 +23,6 @@ package de.latlon.xplan.update.config;
 import de.latlon.xplan.commons.configuration.ConfigurationDirectoryPropertiesLoader;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
-import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.core.manager.db.config.JpaContext;
 import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
 import de.latlon.xplan.core.manager.db.repository.PlanRepository;
@@ -33,8 +32,6 @@ import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.database.XPlanDbAdapter;
-import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
-import de.latlon.xplan.manager.synthesizer.rules.SynRulesAccessor;
 import de.latlon.xplan.manager.web.shared.ConfigurationException;
 import de.latlon.xplan.manager.workspace.WorkspaceException;
 import org.deegree.commons.config.DeegreeWorkspace;
@@ -74,6 +71,12 @@ public class ApplicationContext {
 	private ArtefactRepository artefactRepository;
 
 	@Bean
+	public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
+			throws ConfigurationException {
+		return new ManagerConfiguration(managerPropertiesLoader);
+	}
+
+	@Bean
 	public CategoryMapper categoryMapper(ManagerConfiguration managerConfiguration) {
 		return new CategoryMapper(managerConfiguration);
 	}
@@ -100,30 +103,10 @@ public class ApplicationContext {
 	}
 
 	@Bean
-	public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
-			throws ConfigurationException {
-		return new ManagerConfiguration(managerPropertiesLoader);
-	}
-
-	@Bean
 	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
 			throws WorkspaceException {
 		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
 		return new ManagerWorkspaceWrapper(managerWorkspace, managerConfiguration);
-	}
-
-	@Bean
-	public XPlanSynthesizer XPlanSynthesizer(ManagerConfiguration managerConfiguration) {
-		SynRulesAccessor synRulesAccessor = new SynRulesAccessor(
-				managerConfiguration.getSynthesizerConfigurationDirectory());
-		return new XPlanSynthesizer(synRulesAccessor);
-
-	}
-
-	@Bean
-	public SortPropertyReader sortPropertyReader(ManagerConfiguration managerConfiguration) {
-		return new SortPropertyReader(managerConfiguration.getSortConfiguration());
-
 	}
 
 	private Path etcDirectory() {
