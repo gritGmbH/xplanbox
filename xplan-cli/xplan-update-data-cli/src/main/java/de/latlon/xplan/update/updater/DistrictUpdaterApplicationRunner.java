@@ -23,9 +23,15 @@ package de.latlon.xplan.update.updater;
 import de.latlon.xplan.commons.XPlanType;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.update.config.ApplicationContext;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -36,24 +42,21 @@ import static de.latlon.xplan.commons.util.FeatureCollectionUtils.retrieveDistri
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class DistrictUpdater {
+@Component
+@Import(ApplicationContext.class)
+public class DistrictUpdaterApplicationRunner implements ApplicationRunner {
 
-	private static final Logger LOG = LoggerFactory.getLogger(DistrictUpdater.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DistrictUpdaterApplicationRunner.class);
 
+	@Autowired
 	private XPlanDao dao;
-
-	/**
-	 * @param dao used to access the database, never <code>null</code>
-	 */
-	public DistrictUpdater(XPlanDao dao) {
-		this.dao = dao;
-	}
 
 	/**
 	 * Retrieves all plans from the manager store, parses the district from the plan and
 	 * updates the district column in the table xplanmgr.plans.
 	 */
-	public void updateDistricts() throws Exception {
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
 		List<XPlan> plans = dao.getXPlanList();
 		for (XPlan plan : plans) {
 			LOG.info("Update district of plan with id {}", plan.getId());

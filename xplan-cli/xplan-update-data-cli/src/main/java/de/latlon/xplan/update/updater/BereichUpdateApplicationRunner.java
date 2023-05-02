@@ -21,13 +21,18 @@
 package de.latlon.xplan.update.updater;
 
 import de.latlon.xplan.commons.util.FeatureCollectionUtils;
-import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.update.config.ApplicationContext;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -36,30 +41,26 @@ import java.util.List;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
-public class BereichUpdate {
+@Component
+@Import(ApplicationContext.class)
+public class BereichUpdateApplicationRunner implements ApplicationRunner {
 
-	private final Logger LOG = LoggerFactory.getLogger(BereichUpdate.class);
+	private final Logger LOG = LoggerFactory.getLogger(BereichUpdateApplicationRunner.class);
 
-	private final XPlanDao xplanDao;
-
-	private ManagerWorkspaceWrapper managerWorkspaceWrapper;
-
-	/**
-	 * @param xplanDao allows access to the database, never <code>null</code>
-	 */
-	public BereichUpdate(XPlanDao xplanDao) {
-		this.xplanDao = xplanDao;
-	}
+	@Autowired
+	private XPlanDao xplanDao;
 
 	/**
 	 * Updates data. Schema must be up to date already.
 	 * @throws Exception if an error occurred during update
 	 */
-	public void update() throws Exception {
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
 		List<XPlan> plans = xplanDao.getXPlanList();
 		for (XPlan plan : plans) {
 			update(plan);
 		}
+		LOG.info("BereichUpdateTool successfully executed!");
 	}
 
 	private void update(XPlan plan) throws Exception {

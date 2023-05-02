@@ -27,7 +27,6 @@ import de.latlon.xplan.commons.feature.FeatureCollectionManipulator;
 import de.latlon.xplan.commons.feature.XPlanFeatureCollection;
 import de.latlon.xplan.core.manager.db.model.Artefact;
 import de.latlon.xplan.core.manager.db.model.ArtefactType;
-import de.latlon.xplan.manager.CategoryMapper;
 import de.latlon.xplan.manager.web.shared.AdditionalPlanData;
 import de.latlon.xplan.manager.web.shared.Bereich;
 import de.latlon.xplan.manager.web.shared.PlanStatus;
@@ -75,22 +74,6 @@ public class XPlanDao {
 	private final XPlanSynWfsAdapter xPlanSynWfsAdapter;
 
 	private final XPlanInspirePluAdapter xPlanInspirePluAdapter;
-
-	/**
-	 * Creates a new {@link XPlanDao} instance.
-	 * <p>
-	 * The DAO performs the initialization of the JDBC connection and feature stores on
-	 * demand.
-	 * </p>
-	 * @param managerWorkspaceWrapper workspace, never <code>null</code>
-	 * @param categoryMapper mapping configuration, never <code>null</code>
-	 */
-	public XPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
-		this.xPlanDbAdapter = new XPlanDbAdapter(categoryMapper, null, null, null);
-		this.xPlanWfsAdapter = new XPlanWfsAdapter(managerWorkspaceWrapper);
-		this.xPlanSynWfsAdapter = new XPlanSynWfsAdapter(managerWorkspaceWrapper);
-		this.xPlanInspirePluAdapter = new XPlanInspirePluAdapter(managerWorkspaceWrapper);
-	}
 
 	/**
 	 * Creates a new {@link XPlanDao} instance.
