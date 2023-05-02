@@ -23,6 +23,10 @@ package de.latlon.xplan.manager.web.spring.config;
 import de.latlon.xplan.commons.archive.XPlanArchiveCreator;
 import de.latlon.xplan.commons.configuration.PropertiesLoader;
 import de.latlon.xplan.commons.configuration.SystemPropertyPropertiesLoader;
+import de.latlon.xplan.core.manager.db.config.JpaContext;
+import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
+import de.latlon.xplan.core.manager.db.repository.PlanRepository;
+import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
 import de.latlon.xplan.inspire.plu.transformation.InspirePluTransformator;
 import de.latlon.xplan.inspire.plu.transformation.hale.HaleCliInspirePluTransformator;
 import de.latlon.xplan.manager.CategoryMapper;
@@ -30,6 +34,7 @@ import de.latlon.xplan.manager.XPlanManager;
 import de.latlon.xplan.manager.configuration.ManagerConfiguration;
 import de.latlon.xplan.manager.database.ManagerWorkspaceWrapper;
 import de.latlon.xplan.manager.database.XPlanDao;
+import de.latlon.xplan.manager.database.XPlanDbAdapter;
 import de.latlon.xplan.manager.document.XPlanDocumentManager;
 import de.latlon.xplan.manager.document.config.DocumentStorageContext;
 import de.latlon.xplan.manager.internalid.InternalIdRetriever;
@@ -72,6 +77,7 @@ import de.latlon.xplan.validator.syntactic.SyntacticValidator;
 import de.latlon.xplan.validator.syntactic.SyntacticValidatorImpl;
 import de.latlon.xplan.validator.web.server.service.ReportProvider;
 import org.deegree.commons.config.DeegreeWorkspace;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -80,6 +86,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -100,11 +109,20 @@ import static java.nio.file.Paths.get;
  * @author <a href="mailto:friebe@lat-lon.de">Torsten Friebe</a>
  */
 @Configuration
-@Import({ RasterStorageContext.class, AmazonS3RasterStorageContext.class, DocumentStorageContext.class,
-		StorageCleanUpContext.class })
+@Import({ JpaContext.class, RasterStorageContext.class, AmazonS3RasterStorageContext.class,
+		DocumentStorageContext.class, StorageCleanUpContext.class })
 public class BasicSpringConfig {
 
 	private static final String RULES_DIRECTORY = "/rules";
+
+	@Autowired
+	private PlanRepository planRepository;
+
+	@Autowired
+	private PlanwerkWmsMetadataRepository planwerkWmsMetadataRepository;
+
+	@Autowired
+	private ArtefactRepository artefactRepository;
 
 	@Bean
 	public SyntacticValidator syntacticValidator() {
@@ -117,20 +135,24 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public SemanticValidator semanticValidator(ManagerConfiguration managerConfiguration, Path rulesPath)
-			throws URISyntaxException, ValidatorException {
-		RulesVersionParser rulesVersionParser = new RulesVersionParser();
-		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
-		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
-		XQuerySemanticValidatorConfigurationRetriever configRetriever = new XQuerySemanticValidatorConfigurationRetriever(
-				rulesPath, rulesMetadata);
-		return new XQuerySemanticValidator(configRetriever,
+	public SemanticValidator semanticValidator(ManagerConfiguration managerConfiguration,
+			XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever)
+			throws ValidatorException {
+		return new XQuerySemanticValidator(xQuerySemanticValidatorConfigurationRetriever,
 				managerConfiguration.getSemanticConformityLinkConfiguration());
 	}
 
 	@Bean
+	public XQuerySemanticValidatorConfigurationRetriever xQuerySemanticValidatorConfigurationRetriever(Path rulesPath) {
+		RulesVersionParser rulesVersionParser = new RulesVersionParser();
+		RulesVersion rulesVersion = rulesVersionParser.parserRulesVersion(rulesPath);
+		RulesMetadata rulesMetadata = new RulesMetadata(rulesVersion);
+		return new XQuerySemanticValidatorConfigurationRetriever(rulesPath, rulesMetadata);
+	}
+
+	@Bean
 	public Map<ValidatorProfile, RulesMetadata> profilesAndMetadata(ValidatorConfiguration validatorConfiguration,
-			PropertiesLoader validatorPropertiesLoader) throws ValidatorException {
+			PropertiesLoader validatorPropertiesLoader) {
 		Map<ValidatorProfile, RulesMetadata> profilesAndMetadata = new HashMap<>();
 		for (ValidatorProfile validatorProfile : validatorConfiguration.getValidatorProfiles()) {
 			String profileId = validatorProfile.getId();
@@ -178,31 +200,27 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public XPlanDao xPlanDao(ManagerWorkspaceWrapper managerWorkspaceWrapper, CategoryMapper categoryMapper) {
-		return new XPlanDao(managerWorkspaceWrapper, categoryMapper);
+	public XPlanDbAdapter xPlanDbAdapter(CategoryMapper categoryMapper) {
+		return new XPlanDbAdapter(categoryMapper, planRepository, planwerkWmsMetadataRepository, artefactRepository);
 	}
 
 	@Bean
-	public DeegreeWorkspaceWrapper deegreeWorkspaceWrapper() {
-		return new DeegreeWorkspaceWrapper(DEFAULT_XPLANSYN_WMS_WORKSPACE);
+	public XPlanDao xPlanDao(CategoryMapper categoryMapper, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			XPlanDbAdapter xPlanDbAdapter) {
+		return new XPlanDao(managerWorkspaceWrapper, xPlanDbAdapter);
 	}
 
 	@Bean
-	public WmsWorkspaceWrapper wmsWorkspaceWrapper(DeegreeWorkspaceWrapper deegreeWorkspaceWrapper)
+	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
 			throws WorkspaceException {
-		return new WmsWorkspaceWrapper(deegreeWorkspaceWrapper.getWorkspaceInstance());
+		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
+		return new ManagerWorkspaceWrapper(managerWorkspace, managerConfiguration);
 	}
 
 	@Bean
-	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
-			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
-			WorkspaceReloader workspaceReloader, Optional<InspirePluTransformator> inspirePluTransformator,
-			WmsWorkspaceWrapper wmsWorkspaceWrapper, XPlanRasterEvaluator xPlanRasterEvaluator,
-			XPlanRasterManager xPlanRasterManager, Optional<XPlanDocumentManager> xPlanDocumentManager,
-			StorageCleanUpManager storageCleanUpManager) throws Exception {
-		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
-				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
-				xPlanDocumentManager.orElse(null), storageCleanUpManager);
+	public WmsWorkspaceWrapper wmsWorkspaceWrapper() throws WorkspaceException {
+		DeegreeWorkspaceWrapper wmsWorkspace = new DeegreeWorkspaceWrapper(DEFAULT_XPLANSYN_WMS_WORKSPACE);
+		return new WmsWorkspaceWrapper(wmsWorkspace.getWorkspaceInstance());
 	}
 
 	@Bean
@@ -214,6 +232,18 @@ public class BasicSpringConfig {
 	public XPlanRasterManager xPlanRasterManager(RasterStorage rasterStorage, RasterConfigManager rasterConfigManager)
 			throws WorkspaceException {
 		return new XPlanRasterManager(rasterStorage, rasterConfigManager);
+	}
+
+	@Bean
+	public XPlanManager xPlanManager(XPlanSynthesizer xPlanSynthesizer, XPlanDao xPlanDao,
+			XPlanArchiveCreator archiveCreator, ManagerWorkspaceWrapper managerWorkspaceWrapper,
+			WorkspaceReloader workspaceReloader, WmsWorkspaceWrapper wmsWorkspaceWrapper,
+			XPlanRasterEvaluator xPlanRasterEvaluator, XPlanRasterManager xPlanRasterManager,
+			Optional<XPlanDocumentManager> xPlanDocumentManager, StorageCleanUpManager storageCleanUpManager,
+			Optional<InspirePluTransformator> inspirePluTransformator) throws Exception {
+		return new XPlanManager(xPlanSynthesizer, xPlanDao, archiveCreator, managerWorkspaceWrapper, workspaceReloader,
+				inspirePluTransformator.orElse(null), wmsWorkspaceWrapper, xPlanRasterEvaluator, xPlanRasterManager,
+				xPlanDocumentManager.orElse(null), storageCleanUpManager);
 	}
 
 	@Bean
@@ -242,12 +272,12 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public XPlanArchiveCreator archiveCreator(CategoryMapper categoryMapper) throws ConfigurationException {
+	public XPlanArchiveCreator archiveCreator(CategoryMapper categoryMapper) {
 		return new XPlanArchiveCreator(categoryMapper);
 	}
 
 	@Bean
-	public CategoryMapper categoryMapper(ManagerConfiguration managerConfiguration) throws ConfigurationException {
+	public CategoryMapper categoryMapper(ManagerConfiguration managerConfiguration) {
 		return new CategoryMapper(managerConfiguration);
 	}
 
@@ -255,15 +285,6 @@ public class BasicSpringConfig {
 	public ManagerConfiguration managerConfiguration(PropertiesLoader managerPropertiesLoader)
 			throws ConfigurationException {
 		return new ManagerConfiguration(managerPropertiesLoader);
-	}
-
-	@Bean
-	public ManagerWorkspaceWrapper managerWorkspaceWrapper(ManagerConfiguration managerConfiguration)
-			throws WorkspaceException {
-		DeegreeWorkspace managerWorkspace = instantiateWorkspace(DEFAULT_XPLAN_MANAGER_WORKSPACE);
-		ManagerWorkspaceWrapper managerWorkspaceWrapper = new ManagerWorkspaceWrapper(managerWorkspace,
-				managerConfiguration);
-		return managerWorkspaceWrapper;
 	}
 
 	@Bean
@@ -298,10 +319,21 @@ public class BasicSpringConfig {
 	}
 
 	@Bean
-	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException {
+	public Path rulesPath(ValidatorConfiguration validatorConfiguration) throws URISyntaxException, IOException {
 		Path validationRulesDirectory = validatorConfiguration.getValidationRulesDirectory();
 		if (validationRulesDirectory != null)
 			return validationRulesDirectory;
+
+		String aResourceInRulesJar = RULES_DIRECTORY + "/xplangml60/2.1.5.xq";
+		URL uri = getClass().getResource(aResourceInRulesJar);
+		if ("jar".equals(uri.getProtocol())) {
+			String jarPath = uri.getFile().replaceFirst("file:(.*)!.*", "$1");
+			if (jarPath != null) {
+				FileSystem zipfs = FileSystems.newFileSystem(Path.of(jarPath), getClass().getClassLoader());
+				return zipfs.getPath(RULES_DIRECTORY);
+			}
+		}
+
 		URI rulesPath = getClass().getResource(RULES_DIRECTORY).toURI();
 		return get(rulesPath);
 	}
