@@ -1513,6 +1513,10 @@
   </repositories>
 
   <pluginRepositories>
+    <pluginRepository> <!-- better to try central first as long as most plugins come from there -->
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </pluginRepository>
     <pluginRepository>
       <id>deegree</id>
       <url>https://repo.deegree.org/repository/public/</url>
