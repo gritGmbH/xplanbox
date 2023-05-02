@@ -66,7 +66,6 @@ public class JpaContext {
 	@Bean
 	public HibernateJpaVendorAdapter jpaVendorAdapter(@Value("${hibernate.dialect}") String hibernateDialect) {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setShowSql(true);
 		vendorAdapter.setDatabasePlatform(hibernateDialect);
 		return vendorAdapter;
 	}

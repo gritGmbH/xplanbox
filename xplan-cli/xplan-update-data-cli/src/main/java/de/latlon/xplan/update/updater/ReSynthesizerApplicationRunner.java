@@ -32,11 +32,17 @@ import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer;
 import de.latlon.xplan.manager.synthesizer.XPlanSynthesizer;
 import de.latlon.xplan.manager.web.shared.XPlan;
+import de.latlon.xplan.update.config.ApplicationContext;
 import org.deegree.feature.Feature;
 import org.deegree.feature.FeatureCollection;
 import org.deegree.feature.types.AppSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.util.Date;
@@ -45,36 +51,49 @@ import java.util.UUID;
 
 import static de.latlon.xplan.commons.XPlanVersion.XPLAN_SYN;
 import static de.latlon.xplan.manager.synthesizer.FeatureTypeNameSynthesizer.SYN_FEATURETYPE_PREFIX;
+import static de.latlon.xplan.update.tool.ReSynthesizerTool.OPT_PLAN_ID;
 
 /**
  * Re-synthesizes single or all available plans.
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz </a>
  */
-public class ReSynthesizer {
+@Component
+@Import(ApplicationContext.class)
+public class ReSynthesizer implements ApplicationRunner {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ReSynthesizer.class);
 
-	private final XPlanDao xPlanDao;
+	@Autowired
+	private XPlanDao xPlanDao;
 
-	private final XPlanSynthesizer xPlanSynthesizer;
+	@Autowired
+	private XPlanSynthesizer xPlanSynthesizer;
 
-	private final SortPropertyReader sortPropertyReader;
+	@Autowired
+	private SortPropertyReader sortPropertyReader;
 
 	private final FeatureCollectionManipulator featureCollectionManipulator = new FeatureCollectionManipulator();
 
 	private final FeatureTypeNameSynthesizer featureTypeNameSynthesizer = new FeatureTypeNameSynthesizer();
 
-	/**
-	 * @param dao used to access the database, never <code>null</code>
-	 * @param xPlanSynthesizer used to synthesize the plans, never <code>null</code>
-	 * @param sortPropertyReader used to retrieve the configured sort property, never
-	 * <code>null</code>
-	 */
-	public ReSynthesizer(XPlanDao dao, XPlanSynthesizer xPlanSynthesizer, SortPropertyReader sortPropertyReader) {
-		this.xPlanDao = dao;
-		this.xPlanSynthesizer = xPlanSynthesizer;
-		this.sortPropertyReader = sortPropertyReader;
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		if (args.containsOption(OPT_PLAN_ID)) {
+			List<String> planIds = args.getOptionValues(OPT_PLAN_ID);
+			String planId = planIds.get(0);
+			try {
+				int planIdInt = Integer.parseInt(planId);
+				reSynthesize(planIdInt);
+			}
+			catch (NumberFormatException e) {
+				System.out.println(
+						"Invalid plan id (parameter " + OPT_PLAN_ID + "), '" + planId + "' is not an integer value");
+			}
+		}
+		else {
+			reSynthesize();
+		}
 	}
 
 	/**
