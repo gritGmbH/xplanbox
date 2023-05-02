@@ -26,10 +26,16 @@ import de.latlon.xplan.commons.feature.SortPropertyReader;
 import de.latlon.xplan.manager.database.XPlanDao;
 import de.latlon.xplan.manager.web.shared.XPlan;
 import de.latlon.xplan.manager.wmsconfig.raster.XPlanRasterManager;
+import de.latlon.xplan.update.config.SortPropertyUpdaterApplicationContext;
 import de.latlon.xplan.update.dp.SortPropertyDbUpdater;
 import org.deegree.feature.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -41,43 +47,34 @@ import java.util.Map;
  *
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
-public class SortPropertyUpdater {
+@Component
+@Import(SortPropertyUpdaterApplicationContext.class)
+public class SortPropertyUpdaterApplicationRunner implements ApplicationRunner {
 
-	private static final Logger LOG = LoggerFactory.getLogger(SortPropertyUpdater.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SortPropertyUpdaterApplicationRunner.class);
 
-	private final SortPropertyReader sortPropertyReader;
+	@Autowired
+	private SortPropertyReader sortPropertyReader;
 
-	private final XPlanDao dao;
+	@Autowired
+	private XPlanDao dao;
 
-	private final SortPropertyDbUpdater sortPropertyDbUpdater;
+	@Autowired
+	private SortPropertyDbUpdater sortPropertyDbUpdater;
 
-	private final XPlanRasterManager xPlanRasterManager;
-
-	/**
-	 * @param sortPropertyReader used to read the sort property from a feature collection,
-	 * never <code>null</code>
-	 * @param dao used to access the database, never <code>null</code>
-	 * @param sortPropertyDbUpdater used to update the sort property in the database,
-	 * never <code>null</code>
-	 * @param xPlanRasterManager used to update the raster configuration, never
-	 * <code>null</code>
-	 */
-	public SortPropertyUpdater(SortPropertyReader sortPropertyReader, XPlanDao dao,
-			SortPropertyDbUpdater sortPropertyDbUpdater, XPlanRasterManager xPlanRasterManager) {
-		this.sortPropertyReader = sortPropertyReader;
-		this.dao = dao;
-		this.sortPropertyDbUpdater = sortPropertyDbUpdater;
-		this.xPlanRasterManager = xPlanRasterManager;
-	}
+	@Autowired
+	private XPlanRasterManager xPlanRasterManager;
 
 	/**
 	 * Retrieves all plans from the manager store, parses the date from the plan with the
 	 * help of the {@link SortPropertyReader} and updates the sort property in the syn
 	 * schema data and reorders the wms rasterlayers.
 	 */
-	public void updateSortProperty() throws Exception {
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
 		Map<String, Date> planId2sortDate = updateColumnsInDB();
 		updateWmsRasterLayerOrder(planId2sortDate);
+		LOG.info("SortDateUpdateTool successfully executed!");
 	}
 
 	private Map<String, Date> updateColumnsInDB() throws Exception {

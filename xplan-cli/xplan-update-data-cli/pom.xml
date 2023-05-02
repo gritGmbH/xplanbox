@@ -96,7 +96,7 @@
                     <include name="artefactsTableUpdate" />
                     <include name="districtUpdate" />
                     <include name="reSynthesizer" />
-                    <include name="serviceMetadataRecordCreator" />
+                    <include name="sortDateUpdate" />
                   </fileset>
                 </chmod>
               </target>
