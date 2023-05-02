@@ -21,14 +21,9 @@
 package de.latlon.xplan.core.manager.db.config;
 
 import de.latlon.xplan.core.manager.db.DatasourceWrapper;
-import de.latlon.xplan.core.manager.db.repository.ArtefactRepository;
-import de.latlon.xplan.core.manager.db.repository.PlanRepository;
-import de.latlon.xplan.core.manager.db.repository.PlanwerkWmsMetadataRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -46,10 +41,7 @@ import java.sql.SQLException;
  * @since 6.1
  */
 @Configuration
-@EnableJpaRepositories(basePackages = "de.latlon.xplan.core.manager.db.repository",
-		includeFilters = @ComponentScan.Filter(
-				value = { PlanRepository.class, ArtefactRepository.class, PlanwerkWmsMetadataRepository.class },
-				type = FilterType.ASSIGNABLE_TYPE))
+@EnableJpaRepositories(basePackages = "de.latlon.xplan.core.manager.db.repository")
 @PropertySource("classpath:/jpa.properties")
 @EnableTransactionManagement
 public class JpaContext {
@@ -60,9 +52,10 @@ public class JpaContext {
 	}
 
 	@Bean
-	public EntityManagerFactory entityManagerFactory(HibernateJpaVendorAdapter vendorAdapter, DataSource dataSource) {
+	public EntityManagerFactory entityManagerFactory(HibernateJpaVendorAdapter jpaVendorAdapter,
+			DataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		factory.setJpaVendorAdapter(vendorAdapter);
+		factory.setJpaVendorAdapter(jpaVendorAdapter);
 		factory.setPackagesToScan("de.latlon.xplan.core.manager.db.model");
 		factory.setDataSource(dataSource);
 		factory.afterPropertiesSet();
@@ -71,7 +64,7 @@ public class JpaContext {
 	}
 
 	@Bean
-	public HibernateJpaVendorAdapter getJpaVendorAdapter(@Value("${hibernate.dialect}") String hibernateDialect) {
+	public HibernateJpaVendorAdapter jpaVendorAdapter(@Value("${hibernate.dialect}") String hibernateDialect) {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		vendorAdapter.setShowSql(true);
 		vendorAdapter.setDatabasePlatform(hibernateDialect);
@@ -79,8 +72,7 @@ public class JpaContext {
 	}
 
 	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory)
-			throws SQLException {
+	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager txManager = new JpaTransactionManager();
 		txManager.setEntityManagerFactory(entityManagerFactory);
 		return txManager;
