@@ -8,7 +8,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-cli</artifactId>
-    <version>6.1-SNAPSHOT</version>
+    <version>6.1-PRE-1954-04-25</version>
   </parent>
 
   <properties>

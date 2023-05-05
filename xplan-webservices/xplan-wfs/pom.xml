@@ -7,7 +7,7 @@
   <parent>
     <groupId>de.latlon.product.xplanbox</groupId>
     <artifactId>xplan-webservices</artifactId>
-    <version>6.1-SNAPSHOT</version>
+    <version>6.1-PRE-1954-04-25</version>
   </parent>
 
   <dependencies>
